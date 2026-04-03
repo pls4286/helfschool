@@ -3,24 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hypertension (High Blood Pressure) — helf.school</title>
+  <title>Cholesterol Explained — helf.school</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --navy:   #1B2A4A;
-      --coral:  #E8634A;
-      --cream:  #FAF7F2;
-      --sage:   #7A9E87;
-      --navy-light: #2A3F6B;
+      --navy:        #1B2A4A;
+      --coral:       #E8634A;
+      --cream:       #FAF7F2;
+      --sage:        #7A9E87;
+      --navy-light:  #2A3F6B;
       --coral-light: #FDEEE9;
       --sage-light:  #EBF2ED;
-      --text:   #2C2C2C;
-      --muted:  #6B7280;
-      --border: #E5DDD4;
+      --text:        #2C2C2C;
+      --muted:       #6B7280;
+      --border:      #E5DDD4;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -54,11 +53,7 @@
 
     .logo-svg { width: 36px; height: 36px; flex-shrink: 0; }
 
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
 
     .logo-name {
       font-family: 'Fraunces', serif;
@@ -76,11 +71,7 @@
       text-transform: uppercase;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
 
     .nav-links a {
       color: rgba(255,255,255,0.75);
@@ -101,7 +92,7 @@
     }
 
     .breadcrumb-inner {
-      max-width: 860px;
+      max-width: 900px;
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -148,7 +139,7 @@
     }
 
     .hero-inner {
-      max-width: 860px;
+      max-width: 900px;
       margin: 0 auto;
       position: relative;
       z-index: 1;
@@ -170,10 +161,6 @@
       margin-bottom: 1.25rem;
     }
 
-    .category-badge svg {
-      width: 12px; height: 12px;
-    }
-
     .article-hero h1 {
       font-family: 'Fraunces', serif;
       font-size: clamp(2rem, 5vw, 3rem);
@@ -183,9 +170,7 @@
       margin-bottom: 0.5rem;
     }
 
-    .article-hero h1 span {
-      color: var(--coral);
-    }
+    .article-hero h1 span { color: var(--coral); }
 
     .hero-subtitle {
       font-size: 1rem;
@@ -195,11 +180,7 @@
       margin-bottom: 1.75rem;
     }
 
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.25rem;
-    }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 1.25rem; }
 
     .meta-item {
       display: flex;
@@ -222,7 +203,7 @@
     }
 
     .jump-nav-inner {
-      max-width: 860px;
+      max-width: 900px;
       margin: 0 auto;
       display: flex;
       gap: 0;
@@ -246,10 +227,7 @@
       transition: color 0.2s, border-color 0.2s;
     }
 
-    .jump-link:hover {
-      color: var(--navy);
-      border-bottom-color: var(--navy);
-    }
+    .jump-link:hover { color: var(--navy); border-bottom-color: var(--navy); }
 
     .jump-link .num {
       display: inline-flex;
@@ -266,7 +244,7 @@
 
     /* ── LAYOUT ── */
     .article-layout {
-      max-width: 860px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 3rem 2rem 5rem;
     }
@@ -281,6 +259,7 @@
     .article-section:nth-child(2) { animation-delay: 0.1s; }
     .article-section:nth-child(3) { animation-delay: 0.15s; }
     .article-section:nth-child(4) { animation-delay: 0.2s; }
+    .article-section:nth-child(5) { animation-delay: 0.25s; }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(16px); }
@@ -324,6 +303,124 @@
     }
 
     .article-section p:last-child { margin-bottom: 0; }
+
+    /* ── CHOLESTEROL TYPE TABLE ── */
+    .chol-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.92rem;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(27,42,74,0.08);
+    }
+
+    .chol-table thead tr {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .chol-table thead th {
+      padding: 0.85rem 1.1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .chol-table tbody tr {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+
+    .chol-table tbody tr:last-child { border-bottom: none; }
+    .chol-table tbody tr:hover { background: var(--cream); }
+
+    .chol-table tbody td {
+      padding: 0.9rem 1.1rem;
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    .chol-table tbody td:first-child {
+      font-weight: 600;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+
+    .chol-table tbody td:nth-child(2) {
+      color: var(--coral);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .chol-table tbody td:nth-child(3) {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ── KEY TERMS BOX ── */
+    .key-terms-box {
+      background: var(--navy);
+      border-radius: 12px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 3.5rem;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .key-terms-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .key-terms-header svg {
+      width: 20px; height: 20px;
+      color: var(--coral);
+      flex-shrink: 0;
+    }
+
+    .key-terms-header h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.02em;
+    }
+
+    .key-terms-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+    }
+
+    .key-term {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      border-left: 3px solid var(--coral);
+    }
+
+    .key-term-word {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--coral);
+      letter-spacing: 0.02em;
+    }
+
+    .key-term-def {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.55;
+    }
 
     /* ── BULLET LIST ── */
     .matter-list {
@@ -397,10 +494,7 @@
       flex-shrink: 0;
     }
 
-    .doctor-card-icon svg {
-      width: 16px; height: 16px;
-      color: #fff;
-    }
+    .doctor-card-icon svg { width: 16px; height: 16px; color: #fff; }
 
     .doctor-card-title {
       font-family: 'Fraunces', serif;
@@ -418,6 +512,52 @@
 
     .doctor-card-body p { margin-bottom: 0.75rem; }
     .doctor-card-body p:last-child { margin-bottom: 0; }
+
+    /* ── TARGETS TABLE ── */
+    .targets-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.92rem;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(27,42,74,0.08);
+    }
+
+    .targets-table thead tr { background: var(--sage); }
+
+    .targets-table thead th {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .targets-table tbody tr {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .targets-table tbody tr:last-child { border-bottom: none; }
+    .targets-table tbody tr:nth-child(even) { background: var(--sage-light); }
+
+    .targets-table tbody td {
+      padding: 0.8rem 1rem;
+      line-height: 1.5;
+    }
+
+    .targets-table tbody td:first-child {
+      font-weight: 500;
+      color: var(--navy);
+    }
+
+    .targets-table tbody td:last-child {
+      color: var(--sage);
+      font-weight: 600;
+    }
 
     /* ── RESEARCH SECTION ── */
     .research-items {
@@ -444,6 +584,14 @@
       background: var(--navy);
     }
 
+    .research-item h4 {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+    }
+
     .research-item p {
       font-size: 0.95rem;
       line-height: 1.7;
@@ -464,71 +612,70 @@
       border: 1px solid rgba(122,158,135,0.3);
       padding: 0.2rem 0.6rem;
       border-radius: 100px;
+      text-decoration: none;
+      transition: background 0.2s;
     }
 
-    /* ── KEY TERMS BOX ── */
-    .key-terms-box {
-      background: var(--navy);
-      border-radius: 12px;
-      padding: 1.5rem 1.75rem;
-      margin-bottom: 3.5rem;
-      animation: fadeUp 0.5s ease both;
+    .research-source:hover { background: rgba(122,158,135,0.25); }
+
+    /* ── SUPPLEMENTS TABLE ── */
+    .supps-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(27,42,74,0.08);
     }
 
-    .key-terms-header {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.25rem;
-      padding-bottom: 0.85rem;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-    }
+    .supps-table thead tr { background: var(--navy); }
 
-    .key-terms-header svg {
-      width: 20px; height: 20px;
-      color: var(--coral);
-      flex-shrink: 0;
-    }
-
-    .key-terms-header h3 {
-      font-family: 'Fraunces', serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #fff;
-      letter-spacing: 0.02em;
-    }
-
-    .key-terms-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.85rem;
-    }
-
-    @media (max-width: 600px) {
-      .key-terms-grid { grid-template-columns: 1fr; }
-    }
-
-    .key-term {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
+    .supps-table thead th {
       padding: 0.75rem 1rem;
-      background: rgba(255,255,255,0.05);
-      border-radius: 8px;
-      border-left: 3px solid var(--coral);
-    }
-
-    .key-term-word {
-      font-size: 0.82rem;
+      text-align: left;
       font-weight: 600;
-      color: var(--coral);
-      letter-spacing: 0.02em;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
     }
 
-    .key-term-def {
+    .supps-table tbody tr {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .supps-table tbody tr:last-child { border-bottom: none; }
+
+    .supps-table tbody td {
+      padding: 0.8rem 1rem;
+      line-height: 1.5;
+    }
+
+    .supps-table tbody td:first-child {
+      font-weight: 500;
+      color: var(--navy);
+    }
+
+    .result-positive {
+      color: #2E7D32;
+      font-weight: 600;
+      background: #E8F5E9;
+      padding: 0.25rem 0.6rem;
+      border-radius: 100px;
       font-size: 0.82rem;
-      color: rgba(255,255,255,0.75);
-      line-height: 1.55;
+      display: inline-block;
+    }
+
+    .result-negative {
+      color: #B71C1C;
+      font-weight: 600;
+      background: #FFEBEE;
+      padding: 0.25rem 0.6rem;
+      border-radius: 100px;
+      font-size: 0.82rem;
+      display: inline-block;
     }
 
     /* ── DISCLAIMER ── */
@@ -578,6 +725,9 @@
       .article-layout { padding: 2rem 1rem 4rem; }
       .breadcrumb { padding: 0.6rem 1rem; }
       .jump-nav { padding: 0 1rem; }
+      .key-terms-grid { grid-template-columns: 1fr; }
+      .chol-table, .targets-table, .supps-table { font-size: 0.82rem; }
+      .chol-table thead th, .targets-table thead th, .supps-table thead th { font-size: 0.7rem; }
     }
   </style>
 </head>
@@ -603,8 +753,8 @@
       </div>
     </a>
     <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
       <li><a href="helf-school-conditions.html">Conditions</a></li>
-      <li><a href="#">Research</a></li>
       <li><a href="helf-school-membership.html">Membership</a></li>
     </ul>
   </nav>
@@ -616,25 +766,22 @@
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <a href="helf-school-conditions.html">Conditions</a>
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <a href="#">Cardiovascular Health</a>
+      <a href="helf-school-conditions.html">Cardiovascular Health</a>
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span>Hypertension</span>
+      <span>Cholesterol Explained</span>
     </div>
   </div>
 
   <!-- HERO -->
   <header class="article-hero">
     <div class="hero-inner">
-      <div class="category-badge">
-        <svg viewBox="0 0 12 12" fill="none"><path d="M6 1C3.24 1 1 3.24 1 6s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm.5 7.5h-1v-4h1v4zm0-5h-1v-1h1v1z" fill="currentColor"/></svg>
-        Cardiovascular Health
-      </div>
-      <h1>Hypertension<br/><span>(High Blood Pressure)</span></h1>
+      <div class="category-badge">Cardiovascular Health</div>
+      <h1>Cholesterol <span>Explained</span></h1>
       <p class="hero-subtitle">Plain English health education — not medical advice</p>
       <div class="hero-meta">
         <div class="meta-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          8 minute read
+          9 minute read
         </div>
         <div class="meta-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -642,7 +789,7 @@
         </div>
         <div class="meta-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-          Sources: NICE · WHO · Lancet · Cochrane · NHS · ONS
+          Sources: NICE · The Lancet · JAMA · NHS · WHO · ESC
         </div>
       </div>
     </div>
@@ -667,9 +814,37 @@
         <div class="section-number">1</div>
         <h2 class="section-title">What is it?</h2>
       </div>
-      <p>High blood pressure — known medically as hypertension — means the force of blood pushing against the walls of your arteries is consistently too high. Think of it like water pressure in a hosepipe: if the pressure is always too strong, over time it starts to damage the pipe itself.</p>
-      <p>Blood pressure is recorded as two numbers. The top number (systolic) measures the pressure when your heart beats. The bottom number (diastolic) measures the pressure between beats when your heart is resting. A reading is written as, for example, 120/80 mmHg — said as "120 over 80."</p>
-      <p>A reading of 140/90 mmHg or above, confirmed on more than one occasion, is how hypertension is diagnosed. Many people have no symptoms at all, which is why it is often called a silent condition. You can have it for years without knowing.</p>
+      <p>Cholesterol is a fatty substance found naturally in your blood. Despite its bad reputation, your body actually needs it — it plays an essential role in building healthy cells, producing hormones, and helping your body absorb vitamins. The problem arises when there is too much of certain types of cholesterol circulating in the bloodstream.</p>
+      <p>Cholesterol is carried through the blood by proteins, forming particles called lipoproteins. There are three key types:</p>
+
+      <table class="chol-table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Common name</th>
+            <th>What it does</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>LDL (low-density lipoprotein)</td>
+            <td>"Bad" cholesterol</td>
+            <td>Builds up on artery walls, forming plaques that narrow and harden arteries — raising the risk of heart attack and stroke</td>
+          </tr>
+          <tr>
+            <td>HDL (high-density lipoprotein)</td>
+            <td>"Good" cholesterol</td>
+            <td>Carries cholesterol away from the arteries back to the liver, where it is broken down and removed from the body</td>
+          </tr>
+          <tr>
+            <td>Non-HDL cholesterol</td>
+            <td>Total minus HDL</td>
+            <td>The broader measure of all potentially harmful fats — now the preferred measure in UK clinical guidelines</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>High cholesterol causes no symptoms. The only way to know your levels is through a blood test.</p>
     </section>
 
     <!-- KEY TERMS BOX -->
@@ -680,44 +855,28 @@
       </div>
       <div class="key-terms-grid">
         <div class="key-term">
-          <span class="key-term-word">Systolic pressure</span>
-          <span class="key-term-def">The top number in a blood pressure reading — the pressure in your arteries when your heart beats.</span>
-        </div>
-        <div class="key-term">
-          <span class="key-term-word">Diastolic pressure</span>
-          <span class="key-term-def">The bottom number — the pressure in your arteries between heartbeats, when the heart is resting.</span>
-        </div>
-        <div class="key-term">
-          <span class="key-term-word">mmHg</span>
-          <span class="key-term-def">Millimetres of mercury — the unit used to measure blood pressure. Written as, for example, 120/80 mmHg.</span>
-        </div>
-        <div class="key-term">
-          <span class="key-term-word">ABPM (Ambulatory Blood Pressure Monitoring)</span>
-          <span class="key-term-def">A portable monitor worn for 24 hours that records blood pressure automatically throughout the day and night — giving a much more accurate picture than a single clinic reading.</span>
-        </div>
-        <div class="key-term">
-          <span class="key-term-word">White coat hypertension</span>
-          <span class="key-term-def">When blood pressure readings are higher in a medical setting due to anxiety or stress, but normal at other times.</span>
-        </div>
-        <div class="key-term">
           <span class="key-term-word">Cardiovascular disease (CVD)</span>
           <span class="key-term-def">An umbrella term for conditions affecting the heart and blood vessels, including heart attack, stroke, heart failure, and coronary heart disease. CVD is the leading cause of death in the UK.</span>
         </div>
         <div class="key-term">
-          <span class="key-term-word">ECG (Electrocardiogram)</span>
-          <span class="key-term-def">A simple, painless test that records the electrical activity of the heart. Used to check for signs of heart strain or damage.</span>
+          <span class="key-term-word">Ischaemic heart disease</span>
+          <span class="key-term-def">A type of cardiovascular disease where the arteries supplying blood to the heart become narrowed or blocked, reducing blood flow. The most common cause of heart attacks. Also called coronary heart disease.</span>
         </div>
         <div class="key-term">
-          <span class="key-term-word">ACE inhibitors / ARBs</span>
-          <span class="key-term-def">Two types of blood pressure medication that work by relaxing blood vessels. ACE inhibitors (e.g. ramipril) and ARBs (e.g. losartan) are often the first choice for younger adults.</span>
+          <span class="key-term-word">Atherosclerosis</span>
+          <span class="key-term-def">The gradual build-up of fatty plaques inside artery walls, causing them to narrow and harden over time. The underlying process behind most heart attacks and strokes.</span>
         </div>
         <div class="key-term">
-          <span class="key-term-word">Calcium channel blockers</span>
-          <span class="key-term-def">Blood pressure medicines (e.g. amlodipine) that relax and widen blood vessels by reducing the amount of calcium entering the vessel walls.</span>
+          <span class="key-term-word">Triglycerides</span>
+          <span class="key-term-def">Another type of fat found in the blood. High triglyceride levels, often seen alongside high cholesterol, further increase cardiovascular risk.</span>
         </div>
         <div class="key-term">
-          <span class="key-term-word">Thiazide-like diuretics</span>
-          <span class="key-term-def">A type of "water tablet" (e.g. indapamide) that lowers blood pressure by helping the kidneys remove excess fluid and salt from the body.</span>
+          <span class="key-term-word">Statin</span>
+          <span class="key-term-def">A class of medication that lowers LDL cholesterol by reducing the amount produced in the liver. The most widely prescribed cholesterol-lowering treatment worldwide.</span>
+        </div>
+        <div class="key-term">
+          <span class="key-term-word">mmol/L</span>
+          <span class="key-term-def">Millimoles per litre — the unit used in the UK to measure cholesterol levels in the blood.</span>
         </div>
       </div>
     </div>
@@ -729,20 +888,20 @@
         <h2 class="section-title">Why does it matter?</h2>
       </div>
       <ul class="matter-list">
-        <li>Raised blood pressure puts constant extra strain on your heart, arteries, brain, kidneys, and eyes — over time this damage adds up, even when you feel perfectly well.</li>
-        <li>It is one of the leading causes of stroke, heart attack, heart failure, and chronic kidney disease.</li>
+        <li>High cholesterol directly contributes to the narrowing and hardening of arteries — the process that leads to heart attacks and strokes.</li>
         <li>
-          Around 1 in 3 adults in the UK has high blood pressure, rising to approximately 60% of people aged 65 and over. Among those aged 75 and over, the figure reaches 66% of men and 71% of women.
-          <span class="source-note">NHS Health Survey for England 2022 (NHS Digital); ONS Risk Factors for Undiagnosed High Blood Pressure in England, 2015–2019</span>
+          Around 59% of adults in England have a total cholesterol of 5 mmol/L or above — the threshold considered raised under NHS guidelines. Globally, 39% of adults have raised cholesterol. Prevalence is higher in Europe and North America, and lower in Sub-Saharan Africa and parts of Asia — although rates in those regions are now rising.
+          <span class="source-note">NHS Health Survey for England 2021, NHS Digital; WHO</span>
         </li>
         <li>
-          Around 1.4 billion adults worldwide — roughly one in three — are estimated to have hypertension, and approximately 600 million of them are unaware of it.
-          <span class="source-note">WHO Global Hypertension Report 2024</span>
+          High cholesterol accounts for over 7% of all deaths in England and a third of all ischaemic heart disease worldwide — a figure confirmed by the Global Burden of Disease Study.
+          <span class="source-note">NHS England; Global Burden of Disease Study</span>
         </li>
         <li>
-          It is responsible for around 10 million deaths per year globally, more than any other single condition.
-          <span class="source-note">WHO Global Hypertension Report 2023</span>
+          If 90% of people with cardiovascular disease in England were identified and treated, an estimated 14,000 heart attacks, strokes and premature deaths could be prevented in just three years.
+          <span class="source-note">"Improving Lipid Management to Reduce Cardiovascular Disease and Save Lives", NHS England 2023</span>
         </li>
+        <li>Like high blood pressure, high cholesterol is largely silent — no warning signs, which is why regular testing matters, particularly from age 40 onwards.</li>
       </ul>
     </section>
 
@@ -759,24 +918,39 @@
             <div class="doctor-card-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
-            <h3 class="doctor-card-title">Confirming the diagnosis</h3>
+            <h3 class="doctor-card-title">Checking your cholesterol</h3>
           </div>
           <div class="doctor-card-body">
-            <p>Your doctor will usually offer you a 24-hour blood pressure monitor to wear at home (called ambulatory blood pressure monitoring, or ABPM). This gives a much more accurate picture of your blood pressure during everyday life than a single clinic reading, and helps avoid "white coat hypertension" — where the stress of being in a medical setting temporarily raises your numbers.</p>
-            <p>If ABPM isn't suitable, home readings taken twice a day over several days are used instead.</p>
+            <p>Cholesterol is measured through a simple blood test — usually as part of an NHS Health Check (offered to everyone aged 40 to 74 in England every five years), or at your GP surgery if you have risk factors that warrant earlier testing. The test measures your total cholesterol, HDL, and triglycerides — from which your non-HDL and LDL are calculated.</p>
+            <p>You don't usually need to fast before a cholesterol blood test under current UK guidelines, though your doctor may advise otherwise in certain circumstances.</p>
           </div>
         </div>
 
         <div class="doctor-card">
           <div class="doctor-card-header">
             <div class="doctor-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
             </div>
-            <h3 class="doctor-card-title">Checking for damage and risk</h3>
+            <h3 class="doctor-card-title">Understanding your results</h3>
           </div>
           <div class="doctor-card-body">
-            <p>Your GP will also arrange some basic tests — usually blood tests, a urine test, and sometimes a heart trace (ECG) — to check whether the high blood pressure has already affected your kidneys or heart. An eye examination may also be arranged, as the small blood vessels at the back of the eye can show early signs of damage from high blood pressure.</p>
-            <p>Together these tests give an overall picture of your cardiovascular risk, assessed using a suitable risk calculator (see the section on risk calculators in our articles on the website).</p>
+            <p>Your doctor will look at your numbers in the context of your overall cardiovascular risk — not in isolation. Here are the general targets for most healthy adults:</p>
+            <table class="targets-table">
+              <thead>
+                <tr>
+                  <th>Measure</th>
+                  <th>Target for most healthy adults</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Total cholesterol</td><td>Below 5.0 mmol/L</td></tr>
+                <tr><td>Non-HDL cholesterol</td><td>Below 4.0 mmol/L</td></tr>
+                <tr><td>LDL cholesterol</td><td>Below 3.0 mmol/L</td></tr>
+                <tr><td>HDL cholesterol (men)</td><td>Above 1.0 mmol/L</td></tr>
+                <tr><td>HDL cholesterol (women)</td><td>Above 1.2 mmol/L</td></tr>
+              </tbody>
+            </table>
+            <p>If you already have cardiovascular disease, your targets will be lower — your doctor will advise you specifically. Your overall risk is assessed using a suitable risk calculator (see the section on risk calculators in our articles on the website).</p>
           </div>
         </div>
 
@@ -788,9 +962,9 @@
             <h3 class="doctor-card-title">Treatment</h3>
           </div>
           <div class="doctor-card-body">
-            <p>Treatment depends on how high your blood pressure is and what other health factors are present. For many people, lifestyle changes alone can make a meaningful difference — reducing salt intake, losing excess weight, taking regular exercise, cutting back on alcohol, and stopping smoking are all recommended.</p>
-            <p>If medication is needed, there are several well-established options. In the UK, NICE guidelines suggest starting with one of three main drug types depending on your age and other health factors: ACE inhibitors or ARBs, calcium channel blockers, or thiazide-like diuretics. Many people end up on a combination of two or more.</p>
-            <p>Your blood pressure will be checked regularly once you are on treatment to make sure it is well controlled. For most people under 80, the target is below 140/90 mmHg in clinic, or below 135/85 mmHg on home monitoring. For people aged 80 and over, the targets are slightly higher — below 150/90 mmHg in clinic, or below 145/85 mmHg on home monitoring. These targets are set in accordance with current NICE guidelines (NG136).</p>
+            <p>For many people, lifestyle changes can make a real difference — reducing saturated fat in the diet, exercising regularly, maintaining a healthy weight, cutting back on alcohol, and stopping smoking all help to improve cholesterol levels.</p>
+            <p>If medication is needed, statins are the most prescribed and best evidenced treatment. NICE guidelines recommend offering a statin to anyone with a 10-year cardiovascular risk of 10% or more — most commonly atorvastatin. If statins aren't tolerated, alternatives including ezetimibe are available.</p>
+            <p>Cholesterol levels are rechecked around three months after starting treatment to see how well they are responding.</p>
           </div>
         </div>
 
@@ -806,28 +980,51 @@
       <div class="research-items">
 
         <div class="research-item">
-          <p>A large analysis drawing on data from hundreds of thousands of participants across randomised trials found that reducing systolic blood pressure by just 5 mmHg cut the risk of major cardiovascular events — including stroke and heart attack — by around 10%, regardless of whether someone had existing heart disease.</p>
-          <span class="research-source">The Lancet, 2021 — Blood Pressure Lowering Treatment Trialists' Collaboration</span>
+          <h4>Statins and LDL reduction</h4>
+          <p>A meta-analysis of 14 randomised trials involving over 90,000 participants found that each 1 mmol/L reduction in LDL cholesterol cut the risk of major cardiovascular events — including heart attack and stroke — by around one fifth, largely regardless of a person's starting cholesterol level or other risk factors.</p>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/16214597/" target="_blank" class="research-source">Cholesterol Treatment Trialists, The Lancet 2005</a>
         </div>
 
         <div class="research-item">
-          <p>A review of 16 trials involving nearly 27,000 adults aged 60 and over found that blood pressure-lowering medication reduced the chance of death overall, and substantially reduced the risk of stroke and heart attack in this age group — evidence rated as moderate to high certainty.</p>
-          <span class="research-source">Cochrane Database of Systematic Reviews</span>
+          <h4>Benefits extend to lower-risk groups</h4>
+          <p>A further meta-analysis of 27 trials found that even in people at lower cardiovascular risk, each 1 mmol/L LDL reduction produced approximately 11 fewer major vascular events per 1,000 people over five years.</p>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/22607822/" target="_blank" class="research-source">Cholesterol Treatment Trialists, The Lancet 2012</a>
         </div>
 
         <div class="research-item">
-          <p>For people with mild hypertension (blood pressure 140–159/90–99 mmHg) and no existing cardiovascular disease, a separate review (updated 2025) found that the evidence for medication reducing overall death or heart attack risk in this lower-risk group is currently limited, though there may be some reduction in stroke risk. This is an area of ongoing research and discussion.</p>
-          <span class="research-source">Cochrane Database of Systematic Reviews, 2025</span>
+          <h4>Supplements versus statins — what the evidence shows</h4>
+          <p>Many people spend money on supplements in the belief they lower cholesterol. The SPORT trial directly compared low-dose rosuvastatin against six commonly used supplements and placebo:</p>
+          <table class="supps-table">
+            <thead>
+              <tr>
+                <th>Treatment</th>
+                <th>LDL reduction vs placebo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Rosuvastatin (statin)</td><td><span class="result-positive">~38% reduction</span></td></tr>
+              <tr><td>Fish oil</td><td><span class="result-negative">No significant reduction</span></td></tr>
+              <tr><td>Garlic</td><td><span class="result-negative">No significant reduction</span></td></tr>
+              <tr><td>Cinnamon</td><td><span class="result-negative">No significant reduction</span></td></tr>
+              <tr><td>Turmeric</td><td><span class="result-negative">No significant reduction</span></td></tr>
+              <tr><td>Plant sterols</td><td><span class="result-negative">No significant reduction</span></td></tr>
+              <tr><td>Red yeast rice</td><td><span class="result-negative">No significant reduction</span></td></tr>
+            </tbody>
+          </table>
+          <p>The 2025 ESC/EAS dyslipidaemia guidelines reviewed all available evidence and reached the same conclusion — no supplement or vitamin was found to be both safe and effective for reducing LDL cholesterol or lowering cardiovascular risk.</p>
+          <a href="https://www.escardio.org/The-ESC/Press-Office/Press-releases/New-guidance-recommends-a-new-approach-to-assess-cardiovascular-risk-and-reach-treatment-goals-for-lipid-levels" target="_blank" class="research-source">ESC/EAS Focused Update 2025</a>
         </div>
 
         <div class="research-item">
-          <p>Current guidance recommends that for people under 80 with confirmed hypertension and a 10-year cardiovascular risk of 10% or more, medication should be offered alongside lifestyle advice. For those over 80, treatment is recommended when blood pressure is above 150/90 mmHg.</p>
-          <span class="research-source">NICE Guideline NG136 (last updated 2025)</span>
+          <h4>Current NICE guidance</h4>
+          <p>NICE guideline NG238 (updated December 2023) recommends atorvastatin 20mg for primary prevention in those with a 10-year cardiovascular risk of 10% or more. For people with established cardiovascular disease, the recommended dose is atorvastatin 80mg, with a treatment target of LDL 2.0 mmol/L or below, or non-HDL 2.6 mmol/L or below.</p>
+          <a href="https://www.nice.org.uk/guidance/ng238" target="_blank" class="research-source">NICE Guideline NG238</a>
         </div>
 
         <div class="research-item">
-          <p>Lifestyle changes are not just add-ons — they have real, measurable effects. Salt reduction, weight loss, regular aerobic exercise, and the DASH diet (a dietary pattern rich in fruit, vegetables, and low-fat dairy) each have good evidence behind them for meaningfully reducing blood pressure.</p>
-          <span class="research-source">BMJ · Cochrane · NICE NG136</span>
+          <h4>The role of lifestyle</h4>
+          <p>Lifestyle changes remain important alongside or instead of medication. Reducing saturated fat, regular aerobic exercise, and weight loss all have solid evidence for improving cholesterol profiles — though many people will still need medication to reach their target levels.</p>
+          <a href="https://www.nice.org.uk/guidance/ng238" target="_blank" class="research-source">NICE NG238</a>
         </div>
 
       </div>
@@ -836,7 +1033,7 @@
     <!-- DISCLAIMER -->
     <div class="disclaimer">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      <p><strong>This article is for health education only.</strong> It is not a substitute for medical advice, diagnosis, or treatment. If you have concerns about your blood pressure or health, please speak to your GP or a qualified healthcare professional.</p>
+      <p><strong>This article is for health education only.</strong> It is not a substitute for medical advice, diagnosis, or treatment. If you have concerns about your cholesterol or cardiovascular health, please speak to your GP or a qualified healthcare professional.</p>
     </div>
 
   </main>
