@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Statins — Video Presenter Deck | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--navy:#1B2A4A;--coral:#E8634A;--cream:#FAF7F2;--sage:#7A9E87;--amber:#E8A84A;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'DM Sans',sans-serif;background:#0d0d0d;color:#fff;height:100vh;overflow:hidden;display:flex;flex-direction:column;}
+    .topbar{background:var(--navy);padding:0.6rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-bottom:1px solid rgba(255,255,255,0.08);}
+    .topbar-title{font-family:'Fraunces',serif;font-size:0.95rem;font-weight:600;}
+    .topbar-sub{font-size:0.68rem;color:rgba(255,255,255,0.35);}
+    .slide-counter{font-size:0.78rem;color:rgba(255,255,255,0.45);}
+    .slide-counter span{color:var(--coral);font-weight:700;}
+    .kbd-hint{font-size:0.62rem;color:rgba(255,255,255,0.18);}
+    .progress-bar{height:3px;background:rgba(255,255,255,0.07);flex-shrink:0;}
+    .progress-fill{height:100%;background:var(--coral);transition:width 0.4s ease;}
+    .stage{flex:1;display:grid;grid-template-columns:1fr 1fr;min-height:0;}
+    .visual-panel{background:#111827;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.75rem;position:relative;overflow-y:auto;border-right:1px solid rgba(255,255,255,0.06);gap:0.75rem;}
+    .visual-content{width:100%;max-width:500px;display:flex;flex-direction:column;align-items:center;gap:0.75rem;}
+    .slide-type-badge{position:absolute;top:0.85rem;left:0.85rem;font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:0.18rem 0.55rem;border-radius:3px;}
+    .badge-opening{background:rgba(232,99,74,0.18);color:var(--coral);border:1px solid var(--coral);}
+    .badge-section{background:rgba(27,42,74,0.5);color:#8ba3d4;border:1px solid #3a5080;}
+    .badge-cta{background:rgba(122,158,135,0.18);color:var(--sage);border:1px solid var(--sage);}
+    .badge-closing{background:rgba(232,168,74,0.18);color:var(--amber);border:1px solid var(--amber);}
+    .script-panel{display:flex;flex-direction:column;background:#161616;overflow:hidden;}
+    .script-header{padding:1rem 1.5rem 0.75rem;border-bottom:1px solid rgba(255,255,255,0.06);flex-shrink:0;}
+    .script-seg-label{font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.15rem;}
+    .script-seg-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;}
+    .script-timing{font-size:0.65rem;color:rgba(255,255,255,0.28);margin-top:0.2rem;}
+    .script-body{flex:1;overflow-y:auto;padding:1.25rem 1.5rem;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.1) transparent;}
+    .script-line{font-size:0.97rem;line-height:1.9;color:rgba(255,255,255,0.85);margin-bottom:0.85rem;}
+    .script-line:last-child{margin-bottom:0;}
+    .script-pause{display:inline-block;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.14);color:rgba(255,255,255,0.35);font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.08rem 0.4rem;border-radius:3px;vertical-align:middle;}
+    .bottom-nav{background:var(--navy);padding:0.7rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-top:1px solid rgba(255,255,255,0.08);}
+    .nav-btn{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.65);padding:0.45rem 1.3rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;}
+    .nav-btn:hover{background:rgba(255,255,255,0.13);color:#fff;}
+    .nav-btn:disabled{opacity:0.22;cursor:default;}
+    .nav-btn-primary{background:var(--coral);border-color:var(--coral);color:#fff;}
+    .nav-btn-primary:hover{background:#d44a35;}
+    .nav-dots{display:flex;gap:6px;align-items:center;}
+    .nav-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.14);cursor:pointer;transition:background 0.2s,transform 0.2s;}
+    .nav-dot.active{background:var(--coral);transform:scale(1.3);}
+    .stat-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:1.25rem 1.5rem;text-align:center;width:100%;}
+    .stat-num{font-family:'Fraunces',serif;font-size:3.2rem;font-weight:700;line-height:1;margin-bottom:0.3rem;}
+    .stat-label{font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.4;}
+    .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;width:100%;}
+    .stats-grid .stat-card .stat-num{font-size:2rem;}
+    .people-grid{display:flex;flex-wrap:wrap;gap:2px;width:100%;padding:0.75rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;}
+    .person{width:8px;height:8px;border-radius:1px;}
+    .risk-row{display:flex;align-items:center;gap:0.75rem;padding:0.6rem 0.9rem;border-bottom:1px solid rgba(255,255,255,0.05);font-size:0.78rem;}
+    .risk-row:last-child{border-bottom:none;}
+    .risk-name{flex:1;color:rgba(255,255,255,0.7);}
+    .risk-val{font-family:'Fraunces',serif;font-weight:600;font-size:0.85rem;}
+    .action-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:11px;padding:0.9rem 1.1rem;display:flex;align-items:center;gap:0.85rem;opacity:0;transform:translateY(10px);transition:opacity 0.5s ease,transform 0.5s ease;width:100%;}
+    .action-card.visible{opacity:1;transform:translateY(0);}
+    .action-icon{font-size:1.6rem;flex-shrink:0;}
+    .action-title{font-size:0.85rem;font-weight:600;}
+    .action-desc{font-size:0.7rem;color:rgba(255,255,255,0.4);margin-top:0.1rem;line-height:1.4;}
+    .end-logo{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:700;color:var(--coral);margin-bottom:0.2rem;text-align:center;}
+    .end-tagline{font-size:0.78rem;color:rgba(255,255,255,0.35);text-align:center;margin-bottom:1.25rem;}
+    .end-series{display:flex;flex-wrap:wrap;gap:0.35rem;justify-content:center;}
+    .end-pill{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);font-size:0.68rem;padding:0.18rem 0.65rem;border-radius:100px;}
+    .end-pill.active{background:rgba(232,99,74,0.14);border-color:var(--coral);color:var(--coral);}
+  </style>
+</head>
+<body>
+<div class="topbar">
+  <div><div class="topbar-title">Statins — Benefits &amp; Risks — Presenter Deck</div><div class="topbar-sub">helf.school · Cardiovascular Series · Article 04</div></div>
+  <div style="display:flex;align-items:center;gap:1.5rem;"><div class="slide-counter">Slide <span id="slideNum">1</span> of 8</div><div class="kbd-hint">← → keys or buttons</div></div>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:12.5%"></div></div>
+<div class="stage">
+  <div class="visual-panel"><div class="slide-type-badge" id="typeBadge"></div><div class="visual-content" id="visualContent"></div></div>
+  <div class="script-panel">
+    <div class="script-header"><div class="script-seg-label" id="segLabel"></div><div class="script-seg-title" id="segTitle"></div><div class="script-timing" id="segTiming"></div></div>
+    <div class="script-body" id="scriptBody"></div>
+  </div>
+</div>
+<div class="bottom-nav">
+  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>← Previous</button>
+  <div class="nav-dots" id="navDots"></div>
+  <button class="nav-btn nav-btn-primary" id="nextBtn" onclick="navigate(1)">Next slide →</button>
+</div>
+<script>
+const slides=[
+  {type:'opening',label:'Segment 1 · Opening Hook',title:'The Most Controversial Medicine',timing:'⏱ 0:00–0:50',visual:'s1',script:[
+    `"Statins are the most prescribed medicine in England. Around <strong>eight million people</strong> in the UK take one every day."`,
+    `"They are also the most argued-about medicine on the internet. Claims of widespread side effects, suggestions of a pharmaceutical cover-up, and an industry of alternative health content that says statins are harmful and unnecessary."`,
+    `<span class="script-pause">PAUSE</span>`,
+    `"So in this video I want to do something straightforward. I want to look at what the <strong>actual evidence says</strong> — from randomised controlled trials, from independent analyses, from the largest pooled datasets in cardiovascular medicine."`,
+    `"Because the evidence and the online narrative are very different things. And I think you deserve to know the difference."`,
+    `"I'm Dr Paul — over twenty years as an NHS GP. This is health education, not medical advice."`,
+  ]},
+  {type:'section',label:'Segment 2 · Section 1',title:'What Are Statins?',timing:'⏱ 0:50–1:35',visual:'s2',script:[
+    `"Statins are a class of medication that lower LDL cholesterol — the harmful type that builds up on artery walls — by reducing the amount produced in the liver."`,
+    `"They work by blocking an enzyme called <strong>HMG-CoA reductase</strong> — the key enzyme in the liver's cholesterol production pathway."`,
+    `"The most commonly prescribed statin in the UK is <strong>atorvastatin</strong>. It's available as a generic medicine and costs the NHS very little — less than a pound a month in many cases."`,
+    `"Statins are prescribed for two main purposes. <strong>Primary prevention</strong> — reducing risk in people who haven't yet had a cardiovascular event but whose 10-year risk score is 10% or above. And <strong>secondary prevention</strong> — reducing further risk in people who have already had a heart attack or stroke."`,
+  ]},
+  {type:'section',label:'Segment 3 · Section 2',title:'The Benefits — What the Evidence Shows',timing:'⏱ 1:35–2:25',visual:'s3',script:[
+    `"The Cholesterol Treatment Trialists' Collaboration is the world's largest pooled analysis of statin trial data — drawing on individual participant data from over <strong>170,000 people across 26 randomised trials</strong>."`,
+    `"It has consistently found that each 1 mmol/L reduction in LDL cholesterol reduces the risk of major cardiovascular events — heart attack, stroke, cardiovascular death — by approximately <strong>one fifth</strong>."`,
+    `"That benefit holds across men and women, across all age groups, and regardless of starting cholesterol level."`,
+    `"For secondary prevention — people who've already had a heart attack — the numbers are striking. Among every 1,000 people treated for 5 years, roughly <strong>1 in 10 avoid a further major cardiovascular event</strong> that they would otherwise have had."`,
+    `"For primary prevention, the benefit is smaller in absolute terms — but still real and meaningful for those at higher risk."`,
+  ]},
+  {type:'section',label:'Segment 4 · Section 3',title:'The Side Effects — What the Evidence Actually Says',timing:'⏱ 2:25–3:20',visual:'s4',script:[
+    `"Now — side effects. This is where the online narrative and the evidence diverge most dramatically."`,
+    `"The most common concern people have is muscle pain. <strong>More than 90% of all muscle symptom reports in people taking statins are not caused by the statin</strong> — this was the finding of the 2022 Lancet analysis of individual data from 23 trials and over 150,000 people."`,
+    `"The explanation is partly the <strong>nocebo effect</strong>. The ASCOT-LLA trial demonstrated this directly — when patients knew they were taking a statin, muscle symptoms were 41% more likely than when they didn't know. When blinded, the rate was virtually identical to placebo."`,
+    `"Genuine statin-caused muscle problems do exist — but they are rare. <strong>Myopathy occurs in around 1 per 10,000 person-years</strong>. Severe rhabdomyolysis — dangerous muscle breakdown — is extremely rare."`,
+    `"A 2026 Lancet analysis reviewed all the side effects listed on statin packaging — cognitive impairment, depression, sleep disturbance, peripheral neuropathy — and found <strong>no causal evidence for most of them</strong> from randomised trial data. It called on regulators to revise the labels."`,
+    `"The genuine risks that do exist: a <strong>small increase in new-onset diabetes</strong> — around 0.2% per year — mainly in those already at higher risk. And a small increase in mild liver enzyme levels — usually clinically insignificant."`,
+  ]},
+  {type:'section',label:'Segment 5 · Section 4',title:'What Your Doctor Will Do',timing:'⏱ 3:20–4:00',visual:'s5',script:[
+    `"If your QRISK3 score is 10% or above, your GP should offer you a statin — NICE guidance NG238 is clear on this."`,
+    `"Before starting, they'll do baseline blood tests — a full lipid profile, liver function, and blood glucose. They'll ask about muscle symptoms and review any medications that might interact."`,
+    `"In the UK, <strong>atorvastatin 20mg</strong> is recommended for primary prevention and <strong>atorvastatin 80mg</strong> for secondary prevention."`,
+    `"Cholesterol is rechecked at three months. The target for primary prevention is a reduction of more than 40% in non-HDL cholesterol. For secondary prevention, the LDL target is 2.0 mmol/L or below."`,
+    `"<strong>Important drug interactions</strong>: statins are broken down by an enzyme called CYP3A4. Drugs that block this — including clarithromycin, some antifungals, and amiodarone — can raise statin levels and increase risk. Always tell your doctor what else you're taking."`,
+    `"Statins are <strong>contraindicated in pregnancy</strong>. If you're pregnant, planning a pregnancy, or breastfeeding — speak to your GP about alternatives."`,
+  ]},
+  {type:'section',label:'Segment 6 · The Bigger Picture',title:'Statins in Context',timing:'⏱ 4:00–4:40',visual:'s6',script:[
+    `"It's worth stepping back for a moment."`,
+    `"Statins have been studied in hundreds of trials involving hundreds of thousands of people over decades. The evidence base is one of the most thoroughly investigated in all of medicine."`,
+    `"The finding is consistent: for people at meaningful cardiovascular risk, the benefits substantially outweigh the genuine risks."`,
+    `"This doesn't mean everyone should take a statin. It means the decision should be made on the basis of your individual risk profile — not on the basis of internet articles or anecdotes."`,
+    `"If you've been offered a statin and you have concerns, the right conversation to have is with your GP — with the actual evidence on the table, not the myths."`,
+  ]},
+  {type:'cta',label:'Segment 7 · Call to Action',title:'What You Can Do',timing:'⏱ 4:40–5:10',visual:'s7',script:[
+    `"<strong>First: if you've been offered a statin, don't dismiss it based on what you've read online</strong>. Read the evidence. The helf.school statins article has all the references."`,
+    `"<strong>Second: if you're already taking a statin and you have muscle symptoms</strong>, talk to your GP. Don't just stop. Symptoms can often be managed by switching statin or adjusting dose."`,
+    `"<strong>Third: if you're not sure whether you need a statin</strong>, ask your GP to run your QRISK3 score. That's the starting point for an evidence-based conversation."`,
+    `"Full article with all research at <strong>helf.school</strong>."`,
+  ]},
+  {type:'closing',label:'Segment 8 · Closing',title:'Sign-off',timing:'⏱ 5:10–5:35',visual:'s8',script:[
+    `"Statins are not perfect. No medicine is. But they are among the best-evidenced cardiovascular treatments we have — and the gap between the evidence and the public perception is genuinely large."`,
+    `"My hope is that this video gives you a basis for making an informed decision — one that's grounded in the actual data, not the noise."`,
+    `<span class="script-pause">PAUSE</span>`,
+    `"Thanks for watching. All seven cardiovascular articles are on helf.school. Take care of yourself."`,
+  ]},
+];
+const visuals={
+  s1:()=>`
+    <div class="stat-card" style="border-color:rgba(232,99,74,0.3);">
+      <div class="stat-num" style="color:var(--coral);">8M</div>
+      <div class="stat-label">people in the UK take a statin every day — the most prescribed medicine in England</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:9px;padding:0.85rem 1.1rem;width:100%;text-align:center;">
+      <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--amber);margin-bottom:0.4rem;">This video:</div>
+      <div style="font-size:0.82rem;color:rgba(255,255,255,0.65);line-height:1.6;">What statins are · The benefits · The <em>real</em> side effects · The myths · What to do</div>
+    </div>
+  `,
+  s2:()=>`
+    <div style="background:rgba(27,42,74,0.5);border:1px solid rgba(255,255,255,0.1);border-radius:13px;padding:1.1rem 1.4rem;width:100%;text-align:center;">
+      <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.5rem;">How statins work</div>
+      <div style="display:flex;align-items:center;justify-content:space-around;gap:0.5rem;font-size:0.75rem;text-align:center;">
+        <div style="background:rgba(232,99,74,0.12);border-radius:8px;padding:0.6rem 0.5rem;"><div style="font-size:1.1rem;margin-bottom:0.2rem;">🧬</div>Liver produces cholesterol via HMG-CoA reductase</div>
+        <div style="color:var(--coral);font-size:1.2rem;">→</div>
+        <div style="background:rgba(122,158,135,0.12);border-radius:8px;padding:0.6rem 0.5rem;"><div style="font-size:1.1rem;margin-bottom:0.2rem;">🚫</div>Statin blocks this enzyme</div>
+        <div style="color:var(--sage);font-size:1.2rem;">→</div>
+        <div style="background:rgba(122,158,135,0.12);border-radius:8px;padding:0.6rem 0.5rem;"><div style="font-size:1.1rem;margin-bottom:0.2rem;">📉</div>LDL cholesterol falls</div>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><div style="font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.3rem;">Primary prevention</div><div class="stat-num" style="font-size:1.5rem;color:var(--sage);">20mg</div><div class="stat-label" style="font-size:0.65rem;">Atorvastatin · QRISK3 ≥10%</div></div>
+      <div class="stat-card"><div style="font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.3rem;">Secondary prevention</div><div class="stat-num" style="font-size:1.5rem;color:var(--amber);">80mg</div><div class="stat-label" style="font-size:0.65rem;">Atorvastatin · established CVD</div></div>
+    </div>
+  `,
+  s3:()=>`
+    <div style="background:rgba(27,42,74,0.5);border:1px solid rgba(255,255,255,0.1);border-radius:13px;padding:1.1rem 1.4rem;width:100%;text-align:center;">
+      <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:0.4rem;">CTT Collaboration · The Lancet · 170,000 participants · 26 trials</div>
+      <div style="font-family:'Fraunces',serif;font-size:0.95rem;color:#fff;line-height:1.4;">Each <span style="color:var(--coral);">1 mmol/L</span> LDL reduction → approximately</div>
+      <div style="font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:var(--sage);line-height:1;margin-top:0.2rem;">1 in 5</div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.45);margin-top:0.2rem;">fewer major cardiovascular events</div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><div style="font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.3rem;">Secondary prevention</div><div class="stat-num" style="font-size:1.6rem;color:var(--coral);">1 in 10</div><div class="stat-label" style="font-size:0.68rem;">events avoided per 1,000 people over 5 years</div></div>
+      <div class="stat-card"><div style="font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.3rem;">Evidence base</div><div class="stat-num" style="font-size:1.6rem;color:var(--amber);">26</div><div class="stat-label" style="font-size:0.68rem;">randomised trials · 170,000+ participants</div></div>
+    </div>
+  `,
+  s4:()=>`
+    <div style="background:rgba(232,99,74,0.09);border:1px solid rgba(232,99,74,0.22);border-radius:13px;padding:1.1rem 1.4rem;width:100%;text-align:center;">
+      <div style="font-family:'Fraunces',serif;font-size:0.95rem;font-weight:600;color:#fff;line-height:1.4;">More than <span style="color:var(--coral);">90%</span> of muscle symptom reports in people taking statins are <strong>not caused by the statin</strong></div>
+      <div style="font-size:0.62rem;color:rgba(255,255,255,0.3);margin-top:0.4rem;">CTT Collaboration · The Lancet · 2022 · 23 trials · 150,000+ people</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:11px;padding:0.85rem 1.1rem;width:100%;">
+      <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);margin-bottom:0.5rem;">The Nocebo Effect — ASCOT-LLA trial</div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.6);line-height:1.5;">When patients <strong style="color:#fff;">knew</strong> they were taking a statin → muscle symptoms <strong style="color:var(--coral);">41% more likely</strong><br>When <strong style="color:#fff;">blinded</strong> → symptom rate virtually <strong style="color:var(--sage);">identical to placebo</strong></div>
+    </div>
+    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:0.75rem 1rem;width:100%;">
+      <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.4rem;">Genuine risks that do exist</div>
+      <div class="risk-row"><span class="risk-name">New-onset diabetes</span><span class="risk-val" style="color:var(--amber);">~0.2%/yr</span></div>
+      <div class="risk-row"><span class="risk-name">Myopathy</span><span class="risk-val" style="color:var(--amber);">~1/10,000 person-yrs</span></div>
+      <div class="risk-row"><span class="risk-name">Rhabdomyolysis</span><span class="risk-val" style="color:var(--coral);">Extremely rare</span></div>
+    </div>
+  `,
+  s5:()=>`
+    <div style="background:rgba(27,42,74,0.5);border:1px solid rgba(255,255,255,0.1);border-radius:13px;padding:1rem 1.25rem;width:100%;">
+      <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.6rem;">Before starting — your GP will check</div>
+      ${['Full lipid profile','Liver function tests','Blood glucose / HbA1c','Muscle symptoms (baseline)','Medications that may interact'].map(t=>`<div style="display:flex;align-items:center;gap:0.6rem;padding:0.4rem 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:0.76rem;color:rgba(255,255,255,0.6);"><div style="width:5px;height:5px;border-radius:50%;background:var(--sage);flex-shrink:0"></div>${t}</div>`).join('')}
+    </div>
+    <div style="background:rgba(232,99,74,0.09);border:1px solid rgba(232,99,74,0.2);border-radius:9px;padding:0.75rem 1rem;width:100%;text-align:center;font-size:0.78rem;color:rgba(255,255,255,0.6);">
+      ⚠️ <strong style="color:rgba(255,255,255,0.85);">Contraindicated in pregnancy</strong> — speak to GP if pregnant, planning pregnancy, or breastfeeding
+    </div>
+    <div style="background:rgba(232,168,74,0.09);border:1px solid rgba(232,168,74,0.2);border-radius:9px;padding:0.75rem 1rem;width:100%;font-size:0.72rem;color:rgba(255,255,255,0.5);line-height:1.5;">
+      Key interactions: clarithromycin · azole antifungals · amiodarone · some HIV medications — all affect CYP3A4 enzyme. Always tell GP what else you're taking.
+    </div>
+  `,
+  s6:()=>`
+    <div style="background:rgba(122,158,135,0.1);border:1px solid rgba(122,158,135,0.25);border-radius:13px;padding:1.25rem 1.5rem;width:100%;text-align:center;">
+      <div style="font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;color:#fff;line-height:1.55;">For people at meaningful cardiovascular risk, the <span style="color:var(--sage);">benefits substantially outweigh the genuine risks</span></div>
+      <div style="font-size:0.62rem;color:rgba(255,255,255,0.3);margin-top:0.5rem;">Consistent finding across hundreds of trials · hundreds of thousands of participants · decades of research</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:0.85rem 1.1rem;width:100%;">
+      <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.5rem;">Most listed side effects — the 2026 Lancet finding</div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.6);line-height:1.6;">Cognitive impairment, depression, sleep disturbance, peripheral neuropathy — <strong style="color:rgba(255,255,255,0.8);">no causal evidence from randomised trial data</strong>. The Lancet called on regulators to revise statin labels.</div>
+      <div style="font-size:0.62rem;color:rgba(255,255,255,0.25);margin-top:0.3rem;">CTT Collaboration · The Lancet · 2026</div>
+    </div>
+  `,
+  s7:()=>`
+    <div style="display:flex;flex-direction:column;gap:0.6rem;width:100%;">
+      <div class="action-card" id="ac0"><div class="action-icon">📖</div><div><div class="action-title">Don't dismiss statins based on what you've read online</div><div class="action-desc">Read the evidence. helf.school has all the references.</div></div></div>
+      <div class="action-card" id="ac1"><div class="action-icon">💬</div><div><div class="action-title">Having muscle symptoms? Talk to your GP</div><div class="action-desc">Don't just stop. Switching statin or adjusting dose often helps.</div></div></div>
+      <div class="action-card" id="ac2"><div class="action-icon">📊</div><div><div class="action-title">Not sure if you need a statin?</div><div class="action-desc">Ask your GP for your QRISK3 score — the starting point for the conversation.</div></div></div>
+    </div>
+    <div style="background:rgba(232,99,74,0.07);border:1px solid rgba(232,99,74,0.18);border-radius:9px;padding:0.7rem 1rem;width:100%;text-align:center;">
+      <div style="font-size:0.68rem;color:rgba(255,255,255,0.35);">Full article + all research references at</div>
+      <div style="font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--coral);">helf.school</div>
+    </div>
+  `,
+  s8:()=>`
+    <div class="end-logo">helf.school</div>
+    <div class="end-tagline">Evidence-based health education for everyone</div>
+    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:13px;padding:1.1rem 1.4rem;margin-bottom:1rem;width:100%;">
+      <div style="font-family:'Fraunces',serif;font-size:0.95rem;font-weight:600;color:#fff;text-align:center;line-height:1.55;">An informed decision — grounded in the <span style="color:var(--coral);">actual data, not the noise.</span></div>
+    </div>
+    <div class="end-series">
+      <div class="end-pill">01 · Hypertension</div><div class="end-pill">02 · Cholesterol</div><div class="end-pill">03 · Heart Attack Risk</div><div class="end-pill active">04 · Statins</div><div class="end-pill">05 · Lifestyle Changes</div><div class="end-pill">06 · Salt</div><div class="end-pill">07 · Supplements</div>
+    </div>
+    <div style="font-size:0.62rem;color:rgba(255,255,255,0.18);text-align:center;margin-top:0.75rem;">Health education only — not medical advice · Always speak to your own doctor</div>
+  `,
+};
+function afterRender(v){
+  if(v==='s7')[0,1,2].forEach(i=>setTimeout(()=>{const e=document.getElementById('ac'+i);if(e)e.classList.add('visible');},200+i*300));
+}
+const TOTAL=slides.length;
+const badgeCls={opening:'badge-opening',section:'badge-section',cta:'badge-cta',closing:'badge-closing'};
+const badgeLbl={opening:'Opening',section:'Content',cta:'Call to Action',closing:'Closing'};
+let current=0;
+function renderSlide(idx){
+  const s=slides[idx];
+  document.getElementById('segLabel').textContent=s.label;
+  document.getElementById('segTitle').textContent=s.title;
+  document.getElementById('segTiming').textContent=s.timing;
+  document.getElementById('slideNum').textContent=idx+1;
+  document.getElementById('progressFill').style.width=((idx+1)/TOTAL*100)+'%';
+  document.getElementById('prevBtn').disabled=idx===0;
+  document.getElementById('nextBtn').textContent=idx===TOTAL-1?'✓ Done':'Next slide →';
+  const badge=document.getElementById('typeBadge');
+  badge.className='slide-type-badge '+badgeCls[s.type];
+  badge.textContent=badgeLbl[s.type];
+  document.querySelectorAll('.nav-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+  document.getElementById('visualContent').innerHTML=visuals[s.visual]();
+  document.getElementById('scriptBody').innerHTML=s.script.map(l=>`<p class="script-line">${l}</p>`).join('');
+  document.getElementById('scriptBody').scrollTop=0;
+  requestAnimationFrame(()=>afterRender(s.visual));
+}
+function navigate(dir){const n=current+dir;if(n<0||n>=TOTAL)return;current=n;renderSlide(current);}
+document.addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown',' '].includes(e.key)){e.preventDefault();navigate(1);}
+  else if(['ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();navigate(-1);}
+});
+const dc=document.getElementById('navDots');
+slides.forEach((_,i)=>{const d=document.createElement('div');d.className='nav-dot'+(i===0?' active':'');d.onclick=()=>{current=i;renderSlide(i);};dc.appendChild(d);});
+renderSlide(0);
+</script>
+</body>
+</html>
