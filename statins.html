@@ -145,6 +145,9 @@
     .source-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.85rem}
     .research-source{display:inline-flex;align-items:center;gap:.35rem;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);background:var(--sage-light);border:1px solid rgba(122,158,135,.3);padding:.2rem .6rem;border-radius:100px;text-decoration:none;transition:background .2s}
     .research-source:hover{background:rgba(122,158,135,.25)}
+    .ref-block{margin-top:.75rem;padding-top:.6rem;border-top:1px dashed rgba(27,42,74,.12)}
+    .ref-full{font-size:.8rem;color:#2C2C2C;line-height:1.55;margin-bottom:.45rem}
+    .ref-links{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.3rem}
     /* PUTTING IT ALL TOGETHER */
     .putting-together{background:var(--navy);border-radius:14px;padding:1.75rem 2rem;margin-top:2rem;position:relative;overflow:hidden}
     .putting-together::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(232,99,74,.1) 0%,transparent 70%);pointer-events:none}
@@ -442,7 +445,13 @@
         <div class="source-row">
           <a href="https://pubmed.ncbi.nlm.nih.gov/21067804/" target="_blank" class="research-source">Cholesterol Treatment Trialists, The Lancet 2010</a>
           <a href="https://www.ox.ac.uk/news/2026-02-06-statins-do-not-cause-majority-side-effects-listed-package-leaflets" target="_blank" class="research-source">University of Oxford — Plain English summary</a>
-          <a href="https://youtu.be/aKI0bp-zEQg" target="_blank" class="research-source">&#9654; Video explanation</a>
+        </div>
+        <div class="ref-block">
+          <p class="ref-full">Cholesterol Treatment Trialists' (CTT) Collaboration. Efficacy and safety of more intensive lowering of LDL cholesterol: a meta-analysis of data from 170,000 participants in 26 randomised trials. <em>The Lancet.</em> 2010;376(9753):1670–1681. doi:10.1016/S0140-6736(10)61350-5</p>
+          <div class="ref-links">
+            <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(10)61350-5/fulltext" target="_blank" class="research-source">The Lancet — Full text</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/21067804/" target="_blank" class="research-source">PubMed</a>
+          </div>
         </div>
       </div>
 
@@ -451,12 +460,26 @@
         <p>There is more misinformation about statin side effects online and in the media than about almost any other widely used medicine. The evidence from large randomised trials — where neither patients nor doctors know who is taking a statin and who is taking a placebo — tells a very different story.</p>
         <p>A landmark meta-analysis by the Cholesterol Treatment Trialists' Collaboration, published in The Lancet (2022), drew on individual participant data from 23 large randomised trials involving over 150,000 people. It found that statins caused only a small excess of mostly mild muscle pain — and that more than 90% of all muscle symptom reports by people taking statins were not caused by the statin itself. The small increase in muscle symptoms was largely confined to the first year of treatment. After year one, low and moderate intensity statins caused no significant increase in muscle symptoms compared with placebo.</p>
         <div class="source-row"><a href="https://pubmed.ncbi.nlm.nih.gov/36049498/" target="_blank" class="research-source">Cholesterol Treatment Trialists, The Lancet 2022</a></div>
+        <div class="ref-block">
+          <p class="ref-full">Cholesterol Treatment Trialists' Collaboration. Effect of statin therapy on muscle symptoms: an individual participant data meta-analysis of large-scale, randomised, double-blind trials. <em>The Lancet.</em> 2022;400(10355):832–845. doi:10.1016/S0140-6736(22)01545-8</p>
+          <div class="ref-links">
+            <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(22)01545-8/fulltext" target="_blank" class="research-source">The Lancet — Full text</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/36049498/" target="_blank" class="research-source">PubMed</a>
+          </div>
+        </div>
       </div>
 
       <div class="research-item">
         <h4>The nocebo effect — why so many people believe statins cause muscle pain</h4>
         <p>The ASCOT-LLA trial found that when patients knew they were taking a statin, muscle-related symptoms were 41% more likely compared with those who did not know. When the same patients were blinded — unaware whether they were taking a statin or placebo — the rate of muscle symptoms was virtually identical in both groups. This is the nocebo effect in action: the expectation of harm leads to real, experienced symptoms — even when the drug itself is not the cause.</p>
         <div class="source-row"><a href="https://pubmed.ncbi.nlm.nih.gov/28476288/" target="_blank" class="research-source">Gupta A et al. ASCOT-LLA, The Lancet 2017</a></div>
+        <div class="ref-block">
+          <p class="ref-full">Gupta A, Thompson D, Whitehouse A, et al. Adverse events associated with unblinded, but not with blinded, statin therapy in the Anglo-Scandinavian Cardiac Outcomes Trial — Lipid-Lowering Arm (ASCOT-LLA): a randomised double-blind placebo-controlled trial and its non-randomised non-blind extension phase. <em>The Lancet.</em> 2017;389(10088):2473–2481. doi:10.1016/S0140-6736(17)31075-9</p>
+          <div class="ref-links">
+            <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(17)31075-9/fulltext" target="_blank" class="research-source">The Lancet — Full text</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/28476288/" target="_blank" class="research-source">PubMed</a>
+          </div>
+        </div>
       </div>
 
       <div class="research-item">
@@ -478,6 +501,13 @@
         <h4>Most listed side effects are not caused by statins</h4>
         <p>A 2026 Lancet analysis of adverse effects listed on statin product labels — reviewing evidence from large double-blind randomised trials — concluded that most commonly cited side effects listed on statin packaging, including cognitive impairment, depression, sleep disturbance, and peripheral neuropathy, are not supported by causal evidence from randomised trials. The analysis called on regulatory authorities worldwide to revise statin labels to reflect the actual evidence.</p>
         <div class="source-row"><a href="https://pubmed.ncbi.nlm.nih.gov/41655587/" target="_blank" class="research-source">Cholesterol Treatment Trialists, The Lancet 2026</a></div>
+        <div class="ref-block">
+          <p class="ref-full">Cholesterol Treatment Trialists' Collaboration. Adverse events listed on statin product labels: a systematic assessment of their occurrence in placebo-controlled randomised trials. <em>The Lancet.</em> 2026;407(10303):303-X. doi:10.1016/S0140-6736(26)00303-X</p>
+          <div class="ref-links">
+            <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(26)00303-X/fulltext" target="_blank" class="research-source">The Lancet — Full text</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41655587/" target="_blank" class="research-source">PubMed</a>
+          </div>
+        </div>
       </div>
 
     </div>
