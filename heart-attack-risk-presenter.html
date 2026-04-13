@@ -81,6 +81,13 @@
 </div>
 <script>
 const slides=[
+  {type:'opening',label:'Intro · Dr Paul',title:'Introduction',timing:'⏱ ~10 seconds',visual:'s0',script:[
+    `"I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019."`,
+    `"Today I want to talk to you about <strong>how doctors estimate heart attack risk</strong>."`,
+    `"Now, I do have to say upfront — what I'm giving you here is health education, not medical advice."`,
+    `"If anything I talk about feels relevant to you personally, please do take it to your own doctor."`,
+    `"Right — let's get into it."`,
+  ]},
   {type:'opening',label:'Segment 1 · Opening Hook',title:'Your Score',timing:'⏱ 0:00–0:45',visual:'s1',script:[
     `"Your GP can calculate the probability of you having a heart attack or stroke in the next ten years. It's expressed as a percentage. And that number changes how they approach your treatment."`,
     `<span class="script-pause">PAUSE</span>`,
@@ -130,6 +137,15 @@ const slides=[
   ]},
 ];
 const visuals={
+  s0:()=>`
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;width:100%;text-align:center;">
+      <div style="font-family:'Fraunces',serif;font-size:2rem;font-weight:700;color:var(--coral);">helf.school</div>
+      <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);">Cardiovascular Series</div>
+      <div style="font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;color:#fff;line-height:1.4;max-width:340px;" id="introTopic"></div>
+      <div style="width:48px;height:2px;background:var(--coral);border-radius:2px;margin-top:0.25rem;"></div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.4);line-height:1.6;max-width:320px;">Plain English health education<br>based on the evidence</div>
+    </div>
+  `,
   s1:()=>`
     <div class="stat-card" style="border-color:rgba(232,99,74,0.3);">
       <div class="stat-num" style="color:var(--coral);">QRISK3</div>
@@ -212,6 +228,7 @@ const visuals={
   `,
 };
 function afterRender(v){
+  if(v==='s0'){const e=document.getElementById('introTopic');if(e)e.textContent='How Doctors Estimate Heart Attack Risk';}
   if(v==='s3')[0,1,2,3,4].forEach(i=>setTimeout(()=>{const e=document.getElementById('fc'+i);if(e)e.classList.add('visible');},150+i*180));
   if(v==='s6')[0,1,2].forEach(i=>setTimeout(()=>{const e=document.getElementById('ac'+i);if(e)e.classList.add('visible');},200+i*300));
 }

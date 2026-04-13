@@ -86,6 +86,13 @@
 </div>
 <script>
 const slides=[
+  {type:'opening',label:'Intro · Dr Paul',title:'Introduction',timing:'⏱ ~10 seconds',visual:'s0',script:[
+    `"I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019."`,
+    `"Today I want to talk to you about <strong>salt and blood pressure</strong>."`,
+    `"Now, I do have to say upfront — what I'm giving you here is health education, not medical advice."`,
+    `"If anything I talk about feels relevant to you personally, please do take it to your own doctor."`,
+    `"Right — let's get into it."`,
+  ]},
   {type:'opening',label:'Segment 1 · Opening',title:'The Salt You Cannot See',timing:'⏱ 0:00–0:45',visual:'s1',script:[
     `"If I asked you to cut down on salt, you'd probably think about the shaker on your table. But that shaker? It accounts for only about <strong>25% of the salt you actually eat</strong>."`,
     `<span class="script-pause">PAUSE</span>`,
@@ -142,6 +149,15 @@ const slides=[
   ]},
 ];
 const visuals={
+  s0:()=>`
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;width:100%;text-align:center;">
+      <div style="font-family:'Fraunces',serif;font-size:2rem;font-weight:700;color:var(--coral);">helf.school</div>
+      <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);">Cardiovascular Series</div>
+      <div style="font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;color:#fff;line-height:1.4;max-width:340px;" id="introTopic"></div>
+      <div style="width:48px;height:2px;background:var(--coral);border-radius:2px;margin-top:0.25rem;"></div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.4);line-height:1.6;max-width:320px;">Plain English health education<br>based on the evidence</div>
+    </div>
+  `,
   s1:()=>`
     <div style="background:rgba(27,42,74,0.6);border-radius:16px;padding:1.5rem 2rem;width:100%;text-align:center;">
       <div style="font-family:'Fraunces',serif;font-size:5rem;font-weight:700;color:var(--amber);line-height:1;">75%</div>
@@ -238,6 +254,7 @@ const visuals={
   `,
 };
 function afterRender(v){
+  if(v==='s0'){const e=document.getElementById('introTopic');if(e)e.textContent='Salt and Blood Pressure';}
   if(v==='s2'){
     const bws=[95,80,72,58,52];
     [0,1,2,3,4].forEach(i=>setTimeout(()=>{
