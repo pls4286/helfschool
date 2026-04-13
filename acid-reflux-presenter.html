@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Acid Reflux — Video Presenter Deck | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --navy:#1B2A4A;--coral:#E8634A;--cream:#FAF7F2;--sage:#7A9E87;--amber:#E8A84A;
+      --digest:#D47C3A;--digest-dim:rgba(212,124,58,0.18);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'DM Sans',sans-serif;background:#0F1A2E;color:#fff;height:100vh;overflow:hidden;display:flex;flex-direction:column;}
+
+    /* ── TOP BAR ── */
+    .topbar{background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.08);padding:0 1.5rem;height:52px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+    .topbar-title{font-family:'Fraunces',serif;font-size:.95rem;font-weight:600;color:#fff;}
+    .topbar-sub{font-size:.75rem;color:rgba(255,255,255,0.75);margin-top:.1rem;}
+    .slide-counter{font-size:.85rem;font-weight:600;color:rgba(255,255,255,0.90);}
+    .kbd-hint{font-size:.72rem;color:rgba(255,255,255,0.60);}
+
+    /* ── PROGRESS ── */
+    .progress-bar{height:3px;background:rgba(255,255,255,0.08);flex-shrink:0;}
+    .progress-fill{height:100%;background:var(--digest);transition:width .35s ease;}
+
+    /* ── MAIN STAGE ── */
+    .stage{flex:1;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;}
+
+    /* ── VISUAL PANEL ── */
+    .visual-panel{background:var(--navy);border-right:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:1.2rem 1rem 1.2rem 1.2rem;position:relative;overflow:hidden;}
+    .visual-panel::before{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(212,124,58,.1) 0%,transparent 70%);pointer-events:none;}
+    .slide-type-badge{position:absolute;top:14px;right:14px;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:100px;}
+    .badge-opening{background:rgba(232,99,74,.2);color:var(--coral);}
+    .badge-section{background:rgba(27,42,74,.6);color:rgba(255,255,255,.85);}
+    .badge-cta{background:rgba(122,158,135,.2);color:var(--sage);}
+    .badge-closing{background:rgba(232,168,74,.2);color:var(--amber);}
+    .visual-content{width:100%;max-height:100%;display:flex;align-items:center;justify-content:center;}
+
+    /* ── SCRIPT PANEL ── */
+    .script-panel{background:#0F1A2E;display:flex;flex-direction:column;overflow:hidden;}
+    .script-header{padding:1.1rem 1.5rem .8rem;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0;}
+    .script-seg-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--digest);margin-bottom:.25rem;}
+    .script-seg-title{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600;color:#fff;line-height:1.25;}
+    .script-timing{font-size:.72rem;color:rgba(255,255,255,.65);margin-top:.3rem;}
+    .script-body{flex:1;overflow-y:auto;padding:1rem 1.5rem 1rem;display:flex;flex-direction:column;gap:.65rem;}
+    .script-line{font-size:.93rem;color:rgba(255,255,255,.82);line-height:1.7;padding:.4rem .6rem;border-radius:6px;}
+    .script-line:hover{background:rgba(255,255,255,.04);}
+    .script-pause{display:inline-block;background:rgba(212,124,58,.15);border:1px solid rgba(212,124,58,.3);color:var(--digest);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .55rem;border-radius:100px;margin:.15rem 0;}
+    .diagram-cue{display:block;background:rgba(232,99,74,.12);border:2px solid rgba(232,99,74,.5);border-radius:10px;padding:.6rem 1rem;margin:.4rem 0;font-size:.85rem;font-weight:700;color:#fff;line-height:1.4;}
+    .diagram-cue span{color:#E8634A;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:.2rem;}
+
+    /* ── BOTTOM NAV ── */
+    .bottom-nav{background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.07);padding:.65rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+    .nav-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);font-size:.82rem;font-weight:500;padding:.5rem 1.1rem;border-radius:8px;cursor:pointer;transition:all .2s;}
+    .nav-btn:hover{background:rgba(255,255,255,.1);color:#fff;}
+    .nav-btn:disabled{opacity:.3;cursor:not-allowed;}
+    .nav-btn-primary{background:var(--digest);border-color:var(--digest);color:#fff;}
+    .nav-btn-primary:hover{background:#C06A2A;}
+    .nav-dots{display:flex;gap:.45rem;}
+    .nav-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:all .2s;}
+    .nav-dot.active{background:var(--digest);transform:scale(1.3);}
+
+    /* ── VISUAL COMPONENT STYLES ── */
+    /* Stat card */
+    .stat-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:1.5rem 1.75rem;width:100%;max-width:340px;text-align:center;}
+    .stat-big{font-family:'Fraunces',serif;font-size:3.5rem;font-weight:700;line-height:1;}
+    .stat-label{font-size:.9rem;color:rgba(255,255,255,.90);margin-top:.5rem;line-height:1.45;}
+    .stat-source{font-size:.75rem;color:rgba(255,255,255,.65);margin-top:.75rem;letter-spacing:.04em;}
+
+    /* Risk factors grid */
+    .factors-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;width:100%;}
+    .factor-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:.75rem .85rem;display:flex;align-items:flex-start;gap:.6rem;opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease;}
+    .factor-card.visible{opacity:1;transform:translateY(0);}
+    .factor-icon{font-size:1.1rem;flex-shrink:0;}
+    .factor-title{font-size:.8rem;font-weight:600;color:#fff;margin-bottom:.15rem;}
+    .factor-sub{font-size:.73rem;color:rgba(255,255,255,.85);line-height:1.4;}
+
+    /* Medication ladder */
+    .med-ladder{display:flex;flex-direction:column;gap:.5rem;width:100%;}
+    .med-step{display:flex;align-items:center;gap:.85rem;padding:.7rem 1rem;border-radius:10px;border:1px solid;opacity:0;transform:translateX(-12px);transition:opacity .4s ease,transform .4s ease;}
+    .med-step.visible{opacity:1;transform:translateX(0);}
+    .med-step-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;}
+    .med-step-text h5{font-size:.85rem;font-weight:600;color:#fff;margin-bottom:.1rem;}
+    .med-step-text p{font-size:.75rem;color:rgba(255,255,255,.85);line-height:1.4;}
+    .ms1{background:rgba(122,158,135,.08);border-color:rgba(122,158,135,.25);}
+    .ms1 .med-step-num{background:rgba(122,158,135,.2);color:var(--sage);}
+    .ms2{background:rgba(232,168,74,.07);border-color:rgba(232,168,74,.22);}
+    .ms2 .med-step-num{background:rgba(232,168,74,.18);color:var(--amber);}
+    .ms3{background:rgba(212,124,58,.1);border-color:rgba(212,124,58,.3);}
+    .ms3 .med-step-num{background:rgba(212,124,58,.2);color:var(--digest);}
+
+    /* Research summary */
+    .research-rows{display:flex;flex-direction:column;gap:.5rem;width:100%;}
+    .research-row{display:flex;flex-direction:column;gap:.3rem;padding:.55rem .7rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:9px;opacity:0;transition:opacity .4s ease;}
+    .research-row.visible{opacity:1;}
+    .rr-badge{font-size:.62rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;background:rgba(212,124,58,.15);color:var(--digest);padding:.2rem .55rem;border-radius:100px;white-space:nowrap;align-self:flex-start;}
+    .rr-text{font-size:.78rem;color:rgba(255,255,255,.85);line-height:1.55;}
+    .rr-text strong{color:#fff;}
+    .rr-takehome{display:block;margin-top:.35rem;padding:.3rem .6rem;background:rgba(212,124,58,.18);border-left:3px solid var(--digest);border-radius:0 6px 6px 0;font-size:.78rem;font-weight:700;color:#fff;line-height:1.4;}
+
+    /* CTA action cards */
+    .cta-cards{display:flex;flex-direction:column;gap:.6rem;width:100%;}
+    .cta-card{display:flex;align-items:flex-start;gap:.85rem;padding:.85rem 1rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:11px;opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease;}
+    .cta-card.visible{opacity:1;transform:translateY(0);}
+    .cta-num{width:28px;height:28px;background:var(--digest);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:#fff;flex-shrink:0;}
+    .cta-text h5{font-size:.87rem;font-weight:600;color:#fff;margin-bottom:.2rem;}
+    .cta-text p{font-size:.77rem;color:rgba(255,255,255,.80);line-height:1.45;}
+
+    /* Intro / sign-off */
+    .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.1rem;text-align:center;padding:1rem;}
+    .intro-logo{font-family:'Fraunces',serif;font-size:2rem;font-weight:700;color:var(--digest);}
+    .intro-tagline{font-size:.72rem;color:rgba(255,255,255,.70);letter-spacing:.14em;text-transform:uppercase;}
+    .intro-topic{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:600;color:#fff;line-height:1.3;max-width:280px;}
+    .intro-series{font-size:.72rem;color:rgba(255,255,255,.70);margin-top:.25rem;}
+    .end-logo{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:700;color:var(--digest);margin-bottom:.2rem;text-align:center;}
+    .end-tagline{font-size:.78rem;color:rgba(255,255,255,.70);text-align:center;margin-bottom:1.25rem;}
+    .end-series{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;}
+    .end-pill{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);font-size:.68rem;padding:.18rem .65rem;border-radius:100px;}
+    .end-pill.active{background:rgba(212,124,58,.14);border-color:var(--digest);color:var(--digest);}
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-title">Acid Reflux — Causes, Symptoms &amp; Treatment — Presenter Deck</div>
+    <div class="topbar-sub">helf.school · Digestive Health Series · Article 13</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:1.5rem;">
+    <div class="slide-counter">Slide <span id="slideNum">1</span> of 9</div>
+    <div class="kbd-hint">← → keys or buttons</div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:11.1%"></div></div>
+
+<div class="stage">
+  <div class="visual-panel" id="visualPanel">
+    <div class="slide-type-badge" id="typeBadge"></div>
+    <div class="visual-content" id="visualContent"></div>
+  </div>
+  <div class="script-panel">
+    <div class="script-header">
+      <div class="script-seg-label" id="segLabel"></div>
+      <div class="script-seg-title" id="segTitle"></div>
+      <div class="script-timing" id="segTiming"></div>
+    </div>
+    <div class="script-body" id="scriptBody"></div>
+  </div>
+</div>
+
+<div class="bottom-nav">
+  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>← Previous</button>
+  <div class="nav-dots" id="navDots"></div>
+  <button class="nav-btn nav-btn-primary" id="nextBtn" onclick="navigate(1)">Next slide →</button>
+</div>
+
+<script>
+const TOTAL = 9;
+
+const badgeCls = { opening:'badge-opening', section:'badge-section', cta:'badge-cta', closing:'badge-closing' };
+const badgeLbl = { opening:'Opening', section:'Section', cta:'Call to Action', closing:'Closing' };
+
+const slides = [
+  // ── SLIDE 0: INTRO ──
+  {type:'opening',label:'Intro · Dr Paul',title:'Introduction',timing:'⏱ ~15 seconds',visual:'s0',script:[
+    `"I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019."`,
+    `"Today I want to talk to you about <strong>acid reflux</strong> — what it is, what it does over time, and what the evidence says about how to treat it."`,
+    `"Now, I do have to say upfront — what I'm giving you here is health education, not medical advice."`,
+    `"If anything I talk about feels relevant to you personally, please do take it to your own doctor."`,
+    `"Right — let's get into it."`,
+  ]},
+
+  // ── SLIDE 1: OPENING HOOK ──
+  {type:'opening',label:'Segment 1 · Opening Hook',title:'The Burning You Learn to Live With',timing:'⏱ 0:00–0:45',visual:'s1',script:[
+    `"Heartburn affects around <strong>one in four adults in the UK</strong>. Most people manage it with antacids from the chemist. Most people don't talk to their GP about it."`,
+    `<span class="script-pause">PAUSE</span>`,
+    `"And yet acid reflux — when it's persistent — is one of the most undertreated conditions I encountered in general practice. Not because treatment doesn't work. But because people assume it's just something you put up with."`,
+    `"It isn't. And for a small but important number of people, putting up with it for years carries real risks. So let's go through what's actually happening."`,
+  ]},
+
+  // ── SLIDE 2: WHAT IS IT ──
+  {type:'section',label:'Segment 2 · Section 1',title:'What\'s Actually Happening',timing:'⏱ 0:45–1:35',visual:'s2',script:[
+    `<span class="diagram-cue"><span>📺 Switch to diagram screen</span>Open: ar-sphincter-screen.html — Normal vs GORD sphincter diagram</span>`,
+    `"Between your oesophagus — your gullet — and your stomach, there's a muscular valve called the <strong>lower oesophageal sphincter</strong>."`,
+    `"In normal digestion, it opens to let food through, then closes tightly. In acid reflux, it doesn't close properly — and stomach acid travels back up into the oesophagus."`,
+    `"The oesophageal lining isn't designed to handle acid. So it becomes inflamed. That inflammation is what you experience as <strong>heartburn</strong> — the burning sensation behind the breastbone."`,
+    `"When this happens frequently enough to cause symptoms or damage, it becomes GORD — Gastro-Oesophageal Reflux Disease. G-O-R-D. That's the clinical term."`,
+    `"Occasional heartburn — everyone gets that. GORD is when it becomes your normal."`,
+  ]},
+
+  // ── SLIDE 3: RISK FACTORS ──
+  {type:'section',label:'Segment 3 · Section 2',title:'What Makes It More Likely',timing:'⏱ 1:35–2:20',visual:'s3',script:[
+    `"Several things weaken that sphincter valve or increase pressure on the stomach — making reflux more likely."`,
+    `"<strong>Excess weight</strong> is the biggest modifiable factor — abdominal pressure pushes contents upwards. <strong>A hiatus hernia</strong> — where part of the stomach slides up through the diaphragm — physically disrupts the valve mechanism."`,
+    `"<strong>Smoking</strong> weakens the sphincter directly and reduces saliva, which normally neutralises acid. <strong>Pregnancy</strong> both relaxes the sphincter through hormones and adds abdominal pressure as the uterus grows."`,
+    `"<strong>Certain medications</strong> can worsen reflux — NSAIDs like ibuprofen, calcium channel blockers, and some antidepressants. Worth mentioning to your GP."`,
+    `"<strong>Meal timing and size</strong> matter too. Large meals, eating late at night, lying flat soon after eating — all give acid more opportunity to escape upwards."`,
+  ]},
+
+  // ── SLIDE 4: WHY IT MATTERS — BARRETT'S ──
+  {type:'section',label:'Segment 4 · Section 3',title:'Why Persistent GORD Matters',timing:'⏱ 2:20–3:10',visual:'s4',script:[
+    `<span class="diagram-cue"><span>📺 Switch to diagram screen</span>Open: ar-barretts-screen.html — The Barrett's Pathway diagram</span>`,
+    `"For most people, GORD is a nuisance. But I want to be direct about why it matters more than that."`,
+    `"Repeated acid exposure inflames the oesophagus. Over time, this can cause erosions, ulceration, and in some cases narrowing — making swallowing progressively difficult."`,
+    `"More importantly: in around 10–15% of people with longstanding GORD, the normal oesophageal lining is replaced by a different cell type. This is called <strong>Barrett's oesophagus</strong>."`,
+    `"Barrett's is a precancerous change. Each year, approximately <strong>0.33% of people with Barrett's develop oesophageal adenocarcinoma</strong> — around 1 in 300 per year. For short-segment Barrett's, the risk is lower still, at about 0.19% per year."`,
+    `"To keep this in proportion: that risk is low for any individual in any given year. But it compounds. And it's the reason that persistent, longstanding reflux — particularly in middle-aged and older men — warrants investigation."`,
+    `"The good news: Barrett's can be detected by endoscopy, monitored, and in many cases treated before cancer develops. The NHS has surveillance programmes for exactly this reason."`,
+  ]},
+
+  // ── SLIDE 5: WHAT YOUR DOCTOR WILL DO ──
+  {type:'section',label:'Segment 5 · Section 4',title:'What Your Doctor Will Discuss',timing:'⏱ 3:10–3:55',visual:'s5',script:[
+    `"GORD is usually diagnosed from the history — there's no test needed for a typical presentation. Your GP hears a clear description of heartburn and starts treatment."`,
+    `"Lifestyle first: <strong>weight loss</strong> is the most evidence-based lifestyle intervention. Raising the head of the bed, avoiding late meals, stopping smoking — all recommended in NICE guideline CG184."`,
+    `"For medication, the approach is stepped. Start with antacids and alginates — Gaviscon, for instance — for mild symptoms. If those aren't enough, H2 receptor antagonists. If those aren't enough: a <strong>proton pump inhibitor</strong> — a PPI."`,
+    `"PPIs — omeprazole, lansoprazole — are the most effective acid-suppressing medicines we have. One important thing: take them <strong>30 to 60 minutes before a meal</strong>. Not at bedtime. They work by blocking the proton pump — which is activated by eating. Wrong timing, reduced effect."`,
+    `"Endoscopy — a camera test — isn't needed for most people. NICE recommends it when there are alarm features, or symptoms that persist despite adequate treatment."`,
+    `"And alarm features — difficulty swallowing, unexplained weight loss, vomiting blood — those need urgent GP assessment. Not because they always mean something serious. But because they need to be ruled out."`,
+  ]},
+
+  // ── SLIDE 6: EVIDENCE SUMMARY ──
+  {type:'section',label:'Segment 6 · Evidence in Brief',title:'What the Research Shows',timing:'⏱ 3:55–4:35',visual:'s6',script:[
+    `"Let me pull out the key evidence."`,
+    `"PPIs versus older H2 receptor antagonists: a large Cochrane analysis confirmed PPIs are significantly more effective at healing oesophagitis and controlling symptoms. <strong>PPIs are the right first-line treatment for GORD.</strong>"`,
+    `"The LOTUS trial — a randomised controlled trial across Europe — compared laparoscopic surgery with long-term PPI treatment in over 500 patients, followed for five years. Both produced similar remission rates — around 85–90%. Surgery works as well as long-term medication in appropriately selected patients."`,
+    `"On weight loss: the Nurses' Health Study found that even modest weight loss — around 3–4 kilograms — produced significant symptom improvement. This is not soft advice. It's evidence-based first-line treatment."`,
+    `"On long-term PPI safety: observational data shows small associations with kidney disease, certain gut infections, and nutrient deficiencies. The absolute risks are modest and these are observational findings — not proven causation. PPIs are safe for appropriate long-term use. The key word is appropriate: lowest effective dose, reviewed regularly."`,
+  ]},
+
+  // ── SLIDE 7: CALL TO ACTION ──
+  {type:'cta',label:'Segment 7 · Call to Action',title:'What You Can Do',timing:'⏱ 4:35–5:05',visual:'s7',script:[
+    `"<strong>First: if you have frequent heartburn — more than twice a week — speak to your GP.</strong> Don't just manage it indefinitely with over-the-counter antacids. There are effective treatments, and it's worth getting a proper assessment."`,
+    `"<strong>Second: if you're taking a PPI, check your timing.</strong> Take it 30 to 60 minutes before a meal — not at bedtime. This single change makes a meaningful difference to how well it works."`,
+    `"<strong>Third: if you have any alarm features — difficulty swallowing, unexplained weight loss, vomiting blood — see your GP promptly.</strong> These need investigation. Not next month. Now."`,
+    `"The full article with references is at <strong>helf.school</strong> — Article 13 in the Digestive Health series."`,
+  ]},
+
+  // ── SLIDE 8: SIGN-OFF ──
+  {type:'closing',label:'Segment 8 · Closing',title:'Sign-off',timing:'⏱ 5:05–5:20',visual:'s8',script:[
+    `"Acid reflux is one of those conditions where the gap between how common it is and how seriously it's taken is much too wide."`,
+    `"For most people, it's very treatable. For the few where it progresses — surveillance and early treatment work. But none of that happens if you never speak to your doctor."`,
+    `<span class="script-pause">PAUSE</span>`,
+    `"Thanks for watching. helf.school — take care of yourself."`,
+  ]},
+];
+
+// ── VISUALS ──
+const visuals = {
+
+  s0: () => `
+    <div class="intro-wrap">
+      <div class="intro-logo">helf<span style="color:rgba(255,255,255,.60)">.</span>school</div>
+      <div class="intro-tagline">Health Education</div>
+      <div class="intro-topic">Acid Reflux — Causes, Symptoms &amp; Treatment</div>
+      <div class="intro-series">Digestive Health Series · Article 13</div>
+    </div>`,
+
+  s1: () => `
+    <div class="stat-card">
+      <div class="stat-big" style="color:var(--digest)">1 in 4</div>
+      <div class="stat-label">UK adults experience <strong>regular heartburn</strong> — making it one of the most common conditions GPs see</div>
+      <div class="stat-source">Guts UK · NHS · Health Research Authority</div>
+    </div>`,
+
+  s2: () => {
+    setTimeout(() => {
+      ['lc0','lc1','lc2'].forEach((id,i) => {
+        setTimeout(() => { const e = document.getElementById(id); if(e) e.classList.add('visible'); }, 600 + i * 350);
+      });
+    }, 100);
+    return `
+    <div style="width:100%;display:flex;flex-direction:column;gap:.45rem;padding:0 .2rem;">
+
+      <div style="font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.80);text-align:center;">How Acid Reflux Happens</div>
+
+      <div style="display:flex;gap:.6rem;justify-content:center;align-items:flex-start;">
+
+        <!-- NORMAL -->
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:.25rem;">
+          <div style="font-size:.8rem;font-weight:700;color:#7A9E87;background:rgba(122,158,135,.15);border:1px solid rgba(122,158,135,.4);border-radius:6px;padding:.12rem .55rem;">✓ Normal</div>
+          <svg width="135" height="175" viewBox="0 0 135 175">
+            <text x="67" y="11" text-anchor="middle" font-size="9.5" fill="rgba(255,255,255,.70)" font-weight="600">Throat</text>
+            <rect x="47" y="14" width="38" height="74" rx="8" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.75)" stroke-width="2.5"/>
+            <line x1="87" y1="32" x2="113" y2="26" stroke="rgba(255,255,255,.5)" stroke-width="1.2"/>
+            <text x="115" y="24" font-size="8.5" fill="rgba(255,255,255,.80)" font-weight="600">Oesophagus</text>
+            <line x1="66" y1="22" x2="66" y2="55" stroke="#7A9E87" stroke-width="2" stroke-dasharray="4,3"/>
+            <polygon points="66,63 59,50 73,50" fill="#7A9E87"/>
+            <path d="M24 90 Q46 82 66 84 Q86 82 110 90" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1.8" stroke-dasharray="5,3"/>
+            <text x="66" y="100" text-anchor="middle" font-size="8.5" fill="rgba(255,255,255,.55)" font-style="italic">diaphragm</text>
+            <rect x="41" y="86" width="50" height="13" rx="5" fill="#7A9E87"/>
+            <text x="66" y="96.5" text-anchor="middle" font-size="9" fill="#fff" font-weight="800">LOS — CLOSED ✓</text>
+            <line x1="41" y1="92" x2="14" y2="104" stroke="rgba(255,255,255,.55)" stroke-width="1.2"/>
+            <text x="11" y="100" text-anchor="end" font-size="8" fill="rgba(255,255,255,.80)" font-weight="700">Lower Oesophageal</text>
+            <text x="11" y="110" text-anchor="end" font-size="8" fill="rgba(255,255,255,.80)" font-weight="700">Sphincter (LOS)</text>
+            <path d="M32 102 Q23 118 27 136 Q33 152 66 154 Q99 152 105 136 Q109 118 100 102 Z" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.65)" stroke-width="2.5"/>
+            <text x="66" y="127" text-anchor="middle" font-size="9.5" fill="rgba(255,255,255,.70)" font-weight="600">STOMACH</text>
+            <text x="66" y="144" text-anchor="middle" font-size="13" fill="#7A9E87" font-weight="800">acid stays ✓</text>
+          </svg>
+        </div>
+
+        <!-- GORD -->
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:.25rem;">
+          <div style="font-size:.8rem;font-weight:700;color:#E8634A;background:rgba(232,99,74,.15);border:1px solid rgba(232,99,74,.4);border-radius:6px;padding:.12rem .55rem;">✗ GORD</div>
+          <svg width="135" height="175" viewBox="0 0 135 175">
+            <text x="67" y="11" text-anchor="middle" font-size="9.5" fill="rgba(255,255,255,.70)" font-weight="600">Throat</text>
+            <rect x="47" y="14" width="38" height="74" rx="8" fill="rgba(232,99,74,.10)" stroke="rgba(255,255,255,.75)" stroke-width="2.5"/>
+            <rect x="48" y="36" width="36" height="52" rx="7" fill="rgba(232,99,74,.28)"/>
+            <line x1="87" y1="32" x2="113" y2="26" stroke="rgba(255,255,255,.5)" stroke-width="1.2"/>
+            <text x="115" y="24" font-size="8.5" fill="rgba(255,255,255,.80)" font-weight="600">Oesophagus</text>
+            <text x="115" y="34" font-size="8" fill="rgba(232,99,74,.90)">(inflamed)</text>
+            <circle cx="59" cy="87" r="4" fill="#E8634A" opacity="0" style="animation:rise2 2s ease-in-out 0s infinite"/>
+            <circle cx="67" cy="87" r="3" fill="#E8A84A" opacity="0" style="animation:rise2 2s ease-in-out .7s infinite"/>
+            <circle cx="75" cy="87" r="4" fill="#E8634A" opacity="0" style="animation:rise2 2s ease-in-out 1.4s infinite"/>
+            <path d="M24 90 Q46 82 66 84 Q86 82 110 90" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1.8" stroke-dasharray="5,3"/>
+            <text x="66" y="100" text-anchor="middle" font-size="8.5" fill="rgba(255,255,255,.55)" font-style="italic">diaphragm</text>
+            <path d="M41 90 Q54 83 66 90 Q78 97 91 90" fill="none" stroke="#E8634A" stroke-width="4" stroke-linecap="round"/>
+            <text x="66" y="83" text-anchor="middle" font-size="9" fill="#E8634A" font-weight="800">LOS — OPEN ✗</text>
+            <line x1="41" y1="90" x2="14" y2="104" stroke="rgba(255,255,255,.55)" stroke-width="1.2"/>
+            <text x="11" y="100" text-anchor="end" font-size="8" fill="rgba(255,255,255,.80)" font-weight="700">Lower Oesophageal</text>
+            <text x="11" y="110" text-anchor="end" font-size="8" fill="rgba(255,255,255,.80)" font-weight="700">Sphincter (LOS)</text>
+            <path d="M32 102 Q23 118 27 136 Q33 152 66 154 Q99 152 105 136 Q109 118 100 102 Z" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.65)" stroke-width="2.5"/>
+            <ellipse cx="66" cy="148" rx="24" ry="6" fill="rgba(232,99,74,.40)"/>
+            <text x="66" y="123" text-anchor="middle" font-size="9.5" fill="rgba(255,255,255,.70)" font-weight="600">STOMACH</text>
+            <text x="66" y="141" text-anchor="middle" font-size="13" fill="#E8634A" font-weight="800">acid escapes ✗</text>
+          </svg>
+        </div>
+
+      </div>
+
+      <style>
+        @keyframes rise2 {
+          0%  { opacity:0; transform:translateY(0); }
+          20% { opacity:1; }
+          80% { opacity:0.7; transform:translateY(-52px); }
+          100%{ opacity:0; transform:translateY(-65px); }
+        }
+      </style>
+
+      <div id="lc0" class="factor-card">
+        <span class="factor-icon">🔒</span>
+        <div><div class="factor-title">Lower Oesophageal Sphincter (LOS)</div><div class="factor-sub">Muscular valve at the base of the gullet. Opens for food, then closes tightly. In GORD it fails — letting acid back up.</div></div>
+      </div>
+      <div id="lc1" class="factor-card">
+        <span class="factor-icon">🔥</span>
+        <div><div class="factor-title">Heartburn</div><div class="factor-sub">Burning behind the breastbone — acid irritating the oesophageal lining. Nothing to do with the heart.</div></div>
+      </div>
+      <div id="lc2" class="factor-card">
+        <span class="factor-icon">🏥</span>
+        <div><div class="factor-title">GORD</div><div class="factor-sub">When reflux is frequent enough to cause symptoms or damage — Gastro-Oesophageal Reflux Disease.</div></div>
+      </div>
+
+    </div>`;
+  },
+
+
+  s3: () => {
+    setTimeout(() => {
+      [0,1,2,3,4,5].forEach((i) => {
+        setTimeout(() => {
+          const cards = document.querySelectorAll('.factor-card');
+          if(cards[i]) cards[i].classList.add('visible');
+        }, 200 + i * 200);
+      });
+    }, 150);
+    return `
+    <div class="factors-grid">
+      <div class="factor-card"><span class="factor-icon">⚖️</span><div><div class="factor-title">Excess weight</div><div class="factor-sub">Abdominal pressure pushes stomach contents upwards — the biggest modifiable risk factor.</div></div></div>
+      <div class="factor-card"><span class="factor-icon">🕳️</span><div><div class="factor-title">Hiatus hernia</div><div class="factor-sub">Part of stomach slides up through diaphragm, disrupting the sphincter mechanism.</div></div></div>
+      <div class="factor-card"><span class="factor-icon">🚬</span><div><div class="factor-title">Smoking</div><div class="factor-sub">Weakens the LOS and reduces saliva — which normally neutralises acid in the oesophagus.</div></div></div>
+      <div class="factor-card"><span class="factor-icon">🤰</span><div><div class="factor-title">Pregnancy</div><div class="factor-sub">Hormonal relaxation of the sphincter plus growing uterus increasing abdominal pressure.</div></div></div>
+      <div class="factor-card"><span class="factor-icon">💊</span><div><div class="factor-title">Medications</div><div class="factor-sub">NSAIDs, calcium channel blockers, some antidepressants can all worsen reflux.</div></div></div>
+      <div class="factor-card"><span class="factor-icon">🍽️</span><div><div class="factor-title">Meal timing &amp; size</div><div class="factor-sub">Large meals, eating late, lying flat soon after eating — all increase opportunity for acid escape.</div></div></div>
+    </div>`;
+  },
+
+  s4: () => {
+    setTimeout(() => {
+      ['bt0','bt1','bt2','bt3','bt4'].forEach((id,i) => {
+        setTimeout(() => { const e = document.getElementById(id); if(e) e.classList.add('visible'); }, 300 + i * 350);
+      });
+    }, 100);
+    return `
+    <div style="width:100%;display:flex;flex-direction:column;gap:.5rem;">
+      <div style="font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75);text-align:center;margin-bottom:.3rem;">The Barrett's Pathway — Why GORD Matters</div>
+      <div style="display:flex;align-items:center;gap:.3rem;">
+        <div id="bt0" class="med-step ms1" style="flex:1;transition-delay:0s;">
+          <div class="med-step-num" style="background:rgba(122,158,135,.2);color:#7A9E87">N</div>
+          <div class="med-step-text"><h5>Normal oesophagus</h5><p>Smooth squamous lining</p></div>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 18 18" style="flex-shrink:0;opacity:.3"><path d="M4 9h10M9 4l5 5-5 5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div id="bt1" class="med-step ms2" style="flex:1;transition-delay:.35s;">
+          <div class="med-step-num" style="background:rgba(232,168,74,.18);color:#E8A84A">1</div>
+          <div class="med-step-text"><h5>GORD / oesophagitis</h5><p>Repeated acid damage, inflammation</p></div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:.3rem;">
+        <div id="bt2" class="med-step ms3" style="flex:1;transition-delay:.7s;">
+          <div class="med-step-num" style="background:rgba(212,124,58,.2);color:#D47C3A">2</div>
+          <div class="med-step-text"><h5>Barrett's oesophagus</h5><p>Cell type change — precancerous</p></div>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 18 18" style="flex-shrink:0;opacity:.3"><path d="M4 9h10M9 4l5 5-5 5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div id="bt3" class="med-step" style="flex:1;background:rgba(232,99,74,.08);border-color:rgba(232,99,74,.25);transition-delay:1.05s;">
+          <div class="med-step-num" style="background:rgba(232,99,74,.18);color:#E8634A">3</div>
+          <div class="med-step-text"><h5>Dysplasia</h5><p>Abnormal cells — monitored closely</p></div>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 18 18" style="flex-shrink:0;opacity:.3"><path d="M4 9h10M9 4l5 5-5 5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div id="bt4" class="med-step" style="flex:1;background:rgba(180,50,50,.1);border-color:rgba(180,50,50,.3);transition-delay:1.4s;">
+          <div class="med-step-num" style="background:rgba(180,50,50,.2);color:#E87070">4</div>
+          <div class="med-step-text"><h5>Adenocarcinoma</h5><p>Rare — ~0.33% per year in Barrett's</p></div>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:9px;padding:.7rem .9rem;font-size:.76rem;color:rgba(255,255,255,.5);line-height:1.5;margin-top:.3rem;">
+        Most GORD never reaches Barrett's. Barrett's affects ~10–15% of those with chronic, longstanding symptoms. <strong style="color:rgba(255,255,255,.75)">NHS surveillance can catch changes early — when treatment is most effective.</strong>
+      </div>
+    </div>`;
+  },
+
+  s5: () => {
+    setTimeout(() => {
+      [0,1,2].forEach((i) => {
+        setTimeout(() => {
+          const steps = document.querySelectorAll('.med-step');
+          if(steps[i]) steps[i].classList.add('visible');
+        }, 200 + i * 300);
+      });
+    }, 150);
+    return `
+    <div class="med-ladder">
+      <div style="font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:.3rem;">Treatment approach — stepped care</div>
+      <div class="med-step ms1">
+        <div class="med-step-num">1</div>
+        <div class="med-step-text">
+          <h5>Antacids / Alginates</h5>
+          <p>e.g. Gaviscon, Rennies — immediate relief, safe in pregnancy, for mild/infrequent symptoms</p>
+        </div>
+      </div>
+      <div class="med-step ms2">
+        <div class="med-step-num">2</div>
+        <div class="med-step-text">
+          <h5>H2 Receptor Antagonists</h5>
+          <p>e.g. famotidine — reduce acid production, useful when PPIs not tolerated</p>
+        </div>
+      </div>
+      <div class="med-step ms3">
+        <div class="med-step-num">3</div>
+        <div class="med-step-text">
+          <h5>Proton Pump Inhibitors (PPIs)</h5>
+          <p>e.g. omeprazole, lansoprazole — most potent acid suppression. <strong>Take 30–60 min before meals.</strong> 4–8 week course initially; lowest effective dose long-term.</p>
+        </div>
+      </div>
+      <div style="background:rgba(212,124,58,.08);border:1px solid rgba(212,124,58,.2);border-radius:9px;padding:.65rem .85rem;font-size:.76rem;color:rgba(255,255,255,.85);line-height:1.5;margin-top:.25rem;">
+        ⏰ <strong style="color:#fff">PPI timing matters.</strong> The proton pump is activated by eating. PPIs need to be circulating when pumps are active — 30–60 min before food, not at bedtime.
+      </div>
+    </div>`;
+  },
+
+  s6: () => {
+    setTimeout(() => {
+      document.querySelectorAll('.research-row').forEach((r, i) => {
+        setTimeout(() => r.classList.add('visible'), 200 + i * 280);
+      });
+    }, 150);
+    return `
+    <div class="research-rows">
+      <div style="font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:.2rem;">Key evidence</div>
+      <div class="research-row">
+        <div class="rr-badge">Cochrane</div>
+        <div class="rr-text"><strong>PPIs vs H2RAs</strong> — 134 trials, 35,978 participants. PPIs produced significantly higher rates of oesophagitis healing and symptom relief across all severity grades.
+          <span class="rr-takehome">→ PPIs are the correct first-line pharmacological treatment for GORD.</span>
+        </div>
+      </div>
+      <div class="research-row">
+        <div class="rr-badge">LOTUS RCT</div>
+        <div class="rr-text"><strong>Surgery vs long-term PPI</strong> — JAMA 2011, 554 patients, 5-year follow-up. Both achieved ~85–90% remission rates.
+          <span class="rr-takehome">→ Surgery works as well as long-term medication — choice depends on the patient.</span>
+        </div>
+      </div>
+      <div class="research-row">
+        <div class="rr-badge">NEJM 2006</div>
+        <div class="rr-text"><strong>Weight loss and GORD</strong> — Nurses' Health Study, 10,000+ women. Even modest weight loss (~3.5 kg) significantly reduced reflux symptom frequency.
+          <span class="rr-takehome">→ Weight loss is the most evidence-based lifestyle intervention for GORD.</span>
+        </div>
+      </div>
+      <div class="research-row">
+        <div class="rr-badge">Gut 2012</div>
+        <div class="rr-text"><strong>Barrett's cancer risk</strong> — Meta-analysis, 57 studies, 58,000+ patients. Annual adenocarcinoma risk ~0.33% per year — much lower than earlier estimates.
+          <span class="rr-takehome">→ Risk is real but low — proportionate surveillance, not alarm.</span>
+        </div>
+      </div>
+    </div>`;
+  },
+
+  s7: () => {
+    setTimeout(() => {
+      [0,1,2].forEach((i) => {
+        setTimeout(() => {
+          const cards = document.querySelectorAll('.cta-card');
+          if(cards[i]) cards[i].classList.add('visible');
+        }, 200 + i * 300);
+      });
+    }, 150);
+    return `
+    <div class="cta-cards">
+      <div class="cta-card">
+        <div class="cta-num">1</div>
+        <div class="cta-text"><h5>Talk to your GP if heartburn is frequent</h5><p>More than twice a week, most weeks? That's not normal heartburn to manage with antacids. It warrants a proper assessment and effective treatment.</p></div>
+      </div>
+      <div class="cta-card">
+        <div class="cta-num">2</div>
+        <div class="cta-text"><h5>If you're on a PPI — check your timing</h5><p>Take it 30–60 minutes before your first meal of the day. Not at bedtime. This single change makes a meaningful difference to effectiveness.</p></div>
+      </div>
+      <div class="cta-card">
+        <div class="cta-num">3</div>
+        <div class="cta-text"><h5>Alarm features need prompt attention</h5><p>Difficulty swallowing, unexplained weight loss, vomiting blood, or persistent vomiting — see your GP promptly. These need investigation to rule out serious underlying causes.</p></div>
+      </div>
+    </div>`;
+  },
+
+  s8: () => `
+    <div class="intro-wrap">
+      <div class="end-logo">helf<span style="color:rgba(255,255,255,.60)">.</span>school</div>
+      <div class="end-tagline">Evidence-based health education for everyone</div>
+      <div class="end-series">
+        <span class="end-pill">01 Hypertension</span>
+        <span class="end-pill">02 Cholesterol</span>
+        <span class="end-pill">03 Heart Attack Risk</span>
+        <span class="end-pill">04 Statins</span>
+        <span class="end-pill">05 Lifestyle</span>
+        <span class="end-pill">06 Salt</span>
+        <span class="end-pill">07 Supplements</span>
+        <span class="end-pill active">13 Acid Reflux</span>
+      </div>
+    </div>`,
+};
+
+// ── RENDER ──
+let current = 0;
+
+function renderSlide(idx) {
+  const s = slides[idx];
+  document.getElementById('segLabel').textContent = s.label;
+  document.getElementById('segTitle').textContent = s.title;
+  document.getElementById('segTiming').textContent = s.timing;
+  document.getElementById('slideNum').textContent = idx + 1;
+  document.getElementById('progressFill').style.width = ((idx+1)/TOTAL*100)+'%';
+  document.getElementById('prevBtn').disabled = idx === 0;
+  document.getElementById('nextBtn').textContent = idx === TOTAL-1 ? '✓ Done' : 'Next slide →';
+
+  const badge = document.getElementById('typeBadge');
+  badge.className = 'slide-type-badge ' + badgeCls[s.type];
+  badge.textContent = badgeLbl[s.type];
+
+  document.querySelectorAll('.nav-dot').forEach((d,i) => d.classList.toggle('active', i===idx));
+
+  document.getElementById('visualContent').innerHTML = visuals[s.visual]();
+  document.getElementById('scriptBody').innerHTML = s.script.map(l=>`<p class="script-line">${l}</p>`).join('');
+  document.getElementById('scriptBody').scrollTop = 0;
+}
+
+function navigate(dir) {
+  const next = current + dir;
+  if(next < 0 || next >= TOTAL) return;
+  current = next;
+  renderSlide(current);
+}
+
+// Build nav dots
+const dotsEl = document.getElementById('navDots');
+slides.forEach((s,i) => {
+  const d = document.createElement('div');
+  d.className = 'nav-dot' + (i===0?' active':'');
+  d.title = s.title;
+  d.onclick = () => { current = i; renderSlide(i); };
+  dotsEl.appendChild(d);
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', e => {
+  if(e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
+  if(e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   navigate(-1);
+});
+
+renderSlide(0);
+</script>
+</body>
+</html>

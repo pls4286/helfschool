@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>How Acid Reflux Happens | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; background: #1B2A4A; font-family: 'DM Sans', sans-serif; overflow: hidden; }
+
+    .page {
+      width: 100vw; height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      grid-template-columns: 1fr;
+      padding: 3vh 3vw 2vh;
+      gap: 2vh;
+    }
+
+    /* ── TITLE ── */
+    .title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.7rem);
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      opacity: 0;
+      animation: fadeUp .5s ease .2s forwards;
+    }
+    .title span { color: #E8634A; }
+
+    /* ── DIAGRAMS ROW ── */
+    .diagrams {
+      display: flex;
+      gap: 4vw;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .panel {
+      flex: 1;
+      max-width: 42%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1vh;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .panel.visible { opacity: 1; transform: translateY(0); }
+
+    .panel-label {
+      font-size: clamp(.85rem, 1.5vw, 1.1rem);
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .25rem 1rem;
+      border-radius: 7px;
+      border: 2px solid;
+    }
+    .panel-label.ok  { color: #7A9E87; border-color: #7A9E87; background: rgba(122,158,135,.12); }
+    .panel-label.bad { color: #E8634A; border-color: #E8634A; background: rgba(232,99,74,.12); }
+
+    .panel svg { width: 100%; max-width: 280px; height: auto; overflow: visible; }
+
+    /* ── PROMPT CARDS ── */
+    .prompts {
+      display: flex;
+      gap: 1.5vw;
+      opacity: 0;
+      animation: fadeUp .5s ease 1.2s forwards;
+    }
+
+    .prompt {
+      flex: 1;
+      background: rgba(255,255,255,.06);
+      border: 1.5px solid rgba(255,255,255,.18);
+      border-radius: 12px;
+      padding: clamp(.6rem, 1.2vh, 1rem) clamp(.7rem, 1.2vw, 1rem);
+    }
+    .prompt h4 {
+      font-size: clamp(.82rem, 1.3vw, 1rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: .35rem;
+    }
+    .prompt p {
+      font-size: clamp(.78rem, 1.2vw, .92rem);
+      color: rgba(255,255,255,.90);
+      line-height: 1.5;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      font-size: clamp(.65rem, 1vw, .78rem);
+      color: rgba(255,255,255,.65);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-align: center;
+      opacity: 0;
+      animation: fadeUp .5s ease 1.8s forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes rise {
+      0%   { opacity: 0; transform: translateY(0); }
+      20%  { opacity: 1; }
+      80%  { opacity: .7; transform: translateY(-52px); }
+      100% { opacity: 0; transform: translateY(-65px); }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- TITLE -->
+  <div class="title">How Acid Reflux Happens — <span>The Lower Oesophageal Sphincter</span></div>
+
+  <!-- DIAGRAMS -->
+  <div class="diagrams">
+
+    <!-- NORMAL -->
+    <div class="panel" id="p1">
+      <div class="panel-label ok">✓ Normal</div>
+      <svg viewBox="0 0 260 290" xmlns="http://www.w3.org/2000/svg">
+        <text x="130" y="18" text-anchor="middle" font-family="DM Sans" font-size="13" fill="rgba(255,255,255,.80)" font-weight="700">Throat</text>
+        <!-- Oesophagus -->
+        <rect x="102" y="22" width="56" height="110" rx="12" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.80)" stroke-width="3"/>
+        <!-- Right label -->
+        <line x1="160" y1="52" x2="192" y2="42" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/>
+        <text x="195" y="38" font-family="DM Sans" font-size="11.5" fill="rgba(255,255,255,.90)" font-weight="700">Oesophagus</text>
+        <text x="195" y="52" font-family="DM Sans" font-size="10.5" fill="rgba(255,255,255,.60)">(the gullet)</text>
+        <!-- Food arrow -->
+        <line x1="130" y1="33" x2="130" y2="82" stroke="#7A9E87" stroke-width="2.5" stroke-dasharray="5,4"/>
+        <polygon points="130,94 121,76 139,76" fill="#7A9E87"/>
+        <text x="130" y="64" text-anchor="middle" font-family="DM Sans" font-size="12" fill="#7A9E87" font-weight="700">food ↓</text>
+        <!-- Diaphragm -->
+        <path d="M52 134 Q88 123 130 126 Q172 123 208 134" fill="none" stroke="rgba(255,255,255,.50)" stroke-width="2" stroke-dasharray="7,4"/>
+        <text x="130" y="149" text-anchor="middle" font-family="DM Sans" font-size="11" fill="rgba(255,255,255,.65)" font-style="italic">diaphragm</text>
+        <!-- LOS CLOSED -->
+        <rect x="90" y="130" width="80" height="20" rx="8" fill="#7A9E87"/>
+        <text x="130" y="144" text-anchor="middle" font-family="DM Sans" font-size="12" fill="#fff" font-weight="800">LOS — CLOSED ✓</text>
+        <!-- LOS left label -->
+        <line x1="90" y1="140" x2="55" y2="156" stroke="rgba(255,255,255,.60)" stroke-width="1.5"/>
+        <text x="57" y="151" font-family="DM Sans" font-size="11" fill="rgba(255,255,255,.90)" font-weight="700">Lower Oesophageal</text>
+        <text x="57" y="165" font-family="DM Sans" font-size="11" fill="rgba(255,255,255,.90)" font-weight="700">Sphincter (LOS)</text>
+        <!-- Stomach -->
+        <path d="M72 153 Q58 180 64 210 Q74 238 130 241 Q186 238 196 210 Q202 180 188 153 Z" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.70)" stroke-width="3"/>
+        <text x="130" y="202" text-anchor="middle" font-family="DM Sans" font-size="12" fill="rgba(255,255,255,.80)" font-weight="700">STOMACH</text>
+        <text x="130" y="224" text-anchor="middle" font-family="DM Sans" font-size="17" fill="#7A9E87" font-weight="800">acid stays ✓</text>
+      </svg>
+    </div>
+
+    <!-- GORD -->
+    <div class="panel" id="p2">
+      <div class="panel-label bad">✗ GORD</div>
+      <svg viewBox="0 0 260 290" xmlns="http://www.w3.org/2000/svg">
+        <text x="130" y="18" text-anchor="middle" font-family="DM Sans" font-size="13" fill="rgba(255,255,255,.80)" font-weight="700">Throat</text>
+        <!-- Oesophagus inflamed -->
+        <rect x="102" y="22" width="56" height="110" rx="12" fill="rgba(232,99,74,.10)" stroke="rgba(255,255,255,.80)" stroke-width="3"/>
+        <rect x="103" y="50" width="54" height="82" rx="10" fill="rgba(232,99,74,.28)"/>
+        <!-- Right label -->
+        <line x1="160" y1="52" x2="192" y2="42" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/>
+        <text x="195" y="38" font-family="DM Sans" font-size="11.5" fill="rgba(255,255,255,.90)" font-weight="700">Oesophagus</text>
+        <text x="195" y="52" font-family="DM Sans" font-size="10.5" fill="#E8634A" font-weight="600">(inflamed)</text>
+        <!-- Droplets -->
+        <circle cx="118" cy="130" r="5.5" fill="#E8634A" opacity="0" style="animation:rise 2.2s ease-in-out 0s infinite"/>
+        <circle cx="130" cy="130" r="4.5" fill="#E8A84A" opacity="0" style="animation:rise 2.2s ease-in-out .7s infinite"/>
+        <circle cx="142" cy="130" r="5.5" fill="#E8634A" opacity="0" style="animation:rise 2.2s ease-in-out 1.4s infinite"/>
+        <!-- Diaphragm -->
+        <path d="M52 134 Q88 123 130 126 Q172 123 208 134" fill="none" stroke="rgba(255,255,255,.50)" stroke-width="2" stroke-dasharray="7,4"/>
+        <text x="130" y="149" text-anchor="middle" font-family="DM Sans" font-size="11" fill="rgba(255,255,255,.65)" font-style="italic">diaphragm</text>
+        <!-- LOS OPEN -->
+        <path d="M90 134 Q110 124 130 134 Q150 144 170 134" fill="none" stroke="#E8634A" stroke-width="5" stroke-linecap="round"/>
+        <text x="130" y="124" text-anchor="middle" font-family="DM Sans" font-size="12" fill="#E8634A" font-weight="800">LOS — OPEN ✗</text>
+        <!-- LOS left label -->
+        <line x1="90" y1="134" x2="55" y2="152" stroke="rgba(255,255,255,.60)" stroke-width="1.5"/>
+        <text x="57" y="147" font-family="DM Sans" font-size="11" fill="rgba(255,255,255,.90)" font-weight="700">Lower Oesophageal</text>
+        <text x="57" y="161" font-family="DM Sans" font-size="11" fill="rgba(255,255,255,.90)" font-weight="700">Sphincter (LOS)</text>
+        <!-- Stomach -->
+        <path d="M72 153 Q58 180 64 210 Q74 238 130 241 Q186 238 196 210 Q202 180 188 153 Z" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.70)" stroke-width="3"/>
+        <ellipse cx="130" cy="232" rx="44" ry="9" fill="rgba(232,99,74,.40)"/>
+        <text x="130" y="198" text-anchor="middle" font-family="DM Sans" font-size="12" fill="rgba(255,255,255,.80)" font-weight="700">STOMACH</text>
+        <text x="130" y="222" text-anchor="middle" font-family="DM Sans" font-size="17" fill="#E8634A" font-weight="800">acid escapes ✗</text>
+      </svg>
+    </div>
+
+  </div><!-- /diagrams -->
+
+  <!-- PROMPT CARDS -->
+  <div class="prompts">
+    <div class="prompt">
+      <h4>🔒 What the LOS does</h4>
+      <p>Ring of muscle at the base of the gullet. Opens when you swallow to let food through, then closes tightly to keep stomach acid where it belongs.</p>
+    </div>
+    <div class="prompt">
+      <h4>🔥 What goes wrong in GORD</h4>
+      <p>The LOS fails to close properly — stomach acid leaks back up into the oesophagus. The lining isn't designed for acid, so it becomes inflamed.</p>
+    </div>
+    <div class="prompt">
+      <h4>💡 Why it causes heartburn</h4>
+      <p>Burning behind the breastbone — acid irritating the oesophageal lining. Despite the name, nothing to do with the heart.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">helf.school · Digestive Health Series · Article 13 — Acid Reflux</div>
+
+</div>
+<script>
+  setTimeout(() => document.getElementById('p1').classList.add('visible'), 500);
+  setTimeout(() => document.getElementById('p2').classList.add('visible'), 900);
+</script>
+</body>
+</html>

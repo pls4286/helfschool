@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reducing Cardiovascular Risk with Lifestyle Changes — Presenter Deck — Script | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{width:100%;height:100%;background:#0F1A2E;font-family:'DM Sans',sans-serif;overflow:hidden;color:#fff;}
+    .topbar{background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.10);height:52px;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+    .topbar-left{display:flex;flex-direction:column;gap:.1rem;}
+    .topbar-title{font-family:'Fraunces',serif;font-size:.95rem;font-weight:600;color:#fff;}
+    .topbar-sub{font-size:.75rem;color:rgba(255,255,255,.75);}
+    .topbar-right{display:flex;align-items:center;gap:1.5rem;}
+    .slide-counter{font-size:.88rem;font-weight:600;color:rgba(255,255,255,.90);}
+    .kbd-hint{font-size:.72rem;color:rgba(255,255,255,.60);}
+    .progress-bar{height:3px;background:rgba(255,255,255,.08);flex-shrink:0;}
+    .progress-fill{height:100%;background:#C8423A;transition:width .35s ease;}
+    .main{height:calc(100vh - 55px - 3px - 48px);overflow-y:auto;padding:1.5rem 2rem;}
+    .main::-webkit-scrollbar{width:4px;}
+    .main::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:2px;}
+    .seg-meta{display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem;flex-wrap:wrap;}
+    .seg-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#C8423A;}
+    .seg-title{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:.75rem;}
+    .seg-timing{font-size:.75rem;color:rgba(255,255,255,.65);margin-left:auto;}
+    .seg-section{font-size:.72rem;color:rgba(255,255,255,.55);background:rgba(255,255,255,.06);border-radius:4px;padding:.15rem .5rem;}
+    .diagram-cue{background:rgba(232,99,74,.12);border:2px solid rgba(232,99,74,.55);border-radius:10px;padding:.7rem 1rem;margin:.5rem 0 .8rem;}
+    .diagram-cue-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#E8634A;margin-bottom:.25rem;}
+    .diagram-cue-file{font-size:.95rem;font-weight:700;color:#fff;font-family:'Fraunces',serif;}
+    .diagram-cue-desc{font-size:.82rem;color:rgba(255,255,255,.80);margin-top:.2rem;line-height:1.4;}
+    .diagram-cue-graphic{font-size:.78rem;color:rgba(255,255,255,.65);margin-top:.25rem;font-style:italic;line-height:1.4;}
+    .script-body{display:flex;flex-direction:column;gap:.5rem;}
+    .script-line{font-size:1.05rem;line-height:1.8;color:rgba(255,255,255,.90);padding:.4rem .6rem;border-radius:6px;border-left:3px solid transparent;}
+    .script-line:hover{background:rgba(255,255,255,.04);border-left-color:#C8423A;}
+    .script-pause{display:inline-block;background:rgba(200,66,58,.15);border:1px solid rgba(200,66,58,.35);color:#C8423A;font-size:.70rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .55rem;border-radius:100px;}
+    .type-badge{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .6rem;border-radius:100px;margin-bottom:.35rem;}
+    .badge-opening{background:rgba(232,99,74,.2);color:#E8634A;}
+    .badge-section{background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);}
+    .badge-cta{background:rgba(122,158,135,.2);color:#7A9E87;}
+    .badge-closing{background:rgba(232,168,74,.2);color:#E8A84A;}
+    .bottom-nav{height:48px;background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;flex-shrink:0;}
+    .nav-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.75);font-size:.82rem;font-weight:500;padding:.4rem 1rem;border-radius:7px;cursor:pointer;transition:all .2s;}
+    .nav-btn:hover{background:rgba(255,255,255,.10);color:#fff;}
+    .nav-btn:disabled{opacity:.3;cursor:not-allowed;}
+    .nav-btn-primary{background:#C8423A;border-color:#C8423A;color:#fff;}
+    .nav-dots{display:flex;gap:.4rem;}
+    .nav-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.20);cursor:pointer;transition:all .2s;}
+    .nav-dot.active{background:#C8423A;transform:scale(1.3);}
+  </style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-title">Reducing Cardiovascular Risk with Lifestyle Changes — Presenter Deck — Script &amp; Broadcaster Notes</div>
+    <div class="topbar-sub">helf.school · Cardiovascular Series · Article 05</div>
+  </div>
+  <div class="topbar-right">
+    <div class="slide-counter">Segment <span id="segNum">1</span> of 10</div>
+    <div class="kbd-hint">← → keys or buttons</div>
+  </div>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:10.0%"></div></div>
+<div class="main" id="mainContent"></div>
+<div class="bottom-nav">
+  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>← Previous</button>
+  <div class="nav-dots" id="navDots"></div>
+  <button class="nav-btn nav-btn-primary" id="nextBtn" onclick="navigate(1)">Next →</button>
+</div>
+<script>
+const TOTAL=10;
+const badgeClass={opening:'badge-opening',section:'badge-section',cta:'badge-cta',closing:'badge-closing'};
+const badgeLabel={opening:'Opening',section:'Section',cta:'Call to Action',closing:'Closing'};
+const slides=[
+  {type:'opening',label:'Intro · Dr Paul',title:'Introduction',timing:'⏱ ~10 seconds',visual:'s0',script:[
+    `"I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019."`,
+    `"Today I want to talk to you about <strong>lifestyle changes and cardiovascular risk</strong>."`,
+    `"Now, I do have to say upfront — what I'm giving you here is health education, not medical advice."`,
+    `"If anything I talk about feels relevant to you personally, please do take it to your own doctor."`,
+    `"Right — let's get into it."`,
+  ]},
+  {type:'opening',label:'Segment 1 · Opening',title:'Not Soft Options',timing:'⏱ 0:00–0:45',visual:'s1',script:[
+    `"When we talk about lifestyle changes for cardiovascular health, there's a tendency to see them as the polite, gentle option — the things a doctor mentions before getting to the serious medicine."`,
+    `"I want to challenge that framing. Because the evidence on lifestyle changes is not soft. In some areas, it's as strong as the evidence for medication — and in a few, it's stronger."`,
+    `"The INTERHEART study — over 30,000 people across 52 countries — found that nine modifiable risk factors account for <strong>more than 90% of the risk of a first heart attack worldwide</strong>. The majority of those factors are directly influenced by lifestyle."`,
+    `"In this video I want to go through the seven key lifestyle areas with the evidence behind each one. I'm Dr Paul — over twenty years as an NHS GP. Health education, not medical advice."`,
+  ]},
+  {type:'section',label:'Segment 2 · Overview',title:'Seven Factors, One Direction',timing:'⏱ 0:45–1:20',visual:'s2',script:[
+    `"The seven lifestyle factors with the strongest cardiovascular evidence are: <strong>diet</strong>, <strong>physical activity</strong>, <strong>smoking</strong>, <strong>body weight</strong>, <strong>alcohol</strong>, <strong>psychological stress</strong>, and <strong>sleep</strong>."`,
+    `"These factors don't operate in isolation. They interact — often powerfully. Better sleep reduces stress. Reduced stress improves dietary choices. Regular movement improves sleep quality. Stopping smoking improves exercise tolerance."`,
+    `"A New England Journal of Medicine analysis in 2022 found that addressing five of the biggest modifiable risk factors at age 50 could add <strong>more than ten years of cardiovascular disease-free life</strong>."`,
+    `"Let's go through each one with the evidence."`,
+  ]},
+  {type:'section',label:'Segment 3 · Diet',title:'Diet — The Mediterranean Evidence',timing:'⏱ 1:20–2:05',visual:'s3',script:[
+    `"Of all dietary patterns studied in cardiovascular research, the <strong>Mediterranean diet</strong> has the most robust evidence."`,
+    `"The PREDIMED trial — a randomised controlled trial across Spain involving nearly 7,500 people at high cardiovascular risk — found that those assigned to a Mediterranean diet supplemented with olive oil or nuts had approximately a <strong>30% reduction in major cardiovascular events</strong> compared to a control diet, over nearly five years."`,
+    `"The Mediterranean pattern is: high intake of vegetables, fruits, legumes, whole grains, fish, and olive oil. Low intake of red meat, processed foods, and added sugars. It's not a rigid prescription — it's a pattern."`,
+    `"An umbrella review in the BMJ in 2024 found consistent associations between <strong>ultra-processed foods</strong> and increased cardiovascular risk, independent of overall diet quality."`,
+  ]},
+  {type:'section',label:'Segment 4 · Exercise & Smoking',title:'Movement & Stopping Smoking',timing:'⏱ 2:05–2:55',visual:'s4',script:[
+    `"A large meta-analysis in the British Journal of Sports Medicine in 2023 — pooling data from over 30 million participants — found that <strong>meeting just half the recommended weekly activity level</strong> was associated with a 17% reduction in cardiovascular disease risk."`,
+    `"The recommended level in the UK is 150 minutes of moderate-intensity activity per week. Half of that — 75 minutes — still produces meaningful benefit. The message is not perfection. It's movement."`,
+    `"On smoking: it is <strong>the single most powerful modifiable cardiovascular risk factor</strong>. The good news is that the benefit of stopping begins quickly. Within one year, excess cardiovascular risk falls by around half. Within fifteen years, risk approaches that of a lifelong non-smoker."`,
+    `"A Cochrane review found that stopping smoking after a heart attack reduces the risk of a further cardiovascular event by approximately <strong>36%</strong> — a larger effect than almost any single medication."`,
+  ]},
+  {type:'section',label:'Segment 5 · Alcohol, Stress & Sleep',title:'Alcohol, Stress & Sleep',timing:'⏱ 2:55–3:45',visual:'s5',script:[
+    `"On alcohol: earlier observational studies suggested a protective effect of moderate drinking. More rigorous analysis has substantially revised this."`,
+    `"A Mendelian randomisation study in JAMA Network Open in 2022 — using genetic data from 371,000 UK Biobank participants — found that genetically predicted alcohol intake was associated with increased risk of hypertension and coronary artery disease. The apparent protective effect appears to be largely explained by confounding."`,
+    `"On stress: the INTERHEART study identified psychosocial stress as one of nine independent risk factors for heart attack, accounting for approximately <strong>33% of attributable risk globally</strong>. Mindfulness-based stress reduction has randomised trial evidence showing measurable reductions in blood pressure."`,
+    `"On sleep: a meta-analysis of 74 studies covering over 3 million participants found a J-shaped relationship — both <strong>too little</strong> (under 6–7 hours) and <strong>too much sleep</strong> (over 8–9 hours) are independently associated with increased cardiovascular mortality. The sweet spot is 7–8 hours."`,
+  ]},
+  {type:'section',label:'Segment 6 · What Your GP Will Do',title:'How Your GP Uses This',timing:'⏱ 3:45–4:20',visual:'s6',script:[
+    `"Lifestyle factors sit at the heart of every cardiovascular risk consultation. Not as a warm-up before the prescription — but as a core part of the clinical assessment."`,
+    `"If you're referred to NHS Stop Smoking Services, your chance of quitting successfully is roughly three times higher than willpower alone. Structured weight management programmes, cardiac rehabilitation — these are referrals your GP can make."`,
+    `"The key message is this: <strong>lifestyle changes work through multiple pathways at once</strong>. Improving diet lowers blood pressure and cholesterol. Exercise reduces insulin resistance and improves vascular function. These effects are additive — and in some combinations, more than additive."`,
+    `"They are also compatible with medication. Statins and antihypertensives work best when combined with lifestyle modification — not instead of it."`,
+  ]},
+  {type:'section',label:'Segment 7 · Research',title:'The Evidence in Summary',timing:'⏱ 4:20–4:55',visual:'s7',script:[
+    `"To summarise the key findings:"`,
+    `"Mediterranean diet: <strong>30% reduction in major cardiovascular events</strong> — PREDIMED, NEJM 2018."`,
+    `"Physical activity: <strong>17% risk reduction from just half the recommended level</strong> — BJSM meta-analysis, 2023, 30 million participants."`,
+    `"Smoking cessation: <strong>36% reduction in further cardiovascular events</strong> post-heart attack — Cochrane review."`,
+    `"Alcohol: increasing evidence that there is <strong>no safe cardiovascular level</strong> for people with elevated risk — JAMA Network Open, 2022."`,
+    `"Sleep: <strong>7–8 hours optimal</strong> — J-shaped mortality curve — JAHA meta-analysis, 74 studies, 3 million participants."`,
+    `"The research doesn't suggest perfection. It suggests that meaningful change in even one or two areas produces measurable reductions in cardiovascular risk."`,
+  ]},
+  {type:'cta',label:'Segment 8 · Call to Action',title:'What You Can Do',timing:'⏱ 4:55–5:25',visual:'s8',script:[
+    `"<strong>Pick one lever</strong>. You don't need to change everything at once. The evidence shows that even a single meaningful change — more movement, less ultra-processed food, better sleep — produces measurable cardiovascular benefit."`,
+    `"<strong>Tell your GP what you're doing</strong>. Lifestyle changes affect your blood pressure, cholesterol, and blood glucose readings. Your GP needs to know so they can interpret your results and potentially adjust any medication."`,
+    `"<strong>Don't treat lifestyle changes as an alternative to medication</strong>. They're not either/or. They work together — and each one strengthens the effect of the other."`,
+    `"Full article with all evidence at <strong>helf.school</strong>."`,
+  ]},
+  {type:'closing',label:'Segment 9 · Closing',title:'Sign-off',timing:'⏱ 5:25–5:50',visual:'s9',script:[
+    `"Cardiovascular disease is not inevitable. Most of the risk factors behind it are modifiable. And the evidence — from large randomised trials and meta-analyses covering millions of people — is clear that changing them changes outcomes."`,
+    `"The best place to start is wherever you are right now."`,
+    `<span class="script-pause">PAUSE</span>`,
+    `"Thanks for watching. All seven cardiovascular articles are on helf.school. Take care of yourself."`,
+  ]},
+];
+function buildSegment(s,idx){
+  let h='';
+  h+=`<div class="seg-meta"><span class="type-badge ${badgeClass[s.type]}">${badgeLabel[s.type]}</span><span class="seg-label">${s.label}</span>${s.section?`<span class="seg-section">${s.section}</span>`:''}<span class="seg-timing">${s.timing}</span></div>`;
+  h+=`<div class="seg-title">${s.title}</div>`;
+  if(s.visuals_screen){h+=`<div class="diagram-cue"><div class="diagram-cue-label">📺 Switch to visuals screen</div><div class="diagram-cue-file">${s.visuals_screen.file}</div><div class="diagram-cue-desc">${s.visuals_screen.what}</div>${s.visuals_screen.graphic?`<div class="diagram-cue-graphic">On screen: ${s.visuals_screen.graphic}</div>`:''}</div>`;}
+  h+=`<div class="script-body">`;
+  s.script.forEach(l=>{h+=`<p class="script-line">${l}</p>`;});
+  h+=`</div>`;return h;
+}
+let current=0;
+function renderSegment(idx){
+  document.getElementById('mainContent').innerHTML=buildSegment(slides[idx],idx);
+  document.getElementById('mainContent').scrollTop=0;
+  document.getElementById('segNum').textContent=idx+1;
+  document.getElementById('progressFill').style.width=((idx+1)/TOTAL*100)+'%';
+  document.getElementById('prevBtn').disabled=idx===0;
+  document.getElementById('nextBtn').textContent=idx===TOTAL-1?'✓ Done':'Next →';
+  document.querySelectorAll('.nav-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+}
+function navigate(dir){const n=current+dir;if(n<0||n>=TOTAL)return;current=n;renderSegment(n);}
+const de=document.getElementById('navDots');
+slides.forEach((s,i)=>{const d=document.createElement('div');d.className='nav-dot'+(i===0?' active':'');d.title=s.title;d.onclick=()=>{current=i;renderSegment(i);};de.appendChild(d);});
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')navigate(1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')navigate(-1);});
+renderSegment(0);
+</script>
+</body>
+</html>

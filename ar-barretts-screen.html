@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Barrett's Pathway | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%; height: 100%;
+      background: #1B2A4A;
+      font-family: 'DM Sans', sans-serif;
+      overflow: hidden;
+    }
+
+    .scene {
+      width: 100vw; height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 4vh 3vw 2vh;
+      gap: 1.5vh;
+    }
+
+    .title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      opacity: 0;
+      animation: fadeUp .6s ease .2s forwards;
+    }
+    .title span { color: #E8634A; }
+
+    .subtitle {
+      font-size: clamp(.75rem, 1.2vw, .9rem);
+      color: rgba(255,255,255,.85);
+      text-align: center;
+      max-width: 680px;
+      line-height: 1.4;
+      opacity: 0;
+      animation: fadeUp .6s ease .5s forwards;
+    }
+
+    /* ── PATHWAY ── */
+    .pathway {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .stage {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .4vh;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .stage.visible { opacity: 1; transform: translateY(0); }
+
+    .arrow-col {
+      display: flex;
+      align-items: center;
+      padding-bottom: .8vh;
+      flex-shrink: 0;
+      opacity: 0;
+      transition: opacity .4s ease;
+    }
+    .arrow-col.visible { opacity: 1; }
+    .arrow-col svg { width: clamp(20px, 2.5vw, 32px); height: auto; }
+
+    .stage-box {
+      width: 100%;
+      border-radius: 14px;
+      padding: clamp(.4rem, 1vh, .8rem) clamp(.4rem, .8vw, .7rem);
+      text-align: center;
+      border: 2px solid;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .3vh;
+    }
+
+    .stage-icon { font-size: clamp(1.1rem, 1.8vw, 1.5rem); }
+
+    .stage-name {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(.78rem, 1.3vw, .98rem);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .stage-desc {
+      font-size: clamp(.72rem, 1.1vw, .88rem);
+      color: rgba(255,255,255,.90);
+      line-height: 1.4;
+    }
+    .stage-risk {
+      font-size: clamp(.65rem, .9vw, .78rem);
+      font-weight: 700;
+      padding: .2rem .6rem;
+      border-radius: 100px;
+    }
+
+    /* Colours */
+    .s0 .stage-box { background:rgba(122,158,135,.08); border-color:rgba(122,158,135,.4); }
+    .s0 .stage-name { color:#7A9E87; }
+    .s0 .stage-risk { background:rgba(122,158,135,.15); color:#7A9E87; }
+
+    .s1 .stage-box { background:rgba(232,168,74,.07); border-color:rgba(232,168,74,.35); }
+    .s1 .stage-name { color:#E8A84A; }
+    .s1 .stage-risk { background:rgba(232,168,74,.15); color:#E8A84A; }
+
+    .s2 .stage-box { background:rgba(212,124,58,.08); border-color:rgba(212,124,58,.4); }
+    .s2 .stage-name { color:#D47C3A; }
+    .s2 .stage-risk { background:rgba(212,124,58,.15); color:#D47C3A; }
+
+    .s3 .stage-box { background:rgba(232,99,74,.09); border-color:rgba(232,99,74,.4); }
+    .s3 .stage-name { color:#E8634A; }
+    .s3 .stage-risk { background:rgba(232,99,74,.15); color:#E8634A; }
+
+    .s4 .stage-box { background:rgba(180,50,50,.12); border-color:rgba(180,50,50,.45); }
+    .s4 .stage-name { color:#E07070; }
+    .s4 .stage-risk { background:rgba(180,50,50,.2); color:#E07070; }
+
+    /* ── CONTEXT CARDS ── */
+    .context {
+      display: flex;
+      gap: 2vw;
+      width: 100%;
+      max-width: 1000px;
+      opacity: 0;
+      animation: fadeUp .6s ease 2.2s forwards;
+    }
+    .ctx-card {
+      flex: 1;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 12px;
+      padding: clamp(.4rem, 1vh, .7rem) clamp(.5rem, 1vw, .8rem);
+    }
+    .ctx-card h4 {
+      font-size: clamp(.78rem, 1.2vw, .92rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: .2rem;
+    }
+    .ctx-card p {
+      font-size: clamp(.72rem, 1.1vw, .85rem);
+      color: rgba(255,255,255,.90);
+      line-height: 1.4;
+    }
+    .ctx-card strong { color: #fff; }
+
+    .footer {
+      font-size: clamp(.65rem, 1vw, .80rem);
+      color: rgba(255,255,255,.65);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeUp .5s ease 2.8s forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(8px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+  </style>
+</head>
+<body>
+<div class="scene">
+
+  <div class="title">Why Persistent GORD Matters — <span>The Barrett's Pathway</span></div>
+  <div class="subtitle">Most people with GORD never develop Barrett's. But understanding this progression is why longstanding, untreated reflux warrants investigation.</div>
+
+  <div class="pathway">
+
+    <div class="stage s0" id="st0">
+      <div class="stage-box">
+        <div class="stage-icon">🟢</div>
+        <div class="stage-name">Normal oesophagus</div>
+        <div class="stage-desc">Smooth squamous cell lining. Healthy. No acid damage.</div>
+        <div class="stage-risk">Baseline</div>
+      </div>
+    </div>
+
+    <div class="arrow-col" id="ar0">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 16h20M18 8l8 8-8 8" stroke="rgba(255,255,255,.45)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div class="stage s1" id="st1">
+      <div class="stage-box">
+        <div class="stage-icon">🟡</div>
+        <div class="stage-name">GORD / Oesophagitis</div>
+        <div class="stage-desc">Repeated acid exposure inflames the oesophageal lining. Erosions may form.</div>
+        <div class="stage-risk">Uncomfortable</div>
+      </div>
+    </div>
+
+    <div class="arrow-col" id="ar1">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 16h20M18 8l8 8-8 8" stroke="rgba(255,255,255,.45)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div class="stage s2" id="st2">
+      <div class="stage-box">
+        <div class="stage-icon">🟠</div>
+        <div class="stage-name">Barrett's oesophagus</div>
+        <div class="stage-desc">Normal lining replaced by intestinal-type cells. A pre-cancerous change — affects ~10–15% of chronic GORD patients.</div>
+        <div class="stage-risk">Pre-cancerous</div>
+      </div>
+    </div>
+
+    <div class="arrow-col" id="ar2">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 16h20M18 8l8 8-8 8" stroke="rgba(255,255,255,.45)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div class="stage s3" id="st3">
+      <div class="stage-box">
+        <div class="stage-icon">🔴</div>
+        <div class="stage-name">Dysplasia</div>
+        <div class="stage-desc">Abnormal cell changes detected on biopsy. Monitored closely with regular endoscopy.</div>
+        <div class="stage-risk">Monitored closely</div>
+      </div>
+    </div>
+
+    <div class="arrow-col" id="ar3">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 16h20M18 8l8 8-8 8" stroke="rgba(255,255,255,.45)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div class="stage s4" id="st4">
+      <div class="stage-box">
+        <div class="stage-icon">⚠️</div>
+        <div class="stage-name">Adenocarcinoma</div>
+        <div class="stage-desc">Cancer of the oesophagus. Rare outcome — the reason surveillance exists, not the expected outcome.</div>
+        <div class="stage-risk">Rare — ~0.33%/yr in Barrett's</div>
+      </div>
+    </div>
+
+  </div><!-- /pathway -->
+
+  <div class="context">
+    <div class="ctx-card">
+      <h4>📊 How common is this?</h4>
+      <p>Most people with GORD <strong>never develop Barrett's</strong>. It affects approximately <strong>10–15%</strong> of those with chronic, longstanding symptoms — and most Barrett's patients never develop cancer.</p>
+    </div>
+    <div class="ctx-card">
+      <h4>📉 Annual cancer risk in Barrett's</h4>
+      <p>Approximately <strong>0.33% per year</strong> — around 1 in 300 per year. This is much lower than earlier estimates. Risk is higher in those with longer Barrett's segments or dysplasia. <em>(Desai TK et al., Gut 2012)</em></p>
+    </div>
+    <div class="ctx-card">
+      <h4>🏥 Why surveillance matters</h4>
+      <p>The NHS offers <strong>endoscopic surveillance</strong> for people with confirmed Barrett's — typically every 2–5 years. Catching dysplasia early means treatment is far more effective and less invasive.</p>
+    </div>
+  </div>
+
+  <div class="footer">helf.school · Digestive Health Series · Article 13 — Acid Reflux</div>
+
+</div>
+
+<script>
+  const stages = ['st0','st1','st2','st3','st4'];
+  const arrows = ['ar0','ar1','ar2','ar3'];
+  stages.forEach((id, i) => {
+    setTimeout(() => {
+      document.getElementById(id).classList.add('visible');
+      if (arrows[i]) setTimeout(() => document.getElementById(arrows[i]).classList.add('visible'), 200);
+    }, 500 + i * 400);
+  });
+</script>
+</body>
+</html>

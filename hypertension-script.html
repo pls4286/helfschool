@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hypertension — Video Presenter Deck — Script | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{width:100%;height:100%;background:#0F1A2E;font-family:'DM Sans',sans-serif;overflow:hidden;color:#fff;}
+    .topbar{background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.10);height:52px;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+    .topbar-left{display:flex;flex-direction:column;gap:.1rem;}
+    .topbar-title{font-family:'Fraunces',serif;font-size:.95rem;font-weight:600;color:#fff;}
+    .topbar-sub{font-size:.75rem;color:rgba(255,255,255,.75);}
+    .topbar-right{display:flex;align-items:center;gap:1.5rem;}
+    .slide-counter{font-size:.88rem;font-weight:600;color:rgba(255,255,255,.90);}
+    .kbd-hint{font-size:.72rem;color:rgba(255,255,255,.60);}
+    .progress-bar{height:3px;background:rgba(255,255,255,.08);flex-shrink:0;}
+    .progress-fill{height:100%;background:#C8423A;transition:width .35s ease;}
+    .main{height:calc(100vh - 55px - 3px - 48px);overflow-y:auto;padding:1.5rem 2rem;}
+    .main::-webkit-scrollbar{width:4px;}
+    .main::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:2px;}
+    .seg-meta{display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem;flex-wrap:wrap;}
+    .seg-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#C8423A;}
+    .seg-title{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:.75rem;}
+    .seg-timing{font-size:.75rem;color:rgba(255,255,255,.65);margin-left:auto;}
+    .seg-section{font-size:.72rem;color:rgba(255,255,255,.55);background:rgba(255,255,255,.06);border-radius:4px;padding:.15rem .5rem;}
+    .diagram-cue{background:rgba(232,99,74,.12);border:2px solid rgba(232,99,74,.55);border-radius:10px;padding:.7rem 1rem;margin:.5rem 0 .8rem;}
+    .diagram-cue-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#E8634A;margin-bottom:.25rem;}
+    .diagram-cue-file{font-size:.95rem;font-weight:700;color:#fff;font-family:'Fraunces',serif;}
+    .diagram-cue-desc{font-size:.82rem;color:rgba(255,255,255,.80);margin-top:.2rem;line-height:1.4;}
+    .diagram-cue-graphic{font-size:.78rem;color:rgba(255,255,255,.65);margin-top:.25rem;font-style:italic;line-height:1.4;}
+    .script-body{display:flex;flex-direction:column;gap:.5rem;}
+    .script-line{font-size:1.05rem;line-height:1.8;color:rgba(255,255,255,.90);padding:.4rem .6rem;border-radius:6px;border-left:3px solid transparent;}
+    .script-line:hover{background:rgba(255,255,255,.04);border-left-color:#C8423A;}
+    .script-pause{display:inline-block;background:rgba(200,66,58,.15);border:1px solid rgba(200,66,58,.35);color:#C8423A;font-size:.70rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .55rem;border-radius:100px;}
+    .type-badge{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .6rem;border-radius:100px;margin-bottom:.35rem;}
+    .badge-opening{background:rgba(232,99,74,.2);color:#E8634A;}
+    .badge-section{background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);}
+    .badge-cta{background:rgba(122,158,135,.2);color:#7A9E87;}
+    .badge-closing{background:rgba(232,168,74,.2);color:#E8A84A;}
+    .bottom-nav{height:48px;background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;flex-shrink:0;}
+    .nav-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.75);font-size:.82rem;font-weight:500;padding:.4rem 1rem;border-radius:7px;cursor:pointer;transition:all .2s;}
+    .nav-btn:hover{background:rgba(255,255,255,.10);color:#fff;}
+    .nav-btn:disabled{opacity:.3;cursor:not-allowed;}
+    .nav-btn-primary{background:#C8423A;border-color:#C8423A;color:#fff;}
+    .nav-dots{display:flex;gap:.4rem;}
+    .nav-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.20);cursor:pointer;transition:all .2s;}
+    .nav-dot.active{background:#C8423A;transform:scale(1.3);}
+  </style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-title">Hypertension — Video Presenter Deck — Script &amp; Broadcaster Notes</div>
+    <div class="topbar-sub">helf.school · Cardiovascular Series · Article 01</div>
+  </div>
+  <div class="topbar-right">
+    <div class="slide-counter">Segment <span id="segNum">1</span> of 8</div>
+    <div class="kbd-hint">← → keys or buttons</div>
+  </div>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:12.5%"></div></div>
+<div class="main" id="mainContent"></div>
+<div class="bottom-nav">
+  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>← Previous</button>
+  <div class="nav-dots" id="navDots"></div>
+  <button class="nav-btn nav-btn-primary" id="nextBtn" onclick="navigate(1)">Next →</button>
+</div>
+<script>
+const TOTAL=8;
+const badgeClass={opening:'badge-opening',section:'badge-section',cta:'badge-cta',closing:'badge-closing'};
+const badgeLabel={opening:'Opening',section:'Section',cta:'Call to Action',closing:'Closing'};
+const slides = [
+  {type:'opening',label:'Intro · Dr Paul',title:'Introduction',timing:'⏱ ~10 seconds',visual:'s0',script:[
+    `"I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019."`,
+    `"Today I want to talk to you about <strong>high blood pressure</strong>."`,
+    `"Now, I do have to say upfront — what I'm giving you here is health education, not medical advice."`,
+    `"If anything I talk about feels relevant to you personally, please do take it to your own doctor."`,
+    `"Right — let's get into it."`,
+  ]},
+  {
+    type:'opening', label:'Segment 2 · Opening Hook', title:'The Silent Condition', timing:'⏱ 0:00–0:50',
+    visual:'s1',
+    script:[
+      `"There's a condition that affects <strong>one in three adults</strong> in this country right now. It causes no pain. No obvious symptoms. And most of the people who have it — don't know."`,
+      `<span class="script-pause">PAUSE</span>`,
+      `"It's called hypertension. Most of us know it as high blood pressure."`,
+      `"Left untreated, it quietly damages your heart, your brain, your kidneys, and your arteries, year after year. It's the leading single cause of stroke. It contributes to heart attacks, heart failure, and kidney disease."`,
+      `"<strong>Ten million people die from it every year worldwide.</strong> More than from any other single condition on the planet."`,
+      `<span class="script-pause">PAUSE</span>`,
+      `"In this video I want to explain what it actually is, why it matters, what your doctor will do — and what the evidence says about how well we can treat it. Because the evidence is genuinely encouraging."`,
+      `"I'm Dr Paul — twenty years as an NHS GP. This is health education, not medical advice."`,
+    ]
+  },
+  {
+    type:'section', label:'Segment 2 · Section 1', title:'What is High Blood Pressure?', timing:'⏱ 0:50–1:50',
+    visual:'s2',
+    script:[
+      `"Blood pressure is the force blood exerts on the walls of your arteries. Think of it like water pressure in a hosepipe — normal and necessary. But if the pressure is <strong>always too high</strong>, over time it starts to damage the pipe itself."`,
+      `"Blood pressure is measured as two numbers. The top number — <strong>systolic</strong> — is the pressure when your heart beats. The bottom — <strong>diastolic</strong> — is between beats when the heart is resting."`,
+      `"A typical healthy reading is around 120 over 80 — written as <strong>120/80 mmHg</strong>."`,
+      `"Hypertension is diagnosed when readings of <strong>140 over 90 or above</strong> are consistently present. The word 'consistently' matters — a single high reading in a clinic doesn't confirm it."`,
+      `"Blood pressure can go up just from anxiety in a medical setting. That's so common it has its own name: <strong>white coat hypertension</strong>. Which is why your doctor won't diagnose you from one waiting room reading."`,
+    ]
+  },
+  {
+    type:'section', label:'Segment 3 · Section 2', title:'Why Does It Matter?', timing:'⏱ 1:50–2:45',
+    visual:'s3',
+    script:[
+      `"The damage from high blood pressure is <strong>gradual and cumulative</strong>. Your heart has to work harder with every beat. Over years, this causes the heart muscle to thicken and stiffen. The arteries become less flexible and more prone to atherosclerosis — the build-up of fatty deposits inside the vessel wall."`,
+      `"Hypertension is the <strong>single largest risk factor for stroke</strong> — contributing to roughly half of all strokes in the UK. It substantially increases the risk of heart attack, heart failure, and kidney damage."`,
+      `"And because it causes <strong>no symptoms</strong> — no pain, no warning signs — most people only find out at a routine appointment, or worse, when something goes wrong."`,
+      `"In the UK, around <strong>one in three adults</strong> has high blood pressure. Among people over 65, that rises to around <strong>six in ten</strong>."`,
+    ]
+  },
+  {
+    type:'section', label:'Segment 4 · Section 3', title:'What Your Doctor Will Do', timing:'⏱ 2:45–3:50',
+    visual:'s4',
+    script:[
+      `"So you've been told your blood pressure is high. What happens next?"`,
+      `"The first thing your doctor won't do is immediately start you on tablets. The standard approach is to offer you a <strong>24-hour blood pressure monitor</strong> — a small device worn on your arm during a normal day at home. This is called <strong>ABPM — ambulatory blood pressure monitoring</strong>."`,
+      `"It's considered much more accurate than a clinic reading, because it captures your blood pressure across a full range of activities, without the white coat effect."`,
+      `"Your GP will also arrange blood tests and a urine test to check your kidneys — high blood pressure can both cause and be caused by kidney problems."`,
+      `"The main drug options in the UK are: <strong>ACE inhibitors or ARBs</strong> — such as ramipril and losartan — which relax blood vessels. <strong>Calcium channel blockers</strong> like amlodipine, which widen blood vessels. And <strong>thiazide-like diuretics</strong> — water tablets — which reduce fluid volume."`,
+      `"For most people under 80, the treatment target is below <strong>140/90</strong> in clinic. For those over 80, below <strong>150/90</strong>. These targets are set by current NICE guidelines."`,
+    ]
+  },
+  {
+    type:'section', label:'Segment 5 · Section 4', title:'What the Research Shows', timing:'⏱ 3:50–4:45',
+    visual:'s5',
+    script:[
+      `"Now — I want to talk about what the evidence tells us. Because I think this is genuinely reassuring."`,
+      `"A major analysis published in <em>The Lancet</em> in 2021, drawing on data from over <strong>340,000 participants</strong>, found that reducing systolic blood pressure by just <strong>5 mmHg</strong> cut the risk of major cardiovascular events by around <strong>10%</strong>. That held across all blood pressure levels studied."`,
+      `"Ten percent risk reduction. From a 5-point reduction. That's a significant return for a modest change."`,
+      `"A Cochrane review of 16 trials — nearly 27,000 older adults — confirmed that blood pressure medication reduces the risk of death, stroke and heart attack in people over 60. Evidence rated <strong>moderate to high certainty</strong>."`,
+      `"For people with <strong>mild</strong> hypertension and no existing cardiovascular disease, the evidence for medication is less clear-cut. A 2025 Cochrane update found limited evidence of benefit in this lower-risk group. This is a reason for an honest conversation with your doctor — not a reason to ignore it."`,
+    ]
+  },
+  {
+    type:'cta', label:'Segment 6 · Call to Action', title:'What You Can Do', timing:'⏱ 4:45–5:30',
+    visual:'s6',
+    script:[
+      `"<strong>First: get your blood pressure checked</strong> if it hasn't been done recently. At your GP surgery, at a pharmacy, or with a home monitor. If you're over 40, NICE recommends it's checked at least every five years."`,
+      `"<strong>Second: if you're on blood pressure medication, take it.</strong> Blood pressure tablets often have no noticeable effect that you can feel. That's partly why people stop. But the protection is real, even when you can't sense it."`,
+      `"<strong>Third: lifestyle changes work.</strong> Reducing salt, losing even modest weight, regular aerobic exercise, cutting back on alcohol — each has a genuine, measurable effect. In some people with mildly elevated pressure, they can be enough on their own."`,
+      `"The full article — with all the research references linked — is on <strong>helf.school</strong>."`,
+    ]
+  },
+  {
+    type:'closing', label:'Segment 7 · Closing', title:'Sign-off', timing:'⏱ 5:30–6:00',
+    visual:'s7',
+    script:[
+      `"Hypertension is one of those conditions where knowledge really does make a difference. Not because understanding it is complicated — as I hope this video has shown, it isn't."`,
+      `"The evidence is clear. Treatment works. Lifestyle changes work. And for a condition that causes no symptoms, <strong>the best protection you have is simply knowing your numbers.</strong>"`,
+      `<span class="script-pause">PAUSE</span>`,
+      `"Thanks for watching. There are six more cardiovascular articles on helf.school — cholesterol, statins, heart attack risk, lifestyle changes, salt, and supplements. All evidence-based. All free."`,
+      `"Take care of yourself."`,
+    ]
+  },
+];
+function buildSegment(s,idx){
+  let h='';
+  h+=`<div class="seg-meta"><span class="type-badge ${badgeClass[s.type]}">${badgeLabel[s.type]}</span><span class="seg-label">${s.label}</span>${s.section?`<span class="seg-section">${s.section}</span>`:''}<span class="seg-timing">${s.timing}</span></div>`;
+  h+=`<div class="seg-title">${s.title}</div>`;
+  if(s.visuals_screen){h+=`<div class="diagram-cue"><div class="diagram-cue-label">📺 Switch to visuals screen</div><div class="diagram-cue-file">${s.visuals_screen.file}</div><div class="diagram-cue-desc">${s.visuals_screen.what}</div>${s.visuals_screen.graphic?`<div class="diagram-cue-graphic">On screen: ${s.visuals_screen.graphic}</div>`:''}</div>`;}
+  h+=`<div class="script-body">`;
+  s.script.forEach(l=>{h+=`<p class="script-line">${l}</p>`;});
+  h+=`</div>`;return h;
+}
+let current=0;
+function renderSegment(idx){
+  document.getElementById('mainContent').innerHTML=buildSegment(slides[idx],idx);
+  document.getElementById('mainContent').scrollTop=0;
+  document.getElementById('segNum').textContent=idx+1;
+  document.getElementById('progressFill').style.width=((idx+1)/TOTAL*100)+'%';
+  document.getElementById('prevBtn').disabled=idx===0;
+  document.getElementById('nextBtn').textContent=idx===TOTAL-1?'✓ Done':'Next →';
+  document.querySelectorAll('.nav-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+}
+function navigate(dir){const n=current+dir;if(n<0||n>=TOTAL)return;current=n;renderSegment(n);}
+const de=document.getElementById('navDots');
+slides.forEach((s,i)=>{const d=document.createElement('div');d.className='nav-dot'+(i===0?' active':'');d.title=s.title;d.onclick=()=>{current=i;renderSegment(i);};de.appendChild(d);});
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')navigate(1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')navigate(-1);});
+renderSegment(0);
+</script>
+</body>
+</html>

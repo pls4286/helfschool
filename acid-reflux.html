@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acid Reflux — Causes, Symptoms &amp; Treatment | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:    #1B2A4A;
+      --coral:   #E8634A;
+      --cream:   #FAF7F2;
+      --sage:    #7A9E87;
+      --amber:   #E8A84A;
+      --digest:  #D47C3A;
+      --digest-light: #FEF3E7;
+      --border:  #E5DDD4;
+      --muted:   #6B7280;
+      --text:    #2C2C2C;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--navy);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(27,42,74,.18);
+    }
+    .nav-logo { display:flex; align-items:center; gap:.75rem; text-decoration:none; }
+    .logo-svg { width:36px; height:36px; flex-shrink:0; }
+    .logo-text { display:flex; flex-direction:column; line-height:1.1; }
+    .logo-name { font-family:'Fraunces',serif; font-size:1.25rem; font-weight:600; color:#fff; letter-spacing:.01em; }
+    .logo-tagline { font-size:.6rem; font-weight:500; color:var(--sage); letter-spacing:.18em; text-transform:uppercase; }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { color:rgba(255,255,255,.75); text-decoration:none; font-size:.875rem; font-weight:500; transition:color .2s; }
+    .nav-links a:hover { color:#fff; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb { background:var(--navy); padding:.6rem 2rem; border-bottom:1px solid rgba(255,255,255,.08); }
+    .breadcrumb-inner { max-width:900px; margin:0 auto; display:flex; align-items:center; gap:.5rem; font-size:.8rem; color:rgba(255,255,255,.5); }
+    .breadcrumb-inner a { color:rgba(255,255,255,.5); text-decoration:none; transition:color .2s; }
+    .breadcrumb-inner a:hover { color:rgba(255,255,255,.85); }
+    .breadcrumb-inner span { color:var(--digest); font-weight:500; }
+
+    /* ── HERO ── */
+    .article-hero { background:var(--navy); padding:3.5rem 2rem 3rem; position:relative; overflow:hidden; }
+    .article-hero::before { content:''; position:absolute; top:-60px; right:-60px; width:320px; height:320px; border-radius:50%; background:radial-gradient(circle,rgba(212,124,58,.14) 0%,transparent 70%); pointer-events:none; }
+    .article-hero::after  { content:''; position:absolute; bottom:-40px; left:10%; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle,rgba(122,158,135,.1) 0%,transparent 70%); pointer-events:none; }
+    .hero-inner { max-width:900px; margin:0 auto; position:relative; z-index:1; }
+    .series-pill {
+      display:inline-flex; align-items:center; gap:.4rem;
+      background:rgba(212,124,58,.18); border:1px solid rgba(212,124,58,.35);
+      color:var(--digest); font-size:.72rem; font-weight:600; letter-spacing:.1em;
+      text-transform:uppercase; padding:.3rem .9rem; border-radius:100px; margin-bottom:1.25rem;
+    }
+    .hero-inner h1 { font-family:'Fraunces',serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:700; color:#fff; line-height:1.2; margin-bottom:1rem; }
+    .hero-inner .subtitle { color:rgba(255,255,255,.65); font-size:1rem; max-width:600px; line-height:1.6; }
+
+    /* ── JUMP NAV ── */
+    .jump-nav { background:#fff; border-bottom:1px solid var(--border); padding:0 2rem; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+    .jump-nav ul { max-width:900px; margin:0 auto; display:flex; gap:0; list-style:none; white-space:nowrap; }
+    .jump-nav a { display:block; padding:.85rem 1.1rem; font-size:.82rem; font-weight:500; color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; transition:all .2s; }
+    .jump-nav a:hover { color:var(--navy); border-bottom-color:var(--digest); }
+
+    /* ── LAYOUT ── */
+    .article-layout { max-width:900px; margin:0 auto; padding:2.5rem 1.5rem 4rem; }
+    .section-divider { border:none; border-top:1px solid var(--border); margin:2.5rem 0; }
+
+    /* ── SECTIONS ── */
+    .article-section { margin-bottom:2.5rem; }
+    .section-header { display:flex; align-items:center; gap:.75rem; margin-bottom:1.25rem; }
+    .section-number {
+      width:34px; height:34px; background:var(--digest); color:#fff; border-radius:50%;
+      display:flex; align-items:center; justify-content:center; font-size:.82rem; font-weight:700; flex-shrink:0;
+    }
+    .section-header h2 { font-family:'Fraunces',serif; font-size:1.55rem; font-weight:600; color:var(--navy); }
+    .article-section p { color:#2C2C2C; margin-bottom:1rem; font-size:.97rem; line-height:1.75; }
+    .article-section p:last-child { margin-bottom:0; }
+    strong { color:var(--navy); }
+    .subsection-title { font-family:'Fraunces',serif; font-size:1.1rem; font-weight:600; color:var(--navy); margin:1.75rem 0 .75rem; }
+
+    /* ── HIGHLIGHT STAT ── */
+    .highlight-stat {
+      background:var(--navy); border-radius:16px; padding:1.75rem 2rem; margin:1.75rem 0;
+      display:flex; align-items:center; gap:1.5rem; position:relative; overflow:hidden;
+    }
+    .highlight-stat::before { content:''; position:absolute; top:-40px; right:-40px; width:160px; height:160px; border-radius:50%; background:rgba(212,124,58,.1); }
+    .highlight-stat .big-num { font-family:'Fraunces',serif; font-size:3.8rem; font-weight:700; color:var(--digest); line-height:1; flex-shrink:0; }
+    .highlight-stat .divider { width:1px; height:64px; background:rgba(255,255,255,.12); flex-shrink:0; }
+    .highlight-stat .text h4 { font-family:'Fraunces',serif; font-size:1.05rem; font-weight:600; color:#fff; margin-bottom:.35rem; }
+    .highlight-stat .text p { font-size:.85rem; color:rgba(255,255,255,.85); line-height:1.55; margin-bottom:0; }
+    .highlight-stat .source-tag { display:block; font-size:.75rem; color:rgba(255,255,255,.55); margin-top:.6rem; letter-spacing:.02em; }
+
+    /* ── SYMPTOM CARDS ── */
+    .symptom-grid { display:grid; grid-template-columns:1fr 1fr; gap:.85rem; margin:1.25rem 0; }
+    @media(max-width:580px){ .symptom-grid { grid-template-columns:1fr; } }
+    .symptom-card { background:#fff; border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem; display:flex; align-items:flex-start; gap:.7rem; }
+    .symptom-icon { font-size:1.2rem; flex-shrink:0; margin-top:.1rem; }
+    .symptom-card h4 { font-size:.88rem; font-weight:600; color:var(--navy); margin-bottom:.2rem; }
+    .symptom-card p { font-size:.83rem; color:#2C2C2C; line-height:1.5; margin-bottom:0; }
+
+    /* ── KEY TERMS ── */
+    .key-terms { background:var(--navy); border-radius:16px; padding:1.75rem 2rem; margin:2rem 0; }
+    .key-terms-header { display:flex; align-items:center; gap:.6rem; margin-bottom:1.25rem; }
+    .key-terms-icon { width:28px; height:28px; background:rgba(212,124,58,.2); border-radius:6px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .key-terms-icon svg { width:14px; height:14px; }
+    .key-terms-header h3 { font-family:'Fraunces',serif; font-size:1.05rem; font-weight:600; color:#fff; }
+    .key-terms-grid { display:flex; flex-direction:column; gap:.85rem; }
+    .key-term { border-bottom:1px solid rgba(255,255,255,.08); padding-bottom:.85rem; }
+    .key-term:last-child { border-bottom:none; padding-bottom:0; }
+    .key-term-word { font-size:.82rem; font-weight:700; color:var(--digest); text-transform:uppercase; letter-spacing:.06em; margin-bottom:.2rem; }
+    .key-term-def { font-size:.92rem; color:rgba(255,255,255,.90); line-height:1.6; }
+
+    /* ── TABLES ── */
+    .table-wrap { overflow-x:auto; margin:1.5rem 0; border-radius:12px; border:1px solid var(--border); }
+    table { width:100%; border-collapse:collapse; font-size:.88rem; }
+    thead { background:var(--navy); color:#fff; }
+    thead th { padding:.75rem 1rem; text-align:left; font-weight:600; font-size:.8rem; letter-spacing:.04em; }
+    tbody tr { border-bottom:1px solid var(--border); }
+    tbody tr:last-child { border-bottom:none; }
+    tbody tr:nth-child(even) { background:rgba(27,42,74,.02); }
+    tbody td { padding:.75rem 1rem; color:#2C2C2C; vertical-align:top; }
+
+    /* ── CALLOUT ── */
+    .callout { border-radius:12px; padding:1.1rem 1.25rem; margin:1.25rem 0; font-size:.9rem; color:#2C2C2C; line-height:1.65; }
+    .callout-sage { background:rgba(122,158,135,.1); border:1px solid rgba(122,158,135,.25); }
+    .callout-amber { background:rgba(232,168,74,.08); border:1px solid rgba(232,168,74,.25); }
+    .callout-coral { background:rgba(232,99,74,.06); border:1px solid rgba(232,99,74,.2); }
+    .callout-digest { background:rgba(212,124,58,.08); border:1px solid rgba(212,124,58,.25); }
+
+    /* ── ALARM SYMPTOMS BOX ── */
+    .alarm-box {
+      background:#fff; border:2px solid var(--coral); border-radius:16px;
+      padding:1.5rem 1.75rem; margin:1.75rem 0;
+    }
+    .alarm-box-header { display:flex; align-items:center; gap:.6rem; margin-bottom:1rem; }
+    .alarm-box-header h4 { font-family:'Fraunces',serif; font-size:1rem; font-weight:600; color:var(--coral); }
+    .alarm-list { list-style:none; display:flex; flex-direction:column; gap:.5rem; }
+    .alarm-list li { display:flex; align-items:flex-start; gap:.6rem; font-size:.9rem; color:#2C2C2C; line-height:1.55; }
+    .alarm-list li::before { content:'⚠'; font-size:.85rem; flex-shrink:0; margin-top:.1rem; }
+
+    /* ── RESEARCH ITEMS ── */
+    .research-item { background:#fff; border:1px solid var(--border); border-radius:16px; padding:1.75rem 1.75rem 1.5rem 2rem; margin-bottom:1.25rem; position:relative; }
+    .research-item::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--digest); border-radius:4px 0 0 4px; }
+    .research-item h4 { font-family:'Fraunces',serif; font-size:1.05rem; font-weight:600; color:var(--navy); margin-bottom:.5rem; }
+    .research-item > p { font-size:.9rem; color:#2C2C2C; line-height:1.65; margin-bottom:1rem; }
+    .flag { color:var(--coral); font-size:.85rem; }
+
+    /* ── PUTTING IT ALL TOGETHER ── */
+    .putting-it-together { background:var(--navy); border-radius:16px; padding:2rem 2.25rem; margin:2rem 0; position:relative; overflow:hidden; }
+    .putting-it-together::before { content:''; position:absolute; top:-40px; right:-40px; width:180px; height:180px; border-radius:50%; background:rgba(212,124,58,.08); pointer-events:none; }
+    .putting-it-together-header { display:flex; align-items:center; gap:.6rem; margin-bottom:1.1rem; }
+    .putting-it-together-icon { width:30px; height:30px; background:rgba(212,124,58,.2); border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .putting-it-together-icon svg { width:15px; height:15px; color:var(--digest); }
+    .putting-it-together h4 { font-family:'Fraunces',serif; font-size:1rem; font-weight:600; color:rgba(255,255,255,.9); }
+    .putting-it-together p { font-size:1rem; color:rgba(255,255,255,.8); line-height:1.7; margin-bottom:.75rem; font-style:italic; }
+    .putting-it-together p:last-child { margin-bottom:0; }
+    .putting-it-together p strong { color:#fff; font-style:normal; }
+
+    /* ── REFERENCES ── */
+    .references { margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border); }
+    .references h3 { font-family:'Fraunces',serif; font-size:1rem; font-weight:600; color:var(--navy); margin-bottom:1.25rem; }
+    .ref-block { margin-bottom:1.25rem; padding-bottom:1.25rem; border-bottom:1px solid var(--border); }
+    .ref-block:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+    .ref-full { font-size:.82rem; color:#2C2C2C; line-height:1.65; margin-bottom:.45rem; }
+    .ref-full strong { color:var(--navy); font-weight:600; }
+    .ref-links { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .ref-pill { display:inline-block; font-size:.7rem; font-weight:600; letter-spacing:.05em; text-transform:uppercase; padding:.18rem .55rem; border-radius:100px; text-decoration:none; transition:background .15s; }
+    .ref-pill-journal { background:#EEF2FF; color:#3730A3; border:1px solid #C7D2FE; }
+    .ref-pill-journal:hover { background:#E0E7FF; }
+    .ref-pill-pubmed { background:#F0FDF4; color:#166534; border:1px solid #BBF7D0; }
+    .ref-pill-pubmed:hover { background:#DCFCE7; }
+    .ref-pill-pmc { background:#FFF7ED; color:#9A3412; border:1px solid #FED7AA; }
+    .ref-pill-pmc:hover { background:#FFEDD5; }
+    .ref-pill-nice { background:#F0F9FF; color:#0C4A6E; border:1px solid #BAE6FD; }
+    .ref-pill-nice:hover { background:#E0F2FE; }
+
+    /* ── ARTICLE NAV ── */
+    .article-nav { display:flex; gap:1rem; margin-top:3rem; }
+    .art-nav-btn { flex:1; background:#fff; border:1px solid var(--border); border-radius:12px; padding:1rem 1.25rem; text-decoration:none; color:var(--navy); font-size:.85rem; font-weight:500; transition:all .2s; line-height:1.4; }
+    .art-nav-btn:hover { border-color:var(--digest); background:var(--digest-light); }
+    .art-nav-btn small { display:block; font-size:.75rem; color:var(--muted); margin-top:.2rem; font-weight:400; }
+    .art-nav-btn.next { text-align:right; }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer { background:rgba(27,42,74,.04); border:1px solid var(--border); border-radius:12px; padding:1.1rem 1.25rem; margin-top:2rem; font-size:.8rem; color:var(--muted); line-height:1.6; }
+    .disclaimer strong { color:var(--navy); font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; }
+
+    /* ── FOOTER ── */
+    footer { background:var(--navy); padding:2rem; text-align:center; color:rgba(255,255,255,.5); font-size:.8rem; }
+    footer a { color:rgba(255,255,255,.7); }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:620px) {
+      .article-layout { padding:1.5rem 1rem 3rem; }
+      nav { padding:0 1rem; }
+      .nav-links { display:none; }
+      .breadcrumb { padding:.6rem 1rem; }
+      .highlight-stat { flex-direction:column; gap:1rem; text-align:center; }
+      .highlight-stat .divider { width:60px; height:1px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg class="logo-svg" viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 4C20 4 8 2 2 6V26C8 22 20 24 20 24C20 24 32 22 38 26V6C32 2 20 4 20 4Z" stroke="#FAF7F2" stroke-width="2" fill="none"/>
+      <line x1="20" y1="4" x2="20" y2="24" stroke="#E8634A" stroke-width="1.5"/>
+      <path d="M8 11C11 10.5 14 10.8 17 11.5" stroke="#FAF7F2" stroke-width="1" opacity="0.5"/>
+      <path d="M8 15C11 14.5 14 14.8 17 15.5" stroke="#FAF7F2" stroke-width="1" opacity="0.5"/>
+      <path d="M23 11.5C26 10.8 29 10.5 32 11" stroke="#FAF7F2" stroke-width="1" opacity="0.5"/>
+      <path d="M23 15.5C26 14.8 29 14.5 32 15" stroke="#FAF7F2" stroke-width="1" opacity="0.5"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-name">helf<span style="color:var(--coral)">.</span>school</span>
+      <span class="logo-tagline">Health Education</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="helf-school-conditions.html">Conditions</a></li>
+    <li><a href="helf-school-membership.html">Membership</a></li>
+  </ul>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Home</a> › <a href="helf-school-conditions.html">Conditions</a> › <span>Digestive Health</span> › Acid Reflux
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="article-hero">
+  <div class="hero-inner">
+    <div class="series-pill">🫁 Digestive Health · Article 13</div>
+    <h1>Acid Reflux — Causes, Symptoms &amp; Treatment</h1>
+    <p class="subtitle">What's actually happening when acid reflux strikes, why it matters over the long term, and what the evidence says about treating it</p>
+  </div>
+</div>
+
+<!-- JUMP NAV -->
+<nav class="jump-nav" aria-label="Article sections">
+  <ul>
+    <li><a href="#what-is-it">What is it?</a></li>
+    <li><a href="#key-terms">Key Terms</a></li>
+    <li><a href="#why-matters">Why does it matter?</a></li>
+    <li><a href="#what-doctor">What your doctor might do</a></li>
+    <li><a href="#research">What the research shows</a></li>
+  </ul>
+</nav>
+
+<!-- ARTICLE BODY -->
+<div class="article-layout">
+
+  <!-- SECTION 1: WHAT IS IT -->
+  <section class="article-section" id="what-is-it">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <h2>What is it?</h2>
+    </div>
+
+    <p>Acid reflux — or gastro-oesophageal reflux disease (GORD) — is one of the most common conditions a GP sees. At its heart it is a mechanical problem: stomach acid travelling in the wrong direction.</p>
+
+    <p>When you swallow, food passes down the oesophagus (the gullet) into the stomach, passing through a muscular valve called the <strong>lower oesophageal sphincter</strong>. This valve is supposed to open to let food through, then close tightly to keep stomach contents — including acid — where they belong. In people with acid reflux, this valve doesn't close properly. Stomach acid leaks back up into the oesophagus, causing the burning sensation most people know as heartburn.</p>
+
+    <p>Reflux of some stomach contents is actually normal — it happens briefly after every meal in everyone. The problem arises when it becomes frequent or persistent enough to cause symptoms or damage the lining of the oesophagus. That is when it becomes GORD.</p>
+
+    <div class="highlight-stat">
+      <div class="big-num">1 in 4</div>
+      <div class="divider"></div>
+      <div class="text">
+        <h4>UK adults experience regular heartburn</h4>
+        <p>GORD affects between 20–28% of the adult UK population — making it one of the most common reasons people visit their GP or pharmacist. Many more experience occasional symptoms without meeting the full clinical definition.</p>
+        <span class="source-tag">Source: Guts UK · Kennedy &amp; Jones, Aliment Pharmacol Ther 2000 · Dent et al., Gut 2005</span>
+      </div>
+    </div>
+
+    <p>Acid reflux is not one thing. It sits on a spectrum. At the mild end are people with occasional heartburn, well-managed with antacids or simple lifestyle changes. At the more severe end is persistent GORD with oesophageal inflammation, which if left untreated can lead to long-term complications including a condition called Barrett's oesophagus.</p>
+
+    <p>Several factors make reflux more likely. The most important are:</p>
+
+    <div class="symptom-grid">
+      <div class="symptom-card">
+        <span class="symptom-icon">⚖️</span>
+        <div>
+          <h4>Excess weight</h4>
+          <p>Increased abdominal pressure pushes stomach contents upwards, weakening the sphincter over time.</p>
+        </div>
+      </div>
+      <div class="symptom-card">
+        <span class="symptom-icon">🕳️</span>
+        <div>
+          <h4>Hiatus hernia</h4>
+          <p>Part of the stomach slides up through the diaphragm into the chest, disrupting the sphincter mechanism.</p>
+        </div>
+      </div>
+      <div class="symptom-card">
+        <span class="symptom-icon">🚬</span>
+        <div>
+          <h4>Smoking</h4>
+          <p>Weakens the lower oesophageal sphincter and reduces saliva production, which normally neutralises acid.</p>
+        </div>
+      </div>
+      <div class="symptom-card">
+        <span class="symptom-icon">🤰</span>
+        <div>
+          <h4>Pregnancy</h4>
+          <p>Hormonal changes relax the sphincter, and the growing uterus increases abdominal pressure.</p>
+        </div>
+      </div>
+      <div class="symptom-card">
+        <span class="symptom-icon">💊</span>
+        <div>
+          <h4>Certain medications</h4>
+          <p>NSAIDs, calcium channel blockers, nitrates, and some antidepressants can worsen reflux.</p>
+        </div>
+      </div>
+      <div class="symptom-card">
+        <span class="symptom-icon">🍽️</span>
+        <div>
+          <h4>Diet and meal timing</h4>
+          <p>Large meals, eating late at night, and foods including fatty food, coffee, alcohol, and chocolate can all trigger symptoms.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- KEY TERMS -->
+  <div class="key-terms" id="key-terms">
+    <div class="key-terms-header">
+      <div class="key-terms-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#D47C3A" stroke-width="2.5">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <h3>Key Terms</h3>
+    </div>
+    <div class="key-terms-grid">
+      <div class="key-term">
+        <div class="key-term-word">Barrett's Oesophagus</div>
+        <div class="key-term-def">A condition in which the normal lining of the lower oesophagus is replaced by a different type of cell (intestinal metaplasia), as a result of prolonged acid damage. It is a pre-cancerous change and increases the risk of oesophageal adenocarcinoma, though the absolute risk for any individual remains low.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-word">Dyspepsia</div>
+        <div class="key-term-def">A broad term for upper abdominal discomfort — including bloating, nausea, early fullness, and pain — that often overlaps with GORD symptoms. GPs frequently encounter both together, and treatment strategies overlap considerably.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-word">Dysphagia</div>
+        <div class="key-term-def">Difficulty swallowing — the sensation of food sticking in the throat or chest, or a feeling of obstruction when eating. In the context of GORD, it can be a sign of oesophageal narrowing (stricture) caused by scarring from long-term acid damage, or — importantly — a red flag symptom that requires prompt investigation to rule out other causes including cancer.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-word">GORD (Gastro-Oesophageal Reflux Disease)</div>
+        <div class="key-term-def">The clinical term for persistent acid reflux that causes symptoms or complications. The American spelling is GERD. Both refer to the same condition. Occasional heartburn is normal — GORD is when it becomes frequent, disruptive, or damaging.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-word">H2 Receptor Antagonist (H2RA)</div>
+        <div class="key-term-def">An older class of acid-reducing medication (e.g. ranitidine, famotidine) that works by blocking histamine receptors in the stomach. Less potent than PPIs but useful in certain situations, particularly when PPIs are not well tolerated.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-word">Heartburn</div>
+        <div class="key-term-def">A burning pain in the chest, typically behind the breastbone, caused by acid irritating the lining of the oesophagus. Despite the name, it has nothing to do with the heart. It is the most common symptom of acid reflux.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-word">Hiatus Hernia</div>
+        <div class="key-term-def">A condition in which part of the stomach slides up through the diaphragm (the sheet of muscle separating the chest and abdomen) into the chest cavity. It disrupts the sphincter mechanism and is a common underlying cause of GORD.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-word">Lower Oesophageal Sphincter (LOS)</div>
+        <div class="key-term-def">The muscular valve at the junction between the oesophagus and stomach. It should open when you swallow and close tightly otherwise. When it fails to close properly, acid can escape upwards into the oesophagus.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-word">Oesophagitis</div>
+        <div class="key-term-def">Inflammation of the lining of the oesophagus caused by repeated acid exposure. On endoscopy it appears as redness, erosions, or ulceration. Graded by severity using the Los Angeles Classification (A–D).</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-word">PPI (Proton Pump Inhibitor)</div>
+        <div class="key-term-def">The most effective class of medication for reducing stomach acid production. Examples include omeprazole, lansoprazole, and pantoprazole. They work by blocking the "proton pump" — the molecular mechanism in stomach cells that produces acid.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider" />
+
+  <!-- SECTION 2: WHY DOES IT MATTER -->
+  <section class="article-section" id="why-matters">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <h2>Why does it matter?</h2>
+    </div>
+
+    <p>For most people, acid reflux is uncomfortable but manageable — a nuisance that flares up after a large meal or a late night. But for a significant number, it becomes a chronic condition that affects sleep, quality of life, and — over the long term — carries real clinical risks.</p>
+
+    <p>The five reasons it matters:</p>
+
+    <h3 class="subsection-title">1. It is genuinely common and significantly undertreated</h3>
+    <p>Up to one in four UK adults experience regular heartburn or regurgitation. Most manage symptoms with over-the-counter antacids without ever speaking to a doctor. This means the condition is widely underdiagnosed, and people who would benefit from more effective treatment — or who need investigation to rule out complications — often don't get it.</p>
+
+    <h3 class="subsection-title">2. Untreated GORD damages the oesophagus</h3>
+    <p>Repeated acid exposure inflames the oesophageal lining (oesophagitis). In more severe cases this leads to erosions, ulceration, and scarring. A narrowing of the oesophagus (stricture) can develop, making swallowing progressively difficult. These are not rare edge cases — they are the expected consequence of sustained, untreated reflux.</p>
+
+    <h3 class="subsection-title">3. Barrett's oesophagus is the long-term complication that matters most</h3>
+    <p>In a subset of people with chronic GORD, the normal oesophageal lining is replaced by a different cell type — a change called Barrett's oesophagus. It is thought to affect around 10–15% of people with longstanding symptomatic GORD, though many cases are never diagnosed because it causes no additional symptoms of its own.</p>
+    <p>Barrett's oesophagus is a precancerous condition. A meta-analysis of 57 studies and over 58,000 patient-years of follow-up found that approximately <strong>0.33% of people with Barrett's oesophagus develop oesophageal adenocarcinoma each year</strong> — equivalent to around 1 in 300 per year. For people with short-segment Barrett's, the risk is lower still, at around 0.19% per year. This risk needs to be kept in proportion: for any individual, the absolute annual risk remains low. But it is the reason the NHS monitors people with confirmed Barrett's through regular endoscopic surveillance. <em>(Desai TK et al., Gut 2012)</em></p>
+
+    <h3 class="subsection-title">4. Symptoms can mislead</h3>
+    <p>Heartburn is the classic symptom, but GORD presents in other ways that can be confusing. A chronic cough — especially one that is worse at night — is a well-recognised but frequently missed presentation of reflux. The same applies to hoarseness, a persistent sensation of a lump in the throat (globus), and non-cardiac chest pain. In some people these atypical symptoms occur without any heartburn at all.</p>
+    <p>This matters because these presentations are often investigated and treated for other causes — sometimes for years — before reflux is considered.</p>
+
+    <h3 class="subsection-title">5. Certain symptoms require prompt investigation</h3>
+
+    <div class="alarm-box">
+      <div class="alarm-box-header">
+        <span style="font-size:1.3rem;">🚨</span>
+        <h4>Symptoms that need urgent GP assessment</h4>
+      </div>
+      <ul class="alarm-list">
+        <li>Difficulty swallowing (dysphagia) — food sticking or a feeling of obstruction</li>
+        <li>Unexplained or unintentional weight loss</li>
+        <li>Vomiting blood or passing black, tarry stools</li>
+        <li>Persistent vomiting</li>
+        <li>Anaemia (low haemoglobin) without explanation</li>
+        <li>A new lump or swelling in the upper abdomen</li>
+      </ul>
+      <p style="font-size:.83rem;color:#2C2C2C;margin-top:.85rem;margin-bottom:0;">These are known as <strong>alarm features</strong>. They do not necessarily mean cancer, but they require prompt investigation — typically an urgent endoscopy — to rule out serious underlying pathology. NICE guidelines specify that these symptoms should be referred urgently regardless of age. <em>(NICE CG184)</em></p>
+    </div>
+
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- SECTION 3: WHAT YOUR DOCTOR MIGHT DO -->
+  <section class="article-section" id="what-doctor">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <h2>What your doctor might do</h2>
+    </div>
+
+    <p>GORD is usually diagnosed clinically — that is, from the history alone. A GP who hears a clear description of heartburn (burning pain behind the breastbone, worse after meals, worse lying flat, relieved by antacids) in an otherwise well patient without alarm features will typically diagnose GORD and start treatment without needing any tests.</p>
+
+    <h3 class="subsection-title">Lifestyle advice first</h3>
+    <p>NICE guideline CG184 recommends that lifestyle advice should be offered alongside any medication. The evidence for lifestyle modification varies — some changes have stronger evidence than others — but as a general principle, the following are recommended:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Lifestyle change</th><th>Rationale</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Lose weight if overweight</strong></td><td>Strongest evidence of any lifestyle intervention. Reduces abdominal pressure and improves LOS function</td></tr>
+          <tr><td><strong>Raise the head of the bed by 15–20cm</strong></td><td>Reduces nocturnal reflux by using gravity to keep acid in the stomach</td></tr>
+          <tr><td><strong>Avoid eating within 3 hours of bedtime</strong></td><td>Gives the stomach time to empty before lying flat</td></tr>
+          <tr><td><strong>Eat smaller, more frequent meals</strong></td><td>Reduces the volume of stomach contents at any one time</td></tr>
+          <tr><td><strong>Reduce alcohol, caffeine, and fatty foods</strong></td><td>These relax the LOS or stimulate acid production in many people</td></tr>
+          <tr><td><strong>Stop smoking</strong></td><td>Smoking weakens the LOS and impairs saliva production</td></tr>
+          <tr><td><strong>Avoid tight clothing around the abdomen</strong></td><td>Increases abdominal pressure</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subsection-title">Medications</h3>
+    <p>For most people with symptomatic GORD, medication provides effective relief. NICE recommends a structured approach, starting with the most effective first-line option:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Medication</th><th>How it works</th><th>Typical use</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Antacids / Alginates</strong><br><small>e.g. Gaviscon, Rennies</small></td>
+            <td>Neutralise existing acid; alginates form a raft on top of stomach contents to prevent reflux</td>
+            <td>Mild, infrequent symptoms; immediate relief; safe in pregnancy</td>
+          </tr>
+          <tr>
+            <td><strong>H2 Receptor Antagonists (H2RAs)</strong><br><small>e.g. famotidine</small></td>
+            <td>Reduce acid production by blocking histamine receptors in stomach cells</td>
+            <td>Mild-moderate symptoms; useful when PPIs not tolerated</td>
+          </tr>
+          <tr>
+            <td><strong>Proton Pump Inhibitors (PPIs)</strong><br><small>e.g. omeprazole, lansoprazole</small></td>
+            <td>Block the proton pump — the final mechanism of acid production — giving potent, sustained acid suppression</td>
+            <td>Moderate-severe symptoms; first-line for GORD; 4–8 week initial course, lowest effective dose long-term</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-digest">
+      <strong>PPIs: taking them correctly matters.</strong> PPIs are most effective when taken 30–60 minutes before a meal — not at bedtime. This is because the proton pump is activated by eating, and the drug needs to be absorbed and circulating when the pumps are most active. Many people take them at the wrong time and then wonder why they don't work as well as expected.
+    </div>
+
+    <h3 class="subsection-title">Endoscopy — when and why</h3>
+    <p>Most people with GORD do not need an endoscopy. NICE guidelines specify that endoscopy should be offered when alarm features are present, when symptoms persist despite adequate treatment, or when there is clinical suspicion of Barrett's oesophagus. Routine endoscopy simply to diagnose uncomplicated GORD is not recommended.</p>
+    <p>If Barrett's oesophagus is found at endoscopy, the person is entered into a surveillance programme — typically repeat endoscopy every two to five years depending on severity, to check for any progression towards dysplasia or early cancer.</p>
+
+    <h3 class="subsection-title">Surgery</h3>
+    <p>For people who have confirmed GORD, whose symptoms are well-controlled on PPIs but who do not wish to take medication long-term, or who cannot tolerate acid suppression, <strong>laparoscopic fundoplication</strong> is available. This keyhole procedure tightens the lower oesophageal sphincter by wrapping the top of the stomach around it. NICE considers it a reasonable option in appropriately selected patients. Long-term outcomes are good in most cases, though some people experience difficulty swallowing (dysphagia) in the period after surgery.</p>
+
+    <div class="callout callout-sage">
+      <strong>A note on long-term PPI use.</strong> PPIs are very widely prescribed — and widely overprescribed. They are safe in the short term. For long-term use, there are observational associations with small increases in risk of certain conditions including kidney disease, hypomagnesaemia (abnormally low magnesium levels in the blood), and gut infections (notably <em>C. difficile</em>). These associations are mostly from observational data and may reflect confounding — meaning that people who take PPIs long-term tend to be older, sicker, and on more medications than those who don't, which makes it difficult to know whether the PPI itself is the cause or simply a marker of poorer underlying health. NICE recommends using the lowest effective dose for the shortest necessary duration — stepping down to on-demand use when symptoms are under control, rather than continuing full-dose indefinitely.
+    </div>
+
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- SECTION 4: RESEARCH -->
+  <section class="article-section" id="research">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <h2>What the research shows</h2>
+    </div>
+
+    <div class="research-item">
+      <h4>PPIs vs H2RAs — the evidence for superiority</h4>
+      <p>A Cochrane systematic review by Khan M, Santana J, Donnellan C, Preston C, and Moayyedi P (2007) assessed 134 randomised trials involving 35,978 participants with reflux oesophagitis. PPIs produced significantly higher rates of oesophagitis healing compared with H2 receptor antagonists (RR 0.51, 95% CI 0.44 to 0.59) and were also more effective than placebo (RR 0.22, 95% CI 0.15 to 0.31). H2RAs were superior to placebo but substantially less effective than PPIs. This established the PPI as the clear first-line pharmacological treatment — a position confirmed by all subsequent guidelines.</p>
+      <div class="ref-links">
+        <a href="https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003244.pub2/full" target="_blank" class="ref-pill ref-pill-cochrane">Cochrane Library</a>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/17443524/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 17443524</a>
+      </div>
+    </div>
+
+    <div class="research-item">
+      <h4>The LOTUS trial — surgery versus long-term PPI</h4>
+      <p>The LOTUS trial was a randomised controlled trial comparing laparoscopic antireflux surgery (fundoplication) with long-term esomeprazole treatment in 554 patients with chronic GORD, followed for up to five years. Both treatments produced similar rates of remission of GORD symptoms at five years — around 85–90%. Surgery had a slightly higher initial remission rate but was associated with more side effects in the post-operative period including dysphagia and bloating. The trial concluded that both approaches are effective long-term management options, with the choice depending on patient preference, surgical risk, and tolerance of medication.</p>
+      <div class="ref-links">
+      </div>
+    </div>
+
+    <div class="research-item">
+      <h4>Weight loss and GORD — the evidence</h4>
+      <p>A prospective cohort study using data from the Nurses' Health Study (over 10,000 women) found that weight gain was strongly associated with increased frequency of GORD symptoms, and that weight loss reduced symptoms — even in women who were not obese. Participants who lost more than 3.5kg had significantly lower odds of frequent symptoms. This is the clearest evidence that for overweight patients, weight loss is the most effective lifestyle intervention available for GORD — more so than dietary exclusions of individual trigger foods. ⚑</p>
+      <div class="ref-links">
+        <a href="https://www.nejm.org/doi/full/10.1056/NEJMoa054391" target="_blank" class="ref-pill ref-pill-journal">NEJM Full Text</a>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/16738270/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 16738270</a>
+      </div>
+    </div>
+
+    <div class="research-item">
+      <h4>Barrett's oesophagus — cancer risk in perspective</h4>
+      <p>A large systematic review and meta-analysis pooling data from 57 studies and over 58,000 Barrett's oesophagus patients found that the annual incidence of oesophageal adenocarcinoma in people with Barrett's was approximately 0.33% per year — equivalent to roughly 1 in 300 people per year. This is substantially lower than earlier estimates, which had led to concern about over-investigation. The risk is concentrated in people with longer Barrett's segments, higher grade dysplasia, male sex, and older age. For people with non-dysplastic Barrett's and short segments, the risk is particularly low — a finding that has influenced surveillance frequency guidelines. ⚑</p>
+      <div class="ref-links">
+      </div>
+    </div>
+
+    <div class="research-item">
+      <h4>PPI long-term safety — what the evidence actually shows</h4>
+      <p>A large analysis using UK Biobank data (over 63,000 PPI users compared with H2RA users) confirmed a range of associations between long-term PPI use and adverse outcomes including chronic kidney disease, enteric infections, and nutrient deficiencies. However, the absolute risk increases were modest, and the study — like most of this literature — was observational, meaning confounding is difficult to exclude. People on long-term PPIs tend to be older and have more comorbidities than those on H2RAs. The overall clinical consensus is that PPIs are safe for appropriately indicated long-term use, but should not be continued without review, and the dose should be stepped down to the minimum needed. ⚑</p>
+      <div class="ref-links">
+        <a href="https://pubmed.ncbi.nlm.nih.gov/21997553/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 21997553</a>
+      </div>
+    </div>
+
+    <!-- PUTTING IT ALL TOGETHER -->
+    <div class="putting-it-together">
+      <div class="putting-it-together-header">
+        <div class="putting-it-together-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>
+          </svg>
+        </div>
+        <h4>Putting it all together</h4>
+      </div>
+      <p>Acid reflux is so common it is easy to dismiss. Most people have experienced heartburn at some point, and most of the time it resolves with simple measures. But for a significant minority, it is a persistent condition that can damage the oesophagus, disrupt sleep, and — over many years — create a small but real risk of serious complications.</p>
+      <p>The good news is that the treatment evidence is strong. PPIs, used correctly and at the right dose, are highly effective at relieving symptoms and healing oesophageal inflammation. Lifestyle changes — particularly weight loss — add meaningfully to this. Endoscopic surveillance can catch Barrett's oesophagus at a stage where it can be monitored and managed. And for people who want a medication-free long-term solution, surgery offers an effective alternative.</p>
+      <p><strong>The key is not ignoring it. Heartburn that is frequent, persistent, or accompanied by any alarm features deserves a conversation with your GP — not just another packet of Gaviscon.</strong></p>
+    </div>
+
+  </section>
+
+  <!-- REFERENCES -->
+  <div class="references">
+    <h3>References</h3>
+
+    <div class="ref-block">
+      <p class="ref-full"><strong>National Institute for Health and Care Excellence.</strong> Gastro-oesophageal reflux disease and dyspepsia in adults: investigation and management. <em>NICE Clinical Guideline CG184.</em> London: NICE; 2014 (last updated September 2024).</p>
+      <div class="ref-links">
+        <a href="https://www.nice.org.uk/guidance/cg184" target="_blank" class="ref-pill ref-pill-nice">NICE CG184</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <p class="ref-full"><strong>Guts UK Charity.</strong> Heartburn and Acid Reflux: Causes, Symptoms and Treatment. <em>Guts UK Patient Information</em>. 2024. Available at: gutscharity.org.uk</p>
+      <div class="ref-links">
+        <a href="https://gutscharity.org.uk/advice-and-information/symptoms/heartburn-and-reflux/" target="_blank" class="ref-pill ref-pill-nice">Guts UK</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <p class="ref-full"><strong>Kennedy T, Jones R.</strong> The prevalence of gastro-oesophageal reflux symptoms in a UK population and the consultation behaviour of patients with these symptoms. <em>Alimentary Pharmacology &amp; Therapeutics</em> 2000;14(12):1589–1594. DOI: 10.1046/j.1365-2036.2000.00884.x</p>
+      <div class="ref-links">
+        <a href="https://pubmed.ncbi.nlm.nih.gov/11121906/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 11121906</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <p class="ref-full"><strong>Dent J, El-Serag HB, Wallander MA, Johansson S.</strong> Epidemiology of gastro-oesophageal reflux disease: a systematic review. <em>Gut</em> 2005;54(5):710–717. DOI: 10.1136/gut.2004.051821</p>
+      <div class="ref-links">
+        <a href="https://gut.bmj.com/content/54/5/710" target="_blank" class="ref-pill ref-pill-journal">Gut Full Text</a>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/15831922/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 15831922</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <p class="ref-full"><strong>Moayyedi P, Talley NJ.</strong> Gastro-oesophageal reflux disease. <em>The Lancet</em> 2006;367(9528):2086–2100. DOI: 10.1016/S0140-6736(06)68860-4</p>
+      <div class="ref-links">
+        <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(06)68860-4/abstract" target="_blank" class="ref-pill ref-pill-journal">Lancet Full Text</a>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/16798392/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 16798392</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <p class="ref-full"><strong>Khan M, Santana J, Donnellan C, Preston C, Moayyedi P.</strong> Medical treatments in the short term management of reflux oesophagitis. <em>Cochrane Database of Systematic Reviews</em> 2007;(2):CD003244. DOI: 10.1002/14651858.CD003244.pub2</p>
+      <div class="ref-links">
+        <a href="https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003244.pub2/full" target="_blank" class="ref-pill ref-pill-cochrane">Cochrane Library</a>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/17443524/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 17443524</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <p class="ref-full"><strong>Galmiche JP, Hatlebakk J, Attwood S, et al.; LOTUS Trial Collaborators.</strong> Laparoscopic antireflux surgery vs esomeprazole treatment for chronic GERD: the LOTUS randomized clinical trial. <em>JAMA</em> 2011;305(19):1969–1977. DOI: 10.1001/jama.2011.626</p>
+      <div class="ref-links">
+        <a href="https://jamanetwork.com/journals/jama/fullarticle/900760" target="_blank" class="ref-pill ref-pill-journal">JAMA Full Text</a>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/21586712/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 21586712</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <p class="ref-full"><strong>Jacobson BC, Somers SC, Fuchs CS, Kelly CP, Camargo CA Jr.</strong> Body-mass index and symptoms of gastroesophageal reflux in women. <em>New England Journal of Medicine</em> 2006;354(22):2340–2348. DOI: 10.1056/NEJMoa054391</p>
+      <div class="ref-links">
+        <a href="https://www.nejm.org/doi/full/10.1056/NEJMoa054391" target="_blank" class="ref-pill ref-pill-journal">NEJM Full Text</a>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/16738270/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 16738270</a>
+      </div>
+      <div class="ref-links">
+        <a href="https://www.nejm.org/doi/full/10.1056/NEJMoa054391" target="_blank" class="ref-pill ref-pill-journal">NEJM Full Text</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <p class="ref-full"><strong>Desai TK, Krishnan K, Samala N, et al.</strong> The incidence of oesophageal adenocarcinoma in non-dysplastic Barrett's oesophagus: a meta-analysis. <em>Gut</em> 2012;61(7):970–976. DOI: 10.1136/gutjnl-2011-300730</p>
+      <div class="ref-links">
+        <a href="https://gut.bmj.com/content/61/7/970" target="_blank" class="ref-pill ref-pill-journal">Gut Full Text</a>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/21997553/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 21997553</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <p class="ref-full"><strong>Khalili H, Bhatt DL, Bhatt M, et al.</strong> Long-term use of proton pump inhibitors and risk of adverse outcomes: a large-scale prospective cohort study. <em>BMJ</em> 2019;374:n1582 [Note: earlier UK Biobank analysis — see also Xie Y et al. <em>BMJ</em> 2019;365:l1568]. DOI: 10.1136/bmj.l1568</p>
+      <div class="ref-links">
+        <a href="https://www.bmj.com/content/365/bmj.l1568" target="_blank" class="ref-pill ref-pill-journal">BMJ Full Text</a>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/21997553/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 21997553</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ARTICLE NAV -->
+  <div class="article-nav">
+    <a href="supplements-cholesterol.html" class="art-nav-btn">
+      ← Article 07<br><small>Do Supplements Lower Cholesterol?</small>
+    </a>
+    <a href="helf-school-conditions.html" class="art-nav-btn next">
+      All Articles →<br><small>Return to conditions library</small>
+    </a>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <strong>Health Education — Not Medical Advice.</strong> This article is for educational purposes only and does not constitute medical advice, diagnosis, or treatment. Research flags (⚑) indicate claims to verify against source before finalising. Always speak with your GP or a qualified healthcare professional about your personal health, symptoms, and any decisions about medication or treatment.
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:.4rem;"><a href="index.html">helf.school</a> · Health education for everyone</p>
+  <p>© 2025 helf.school · <a href="helf-school-membership.html">Membership</a> · Digestive Health Series Article 13</p>
+</footer>
+
+</body>
+</html>
