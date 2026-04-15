@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stopping Smoking — What Happens Next</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --navy:#1B2A4A; --coral:#E8634A; --cream:#FAF7F2; --sage:#7A9E87; --amber:#E8A84A; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+
+    body {
+      background: var(--navy);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Sans', sans-serif;
+      padding: 2rem 1.5rem;
+      gap: 1.5rem;
+    }
+
+    h1 {
+      font-family: 'Fraunces', serif;
+      color: #fff;
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .subtitle {
+      color: rgba(255,255,255,0.4);
+      font-size: 0.82rem;
+      text-align: center;
+      letter-spacing: 0.03em;
+      margin-top: -0.75rem;
+    }
+
+    /* ── RISK METER ── */
+    .meter-card {
+      background: #111827;
+      border-radius: 20px;
+      padding: 1.75rem 2rem 1.5rem;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .meter-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 0.6rem;
+    }
+
+    /* The horizontal risk bar */
+    .risk-bar-wrap {
+      position: relative;
+      height: 48px;
+      margin-bottom: 0.4rem;
+    }
+
+    .risk-bar-track {
+      position: absolute;
+      left: 0; right: 0; top: 50%;
+      transform: translateY(-50%);
+      height: 14px;
+      border-radius: 7px;
+      background: linear-gradient(90deg,
+        #4AE8B0 0%,
+        #7A9E87 25%,
+        #E8A84A 55%,
+        #E8634A 80%,
+        #C82010 100%
+      );
+      opacity: 0.25;
+    }
+
+    .risk-bar-fill {
+      position: absolute;
+      left: 0; top: 50%;
+      transform: translateY(-50%);
+      height: 14px;
+      border-radius: 7px;
+      background: linear-gradient(90deg,
+        #4AE8B0 0%,
+        #7A9E87 25%,
+        #E8A84A 55%,
+        #E8634A 80%,
+        #C82010 100%
+      );
+      width: 0%;
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Marker dot that moves along the bar */
+    .risk-marker {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid #E8634A;
+      box-shadow: 0 0 0 4px rgba(232,99,74,0.2);
+      transition: left 1.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 1.2s ease;
+      left: 95%;
+      z-index: 2;
+    }
+
+    .risk-axis {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.3);
+      margin-top: 0.3rem;
+      padding: 0 4px;
+    }
+
+    .risk-axis .right { color: var(--coral); font-weight: 600; }
+    .risk-axis .left  { color: var(--sage);  font-weight: 600; }
+
+    /* ── MILESTONES ── */
+    .milestones {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .milestone {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      transform: translateX(-12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .milestone.visible { opacity: 1; transform: translateX(0); }
+
+    .milestone-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+
+    .milestone-time {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      width: 72px;
+      flex-shrink: 0;
+    }
+
+    .milestone-content { flex: 1; }
+
+    .milestone-content h4 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.1rem;
+    }
+
+    .milestone-content p {
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.4;
+    }
+
+    /* Progress indicator on right */
+    .milestone-pct {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      width: 60px;
+      text-align: right;
+    }
+
+    /* ── BOTTOM STAT ── */
+    .key-stat {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      background: rgba(122,158,135,0.12);
+      border: 1px solid rgba(122,158,135,0.25);
+      border-radius: 14px;
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .key-stat.visible { opacity: 1; }
+
+    .key-stat .big {
+      font-family: 'Fraunces', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--sage);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .key-stat .detail {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+    }
+
+    .key-stat .detail strong { color: #fff; }
+
+    .source {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.2);
+      text-align: center;
+      margin-top: 0.75rem;
+    }
+
+    .btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.7);
+      padding: 0.5rem 1.3rem;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  </style>
+</head>
+<body>
+
+<h1>What happens when you stop smoking?</h1>
+<p class="subtitle">Your cardiovascular risk begins to fall — faster than most people expect</p>
+
+<div class="meter-card">
+
+  <!-- RISK METER BAR -->
+  <div class="meter-label">Your cardiovascular risk over time after stopping</div>
+
+  <div class="risk-bar-wrap">
+    <div class="risk-bar-track"></div>
+    <div class="risk-bar-fill" id="barFill"></div>
+    <div class="risk-marker" id="riskMarker"></div>
+  </div>
+
+  <div class="risk-axis">
+    <span class="left">← Same as non-smoker</span>
+    <span class="right">Smoker risk →</span>
+  </div>
+
+  <!-- MILESTONES -->
+  <div class="milestones">
+
+    <div class="milestone" id="m0">
+      <div class="milestone-icon" style="background:rgba(232,99,74,0.15);">🚭</div>
+      <div class="milestone-time" style="color:var(--coral);">You stop</div>
+      <div class="milestone-content">
+        <h4>Blood pressure begins to fall within hours</h4>
+        <p>Carbon monoxide leaves the blood within 24 hours. Heart rate normalises.</p>
+      </div>
+      <div class="milestone-pct" style="color:var(--coral);">Day 1</div>
+    </div>
+
+    <div class="milestone" id="m1">
+      <div class="milestone-icon" style="background:rgba(232,168,74,0.15);">🩸</div>
+      <div class="milestone-time" style="color:var(--amber);">3 months</div>
+      <div class="milestone-content">
+        <h4>Blood becomes less sticky</h4>
+        <p>Clotting risk falls. Circulation improves. Exercise gets easier.</p>
+      </div>
+      <div class="milestone-pct" style="color:var(--amber);">↓ Risk</div>
+    </div>
+
+    <div class="milestone" id="m2">
+      <div class="milestone-icon" style="background:rgba(168,200,74,0.15);">❤️</div>
+      <div class="milestone-time" style="color:#A8C84A;">1 year</div>
+      <div class="milestone-content">
+        <h4>Heart attack risk cut by half</h4>
+        <p>Excess cardiovascular risk is roughly 50% lower than if you had continued smoking.</p>
+      </div>
+      <div class="milestone-pct" style="color:#A8C84A;">−50%</div>
+    </div>
+
+    <div class="milestone" id="m3">
+      <div class="milestone-icon" style="background:rgba(122,158,135,0.15);">🧠</div>
+      <div class="milestone-time" style="color:var(--sage);">5 years</div>
+      <div class="milestone-content">
+        <h4>Stroke risk close to that of a non-smoker</h4>
+        <p>Risk of stroke falls to near the level of someone who has never smoked.</p>
+      </div>
+      <div class="milestone-pct" style="color:var(--sage);">↓↓ Risk</div>
+    </div>
+
+    <div class="milestone" id="m4">
+      <div class="milestone-icon" style="background:rgba(74,232,176,0.15);">🌿</div>
+      <div class="milestone-time" style="color:#4AE8B0;">15 years</div>
+      <div class="milestone-content">
+        <h4>Heart attack risk matches a lifelong non-smoker</h4>
+        <p>After 15 years, cardiovascular risk is essentially the same as someone who never smoked.</p>
+      </div>
+      <div class="milestone-pct" style="color:#4AE8B0;">= Non-smoker</div>
+    </div>
+
+  </div>
+
+  <!-- KEY STAT -->
+  <div class="key-stat" id="kstat">
+    <div class="big">−36%</div>
+    <div class="detail">
+      <strong>reduction in risk of a further cardiovascular event</strong> after stopping smoking in people who have already had a heart attack — larger than almost any single medication available.
+      <div style="font-size:0.7rem; opacity:0.5; margin-top:0.3rem;">Cochrane Database of Systematic Reviews</div>
+    </div>
+  </div>
+
+  <div class="source">Cochrane Database · NHS Stop Smoking Services evidence review</div>
+
+</div>
+
+<button class="btn" onclick="replay()">↺ Replay</button>
+
+<script>
+  // Milestones with their corresponding bar positions (% from right = high risk)
+  // Start at 95% (near right = high risk), end near 5% (left = non-smoker level)
+  const milestoneData = [
+    { id:'m0', barPct:95, markerColor:'#E8634A', delay:400  },
+    { id:'m1', barPct:75, markerColor:'#E8A84A', delay:900  },
+    { id:'m2', barPct:50, markerColor:'#A8C84A', delay:1400 },
+    { id:'m3', barPct:25, markerColor:'#7A9E87', delay:1900 },
+    { id:'m4', barPct:8,  markerColor:'#4AE8B0', delay:2400 },
+  ];
+
+  let currentStep = -1;
+  let stepTimer = null;
+
+  function setBarToStep(step) {
+    const d = milestoneData[step];
+    document.getElementById('barFill').style.width = d.barPct + '%';
+    const marker = document.getElementById('riskMarker');
+    marker.style.left = d.barPct + '%';
+    marker.style.borderColor = d.markerColor;
+    marker.style.boxShadow = `0 0 0 4px ${d.markerColor}33`;
+  }
+
+  function runAnimation() {
+    // Start bar full (smoker = high risk at right)
+    const fill = document.getElementById('barFill');
+    const marker = document.getElementById('riskMarker');
+    fill.style.transition = 'none';
+    marker.style.transition = 'none';
+    fill.style.width = '95%';
+    marker.style.left = '95%';
+    marker.style.borderColor = '#E8634A';
+
+    setTimeout(() => {
+      fill.style.transition = 'width 1.0s cubic-bezier(0.4, 0, 0.2, 1)';
+      marker.style.transition = 'left 1.0s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.8s ease, box-shadow 0.8s ease';
+    }, 100);
+
+    milestoneData.forEach((d, i) => {
+      setTimeout(() => {
+        document.getElementById(d.id).classList.add('visible');
+        if (i > 0) setBarToStep(i);
+      }, d.delay);
+    });
+
+    setTimeout(() => {
+      document.getElementById('kstat').classList.add('visible');
+    }, 3200);
+  }
+
+  function replay() {
+    clearTimeout(stepTimer);
+    milestoneData.forEach(d => document.getElementById(d.id).classList.remove('visible'));
+    document.getElementById('kstat').classList.remove('visible');
+
+    const fill = document.getElementById('barFill');
+    const marker = document.getElementById('riskMarker');
+    fill.style.transition = 'none';
+    marker.style.transition = 'none';
+    fill.style.width = '0%';
+    marker.style.left = '95%';
+
+    setTimeout(runAnimation, 300);
+  }
+
+  runAnimation();
+</script>
+
+</body>
+</html>

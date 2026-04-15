@@ -1,22 +1,851 @@
-<!doctype html><html data-build-id="e40ee6bae5" data-git-hash="654e79e27f66fcc2b0e9f1c32835c8e40ee6bae5" data-build-timestamp="1776218831" data-version="1.0.0" data-env="" data-color-version="v2" lang="en" data-theme="claude" data-mode="light" class="h-screen antialiased scroll-smooth"><head data-ion-ip-country="GB"><link rel="preconnect" href="https://assets-proxy.anthropic.com" crossorigin><link rel="dns-prefetch" href="https://assets-proxy.anthropic.com"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Claude</title><meta name="description" content="Claude is Anthropic's AI, built for problem solvers. Tackle complex challenges, analyze data, write code, and think through your hardest work."><meta name="apple-itunes-app" content="app-id=6473753684"><meta property="og:type" content="website"><meta property="og:site_name" content="Claude"><meta property="og:image" content="https://claude.ai/images/claude_ogimage.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/svg+xml" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/cd02a42d9-Vq_H3mgS.svg"><link rel="icon" type="image/png" sizes="32x32" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/ce67964e7-CAX1bqSh.png"><link rel="icon" type="image/png" sizes="16x16" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c03e51811-DebilQLI.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c129d018a-jJjJELY8.png"><link rel="apple-touch-startup-image" href="/images/claude_app_icon.png"><link rel="manifest" href="/manifest.json"><meta name="mobile-web-app-capable" content="yes"><link rel="preload" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/cc27851ad-CFxw3nG7.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c66fc489e-C-BHYa_K.woff2" as="font" type="font/woff2" crossorigin><script type='text/javascript' nonce='YbRs3iN/2Ranhgjit5hfRw==' src='https://claude.ai/1wy4MHLUzbNGuJqqgcrZ96Gs30j8JDfBXT-jrtPmFLKA6TVWBGTpSUAuUNNFPPuqmzUVFdsv1GOV8tc6l6pFfqHrRv89mzY8cMZdvUAKeOMFmcpPUe1DASDC91YpXiKBTQllJ1LCHzgCYrf9nrNcVG0mdKMQ36hOwZ_vkCiDTOeTzdwN4wVmu8WdkicpJXesYlFoaG1Fjl5Dyncr5_1tjHn_6CRRcNX8YnsjjonDBHFmgbGTU5HxjZUvJ76BDlxObF1i9hrQj5UDeSbiAN0HmzObjuq_b87wR6mRfh58hT7ls1oU4KOkX5Eq0VE3US0OBLU8lfVNEWWRwBQb2ed9g-Llwtth6P-SMvgidrRXGvQD9XEb0k-b41LoSYzoELUdr2SDm7rido8D9SqHmOR1MpbbQosPrpOPBF8FE1jHCpEKUC5ZJxaaefyYLX6l3adYlyUUBGPpRQqCOF9_yk1fOzmA0BG-FskvZqVtYbVhHkYJw4yP'></script><script nonce="YbRs3iN/2Ranhgjit5hfRw==">void 0===globalThis.process&&(globalThis.process={env:{},cwd:function(){return"/"}}),void 0===globalThis.global&&(globalThis.global=globalThis)</script><script type="application/ld+json" nonce="YbRs3iN/2Ranhgjit5hfRw==">{
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "name": "Claude",
-            "alternateName": ["Claude.ai", "Claude by Anthropic"],
-            "url": "https://claude.com"
-          },
-          {
-            "@type": "Organization",
-            "name": "Anthropic",
-            "url": "https://www.anthropic.com",
-            "logo": "https://claude.ai/images/claude_ogimage.png",
-            "sameAs": [
-              "https://x.com/AnthropicAI",
-              "https://www.linkedin.com/company/anthropic",
-              "https://www.youtube.com/@anthropic-ai"
-            ]
-          }
-        ]
-      }</script><script nonce="YbRs3iN/2Ranhgjit5hfRw==">!function(){try{performance.mark?.("rq_cache:preload_start");const e="keyval-store",o="keyval",r="react-query-cache",t=new Promise(t=>{if(!window.indexedDB)return void t(void 0);const c=indexedDB.open(e);c.onupgradeneeded=()=>{c.transaction?.abort()},c.onerror=()=>t(void 0),c.onsuccess=()=>{const a=c.result;if(!a.objectStoreNames.contains(o))return a.close(),indexedDB.deleteDatabase(e),void t(void 0);try{const e=a.transaction(o,"readonly").objectStore(o).get(r);e.onerror=()=>{a.close(),t(void 0)},e.onsuccess=()=>{a.close(),window.__PRELOADED_IDB_CACHE_RESULT__=e.result,t(e.result)}}catch{a.close(),t(void 0)}}});window.__PRELOADED_IDB_CACHE__=t,performance.measure?.("rq_cache:preload_exec",{start:"rq_cache:preload_start"})}catch{}}()</script><script type="module" crossorigin src="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/index-BL8bstaL.js" nonce="YbRs3iN/2Ranhgjit5hfRw=="></script><link rel="modulepreload" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-BGCjnHf-.js"><link rel="modulepreload" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/tree-sitter-BfScwQVn.js"><link rel="stylesheet" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c6a992d55-BX1RVofc.css"></head><body class="bg-bg-100 text-text-100 font-ui min-h-screen"><div id="root"></div><script nonce="YbRs3iN/2Ranhgjit5hfRw==">(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.nonce='YbRs3iN/2Ranhgjit5hfRw==';d.innerHTML="window.__CF$cv$params={r:'9ecbb58f1f1bcdc8',t:'MTc3NjI2NDA2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='YbRs3iN/2Ranhgjit5hfRw==';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hypertension (High Blood Pressure) — helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:   #1B2A4A;
+      --coral:  #E8634A;
+      --cream:  #FAF7F2;
+      --sage:   #7A9E87;
+      --navy-light: #2A3F6B;
+      --coral-light: #FDEEE9;
+      --sage-light:  #EBF2ED;
+      --text:   #2C2C2C;
+      --muted:  #6B7280;
+      --border: #E5DDD4;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--navy);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(27,42,74,0.18);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .logo-svg { width: 36px; height: 36px; flex-shrink: 0; }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.01em;
+    }
+
+    .logo-tagline {
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--sage);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: #fff; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      background: var(--navy);
+      padding: 0.6rem 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .breadcrumb-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .breadcrumb-inner a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb-inner a:hover { color: rgba(255,255,255,0.85); }
+    .breadcrumb-inner span { color: var(--coral); font-weight: 500; }
+
+    /* ── HERO ── */
+    .article-hero {
+      background: var(--navy);
+      padding: 3.5rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,99,74,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .article-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: 10%;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(122,158,135,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .category-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(232,99,74,0.15);
+      border: 1px solid rgba(232,99,74,0.3);
+      color: var(--coral);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+      margin-bottom: 1.25rem;
+    }
+
+    .category-badge svg {
+      width: 12px; height: 12px;
+    }
+
+    .article-hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+
+    .article-hero h1 span {
+      color: var(--coral);
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.6);
+      font-style: italic;
+      font-family: 'Fraunces', serif;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .meta-item svg { width: 14px; height: 14px; opacity: 0.7; }
+
+    /* ── JUMP NAV ── */
+    .jump-nav {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      position: sticky;
+      top: 68px;
+      z-index: 90;
+    }
+
+    .jump-nav-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .jump-nav-inner::-webkit-scrollbar { display: none; }
+
+    .jump-link {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.9rem 1.1rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .jump-link:hover {
+      color: var(--navy);
+      border-bottom-color: var(--navy);
+    }
+
+    .jump-link .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--coral-light);
+      color: var(--coral);
+      font-size: 0.65rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ── LAYOUT ── */
+    .article-layout {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    /* ── SECTIONS ── */
+    .article-section {
+      scroll-margin-top: 150px;
+      margin-bottom: 3.5rem;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .article-section:nth-child(1) { animation-delay: 0.05s; }
+    .article-section:nth-child(2) { animation-delay: 0.1s; }
+    .article-section:nth-child(3) { animation-delay: 0.15s; }
+    .article-section:nth-child(4) { animation-delay: 0.2s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: #fff;
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    .article-section p {
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .article-section p:last-child { margin-bottom: 0; }
+
+    /* ── BULLET LIST ── */
+    .matter-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .matter-list li {
+      display: flex;
+      gap: 0.9rem;
+      align-items: flex-start;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--coral);
+      border-radius: 0 8px 8px 0;
+      padding: 0.85rem 1.1rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .matter-list li::before {
+      content: '';
+      display: block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--coral);
+      flex-shrink: 0;
+      margin-top: 0.55rem;
+    }
+
+    .source-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 0.35rem;
+      display: block;
+    }
+
+    /* ── DOCTOR SECTION ── */
+    .doctor-subsections {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .doctor-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .doctor-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.9rem 1.25rem;
+      background: var(--sage-light);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .doctor-card-icon {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--sage);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .doctor-card-icon svg {
+      width: 16px; height: 16px;
+      color: #fff;
+    }
+
+    .doctor-card-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .doctor-card-body {
+      padding: 1.1rem 1.25rem;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    .doctor-card-body p { margin-bottom: 0.75rem; }
+    .doctor-card-body p:last-child { margin-bottom: 0; }
+
+    /* ── RESEARCH SECTION ── */
+    .research-items {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .research-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.4rem;
+      position: relative;
+      padding-left: 1.4rem;
+    }
+
+    .research-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      border-radius: 4px 0 0 4px;
+      background: var(--navy);
+    }
+
+    .research-item p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+
+    .research-source {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: var(--sage-light);
+      border: 1px solid rgba(122,158,135,0.3);
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+    }
+
+    /* ── KEY TERMS BOX ── */
+    .key-terms-box {
+      background: var(--navy);
+      border-radius: 12px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 3.5rem;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .key-terms-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .key-terms-header svg {
+      width: 20px; height: 20px;
+      color: var(--coral);
+      flex-shrink: 0;
+    }
+
+    .key-terms-header h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.02em;
+    }
+
+    .key-terms-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+    }
+
+    @media (max-width: 600px) {
+      .key-terms-grid { grid-template-columns: 1fr; }
+    }
+
+    .key-term {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      border-left: 3px solid var(--coral);
+    }
+
+    .key-term-word {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--coral);
+      letter-spacing: 0.02em;
+    }
+
+    .key-term-def {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.55;
+    }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      background: var(--coral-light);
+      border: 1px solid rgba(232,99,74,0.2);
+      border-radius: 12px;
+      padding: 1.1rem 1.4rem;
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      margin-top: 3rem;
+    }
+
+    .disclaimer svg {
+      width: 20px; height: 20px;
+      color: var(--coral);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .disclaimer p {
+      font-size: 0.82rem;
+      color: #7A3020;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .disclaimer strong { font-weight: 600; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+    }
+
+    footer a { color: var(--sage); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      .article-hero { padding: 2.5rem 1rem 2rem; }
+      .article-layout { padding: 2rem 1rem 4rem; }
+      .breadcrumb { padding: 0.6rem 1rem; }
+      .jump-nav { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <svg class="logo-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="8" width="17" height="24" rx="2" stroke="#FAF7F2" stroke-width="1.5" fill="none"/>
+        <rect x="21" y="8" width="17" height="24" rx="2" stroke="#FAF7F2" stroke-width="1.5" fill="none"/>
+        <line x1="20" y1="8" x2="20" y2="32" stroke="#E8634A" stroke-width="1.5"/>
+        <line x1="6" y1="15" x2="15" y2="15" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+        <line x1="6" y1="19" x2="15" y2="19" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+        <line x1="6" y1="23" x2="12" y2="23" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+        <line x1="25" y1="15" x2="34" y2="15" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+        <line x1="25" y1="19" x2="34" y2="19" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+        <line x1="25" y1="23" x2="31" y2="23" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      </svg>
+      <div class="logo-text">
+        <span class="logo-name">helf.school</span>
+        <span class="logo-tagline">Health Education</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="helf-school-conditions.html">Conditions</a></li>
+      <li><a href="#">Research</a></li>
+      <li><a href="helf-school-membership.html">Membership</a></li>
+    </ul>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="index.html">Home</a>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <a href="helf-school-conditions.html">Conditions</a>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <a href="#">Cardiovascular Health</a>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Hypertension</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="article-hero">
+    <div class="hero-inner">
+      <div class="category-badge">
+        <svg viewBox="0 0 12 12" fill="none"><path d="M6 1C3.24 1 1 3.24 1 6s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm.5 7.5h-1v-4h1v4zm0-5h-1v-1h1v1z" fill="currentColor"/></svg>
+        Cardiovascular Health
+      </div>
+      <h1>Hypertension<br/><span>(High Blood Pressure)</span></h1>
+      <p class="hero-subtitle">Plain English health education — not medical advice</p>
+      <div class="hero-meta">
+        <div class="meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          8 minute read
+        </div>
+        <div class="meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Evidence-based
+        </div>
+        <div class="meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          Sources: NICE · WHO · Lancet · Cochrane · NHS · ONS
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- JUMP NAV -->
+  <nav class="jump-nav" aria-label="Jump to section">
+    <div class="jump-nav-inner">
+      <a href="#what-is-it" class="jump-link"><span class="num">1</span> What is it?</a>
+      <a href="#why-it-matters" class="jump-link"><span class="num">2</span> Why does it matter?</a>
+      <a href="#what-doctor-does" class="jump-link"><span class="num">3</span> What your doctor might do</a>
+      <a href="#research" class="jump-link"><span class="num">4</span> What the research shows</a>
+    </div>
+  </nav>
+
+  <!-- ARTICLE BODY -->
+  <main class="article-layout">
+
+    <!-- SECTION 1 -->
+    <section class="article-section" id="what-is-it">
+      <div class="section-header">
+        <div class="section-number">1</div>
+        <h2 class="section-title">What is it?</h2>
+      </div>
+      <p>High blood pressure — known medically as hypertension — means the force of blood pushing against the walls of your arteries is consistently too high. Think of it like water pressure in a hosepipe: if the pressure is always too strong, over time it starts to damage the pipe itself.</p>
+      <p>Blood pressure is recorded as two numbers. The top number (systolic) measures the pressure when your heart beats. The bottom number (diastolic) measures the pressure between beats when your heart is resting. A reading is written as, for example, 120/80 mmHg — said as "120 over 80."</p>
+      <p>A reading of 140/90 mmHg or above, confirmed on more than one occasion, is how hypertension is diagnosed. Many people have no symptoms at all, which is why it is often called a silent condition. You can have it for years without knowing.</p>
+    </section>
+
+    <!-- KEY TERMS BOX -->
+    <div class="key-terms-box">
+      <div class="key-terms-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        <h3>Key Terms</h3>
+      </div>
+      <div class="key-terms-grid">
+        <div class="key-term">
+          <span class="key-term-word">Systolic pressure</span>
+          <span class="key-term-def">The top number in a blood pressure reading — the pressure in your arteries when your heart beats.</span>
+        </div>
+        <div class="key-term">
+          <span class="key-term-word">Diastolic pressure</span>
+          <span class="key-term-def">The bottom number — the pressure in your arteries between heartbeats, when the heart is resting.</span>
+        </div>
+        <div class="key-term">
+          <span class="key-term-word">mmHg</span>
+          <span class="key-term-def">Millimetres of mercury — the unit used to measure blood pressure. Written as, for example, 120/80 mmHg.</span>
+        </div>
+        <div class="key-term">
+          <span class="key-term-word">ABPM (Ambulatory Blood Pressure Monitoring)</span>
+          <span class="key-term-def">A portable monitor worn for 24 hours that records blood pressure automatically throughout the day and night — giving a much more accurate picture than a single clinic reading.</span>
+        </div>
+        <div class="key-term">
+          <span class="key-term-word">White coat hypertension</span>
+          <span class="key-term-def">When blood pressure readings are higher in a medical setting due to anxiety or stress, but normal at other times.</span>
+        </div>
+        <div class="key-term">
+          <span class="key-term-word">Cardiovascular disease (CVD)</span>
+          <span class="key-term-def">An umbrella term for conditions affecting the heart and blood vessels, including heart attack, stroke, heart failure, and coronary heart disease. CVD is the leading cause of death in the UK.</span>
+        </div>
+        <div class="key-term">
+          <span class="key-term-word">ECG (Electrocardiogram)</span>
+          <span class="key-term-def">A simple, painless test that records the electrical activity of the heart. Used to check for signs of heart strain or damage.</span>
+        </div>
+        <div class="key-term">
+          <span class="key-term-word">ACE inhibitors / ARBs</span>
+          <span class="key-term-def">Two types of blood pressure medication that work by relaxing blood vessels. ACE inhibitors (e.g. ramipril) and ARBs (e.g. losartan) are often the first choice for younger adults.</span>
+        </div>
+        <div class="key-term">
+          <span class="key-term-word">Calcium channel blockers</span>
+          <span class="key-term-def">Blood pressure medicines (e.g. amlodipine) that relax and widen blood vessels by reducing the amount of calcium entering the vessel walls.</span>
+        </div>
+        <div class="key-term">
+          <span class="key-term-word">Thiazide-like diuretics</span>
+          <span class="key-term-def">A type of "water tablet" (e.g. indapamide) that lowers blood pressure by helping the kidneys remove excess fluid and salt from the body.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <section class="article-section" id="why-it-matters">
+      <div class="section-header">
+        <div class="section-number">2</div>
+        <h2 class="section-title">Why does it matter?</h2>
+      </div>
+      <ul class="matter-list">
+        <li>Raised blood pressure puts constant extra strain on your heart, arteries, brain, kidneys, and eyes — over time this damage adds up, even when you feel perfectly well.</li>
+        <li>It is one of the leading causes of stroke, heart attack, heart failure, and chronic kidney disease.</li>
+        <li>
+          Around 1 in 3 adults in the UK has high blood pressure, rising to approximately 60% of people aged 65 and over. Among those aged 75 and over, the figure reaches 66% of men and 71% of women.
+          <span class="source-note">NHS Health Survey for England 2022 (NHS Digital); ONS Risk Factors for Undiagnosed High Blood Pressure in England, 2015–2019</span>
+        </li>
+        <li>
+          Around 1.4 billion adults worldwide — roughly one in three — are estimated to have hypertension, and approximately 600 million of them are unaware of it.
+          <span class="source-note">WHO Global Hypertension Report 2024</span>
+        </li>
+        <li>
+          It is responsible for around 10 million deaths per year globally, more than any other single condition.
+          <span class="source-note">WHO Global Hypertension Report 2023</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section class="article-section" id="what-doctor-does">
+      <div class="section-header">
+        <div class="section-number">3</div>
+        <h2 class="section-title">What your doctor might do</h2>
+      </div>
+      <div class="doctor-subsections">
+
+        <div class="doctor-card">
+          <div class="doctor-card-header">
+            <div class="doctor-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3 class="doctor-card-title">Confirming the diagnosis</h3>
+          </div>
+          <div class="doctor-card-body">
+            <p>Your doctor will usually offer you a 24-hour blood pressure monitor to wear at home (called ambulatory blood pressure monitoring, or ABPM). This gives a much more accurate picture of your blood pressure during everyday life than a single clinic reading, and helps avoid "white coat hypertension" — where the stress of being in a medical setting temporarily raises your numbers.</p>
+            <p>If ABPM isn't suitable, home readings taken twice a day over several days are used instead.</p>
+          </div>
+        </div>
+
+        <div class="doctor-card">
+          <div class="doctor-card-header">
+            <div class="doctor-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+            </div>
+            <h3 class="doctor-card-title">Checking for damage and risk</h3>
+          </div>
+          <div class="doctor-card-body">
+            <p>Your GP will also arrange some basic tests — usually blood tests, a urine test, and sometimes a heart trace (ECG) — to check whether the high blood pressure has already affected your kidneys or heart. An eye examination may also be arranged, as the small blood vessels at the back of the eye can show early signs of damage from high blood pressure.</p>
+            <p>Together these tests give an overall picture of your cardiovascular risk, assessed using a suitable risk calculator (see the section on risk calculators in our articles on the website).</p>
+          </div>
+        </div>
+
+        <div class="doctor-card">
+          <div class="doctor-card-header">
+            <div class="doctor-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            </div>
+            <h3 class="doctor-card-title">Treatment</h3>
+          </div>
+          <div class="doctor-card-body">
+            <p>Treatment depends on how high your blood pressure is and what other health factors are present. For many people, lifestyle changes alone can make a meaningful difference — reducing salt intake, losing excess weight, taking regular exercise, cutting back on alcohol, and stopping smoking are all recommended.</p>
+            <p>If medication is needed, there are several well-established options. In the UK, NICE guidelines suggest starting with one of three main drug types depending on your age and other health factors: ACE inhibitors or ARBs, calcium channel blockers, or thiazide-like diuretics. Many people end up on a combination of two or more.</p>
+            <p>Your blood pressure will be checked regularly once you are on treatment to make sure it is well controlled. For most people under 80, the target is below 140/90 mmHg in clinic, or below 135/85 mmHg on home monitoring. For people aged 80 and over, the targets are slightly higher — below 150/90 mmHg in clinic, or below 145/85 mmHg on home monitoring. These targets are set in accordance with current NICE guidelines (NG136).</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 4 -->
+    <section class="article-section" id="research">
+      <div class="section-header">
+        <div class="section-number">4</div>
+        <h2 class="section-title">What the research shows</h2>
+      </div>
+      <div class="research-items">
+
+        <div class="research-item">
+          <p>A large analysis drawing on data from hundreds of thousands of participants across randomised trials found that reducing systolic blood pressure by just 5 mmHg cut the risk of major cardiovascular events — including stroke and heart attack — by around 10%, regardless of whether someone had existing heart disease.</p>
+          <span class="research-source">The Lancet, 2021 — Blood Pressure Lowering Treatment Trialists' Collaboration</span>
+        </div>
+
+        <div class="research-item">
+          <p>A review of 16 trials involving nearly 27,000 adults aged 60 and over found that blood pressure-lowering medication reduced the chance of death overall, and substantially reduced the risk of stroke and heart attack in this age group — evidence rated as moderate to high certainty.</p>
+          <span class="research-source">Cochrane Database of Systematic Reviews</span>
+        </div>
+
+        <div class="research-item">
+          <p>For people with mild hypertension (blood pressure 140–159/90–99 mmHg) and no existing cardiovascular disease, a separate review (updated 2025) found that the evidence for medication reducing overall death or heart attack risk in this lower-risk group is currently limited, though there may be some reduction in stroke risk. This is an area of ongoing research and discussion.</p>
+          <span class="research-source">Cochrane Database of Systematic Reviews, 2025</span>
+        </div>
+
+        <div class="research-item">
+          <p>Current guidance recommends that for people under 80 with confirmed hypertension and a 10-year cardiovascular risk of 10% or more, medication should be offered alongside lifestyle advice. For those over 80, treatment is recommended when blood pressure is above 150/90 mmHg.</p>
+          <span class="research-source">NICE Guideline NG136 (last updated 2025)</span>
+        </div>
+
+        <div class="research-item">
+          <p>Lifestyle changes are not just add-ons — they have real, measurable effects. Salt reduction, weight loss, regular aerobic exercise, and the DASH diet (a dietary pattern rich in fruit, vegetables, and low-fat dairy) each have good evidence behind them for meaningfully reducing blood pressure.</p>
+          <span class="research-source">BMJ · Cochrane · NICE NG136</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DISCLAIMER -->
+    <div class="disclaimer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p><strong>This article is for health education only.</strong> It is not a substitute for medical advice, diagnosis, or treatment. If you have concerns about your blood pressure or health, please speak to your GP or a qualified healthcare professional.</p>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 helf.school &nbsp;·&nbsp; Health education for everyone &nbsp;·&nbsp; <a href="#">Privacy</a> &nbsp;·&nbsp; <a href="helf-school-membership.html">Membership</a></p>
+  </footer>
+
+</body>
+</html>

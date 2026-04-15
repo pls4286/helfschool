@@ -1,22 +1,595 @@
-<!doctype html><html data-build-id="e40ee6bae5" data-git-hash="654e79e27f66fcc2b0e9f1c32835c8e40ee6bae5" data-build-timestamp="1776218831" data-version="1.0.0" data-env="" data-color-version="v2" lang="en" data-theme="claude" data-mode="light" class="h-screen antialiased scroll-smooth"><head data-ion-ip-country="GB"><link rel="preconnect" href="https://assets-proxy.anthropic.com" crossorigin><link rel="dns-prefetch" href="https://assets-proxy.anthropic.com"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Claude</title><meta name="description" content="Claude is Anthropic's AI, built for problem solvers. Tackle complex challenges, analyze data, write code, and think through your hardest work."><meta name="apple-itunes-app" content="app-id=6473753684"><meta property="og:type" content="website"><meta property="og:site_name" content="Claude"><meta property="og:image" content="https://claude.ai/images/claude_ogimage.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/svg+xml" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/cd02a42d9-Vq_H3mgS.svg"><link rel="icon" type="image/png" sizes="32x32" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/ce67964e7-CAX1bqSh.png"><link rel="icon" type="image/png" sizes="16x16" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c03e51811-DebilQLI.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c129d018a-jJjJELY8.png"><link rel="apple-touch-startup-image" href="/images/claude_app_icon.png"><link rel="manifest" href="/manifest.json"><meta name="mobile-web-app-capable" content="yes"><link rel="preload" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/cc27851ad-CFxw3nG7.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c66fc489e-C-BHYa_K.woff2" as="font" type="font/woff2" crossorigin><script type='text/javascript' nonce='FP3X6VlMK7MLeDSuBo8FdA==' src='https://claude.ai/GCIQg8mUQqHpdJk1xvWj43H24-wR6PZZR2n-E96n5vwwWW-JrV-H2KsOfM1sCmNPC6rv8vv2ECDVfhKXtAUcIrSCaP9qXNVuD5pBOBe8kXY4GZYdGZCmqi131DMgqAEfE3kmE0zGMGoSRoIRGEWqT-qGSpXYjzmy2gFALjtmINn6ShWJCRULJabCaREDXZMMTSXIX-LQMYH6gBTxQsVJV5kKlrBet4yNMgG8_nYcxMunvfiaAmFeu5y4Fw48jpO1ck69GmGnE82taCdt27eBnn3t2g_1UdsqxWHfsgH18BRPC7USdmFtVTSEhxIoctFdqh-Bp5i2CVNlbPs4_nueSyG3_iXTPDun--NnF_T5ZngYmFKOOfidBJUQ5Ehoxu3jHivcj91r5ok2tvd0eDNWenN87sV_SnDSPjqCJ2tIltcPvG450miFLRsyWl0jgoW5JVakCBI_guNPaMMMY4vCUvgK2to39TVlKAFRb68Sw-bWkXWi'></script><script nonce="FP3X6VlMK7MLeDSuBo8FdA==">void 0===globalThis.process&&(globalThis.process={env:{},cwd:function(){return"/"}}),void 0===globalThis.global&&(globalThis.global=globalThis)</script><script type="application/ld+json" nonce="FP3X6VlMK7MLeDSuBo8FdA==">{
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "name": "Claude",
-            "alternateName": ["Claude.ai", "Claude by Anthropic"],
-            "url": "https://claude.com"
-          },
-          {
-            "@type": "Organization",
-            "name": "Anthropic",
-            "url": "https://www.anthropic.com",
-            "logo": "https://claude.ai/images/claude_ogimage.png",
-            "sameAs": [
-              "https://x.com/AnthropicAI",
-              "https://www.linkedin.com/company/anthropic",
-              "https://www.youtube.com/@anthropic-ai"
-            ]
-          }
-        ]
-      }</script><script nonce="FP3X6VlMK7MLeDSuBo8FdA==">!function(){try{performance.mark?.("rq_cache:preload_start");const e="keyval-store",o="keyval",r="react-query-cache",t=new Promise(t=>{if(!window.indexedDB)return void t(void 0);const c=indexedDB.open(e);c.onupgradeneeded=()=>{c.transaction?.abort()},c.onerror=()=>t(void 0),c.onsuccess=()=>{const a=c.result;if(!a.objectStoreNames.contains(o))return a.close(),indexedDB.deleteDatabase(e),void t(void 0);try{const e=a.transaction(o,"readonly").objectStore(o).get(r);e.onerror=()=>{a.close(),t(void 0)},e.onsuccess=()=>{a.close(),window.__PRELOADED_IDB_CACHE_RESULT__=e.result,t(e.result)}}catch{a.close(),t(void 0)}}});window.__PRELOADED_IDB_CACHE__=t,performance.measure?.("rq_cache:preload_exec",{start:"rq_cache:preload_start"})}catch{}}()</script><script type="module" crossorigin src="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/index-BL8bstaL.js" nonce="FP3X6VlMK7MLeDSuBo8FdA=="></script><link rel="modulepreload" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-BGCjnHf-.js"><link rel="modulepreload" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/tree-sitter-BfScwQVn.js"><link rel="stylesheet" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c6a992d55-BX1RVofc.css"></head><body class="bg-bg-100 text-text-100 font-ui min-h-screen"><div id="root"></div><script nonce="FP3X6VlMK7MLeDSuBo8FdA==">(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.nonce='FP3X6VlMK7MLeDSuBo8FdA==';d.innerHTML="window.__CF$cv$params={r:'9ecbb3cf8de3cdc8',t:'MTc3NjI2Mzk5NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='FP3X6VlMK7MLeDSuBo8FdA==';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Understanding Irritable Bowel Syndrome — helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:   #1B2A4A;
+      --coral:  #E8634A;
+      --cream:  #FAF7F2;
+      --sage:   #7A9E87;
+      --digest: #D47C3A;
+      --digest-light: #FEF3E7;
+      --border: #E5DDD4;
+      --text:   #2C2C2C;
+      --muted:  #6B7280;
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--text); font-size:17px; line-height:1.75; font-weight:400; }
+
+    /* ── NAV ── */
+    nav { background:var(--navy); padding:0 2rem; display:flex; align-items:center; justify-content:space-between; height:68px; position:sticky; top:0; z-index:100; box-shadow:0 2px 12px rgba(27,42,74,.18); }
+    .nav-logo { display:flex; align-items:center; gap:.75rem; text-decoration:none; }
+    .logo-svg { width:36px; height:36px; flex-shrink:0; }
+    .logo-text { display:flex; flex-direction:column; line-height:1.1; }
+    .logo-name { font-family:'Fraunces',serif; font-size:1.25rem; font-weight:600; color:#fff; letter-spacing:.01em; }
+    .logo-tagline { font-size:.6rem; font-weight:500; color:var(--sage); letter-spacing:.18em; text-transform:uppercase; }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { color:rgba(255,255,255,.75); text-decoration:none; font-size:.875rem; font-weight:500; transition:color .2s; }
+    .nav-links a:hover { color:#fff; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb { background:var(--navy); padding:.6rem 2rem; border-bottom:1px solid rgba(255,255,255,.08); }
+    .breadcrumb-inner { max-width:900px; margin:0 auto; display:flex; align-items:center; gap:.5rem; font-size:.8rem; color:rgba(255,255,255,.75); }
+    .breadcrumb-inner a { color:rgba(255,255,255,.75); text-decoration:none; transition:color .2s; }
+    .breadcrumb-inner a:hover { color:#fff; }
+    .breadcrumb-inner span { color:var(--digest); font-weight:500; }
+
+    /* ── HERO ── */
+    .article-hero { background:var(--navy); padding:3.5rem 2rem 3rem; position:relative; overflow:hidden; }
+    .article-hero::before { content:''; position:absolute; top:-60px; right:-60px; width:320px; height:320px; border-radius:50%; background:radial-gradient(circle,rgba(212,124,58,.12) 0%,transparent 70%); pointer-events:none; }
+    .article-hero::after { content:''; position:absolute; bottom:-40px; left:10%; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle,rgba(122,158,135,.10) 0%,transparent 70%); pointer-events:none; }
+    .hero-inner { max-width:900px; margin:0 auto; position:relative; z-index:1; }
+    .category-badge { display:inline-flex; align-items:center; gap:.4rem; background:rgba(212,124,58,.15); border:1px solid rgba(212,124,58,.3); color:var(--digest); font-size:.72rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; padding:.3rem .75rem; border-radius:100px; margin-bottom:1.25rem; }
+    .article-hero h1 { font-family:'Fraunces',serif; font-size:clamp(2rem,5vw,3rem); font-weight:700; color:#fff; line-height:1.15; margin-bottom:.5rem; }
+    .article-hero h1 span { color:var(--digest); }
+    .hero-subtitle { font-size:1rem; color:rgba(255,255,255,.85); font-style:italic; font-family:'Fraunces',serif; margin-bottom:1.75rem; }
+    .hero-meta { display:flex; flex-wrap:wrap; gap:1.25rem; }
+    .meta-item { display:flex; align-items:center; gap:.4rem; font-size:.8rem; color:rgba(255,255,255,.80); }
+
+    /* ── JUMP NAV ── */
+    .jump-nav { background:#fff; border-bottom:1px solid var(--border); padding:0 2rem; position:sticky; top:68px; z-index:90; }
+    .jump-nav-inner { max-width:900px; margin:0 auto; display:flex; overflow-x:auto; scrollbar-width:none; }
+    .jump-nav-inner::-webkit-scrollbar { display:none; }
+    .jump-link { display:flex; align-items:center; gap:.4rem; padding:.9rem 1.1rem; font-size:.8rem; font-weight:500; color:var(--text); text-decoration:none; border-bottom:2px solid transparent; white-space:nowrap; transition:color .2s,border-color .2s; }
+    .jump-link:hover { color:var(--navy); border-bottom-color:var(--navy); }
+    .jump-link .num { display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; border-radius:50%; background:var(--digest-light); color:var(--digest); font-size:.65rem; font-weight:700; flex-shrink:0; }
+
+    /* ── LAYOUT ── */
+    .article-layout { max-width:900px; margin:0 auto; padding:3rem 2rem 5rem; }
+    .article-section { margin-bottom:3.5rem; scroll-margin-top:150px; }
+    .section-header { display:flex; align-items:center; gap:1rem; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--border); }
+    .section-number { display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; background:var(--navy); color:#fff; font-family:'Fraunces',serif; font-size:1.1rem; font-weight:700; flex-shrink:0; }
+    .section-title { font-family:'Fraunces',serif; font-size:1.45rem; font-weight:600; color:var(--navy); line-height:1.2; }
+    .article-section p { margin-bottom:1rem; color:var(--text); font-weight:400; }
+    .article-section p:last-child { margin-bottom:0; }
+    .subsection-title { font-family:'Fraunces',serif; font-size:1.1rem; font-weight:600; color:var(--navy); margin:1.75rem 0 .75rem; }
+
+    /* ── KEY TERMS ── */
+    .key-terms-box { background:var(--navy); border-radius:12px; padding:1.5rem 1.75rem; margin-bottom:3.5rem; }
+    .key-terms-header { display:flex; align-items:center; gap:.75rem; margin-bottom:1.25rem; padding-bottom:.85rem; border-bottom:1px solid rgba(255,255,255,.12); }
+    .key-terms-header h3 { font-family:'Fraunces',serif; font-size:1.05rem; font-weight:600; color:#fff; }
+    .key-terms-grid { display:grid; grid-template-columns:1fr 1fr; gap:.85rem; }
+    .key-term { display:flex; flex-direction:column; gap:.2rem; padding:.75rem 1rem; background:rgba(255,255,255,.05); border-radius:8px; border-left:3px solid var(--digest); }
+    .key-term-word { font-size:.88rem; font-weight:700; color:var(--digest); letter-spacing:.02em; }
+    .key-term-def { font-size:.92rem; color:rgba(255,255,255,.90); line-height:1.55; }
+
+    /* ── STAT BANNER ── */
+    .stat-banner { display:flex; align-items:center; gap:1.25rem; padding:1rem 1.25rem; border-radius:12px; margin:1.25rem 0; }
+    .stat-banner.dig { background:rgba(212,124,58,.08); border:1px solid rgba(212,124,58,.2); }
+    .stat-banner.sage { background:rgba(122,158,135,.08); border:1px solid rgba(122,158,135,.2); }
+    .stat-number { font-family:'Fraunces',serif; font-size:2.8rem; font-weight:700; line-height:1; flex-shrink:0; color:var(--digest); }
+    .stat-banner.sage .stat-number { color:var(--sage); }
+    .stat-text { font-size:.92rem; line-height:1.55; color:var(--text); font-weight:400; }
+    .stat-text strong { font-weight:600; color:var(--navy); }
+    .source-note { font-size:.75rem; color:var(--muted); font-style:italic; margin-top:.3rem; display:block; }
+
+    /* ── SUBTYPES TABLE ── */
+    .subtypes-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0; }
+    .subtype-card { background:#fff; border:1px solid var(--border); border-radius:10px; padding:1rem 1.2rem; border-top:3px solid var(--digest); }
+    .subtype-card h5 { font-family:'Fraunces',serif; font-size:.95rem; font-weight:600; color:var(--navy); margin-bottom:.35rem; }
+    .subtype-card p { font-size:.9rem; line-height:1.6; color:var(--text); font-weight:400; margin:0; }
+    .subtype-tag { display:inline-block; font-size:.72rem; font-weight:700; padding:.15rem .55rem; border-radius:100px; margin-bottom:.4rem; }
+    .tag-c { background:rgba(122,158,135,.15); color:#2D5E4A; }
+    .tag-d { background:rgba(232,99,74,.12); color:#8B2010; }
+    .tag-m { background:rgba(232,168,74,.15); color:#7A5A10; }
+    .tag-u { background:rgba(107,94,168,.12); color:#4A3A8A; }
+
+    /* ── MATTER LIST ── */
+    .matter-list { list-style:none; display:flex; flex-direction:column; gap:.85rem; }
+    .matter-list li { display:flex; gap:.9rem; align-items:flex-start; background:#fff; border:1px solid var(--border); border-left:3px solid var(--digest); border-radius:0 8px 8px 0; padding:.85rem 1.1rem; font-size:.95rem; line-height:1.6; color:var(--text); font-weight:400; }
+    .matter-list li::before { content:''; display:block; width:6px; height:6px; border-radius:50%; background:var(--digest); flex-shrink:0; margin-top:.55rem; }
+
+    /* ── CALLOUTS ── */
+    .callout { border-radius:10px; padding:1rem 1.25rem; margin:1.25rem 0; font-size:.95rem; line-height:1.65; font-weight:400; }
+    .callout-amber { background:rgba(212,124,58,.08); border:1px solid rgba(212,124,58,.25); color:var(--text); }
+    .callout-amber strong { color:var(--digest); font-weight:600; }
+    .callout-sage { background:rgba(122,158,135,.08); border:1px solid rgba(122,158,135,.25); color:var(--text); }
+    .callout-sage strong { color:#2D5E4A; font-weight:600; }
+    .callout-red { background:rgba(232,99,74,.08); border:1px solid rgba(232,99,74,.25); color:var(--text); }
+    .callout-red strong { color:#8B2010; font-weight:600; }
+    .callout-navy { background:var(--navy); color:rgba(255,255,255,.90); }
+    .callout-navy strong { color:#fff; font-weight:600; }
+
+    /* ── DIAGNOSIS TABLE ── */
+    .data-table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.92rem; border-radius:10px; overflow:hidden; box-shadow:0 1px 4px rgba(27,42,74,.08); }
+    .data-table thead tr { background:var(--digest); }
+    .data-table thead th { padding:.75rem 1rem; text-align:left; font-weight:600; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:#fff; }
+    .data-table tbody tr { background:#fff; border-bottom:1px solid var(--border); }
+    .data-table tbody tr:last-child { border-bottom:none; }
+    .data-table tbody tr:nth-child(even) { background:var(--digest-light); }
+    .data-table tbody td { padding:.8rem 1rem; line-height:1.55; color:var(--text); font-weight:400; }
+    .data-table tbody td:first-child { font-weight:600; color:var(--navy); }
+
+    /* ── TREATMENT LADDER ── */
+    .treatment-steps { display:flex; flex-direction:column; gap:1rem; }
+    .treatment-step { display:flex; align-items:flex-start; gap:1rem; background:#fff; border:1px solid var(--border); border-radius:12px; padding:1rem 1.2rem; }
+    .step-num { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.85rem; font-weight:700; flex-shrink:0; }
+    .step-1 .step-num { background:rgba(122,158,135,.18); color:#2D5E4A; }
+    .step-2 .step-num { background:rgba(212,124,58,.18); color:var(--digest); }
+    .step-3 .step-num { background:rgba(232,168,74,.18); color:#7A5A10; }
+    .step-4 .step-num { background:rgba(107,94,168,.18); color:#4A3A8A; }
+    .step-content h5 { font-family:'Fraunces',serif; font-size:1rem; font-weight:600; color:var(--navy); margin-bottom:.35rem; }
+    .step-content p { font-size:.92rem; line-height:1.65; color:var(--text); font-weight:400; margin:0; }
+
+    /* ── DOCTOR CARDS ── */
+    .doctor-subsections { display:flex; flex-direction:column; gap:1.5rem; }
+    .doctor-card { background:#fff; border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+    .doctor-card-header { display:flex; align-items:center; gap:.75rem; padding:.9rem 1.25rem; background:var(--digest-light); border-bottom:1px solid var(--border); }
+    .doctor-card-icon { width:32px; height:32px; border-radius:50%; background:var(--digest); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .doctor-card-icon svg { width:16px; height:16px; color:#fff; }
+    .doctor-card-title { font-family:'Fraunces',serif; font-size:1rem; font-weight:600; color:var(--navy); }
+    .doctor-card-body { padding:1.1rem 1.25rem; font-size:.95rem; line-height:1.7; color:var(--text); font-weight:400; }
+    .doctor-card-body p { margin-bottom:.75rem; font-weight:400; }
+    .doctor-card-body p:last-child { margin-bottom:0; }
+    .doctor-card-body strong { font-weight:600; color:var(--navy); }
+
+    /* ── RESEARCH ── */
+    .research-items { display:flex; flex-direction:column; gap:1.25rem; }
+    .research-item { background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.25rem 1.4rem; position:relative; }
+    .research-item::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; border-radius:4px 0 0 4px; background:var(--navy); }
+    .research-item h4 { font-family:'Fraunces',serif; font-size:1rem; font-weight:600; color:var(--navy); margin-bottom:.6rem; }
+    .research-item p { font-size:.95rem; line-height:1.7; color:var(--text); font-weight:400; margin-bottom:.6rem; }
+    .research-item p:last-child { margin-bottom:0; }
+
+    /* ── REFERENCES ── */
+    .ref-block { margin-bottom:.85rem; padding:.85rem 1rem; background:#fff; border:1px solid var(--border); border-radius:8px; }
+    .ref-full { font-size:.85rem; line-height:1.6; color:var(--text); font-weight:400; margin-bottom:.5rem; }
+    .ref-links { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .ref-pill { display:inline-flex; align-items:center; font-size:.72rem; font-weight:600; letter-spacing:.04em; padding:.2rem .6rem; border-radius:100px; text-decoration:none; transition:background .2s; }
+    .ref-pill-journal { background:#EBF2ED; color:#2D5E4A; border:1px solid rgba(122,158,135,.35); }
+    .ref-pill-journal:hover { background:rgba(122,158,135,.25); }
+    .ref-pill-pubmed { background:#EEF4FD; color:#1A4A8A; border:1px solid rgba(46,107,168,.3); }
+    .ref-pill-pubmed:hover { background:rgba(46,107,168,.15); }
+
+    /* ── PUTTING IT TOGETHER ── */
+    .putting-together { background:var(--navy); border-radius:14px; padding:1.75rem 2rem; margin-top:2rem; position:relative; overflow:hidden; }
+    .putting-together::before { content:''; position:absolute; top:-40px; right:-40px; width:180px; height:180px; border-radius:50%; background:radial-gradient(circle,rgba(212,124,58,.10) 0%,transparent 70%); pointer-events:none; }
+    .putting-together-header { display:flex; align-items:center; gap:.75rem; margin-bottom:1rem; padding-bottom:.85rem; border-bottom:1px solid rgba(255,255,255,.12); }
+    .putting-together-header svg { width:20px; height:20px; color:var(--digest); flex-shrink:0; }
+    .putting-together-header h5 { font-family:'Fraunces',serif; font-size:1.05rem; font-weight:600; color:#fff; }
+    .putting-together p { font-size:1rem; color:rgba(255,255,255,.90); line-height:1.75; margin-bottom:.75rem; position:relative; z-index:1; font-weight:400; }
+    .putting-together p:last-child { margin-bottom:0; }
+    .putting-together p strong { color:#fff; font-weight:600; }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer { background:rgba(232,99,74,.06); border:1px solid rgba(232,99,74,.2); border-radius:12px; padding:1.1rem 1.4rem; display:flex; gap:.85rem; align-items:flex-start; margin-top:3rem; }
+    .disclaimer svg { width:20px; height:20px; color:var(--coral); flex-shrink:0; margin-top:.1rem; }
+    .disclaimer p { font-size:.85rem; color:#7A3020; line-height:1.6; margin:0; font-weight:400; }
+
+    footer { background:var(--navy); color:rgba(255,255,255,.65); text-align:center; padding:2rem; font-size:.8rem; }
+    footer a { color:var(--sage); text-decoration:none; }
+
+    @media(max-width:600px) { nav{padding:0 1rem} .nav-links{display:none} .article-hero{padding:2.5rem 1rem 2rem} .article-layout{padding:2rem 1rem 4rem} .breadcrumb{padding:.6rem 1rem} .jump-nav{padding:0 1rem} .key-terms-grid{grid-template-columns:1fr} .subtypes-grid{grid-template-columns:1fr} .stat-banner{flex-direction:column;gap:.5rem} }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg class="logo-svg" viewBox="0 0 40 40" fill="none">
+      <rect x="2" y="8" width="17" height="24" rx="2" stroke="#FAF7F2" stroke-width="1.5" fill="none"/>
+      <rect x="21" y="8" width="17" height="24" rx="2" stroke="#FAF7F2" stroke-width="1.5" fill="none"/>
+      <line x1="20" y1="8" x2="20" y2="32" stroke="#E8634A" stroke-width="1.5"/>
+      <line x1="6" y1="15" x2="15" y2="15" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="6" y1="19" x2="15" y2="19" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="6" y1="23" x2="12" y2="23" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="15" x2="34" y2="15" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="19" x2="34" y2="19" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="23" x2="31" y2="23" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-name">helf.school</span>
+      <span class="logo-tagline">Health Education</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="helf-school-conditions.html">Conditions</a></li>
+    <li><a href="helf-school-membership.html">Membership</a></li>
+  </ul>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Home</a>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <a href="helf-school-conditions.html">Conditions</a>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Understanding IBS</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="article-hero">
+  <div class="hero-inner">
+    <div class="category-badge">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.5"/></svg>
+      Digestive Health · Article 16
+    </div>
+    <h1>Understanding <span>Irritable Bowel Syndrome</span></h1>
+    <p class="hero-subtitle">What IBS actually is, what drives it, and what the evidence says about managing it</p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3l2 1.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+        12–14 minute read
+      </div>
+      <div class="meta-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 11l3-3 2.5 2.5 4.5-6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        References verified April 2026
+      </div>
+      <div class="meta-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5C4.5 1.5 2.5 3.5 2.5 6c0 3.5 4.5 6.5 4.5 6.5s4.5-3 4.5-6.5c0-2.5-2-4.5-4.5-4.5z" stroke="currentColor" stroke-width="1.2"/></svg>
+        Health education — not medical advice
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JUMP NAV -->
+<nav class="jump-nav">
+  <div class="jump-nav-inner">
+    <a href="#what-is-it" class="jump-link"><span class="num">1</span> What is IBS?</a>
+    <a href="#why-it-matters" class="jump-link"><span class="num">2</span> Why does it matter?</a>
+    <a href="#what-doctor" class="jump-link"><span class="num">3</span> What your doctor will do</a>
+    <a href="#research" class="jump-link"><span class="num">4</span> What the research shows</a>
+  </div>
+</nav>
+
+<div class="article-layout">
+
+  <!-- ── SECTION 1 ── -->
+  <section class="article-section" id="what-is-it">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <h2 class="section-title">What is IBS?</h2>
+    </div>
+
+    <p>Irritable bowel syndrome is a common, long-term condition that affects the gut. It is characterised by recurrent abdominal pain and changes in bowel habit — diarrhoea, constipation, or alternating between both — without any structural or biochemical abnormality to explain them.</p>
+
+    <p>That last part is important. IBS is not caused by damage, inflammation, or a detectable disease process in the gut. Blood tests and scans come back normal. Colonoscopies look normal. This is sometimes misinterpreted to mean that IBS is "all in the head" — it isn't. The condition is real, the symptoms are real, and they are driven by genuinely abnormal gut functioning. It's just that the abnormality lies in how the gut and the brain communicate, not in the gut's physical structure.</p>
+
+    <p>IBS is now formally classified as a <strong>disorder of gut-brain interaction</strong> — previously called a functional bowel disorder. This is the terminology used by the Rome Foundation, which sets the international diagnostic criteria for these conditions.</p>
+
+    <div class="stat-banner dig">
+      <div class="stat-number">5–10%</div>
+      <div class="stat-text">
+        <strong>of the global population have IBS</strong> — making it one of the most common chronic conditions seen in primary care worldwide. In the UK, approximately 1 in 10 people are affected.
+        <span class="source-note">Source: Oka P et al. Lancet Gastroenterol Hepatol 2020 · Sperber AD et al. Gastroenterology 2021</span>
+      </div>
+    </div>
+
+    <h3 class="subsection-title">The four subtypes</h3>
+    <p>IBS is divided into subtypes based on the predominant bowel pattern. This matters because management differs between them.</p>
+
+    <div class="subtypes-grid">
+      <div class="subtype-card">
+        <span class="subtype-tag tag-d">IBS-D</span>
+        <h5>Diarrhoea-predominant</h5>
+        <p>Loose, watery stools; urgency; frequent bowel movements. Often triggered by eating. Most common subtype overall.</p>
+      </div>
+      <div class="subtype-card">
+        <span class="subtype-tag tag-c">IBS-C</span>
+        <h5>Constipation-predominant</h5>
+        <p>Hard, lumpy stools; straining; feeling of incomplete emptying. Bloating particularly prominent. More common in women.</p>
+      </div>
+      <div class="subtype-card">
+        <span class="subtype-tag tag-m">IBS-M</span>
+        <h5>Mixed</h5>
+        <p>Both loose stools and constipation — often alternating. The most complex subtype to manage. Significant bloating.</p>
+      </div>
+      <div class="subtype-card">
+        <span class="subtype-tag tag-u">IBS-U</span>
+        <h5>Unclassified</h5>
+        <p>Meets IBS criteria but doesn't fit neatly into D, C, or M categories. Stool pattern varies or is inconsistent.</p>
+      </div>
+    </div>
+
+    <h3 class="subsection-title">What drives IBS — the gut-brain axis</h3>
+    <p>IBS is not a single disease with a single cause. It is better understood as a syndrome — a collection of symptoms arising from several different, overlapping mechanisms:</p>
+
+    <ul class="matter-list" style="margin-top:.75rem">
+      <li><strong>Altered gut motility.</strong> The gut moves too fast (causing diarrhoea and urgency) or too slowly (causing constipation and bloating). This is driven by disruption of the normal muscle coordination in the bowel wall.</li>
+      <li><strong>Visceral hypersensitivity.</strong> The nerves supplying the gut are oversensitive — normal gut activity that most people wouldn't notice causes pain or discomfort. This is consistently found in IBS and explains why symptoms are real even when scans look normal.</li>
+      <li><strong>Altered gut microbiome.</strong> The composition of bacteria in the gut differs in many people with IBS compared to those without. Whether this is a cause or consequence is still being researched, but it is a real finding.</li>
+      <li><strong>Post-infectious IBS.</strong> Around 10% of IBS cases follow a documented gut infection — gastroenteritis, food poisoning, or a traveller's diarrhoea. The infection resolves but the gut doesn't return to normal. This subtype is called PI-IBS.</li>
+      <li><strong>The gut-brain connection.</strong> Stress, anxiety, and low mood are strongly associated with IBS — and this is bidirectional. Gut symptoms worsen mental health; mental health symptoms worsen gut function. This is not psychosomatic. It reflects genuine two-way communication along the vagus nerve and enteric nervous system.</li>
+    </ul>
+
+    <div class="callout callout-amber" style="margin-top:1.5rem">
+      <strong>IBS is not inflammatory bowel disease (IBD).</strong> IBD — which includes Crohn's disease and ulcerative colitis — involves chronic inflammation and structural damage to the gut. IBS does not. They are entirely different conditions. Distinguishing them is one of the key tasks in assessment.
+    </div>
+
+  </section>
+
+  <!-- ── KEY TERMS ── -->
+  <div class="key-terms-box">
+    <div class="key-terms-header">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M9 4H5a1 1 0 00-1 1v10a1 1 0 001 1h10a1 1 0 001-1v-4M13 4h3v3M10 10l6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>Key Terms</h3>
+    </div>
+    <div class="key-terms-grid">
+      <div class="key-term">
+        <span class="key-term-word">Disorder of gut-brain interaction (DGBI)</span>
+        <span class="key-term-def">The modern term for conditions previously called functional bowel disorders. The symptoms arise from abnormal communication between the gut and the brain, not from structural damage. IBS is a DGBI.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Enteric nervous system</span>
+        <span class="key-term-def">The network of nerves lining the gut — sometimes called the "second brain." Contains around 500 million nerve cells and operates largely independently of the central nervous system.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">FODMAPs</span>
+        <span class="key-term-def">Fermentable Oligosaccharides, Disaccharides, Monosaccharides And Polyols — short-chain carbohydrates fermented by gut bacteria, producing gas and triggering IBS symptoms in susceptible people.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Gut-directed hypnotherapy</span>
+        <span class="key-term-def">A specific type of hypnotherapy focused on modulating gut sensation and function via the gut-brain axis. Has strong evidence for IBS symptom reduction comparable to the low-FODMAP diet.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Post-infectious IBS (PI-IBS)</span>
+        <span class="key-term-def">IBS that develops after a gut infection. The infection clears but the gut remains sensitised. Affects approximately 10% of people who develop acute gastroenteritis.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Rome IV criteria</span>
+        <span class="key-term-def">The current internationally agreed symptom-based diagnostic criteria for IBS, updated in 2016. Requires recurrent abdominal pain at least one day per week for the past three months, associated with changes in bowel habit. <em>(Mearin F et al. Gastroenterology 2016)</em></span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Visceral hypersensitivity</span>
+        <span class="key-term-def">Increased sensitivity of gut nerves — normal gut activity causes pain or discomfort that most people would not feel. A core mechanism in IBS and the reason symptoms are real despite normal investigations.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Neuromodulator</span>
+        <span class="key-term-def">A medication that modifies nerve signalling — used in IBS to reduce visceral hypersensitivity. Low-dose antidepressants (amitriptyline, SSRIs) are the main neuromodulators used for IBS.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2 ── -->
+  <section class="article-section" id="why-it-matters">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <h2 class="section-title">Why does it matter?</h2>
+    </div>
+
+    <ul class="matter-list">
+      <li>IBS significantly impairs quality of life. Studies consistently show it affects work, social life, relationships, travel, and diet in ways that people without the condition rarely appreciate. The symptom burden is often underestimated by clinicians.</li>
+      <li>It is frequently misunderstood — both by patients and sometimes by doctors. Being told "everything looks normal" or "it's just stress" without a proper explanation or management plan leaves people without recourse. Good information leads to better outcomes.</li>
+      <li>Effective treatments exist — but many patients never access them. The evidence base for IBS management has strengthened substantially in the past decade. Low-FODMAP diet, gut-directed hypnotherapy, and low-dose amitriptyline all have robust trial evidence. Yet many GPs are unaware of the latest research, particularly the 2023 ATLANTIS trial.</li>
+      <li>IBS symptoms can overlap with more serious conditions. Distinguishing IBS from inflammatory bowel disease, coeliac disease, and bowel cancer requires a careful clinical assessment. Certain alarm features should always prompt investigation.</li>
+      <li>The psychological dimension is real and bidirectional. Anxiety and depression are significantly more common in IBS. Addressing gut health and mental health together — rather than treating them separately — produces better outcomes.</li>
+    </ul>
+
+    <div class="callout callout-red" style="margin-top:1.5rem">
+      <strong>Alarm features that need urgent GP assessment:</strong> blood in stool, unexplained weight loss, nocturnal symptoms that wake you from sleep, a family history of bowel cancer or IBD, symptoms starting after age 60, or any symptom that is new, worsening, or different from your usual pattern. These are not typical of IBS and need investigation to exclude other causes.
+    </div>
+
+  </section>
+
+  <!-- ── SECTION 3 ── -->
+  <section class="article-section" id="what-doctor">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <h2 class="section-title">What your doctor might do</h2>
+    </div>
+
+    <p>IBS is a clinical diagnosis — made from the history, not from tests. The Rome IV criteria require recurrent abdominal pain at least one day per week for the past three months, associated with two or more of: change in stool frequency, change in stool form, or pain relieved or worsened by defecation. Crucially, there should be no alarm features to suggest a different diagnosis.</p>
+
+    <div class="doctor-subsections">
+
+      <div class="doctor-card">
+        <div class="doctor-card-header">
+          <div class="doctor-card-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M8 1.5a4 4 0 100 8 4 4 0 000-8zM2 14s-.5-4 6-4 6 4 6 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+          <div class="doctor-card-title">Ruling out other conditions</div>
+        </div>
+        <div class="doctor-card-body">
+          <p>Before diagnosing IBS, a GP will usually do a limited set of tests to exclude conditions that can mimic it. A <strong>full blood count</strong> checks for anaemia (which can indicate IBD or cancer). <strong>CRP</strong> looks for systemic inflammation. <strong>Coeliac serology</strong> (anti-tTG IgA with total IgA) is essential — coeliac disease can look exactly like IBS-D and is missed surprisingly often. <strong>Faecal calprotectin</strong> is a stool test that distinguishes gut inflammation from functional symptoms with good accuracy.</p>
+          <p>A <strong>colonoscopy</strong> is not needed for typical IBS in a younger patient with no alarm features. It may be appropriate in patients over 50 with new symptoms, or where there is diagnostic uncertainty.</p>
+
+          <table class="data-table" style="margin-top:.75rem">
+            <thead><tr><th>Test</th><th>What it checks for</th></tr></thead>
+            <tbody>
+              <tr><td>Full blood count + CRP</td><td>Anaemia, inflammation — raises suspicion of IBD or malignancy</td></tr>
+              <tr><td>Coeliac serology (anti-tTG IgA)</td><td>Coeliac disease — very common mimic of IBS-D</td></tr>
+              <tr><td>Faecal calprotectin</td><td>Gut inflammation — helps distinguish IBS from IBD</td></tr>
+              <tr><td>Thyroid function</td><td>Hypothyroidism (constipation) / hyperthyroidism (diarrhoea)</td></tr>
+              <tr><td>Hydrogen breath test</td><td>Lactose intolerance, SIBO — if dietary history suggests these</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doctor-card-header">
+          <div class="doctor-card-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="doctor-card-title">Treatment — a stepped approach</div>
+        </div>
+        <div class="doctor-card-body">
+          <p>Management of IBS is stepped — start with the least intensive, best-evidenced approach and escalate if needed. Most people improve significantly with first and second-line measures.</p>
+
+          <div class="treatment-steps" style="margin-top:.85rem">
+            <div class="treatment-step step-1">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h5>Lifestyle and general dietary advice (first-line)</h5>
+                <p>Regular meals, no skipping, adequate fibre (soluble fibre for IBS-C, reduced insoluble fibre for IBS-D), reduction of alcohol and caffeine, adequate hydration. NICE CG61 recommends physical activity — evidence supports modest but real symptom improvement.</p>
+              </div>
+            </div>
+            <div class="treatment-step step-2">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h5>Low-FODMAP diet trial — dietitian-led</h5>
+                <p>The strongest dietary evidence for IBS. Restrict fermentable carbohydrates for 4–6 weeks, then systematically reintroduce to identify individual triggers. Requires dietitian guidance to do correctly and avoid nutritional deficiency. Effective in approximately 50–70% of people with IBS.</p>
+              </div>
+            </div>
+            <div class="treatment-step step-3">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h5>Medications — symptom-specific</h5>
+                <p><strong>Antispasmodics</strong> (mebeverine, hyoscine) for cramps and urgency — taken before meals. <strong>Loperamide</strong> for IBS-D when dietary measures are insufficient. <strong>Laxatives</strong> (macrogol/polyethylene glycol) for IBS-C. <strong>Peppermint oil capsules</strong> — modest evidence for abdominal pain and bloating.</p>
+              </div>
+            </div>
+            <div class="treatment-step step-4">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <h5>Second-line — neuromodulators and psychological therapies</h5>
+                <p><strong>Low-dose amitriptyline</strong> (10–30 mg at night) — now firmly evidence-based following the 2023 ATLANTIS trial. Superior to placebo for IBS symptom scores across all subtypes. Your GP can prescribe this. <strong>Gut-directed hypnotherapy</strong> and <strong>CBT</strong> — both have strong evidence, comparable to dietary therapy, particularly effective when anxiety is a feature.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout callout-sage" style="margin-top:1.5rem">
+      <strong>Don't start a gluten-free diet before coeliac testing.</strong> If coeliac disease is being investigated, removing gluten before the blood test and biopsy will produce a false-negative result. Always test first.
+    </div>
+
+  </section>
+
+  <!-- ── SECTION 4 ── -->
+  <section class="article-section" id="research">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <h2 class="section-title">What the research shows</h2>
+    </div>
+
+    <div class="research-items">
+
+      <div class="research-item">
+        <h4>Global prevalence of IBS — the definitive systematic review</h4>
+        <p>A 2020 Lancet Gastroenterology systematic review and meta-analysis by Oka and colleagues pooled data from studies worldwide using consistent Rome criteria. Using Rome III criteria, pooled global prevalence was 9.2%. Using the more restrictive Rome IV criteria, it was 3.8%. Prevalence was higher in women than men, highest in younger adults, and varied substantially by country — from under 1% to over 25%. The authors noted the methodology used to define IBS has a substantial effect on the numbers obtained, which is why prevalence figures in the literature vary so widely.</p>
+
+        <div class="ref-block">
+          <p class="ref-full"><strong>Oka P, Parr H, Barberio B, Black CJ, Savarino EV, Ford AC.</strong> Global prevalence of irritable bowel syndrome according to Rome III or IV criteria: a systematic review and meta-analysis. <em>Lancet Gastroenterology &amp; Hepatology</em> 2020;5(10):908–917. DOI: 10.1016/S2468-1253(20)30217-X</p>
+          <div class="ref-links">
+            <a href="https://www.thelancet.com/journals/langas/article/PIIS2468-1253(20)30217-X/abstract" target="_blank" class="ref-pill ref-pill-journal">Lancet Gastroenterol Full Text</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/32702295/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 32702295</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <h4>Worldwide burden of functional GI disorders — Rome Foundation Global Study</h4>
+        <p>Sperber and colleagues conducted the largest global study of functional gastrointestinal disorders, surveying 73,076 adults across 33 countries using Rome IV criteria. More than 40% of the global sample met criteria for at least one functional GI disorder. IBS was among the most prevalent, with pooled global prevalence of approximately 4.1% by Rome IV — more than 1 in 25 adults worldwide. The study confirmed that IBS reduces quality of life and increases healthcare utilisation substantially, and that it is significantly underdiagnosed and undertreated globally.</p>
+
+        <div class="ref-block">
+          <p class="ref-full"><strong>Sperber AD, Bangdiwala SI, Drossman DA, et al.</strong> Worldwide Prevalence and Burden of Functional Gastrointestinal Disorders, Results of Rome Foundation Global Study. <em>Gastroenterology</em> 2021;160(1):99–114.e3. DOI: 10.1053/j.gastro.2020.04.014</p>
+          <div class="ref-links">
+            <a href="https://www.gastrojournal.org/article/S0016-5085(20)30487-X/fulltext" target="_blank" class="ref-pill ref-pill-journal">Gastroenterology Full Text</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/32294476/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 32294476</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <h4>Gut-directed hypnotherapy vs low-FODMAP — a head-to-head RCT</h4>
+        <p>Peters and colleagues at Monash University conducted a randomised trial comparing gut-directed hypnotherapy, low-FODMAP diet, and the combination in 74 IBS patients. At six weeks, all three approaches produced significant and comparable reductions in gastrointestinal symptoms. At six months, the effects were durable and similarly maintained across groups. Hypnotherapy additionally improved psychological indices — anxiety and quality of life measures — more than diet alone. This trial established that gut-directed hypnotherapy is a clinically comparable alternative to dietary intervention for IBS, with additional benefit for psychological wellbeing.</p>
+
+        <p><strong>A note on placebo-controlled evidence.</strong> This trial compared two active treatments — it had no placebo or no-treatment arm. The vs-placebo evidence for each intervention comes from separate studies. For gut-directed hypnotherapy, the landmark placebo-controlled trial is Whorwell et al. (Lancet 1984), which randomised 30 patients with severe refractory IBS to hypnotherapy or psychotherapy plus placebo — the hypnotherapy group showed dramatic improvement across all symptoms, with no relapses at three-month follow-up. For low-FODMAP, truly blinding a dietary intervention is methodologically very difficult; Gibson (J Gastroenterol Hepatol 2017) reviewed six RCTs comparing low-FODMAP to placebo-type approaches and found uniformly positive results, with approximately 70% of patients responding.</p>
+
+        <div class="ref-block">
+          <p class="ref-full"><strong>Peters SL, Yao CK, Philpott H, Yelland GW, Muir JG, Gibson PR.</strong> Randomised clinical trial: the efficacy of gut-directed hypnotherapy is similar to that of the low FODMAP diet for the treatment of irritable bowel syndrome. <em>Alimentary Pharmacology &amp; Therapeutics</em> 2016;44(5):447–459. DOI: 10.1111/apt.13706</p>
+          <div class="ref-links">
+            <a href="https://onlinelibrary.wiley.com/doi/10.1111/apt.13706" target="_blank" class="ref-pill ref-pill-journal">Aliment Pharmacol Ther Full Text</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/27397586/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 27397586</a>
+          </div>
+        </div>
+        <div class="ref-block">
+          <p class="ref-full"><strong>Whorwell PJ, Prior A, Faragher EB.</strong> Controlled trial of hypnotherapy in the treatment of severe refractory irritable-bowel syndrome. <em>The Lancet</em> 1984;2(8414):1232–1234. DOI: 10.1016/S0140-6736(84)92793-4</p>
+          <div class="ref-links">
+            <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(84)92793-4/abstract" target="_blank" class="ref-pill ref-pill-journal">Lancet Abstract</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/6150275/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 6150275</a>
+          </div>
+        </div>
+        <div class="ref-block">
+          <p class="ref-full"><strong>Gibson PR.</strong> The evidence base for efficacy of the low FODMAP diet in irritable bowel syndrome: is it ready for prime time as a first-line therapy? <em>Journal of Gastroenterology and Hepatology</em> 2017;32(Suppl 1):32–35. DOI: 10.1111/jgh.13693</p>
+          <div class="ref-links">
+            <a href="https://onlinelibrary.wiley.com/doi/10.1111/jgh.13693" target="_blank" class="ref-pill ref-pill-journal">J Gastroenterol Hepatol Full Text</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/28244668/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 28244668</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <h4>The ATLANTIS trial — low-dose amitriptyline for IBS in primary care</h4>
+        <p>The ATLANTIS trial, published in The Lancet in 2023, is the largest trial of a tricyclic antidepressant for IBS ever conducted. Ford and colleagues randomised 463 adults with IBS across 55 GP practices in England to low-dose amitriptyline (10–30 mg nightly) or placebo for six months. Amitriptyline was significantly superior to placebo on the primary outcome — IBS Severity Scoring System score at six months (mean difference −27.0 points, p=0.0079). It was also superior for global symptom relief. The authors concluded that GPs should offer low-dose amitriptyline to patients whose symptoms do not improve with first-line therapies. The number needed to treat was 6 — meaning for every six patients treated, one additional person achieves meaningful relief compared to placebo.</p>
+
+        <div class="ref-block">
+          <p class="ref-full"><strong>Ford AC, Wright-Hughes A, Alderson SL, et al.; ATLANTIS trialists.</strong> Amitriptyline at low-dose and titrated for irritable bowel syndrome as second-line treatment in primary care (ATLANTIS): a randomised, double-blind, placebo-controlled, phase 3 trial. <em>The Lancet</em> 2023;402(10414):1773–1785. DOI: 10.1016/S0140-6736(23)01523-4</p>
+          <div class="ref-links">
+            <a href="https://www.thelancet.com/article/S0140-6736(23)01523-4/fulltext" target="_blank" class="ref-pill ref-pill-journal">Lancet Full Text</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/37858323/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 37858323</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <h4>The Rome IV criteria — defining IBS for diagnosis and research</h4>
+        <p>The Rome IV criteria, published in Gastroenterology in 2016 by Mearin, Lacy, Chang and colleagues on behalf of the Rome Foundation, are the current internationally agreed diagnostic criteria for IBS and other functional bowel disorders. The paper classifies IBS as a disorder of gut-brain interaction, defines the four subtypes (IBS-D, IBS-C, IBS-M, IBS-U), and sets the diagnostic threshold as recurrent abdominal pain at least one day per week for three months, associated with two or more of: change in stool frequency, change in stool form, or pain related to defecation. The Rome IV criteria replaced Rome III (which required three days per month) and removed the term "discomfort" — pain is now required. These criteria underpin virtually all modern IBS clinical trials and are the standard used by the NHS for diagnosis.</p>
+
+        <div class="ref-block">
+          <p class="ref-full"><strong>Mearin F, Lacy BE, Chang L, Chey WD, Lembo AJ, Simren M, Spiller R.</strong> Bowel Disorders. <em>Gastroenterology</em> 2016;150(6):1393–1407.e5. DOI: 10.1053/j.gastro.2016.02.031</p>
+          <div class="ref-links">
+            <a href="https://www.gastrojournal.org/article/S0016-5085(16)00222-5/fulltext" target="_blank" class="ref-pill ref-pill-journal">Gastroenterology Full Text</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/27144627/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 27144627</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PUTTING IT TOGETHER -->
+    <div class="putting-together">
+      <div class="putting-together-header">
+        <svg viewBox="0 0 20 20" fill="none"><path d="M10 2l2.5 5 5.5.8-4 3.9.9 5.5L10 14.5l-4.9 2.7.9-5.5L2 7.8l5.5-.8L10 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <h5>Putting it all together</h5>
+      </div>
+      <p>IBS is one of the conditions most poorly served by the traditional model of medicine — where a scan or blood test tells you what's wrong. With IBS, the investigations are normal. That doesn't mean the patient is fine. It means the problem lies in a system we can't easily image: the gut-brain axis.</p>
+      <p>The good news is that the evidence base has never been stronger. Dietary therapy, psychological therapy, and medication all have solid trial evidence. The 2023 ATLANTIS trial in particular has given GPs a clear signal that low-dose amitriptyline should be offered more widely as second-line treatment — not reserved for specialist centres.</p>
+      <p><strong>If you have IBS — you deserve a proper explanation of what it is, a structured management plan, and access to the treatments that work. Don't accept "everything's normal, it's probably stress" without more.</strong></p>
+    </div>
+
+  </section>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4M10 14h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <p><strong>This article is health education, not medical advice.</strong> It is intended to help you understand IBS and the evidence around it — not to replace a consultation with your own doctor. If you are concerned about any symptoms, please speak with your GP or a qualified healthcare professional.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>helf.school — <a href="index.html">Home</a> · <a href="helf-school-conditions.html">Conditions</a> · Health Education for Everyone</p>
+  <p style="margin-top:.5rem;font-size:.72rem;opacity:.6">© 2025 helf.school. All content is health education only — not medical advice.</p>
+</footer>
+
+</body>
+</html>

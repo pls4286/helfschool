@@ -1,22 +1,515 @@
-<!doctype html><html data-build-id="e40ee6bae5" data-git-hash="654e79e27f66fcc2b0e9f1c32835c8e40ee6bae5" data-build-timestamp="1776218831" data-version="1.0.0" data-env="" data-color-version="v2" lang="en" data-theme="claude" data-mode="light" class="h-screen antialiased scroll-smooth"><head data-ion-ip-country="GB"><link rel="preconnect" href="https://assets-proxy.anthropic.com" crossorigin><link rel="dns-prefetch" href="https://assets-proxy.anthropic.com"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Claude</title><meta name="description" content="Claude is Anthropic's AI, built for problem solvers. Tackle complex challenges, analyze data, write code, and think through your hardest work."><meta name="apple-itunes-app" content="app-id=6473753684"><meta property="og:type" content="website"><meta property="og:site_name" content="Claude"><meta property="og:image" content="https://claude.ai/images/claude_ogimage.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/svg+xml" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/cd02a42d9-Vq_H3mgS.svg"><link rel="icon" type="image/png" sizes="32x32" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/ce67964e7-CAX1bqSh.png"><link rel="icon" type="image/png" sizes="16x16" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c03e51811-DebilQLI.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c129d018a-jJjJELY8.png"><link rel="apple-touch-startup-image" href="/images/claude_app_icon.png"><link rel="manifest" href="/manifest.json"><meta name="mobile-web-app-capable" content="yes"><link rel="preload" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/cc27851ad-CFxw3nG7.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c66fc489e-C-BHYa_K.woff2" as="font" type="font/woff2" crossorigin><script type='text/javascript' nonce='x6ys6Fbi/Ty+Y/II4r0v5g==' src='https://claude.ai/zPDD58jVf0vrH7BDLHindVDTXj5Iv2whRZ_kwOr-CCR6q-Dlipi5KnYPNN3EhIgEiS-SrqfLpm1wftDWAVGYXzFpPobQ4sdiY91cK1_byxS1bPcDI5T50mfSe0Pxh5xtvof9fE0UjcbNv7uzY3ZP59IUvlECOE2eKvW9ap91cMZ4vHyOTfrAauz7Hdc1pnJz4-QlT4-DzD9VSWQQq4j4uLwMDMoKBBno-Mr-n0mV5WbnDRjekSWQoVXn2vxbPrdzuJtfWnmg_xTGUFZOBFkkzWpLyZCYSreS3qHYdwxgseKnefgree782wy8iI60UCUj16EwCeO_gSE5Jdi5_s9z-WpLCiYRnrPKFO9n7SKYcOMB1YF0otJyIZ4MRoZ542now07bjTEL5wIiO5GVQxh-Nomje7ankgOUzZIQN0teI6TORYHWZxKmBe2TLWAd4d7HCNskJbvM8PA_hEbMFb2qQf-X13mLP1CacoPSggy5t83SJass'></script><script nonce="x6ys6Fbi/Ty+Y/II4r0v5g==">void 0===globalThis.process&&(globalThis.process={env:{},cwd:function(){return"/"}}),void 0===globalThis.global&&(globalThis.global=globalThis)</script><script type="application/ld+json" nonce="x6ys6Fbi/Ty+Y/II4r0v5g==">{
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "name": "Claude",
-            "alternateName": ["Claude.ai", "Claude by Anthropic"],
-            "url": "https://claude.com"
-          },
-          {
-            "@type": "Organization",
-            "name": "Anthropic",
-            "url": "https://www.anthropic.com",
-            "logo": "https://claude.ai/images/claude_ogimage.png",
-            "sameAs": [
-              "https://x.com/AnthropicAI",
-              "https://www.linkedin.com/company/anthropic",
-              "https://www.youtube.com/@anthropic-ai"
-            ]
-          }
-        ]
-      }</script><script nonce="x6ys6Fbi/Ty+Y/II4r0v5g==">!function(){try{performance.mark?.("rq_cache:preload_start");const e="keyval-store",o="keyval",r="react-query-cache",t=new Promise(t=>{if(!window.indexedDB)return void t(void 0);const c=indexedDB.open(e);c.onupgradeneeded=()=>{c.transaction?.abort()},c.onerror=()=>t(void 0),c.onsuccess=()=>{const a=c.result;if(!a.objectStoreNames.contains(o))return a.close(),indexedDB.deleteDatabase(e),void t(void 0);try{const e=a.transaction(o,"readonly").objectStore(o).get(r);e.onerror=()=>{a.close(),t(void 0)},e.onsuccess=()=>{a.close(),window.__PRELOADED_IDB_CACHE_RESULT__=e.result,t(e.result)}}catch{a.close(),t(void 0)}}});window.__PRELOADED_IDB_CACHE__=t,performance.measure?.("rq_cache:preload_exec",{start:"rq_cache:preload_start"})}catch{}}()</script><script type="module" crossorigin src="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/index-BL8bstaL.js" nonce="x6ys6Fbi/Ty+Y/II4r0v5g=="></script><link rel="modulepreload" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-BGCjnHf-.js"><link rel="modulepreload" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/tree-sitter-BfScwQVn.js"><link rel="stylesheet" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c6a992d55-BX1RVofc.css"></head><body class="bg-bg-100 text-text-100 font-ui min-h-screen"><div id="root"></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <title>Bloating — Teleprompter | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #000;
+      --text: #fff;
+      --highlight: #D47C3A;
+      --dim: rgba(255,255,255,.45);
+      --speed: 80px; /* pixels per second at speed 1 */
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html, body {
+      width:100%; height:100%;
+      background:var(--bg);
+      font-family:'DM Sans', sans-serif;
+      overflow:hidden;
+      touch-action:none;
+    }
+
+    /* ── CONTROL BAR ── */
+    .controls {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      background:rgba(0,0,0,.90);
+      border-bottom:1px solid rgba(255,255,255,.10);
+      height:52px;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 1rem;
+      gap:.5rem;
+    }
+    .ctrl-left { display:flex; align-items:center; gap:.75rem; }
+    .ctrl-right { display:flex; align-items:center; gap:.5rem; }
+
+    .ctrl-btn {
+      background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.20);
+      color:#fff; font-size:.8rem; font-weight:600;
+      padding:.35rem .85rem; border-radius:7px; cursor:pointer;
+      transition:background .15s; white-space:nowrap;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .ctrl-btn:hover, .ctrl-btn:active { background:rgba(255,255,255,.22); }
+    .ctrl-btn.active { background:var(--highlight); border-color:var(--highlight); }
+
+    .speed-wrap { display:flex; align-items:center; gap:.4rem; }
+    .speed-label { font-size:.72rem; color:rgba(255,255,255,.55); white-space:nowrap; }
+    .speed-btn {
+      width:28px; height:28px;
+      background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.18);
+      color:#fff; font-size:.9rem; font-weight:700;
+      border-radius:6px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .speed-btn:active { background:rgba(255,255,255,.25); }
+    .speed-val { font-size:.8rem; font-weight:600; color:var(--highlight); min-width:18px; text-align:center; }
+
+    .font-wrap { display:flex; align-items:center; gap:.35rem; }
+    .font-label { font-size:.72rem; color:rgba(255,255,255,.55); }
+    .font-btn {
+      width:28px; height:28px;
+      background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.18);
+      color:#fff; border-radius:6px; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      font-size:.85rem; font-weight:700;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .font-btn:active { background:rgba(255,255,255,.25); }
+
+    .seg-indicator {
+      font-size:.72rem; color:rgba(255,255,255,.45);
+      white-space:nowrap;
+    }
+    .seg-indicator span { color:var(--highlight); font-weight:600; }
+
+    /* ── SCROLL CONTAINER ── */
+    .scroll-outer {
+      position:fixed;
+      top:52px; bottom:56px; left:0; right:0;
+      overflow:hidden;
+    }
+
+    /* Gradient fade top and bottom */
+    .scroll-outer::before,
+    .scroll-outer::after {
+      content:''; position:absolute; left:0; right:0; z-index:10; pointer-events:none;
+    }
+    .scroll-outer::before {
+      top:0; height:80px;
+      background:linear-gradient(to bottom, #000 0%, transparent 100%);
+    }
+    .scroll-outer::after {
+      bottom:0; height:80px;
+      background:linear-gradient(to top, #000 0%, transparent 100%);
+    }
+
+    /* Reading line marker */
+    .reading-line {
+      position:absolute;
+      top:50%;
+      left:0; right:0;
+      height:2px;
+      background:rgba(212,124,58,.35);
+      z-index:9;
+      pointer-events:none;
+    }
+
+    .scroll-inner {
+      padding:50vh 2rem 50vh;
+      will-change:transform;
+    }
+
+    /* ── SEGMENT ── */
+    .segment { margin-bottom:3.5rem; }
+
+    .seg-header {
+      display:flex; align-items:center; gap:.6rem;
+      margin-bottom:1rem;
+      padding-bottom:.6rem;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .seg-badge {
+      font-size:.65rem; font-weight:700; letter-spacing:.1em;
+      text-transform:uppercase; padding:.15rem .55rem; border-radius:100px;
+    }
+    .sb-opening  { background:rgba(212,124,58,.25); color:var(--highlight); }
+    .sb-section  { background:rgba(255,255,255,.10); color:rgba(255,255,255,.70); }
+    .sb-cta      { background:rgba(122,158,135,.25); color:#7A9E87; }
+    .sb-closing  { background:rgba(232,168,74,.25);  color:#E8A84A; }
+    .seg-name { font-size:.72rem; font-weight:600; color:rgba(255,255,255,.45); }
+    .seg-time { font-size:.68rem; color:rgba(255,255,255,.30); margin-left:auto; }
+    .seg-heading {
+      font-size:1rem; font-weight:600;
+      color:rgba(255,255,255,.40);
+      margin-bottom:.85rem;
+      letter-spacing:.02em;
+    }
+
+    /* ── SCRIPT LINES ── */
+    .script-line {
+      font-size:1.9rem;
+      line-height:1.75;
+      color:var(--text);
+      font-weight:400;
+      margin-bottom:.9rem;
+      padding:.25rem 0;
+    }
+    .script-line strong { color:var(--highlight); font-weight:600; }
+
+    .pause-marker {
+      display:inline-flex; align-items:center; gap:.4rem;
+      background:rgba(212,124,58,.15); border:1px solid rgba(212,124,58,.35);
+      color:var(--highlight); font-size:.85rem; font-weight:700;
+      letter-spacing:.12em; text-transform:uppercase;
+      padding:.3rem .9rem; border-radius:100px;
+      margin:.3rem 0;
+    }
+
+    .visual-cue {
+      display:flex; align-items:center; gap:.6rem;
+      background:rgba(232,99,74,.12); border:2px solid rgba(232,99,74,.50);
+      border-radius:10px; padding:.55rem 1rem;
+      margin:.5rem 0;
+    }
+    .visual-cue-icon { font-size:1.1rem; flex-shrink:0; }
+    .visual-cue-text { font-size:.95rem; font-weight:700; color:#fff; line-height:1.4; }
+    .visual-cue-text span { color:#E8634A; }
+
+    /* ── BOTTOM NAV ── */
+    .bottom-nav {
+      position:fixed; bottom:0; left:0; right:0; z-index:100;
+      background:rgba(0,0,0,.90);
+      border-top:1px solid rgba(255,255,255,.10);
+      height:56px;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 1rem; gap:.5rem;
+    }
+    .nav-btn {
+      background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.18);
+      color:#fff; font-size:.82rem; font-weight:600;
+      padding:.4rem 1rem; border-radius:8px; cursor:pointer;
+      -webkit-tap-highlight-color:transparent;
+      transition:background .15s;
+    }
+    .nav-btn:active { background:rgba(255,255,255,.25); }
+    .nav-btn.primary { background:var(--highlight); border-color:var(--highlight); }
+    .nav-btn.primary:active { background:#C06A2A; }
+
+    .progress-dots { display:flex; gap:.35rem; }
+    .dot {
+      width:7px; height:7px; border-radius:50%;
+      background:rgba(255,255,255,.18); cursor:pointer;
+      transition:all .2s;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .dot.active { background:var(--highlight); transform:scale(1.4); }
+  </style>
+</head>
+<body>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <div class="ctrl-left">
+    <button class="ctrl-btn" id="playBtn" onclick="togglePlay()">▶ Play</button>
+    <button class="ctrl-btn" onclick="resetScroll()">↺ Reset</button>
+    <div class="speed-wrap">
+      <div class="speed-label">Speed</div>
+      <div class="speed-btn" onclick="changeSpeed(-1)">−</div>
+      <div class="speed-val" id="speedVal">1</div>
+      <div class="speed-btn" onclick="changeSpeed(1)">+</div>
+    </div>
+    <div class="font-wrap">
+      <div class="font-label">Size</div>
+      <div class="font-btn" onclick="changeFont(-2)">A−</div>
+      <div class="font-btn" onclick="changeFont(2)">A+</div>
+    </div>
+  </div>
+  <div class="ctrl-right">
+    <div class="seg-indicator">Segment <span id="segDisplay">1</span> of 9</div>
+  </div>
+</div>
+
+<!-- READING LINE -->
+<div class="scroll-outer">
+  <div class="reading-line"></div>
+  <div class="scroll-inner" id="scrollInner"></div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <button class="nav-btn" id="prevBtn" onclick="jumpSeg(-1)" disabled>← Back</button>
+  <div class="progress-dots" id="dots"></div>
+  <button class="nav-btn primary" id="nextBtn" onclick="jumpSeg(1)">Next →</button>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+//  SCRIPT DATA
+// ══════════════════════════════════════════════
+const segments = [
+  { type:'opening', label:'Intro · Dr Paul', title:'Introduction', time:'~15 sec',
+    lines:[
+      `"I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019."`,
+      `"Today I want to talk to you about <strong>bloating</strong> — what's actually causing it, what the evidence says about managing it, and when it matters enough to see your doctor."`,
+      `"What I'm giving you here is health education, not medical advice. If anything feels relevant to you personally, please do take it to your own doctor."`,
+      `"Right — let's get into it."`,
+      `<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 1: 64% stat card</span> · advance now</div></div>`,
+    ]
+  },
+  { type:'opening', label:'Segment 1', title:'The Symptom Nobody Talks About', time:'0:00–0:40',
+    lines:[
+      `"Bloating is one of the most common digestive symptoms there is. Nearly <strong>two thirds of UK adults</strong> experience it in any given month."`,
+      `<span class="pause-marker">⏸ PAUSE</span>`,
+      `"Most people don't mention it to their GP. They assume it's normal, or something they ate, or just something to put up with. And yet bloating is the digestive symptom that causes the most anxiety — more than heartburn, more than abdominal pain."`,
+      `"So let's take it seriously. Because in most cases, there's a reason for it — and once you know the reason, it's manageable."`,
+      `<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 2: How bloating happens (gut diagram)</span> · advance now</div></div>`,
+    ]
+  },
+  { type:'section', label:'Segment 2', title:'What Is Actually Happening', time:'0:40–1:30',
+    lines:[
+      `"Bloating isn't one thing. There are several different mechanisms — and which one applies to you determines what you do about it."`,
+      `"The most common: certain carbohydrates — particularly <strong>FODMAPs</strong> — aren't fully absorbed in the small intestine. They pass into the colon, where bacteria ferment them rapidly and produce gas. The gut distends. You feel bloated. We'll come back to FODMAP foods in a moment — you may well have heard of them, but not be entirely sure what they are."`,
+      `"But gas production is only part of the story. Some people produce entirely normal amounts of gas — but their gut nerves are oversensitive. They feel what most people wouldn't notice. This is called <strong>visceral hypersensitivity</strong>, and it's central to IBS."`,
+      `"There's also <strong>impaired gas transit</strong> — gas that doesn't move through efficiently. Constipation makes this worse. Slowed gut motility means pressure builds rather than passing."`,
+      `"And then there's <strong>SIBO</strong> — Small Intestinal Bacterial Overgrowth — where bacteria that normally live in the colon end up in the small intestine and ferment food much earlier than they should."`,
+      `<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 3: Six causes cards (numbered 1–6)</span> · advance now</div></div>`,
+    ]
+  },
+  { type:'section', label:'Segment 3', title:'The Six Main Causes', time:'1:30–2:15',
+    lines:[
+      `"So the six main causes are: <strong>excess gas production</strong> from fermentation; <strong>impaired gas transit</strong>; <strong>visceral hypersensitivity</strong>; <strong>SIBO</strong>; <strong>food intolerances</strong> — particularly lactose and fructose; and <strong>gut microbiome imbalance</strong>."`,
+      `"The reason this matters is that each one has a different approach. If you've been told to try a low-FODMAP diet and it hasn't worked, it's possible your bloating isn't FODMAP-driven — it might be visceral hypersensitivity, or constipation, or something else entirely."`,
+      `"There are also less common but important causes — coeliac disease, and in women, persistent unexplained bloating can occasionally be the first sign of an ovarian problem. That's a reason not to just ignore it."`,
+      `<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 4: FODMAP swap table</span> · advance now</div></div>`,
+    ]
+  },
+  { type:'section', label:'Segment 4', title:'FODMAPs — What to Eat and What to Avoid', time:'2:15–3:00',
+    lines:[
+      `"<strong>FODMAPs</strong> — Fermentable Oligosaccharides, Disaccharides, Monosaccharides And Polyols. A group of short-chain carbohydrates that are poorly absorbed and rapidly fermented in the gut."`,
+      `"The key ones: <strong>onion and garlic</strong> are among the highest FODMAP foods — they're in almost everything. <strong>Wheat</strong> — bread, pasta, cereals. <strong>Dairy</strong> — specifically the lactose. <strong>Apples, pears, mangoes</strong>. <strong>Beans and lentils</strong>."`,
+      `"The low-FODMAP alternatives aren't restrictive — they're specific. Rice instead of wheat. Lactose-free milk instead of regular. Firm banana instead of apple. Hard cheese is fine. Strawberries are fine. Carrots are fine."`,
+      `"One critical point: the low-FODMAP diet is a <strong>diagnostic tool, not a permanent diet</strong>. You restrict for 2 to 6 weeks, then reintroduce foods one by one to find your specific triggers. Most people can eat the majority of foods again once they've identified what actually bothers them."`,
+      `<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 5: Investigation &amp; management ladder</span> · advance now</div></div>`,
+    ]
+  },
+  { type:'section', label:'Segment 5', title:'What Your Doctor Will Do', time:'3:00–3:50',
+    lines:[
+      `"Most bloating doesn't need extensive investigation — the history is usually informative enough. But there are targeted tests when there's clinical reason."`,
+      `"A blood test will check for <strong>coeliac disease, anaemia, and thyroid problems</strong>. A hydrogen breath test can diagnose lactose intolerance, fructose malabsorption, and SIBO. If you're a woman with new, persistent bloating, a pelvic ultrasound to check the ovaries is appropriate."`,
+      `"Management depends on the cause. Dietary approaches — particularly a <strong>dietitian-led low-FODMAP trial</strong> — are first line. Lactose exclusion for 2 to 4 weeks is a simple first step. Addressing constipation matters — it significantly worsens bloating."`,
+      `"For medication: antispasmodics like mebeverine can help with spasm. Low-dose antidepressants modulate gut-brain signalling and are genuinely useful in IBS. Rifaximin is used for SIBO when confirmed."`,
+      `"Gut-directed hypnotherapy and CBT have good evidence — particularly when there's anxiety or a significant gut-brain axis component."`,
+      `"One important caution: <strong>don't start a gluten-free diet before you've been tested for coeliac disease.</strong> Removing gluten beforehand will give a false-negative result."`,
+      `<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 6: Research evidence cards</span> · advance now</div></div>`,
+    ]
+  },
+  { type:'section', label:'Segment 6', title:'What the Research Shows', time:'3:50–4:30',
+    lines:[
+      `"Let me take you through the key evidence."`,
+      `"The <strong>Rome Foundation Global Epidemiology Study</strong> — 51,000 people across 26 countries — found that nearly 18% of the general population experience bloating at least once a week. Women are twice as likely as men."`,
+      `"The <strong>landmark FODMAP trial</strong> — Halmos and colleagues, Monash University, 2014 — was a randomised controlled crossover study. IBS patients on a low-FODMAP diet had significantly lower symptom scores, and specifically reduced bloating, pain, and wind."`,
+      `"A <strong>2022 Gut network meta-analysis</strong> pooled 13 randomised trials and found the low-FODMAP diet ranked first for all endpoints — global symptoms, abdominal pain, and specifically bloating and distension."`,
+      `"And a <strong>2025 UK survey</strong> confirmed that 64% of adults — including those with no diagnosed gut condition — had bloating in the past month. It was the symptom that caused the most anxiety."`,
+      `<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 7: Three action cards</span> · advance now</div></div>`,
+    ]
+  },
+  { type:'cta', label:'Segment 7', title:'Three Things You Can Do', time:'4:30–5:00',
+    lines:[
+      `"<strong>First: if bloating is affecting your quality of life — talk to your GP.</strong> Don't just put up with it. There are good treatments, and there may be an underlying cause worth finding."`,
+      `"<strong>Second: keep a food and symptom diary for two weeks before you go.</strong> Write down what you eat and when symptoms occur. This is more useful than any test — it helps identify patterns, and it makes your GP appointment significantly more productive."`,
+      `"<strong>Third: if you want to trial low-FODMAP, ask for a referral to a registered dietitian.</strong> Done without guidance, the diet is often done incorrectly. A dietitian makes a real difference to the outcome."`,
+      `"The full article — including the FODMAP table and reference list — is at <strong>helf.school</strong>, Article 15 in the Digestive Health series."`,
+      `<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 8: helf.school closing card</span> · advance now</div></div>`,
+    ]
+  },
+  { type:'closing', label:'Segment 8', title:'Sign-off', time:'5:00–5:15',
+    lines:[
+      `"Bloating is one of those symptoms that gets dismissed too easily — by patients, and sometimes by doctors too."`,
+      `"Most of the time, there's a reason. And when you find it, it's manageable. That's worth knowing."`,
+      `<span class="pause-marker">⏸ PAUSE</span>`,
+      `"Thanks for watching. <strong>helf.school</strong> — take care of yourself."`,
+    ]
+  },
+];
+
+// ══════════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════════
+let playing = false;
+let speed = 1;       // 1–6
+let fontSize = 1.9;  // rem
+let rafId = null;
+let scrollY = 0;
+let lastTime = null;
+let currentSeg = 0;
+
+const PX_PER_SEC_BASE = 20;
+const segOffsets = [];
+
+// ══════════════════════════════════════════════
+//  BUILD DOM
+// ══════════════════════════════════════════════
+function build() {
+  const inner = document.getElementById('scrollInner');
+  const badgeCls = { opening:'sb-opening', section:'sb-section', cta:'sb-cta', closing:'sb-closing' };
+  const badgeLbl = { opening:'Opening', section:'Section', cta:'Call to Action', closing:'Closing' };
+
+  let html = '';
+  segments.forEach((s, i) => {
+    html += `<div class="segment" id="seg${i}">
+      <div class="seg-header">
+        <span class="seg-badge ${badgeCls[s.type]}">${badgeLbl[s.type]}</span>
+        <span class="seg-name">${s.label}</span>
+        <span class="seg-time">${s.time}</span>
+      </div>
+      <div class="seg-heading">${s.title}</div>`;
+    s.lines.forEach(l => {
+      if (l.startsWith('<span class="pause-marker"') || l.startsWith('<div class="visual-cue"')) {
+        html += `<div style="margin:.4rem 0;">${l}</div>`;
+      } else {
+        html += `<div class="script-line">${l}</div>`;
+      }
+    });
+    html += `</div>`;
+  });
+  inner.innerHTML = html;
+
+  // Build dots
+  const dotsEl = document.getElementById('dots');
+  segments.forEach((s, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0?' active':'');
+    d.title = s.title;
+    d.onclick = () => jumpToSeg(i);
+    dotsEl.appendChild(d);
+  });
+}
+
+// ══════════════════════════════════════════════
+//  SCROLL ANIMATION
+// ══════════════════════════════════════════════
+function getScrollOuter() { return document.querySelector('.scroll-outer'); }
+function getScrollInner() { return document.getElementById('scrollInner'); }
+
+function togglePlay() {
+  playing = !playing;
+  const btn = document.getElementById('playBtn');
+  if (playing) {
+    btn.textContent = '⏸ Pause';
+    btn.classList.add('active');
+    lastTime = null;
+    rafId = requestAnimationFrame(tick);
+  } else {
+    btn.textContent = '▶ Play';
+    btn.classList.remove('active');
+    if (rafId) cancelAnimationFrame(rafId);
+  }
+}
+
+function tick(ts) {
+  if (!lastTime) lastTime = ts;
+  const dt = (ts - lastTime) / 1000;
+  lastTime = ts;
+  const pxPerSec = PX_PER_SEC_BASE * speed;
+  scrollY += pxPerSec * dt;
+  applyScroll();
+  updateSegIndicator();
+  if (playing) rafId = requestAnimationFrame(tick);
+}
+
+function applyScroll() {
+  const inner = getScrollInner();
+  const maxScroll = inner.scrollHeight - window.innerHeight;
+  scrollY = Math.min(Math.max(scrollY, 0), maxScroll);
+  inner.style.transform = `translateY(${-scrollY}px)`;
+}
+
+function resetScroll() {
+  if (playing) togglePlay();
+  scrollY = 0;
+  applyScroll();
+  currentSeg = 0;
+  updateDots();
+  document.getElementById('segDisplay').textContent = '1';
+  document.getElementById('prevBtn').disabled = true;
+  document.getElementById('nextBtn').textContent = 'Next →';
+}
+
+function changeSpeed(dir) {
+  speed = Math.min(Math.max(speed + dir, 1), 6);
+  document.getElementById('speedVal').textContent = speed;
+}
+
+function changeFont(dir) {
+  fontSize = Math.min(Math.max(fontSize + dir * 0.1, 1.0), 2.8);
+  document.querySelectorAll('.script-line').forEach(el => {
+    el.style.fontSize = fontSize + 'rem';
+  });
+}
+
+// ══════════════════════════════════════════════
+//  SEGMENT NAVIGATION
+// ══════════════════════════════════════════════
+function getSegTop(i) {
+  const el = document.getElementById('seg' + i);
+  if (!el) return 0;
+  // offsetTop relative to scroll-inner, accounting for padding-top (50vh)
+  const outerH = getScrollOuter().clientHeight;
+  return el.offsetTop - outerH * 0.5 + 60;
+}
+
+function jumpToSeg(i) {
+  if (playing) togglePlay();
+  currentSeg = Math.min(Math.max(i, 0), segments.length - 1);
+  scrollY = Math.max(getSegTop(currentSeg), 0);
+  applyScroll();
+  updateDots();
+  updateSegIndicator();
+  document.getElementById('prevBtn').disabled = currentSeg === 0;
+  document.getElementById('nextBtn').textContent = currentSeg === segments.length - 1 ? '✓ Done' : 'Next →';
+}
+
+function jumpSeg(dir) {
+  jumpToSeg(currentSeg + dir);
+}
+
+function updateSegIndicator() {
+  // Find which segment the reading line (mid-screen) is currently at
+  const midY = scrollY + getScrollOuter().clientHeight * 0.5;
+  for (let i = segments.length - 1; i >= 0; i--) {
+    const el = document.getElementById('seg' + i);
+    if (el && el.offsetTop <= midY + 40) {
+      if (currentSeg !== i) {
+        currentSeg = i;
+        updateDots();
+        document.getElementById('segDisplay').textContent = i + 1;
+        document.getElementById('prevBtn').disabled = i === 0;
+        document.getElementById('nextBtn').textContent = i === segments.length - 1 ? '✓ Done' : 'Next →';
+      }
+      break;
+    }
+  }
+}
+
+function updateDots() {
+  document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===currentSeg));
+  document.getElementById('segDisplay').textContent = currentSeg + 1;
+}
+
+// Touch swipe for manual scroll
+let touchStartY = 0;
+let touchScrollY = 0;
+document.querySelector('.scroll-outer').addEventListener('touchstart', e => {
+  if (playing) return;
+  touchStartY = e.touches[0].clientY;
+  touchScrollY = scrollY;
+}, { passive:true });
+document.querySelector('.scroll-outer').addEventListener('touchmove', e => {
+  if (playing) return;
+  const dy = touchStartY - e.touches[0].clientY;
+  scrollY = touchScrollY + dy;
+  applyScroll();
+  updateSegIndicator();
+}, { passive:true });
+
+// ══════════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════════
+build();
+applyScroll();
+</script>
+</body>
+</html>

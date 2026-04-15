@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seven Lifestyle Factors</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #1B2A4A;
+      --coral: #E8634A;
+      --cream: #FAF7F2;
+      --sage: #7A9E87;
+      --amber: #E8A84A;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--navy);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Sans', sans-serif;
+      padding: 2rem 1.5rem;
+    }
+
+    .title-block {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .title-block h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.35rem;
+    }
+
+    .title-block p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.04em;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.9rem;
+      max-width: 780px;
+      width: 100%;
+    }
+
+    /* Card 4 and 5 shift to centre on second row */
+    .cards-grid .card:nth-child(4) { grid-column: 1; }
+
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 1.4rem 1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: 3px 3px 0 0;
+    }
+
+    .card-0::before { background: #E8634A; }
+    .card-1::before { background: #7A9E87; }
+    .card-2::before { background: #E8A84A; }
+    .card-3::before { background: #A84AE8; }
+    .card-4::before { background: #4A9EE8; }
+    .card-5::before { background: #E84A8E; }
+    .card-6::before { background: #4AE8B0; }
+
+    .card-icon {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+
+    .card-0 .card-icon { background: rgba(232,99,74,0.15); }
+    .card-1 .card-icon { background: rgba(122,158,135,0.15); }
+    .card-2 .card-icon { background: rgba(232,168,74,0.15); }
+    .card-3 .card-icon { background: rgba(168,74,232,0.15); }
+    .card-4 .card-icon { background: rgba(74,158,232,0.15); }
+    .card-5 .card-icon { background: rgba(232,74,142,0.15); }
+    .card-6 .card-icon { background: rgba(74,232,176,0.15); }
+
+    .card-name {
+      font-family: 'Fraunces', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .card-desc {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.45;
+    }
+
+    .card-desc .highlight {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 0.3rem;
+      line-height: 1.1;
+    }
+
+    .card-0 .highlight { color: #E8634A; }
+    .card-1 .highlight { color: #7A9E87; }
+    .card-2 .highlight { color: #E8A84A; }
+    .card-3 .highlight { color: #A84AE8; }
+    .card-4 .highlight { color: #4A9EE8; }
+    .card-5 .highlight { color: #E84A8E; }
+    .card-6 .highlight { color: #4AE8B0; }
+
+    .card-number {
+      position: absolute;
+      top: 0.55rem;
+      right: 0.65rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.05em;
+    }
+
+    /* Bottom row: cards 4-6 centred */
+    .row-bottom {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.9rem;
+      max-width: 780px;
+      width: 100%;
+      margin-top: 0;
+      padding: 0 calc(780px / 8);
+    }
+
+    .controls {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      background: var(--coral);
+      color: #fff;
+      border: none;
+      padding: 0.55rem 1.4rem;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn:hover { background: #D04A33; }
+    .btn:active { transform: scale(0.97); }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.7);
+    }
+
+    .btn-outline:hover { background: rgba(255,255,255,0.06); color:#fff; }
+
+    .progress-bar {
+      width: 100%;
+      max-width: 780px;
+      height: 3px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 3px;
+      margin-bottom: 1.25rem;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--coral);
+      border-radius: 3px;
+      transition: width 0.4s ease;
+      width: 0%;
+    }
+
+    @media (max-width: 600px) {
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .row-bottom { grid-template-columns: repeat(2, 1fr); padding: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="title-block">
+  <h1>Seven factors. All modifiable.</h1>
+  <p>The lifestyle levers with the strongest evidence behind them</p>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+<!-- Top row: 4 cards -->
+<div class="cards-grid" id="topRow">
+  <div class="card card-0" id="card-0">
+    <div class="card-number">01</div>
+    <div class="card-icon">🥗</div>
+    <div class="card-name">Diet</div>
+    <div class="card-desc"><span class="highlight">−30% CV events</span>Mediterranean pattern — PREDIMED trial</div>
+  </div>
+  <div class="card card-1" id="card-1">
+    <div class="card-number">02</div>
+    <div class="card-icon">🚶</div>
+    <div class="card-name">Physical Activity</div>
+    <div class="card-desc"><span class="highlight">−17% CVD risk</span>Just 11 minutes brisk walking per day</div>
+  </div>
+  <div class="card card-2" id="card-2">
+    <div class="card-number">03</div>
+    <div class="card-icon">🚭</div>
+    <div class="card-name">Smoking</div>
+    <div class="card-desc"><span class="highlight">−36% further heart attack risk</span>Stopping smoking — more than most medications</div>
+  </div>
+  <div class="card card-3" id="card-3">
+    <div class="card-number">04</div>
+    <div class="card-icon">⚖️</div>
+    <div class="card-name">Body Weight</div>
+    <div class="card-desc"><span class="highlight">5–10% weight loss</span>Produces clinically meaningful reductions in BP and LDL</div>
+  </div>
+</div>
+
+<!-- Bottom row: 3 cards centred -->
+<div style="display:grid; grid-template-columns: repeat(3,1fr); gap:0.9rem; max-width:590px; width:100%; margin-top:0.9rem;">
+  <div class="card card-4" id="card-4">
+    <div class="card-number">05</div>
+    <div class="card-icon">🍷</div>
+    <div class="card-name">Alcohol</div>
+    <div class="card-desc"><span class="highlight">No safe level</span>Apparent protective effect of moderate drinking largely revised away</div>
+  </div>
+  <div class="card card-5" id="card-5">
+    <div class="card-number">06</div>
+    <div class="card-icon">🧠</div>
+    <div class="card-name">Stress</div>
+    <div class="card-desc"><span class="highlight">~33% of heart attack risk</span>Psychosocial stress — as significant as smoking globally</div>
+  </div>
+  <div class="card card-6" id="card-6">
+    <div class="card-number">07</div>
+    <div class="card-icon">😴</div>
+    <div class="card-name">Sleep</div>
+    <div class="card-desc"><span class="highlight">7–8 hrs sweet spot</span>Too little or too much both independently raise CV mortality</div>
+  </div>
+</div>
+
+<div class="controls">
+  <button class="btn btn-outline" onclick="resetCards()">↺ Replay</button>
+  <button class="btn" onclick="showAll()">Show all</button>
+</div>
+
+<script>
+  const cards = ['card-0','card-1','card-2','card-3','card-4','card-5','card-6'];
+  let shown = 0;
+  let autoTimer = null;
+
+  function showCard(i) {
+    if (i >= cards.length) return;
+    document.getElementById(cards[i]).classList.add('visible');
+    shown = i + 1;
+    document.getElementById('progress').style.width = (shown / cards.length * 100) + '%';
+  }
+
+  function resetCards() {
+    clearTimeout(autoTimer);
+    shown = 0;
+    cards.forEach(id => document.getElementById(id).classList.remove('visible'));
+    document.getElementById('progress').style.width = '0%';
+    startAuto();
+  }
+
+  function showAll() {
+    clearTimeout(autoTimer);
+    cards.forEach((id, i) => showCard(i));
+  }
+
+  function startAuto() {
+    let i = 0;
+    function next() {
+      if (i < cards.length) {
+        showCard(i++);
+        autoTimer = setTimeout(next, 600);
+      }
+    }
+    autoTimer = setTimeout(next, 400);
+  }
+
+  startAuto();
+</script>
+
+</body>
+</html>

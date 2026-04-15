@@ -1,22 +1,598 @@
-<!doctype html><html data-build-id="e40ee6bae5" data-git-hash="654e79e27f66fcc2b0e9f1c32835c8e40ee6bae5" data-build-timestamp="1776218831" data-version="1.0.0" data-env="" data-color-version="v2" lang="en" data-theme="claude" data-mode="light" class="h-screen antialiased scroll-smooth"><head data-ion-ip-country="GB"><link rel="preconnect" href="https://assets-proxy.anthropic.com" crossorigin><link rel="dns-prefetch" href="https://assets-proxy.anthropic.com"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Claude</title><meta name="description" content="Claude is Anthropic's AI, built for problem solvers. Tackle complex challenges, analyze data, write code, and think through your hardest work."><meta name="apple-itunes-app" content="app-id=6473753684"><meta property="og:type" content="website"><meta property="og:site_name" content="Claude"><meta property="og:image" content="https://claude.ai/images/claude_ogimage.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/svg+xml" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/cd02a42d9-Vq_H3mgS.svg"><link rel="icon" type="image/png" sizes="32x32" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/ce67964e7-CAX1bqSh.png"><link rel="icon" type="image/png" sizes="16x16" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c03e51811-DebilQLI.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c129d018a-jJjJELY8.png"><link rel="apple-touch-startup-image" href="/images/claude_app_icon.png"><link rel="manifest" href="/manifest.json"><meta name="mobile-web-app-capable" content="yes"><link rel="preload" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/cc27851ad-CFxw3nG7.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c66fc489e-C-BHYa_K.woff2" as="font" type="font/woff2" crossorigin><script type='text/javascript' nonce='n+swmamqD2po3ceXqGUo4Q==' src='https://claude.ai/wkkkhaQLe9siFfRLUtBvTGsJ3Lt0PT1dYKlVCUrGT4JOHUcp6EoWJUfziPBOQgbEQmcqBFkQFv_hTl5HBSHPvzoeQUYxVJWGtuJ-Kpvh38hPpJQqZX7MS04b7raUufNRueTlMvn2Sv7FzjTbMzYFtddCP2TyR3Mo-ISJc5EbNBYVXzz7_RqrXO0kwvCb6L47apVVzbrs4NlNS-O9JfXlqPJG1-CeL1kwoYuEP6ZmhJ3CDXmlVdUfryeMWS7vwzkdNQezGjYDbynD5Kof9IDS094nN3qeagIiuTj3y_YTsPGz6botQ6t4vZcKwZZepdRl41F_WVSo91r6lGPifH-3Mh_p6qZbn8dUMwHVHCCRxL9ISMrg-cyWhsEKrAudiZNEeNNl9xi7ojb0-HNtg_J6fiVLR2BHoypLQdyjuUDw8b0BRjaGsbTAkMEa-Cs7egNAfovB7o2zBIr9P5oCuvvOu1r6gRLgn59VcGWLJNXgElZtcF24'></script><script nonce="n+swmamqD2po3ceXqGUo4Q==">void 0===globalThis.process&&(globalThis.process={env:{},cwd:function(){return"/"}}),void 0===globalThis.global&&(globalThis.global=globalThis)</script><script type="application/ld+json" nonce="n+swmamqD2po3ceXqGUo4Q==">{
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "name": "Claude",
-            "alternateName": ["Claude.ai", "Claude by Anthropic"],
-            "url": "https://claude.com"
-          },
-          {
-            "@type": "Organization",
-            "name": "Anthropic",
-            "url": "https://www.anthropic.com",
-            "logo": "https://claude.ai/images/claude_ogimage.png",
-            "sameAs": [
-              "https://x.com/AnthropicAI",
-              "https://www.linkedin.com/company/anthropic",
-              "https://www.youtube.com/@anthropic-ai"
-            ]
-          }
-        ]
-      }</script><script nonce="n+swmamqD2po3ceXqGUo4Q==">!function(){try{performance.mark?.("rq_cache:preload_start");const e="keyval-store",o="keyval",r="react-query-cache",t=new Promise(t=>{if(!window.indexedDB)return void t(void 0);const c=indexedDB.open(e);c.onupgradeneeded=()=>{c.transaction?.abort()},c.onerror=()=>t(void 0),c.onsuccess=()=>{const a=c.result;if(!a.objectStoreNames.contains(o))return a.close(),indexedDB.deleteDatabase(e),void t(void 0);try{const e=a.transaction(o,"readonly").objectStore(o).get(r);e.onerror=()=>{a.close(),t(void 0)},e.onsuccess=()=>{a.close(),window.__PRELOADED_IDB_CACHE_RESULT__=e.result,t(e.result)}}catch{a.close(),t(void 0)}}});window.__PRELOADED_IDB_CACHE__=t,performance.measure?.("rq_cache:preload_exec",{start:"rq_cache:preload_start"})}catch{}}()</script><script type="module" crossorigin src="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/index-BL8bstaL.js" nonce="n+swmamqD2po3ceXqGUo4Q=="></script><link rel="modulepreload" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-BGCjnHf-.js"><link rel="modulepreload" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/tree-sitter-BfScwQVn.js"><link rel="stylesheet" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c6a992d55-BX1RVofc.css"></head><body class="bg-bg-100 text-text-100 font-ui min-h-screen"><div id="root"></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What Causes Bloating? — helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:    #1B2A4A;
+      --coral:   #E8634A;
+      --cream:   #FAF7F2;
+      --sage:    #7A9E87;
+      --amber:   #E8A84A;
+      --digest:  #D47C3A;
+      --digest-light: #FEF3E7;
+      --border:  #E5DDD4;
+      --muted:   #6B7280;
+      --text:    #2C2C2C;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+    nav{background:var(--navy);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(27,42,74,.18)}
+    .nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none}
+    .logo-svg{width:36px;height:36px;flex-shrink:0}
+    .logo-text{display:flex;flex-direction:column;line-height:1.1}
+    .logo-name{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600;color:#fff;letter-spacing:.01em}
+    .logo-tagline{font-size:.6rem;font-weight:500;color:var(--sage);letter-spacing:.18em;text-transform:uppercase}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:.875rem;font-weight:500;transition:color .2s}
+    .nav-links a:hover{color:#fff}
+    .breadcrumb{background:var(--navy);padding:.6rem 2rem;border-bottom:1px solid rgba(255,255,255,.08)}
+    .breadcrumb-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:rgba(255,255,255,.75)}
+    .breadcrumb-inner a{color:rgba(255,255,255,.75);text-decoration:none;transition:color .2s}
+    .breadcrumb-inner a:hover{color:rgba(255,255,255,.95)}
+    .breadcrumb-inner span{color:var(--digest);font-weight:500}
+    .article-hero{background:var(--navy);padding:3.5rem 2rem 3rem;position:relative;overflow:hidden}
+    .article-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(212,124,58,.12) 0%,transparent 70%);pointer-events:none}
+    .article-hero::after{content:'';position:absolute;bottom:-40px;left:10%;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(122,158,135,.1) 0%,transparent 70%);pointer-events:none}
+    .hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+    .category-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(212,124,58,.15);border:1px solid rgba(212,124,58,.3);color:var(--digest);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .75rem;border-radius:100px;margin-bottom:1.25rem}
+    .article-hero h1{font-family:'Fraunces',serif;font-size:clamp(2rem,5vw,3rem);font-weight:700;color:#fff;line-height:1.15;margin-bottom:.5rem}
+    .article-hero h1 span{color:var(--digest)}
+    .hero-subtitle{font-size:1rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;margin-bottom:1.75rem}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:1.25rem}
+    .meta-item{display:flex;align-items:center;gap:.4rem;font-size:.8rem;color:rgba(255,255,255,.80)}
+    .meta-item svg{width:14px;height:14px;opacity:.7}
+    .jump-nav{background:#fff;border-bottom:1px solid var(--border);padding:0 2rem;position:sticky;top:68px;z-index:90}
+    .jump-nav-inner{max-width:900px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+    .jump-nav-inner::-webkit-scrollbar{display:none}
+    .jump-link{display:flex;align-items:center;gap:.4rem;padding:.9rem 1.1rem;font-size:.8rem;font-weight:500;color:#2C2C2C;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;transition:color .2s,border-color .2s}
+    .jump-link:hover{color:var(--navy);border-bottom-color:var(--navy)}
+    .jump-link .num{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--digest-light);color:var(--digest);font-size:.65rem;font-weight:700;flex-shrink:0}
+    .article-layout{max-width:900px;margin:0 auto;padding:3rem 2rem 5rem}
+    .article-section{margin-bottom:3.5rem}
+    .section-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+    .section-number{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;flex-shrink:0}
+    .section-title{font-family:'Fraunces',serif;font-size:1.45rem;font-weight:600;color:var(--navy);line-height:1.2}
+    .article-section p{margin-bottom:1rem;color:#2C2C2C;font-weight:400}
+    .article-section p:last-child{margin-bottom:0}
+    /* KEY TERMS */
+    .key-terms-box{background:var(--navy);border-radius:12px;padding:1.5rem 1.75rem;margin-bottom:3.5rem}
+    .key-terms-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;padding-bottom:.85rem;border-bottom:1px solid rgba(255,255,255,.12)}
+    .key-terms-header svg{width:20px;height:20px;color:var(--digest);flex-shrink:0}
+    .key-terms-header h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;color:#fff}
+    .key-terms-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+    .key-term{display:flex;flex-direction:column;gap:.2rem;padding:.75rem 1rem;background:rgba(255,255,255,.05);border-radius:8px;border-left:3px solid var(--digest)}
+    .key-term-word{font-size:.88rem;font-weight:700;color:var(--digest);letter-spacing:.02em}
+    .key-term-def{font-size:.92rem;color:rgba(255,255,255,.90);line-height:1.55}
+    /* MATTER LIST */
+    .matter-list{list-style:none;display:flex;flex-direction:column;gap:.85rem}
+    .matter-list li{display:flex;gap:.9rem;align-items:flex-start;background:#fff;border:1px solid var(--border);border-left:3px solid var(--digest);border-radius:0 8px 8px 0;padding:.85rem 1.1rem;font-size:.95rem;line-height:1.6;color:#2C2C2C;font-weight:400}
+    .matter-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--digest);flex-shrink:0;margin-top:.55rem}
+    /* STAT BANNER */
+    .stat-banner{display:flex;align-items:center;gap:1.25rem;padding:1rem 1.25rem;border-radius:12px;margin-bottom:1.25rem}
+    .stat-banner.dig{background:rgba(212,124,58,.08);border:1px solid rgba(212,124,58,.2)}
+    .stat-banner.sage{background:rgba(122,158,135,.08);border:1px solid rgba(122,158,135,.2)}
+    .stat-number{font-family:'Fraunces',serif;font-size:2.8rem;font-weight:700;line-height:1;flex-shrink:0}
+    .stat-banner.dig .stat-number{color:var(--digest)}
+    .stat-banner.sage .stat-number{color:var(--sage)}
+    .stat-text{font-size:.9rem;line-height:1.55;color:#2C2C2C;font-weight:400}
+    .stat-text strong{font-weight:600;color:#1B2A4A}
+    .source-note{font-size:.75rem;color:#6B7280;font-style:italic;margin-top:.35rem;display:block}
+    /* CAUSES GRID */
+    .causes-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.25rem 0}
+    .cause-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;border-top:3px solid var(--digest)}
+    .cause-card h5{font-family:'Fraunces',serif;font-size:.95rem;font-weight:600;color:var(--navy);margin-bottom:.4rem}
+    .cause-card p{font-size:.92rem;line-height:1.6;color:#2C2C2C;font-weight:400;margin:0}
+    /* CALLOUTS */
+    .callout{border-radius:10px;padding:1rem 1.25rem;margin:1.25rem 0;font-size:.92rem;line-height:1.65;font-weight:400}
+    .callout-amber{background:rgba(212,124,58,.08);border:1px solid rgba(212,124,58,.25);color:#2C2C2C}
+    .callout-amber strong{color:var(--digest);font-weight:600}
+    .callout-navy{background:var(--navy);color:rgba(255,255,255,.90)}
+    .callout-navy strong{color:#fff;font-weight:600}
+    .callout-sage{background:rgba(122,158,135,.08);border:1px solid rgba(122,158,135,.25);color:#2C2C2C}
+    .callout-sage strong{color:#2D5E4A;font-weight:600}
+    .callout-red{background:rgba(232,99,74,.08);border:1px solid rgba(232,99,74,.25);color:#2C2C2C}
+    .callout-red strong{color:#8B2010;font-weight:600}
+    /* ALARM LIST */
+    .alarm-list{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin:1rem 0}
+    .alarm-list li{display:flex;gap:.75rem;align-items:flex-start;font-size:.95rem;line-height:1.6;color:#2C2C2C;font-weight:400}
+    .alarm-list li::before{content:'⚠️';flex-shrink:0;font-size:.9rem;margin-top:.1rem}
+    /* DOCTOR CARDS */
+    .doctor-subsections{display:flex;flex-direction:column;gap:1.5rem}
+    .doctor-card{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+    .doctor-card-header{display:flex;align-items:center;gap:.75rem;padding:.9rem 1.25rem;background:var(--digest-light);border-bottom:1px solid var(--border)}
+    .doctor-card-icon{width:32px;height:32px;border-radius:50%;background:var(--digest);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .doctor-card-icon svg{width:16px;height:16px;color:#fff}
+    .doctor-card-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:600;color:var(--navy)}
+    .doctor-card-body{padding:1.1rem 1.25rem;font-size:.95rem;line-height:1.7;color:#2C2C2C;font-weight:400}
+    .doctor-card-body p{margin-bottom:.75rem;color:#2C2C2C;font-weight:400}
+    .doctor-card-body p:last-child{margin-bottom:0}
+    .doctor-card-body strong{color:#1B2A4A;font-weight:600}
+    /* TABLE */
+    .data-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.9rem;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(27,42,74,.08)}
+    .data-table thead tr{background:var(--digest)}
+    .data-table thead th{padding:.75rem 1rem;text-align:left;font-weight:600;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:#fff}
+    .data-table tbody tr{background:#fff;border-bottom:1px solid var(--border)}
+    .data-table tbody tr:last-child{border-bottom:none}
+    .data-table tbody tr:nth-child(even){background:var(--digest-light)}
+    .data-table tbody td{padding:.8rem 1rem;line-height:1.55;color:#2C2C2C;font-weight:400}
+    .data-table tbody td:first-child{font-weight:600;color:var(--navy)}
+    /* RESEARCH */
+    .research-items{display:flex;flex-direction:column;gap:1.25rem}
+    .research-item{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.4rem;position:relative}
+    .research-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:4px 0 0 4px;background:var(--navy)}
+    .research-item h4{font-family:'Fraunces',serif;font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:.6rem}
+    .research-item p{font-size:.95rem;line-height:1.7;color:#2C2C2C;font-weight:400;margin-bottom:.6rem}
+    .research-item p:last-child{margin-bottom:0}
+    /* REFERENCES */
+    .ref-block{margin-bottom:.85rem;padding:.85rem 1rem;background:#fff;border:1px solid var(--border);border-radius:8px}
+    .ref-full{font-size:.85rem;line-height:1.6;color:#2C2C2C;font-weight:400;margin-bottom:.5rem}
+    .ref-links{display:flex;flex-wrap:wrap;gap:.4rem}
+    .ref-pill{display:inline-flex;align-items:center;font-size:.72rem;font-weight:600;letter-spacing:.04em;padding:.2rem .6rem;border-radius:100px;text-decoration:none;transition:background .2s}
+    .ref-pill-journal{background:#EBF2ED;color:#2D5E4A;border:1px solid rgba(122,158,135,.35)}
+    .ref-pill-journal:hover{background:rgba(122,158,135,.25)}
+    .ref-pill-pubmed{background:#EEF4FD;color:#1A4A8A;border:1px solid rgba(46,107,168,.3)}
+    .ref-pill-pubmed:hover{background:rgba(46,107,168,.15)}
+    .references-section{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}
+    .references-section h3{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;color:var(--navy);margin-bottom:1.25rem}
+    /* PUTTING IT TOGETHER */
+    .putting-together{background:var(--navy);border-radius:14px;padding:1.75rem 2rem;margin-top:2rem;position:relative;overflow:hidden}
+    .putting-together::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(212,124,58,.1) 0%,transparent 70%);pointer-events:none}
+    .putting-together-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;padding-bottom:.85rem;border-bottom:1px solid rgba(255,255,255,.12)}
+    .putting-together-header svg{width:20px;height:20px;color:var(--digest);flex-shrink:0}
+    .putting-together-header h5{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;color:#fff}
+    .putting-together p{font-size:1rem;color:rgba(255,255,255,.90);line-height:1.75;margin-bottom:.75rem;position:relative;z-index:1}
+    .putting-together p:last-child{margin-bottom:0}
+    .putting-together p strong{color:#fff;font-weight:600}
+    /* FODMAP TABLE */
+    .fodmap-section { margin: 1.25rem 0; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(27,42,74,.08); }
+    .fodmap-header { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: #E5DDD4; }
+    .fodmap-col-head { display: flex; align-items: center; gap: .6rem; padding: .85rem 1rem; font-size: .82rem; font-weight: 700; letter-spacing: .02em; }
+    .fodmap-col-head.avoid { background: #FEE2E2; color: #991B1B; }
+    .fodmap-col-head.ok { background: #DCFCE7; color: #166534; }
+    .fodmap-col-icon { font-size: 1rem; }
+    .fodmap-row { display: grid; grid-template-columns: 130px 1fr 1fr; gap: 0; background: #fff; border-bottom: 1px solid #E5DDD4; }
+    .fodmap-row.alt { background: #FAFAFA; }
+    .fodmap-row:last-child { border-bottom: none; }
+    .fodmap-category { padding: .75rem 1rem; font-size: .85rem; font-weight: 700; color: #1B2A4A; background: #F8F4EF; border-right: 1px solid #E5DDD4; display: flex; align-items: center; gap: .4rem; }
+    .fodmap-avoid { padding: .75rem 1rem; font-size: .88rem; color: #2C2C2C; line-height: 1.55; border-right: 1px solid #E5DDD4; border-left: 2px solid #FCA5A5; }
+    .fodmap-ok { padding: .75rem 1rem; font-size: .88rem; color: #2C2C2C; line-height: 1.55; border-left: 2px solid #86EFAC; }
+    /* DISCLAIMER */
+    .disclaimer{background:var(--coral-light);border:1px solid rgba(232,99,74,.2);border-radius:12px;padding:1.1rem 1.4rem;display:flex;gap:.85rem;align-items:flex-start;margin-top:3rem}
+    .disclaimer svg{width:20px;height:20px;color:var(--coral);flex-shrink:0;margin-top:.1rem}
+    .disclaimer p{font-size:.82rem;color:#7A3020;line-height:1.6;margin:0;font-weight:400}
+    .disclaimer strong{font-weight:600}
+    footer{background:var(--navy);color:rgba(255,255,255,.75);text-align:center;padding:2rem;font-size:.8rem}
+    footer a{color:var(--sage);text-decoration:none}
+    @media(max-width:600px){nav{padding:0 1rem}.nav-links{display:none}.article-hero{padding:2.5rem 1rem 2rem}.article-layout{padding:2rem 1rem 4rem}.breadcrumb{padding:.6rem 1rem}.jump-nav{padding:0 1rem}.key-terms-grid{grid-template-columns:1fr}.causes-grid{grid-template-columns:1fr}.stat-banner{flex-direction:column;gap:.5rem}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg class="logo-svg" viewBox="0 0 40 40" fill="none">
+      <rect x="2" y="8" width="17" height="24" rx="2" stroke="#FAF7F2" stroke-width="1.5" fill="none"/>
+      <rect x="21" y="8" width="17" height="24" rx="2" stroke="#FAF7F2" stroke-width="1.5" fill="none"/>
+      <line x1="20" y1="8" x2="20" y2="32" stroke="#E8634A" stroke-width="1.5"/>
+      <line x1="6" y1="15" x2="15" y2="15" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="6" y1="19" x2="15" y2="19" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="6" y1="23" x2="12" y2="23" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="15" x2="34" y2="15" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="19" x2="34" y2="19" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="23" x2="31" y2="23" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-name">helf.school</span>
+      <span class="logo-tagline">Health Education</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="helf-school-conditions.html">Conditions</a></li>
+    <li><a href="helf-school-membership.html">Membership</a></li>
+  </ul>
+</nav>
+
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Home</a>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <a href="helf-school-conditions.html">Conditions</a>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>What Causes Bloating?</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="article-hero">
+  <div class="hero-inner">
+    <div class="category-badge">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M6 3v3l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      Digestive Health · Article 15
+    </div>
+    <h1>What Causes <span>Bloating?</span></h1>
+    <p class="hero-subtitle">Gas, distension, and the gut — separating the common from the concerning</p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3l2 1.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+        10–12 minute read
+      </div>
+      <div class="meta-item">
+        <svg viewBox="0 0 14 14" fill="none"><path d="M7 1.5C4.5 1.5 2.5 3.5 2.5 6c0 3.5 4.5 6.5 4.5 6.5s4.5-3 4.5-6.5c0-2.5-2-4.5-4.5-4.5z" stroke="currentColor" stroke-width="1.2"/></svg>
+        Evidence-based health education — not medical advice
+      </div>
+      <div class="meta-item">
+        <svg viewBox="0 0 14 14" fill="none"><path d="M2 11l3-3 2.5 2.5 4.5-6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        References verified April 2026
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JUMP NAV -->
+<nav class="jump-nav">
+  <div class="jump-nav-inner">
+    <a href="#what-is-it" class="jump-link"><span class="num">1</span> What is it?</a>
+    <a href="#why-it-matters" class="jump-link"><span class="num">2</span> Why does it matter?</a>
+    <a href="#what-doctor" class="jump-link"><span class="num">3</span> What your doctor will do</a>
+    <a href="#research" class="jump-link"><span class="num">4</span> What the research shows</a>
+  </div>
+</nav>
+
+<div class="article-layout">
+
+  <!-- SECTION 1: WHAT IS IT -->
+  <section class="article-section" id="what-is-it">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <h2 class="section-title">What is bloating?</h2>
+    </div>
+
+    <p>Bloating is the sensation of fullness, pressure, or tightness in the abdomen — often described as feeling as though your belly is stretched, swollen, or full of gas. It may or may not be accompanied by visible distension of the abdomen, and the two aren't always the same thing: you can feel bloated without appearing swollen, and some people have visible distension without much discomfort.</p>
+
+    <p>It is one of the most common digestive complaints. <strong>Around 18% of the general population worldwide experience bloating at least once a week</strong> — and in people with irritable bowel syndrome or other gut-brain interaction disorders, the figure rises to between 50% and 96%.</p>
+
+    <div class="stat-banner dig">
+      <div class="stat-number">64%</div>
+      <div class="stat-text">
+        <strong>of UK adults reported bloating in the past month</strong> — even among those with no diagnosed digestive condition. Bloating was also the symptom that caused the most worry, ahead of heartburn and abdominal pain.
+        <span class="source-note" style="color:#2C2C2C">Source: Eur J Nutr 2025 · UK adults GI symptoms survey (n=516)</span>
+      </div>
+    </div>
+
+    <p>Despite how common it is, bloating is often poorly explained to patients. People are frequently told it's "just IBS" or "something you ate" — without a proper exploration of what's actually driving the symptom. Understanding the causes makes it possible to address the right one.</p>
+
+    <h3 style="font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;color:var(--navy);margin:1.5rem 0 .75rem">Bloating vs distension</h3>
+    <p>These two terms are often used interchangeably but are distinct. <strong>Bloating</strong> is a subjective feeling — the sensation of abdominal fullness or pressure. <strong>Distension</strong> refers to an objective, measurable increase in abdominal girth. Both can occur together or independently. For clinical purposes, doctors now use the term Functional Abdominal Bloating/Distension (FABD) when symptoms are recurrent and not explained by another condition.</p>
+
+    <h3 style="font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;color:var(--navy);margin:1.5rem 0 .75rem">What actually causes it?</h3>
+    <p>Bloating doesn't have a single cause — and this is important, because treatment depends on understanding which mechanism is driving symptoms in an individual. The main causes include:</p>
+
+    <div class="causes-grid">
+      <div class="cause-card">
+        <h5>🫧 Excess gas production</h5>
+        <p>Bacteria in the colon ferment undigested carbohydrates and produce gas — mainly hydrogen, carbon dioxide, and methane. Certain foods (FODMAPs, beans, onions, cruciferous vegetables) produce significantly more gas than others.</p>
+      </div>
+      <div class="cause-card">
+        <h5>🔄 Impaired gas transit</h5>
+        <p>Gas is produced constantly in the gut. Problems arise when it doesn't move through efficiently. Slowed gut motility, constipation, or altered gut muscle coordination can cause gas to accumulate and pressure to build.</p>
+      </div>
+      <div class="cause-card">
+        <h5>🧠 Visceral hypersensitivity</h5>
+        <p>Some people perceive normal amounts of gas as uncomfortable — a feature of the gut-brain axis. The nerves supplying the gut are oversensitive, meaning small amounts of gas or movement cause disproportionate discomfort. This is common in IBS.</p>
+      </div>
+      <div class="cause-card">
+        <h5>🦠 Small intestinal bacterial overgrowth (SIBO)</h5>
+        <p>When bacteria normally found in the colon migrate to the small intestine, they ferment food earlier than normal, producing gas in a part of the gut less equipped to handle it. Bloating, particularly after meals, is a hallmark symptom.</p>
+      </div>
+      <div class="cause-card">
+        <h5>🥛 Food intolerances</h5>
+        <p>Lactose intolerance (inability to digest milk sugar), fructose malabsorption, and intolerance to other fermentable carbohydrates are very common. Undigested sugars reach the colon and are fermented, producing gas and bloating.</p>
+      </div>
+      <div class="cause-card">
+        <h5>⚖️ Gut microbiome imbalance</h5>
+        <p>The composition of gut bacteria varies between individuals and affects how much gas is produced from fermentation. Some gut bacteria produce more gas; others produce less. Diet, antibiotics, and stress all affect the microbiome.</p>
+      </div>
+    </div>
+
+    <div class="callout callout-amber">
+      <strong>Less common but important causes</strong> include coeliac disease (immune reaction to gluten), ovarian conditions in women (particularly ovarian cysts or cancer — persistent bloating is a recognised symptom), gastroparesis (delayed stomach emptying), and bowel obstruction. These are uncommon but warrant proper assessment if bloating is persistent, unexplained, or accompanied by other symptoms.
+    </div>
+
+    <h3 style="font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;color:var(--navy);margin:2rem 0 .75rem">What are FODMAPs — and which foods contain them?</h3>
+    <p>FODMAPs are a group of short-chain carbohydrates that are poorly absorbed in the small intestine. When they reach the colon, gut bacteria ferment them rapidly — producing gas and drawing water into the gut. In people with IBS or a sensitive gut, this causes bloating, pain and altered bowel habit. The good news: it's highly food-specific, which makes it manageable once you know your triggers.</p>
+
+    <!-- FODMAP VISUAL TABLE -->
+    <div class="fodmap-section">
+      <div class="fodmap-header">
+        <div class="fodmap-col-head avoid">
+          <span class="fodmap-col-icon">🔴</span>
+          <span>High FODMAP — more likely to cause symptoms</span>
+        </div>
+        <div class="fodmap-col-head ok">
+          <span class="fodmap-col-icon">🟢</span>
+          <span>Low FODMAP — generally well tolerated</span>
+        </div>
+      </div>
+
+      <div class="fodmap-row">
+        <div class="fodmap-category">🥛 Dairy</div>
+        <div class="fodmap-avoid">Cow's milk, soft cheese, yoghurt, ice cream, custard</div>
+        <div class="fodmap-ok">Lactose-free milk, hard cheese (cheddar, parmesan), butter, brie, camembert</div>
+      </div>
+      <div class="fodmap-row alt">
+        <div class="fodmap-category">🍞 Grains</div>
+        <div class="fodmap-avoid">Wheat bread, rye, barley, couscous, wheat pasta, most cereals</div>
+        <div class="fodmap-ok">Oats, rice, quinoa, gluten-free bread & pasta, polenta, corn</div>
+      </div>
+      <div class="fodmap-row">
+        <div class="fodmap-category">🧅 Vegetables</div>
+        <div class="fodmap-avoid">Onion, garlic, leek, asparagus, artichoke, cauliflower, mushrooms, peas</div>
+        <div class="fodmap-ok">Carrot, cucumber, tomato, spinach, courgette, potato, pepper, aubergine, green beans</div>
+      </div>
+      <div class="fodmap-row alt">
+        <div class="fodmap-category">🍎 Fruit</div>
+        <div class="fodmap-avoid">Apple, pear, mango, watermelon, peach, cherry, dried fruit, fruit juice</div>
+        <div class="fodmap-ok">Banana (firm), blueberry, strawberry, grape, orange, kiwi, pineapple, melon (cantaloupe)</div>
+      </div>
+      <div class="fodmap-row">
+        <div class="fodmap-category">🫘 Legumes</div>
+        <div class="fodmap-avoid">Baked beans, lentils, chickpeas, kidney beans, split peas</div>
+        <div class="fodmap-ok">Canned & rinsed chickpeas (small portion), firm tofu, tempeh</div>
+      </div>
+      <div class="fodmap-row alt">
+        <div class="fodmap-category">🥜 Nuts & seeds</div>
+        <div class="fodmap-avoid">Cashews, pistachios (large portions)</div>
+        <div class="fodmap-ok">Almonds (max 10), walnuts, peanuts, pumpkin seeds, sunflower seeds, macadamia</div>
+      </div>
+      <div class="fodmap-row">
+        <div class="fodmap-category">🍯 Sweeteners</div>
+        <div class="fodmap-avoid">Honey, high-fructose corn syrup, sorbitol, mannitol, xylitol, fructose</div>
+        <div class="fodmap-ok">Sugar (small amounts), maple syrup (small amounts), glucose, stevia</div>
+      </div>
+    </div>
+
+    <div class="callout callout-sage" style="margin-top:1.25rem">
+      <strong>Important:</strong> The low-FODMAP diet is a short-term diagnostic tool, not a permanent eating plan. It is done in three phases: restriction (2–6 weeks), reintroduction (testing individual foods one by one), and personalisation (eating the widest possible diet that avoids your specific triggers). It should ideally be done with a registered dietitian to ensure nutritional adequacy.
+    </div>
+  </section>
+
+  <!-- KEY TERMS -->
+  <div class="key-terms-box">
+    <div class="key-terms-header">
+      <svg viewBox="0 0 20 20" fill="none"><path d="M9 4H5a1 1 0 00-1 1v10a1 1 0 001 1h10a1 1 0 001-1v-4M13 4h3v3M10 10l6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>Key Terms</h3>
+    </div>
+    <div class="key-terms-grid">
+      <div class="key-term">
+        <span class="key-term-word">Distension</span>
+        <span class="key-term-def">A measurable, visible increase in abdominal girth — distinct from the subjective sensation of bloating, though the two often occur together.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">FODMAPs</span>
+        <span class="key-term-def">Fermentable Oligosaccharides, Disaccharides, Monosaccharides And Polyols — a group of short-chain carbohydrates found in many foods that are poorly absorbed and rapidly fermented by gut bacteria, producing gas.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Functional bloating/distension (FABD)</span>
+        <span class="key-term-def">Recurrent bloating or distension not explained by another digestive condition, defined by Rome IV diagnostic criteria.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Gut-brain axis</span>
+        <span class="key-term-def">The two-way communication network between the gut and the brain. Disruption to this system can amplify pain and discomfort signals from the gut — a key mechanism in IBS and functional bowel disorders.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">IBS (Irritable Bowel Syndrome)</span>
+        <span class="key-term-def">A common disorder of gut-brain interaction characterised by recurrent abdominal pain and changes in bowel habit, often accompanied by bloating. Affects 5–10% of the population.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Lactose intolerance</span>
+        <span class="key-term-def">Inability to fully digest lactose (milk sugar) due to deficiency of the enzyme lactase. Results in fermentation of undigested lactose by gut bacteria, causing gas, bloating and diarrhoea. Affects approximately 35–40% of adults.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">SIBO (Small Intestinal Bacterial Overgrowth)</span>
+        <span class="key-term-def">An excess of bacteria in the small intestine, where bacterial levels are normally low. The bacteria ferment food in the small intestine, producing gas and causing bloating, pain and diarrhoea.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Visceral hypersensitivity</span>
+        <span class="key-term-def">Increased sensitivity of the nerves supplying the gut, leading to a perception of pain or discomfort from stimuli — such as normal amounts of gas — that wouldn't cause discomfort in most people.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: WHY IT MATTERS -->
+  <section class="article-section" id="why-it-matters">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <h2 class="section-title">Why does it matter?</h2>
+    </div>
+
+    <ul class="matter-list">
+      <li>Bloating is the most anxiety-provoking digestive symptom in the UK. A survey of UK adults found it caused more worry than heartburn or abdominal pain — yet most people never discuss it with a doctor.</li>
+      <li>It significantly affects quality of life. Persistent bloating impairs daily activities, affects clothing choices, disrupts work, and contributes to anxiety and low mood — particularly in women, who are twice as likely as men to experience it.</li>
+      <li>It is frequently a symptom of an underlying, treatable condition. Lactose intolerance, SIBO, coeliac disease, and IBS all present with bloating — and each has specific management approaches. Dismissing bloating as "normal" can delay diagnosis.</li>
+      <li>Persistent, unexplained bloating can occasionally signal something serious. New or worsening bloating in women over 50 — particularly if persistent, associated with early satiety, or accompanied by pelvic discomfort — warrants prompt investigation for ovarian pathology.</li>
+      <li>It is highly manageable once the cause is identified. Targeted dietary changes (particularly low-FODMAP approaches), treatment of food intolerances, and addressing underlying gut disorders can result in substantial symptom improvement for most people.</li>
+    </ul>
+
+    <div class="callout callout-red" style="margin-top:1.5rem">
+      <strong>When to see your GP without delay:</strong> New, persistent bloating that doesn't resolve — especially if accompanied by unexplained weight loss, loss of appetite, change in bowel habit, blood in stool, or abdominal pain that wakes you from sleep — should be assessed promptly. These are not typical of simple functional bloating.
+    </div>
+  </section>
+
+  <!-- SECTION 3: WHAT YOUR DOCTOR WILL DO -->
+  <section class="article-section" id="what-doctor">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <h2 class="section-title">What your doctor might do</h2>
+    </div>
+
+    <p>Bloating is assessed through a combination of history, examination, and targeted investigations — not by immediately ordering a battery of tests. The clinical history is usually the most informative part of the assessment.</p>
+
+    <div class="doctor-subsections">
+
+      <div class="doctor-card">
+        <div class="doctor-card-header">
+          <div class="doctor-card-icon">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M8 1.5a4 4 0 100 8 4 4 0 000-8zM2 14s-.5-4 6-4 6 4 6 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </div>
+          <div class="doctor-card-title">Taking the history</div>
+        </div>
+        <div class="doctor-card-body">
+          <p>A good history distinguishes functional bloating (a gut-brain disorder, typically long-standing, related to food and stress) from organic causes (something structural or biochemical that needs investigation). Your GP will ask about the timing of symptoms — do they come on after eating? After specific foods? Are they constant or intermittent? Are they getting worse? Is there associated pain, change in bowel habit, or weight loss?</p>
+          <p>The relationship to food is particularly informative. Bloating that reliably comes on after dairy suggests lactose intolerance. Bloating after wheat, onions, garlic, or pulses points toward FODMAP sensitivity. Bloating that is constant and unrelated to food may suggest a different mechanism altogether.</p>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doctor-card-header">
+          <div class="doctor-card-icon">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="doctor-card-title">Targeted investigations</div>
+        </div>
+        <div class="doctor-card-body">
+          <p>Not everyone with bloating needs tests — but several targeted investigations are used when there is clinical reason to do so:</p>
+          <table class="data-table" style="margin-top:.75rem">
+            <thead>
+              <tr><th>Investigation</th><th>What it checks for</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Blood tests — FBC, CRP, coeliac screen (anti-tTG IgA), thyroid function</td><td>Coeliac disease, anaemia, inflammation, thyroid disorders</td></tr>
+              <tr><td>Stool tests — faecal calprotectin</td><td>Inflammation in the gut — helps distinguish IBS from inflammatory bowel disease</td></tr>
+              <tr><td>Hydrogen breath test</td><td>Lactose intolerance, fructose malabsorption, SIBO</td></tr>
+              <tr><td>Coeliac serology + small bowel biopsy</td><td>Coeliac disease — requires prior blood test confirmation</td></tr>
+              <tr><td>Pelvic ultrasound (women)</td><td>Ovarian cysts or masses when bloating is persistent and unexplained</td></tr>
+              <tr><td>Colonoscopy / CT scan</td><td>When alarm features are present — to exclude bowel or abdominal pathology</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doctor-card-header">
+          <div class="doctor-card-icon">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M5 8l3 3 5-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="doctor-card-title">Management approach</div>
+        </div>
+        <div class="doctor-card-body">
+          <p><strong>Dietary approaches</strong> are first-line in most cases. A dietitian-led low-FODMAP diet trial is recommended by NICE for IBS with bloating — this involves temporarily restricting fermentable carbohydrates, then systematically reintroducing foods to identify individual triggers. It is not intended as a permanent diet.</p>
+          <p><strong>Lactose exclusion</strong> is simple and effective when lactose intolerance is confirmed or strongly suspected — even before formal testing. A 2–4 week dairy-free trial followed by careful reintroduction is a reasonable first step.</p>
+          <p><strong>Addressing constipation</strong> is important — slow gut transit and stool buildup significantly worsen bloating. Adequate fibre, hydration, and activity are first-line; laxatives may be needed short-term.</p>
+          <p><strong>Medications</strong> used for bloating include antispasmodics (mebeverine, hyoscine) for gut spasm, low-dose antidepressants (which modulate gut-brain signalling), and specific treatments for SIBO (rifaximin antibiotic) where this is confirmed. Simethicone and activated charcoal preparations are sold over the counter but have limited evidence for bloating specifically.</p>
+          <p><strong>Gut-directed hypnotherapy and CBT</strong> have good evidence for functional gut disorders including bloating — particularly when there is significant gut-brain axis involvement or coexisting anxiety.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout callout-sage" style="margin-top:1.5rem">
+      <strong>Important note on coeliac disease:</strong> If coeliac disease is being investigated, do not start a gluten-free diet before the blood test and biopsy — removing gluten beforehand will falsely normalise the results and potentially miss the diagnosis.
+    </div>
+
+  </section>
+
+  <!-- SECTION 4: RESEARCH -->
+  <section class="article-section" id="research">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <h2 class="section-title">What the research shows</h2>
+    </div>
+
+    <div class="research-items">
+
+      <div class="research-item">
+        <h4>How common is bloating globally — the Rome Foundation study</h4>
+        <p>The largest global study of bloating to date used data from the Rome Foundation Global Epidemiology Study — an internet survey of 51,425 individuals across 26 countries, including the UK. It found that nearly 18% of the general population reported bloating at least once per week. Women were approximately twice as likely as men to report bloating (23.4% vs 12.2%). Prevalence decreased with age, was more common in Latin America than East Asia, and was strongly associated with abdominal pain. The authors noted that bloating is significantly underscreened in both primary care and gastroenterology.</p>
+
+        <div class="ref-block">
+          <p class="ref-full"><strong>Ballou S, Singh P, Nee J, et al.</strong> Prevalence and Associated Factors of Bloating: Results From the Rome Foundation Global Epidemiology Study. <em>Gastroenterology</em> 2023;165(3):647–655.e4. DOI: 10.1053/j.gastro.2023.05.049</p>
+          <div class="ref-links">
+            <a href="https://www.gastrojournal.org/article/S0016-5085(23)00826-0/fulltext" target="_blank" class="ref-pill ref-pill-journal">Gastroenterology Full Text</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/37315866/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 37315866</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <h4>The low-FODMAP diet — the Halmos crossover trial</h4>
+        <p>This randomised, controlled crossover trial from Monash University in Australia is the landmark study establishing the low-FODMAP diet as an effective treatment for IBS symptoms including bloating. Thirty IBS patients and eight healthy controls were randomly assigned to 21 days on a low-FODMAP diet or a typical Australian diet. Patients on the low-FODMAP diet had significantly lower overall symptom scores and specifically reduced bloating, pain, and passage of wind. This was high-quality evidence — a controlled crossover design with strictly provided food — and formed the basis for subsequent guideline adoption.</p>
+
+        <div class="ref-block">
+          <p class="ref-full"><strong>Halmos EP, Power VA, Shepherd SJ, Gibson PR, Muir JG.</strong> A diet low in FODMAPs reduces symptoms of irritable bowel syndrome. <em>Gastroenterology</em> 2014;146(1):67–75.e5. DOI: 10.1053/j.gastro.2013.09.046</p>
+          <div class="ref-links">
+            <a href="https://www.gastrojournal.org/article/s0016-5085(13)01407-8/fulltext" target="_blank" class="ref-pill ref-pill-journal">Gastroenterology Full Text</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/24076059/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 24076059</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <h4>Low-FODMAP vs standard dietary advice — network meta-analysis</h4>
+        <p>A Gut 2022 systematic review and network meta-analysis identified 13 eligible RCTs (944 patients) comparing a low-FODMAP diet with various comparator interventions in IBS. The low-FODMAP diet ranked first for all endpoints studied — including global IBS symptoms, abdominal pain severity, and abdominal bloating/distension severity. It was superior to habitual diet (relative risk of symptoms not improving 0.67) and superior to BDA/NICE dietary advice specifically for bloating (relative risk 0.72). This is the most up-to-date synthesis of the dietary evidence.</p>
+
+        <div class="ref-block">
+          <p class="ref-full"><strong>Black CJ, Staudacher HM, Ford AC.</strong> Efficacy of a low FODMAP diet in irritable bowel syndrome: systematic review and network meta-analysis. <em>Gut</em> 2022;71(6):1117–1126. DOI: 10.1136/gutjnl-2021-325214</p>
+          <div class="ref-links">
+            <a href="https://gut.bmj.com/content/71/6/1117" target="_blank" class="ref-pill ref-pill-journal">Gut Full Text</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/34376515/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 34376515</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <h4>Bloating in UK adults — the food and symptoms survey</h4>
+        <p>A 2025 survey of 516 UK adults (predominantly women, mean age 38) found that 86% had experienced gastrointestinal symptoms in the previous month. Bloating was reported by 64% — making it the second most common symptom after flatulence — and was identified as the most anxiety-provoking symptom, causing more worry than heartburn or abdominal pain. Notably, 72% of respondents had no diagnosed gastrointestinal condition, demonstrating how prevalent bloating is across the general population, not just in those with established gut disorders. Dairy foods and fatty foods were most commonly linked to bloating in this cohort.</p>
+
+        <div class="ref-block">
+          <p class="ref-full"><strong>Tuck C, Barrett J, Sherwin S, Gibson PR.</strong> Prevalence of gastrointestinal symptoms in the UK adult population and perceived effects of foods. <em>European Journal of Nutrition</em> 2025. DOI: 10.1007/s00394-025-03780-0</p>
+          <div class="ref-links">
+            <a href="https://link.springer.com/article/10.1007/s00394-025-03780-0" target="_blank" class="ref-pill ref-pill-journal">Eur J Nutr Full Text</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/40848137/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 40848137</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PUTTING IT TOGETHER -->
+    <div class="putting-together">
+      <div class="putting-together-header">
+        <svg viewBox="0 0 20 20" fill="none"><path d="M10 2l2.5 5 5.5.8-4 3.9.9 5.5L10 14.5l-4.9 2.7.9-5.5L2 7.8l5.5-.8L10 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <h5>Putting it all together</h5>
+      </div>
+      <p>Bloating is extremely common — but common doesn't mean it should simply be put up with. The research is clear that in most cases there is an identifiable driver, whether that's FODMAP sensitivity, lactose intolerance, constipation, IBS, or SIBO — and that targeted management produces real, meaningful improvement.</p>
+      <p>The most important step is to take it seriously enough to discuss it with a GP. Not because bloating is usually dangerous — it usually isn't — but because leaving it unexplored means leaving the cause unaddressed and the symptom untreated. Dietary approaches, particularly the low-FODMAP diet under dietitian guidance, have the strongest evidence base. But the right approach depends on the right diagnosis first.</p>
+      <p><strong>If bloating is new, persistent, worsening, or accompanied by any alarm features — don't wait. Get it assessed.</strong></p>
+    </div>
+
+  </section>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4M10 14h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <p><strong>This article is health education, not medical advice.</strong> It is intended to help you understand bloating and the evidence around it — not to replace a consultation with your own doctor. If you are concerned about any symptoms, please speak with your GP or a qualified healthcare professional.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>helf.school — <a href="index.html">Home</a> · <a href="helf-school-conditions.html">Conditions</a> · Health Education for Everyone</p>
+  <p style="margin-top:.5rem;font-size:.72rem;opacity:.6">© 2025 helf.school. All content is health education only — not medical advice.</p>
+</footer>
+
+</body>
+</html>

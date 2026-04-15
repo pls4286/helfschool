@@ -1,22 +1,602 @@
-<!doctype html><html data-build-id="e40ee6bae5" data-git-hash="654e79e27f66fcc2b0e9f1c32835c8e40ee6bae5" data-build-timestamp="1776218831" data-version="1.0.0" data-env="" data-color-version="v2" lang="en" data-theme="claude" data-mode="light" class="h-screen antialiased scroll-smooth"><head data-ion-ip-country="GB"><link rel="preconnect" href="https://assets-proxy.anthropic.com" crossorigin><link rel="dns-prefetch" href="https://assets-proxy.anthropic.com"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Claude</title><meta name="description" content="Claude is Anthropic's AI, built for problem solvers. Tackle complex challenges, analyze data, write code, and think through your hardest work."><meta name="apple-itunes-app" content="app-id=6473753684"><meta property="og:type" content="website"><meta property="og:site_name" content="Claude"><meta property="og:image" content="https://claude.ai/images/claude_ogimage.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/svg+xml" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/cd02a42d9-Vq_H3mgS.svg"><link rel="icon" type="image/png" sizes="32x32" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/ce67964e7-CAX1bqSh.png"><link rel="icon" type="image/png" sizes="16x16" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c03e51811-DebilQLI.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c129d018a-jJjJELY8.png"><link rel="apple-touch-startup-image" href="/images/claude_app_icon.png"><link rel="manifest" href="/manifest.json"><meta name="mobile-web-app-capable" content="yes"><link rel="preload" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/cc27851ad-CFxw3nG7.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c66fc489e-C-BHYa_K.woff2" as="font" type="font/woff2" crossorigin><script type='text/javascript' nonce='ap4rioyVY2tF87Wn0y5Vxg==' src='https://claude.ai/KaSDLQ98wNbVmRXr52SRaG6B01bvT3ACFqFxMtIU2KeqNXbivqfSVSkI9fNIBBgUsQaeSNvSh8uRK3CmdikczVgGr_mwyfZiqxo4k9nFYzsbTwbCVX1FooIiDW6Qw24LwzWzpcCa_mAOa7-jcjS0keHKzrjdyyoqhvFJQ4EVRcVweskVoA7u6Bt9I-4PJFsBqSZup_iI0SspRIZMNQOyFz6S1MPjgFswU7PkatDk-wB0uQSnFLlaaxKX4fT_G-rg69K43ZNFAso0gr81NHb-6LYbMh7M0LnTUJehhXMDazD25xchwlmIHSp-IifZ2IoWOxuMLl3pYtYNR_nEqEZxX4Ck_1V7L-n7EgGzqM1aAiIFYshv9cwqR3SUOQu3s3H6wqreC82Oybb3zY7_YSbPzVPTtA8zWu7VfigKd6B6mlSn8iIAYPoHdRznL0eEeSlMkyeL912UdIyICgZLFLtn379b2Ix0p3YtZMQl_A9K2UC1lsbf'></script><script nonce="ap4rioyVY2tF87Wn0y5Vxg==">void 0===globalThis.process&&(globalThis.process={env:{},cwd:function(){return"/"}}),void 0===globalThis.global&&(globalThis.global=globalThis)</script><script type="application/ld+json" nonce="ap4rioyVY2tF87Wn0y5Vxg==">{
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "name": "Claude",
-            "alternateName": ["Claude.ai", "Claude by Anthropic"],
-            "url": "https://claude.com"
-          },
-          {
-            "@type": "Organization",
-            "name": "Anthropic",
-            "url": "https://www.anthropic.com",
-            "logo": "https://claude.ai/images/claude_ogimage.png",
-            "sameAs": [
-              "https://x.com/AnthropicAI",
-              "https://www.linkedin.com/company/anthropic",
-              "https://www.youtube.com/@anthropic-ai"
-            ]
-          }
-        ]
-      }</script><script nonce="ap4rioyVY2tF87Wn0y5Vxg==">!function(){try{performance.mark?.("rq_cache:preload_start");const e="keyval-store",o="keyval",r="react-query-cache",t=new Promise(t=>{if(!window.indexedDB)return void t(void 0);const c=indexedDB.open(e);c.onupgradeneeded=()=>{c.transaction?.abort()},c.onerror=()=>t(void 0),c.onsuccess=()=>{const a=c.result;if(!a.objectStoreNames.contains(o))return a.close(),indexedDB.deleteDatabase(e),void t(void 0);try{const e=a.transaction(o,"readonly").objectStore(o).get(r);e.onerror=()=>{a.close(),t(void 0)},e.onsuccess=()=>{a.close(),window.__PRELOADED_IDB_CACHE_RESULT__=e.result,t(e.result)}}catch{a.close(),t(void 0)}}});window.__PRELOADED_IDB_CACHE__=t,performance.measure?.("rq_cache:preload_exec",{start:"rq_cache:preload_start"})}catch{}}()</script><script type="module" crossorigin src="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/index-BL8bstaL.js" nonce="ap4rioyVY2tF87Wn0y5Vxg=="></script><link rel="modulepreload" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-BGCjnHf-.js"><link rel="modulepreload" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/tree-sitter-BfScwQVn.js"><link rel="stylesheet" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c6a992d55-BX1RVofc.css"></head><body class="bg-bg-100 text-text-100 font-ui min-h-screen"><div id="root"></div><script nonce="ap4rioyVY2tF87Wn0y5Vxg==">(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.nonce='ap4rioyVY2tF87Wn0y5Vxg==';d.innerHTML="window.__CF$cv$params={r:'9ecbb310dd8ecdc8',t:'MTc3NjI2Mzk2NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='ap4rioyVY2tF87Wn0y5Vxg==';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Reduce Cardiovascular Risk with Lifestyle Changes | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:   #1B2A4A;
+      --coral:  #E8634A;
+      --cream:  #FAF7F2;
+      --sage:   #7A9E87;
+      --amber:  #E8A84A;
+      --border: #E5DDD4;
+      --muted:  #6B7280;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav.main-nav {
+      background: var(--navy);
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      box-shadow: 0 2px 12px rgba(27,42,74,0.15);
+    }
+    .nav-logo { display:flex; align-items:center; gap:0.6rem; text-decoration:none; }
+    .nav-logo svg { width:28px; height:28px; }
+    .nav-logo-text { font-family:'Fraunces',serif; font-size:1.1rem; font-weight:600; color:#fff; }
+    .nav-logo-text span { color:var(--coral); }
+    .nav-links { display:flex; gap:1.75rem; list-style:none; }
+    .nav-links a { color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.85rem; font-weight:500; transition:color 0.2s; }
+    .nav-links a:hover { color:#fff; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb { background:#fff; border-bottom:1px solid var(--border); padding:0.6rem 2rem; font-size:0.8rem; color:var(--muted); }
+    .breadcrumb a { color:var(--navy); text-decoration:none; font-weight:500; }
+    .breadcrumb a:hover { color:var(--coral); }
+    .breadcrumb span { margin:0 0.4rem; }
+
+    /* ── HERO ── */
+    .article-hero {
+      background: var(--navy);
+      padding: 3.5rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .article-hero::before { content:''; position:absolute; top:-60px; right:-60px; width:300px; height:300px; border-radius:50%; background:rgba(122,158,135,0.08); }
+    .article-hero::after  { content:''; position:absolute; bottom:-80px; left:-40px; width:250px; height:250px; border-radius:50%; background:rgba(232,99,74,0.06); }
+    .category-pill {
+      display:inline-flex; align-items:center; gap:0.4rem;
+      background:rgba(122,158,135,0.2); border:1px solid rgba(122,158,135,0.4);
+      color:var(--sage); font-size:0.72rem; font-weight:600; letter-spacing:0.1em;
+      text-transform:uppercase; padding:0.3rem 0.9rem; border-radius:100px;
+      margin-bottom:1.25rem; position:relative; z-index:1;
+    }
+    .article-hero h1 { font-family:'Fraunces',serif; font-size:clamp(1.8rem,4vw,2.5rem); font-weight:700; color:#fff; line-height:1.2; max-width:720px; margin:0 auto 1rem; position:relative; z-index:1; }
+    .article-hero p { color:rgba(255,255,255,0.6); font-size:0.95rem; max-width:580px; margin:0 auto; position:relative; z-index:1; }
+
+    /* ── JUMP NAV ── */
+    nav.jump-nav { background:#fff; border-bottom:1px solid var(--border); padding:0 2rem; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+    nav.jump-nav ul { display:flex; gap:0; list-style:none; white-space:nowrap; }
+    nav.jump-nav a { display:block; padding:0.85rem 1.1rem; font-size:0.82rem; font-weight:500; color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; transition:all 0.2s; }
+    nav.jump-nav a:hover { color:var(--navy); border-bottom-color:var(--sage); }
+
+    /* ── LAYOUT ── */
+    .article-layout { max-width:820px; margin:0 auto; padding:2.5rem 1.5rem 4rem; }
+
+    /* ── SECTIONS ── */
+    .article-section { margin-bottom:3rem; scroll-margin-top:150px; }
+    .section-header { display:flex; align-items:center; gap:0.75rem; margin-bottom:1.25rem; }
+    .section-number { width:32px; height:32px; background:var(--sage); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.8rem; font-weight:700; flex-shrink:0; }
+    .section-header h2 { font-family:'Fraunces',serif; font-size:1.5rem; font-weight:600; color:var(--navy); }
+    .article-section p { color:#374151; margin-bottom:1rem; font-size:0.97rem; }
+    .article-section p:last-child { margin-bottom:0; }
+    strong { color:var(--navy); }
+
+    /* ── KEY TERMS ── */
+    .key-terms { background:var(--navy); border-radius:16px; padding:1.75rem 2rem; margin:2rem 0; }
+    .key-terms-header { display:flex; align-items:center; gap:0.6rem; margin-bottom:1.25rem; }
+    .key-terms-header h3 { font-family:'Fraunces',serif; font-size:1.05rem; font-weight:600; color:#fff; }
+    .key-terms-icon { width:28px; height:28px; background:rgba(122,158,135,0.25); border-radius:6px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .key-terms-icon svg { width:14px; height:14px; color:var(--sage); }
+    .key-terms-grid { display:flex; flex-direction:column; gap:0.85rem; }
+    .key-term { border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:0.85rem; }
+    .key-term:last-child { border-bottom:none; padding-bottom:0; }
+    .key-term-word { font-size:0.82rem; font-weight:700; color:var(--sage); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.2rem; }
+    .key-term-def { font-size:0.88rem; color:rgba(255,255,255,0.75); line-height:1.55; }
+
+    /* ── FACTOR CARDS ── */
+    .factor-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:1rem; margin:1.5rem 0; }
+    .factor-card {
+      background:#fff; border:1px solid var(--border); border-radius:12px;
+      padding:1.1rem 1.25rem; border-left:4px solid var(--sage);
+      box-shadow:0 2px 8px rgba(27,42,74,0.05);
+    }
+    .factor-card-icon { font-size:1.4rem; margin-bottom:0.4rem; }
+    .factor-card h4 { font-size:0.88rem; font-weight:700; color:var(--navy); margin-bottom:0.25rem; }
+    .factor-card p { font-size:0.82rem; color:var(--muted); margin-bottom:0; line-height:1.45; }
+
+    /* ── TABLES ── */
+    .table-wrap { overflow-x:auto; margin:1.5rem 0; border-radius:12px; border:1px solid var(--border); }
+    table { width:100%; border-collapse:collapse; font-size:0.88rem; }
+    thead { background:var(--navy); color:#fff; }
+    thead th { padding:0.75rem 1rem; text-align:left; font-weight:600; font-size:0.8rem; letter-spacing:0.04em; }
+    tbody tr { border-bottom:1px solid var(--border); }
+    tbody tr:last-child { border-bottom:none; }
+    tbody tr:nth-child(even) { background:rgba(27,42,74,0.02); }
+    tbody td { padding:0.75rem 1rem; color:#374151; vertical-align:top; }
+
+    /* ── SUBSECTION HEADINGS ── */
+    .factor-section { margin:2.5rem 0 1.5rem; }
+    .factor-heading {
+      display:flex; align-items:center; gap:0.75rem;
+      font-family:'Fraunces',serif; font-size:1.15rem; font-weight:600; color:var(--navy);
+      margin-bottom:0.85rem;
+    }
+    .factor-pill {
+      font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+      padding:0.2rem 0.65rem; border-radius:100px; flex-shrink:0;
+    }
+    .pill-diet    { background:rgba(232,168,74,0.15);  color:#B87A10; }
+    .pill-exercise{ background:rgba(122,158,135,0.15); color:#4A7A5A; }
+    .pill-smoking { background:rgba(232,99,74,0.15);   color:#C8432A; }
+    .pill-weight  { background:rgba(168,74,232,0.12);  color:#7A30B8; }
+    .pill-alcohol { background:rgba(27,42,74,0.08);    color:var(--navy); }
+    .pill-stress  { background:rgba(74,130,232,0.12);  color:#2A5AB8; }
+    .pill-sleep   { background:rgba(74,232,176,0.12);  color:#1A8A60; }
+
+    .subsection-subtitle { font-size:0.92rem; font-weight:700; color:var(--navy); margin:1.25rem 0 0.5rem; }
+
+    /* ── CALLOUT ── */
+    .callout { background:rgba(122,158,135,0.1); border:1px solid rgba(122,158,135,0.25); border-radius:12px; padding:1.1rem 1.25rem; margin:1.25rem 0; font-size:0.9rem; color:#374151; }
+    .callout strong { color:var(--navy); }
+
+    .callout-amber { background:rgba(232,168,74,0.1); border:1px solid rgba(232,168,74,0.25); }
+    .callout-coral { background:rgba(232,99,74,0.08); border:1px solid rgba(232,99,74,0.2); }
+
+    /* ── PUTTING IT ALL TOGETHER ── */
+    .putting-it-together {
+      background:var(--navy); border-radius:16px; padding:2rem 2.25rem;
+      margin:2rem 0; position:relative; overflow:hidden;
+    }
+    .putting-it-together::before { content:''; position:absolute; top:-40px; right:-40px; width:180px; height:180px; border-radius:50%; background:rgba(122,158,135,0.08); pointer-events:none; }
+    .putting-it-together-header { display:flex; align-items:center; gap:0.6rem; margin-bottom:1.1rem; }
+    .putting-it-together-icon { width:30px; height:30px; background:rgba(122,158,135,0.2); border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .putting-it-together-icon svg { width:15px; height:15px; color:var(--sage); }
+    .putting-it-together h4 { font-family:'Fraunces',serif; font-size:1rem; font-weight:600; color:rgba(255,255,255,0.9); }
+    .putting-it-together p { font-size:1rem; color:rgba(255,255,255,0.8); line-height:1.7; margin-bottom:0.75rem; font-style:italic; }
+    .putting-it-together p:last-child { margin-bottom:0; }
+    .putting-it-together p strong { color:#fff; font-style:normal; }
+
+    /* ── RESEARCH ITEMS ── */
+    .research-item { background:#fff; border:1px solid var(--border); border-radius:16px; padding:1.75rem 1.75rem 1.75rem 2rem; margin-bottom:1.25rem; position:relative; }
+    .research-item::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--sage); border-radius:4px 0 0 4px; }
+    .research-item h4 { font-family:'Fraunces',serif; font-size:1.05rem; font-weight:600; color:var(--navy); margin-bottom:0.5rem; }
+    .research-item > p { font-size:0.9rem; color:#4B5563; line-height:1.65; margin-bottom:1rem; }
+    .research-source { display:inline-block; font-size:0.72rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--navy); background:#EBF2ED; border:1px solid rgba(122,158,135,0.3); padding:0.2rem 0.6rem; border-radius:100px; text-decoration:none; margin-top:0.5rem; }
+    .research-source:hover { background:#DCE9DF; }
+
+    /* ── SECTION DIVIDER ── */
+    .section-divider { border:none; border-top:1px solid var(--border); margin:2.5rem 0; }
+
+    /* ── REFERENCES ── */
+    .references { margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border); }
+    .references h3 { font-family:'Fraunces',serif; font-size:1rem; font-weight:600; color:var(--navy); margin-bottom:1rem; }
+    .references ul { list-style:none; display:flex; flex-direction:column; gap:0.5rem; }
+    .references li { font-size:0.82rem; color:var(--muted); }
+    .references a { color:var(--navy); font-weight:500; text-decoration:underline; text-underline-offset:2px; }
+    .references a:hover { color:var(--coral); }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer { background:rgba(27,42,74,0.04); border:1px solid var(--border); border-radius:12px; padding:1.1rem 1.25rem; margin-top:2rem; font-size:0.8rem; color:var(--muted); line-height:1.6; }
+    .disclaimer strong { color:var(--navy); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.05em; }
+
+    /* ── FOOTER ── */
+    footer { background:var(--navy); padding:2rem; text-align:center; color:rgba(255,255,255,0.5); font-size:0.8rem; }
+    footer a { color:rgba(255,255,255,0.7); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:600px) {
+      .article-layout { padding:1.5rem 1rem 3rem; }
+      nav.main-nav { padding:0 1rem; }
+      .nav-links { display:none; }
+      .breadcrumb { padding:0.6rem 1rem; }
+      .factor-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="main-nav">
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 4C20 4 8 2 2 6V26C8 22 20 24 20 24C20 24 32 22 38 26V6C32 2 20 4 20 4Z" stroke="#FAF7F2" stroke-width="2" fill="none"/>
+      <line x1="20" y1="4" x2="20" y2="24" stroke="#E8634A" stroke-width="1.5"/>
+      <path d="M8 11C11 10.5 14 10.8 17 11.5" stroke="#FAF7F2" stroke-width="1" opacity="0.5"/>
+      <path d="M8 15C11 14.5 14 14.8 17 15.5" stroke="#FAF7F2" stroke-width="1" opacity="0.5"/>
+      <path d="M23 11.5C26 10.8 29 10.5 32 11" stroke="#FAF7F2" stroke-width="1" opacity="0.5"/>
+      <path d="M23 15.5C26 14.8 29 14.5 32 15" stroke="#FAF7F2" stroke-width="1" opacity="0.5"/>
+    </svg>
+    <span class="nav-logo-text">helf<span>.</span>school</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="helf-school-conditions.html">Conditions</a></li>
+    <li><a href="helf-school-membership.html">Membership</a></li>
+  </ul>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a><span>›</span>
+  <a href="helf-school-conditions.html">Conditions</a><span>›</span>
+  Cardiovascular<span>›</span>
+  How to Reduce Cardiovascular Risk with Lifestyle Changes
+</div>
+
+<!-- HERO -->
+<div class="article-hero">
+  <div class="category-pill">♥ Cardiovascular · Article 05</div>
+  <h1>How to Reduce Cardiovascular Risk with Lifestyle Changes</h1>
+  <p>What the research actually shows about diet, exercise, smoking, weight, alcohol, stress, and sleep</p>
+</div>
+
+<!-- JUMP NAV -->
+<nav class="jump-nav" aria-label="Article sections">
+  <ul>
+    <li><a href="#what-is-it">What is it?</a></li>
+    <li><a href="#key-terms">Key Terms</a></li>
+    <li><a href="#why-matters">Why does it matter?</a></li>
+    <li><a href="#what-doctor">What your doctor might do</a></li>
+    <li><a href="#research">What the research shows</a></li>
+  </ul>
+</nav>
+
+<!-- ARTICLE BODY -->
+<div class="article-layout">
+
+  <!-- SECTION 1 -->
+  <section class="article-section" id="what-is-it">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <h2>What is it?</h2>
+    </div>
+    <p>Cardiovascular disease develops over decades. The good news — and it is genuinely good news — is that the factors driving that process are largely modifiable. Not all of them, and not always completely, but enough that the choices we make every day have a measurable effect on our long-term risk.</p>
+    <p>This article looks at what the research actually shows about lifestyle and cardiovascular risk. Not what is theoretically plausible, but what has been tested in large studies, across real populations, and found to make a meaningful difference.</p>
+    <p>The seven factors covered here — diet, physical activity, smoking, body weight, alcohol, stress, and sleep — are not equally powerful, and they don't work in isolation. But together, they represent the most evidence-based levers available for reducing the risk of heart attack and stroke.</p>
+  </section>
+
+  <!-- KEY TERMS -->
+  <div class="key-terms" id="key-terms">
+    <div class="key-terms-header">
+      <div class="key-terms-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <h3>Key Terms</h3>
+    </div>
+    <div class="key-terms-grid">
+      <div class="key-term">
+        <div class="key-term-word">Cardiovascular disease (CVD)</div>
+        <div class="key-term-def">An umbrella term covering heart attack, stroke, heart failure, and related conditions affecting the heart and blood vessels.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-word">Modifiable risk factor</div>
+        <div class="key-term-def">A risk factor that can be changed or treated, as opposed to fixed factors like age or genetics.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-word">Systolic blood pressure</div>
+        <div class="key-term-def">The upper number in a blood pressure reading, measured when the heart contracts. Reducing it is one of the most powerful ways to lower cardiovascular risk.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-word">LDL cholesterol</div>
+        <div class="key-term-def">Low-density lipoprotein cholesterol — the type most strongly associated with the build-up of fatty plaques inside artery walls.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-word">HDL cholesterol</div>
+        <div class="key-term-def">High-density lipoprotein cholesterol — sometimes called "good" cholesterol, as it helps carry cholesterol away from artery walls.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-word">Insulin resistance</div>
+        <div class="key-term-def">A condition in which the body's cells respond less effectively to insulin, leading to higher blood sugar levels and increased cardiovascular risk.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-word">Cortisol</div>
+        <div class="key-term-def">The body's primary stress hormone, produced by the adrenal glands. Chronically elevated cortisol is associated with higher blood pressure, increased appetite, and disrupted sleep.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-word">Hypothalamic-pituitary-adrenal (HPA) axis</div>
+        <div class="key-term-def">A communication network between three glands: the hypothalamus and pituitary gland in the brain, and the adrenal glands which sit above the kidneys. When the brain perceives stress, this axis triggers the release of cortisol. Chronic activation keeps cortisol persistently elevated, which over time damages blood vessels and raises cardiovascular risk.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-word">Autonomic nervous system</div>
+        <div class="key-term-def">The part of the nervous system that regulates involuntary body functions, including heart rate, blood pressure, and digestion. Chronic stress dysregulates this system in ways that increase cardiovascular risk.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <section class="article-section" id="why-matters">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <h2>Why does it matter?</h2>
+    </div>
+
+    <p>Most cardiovascular disease doesn't happen out of nowhere. It accumulates quietly over years, driven by factors that can — in many cases — be meaningfully changed.</p>
+
+    <div class="factor-grid">
+      <div class="factor-card">
+        <div class="factor-card-icon">🥗</div>
+        <h4>Diet</h4>
+        <p>Shapes blood pressure, cholesterol, and weight — three of the biggest cardiovascular risk drivers.</p>
+      </div>
+      <div class="factor-card">
+        <div class="factor-card-icon">🚶</div>
+        <h4>Physical activity</h4>
+        <p>Independently predicts cardiovascular events, separate from weight and other risk factors.</p>
+      </div>
+      <div class="factor-card">
+        <div class="factor-card-icon">🚭</div>
+        <h4>Smoking</h4>
+        <p>The single most powerful modifiable cardiovascular risk factor. Benefits of stopping begin within months.</p>
+      </div>
+      <div class="factor-card">
+        <div class="factor-card-icon">⚖️</div>
+        <h4>Body weight</h4>
+        <p>Excess abdominal fat drives insulin resistance, high blood pressure, and raised triglycerides.</p>
+      </div>
+      <div class="factor-card">
+        <div class="factor-card-icon">🍷</div>
+        <h4>Alcohol</h4>
+        <p>Raises blood pressure and triglycerides; the apparent protective effect of moderate drinking has been largely revised away.</p>
+      </div>
+      <div class="factor-card">
+        <div class="factor-card-icon">🧠</div>
+        <h4>Stress</h4>
+        <p>Chronic psychological stress dysregulates the autonomic nervous system and is an independent predictor of heart attack.</p>
+      </div>
+      <div class="factor-card">
+        <div class="factor-card-icon">😴</div>
+        <h4>Sleep</h4>
+        <p>Both too little and too much sleep are independently associated with increased cardiovascular mortality.</p>
+      </div>
+    </div>
+
+    <p>The INTERHEART study — involving over 30,000 people across 52 countries — found that nine modifiable risk factors account for more than 90% of the risk of a first heart attack worldwide. The majority of those factors are directly influenced by lifestyle. <em>(The Lancet, 2004)</em></p>
+    <p>A New England Journal of Medicine analysis (2022) found that addressing five key modifiable risk factors at age 50 — high blood pressure, high cholesterol, obesity, diabetes, and smoking — could add more than ten years of cardiovascular disease-free life. <em>(<a href="https://www.nejm.org/doi/full/10.1056/NEJMoa2206916" target="_blank">Global Effect of Modifiable Risk Factors on CVD — NEJM 2022</a>)</em></p>
+    <p>Lifestyle changes also work through multiple pathways at once. Improving diet lowers blood pressure and cholesterol. Exercise reduces insulin resistance and improves vascular function. Stopping smoking begins to reduce risk within months. These effects are additive — and in some combinations, more than additive.</p>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- SECTION 3 -->
+  <section class="article-section" id="what-doctor">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <h2>What your doctor might do</h2>
+    </div>
+
+    <p>When assessing cardiovascular risk, a GP isn't just calculating a QRISK3 score and reaching for a prescription pad. Lifestyle factors sit at the heart of the conversation — both because they directly affect risk, and because in many cases meaningful lifestyle change can reduce the need for medication, or enhance its effects.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Factor</th><th>Why it matters clinically</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Diet</strong></td><td>High sodium raises blood pressure; saturated fat and ultra-processed foods raise LDL cholesterol</td></tr>
+          <tr><td><strong>Physical activity</strong></td><td>Low activity independently predicts cardiovascular events, separate from weight</td></tr>
+          <tr><td><strong>Smoking</strong></td><td>The single most powerful modifiable cardiovascular risk factor</td></tr>
+          <tr><td><strong>Body weight</strong></td><td>Excess abdominal weight drives insulin resistance, high blood pressure, and raised triglycerides</td></tr>
+          <tr><td><strong>Alcohol</strong></td><td>Raises blood pressure and triglycerides at higher intake levels</td></tr>
+          <tr><td><strong>Stress</strong></td><td>Chronic stress dysregulates the autonomic nervous system and raises blood pressure</td></tr>
+          <tr><td><strong>Sleep</strong></td><td>Short or poor-quality sleep is independently associated with increased cardiovascular risk</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="subsection-subtitle">What a GP can offer:</p>
+    <p>Referral to NHS Stop Smoking services — the most effective smoking cessation support available in the UK. Referral to structured weight management programmes. Signposting to cardiac rehabilitation programmes, which combine exercise, education, and psychological support. And where lifestyle change alone is insufficient, prescribing support: statins, antihypertensives, and other agents work best when combined with lifestyle modification, not instead of it.</p>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- SECTION 4 -->
+  <section class="article-section" id="research">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <h2>What the research shows</h2>
+    </div>
+
+    <!-- DIET -->
+    <div class="factor-section">
+      <div class="factor-heading">
+        <span class="factor-pill pill-diet">Diet</span>
+        The Mediterranean diet
+      </div>
+
+      <div class="research-item">
+        <h4>The strongest dietary evidence we have</h4>
+        <p>Of all dietary patterns studied in cardiovascular research, the Mediterranean diet has the most robust evidence. The PREDIMED trial — a randomised controlled trial conducted across Spain involving nearly 7,500 people at high cardiovascular risk — found that those assigned to a Mediterranean diet supplemented with olive oil or nuts had approximately a <strong>30% reduction</strong> in major cardiovascular events compared to a control diet, over nearly five years of follow-up.</p>
+        <p>The Mediterranean diet is characterised by high intake of vegetables, fruits, legumes, whole grains, fish, and olive oil, with low intake of red meat, processed foods, and added sugars. It is not a rigid prescription — it is a pattern.</p>
+        <a href="https://www.nejm.org/doi/full/10.1056/NEJMoa1800389" target="_blank" class="research-source">Estruch R et al. NEJM 2018 — PREDIMED trial</a>
+      </div>
+
+      <div class="factor-heading" style="margin-top:1.75rem;">
+        <span class="factor-pill pill-diet">Diet</span>
+        Salt and blood pressure
+      </div>
+      <p>The evidence linking dietary sodium to blood pressure is one of the most replicated findings in nutritional research. NICE guideline NG136 recommends reducing salt intake to under 6g per day <em>(roughly one teaspoon — including all salt already present in food, not just what is added at the table)</em> as a first-line lifestyle intervention for hypertension. The DASH trial found that a low-sodium dietary pattern reduced systolic blood pressure by 8–14 mmHg in people with hypertension — comparable to the effect of a single antihypertensive drug.</p>
+
+      <div class="factor-heading" style="margin-top:1.75rem;">
+        <span class="factor-pill pill-diet">Diet</span>
+        Ultra-processed foods
+      </div>
+      <div class="research-item">
+        <h4>Ultra-processed foods and cardiovascular risk</h4>
+        <p>An umbrella review published in the BMJ (2024), synthesising epidemiological meta-analyses, found consistent associations between higher consumption of ultra-processed foods and increased risk of cardiovascular disease, independent of overall diet quality. The associations were strongest for processed meat and sugar-sweetened beverages.</p>
+        <a href="https://www.bmj.com/content/384/bmj-2023-077310" target="_blank" class="research-source">Lane MM et al. BMJ 2024 — Umbrella review</a>
+      </div>
+    </div>
+
+    <!-- PHYSICAL ACTIVITY -->
+    <div class="factor-section">
+      <div class="factor-heading">
+        <span class="factor-pill pill-exercise">Exercise</span>
+        Physical activity
+      </div>
+
+      <div class="research-item">
+        <h4>Even modest movement makes a meaningful difference</h4>
+        <p>A large meta-analysis published in the British Journal of Sports Medicine (2023) — pooling data from 196 articles covering 94 cohorts and over 30 million participants — found that regular physical activity was associated with substantial reductions in cardiovascular mortality. The greatest benefits were seen in those moving from complete inactivity to even modest levels of regular movement. Meeting just half the recommended activity level (75 minutes per week of moderate-intensity activity) was associated with a 17% reduction in cardiovascular disease risk.</p>
+        <a href="https://bjsm.bmj.com/content/57/15/979" target="_blank" class="research-source">Garcia L et al. BJSM 2023 — Dose-response meta-analysis</a>
+      </div>
+
+      <p>Current NICE and UK Chief Medical Officers' guidance recommends at least <strong>150 minutes of moderate-intensity activity</strong> per week — such as brisk walking, cycling, or swimming — or 75 minutes of vigorous-intensity activity, plus muscle-strengthening activity on at least two days per week.</p>
+
+      <div class="callout">
+        <strong>Beyond aerobic exercise — the sitting problem.</strong> Research published in the European Heart Journal (2023) found that replacing sitting time with light physical activity — even standing or gentle walking — was associated with meaningfully improved cardiovascular risk markers, independent of structured exercise. Prolonged sitting is now recognised as an independent cardiovascular risk factor.
+      </div>
+    </div>
+
+    <!-- SMOKING -->
+    <div class="factor-section">
+      <div class="factor-heading">
+        <span class="factor-pill pill-smoking">Smoking</span>
+        Smoking cessation
+      </div>
+
+      <p>Smoking is the single most powerful modifiable cardiovascular risk factor. It damages the endothelium (the inner lining of blood vessels), accelerates atherosclerosis, raises blood pressure, reduces HDL cholesterol, and increases the tendency of blood to clot.</p>
+
+      <div class="research-item">
+        <h4>Stopping smoking — the largest single lifestyle intervention available</h4>
+        <p>A Cochrane review of smoking cessation and cardiovascular outcomes found that stopping smoking reduces the risk of a further cardiovascular event in people who have already had a heart attack by approximately <strong>36%</strong> — a larger effect than almost any medication available.</p>
+        <p>The benefits begin quickly. Within one year of stopping, excess cardiovascular risk falls by around half. Within fifteen years, risk approaches that of a lifelong non-smoker. NHS Stop Smoking Services combine behavioural support with pharmacotherapy (varenicline, bupropion, or nicotine replacement therapy) and are significantly more effective than willpower alone.</p>
+        <a href="https://www.cochranelibrary.com" target="_blank" class="research-source">Cochrane Database — Smoking cessation and CVD outcomes</a>
+      </div>
+    </div>
+
+    <!-- BODY WEIGHT -->
+    <div class="factor-section">
+      <div class="factor-heading">
+        <span class="factor-pill pill-weight">Weight</span>
+        Body weight
+      </div>
+
+      <p>Excess body weight — particularly abdominal obesity — independently raises cardiovascular risk through multiple pathways: elevated blood pressure, raised LDL and triglycerides, lower HDL, increased insulin resistance, and systemic inflammation.</p>
+
+      <div class="research-item">
+        <h4>What the research shows on weight loss</h4>
+        <p>A meta-analysis in Obesity Reviews (2020) found that a 5–10% reduction in body weight produced clinically meaningful reductions in blood pressure, LDL cholesterol, and fasting blood glucose — all independently associated with cardiovascular risk. The Look AHEAD trial — a large randomised controlled trial in people with type 2 diabetes — found that intensive lifestyle intervention producing sustained weight loss significantly reduced blood pressure, improved lipid profiles, and reduced the need for cardiovascular medications.</p>
+      </div>
+
+      <div class="callout callout-amber">
+        <strong>An important note.</strong> Weight is not the only signal that matters. Metabolically healthy people with overweight, and metabolically unhealthy people at a "normal" weight, both exist. Waist circumference — a proxy for abdominal fat — may be a more clinically meaningful measure than BMI alone.
+      </div>
+    </div>
+
+    <!-- ALCOHOL -->
+    <div class="factor-section">
+      <div class="factor-heading">
+        <span class="factor-pill pill-alcohol">Alcohol</span>
+        Alcohol
+      </div>
+
+      <p>The relationship between alcohol and cardiovascular risk is more nuanced than was once believed. Earlier observational studies suggested a protective effect of moderate drinking — this has been substantially revised.</p>
+
+      <div class="research-item">
+        <h4>The apparent protective effect largely disappears under scrutiny</h4>
+        <p>A Mendelian randomisation study published in JAMA Network Open (2022), using genetic data from 371,463 UK Biobank participants to minimise confounding, found that genetically predicted alcohol intake was associated with increased risk of hypertension and coronary artery disease — with heavier consumption associated with exponential increases in cardiovascular risk. The apparent cardiovascular benefit of moderate alcohol consumption in observational studies appears to be largely explained by confounding factors rather than a genuine protective effect of alcohol itself.</p>
+        <a href="https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2791520" target="_blank" class="research-source">Biddinger KJ et al. JAMA Network Open 2022</a>
+      </div>
+
+      <p>What is well established is that higher alcohol intake raises blood pressure and triglycerides, increases the risk of atrial fibrillation, and contributes to weight gain. UK Chief Medical Officers' low-risk guidelines recommend no more than <strong>14 units per week</strong>, spread across at least three days, with several alcohol-free days.</p>
+    </div>
+
+    <!-- STRESS -->
+    <div class="factor-section">
+      <div class="factor-heading">
+        <span class="factor-pill pill-stress">Stress</span>
+        Psychological stress
+      </div>
+
+      <p>Chronic psychological stress activates the hypothalamic-pituitary-adrenal (HPA) axis and the sympathetic nervous system, leading to sustained elevation of cortisol and adrenaline. Over time, this drives up blood pressure, promotes inflammation, disrupts sleep, and encourages behaviours — including poorer diet choices and reduced physical activity — that further increase cardiovascular risk.</p>
+
+      <div class="research-item">
+        <h4>Stress as an independent cardiovascular risk factor</h4>
+        <p>The INTERHEART study identified psychosocial stress as one of nine independent risk factors for heart attack, accounting for approximately 33% of attributable risk globally — making it one of the larger contributors in the study. A systematic review published in the European Heart Journal (2021) found that work-related stress, relationship stress, and financial stress were all independently associated with increased cardiovascular events, after adjustment for traditional risk factors.</p>
+        <p>Of the psychological interventions studied, mindfulness-based stress reduction (MBSR) has the most robust evidence base, with randomised trials showing reductions in blood pressure and improvements in heart rate variability — a marker of autonomic nervous system health. Cognitive behavioural therapy (CBT) and structured relaxation techniques also have supporting evidence.</p>
+        <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(04)17018-9/fulltext" target="_blank" class="research-source">INTERHEART Study — The Lancet 2004</a>
+      </div>
+    </div>
+
+    <!-- SLEEP -->
+    <div class="factor-section">
+      <div class="factor-heading">
+        <span class="factor-pill pill-sleep">Sleep</span>
+        Sleep
+      </div>
+
+      <p>Sleep has moved from the margins of cardiovascular research to the centre of it.</p>
+
+      <div class="research-item">
+        <h4>Both too little and too much sleep independently raise risk</h4>
+        <p>A meta-analysis published in the Journal of the American Heart Association — pooling data from 74 studies representing over 3 million participants — found a J-shaped relationship between sleep duration and mortality, with both short sleep (under 6–7 hours per night) and long sleep (over 8–9 hours) independently associated with increased cardiovascular mortality. The lowest risk was consistently seen at 7–8 hours per night.</p>
+        <p>The mechanisms are multiple: poor sleep raises blood pressure, disrupts glucose metabolism, promotes inflammation, and elevates cortisol. Sleep deprivation also impairs decision-making in ways that affect diet, activity, and health behaviours more broadly.</p>
+        <a href="https://www.ahajournals.org/doi/10.1161/JAHA.118.008552" target="_blank" class="research-source">Yin J et al. JAHA 2019 — 74 studies, 3+ million participants</a>
+      </div>
+
+      <div class="callout callout-coral">
+        <strong>Sleep apnoea — an underdiagnosed risk factor.</strong> Sleep apnoea causes repeated nocturnal blood pressure surges and is independently associated with hypertension, atrial fibrillation, and increased risk of heart attack and stroke. If you snore loudly, wake unrefreshed, or are told you stop breathing in your sleep, it is worth discussing with your GP.
+      </div>
+    </div>
+
+    <!-- PUTTING IT ALL TOGETHER -->
+    <div class="putting-it-together">
+      <div class="putting-it-together-header">
+        <div class="putting-it-together-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>
+          </svg>
+        </div>
+        <h4>Putting it all together</h4>
+      </div>
+      <p>These seven factors don't operate in isolation. They interact with each other — often powerfully. Better sleep reduces stress. Reduced stress improves dietary choices. Regular movement improves sleep. Stopping smoking improves exercise tolerance.</p>
+      <p>The research doesn't suggest perfection. It suggests that meaningful, sustained change in even one or two of these areas produces measurable reductions in cardiovascular risk — and that the more factors addressed, the greater the benefit.</p>
+      <p><strong>The evidence is clear. What to do with it is a personal decision — one best made in conversation with your GP.</strong></p>
+    </div>
+
+  </section>
+
+  <!-- REFERENCES -->
+  <div class="references">
+    <h3>References</h3>
+    <ul>
+      <li><a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(04)17018-9/fulltext" target="_blank">INTERHEART Study — The Lancet, 2004</a></li>
+      <li><a href="https://www.nejm.org/doi/full/10.1056/NEJMoa1800389" target="_blank">PREDIMED trial (updated analysis) — Estruch R et al. NEJM, 2018</a></li>
+      <li><a href="https://www.nice.org.uk/guidance/ng136" target="_blank">NICE Guideline NG136 — Hypertension in adults, 2019 (updated 2023)</a></li>
+      <li><a href="https://www.bmj.com/content/384/bmj-2023-077310" target="_blank">Ultra-processed food and health outcomes — Lane MM et al. BMJ, 2024</a></li>
+      <li><a href="https://bjsm.bmj.com/content/57/15/979" target="_blank">Physical activity, CVD and mortality — Garcia L et al. BJSM, 2023</a></li>
+      <li><a href="https://www.cochranelibrary.com" target="_blank">Smoking cessation and cardiovascular outcomes — Cochrane Database</a></li>
+      <li><a href="https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2791520" target="_blank">Alcohol and cardiovascular disease (Mendelian randomisation) — Biddinger KJ et al. JAMA Network Open, 2022</a></li>
+      <li><a href="https://www.ahajournals.org/doi/10.1161/JAHA.118.008552" target="_blank">Sleep duration and cardiovascular outcomes — Yin J et al. JAHA, 2019</a></li>
+      <li><a href="https://www.nejm.org/doi/full/10.1056/NEJMoa2206916" target="_blank">Global modifiable risk factors and CVD — NEJM, 2022</a></li>
+    </ul>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <strong>Education only</strong><br>
+    This article is for health education purposes only. It does not constitute medical advice and should not be used to diagnose or treat any condition. Always speak with your GP or a qualified healthcare professional about your personal health and any decisions about treatment or lifestyle change.
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:0.4rem;"><a href="index.html">helf.school</a> · Health education for everyone</p>
+  <p>© 2025 helf.school · <a href="helf-school-membership.html">Membership</a></p>
+</footer>
+
+</body>
+</html>
