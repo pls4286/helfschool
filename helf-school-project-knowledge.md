@@ -1,5 +1,5 @@
 # helf.school — Project Knowledge Document
-*Last updated: April 2026 — updated after major build session. All 10 articles complete with script, visuals, teleprompter. Old presenter files superseded.*
+*Last updated: April 2026 — updated after major build session. All 10 articles complete with script, visuals, teleprompter. Old presenter files superseded. Project Knowledge document correctly uploaded to helfschool Project.*
 
 ---
 
@@ -106,7 +106,7 @@ Free = read-only. Paid members = full access. Needs: thread creation, member pro
 |---|-------|-------------|--------|---------|--------------|--------------|
 | 13 | Acid Reflux | acid-reflux.html | acid-reflux-script.html | acid-reflux-visuals.html | acid-reflux-teleprompter.html | ar-sphincter-screen.html, ar-barretts-screen.html |
 | 14 | Bloating | bloating.html | bloating-script.html | bloating-visuals.html | bloating-teleprompter.html | bloating-gut-screen.html, bloating-fodmap-screen.html |
-| 15 | IBS | ibs.html | ibs-script.html | ibs-visuals.html | ibs-teleprompter.html ✓ | — |
+| 15 | IBS | ibs.html | ibs-script.html | ibs-visuals.html | ibs-teleprompter.html | — |
 | 16+ | TBC | — | — | — | — | — |
 
 ⚠️ Note: IBS article hero currently shows "Article 16" — numbering to be confirmed.
@@ -343,6 +343,8 @@ Do NOT use: non-peer-reviewed sources, commercial health sites, forum content.
 - [x] All 10 article files fixed (scroll-margin-top: 150px)
 - [x] Old combined presenter files superseded — removed from master set
 - [x] 53-file master set consolidated and uploaded to GitHub
+- [x] Project Knowledge document correctly uploaded to helfschool Project
+- [x] All corrupted GitHub files replaced with correct versions
 
 ### Near-term
 - [ ] Continue Digestive Health Series (articles beyond IBS — Article 16+)
@@ -395,4 +397,31 @@ Old combined presenter files (e.g. `hypertension-presenter.html`) are SUPERSEDED
 - Prefers brief, direct responses
 - Work sessions are long and often cover multiple files simultaneously
 - Always confirm article numbers and file names before building
-- Flag any inconsistencies found during QC immediately
+
+---
+
+## 17. CRITICAL — SAVING AND UPLOADING FILES
+
+### The only safe way to download a file from Claude
+**Always use the download arrow button on the Artifact panel** (top-right corner of the preview panel).  
+**NEVER use Ctrl+S or File → Save in the browser.** This saves the Claude.ai webpage wrapper, not the file content. The resulting file will appear to work but contains Claude.ai code, not helf.school code.
+
+### Uploading to GitHub
+- Go to github.com/pls4286/helfschool/upload/main
+- Drag and drop files — uploading a file with the same name automatically overwrites the old version
+- No deletion needed to replace a file
+
+### Uploading to Project Knowledge
+- Go to helfschool Project in Claude
+- Click the + button beneath "How can I help you today"
+- Upload the `.md` file — confirm receipt on the confirmation screen
+- This makes the document available automatically in every future session
+
+### End-of-session update protocol — MANDATORY
+At the end of every session where new articles are built, decisions are made, or standards change:
+1. Claude updates this Project Knowledge document with all changes
+2. Paul downloads it using the Artifact download button
+3. Paul uploads it to GitHub (overwrites old version automatically)
+4. Paul uploads it to the helfschool Project using the + button (replaces old version)
+
+**This is the only way to ensure continuity between sessions. Claude cannot access previous conversations. This document is the single source of truth.**
