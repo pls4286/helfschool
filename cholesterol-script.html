@@ -1,160 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cholesterol Explained — Video Presenter Deck — Script | helf.school</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html,body{width:100%;height:100%;background:#0F1A2E;font-family:'DM Sans',sans-serif;overflow:hidden;color:#fff;}
-    .topbar{background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.10);height:52px;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
-    .topbar-left{display:flex;flex-direction:column;gap:.1rem;}
-    .topbar-title{font-family:'Fraunces',serif;font-size:.95rem;font-weight:600;color:#fff;}
-    .topbar-sub{font-size:.75rem;color:rgba(255,255,255,.75);}
-    .topbar-right{display:flex;align-items:center;gap:1.5rem;}
-    .slide-counter{font-size:.88rem;font-weight:600;color:rgba(255,255,255,.90);}
-    .kbd-hint{font-size:.72rem;color:rgba(255,255,255,.60);}
-    .progress-bar{height:3px;background:rgba(255,255,255,.08);flex-shrink:0;}
-    .progress-fill{height:100%;background:#C8423A;transition:width .35s ease;}
-    .main{height:calc(100vh - 55px - 3px - 48px);overflow-y:auto;padding:1.5rem 2rem;}
-    .main::-webkit-scrollbar{width:4px;}
-    .main::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:2px;}
-    .seg-meta{display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem;flex-wrap:wrap;}
-    .seg-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#C8423A;}
-    .seg-title{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:.75rem;}
-    .seg-timing{font-size:.75rem;color:rgba(255,255,255,.65);margin-left:auto;}
-    .seg-section{font-size:.72rem;color:rgba(255,255,255,.55);background:rgba(255,255,255,.06);border-radius:4px;padding:.15rem .5rem;}
-    .diagram-cue{background:rgba(232,99,74,.12);border:2px solid rgba(232,99,74,.55);border-radius:10px;padding:.7rem 1rem;margin:.5rem 0 .8rem;}
-    .diagram-cue-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#E8634A;margin-bottom:.25rem;}
-    .diagram-cue-file{font-size:.95rem;font-weight:700;color:#fff;font-family:'Fraunces',serif;}
-    .diagram-cue-desc{font-size:.82rem;color:rgba(255,255,255,.80);margin-top:.2rem;line-height:1.4;}
-    .diagram-cue-graphic{font-size:.78rem;color:rgba(255,255,255,.65);margin-top:.25rem;font-style:italic;line-height:1.4;}
-    .script-body{display:flex;flex-direction:column;gap:.5rem;}
-    .script-line{font-size:1.05rem;line-height:1.8;color:rgba(255,255,255,.90);padding:.4rem .6rem;border-radius:6px;border-left:3px solid transparent;}
-    .script-line:hover{background:rgba(255,255,255,.04);border-left-color:#C8423A;}
-    .script-pause{display:inline-block;background:rgba(200,66,58,.15);border:1px solid rgba(200,66,58,.35);color:#C8423A;font-size:.70rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .55rem;border-radius:100px;}
-    .type-badge{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .6rem;border-radius:100px;margin-bottom:.35rem;}
-    .badge-opening{background:rgba(232,99,74,.2);color:#E8634A;}
-    .badge-section{background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);}
-    .badge-cta{background:rgba(122,158,135,.2);color:#7A9E87;}
-    .badge-closing{background:rgba(232,168,74,.2);color:#E8A84A;}
-    .bottom-nav{height:48px;background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;flex-shrink:0;}
-    .nav-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.75);font-size:.82rem;font-weight:500;padding:.4rem 1rem;border-radius:7px;cursor:pointer;transition:all .2s;}
-    .nav-btn:hover{background:rgba(255,255,255,.10);color:#fff;}
-    .nav-btn:disabled{opacity:.3;cursor:not-allowed;}
-    .nav-btn-primary{background:#C8423A;border-color:#C8423A;color:#fff;}
-    .nav-dots{display:flex;gap:.4rem;}
-    .nav-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.20);cursor:pointer;transition:all .2s;}
-    .nav-dot.active{background:#C8423A;transform:scale(1.3);}
-  </style>
-</head>
-<body>
-<div class="topbar">
-  <div class="topbar-left">
-    <div class="topbar-title">Cholesterol Explained — Video Presenter Deck — Script &amp; Broadcaster Notes</div>
-    <div class="topbar-sub">helf.school · Cardiovascular Series · Article 02</div>
-  </div>
-  <div class="topbar-right">
-    <div class="slide-counter">Segment <span id="segNum">1</span> of 8</div>
-    <div class="kbd-hint">← → keys or buttons</div>
-  </div>
-</div>
-<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:12.5%"></div></div>
-<div class="main" id="mainContent"></div>
-<div class="bottom-nav">
-  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>← Previous</button>
-  <div class="nav-dots" id="navDots"></div>
-  <button class="nav-btn nav-btn-primary" id="nextBtn" onclick="navigate(1)">Next →</button>
-</div>
-<script>
-const TOTAL=8;
-const badgeClass={opening:'badge-opening',section:'badge-section',cta:'badge-cta',closing:'badge-closing'};
-const badgeLabel={opening:'Opening',section:'Section',cta:'Call to Action',closing:'Closing'};
-const slides=[
-  {type:'opening',label:'Intro · Dr Paul',title:'Introduction',timing:'⏱ ~10 seconds',visual:'s0',script:[
-    `"I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019."`,
-    `"Today I want to talk to you about <strong>cholesterol</strong>."`,
-    `"Now, I do have to say upfront — what I'm giving you here is health education, not medical advice."`,
-    `"If anything I talk about feels relevant to you personally, please do take it to your own doctor."`,
-    `"Right — let's get into it."`,
-  ]},
-  {type:'opening',label:'Segment 1 · Opening Hook',title:'The Number Nobody Checks',timing:'⏱ 0:00–0:45',visual:'s1',script:[
-    `"Around <strong>59% of adults in England</strong> have a total cholesterol level above the threshold considered raised under NHS guidelines. That's more than half the adult population."`,
-    `<span class="script-pause">PAUSE</span>`,
-    `"The striking thing about that statistic is this: <strong>high cholesterol causes no symptoms</strong>. No pain. No warning. Most people have absolutely no idea."`,
-    `"And yet high cholesterol is one of the most significant contributors to heart attack and stroke — the two biggest killers in this country."`,
-    `"In this video I want to explain what cholesterol actually is, why it matters, what the numbers mean — and what the evidence says we can do about it."`,
-    `"I'm Dr Paul — I spent over twenty years as an NHS GP. This is health education, not medical advice."`,
-  ]},
-  {type:'section',label:'Segment 2 · Section 1',title:'What is Cholesterol?',timing:'⏱ 0:45–1:45',visual:'s2',script:[
-    `"Cholesterol is a fatty substance found naturally in your blood. Despite its bad reputation, <strong>your body actually needs it</strong> — it plays an essential role in building healthy cells, producing hormones, and helping your body absorb vitamins."`,
-    `"The problem arises when there is too much of certain types circulating in the bloodstream."`,
-    `"Cholesterol is carried through the blood by proteins, forming particles called lipoproteins. There are three key types."`,
-    `"<strong>LDL — low-density lipoprotein</strong> — often called bad cholesterol. When there's too much LDL, it accumulates on artery walls, forming fatty deposits called plaques that narrow and harden the arteries."`,
-    `"<strong>HDL — high-density lipoprotein</strong> — often called good cholesterol. HDL carries cholesterol away from the arteries back to the liver, where it's broken down and removed."`,
-    `"And <strong>non-HDL cholesterol</strong> — which is total cholesterol minus HDL. This broader measure is now the preferred one in UK clinical guidelines."`,
-    `"Importantly: <strong>high cholesterol causes no symptoms</strong>. The only way to know your levels is through a blood test."`,
-  ]},
-  {type:'section',label:'Segment 3 · Section 2',title:'Why Does It Matter?',timing:'⏱ 1:45–2:35',visual:'s3',script:[
-    `"When LDL cholesterol builds up on artery walls over years, it forms plaques. These plaques narrow the arteries — reducing blood flow — and they can rupture, triggering a blood clot that blocks the artery completely. That is what causes a heart attack or stroke."`,
-    `"High cholesterol accounts for <strong>over 7% of all deaths in England</strong> and a third of all ischaemic heart disease worldwide."`,
-    `"An NHS England analysis estimated that if 90% of people with cardiovascular disease were identified and treated, <strong>14,000 heart attacks, strokes and premature deaths</strong> could be prevented in just three years."`,
-    `"Like high blood pressure, high cholesterol is largely silent. Which is why <strong>regular testing matters</strong> — particularly from age 40 onwards."`,
-  ]},
-  {type:'section',label:'Segment 4 · Section 3',title:'What Your Doctor Will Do',timing:'⏱ 2:35–3:30',visual:'s4',script:[
-    `"Cholesterol is measured through a simple blood test — usually as part of an NHS Health Check offered to everyone aged 40 to 74 every five years, or earlier if you have risk factors."`,
-    `"The test measures your total cholesterol, HDL, and triglycerides — from which your non-HDL and LDL are calculated. You don't usually need to fast beforehand under current UK guidelines."`,
-    `"Your doctor will interpret the results in the context of your <strong>overall cardiovascular risk</strong> — not the numbers in isolation. Here are the general targets for most healthy adults:"`,
-    `"Total cholesterol below 5.0 mmol/L. Non-HDL below 4.0 mmol/L. LDL below 3.0 mmol/L. If you already have cardiovascular disease, your targets will be lower."`,
-    `"For treatment, lifestyle changes can make a real difference — reducing saturated fat, exercising regularly, maintaining a healthy weight, cutting back on alcohol, and stopping smoking."`,
-    `"If medication is needed, <strong>statins</strong> are the most prescribed and best-evidenced treatment. NICE recommends offering a statin to anyone with a 10-year cardiovascular risk of 10% or more — most commonly atorvastatin."`,
-  ]},
-  {type:'section',label:'Segment 5 · Section 4',title:'What the Research Shows',timing:'⏱ 3:30–4:20',visual:'s5',script:[
-    `"The evidence on cholesterol and statins is among the most robust in all of medicine."`,
-    `"The Cholesterol Treatment Trialists' Collaboration — the world's largest pooled analysis of statin data — found that <strong>each 1 mmol/L reduction in LDL cuts the risk of major cardiovascular events by approximately one fifth</strong>. This held across men and women, all age groups, and regardless of starting cholesterol level."`,
-    `"A further analysis of 27 trials found that even in people at lower cardiovascular risk, each 1 mmol/L LDL reduction produced approximately <strong>11 fewer major vascular events per 1,000 people</strong> over five years."`,
-    `"The 2025 ESC/EAS dyslipidaemia guidelines reviewed all available evidence and concluded that <strong>no supplement or vitamin was found to be both safe and effective</strong> for reducing LDL cholesterol or lowering cardiovascular risk."`,
-    `"Supplements are widely marketed for cholesterol. The evidence does not support them for people at meaningful cardiovascular risk — where the case for properly monitored statin therapy is strong."`,
-  ]},
-  {type:'cta',label:'Segment 6 · Call to Action',title:'What You Can Do',timing:'⏱ 4:20–5:00',visual:'s6',script:[
-    `"<strong>First: get your cholesterol checked</strong> if it hasn't been done in the last five years. If you're over 40, an NHS Health Check will include it. You can also ask your GP."`,
-    `"<strong>Second: understand your numbers</strong>. Ask your doctor what your non-HDL cholesterol is — that's the measure that matters most. Ask what your 10-year cardiovascular risk score is. These numbers together tell a much more meaningful story than total cholesterol alone."`,
-    `"<strong>Third: if you've been offered a statin, consider the evidence</strong>. There's a lot of misinformation online about statins. The evidence for their benefit in people at meaningful risk is exceptionally strong. Our statins article on helf.school covers this in full."`,
-    `"The full cholesterol article with all research references is on <strong>helf.school</strong>."`,
-  ]},
-  {type:'closing',label:'Segment 7 · Closing',title:'Sign-off',timing:'⏱ 5:00–5:30',visual:'s7',script:[
-    `"Cholesterol is one of those topics where the gap between what people believe and what the evidence shows is particularly wide."`,
-    `"The science is clear: LDL drives cardiovascular risk. That risk is modifiable. And the treatments we have — including statins — are among the safest and most effective medicines available."`,
-    `<span class="script-pause">PAUSE</span>`,
-    `"Thanks for watching. The next video in this series covers statins in detail — the benefits, the real risks, and the misinformation. It's all on helf.school."`,
-    `"Take care of yourself."`,
-  ]},
-];
-function buildSegment(s,idx){
-  let h='';
-  h+=`<div class="seg-meta"><span class="type-badge ${badgeClass[s.type]}">${badgeLabel[s.type]}</span><span class="seg-label">${s.label}</span>${s.section?`<span class="seg-section">${s.section}</span>`:''}<span class="seg-timing">${s.timing}</span></div>`;
-  h+=`<div class="seg-title">${s.title}</div>`;
-  if(s.visuals_screen){h+=`<div class="diagram-cue"><div class="diagram-cue-label">📺 Switch to visuals screen</div><div class="diagram-cue-file">${s.visuals_screen.file}</div><div class="diagram-cue-desc">${s.visuals_screen.what}</div>${s.visuals_screen.graphic?`<div class="diagram-cue-graphic">On screen: ${s.visuals_screen.graphic}</div>`:''}</div>`;}
-  h+=`<div class="script-body">`;
-  s.script.forEach(l=>{h+=`<p class="script-line">${l}</p>`;});
-  h+=`</div>`;return h;
-}
-let current=0;
-function renderSegment(idx){
-  document.getElementById('mainContent').innerHTML=buildSegment(slides[idx],idx);
-  document.getElementById('mainContent').scrollTop=0;
-  document.getElementById('segNum').textContent=idx+1;
-  document.getElementById('progressFill').style.width=((idx+1)/TOTAL*100)+'%';
-  document.getElementById('prevBtn').disabled=idx===0;
-  document.getElementById('nextBtn').textContent=idx===TOTAL-1?'✓ Done':'Next →';
-  document.querySelectorAll('.nav-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
-}
-function navigate(dir){const n=current+dir;if(n<0||n>=TOTAL)return;current=n;renderSegment(n);}
-const de=document.getElementById('navDots');
-slides.forEach((s,i)=>{const d=document.createElement('div');d.className='nav-dot'+(i===0?' active':'');d.title=s.title;d.onclick=()=>{current=i;renderSegment(i);};de.appendChild(d);});
-document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')navigate(1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')navigate(-1);});
-renderSegment(0);
-</script>
-</body>
-</html>
+<!doctype html><html data-build-id="e40ee6bae5" data-git-hash="654e79e27f66fcc2b0e9f1c32835c8e40ee6bae5" data-build-timestamp="1776218831" data-version="1.0.0" data-env="" data-color-version="v2" lang="en" data-theme="claude" data-mode="light" class="h-screen antialiased scroll-smooth"><head data-ion-ip-country="GB"><link rel="preconnect" href="https://assets-proxy.anthropic.com" crossorigin><link rel="dns-prefetch" href="https://assets-proxy.anthropic.com"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Claude</title><meta name="description" content="Claude is Anthropic's AI, built for problem solvers. Tackle complex challenges, analyze data, write code, and think through your hardest work."><meta name="apple-itunes-app" content="app-id=6473753684"><meta property="og:type" content="website"><meta property="og:site_name" content="Claude"><meta property="og:image" content="https://claude.ai/images/claude_ogimage.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/svg+xml" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/cd02a42d9-Vq_H3mgS.svg"><link rel="icon" type="image/png" sizes="32x32" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/ce67964e7-CAX1bqSh.png"><link rel="icon" type="image/png" sizes="16x16" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c03e51811-DebilQLI.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c129d018a-jJjJELY8.png"><link rel="apple-touch-startup-image" href="/images/claude_app_icon.png"><link rel="manifest" href="/manifest.json"><meta name="mobile-web-app-capable" content="yes"><link rel="preload" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/cc27851ad-CFxw3nG7.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c66fc489e-C-BHYa_K.woff2" as="font" type="font/woff2" crossorigin><script type='text/javascript' nonce='jMSR9nLe6eFa/wLOIVDO2Q==' src='https://claude.ai/FLW-LbMxfE33aGslFChfGx8vyZEwxt3IZOEGWRlse2DnECetcwZGsO9-FOWwfpA_-eyhQiGoQwTPMpXw8woHhV_TLOzxi5na7RE5zv4UVhHUMxoUF7S_-JG-O1dN6ebQxx5S3V8ftenwKQwU0DGpktKgQ2MTYP_nMEoXiDBdJPOmKNultrBQ3IfOfFOH5S0mkTAfsJKTOV4dzcMVfKlsCIF3U8i3iKhjXLKIbR2JPRA1le66D-KzftMRh1zRluvbhyeAOxiPhLMMuVDj_I1iEPonbm30Xyy-zrNvuo_sXrh5aUnZPI-GC6PVaTEe4K1j7-LNdrmBjn6vdGyZPfRhz_tYRdDafYBr59iBhlVz02MqHf_luWLavzzHk9rFO29WMjLuRVyXu3s1EvVfLIoOzZpyAxO_RPowb2WfAzOuOC6Y_en9Nup2M_Vukcvopq7a_vKWhPTPw9eZRSnj3ejDk9sRm6K9JikmGKhIJkzubLRKFSrF'></script><script nonce="jMSR9nLe6eFa/wLOIVDO2Q==">void 0===globalThis.process&&(globalThis.process={env:{},cwd:function(){return"/"}}),void 0===globalThis.global&&(globalThis.global=globalThis)</script><script type="application/ld+json" nonce="jMSR9nLe6eFa/wLOIVDO2Q==">{
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "name": "Claude",
+            "alternateName": ["Claude.ai", "Claude by Anthropic"],
+            "url": "https://claude.com"
+          },
+          {
+            "@type": "Organization",
+            "name": "Anthropic",
+            "url": "https://www.anthropic.com",
+            "logo": "https://claude.ai/images/claude_ogimage.png",
+            "sameAs": [
+              "https://x.com/AnthropicAI",
+              "https://www.linkedin.com/company/anthropic",
+              "https://www.youtube.com/@anthropic-ai"
+            ]
+          }
+        ]
+      }</script><script nonce="jMSR9nLe6eFa/wLOIVDO2Q==">!function(){try{performance.mark?.("rq_cache:preload_start");const e="keyval-store",o="keyval",r="react-query-cache",t=new Promise(t=>{if(!window.indexedDB)return void t(void 0);const c=indexedDB.open(e);c.onupgradeneeded=()=>{c.transaction?.abort()},c.onerror=()=>t(void 0),c.onsuccess=()=>{const a=c.result;if(!a.objectStoreNames.contains(o))return a.close(),indexedDB.deleteDatabase(e),void t(void 0);try{const e=a.transaction(o,"readonly").objectStore(o).get(r);e.onerror=()=>{a.close(),t(void 0)},e.onsuccess=()=>{a.close(),window.__PRELOADED_IDB_CACHE_RESULT__=e.result,t(e.result)}}catch{a.close(),t(void 0)}}});window.__PRELOADED_IDB_CACHE__=t,performance.measure?.("rq_cache:preload_exec",{start:"rq_cache:preload_start"})}catch{}}()</script><script type="module" crossorigin src="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/index-BL8bstaL.js" nonce="jMSR9nLe6eFa/wLOIVDO2Q=="></script><link rel="modulepreload" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-BGCjnHf-.js"><link rel="modulepreload" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/tree-sitter-BfScwQVn.js"><link rel="stylesheet" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c6a992d55-BX1RVofc.css"></head><body class="bg-bg-100 text-text-100 font-ui min-h-screen"><div id="root"></div></body></html>

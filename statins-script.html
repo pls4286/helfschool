@@ -1,165 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Statins — Benefits &amp; Risks — Presenter Deck — Script | helf.school</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html,body{width:100%;height:100%;background:#0F1A2E;font-family:'DM Sans',sans-serif;overflow:hidden;color:#fff;}
-    .topbar{background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.10);height:52px;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
-    .topbar-left{display:flex;flex-direction:column;gap:.1rem;}
-    .topbar-title{font-family:'Fraunces',serif;font-size:.95rem;font-weight:600;color:#fff;}
-    .topbar-sub{font-size:.75rem;color:rgba(255,255,255,.75);}
-    .topbar-right{display:flex;align-items:center;gap:1.5rem;}
-    .slide-counter{font-size:.88rem;font-weight:600;color:rgba(255,255,255,.90);}
-    .kbd-hint{font-size:.72rem;color:rgba(255,255,255,.60);}
-    .progress-bar{height:3px;background:rgba(255,255,255,.08);flex-shrink:0;}
-    .progress-fill{height:100%;background:#C8423A;transition:width .35s ease;}
-    .main{height:calc(100vh - 55px - 3px - 48px);overflow-y:auto;padding:1.5rem 2rem;}
-    .main::-webkit-scrollbar{width:4px;}
-    .main::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:2px;}
-    .seg-meta{display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem;flex-wrap:wrap;}
-    .seg-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#C8423A;}
-    .seg-title{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:.75rem;}
-    .seg-timing{font-size:.75rem;color:rgba(255,255,255,.65);margin-left:auto;}
-    .seg-section{font-size:.72rem;color:rgba(255,255,255,.55);background:rgba(255,255,255,.06);border-radius:4px;padding:.15rem .5rem;}
-    .diagram-cue{background:rgba(232,99,74,.12);border:2px solid rgba(232,99,74,.55);border-radius:10px;padding:.7rem 1rem;margin:.5rem 0 .8rem;}
-    .diagram-cue-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#E8634A;margin-bottom:.25rem;}
-    .diagram-cue-file{font-size:.95rem;font-weight:700;color:#fff;font-family:'Fraunces',serif;}
-    .diagram-cue-desc{font-size:.82rem;color:rgba(255,255,255,.80);margin-top:.2rem;line-height:1.4;}
-    .diagram-cue-graphic{font-size:.78rem;color:rgba(255,255,255,.65);margin-top:.25rem;font-style:italic;line-height:1.4;}
-    .script-body{display:flex;flex-direction:column;gap:.5rem;}
-    .script-line{font-size:1.05rem;line-height:1.8;color:rgba(255,255,255,.90);padding:.4rem .6rem;border-radius:6px;border-left:3px solid transparent;}
-    .script-line:hover{background:rgba(255,255,255,.04);border-left-color:#C8423A;}
-    .script-pause{display:inline-block;background:rgba(200,66,58,.15);border:1px solid rgba(200,66,58,.35);color:#C8423A;font-size:.70rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .55rem;border-radius:100px;}
-    .type-badge{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .6rem;border-radius:100px;margin-bottom:.35rem;}
-    .badge-opening{background:rgba(232,99,74,.2);color:#E8634A;}
-    .badge-section{background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);}
-    .badge-cta{background:rgba(122,158,135,.2);color:#7A9E87;}
-    .badge-closing{background:rgba(232,168,74,.2);color:#E8A84A;}
-    .bottom-nav{height:48px;background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;flex-shrink:0;}
-    .nav-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.75);font-size:.82rem;font-weight:500;padding:.4rem 1rem;border-radius:7px;cursor:pointer;transition:all .2s;}
-    .nav-btn:hover{background:rgba(255,255,255,.10);color:#fff;}
-    .nav-btn:disabled{opacity:.3;cursor:not-allowed;}
-    .nav-btn-primary{background:#C8423A;border-color:#C8423A;color:#fff;}
-    .nav-dots{display:flex;gap:.4rem;}
-    .nav-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.20);cursor:pointer;transition:all .2s;}
-    .nav-dot.active{background:#C8423A;transform:scale(1.3);}
-  </style>
-</head>
-<body>
-<div class="topbar">
-  <div class="topbar-left">
-    <div class="topbar-title">Statins — Benefits &amp; Risks — Presenter Deck — Script &amp; Broadcaster Notes</div>
-    <div class="topbar-sub">helf.school · Cardiovascular Series · Article 04</div>
-  </div>
-  <div class="topbar-right">
-    <div class="slide-counter">Segment <span id="segNum">1</span> of 9</div>
-    <div class="kbd-hint">← → keys or buttons</div>
-  </div>
-</div>
-<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:11.1%"></div></div>
-<div class="main" id="mainContent"></div>
-<div class="bottom-nav">
-  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>← Previous</button>
-  <div class="nav-dots" id="navDots"></div>
-  <button class="nav-btn nav-btn-primary" id="nextBtn" onclick="navigate(1)">Next →</button>
-</div>
-<script>
-const TOTAL=9;
-const badgeClass={opening:'badge-opening',section:'badge-section',cta:'badge-cta',closing:'badge-closing'};
-const badgeLabel={opening:'Opening',section:'Section',cta:'Call to Action',closing:'Closing'};
-const slides=[
-  {type:'opening',label:'Intro · Dr Paul',title:'Introduction',timing:'⏱ ~10 seconds',visual:'s0',script:[
-    `"I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019."`,
-    `"Today I want to talk to you about <strong>statins</strong>."`,
-    `"Now, I do have to say upfront — what I'm giving you here is health education, not medical advice."`,
-    `"If anything I talk about feels relevant to you personally, please do take it to your own doctor."`,
-    `"Right — let's get into it."`,
-  ]},
-  {type:'opening',label:'Segment 1 · Opening Hook',title:'The Most Controversial Medicine',timing:'⏱ 0:00–0:50',visual:'s1',script:[
-    `"Statins are the most prescribed medicine in England. Around <strong>eight million people</strong> in the UK take one every day."`,
-    `"They are also the most argued-about medicine on the internet. Claims of widespread side effects, suggestions of a pharmaceutical cover-up, and an industry of alternative health content that says statins are harmful and unnecessary."`,
-    `<span class="script-pause">PAUSE</span>`,
-    `"So in this video I want to do something straightforward. I want to look at what the <strong>actual evidence says</strong> — from randomised controlled trials, from independent analyses, from the largest pooled datasets in cardiovascular medicine."`,
-    `"Because the evidence and the online narrative are very different things. And I think you deserve to know the difference."`,
-    `"I'm Dr Paul — over twenty years as an NHS GP. This is health education, not medical advice."`,
-  ]},
-  {type:'section',label:'Segment 2 · Section 1',title:'What Are Statins?',timing:'⏱ 0:50–1:35',visual:'s2',script:[
-    `"Statins are a class of medication that lower LDL cholesterol — the harmful type that builds up on artery walls — by reducing the amount produced in the liver."`,
-    `"They work by blocking an enzyme called <strong>HMG-CoA reductase</strong> — the key enzyme in the liver's cholesterol production pathway."`,
-    `"The most commonly prescribed statin in the UK is <strong>atorvastatin</strong>. It's available as a generic medicine and costs the NHS very little — less than a pound a month in many cases."`,
-    `"Statins are prescribed for two main purposes. <strong>Primary prevention</strong> — reducing risk in people who haven't yet had a cardiovascular event but whose 10-year risk score is 10% or above. And <strong>secondary prevention</strong> — reducing further risk in people who have already had a heart attack or stroke."`,
-  ]},
-  {type:'section',label:'Segment 3 · Section 2',title:'The Benefits — What the Evidence Shows',timing:'⏱ 1:35–2:25',visual:'s3',script:[
-    `"The Cholesterol Treatment Trialists' Collaboration is the world's largest pooled analysis of statin trial data — drawing on individual participant data from over <strong>170,000 people across 26 randomised trials</strong>."`,
-    `"It has consistently found that each 1 mmol/L reduction in LDL cholesterol reduces the risk of major cardiovascular events — heart attack, stroke, cardiovascular death — by approximately <strong>one fifth</strong>."`,
-    `"That benefit holds across men and women, across all age groups, and regardless of starting cholesterol level."`,
-    `"For secondary prevention — people who've already had a heart attack — the numbers are striking. Among every 1,000 people treated for 5 years, roughly <strong>1 in 10 avoid a further major cardiovascular event</strong> that they would otherwise have had."`,
-    `"For primary prevention, the benefit is smaller in absolute terms — but still real and meaningful for those at higher risk."`,
-  ]},
-  {type:'section',label:'Segment 4 · Section 3',title:'The Side Effects — What the Evidence Actually Says',timing:'⏱ 2:25–3:20',visual:'s4',script:[
-    `"Now — side effects. This is where the online narrative and the evidence diverge most dramatically."`,
-    `"The most common concern people have is muscle pain. <strong>More than 90% of all muscle symptom reports in people taking statins are not caused by the statin</strong> — this was the finding of the 2022 Lancet analysis of individual data from 23 trials and over 150,000 people."`,
-    `"The explanation is partly the <strong>nocebo effect</strong>. The ASCOT-LLA trial demonstrated this directly — when patients knew they were taking a statin, muscle symptoms were 41% more likely than when they didn't know. When blinded, the rate was virtually identical to placebo."`,
-    `"Genuine statin-caused muscle problems do exist — but they are rare. <strong>Myopathy occurs in around 1 per 10,000 person-years</strong>. Severe rhabdomyolysis — dangerous muscle breakdown — is extremely rare."`,
-    `"A 2026 Lancet analysis reviewed all the side effects listed on statin packaging — cognitive impairment, depression, sleep disturbance, peripheral neuropathy — and found <strong>no causal evidence for most of them</strong> from randomised trial data. It called on regulators to revise the labels."`,
-    `"The genuine risks that do exist: a <strong>small increase in new-onset diabetes</strong> — around 0.2% per year — mainly in those already at higher risk. And a small increase in mild liver enzyme levels — usually clinically insignificant."`,
-  ]},
-  {type:'section',label:'Segment 5 · Section 4',title:'What Your Doctor Will Do',timing:'⏱ 3:20–4:00',visual:'s5',script:[
-    `"If your QRISK3 score is 10% or above, your GP should offer you a statin — NICE guidance NG238 is clear on this."`,
-    `"Before starting, they'll do baseline blood tests — a full lipid profile, liver function, and blood glucose. They'll ask about muscle symptoms and review any medications that might interact."`,
-    `"In the UK, <strong>atorvastatin 20mg</strong> is recommended for primary prevention and <strong>atorvastatin 80mg</strong> for secondary prevention."`,
-    `"Cholesterol is rechecked at three months. The target for primary prevention is a reduction of more than 40% in non-HDL cholesterol. For secondary prevention, the LDL target is 2.0 mmol/L or below."`,
-    `"<strong>Important drug interactions</strong>: statins are broken down by an enzyme called CYP3A4. Drugs that block this — including clarithromycin, some antifungals, and amiodarone — can raise statin levels and increase risk. Always tell your doctor what else you're taking."`,
-    `"Statins are <strong>contraindicated in pregnancy</strong>. If you're pregnant, planning a pregnancy, or breastfeeding — speak to your GP about alternatives."`,
-  ]},
-  {type:'section',label:'Segment 6 · The Bigger Picture',title:'Statins in Context',timing:'⏱ 4:00–4:40',visual:'s6',script:[
-    `"It's worth stepping back for a moment."`,
-    `"Statins have been studied in hundreds of trials involving hundreds of thousands of people over decades. The evidence base is one of the most thoroughly investigated in all of medicine."`,
-    `"The finding is consistent: for people at meaningful cardiovascular risk, the benefits substantially outweigh the genuine risks."`,
-    `"This doesn't mean everyone should take a statin. It means the decision should be made on the basis of your individual risk profile — not on the basis of internet articles or anecdotes."`,
-    `"If you've been offered a statin and you have concerns, the right conversation to have is with your GP — with the actual evidence on the table, not the myths."`,
-  ]},
-  {type:'cta',label:'Segment 7 · Call to Action',title:'What You Can Do',timing:'⏱ 4:40–5:10',visual:'s7',script:[
-    `"<strong>First: if you've been offered a statin, don't dismiss it based on what you've read online</strong>. Read the evidence. The helf.school statins article has all the references."`,
-    `"<strong>Second: if you're already taking a statin and you have muscle symptoms</strong>, talk to your GP. Don't just stop. Symptoms can often be managed by switching statin or adjusting dose."`,
-    `"<strong>Third: if you're not sure whether you need a statin</strong>, ask your GP to run your QRISK3 score. That's the starting point for an evidence-based conversation."`,
-    `"Full article with all research at <strong>helf.school</strong>."`,
-  ]},
-  {type:'closing',label:'Segment 8 · Closing',title:'Sign-off',timing:'⏱ 5:10–5:35',visual:'s8',script:[
-    `"Statins are not perfect. No medicine is. But they are among the best-evidenced cardiovascular treatments we have — and the gap between the evidence and the public perception is genuinely large."`,
-    `"My hope is that this video gives you a basis for making an informed decision — one that's grounded in the actual data, not the noise."`,
-    `<span class="script-pause">PAUSE</span>`,
-    `"Thanks for watching. All seven cardiovascular articles are on helf.school. Take care of yourself."`,
-  ]},
-];
-function buildSegment(s,idx){
-  let h='';
-  h+=`<div class="seg-meta"><span class="type-badge ${badgeClass[s.type]}">${badgeLabel[s.type]}</span><span class="seg-label">${s.label}</span>${s.section?`<span class="seg-section">${s.section}</span>`:''}<span class="seg-timing">${s.timing}</span></div>`;
-  h+=`<div class="seg-title">${s.title}</div>`;
-  if(s.visuals_screen){h+=`<div class="diagram-cue"><div class="diagram-cue-label">📺 Switch to visuals screen</div><div class="diagram-cue-file">${s.visuals_screen.file}</div><div class="diagram-cue-desc">${s.visuals_screen.what}</div>${s.visuals_screen.graphic?`<div class="diagram-cue-graphic">On screen: ${s.visuals_screen.graphic}</div>`:''}</div>`;}
-  h+=`<div class="script-body">`;
-  s.script.forEach(l=>{h+=`<p class="script-line">${l}</p>`;});
-  h+=`</div>`;return h;
-}
-let current=0;
-function renderSegment(idx){
-  document.getElementById('mainContent').innerHTML=buildSegment(slides[idx],idx);
-  document.getElementById('mainContent').scrollTop=0;
-  document.getElementById('segNum').textContent=idx+1;
-  document.getElementById('progressFill').style.width=((idx+1)/TOTAL*100)+'%';
-  document.getElementById('prevBtn').disabled=idx===0;
-  document.getElementById('nextBtn').textContent=idx===TOTAL-1?'✓ Done':'Next →';
-  document.querySelectorAll('.nav-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
-}
-function navigate(dir){const n=current+dir;if(n<0||n>=TOTAL)return;current=n;renderSegment(n);}
-const de=document.getElementById('navDots');
-slides.forEach((s,i)=>{const d=document.createElement('div');d.className='nav-dot'+(i===0?' active':'');d.title=s.title;d.onclick=()=>{current=i;renderSegment(i);};de.appendChild(d);});
-document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')navigate(1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')navigate(-1);});
-renderSegment(0);
-</script>
-</body>
-</html>
+<!doctype html><html data-build-id="e40ee6bae5" data-git-hash="654e79e27f66fcc2b0e9f1c32835c8e40ee6bae5" data-build-timestamp="1776218831" data-version="1.0.0" data-env="" data-color-version="v2" lang="en" data-theme="claude" data-mode="light" class="h-screen antialiased scroll-smooth"><head data-ion-ip-country="GB"><link rel="preconnect" href="https://assets-proxy.anthropic.com" crossorigin><link rel="dns-prefetch" href="https://assets-proxy.anthropic.com"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Claude</title><meta name="description" content="Claude is Anthropic's AI, built for problem solvers. Tackle complex challenges, analyze data, write code, and think through your hardest work."><meta name="apple-itunes-app" content="app-id=6473753684"><meta property="og:type" content="website"><meta property="og:site_name" content="Claude"><meta property="og:image" content="https://claude.ai/images/claude_ogimage.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/svg+xml" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/cd02a42d9-Vq_H3mgS.svg"><link rel="icon" type="image/png" sizes="32x32" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/ce67964e7-CAX1bqSh.png"><link rel="icon" type="image/png" sizes="16x16" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c03e51811-DebilQLI.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c129d018a-jJjJELY8.png"><link rel="apple-touch-startup-image" href="/images/claude_app_icon.png"><link rel="manifest" href="/manifest.json"><meta name="mobile-web-app-capable" content="yes"><link rel="preload" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/cc27851ad-CFxw3nG7.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c66fc489e-C-BHYa_K.woff2" as="font" type="font/woff2" crossorigin><script type='text/javascript' nonce='jFZO2+81Z+rJX3jj9ANkOw==' src='https://claude.ai/cpJmw7Bbk9D8D5FMgiBMWKWCiz9RUE1XJ9GZUb0vRLMQbMhmYph-YSFWM2r5KXtTFrkGrmddOPds5CG1rXpdF0rjV4J1SMegc6rPTj8O3GZp9vutxuwpYIX1zrxG5a7Iy3-q4eo3RpONCIeP5YGeJwo5OY32Kbp6plPnGqVKqdQk_UlDRGNO4otoMbLspLMk90w7CVajJD0DGLfRwuY-HUpwD2RlrgzQ8bF-TUtQaJGmQuQBaBLDz_KxVuNdRFmKgi5MZGn6zvBYxRz-ZP3IdAGuogcdKB5LHRpDdlc74AV3aedbYn84kiu4CWQcpW4tz49nlbIFL1U4dLUHOnU0xibpYgb3v8vt2oUINfTQJcQ-UhIJHaZ9gha-OEWmGastkRcDW3lJCTNNPekC1Hg6qVBZzQSlQ4rjMm9UyRHQhCZzBRhBEn8vmKeQsGitPUNDP-qIIIoxfHDxl9mPLB1H8p_crfSsr3iO8n_wtLNu78Tvj6Y7'></script><script nonce="jFZO2+81Z+rJX3jj9ANkOw==">void 0===globalThis.process&&(globalThis.process={env:{},cwd:function(){return"/"}}),void 0===globalThis.global&&(globalThis.global=globalThis)</script><script type="application/ld+json" nonce="jFZO2+81Z+rJX3jj9ANkOw==">{
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "name": "Claude",
+            "alternateName": ["Claude.ai", "Claude by Anthropic"],
+            "url": "https://claude.com"
+          },
+          {
+            "@type": "Organization",
+            "name": "Anthropic",
+            "url": "https://www.anthropic.com",
+            "logo": "https://claude.ai/images/claude_ogimage.png",
+            "sameAs": [
+              "https://x.com/AnthropicAI",
+              "https://www.linkedin.com/company/anthropic",
+              "https://www.youtube.com/@anthropic-ai"
+            ]
+          }
+        ]
+      }</script><script nonce="jFZO2+81Z+rJX3jj9ANkOw==">!function(){try{performance.mark?.("rq_cache:preload_start");const e="keyval-store",o="keyval",r="react-query-cache",t=new Promise(t=>{if(!window.indexedDB)return void t(void 0);const c=indexedDB.open(e);c.onupgradeneeded=()=>{c.transaction?.abort()},c.onerror=()=>t(void 0),c.onsuccess=()=>{const a=c.result;if(!a.objectStoreNames.contains(o))return a.close(),indexedDB.deleteDatabase(e),void t(void 0);try{const e=a.transaction(o,"readonly").objectStore(o).get(r);e.onerror=()=>{a.close(),t(void 0)},e.onsuccess=()=>{a.close(),window.__PRELOADED_IDB_CACHE_RESULT__=e.result,t(e.result)}}catch{a.close(),t(void 0)}}});window.__PRELOADED_IDB_CACHE__=t,performance.measure?.("rq_cache:preload_exec",{start:"rq_cache:preload_start"})}catch{}}()</script><script type="module" crossorigin src="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/index-BL8bstaL.js" nonce="jFZO2+81Z+rJX3jj9ANkOw=="></script><link rel="modulepreload" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-BGCjnHf-.js"><link rel="modulepreload" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/tree-sitter-BfScwQVn.js"><link rel="stylesheet" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c6a992d55-BX1RVofc.css"></head><body class="bg-bg-100 text-text-100 font-ui min-h-screen"><div id="root"></div></body></html>
