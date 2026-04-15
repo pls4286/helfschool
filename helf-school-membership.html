@@ -1,22 +1,807 @@
-<!doctype html><html data-build-id="cd5ca868b5" data-git-hash="4c3a048bad2b36752350624561428ccd5ca868b5" data-build-timestamp="1775089209" data-version="1.0.0" data-env="" lang="en" data-theme="claude" data-mode="light" class="h-screen antialiased scroll-smooth"><head data-ion-ip-country="GB"><link rel="preconnect" href="https://assets-proxy.anthropic.com" crossorigin><link rel="dns-prefetch" href="https://assets-proxy.anthropic.com"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Claude</title><meta name="description" content="Claude is Anthropic's AI, built for problem solvers. Tackle complex challenges, analyze data, write code, and think through your hardest work."><meta name="apple-itunes-app" content="app-id=6473753684"><meta property="og:type" content="website"><meta property="og:site_name" content="Claude"><meta property="og:image" content="https://claude.ai/images/claude_ogimage.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/svg+xml" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/cd02a42d9-Vq_H3mgS.svg"><link rel="icon" type="image/png" sizes="32x32" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/ce67964e7-CAX1bqSh.png"><link rel="icon" type="image/png" sizes="16x16" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c03e51811-DebilQLI.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c129d018a-jJjJELY8.png"><link rel="apple-touch-startup-image" href="/images/claude_app_icon.png"><link rel="manifest" href="/manifest.json"><meta name="mobile-web-app-capable" content="yes"><link rel="preload" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/cc27851ad-CFxw3nG7.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c66fc489e-C-BHYa_K.woff2" as="font" type="font/woff2" crossorigin><script type='text/javascript' nonce='rQ8fRVvfC/AJ+asrmb9Cew==' src='https://claude.ai/y9BW57fmRCav0Woa8We4Asf-_xf5XOsfbXzkW6YIRXWVNfHG2ddav1EXy44pJvBpzh9PVgxuNIp0_Iom64skm2vnxvV9lFRU_n8hYVK-Y6gNLMjyEGE4lN6iQbMq9J9PZDqHV9drJSQJCizZvZWBPElFL2_KIoAWp5C8CiV5n0vK0zOgamv_XJ49IWH-nXbHjvmDjwgKOP2phMaKs6-Xi17biJzcBhf5s_XWo0ZESf2EEUJAXI39CDnSPTvaYvzQbZGDurHdZ4JvOKEmetTHn7Oi4gLKPlnLfReCMRFvUTqcX6RlbpBsiay2BqvZ_E5DhZVBYqs9p40FojvOlhgfslkflUh349aJ1HGi88BYOMqFieOHES1TS2EjRU0g3S2-zNc-sGcFudRet4asO2yDFBriT4tLxc8JTsTNjhQhHbTrUvLXmCRv38EGKFobnMIAppqnbOdNVdnKgSthk8aY7RjBCGNBwq1kfWgj-nh7L5CwX66G'></script><script nonce="rQ8fRVvfC/AJ+asrmb9Cew==">void 0===globalThis.process&&(globalThis.process={env:{},cwd:function(){return"/"}}),void 0===globalThis.global&&(globalThis.global=globalThis)</script><script type="application/ld+json" nonce="rQ8fRVvfC/AJ+asrmb9Cew==">{
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "name": "Claude",
-            "alternateName": ["Claude.ai", "Claude by Anthropic"],
-            "url": "https://claude.com"
-          },
-          {
-            "@type": "Organization",
-            "name": "Anthropic",
-            "url": "https://www.anthropic.com",
-            "logo": "https://claude.ai/images/claude_ogimage.png",
-            "sameAs": [
-              "https://x.com/AnthropicAI",
-              "https://www.linkedin.com/company/anthropic",
-              "https://www.youtube.com/@anthropic-ai"
-            ]
-          }
-        ]
-      }</script><script nonce="rQ8fRVvfC/AJ+asrmb9Cew==">!function(){try{performance.mark?.("rq_cache:preload_start");const e="keyval-store",o="keyval",r="react-query-cache",t=new Promise(t=>{if(!window.indexedDB)return void t(void 0);const c=indexedDB.open(e);c.onupgradeneeded=()=>{c.transaction?.abort()},c.onerror=()=>t(void 0),c.onsuccess=()=>{const a=c.result;if(!a.objectStoreNames.contains(o))return a.close(),indexedDB.deleteDatabase(e),void t(void 0);try{const e=a.transaction(o,"readonly").objectStore(o).get(r);e.onerror=()=>{a.close(),t(void 0)},e.onsuccess=()=>{a.close(),window.__PRELOADED_IDB_CACHE_RESULT__=e.result,t(e.result)}}catch{a.close(),t(void 0)}}});window.__PRELOADED_IDB_CACHE__=t,performance.measure?.("rq_cache:preload_exec",{start:"rq_cache:preload_start"})}catch{}}()</script><script type="module" crossorigin src="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/index-Kz-0ZpGq.js" nonce="rQ8fRVvfC/AJ+asrmb9Cew=="></script><link rel="modulepreload" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-CX9Ejazz.js"><link rel="modulepreload" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/tree-sitter-Clg8_hLE.js"><link rel="stylesheet" crossorigin href="https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/c6a992d55-DSofws8K.css"></head><body class="bg-bg-100 text-text-100 font-ui min-h-screen"><div id="root"></div><script nonce="rQ8fRVvfC/AJ+asrmb9Cew==">(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.nonce='rQ8fRVvfC/AJ+asrmb9Cew==';d.innerHTML="window.__CF$cv$params={r:'9e619772fa349425',t:'MTc3NTE1MTM0Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='rQ8fRVvfC/AJ+asrmb9Cew==';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Membership — helf.school</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --warm-white: #FFFDF9;
+    --heart-red: #C8423A;
+    --heart-deep: #8B1F1A;
+    --coral: #E8705A;
+    --sage: #5A7A6A;
+    --sage-light: #EBF2EE;
+    --navy: #1C2B3A;
+    --navy-mid: #2E4155;
+    --sand: #D4C4A8;
+    --sand-light: #F0E8D8;
+    --text-body: #2C2C2C;
+    --text-muted: #7A7265;
+    --border: #E2D9C8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-body);
+    font-size: 16px;
+    line-height: 1.7;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250,247,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  .nav-logo svg { height: 48px; width: auto; transition: transform 0.2s; }
+  .nav-logo:hover svg { transform: scale(1.03); }
+
+  .nav-links {
+    display: flex; gap: 1.5rem; list-style: none;
+    align-items: center;
+    margin-left: 2rem;
+  }
+  .nav-links a {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--navy-mid);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--heart-red); }
+  .nav-links a.active { color: var(--heart-red); font-weight: 500; }
+
+  .nav-cta {
+    background: var(--heart-red) !important;
+    color: white !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 100px;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--heart-deep) !important; }
+
+  /* ─── PAGE HERO ─── */
+  .page-hero {
+    background: var(--navy);
+    padding: 7rem 5rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, rgba(200,66,58,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .page-hero-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.50);
+    margin-bottom: 1rem;
+  }
+  .page-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: white;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+  }
+  .page-hero p {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.70);
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.75;
+    font-weight: 400;
+  }
+
+  /* ─── PRICING SECTION ─── */
+  .pricing-section {
+    background: var(--navy);
+    padding: 1rem 5rem 5rem;
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .plan-card {
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+    transition: transform 0.3s;
+  }
+  .plan-card:hover { transform: translateY(-4px); }
+  .plan-card.free { background: rgba(255,255,255,0.05); }
+  .plan-card.member { background: var(--heart-red); border-color: var(--heart-red); }
+  .plan-card.lifetime { background: rgba(255,255,255,0.08); }
+
+  .plan-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    color: rgba(255,255,255,0.90);
+  }
+  .plan-card.member .plan-badge { background: rgba(255,255,255,0.25); }
+
+  .plan-price {
+    font-family: 'Fraunces', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .plan-price-sub {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.60);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+  .plan-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: white;
+    margin-bottom: 1.25rem;
+  }
+  .plan-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+  .plan-features li {
+    font-size: 0.87rem;
+    color: rgba(255,255,255,0.80);
+    display: flex;
+    gap: 0.5rem;
+    font-weight: 400;
+  }
+  .plan-features li::before {
+    content: '✓';
+    color: rgba(255,255,255,0.60);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .plan-card.member .plan-features li { color: rgba(255,255,255,0.90); }
+  .plan-card.member .plan-features li::before { color: white; }
+
+  .plan-btn {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 100px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .plan-btn:hover { background: rgba(255,255,255,0.12); }
+  .plan-card.member .plan-btn { background: white; color: var(--heart-red); border-color: white; }
+  .plan-card.member .plan-btn:hover { background: var(--cream); }
+
+  /* ─── ANNUAL SAVING NOTE ─── */
+  .saving-note {
+    text-align: center;
+    color: rgba(255,255,255,0.50);
+    font-size: 0.85rem;
+    margin-top: 1.5rem;
+    font-weight: 400;
+  }
+  .saving-note strong { color: rgba(255,255,255,0.80); }
+
+  /* ─── WHAT YOU GET SECTION ─── */
+  .what-section {
+    background: var(--warm-white);
+    padding: 5rem 5rem;
+  }
+  .section-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--heart-red);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 560px;
+    line-height: 1.7;
+    font-weight: 400;
+    margin-bottom: 3rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .feature-card {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 1.75rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .feature-icon {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+  .feature-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .feature-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    font-weight: 400;
+  }
+  .feature-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    margin-top: 0.75rem;
+  }
+  .tag-free { background: var(--sage-light); color: var(--sage); }
+  .tag-member { background: #FEE8E7; color: var(--heart-red); }
+  .tag-lifetime { background: var(--sand-light); color: #7A6A2E; }
+
+  /* ─── DR PAUL SECTION ─── */
+  .drpaul-section {
+    background: var(--navy);
+    padding: 5rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .drpaul-quote {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .drpaul-quote::before {
+    content: '"';
+    font-size: 5rem;
+    color: var(--coral);
+    opacity: 0.4;
+    position: absolute;
+    top: -1.5rem;
+    left: -1rem;
+    font-style: normal;
+    line-height: 1;
+  }
+  .drpaul-attr {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.50);
+    font-weight: 400;
+  }
+  .drpaul-attr strong {
+    display: block;
+    color: rgba(255,255,255,0.80);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+  }
+  .drpaul-points {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .drpaul-point {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .drpaul-point-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .drpaul-point-text strong {
+    display: block;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.90);
+    margin-bottom: 0.2rem;
+  }
+  .drpaul-point-text p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.50);
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  /* ─── FAQ SECTION ─── */
+  .faq-section {
+    background: var(--cream);
+    padding: 5rem 5rem;
+  }
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    max-width: 860px;
+  }
+  .faq-item {
+    background: white;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+  }
+  .faq-q {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .faq-a {
+    font-size: 0.87rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    font-weight: 400;
+  }
+
+  /* ─── CTA BANNER ─── */
+  .cta-banner {
+    background: var(--heart-red);
+    padding: 4rem 5rem;
+    text-align: center;
+  }
+  .cta-banner h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+  .cta-banner p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.80);
+    margin-bottom: 2rem;
+    font-weight: 400;
+  }
+  .cta-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-white {
+    background: white;
+    color: var(--heart-red);
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-white:hover { background: var(--cream); }
+  .btn-ghost {
+    background: transparent;
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    transition: border-color 0.2s, background 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+  }
+  .btn-ghost:hover { border-color: white; background: rgba(255,255,255,0.08); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.60);
+    padding: 3rem 5rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+  .footer-brand p { font-size: 0.85rem; line-height: 1.7; font-weight: 400; max-width: 260px; margin-top: 0.75rem; }
+  .footer-col h4 {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.90);
+    margin-bottom: 1rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .footer-col ul a { font-size: 0.85rem; color: rgba(255,255,255,0.50); text-decoration: none; transition: color 0.2s; font-weight: 400; }
+  .footer-col ul a:hover { color: white; }
+
+  .footer-disclaimer-strip {
+    background: rgba(200,66,58,0.15);
+    border-top: 1px solid rgba(200,66,58,0.25);
+    padding: 1rem 5rem;
+    font-size: 0.8rem;
+    color: rgba(255,200,198,0.80);
+    line-height: 1.6;
+    font-weight: 400;
+  }
+  .footer-bottom {
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 1.25rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.35);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .page-hero, .pricing-section, .what-section, .faq-section, .cta-banner { padding-left: 2rem; padding-right: 2rem; }
+    .plans-grid, .features-grid { grid-template-columns: 1fr; }
+    .drpaul-section { grid-template-columns: 1fr; padding: 3rem 2rem; gap: 2.5rem; }
+    .faq-grid { grid-template-columns: 1fr; }
+    footer { grid-template-columns: 1fr 1fr; padding: 3rem 2rem; }
+    .footer-disclaimer-strip, .footer-bottom { padding: 1rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo" aria-label="helf.school — home">
+    <svg viewBox="0 0 260 56" xmlns="http://www.w3.org/2000/svg" style="height:48px;width:auto;">
+      <path d="M4 8 Q4 4 8 4 L28 4 L28 50 L8 50 Q4 50 4 46 Z" fill="none" stroke="#1C2B3A" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M28 4 L48 4 Q52 4 52 8 L52 46 Q52 50 48 50 L28 50 Z" fill="none" stroke="#1C2B3A" stroke-width="2" stroke-linejoin="round"/>
+      <line x1="28" y1="4" x2="28" y2="50" stroke="#1C2B3A" stroke-width="2"/>
+      <line x1="8" y1="14" x2="25" y2="14" stroke="#1C2B3A" stroke-width="1" opacity="0.3"/>
+      <line x1="8" y1="20" x2="25" y2="20" stroke="#1C2B3A" stroke-width="1" opacity="0.3"/>
+      <line x1="8" y1="26" x2="25" y2="26" stroke="#1C2B3A" stroke-width="1" opacity="0.3"/>
+      <line x1="8" y1="32" x2="25" y2="32" stroke="#1C2B3A" stroke-width="1" opacity="0.3"/>
+      <line x1="8" y1="38" x2="25" y2="38" stroke="#1C2B3A" stroke-width="1" opacity="0.3"/>
+      <line x1="31" y1="14" x2="48" y2="14" stroke="#1C2B3A" stroke-width="1" opacity="0.3"/>
+      <line x1="31" y1="20" x2="48" y2="20" stroke="#1C2B3A" stroke-width="1" opacity="0.3"/>
+      <line x1="31" y1="26" x2="48" y2="26" stroke="#1C2B3A" stroke-width="1" opacity="0.3"/>
+      <line x1="31" y1="32" x2="48" y2="32" stroke="#1C2B3A" stroke-width="1" opacity="0.3"/>
+      <line x1="31" y1="38" x2="48" y2="38" stroke="#1C2B3A" stroke-width="1" opacity="0.3"/>
+      <path d="M42 41 C42 39.5 40.5 38.5 39.5 39.5 C38.5 38.5 37 39.5 37 41 C37 42.5 39.5 44.5 39.5 44.5 C39.5 44.5 42 42.5 42 41Z" fill="#C8423A" opacity="0.7"/>
+      <text x="62" y="25" font-family="'Fraunces', Georgia, serif" font-size="20" font-weight="700" fill="#1C2B3A" letter-spacing="-0.5">helf<tspan fill="#C8423A">.</tspan>school</text>
+      <text x="62" y="40" font-family="'DM Sans', Arial, sans-serif" font-size="7.5" fill="#7A7265" letter-spacing="1.4" font-weight="500">HEALTH EDUCATION</text>
+    </svg>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about-dr-paul">Dr Paul</a></li>
+    <li><a href="index.html#why">Why helf.school</a></li>
+    <li><a href="helf-school-conditions.html">Conditions</a></li>
+    <li><a href="index.html#community">Community</a></li>
+    <li><a href="helf-school-membership.html" class="active">Membership</a></li>
+    <li><a href="helf-school-membership.html" class="nav-cta">Join Free</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-tag">Membership</div>
+  <h1>Health education<br>done properly</h1>
+  <p>Start free. Upgrade when you're ready. No pressure, no upselling — just clear, honest, evidence-based health education from a retired NHS GP.</p>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section">
+  <div class="plans-grid">
+
+    <div class="plan-card free">
+      <div class="plan-badge">Free Forever</div>
+      <div class="plan-price">£0</div>
+      <div class="plan-price-sub">No credit card needed</div>
+      <div class="plan-name">Explorer</div>
+      <ul class="plan-features">
+        <li>Access to introductory articles</li>
+        <li>Condition overviews (summary level)</li>
+        <li>Monthly newsletter</li>
+        <li>helf.school community (read-only)</li>
+      </ul>
+      <button class="plan-btn">Get Started Free</button>
+    </div>
+
+    <div class="plan-card member">
+      <div class="plan-badge">⭐ Most Popular</div>
+      <div class="plan-price">£6</div>
+      <div class="plan-price-sub">per month · or £60/year · cancel anytime</div>
+      <div class="plan-name">Member</div>
+      <ul class="plan-features">
+        <li>Full access to all condition guides</li>
+        <li>Complete research analyses</li>
+        <li>Evidence strength ratings</li>
+        <li>Community forum (full access)</li>
+        <li>Ask-a-question monthly thread</li>
+        <li>New content first</li>
+      </ul>
+      <button class="plan-btn">Become a Member</button>
+    </div>
+
+    <div class="plan-card lifetime">
+      <div class="plan-badge">Best Value</div>
+      <div class="plan-price">£150</div>
+      <div class="plan-price-sub">one-off payment · yours forever</div>
+      <div class="plan-name">Lifetime</div>
+      <ul class="plan-features">
+        <li>Everything in Member</li>
+        <li>Lifetime access — never pay again</li>
+        <li>All future content included</li>
+        <li>Support helf.school for the long term</li>
+      </ul>
+      <button class="plan-btn">Get Lifetime Access</button>
+    </div>
+
+  </div>
+  <p class="saving-note">Annual membership saves you <strong>£12 a year</strong> vs monthly · Lifetime pays for itself in just over 2 years</p>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="what-section">
+  <div class="section-tag">What's included</div>
+  <h2 class="section-title">Everything in one place</h2>
+  <p class="section-sub">A growing library of plain-English health education, grounded in peer-reviewed evidence and written by someone who has spent a career in clinical practice.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">📖</div>
+      <div class="feature-title">Condition Guides</div>
+      <p class="feature-desc">In-depth articles on common conditions — what they are, why they matter, what your doctor looks for, and what the research actually says.</p>
+      <span class="feature-tag tag-free">Free & Member</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔬</div>
+      <div class="feature-title">Research Analyses</div>
+      <p class="feature-desc">Plain-English breakdowns of key clinical trials and studies — what was studied, what was found, and how much weight to give it.</p>
+      <span class="feature-tag tag-member">Member only</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⭐</div>
+      <div class="feature-title">Evidence Ratings</div>
+      <p class="feature-desc">Each claim is rated by strength of evidence — so you always know whether something is well-established or still emerging.</p>
+      <span class="feature-tag tag-member">Member only</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💬</div>
+      <div class="feature-title">Community Forum</div>
+      <p class="feature-desc">A moderated space to share experiences, ask questions, and support others navigating similar health journeys. Respectful, evidence-informed, kind.</p>
+      <span class="feature-tag tag-member">Members post · Free read-only</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">❓</div>
+      <div class="feature-title">Monthly Q&A Thread</div>
+      <p class="feature-desc">Members submit questions each month. Dr Paul answers the most common and most important ones in a dedicated thread.</p>
+      <span class="feature-tag tag-member">Member only</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏛️</div>
+      <div class="feature-title">Lifetime Access</div>
+      <p class="feature-desc">Pay once and you're in — forever. Every article, every future piece of content, every update. No ongoing commitment.</p>
+      <span class="feature-tag tag-lifetime">Lifetime only</span>
+    </div>
+  </div>
+</section>
+
+<!-- DR PAUL -->
+<section class="drpaul-section">
+  <div>
+    <p class="drpaul-quote">I spent over twenty years as an NHS GP. What I saw — consistently — was that patients who understood their condition did better. Not because knowledge is a cure, but because it changes the conversation.</p>
+    <div class="drpaul-attr">
+      <strong>Dr Paul</strong>
+      Retired NHS GP · 20+ years in clinical practice · Founder, helf.school
+    </div>
+  </div>
+  <div class="drpaul-points">
+    <div class="drpaul-point">
+      <div class="drpaul-point-icon">🏥</div>
+      <div class="drpaul-point-text">
+        <strong>20+ years as an NHS GP</strong>
+        <p>Real clinical experience — what doctors actually look for, how they think, and what the evidence says.</p>
+      </div>
+    </div>
+    <div class="drpaul-point">
+      <div class="drpaul-point-icon">📚</div>
+      <div class="drpaul-point-text">
+        <strong>Evidence-led, always</strong>
+        <p>Every article cites peer-reviewed sources — BMJ, NICE, Cochrane, NEJM, The Lancet and more.</p>
+      </div>
+    </div>
+    <div class="drpaul-point">
+      <div class="drpaul-point-icon">🤝</div>
+      <div class="drpaul-point-text">
+        <strong>Education, not advice</strong>
+        <p>helf.school helps you become a more informed participant in your own care — your doctor remains your doctor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="section-tag">Questions</div>
+  <h2 class="section-title">Common questions</h2>
+  <p class="section-sub">If you can't find what you're looking for, use the contact page.</p>
+
+  <div class="faq-grid">
+    <div class="faq-item">
+      <div class="faq-q">Can I cancel at any time?</div>
+      <p class="faq-a">Yes — monthly and annual memberships can be cancelled at any time. You keep access until the end of the billing period.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What's the difference between monthly and annual?</div>
+      <p class="faq-a">Same full access either way. Annual works out at £5/month instead of £6 — saving you £12 over the year.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is this medical advice?</div>
+      <p class="faq-a">No. helf.school is health education — not medical advice. Always speak to your own doctor about anything that feels personally relevant.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What does Lifetime access include?</div>
+      <p class="faq-a">Everything in Member, forever — including all future content as it's published. One payment, no further charges.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How often is new content added?</div>
+      <p class="faq-a">New condition guides and research analyses are added regularly. Members are notified first.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Who writes the content?</div>
+      <p class="faq-a">All content is written by Dr Paul — a retired NHS GP with over 20 years of clinical experience. Every claim links to a peer-reviewed source.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <h2>Start learning for free today</h2>
+  <p>No credit card. No commitment. Just good health education.</p>
+  <div class="cta-btns">
+    <button class="btn-white">Get Started Free</button>
+    <button class="btn-ghost">View Condition Library</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="index.html" class="nav-logo" aria-label="helf.school">
+      <svg viewBox="0 0 260 56" xmlns="http://www.w3.org/2000/svg" style="height:44px;width:auto;">
+        <path d="M4 8 Q4 4 8 4 L28 4 L28 50 L8 50 Q4 50 4 46 Z" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M28 4 L48 4 Q52 4 52 8 L52 46 Q52 50 48 50 L28 50 Z" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linejoin="round"/>
+        <line x1="28" y1="4" x2="28" y2="50" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+        <line x1="8" y1="14" x2="25" y2="14" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+        <line x1="8" y1="20" x2="25" y2="20" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+        <line x1="8" y1="26" x2="25" y2="26" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+        <line x1="8" y1="32" x2="25" y2="32" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+        <line x1="8" y1="38" x2="25" y2="38" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+        <line x1="31" y1="14" x2="48" y2="14" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+        <line x1="31" y1="20" x2="48" y2="20" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+        <line x1="31" y1="26" x2="48" y2="26" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+        <line x1="31" y1="32" x2="48" y2="32" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+        <line x1="31" y1="38" x2="48" y2="38" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+        <path d="M42 41 C42 39.5 40.5 38.5 39.5 39.5 C38.5 38.5 37 39.5 37 41 C37 42.5 39.5 44.5 39.5 44.5 C39.5 44.5 42 42.5 42 41Z" fill="#E8705A" opacity="0.8"/>
+        <text x="62" y="25" font-family="'Fraunces', Georgia, serif" font-size="20" font-weight="700" fill="white" letter-spacing="-0.5">helf<tspan fill="#E8705A">.</tspan>school</text>
+        <text x="62" y="40" font-family="'DM Sans', Arial, sans-serif" font-size="7.5" fill="rgba(255,255,255,0.40)" letter-spacing="1.4" font-weight="500">HEALTH EDUCATION</text>
+      </svg>
+    </a>
+    <p>Health education for everyone. Written by a retired GP. Grounded in evidence. Always honest about what we know — and what we don't.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Learn</h4>
+    <ul>
+      <li><a href="helf-school-conditions.html">Condition Library</a></li>
+      <li><a href="#">Research Analyses</a></li>
+      <li><a href="#">Evidence Explained</a></li>
+      <li><a href="#">Glossary</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Community</h4>
+    <ul>
+      <li><a href="#">Forum</a></li>
+      <li><a href="#">Community Guidelines</a></li>
+      <li><a href="helf-school-membership.html">Membership</a></li>
+      <li><a href="#">Newsletter</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>About</h4>
+    <ul>
+      <li><a href="index.html#about-dr-paul">About Dr Paul</a></li>
+      <li><a href="#">Our Approach</a></li>
+      <li><a href="#">Disclaimer</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<div class="footer-disclaimer-strip">
+  ⚕️ <strong style="color:rgba(255,200,198,1)">Reminder:</strong> helf.school is a health education platform. Nothing on this site is medical advice. Always consult your doctor or a qualified healthcare professional for personal medical guidance. In an emergency, call 999 / 112 or your local emergency number.
+</div>
+
+<div class="footer-bottom">
+  <span>© 2025 helf.school · All rights reserved</span>
+  <span>Designed with care · Built for health literacy</span>
+</div>
+
+</body>
+</html>
