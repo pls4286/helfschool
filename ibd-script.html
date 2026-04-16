@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IBD: Crohn's Disease and Ulcerative Colitis — Script | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #1B2A4A;
+      --coral: #E8634A;
+      --cream: #FAF7F2;
+      --sage: #7A9E87;
+      --digest: #D47C3A;
+      --amber: #E8A84A;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: #1a1a2e; color: #e8e8e8; font-size: 15px; line-height: 1.6; }
+
+    /* TOPBAR */
+    .topbar { background: var(--navy); padding: .6rem 1.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid var(--digest); position: sticky; top: 0; z-index: 100; }
+    .topbar-title { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: #fff; }
+    .topbar-sub { font-size: .75rem; color: rgba(255,255,255,.75); margin-top: .1rem; }
+    .topbar-badge { background: var(--digest); color: #fff; font-size: .7rem; font-weight: 700; padding: .2rem .6rem; border-radius: 100px; letter-spacing: .06em; }
+
+    /* SEGMENT */
+    .segment { border: 1px solid rgba(255,255,255,.08); border-radius: 12px; margin: 1.25rem 1.5rem; overflow: hidden; }
+    .seg-header { background: var(--navy); padding: .65rem 1.1rem; display: flex; align-items: center; gap: .75rem; }
+    .seg-num { background: var(--digest); color: #fff; font-size: .7rem; font-weight: 700; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .seg-title { font-family: 'Fraunces', serif; font-size: .95rem; font-weight: 700; color: #fff; }
+    .seg-time { margin-left: auto; font-size: .7rem; color: rgba(255,255,255,.55); }
+
+    /* TWO-COL SLIDE */
+    .slide { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid rgba(255,255,255,.06); }
+    .slide:first-child { border-top: none; }
+    .slide-script { padding: 1rem 1.25rem; border-right: 1px solid rgba(255,255,255,.06); }
+    .slide-cues { padding: 1rem 1.25rem; background: rgba(255,255,255,.02); }
+
+    .slide-label { font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: .5rem; }
+    .script-text { font-size: 1rem; line-height: 1.85; color: #e8e8e8; font-weight: 400; }
+    .script-text strong { color: #fff; font-weight: 700; }
+    .script-text em { color: var(--amber); font-style: normal; font-weight: 600; }
+
+    /* PAUSE marker */
+    .pause { display: inline-block; background: rgba(232,99,74,.15); border: 1px solid rgba(232,99,74,.3); color: var(--coral); font-size: .65rem; font-weight: 700; letter-spacing: .08em; padding: .1rem .4rem; border-radius: 4px; margin: 0 .2rem; vertical-align: middle; }
+
+    /* CUE types */
+    .cue { border-radius: 6px; padding: .5rem .75rem; margin-bottom: .5rem; font-size: .82rem; line-height: 1.5; }
+    .cue:last-child { margin-bottom: 0; }
+    .cue-label { font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .2rem; }
+    .cue-graphic { background: rgba(122,158,135,.12); border: 1px solid rgba(122,158,135,.25); color: #a8d4bb; }
+    .cue-graphic .cue-label { color: var(--sage); }
+    .cue-text { background: rgba(232,168,74,.1); border: 1px solid rgba(232,168,74,.2); color: #f0d080; }
+    .cue-text .cue-label { color: var(--amber); }
+    .cue-camera { background: rgba(107,94,168,.12); border: 1px solid rgba(107,94,168,.25); color: #c0b8e8; }
+    .cue-camera .cue-label { color: #9b8fd4; }
+
+    /* DIAGRAM CUE — bold red callout */
+    .diagram-cue { background: rgba(232,99,74,.15); border: 2px solid var(--coral); border-radius: 8px; padding: .6rem .9rem; margin-bottom: .5rem; }
+    .diagram-cue .cue-label { color: var(--coral); font-size: .65rem; font-weight: 700; letter-spacing: .1em; }
+    .diagram-cue .cue-file { font-size: .88rem; font-weight: 700; color: var(--coral); font-family: monospace; margin-top: .15rem; }
+    .diagram-cue .cue-desc { font-size: .78rem; color: rgba(232,99,74,.85); margin-top: .15rem; }
+
+    /* SPEAKER NOTE */
+    .speaker-note { background: rgba(255,255,255,.04); border-left: 3px solid rgba(255,255,255,.15); border-radius: 0 6px 6px 0; padding: .5rem .75rem; margin-top: .6rem; font-size: .82rem; color: rgba(255,255,255,.55); font-style: italic; line-height: 1.55; }
+
+    /* INTRO / CLOSING */
+    .intro-slide { background: rgba(27,42,74,.6); border-top: 3px solid var(--digest); }
+    .intro-slide .slide-script { padding: 1.25rem; }
+
+    footer { text-align: center; padding: 2rem; font-size: .75rem; color: rgba(255,255,255,.25); }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-title">IBD: Crohn's Disease and Ulcerative Colitis</div>
+    <div class="topbar-sub">Digestive Health Series · Article 15 · Script &amp; Cue Sheet</div>
+  </div>
+  <div class="topbar-badge">DR PAUL'S SCREEN</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SEGMENT 0 — INTRO -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="segment">
+  <div class="seg-header">
+    <div class="seg-num">0</div>
+    <div class="seg-title">Introduction — Standard Opener</div>
+    <div class="seg-time">~18 sec</div>
+  </div>
+
+  <div class="slide intro-slide">
+    <div class="slide-script">
+      <div class="slide-label">ON CAMERA — SEGMENT 0</div>
+      <p class="script-text">
+        "I'm Dr Paul — I spent <strong>over twenty years as an NHS GP</strong> before I retired in 2019. Today I want to talk to you about <strong>inflammatory bowel disease</strong> — IBD. <span class="pause">PAUSE</span> Now, I do have to say upfront — what I'm giving you here is <strong>health education, not medical advice</strong>. If anything feels relevant to you personally, please take it to your own doctor. Right — <em>let's get into it.</em>"
+      </p>
+    </div>
+    <div class="slide-cues">
+      <div class="slide-label">VISUAL CUES</div>
+      <div class="cue cue-graphic">
+        <div class="cue-label">Graphic</div>
+        Intro title slide — helf.school logo, "Digestive Health Series · Article 15", title on screen
+      </div>
+      <div class="cue cue-camera">
+        <div class="cue-label">Camera</div>
+        Direct to camera. Warm, measured. Slight pause before "let's get into it."
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SEGMENT 1 — WHAT IS IBD? -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="segment">
+  <div class="seg-header">
+    <div class="seg-num">1</div>
+    <div class="seg-title">What is IBD?</div>
+    <div class="seg-time">~70 sec</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-script">
+      <div class="slide-label">ON CAMERA — SLIDE 1</div>
+      <p class="script-text">
+        "Inflammatory bowel disease — IBD — covers two conditions: <strong>Crohn's disease</strong> and <strong>ulcerative colitis</strong>. Both involve <strong>chronic inflammation of the gut</strong>. Both follow a pattern of flares — periods of active disease — followed by remission, where symptoms settle. <span class="pause">PAUSE</span> And both are <strong>real, serious conditions</strong> that can significantly affect a person's life."
+      </p>
+      <div class="speaker-note">Emphasise 'real, serious conditions' — patients are sometimes dismissed before diagnosis.</div>
+    </div>
+    <div class="slide-cues">
+      <div class="slide-label">VISUAL CUES</div>
+      <div class="cue cue-text">
+        <div class="cue-label">Text Overlay</div>
+        IBD = Crohn's Disease + Ulcerative Colitis
+      </div>
+      <div class="cue cue-graphic">
+        <div class="cue-label">Graphic</div>
+        Stat card — 500,000+ people in the UK · 1 in every 123
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-script">
+      <div class="slide-label">ON CAMERA — SLIDE 2</div>
+      <p class="script-text">
+        "The first thing I want to be clear about — <strong>IBD is not the same as IBS</strong>. Irritable bowel syndrome is a disorder of gut-brain interaction — symptoms without structural damage. IBD involves <strong>genuine inflammation</strong> and, over time, <strong>structural damage to the gut wall</strong>. They can look similar on the surface — but the causes, the investigations, and the treatments are <em>entirely different</em>."
+      </p>
+      <div class="speaker-note">This distinction matters enormously — stress it clearly.</div>
+    </div>
+    <div class="slide-cues">
+      <div class="slide-label">VISUAL CUES</div>
+      <div class="cue cue-text">
+        <div class="cue-label">Text Overlay</div>
+        IBD ≠ IBS
+      </div>
+      <div class="cue cue-graphic">
+        <div class="cue-label">Graphic</div>
+        Two-column comparison card: IBD (inflammation, structural damage) vs IBS (gut-brain, no damage)
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-script">
+      <div class="slide-label">ON CAMERA — SLIDE 3</div>
+      <p class="script-text">
+        "Crohn's disease can affect <strong>any part of the gut</strong> — from mouth to anus. Most commonly it hits the end of the small bowel and the colon. The inflammation goes <strong>through the full thickness of the gut wall</strong> — we call that transmural. That's why Crohn's can lead to complications like <strong>fistulae, strictures, and abscesses</strong>. <span class="pause">PAUSE</span> Ulcerative colitis is different — it affects <strong>only the colon and rectum</strong>, the inflammation stays in the inner lining, and it always starts at the bottom and works its way up."
+      </p>
+    </div>
+    <div class="slide-cues">
+      <div class="slide-label">VISUAL CUES</div>
+      <div class="diagram-cue">
+        <div class="cue-label">⬛ Screen File</div>
+        <div class="cue-file">ibd-gut-screen.html</div>
+        <div class="cue-desc">Gut diagram — Crohn's vs UC location, depth of inflammation</div>
+      </div>
+      <div class="cue cue-camera">
+        <div class="cue-label">Camera</div>
+        Advance to gut diagram screen. Refer to diagram — "as you can see here…"
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-script">
+      <div class="slide-label">ON CAMERA — SLIDE 4</div>
+      <p class="script-text">
+        "What causes IBD? The honest answer is — it's not fully understood. What we do know is that it involves <strong>an abnormal immune response</strong> — the body attacks the contents of its own gut. That happens against a background of <strong>genetic susceptibility</strong>, an altered <strong>gut microbiome</strong>, and <strong>environmental triggers</strong>. <span class="pause">PAUSE</span> The rise in IBD in newly industrialised countries — particularly in Asia and South America — <strong>strongly points to environmental factors</strong>. Diet, antibiotic exposure early in life, the hygiene hypothesis. This is not just a Western disease anymore."
+      </p>
+      <div class="speaker-note">Keep the tone curious and honest — we don't have all the answers yet.</div>
+    </div>
+    <div class="slide-cues">
+      <div class="slide-label">VISUAL CUES</div>
+      <div class="cue cue-graphic">
+        <div class="cue-label">Graphic</div>
+        Four-factor cards animating in: Genetics · Gut microbiome · Immune system · Environment
+      </div>
+      <div class="cue cue-text">
+        <div class="cue-label">Text Overlay</div>
+        IBD rates rising fastest in newly industrialised countries
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-script">
+      <div class="slide-label">ON CAMERA — SLIDE 5</div>
+      <p class="script-text">
+        "One thing worth flagging — <strong>smoking has opposite effects</strong> on the two conditions. It <strong>worsens Crohn's disease</strong> — more flares, more surgery, medications work less well. It appears to be protective against ulcerative colitis. <span class="pause">PAUSE</span> That is <em>not</em> a reason to smoke. Smoking causes far more harm than any benefit. But it does matter clinically — and if you have Crohn's, <strong>stopping smoking is one of the most important things you can do</strong>."
+      </p>
+    </div>
+    <div class="slide-cues">
+      <div class="slide-label">VISUAL CUES</div>
+      <div class="cue cue-graphic">
+        <div class="cue-label">Graphic</div>
+        Two-column card: Crohn's — smoking worsens · UC — smoking lowers risk (with caveat)
+      </div>
+      <div class="cue cue-camera">
+        <div class="cue-label">Camera</div>
+        Slight pause and direct look to camera on "not a reason to smoke"
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SEGMENT 2 — WHY DOES IT MATTER? -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="segment">
+  <div class="seg-header">
+    <div class="seg-num">2</div>
+    <div class="seg-title">Why does it matter?</div>
+    <div class="seg-time">~60 sec</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-script">
+      <div class="slide-label">ON CAMERA — SLIDE 6</div>
+      <p class="script-text">
+        "IBD matters for several reasons. First — it's <strong>a lifelong condition</strong>. There's no cure for Crohn's disease. Ulcerative colitis can be cured by removing the colon — but most people manage it medically for years or decades. The goal is <strong>remission</strong> — getting symptoms under control and keeping them there."
+      </p>
+    </div>
+    <div class="slide-cues">
+      <div class="slide-label">VISUAL CUES</div>
+      <div class="cue cue-graphic">
+        <div class="cue-label">Graphic</div>
+        Relapsing-remitting timeline — flare / remission / flare / remission pattern
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-script">
+      <div class="slide-label">ON CAMERA — SLIDE 7</div>
+      <p class="script-text">
+        "Second — it <strong>significantly affects quality of life</strong>. Active IBD means pain, urgent diarrhoea, sometimes bloody, fatigue, weight loss. It affects work, relationships, travel, diet. <span class="pause">PAUSE</span> Studies consistently show IBD has a quality of life impact <strong>comparable to rheumatoid arthritis</strong>. This is not a minor inconvenience."
+      </p>
+    </div>
+    <div class="slide-cues">
+      <div class="slide-label">VISUAL CUES</div>
+      <div class="cue cue-text">
+        <div class="cue-label">Text Overlay</div>
+        Quality of life impact comparable to rheumatoid arthritis
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-script">
+      <div class="slide-label">ON CAMERA — SLIDE 8</div>
+      <p class="script-text">
+        "Third — <strong>complications can be serious</strong>. Crohn's can cause bowel obstruction, fistulae, abscesses. Both conditions carry an <strong>increased risk of colorectal cancer</strong> — around 2.4 times the general population risk for ulcerative colitis, rising to nearly 4 times in extensive disease. <span class="pause">PAUSE</span> That's why regular <strong>surveillance colonoscopy</strong> is recommended."
+      </p>
+    </div>
+    <div class="slide-cues">
+      <div class="slide-label">VISUAL CUES</div>
+      <div class="cue cue-graphic">
+        <div class="cue-label">Graphic</div>
+        Stat card — 2.4× CRC risk in UC · rising to ~4× in extensive colitis · Source: Jess et al. 2012
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-script">
+      <div class="slide-label">ON CAMERA — SLIDE 9</div>
+      <p class="script-text">
+        "And fourth — IBD is <strong>not rare, and it's increasing</strong>. Over 500,000 people in the UK are living with IBD — that's roughly 1 in every 123 people. That figure has nearly <strong>doubled</strong> in recent estimates. Rates are rising globally, particularly in countries adopting Western lifestyles. <span class="pause">PAUSE</span> This is a <strong>significant and growing burden</strong> on patients and on the NHS."
+      </p>
+    </div>
+    <div class="slide-cues">
+      <div class="slide-label">VISUAL CUES</div>
+      <div class="cue cue-graphic">
+        <div class="cue-label">Graphic</div>
+        Stat card — 500,000+ UK · 1 in 123 · nearly double previous estimate · Source: Crohn's &amp; Colitis UK 2022
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SEGMENT 3 — WHAT YOUR DOCTOR WILL DO -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="segment">
+  <div class="seg-header">
+    <div class="seg-num">3</div>
+    <div class="seg-title">What your doctor will do</div>
+    <div class="seg-time">~75 sec</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-script">
+      <div class="slide-label">ON CAMERA — SLIDE 10</div>
+      <p class="script-text">
+        "IBD is diagnosed through a combination of blood tests, stool tests, endoscopy, and imaging. Your GP can't diagnose IBD from a blood test alone — but they play a <strong>critical role in recognising the symptoms</strong> and making the right referral. <span class="pause">PAUSE</span> One test that's particularly useful in primary care is <strong>faecal calprotectin</strong> — a stool test. It's a protein released by inflamed gut. A normal result makes significant inflammation very unlikely. An elevated result is the trigger for urgent gastroenterology referral."
+      </p>
+    </div>
+    <div class="slide-cues">
+      <div class="slide-label">VISUAL CUES</div>
+      <div class="cue cue-graphic">
+        <div class="cue-label">Graphic</div>
+        Investigations table — FBC/CRP · Faecal calprotectin · Colonoscopy · MRI · CT
+      </div>
+      <div class="cue cue-text">
+        <div class="cue-label">Text Overlay</div>
+        Faecal calprotectin — differentiates IBD from IBS
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-script">
+      <div class="slide-label">ON CAMERA — SLIDE 11</div>
+      <p class="script-text">
+        "The gold standard investigation is <strong>ileocolonoscopy with biopsies</strong> — a camera examination that visualises the colon and the end of the small bowel, and takes tissue samples. For Crohn's disease, <strong>MRI enterography</strong> is also used to assess the small bowel and look for complications like strictures and fistulae."
+      </p>
+    </div>
+    <div class="slide-cues">
+      <div class="slide-label">VISUAL CUES</div>
+      <div class="cue cue-text">
+        <div class="cue-label">Text Overlay</div>
+        Gold standard: ileocolonoscopy with biopsies
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-script">
+      <div class="slide-label">ON CAMERA — SLIDE 12</div>
+      <p class="script-text">
+        "Treatment follows a <strong>stepped approach</strong>. The principle is — use the least intensive effective treatment, and escalate if you need to. <span class="pause">PAUSE</span> For ulcerative colitis, we start with <strong>aminosalicylates</strong> — drugs like mesalazine. For flares in either condition, <strong>corticosteroids</strong> bring things under control — but they're not for long-term use. Then there are <strong>immunomodulators</strong> like azathioprine, which maintain remission. And for moderate to severe disease, <strong>biologics</strong> — which have transformed IBD management over the last twenty years."
+      </p>
+      <div class="speaker-note">Don't rush this slide — the treatment ladder is important for patients to understand.</div>
+    </div>
+    <div class="slide-cues">
+      <div class="slide-label">VISUAL CUES</div>
+      <div class="diagram-cue">
+        <div class="cue-label">⬛ Screen File</div>
+        <div class="cue-file">ibd-treatment-screen.html</div>
+        <div class="cue-desc">Four-step treatment ladder animating in: Aminosalicylates · Steroids · Immunomodulators · Biologics</div>
+      </div>
+      <div class="cue cue-camera">
+        <div class="cue-label">Camera</div>
+        Advance to treatment ladder screen. Walk through each step as it appears.
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-script">
+      <div class="slide-label">ON CAMERA — SLIDE 13</div>
+      <p class="script-text">
+        "Surgery is required in a significant proportion of patients at some point. For Crohn's — surgery removes the worst-affected section of bowel, but <strong>it doesn't cure the condition</strong>. Disease can come back at the surgical site. For ulcerative colitis, <strong>removing the colon is curative</strong> — the disease is gone. Most patients can have a pouch procedure to avoid a permanent stoma. <span class="pause">PAUSE</span> And I want to say again — if you have Crohn's disease, <strong>stopping smoking is one of the most impactful things you can do</strong>. It doubles the relapse rate. It reduces how well medications work. It increases the chance of needing surgery."
+      </p>
+    </div>
+    <div class="slide-cues">
+      <div class="slide-label">VISUAL CUES</div>
+      <div class="cue cue-graphic">
+        <div class="cue-label">Graphic</div>
+        Surgery comparison card: Crohn's — not curative · UC — colectomy is curative
+      </div>
+      <div class="cue cue-text">
+        <div class="cue-label">Text Overlay</div>
+        Crohn's + smoking = doubled relapse risk
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SEGMENT 4 — WHAT THE RESEARCH SHOWS -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="segment">
+  <div class="seg-header">
+    <div class="seg-num">4</div>
+    <div class="seg-title">What the research shows</div>
+    <div class="seg-time">~70 sec</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-script">
+      <div class="slide-label">ON CAMERA — SLIDE 14</div>
+      <p class="script-text">
+        "Let me take you through a few of the key studies. <span class="pause">PAUSE</span> In 2017, Ng and colleagues published a landmark systematic review in <em>The Lancet</em> — analysing population-based studies from 43 countries. The conclusion was stark: <strong>IBD has become a global disease</strong>. The UK has one of the highest rates in the world. And in newly industrialised countries across Asia, South America, and Africa, incidence is <strong>accelerating</strong> — almost certainly driven by the adoption of Western lifestyles."
+      </p>
+    </div>
+    <div class="slide-cues">
+      <div class="slide-label">VISUAL CUES</div>
+      <div class="cue cue-graphic">
+        <div class="cue-label">Graphic</div>
+        Research card — Ng et al. The Lancet 2017 · 43 countries · IBD now a global disease
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-script">
+      <div class="slide-label">ON CAMERA — SLIDE 15</div>
+      <p class="script-text">
+        "In the UK specifically, a 2022 study commissioned by Crohn's and Colitis UK — using records from <strong>38 million</strong> GP patients — found over 500,000 people living with IBD. That's <strong>1 in every 123</strong>. Nearly double the previous estimate. Adolescent incidence is rising by around 3% a year. The NHS needs to plan for a <strong>significantly larger IBD population</strong> over the coming decades."
+      </p>
+    </div>
+    <div class="slide-cues">
+      <div class="slide-label">VISUAL CUES</div>
+      <div class="cue cue-graphic">
+        <div class="cue-label">Graphic</div>
+        Stat cards — 500,000+ · 1 in 123 · adolescent incidence +3%/year · Source: Crohn's &amp; Colitis UK 2022
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-script">
+      <div class="slide-label">ON CAMERA — SLIDE 16</div>
+      <p class="script-text">
+        "The NICE guidelines — NG129 for Crohn's and NG130 for ulcerative colitis — published in 2019, set the UK standard for management. They cover everything from diagnosis in primary care to biologics to surveillance colonoscopy. The BSG consensus guidelines, also 2019, involved systematic review of nearly 90,000 publications and produced 168 recommendations. <span class="pause">PAUSE</span> One thing both guidelines emphasise — <strong>the IBD multidisciplinary team</strong>. Gastroenterologist, IBD nurse, dietitian, surgeon, psychologist. And active assessment and treatment of <strong>anxiety and depression</strong> — which are highly prevalent in IBD."
+      </p>
+      <div class="speaker-note">The psychological component is underemphasised in practice — worth dwelling on briefly.</div>
+    </div>
+    <div class="slide-cues">
+      <div class="slide-label">VISUAL CUES</div>
+      <div class="cue cue-graphic">
+        <div class="cue-label">Graphic</div>
+        Research cards — NICE NG129 / NG130 2019 · BSG guidelines 2019 · MDT components
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-script">
+      <div class="slide-label">ON CAMERA — SLIDE 17</div>
+      <p class="script-text">
+        "And on the cancer risk — a 2012 meta-analysis by Jess and colleagues, pooling data from population-based cohort studies, found that <strong>ulcerative colitis increases colorectal cancer risk approximately 2.4-fold</strong>. In patients with extensive colitis, that rises to nearly four times. <span class="pause">PAUSE</span> That's the evidence base behind the surveillance colonoscopy programme — and it's a real reason to stay engaged with specialist follow-up if you have IBD."
+      </p>
+    </div>
+    <div class="slide-cues">
+      <div class="slide-label">VISUAL CUES</div>
+      <div class="cue cue-graphic">
+        <div class="cue-label">Graphic</div>
+        Stat card — UC: 2.4× CRC risk · Extensive colitis: ~4× · Source: Jess et al. Clin Gastroenterol Hepatol 2012
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SEGMENT 5 — CALL TO ACTION + CLOSING -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="segment">
+  <div class="seg-header">
+    <div class="seg-num">5</div>
+    <div class="seg-title">Call to Action &amp; Closing</div>
+    <div class="seg-time">~35 sec</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-script">
+      <div class="slide-label">ON CAMERA — SLIDE 18</div>
+      <p class="script-text">
+        "So — if you take one thing from this, it's this. IBD is a <strong>genuine, serious, immune-mediated disease</strong>. Not functional, not stress-related, not something diet alone will fix. <span class="pause">PAUSE</span> If you have it — or you're worried you might — you deserve an <strong>accurate diagnosis</strong>, a proper management plan, and access to a <strong>specialist team</strong>. The treatments work. And the conversation with your specialist <em>really does matter</em>."
+      </p>
+    </div>
+    <div class="slide-cues">
+      <div class="slide-label">VISUAL CUES</div>
+      <div class="cue cue-graphic">
+        <div class="cue-label">Graphic</div>
+        Three action cards: Get an accurate diagnosis · Work with a specialist team · Stay engaged with follow-up
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-script">
+      <div class="slide-label">ON CAMERA — SLIDE 19 (CLOSING)</div>
+      <p class="script-text">
+        "If you found this useful, there's more on <strong>helf.school</strong> — the full article with all the references is there. And if you have questions, you can find me in the community. <span class="pause">PAUSE</span> Remember — this is health education. Take what's relevant to <em>your</em> doctor. <strong>Thanks for watching.</strong>"
+      </p>
+    </div>
+    <div class="slide-cues">
+      <div class="slide-label">VISUAL CUES</div>
+      <div class="cue cue-graphic">
+        <div class="cue-label">Graphic</div>
+        Closing slide — helf.school logo · "Health Education for Everyone" · article pill series
+      </div>
+      <div class="cue cue-camera">
+        <div class="cue-label">Camera</div>
+        Warm close. Natural smile. Don't rush the final line.
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>helf.school · IBD: Crohn's Disease and Ulcerative Colitis · ibd-script.html · Digestive Health Series Article 15</footer>
+
+</body>
+</html>

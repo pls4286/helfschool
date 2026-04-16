@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <title>IBD — Teleprompter | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #1B2A4A;
+      --digest: #D47C3A;
+      --amber: #E8A84A;
+      --coral: #E8634A;
+      --bg: #0d0d0d;
+      --text: #f0f0f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; background: var(--bg); }
+
+    /* TOPBAR */
+    #topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--navy); border-bottom: 2px solid var(--digest);
+      padding: .45rem 1rem;
+      display: flex; align-items: center; justify-content: space-between; gap: .75rem;
+    }
+    #topbar-title { font-family: 'DM Sans', sans-serif; font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.85); }
+    #controls { display: flex; align-items: center; gap: .4rem; flex-shrink: 0; }
+    .ctrl-btn {
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+      color: #fff; font-size: .72rem; font-weight: 700; padding: .2rem .5rem;
+      border-radius: 4px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background .15s;
+    }
+    .ctrl-btn:hover { background: rgba(255,255,255,.2); }
+    .ctrl-label { font-size: .65rem; color: rgba(255,255,255,.5); font-family: 'DM Sans', sans-serif; }
+    #speed-display { font-size: .72rem; font-weight: 700; color: var(--amber); min-width: 14px; text-align: center; font-family: 'DM Sans', sans-serif; }
+    #play-btn {
+      background: var(--digest); border: none; color: #fff;
+      font-size: .72rem; font-weight: 700; padding: .25rem .7rem;
+      border-radius: 4px; cursor: pointer; font-family: 'DM Sans', sans-serif; letter-spacing: .04em;
+    }
+    #play-btn:hover { filter: brightness(1.1); }
+
+    /* SEGMENT DOTS */
+    #seg-dots {
+      position: fixed; right: .6rem; top: 50%; transform: translateY(-50%);
+      z-index: 100; display: flex; flex-direction: column; gap: .4rem;
+    }
+    .seg-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.3);
+      cursor: pointer; transition: background .2s;
+    }
+    .seg-dot.active { background: var(--digest); border-color: var(--digest); }
+    .seg-dot:hover { background: rgba(255,255,255,.45); }
+
+    /* SCROLL */
+    #scroll-wrap { position: fixed; top: 44px; bottom: 0; left: 0; right: 0; overflow: hidden; }
+    #scroll-content { padding: 60vh 4rem 60vh; max-width: 840px; margin: 0 auto; will-change: transform; }
+
+    /* FOCUS */
+    #focus-line { position: fixed; top: 50%; left: 0; right: 0; height: 2px; background: rgba(212,124,58,.2); pointer-events: none; z-index: 50; }
+    #focus-top { position: fixed; top: 44px; left: 0; right: 0; height: 34%; background: linear-gradient(to bottom, var(--bg) 0%, transparent 100%); pointer-events: none; z-index: 50; }
+    #focus-bottom { position: fixed; bottom: 0; left: 0; right: 0; height: 34%; background: linear-gradient(to top, var(--bg) 0%, transparent 100%); pointer-events: none; z-index: 50; }
+
+    /* SEGMENT LABEL */
+    .seg-label {
+      font-family: 'DM Sans', sans-serif; font-size: .7rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--digest); margin-bottom: 1.4rem; margin-top: 5rem;
+      padding-bottom: .4rem; border-bottom: 1px solid rgba(212,124,58,.25);
+    }
+    .seg-label:first-child { margin-top: 0; }
+
+    /* SCRIPT */
+    .line { font-family: 'DM Sans', sans-serif; font-size: 1.9rem; line-height: 1.8; color: var(--text); font-weight: 400; margin-bottom: 1.5rem; }
+    .line strong { font-weight: 700; color: #fff; }
+    .line em { color: var(--amber); font-style: normal; font-weight: 600; }
+
+    /* PAUSE */
+    .pause {
+      display: inline-block;
+      background: rgba(232,99,74,.15); border: 1px solid rgba(232,99,74,.35);
+      color: var(--coral); font-size: 1.1rem; font-weight: 700;
+      padding: .1rem .45rem; border-radius: 4px; margin: 0 .3rem; vertical-align: middle; letter-spacing: .04em;
+    }
+
+    /* CUE BOX */
+    .cue-box {
+      background: rgba(232,168,74,.06); border: 2px solid var(--amber);
+      border-radius: 10px; padding: .9rem 1.2rem; margin: 2rem 0 4rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .cue-label { font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--amber); margin-bottom: .4rem; }
+    .cue-text { font-size: 1.1rem; font-weight: 600; color: #fff; line-height: 1.55; }
+    .cue-text span { color: var(--amber); }
+  </style>
+</head>
+<body>
+
+<div id="topbar">
+  <div id="topbar-title">IBD: Crohn's Disease &amp; Ulcerative Colitis · Digestive Health · Article 15</div>
+  <div id="controls">
+    <span class="ctrl-label">SPEED</span>
+    <button class="ctrl-btn" onclick="changeSpeed(-1)">−</button>
+    <span id="speed-display">3</span>
+    <button class="ctrl-btn" onclick="changeSpeed(1)">+</button>
+    <span class="ctrl-label" style="margin-left:.4rem">FONT</span>
+    <button class="ctrl-btn" onclick="changeFont(-1)">A−</button>
+    <button class="ctrl-btn" onclick="changeFont(1)">A+</button>
+    <button id="play-btn" onclick="togglePlay()">▶ PLAY</button>
+  </div>
+</div>
+
+<div id="seg-dots">
+  <div class="seg-dot active" onclick="jumpToSeg(0)" title="Intro"></div>
+  <div class="seg-dot" onclick="jumpToSeg(1)" title="What is IBD?"></div>
+  <div class="seg-dot" onclick="jumpToSeg(2)" title="Why it matters"></div>
+  <div class="seg-dot" onclick="jumpToSeg(3)" title="What your doctor will do"></div>
+  <div class="seg-dot" onclick="jumpToSeg(4)" title="Research"></div>
+  <div class="seg-dot" onclick="jumpToSeg(5)" title="Closing"></div>
+</div>
+
+<div id="focus-top"></div>
+<div id="focus-line"></div>
+<div id="focus-bottom"></div>
+
+<div id="scroll-wrap">
+  <div id="scroll-content">
+
+    <!-- ═══ SEGMENT 0 ═══ -->
+    <div class="seg-label" data-seg="0">Segment 0 — Introduction</div>
+
+    <p class="line">"I'm Dr Paul — I spent <strong>over twenty years as an NHS GP</strong> before I retired in 2019. Today I want to talk to you about <strong>inflammatory bowel disease</strong> — IBD."</p>
+
+    <p class="line">"Now, I do have to say upfront — what I'm giving you here is <strong>health education, not medical advice</strong>. If anything feels relevant to you personally, please take it to your own doctor. Right — <em>let's get into it.</em>"</p>
+
+    <div class="cue-box">
+      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
+      <div class="cue-text">Screen 1: <span>Intro title slide</span> · helf.school logo · Digestive Health Series · Article 15</div>
+    </div>
+
+    <!-- ═══ SEGMENT 1 ═══ -->
+    <div class="seg-label" data-seg="1">Segment 1 — What is IBD?</div>
+
+    <p class="line">"Inflammatory bowel disease — IBD — covers two conditions: <strong>Crohn's disease</strong> and <strong>ulcerative colitis</strong>. Both involve <strong>chronic inflammation of the gut</strong>. Both follow a pattern of flares — periods of active disease — followed by remission, where symptoms settle. And both are <strong>real, serious conditions</strong> that can significantly affect a person's life."</p>
+
+    <p class="line">"The first thing I want to be clear about — <strong>IBD is not the same as IBS</strong>. Irritable bowel syndrome is a disorder of gut-brain interaction — symptoms without structural damage. IBD involves <strong>genuine inflammation</strong> and, over time, <strong>structural damage to the gut wall</strong>. They can look similar on the surface. But the causes, the investigations, and the treatments are <em>entirely different</em>." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"Crohn's disease can affect <strong>any part of the gut</strong> — from mouth to anus. Most commonly the end of the small bowel and the colon. The inflammation goes <strong>through the full thickness of the gut wall</strong>. That's why Crohn's can lead to <strong>fistulae, strictures, and abscesses</strong>."</p>
+
+    <p class="line">"Ulcerative colitis is different — it affects <strong>only the colon and rectum</strong>. The inflammation stays in the inner lining. It always starts at the bottom and works its way up." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"What causes IBD? It's not fully understood. What we know is that it involves <strong>an abnormal immune response</strong> — the body attacks the contents of its own gut — against a background of <strong>genetic susceptibility</strong>, an altered <strong>gut microbiome</strong>, and <strong>environmental triggers</strong>. The rise in IBD in newly industrialised countries <strong>strongly points to environmental factors</strong> — diet, early antibiotic exposure, the hygiene hypothesis."</p>
+
+    <p class="line">"One thing worth flagging — <strong>smoking has opposite effects</strong> on the two conditions. It <strong>worsens Crohn's disease</strong> — more flares, more surgery, medications work less well. It appears to lower risk in ulcerative colitis. <span class="pause">PAUSE</span> That is <em>not</em> a reason to smoke. But if you have Crohn's — <strong>stopping smoking is one of the most important things you can do</strong>."</p>
+
+    <div class="cue-box">
+      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
+      <div class="cue-text">Screen 2: <span>Crohn's vs UC gut diagram</span> · ibd-gut-screen.html · location and depth of inflammation</div>
+    </div>
+
+    <!-- ═══ SEGMENT 2 ═══ -->
+    <div class="seg-label" data-seg="2">Segment 2 — Why does it matter?</div>
+
+    <p class="line">"IBD matters for several reasons. First — it's <strong>a lifelong condition</strong>. There's no cure for Crohn's disease. Ulcerative colitis can be cured by removing the colon — but most people manage it medically for years or decades. The goal is <strong>remission</strong> — getting symptoms under control and keeping them there."</p>
+
+    <p class="line">"Second — it <strong>significantly affects quality of life</strong>. Active IBD means pain, urgent diarrhoea — sometimes bloody — fatigue, weight loss. It affects work, relationships, travel, diet. Studies consistently show IBD has a quality of life impact <strong>comparable to rheumatoid arthritis</strong>. This is not a minor inconvenience." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"Third — <strong>complications can be serious</strong>. Crohn's can cause bowel obstruction, fistulae, abscesses. Both conditions carry an increased risk of <strong>colorectal cancer</strong> — around 2.4 times the general population risk for ulcerative colitis, rising to nearly four times in extensive disease. That's why regular <strong>surveillance colonoscopy</strong> is recommended."</p>
+
+    <p class="line">"And fourth — IBD is <strong>not rare, and it's increasing</strong>. Over 500,000 people in the UK are living with IBD — that's <strong>1 in every 123</strong>. Nearly double the previous estimate. Rates are rising globally. This is a significant and growing burden on patients and on the NHS." <span class="pause">PAUSE</span></p>
+
+    <div class="cue-box">
+      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
+      <div class="cue-text">Screen 3: <span>Stat cards</span> · 500,000+ UK · 1 in 123 · 2.4× CRC risk in UC</div>
+    </div>
+
+    <!-- ═══ SEGMENT 3 ═══ -->
+    <div class="seg-label" data-seg="3">Segment 3 — What your doctor will do</div>
+
+    <p class="line">"IBD is diagnosed through a combination of blood tests, stool tests, endoscopy, and imaging. Your GP plays a <strong>critical role in recognising symptoms</strong> and making the right referral — but diagnosis needs specialist gastroenterology involvement."</p>
+
+    <p class="line">"One test that's particularly useful in primary care is <strong>faecal calprotectin</strong> — a stool test released by inflamed gut. A normal result makes significant inflammation very unlikely. An elevated result is the trigger for <strong>urgent gastroenterology referral</strong>." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"The gold standard investigation is <strong>ileocolonoscopy with biopsies</strong> — a camera that visualises the colon and end of the small bowel, taking tissue samples. For Crohn's disease, <strong>MRI enterography</strong> assesses the small bowel and looks for complications like strictures and fistulae."</p>
+
+    <p class="line">"Treatment follows a <strong>stepped approach</strong>. Use the least intensive effective treatment — escalate if needed. For ulcerative colitis: <strong>aminosalicylates</strong> first. For flares: <strong>corticosteroids</strong> — effective, but not for long-term use. For maintenance: <strong>immunomodulators</strong> like azathioprine. For moderate to severe disease: <strong>biologics</strong>." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"Biologics have <strong>transformed IBD management</strong> over the last twenty years. Anti-TNF drugs, vedolizumab, ustekinumab, JAK inhibitors. Most people with IBD can achieve sustained remission with the right treatment."</p>
+
+    <p class="line">"Surgery is required in a significant proportion of patients. For Crohn's — surgery removes the worst-affected bowel, but <strong>it doesn't cure the condition</strong>. For ulcerative colitis, <strong>removing the colon is curative</strong>. Most patients can have a pouch procedure to avoid a permanent stoma."</p>
+
+    <div class="cue-box">
+      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
+      <div class="cue-text">Screen 4: <span>Treatment ladder</span> · ibd-treatment-screen.html · four steps animating in</div>
+    </div>
+
+    <!-- ═══ SEGMENT 4 ═══ -->
+    <div class="seg-label" data-seg="4">Segment 4 — What the research shows</div>
+
+    <p class="line">"Let me take you through the key studies. <span class="pause">PAUSE</span> In 2017, Ng and colleagues published a landmark systematic review in <em>The Lancet</em> — 43 countries, the conclusion stark: <strong>IBD has become a global disease</strong>. The UK has one of the highest rates in the world. In newly industrialised countries, incidence is <strong>accelerating</strong>."</p>
+
+    <p class="line">"In the UK, a 2022 study using records from <strong>38 million GP patients</strong> found over 500,000 people living with IBD — <strong>1 in every 123</strong>. Nearly double the previous estimate. Adolescent incidence rising 3% a year. The NHS needs to plan for a significantly larger IBD population." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"The NICE guidelines — NG129 for Crohn's, NG130 for UC — set the UK standard. The BSG guidelines, also 2019, reviewed nearly 90,000 publications. Both emphasise the <strong>IBD multidisciplinary team</strong>. Both flag that <strong>anxiety and depression</strong> are highly prevalent in IBD and must be actively treated."</p>
+
+    <p class="line">"On cancer risk — Jess and colleagues in 2012 found that <strong>ulcerative colitis increases colorectal cancer risk 2.4-fold</strong>. In extensive colitis, nearly four times. That's the evidence behind surveillance colonoscopy — and a real reason to <strong>stay engaged with specialist follow-up</strong>." <span class="pause">PAUSE</span></p>
+
+    <div class="cue-box">
+      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
+      <div class="cue-text">Screen 5: <span>Research cards</span> · Ng 2017 · Crohn's &amp; Colitis UK 2022 · NICE NG129/NG130 · Jess CRC 2012</div>
+    </div>
+
+    <!-- ═══ SEGMENT 5 ═══ -->
+    <div class="seg-label" data-seg="5">Segment 5 — Closing</div>
+
+    <p class="line">"So — if you take one thing from this. IBD is a <strong>genuine, serious, immune-mediated disease</strong>. Not functional, not stress-related, not something diet alone will fix."</p>
+
+    <p class="line">"If you have it — or you're worried you might — you deserve an <strong>accurate diagnosis</strong>, a proper management plan, and access to a <strong>specialist team</strong>. The treatments work. And the conversation with your specialist <em>really does matter</em>." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"If you found this useful, there's more on <strong>helf.school</strong> — the full article with all the references is there. Remember — this is health education. Take what's relevant to <em>your</em> doctor. <strong>Thanks for watching.</strong>"</p>
+
+    <div class="cue-box">
+      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
+      <div class="cue-text">Screen 6: <span>Closing slide</span> · helf.school logo · Health Education for Everyone</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const SPEED_LEVELS = [8, 14, 20, 28, 38, 52];
+  let speedIndex = 2;
+  let baseFontSize = 1.9;
+  let playing = false;
+  let rafId = null;
+  let lastTime = null;
+  let scrollY = 0;
+
+  const content = document.getElementById('scroll-content');
+  const playBtn = document.getElementById('play-btn');
+  const speedDisplay = document.getElementById('speed-display');
+  const dots = document.querySelectorAll('.seg-dot');
+  const segLabels = document.querySelectorAll('.seg-label');
+
+  function setTranslate(y) { content.style.transform = `translateY(${-y}px)`; }
+
+  function togglePlay() {
+    playing = !playing;
+    playBtn.textContent = playing ? '⏸ PAUSE' : '▶ PLAY';
+    if (playing) { lastTime = null; rafId = requestAnimationFrame(tick); }
+    else { cancelAnimationFrame(rafId); }
+  }
+
+  function tick(ts) {
+    if (!playing) return;
+    if (lastTime === null) lastTime = ts;
+    const dt = (ts - lastTime) / 1000;
+    lastTime = ts;
+    scrollY += SPEED_LEVELS[speedIndex] * dt;
+    const maxScroll = content.scrollHeight - window.innerHeight + 44;
+    if (scrollY >= maxScroll) { scrollY = maxScroll; togglePlay(); }
+    setTranslate(scrollY);
+    updateDots();
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function changeSpeed(dir) {
+    speedIndex = Math.max(0, Math.min(5, speedIndex + dir));
+    speedDisplay.textContent = speedIndex + 1;
+  }
+
+  function changeFont(dir) {
+    baseFontSize = Math.max(1.2, Math.min(2.8, baseFontSize + dir * 0.1));
+    document.querySelectorAll('.line').forEach(el => el.style.fontSize = baseFontSize + 'rem');
+  }
+
+  function jumpToSeg(idx) {
+    const label = segLabels[idx];
+    if (!label) return;
+    const contentTop = content.getBoundingClientRect().top;
+    const labelOffset = label.getBoundingClientRect().top - contentTop + scrollY;
+    scrollY = Math.max(0, labelOffset - window.innerHeight * 0.5 + 44);
+    setTranslate(scrollY);
+    updateDots();
+  }
+
+  function updateDots() {
+    const mid = window.innerHeight * 0.5;
+    let active = 0;
+    segLabels.forEach((label, i) => { if (label.getBoundingClientRect().top <= mid) active = i; });
+    dots.forEach((d, i) => d.classList.toggle('active', i === active));
+  }
+
+  // Touch
+  let touchStartY = 0, touchScrollStart = 0;
+  document.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; touchScrollStart = scrollY; if (playing) togglePlay(); }, { passive: true });
+  document.addEventListener('touchmove', e => { scrollY = Math.max(0, touchScrollStart + (touchStartY - e.touches[0].clientY)); setTranslate(scrollY); updateDots(); }, { passive: true });
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (e.code === 'Space') { e.preventDefault(); togglePlay(); }
+    if (e.code === 'ArrowUp') { scrollY = Math.max(0, scrollY - 80); setTranslate(scrollY); }
+    if (e.code === 'ArrowDown') { scrollY += 80; setTranslate(scrollY); }
+  });
+
+  setTranslate(0);
+</script>
+</body>
+</html>

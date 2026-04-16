@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inflammatory Bowel Disease: Crohn's Disease and Ulcerative Colitis — helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:   #1B2A4A;
+      --coral:  #E8634A;
+      --cream:  #FAF7F2;
+      --sage:   #7A9E87;
+      --digest: #D47C3A;
+      --digest-light: #FEF3E7;
+      --border: #E5DDD4;
+      --text:   #2C2C2C;
+      --muted:  #6B7280;
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--text); font-size:17px; line-height:1.75; font-weight:400; }
+
+    /* ── NAV ── */
+    nav { background:var(--navy); padding:0 2rem; display:flex; align-items:center; justify-content:space-between; height:68px; position:sticky; top:0; z-index:100; box-shadow:0 2px 12px rgba(27,42,74,.18); }
+    .nav-logo { display:flex; align-items:center; gap:.75rem; text-decoration:none; }
+    .logo-svg { width:36px; height:36px; flex-shrink:0; }
+    .logo-text { display:flex; flex-direction:column; line-height:1.1; }
+    .logo-name { font-family:'Fraunces',serif; font-size:1.25rem; font-weight:600; color:#fff; letter-spacing:.01em; }
+    .logo-tagline { font-size:.6rem; font-weight:500; color:var(--sage); letter-spacing:.18em; text-transform:uppercase; }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { color:rgba(255,255,255,.75); text-decoration:none; font-size:.875rem; font-weight:500; transition:color .2s; }
+    .nav-links a:hover { color:#fff; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb { background:var(--navy); padding:.6rem 2rem; border-bottom:1px solid rgba(255,255,255,.08); }
+    .breadcrumb-inner { max-width:900px; margin:0 auto; display:flex; align-items:center; gap:.5rem; font-size:.8rem; color:rgba(255,255,255,.75); }
+    .breadcrumb-inner a { color:rgba(255,255,255,.75); text-decoration:none; transition:color .2s; }
+    .breadcrumb-inner a:hover { color:#fff; }
+    .breadcrumb-inner span { color:var(--digest); font-weight:500; }
+
+    /* ── HERO ── */
+    .article-hero { background:var(--navy); padding:3.5rem 2rem 3rem; position:relative; overflow:hidden; }
+    .article-hero::before { content:''; position:absolute; top:-60px; right:-60px; width:320px; height:320px; border-radius:50%; background:radial-gradient(circle,rgba(212,124,58,.12) 0%,transparent 70%); pointer-events:none; }
+    .article-hero::after { content:''; position:absolute; bottom:-40px; left:10%; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle,rgba(122,158,135,.10) 0%,transparent 70%); pointer-events:none; }
+    .hero-inner { max-width:900px; margin:0 auto; position:relative; z-index:1; }
+    .category-badge { display:inline-flex; align-items:center; gap:.4rem; background:rgba(212,124,58,.15); border:1px solid rgba(212,124,58,.3); color:var(--digest); font-size:.72rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; padding:.3rem .75rem; border-radius:100px; margin-bottom:1.25rem; }
+    .article-hero h1 { font-family:'Fraunces',serif; font-size:clamp(2rem,5vw,3rem); font-weight:700; color:#fff; line-height:1.15; margin-bottom:.5rem; }
+    .article-hero h1 span { color:var(--digest); }
+    .hero-subtitle { font-size:1rem; color:rgba(255,255,255,.85); font-style:italic; font-family:'Fraunces',serif; margin-bottom:1.75rem; }
+    .hero-meta { display:flex; flex-wrap:wrap; gap:1.25rem; }
+    .meta-item { display:flex; align-items:center; gap:.4rem; font-size:.8rem; color:rgba(255,255,255,.80); }
+
+    /* ── JUMP NAV ── */
+    .jump-nav { background:#fff; border-bottom:1px solid var(--border); padding:0 2rem; position:sticky; top:68px; z-index:90; }
+    .jump-nav-inner { max-width:900px; margin:0 auto; display:flex; overflow-x:auto; scrollbar-width:none; }
+    .jump-nav-inner::-webkit-scrollbar { display:none; }
+    .jump-link { display:flex; align-items:center; gap:.4rem; padding:.9rem 1.1rem; font-size:.8rem; font-weight:500; color:var(--text); text-decoration:none; border-bottom:2px solid transparent; white-space:nowrap; transition:color .2s,border-color .2s; }
+    .jump-link:hover { color:var(--navy); border-bottom-color:var(--navy); }
+    .jump-link .num { display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; border-radius:50%; background:var(--digest-light); color:var(--digest); font-size:.65rem; font-weight:700; flex-shrink:0; }
+
+    /* ── LAYOUT ── */
+    .article-layout { max-width:900px; margin:0 auto; padding:3rem 2rem 5rem; }
+    .article-section { margin-bottom:3.5rem; scroll-margin-top:150px; }
+    .section-header { display:flex; align-items:center; gap:1rem; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--border); }
+    .section-number { display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; background:var(--navy); color:#fff; font-family:'Fraunces',serif; font-size:1.1rem; font-weight:700; flex-shrink:0; }
+    .section-title { font-family:'Fraunces',serif; font-size:1.45rem; font-weight:600; color:var(--navy); line-height:1.2; }
+    .article-section p { margin-bottom:1rem; color:var(--text); font-weight:400; }
+    .article-section p:last-child { margin-bottom:0; }
+    .subsection-title { font-family:'Fraunces',serif; font-size:1.1rem; font-weight:600; color:var(--navy); margin:1.75rem 0 .75rem; }
+
+    /* ── KEY TERMS ── */
+    .key-terms-box { background:var(--navy); border-radius:12px; padding:1.5rem 1.75rem; margin-bottom:3.5rem; }
+    .key-terms-header { display:flex; align-items:center; gap:.75rem; margin-bottom:1.25rem; padding-bottom:.85rem; border-bottom:1px solid rgba(255,255,255,.12); }
+    .key-terms-header h3 { font-family:'Fraunces',serif; font-size:1.05rem; font-weight:600; color:#fff; }
+    .key-terms-grid { display:grid; grid-template-columns:1fr 1fr; gap:.85rem; }
+    .key-term { display:flex; flex-direction:column; gap:.2rem; padding:.75rem 1rem; background:rgba(255,255,255,.05); border-radius:8px; border-left:3px solid var(--digest); }
+    .key-term-word { font-size:.88rem; font-weight:700; color:var(--digest); letter-spacing:.02em; }
+    .key-term-def { font-size:.92rem; color:rgba(255,255,255,.90); line-height:1.55; }
+
+    /* ── STAT BANNER ── */
+    .stat-banner { display:flex; align-items:center; gap:1.25rem; padding:1rem 1.25rem; border-radius:12px; margin:1.25rem 0; }
+    .stat-banner.dig { background:rgba(212,124,58,.08); border:1px solid rgba(212,124,58,.2); }
+    .stat-banner.sage { background:rgba(122,158,135,.08); border:1px solid rgba(122,158,135,.2); }
+    .stat-number { font-family:'Fraunces',serif; font-size:2.8rem; font-weight:700; line-height:1; flex-shrink:0; color:var(--digest); }
+    .stat-banner.sage .stat-number { color:var(--sage); }
+    .stat-text { font-size:.92rem; line-height:1.55; color:var(--text); font-weight:400; }
+    .stat-text strong { font-weight:600; color:var(--navy); }
+    .source-note { font-size:.75rem; color:var(--muted); font-style:italic; margin-top:.3rem; display:block; }
+
+    /* ── COMPARISON TABLE ── */
+    .comparison-table { width:100%; border-collapse:collapse; margin:1.25rem 0; font-size:.92rem; border-radius:10px; overflow:hidden; box-shadow:0 1px 4px rgba(27,42,74,.08); }
+    .comparison-table thead tr { background:var(--navy); }
+    .comparison-table thead th { padding:.75rem 1rem; text-align:left; font-weight:600; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:#fff; }
+    .comparison-table thead th:first-child { background:var(--navy); }
+    .comparison-table thead th:nth-child(2) { background:rgba(232,99,74,.85); }
+    .comparison-table thead th:nth-child(3) { background:rgba(90,122,106,.85); }
+    .comparison-table tbody tr { background:#fff; border-bottom:1px solid var(--border); }
+    .comparison-table tbody tr:last-child { border-bottom:none; }
+    .comparison-table tbody tr:nth-child(even) { background:var(--digest-light); }
+    .comparison-table tbody td { padding:.8rem 1rem; line-height:1.55; color:var(--text); font-weight:400; }
+    .comparison-table tbody td:first-child { font-weight:600; color:var(--navy); }
+
+    /* ── CONDITION CARDS ── */
+    .condition-cards { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin:1.25rem 0; }
+    .condition-card { background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.25rem 1.4rem; border-top:4px solid; }
+    .condition-card.crohns { border-top-color:#E8634A; }
+    .condition-card.uc { border-top-color:#5A7A6A; }
+    .condition-card h4 { font-family:'Fraunces',serif; font-size:1rem; font-weight:700; margin-bottom:.5rem; }
+    .condition-card.crohns h4 { color:#E8634A; }
+    .condition-card.uc h4 { color:#5A7A6A; }
+    .condition-card p { font-size:.9rem; line-height:1.65; color:var(--text); font-weight:400; margin-bottom:0; }
+
+    /* ── MATTER LIST ── */
+    .matter-list { list-style:none; display:flex; flex-direction:column; gap:.85rem; }
+    .matter-list li { display:flex; gap:.9rem; align-items:flex-start; background:#fff; border:1px solid var(--border); border-left:3px solid var(--digest); border-radius:0 8px 8px 0; padding:.85rem 1.1rem; font-size:.95rem; line-height:1.6; color:var(--text); font-weight:400; }
+    .matter-list li::before { content:''; display:block; width:6px; height:6px; border-radius:50%; background:var(--digest); flex-shrink:0; margin-top:.55rem; }
+
+    /* ── CALLOUTS ── */
+    .callout { border-radius:10px; padding:1rem 1.25rem; margin:1.25rem 0; font-size:.95rem; line-height:1.65; font-weight:400; }
+    .callout-amber { background:rgba(212,124,58,.08); border:1px solid rgba(212,124,58,.25); color:var(--text); }
+    .callout-amber strong { color:var(--digest); font-weight:600; }
+    .callout-sage { background:rgba(122,158,135,.08); border:1px solid rgba(122,158,135,.25); color:var(--text); }
+    .callout-sage strong { color:#2D5E4A; font-weight:600; }
+    .callout-red { background:rgba(232,99,74,.08); border:1px solid rgba(232,99,74,.25); color:var(--text); }
+    .callout-red strong { color:#8B2010; font-weight:600; }
+    .callout-navy { background:var(--navy); color:rgba(255,255,255,.90); }
+    .callout-navy strong { color:#fff; font-weight:600; }
+
+    /* ── DATA TABLE ── */
+    .data-table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.92rem; border-radius:10px; overflow:hidden; box-shadow:0 1px 4px rgba(27,42,74,.08); }
+    .data-table thead tr { background:var(--digest); }
+    .data-table thead th { padding:.75rem 1rem; text-align:left; font-weight:600; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:#fff; }
+    .data-table tbody tr { background:#fff; border-bottom:1px solid var(--border); }
+    .data-table tbody tr:last-child { border-bottom:none; }
+    .data-table tbody tr:nth-child(even) { background:var(--digest-light); }
+    .data-table tbody td { padding:.8rem 1rem; line-height:1.55; color:var(--text); font-weight:400; }
+    .data-table tbody td:first-child { font-weight:600; color:var(--navy); }
+
+    /* ── TREATMENT STEPS ── */
+    .treatment-steps { display:flex; flex-direction:column; gap:1rem; }
+    .treatment-step { display:flex; align-items:flex-start; gap:1rem; background:#fff; border:1px solid var(--border); border-radius:12px; padding:1rem 1.2rem; }
+    .step-num { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.85rem; font-weight:700; flex-shrink:0; }
+    .step-1 .step-num { background:rgba(122,158,135,.18); color:#2D5E4A; }
+    .step-2 .step-num { background:rgba(212,124,58,.18); color:var(--digest); }
+    .step-3 .step-num { background:rgba(232,168,74,.18); color:#7A5A10; }
+    .step-4 .step-num { background:rgba(107,94,168,.18); color:#4A3A8A; }
+    .step-content h5 { font-family:'Fraunces',serif; font-size:1rem; font-weight:600; color:var(--navy); margin-bottom:.35rem; }
+    .step-content p { font-size:.92rem; line-height:1.65; color:var(--text); font-weight:400; margin:0; }
+
+    /* ── RESEARCH ITEMS ── */
+    .research-items { display:flex; flex-direction:column; gap:1.25rem; }
+    .research-item { background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.25rem 1.4rem; position:relative; }
+    .research-item::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; border-radius:4px 0 0 4px; background:var(--navy); }
+    .research-item h4 { font-family:'Fraunces',serif; font-size:1rem; font-weight:600; color:var(--navy); margin-bottom:.6rem; }
+    .research-item p { font-size:.95rem; line-height:1.7; color:var(--text); font-weight:400; margin-bottom:.6rem; }
+    .research-item p:last-child { margin-bottom:0; }
+
+    /* ── REFERENCES ── */
+    .ref-block { margin-bottom:.85rem; padding:.85rem 1rem; background:#fff; border:1px solid var(--border); border-radius:8px; }
+    .ref-full { font-size:.85rem; line-height:1.6; color:var(--text); font-weight:400; margin-bottom:.5rem; }
+    .ref-links { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .ref-pill { display:inline-flex; align-items:center; font-size:.72rem; font-weight:600; letter-spacing:.04em; padding:.2rem .6rem; border-radius:100px; text-decoration:none; transition:background .2s; }
+    .ref-pill-journal { background:#EBF2ED; color:#2D5E4A; border:1px solid rgba(122,158,135,.35); }
+    .ref-pill-journal:hover { background:rgba(122,158,135,.25); }
+    .ref-pill-pubmed { background:#EEF4FD; color:#1A4A8A; border:1px solid rgba(46,107,168,.3); }
+    .ref-pill-pubmed:hover { background:rgba(46,107,168,.15); }
+
+    /* ── PUTTING IT TOGETHER ── */
+    .putting-together { background:var(--navy); border-radius:14px; padding:1.75rem 2rem; margin-top:2rem; position:relative; overflow:hidden; }
+    .putting-together::before { content:''; position:absolute; top:-40px; right:-40px; width:180px; height:180px; border-radius:50%; background:radial-gradient(circle,rgba(212,124,58,.10) 0%,transparent 70%); pointer-events:none; }
+    .putting-together-header { display:flex; align-items:center; gap:.75rem; margin-bottom:1rem; padding-bottom:.85rem; border-bottom:1px solid rgba(255,255,255,.12); }
+    .putting-together-header svg { width:20px; height:20px; color:var(--digest); flex-shrink:0; }
+    .putting-together-header h5 { font-family:'Fraunces',serif; font-size:1.05rem; font-weight:600; color:#fff; }
+    .putting-together p { font-size:1rem; color:rgba(255,255,255,.90); line-height:1.75; margin-bottom:.75rem; position:relative; z-index:1; font-weight:400; font-style:italic; }
+    .putting-together p:last-child { margin-bottom:0; }
+    .putting-together p strong { color:#fff; font-weight:600; }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer { background:rgba(232,99,74,.06); border:1px solid rgba(232,99,74,.2); border-radius:12px; padding:1.1rem 1.4rem; display:flex; gap:.85rem; align-items:flex-start; margin-top:3rem; }
+    .disclaimer svg { width:20px; height:20px; color:var(--coral); flex-shrink:0; margin-top:.1rem; }
+    .disclaimer p { font-size:.85rem; color:#7A3020; line-height:1.6; margin:0; font-weight:400; }
+
+    footer { background:var(--navy); color:rgba(255,255,255,.65); text-align:center; padding:2rem; font-size:.8rem; }
+    footer a { color:var(--sage); text-decoration:none; }
+
+    @media(max-width:600px) { nav{padding:0 1rem} .nav-links{display:none} .article-hero{padding:2.5rem 1rem 2rem} .article-layout{padding:2rem 1rem 4rem} .breadcrumb{padding:.6rem 1rem} .jump-nav{padding:0 1rem} .key-terms-grid{grid-template-columns:1fr} .condition-cards{grid-template-columns:1fr} .stat-banner{flex-direction:column;gap:.5rem} }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg class="logo-svg" viewBox="0 0 40 40" fill="none">
+      <rect x="2" y="8" width="17" height="24" rx="2" stroke="#FAF7F2" stroke-width="1.5" fill="none"/>
+      <rect x="21" y="8" width="17" height="24" rx="2" stroke="#FAF7F2" stroke-width="1.5" fill="none"/>
+      <line x1="20" y1="8" x2="20" y2="32" stroke="#E8634A" stroke-width="1.5"/>
+      <line x1="6" y1="15" x2="15" y2="15" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="6" y1="19" x2="15" y2="19" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="6" y1="23" x2="12" y2="23" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="15" x2="34" y2="15" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="19" x2="34" y2="19" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="23" x2="31" y2="23" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-name">helf.school</span>
+      <span class="logo-tagline">Health Education</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="helf-school-conditions.html">Conditions</a></li>
+    <li><a href="helf-school-membership.html">Membership</a></li>
+  </ul>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Home</a>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <a href="helf-school-conditions.html">Conditions</a>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>IBD: Crohn's Disease and Ulcerative Colitis</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="article-hero">
+  <div class="hero-inner">
+    <div class="category-badge">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.5"/></svg>
+      Digestive Health · Article 15
+    </div>
+    <h1>Inflammatory Bowel Disease: <span>Crohn's Disease and Ulcerative Colitis</span></h1>
+    <p class="hero-subtitle">What IBD actually is, how Crohn's and UC differ, and what the evidence says about living well with it</p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3l2 1.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+        14–16 minute read
+      </div>
+      <div class="meta-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 11l3-3 2.5 2.5 4.5-6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        References verified April 2026
+      </div>
+      <div class="meta-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5C4.5 1.5 2.5 3.5 2.5 6c0 3.5 4.5 6.5 4.5 6.5s4.5-3 4.5-6.5c0-2.5-2-4.5-4.5-4.5z" stroke="currentColor" stroke-width="1.2"/></svg>
+        Health education — not medical advice
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JUMP NAV -->
+<nav class="jump-nav">
+  <div class="jump-nav-inner">
+    <a href="#what-is-it" class="jump-link"><span class="num">1</span> What is IBD?</a>
+    <a href="#why-it-matters" class="jump-link"><span class="num">2</span> Why does it matter?</a>
+    <a href="#what-doctor" class="jump-link"><span class="num">3</span> What your doctor will do</a>
+    <a href="#research" class="jump-link"><span class="num">4</span> What the research shows</a>
+  </div>
+</nav>
+
+<div class="article-layout">
+
+  <!-- ── SECTION 1 ── -->
+  <section class="article-section" id="what-is-it">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <h2 class="section-title">What is IBD?</h2>
+    </div>
+
+    <p>Inflammatory bowel disease — IBD — is a term that covers two distinct conditions: <strong>Crohn's disease</strong> and <strong>ulcerative colitis</strong>. Both are chronic conditions characterised by ongoing inflammation of the gastrointestinal tract. Both involve periods of active disease — flares — and periods of reduced symptoms — remission. And both are real, serious conditions that can significantly affect quality of life.</p>
+
+    <p>IBD is not the same as irritable bowel syndrome (IBS). This is one of the most important distinctions in gastroenterology. IBS is a disorder of gut-brain interaction — symptoms without structural damage. IBD involves genuine inflammation and, over time, structural damage to the gut wall. The two conditions can produce similar symptoms, but their causes, investigations, and treatments are entirely different.</p>
+
+    <div class="stat-banner dig">
+      <div class="stat-number">500,000+</div>
+      <div class="stat-text">
+        <strong>people in the UK are living with IBD</strong> — around 1 in every 123. This is nearly double what was previously estimated. Crohn's disease and ulcerative colitis together represent a significant and growing burden on the NHS.
+        <span class="source-note">Source: Crohn's &amp; Colitis UK / University of Nottingham epidemiology study 2022</span>
+      </div>
+    </div>
+
+    <h3 class="subsection-title">Crohn's disease and ulcerative colitis — the key differences</h3>
+
+    <p>While both conditions involve gut inflammation, they differ in important ways — in where they affect the gut, how deeply the inflammation goes, and how they behave over time.</p>
+
+    <div class="condition-cards">
+      <div class="condition-card crohns">
+        <h4>Crohn's Disease</h4>
+        <p>Can affect any part of the gastrointestinal tract from mouth to anus, but most commonly affects the end of the small intestine (terminal ileum) and/or the colon. Inflammation is <strong>transmural</strong> — it goes through the full thickness of the gut wall. Can cause skip lesions (patches of affected bowel separated by normal tissue). Associated with fistulae, strictures, and abscesses. Smoking worsens Crohn's disease.</p>
+      </div>
+      <div class="condition-card uc">
+        <h4>Ulcerative Colitis</h4>
+        <p>Affects only the colon (large intestine) and rectum. Inflammation is <strong>mucosal</strong> — confined to the inner lining. Always starts in the rectum and extends continuously upward. Never involves the small intestine (except in rare "backwash ileitis"). Bloody diarrhoea is the hallmark symptom. Paradoxically, current smokers have a lower risk — though smoking carries far greater harms overall.</p>
+      </div>
+    </div>
+
+    <table class="comparison-table" style="margin-top:1.25rem">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Crohn's Disease</th>
+          <th>Ulcerative Colitis</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Location</td><td>Anywhere: mouth to anus</td><td>Colon and rectum only</td></tr>
+        <tr><td>Distribution</td><td>Skip lesions (patchy)</td><td>Continuous from rectum</td></tr>
+        <tr><td>Depth of inflammation</td><td>Transmural (full thickness)</td><td>Mucosal (inner lining)</td></tr>
+        <tr><td>Hallmark symptom</td><td>Abdominal pain, diarrhoea, weight loss</td><td>Bloody diarrhoea, urgency</td></tr>
+        <tr><td>Perianal disease</td><td>Common (fistulae, abscesses)</td><td>Rare</td></tr>
+        <tr><td>Smoking effect</td><td>Worsens disease</td><td>Lowers risk (but not recommended)</td></tr>
+        <tr><td>Curative surgery</td><td>Not curative — can recur</td><td>Colectomy is curative</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="subsection-title">What causes IBD?</h3>
+
+    <p>The cause of IBD is not fully understood, but it is now well established as a complex interaction between <strong>genetic susceptibility, the immune system, the gut microbiome, and environmental triggers</strong>.</p>
+
+    <p>The immune system plays a central role. In IBD, the body mounts an abnormal inflammatory response against the contents of its own gut — particularly gut bacteria. In genetically susceptible individuals, environmental triggers appear to dysregulate this response, causing persistent inflammation rather than the normal controlled immune reaction.</p>
+
+    <ul class="matter-list" style="margin-top:.75rem">
+      <li><strong>Genetics.</strong> IBD has a clear genetic component — first-degree relatives of someone with IBD have a significantly elevated risk. Over 200 genetic loci have been associated with IBD, many involved in immune regulation and gut barrier function.</li>
+      <li><strong>The gut microbiome.</strong> People with IBD have a consistently altered gut microbiome compared with healthy individuals — reduced diversity and altered bacterial composition. Whether this is cause or consequence is still being established, but it is a consistent finding.</li>
+      <li><strong>Environmental triggers.</strong> The dramatic rise in IBD incidence in newly industrialised countries strongly implicates environmental factors — diet (particularly highly processed Western diets), antibiotic exposure in early life, reduced childhood infection exposure (the hygiene hypothesis), and urban living.</li>
+      <li><strong>Smoking.</strong> Has opposite effects on the two conditions. Smoking worsens Crohn's disease and is associated with more severe disease and higher surgical rates. It appears to be protective against ulcerative colitis — but this is not a reason to smoke. Smoking causes far more harm than any potential gut-related benefit.</li>
+    </ul>
+
+    <div class="callout callout-amber" style="margin-top:1.5rem">
+      <strong>IBD is not caused by stress or diet alone.</strong> Stress and certain foods can trigger or worsen flares — but they do not cause IBD. IBD is a genuine immunological disease with a biological basis. Patients are sometimes told their symptoms are stress-related before the correct diagnosis is made. If symptoms persist, appropriate investigation is essential.
+    </div>
+
+  </section>
+
+  <!-- ── KEY TERMS ── -->
+  <div class="key-terms-box">
+    <div class="key-terms-header">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M9 4H5a1 1 0 00-1 1v10a1 1 0 001 1h10a1 1 0 001-1v-4M13 4h3v3M10 10l6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>Key Terms</h3>
+    </div>
+    <div class="key-terms-grid">
+      <div class="key-term">
+        <span class="key-term-word">Transmural inflammation</span>
+        <span class="key-term-def">Inflammation that extends through the full thickness of the gut wall — a hallmark of Crohn's disease. Leads to complications including strictures, fistulae, and abscesses.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Gut microbiome</span>
+        <span class="key-term-def">The community of trillions of bacteria, viruses, and fungi that live in the digestive tract. People with IBD consistently show reduced diversity and altered composition of gut bacteria compared with healthy individuals — a pattern known as dysbiosis.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Mucosal inflammation</span>
+        <span class="key-term-def">Inflammation confined to the inner lining (mucosa) of the gut — the pattern seen in ulcerative colitis. Does not penetrate the full gut wall.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Flare</span>
+        <span class="key-term-def">A period of active disease with worsening symptoms. IBD typically follows a relapsing-remitting course — periods of flare followed by periods of remission.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Remission</span>
+        <span class="key-term-def">A period of reduced or absent symptoms. The goal of IBD treatment is to achieve and maintain remission — both clinical (symptom-free) and endoscopic (gut lining healed).</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Stricture</span>
+        <span class="key-term-def">A narrowing of the gut caused by scar tissue from repeated inflammation — a complication of Crohn's disease. Can cause bowel obstruction.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Fistula</span>
+        <span class="key-term-def">An abnormal tunnel between two body surfaces — e.g. between the gut and skin, or between two loops of bowel. A complication of transmural inflammation in Crohn's disease.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Biologics</span>
+        <span class="key-term-def">A class of medications derived from biological sources that target specific components of the immune system. Anti-TNF drugs (e.g. infliximab, adalimumab) are the most widely used biologics in IBD.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Colectomy</span>
+        <span class="key-term-def">Surgical removal of the colon (large intestine). Total colectomy is curative for ulcerative colitis — removing the affected organ removes the disease. Not curative in Crohn's disease, which can affect any part of the gut.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Extraintestinal manifestations</span>
+        <span class="key-term-def">Features of IBD that occur outside the gut — including joint pain, skin conditions (erythema nodosum, pyoderma gangrenosum), eye inflammation (uveitis), and liver disease (primary sclerosing cholangitis).</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2 ── -->
+  <section class="article-section" id="why-it-matters">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <h2 class="section-title">Why does it matter?</h2>
+    </div>
+
+    <ul class="matter-list">
+      <li>IBD is a lifelong condition. There is no cure for Crohn's disease. Ulcerative colitis can be cured by surgical removal of the colon — but most people manage the condition medically for many years or decades. The goal of treatment is to achieve and maintain remission and prevent complications.</li>
+      <li>It significantly affects quality of life. Active IBD causes pain, urgent diarrhoea (sometimes bloody), fatigue, and weight loss. It affects work, relationships, travel, diet, and mental health. Studies consistently show IBD has a quality of life impact comparable to serious chronic conditions including rheumatoid arthritis.</li>
+      <li>Complications can be serious. Crohn's disease can cause bowel obstruction from strictures, fistulae (abnormal tunnels between organs), and abscesses requiring surgery. Both conditions carry an increased risk of colorectal cancer (CRC) — higher with ulcerative colitis, particularly with extensive disease of long duration. A meta-analysis of population-based cohorts found UC increases CRC risk approximately 2.4-fold compared to the general population, rising to nearly 4-fold in extensive colitis. Regular surveillance colonoscopy is recommended. <span style="font-size:.78rem;color:var(--muted);font-style:italic;">(Jess et al., Clin Gastroenterol Hepatol 2012)</span></li>
+      <li>IBD is increasing globally. Rates are rising — particularly in countries that have recently adopted Western lifestyles. The UK has one of the highest prevalences in the world. Adolescent incidence is rising. This is not a rare disease. <span style="font-size:.78rem;color:var(--muted);font-style:italic;">(Ng et al., The Lancet 2017)</span></li>
+      <li>Effective treatments exist and are improving. Biologics have transformed IBD management over the past two decades. The range of treatment options — from aminosalicylates through immunomodulators to advanced biologics and small molecules — means that most people with IBD can achieve sustained remission with the right treatment. Early effective treatment reduces the risk of complications and bowel damage.</li>
+    </ul>
+
+    <div class="callout callout-red" style="margin-top:1.5rem">
+      <strong>Symptoms that need urgent assessment:</strong> significant rectal bleeding, severe abdominal pain, signs of bowel obstruction (distension, vomiting, inability to pass wind or stool), fever with abdominal symptoms, or any rapid deterioration. Acute severe ulcerative colitis is a medical emergency — approximately 25% of patients with UC will require hospitalisation at some point.
+    </div>
+
+  </section>
+
+  <!-- ── SECTION 3 ── -->
+  <section class="article-section" id="what-doctor">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <h2 class="section-title">What your doctor might do</h2>
+    </div>
+
+    <p>IBD is diagnosed through a combination of clinical assessment, blood tests, stool tests, endoscopy, and imaging. Diagnosis requires specialist gastroenterology involvement — a GP cannot diagnose IBD from blood tests alone, but they play a critical role in recognising the symptoms and making an urgent or routine referral.</p>
+
+    <h3 class="subsection-title">Investigations</h3>
+
+    <table class="data-table">
+      <thead><tr><th>Investigation</th><th>What it shows</th></tr></thead>
+      <tbody>
+        <tr><td>Full blood count + CRP/ESR</td><td>Anaemia (common in IBD), elevated inflammatory markers during active disease</td></tr>
+        <tr><td>Faecal calprotectin</td><td>A stool protein released by inflamed gut — strongly differentiates IBD from IBS. Elevated in IBD, normal in IBS</td></tr>
+        <tr><td>Ileocolonoscopy with biopsies</td><td>The gold standard — visualises the colon and terminal ileum, takes tissue samples for histology</td></tr>
+        <tr><td>MRI enterography</td><td>Assesses small bowel in Crohn's disease — extent, strictures, fistulae, perianal disease</td></tr>
+        <tr><td>CT abdomen/pelvis</td><td>Used acutely for complications — obstruction, perforation, abscess</td></tr>
+        <tr><td>Coeliac serology, stool cultures</td><td>Exclude other causes of similar symptoms before confirming IBD</td></tr>
+      </tbody>
+    </table>
+
+    <p>Faecal calprotectin is particularly important in primary care. A normal result makes significant gut inflammation very unlikely and helps avoid unnecessary colonoscopy. An elevated result prompts urgent gastroenterology referral.</p>
+
+    <h3 class="subsection-title">Treatment — a stepped approach</h3>
+
+    <p>IBD treatment is guided by disease type (Crohn's vs UC), extent, severity, and the presence of complications. The principle is to use the least intensive effective treatment to achieve and maintain remission, escalating if needed. NICE guidelines NG129 (Crohn's) and NG130 (UC) provide the framework.</p>
+
+    <div class="treatment-steps">
+      <div class="treatment-step step-1">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h5>Aminosalicylates (5-ASA) — for UC</h5>
+          <p>Mesalazine and related drugs are first-line for mild to moderate ulcerative colitis. They reduce mucosal inflammation and maintain remission. Effective for UC — less so for Crohn's disease, where they are not routinely recommended.</p>
+        </div>
+      </div>
+      <div class="treatment-step step-2">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h5>Corticosteroids — for inducing remission</h5>
+          <p>Prednisolone and budesonide are used to bring active flares under control. They are effective but not suitable for long-term maintenance — repeated or prolonged steroid use causes significant side effects (osteoporosis, adrenal suppression, diabetes, mood effects). The goal is always to taper and stop.</p>
+        </div>
+      </div>
+      <div class="treatment-step step-3">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h5>Immunomodulators — for maintaining remission</h5>
+          <p>Azathioprine, mercaptopurine, and methotrexate suppress the immune response to maintain remission after a flare. They take several months to reach full effect. Require regular blood monitoring. Used when aminosalicylates alone are insufficient, or in Crohn's disease.</p>
+        </div>
+      </div>
+      <div class="treatment-step step-4">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h5>Biologics and small molecules — for moderate to severe disease</h5>
+          <p><strong>Anti-TNF drugs</strong> (infliximab, adalimumab) — the most established biologics, effective in both Crohn's and UC. <strong>Vedolizumab</strong> — gut-selective biologic, good safety profile. <strong>Ustekinumab</strong> — effective in Crohn's. <strong>JAK inhibitors</strong> (tofacitinib, upadacitinib) — oral small molecules now used in moderate to severe UC and Crohn's. Therapeutic drug monitoring is used to optimise dosing.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="subsection-title">Surgery</h3>
+
+    <p>Surgery is required in a significant proportion of IBD patients. For Crohn's disease, surgery removes the most affected segment of bowel — but does not cure the condition, and disease can recur at the surgical site. For ulcerative colitis, total colectomy (removal of the colon) is curative. An ileo-anal pouch procedure allows most patients to avoid a permanent stoma. Surgery is indicated for complications (obstruction, perforation, fistula, abscess), failure of medical therapy, or — in UC — for high-grade dysplasia or colorectal cancer.</p>
+
+    <div class="callout callout-sage" style="margin-top:1.5rem">
+      <strong>Smoking cessation is essential in Crohn's disease.</strong> Smoking doubles the risk of relapse, increases the need for surgery, and reduces the effectiveness of medications. Stopping smoking is one of the most impactful things a person with Crohn's can do. Nicotine replacement therapy and pharmacological support should be offered.
+    </div>
+
+  </section>
+
+  <!-- ── SECTION 4 ── -->
+  <section class="article-section" id="research">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <h2 class="section-title">What the research shows</h2>
+    </div>
+
+    <div class="research-items">
+
+      <div class="research-item">
+        <h4>Global IBD epidemiology — the definitive systematic review</h4>
+        <p>Ng and colleagues published a landmark systematic review in The Lancet in 2017, analysing population-based studies from 43 countries. In the 21st century, IBD has become a global disease. Incidence is highest in North America, Northern Europe, and Australia — the UK has among the highest rates in the world. Critically, incidence is now accelerating in newly industrialised countries across Asia, South America, and Africa as they adopt Western lifestyles. The authors concluded that IBD prevalence in Western countries is continuing to rise as new cases accumulate in an increasingly large patient population.</p>
+
+        <div class="ref-block">
+          <p class="ref-full"><strong>Ng SC, Shi HY, Hamidi N, Underwood FE, Tang W, Benchimol EI, et al.</strong> Worldwide incidence and prevalence of inflammatory bowel disease in the 21st century: a systematic review of population-based studies. <em>The Lancet</em> 2017;390(10114):2769–2778. DOI: 10.1016/S0140-6736(17)32448-0</p>
+          <div class="ref-links">
+            <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(17)32448-0/abstract" target="_blank" class="ref-pill ref-pill-journal">Lancet Abstract</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/29050646/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 29050646</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <h4>UK IBD prevalence — the most accurate estimate to date</h4>
+        <p>A 2022 study commissioned by Crohn's &amp; Colitis UK and conducted by researchers at the University of Nottingham analysed anonymised health records from over 38 million people registered with UK general practices between 2000 and 2020. It found that over 500,000 people in the UK — 1 in every 123 — are living with Crohn's disease or ulcerative colitis. This is nearly double the previous estimate of 300,000. Prevalence was 0.44% for UC and 0.31% for Crohn's. Incidence in adolescents (aged 10–16) increased by an average of 3% per year over the study period. The study raised serious concerns about NHS capacity to manage the growing patient population.</p>
+
+        <div class="ref-block">
+          <p class="ref-full"><strong>Crohn's &amp; Colitis UK / University of Nottingham.</strong> Epidemiology Summary: Incidence and Prevalence of IBD in the United Kingdom. 2022. Based on CPRD analysis of 38.3 million UK general practice records, 2000–2020.</p>
+          <div class="ref-links">
+            <a href="https://www.crohnsandcolitis.org.uk/media/4e5ccomz/epidemiology-summary-final.pdf" target="_blank" class="ref-pill ref-pill-journal">Crohn's &amp; Colitis UK Report</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <h4>NICE guidelines — Crohn's disease management (NG129, 2019)</h4>
+        <p>NICE guideline NG129, published in 2019, provides the UK standard for Crohn's disease management across all ages. Key recommendations include: use of faecal calprotectin to support diagnosis in primary care; budesonide or prednisolone for inducing remission in mild to moderate disease; azathioprine or mercaptopurine for maintenance; biologics (anti-TNF, vedolizumab, ustekinumab) for moderate to severe disease or those who have not responded to conventional treatment; post-surgical prophylaxis to reduce recurrence; and smoking cessation as an essential component of management.</p>
+
+        <div class="ref-block">
+          <p class="ref-full"><strong>National Institute for Health and Care Excellence.</strong> Crohn's disease: management. NICE guideline NG129. Published May 2019.</p>
+          <div class="ref-links">
+            <a href="https://www.nice.org.uk/guidance/ng129" target="_blank" class="ref-pill ref-pill-journal">NICE NG129 Full Guideline</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <h4>NICE guidelines — Ulcerative colitis management (NG130, 2019)</h4>
+        <p>NICE guideline NG130, also published in 2019, covers UC management from mild proctitis through to acute severe colitis. Key recommendations include: aminosalicylates (mesalazine) as first-line for mild to moderate UC; corticosteroids for inducing remission in moderate disease; azathioprine or mercaptopurine for maintenance; biological therapies for moderate to severe disease; and clear criteria for hospitalisation in acute severe UC (defined by the Truelove and Witts criteria). The guideline also covers surveillance colonoscopy recommendations — starting 8–10 years after diagnosis for extensive disease, with frequency determined by risk factors including disease extent, family history of colorectal cancer, and the presence of primary sclerosing cholangitis.</p>
+
+        <div class="ref-block">
+          <p class="ref-full"><strong>National Institute for Health and Care Excellence.</strong> Ulcerative colitis: management. NICE guideline NG130. Published May 2019.</p>
+          <div class="ref-links">
+            <a href="https://www.nice.org.uk/guidance/ng130" target="_blank" class="ref-pill ref-pill-journal">NICE NG130 Full Guideline</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <h4>British Society of Gastroenterology consensus guidelines on IBD</h4>
+        <p>The BSG published comprehensive consensus guidelines on IBD management in adults in 2019 (Gut), developed through systematic review of 88,247 publications and a Delphi process involving 81 multidisciplinary clinicians and patients. The guidelines produced 168 evidence- and expert opinion-based recommendations covering pharmacological treatment, surgery, nutrition, psychological support, pregnancy, and service delivery. A key emphasis is the importance of the IBD multidisciplinary team — gastroenterologist, IBD nurse specialist, dietitian, surgeon, and psychologist. The guidelines highlight that psychological comorbidity (anxiety and depression) is highly prevalent in IBD and should be actively assessed and treated.</p>
+
+        <div class="ref-block">
+          <p class="ref-full"><strong>Lamb CA, Kennedy NA, Raine T, Hendy PA, Smith PJ, Limdi JK, et al.; IBD guidelines eDelphi consensus group.</strong> British Society of Gastroenterology consensus guidelines on the management of inflammatory bowel disease in adults. <em>Gut</em> 2019;68(suppl 3):s1–s106. DOI: 10.1136/gutjnl-2019-318484</p>
+          <div class="ref-links">
+            <a href="https://gut.bmj.com/content/68/Suppl_3/s1" target="_blank" class="ref-pill ref-pill-journal">Gut Full Text</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/31562236/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 31562236</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <h4>Changing epidemiology of IBD in the UK — rising prevalence and outcomes</h4>
+        <p>King and colleagues published an analysis of changing IBD patterns in the UK between 2000 and 2018 in Alimentary Pharmacology &amp; Therapeutics (2020), using a primary care database of 11.3 million individuals. They found that UC prevalence increased from 390 to 570 per 100,000 between 2000 and 2017, and Crohn's from 220 to 400 per 100,000. The study predicted IBD prevalence would reach 1.1% of the UK population by 2025. Incidence in adolescents rose by 3% per year. UC was associated with a 40% increased risk of colorectal cancer compared to controls. Both conditions carried increased all-cause mortality — Crohn's more so than UC.</p>
+
+        <div class="ref-block">
+          <p class="ref-full"><strong>King D, Reulen RC, Thomas T, Chandan JS, Thayakaran R, Subramanian A, et al.</strong> Changing patterns in the epidemiology and outcomes of inflammatory bowel disease in the United Kingdom: 2000–2018. <em>Alimentary Pharmacology &amp; Therapeutics</em> 2020;51(10):922–934. DOI: 10.1111/apt.15701</p>
+          <div class="ref-links">
+            <a href="https://onlinelibrary.wiley.com/doi/10.1111/apt.15701" target="_blank" class="ref-pill ref-pill-journal">Aliment Pharmacol Ther Full Text</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/32237083/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 32237083</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <h4>Colorectal cancer risk in IBD — meta-analysis of population-based cohorts</h4>
+        <p>Jess and colleagues published a meta-analysis in Clinical Gastroenterology and Hepatology in 2012, pooling data from eight population-based cohort studies to determine the risk of colorectal cancer (CRC) in patients with ulcerative colitis. They found that UC increases CRC risk approximately 2.4-fold compared to the general population. Risk was higher in men, in those diagnosed at a young age, and in those with extensive colitis. This remains the most widely cited population-based estimate and underpins NICE surveillance colonoscopy recommendations. A 2025 updated meta-analysis of 161,157 patients confirmed a pooled standardised incidence ratio of 2.48, with extensive colitis carrying a risk approaching 4-fold. For Crohn's disease, a separate meta-analysis found a pooled CRC risk approximately 1.9-fold elevated, rising to 2.5-fold for colon cancer specifically.</p>
+
+        <div class="ref-block">
+          <p class="ref-full"><strong>Jess T, Rungoe C, Peyrin-Biroulet L.</strong> Risk of colorectal cancer in patients with ulcerative colitis: a meta-analysis of population-based cohort studies. <em>Clinical Gastroenterology and Hepatology</em> 2012;10(6):639–645. DOI: 10.1016/j.cgh.2012.01.010</p>
+          <div class="ref-links">
+            <a href="https://www.cghjournal.org/article/S1542-3565(12)00050-8/fulltext" target="_blank" class="ref-pill ref-pill-journal">CGH Full Text</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/22289873/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 22289873</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PUTTING IT TOGETHER -->
+    <div class="putting-together">
+      <div class="putting-together-header">
+        <svg viewBox="0 0 20 20" fill="none"><path d="M10 2l2.5 5 5.5.8-4 3.9.9 5.5L10 14.5l-4.9 2.7.9-5.5L2 7.8l5.5-.8L10 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <h5>Putting it all together</h5>
+      </div>
+      <p>IBD is a genuine, chronic, immune-mediated condition — not a functional disorder, not stress-related, not something you can resolve with diet alone. Both Crohn's disease and ulcerative colitis involve real inflammation that, without effective treatment, causes real damage. Getting the diagnosis right matters enormously, because the two conditions are managed differently.</p>
+      <p>The treatment landscape has transformed in the past two decades. Biologics have given gastroenterologists tools that didn't exist a generation ago. The goal is no longer simply symptom control — it is mucosal healing, preventing complications, and preserving the gut. Achieving that requires working with a specialist IBD team.</p>
+      <p><strong>If you have IBD — or suspect you might — you deserve an accurate diagnosis, a structured management plan, access to specialist care, and support for the psychological as well as the physical impact of your condition. The condition is serious. The treatments work. And the conversation with your specialist matters.</strong></p>
+    </div>
+
+  </section>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4M10 14h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <p><strong>This article is health education, not medical advice.</strong> It is intended to help you understand IBD and the evidence around it — not to replace a consultation with your own doctor or specialist. If you are concerned about any symptoms, please speak with your GP or a qualified healthcare professional.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>helf.school — <a href="index.html">Home</a> · <a href="helf-school-conditions.html">Conditions</a> · Health Education for Everyone</p>
+  <p style="margin-top:.5rem;font-size:.72rem;opacity:.6">© 2025 helf.school. All content is health education only — not medical advice.</p>
+</footer>
+
+</body>
+</html>
