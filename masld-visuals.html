@@ -1,313 +1,578 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fatty Liver Disease (MASLD) — Visuals | helf.school</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MASLD Visuals — helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--digest:#D47C3A;--bg:#0f1623}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
-    #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:var(--navy);border-bottom:2px solid var(--digest);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
-    .tb-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff}
-    .tb-sub{font-size:.75rem;color:rgba(255,255,255,.75)}
-    .tb-right{display:flex;align-items:center;gap:1rem}
-    .slide-counter{font-size:.85rem;font-weight:700;color:rgba(255,255,255,.90)}
-    .kb-hint{font-size:.72rem;color:rgba(255,255,255,.60)}
-    #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:6vh 2.5rem 3vh}
-    .slide{display:none;width:100%;max-width:1100px;animation:fadeIn .35s ease}
-    .slide.active{display:flex;flex-direction:column}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-    .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;color:#fff;margin-bottom:1.5rem;padding-bottom:.75rem;border-bottom:2px solid rgba(212,124,58,.3)}
-    .slide-title span{color:var(--digest)}
-    /* INTRO */
-    .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;text-align:center;gap:1.5rem}
-    .intro-badge{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--digest);background:rgba(212,124,58,.12);border:1px solid rgba(212,124,58,.3);padding:.3rem .85rem;border-radius:100px}
-    .intro-title{font-family:'Fraunces',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#fff;line-height:1.15;max-width:800px}
-    .intro-title span{color:var(--digest)}
-    .intro-tagline{font-size:1rem;color:rgba(255,255,255,.70);font-style:italic;font-family:'Fraunces',serif}
+    :root {
+      --navy:   #1B2A4A;
+      --coral:  #E8634A;
+      --cream:  #FAF7F2;
+      --sage:   #7A9E87;
+      --digest: #D47C3A;
+      --border: #E5DDD4;
+      --text:   #2C2C2C;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: #fff; overflow: hidden; }
+
+    .slide-container {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide {
+      display: none;
+      width: 90%;
+      max-width: 1100px;
+      text-align: center;
+      position: relative;
+    }
+
+    .slide.active { display: block; }
+
+    /* NAVIGATION */
+    .nav-controls {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 100;
+    }
+
+    .nav-btn {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+
+    .nav-btn:hover { background: rgba(255,255,255,0.25); }
+
+    .slide-counter {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.90);
+      z-index: 100;
+    }
+
     /* STAT CARDS */
-    .stat-row{display:flex;gap:1.25rem;flex-wrap:wrap}
-    .stat-card{flex:1;min-width:180px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:1.3rem 1.5rem;text-align:center}
-    .stat-card.hl{background:rgba(212,124,58,.1);border-color:rgba(212,124,58,.35)}
-    .stat-num{font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:var(--digest);line-height:1}
-    .stat-label{font-size:.95rem;color:rgba(255,255,255,.90);margin-top:.5rem;font-weight:600;line-height:1.4}
-    .stat-source{font-size:.75rem;color:rgba(255,255,255,.65);margin-top:.4rem}
-    /* SPECTRUM */
-    .spectrum{display:flex;gap:0;margin:1rem 0;border-radius:12px;overflow:hidden}
-    .spec-step{flex:1;padding:1rem .85rem;text-align:center;position:relative;opacity:0;transform:translateY(12px);transition:opacity .4s ease,transform .4s ease}
-    .spec-step.vis{opacity:1;transform:translateY(0)}
-    .spec-step:nth-child(1){background:rgba(122,158,135,.15);border:1px solid rgba(122,158,135,.3)}
-    .spec-step:nth-child(2){background:rgba(232,168,74,.12);border:1px solid rgba(232,168,74,.3)}
-    .spec-step:nth-child(3){background:rgba(212,124,58,.15);border:1px solid rgba(212,124,58,.3)}
-    .spec-step:nth-child(4){background:rgba(232,99,74,.15);border:1px solid rgba(232,99,74,.3)}
-    .spec-step:nth-child(5){background:rgba(107,0,0,.25);border:1px solid rgba(232,99,74,.5)}
-    .spec-name{font-family:'Fraunces',serif;font-size:.95rem;font-weight:700;margin-bottom:.3rem}
-    .spec-step:nth-child(1) .spec-name{color:#7ADAAA}
-    .spec-step:nth-child(2) .spec-name{color:var(--amber)}
-    .spec-step:nth-child(3) .spec-name{color:var(--digest)}
-    .spec-step:nth-child(4) .spec-name{color:var(--coral)}
-    .spec-step:nth-child(5) .spec-name{color:#ff8080}
-    .spec-desc{font-size:.78rem;color:rgba(255,255,255,.75);line-height:1.4}
-    .spec-arrow{position:absolute;right:-8px;top:50%;transform:translateY(-50%);font-size:.8rem;color:rgba(255,255,255,.3);z-index:1}
-    /* WEIGHT STEPS */
-    .weight-row{display:flex;gap:1.25rem;margin:1rem 0}
-    .w-step{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1.2rem;text-align:center;opacity:0;transform:translateY(12px);transition:opacity .4s ease,transform .4s ease}
-    .w-step.vis{opacity:1;transform:translateY(0)}
-    .w-num{font-family:'Fraunces',serif;font-size:2.8rem;font-weight:700;color:var(--digest);line-height:1}
-    .w-label{font-size:.88rem;font-weight:700;color:#fff;margin-top:.3rem}
-    .w-effect{font-size:.82rem;color:rgba(255,255,255,.75);margin-top:.2rem;line-height:1.4}
-    /* TWO COL */
-    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
-    .info-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1.2rem 1.4rem}
-    .info-card h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:var(--digest);margin-bottom:.75rem}
-    .info-card p{font-size:.93rem;color:rgba(255,255,255,.80);line-height:1.6;margin-bottom:.5rem}
-    /* RESEARCH */
-    .r-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-left:4px solid var(--digest);border-radius:0 12px 12px 0;padding:.9rem 1.2rem;margin-bottom:.75rem}
-    .r-title{font-family:'Fraunces',serif;font-size:.95rem;font-weight:700;color:var(--digest);margin-bottom:.3rem}
-    .r-finding{font-size:.90rem;color:rgba(255,255,255,.80);line-height:1.6}
-    .r-source{font-size:.78rem;color:rgba(255,255,255,.70);margin-top:.3rem;font-style:italic}
-    /* CTA */
-    .cta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;margin-bottom:1.5rem}
-    .cta-card{background:rgba(212,124,58,.08);border:1px solid rgba(212,124,58,.25);border-radius:14px;padding:1.4rem;text-align:center}
-    .cta-icon{font-size:2.2rem;margin-bottom:.75rem}
-    .cta-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:.4rem}
-    .cta-desc{font-size:.9rem;color:rgba(255,255,255,.80);line-height:1.55}
-    /* CLOSING */
-    .closing-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.75rem}
-    .closing-logo{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;color:#fff}
-    .closing-logo span{color:var(--coral)}
-    .closing-tagline{font-size:1rem;color:rgba(255,255,255,.70);letter-spacing:.12em;text-transform:uppercase;font-weight:600}
-    .closing-url{font-size:1.1rem;color:var(--sage);font-weight:600}
-    .article-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;margin-top:.75rem}
-    .a-pill{font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:100px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.12)}
-    .a-pill.current{background:rgba(212,124,58,.2);color:var(--digest);border-color:rgba(212,124,58,.4)}
-    footer{position:fixed;bottom:0;left:0;right:0;text-align:center;padding:.4rem;font-size:clamp(.65rem,1vw,.80rem);color:rgba(255,255,255,.65);background:rgba(15,22,35,.6)}
+    .stat-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 1rem;
+      text-align: center;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .stat-number {
+      font-family: 'Fraunces', serif;
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--digest);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.90);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-detail {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.80);
+      line-height: 1.5;
+    }
+
+    .stat-source {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.65);
+      font-style: italic;
+      margin-top: 0.75rem;
+    }
+
+    /* GRID LAYOUTS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    /* LIVER DIAGRAM */
+    .liver-diagram {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .liver-svg {
+      width: 100%;
+      height: auto;
+    }
+
+    /* PROGRESSION DIAGRAM */
+    .progression-steps {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin: 2rem 0;
+    }
+
+    .progression-step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+
+    .progression-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      color: var(--digest);
+    }
+
+    .step-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--digest);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.5rem;
+      color: #fff;
+    }
+
+    .step-label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-detail {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.80);
+      line-height: 1.4;
+    }
+
+    /* WEIGHT LOSS VISUAL */
+    .weight-visual {
+      display: flex;
+      justify-content: space-around;
+      align-items: end;
+      margin: 2rem 0;
+      height: 300px;
+    }
+
+    .weight-bar {
+      background: linear-gradient(to top, var(--digest), rgba(212,124,58,0.6));
+      border-radius: 8px 8px 0 0;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      padding: 1rem;
+      color: #fff;
+      text-align: center;
+      min-width: 120px;
+    }
+
+    .weight-5 { height: 100px; }
+    .weight-7 { height: 140px; }
+    .weight-10 { height: 200px; }
+
+    .weight-percent {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .weight-effect {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* TITLES */
+    .slide-title {
+      font-family: 'Fraunces', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .slide-subtitle {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    /* KEYBOARD HINT */
+    .keyboard-hint {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.60);
+      z-index: 100;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .slide-title { font-size: 2rem; }
+      .stat-number { font-size: 3rem; }
+      .two-col { grid-template-columns: 1fr; gap: 1rem; }
+      .progression-steps { flex-direction: column; gap: 1.5rem; }
+      .progression-step:not(:last-child)::after { content: '↓'; right: 50%; top: 100%; transform: translateX(50%); }
+      .weight-visual { flex-direction: column; height: auto; gap: 1rem; }
+      .weight-bar { min-width: 200px; height: 80px !important; flex-direction: row; justify-content: space-between; align-items: center; }
+    }
   </style>
 </head>
 <body>
-<div id="topbar">
-  <div><div class="tb-title">Fatty Liver Disease (MASLD)</div><div class="tb-sub">helf.school · Digestive Health Series · Article 17</div></div>
-  <div class="tb-right"><span class="kb-hint">← → to navigate</span><span class="slide-counter" id="counter">1 / 7</span></div>
-</div>
-<div id="stage">
 
-  <!-- SLIDE 1 — INTRO -->
-  <div class="slide active" id="s1">
-    <div class="intro-wrap">
-      <div class="intro-badge">Digestive Health · Article 17</div>
-      <div class="intro-title">Fatty Liver Disease: <span>MASLD Explained</span></div>
-      <div class="intro-tagline">What it is, why so many people have it without knowing, and what the evidence says about reversing it</div>
-      <div class="stat-row" style="justify-content:center;max-width:700px;margin-top:.5rem">
-        <div class="stat-card hl">
-          <div class="stat-num">1 in 5</div>
-          <div class="stat-label">people in the UK estimated to have MASLD</div>
-          <div class="stat-source">~10 million people · most undiagnosed · British Liver Trust 2025</div>
-        </div>
+<div class="slide-counter">
+  <span id="currentSlide">1</span> / <span id="totalSlides">7</span>
+</div>
+
+<div class="keyboard-hint">
+  Use ← → keys or click buttons to navigate
+</div>
+
+<!-- SLIDE 1: PREVALENCE -->
+<div class="slide active" id="slide1">
+  <div class="slide-container">
+    <div>
+      <h1 class="slide-title">MASLD Prevalence</h1>
+      <p class="slide-subtitle">The scale of fatty liver disease in the UK</p>
+      
+      <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-num" style="font-size:2rem">No symptoms</div>
-          <div class="stat-label">in the vast majority — liver has no pain receptors</div>
-          <div class="stat-source">Silent until advanced · early detection changes outcomes</div>
+          <div class="stat-number">1 in 5</div>
+          <div class="stat-label">UK adults have MASLD</div>
+          <div class="stat-detail">Approximately 9.9 million people — most undiagnosed</div>
+          <div class="stat-source">British Liver Trust / GlobalData 2024</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-number">65%</div>
+          <div class="stat-label">of people with type 2 diabetes</div>
+          <div class="stat-detail">have concurrent fatty liver disease</div>
+          <div class="stat-source">EASL Clinical Guidelines 2024</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-number">#1</div>
+          <div class="stat-label">chronic liver condition</div>
+          <div class="stat-detail">Most common cause of liver disease in developed countries</div>
+          <div class="stat-source">Global epidemiological data</div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- SLIDE 2 — SPECTRUM -->
-  <div class="slide" id="s2">
-    <div class="slide-title">The MASLD <span>spectrum</span> — from fatty liver to serious disease</div>
-    <div class="spectrum" id="spectrum">
-      <div class="spec-step"><div class="spec-name">Steatosis</div><div class="spec-desc">Fat in liver cells · no inflammation · often reversible with lifestyle change</div><div class="spec-arrow">→</div></div>
-      <div class="spec-step" style="transition-delay:.15s"><div class="spec-name">MASH</div><div class="spec-desc">Fat + inflammation + cell damage · previously called NASH · can progress to fibrosis</div><div class="spec-arrow">→</div></div>
-      <div class="spec-step" style="transition-delay:.3s"><div class="spec-name">Fibrosis</div><div class="spec-desc">Scar tissue forming · reversible at early stages with significant intervention</div><div class="spec-arrow">→</div></div>
-      <div class="spec-step" style="transition-delay:.45s"><div class="spec-name">Cirrhosis</div><div class="spec-desc">Advanced scarring · largely irreversible · liver failure risk rises significantly</div><div class="spec-arrow">→</div></div>
-      <div class="spec-step" style="transition-delay:.6s"><div class="spec-name">HCC</div><div class="spec-desc">Liver cancer · MASLD is a leading cause · can occur without cirrhosis</div></div>
-    </div>
-    <div class="two-col" style="margin-top:1.25rem">
-      <div class="info-card">
-        <h3>Key risk factors</h3>
-        <p>Obesity — especially <strong style="color:#fff">abdominal fat</strong> · Type 2 diabetes · Insulin resistance · High triglycerides · Western diet high in ultra-processed food and added sugar · Physical inactivity</p>
+<!-- SLIDE 2: LIVER ANATOMY -->
+<div class="slide" id="slide2">
+  <div class="slide-container">
+    <div class="two-col">
+      <div>
+        <h1 class="slide-title">Normal vs Fatty Liver</h1>
+        <p class="slide-subtitle">How fat accumulation changes liver structure</p>
       </div>
-      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem 1.2rem;display:flex;flex-direction:column;align-items:center;justify-content:center">
-        <div style="font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:var(--digest);margin-bottom:.75rem;text-align:center">Waist circumference — visceral fat risk</div>
-        <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:300px">
-          <!-- torso outline -->
-          <ellipse cx="160" cy="105" rx="72" ry="78" fill="rgba(212,124,58,0.12)" stroke="rgba(212,124,58,0.5)" stroke-width="2"/>
-          <!-- visceral fat layer -->
-          <ellipse cx="160" cy="108" rx="48" ry="52" fill="rgba(232,99,74,0.18)" stroke="rgba(232,99,74,0.45)" stroke-width="1.5" stroke-dasharray="4 3"/>
-          <!-- organ suggestion -->
-          <ellipse cx="152" cy="105" rx="18" ry="16" fill="rgba(122,158,135,0.25)" stroke="rgba(122,158,135,0.5)" stroke-width="1.2"/>
-          <ellipse cx="174" cy="110" rx="12" ry="14" fill="rgba(122,158,135,0.20)" stroke="rgba(122,158,135,0.5)" stroke-width="1.2"/>
-          <!-- measurement line - men -->
-          <line x1="30" y1="82" x2="290" y2="82" stroke="rgba(232,168,74,0.7)" stroke-width="1.5" stroke-dasharray="5 3"/>
-          <line x1="88" y1="76" x2="88" y2="88" stroke="rgba(232,168,74,0.9)" stroke-width="2"/>
-          <line x1="232" y1="76" x2="232" y2="88" stroke="rgba(232,168,74,0.9)" stroke-width="2"/>
-          <!-- measurement line - women -->
-          <line x1="30" y1="130" x2="290" y2="130" stroke="rgba(122,158,135,0.7)" stroke-width="1.5" stroke-dasharray="5 3"/>
-          <line x1="100" y1="124" x2="100" y2="136" stroke="rgba(122,158,135,0.9)" stroke-width="2"/>
-          <line x1="220" y1="124" x2="220" y2="136" stroke="rgba(122,158,135,0.9)" stroke-width="2"/>
-          <!-- labels -->
-          <text x="160" y="71" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="rgba(232,168,74,0.95)">MEN  ▸ 94cm increased  ▸ 102cm high risk</text>
-          <text x="160" y="148" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="rgba(122,158,135,0.95)">WOMEN  ▸ 80cm increased  ▸ 88cm high risk</text>
-          <!-- legend -->
-          <rect x="60" y="168" width="10" height="10" rx="2" fill="rgba(232,99,74,0.35)" stroke="rgba(232,99,74,0.6)" stroke-width="1"/>
-          <text x="76" y="177" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,255,255,0.75)">Visceral fat (organ-level)</text>
-          <rect x="186" y="168" width="10" height="10" rx="2" fill="rgba(122,158,135,0.3)" stroke="rgba(122,158,135,0.6)" stroke-width="1"/>
-          <text x="202" y="177" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,255,255,0.75)">Organs</text>
+      
+      <div class="liver-diagram">
+        <svg class="liver-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <!-- Normal Liver -->
+          <g id="normal-liver">
+            <text x="100" y="30" fill="rgba(255,255,255,0.90)" font-size="16" font-weight="600" text-anchor="middle">Normal Liver</text>
+            <path d="M30 50 Q50 40 80 45 Q120 50 150 55 Q140 80 130 100 Q100 110 70 105 Q40 100 30 80 Z" 
+                  fill="rgba(122,158,135,0.8)" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+            <circle cx="60" cy="70" r="8" fill="rgba(255,255,255,0.3)"/>
+            <circle cx="90" cy="80" r="6" fill="rgba(255,255,255,0.25)"/>
+            <circle cx="110" cy="65" r="7" fill="rgba(255,255,255,0.3)"/>
+            <text x="100" y="130" fill="rgba(255,255,255,0.80)" font-size="13" text-anchor="middle">Healthy hepatocytes</text>
+            <text x="100" y="145" fill="rgba(255,255,255,0.80)" font-size="13" text-anchor="middle">&lt;5% fat content</text>
+          </g>
+          
+          <!-- Fatty Liver -->
+          <g id="fatty-liver">
+            <text x="300" y="30" fill="rgba(255,255,255,0.90)" font-size="16" font-weight="600" text-anchor="middle">Fatty Liver (MASLD)</text>
+            <path d="M230 50 Q250 40 280 45 Q320 50 350 55 Q340 80 330 100 Q300 110 270 105 Q240 100 230 80 Z" 
+                  fill="rgba(212,124,58,0.8)" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+            <!-- Fat droplets -->
+            <circle cx="250" cy="70" r="10" fill="rgba(232,99,74,0.7)"/>
+            <circle cx="280" cy="75" r="12" fill="rgba(232,99,74,0.7)"/>
+            <circle cx="310" cy="68" r="9" fill="rgba(232,99,74,0.7)"/>
+            <circle cx="265" cy="85" r="8" fill="rgba(232,99,74,0.7)"/>
+            <circle cx="295" cy="90" r="11" fill="rgba(232,99,74,0.7)"/>
+            <text x="300" y="130" fill="rgba(255,255,255,0.80)" font-size="13" text-anchor="middle">Fat-filled hepatocytes</text>
+            <text x="300" y="145" fill="rgba(255,255,255,0.80)" font-size="13" text-anchor="middle">&gt;5% fat content</text>
+          </g>
+          
+          <!-- Arrows and labels -->
+          <text x="200" y="180" fill="var(--digest)" font-size="14" font-weight="600" text-anchor="middle">Key difference:</text>
+          <text x="200" y="200" fill="rgba(255,255,255,0.85)" font-size="13" text-anchor="middle">Fat accumulation in liver cells</text>
+          <text x="200" y="220" fill="rgba(255,255,255,0.85)" font-size="13" text-anchor="middle">disrupts normal function</text>
         </svg>
       </div>
     </div>
   </div>
-
-  <!-- SLIDE 3 — STATS -->
-  <div class="slide" id="s3">
-    <div class="slide-title">MASLD in the UK — <span>the scale of the problem</span></div>
-    <div class="stat-row" style="margin-bottom:1.25rem">
-      <div class="stat-card hl">
-        <div class="stat-num">~10M</div>
-        <div class="stat-label">people in the UK with MASLD</div>
-        <div class="stat-source">British Liver Trust / GlobalData 2024</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num" style="font-size:2.2rem">~5.2M</div>
-        <div class="stat-label">currently diagnosed — roughly half go unidentified</div>
-        <div class="stat-source">GlobalData epidemiology 2024</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num" style="font-size:2rem;color:var(--coral)">#1</div>
-        <div class="stat-label">most common chronic liver condition in the UK — and increasing</div>
-        <div class="stat-source">Driven by rising obesity, T2D, ultra-processed food</div>
-      </div>
-    </div>
-    <div style="background:rgba(212,124,58,.08);border:1px solid rgba(212,124,58,.25);border-radius:12px;padding:1rem 1.4rem;margin-top:.85rem">
-      <div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--digest);margin-bottom:.5rem">British Liver Trust / GlobalData 2025 — the diagnosis gap</div>
-      <p style="font-size:.93rem;color:rgba(255,255,255,.85);line-height:1.65">~10 million people in the UK have MASLD. Only ~5.2 million are diagnosed — <strong style="color:#fff">roughly half go unidentified</strong>. A condition that, if identified and acted on early, can be reversed — not just managed. Early identification changes outcomes.</p>
-    </div>
-  </div>
-
-  <!-- SLIDE 4 — WEIGHT LOSS THRESHOLDS -->
-  <div class="slide" id="s4">
-    <div class="slide-title">Treatment — <span>lifestyle is the cornerstone</span><div style="font-size:.75rem;font-weight:400;color:rgba(255,255,255,.60);margin-top:.2rem;font-family:'DM Sans',sans-serif">Weight loss thresholds · EASL/EASD/EASO 2024 · Romero-Gómez et al. J Hepatol 2017</div></div>
-    <div class="weight-row" id="weight-row" style="margin-bottom:.85rem">
-      <div class="w-step">
-        <div class="w-num">≥5%</div>
-        <div class="w-label">weight loss</div>
-        <div class="w-effect">Reduces hepatic steatosis — liver fat decreases</div>
-      </div>
-      <div class="w-step" style="transition-delay:.2s">
-        <div class="w-num">≥7%</div>
-        <div class="w-label">weight loss</div>
-        <div class="w-effect">Improves necroinflammation — MASH activity reduces</div>
-      </div>
-      <div class="w-step" style="transition-delay:.4s">
-        <div class="w-num">≥10%</div>
-        <div class="w-label">weight loss</div>
-        <div class="w-effect">Stabilises or reverses fibrosis — even at F2–F3 stage</div>
-      </div>
-    </div>
-    <div class="two-col" style="margin-top:.85rem">
-      <div class="info-card">
-        <h3>Diet — Mediterranean pattern</h3>
-        <p>12-week RCT: Mediterranean diet reduced liver fat by <strong style="color:var(--digest)">39%</strong> and improved insulin sensitivity. High vegetables, legumes, fish, olive oil. Low ultra-processed food, added sugar, refined carbs.</p>
-      </div>
-      <div class="info-card">
-        <h3>Coffee — genuinely evidence-based</h3>
-        <p>2–3 cups per day associated with <strong style="color:var(--digest)">slower disease progression</strong>. Anti-inflammatory and antifibrotic effects. Explicitly recommended in EASL 2024 guidelines. One of the more unusual — and welcome — evidence-based interventions.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- SLIDE 5 — RESEARCH -->
-  <div class="slide" id="s5">
-    <div class="slide-title">What the <span>research shows</span></div>
-    <div class="r-card">
-      <div class="r-title">EASL/EASD/EASO Clinical Practice Guidelines — J Hepatol 2024</div>
-      <div class="r-finding">The current international standard. FIB-4 as first-line fibrosis assessment in primary care. Lifestyle modification as primary treatment. GLP-1 receptor agonists for eligible patients. Resmetirom (Rezdiffra) for non-cirrhotic MASH with significant fibrosis (≥F2) where approved. No pharmacotherapy recommended at cirrhotic stage.</div>
-      <div class="r-source"><strong style="color:var(--digest)">Key guideline</strong> · EASL/EASD/EASO Joint Guidelines · J Hepatol 2024;81(3):492–542</div>
-    </div>
-    <div class="r-card">
-      <div class="r-title">Weight loss thresholds — Romero-Gómez et al., J Hepatol 2017</div>
-      <div class="r-finding">≥5% weight loss reduces steatosis. ≥7% improves necroinflammation. <strong style="color:var(--digest)">≥10% stabilises or reverses fibrosis</strong> — including at F2–F3 stage. Benefit maintained only while weight loss is sustained. Basis for all international guidance.</div>
-      <div class="r-source">Romero-Gómez M et al. · J Hepatol 2017;67(4):829–846 · PMID 28545937</div>
-    </div>
-    <div class="r-card">
-      <div class="r-title">Mediterranean diet — <strong style="color:var(--digest)">39% reduction in liver fat</strong> · RCT evidence</div>
-      <div class="r-finding">12-week RCT, 259 participants. Mediterranean diet reduced hepatic steatosis by 39% and improved insulin sensitivity vs standard low-fat diet. Consistently outperforms other dietary patterns across MASLD trials.</div>
-      <div class="r-source">Reviewed in: Karimi F et al. Int J Mol Sci 2025;26(19):9625</div>
-    </div>
-  </div>
-
-  <!-- SLIDE 6 — UK PREVALENCE -->
-  <div class="slide" id="s6">
-    <div class="slide-title">UK prevalence — <span>the diagnosis gap</span></div>
-    <div class="stat-row" style="margin-bottom:1.25rem">
-      <div class="stat-card hl">
-        <div class="stat-num">~10M</div>
-        <div class="stat-label">people in the UK estimated to have MASLD</div>
-        <div class="stat-source">British Liver Trust / GlobalData 2025</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num" style="font-size:2.2rem">~5.2M</div>
-        <div class="stat-label">currently diagnosed — roughly half unidentified</div>
-        <div class="stat-source">GlobalData epidemiology 2024</div>
-      </div>
-      <div class="stat-card" style="border-color:rgba(232,99,74,.3);background:rgba(232,99,74,.07)">
-        <div class="stat-num" style="color:var(--coral);font-size:2.2rem">~4.8M</div>
-        <div class="stat-label">undiagnosed — no symptoms, no awareness</div>
-        <div class="stat-source">Diagnosis gap — the public health opportunity</div>
-      </div>
-    </div>
-    <div class="r-card" style="border-left-color:var(--coral)">
-      <div class="r-title" style="color:var(--coral)">British Liver Trust — June 2025</div>
-      <div class="r-finding">Urgent action needed as new research reveals critical gaps in fatty liver disease diagnosis and care. MASLD is estimated to affect up to <strong style="color:#fff">1 in 5 people in the UK</strong>. Most remain undiagnosed. The British Liver Trust called for MASLD to receive the same clinical attention as other major chronic conditions. Rates are forecast to rise from 9.9 million cases in 2024 to 10.4 million by 2032.</div>
-      <div class="r-source">British Liver Trust · britishlivertrust.org.uk · June 2025 · based on GlobalData epidemiological analysis</div>
-    </div>
-  </div>
-
-  <!-- SLIDE 7 — CLOSING -->
-  <div class="slide" id="s7">
-    <div class="cta-grid">
-      <div class="cta-card"><div class="cta-icon">🩺</div><div class="cta-title">Know your risk</div><div class="cta-desc">Obesity, type 2 diabetes, raised waist circumference, elevated liver enzymes on a blood test — raise it with your GP. Ask about your FIB-4 score.</div></div>
-      <div class="cta-card"><div class="cta-icon">🥗</div><div class="cta-title">Lifestyle is the treatment</div><div class="cta-desc">Mediterranean diet. Weight loss. Exercise. Reduce ultra-processed food and added sugar. Even 5% weight loss reduces liver fat. 10% can reverse fibrosis.</div></div>
-      <div class="cta-card"><div class="cta-icon">☕</div><div class="cta-title">Enjoy your coffee</div><div class="cta-desc">2–3 cups per day associated with slower liver disease progression. Anti-inflammatory and antifibrotic effects. Explicitly recommended by EASL 2024 guidelines.</div></div>
-    </div>
-    <div class="closing-wrap">
-      <div class="closing-logo">helf<span>.</span>school</div>
-      <div class="closing-tagline">Health Education for Everyone</div>
-      <div class="closing-url">pls4286.github.io/helfschool</div>
-      <div class="article-pills">
-        <span class="a-pill">13 Acid Reflux</span>
-        <span class="a-pill">14 Bloating</span>
-        <span class="a-pill">15 IBD</span>
-        <span class="a-pill">16 IBS</span>
-        <span class="a-pill current">17 MASLD</span>
-      </div>
-    </div>
-  </div>
-
 </div>
-<footer>helf.school · Health Education · Fatty Liver Disease (MASLD) · Article 17</footer>
+
+<!-- SLIDE 3: PROGRESSION -->
+<div class="slide" id="slide3">
+  <div class="slide-container">
+    <div>
+      <h1 class="slide-title">Disease Progression</h1>
+      <p class="slide-subtitle">From simple steatosis to serious liver disease</p>
+      
+      <div class="progression-steps">
+        <div class="progression-step">
+          <div class="step-icon">1</div>
+          <div class="step-label">Steatosis</div>
+          <div class="step-detail">Simple fat accumulation<br>Usually reversible</div>
+        </div>
+        
+        <div class="progression-step">
+          <div class="step-icon">2</div>
+          <div class="step-label">MASH</div>
+          <div class="step-detail">Fat + inflammation<br>Cell damage begins</div>
+        </div>
+        
+        <div class="progression-step">
+          <div class="step-icon">3</div>
+          <div class="step-label">Fibrosis</div>
+          <div class="step-detail">Scar tissue forms<br>Early stages reversible</div>
+        </div>
+        
+        <div class="progression-step">
+          <div class="step-icon">4</div>
+          <div class="step-label">Cirrhosis</div>
+          <div class="step-detail">Advanced scarring<br>Largely irreversible</div>
+        </div>
+      </div>
+      
+      <div style="margin-top: 2rem; text-align: center;">
+        <p style="color: rgba(255,255,255,0.85); font-size: 1.1rem;">
+          <strong>Good news:</strong> Many people never progress beyond stage 1
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: RISK FACTORS -->
+<div class="slide" id="slide4">
+  <div class="slide-container">
+    <div>
+      <h1 class="slide-title">Key Risk Factors</h1>
+      <p class="slide-subtitle">What drives MASLD development</p>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">94cm</div>
+          <div class="stat-label">waist circumference in men</div>
+          <div class="stat-detail">Increased MASLD risk above this threshold<br>(37 inches)</div>
+          <div class="stat-source">More meaningful than BMI alone</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-number">80cm</div>
+          <div class="stat-label">waist circumference in women</div>
+          <div class="stat-detail">Increased MASLD risk above this threshold<br>(31.5 inches)</div>
+          <div class="stat-source">Measures visceral fat directly</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-number">3×</div>
+          <div class="stat-label">higher risk</div>
+          <div class="stat-detail">People with metabolic syndrome have triple the risk of MASLD</div>
+          <div class="stat-source">Meta-analysis data</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: WEIGHT LOSS THRESHOLDS -->
+<div class="slide" id="slide5">
+  <div class="slide-container">
+    <div>
+      <h1 class="slide-title">Weight Loss — Proven Thresholds</h1>
+      <p class="slide-subtitle">How much weight loss creates measurable liver improvement</p>
+      
+      <div class="weight-visual">
+        <div class="weight-bar weight-5">
+          <div class="weight-percent">≥5%</div>
+          <div class="weight-effect">Reduces liver fat</div>
+        </div>
+        
+        <div class="weight-bar weight-7">
+          <div class="weight-percent">≥7%</div>
+          <div class="weight-effect">Improves inflammation</div>
+        </div>
+        
+        <div class="weight-bar weight-10">
+          <div class="weight-percent">≥10%</div>
+          <div class="weight-effect">Reverses fibrosis</div>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 2rem;">
+        <p style="color: rgba(255,255,255,0.85); font-size: 1.1rem;">
+          Evidence-based targets from <strong>EASL/EASD/EASO 2024 Guidelines</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: GLP-1 EVIDENCE -->
+<div class="slide" id="slide6">
+  <div class="slide-container">
+    <div>
+      <h1 class="slide-title">ESSENCE Trial Results</h1>
+      <p class="slide-subtitle">Semaglutide in MASH — published NEJM 2025</p>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">62.9%</div>
+          <div class="stat-label">MASH resolution</div>
+          <div class="stat-detail">Semaglutide 2.4mg at 72 weeks<br>vs 34.3% placebo</div>
+          <div class="stat-source">Phase 3 RCT, n=1200</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-number">28.7%</div>
+          <div class="stat-label">absolute difference</div>
+          <div class="stat-detail">Statistically significant improvement over placebo</div>
+          <div class="stat-source">P&lt;0.001</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-number">40%</div>
+          <div class="stat-label">ALT reduction</div>
+          <div class="stat-detail">Consistent liver enzyme improvements across all markers</div>
+          <div class="stat-source">Secondary endpoints</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: DIAGNOSIS GAP -->
+<div class="slide" id="slide7">
+  <div class="slide-container">
+    <div>
+      <h1 class="slide-title">The Diagnosis Gap</h1>
+      <p class="slide-subtitle">Most people with MASLD don't know they have it</p>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">~50%</div>
+          <div class="stat-label">remain undiagnosed</div>
+          <div class="stat-detail">Of the estimated 10 million people with MASLD in the UK</div>
+          <div class="stat-source">British Liver Trust 2025</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-number">Silent</div>
+          <div class="stat-label">until advanced</div>
+          <div class="stat-detail">No symptoms in early stages — liver has no pain receptors</div>
+          <div class="stat-source">Clinical observation</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-number">FIB-4</div>
+          <div class="stat-label">first-line assessment</div>
+          <div class="stat-detail">Simple blood test calculation identifies fibrosis risk</div>
+          <div class="stat-source">EASL Guidelines 2024</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="nav-controls">
+  <button class="nav-btn" onclick="previousSlide()">← Previous</button>
+  <button class="nav-btn" onclick="nextSlide()">Next →</button>
+</div>
+
 <script>
-  const slides=document.querySelectorAll('.slide'),counter=document.getElementById('counter');
-  let current=0;const total=7;
-  function showSlide(n){
-    slides[current].classList.remove('active');
-    current=(n+total)%total;
-    slides[current].classList.add('active');
-    counter.textContent=`${current+1} / ${total}`;
-    triggerAnim(current);
-  }
-  function triggerAnim(idx){
-    if(idx===1){setTimeout(()=>document.querySelectorAll('.spec-step').forEach((s,i)=>setTimeout(()=>s.classList.add('vis'),i*150)),100)}
-    if(idx===3){setTimeout(()=>document.querySelectorAll('.w-step').forEach((s,i)=>setTimeout(()=>s.classList.add('vis'),i*200)),100)}
-  }
-  document.addEventListener('keydown',e=>{
-    if(e.key==='ArrowRight'||e.key==='ArrowDown')showSlide(current+1);
-    if(e.key==='ArrowLeft'||e.key==='ArrowUp')showSlide(current-1);
+let currentSlideIndex = 0;
+const totalSlides = document.querySelectorAll('.slide').length;
+
+document.getElementById('totalSlides').textContent = totalSlides;
+
+function showSlide(index) {
+  const slides = document.querySelectorAll('.slide');
+  slides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === index);
   });
-  let tx=0;
-  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
-  document.addEventListener('touchend',e=>{const dx=tx-e.changedTouches[0].clientX;if(Math.abs(dx)>40)showSlide(current+(dx>0?1:-1))},{passive:true});
+  document.getElementById('currentSlide').textContent = index + 1;
+}
+
+function nextSlide() {
+  currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+  showSlide(currentSlideIndex);
+}
+
+function previousSlide() {
+  currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
+  showSlide(currentSlideIndex);
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight') nextSlide();
+  if (e.key === 'ArrowLeft') previousSlide();
+});
+
+// Initialize
+showSlide(0);
 </script>
-</body></html>
+
+</body>
+</html>

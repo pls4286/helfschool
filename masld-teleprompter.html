@@ -1,134 +1,564 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-  <title>Fatty Liver Disease (MASLD) — Teleprompter | helf.school</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MASLD Teleprompter — helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--digest:#D47C3A;--bg:#0d0d0d;--text:#f0f0f0}
-    *{box-sizing:border-box;margin:0;padding:0}html,body{height:100%;overflow:hidden;background:var(--bg)}
-    #topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--navy);border-bottom:2px solid var(--digest);padding:.45rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem}
-    #topbar-title{font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;color:rgba(255,255,255,.85)}
-    #controls{display:flex;align-items:center;gap:.4rem;flex-shrink:0}
-    .ctrl-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:.72rem;font-weight:700;padding:.2rem .5rem;border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s}
-    .ctrl-btn:hover{background:rgba(255,255,255,.2)}
-    .ctrl-label{font-size:.65rem;color:rgba(255,255,255,.5);font-family:'DM Sans',sans-serif}
-    #speed-display{font-size:.72rem;font-weight:700;color:var(--amber);min-width:14px;text-align:center;font-family:'DM Sans',sans-serif}
-    #play-btn{background:var(--digest);border:none;color:#fff;font-size:.72rem;font-weight:700;padding:.25rem .7rem;border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.04em}
-    #play-btn:hover{filter:brightness(1.1)}
-    #seg-dots{position:fixed;right:.6rem;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:.4rem}
-    .seg-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);cursor:pointer;transition:background .2s}
-    .seg-dot.active{background:var(--digest);border-color:var(--digest)}
-    .seg-dot:hover{background:rgba(255,255,255,.45)}
-    #scroll-wrap{position:fixed;top:44px;bottom:0;left:0;right:0;overflow:hidden}
-    #scroll-content{padding:60vh 4rem 60vh;max-width:840px;margin:0 auto;will-change:transform}
-    #focus-line{position:fixed;top:50%;left:0;right:0;height:2px;background:rgba(212,124,58,.2);pointer-events:none;z-index:50}
-    #focus-top{position:fixed;top:44px;left:0;right:0;height:34%;background:linear-gradient(to bottom,var(--bg) 0%,transparent 100%);pointer-events:none;z-index:50}
-    #focus-bottom{position:fixed;bottom:0;left:0;right:0;height:34%;background:linear-gradient(to top,var(--bg) 0%,transparent 100%);pointer-events:none;z-index:50}
-    .seg-label{font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--digest);margin-bottom:1.4rem;margin-top:5rem;padding-bottom:.4rem;border-bottom:1px solid rgba(212,124,58,.25)}
-    .seg-label:first-child{margin-top:0}
-    .line{font-family:'DM Sans',sans-serif;font-size:1.9rem;line-height:1.8;color:var(--text);font-weight:400;margin-bottom:1.5rem}
-    .line strong{font-weight:700;color:#fff}
-    .line em{color:var(--amber);font-style:normal;font-weight:600}
-    .pause{display:inline-block;background:rgba(232,99,74,.15);border:1px solid rgba(232,99,74,.35);color:var(--coral);font-size:1.1rem;font-weight:700;padding:.1rem .45rem;border-radius:4px;margin:0 .3rem;vertical-align:middle;letter-spacing:.04em}
-    .cue-box{background:rgba(232,168,74,.06);border:2px solid var(--amber);border-radius:10px;padding:.9rem 1.2rem;margin:2rem 0 4rem;font-family:'DM Sans',sans-serif}
-    .cue-label{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:.4rem}
-    .cue-text{font-size:1.1rem;font-weight:600;color:#fff;line-height:1.55}
-    .cue-text span{color:var(--amber)}
+    :root {
+      --navy:   #1B2A4A;
+      --coral:  #E8634A;
+      --cream:  #FAF7F2;
+      --sage:   #7A9E87;
+      --digest: #D47C3A;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: #fff;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    .teleprompter-container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .controls {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      background: rgba(0,0,0,0.7);
+      padding: 10px 15px;
+      border-radius: 25px;
+      backdrop-filter: blur(10px);
+    }
+
+    .control-btn {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.3s;
+    }
+
+    .control-btn:hover { background: rgba(255,255,255,0.25); }
+    .control-btn.active { background: var(--digest); }
+
+    .speed-display {
+      color: rgba(255,255,255,0.8);
+      font-size: 12px;
+      margin-left: 10px;
+    }
+
+    .scroll-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 50vh 5% 50vh 5%;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .scroll-content::-webkit-scrollbar { display: none; }
+
+    .script-text {
+      font-size: 1.9rem;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      color: #fff;
+      font-weight: 400;
+    }
+
+    .segment {
+      margin-bottom: 4rem;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+      position: relative;
+    }
+
+    .segment.current { opacity: 1; }
+
+    .segment-header {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--digest);
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .visual-cue {
+      background: rgba(212,124,58,0.15);
+      border: 1px solid rgba(212,124,58,0.4);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      margin: 1.5rem 0;
+      font-size: 1rem;
+      color: var(--digest);
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .diagram-cue {
+      background: rgba(232,99,74,0.2);
+      border: 2px solid var(--coral);
+      color: var(--coral);
+      font-weight: 700;
+    }
+
+    .pause-cue {
+      font-style: italic;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+    }
+
+    .emphasis {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .statistic {
+      font-weight: 700;
+      color: var(--digest);
+    }
+
+    /* SEGMENT DOTS */
+    .segment-dots {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 100;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .dot.active { background: var(--digest); transform: scale(1.3); }
+
+    /* TOUCH SWIPE INDICATORS */
+    .swipe-hint {
+      position: fixed;
+      bottom: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.5);
+      z-index: 100;
+    }
+
+    /* AUTO-SCROLL INDICATOR */
+    .auto-scroll-indicator {
+      position: fixed;
+      top: 50%;
+      right: 30px;
+      width: 3px;
+      height: 100px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 2px;
+      z-index: 100;
+    }
+
+    .scroll-progress {
+      width: 100%;
+      background: var(--digest);
+      border-radius: 2px;
+      transition: height 0.1s ease;
+    }
+
+    @media (max-width: 768px) {
+      .script-text { font-size: 1.5rem; padding: 0 2rem; }
+      .controls { top: 10px; right: 10px; }
+      .visual-cue { font-size: 0.9rem; }
+    }
   </style>
 </head>
 <body>
-<div id="topbar">
-  <div id="topbar-title">Fatty Liver Disease (MASLD) · Digestive Health · Article 17</div>
-  <div id="controls">
-    <span class="ctrl-label">SPEED</span>
-    <button class="ctrl-btn" onclick="changeSpeed(-1)">−</button>
-    <span id="speed-display">3</span>
-    <button class="ctrl-btn" onclick="changeSpeed(1)">+</button>
-    <span class="ctrl-label" style="margin-left:.4rem">FONT</span>
-    <button class="ctrl-btn" onclick="changeFont(-1)">A−</button>
-    <button class="ctrl-btn" onclick="changeFont(1)">A+</button>
-    <button id="play-btn" onclick="togglePlay()">▶ PLAY</button>
+
+<div class="teleprompter-container">
+  
+  <div class="controls">
+    <button class="control-btn" onclick="togglePlay()" id="playBtn">Play</button>
+    <button class="control-btn" onclick="changeSpeed(-1)">A-</button>
+    <button class="control-btn" onclick="changeSpeed(1)">A+</button>
+    <button class="control-btn" onclick="setSpeed(1)">1x</button>
+    <button class="control-btn" onclick="setSpeed(2)">2x</button>
+    <button class="control-btn" onclick="setSpeed(3)">3x</button>
+    <div class="speed-display">Speed: <span id="speedValue">1</span></div>
   </div>
+
+  <div class="auto-scroll-indicator">
+    <div class="scroll-progress" id="scrollProgress"></div>
+  </div>
+
+  <div class="scroll-content" id="scrollContent">
+    <div class="script-text">
+
+      <!-- SEGMENT 1: INTRO -->
+      <div class="segment" data-segment="0">
+        <div class="segment-header">Segment 1: Introduction</div>
+        <p>I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about <span class="emphasis">fatty liver disease</span>, or as it's now called, <span class="statistic">MASLD</span>.</p>
+        
+        <div class="visual-cue">Visual: Show slide 1 — MASLD Prevalence stats</div>
+        
+        <p>Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. If anything feels relevant to you personally, please take it to your own doctor.</p>
+        
+        <p class="pause-cue">[Pause briefly]</p>
+        
+        <p>Right — let's get into it.</p>
+      </div>
+
+      <!-- SEGMENT 2: WHAT IS MASLD -->
+      <div class="segment" data-segment="1">
+        <div class="segment-header">Segment 2: What is MASLD?</div>
+        
+        <p><span class="statistic">One in five people in the UK</span> are estimated to have this condition. That's approximately <span class="statistic">9.9 million people</span>. And here's the thing — <span class="emphasis">most have no symptoms and don't know they have it</span>.</p>
+        
+        <div class="visual-cue">Visual: Show slide 2 — Normal vs Fatty Liver diagram</div>
+        
+        <p>MASLD stands for <span class="emphasis">Metabolic dysfunction-Associated Steatotic Liver Disease</span>. It's the new name for what most people know as fatty liver disease. The name changed in 2023 to better reflect what actually causes it.</p>
+        
+        <p>At its simplest, MASLD means that <span class="emphasis">excess fat has accumulated in the liver</span> — in people who drink little or no alcohol. The liver isn't supposed to store significant amounts of fat. When it does, you get a condition that ranges from completely silent and reversible at one end, to serious liver disease at the other.</p>
+      </div>
+
+      <!-- SEGMENT 3: PROGRESSION -->
+      <div class="segment" data-segment="2">
+        <div class="segment-header">Segment 3: How MASLD Progresses</div>
+        
+        <div class="visual-cue">Visual: Show slide 3 — Disease Progression steps</div>
+        
+        <p>MASLD isn't a single condition. It's a spectrum that progresses through several stages — though <span class="emphasis">many people never progress beyond the earliest</span>.</p>
+        
+        <p>Stage one is simple <span class="emphasis">steatosis</span> — fat accumulation with no significant inflammation. This is often stable or reversible with lifestyle change.</p>
+        
+        <p>Stage two is <span class="emphasis">MASH</span> — that's fat plus inflammation and cell damage. This can progress if untreated.</p>
+        
+        <p>Stage three is <span class="emphasis">fibrosis</span> — scar tissue forming. Early fibrosis can still improve with intervention.</p>
+        
+        <p>And stage four is <span class="emphasis">cirrhosis</span> — advanced scarring that's largely irreversible, where the risk of liver failure and cancer rises significantly.</p>
+      </div>
+
+      <!-- SEGMENT 4: RISK FACTORS -->
+      <div class="segment" data-segment="3">
+        <div class="segment-header">Segment 4: What Causes MASLD</div>
+        
+        <div class="visual-cue">Visual: Show slide 4 — Key Risk Factors</div>
+        
+        <p>MASLD develops when the liver accumulates more fat than it can process. This happens against a background of <span class="emphasis">metabolic dysfunction</span>.</p>
+        
+        <p>The strongest single risk factor is <span class="emphasis">obesity — particularly abdominal obesity</span>. And here's something important: <span class="statistic">waist circumference matters more than weight alone</span>.</p>
+        
+        <p>For men, risk increases above <span class="statistic">94 centimetres</span> — that's 37 inches. For women, it's <span class="statistic">80 centimetres</span> — 31 and a half inches.</p>
+        
+        <p>Other major drivers include <span class="emphasis">type 2 diabetes and insulin resistance</span>. About <span class="statistic">65% of people with type 2 diabetes</span> have MASLD.</p>
+        
+        <p>And diet plays a huge role — <span class="emphasis">ultra-processed foods, added sugars, and refined carbohydrates</span> drive liver fat accumulation.</p>
+      </div>
+
+      <!-- SEGMENT 5: WHY IT MATTERS -->
+      <div class="segment" data-segment="4">
+        <div class="segment-header">Segment 5: Why This Matters</div>
+        
+        <p>Most people with MASLD have <span class="emphasis">no symptoms</span> — and no idea they have it. The liver has no pain receptors. Fatty liver disease is almost always silent until it's advanced.</p>
+        
+        <p>This means millions of people in the UK are walking around with a condition that, if identified early, is often reversible — but if left undetected, can progress quietly to cirrhosis or liver cancer over years or decades.</p>
+        
+        <p>But here's the good news: <span class="emphasis">early MASLD is reversible</span>. Lifestyle change can reduce liver fat, improve inflammation, and even reverse early scarring. The evidence for this is robust and consistent.</p>
+      </div>
+
+      <!-- SEGMENT 6: TREATMENT -->
+      <div class="segment" data-segment="5">
+        <div class="segment-header">Segment 6: Evidence-Based Treatment</div>
+        
+        <div class="visual-cue">Visual: Show slide 5 — Weight Loss Thresholds</div>
+        
+        <p>For the vast majority of people with MASLD, <span class="emphasis">lifestyle intervention is both the first-line and the most effective treatment available</span>.</p>
+        
+        <p>There are specific thresholds that matter. <span class="statistic">Five percent weight loss</span> reduces liver fat. <span class="statistic">Seven percent</span> improves inflammation. <span class="statistic">Ten percent</span> can stabilise or reverse scarring — even at the F2 to F3 stage.</p>
+        
+        <p>These aren't arbitrary numbers. They come from multiple randomised trials and are endorsed by the latest European guidelines.</p>
+        
+        <p>The Mediterranean dietary pattern has the strongest evidence base — reducing liver fat and improving insulin sensitivity across multiple trials.</p>
+      </div>
+
+      <!-- SEGMENT 7: NEW TREATMENTS -->
+      <div class="segment" data-segment="6">
+        <div class="segment-header">Segment 7: Emerging Treatments</div>
+        
+        <div class="visual-cue">Visual: Show slide 6 — ESSENCE Trial Results</div>
+        
+        <p>There are exciting developments in drug treatment. The <span class="emphasis">ESSENCE trial</span> — published in the New England Journal of Medicine this year — studied semaglutide in patients with MASH.</p>
+        
+        <p>The results were impressive: <span class="statistic">62.9% of patients</span> treated with semaglutide achieved resolution of liver inflammation with no worsening of scarring, compared to <span class="statistic">34.3% on placebo</span>.</p>
+        
+        <p>That's a <span class="statistic">28.7% absolute difference</span> — statistically significant and clinically meaningful.</p>
+        
+        <p>Semaglutide — that's Ozempic and Wegovy — isn't currently licensed specifically for MASLD in the UK, but it may be prescribed for diabetes or obesity in patients who also have fatty liver disease.</p>
+      </div>
+
+      <!-- SEGMENT 8: DIAGNOSIS GAP -->
+      <div class="segment" data-segment="7">
+        <div class="segment-header">Segment 8: The Diagnosis Problem</div>
+        
+        <div class="visual-cue">Visual: Show slide 7 — The Diagnosis Gap</div>
+        
+        <p>Here's the concerning bit: roughly <span class="statistic">half of the people</span> with MASLD in the UK remain undiagnosed. That's about five million people.</p>
+        
+        <p>MASLD is often picked up incidentally — on an ultrasound done for another reason, or when routine blood tests show mildly elevated liver enzymes.</p>
+        
+        <p>The guidelines now recommend a structured approach. First, calculate something called a <span class="emphasis">FIB-4 score</span> — that uses age and simple blood test results to estimate scarring risk. If that's indeterminate, the next step is usually a <span class="emphasis">FibroScan</span> — a non-invasive scan that measures liver stiffness.</p>
+      </div>
+
+      <!-- SEGMENT 9: PRACTICAL ADVICE -->
+      <div class="segment" data-segment="8">
+        <div class="segment-header">Segment 9: What You Can Do</div>
+        
+        <p>If you have known risk factors — obesity, type 2 diabetes, metabolic syndrome, or routine blood tests showing elevated liver enzymes — <span class="emphasis">it's worth raising fatty liver disease with your GP</span>.</p>
+        
+        <p>Early identification genuinely changes outcomes.</p>
+        
+        <p>And if you're diagnosed with MASLD, remember: <span class="emphasis">lifestyle change works</span>. A 5 to 10% reduction in body weight, a shift toward a Mediterranean dietary pattern, regular physical activity — these can reduce liver fat, dampen inflammation, and reverse early scarring.</p>
+        
+        <p>These aren't small effects. They're among the most powerful interventions in liver medicine.</p>
+      </div>
+
+      <!-- SEGMENT 10: CLOSING -->
+      <div class="segment" data-segment="9">
+        <div class="segment-header">Segment 10: Closing</div>
+        
+        <p>MASLD is one of the most common chronic conditions in the UK — and one of the most under-recognised. Most people with it feel nothing while their liver is accumulating fat and potentially progressing through inflammation to scarring.</p>
+        
+        <p>But the encouraging truth is that <span class="emphasis">early MASLD is highly responsive to lifestyle change</span>. Patient knowledge and action genuinely matter here.</p>
+        
+        <p>If anything in this video feels relevant to you, please discuss it with your own doctor. The conversation is worth having.</p>
+        
+        <p class="pause-cue">[Pause]</p>
+        
+        <p>That's fatty liver disease — MASLD — explained. Thank you for watching.</p>
+      </div>
+
+    </div>
+  </div>
+
 </div>
-<div id="seg-dots">
-  <div class="seg-dot active" onclick="jumpToSeg(0)" title="Intro"></div>
-  <div class="seg-dot" onclick="jumpToSeg(1)" title="What is MASLD?"></div>
-  <div class="seg-dot" onclick="jumpToSeg(2)" title="Why it matters"></div>
-  <div class="seg-dot" onclick="jumpToSeg(3)" title="What your doctor will do"></div>
-  <div class="seg-dot" onclick="jumpToSeg(4)" title="Research"></div>
-  <div class="seg-dot" onclick="jumpToSeg(5)" title="Closing"></div>
-</div>
-<div id="focus-top"></div><div id="focus-line"></div><div id="focus-bottom"></div>
-<div id="scroll-wrap"><div id="scroll-content">
 
-  <!-- SEG 0 -->
-  <div class="seg-label" data-seg="0">Segment 0 — Introduction</div>
-  <p class="line">"I'm Dr Paul — I spent <strong>over twenty years as an NHS GP</strong> before I retired in 2019. Today I want to talk to you about <strong>fatty liver disease</strong> — also known as MASLD. It's one of the most common conditions in the UK, and most people who have it don't know."</p>
-  <p class="line">"Health education, not medical advice. If anything feels relevant, take it to your own doctor. <em>Let's get into it.</em>"</p>
-  <div class="cue-box"><div class="cue-label">⬛ Coming Up — Advance Visuals Now</div><div class="cue-text">Screen 1: <span>Intro title slide</span> · Digestive Health Series · Article 17</div></div>
+<div class="swipe-hint">Swipe up/down to navigate</div>
 
-  <!-- SEG 1 -->
-  <div class="seg-label" data-seg="1">Segment 1 — What is MASLD?</div>
-  <p class="line">"MASLD stands for Metabolic dysfunction-Associated Steatotic Liver Disease. That's the new name for what most people call a fatty liver — previously known as NAFLD. The name changed in 2023. If you've been told you have a fatty liver or NAFLD, <strong>this is the same condition</strong>."</p>
-  <p class="line">"It means that excess fat has accumulated in the liver — in people who drink little or no alcohol. The liver isn't supposed to store significant amounts of fat. When it does, it creates a spectrum of disease — from completely silent and reversible at one end, to serious liver damage at the other." <span class="pause">PAUSE</span></p>
-  <p class="line">"The spectrum goes: <strong>simple steatosis</strong> — fat in the liver, no inflammation, often reversible. Then <strong>MASH</strong> — that's where inflammation and cell damage begin. Then <strong>fibrosis</strong> — scarring. Then <strong>cirrhosis</strong> — advanced scarring that's largely irreversible. And in some cases, <strong>liver cancer</strong>."</p>
-  <p class="line">"The key causes are <strong>obesity — especially abdominal fat</strong>, type 2 diabetes, insulin resistance, high triglycerides, and a Western diet high in ultra-processed food and added sugar. <span class="pause">PAUSE</span> And importantly — you can have MASLD at a normal weight. A healthy BMI doesn't rule it out."</p>
-  <p class="line">"<strong>Waist circumference</strong> is a better measure of visceral fat — the dangerous kind — than BMI. Risk increases above <strong>94cm in men</strong> and <strong>80cm in women</strong>. If your waist is more than half your height, that's a clinically meaningful signal."</p>
-  <div class="cue-box"><div class="cue-label">⬛ Coming Up — Advance Visuals Now</div><div class="cue-text">Screen 2: <span>MASLD spectrum diagram</span> · steatosis → MASH → fibrosis → cirrhosis → HCC</div></div>
+<div class="segment-dots" id="segmentDots"></div>
 
-  <!-- SEG 2 -->
-  <div class="seg-label" data-seg="2">Segment 2 — Why does it matter?</div>
-  <p class="line">"MASLD affects around <strong>1 in 5 people in the UK</strong> — approximately 10 million people. The vast majority have no symptoms. No pain. No warning signs. The liver has no pain receptors." <span class="pause">PAUSE</span></p>
-  <p class="line">"This is a condition that, if identified early, is often <strong>completely reversible</strong>. But if left undetected, it can progress quietly — over years or decades — to cirrhosis or liver cancer."</p>
-  <p class="line">"MASLD is now the <strong>leading cause of chronic liver disease</strong> in the UK and the developed world. And it's increasing — driven by rising rates of obesity, type 2 diabetes, and ultra-processed food consumption in every age group."</p>
-  <p class="line">"It also significantly increases the risk of <strong>cardiovascular disease</strong> — which remains the leading cause of death in people with MASLD. Managing fatty liver and managing cardiovascular risk are largely the same conversation." <span class="pause">PAUSE</span></p>
-  <p class="line">"And the good news: the evidence for lifestyle change is robust and consistent. Weight loss, dietary improvement, and exercise can reduce liver fat, improve inflammation, and even reverse early fibrosis. <em>This is a condition where what you do genuinely matters.</em>"</p>
-  <div class="cue-box"><div class="cue-label">⬛ Coming Up — Advance Visuals Now</div><div class="cue-text">Screen 3: <span>Stat cards</span> · 1 in 5 UK · ~10 million · most undiagnosed</div></div>
-
-  <!-- SEG 3 -->
-  <div class="seg-label" data-seg="3">Segment 3 — What your doctor will do</div>
-  <p class="line">"MASLD is often picked up incidentally — on an ultrasound done for another reason, or when a blood test shows raised liver enzymes. Many GPs now screen people with known risk factors: obesity, type 2 diabetes, or metabolic syndrome."</p>
-  <p class="line">"The key question isn't just <em>do you have a fatty liver</em> — it's <em>how serious is it?</em> Specifically, is there significant fibrosis — scarring? The guidelines recommend a two-step approach." <span class="pause">PAUSE</span></p>
-  <p class="line">"Step one: a <strong>FIB-4 score</strong> — a simple calculation from routine blood tests. Age, two liver enzyme measurements, and platelet count. Score below 1.3 — low risk, manage in primary care. Score above 2.67 — specialist referral. In between — go to step two."</p>
-  <p class="line">"Step two: <strong>transient elastography</strong> — that's a FibroScan. A non-invasive scan that measures liver stiffness — a proxy for fibrosis. Avoids biopsy in most cases." <span class="pause">PAUSE</span></p>
-  <p class="line">"Treatment: <strong>lifestyle intervention is the cornerstone</strong>. There's currently no licensed drug specifically for MASLD in the UK. Weight loss targets are clear — 5% reduces liver fat. 7% reduces inflammation. 10% can reverse fibrosis. These are powerful numbers."</p>
-  <p class="line">"Semaglutide (Ozempic, Wegovy) and other GLP-1 receptor agonists are showing significant promise in trials and may be prescribed for their licensed indications — obesity or type 2 diabetes — with liver benefit as an additional effect. Resmetirom (Rezdiffra) is approved in the USA and a NICE appraisal is awaited."</p>
-  <div class="cue-box"><div class="cue-label">⬛ Coming Up — Advance Visuals Now</div><div class="cue-text">Screen 4: <span>Weight loss thresholds</span> · 5% / 7% / 10% ladder</div></div>
-
-  <!-- SEG 4 -->
-  <div class="seg-label" data-seg="4">Segment 4 — What the research shows</div>
-  <p class="line">"The current international standard for MASLD management is the <strong>EASL/EASD/EASO joint clinical practice guidelines</strong>, published in the Journal of Hepatology in June 2024. These cover everything from FIB-4 assessment in primary care through to pharmacological treatment for advanced disease."</p>
-  <p class="line">"On weight loss — multiple randomised trials confirm: <strong>≥5% reduces steatosis</strong>, <strong>≥7% improves inflammation</strong>, <strong>≥10% stabilises or reverses fibrosis</strong> — even at F2–F3 stage. The challenge is sustaining the weight loss." <span class="pause">PAUSE</span></p>
-  <p class="line">"On diet — a 12-week RCT found the <strong>Mediterranean diet reduced liver fat by 39%</strong> and improved insulin sensitivity. Mediterranean pattern consistently outperforms other diets in MASLD trials — through its effects on insulin resistance, inflammation, and gut microbiome."</p>
-  <p class="line">"On coffee — genuinely evidence-based. Multiple studies associate regular coffee consumption — 2 to 3 cups per day — with <strong>slower progression of liver disease</strong>. The EASL 2024 guidelines explicitly recommend it. Anti-inflammatory and antifibrotic effects from the bioactive compounds." <span class="pause">PAUSE</span></p>
-  <p class="line">"UK prevalence data from the British Liver Trust 2025 — approximately <strong>10 million people</strong> in the UK have MASLD. Only around 5.2 million diagnosed. A diagnosis gap of nearly half. This is an enormous public health opportunity."</p>
-  <div class="cue-box"><div class="cue-label">⬛ Coming Up — Advance Visuals Now</div><div class="cue-text">Screen 5: <span>Research cards</span> · EASL 2024 · weight loss thresholds · Med diet 39% · coffee evidence</div></div>
-
-  <!-- SEG 5 -->
-  <div class="seg-label" data-seg="5">Segment 5 — Closing</div>
-  <p class="line">"So — MASLD is common, silent, and in the early stages, <strong>highly reversible</strong>. Most people who have it don't know. And most of what drives it is modifiable."</p>
-  <p class="line">"If you have risk factors — obesity, type 2 diabetes, a raised waist measurement, elevated liver enzymes on a blood test — <strong>raise it with your GP</strong>. Ask about your FIB-4 score. Early identification changes outcomes." <span class="pause">PAUSE</span></p>
-  <p class="line">"And if you have it — the response is lifestyle change. Mediterranean diet. Weight loss. Exercise. Reduce ultra-processed food and added sugar. And apparently — <em>enjoy your coffee.</em>"</p>
-  <p class="line">"More on <strong>helf.school</strong> — the full article with all the references is there. Thanks for watching."</p>
-  <div class="cue-box"><div class="cue-label">⬛ Coming Up — Advance Visuals Now</div><div class="cue-text">Screen 6: <span>Closing slide</span> · helf.school · Health Education for Everyone</div></div>
-
-</div></div>
 <script>
-  const SPEED_LEVELS=[8,14,20,28,38,52];let speedIndex=2,baseFontSize=1.9,playing=false,rafId=null,lastTime=null,scrollY=0;
-  const content=document.getElementById('scroll-content'),playBtn=document.getElementById('play-btn'),speedDisplay=document.getElementById('speed-display'),dots=document.querySelectorAll('.seg-dot'),segLabels=document.querySelectorAll('.seg-label');
-  function setTranslate(y){content.style.transform=`translateY(${-y}px)`}
-  function togglePlay(){playing=!playing;playBtn.textContent=playing?'⏸ PAUSE':'▶ PLAY';if(playing){lastTime=null;rafId=requestAnimationFrame(tick)}else{cancelAnimationFrame(rafId)}}
-  function tick(ts){if(!playing)return;if(lastTime===null)lastTime=ts;const dt=(ts-lastTime)/1000;lastTime=ts;scrollY+=SPEED_LEVELS[speedIndex]*dt;const max=content.scrollHeight-window.innerHeight+44;if(scrollY>=max){scrollY=max;togglePlay()}setTranslate(scrollY);updateDots();rafId=requestAnimationFrame(tick)}
-  function changeSpeed(dir){speedIndex=Math.max(0,Math.min(5,speedIndex+dir));speedDisplay.textContent=speedIndex+1}
-  function changeFont(dir){baseFontSize=Math.max(1.2,Math.min(2.8,baseFontSize+dir*0.1));document.querySelectorAll('.line').forEach(el=>el.style.fontSize=baseFontSize+'rem')}
-  function jumpToSeg(idx){const label=segLabels[idx];if(!label)return;const contentTop=content.getBoundingClientRect().top;const labelOffset=label.getBoundingClientRect().top-contentTop+scrollY;scrollY=Math.max(0,labelOffset-window.innerHeight*0.5+44);setTranslate(scrollY);updateDots()}
-  function updateDots(){const mid=window.innerHeight*0.5;let active=0;segLabels.forEach((label,i)=>{if(label.getBoundingClientRect().top<=mid)active=i});dots.forEach((d,i)=>d.classList.toggle('active',i===active))}
-  let touchStartY=0,touchScrollStart=0;
-  document.addEventListener('touchstart',e=>{touchStartY=e.touches[0].clientY;touchScrollStart=scrollY;if(playing)togglePlay()},{passive:true});
-  document.addEventListener('touchmove',e=>{scrollY=Math.max(0,touchScrollStart+(touchStartY-e.touches[0].clientY));setTranslate(scrollY);updateDots()},{passive:true});
-  document.addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();togglePlay()}if(e.code==='ArrowUp'){scrollY=Math.max(0,scrollY-80);setTranslate(scrollY)}if(e.code==='ArrowDown'){scrollY+=80;setTranslate(scrollY)}});
-  setTranslate(0);
+const PX_PER_SEC_BASE = 20;
+let currentSpeed = 1;
+let isPlaying = false;
+let animationId = null;
+let currentSegment = 0;
+const totalSegments = document.querySelectorAll('.segment').length;
+
+// Initialize segment dots
+function initSegmentDots() {
+  const dotsContainer = document.getElementById('segmentDots');
+  for (let i = 0; i < totalSegments; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'dot';
+    dot.addEventListener('click', () => jumpToSegment(i));
+    dotsContainer.appendChild(dot);
+  }
+  updateDots();
+}
+
+function updateDots() {
+  const dots = document.querySelectorAll('.dot');
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === currentSegment);
+  });
+}
+
+function togglePlay() {
+  isPlaying = !isPlaying;
+  const playBtn = document.getElementById('playBtn');
+  playBtn.textContent = isPlaying ? 'Pause' : 'Play';
+  playBtn.classList.toggle('active', isPlaying);
+  
+  if (isPlaying) {
+    startAutoScroll();
+  } else {
+    stopAutoScroll();
+  }
+}
+
+function setSpeed(speed) {
+  currentSpeed = speed;
+  document.getElementById('speedValue').textContent = speed;
+  updateSpeedButtons();
+}
+
+function changeSpeed(delta) {
+  currentSpeed = Math.max(1, Math.min(6, currentSpeed + delta));
+  document.getElementById('speedValue').textContent = currentSpeed;
+  updateSpeedButtons();
+}
+
+function updateSpeedButtons() {
+  document.querySelectorAll('.control-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  if (isPlaying) {
+    document.getElementById('playBtn').classList.add('active');
+  }
+}
+
+function startAutoScroll() {
+  const scrollContent = document.getElementById('scrollContent');
+  
+  function scroll() {
+    if (!isPlaying) return;
+    
+    const pixelsPerFrame = (PX_PER_SEC_BASE * currentSpeed) / 60;
+    scrollContent.scrollTop += pixelsPerFrame;
+    
+    updateScrollProgress();
+    updateCurrentSegment();
+    
+    animationId = requestAnimationFrame(scroll);
+  }
+  
+  scroll();
+}
+
+function stopAutoScroll() {
+  if (animationId) {
+    cancelAnimationFrame(animationId);
+    animationId = null;
+  }
+}
+
+function updateScrollProgress() {
+  const scrollContent = document.getElementById('scrollContent');
+  const progress = document.getElementById('scrollProgress');
+  const scrollPercent = scrollContent.scrollTop / (scrollContent.scrollHeight - scrollContent.clientHeight);
+  progress.style.height = `${Math.min(100, scrollPercent * 100)}%`;
+}
+
+function updateCurrentSegment() {
+  const scrollContent = document.getElementById('scrollContent');
+  const segments = document.querySelectorAll('.segment');
+  const scrollTop = scrollContent.scrollTop;
+  
+  segments.forEach((segment, index) => {
+    const rect = segment.getBoundingClientRect();
+    const containerRect = scrollContent.getBoundingClientRect();
+    
+    if (rect.top <= containerRect.height / 2 && rect.bottom >= containerRect.height / 2) {
+      if (currentSegment !== index) {
+        currentSegment = index;
+        updateDots();
+        
+        // Update visual cues
+        segments.forEach(s => s.classList.remove('current'));
+        segment.classList.add('current');
+      }
+    }
+  });
+}
+
+function jumpToSegment(segmentIndex) {
+  const segment = document.querySelector(`[data-segment="${segmentIndex}"]`);
+  const scrollContent = document.getElementById('scrollContent');
+  
+  if (segment) {
+    const segmentTop = segment.offsetTop - (scrollContent.clientHeight / 2);
+    scrollContent.scrollTo({
+      top: segmentTop,
+      behavior: 'smooth'
+    });
+    
+    currentSegment = segmentIndex;
+    updateDots();
+  }
+}
+
+// Touch swipe support
+let touchStartY = null;
+
+document.addEventListener('touchstart', (e) => {
+  touchStartY = e.touches[0].clientY;
+});
+
+document.addEventListener('touchmove', (e) => {
+  if (!touchStartY) return;
+  
+  const touchY = e.touches[0].clientY;
+  const diff = touchStartY - touchY;
+  
+  if (Math.abs(diff) > 50) {
+    if (diff > 0 && currentSegment < totalSegments - 1) {
+      jumpToSegment(currentSegment + 1);
+    } else if (diff < 0 && currentSegment > 0) {
+      jumpToSegment(currentSegment - 1);
+    }
+    touchStartY = null;
+  }
+});
+
+document.addEventListener('touchend', () => {
+  touchStartY = null;
+});
+
+// Keyboard controls
+document.addEventListener('keydown', (e) => {
+  switch(e.key) {
+    case ' ':
+      e.preventDefault();
+      togglePlay();
+      break;
+    case 'ArrowUp':
+      if (currentSegment > 0) jumpToSegment(currentSegment - 1);
+      break;
+    case 'ArrowDown':
+      if (currentSegment < totalSegments - 1) jumpToSegment(currentSegment + 1);
+      break;
+    case '1': case '2': case '3': case '4': case '5': case '6':
+      setSpeed(parseInt(e.key));
+      break;
+  }
+});
+
+// Initialize
+initSegmentDots();
+updateScrollProgress();
+
+// Monitor scroll manually too
+document.getElementById('scrollContent').addEventListener('scroll', () => {
+  updateScrollProgress();
+  updateCurrentSegment();
+});
 </script>
-</body></html>
+
+</body>
+</html>
