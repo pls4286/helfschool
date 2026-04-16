@@ -1,261 +1,385 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-  <title>How Doctors Estimate Heart Attack Risk — Teleprompter | helf.school</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heart Attack Risk Teleprompter - Dr Paul</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  
   <style>
-    :root { --bg:#000; --text:#fff; --highlight:#C8423A; }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html,body{width:100%;height:100%;background:var(--bg);font-family:'DM Sans',sans-serif;overflow:hidden;touch-action:none}
-    .controls{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.90);border-bottom:1px solid rgba(255,255,255,.10);height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 1rem;gap:.5rem}
-    .ctrl-left{display:flex;align-items:center;gap:.75rem}
-    .ctrl-right{display:flex;align-items:center;gap:.5rem}
-    .ctrl-btn{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.20);color:#fff;font-size:.8rem;font-weight:600;padding:.35rem .85rem;border-radius:7px;cursor:pointer;transition:background .15s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
-    .ctrl-btn:hover,.ctrl-btn:active{background:rgba(255,255,255,.22)}
-    .ctrl-btn.active{background:var(--highlight);border-color:var(--highlight)}
-    .speed-wrap,.font-wrap{display:flex;align-items:center;gap:.4rem}
-    .speed-label,.font-label{font-size:.72rem;color:rgba(255,255,255,.55);white-space:nowrap}
-    .speed-btn,.font-btn{width:28px;height:28px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:.9rem;font-weight:700;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
-    .speed-btn:active,.font-btn:active{background:rgba(255,255,255,.25)}
-    .speed-val{font-size:.8rem;font-weight:600;color:var(--highlight);min-width:18px;text-align:center}
-    .seg-indicator{font-size:.72rem;color:rgba(255,255,255,.45);white-space:nowrap}
-    .seg-indicator span{color:var(--highlight);font-weight:600}
-    .scroll-outer{position:fixed;top:52px;bottom:56px;left:0;right:0;overflow:hidden}
-    .scroll-outer::before,.scroll-outer::after{content:'';position:absolute;left:0;right:0;z-index:10;pointer-events:none}
-    .scroll-outer::before{top:0;height:80px;background:linear-gradient(to bottom,#000 0%,transparent 100%)}
-    .scroll-outer::after{bottom:0;height:80px;background:linear-gradient(to top,#000 0%,transparent 100%)}
-    .reading-line{position:absolute;top:50%;left:0;right:0;height:2px;background:rgba(212,124,58,.35);z-index:9;pointer-events:none}
-    .scroll-inner{padding:50vh 2rem 50vh;will-change:transform}
-    .segment{margin-bottom:3.5rem}
-    .seg-header{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid rgba(255,255,255,.10)}
-    .seg-badge{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .55rem;border-radius:100px}
-    .sb-opening{background:rgba(212,124,58,.25);color:var(--highlight)}
-    .sb-section{background:rgba(255,255,255,.10);color:rgba(255,255,255,.70)}
-    .sb-cta{background:rgba(122,158,135,.25);color:#7A9E87}
-    .sb-closing{background:rgba(232,168,74,.25);color:#E8A84A}
-    .seg-name{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.45)}
-    .seg-time{font-size:.68rem;color:rgba(255,255,255,.30);margin-left:auto}
-    .seg-heading{font-size:1rem;font-weight:600;color:rgba(255,255,255,.40);margin-bottom:.85rem;letter-spacing:.02em}
-    .script-line{font-size:1.9rem;line-height:1.75;color:#fff;font-weight:400;margin-bottom:.9rem;padding:.25rem 0}
-    .script-line strong{color:var(--highlight);font-weight:600}
-    .script-line em{font-style:italic;color:rgba(255,255,255,.80)}
-    .pause-marker{display:inline-flex;align-items:center;gap:.4rem;background:rgba(212,124,58,.15);border:1px solid rgba(212,124,58,.35);color:var(--highlight);font-size:.85rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .9rem;border-radius:100px;margin:.3rem 0}
-    .visual-cue{display:flex;align-items:center;gap:.6rem;background:rgba(232,99,74,.12);border:2px solid rgba(232,99,74,.50);border-radius:10px;padding:.55rem 1rem;margin:.5rem 0}
-    .visual-cue-icon{font-size:1.1rem;flex-shrink:0}
-    .visual-cue-text{font-size:.95rem;font-weight:700;color:#fff;line-height:1.4}
-    .visual-cue-text span{color:#E8634A}
-    .bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.90);border-top:1px solid rgba(255,255,255,.10);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 1rem;gap:.5rem}
-    .nav-btn{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:.82rem;font-weight:600;padding:.4rem 1rem;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s}
-    .nav-btn:active{background:rgba(255,255,255,.25)}
-    .nav-btn.primary{background:var(--highlight);border-color:var(--highlight)}
-    .nav-btn.primary:active{background:#C06A2A}
-    .progress-dots{display:flex;gap:.35rem}
-    .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18);cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent}
-    .dot.active{background:var(--highlight);transform:scale(1.4)}
+    :root {
+      --bg: #0a0a0a;
+      --text: #ffffff;
+      --accent: #C8423A;
+      --muted: rgba(255,255,255,0.7);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    .controls {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.9);
+      backdrop-filter: blur(10px);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .speed-display, .font-display {
+      font-size: 0.8rem;
+      color: var(--muted);
+      min-width: 60px;
+      text-align: center;
+    }
+
+    .segment-dots {
+      display: flex;
+      gap: 0.3rem;
+      margin-left: auto;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .dot.active {
+      background: var(--accent);
+      transform: scale(1.2);
+    }
+
+    .content {
+      height: 100vh;
+      padding-top: 44px;
+      position: relative;
+      transform: translateY(0);
+      transition: transform 0.1s linear;
+    }
+
+    .line {
+      font-size: 1.9rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      padding: 0 2rem;
+      text-align: center;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .seg-label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin: 3rem 0 2rem;
+      text-align: center;
+      padding: 0 2rem;
+    }
+
+    .cue-box {
+      background: rgba(200,66,58,0.15);
+      border: 2px solid var(--accent);
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      margin: 2rem auto;
+      max-width: 700px;
+      text-align: center;
+    }
+
+    .cue-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .cue-text {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    strong {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .pause {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.9em;
+    }
+
+    em {
+      color: var(--accent);
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
-<div class="controls">
-  <div class="ctrl-left">
-    <button class="ctrl-btn" id="playBtn" onclick="togglePlay()">▶ Play</button>
-    <button class="ctrl-btn" onclick="resetScroll()">↺ Reset</button>
-    <div class="speed-wrap"><div class="speed-label">Speed</div><div class="speed-btn" onclick="changeSpeed(-1)">−</div><div class="speed-val" id="speedVal">1</div><div class="speed-btn" onclick="changeSpeed(1)">+</div></div>
-    <div class="font-wrap"><div class="font-label">Size</div><div class="font-btn" onclick="changeFont(-2)">A−</div><div class="font-btn" onclick="changeFont(2)">A+</div></div>
+  <div class="controls">
+    <div class="control-group">
+      <button id="play-btn" class="btn">▶ PLAY</button>
+      <span class="speed-display">Speed: <span id="speed-num">3</span></span>
+      <button id="speed-down" class="btn">-</button>
+      <button id="speed-up" class="btn">+</button>
+    </div>
+    
+    <div class="control-group">
+      <span class="font-display">Font: <span id="font-size">1.9</span>rem</span>
+      <button id="font-down" class="btn">A-</button>
+      <button id="font-up" class="btn">A+</button>
+    </div>
+
+    <div class="segment-dots">
+      <div class="dot active" data-seg="0"></div>
+      <div class="dot" data-seg="1"></div>
+      <div class="dot" data-seg="2"></div>
+      <div class="dot" data-seg="3"></div>
+      <div class="dot" data-seg="4"></div>
+      <div class="dot" data-seg="5"></div>
+    </div>
   </div>
-  <div class="ctrl-right"><div class="seg-indicator">Segment <span id="segDisplay">1</span> of 8</div></div>
-</div>
-<div class="scroll-outer">
-  <div class="reading-line"></div>
-  <div class="scroll-inner" id="scrollInner"></div>
-</div>
-<div class="bottom-nav">
-  <button class="nav-btn" id="prevBtn" onclick="jumpSeg(-1)" disabled>← Back</button>
-  <div class="progress-dots" id="dots"></div>
-  <button class="nav-btn primary" id="nextBtn" onclick="jumpSeg(1)">Next →</button>
-</div>
-<script>
-const TOTAL = 8;
-const segments = [
 
-  { type:'opening', label:'Intro · Dr Paul', title:'Introduction', time:'~15 sec',
-    lines:[
-      `"I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019."`,
-      `"Today I want to talk to you about <strong>how doctors estimate heart attack risk</strong>."`,
-      `"Now, I do have to say upfront — what I'm giving you here is health education, not medical advice."`,
-      `"If anything I talk about feels relevant to you personally, please do take it to your own doctor."`,
-      `"Right — let's get into it."`,
-      `<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 1: QRISK3 intro card</span> · advance now</div></div>`,
-    ]
-  },
-  { type:'opening', label:'Segment 1', title:'Your Score', time:'0:00–0:45',
-    lines:[
-      `"Your GP can calculate the probability of you having a heart attack or stroke in the next ten years. It's expressed as a percentage. And that number changes how they approach your treatment."`,
-      `<span class="pause-marker">⏸ PAUSE</span>`,
-      `"This is not guesswork. It's a validated mathematical model called <strong>QRISK3</strong> — built from data on over <strong>7 million people</strong> in UK general practice."`,
-      `"In this video I want to explain how this risk scoring works, what goes into it, and — crucially — what it means for you if you get a score."`,
-      `"I'm Dr Paul — over twenty years as an NHS GP. This is health education, not medical advice."`,
-      `<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 2: What is cardiovascular risk?</span> · advance now</div></div>`,
-    ]
-  },
-  { type:'section', label:'Segment 2', title:'What is Cardiovascular Risk?', time:'0:45–1:40',
-    lines:[
-      `"Heart attacks and strokes don't happen randomly. They happen to people who have accumulated certain risk factors over time — and the more risk factors you have, the higher your probability of a cardiovascular event."`,
-      `"The key insight is that <strong>risk factors combine multiplicatively, not just additively</strong>. High blood pressure and high cholesterol together don't just add up — they multiply each other's effect."`,
-      `"QRISK3 takes all of this into account. It calculates a single number — your 10-year cardiovascular risk — by combining everything known about you into one validated estimate."`,
-      `"A score of 10% means that among 100 people with your risk profile, around 10 would be expected to have a heart attack or stroke in the next ten years. A score of 5% means around 5 in 100."`,
-      `"This number doesn't predict what will happen to <em>you</em> personally. But it tells us how hard to work to protect you."`,
-      `<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 3: The five risk factors</span> · advance now</div></div>`,
-    ]
-  },
-  { type:'section', label:'Segment 3', title:'The Five Risk Factors That Matter Most', time:'1:40–2:35',
-    lines:[
-      `"A landmark study published in the New England Journal of Medicine in 2022, drawing on data from over 2 million people across 133 cohorts in 39 countries, identified five key modifiable risk factors that together account for approximately <strong>half of all cardiovascular disease worldwide</strong>."`,
-      `"Those five factors are: <strong>high blood pressure</strong>, <strong>high cholesterol</strong>, <strong>excess body weight</strong>, <strong>diabetes</strong>, and <strong>smoking</strong>."`,
-      `"Modifiable. Every one of them. Which means that addressing them — even partially — has a profound effect on your risk."`,
-      `"The same study found that addressing all five risk factors at age 50 could add <strong>more than a decade of cardiovascular disease-free life</strong>."`,
-      `"That is a remarkable finding — and it tells us that prevention isn't a marginal gain. It's transformative."`,
-      `<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 4: How QRISK3 works</span> · advance now</div></div>`,
-    ]
-  },
-  { type:'section', label:'Segment 4', title:'How QRISK3 Works', time:'2:35–3:30',
-    lines:[
-      `"QRISK3 was developed and validated by Professor Julia Hippisley-Cox and colleagues, published in the BMJ in 2017, using data from over 7 million people in UK general practice."`,
-      `"It calculates your 10-year cardiovascular risk by combining: your age, sex, ethnicity, blood pressure, cholesterol ratio, body mass index, smoking status, family history of heart disease, deprivation score — and importantly, conditions that previous calculators missed, including type 2 diabetes, atrial fibrillation, chronic kidney disease, rheumatoid arthritis, severe mental illness, and certain medications."`,
-      `"This matters because people in those groups were previously underestimated in their risk. QRISK3 corrects for that."`,
-      `"Your GP uses the calculator to decide whether to discuss statin therapy. Under current NICE guidance, a score of <strong>10% or above</strong> means a statin should be offered. Below 10%, it can still be considered — particularly if your lifetime risk is elevated."`,
-      `"But the score informs the conversation. The doctor and patient together make the decision."`,
-      `<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 5: What the research shows</span> · advance now</div></div>`,
-    ]
-  },
-  { type:'section', label:'Segment 5', title:'What the Research Shows', time:'3:30–4:15',
-    lines:[
-      `"The evidence underlying cardiovascular risk prediction is exceptionally robust. QRISK3 has been validated across millions of UK patients and consistently outperforms earlier models — particularly in ethnic minority groups and those with complex conditions."`,
-      `"It's worth knowing the limitations too. QRISK3 may <strong>underestimate risk</strong> in people already on blood pressure or cholesterol medication, people with HIV, and those with autoimmune conditions."`,
-      `"It's also a population-level tool — it tells us about groups, not individuals. A 15% risk score doesn't mean you will have a heart attack. It means people like you, with your combination of risk factors, have about a 1-in-7 chance over the next decade."`,
-      `"What the score does powerfully is show you which risk factors are driving your number — and therefore which ones are most worth addressing."`,
-      `<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 6: What you can do</span> · advance now</div></div>`,
-    ]
-  },
-  { type:'cta', label:'Segment 6', title:'What You Can Do', time:'4:15–4:55',
-    lines:[
-      `"<strong>First: ask your GP for your QRISK3 score</strong> if you don't know it. You can also run an estimate yourself at qrisk.org — though your GP will have more accurate data to input."`,
-      `"<strong>Second: understand what's driving your score</strong>. Blood pressure? Cholesterol? Smoking? Weight? Each of these is a lever you can pull. The lifestyle changes article on helf.school covers all of them with the evidence."`,
-      `"<strong>Third: don't dismiss a high score as inevitable</strong>. These are risk factors. They're not destiny. Most of the factors in your score are modifiable — and the research shows that modifying them makes a measurable difference."`,
-      `"The full article is on <strong>helf.school</strong> with all the references linked."`,
-      `<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 7: Closing card</span> · advance now</div></div>`,
-    ]
-  },
-  { type:'closing', label:'Segment 7', title:'Sign-off', time:'4:55–5:20',
-    lines:[
-      `"Understanding your cardiovascular risk gives you something powerful: a starting point for an informed conversation with your doctor."`,
-      `"Not a verdict. Not a prediction. A number that says — here's where you are, here's what's driving it, and here's what we can do about it."`,
-      `<span class="pause-marker">⏸ PAUSE</span>`,
-      `"Thanks for watching. The next video in the series covers statins — the most widely used treatment for elevated cardiovascular risk. It's on helf.school."`,
-      `"Take care of yourself."`,
-    ]
-  },
+  <div class="content" id="content">
+    <!-- ═══ SEGMENT 0 ═══ -->
+    <div class="seg-label" data-seg="0">Segment 0 — Introduction</div>
 
-];
+    <p class="line">"I'm Dr Paul — I spent <strong>over twenty years as an NHS GP</strong> before I retired in 2019. Today I want to talk to you about something really important — <strong>how doctors estimate your risk of having a heart attack</strong>."</p>
 
-let playing=false,speed=1,fontSize=1.9,rafId=null,scrollY=0,lastTime=null,currentSeg=0;
-const PX_PER_SEC_BASE=20;
+    <p class="line">"Now, I do have to say upfront — what I'm giving you here is <strong>health education, not medical advice</strong>. If anything feels relevant to you personally, please take it to your own doctor. Right — <em>let's get into it.</em>"</p>
 
-function build(){
-  const inner=document.getElementById('scrollInner');
-  const bc={opening:'sb-opening',section:'sb-section',cta:'sb-cta',closing:'sb-closing'};
-  const bl={opening:'Opening',section:'Section',cta:'Call to Action',closing:'Closing'};
-  let html='';
-  segments.forEach((s,i)=>{
-    html+=`<div class="segment" id="seg${i}"><div class="seg-header"><span class="seg-badge ${bc[s.type]}">${bl[s.type]}</span><span class="seg-name">${s.label}</span><span class="seg-time">${s.time}</span></div><div class="seg-heading">${s.title}</div>`;
-    s.lines.forEach(l=>{
-      if(l.startsWith('<span class="pause-marker"')||l.startsWith('<div class="visual-cue"')){html+=`<div style="margin:.4rem 0;">${l}</div>`;}
-      else{html+=`<div class="script-line">${l}</div>`;}
-    });
-    html+=`</div>`;
-  });
-  inner.innerHTML=html;
-  const de=document.getElementById('dots');
-  segments.forEach((s,i)=>{const d=document.createElement('div');d.className='dot'+(i===0?' active':'');d.title=s.title;d.onclick=()=>jumpToSeg(i);de.appendChild(d);});
-}
+    <div class="cue-box">
+      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
+      <div class="cue-text">Screen 1: <span>Intro slide</span> · helf.school logo · Cardiovascular Health Series · Article 03</div>
+    </div>
 
-function getOuter(){return document.querySelector('.scroll-outer');}
-function getInner(){return document.getElementById('scrollInner');}
+    <!-- ═══ SEGMENT 1 ═══ -->
+    <div class="seg-label" data-seg="1">Segment 1 — What is cardiovascular risk assessment?</div>
 
-function togglePlay(){
-  playing=!playing;
-  const btn=document.getElementById('playBtn');
-  if(playing){btn.textContent='⏸ Pause';btn.classList.add('active');lastTime=null;rafId=requestAnimationFrame(tick);}
-  else{btn.textContent='▶ Play';btn.classList.remove('active');if(rafId)cancelAnimationFrame(rafId);}
-}
+    <p class="line">"When your GP talks about your risk of a heart attack or stroke, they're not guessing. They're using a <strong>structured, evidence-based approach</strong> that combines several pieces of information about you — your age, blood pressure, cholesterol, smoking status, and other factors."</p>
 
-function tick(ts){
-  if(!lastTime)lastTime=ts;
-  const dt=(ts-lastTime)/1000;lastTime=ts;
-  scrollY+=PX_PER_SEC_BASE*speed*dt;
-  applyScroll();updateSegIndicator();
-  if(playing)rafId=requestAnimationFrame(tick);
-}
+    <p class="line">"This is called <strong>cardiovascular risk assessment</strong>, and it's one of the most important tools in preventive medicine. Rather than waiting for something to go wrong, it allows your doctor to identify people who would benefit most from treatment — <em>before</em> a heart attack or stroke happens." <span class="pause">PAUSE</span></p>
 
-function applyScroll(){
-  const inner=getInner();
-  const max=inner.scrollHeight-window.innerHeight;
-  scrollY=Math.min(Math.max(scrollY,0),max);
-  inner.style.transform=`translateY(${-scrollY}px)`;
-}
+    <div class="cue-box">
+      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
+      <div class="cue-text">Screen 2: <span>QRISK example</span> · 12% risk score · explanation of probability</div>
+    </div>
 
-function resetScroll(){
-  if(playing)togglePlay();scrollY=0;applyScroll();currentSeg=0;updateDots();
-  document.getElementById('segDisplay').textContent='1';
-  document.getElementById('prevBtn').disabled=true;
-  document.getElementById('nextBtn').textContent='Next →';
-}
+    <p class="line">"In the UK, the main tool used for this is called <strong>QRISK3</strong>. It gives a result expressed as a percentage — for example, a score of 12% means you have roughly a <strong>12 in 100 chance</strong> of having a heart attack or stroke in the next ten years."</p>
 
-function changeSpeed(dir){speed=Math.min(Math.max(speed+dir,1),6);document.getElementById('speedVal').textContent=speed;}
-function changeFont(dir){
-  fontSize=Math.min(Math.max(fontSize+dir*0.1,1.0),2.8);
-  document.querySelectorAll('.script-line').forEach(el=>{el.style.fontSize=fontSize+'rem';});
-}
+    <p class="line">"This isn't a certainty — it's a <strong>probability</strong>, based on how people with a similar profile to yours have fared in large population studies. The score is used as a starting point for a conversation between you and your doctor, not as a verdict." <span class="pause">PAUSE</span></p>
 
-function getSegTop(i){
-  const el=document.getElementById('seg'+i);if(!el)return 0;
-  const h=getOuter().clientHeight;
-  return el.offsetTop-h*0.5+60;
-}
+    <!-- ═══ SEGMENT 2 ═══ -->
+    <div class="seg-label" data-seg="2">Segment 2 — What factors are included?</div>
 
-function jumpToSeg(i){
-  if(playing)togglePlay();
-  currentSeg=Math.min(Math.max(i,0),segments.length-1);
-  scrollY=Math.max(getSegTop(currentSeg),0);
-  applyScroll();updateDots();updateSegIndicator();
-  document.getElementById('prevBtn').disabled=currentSeg===0;
-  document.getElementById('nextBtn').textContent=currentSeg===segments.length-1?'✓ Done':'Next →';
-}
+    <p class="line">"QRISK3 looks at <strong>multiple risk factors</strong> and combines them mathematically. The main ones include your age and gender — risk increases with age, and men generally have higher risk than women until after the menopause."</p>
 
-function jumpSeg(dir){jumpToSeg(currentSeg+dir);}
+    <div class="cue-box">
+      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
+      <div class="cue-text">Screen 3: <span>Risk factors grid</span> · 6 cards showing key QRISK3 inputs</div>
+    </div>
 
-function updateSegIndicator(){
-  const midY=scrollY+getOuter().clientHeight*0.5;
-  for(let i=segments.length-1;i>=0;i--){
-    const el=document.getElementById('seg'+i);
-    if(el&&el.offsetTop<=midY+40){
-      if(currentSeg!==i){currentSeg=i;updateDots();document.getElementById('segDisplay').textContent=i+1;document.getElementById('prevBtn').disabled=i===0;document.getElementById('nextBtn').textContent=i===segments.length-1?'✓ Done':'Next →';}
-      break;
+    <p class="line">"Your <strong>blood pressure</strong> — both the top and bottom numbers. Your <strong>cholesterol ratio</strong> — that's your total cholesterol divided by your HDL cholesterol. Your <strong>smoking status</strong> — current smoking significantly increases the calculated risk." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"It also includes your <strong>BMI</strong> — body mass index — which reflects obesity-related cardiovascular risk. And your <strong>medical history</strong> — things like diabetes, kidney disease, family history of heart disease, and several other conditions."</p>
+
+    <p class="line">"The clever bit is how QRISK3 <strong>weights these factors differently</strong> depending on your age, gender, and other characteristics. It's not just a simple checklist — it's a sophisticated mathematical model based on data from millions of people." <span class="pause">PAUSE</span></p>
+
+    <!-- ═══ SEGMENT 3 ═══ -->
+    <div class="seg-label" data-seg="3">Segment 3 — What do the results mean?</div>
+
+    <p class="line">"So what do you do with the result? Generally, if your calculated risk is <strong>below 10%</strong>, you're considered low risk. Your doctor will focus on lifestyle advice — diet, exercise, not smoking."</p>
+
+    <div class="cue-box">
+      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
+      <div class="cue-text">Screen 4: <span>Treatment thresholds</span> · &lt;10%, 10%+, 20%+ with treatment recommendations</div>
+    </div>
+
+    <p class="line">"If your risk is <strong>10% or above</strong>, that's when your doctor will start discussing whether you might benefit from medication — usually a statin to lower your cholesterol. The higher your risk, the stronger the recommendation becomes." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"At <strong>20% or above</strong>, you're considered high risk, and there's usually a strong recommendation for statin therapy alongside lifestyle changes. But it's always a discussion — the final decision is always yours."</p>
+
+    <p class="line">"Remember — these are <strong>population-based probabilities</strong>. They can't tell you what will definitely happen to you as an individual, but they give your doctor a way to target treatment to the people most likely to benefit." <span class="pause">PAUSE</span></p>
+
+    <!-- ═══ SEGMENT 4 ═══ -->
+    <div class="seg-label" data-seg="4">Segment 4 — What the research shows</div>
+
+    <p class="line">"The evidence supporting risk-based treatment is <strong>very strong</strong>. Studies show that QRISK3 is more accurate at predicting cardiovascular events than previous risk calculators. It's been validated in large UK populations and performs well."</p>
+
+    <div class="cue-box">
+      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
+      <div class="cue-text">Screen 5: <span>Research findings</span> · 4 cards with key study results</div>
+    </div>
+
+    <p class="line">"More importantly, <strong>treating patients based on calculated risk works</strong>. A Cochrane review found that risk-based treatment reduces cardiovascular events by about 30% compared to not treating based on risk." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"We know from the Cholesterol Treatment Trialists study that <strong>each 1 millimole reduction in LDL cholesterol</strong> with statins reduces major cardiovascular events by 22%. That's a substantial benefit."</p>
+
+    <p class="line">"And lifestyle interventions work too. Combined lifestyle changes — diet, exercise, weight loss, stopping smoking — can reduce cardiovascular risk by <strong>40 to 50%</strong>. Sometimes that's enough to avoid medication entirely." <span class="pause">PAUSE</span></p>
+
+    <!-- ═══ SEGMENT 5 ═══ -->
+    <div class="seg-label" data-seg="5">Segment 5 — Putting it together</div>
+
+    <p class="line">"So — cardiovascular risk assessment using tools like QRISK3 allows your doctor to give you a <strong>personalised estimate</strong> of your 10-year risk of heart attack or stroke. This risk estimate guides treatment decisions — not just single risk factors."</p>
+
+    <div class="cue-box">
+      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
+      <div class="cue-text">Screen 6: <span>Key takeaways</span> · 4 bullet points · helf.school closing</div>
+    </div>
+
+    <p class="line">"The 10% threshold is commonly used for considering statin therapy, but it's not a hard rule — it's the start of a conversation. This approach has been proven to <strong>prevent cardiovascular events</strong> and save lives."</p>
+
+    <p class="line">"If you're over 40, it's worth knowing your cardiovascular risk score. Your GP can calculate it easily, and it might help guide decisions about your health. Knowledge is power when it comes to <em>preventing heart disease.</em>"</p>
+
+    <p class="line">"That's cardiovascular risk assessment covered. <em>Thanks for watching.</em>"</p>
+  </div>
+
+  <script>
+    const PX_PER_SEC_BASE = 20;
+    const SPEED_LEVELS = [8, 14, 20, 28, 38, 52];
+    
+    let speedIndex = 2; // Default to level 3
+    let baseFontSize = 1.9;
+    let playing = false;
+    let scrollY = 0;
+    let lastTime = null;
+    let rafId = null;
+
+    const content = document.getElementById('content');
+    const playBtn = document.getElementById('play-btn');
+    const speedDisplay = document.getElementById('speed-num');
+    const fontDisplay = document.getElementById('font-size');
+    const segLabels = document.querySelectorAll('.seg-label[data-seg]');
+    const dots = document.querySelectorAll('.dot');
+
+    speedDisplay.textContent = speedIndex + 1;
+    fontDisplay.textContent = baseFontSize;
+
+    function setTranslate(y) {
+      content.style.transform = `translateY(${-y}px)`;
     }
-  }
-}
 
-function updateDots(){
-  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===currentSeg));
-  document.getElementById('segDisplay').textContent=currentSeg+1;
-}
+    function togglePlay() {
+      playing = !playing;
+      playBtn.textContent = playing ? '⏸ PAUSE' : '▶ PLAY';
+      if (playing) { lastTime = null; rafId = requestAnimationFrame(tick); }
+      else { cancelAnimationFrame(rafId); }
+    }
 
-let touchStartY=0,touchScrollY=0;
-document.querySelector('.scroll-outer').addEventListener('touchstart',e=>{if(playing)return;touchStartY=e.touches[0].clientY;touchScrollY=scrollY;},{passive:true});
-document.querySelector('.scroll-outer').addEventListener('touchmove',e=>{if(playing)return;scrollY=touchScrollY+(touchStartY-e.touches[0].clientY);applyScroll();updateSegIndicator();},{passive:true});
+    function tick(ts) {
+      if (!playing) return;
+      if (lastTime === null) lastTime = ts;
+      const dt = (ts - lastTime) / 1000;
+      lastTime = ts;
+      scrollY += SPEED_LEVELS[speedIndex] * dt;
+      const maxScroll = content.scrollHeight - window.innerHeight + 44;
+      if (scrollY >= maxScroll) { scrollY = maxScroll; togglePlay(); }
+      setTranslate(scrollY);
+      updateDots();
+      rafId = requestAnimationFrame(tick);
+    }
 
-build();applyScroll();
-</script>
+    function changeSpeed(dir) {
+      speedIndex = Math.max(0, Math.min(5, speedIndex + dir));
+      speedDisplay.textContent = speedIndex + 1;
+    }
+
+    function changeFont(dir) {
+      baseFontSize = Math.max(1.2, Math.min(2.8, baseFontSize + dir * 0.1));
+      document.querySelectorAll('.line').forEach(el => el.style.fontSize = baseFontSize + 'rem');
+      fontDisplay.textContent = baseFontSize.toFixed(1);
+    }
+
+    function jumpToSeg(idx) {
+      const label = segLabels[idx];
+      if (!label) return;
+      const contentTop = content.getBoundingClientRect().top;
+      const labelOffset = label.getBoundingClientRect().top - contentTop + scrollY;
+      scrollY = Math.max(0, labelOffset - window.innerHeight * 0.5 + 44);
+      setTranslate(scrollY);
+      updateDots();
+    }
+
+    function updateDots() {
+      const mid = window.innerHeight * 0.5;
+      let active = 0;
+      segLabels.forEach((label, i) => { if (label.getBoundingClientRect().top <= mid) active = i; });
+      dots.forEach((d, i) => d.classList.toggle('active', i === active));
+    }
+
+    // Event listeners
+    playBtn.addEventListener('click', togglePlay);
+    document.getElementById('speed-up').addEventListener('click', () => changeSpeed(1));
+    document.getElementById('speed-down').addEventListener('click', () => changeSpeed(-1));
+    document.getElementById('font-up').addEventListener('click', () => changeFont(1));
+    document.getElementById('font-down').addEventListener('click', () => changeFont(-1));
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => jumpToSeg(i));
+    });
+
+    // Touch
+    let touchStartY = 0, touchScrollStart = 0;
+    document.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; touchScrollStart = scrollY; if (playing) togglePlay(); }, { passive: true });
+    document.addEventListener('touchmove', e => { scrollY = Math.max(0, touchScrollStart + (touchStartY - e.touches[0].clientY)); setTranslate(scrollY); updateDots(); }, { passive: true });
+
+    // Keyboard
+    document.addEventListener('keydown', e => {
+      if (e.code === 'Space') { e.preventDefault(); togglePlay(); }
+      if (e.code === 'ArrowUp') { scrollY = Math.max(0, scrollY - 80); setTranslate(scrollY); }
+      if (e.code === 'ArrowDown') { scrollY += 80; setTranslate(scrollY); }
+    });
+
+    setTranslate(0);
+  </script>
 </body>
 </html>

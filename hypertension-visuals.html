@@ -1,333 +1,585 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hypertension — Video Presenter Deck — Visuals | helf.school</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hypertension Visuals - Dr Paul</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600;1,9..144,700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  
   <style>
-    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--accent:#C8423A;}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'DM Sans',sans-serif;background:#0F1A2E;color:#fff;height:100vh;overflow:hidden;display:flex;flex-direction:column;}
-    .topbar{background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.08);padding:0 1.5rem;height:48px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
-    .topbar-sub{font-size:.75rem;color:rgba(255,255,255,.75);}
-    .slide-counter{font-size:.85rem;font-weight:600;color:rgba(255,255,255,.90);}
-    .progress-bar{height:3px;background:rgba(255,255,255,.08);flex-shrink:0;}
-    .progress-fill{height:100%;background:#C8423A;transition:width .35s ease;}
-    .visual-stage{flex:1;background:var(--navy);display:flex;align-items:center;justify-content:center;padding:0.6rem 0.75rem;position:relative;overflow:hidden;}
-    .visual-stage::before{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(200,66,58,.1) 0%,transparent 70%);pointer-events:none;}
-    .slide-type-badge{position:absolute;top:12px;right:12px;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .65rem;border-radius:100px;}
-    .badge-opening{background:rgba(232,99,74,.2);color:#E8634A;}
-    .badge-section{background:rgba(27,42,74,.6);color:rgba(255,255,255,.85);}
-    .badge-cta{background:rgba(122,158,135,.2);color:#7A9E87;}
-    .badge-closing{background:rgba(232,168,74,.2);color:#E8A84A;}
-    .visual-content{width:100%;max-height:100%;display:flex;align-items:center;justify-content:center;}
-    .bottom-nav{background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.07);padding:.5rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
-    .nav-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.75);font-size:.82rem;font-weight:500;padding:.45rem 1rem;border-radius:7px;cursor:pointer;transition:all .2s;}
-    .nav-btn:hover{background:rgba(255,255,255,.10);color:#fff;}
-    .nav-btn:disabled{opacity:.3;cursor:not-allowed;}
-    .nav-btn-primary{background:#C8423A;border-color:#C8423A;color:#fff;}
-    .nav-dots{display:flex;gap:.4rem;}
-    .nav-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.20);cursor:pointer;transition:all .2s;}
-    .nav-dot.active{background:#C8423A;transform:scale(1.3);}
-    .stat-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:1.25rem 1.5rem; text-align:center; width:100%; }
-    .stat-num { font-family:'Fraunces',serif; font-size:4.5rem; font-weight:700; line-height:1; margin-bottom:0.3rem; }
-    .stat-label { font-size:0.98rem; color:rgba(255,255,255,0.5); line-height:1.4; }
-    .stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; width:100%; }
-    .stats-grid .stat-card .stat-num { font-size:2.8rem; }
+    :root {
+      --navy: #1B2A4A;
+      --coral: #E8634A;
+      --cream: #FAF7F2;
+      --sage: #7A9E87;
+      --amber: #E8A84A;
+      --cardio: #C8423A;
+    }
 
-    .bp-display { background:rgba(27,42,74,0.55); border:2px solid rgba(255,255,255,0.14); border-radius:14px; padding:1.5rem 2rem; text-align:center; width:100%; }
-    .bp-numbers { font-family:'Fraunces',serif; font-size:4rem; font-weight:700; line-height:1; }
-    .bp-slash { color:var(--coral); }
-    .bp-labels { display:flex; justify-content:space-around; margin-top:0.75rem; }
-    .bp-label-word { font-size:0.95rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--amber); }
-    .bp-label-def { font-size:0.95rem; color:rgba(255,255,255,0.80); margin-top:0.1rem; }
-    .bp-unit { font-size:1.08rem; color:rgba(255,255,255,0.70); margin-top:0.4rem; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: #fff;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-    .threshold-box { background:rgba(232,99,74,0.1); border:1px solid rgba(232,99,74,0.3); border-radius:10px; padding:0.8rem 1.1rem; width:100%; text-align:center; }
-    .t-label { font-size:0.95rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--coral); margin-bottom:0.2rem; }
-    .t-value { font-family:'Fraunces',serif; font-size:2.4rem; font-weight:700; color:var(--coral); }
-    .t-desc { font-size:1.00rem; color:rgba(255,255,255,0.80); margin-top:0.15rem; }
+    .stage {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem 0.75rem;
+    }
 
-    .organ-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:0.7rem 0.9rem; display:flex; align-items:center; gap:0.8rem; opacity:0; transform:translateY(8px); transition:opacity 0.5s ease,transform 0.5s ease; }
-    .organ-card.visible { opacity:1; transform:translateY(0); }
-    .organ-icon { font-size:1.4rem; flex-shrink:0; }
-    .organ-name { font-size:0.8rem; font-weight:600; }
-    .organ-risk { font-size:0.98rem; color:rgba(255,255,255,0.80); margin-top:0.08rem; }
+    .slide {
+      width: 100%;
+      height: 100%;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
 
-    .drug-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:10px; padding:0.7rem 1rem; display:flex; align-items:center; gap:0.85rem; opacity:0; transform:translateX(-10px); transition:opacity 0.5s ease,transform 0.5s ease; }
-    .drug-card.visible { opacity:1; transform:translateX(0); }
-    .drug-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
-    .drug-name { font-size:0.98rem; font-weight:600; }
-    .drug-action { font-size:0.98rem; color:rgba(255,255,255,0.75); margin-top:0.08rem; }
+    .slide.active { display: flex; }
 
-    .risk-bar-track { height:24px; background:rgba(255,255,255,0.05); border-radius:6px; overflow:hidden; margin-bottom:0.5rem; }
-    .risk-bar-fill { height:100%; border-radius:6px; display:flex; align-items:center; padding-left:0.65rem; font-size:1.00rem; font-weight:600; transition:width 1.2s cubic-bezier(0.4,0,0.2,1); }
+    .slide-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid rgba(200,66,58,0.3);
+    }
 
-    .action-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:11px; padding:0.9rem 1.1rem; display:flex; align-items:center; gap:0.85rem; opacity:0; transform:translateY(10px); transition:opacity 0.5s ease,transform 0.5s ease; width:100%; }
-    .action-card.visible { opacity:1; transform:translateY(0); }
-    .action-icon { font-size:1.6rem; flex-shrink:0; }
-    .action-title { font-size:1.00rem; font-weight:600; }
-    .action-desc { font-size:1.00rem; color:rgba(255,255,255,0.80); margin-top:0.1rem; line-height:1.4; }
+    .intro-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--cardio);
+      background: rgba(200,66,58,0.12);
+      border: 1px solid rgba(200,66,58,0.3);
+      padding: 0.3rem 0.85rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
 
-    .end-logo { font-family:'Fraunces',serif; font-size:2.8rem; font-weight:700; color:var(--coral); margin-bottom:0.2rem; text-align:center; }
-    .end-tagline { font-size:0.93rem; color:rgba(255,255,255,0.75); text-align:center; margin-bottom:1.25rem; }
-    .end-series { display:flex; flex-wrap:wrap; gap:0.35rem; justify-content:center; }
-    .end-pill { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.5); font-size:0.98rem; padding:0.18rem 0.65rem; border-radius:100px; }
-    .end-pill.active { background:rgba(232,99,74,0.14); border-color:var(--coral); color:var(--coral); }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .logo-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.60);
+    }
+
+    .logo-text {
+      font-family: 'Fraunces', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .tagline {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.70);
+      margin-bottom: 0.5rem;
+    }
+
+    .article-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.70);
+      font-weight: 500;
+    }
+
+    /* NAVIGATION */
+    .nav-hint {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.60);
+      background: rgba(0,0,0,0.3);
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    .slide-counter {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.90);
+      font-weight: 600;
+    }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.2);
+      backdrop-filter: blur(10px);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .topbar-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .topbar-subtitle {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.75);
+      margin-left: 0.5rem;
+    }
+
+    /* STATS */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+      margin: 2rem 0;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Fraunces', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--cardio);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.90);
+      font-weight: 500;
+    }
+
+    .stat-source {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.65);
+      margin-top: 0.3rem;
+      display: block;
+    }
+
+    /* BLOOD PRESSURE DIAGRAM */
+    .bp-diagram {
+      width: 100%;
+      max-width: 600px;
+      margin: 2rem 0;
+    }
+
+    .bp-reading {
+      font-family: 'Fraunces', serif;
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--cardio);
+      margin: 1rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .bp-labels {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 1rem;
+    }
+
+    .bp-label {
+      text-align: center;
+    }
+
+    .bp-label-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .bp-label-desc {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.80);
+      margin-top: 0.2rem;
+    }
+
+    /* TREATMENT LADDER */
+    .treatment-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      max-width: 700px;
+      margin: 2rem 0;
+    }
+
+    .treatment-step {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: stepIn 0.6s ease forwards;
+    }
+
+    .treatment-step:nth-child(1) { animation-delay: 0.2s; }
+    .treatment-step:nth-child(2) { animation-delay: 0.4s; }
+    .treatment-step:nth-child(3) { animation-delay: 0.6s; }
+    .treatment-step:nth-child(4) { animation-delay: 0.8s; }
+
+    @keyframes stepIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-number {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--cardio);
+      background: rgba(200,66,58,0.2);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-content h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+
+    .step-content p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.80);
+      line-height: 1.4;
+    }
+
+    /* RESEARCH CARDS */
+    .research-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      width: 100%;
+      max-width: 900px;
+      margin: 2rem 0;
+    }
+
+    .research-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: left;
+    }
+
+    .research-card h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .research-finding {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--cardio);
+      margin-bottom: 0.5rem;
+    }
+
+    .research-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.80);
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+
+    .research-source {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .a-pill {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.75);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
   </style>
 </head>
 <body>
-<div class="topbar">
-  <div class="topbar-sub">helf.school · Cardiovascular Series · Article 01 · Visuals Screen</div>
-  <div class="slide-counter">Screen <span id="slideNum">1</span> of 8</div>
-</div>
-<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:12.5%"></div></div>
-<div class="visual-stage">
-  <div class="slide-type-badge" id="typeBadge"></div>
-  <div class="visual-content" id="visualContent"></div>
-</div>
-<div class="bottom-nav">
-  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>← Previous</button>
-  <div class="nav-dots" id="navDots"></div>
-  <button class="nav-btn nav-btn-primary" id="nextBtn" onclick="navigate(1)">Next →</button>
-</div>
-<script>
-const TOTAL=8;
-const badgeCls={opening:'badge-opening',section:'badge-section',cta:'badge-cta',closing:'badge-closing'};
-const badgeLbl={opening:'Opening',section:'Section',cta:'Call to Action',closing:'Closing'};
-const slides = [
-  {type:'opening',label:'Intro · Dr Paul',title:'Introduction',timing:'⏱ ~10 seconds',visual:'s0',script:[
-    `"I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019."`,
-    `"Today I want to talk to you about <strong>high blood pressure</strong>."`,
-    `"Now, I do have to say upfront — what I'm giving you here is health education, not medical advice."`,
-    `"If anything I talk about feels relevant to you personally, please do take it to your own doctor."`,
-    `"Right — let's get into it."`,
-  ]},
-  {
-    type:'opening', label:'Segment 2 · Opening Hook', title:'The Silent Condition', timing:'⏱ 0:00–0:50',
-    visual:'s1',
-    script:[
-      `"There's a condition that affects <strong>one in three adults</strong> in this country right now. It causes no pain. No obvious symptoms. And most of the people who have it — don't know."`,
-      `<span class="script-pause">PAUSE</span>`,
-      `"It's called hypertension. Most of us know it as high blood pressure."`,
-      `"Left untreated, it quietly damages your heart, your brain, your kidneys, and your arteries, year after year. It's the leading single cause of stroke. It contributes to heart attacks, heart failure, and kidney disease."`,
-      `"<strong>Ten million people die from it every year worldwide.</strong> More than from any other single condition on the planet."`,
-      `<span class="script-pause">PAUSE</span>`,
-      `"In this video I want to explain what it actually is, why it matters, what your doctor will do — and what the evidence says about how well we can treat it. Because the evidence is genuinely encouraging."`,
-      `"I'm Dr Paul — twenty years as an NHS GP. This is health education, not medical advice."`,
-    ]
-  },
-  {
-    type:'section', label:'Segment 2 · Section 1', title:'What is High Blood Pressure?', timing:'⏱ 0:50–1:50',
-    visual:'s2',
-    script:[
-      `"Blood pressure is the force blood exerts on the walls of your arteries. Think of it like water pressure in a hosepipe — normal and necessary. But if the pressure is <strong>always too high</strong>, over time it starts to damage the pipe itself."`,
-      `"Blood pressure is measured as two numbers. The top number — <strong>systolic</strong> — is the pressure when your heart beats. The bottom — <strong>diastolic</strong> — is between beats when the heart is resting."`,
-      `"A typical healthy reading is around 120 over 80 — written as <strong>120/80 mmHg</strong>."`,
-      `"Hypertension is diagnosed when readings of <strong>140 over 90 or above</strong> are consistently present. The word 'consistently' matters — a single high reading in a clinic doesn't confirm it."`,
-      `"Blood pressure can go up just from anxiety in a medical setting. That's so common it has its own name: <strong>white coat hypertension</strong>. Which is why your doctor won't diagnose you from one waiting room reading."`,
-    ]
-  },
-  {
-    type:'section', label:'Segment 3 · Section 2', title:'Why Does It Matter?', timing:'⏱ 1:50–2:45',
-    visual:'s3',
-    script:[
-      `"The damage from high blood pressure is <strong>gradual and cumulative</strong>. Your heart has to work harder with every beat. Over years, this causes the heart muscle to thicken and stiffen. The arteries become less flexible and more prone to atherosclerosis — the build-up of fatty deposits inside the vessel wall."`,
-      `"Hypertension is the <strong>single largest risk factor for stroke</strong> — contributing to roughly half of all strokes in the UK. It substantially increases the risk of heart attack, heart failure, and kidney damage."`,
-      `"And because it causes <strong>no symptoms</strong> — no pain, no warning signs — most people only find out at a routine appointment, or worse, when something goes wrong."`,
-      `"In the UK, around <strong>one in three adults</strong> has high blood pressure. Among people over 65, that rises to around <strong>six in ten</strong>."`,
-    ]
-  },
-  {
-    type:'section', label:'Segment 4 · Section 3', title:'What Your Doctor Will Do', timing:'⏱ 2:45–3:50',
-    visual:'s4',
-    script:[
-      `"So you've been told your blood pressure is high. What happens next?"`,
-      `"The first thing your doctor won't do is immediately start you on tablets. The standard approach is to offer you a <strong>24-hour blood pressure monitor</strong> — a small device worn on your arm during a normal day at home. This is called <strong>ABPM — ambulatory blood pressure monitoring</strong>."`,
-      `"It's considered much more accurate than a clinic reading, because it captures your blood pressure across a full range of activities, without the white coat effect."`,
-      `"Your GP will also arrange blood tests and a urine test to check your kidneys — high blood pressure can both cause and be caused by kidney problems."`,
-      `"The main drug options in the UK are: <strong>ACE inhibitors or ARBs</strong> — such as ramipril and losartan — which relax blood vessels. <strong>Calcium channel blockers</strong> like amlodipine, which widen blood vessels. And <strong>thiazide-like diuretics</strong> — water tablets — which reduce fluid volume."`,
-      `"For most people under 80, the treatment target is below <strong>140/90</strong> in clinic. For those over 80, below <strong>150/90</strong>. These targets are set by current NICE guidelines."`,
-    ]
-  },
-  {
-    type:'section', label:'Segment 5 · Section 4', title:'What the Research Shows', timing:'⏱ 3:50–4:45',
-    visual:'s5',
-    script:[
-      `"Now — I want to talk about what the evidence tells us. Because I think this is genuinely reassuring."`,
-      `"A major analysis published in <em>The Lancet</em> in 2021, drawing on data from over <strong>340,000 participants</strong>, found that reducing systolic blood pressure by just <strong>5 mmHg</strong> cut the risk of major cardiovascular events by around <strong>10%</strong>. That held across all blood pressure levels studied."`,
-      `"Ten percent risk reduction. From a 5-point reduction. That's a significant return for a modest change."`,
-      `"A Cochrane review of 16 trials — nearly 27,000 older adults — confirmed that blood pressure medication reduces the risk of death, stroke and heart attack in people over 60. Evidence rated <strong>moderate to high certainty</strong>."`,
-      `"For people with <strong>mild</strong> hypertension and no existing cardiovascular disease, the evidence for medication is less clear-cut. A 2025 Cochrane update found limited evidence of benefit in this lower-risk group. This is a reason for an honest conversation with your doctor — not a reason to ignore it."`,
-    ]
-  },
-  {
-    type:'cta', label:'Segment 6 · Call to Action', title:'What You Can Do', timing:'⏱ 4:45–5:30',
-    visual:'s6',
-    script:[
-      `"<strong>First: get your blood pressure checked</strong> if it hasn't been done recently. At your GP surgery, at a pharmacy, or with a home monitor. If you're over 40, NICE recommends it's checked at least every five years."`,
-      `"<strong>Second: if you're on blood pressure medication, take it.</strong> Blood pressure tablets often have no noticeable effect that you can feel. That's partly why people stop. But the protection is real, even when you can't sense it."`,
-      `"<strong>Third: lifestyle changes work.</strong> Reducing salt, losing even modest weight, regular aerobic exercise, cutting back on alcohol — each has a genuine, measurable effect. In some people with mildly elevated pressure, they can be enough on their own."`,
-      `"The full article — with all the research references linked — is on <strong>helf.school</strong>."`,
-    ]
-  },
-  {
-    type:'closing', label:'Segment 7 · Closing', title:'Sign-off', timing:'⏱ 5:30–6:00',
-    visual:'s7',
-    script:[
-      `"Hypertension is one of those conditions where knowledge really does make a difference. Not because understanding it is complicated — as I hope this video has shown, it isn't."`,
-      `"The evidence is clear. Treatment works. Lifestyle changes work. And for a condition that causes no symptoms, <strong>the best protection you have is simply knowing your numbers.</strong>"`,
-      `<span class="script-pause">PAUSE</span>`,
-      `"Thanks for watching. There are six more cardiovascular articles on helf.school — cholesterol, statins, heart attack risk, lifestyle changes, salt, and supplements. All evidence-based. All free."`,
-      `"Take care of yourself."`,
-    ]
-  },
-];
-const visuals = {
-  s0: ()=>`
-    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;width:100%;text-align:center;">
-      <div style="font-family:'Fraunces',serif;font-size:2rem;font-weight:700;color:var(--coral);">helf.school</div>
-      <div style="font-size:1.00rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.70);">Cardiovascular Series</div>
-      <div style="font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;color:#fff;line-height:1.4;max-width:340px;" id="introTopic"></div>
-      <div style="width:48px;height:2px;background:var(--coral);border-radius:2px;margin-top:0.25rem;"></div>
-      <div style="font-size:0.93rem;color:rgba(255,255,255,0.80);line-height:1.6;max-width:320px;">Plain English health education<br>based on the evidence</div>
+  <div class="topbar">
+    <div>
+      <span class="topbar-title">Hypertension</span>
+      <span class="topbar-subtitle">Dr Paul • Cardiovascular Health Series</span>
     </div>
-  `,
-  s1: ()=>`
-    <div class="stat-card" style="border-color:rgba(232,99,74,0.3);">
-      <div class="stat-num" style="color:var(--coral);">1 in 3</div>
-      <div class="stat-label">adults in the UK have high blood pressure right now</div>
+    <div class="slide-counter">
+      <span id="current-slide">1</span> / <span id="total-slides">6</span>
     </div>
-    <div class="stats-grid">
-      <div class="stat-card"><div class="stat-num" style="color:var(--amber);">600M</div><div class="stat-label">people worldwide unaware they have it</div></div>
-      <div class="stat-card"><div class="stat-num" style="color:var(--coral);">10M</div><div class="stat-label">deaths per year — more than any other single condition</div></div>
-    </div>
-    <div style="font-size:0.93rem;color:rgba(255,255,255,0.70);text-align:center;">WHO Global Hypertension Report 2024 · NHS Health Survey for England 2022</div>
-  `,
+  </div>
 
-  s2: ()=>`
-    <div class="bp-display">
-      <div class="bp-numbers">120 <span class="bp-slash">/</span> 80</div>
-      <div class="bp-unit">mmHg — typical healthy reading</div>
-      <div class="bp-labels" style="margin-top:1rem;">
-        <div><div class="bp-label-word">Systolic</div><div class="bp-label-def">pressure when heart beats</div></div>
-        <div><div class="bp-label-word">Diastolic</div><div class="bp-label-def">pressure between beats</div></div>
+  <div class="stage">
+    <!-- SLIDE 1: INTRO -->
+    <div class="slide active">
+      <div class="intro-badge">Cardiovascular Health Series</div>
+      
+      <div class="logo-container">
+        <div class="logo-dot"></div>
+        <div class="logo-text">helf.school</div>
+      </div>
+
+      <h1 class="slide-title">Hypertension<br>(High Blood Pressure)</h1>
+      
+      <div class="tagline">HEALTH EDUCATION</div>
+      <div class="article-label">Article 01 • Dr Paul</div>
+    </div>
+
+    <!-- SLIDE 2: WHAT IS BLOOD PRESSURE -->
+    <div class="slide">
+      <h2 class="slide-title">Understanding Blood Pressure</h2>
+      
+      <div class="bp-reading">
+        <span>140</span>
+        <span style="font-size: 3rem; color: rgba(255,255,255,0.6);">/</span>
+        <span>90</span>
+        <span style="font-size: 1.5rem; color: rgba(255,255,255,0.7);">mmHg</span>
+      </div>
+
+      <div class="bp-labels">
+        <div class="bp-label">
+          <div class="bp-label-title">Systolic (140)</div>
+          <div class="bp-label-desc">Pressure when heart beats</div>
+        </div>
+        <div class="bp-label">
+          <div class="bp-label-title">Diastolic (90)</div>
+          <div class="bp-label-desc">Pressure between beats</div>
+        </div>
+      </div>
+
+      <p style="margin-top: 2rem; font-size: 0.9rem; color: rgba(255,255,255,0.80);">
+        140/90 mmHg or above = hypertension diagnosis
+      </p>
+    </div>
+
+    <!-- SLIDE 3: PREVALENCE STATS -->
+    <div class="slide">
+      <h2 class="slide-title">Why Does Hypertension Matter?</h2>
+      
+      <div class="stat-grid">
+        <div class="stat-card">
+          <span class="stat-number">1 in 4</span>
+          <div class="stat-label">UK adults have high blood pressure</div>
+          <span class="stat-source">NHS Digital</span>
+        </div>
+        
+        <div class="stat-card">
+          <span class="stat-number">50%</span>
+          <div class="stat-label">Don't know they have it</div>
+          <span class="stat-source">British Heart Foundation</span>
+        </div>
+        
+        <div class="stat-card">
+          <span class="stat-number">70,000</span>
+          <div class="stat-label">Deaths per year in UK</div>
+          <span class="stat-source">ONS • 2021</span>
+        </div>
+      </div>
+
+      <p style="margin-top: 1.5rem; font-size: 0.9rem; color: rgba(255,255,255,0.80); max-width: 600px;">
+        Often called the "silent killer" because most people have no symptoms until serious complications develop
+      </p>
+    </div>
+
+    <!-- SLIDE 4: TREATMENT APPROACH -->
+    <div class="slide">
+      <h2 class="slide-title">Treatment Approach</h2>
+      
+      <div class="treatment-steps">
+        <div class="treatment-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h4>Lifestyle Changes</h4>
+            <p>Reduce salt, lose weight, exercise regularly, limit alcohol</p>
+          </div>
+        </div>
+        
+        <div class="treatment-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h4>Single Medication</h4>
+            <p>ACE inhibitor, calcium channel blocker, or thiazide diuretic</p>
+          </div>
+        </div>
+        
+        <div class="treatment-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h4>Dual Therapy</h4>
+            <p>Combination of two medications if single drug insufficient</p>
+          </div>
+        </div>
+        
+        <div class="treatment-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h4>Triple Therapy</h4>
+            <p>Three medications + specialist referral if needed</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="threshold-box">
-      <div class="t-label">Hypertension diagnosed at</div>
-      <div class="t-value">140 / 90 mmHg</div>
-      <div class="t-desc">Confirmed on more than one occasion · Not from a single clinic reading</div>
-    </div>
-    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:9px;padding:0.65rem 0.9rem;width:100%;text-align:center;">
-      <div style="font-size:0.93rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);margin-bottom:0.15rem;">White coat hypertension</div>
-      <div style="font-size:1.05rem;color:rgba(255,255,255,0.80);">Blood pressure raised by anxiety in a clinical setting — very common</div>
-    </div>
-  `,
 
-  s3: ()=>`
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;width:100%;">
-      <div class="organ-card" id="org0"><div class="organ-icon">🧠</div><div><div class="organ-name">Brain</div><div class="organ-risk">Stroke — #1 risk factor</div></div></div>
-      <div class="organ-card" id="org1"><div class="organ-icon">❤️</div><div><div class="organ-name">Heart</div><div class="organ-risk">Heart attack · heart failure</div></div></div>
-      <div class="organ-card" id="org2"><div class="organ-icon">🫘</div><div><div class="organ-name">Kidneys</div><div class="organ-risk">Chronic kidney disease</div></div></div>
-      <div class="organ-card" id="org3"><div class="organ-icon">👁️</div><div><div class="organ-name">Eyes</div><div class="organ-risk">Vessel damage (retinopathy)</div></div></div>
+    <!-- SLIDE 5: RESEARCH FINDINGS -->
+    <div class="slide">
+      <h2 class="slide-title">What the Research Shows</h2>
+      
+      <div class="research-grid">
+        <div class="research-card">
+          <h4>Blood Pressure Reduction</h4>
+          <div class="research-finding">10 mmHg reduction</div>
+          <p class="research-desc">Reduces risk of heart disease by 20% and stroke by 27%</p>
+          <div class="research-source">Lancet • 2016 meta-analysis</div>
+        </div>
+        
+        <div class="research-card">
+          <h4>Lifestyle Interventions</h4>
+          <div class="research-finding">5-10 mmHg drop</div>
+          <p class="research-desc">Weight loss and salt reduction alone can achieve significant reductions</p>
+          <div class="research-source">Cochrane Review • 2020</div>
+        </div>
+        
+        <div class="research-card">
+          <h4>SPRINT Trial</h4>
+          <div class="research-finding">25% reduction</div>
+          <p class="research-desc">Lower BP targets (120 vs 140) reduced cardiovascular events</p>
+          <div class="research-source">NEJM • 2015</div>
+        </div>
+        
+        <div class="research-card">
+          <h4>24-Hour Monitoring</h4>
+          <div class="research-finding">Better outcomes</div>
+          <p class="research-desc">Ambulatory monitoring more accurate than clinic readings</p>
+          <div class="research-source">BMJ • 2019</div>
+        </div>
+      </div>
     </div>
-    <div style="background:rgba(232,99,74,0.09);border:1px solid rgba(232,99,74,0.22);border-radius:9px;padding:0.75rem 1rem;width:100%;text-align:center;">
-      <div style="font-size:0.95rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--coral);margin-bottom:0.18rem;">The silent condition</div>
-      <div style="font-size:0.93rem;color:rgba(255,255,255,0.55);">No pain. No warning signs. Damage accumulates over years.</div>
-    </div>
-    <div class="stats-grid">
-      <div class="stat-card"><div class="stat-num" style="color:#fff;font-size:2.4rem;">1 in 3</div><div class="stat-label">UK adults overall</div></div>
-      <div class="stat-card"><div class="stat-num" style="color:var(--amber);font-size:2.4rem;">6 in 10</div><div class="stat-label">adults over 65</div></div>
-    </div>
-  `,
 
-  s4: ()=>`
-    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:11px;padding:0.85rem 1.1rem;width:100%;">
-      <div style="font-size:0.93rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);margin-bottom:0.4rem;">Step 1 — Confirm diagnosis</div>
-      <div style="font-size:0.98rem;color:rgba(255,255,255,0.75);line-height:1.5;"><strong style="color:#fff;">24-hour Ambulatory BP Monitor (ABPM)</strong> — worn at home. Much more accurate than a single clinic reading.</div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:0.7rem;width:100%;">
-      <div class="drug-card" id="dc0"><div class="drug-dot" style="background:var(--coral);"></div><div><div class="drug-name">ACE inhibitors / ARBs</div><div class="drug-action">Relax blood vessels · e.g. ramipril, losartan</div></div></div>
-      <div class="drug-card" id="dc1"><div class="drug-dot" style="background:var(--amber);"></div><div><div class="drug-name">Calcium channel blockers</div><div class="drug-action">Widen blood vessels · e.g. amlodipine</div></div></div>
-      <div class="drug-card" id="dc2"><div class="drug-dot" style="background:var(--sage);"></div><div><div class="drug-name">Thiazide-like diuretics</div><div class="drug-action">Reduce fluid volume · e.g. indapamide</div></div></div>
-    </div>
-    <div class="stats-grid">
-      <div class="stat-card"><div style="font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.70);margin-bottom:0.25rem;">Under 80</div><div class="stat-num" style="font-size:1.9rem;color:var(--sage);">&lt;140/90</div><div class="stat-label" style="font-size:0.95rem;">clinic target</div></div>
-      <div class="stat-card"><div style="font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.70);margin-bottom:0.25rem;">Over 80</div><div class="stat-num" style="font-size:1.9rem;color:var(--amber);">&lt;150/90</div><div class="stat-label" style="font-size:0.95rem;">clinic target · NICE NG136</div></div>
-    </div>
-  `,
+    <!-- SLIDE 6: CLOSING -->
+    <div class="slide">
+      <div class="logo-container">
+        <div class="logo-dot"></div>
+        <div class="logo-text">helf.school</div>
+      </div>
 
-  s5: ()=>`
-    <div style="background:rgba(27,42,74,0.5);border:1px solid rgba(255,255,255,0.1);border-radius:13px;padding:1.1rem 1.4rem;width:100%;text-align:center;">
-      <div style="font-size:0.93rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.70);margin-bottom:0.4rem;">The Lancet · 2021 · 340,000+ participants · 48 randomised trials</div>
-      <div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:600;color:#fff;line-height:1.4;">A <span style="color:var(--coral);">5 mmHg</span> reduction in systolic blood pressure cuts the risk of major cardiovascular events by</div>
-      <div style="font-family:'Fraunces',serif;font-size:3.2rem;font-weight:700;color:var(--sage);line-height:1;margin-top:0.3rem;">~10%</div>
+      <h2 class="slide-title">Key Takeaways</h2>
+      
+      <div style="max-width: 700px; text-align: left; margin: 2rem 0;">
+        <p style="font-size: 0.95rem; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 1rem;">
+          • Hypertension affects 1 in 4 UK adults — half don't know they have it
+        </p>
+        <p style="font-size: 0.95rem; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 1rem;">
+          • Often symptomless until serious complications develop
+        </p>
+        <p style="font-size: 0.95rem; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 1rem;">
+          • Lifestyle changes can achieve significant blood pressure reductions
+        </p>
+        <p style="font-size: 0.95rem; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 1rem;">
+          • Effective medications available with proven cardiovascular benefits
+        </p>
+      </div>
+      
+      <div class="tagline">HEALTH EDUCATION</div>
+      <div class="article-label">Next: Cholesterol — Article 02</div>
     </div>
-    <div style="width:100%;padding:0.25rem 0;">
-      <div style="font-size:0.93rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.70);margin-bottom:0.35rem;">Baseline risk</div>
-      <div class="risk-bar-track"><div class="risk-bar-fill" id="rbb" style="width:0%;background:rgba(232,99,74,0.55);color:rgba(255,255,255,0.7);">Baseline</div></div>
-      <div style="font-size:0.93rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.70);margin-bottom:0.35rem;">With 5 mmHg reduction</div>
-      <div class="risk-bar-track"><div class="risk-bar-fill" id="rbr" style="width:0%;background:rgba(122,158,135,0.75);color:rgba(255,255,255,0.8);">~10% lower</div></div>
-    </div>
-    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:0.75rem 1rem;width:100%;font-size:1.05rem;color:rgba(255,255,255,0.80);line-height:1.55;">
-      Cochrane 2025 · 16 trials · 27,000 older adults:<br>
-      BP medication reduces <strong style="color:rgba(255,255,255,0.7);">risk of death, stroke and heart attack</strong> — moderate to high certainty evidence
-    </div>
-  `,
+  </div>
 
-  s6: ()=>`
-    <div style="display:flex;flex-direction:column;gap:0.8rem;width:100%;">
-      <div class="action-card" id="ac0"><div class="action-icon">🩺</div><div><div class="action-title">Get your blood pressure checked</div><div class="action-desc">Every 5 years if over 40. At your GP surgery, pharmacy, or with a home monitor.</div></div></div>
-      <div class="action-card" id="ac1"><div class="action-icon">💊</div><div><div class="action-title">Take your medication</div><div class="action-desc">Even when you can't feel it working. The protection is real and ongoing.</div></div></div>
-      <div class="action-card" id="ac2"><div class="action-icon">🥗</div><div><div class="action-title">Lifestyle changes work</div><div class="action-desc">Salt reduction · weight loss · aerobic exercise · less alcohol. Each has measurable effect.</div></div></div>
-    </div>
-    <div style="background:rgba(232,99,74,0.07);border:1px solid rgba(232,99,74,0.18);border-radius:9px;padding:0.7rem 1rem;width:100%;text-align:center;">
-      <div style="font-size:0.98rem;color:rgba(255,255,255,0.75);">Full article + all research references at</div>
-      <div style="font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--coral);">helf.school</div>
-    </div>
-  `,
+  <div class="nav-hint">← → to navigate</div>
 
-  s7: ()=>`
-    <div class="end-logo">helf.school</div>
-    <div class="end-tagline">Evidence-based health education for everyone</div>
-    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:13px;padding:1.1rem 1.4rem;margin-bottom:1rem;width:100%;">
-      <div style="font-family:'Fraunces',serif;font-size:0.95rem;font-weight:600;color:#fff;text-align:center;line-height:1.55;">"The best protection you have is simply <span style="color:var(--coral);">knowing your numbers.</span>"</div>
-    </div>
-    <div style="font-size:0.93rem;color:rgba(255,255,255,0.70);margin-bottom:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-align:center;">Cardiovascular Series — all free on helf.school</div>
-    <div class="end-series">
-      <div class="end-pill active">01 · Hypertension</div>
-      <div class="end-pill">02 · Cholesterol</div>
-      <div class="end-pill">03 · Heart Attack Risk</div>
-      <div class="end-pill">04 · Statins</div>
-      <div class="end-pill">05 · Lifestyle Changes</div>
-      <div class="end-pill">06 · Salt</div>
-      <div class="end-pill">07 · Supplements</div>
-    </div>
-    <div style="font-size:0.93rem;color:rgba(255,255,255,0.18);text-align:center;margin-top:0.75rem;">Health education only — not medical advice · Always speak to your own doctor</div>
-  `,
-};
-const visualKeys=slides.map(s=>s.visual);
-const slideTypes=slides.map(s=>s.type);
-const slideTitles=['Introduction', 'The Silent Condition', 'What is High Blood Pressure?', 'Why Does It Matter?', 'What Your Doctor Will Do', 'What the Research Shows', 'What You Can Do', 'Sign-off'];
-let current=0;
-function renderSlide(idx){
-  document.getElementById('visualContent').innerHTML=visuals[visualKeys[idx]]();
-  document.getElementById('slideNum').textContent=idx+1;
-  document.getElementById('progressFill').style.width=((idx+1)/TOTAL*100)+'%';
-  document.getElementById('prevBtn').disabled=idx===0;
-  document.getElementById('nextBtn').textContent=idx===TOTAL-1?'✓ Done':'Next →';
-  const b=document.getElementById('typeBadge');
-  b.className='slide-type-badge '+badgeCls[slideTypes[idx]];
-  b.textContent=badgeLbl[slideTypes[idx]];
-  document.querySelectorAll('.nav-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
-}
-function navigate(dir){const n=current+dir;if(n<0||n>=TOTAL)return;current=n;renderSlide(n);}
-const de=document.getElementById('navDots');
-slideTitles.forEach((t,i)=>{const d=document.createElement('div');d.className='nav-dot'+(i===0?' active':'');d.title=t;d.onclick=()=>{current=i;renderSlide(i);};de.appendChild(d);});
-document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')navigate(1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')navigate(-1);});
-renderSlide(0);
-</script>
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    
+    document.getElementById('total-slides').textContent = totalSlides;
+
+    function showSlide(n) {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (n + totalSlides) % totalSlides;
+      slides[currentSlide].classList.add('active');
+      document.getElementById('current-slide').textContent = currentSlide + 1;
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        showSlide(currentSlide + 1);
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        showSlide(currentSlide - 1);
+      }
+    });
+
+    // Auto-start animation for treatment steps when slide becomes active
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+          const target = mutation.target;
+          if (target.classList.contains('active')) {
+            const steps = target.querySelectorAll('.treatment-step');
+            steps.forEach((step, index) => {
+              step.style.animationDelay = `${0.2 + index * 0.2}s`;
+            });
+          }
+        }
+      });
+    });
+
+    slides.forEach(slide => {
+      observer.observe(slide, { attributes: true });
+    });
+  </script>
 </body>
 </html>
