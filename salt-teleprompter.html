@@ -6,102 +6,114 @@
   <title>Salt and Blood Pressure — Teleprompter | helf.school</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
   <style>
-    :root { --bg:#000; --text:#fff; --highlight:#C8423A; }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html,body{width:100%;height:100%;background:var(--bg);font-family:'DM Sans',sans-serif;overflow:hidden;touch-action:none}
-    .controls{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.90);border-bottom:1px solid rgba(255,255,255,.10);height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 1rem;gap:.5rem}
-    .ctrl-left{display:flex;align-items:center;gap:.75rem} .ctrl-right{display:flex;align-items:center;gap:.5rem}
-    .ctrl-btn{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.20);color:#fff;font-size:.8rem;font-weight:600;padding:.35rem .85rem;border-radius:7px;cursor:pointer;transition:background .15s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
-    .ctrl-btn:hover,.ctrl-btn:active{background:rgba(255,255,255,.22)} .ctrl-btn.active{background:var(--highlight);border-color:var(--highlight)}
-    .speed-wrap,.font-wrap{display:flex;align-items:center;gap:.4rem}
-    .speed-label,.font-label{font-size:.72rem;color:rgba(255,255,255,.55);white-space:nowrap}
-    .speed-btn,.font-btn{width:28px;height:28px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:.9rem;font-weight:700;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
-    .speed-btn:active,.font-btn:active{background:rgba(255,255,255,.25)}
-    .speed-val{font-size:.8rem;font-weight:600;color:var(--highlight);min-width:18px;text-align:center}
-    .seg-indicator{font-size:.72rem;color:rgba(255,255,255,.45);white-space:nowrap} .seg-indicator span{color:var(--highlight);font-weight:600}
-    .scroll-outer{position:fixed;top:52px;bottom:56px;left:0;right:0;overflow:hidden}
-    .scroll-outer::before,.scroll-outer::after{content:'';position:absolute;left:0;right:0;z-index:10;pointer-events:none}
-    .scroll-outer::before{top:0;height:80px;background:linear-gradient(to bottom,#000 0%,transparent 100%)}
-    .scroll-outer::after{bottom:0;height:80px;background:linear-gradient(to top,#000 0%,transparent 100%)}
-    .reading-line{position:absolute;top:50%;left:0;right:0;height:2px;background:rgba(212,124,58,.35);z-index:9;pointer-events:none}
-    .scroll-inner{padding:50vh 2rem 50vh;will-change:transform}
-    .segment{margin-bottom:3.5rem}
-    .seg-header{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid rgba(255,255,255,.10)}
-    .seg-badge{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .55rem;border-radius:100px}
-    .sb-opening{background:rgba(212,124,58,.25);color:var(--highlight)} .sb-section{background:rgba(255,255,255,.10);color:rgba(255,255,255,.70)}
-    .sb-cta{background:rgba(122,158,135,.25);color:#7A9E87} .sb-closing{background:rgba(232,168,74,.25);color:#E8A84A}
-    .seg-name{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.45)} .seg-time{font-size:.68rem;color:rgba(255,255,255,.30);margin-left:auto}
-    .seg-heading{font-size:1rem;font-weight:600;color:rgba(255,255,255,.40);margin-bottom:.85rem;letter-spacing:.02em}
-    .script-line{font-size:1.9rem;line-height:1.75;color:#fff;font-weight:400;margin-bottom:.9rem;padding:.25rem 0}
-    .script-line strong{color:var(--highlight);font-weight:600} .script-line em{font-style:italic;color:rgba(255,255,255,.80)}
-    .pause-marker{display:inline-flex;align-items:center;gap:.4rem;background:rgba(212,124,58,.15);border:1px solid rgba(212,124,58,.35);color:var(--highlight);font-size:.85rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .9rem;border-radius:100px;margin:.3rem 0}
-    .visual-cue{display:flex;align-items:center;gap:.6rem;background:rgba(232,99,74,.12);border:2px solid rgba(232,99,74,.50);border-radius:10px;padding:.55rem 1rem;margin:.5rem 0}
-    .visual-cue-icon{font-size:1.1rem;flex-shrink:0} .visual-cue-text{font-size:.95rem;font-weight:700;color:#fff;line-height:1.4} .visual-cue-text span{color:#E8634A}
-    .bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.90);border-top:1px solid rgba(255,255,255,.10);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 1rem;gap:.5rem}
-    .nav-btn{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:.82rem;font-weight:600;padding:.4rem 1rem;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s}
-    .nav-btn:active{background:rgba(255,255,255,.25)} .nav-btn.primary{background:var(--highlight);border-color:var(--highlight)} .nav-btn.primary:active{background:#C06A2A}
-    .progress-dots{display:flex;gap:.35rem}
-    .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18);cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent} .dot.active{background:var(--highlight);transform:scale(1.4)}
+    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--bg:#0d0d0d;--text:#f0f0f0}
+    *{box-sizing:border-box;margin:0;padding:0}html,body{height:100%;overflow:hidden;background:var(--bg)}
+    #topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--navy);border-bottom:2px solid var(--amber);padding:.45rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem}
+    #topbar-title{font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;color:rgba(255,255,255,.85)}
+    #controls{display:flex;align-items:center;gap:.4rem;flex-shrink:0}
+    .ctrl-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:.72rem;font-weight:700;padding:.2rem .5rem;border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s}
+    .ctrl-btn:hover{background:rgba(255,255,255,.2)}
+    .ctrl-label{font-size:.65rem;color:rgba(255,255,255,.5);font-family:'DM Sans',sans-serif}
+    #speed-display{font-size:.72rem;font-weight:700;color:var(--amber);min-width:14px;text-align:center;font-family:'DM Sans',sans-serif}
+    #play-btn{background:var(--amber);border:none;color:var(--navy);font-size:.72rem;font-weight:700;padding:.25rem .7rem;border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.04em}
+    #play-btn:hover{filter:brightness(1.1)}
+    #seg-dots{position:fixed;right:.6rem;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:.4rem}
+    .seg-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);cursor:pointer;transition:background .2s}
+    .seg-dot.active{background:var(--amber);border-color:var(--amber)}
+    .seg-dot:hover{background:rgba(255,255,255,.45)}
+    #scroll-wrap{position:fixed;top:44px;bottom:0;left:0;right:0;overflow:hidden}
+    #scroll-content{padding:60vh 4rem 60vh;max-width:840px;margin:0 auto;will-change:transform}
+    #focus-line{position:fixed;top:50%;left:0;right:0;height:2px;background:rgba(232,168,74,.2);pointer-events:none;z-index:50}
+    #focus-top{position:fixed;top:44px;left:0;right:0;height:34%;background:linear-gradient(to bottom,var(--bg) 0%,transparent 100%);pointer-events:none;z-index:50}
+    #focus-bottom{position:fixed;bottom:0;left:0;right:0;height:34%;background:linear-gradient(to top,var(--bg) 0%,transparent 100%);pointer-events:none;z-index:50}
+    .seg-label{font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:1.4rem;margin-top:5rem;padding-bottom:.4rem;border-bottom:1px solid rgba(232,168,74,.25)}
+    .seg-label:first-child{margin-top:0}
+    .line{font-family:'DM Sans',sans-serif;font-size:1.9rem;line-height:1.8;color:var(--text);font-weight:400;margin-bottom:1.5rem}
+    .line strong{font-weight:700;color:#fff}
+    .line em{color:var(--amber);font-style:normal;font-weight:600}
+    .pause{display:inline-block;background:rgba(232,99,74,.15);border:1px solid rgba(232,99,74,.35);color:var(--coral);font-size:1.1rem;font-weight:700;padding:.1rem .45rem;border-radius:4px;margin:0 .3rem;vertical-align:middle;letter-spacing:.04em}
+    .cue-box{background:rgba(232,168,74,.06);border:2px solid var(--amber);border-radius:10px;padding:.9rem 1.2rem;margin:2rem 0 4rem;font-family:'DM Sans',sans-serif}
+    .cue-label{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:.4rem}
+    .cue-text{font-size:1.1rem;font-weight:600;color:#fff;line-height:1.55}
+    .cue-text span{color:var(--amber)}
   </style>
 </head>
 <body>
-<div class="controls">
-  <div class="ctrl-left">
-    <button class="ctrl-btn" id="playBtn" onclick="togglePlay()">▶ Play</button>
-    <button class="ctrl-btn" onclick="resetScroll()">↺ Reset</button>
-    <div class="speed-wrap"><div class="speed-label">Speed</div><div class="speed-btn" onclick="changeSpeed(-1)">−</div><div class="speed-val" id="speedVal">1</div><div class="speed-btn" onclick="changeSpeed(1)">+</div></div>
-    <div class="font-wrap"><div class="font-label">Size</div><div class="font-btn" onclick="changeFont(-2)">A−</div><div class="font-btn" onclick="changeFont(2)">A+</div></div>
+<div id="topbar">
+  <div id="topbar-title">Salt and Blood Pressure · Cardiovascular · Article 06</div>
+  <div id="controls">
+    <span class="ctrl-label">SPEED</span>
+    <button class="ctrl-btn" onclick="changeSpeed(-1)">−</button>
+    <span id="speed-display">3</span>
+    <button class="ctrl-btn" onclick="changeSpeed(1)">+</button>
+    <span class="ctrl-label" style="margin-left:.4rem">FONT</span>
+    <button class="ctrl-btn" onclick="changeFont(-1)">A−</button>
+    <button class="ctrl-btn" onclick="changeFont(1)">A+</button>
+    <button id="play-btn" onclick="togglePlay()">▶ PLAY</button>
   </div>
-  <div class="ctrl-right"><div class="seg-indicator">Segment <span id="segDisplay">1</span> of 9</div></div>
 </div>
-<div class="scroll-outer"><div class="reading-line"></div><div class="scroll-inner" id="scrollInner"></div></div>
-<div class="bottom-nav">
-  <button class="nav-btn" id="prevBtn" onclick="jumpSeg(-1)" disabled>← Back</button>
-  <div class="progress-dots" id="dots"></div>
-  <button class="nav-btn primary" id="nextBtn" onclick="jumpSeg(1)">Next →</button>
+<div id="seg-dots">
+  <div class="seg-dot active" onclick="jumpToSeg(0)"></div>
+  <div class="seg-dot" onclick="jumpToSeg(1)"></div>
+  <div class="seg-dot" onclick="jumpToSeg(2)"></div>
+  <div class="seg-dot" onclick="jumpToSeg(3)"></div>
+  <div class="seg-dot" onclick="jumpToSeg(4)"></div>
+  <div class="seg-dot" onclick="jumpToSeg(5)"></div>
 </div>
+<div id="focus-top"></div><div id="focus-line"></div><div id="focus-bottom"></div>
+<div id="scroll-wrap"><div id="scroll-content">
+
+  <div class="seg-label" data-seg="0">Segment 0 — Introduction</div>
+  <p class="line">"I'm Dr Paul — I spent <strong>over twenty years as an NHS GP</strong> before I retired in 2019. Today I want to talk about <strong>salt and blood pressure</strong> — one of the most important and least understood relationships in all of nutritional science."</p>
+  <p class="line">"Health education, not medical advice. Take anything relevant to your own doctor. <em>Let's get into it.</em>"</p>
+  <div class="cue-box"><div class="cue-label">⬛ Coming Up — Advance Visuals Now</div><div class="cue-text">Screen 1: <span>Intro title slide</span> · Cardiovascular Series · Article 06</div></div>
+
+  <div class="seg-label" data-seg="1">Segment 1 — What is it?</div>
+  <p class="line">"Salt is something most of us barely think about. It arrives in our food invisibly — in bread, breakfast cereals, soups, sauces, ready meals — <strong>long before we ever reach for the shaker</strong>."</p>
+  <p class="line">"The relationship between salt and blood pressure is <strong>one of the most studied, most replicated, and most clinically important findings in nutritional science</strong>. The evidence is not disputed. Eating less salt lowers blood pressure. Lower blood pressure means lower risk of heart attack, stroke, and premature death." <span class="pause">PAUSE</span></p>
+  <p class="line">"Here's the most important and least understood fact about salt: <strong>75% of the salt we eat is already in our food</strong>. Before we cook. Before we add anything. The shaker on the table accounts for only about 25%. The biggest gains come not from putting the shaker away — but from choosing <em>less processed food</em> more often."</p>
+  <div class="cue-box"><div class="cue-label">⬛ Coming Up — Advance Visuals Now</div><div class="cue-text">Screen 2: <span>75% stat card</span> · salt sources donut chart</div></div>
+
+  <div class="seg-label" data-seg="2">Segment 2 — Why does it matter?</div>
+  <p class="line">"Most people in the UK consume around <strong>8–9 grams of salt per day</strong> — well above the NICE and NHS recommended maximum of <strong>6 grams</strong>. That's roughly one teaspoon — including all the salt already present in food, not just what's added at the table."</p>
+  <p class="line">"When there is too much sodium in the blood, the body retains water to dilute it — increasing the <strong>volume of blood in circulation</strong>, and with it, the pressure on artery walls. That's the mechanism. It's direct, it's well understood, and it's consistent across populations." <span class="pause">PAUSE</span></p>
+  <p class="line">"The DASH-Sodium trial found that reducing sodium intake produced reductions in systolic blood pressure of <strong>8–14 mmHg</strong> in people with hypertension. That's comparable to the effect of a <strong>single antihypertensive medication</strong>. From diet alone."</p>
+  <div class="cue-box"><div class="cue-label">⬛ Coming Up — Advance Visuals Now</div><div class="cue-text">Screen 3: <span>Blood pressure stat card</span> · 8–14 mmHg reduction · DASH-Sodium</div></div>
+
+  <div class="seg-label" data-seg="3">Segment 3 — What your doctor will do</div>
+  <p class="line">"When a GP sees raised blood pressure, salt reduction is <strong>first-line lifestyle advice</strong> — recommended by NICE guideline NG136 for everyone with hypertension, alongside medication where needed."</p>
+  <p class="line">"Practical advice: reduce processed and packaged food — the main source of hidden salt. Check labels. <strong>High salt</strong> means more than 1.5g per 100g — choose less often. Use herbs, spices, lemon, and pepper as flavour alternatives." <span class="pause">PAUSE</span></p>
+  <p class="line">"And potassium is the other side of the equation. Foods rich in potassium — bananas, sweet potatoes, spinach, beans, dairy — <strong>counteract sodium's effect on blood pressure</strong>. Increasing potassium is as important as reducing sodium."</p>
+  <div class="cue-box"><div class="cue-label">⬛ Coming Up — Advance Visuals Now</div><div class="cue-text">Screen 4: <span>Practical tips cards</span> · label reading guide · potassium foods</div></div>
+
+  <div class="seg-label" data-seg="4">Segment 4 — What the research shows</div>
+  <p class="line">"The INTERSALT study — comparing sodium intake and blood pressure across <strong>52 populations worldwide</strong> — found that populations with the lowest sodium intakes had significantly lower blood pressure. And crucially — far less of the <strong>age-related rise in blood pressure</strong> that we've come to treat as normal."</p>
+  <p class="line">"The Cochrane systematic review by He, Li, and MacGregor confirmed that modest, sustained salt reduction over four or more weeks produces consistent, significant blood pressure reductions in both hypertensive and normotensive individuals. The lower the salt intake achieved, the lower the blood pressure — within the range of 3 to 12 grams per day." <span class="pause">PAUSE</span></p>
+  <p class="line">"And on potassium — a WHO-commissioned BMJ meta-analysis found higher potassium intake was associated with a <strong>24% lower risk of stroke</strong>. No adverse effect on blood lipids or kidney function. The evidence is clear."</p>
+  <p class="line">"The UK salt reduction programme between 2003 and 2011 reduced average intake by 15%. During that period, stroke mortality fell by <strong>42%</strong> and ischaemic heart disease mortality by <strong>40%</strong>. Population-level change is possible — and it works." <span class="pause">PAUSE</span></p>
+  <div class="cue-box"><div class="cue-label">⬛ Coming Up — Advance Visuals Now</div><div class="cue-text">Screen 5: <span>Research cards</span> · INTERSALT · DASH-Sodium · Cochrane · UK programme · Potassium BMJ</div></div>
+
+  <div class="seg-label" data-seg="5">Segment 5 — Closing</div>
+  <p class="line">"The evidence on salt and blood pressure is among the most consistent in nutritional science. <strong>Reducing salt lowers blood pressure. Lower blood pressure reduces the risk of heart attack and stroke.</strong>"</p>
+  <p class="line">"And most of the salt we eat is already in our food. So the biggest gains come not from putting the shaker away — but from choosing <em>less processed food more often</em>. Small, sustained changes. The evidence says they add up to something clinically meaningful." <span class="pause">PAUSE</span></p>
+  <p class="line">"More on <strong>helf.school</strong>. Thanks for watching."</p>
+  <div class="cue-box"><div class="cue-label">⬛ Coming Up — Advance Visuals Now</div><div class="cue-text">Screen 6: <span>Closing slide</span> · helf.school · Health Education for Everyone</div></div>
+
+</div></div>
 <script>
-const TOTAL=9;
-const segments=[
-
-  { type:'opening', label:'Intro · Dr Paul', title:'Introduction', time:'~15 sec',
-    lines:[`"I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019."`,`"Today I want to talk to you about <strong>salt and blood pressure</strong>."`,`"Now, I do have to say upfront — what I'm giving you here is health education, not medical advice."`,`"If anything I talk about feels relevant to you personally, please do take it to your own doctor."`,`"Right — let's get into it."`,`<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 1: 75% stat card</span> · advance now</div></div>`,]},
-  { type:'opening', label:'Segment 1', title:'The Salt You Cannot See', time:'0:00–0:45',
-    lines:[`"If I asked you to cut down on salt, you'd probably think about the shaker on your table. But that shaker? It accounts for only about <strong>25% of the salt you actually eat</strong>."`,`<span class="pause-marker">⏸ PAUSE</span>`,`"The other <strong>75% is already in your food</strong> before you touch it. In the bread, the cheese, the ready meals, the bacon, the sauces. Salt you never measure, never add, and often never think about."`,`"That is the most important fact about dietary salt — and most people have no idea. In this video, I want to explain the relationship between salt and blood pressure, what the evidence says, and how meaningful reducing salt actually is."`,`"I'm Dr Paul — over twenty years as an NHS GP. Health education, not medical advice."`,`<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 2: Where salt comes from</span> · advance now</div></div>`,]},
-  { type:'section', label:'Segment 2', title:'Where Our Salt Comes From', time:'0:45–1:30',
-    lines:[`"Let's start with that 75% figure. The National Diet and Nutrition Survey — the most comprehensive assessment of what UK adults eat — consistently finds that the vast majority of dietary salt comes from processed and packaged foods."`,`"The biggest contributors are bread and cereals — around 20%. Meat products including bacon and processed meats — around 17%. Ready meals and soups — around 15%. Cheese and dairy — around 12%."`,`"These are foods most of us eat every single day — sometimes multiple times a day — without giving their salt content a second thought."`,`"Most people in the UK consume around <strong>8 to 9 grams of salt per day</strong>. The recommended maximum under NHS and NICE guidelines is <strong>6 grams</strong> — roughly one teaspoon, including all salt already in food."`,`"For many people, simply reducing intake to the recommended level — not removing salt, just reducing it — would have a meaningful and measurable effect on blood pressure."`,`<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 3: How salt raises blood pressure</span> · advance now</div></div>`,]},
-  { type:'section', label:'Segment 3', title:'How Salt Raises Blood Pressure', time:'1:30–2:10',
-    lines:[`"Salt is made up of sodium and chloride. It's the <strong>sodium component</strong> that affects blood pressure."`,`"When there's too much sodium in the blood, the body retains water to dilute it. This increases the volume of blood in circulation — and with it, the pressure on artery walls."`,`"Over time, this sustained elevation damages blood vessel walls, strains the heart, and accelerates atherosclerosis."`,`"The INTERSALT study — covering over 10,000 people across 52 centres worldwide — provided the foundational evidence that sodium intake and blood pressure are directly related at a population level. Higher sodium populations consistently have higher blood pressure."`,`"Importantly, the relationship is dose-dependent. The more sodium, the higher the pressure. And the more you reduce sodium, the more blood pressure falls."`,`<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 4: What the evidence shows</span> · advance now</div></div>`,]},
-  { type:'section', label:'Segment 4', title:'What the Evidence Shows', time:'2:10–3:00',
-    lines:[`"The most important trial on this is the <strong>DASH-Sodium trial</strong>, published in the New England Journal of Medicine in 2001."`,`"It found that reducing sodium intake to the recommended level — alongside the DASH dietary pattern — reduced systolic blood pressure by <strong>8 to 14 mmHg</strong> in people with hypertension. That's comparable to the effect of a single antihypertensive drug."`,`"A meta-analysis by He and MacGregor, published in the BMJ in 2003, estimated that a <strong>2 mmHg reduction in average systolic blood pressure</strong> across the population would prevent around <strong>12,000 strokes and 7,000 heart attacks per year</strong> in the UK. Salt reduction was identified as the single most effective public health intervention for achieving this."`,`"The UK salt reduction programme, tracked by He and colleagues in BMJ Open in 2014, showed that average salt intake fell from around 9.5g per day in 2001 to around 8.1g per day in 2011 — driven largely by reformulation of processed foods. Over the same period, average blood pressure fell measurably."`,`"Potassium — found in fruit, vegetables, and legumes — has a direct counterbalancing effect on sodium's impact on blood pressure. A meta-analysis in the BMJ in 2013 found that higher potassium intake was associated with a <strong>24% lower risk of stroke</strong>."`,`<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 5: What your doctor will discuss</span> · advance now</div></div>`,]},
-  { type:'section', label:'Segment 5', title:'What Your Doctor Will Discuss', time:'3:00–3:40',
-    lines:[`"If you have hypertension, your GP will almost certainly discuss salt as part of your management plan. Under NICE guideline NG136, salt reduction to under 6 grams per day is recommended as a first-line lifestyle intervention."`,`"They may also mention the <strong>DASH diet</strong> — a dietary pattern specifically designed and tested to lower blood pressure. It combines low sodium with high potassium, calcium, and magnesium. Rich in fruit, vegetables, low-fat dairy, whole grains, and lean protein."`,`"On food labels: sodium and salt are not the same. Labels often show sodium in milligrams. To convert to salt, multiply by 2.5. So 0.4g of sodium per 100g = 1g of salt per 100g. High salt means more than 1.5g per 100g. Low salt means less than 0.3g."`,`"Practical changes that make the biggest difference: switching to lower-salt bread, reducing processed meat, choosing lower-salt cheese, and cooking from scratch more often. The table shaker is the last thing to worry about."`,`<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 6: Evidence in brief</span> · advance now</div></div>`,]},
-  { type:'section', label:'Segment 6', title:'Evidence in Brief', time:'3:40–4:15',
-    lines:[`"To summarise the key evidence:"`,`"INTERSALT study — 10,000+ people, 52 centres worldwide — confirmed the population-level link between sodium intake and blood pressure."`,`"DASH-Sodium trial — NEJM 2001 — sodium reduction to recommended level reduced systolic BP by 8–14 mmHg, comparable to a blood pressure drug."`,`"He and MacGregor, BMJ 2003 — a 2 mmHg reduction in population-average blood pressure from salt reduction could prevent 12,000 strokes and 7,000 heart attacks per year in the UK."`,`"Aburto et al., BMJ 2013 — higher potassium intake associated with 24% lower stroke risk."`,`"The evidence is consistent, replicated across decades of research, and policy-relevant. Salt reduction works. And most of it doesn't require any willpower at the table — it requires awareness of what's in the food."`,`<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 7: What you can do</span> · advance now</div></div>`,]},
-  { type:'cta', label:'Segment 7', title:'What You Can Do', time:'4:15–4:50',
-    lines:[`"<strong>Check the labels</strong> on the foods you buy most regularly — bread, cereals, ready meals, cheese. Look for the salt figure per 100g. High is above 1.5g. Low is below 0.3g. Start there."`,`"<strong>Think about sources, not the shaker</strong>. The table shaker is not the problem. The bread you eat every day, the cereal in the morning, the cheese at lunch — those are where the big reductions come from."`,`"<strong>Add potassium</strong>. More fruit, vegetables, and legumes — potatoes, bananas, spinach, beans, lentils. Potassium directly counteracts sodium's effect on blood pressure."`,`"Full article with all evidence at <strong>helf.school</strong>."`,`<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">COMING UP — <span>Screen 8: Closing card</span> · advance now</div></div>`,]},
-  { type:'closing', label:'Segment 8', title:'Sign-off', time:'4:50–5:10',
-    lines:[`"The link between salt and blood pressure is one of the most well-evidenced relationships in nutritional science. The mechanism is understood. The trials have been done. And the public health implication is clear."`,`"Most of the salt you eat isn't in your hands to control at the table. But knowing where it comes from — and making even a few consistent changes to the foods you buy — can make a measurable difference to your blood pressure and your long-term cardiovascular risk."`,`<span class="pause-marker">⏸ PAUSE</span>`,`"Thanks for watching. helf.school — take care of yourself."`,]},
-
-];
-let playing=false,speed=1,fontSize=1.9,rafId=null,scrollY=0,lastTime=null,currentSeg=0;
-const PX_PER_SEC_BASE=20;
-function build(){const inner=document.getElementById('scrollInner');const bc={opening:'sb-opening',section:'sb-section',cta:'sb-cta',closing:'sb-closing'};const bl={opening:'Opening',section:'Section',cta:'Call to Action',closing:'Closing'};let html='';segments.forEach((s,i)=>{html+=`<div class="segment" id="seg${i}"><div class="seg-header"><span class="seg-badge ${bc[s.type]}">${bl[s.type]}</span><span class="seg-name">${s.label}</span><span class="seg-time">${s.time}</span></div><div class="seg-heading">${s.title}</div>`;s.lines.forEach(l=>{if(l.startsWith('<span class="pause-marker"')||l.startsWith('<div class="visual-cue"')){html+=`<div style="margin:.4rem 0;">${l}</div>`;}else{html+=`<div class="script-line">${l}</div>`;}}); html+=`</div>`;}); inner.innerHTML=html;const de=document.getElementById('dots');segments.forEach((s,i)=>{const d=document.createElement('div');d.className='dot'+(i===0?' active':'');d.title=s.title;d.onclick=()=>jumpToSeg(i);de.appendChild(d);});}
-function getOuter(){return document.querySelector('.scroll-outer');}
-function getInner(){return document.getElementById('scrollInner');}
-function togglePlay(){playing=!playing;const btn=document.getElementById('playBtn');if(playing){btn.textContent='⏸ Pause';btn.classList.add('active');lastTime=null;rafId=requestAnimationFrame(tick);}else{btn.textContent='▶ Play';btn.classList.remove('active');if(rafId)cancelAnimationFrame(rafId);}}
-function tick(ts){if(!lastTime)lastTime=ts;const dt=(ts-lastTime)/1000;lastTime=ts;scrollY+=PX_PER_SEC_BASE*speed*dt;applyScroll();updateSegIndicator();if(playing)rafId=requestAnimationFrame(tick);}
-function applyScroll(){const inner=getInner();const max=inner.scrollHeight-window.innerHeight;scrollY=Math.min(Math.max(scrollY,0),max);inner.style.transform=`translateY(${-scrollY}px)`;}
-function resetScroll(){if(playing)togglePlay();scrollY=0;applyScroll();currentSeg=0;updateDots();document.getElementById('segDisplay').textContent='1';document.getElementById('prevBtn').disabled=true;document.getElementById('nextBtn').textContent='Next →';}
-function changeSpeed(dir){speed=Math.min(Math.max(speed+dir,1),6);document.getElementById('speedVal').textContent=speed;}
-function changeFont(dir){fontSize=Math.min(Math.max(fontSize+dir*0.1,1.0),2.8);document.querySelectorAll('.script-line').forEach(el=>{el.style.fontSize=fontSize+'rem';});}
-function getSegTop(i){const el=document.getElementById('seg'+i);if(!el)return 0;const h=getOuter().clientHeight;return el.offsetTop-h*0.5+60;}
-function jumpToSeg(i){if(playing)togglePlay();currentSeg=Math.min(Math.max(i,0),segments.length-1);scrollY=Math.max(getSegTop(currentSeg),0);applyScroll();updateDots();updateSegIndicator();document.getElementById('prevBtn').disabled=currentSeg===0;document.getElementById('nextBtn').textContent=currentSeg===segments.length-1?'✓ Done':'Next →';}
-function jumpSeg(dir){jumpToSeg(currentSeg+dir);}
-function updateSegIndicator(){const midY=scrollY+getOuter().clientHeight*0.5;for(let i=segments.length-1;i>=0;i--){const el=document.getElementById('seg'+i);if(el&&el.offsetTop<=midY+40){if(currentSeg!==i){currentSeg=i;updateDots();document.getElementById('segDisplay').textContent=i+1;document.getElementById('prevBtn').disabled=i===0;document.getElementById('nextBtn').textContent=i===segments.length-1?'✓ Done':'Next →';}break;}}}
-function updateDots(){document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===currentSeg));document.getElementById('segDisplay').textContent=currentSeg+1;}
-let touchStartY=0,touchScrollY=0;
-document.querySelector('.scroll-outer').addEventListener('touchstart',e=>{if(playing)return;touchStartY=e.touches[0].clientY;touchScrollY=scrollY;},{passive:true});
-document.querySelector('.scroll-outer').addEventListener('touchmove',e=>{if(playing)return;scrollY=touchScrollY+(touchStartY-e.touches[0].clientY);applyScroll();updateSegIndicator();},{passive:true});
-build();applyScroll();
-</script></body></html>
+  const SPEED_LEVELS=[8,14,20,28,38,52];let speedIndex=2,baseFontSize=1.9,playing=false,rafId=null,lastTime=null,scrollY=0;
+  const content=document.getElementById('scroll-content'),playBtn=document.getElementById('play-btn'),speedDisplay=document.getElementById('speed-display'),dots=document.querySelectorAll('.seg-dot'),segLabels=document.querySelectorAll('.seg-label');
+  function setTranslate(y){content.style.transform=`translateY(${-y}px)`}
+  function togglePlay(){playing=!playing;playBtn.textContent=playing?'⏸ PAUSE':'▶ PLAY';if(playing){lastTime=null;rafId=requestAnimationFrame(tick)}else{cancelAnimationFrame(rafId)}}
+  function tick(ts){if(!playing)return;if(lastTime===null)lastTime=ts;const dt=(ts-lastTime)/1000;lastTime=ts;scrollY+=SPEED_LEVELS[speedIndex]*dt;const max=content.scrollHeight-window.innerHeight+44;if(scrollY>=max){scrollY=max;togglePlay()}setTranslate(scrollY);updateDots();rafId=requestAnimationFrame(tick)}
+  function changeSpeed(dir){speedIndex=Math.max(0,Math.min(5,speedIndex+dir));speedDisplay.textContent=speedIndex+1}
+  function changeFont(dir){baseFontSize=Math.max(1.2,Math.min(2.8,baseFontSize+dir*0.1));document.querySelectorAll('.line').forEach(el=>el.style.fontSize=baseFontSize+'rem')}
+  function jumpToSeg(idx){const label=segLabels[idx];if(!label)return;const contentTop=content.getBoundingClientRect().top;const labelOffset=label.getBoundingClientRect().top-contentTop+scrollY;scrollY=Math.max(0,labelOffset-window.innerHeight*0.5+44);setTranslate(scrollY);updateDots()}
+  function updateDots(){const mid=window.innerHeight*0.5;let active=0;segLabels.forEach((label,i)=>{if(label.getBoundingClientRect().top<=mid)active=i});dots.forEach((d,i)=>d.classList.toggle('active',i===active))}
+  let touchStartY=0,touchScrollStart=0;
+  document.addEventListener('touchstart',e=>{touchStartY=e.touches[0].clientY;touchScrollStart=scrollY;if(playing)togglePlay()},{passive:true});
+  document.addEventListener('touchmove',e=>{scrollY=Math.max(0,touchScrollStart+(touchStartY-e.touches[0].clientY));setTranslate(scrollY);updateDots()},{passive:true});
+  document.addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();togglePlay()}if(e.code==='ArrowUp'){scrollY=Math.max(0,scrollY-80);setTranslate(scrollY)}if(e.code==='ArrowDown'){scrollY+=80;setTranslate(scrollY)}});
+  setTranslate(0);
+</script>
+</body></html>

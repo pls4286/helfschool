@@ -1,281 +1,154 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Salt and Blood Pressure — Presenter Deck — Visuals | helf.school</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--accent:#C8423A;}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'DM Sans',sans-serif;background:#0F1A2E;color:#fff;height:100vh;overflow:hidden;display:flex;flex-direction:column;}
-    .topbar{background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.08);padding:0 1.5rem;height:48px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
-    .topbar-sub{font-size:.75rem;color:rgba(255,255,255,.75);}
-    .slide-counter{font-size:.85rem;font-weight:600;color:rgba(255,255,255,.90);}
-    .progress-bar{height:3px;background:rgba(255,255,255,.08);flex-shrink:0;}
-    .progress-fill{height:100%;background:#C8423A;transition:width .35s ease;}
-    .visual-stage{flex:1;background:var(--navy);display:flex;align-items:center;justify-content:center;padding:0.6rem 0.75rem;position:relative;overflow:hidden;}
-    .visual-stage::before{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(200,66,58,.1) 0%,transparent 70%);pointer-events:none;}
-    .slide-type-badge{position:absolute;top:12px;right:12px;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .65rem;border-radius:100px;}
-    .badge-opening{background:rgba(232,99,74,.2);color:#E8634A;}
-    .badge-section{background:rgba(27,42,74,.6);color:rgba(255,255,255,.85);}
-    .badge-cta{background:rgba(122,158,135,.2);color:#7A9E87;}
-    .badge-closing{background:rgba(232,168,74,.2);color:#E8A84A;}
-    .visual-content{width:100%;max-height:100%;display:flex;align-items:center;justify-content:center;}
-    .bottom-nav{background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.07);padding:.5rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
-    .nav-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.75);font-size:.82rem;font-weight:500;padding:.45rem 1rem;border-radius:7px;cursor:pointer;transition:all .2s;}
-    .nav-btn:hover{background:rgba(255,255,255,.10);color:#fff;}
-    .nav-btn:disabled{opacity:.3;cursor:not-allowed;}
-    .nav-btn-primary{background:#C8423A;border-color:#C8423A;color:#fff;}
-    .nav-dots{display:flex;gap:.4rem;}
-    .nav-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.20);cursor:pointer;transition:all .2s;}
-    .nav-dot.active{background:#C8423A;transform:scale(1.3);}
-    .stat-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:1.25rem 1.5rem;text-align:center;width:100%;}
-    .stat-num{font-family:'Fraunces',serif;font-size:3.2rem;font-weight:700;line-height:1;margin-bottom:0.3rem;}
-    .stat-label{font-size:0.98rem;color:rgba(255,255,255,0.5);line-height:1.4;}
-    .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;width:100%;}
-    .stats-grid .stat-card .stat-num{font-size:2rem;}
-    .source-bar{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:0.6rem 0.85rem;width:100%;opacity:0;transform:translateX(-8px);transition:opacity 0.4s ease,transform 0.4s ease;}
-    .source-bar.visible{opacity:1;transform:translateX(0);}
-    .source-bar-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.3rem;}
-    .source-bar-name{font-size:0.93rem;font-weight:600;}
-    .source-bar-pct{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;}
-    .bar-track{height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;}
-    .bar-fill{height:100%;border-radius:3px;width:0%;transition:width 0.8s cubic-bezier(0.4,0,0.2,1);}
-    .action-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:11px;padding:0.9rem 1.1rem;display:flex;align-items:center;gap:0.85rem;opacity:0;transform:translateY(10px);transition:opacity 0.5s ease,transform 0.5s ease;width:100%;}
-    .action-card.visible{opacity:1;transform:translateY(0);}
-    .action-icon{font-size:1.6rem;flex-shrink:0;}
-    .action-title{font-size:1.00rem;font-weight:600;}
-    .action-desc{font-size:1.00rem;color:rgba(255,255,255,0.80);margin-top:0.1rem;line-height:1.4;}
-    .end-logo{font-family:'Fraunces',serif;font-size:2.8rem;font-weight:700;color:var(--coral);margin-bottom:0.2rem;text-align:center;}
-    .end-tagline{font-size:0.93rem;color:rgba(255,255,255,0.75);text-align:center;margin-bottom:1.25rem;}
-    .end-series{display:flex;flex-wrap:wrap;gap:0.35rem;justify-content:center;}
-    .end-pill{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);font-size:0.98rem;padding:0.18rem 0.65rem;border-radius:100px;}
-    .end-pill.active{background:rgba(232,168,74,0.2);border-color:var(--amber);color:var(--amber);}
+-items:center;justify-content:center;min-height:70vh;text-align:center;gap:1.5rem}
+    .intro-badge{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);background:rgba(232,168,74,.12);border:1px solid rgba(232,168,74,.3);padding:.3rem .85rem;border-radius:100px}
+    .intro-title{font-family:'Fraunces',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#fff;line-height:1.15;max-width:800px}
+    .intro-title span{color:var(--amber)}
+    .intro-tagline{font-size:1rem;color:rgba(255,255,255,.70);font-style:italic;font-family:'Fraunces',serif}
+    .stat-row{display:flex;gap:1.25rem;flex-wrap:wrap}
+    .stat-card{flex:1;min-width:180px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:1.3rem 1.5rem;text-align:center}
+    .stat-card.hl{background:rgba(232,168,74,.1);border-color:rgba(232,168,74,.35)}
+    .stat-num{font-family:'Fraunces',serif;font-size:3.2rem;font-weight:700;color:var(--amber);line-height:1}
+    .stat-label{font-size:.95rem;color:rgba(255,255,255,.90);margin-top:.5rem;font-weight:600;line-height:1.4}
+    .stat-source{font-size:.75rem;color:rgba(255,255,255,.65);margin-top:.4rem}
+    .r-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-left:4px solid var(--amber);border-radius:0 12px 12px 0;padding:1rem 1.3rem;margin-bottom:.85rem}
+    .r-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:var(--amber);margin-bottom:.3rem}
+    .r-finding{font-size:.93rem;color:rgba(255,255,255,.80);line-height:1.6}
+    .r-source{font-size:.78rem;color:rgba(255,255,255,.70);margin-top:.3rem;font-style:italic}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+    .info-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1.2rem 1.4rem}
+    .info-card h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:var(--amber);margin-bottom:.75rem}
+    .info-card p{font-size:.93rem;color:rgba(255,255,255,.80);line-height:1.6;margin-bottom:.5rem}
+    .tip-list{display:flex;flex-direction:column;gap:.6rem}
+    .tip{display:flex;align-items:flex-start;gap:.75rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:.7rem 1rem}
+    .tip-dot{width:8px;height:8px;border-radius:50%;background:var(--amber);flex-shrink:0;margin-top:.35rem}
+    .tip-text{font-size:.93rem;color:rgba(255,255,255,.80);line-height:1.5}
+    .cta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;margin-bottom:1.5rem}
+    .cta-card{background:rgba(232,168,74,.08);border:1px solid rgba(232,168,74,.25);border-radius:14px;padding:1.4rem;text-align:center}
+    .cta-icon{font-size:2.2rem;margin-bottom:.75rem}
+    .cta-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:.4rem}
+    .cta-desc{font-size:.9rem;color:rgba(255,255,255,.80);line-height:1.55}
+    .closing-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.75rem}
+    .closing-logo{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;color:#fff}
+    .closing-logo span{color:var(--coral)}
+    .closing-tagline{font-size:1rem;color:rgba(255,255,255,.70);letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+    .closing-url{font-size:1.1rem;color:var(--sage);font-weight:600}
+    .article-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;margin-top:.75rem}
+    .a-pill{font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:100px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.12)}
+    .a-pill.current{background:rgba(232,168,74,.2);color:var(--amber);border-color:rgba(232,168,74,.4)}
+    footer{position:fixed;bottom:0;left:0;right:0;text-align:center;padding:.4rem;font-size:clamp(.65rem,1vw,.80rem);color:rgba(255,255,255,.65);background:rgba(15,22,35,.6)}
   </style>
 </head>
 <body>
-<div class="topbar">
-  <div class="topbar-sub">helf.school · Cardiovascular Series · Article 06 · Visuals Screen</div>
-  <div class="slide-counter">Screen <span id="slideNum">1</span> of 9</div>
+<div id="topbar">
+  <div><div class="tb-title">Salt and Blood Pressure</div><div class="tb-sub">helf.school · Cardiovascular Series · Article 06</div></div>
+  <div class="tb-right"><span class="kb-hint">← → to navigate</span><span class="slide-counter" id="counter">1 / 6</span></div>
 </div>
-<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:11.1%"></div></div>
-<div class="visual-stage">
-  <div class="slide-type-badge" id="typeBadge"></div>
-  <div class="visual-content" id="visualContent"></div>
-</div>
-<div class="bottom-nav">
-  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>← Previous</button>
-  <div class="nav-dots" id="navDots"></div>
-  <button class="nav-btn nav-btn-primary" id="nextBtn" onclick="navigate(1)">Next →</button>
-</div>
-<script>
-const TOTAL=9;
-const badgeCls={opening:'badge-opening',section:'badge-section',cta:'badge-cta',closing:'badge-closing'};
-const badgeLbl={opening:'Opening',section:'Section',cta:'Call to Action',closing:'Closing'};
-const slides=[
-  {type:'opening',label:'Intro · Dr Paul',title:'Introduction',timing:'⏱ ~10 seconds',visual:'s0',script:[
-    `"I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019."`,
-    `"Today I want to talk to you about <strong>salt and blood pressure</strong>."`,
-    `"Now, I do have to say upfront — what I'm giving you here is health education, not medical advice."`,
-    `"If anything I talk about feels relevant to you personally, please do take it to your own doctor."`,
-    `"Right — let's get into it."`,
-  ]},
-  {type:'opening',label:'Segment 1 · Opening',title:'The Salt You Cannot See',timing:'⏱ 0:00–0:45',visual:'s1',script:[
-    `"If I asked you to cut down on salt, you'd probably think about the shaker on your table. But that shaker? It accounts for only about <strong>25% of the salt you actually eat</strong>."`,
-    `<span class="script-pause">PAUSE</span>`,
-    `"The other <strong>75% is already in your food</strong> before you touch it. In the bread, the cheese, the ready meals, the bacon, the sauces. Salt you never measure, never add, and often never think about."`,
-    `"That is the most important fact about dietary salt — and most people have no idea. In this video, I want to explain the relationship between salt and blood pressure, what the evidence says, and how meaningful reducing salt actually is."`,
-    `"I'm Dr Paul — over twenty years as an NHS GP. Health education, not medical advice."`,
-  ]},
-  {type:'section',label:'Segment 2 · Section 1',title:'Where Our Salt Comes From',timing:'⏱ 0:45–1:30',visual:'s2',script:[
-    `"Let's start with that 75% figure. The National Diet and Nutrition Survey — the most comprehensive assessment of what UK adults eat — consistently finds that the vast majority of dietary salt comes from processed and packaged foods."`,
-    `"The biggest contributors are bread and cereals — around 20%. Meat products including bacon and processed meats — around 17%. Ready meals and soups — around 15%. Cheese and dairy — around 12%."`,
-    `"These are foods most of us eat every single day — sometimes multiple times a day — without giving their salt content a second thought."`,
-    `"Most people in the UK consume around <strong>8 to 9 grams of salt per day</strong>. The recommended maximum under NHS and NICE guidelines is <strong>6 grams</strong> — roughly one teaspoon, including all salt already in food."`,
-    `"For many people, simply reducing intake to the recommended level — not eliminating salt, just reducing it — would have a meaningful and measurable effect on blood pressure."`,
-  ]},
-  {type:'section',label:'Segment 3 · Section 2',title:'How Salt Raises Blood Pressure',timing:'⏱ 1:30–2:10',visual:'s3',script:[
-    `"Salt is made up of sodium and chloride. It's the <strong>sodium component</strong> that affects blood pressure."`,
-    `"When there's too much sodium in the blood, the body retains water to dilute it. This increases the volume of blood in circulation — and with it, the pressure on artery walls."`,
-    `"Over time, this sustained elevation damages blood vessel walls, strains the heart, and accelerates atherosclerosis."`,
-    `"The INTERSALT study — covering over 10,000 people across 52 centres worldwide — provided the foundational evidence that sodium intake and blood pressure are directly related at a population level. Higher sodium populations consistently have higher blood pressure."`,
-    `"Importantly, the relationship is dose-dependent. The more sodium, the higher the pressure. And the more you reduce sodium, the more blood pressure falls."`,
-  ]},
-  {type:'section',label:'Segment 4 · Section 3',title:'What the Evidence Shows',timing:'⏱ 2:10–3:00',visual:'s4',script:[
-    `"The most important trial on this is the <strong>DASH-Sodium trial</strong>, published in the New England Journal of Medicine in 2001."`,
-    `"It found that reducing sodium intake to the recommended level — alongside the DASH dietary pattern — reduced systolic blood pressure by <strong>8 to 14 mmHg</strong> in people with hypertension. That's comparable to the effect of a single antihypertensive drug."`,
-    `"A meta-analysis by He and MacGregor, published in the BMJ in 2003, estimated that a <strong>2 mmHg reduction in average systolic blood pressure</strong> across the population would prevent around <strong>12,000 strokes and 7,000 heart attacks per year</strong> in the UK. Salt reduction was identified as the single most effective public health intervention for achieving this."`,
-    `"The UK salt reduction programme, tracked by He and colleagues in BMJ Open in 2014, showed that average salt intake fell from around 9.5g per day in 2001 to around 8.1g per day in 2011 — driven largely by reformulation of processed foods. Over the same period, average blood pressure fell measurably."`,
-    `"Potassium — found in fruit, vegetables, and legumes — has a direct counterbalancing effect on sodium's impact on blood pressure. A meta-analysis in the BMJ in 2013 found that higher potassium intake was associated with a <strong>24% lower risk of stroke</strong>."`,
-  ]},
-  {type:'section',label:'Segment 5 · Section 4',title:'What Your Doctor Will Discuss',timing:'⏱ 3:00–3:40',visual:'s5',script:[
-    `"If you have hypertension, your GP will almost certainly discuss salt as part of your management plan. Under NICE guideline NG136, salt reduction to under 6 grams per day is recommended as a first-line lifestyle intervention."`,
-    `"They may also mention the <strong>DASH diet</strong> — a dietary pattern specifically designed and tested to lower blood pressure. It combines low sodium with high potassium, calcium, and magnesium. Rich in fruit, vegetables, low-fat dairy, whole grains, and lean protein."`,
-    `"On food labels: sodium and salt are not the same. Labels often show sodium in milligrams. To convert to salt, multiply by 2.5. So 0.4g of sodium per 100g = 1g of salt per 100g. High salt means more than 1.5g per 100g. Low salt means less than 0.3g."`,
-    `"Practical changes that make the biggest difference: switching to lower-salt bread, reducing processed meat, choosing lower-salt cheese, and cooking from scratch more often. The table shaker is the last thing to worry about."`,
-  ]},
-  {type:'section',label:'Segment 6 · Research Summary',title:'Evidence in Brief',timing:'⏱ 3:40–4:15',visual:'s6',script:[
-    `"To summarise the key evidence:"`,
-    `"INTERSALT study — 10,000+ people, 52 centres worldwide — confirmed the population-level link between sodium intake and blood pressure."`,
-    `"DASH-Sodium trial — NEJM 2001 — sodium reduction to recommended level reduced systolic BP by 8–14 mmHg, comparable to a blood pressure drug."`,
-    `"He and MacGregor, BMJ 2003 — a 2 mmHg reduction in population-average blood pressure from salt reduction could prevent 12,000 strokes and 7,000 heart attacks per year in the UK."`,
-    `"Aburto et al., BMJ 2013 — higher potassium intake associated with 24% lower stroke risk."`,
-    `"The evidence is consistent, replicated across decades of research, and policy-relevant. Salt reduction works. And most of it doesn't require any willpower at the table — it requires awareness of what's in the food."`,
-  ]},
-  {type:'cta',label:'Segment 7 · Call to Action',title:'What You Can Do',timing:'⏱ 4:15–4:50',visual:'s7',script:[
-    `"<strong>Check the labels</strong> on the foods you buy most regularly — bread, cereals, ready meals, cheese. Look for the salt figure per 100g. High is above 1.5g. Low is below 0.3g. Start there."`,
-    `"<strong>Think about sources, not the shaker</strong>. The table shaker is not the problem. The bread you eat every day, the cereal in the morning, the cheese at lunch — those are where the big reductions come from."`,
-    `"<strong>Add potassium</strong>. More fruit, vegetables, and legumes — potatoes, bananas, spinach, beans, lentils. Potassium directly counteracts sodium's effect on blood pressure."`,
-    `"Full article with all evidence at <strong>helf.school</strong>."`,
-  ]},
-  {type:'closing',label:'Segment 8 · Closing',title:'Sign-off',timing:'⏱ 4:50–5:10',visual:'s8',script:[
-    `"The link between salt and blood pressure is one of the most well-evidenced relationships in nutritional science. The mechanism is understood. The trials have been done. And the public health implication is clear."`,
-    `"Most of the salt you eat isn't in your hands to control at the table. But knowing where it comes from — and making even a few consistent changes to the foods you buy — can make a measurable difference to your blood pressure and your long-term cardiovascular risk."`,
-    `<span class="script-pause">PAUSE</span>`,
-    `"Thanks for watching. helf.school — take care of yourself."`,
-  ]},
-];
-const visuals={
-  s0:()=>`
-    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;width:100%;text-align:center;">
-      <div style="font-family:'Fraunces',serif;font-size:2rem;font-weight:700;color:var(--coral);">helf.school</div>
-      <div style="font-size:1.00rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.70);">Cardiovascular Series</div>
-      <div style="font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;color:#fff;line-height:1.4;max-width:340px;" id="introTopic"></div>
-      <div style="width:48px;height:2px;background:var(--coral);border-radius:2px;margin-top:0.25rem;"></div>
-      <div style="font-size:0.93rem;color:rgba(255,255,255,0.80);line-height:1.6;max-width:320px;">Plain English health education<br>based on the evidence</div>
-    </div>
-  `,
-  s1:()=>`
-    <div style="background:rgba(27,42,74,0.6);border-radius:16px;padding:1.5rem 2rem;width:100%;text-align:center;">
-      <div style="font-family:'Fraunces',serif;font-size:5rem;font-weight:700;color:var(--amber);line-height:1;">75%</div>
-      <div style="font-size:0.95rem;color:#fff;font-weight:600;margin-top:0.3rem;">of the salt we eat is already in our food</div>
-      <div style="font-size:1.08rem;color:rgba(255,255,255,0.80);margin-top:0.25rem;">Before we cook. Before we add anything.</div>
-    </div>
-    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:9px;padding:0.85rem 1.1rem;width:100%;display:flex;align-items:center;gap:1rem;">
-      <div style="text-align:center;flex-shrink:0;"><div style="font-family:'Fraunces',serif;font-size:2rem;font-weight:700;color:var(--amber);">25%</div><div style="font-size:0.93rem;color:rgba(255,255,255,0.75);">Table + cooking</div></div>
-      <div style="width:1px;height:40px;background:rgba(255,255,255,0.1);flex-shrink:0;"></div>
-      <div style="font-size:0.93rem;color:rgba(255,255,255,0.55);line-height:1.5;">The salt shaker we see and control is the smaller part. The larger part is invisible — baked into the food before we buy it.</div>
-    </div>
-    <div style="font-size:0.93rem;color:rgba(255,255,255,0.70);text-align:center;">NHS · British Dietetic Association · National Diet &amp; Nutrition Survey</div>
-  `,
-  s2:()=>`
-    <div style="display:flex;flex-direction:column;gap:0.45rem;width:100%;">
-      ${[['🍞','Bread & cereals','~20%','var(--coral)',95],['🥩','Meat products & bacon','~17%','var(--amber)',80],['🍽️','Ready meals & soups','~15%','#A84AE8',72],['🧀','Cheese & dairy','~12%','#4A9EE8',58],['🥫','Sauces, snacks & other','~11%','var(--sage)',52]].map((s,i)=>`
-      <div class="source-bar" id="sb${i}">
-        <div class="source-bar-header"><div class="source-bar-name">${s[0]} ${s[1]}</div><div class="source-bar-pct" style="color:${s[3]};">${s[2]}</div></div>
-        <div class="bar-track"><div class="bar-fill" id="bf${i}" style="background:${s[3]};"></div></div>
-      </div>`).join('')}
-    </div>
-    <div style="font-size:0.93rem;color:rgba(255,255,255,0.70);text-align:center;">National Diet &amp; Nutrition Survey · British Dietetic Association</div>
-  `,
-  s3:()=>`
-    <div style="background:rgba(27,42,74,0.5);border:1px solid rgba(255,255,255,0.1);border-radius:13px;padding:1.1rem 1.4rem;width:100%;text-align:center;">
-      <div style="font-size:0.93rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.70);margin-bottom:0.5rem;">How sodium raises blood pressure</div>
-      <div style="display:flex;align-items:center;justify-content:space-around;gap:0.4rem;font-size:1.00rem;text-align:center;">
-        <div style="background:rgba(232,168,74,0.12);border-radius:8px;padding:0.55rem 0.4rem;flex:1;"><div style="font-size:1rem;margin-bottom:0.15rem;">🧂</div>High sodium intake</div>
-        <div style="color:var(--amber);">→</div>
-        <div style="background:rgba(232,168,74,0.12);border-radius:8px;padding:0.55rem 0.4rem;flex:1;"><div style="font-size:1rem;margin-bottom:0.15rem;">💧</div>Body retains water</div>
-        <div style="color:var(--amber);">→</div>
-        <div style="background:rgba(232,99,74,0.15);border-radius:8px;padding:0.55rem 0.4rem;flex:1;"><div style="font-size:1rem;margin-bottom:0.15rem;">📈</div>Blood volume rises</div>
-        <div style="color:var(--coral);">→</div>
-        <div style="background:rgba(232,99,74,0.2);border-radius:8px;padding:0.55rem 0.4rem;flex:1;"><div style="font-size:1rem;margin-bottom:0.15rem;">❤️‍🩹</div>BP rises</div>
+<div id="stage">
+
+  <div class="slide active" id="s1">
+    <div class="intro-wrap">
+      <div class="intro-badge">Cardiovascular Series · Article 06</div>
+      <div class="intro-title">Salt and <span>Blood Pressure</span></div>
+      <div class="intro-tagline">What the evidence shows about sodium, hidden salt, and your cardiovascular risk</div>
+      <div class="stat-row" style="justify-content:center;max-width:700px;margin-top:.5rem">
+        <div class="stat-card hl"><div class="stat-num">75%</div><div class="stat-label">of the salt we eat is already in our food — before we cook or add anything</div><div class="stat-source">NHS · BDA · National Diet &amp; Nutrition Survey</div></div>
+        <div class="stat-card"><div class="stat-num" style="font-size:2.2rem">8–14 mmHg</div><div class="stat-label">systolic BP reduction from low-sodium DASH diet — equivalent to one BP drug</div><div class="stat-source">DASH-Sodium Trial, NEJM 2001</div></div>
       </div>
     </div>
-    <div class="stats-grid">
-      <div class="stat-card"><div class="stat-num" style="color:var(--coral);">8–9g</div><div class="stat-label">average UK daily salt intake</div></div>
-      <div class="stat-card"><div class="stat-num" style="color:var(--sage);">6g</div><div class="stat-label">recommended maximum — roughly one teaspoon</div></div>
+  </div>
+
+  <div class="slide" id="s2">
+    <div class="slide-title">Where does our salt <span>actually come from?</span></div>
+    <div class="two-col" style="margin-bottom:1.25rem">
+      <div>
+        <div style="background:rgba(232,168,74,.12);border:2px solid rgba(232,168,74,.4);border-radius:14px;padding:1.4rem;text-align:center;margin-bottom:1rem">
+          <div style="font-family:'Fraunces',serif;font-size:4rem;font-weight:700;color:var(--amber);line-height:1">75%</div>
+          <div style="font-size:1rem;color:rgba(255,255,255,.90);font-weight:600;margin-top:.4rem">Already in food before we touch it</div>
+          <div style="font-size:.82rem;color:rgba(255,255,255,.65);margin-top:.3rem">Processed food · Bread · Cheese · Ready meals · Meat products</div>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem;text-align:center">
+          <div style="font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;color:rgba(255,255,255,.5);line-height:1">25%</div>
+          <div style="font-size:.93rem;color:rgba(255,255,255,.60);margin-top:.3rem">Added during cooking or at the table</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <h3>The UK target — 6g per day</h3>
+        <p>Most UK adults consume <strong style="color:var(--amber)">8–9g of salt per day</strong> — well above the NICE and NHS recommended maximum of 6g (roughly one teaspoon, including all salt already in food).</p>
+        <p>To convert food label sodium to salt: <strong style="color:#fff">multiply sodium by 2.5</strong></p>
+        <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:.75rem;margin-top:.5rem;font-size:.88rem;color:rgba(255,255,255,.75)">
+          <div style="margin-bottom:.3rem">🔴 <strong>High:</strong> &gt;1.5g salt per 100g</div>
+          <div style="margin-bottom:.3rem">🟡 <strong>Medium:</strong> 0.3–1.5g per 100g</div>
+          <div>🟢 <strong>Low:</strong> &lt;0.3g per 100g</div>
+        </div>
+      </div>
     </div>
-    <div style="font-size:0.93rem;color:rgba(255,255,255,0.70);text-align:center;">INTERSALT study · 10,000+ people · 52 centres worldwide</div>
-  `,
-  s4:()=>`
-    <div style="background:rgba(27,42,74,0.5);border:1px solid rgba(255,255,255,0.1);border-radius:13px;padding:1.1rem 1.4rem;width:100%;text-align:center;">
-      <div style="font-size:0.93rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.70);margin-bottom:0.4rem;">DASH-Sodium Trial · NEJM 2001</div>
-      <div style="font-family:'Fraunces',serif;font-size:0.95rem;color:#fff;line-height:1.4;">Reducing sodium to recommended level</div>
-      <div style="font-family:'Fraunces',serif;font-size:2.8rem;font-weight:700;color:var(--sage);line-height:1;margin-top:0.2rem;">8–14 mmHg</div>
-      <div style="font-size:1.00rem;color:rgba(255,255,255,0.80);">reduction in systolic BP · comparable to a blood pressure drug</div>
+  </div>
+
+  <div class="slide" id="s3">
+    <div class="slide-title">How salt raises <span>blood pressure</span></div>
+    <div class="stat-row" style="margin-bottom:1.25rem">
+      <div class="stat-card hl"><div class="stat-num" style="font-size:2rem">8–14 mmHg</div><div class="stat-label">systolic BP reduction from sodium reduction in people with hypertension</div><div class="stat-source">DASH-Sodium Trial · NEJM 2001</div></div>
+      <div class="stat-card"><div class="stat-num" style="font-size:2rem">24%</div><div class="stat-label">lower stroke risk with higher potassium intake</div><div class="stat-source">Aburto NJ et al. · BMJ 2013</div></div>
+      <div class="stat-card"><div class="stat-num" style="font-size:1.8rem">−42%</div><div class="stat-label">stroke mortality during UK salt reduction programme 2003–2011</div><div class="stat-source">He FJ et al. · BMJ Open 2014</div></div>
     </div>
-    <div class="stats-grid">
-      <div class="stat-card"><div class="stat-num" style="color:var(--coral);font-size:1.7rem;">12,000</div><div class="stat-label">strokes prevented per year in UK — from 2 mmHg population BP reduction · He &amp; MacGregor, BMJ 2003</div></div>
-      <div class="stat-card"><div class="stat-num" style="color:var(--amber);font-size:1.7rem;">24%</div><div class="stat-label">lower stroke risk with higher potassium intake · Aburto et al., BMJ 2013</div></div>
+    <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1.1rem 1.4rem">
+      <div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:.6rem">The mechanism</div>
+      <p style="font-size:.95rem;color:rgba(255,255,255,.85);line-height:1.7">Too much sodium → body retains water to dilute it → <strong style="color:#fff">increased blood volume</strong> → higher pressure on artery walls → sustained hypertension → accelerated atherosclerosis and cardiovascular damage.</p>
     </div>
-  `,
-  s5:()=>`
-    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:11px;padding:0.85rem 1.1rem;width:100%;">
-      <div style="font-size:0.93rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);margin-bottom:0.5rem;">Reading food labels</div>
-      <div style="display:flex;gap:0.7rem;font-size:0.93rem;margin-bottom:0.4rem;"><span style="color:rgba(255,255,255,0.80);min-width:50px;">Label says</span><span style="color:rgba(255,255,255,0.80);">→ multiply by 2.5 →</span><span style="color:#fff;font-weight:600;">Salt amount</span></div>
-      <div style="display:flex;gap:0.7rem;font-size:1.08rem;padding:0.35rem 0;border-bottom:1px solid rgba(255,255,255,0.06);"><span style="min-width:80px;color:rgba(255,255,255,0.5);">0.4g sodium</span><span style="color:rgba(255,255,255,0.70);">→</span><span style="color:var(--amber);font-weight:600;">1.0g salt</span></div>
-      <div style="display:flex;gap:0.7rem;font-size:1.08rem;padding:0.35rem 0;border-bottom:1px solid rgba(255,255,255,0.06);"><span style="min-width:80px;color:rgba(255,255,255,0.5);">&gt;0.6g sodium</span><span style="color:rgba(255,255,255,0.70);">→</span><span style="color:var(--coral);font-weight:600;">&gt;1.5g salt = HIGH</span></div>
-      <div style="display:flex;gap:0.7rem;font-size:1.08rem;padding:0.35rem 0;"><span style="min-width:80px;color:rgba(255,255,255,0.5);">&lt;0.12g sodium</span><span style="color:rgba(255,255,255,0.70);">→</span><span style="color:var(--sage);font-weight:600;">&lt;0.3g salt = LOW</span></div>
+  </div>
+
+  <div class="slide" id="s4">
+    <div class="slide-title">Practical steps — <span>where to focus</span></div>
+    <div class="two-col">
+      <div class="tip-list">
+        <div class="tip"><div class="tip-dot"></div><div class="tip-text"><strong style="color:#fff">Reduce processed &amp; packaged food</strong> — the single biggest lever. The main source of hidden salt.</div></div>
+        <div class="tip"><div class="tip-dot"></div><div class="tip-text"><strong style="color:#fff">Check labels</strong> — wide variation between brands of same product. Use high/medium/low guide.</div></div>
+        <div class="tip"><div class="tip-dot"></div><div class="tip-text"><strong style="color:#fff">Use herbs, spices, lemon, pepper</strong> — effective flavour alternatives that don't raise blood pressure.</div></div>
+        <div class="tip"><div class="tip-dot"></div><div class="tip-text"><strong style="color:#fff">Taste before adding</strong> — most people add salt by habit, not need.</div></div>
+      </div>
+      <div>
+        <div style="background:rgba(122,158,135,.1);border:1px solid rgba(122,158,135,.3);border-radius:12px;padding:1.2rem 1.4rem">
+          <div style="font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:var(--sage);margin-bottom:.75rem">Potassium — the other side</div>
+          <p style="font-size:.93rem;color:rgba(255,255,255,.80);line-height:1.6;margin-bottom:.75rem">Potassium directly counteracts sodium's effect on blood pressure. <strong style="color:#fff">24% lower stroke risk</strong> with higher potassium intake.</p>
+          <div style="font-size:.88rem;color:rgba(255,255,255,.70)">Rich sources: bananas · sweet potatoes · spinach · beans · lentils · dairy</div>
+        </div>
+        <div style="background:rgba(232,168,74,.08);border:1px solid rgba(232,168,74,.2);border-radius:10px;padding:.9rem 1.1rem;margin-top:1rem">
+          <div style="font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-bottom:.3rem">NICE NG136</div>
+          <div style="font-size:.9rem;color:rgba(255,255,255,.80);line-height:1.5">Salt reduction is first-line lifestyle advice for everyone with hypertension — alongside medication, not instead of it.</div>
+        </div>
+      </div>
     </div>
-    <div style="background:rgba(122,158,135,0.1);border:1px solid rgba(122,158,135,0.25);border-radius:9px;padding:0.75rem 1rem;width:100%;font-size:1.08rem;color:rgba(255,255,255,0.6);line-height:1.55;">
-      DASH diet: high potassium (fruit, veg, legumes) · low sodium · low saturated fat · specifically tested to lower blood pressure
+  </div>
+
+  <div class="slide" id="s5">
+    <div class="slide-title">What the <span>research shows</span></div>
+    <div class="r-card"><div class="r-title">INTERSALT Study — BMJ 1988</div><div class="r-finding">10,000+ people across 52 populations worldwide. Populations with lowest sodium intakes had significantly lower blood pressure — and far less age-related rise in BP. Sodium intake tracked blood pressure closely from near-zero to 242 mmol/24h.</div><div class="r-source">INTERSALT Cooperative Research Group · BMJ 1988;297:319–28</div></div>
+    <div class="r-card"><div class="r-title">DASH-Sodium Trial — NEJM 2001</div><div class="r-finding">412 adults. Low-sodium DASH diet reduced systolic BP by <span style="color:var(--amber);font-weight:700;">8–14 mmHg</span> systolic BP reduction — comparable to a single antihypertensive drug. Even normotensive individuals benefited meaningfully.</div><div class="r-source">Sacks FM et al. · NEJM 2001;344:3–10</div></div>
+    <div class="r-card"><div class="r-title">Cochrane Review — He, Li, MacGregor 2013</div><div class="r-finding">Modest sustained salt reduction over 4+ weeks produced consistent, significant BP reductions in both hypertensive and normotensive individuals. The lower the intake achieved, the lower the blood pressure — within 3–12g/day range.</div><div class="r-source">He FJ, Li J, MacGregor GA · Cochrane Database 2013</div></div>
+    <div class="r-card"><div class="r-title">UK Salt Reduction Programme — BMJ Open 2014</div><div class="r-finding">Average salt intake fell ~15% (1.4g/day) 2003–2011. Stroke mortality fell <span style="color:var(--amber);font-weight:700;">42%</span>. Ischaemic heart disease mortality fell <span style="color:var(--amber);font-weight:700;">40%</span>. Population-level change works.</div><div class="r-source">He FJ, Pombo-Rodrigues S, MacGregor GA · BMJ Open 2014;4:e004549</div></div>
+  </div>
+
+  <div class="slide" id="s6">
+    <div class="cta-grid">
+      <div class="cta-card"><div class="cta-icon">🏷️</div><div class="cta-title">Check labels</div><div class="cta-desc">High salt = &gt;1.5g per 100g. Start with the foods you eat every day — bread, cereal, cheese.</div></div>
+      <div class="cta-card"><div class="cta-icon">🥗</div><div class="cta-title">Think sources not shakers</div><div class="cta-desc">75% of salt is already in food. More home cooking, less processed food = the biggest reduction.</div></div>
+      <div class="cta-card"><div class="cta-icon">🍌</div><div class="cta-title">Add potassium too</div><div class="cta-desc">Fruit, vegetables, beans, dairy. Potassium counteracts sodium — 24% lower stroke risk with higher intake.</div></div>
     </div>
-    <div style="font-size:0.93rem;color:rgba(255,255,255,0.70);text-align:center;">NICE Guideline NG136 · Sacks FM et al., NEJM 2001</div>
-  `,
-  s6:()=>`
-    <div style="display:flex;flex-direction:column;gap:0.45rem;width:100%;">
-      ${[['INTERSALT · BMJ 1988','Sodium intake and BP directly related at population level across 52 centres worldwide','var(--amber)'],['DASH-Sodium · NEJM 2001','8–14 mmHg BP reduction from sodium reduction — comparable to drug therapy','var(--sage)'],['He & MacGregor · BMJ 2003','2 mmHg population BP reduction → 12,000 strokes, 7,000 heart attacks prevented/yr in UK','var(--coral)'],['He et al. · BMJ Open 2014','UK salt programme: intake fell 9.5g→8.1g over 10 years; BP fell measurably','var(--amber)'],['Aburto et al. · BMJ 2013','Higher potassium intake → 24% lower stroke risk','var(--sage)']].map(e=>`<div style="display:flex;align-items:flex-start;gap:0.65rem;padding:0.5rem 0.75rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);border-left:3px solid ${e[2]};border-radius:0 7px 7px 0;"><div><div style="font-size:0.93rem;font-weight:700;color:rgba(255,255,255,0.70);margin-bottom:0.08rem;">${e[0]}</div><div style="font-size:1.05rem;color:rgba(255,255,255,0.65);line-height:1.45;">${e[1]}</div></div></div>`).join('')}
+    <div class="closing-wrap">
+      <div class="closing-logo">helf<span>.</span>school</div>
+      <div class="closing-tagline">Health Education for Everyone</div>
+      <div class="closing-url">pls4286.github.io/helfschool</div>
+      <div class="article-pills">
+        <span class="a-pill">01 Hypertension</span><span class="a-pill">02 Cholesterol</span><span class="a-pill">03 Heart Attack Risk</span><span class="a-pill">04 Statins</span><span class="a-pill">05 Lifestyle</span><span class="a-pill current">06 Salt</span><span class="a-pill">07 Supplements</span>
+      </div>
     </div>
-  `,
-  s7:()=>`
-    <div style="display:flex;flex-direction:column;gap:0.8rem;width:100%;">
-      <div class="action-card" id="ac0"><div class="action-icon">🏷️</div><div><div class="action-title">Check labels on your regular foods</div><div class="action-desc">Bread, cereal, ready meals, cheese. Over 1.5g salt per 100g = high. Under 0.3g = low.</div></div></div>
-      <div class="action-card" id="ac1"><div class="action-icon">🧂</div><div><div class="action-title">Think sources, not the shaker</div><div class="action-desc">The table shaker isn't the problem. Processed food is. Small switches in what you buy make the biggest difference.</div></div></div>
-      <div class="action-card" id="ac2"><div class="action-icon">🥦</div><div><div class="action-title">Add potassium — it directly counteracts sodium</div><div class="action-desc">Potatoes, bananas, spinach, beans, lentils. Higher potassium is associated with 24% lower stroke risk.</div></div></div>
-    </div>
-    <div style="background:rgba(232,168,74,0.07);border:1px solid rgba(232,168,74,0.18);border-radius:9px;padding:0.7rem 1rem;width:100%;text-align:center;">
-      <div style="font-size:0.98rem;color:rgba(255,255,255,0.75);">Full article + all research references at</div>
-      <div style="font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--amber);">helf.school</div>
-    </div>
-  `,
-  s8:()=>`
-    <div class="end-logo">helf.school</div>
-    <div class="end-tagline">Evidence-based health education for everyone</div>
-    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:13px;padding:1.1rem 1.4rem;margin-bottom:1rem;width:100%;">
-      <div style="font-family:'Fraunces',serif;font-size:0.95rem;font-weight:600;color:#fff;text-align:center;line-height:1.55;">Most of the salt you eat isn't in your hands to control at the table. But knowing where it comes from — changes that.</div>
-    </div>
-    <div class="end-series">
-      <div class="end-pill">01 · Hypertension</div><div class="end-pill">02 · Cholesterol</div><div class="end-pill">03 · Heart Attack Risk</div><div class="end-pill">04 · Statins</div><div class="end-pill">05 · Lifestyle Changes</div><div class="end-pill active">06 · Salt</div><div class="end-pill">07 · Supplements</div>
-    </div>
-    <div style="font-size:0.93rem;color:rgba(255,255,255,0.18);text-align:center;margin-top:0.75rem;">Health education only — not medical advice · Always speak to your own doctor</div>
-  `,
-};
-function afterRender(v){
-  if(v==='s0'){const e=document.getElementById('introTopic');if(e)e.textContent='Salt and Blood Pressure';}
-  if(v==='s2'){
-    const bws=[95,80,72,58,52];
-    [0,1,2,3,4].forEach(i=>setTimeout(()=>{
-      const e=document.getElementById('sb'+i);
-      if(e)e.classList.add('visible');
-      setTimeout(()=>{const b=document.getElementById('bf'+i);if(b)b.style.width=bws[i]+'%';},80);
-    },150+i*200));
-  }
-  if(v==='s7')[0,1,2].forEach(i=>setTimeout(()=>{const e=document.getElementById('ac'+i);if(e)e.classList.add('visible');},200+i*300));
-}
-const TOTAL=slides.length;
-const badgeCls={opening:'badge-opening',section:'badge-section',cta:'badge-cta',closing:'badge-closing'};
-const badgeLbl={opening:'Opening',section:'Content',cta:'Call to Action',closing:'Closing'};
-const visualKeys=slides.map(s=>s.visual);
-const slideTypes=slides.map(s=>s.type);
-const slideTitles=['Introduction', 'The Salt You Cannot See', 'Where Our Salt Comes From', 'How Salt Raises Blood Pressure', 'What the Evidence Shows', 'What Your Doctor Will Discuss', 'Evidence in Brief', 'What You Can Do', 'Sign-off'];
-let current=0;
-function renderSlide(idx){
-  document.getElementById('visualContent').innerHTML=visuals[visualKeys[idx]]();
-  document.getElementById('slideNum').textContent=idx+1;
-  document.getElementById('progressFill').style.width=((idx+1)/TOTAL*100)+'%';
-  document.getElementById('prevBtn').disabled=idx===0;
-  document.getElementById('nextBtn').textContent=idx===TOTAL-1?'✓ Done':'Next →';
-  const b=document.getElementById('typeBadge');
-  b.className='slide-type-badge '+badgeCls[slideTypes[idx]];
-  b.textContent=badgeLbl[slideTypes[idx]];
-  document.querySelectorAll('.nav-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
-}
-function navigate(dir){const n=current+dir;if(n<0||n>=TOTAL)return;current=n;renderSlide(n);}
-const de=document.getElementById('navDots');
-slideTitles.forEach((t,i)=>{const d=document.createElement('div');d.className='nav-dot'+(i===0?' active':'');d.title=t;d.onclick=()=>{current=i;renderSlide(i);};de.appendChild(d);});
-document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')navigate(1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')navigate(-1);});
-renderSlide(0);
+  </div>
+
+</div>
+<footer>helf.school · Health Education · Salt and Blood Pressure · Article 06</footer>
+<script>
+  const slides=document.querySelectorAll('.slide'),counter=document.getElementById('counter');let current=0;const total=slides.length;
+  function showSlide(n){slides[current].classList.remove('active');current=(n+total)%total;slides[current].classList.add('active');counter.textContent=`${current+1} / ${total}`}
+  document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')showSlide(current+1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')showSlide(current-1)});
+  let tx=0;document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});document.addEventListener('touchend',e=>{const dx=tx-e.changedTouches[0].clientX;if(Math.abs(dx)>40)showSlide(current+(dx>0?1:-1))},{passive:true});
 </script>
-</body>
-</html>
+</body></html>
