@@ -67,14 +67,14 @@ Open-book SVG with "HEALTH EDUCATION" tagline beneath helf.school wordmark.
 - `helf-school-conditions.html` — conditions library
 - `helf-school-membership.html` — membership pricing
 
-### Membership pricing (CONFIRMED CORRECT on all pages as of April 2026)
+### Membership pricing (CONFIRMED CORRECT as of April 2026)
 | Tier | Price |
 |------|-------|
 | Explorer (free) | £0 |
 | Member | £6/month or £60/year |
 | Lifetime | £150 one-off |
 
-✅ Both `index.html` and `helf-school-membership.html` confirmed correct — no further changes needed.
+✅ Both `index.html` and `helf-school-membership.html` confirmed correct.
 
 ### Members-only content
 Full article library · Research analyses · Evidence ratings · Glossary · New content feed · Saved articles · Monthly Q&A
@@ -89,45 +89,52 @@ Free = read-only. Paid members = full access. Needs: thread creation, member pro
 ## 5. ARTICLE INVENTORY
 
 ### Cardiovascular Series (Articles 01–07) — ALL COMPLETE
-| # | Title | Article HTML | Script | Visuals | Teleprompter |
-|---|-------|-------------|--------|---------|--------------|
-| 01 | Hypertension | hypertension.html | hypertension-script.html | hypertension-visuals.html | hypertension-teleprompter.html |
-| 02 | Cholesterol Explained | cholesterol.html | cholesterol-script.html | cholesterol-visuals.html | cholesterol-teleprompter.html |
-| 03 | How Doctors Estimate Heart Attack Risk | heart-attack-risk.html | heart-attack-risk-script.html | heart-attack-risk-visuals.html | heart-attack-risk-teleprompter.html |
-| 04 | Statins — Benefits & Risks | statins.html | statins-script.html | statins-visuals.html | statins-teleprompter.html |
-| 05 | How to Reduce Cardiovascular Risk with Lifestyle Changes | lifestyle-changes.html | lifestyle-script.html | lifestyle-visuals.html | lifestyle-teleprompter.html |
-| 06 | Salt and Blood Pressure | salt-blood-pressure.html | salt-script.html | salt-visuals.html | salt-teleprompter.html |
-| 07 | Do Supplements Lower Cholesterol? | supplements-cholesterol.html | supplements-script.html | supplements-visuals.html | supplements-teleprompter.html |
+| # | Title | Article HTML | Visuals | Teleprompter |
+|---|-------|-------------|---------|--------------|
+| 01 | Hypertension | hypertension.html | hypertension-visuals.html | hypertension-teleprompter.html |
+| 02 | Cholesterol Explained | cholesterol.html | cholesterol-visuals.html | cholesterol-teleprompter.html |
+| 03 | How Doctors Estimate Heart Attack Risk | heart-attack-risk.html | heart-attack-risk-visuals.html | heart-attack-risk-teleprompter.html |
+| 04 | Statins — Benefits & Risks | statins.html | statins-visuals.html | statins-teleprompter.html |
+| 05 | How to Reduce Cardiovascular Risk with Lifestyle Changes | lifestyle-changes.html | lifestyle-visuals.html | lifestyle-teleprompter.html |
+| 06 | Salt and Blood Pressure | salt-blood-pressure.html | salt-visuals.html | salt-teleprompter.html |
+| 07 | Do Supplements Lower Cholesterol? | supplements-cholesterol.html | supplements-visuals.html | supplements-teleprompter.html |
 
-### Articles 08–12 — RESERVED (series TBC, not yet built)
+### Practical Health Series (Articles 08–12) — PLANNED
+| # | Title | Status |
+|---|-------|--------|
+| 08 | The Mediterranean Diet | Not yet built |
+| 09 | Sleep — Why It Matters More Than You Think | Not yet built |
+| 10 | Exercise and Movement — The Evidence | Not yet built |
+| 11 | Stress and the Body | Not yet built |
+| 12 | Alcohol — What the Evidence Actually Shows | Not yet built |
 
-### Digestive Health Series — IN PROGRESS
-| # | Title | Article HTML | Script | Visuals | Teleprompter | Screen files |
-|---|-------|-------------|--------|---------|--------------|--------------|
-| 13 | Acid Reflux | acid-reflux.html | acid-reflux-script.html | acid-reflux-visuals.html | acid-reflux-teleprompter.html | ar-sphincter-screen.html, ar-barretts-screen.html |
-| 14 | Bloating | bloating.html | bloating-script.html | bloating-visuals.html | bloating-teleprompter.html | bloating-gut-screen.html, bloating-fodmap-screen.html |
-| 15 | IBD: Crohn's Disease and Ulcerative Colitis | ibd.html | — | — | — | — |
-| 16 | IBS | ibs.html | ibs-script.html | ibs-visuals.html | ibs-teleprompter.html | — |
-| 17+ | TBC | — | — | — | — | — |
+**Series colour:** Practical `#7A6A2E`  
+**Series rationale:** Each article covers one modifiable factor at the intersection of multiple conditions — actionable without a prescription or referral. Mediterranean diet is Article 08 as it is referenced across cardiovascular, MASLD, and digestive articles.
 
-**Article numbering confirmed:**
-- Article 15 = IBD (Crohn's Disease and Ulcerative Colitis) — `ibd.html` built April 2026, PubMed IDs verified
-- Article 16 = IBS — all files complete and live on GitHub
-- Article 15 IBD still needs: script, visuals, teleprompter files
+### Digestive Health Series (Articles 13–17+) — IN PROGRESS
+| # | Title | Article HTML | Visuals | Teleprompter | Screen files |
+|---|-------|-------------|---------|--------------|--------------|
+| 13 | Acid Reflux | acid-reflux.html | acid-reflux-visuals.html | acid-reflux-teleprompter.html | ar-sphincter-screen.html, ar-barretts-screen.html |
+| 14 | Bloating | bloating.html | bloating-visuals.html | bloating-teleprompter.html | bloating-gut-screen.html, bloating-fodmap-screen.html |
+| 15 | IBD: Crohn's Disease and Ulcerative Colitis | ibd.html | ibd-visuals.html | ibd-teleprompter.html | ibd-gut-screen.html |
+| 16 | IBS | ibs.html | ibs-visuals.html | ibs-teleprompter.html | — |
+| 17 | Fatty Liver Disease (MASLD) | masld.html ⚑ in progress | — | — | — |
+| 18+ | Coeliac disease (planned next) | — | — | — | — |
 
-**File upload note:** The drag-and-drop upload in Edge incognito captures the browser page rather than the file. Reliable method for sharing files with Claude: open file in Notepad → Ctrl+A → Ctrl+C → paste into chat. For GitHub upload: same paste method works.
+**Article 17 notes:** masld.html built April 2026. ESSENCE trial reference flagged ⚑ — verify publication status before going live. Drug brand names included throughout. Waist circumference thresholds included in Sections 1 and 3.
 
 ---
 
 ## 6. WORKFLOW — NEW ARTICLE
 
 Build in this order:
-1. **Article HTML** — four sections, key terms box, references
-2. **Script HTML** — `[article]-script.html`
+1. **Pre-draft verification** — web search every key claim, statistic, and study before writing
+2. **Article HTML** — four sections, key terms box, references
 3. **Visuals HTML** — `[article]-visuals.html`
 4. **Teleprompter HTML** — `[article]-teleprompter.html`
 5. **Screen HTMLs** — standalone full-screen diagrams where needed
-6. **GIF source HTMLs** — for PPTX capture (scale 0.62, every 2nd frame, 120 colours, under 1.5MB total)
+
+Old script files (e.g. ibd-script.html) are superseded. Three files per article is the current standard.
 
 ---
 
@@ -145,17 +152,22 @@ Key Terms box sits **between sections 1 and 2** — navy background, alphabetica
 
 Research claims flagged ⚑ for Paul review before publishing.
 
+### Drug naming standard
+Every generic drug name must be followed immediately by the brand name(s) in brackets. Examples: semaglutide (Ozempic, Wegovy), atorvastatin (Lipitor), infliximab (Remicade), mesalazine (Asacol, Octasa). Apply to all articles.
+
 ### References standard
 Every research item must include:
 - Full citation: authors, full title, journal, year, volume, pages, DOI
-- Pill links: journal full text + PubMed/PMC (only if verified by web search in same session)
-- Use `.ref-block / .ref-full / .ref-links` CSS pattern from supplements-cholesterol.html
+- Pill links: journal full text + PubMed/PMC — **only if verified working by web search in the same session**
+- Use `.ref-block / .ref-full / .ref-links` CSS pattern
 - Short link alone is NOT sufficient
 
-⚠️ PubMed IDs are UNRELIABLE from training data. Confirmed wrong IDs found previously. Rule: no PubMed/PMC pill links unless verified by web search in same session. Omit and flag ⚑ if unverified. Journal DOI links acceptable. Paul checks every link before any article goes live.
+⚠️ PubMed IDs are UNRELIABLE from training data. Rule: no PubMed/PMC pill links unless verified by web search in same session. Omit and flag ⚑ if unverified.
+
+⚠️ Every URL must be verified to actually resolve to the correct article before inclusion. Never include a link that has not been confirmed working in the same session.
 
 ### Pre-draft verification
-Before presenting any article, script, or visuals HTML, verify via web search that every cited study, trial, or statistic: (1) exists, (2) relates to the correct condition, (3) supports the claim made.
+Before presenting any article, script, or visuals HTML, verify via web search that every cited study, trial, or statistic: (1) exists, (2) relates to the correct condition, (3) supports the claim made, (4) every URL resolves correctly.
 
 ### Readability
 - Body text: `#2C2C2C`, explicit `font-weight:400`
@@ -180,7 +192,6 @@ Every article `.article-section` CSS rule MUST include:
 ```css
 .article-section { scroll-margin-top: 150px; }
 ```
-This compensates for sticky main nav (68px) + sticky jump nav (~46px) + breathing room. Without it, tab navigation scrolls section headings behind the nav bars. Never omit.
 
 ### Inline source references
 - Min `0.75rem`, `rgba(255,255,255,0.55)` on dark / `#2C2C2C` on light
@@ -194,51 +205,29 @@ This compensates for sticky main nav (68px) + sticky jump nav (~46px) + breathin
 > "I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about [TOPIC]. Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. If anything feels relevant to you personally, please take it to your own doctor. Right — let's get into it."
 ~15–18 seconds.
 
-### Two-file presenter architecture
-Each video requires TWO HTML files:
+### Three files per article (current standard)
+1. **Article HTML** — website page
+2. **Visuals HTML** — camera-facing screen, keyboard nav (← →), no script text
+3. **Teleprompter HTML** — scrolling teleprompter for filming
 
-**(1) Script file** — e.g. `acid-reflux-script.html`
-- Dr Paul's screen only
-- Full script text, timing, segment labels
-- Bold red `.diagram-cue` callout boxes showing filenames for each visual
-- No visuals displayed
-- Doubles as developer specification
-
-**(2) Visuals file** — e.g. `acid-reflux-visuals.html`
-- Camera-facing screen only
-- All diagrams, animations, stat cards
-- Keyboard navigation (← → arrows)
-- No script text
-
-### Teleprompter file — REQUIRED for every article
-e.g. `acid-reflux-teleprompter.html`
-
-Spec:
-- Default speed: `PX_PER_SEC_BASE = 20`
+### Teleprompter spec
+- Default speed: `PX_PER_SEC_BASE = 20`, speed levels `[8,14,20,28,38,52]`
 - Default font: `1.9rem`
 - Speed control: 1–6 via +/− buttons
 - Font control: A+ / A− buttons
-- Visual cue boxes at **bottom of each segment** (not top of next) — amber/red bordered box reading "COMING UP — Screen X: [description] · advance now"
+- Visual cue boxes at **bottom of each segment** — amber/red bordered box: "COMING UP — Screen X: [description] · advance now"
 - Auto-scroll via RAF loop
 - Touch swipe support for phone/tablet
 - Segment jump navigation dots
 
 ### Screen files
-Standalone full-screen HTML files for camera filming (e.g. `ar-sphincter-screen.html`).
-- Full-screen, auto-animate on load
-- Bold, large text for filming
+Standalone full-screen HTML files for camera filming.
+- Full-screen, auto-animate on load, bold for filming
 - Layout: `flex-start`, `6vh` top padding
 - Footer: min `clamp(.65rem,1vw,.80rem)`, `rgba(255,255,255,0.65)`
-- Referenced by bold red `.diagram-cue` in script file
 
-### GIF capture settings
-Scale 0.62 · Every 2nd frame · 120 colours · Under 1.5MB total PPTX
-
-### Graphics standard
-Standalone animation HTMLs = GIF capture sources ONLY. Never embedded directly in articles or presenters. Each presenter contains its own inline recreation in the `visuals{}` object. Both standalone and inline versions must exist for every segment visual.
-
-### Article ↔ presenter consistency
-All trial names, years, citation authors, and statistics must match across article and presenter files. Cross-check before upload.
+### Visuals research slide standard
+In every visuals HTML file, the "What the research shows" slide must have each research card's key finding highlighted — the single most important number, percentage, or conclusion must be bold and in the accent colour. Never bury the headline finding in plain body text.
 
 ---
 
@@ -307,18 +296,19 @@ All visuals HTML files must fill the screen boldly and be readable at distance:
 Run before uploading any article or presenter:
 
 1. **Readability** — no pale text colours, explicit font-weight:400 on body
-2. **References** — full citation blocks with DOI and pill links (verified)
+2. **References** — full citation blocks with DOI and pill links (verified working in same session)
 3. **Research flags** — all ⚑ claims verified against source before finalising
-4. **Graphics** — standalone animation file exists AND presenter has matching inline visual
-5. **Article ↔ presenter consistency** — all facts, names, years, citations match
-6. **Scroll offset** — `scroll-margin-top: 150px` present on `.article-section`
-7. **Visuals visibility** — no source text below opacity 0.70, all font sizes within spec
+4. **Links** — every URL confirmed to resolve to the correct article
+5. **Drug names** — all generic drug names have brand names in brackets
+6. **Article ↔ visuals consistency** — all facts, names, years, citations match
+7. **Scroll offset** — `scroll-margin-top: 150px` present on `.article-section`
+8. **Visuals visibility** — no source text below opacity 0.70, all font sizes within spec
 
 ---
 
 ## 11. APPROVED RESEARCH SOURCES
 
-BMJ · NICE guidelines · Cochrane Database · NEJM · The Lancet · JAMA · BMJ Best Practice · PubMed · NHS/NHS Digital · ONS · CDC · WHO · Global Burden of Disease Study · ESC/EAS guidelines
+BMJ · NICE guidelines · Cochrane Database · NEJM · The Lancet · JAMA · BMJ Best Practice · PubMed · NHS/NHS Digital · ONS · CDC · WHO · Global Burden of Disease Study · ESC/EAS guidelines · EASL/EASD/EASO guidelines · BSG guidelines
 
 Do NOT use: non-peer-reviewed sources, commercial health sites, forum content.
 
@@ -338,26 +328,30 @@ Do NOT use: non-peer-reviewed sources, commercial health sites, forum content.
 
 ## 13. OUTSTANDING TASKS (as of April 2026)
 
-### Completed this session ✅
-- [x] IBS article number confirmed — **Article 16**
-- [x] IBS teleprompter built — `ibs-teleprompter.html` complete and on GitHub
-- [x] IBS article, visuals, script all QC passed and on GitHub
-- [x] Membership pricing confirmed correct on both `index.html` and `helf-school-membership.html`
-- [x] IBD article built — `ibd.html` — Article 15, PubMed IDs verified, citations corrected
+### Completed ✅
+- All Cardiovascular Series articles 01–07 — article, visuals, teleprompter complete
+- All Digestive Series articles 13–16 — article, visuals, teleprompter complete
+- Article 15 IBD — all files including ibd-gut-screen.html complete
+- Article 17 MASLD — article HTML built, visuals and teleprompter still needed
+- Pricing confirmed correct on index.html and membership page
+- Project knowledge document updated April 2026
+
+### Immediate — Article 17 MASLD
+- [ ] Build masld-visuals.html
+- [ ] Build masld-teleprompter.html
+- [ ] Verify ESSENCE trial publication status before going live ⚑
 
 ### Near-term
-- [ ] Build IBD script, visuals, and teleprompter (`ibd-script.html`, `ibd-visuals.html`, `ibd-teleprompter.html`)
-- [ ] Continue Digestive Health Series (Article 17+)
-- [ ] Determine Articles 08–12 series topic
+- [ ] Practical Health Series — Articles 08–12 (Mediterranean diet, Sleep, Exercise, Stress, Alcohol)
+- [ ] Digestive Series — Article 18 Coeliac disease
+- [ ] Continue Digestive Series 19+
 - [ ] Build community forum
 
 ### Each new article requires
 1. Article HTML
-2. Script HTML
-3. Visuals HTML
-4. Teleprompter HTML
-5. Screen HTMLs (where diagrams needed)
-6. GIF source HTMLs (for PPTX)
+2. Visuals HTML
+3. Teleprompter HTML
+4. Screen HTMLs (where diagrams needed)
 
 ---
 
@@ -366,11 +360,9 @@ Do NOT use: non-peer-reviewed sources, commercial health sites, forum content.
 | File type | Pattern | Example |
 |-----------|---------|---------|
 | Article | `[slug].html` | `hypertension.html` |
-| Script | `[slug]-script.html` | `hypertension-script.html` |
 | Visuals | `[slug]-visuals.html` | `hypertension-visuals.html` |
 | Teleprompter | `[slug]-teleprompter.html` | `hypertension-teleprompter.html` |
 | Screen file | `[slug-abbrev]-[name]-screen.html` | `ar-sphincter-screen.html` |
-| GIF source | `[slug]-[name]-gif.html` | `bloating-gut-gif.html` |
 
 ---
 
@@ -381,3 +373,23 @@ Do NOT use: non-peer-reviewed sources, commercial health sites, forum content.
 - Work sessions are long and often cover multiple files simultaneously
 - Always confirm article numbers and file names before building
 - Flag any inconsistencies found during QC immediately
+
+---
+
+## 16. FILE UPLOAD METHOD
+
+The drag-and-drop upload in Edge incognito captures the browser page rather than the file. Reliable methods:
+- **From local file:** Open in Notepad → Ctrl+A → Ctrl+C → paste into chat
+- **From GitHub:** Find file → click Raw → Ctrl+A → Ctrl+C → paste into chat
+- **Download from Claude outputs:** Use the Artifact download button — NEVER Ctrl+S or browser File → Save
+
+---
+
+## 17. END-OF-SESSION UPDATE PROTOCOL
+
+At the end of each productive session, update this document to reflect:
+- New files built and their status
+- Any completed tasks checked off
+- New outstanding items added
+- Any standard changes or new instructions agreed
+Download updated .md from outputs and upload to both GitHub and the Claude Project to replace the previous version.

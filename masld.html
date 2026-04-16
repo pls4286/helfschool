@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fatty Liver Disease (MASLD) — helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:   #1B2A4A;
+      --coral:  #E8634A;
+      --cream:  #FAF7F2;
+      --sage:   #7A9E87;
+      --digest: #D47C3A;
+      --digest-light: #FEF3E7;
+      --border: #E5DDD4;
+      --text:   #2C2C2C;
+      --muted:  #6B7280;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); font-size: 17px; line-height: 1.75; font-weight: 400; }
+
+    /* NAV */
+    nav { background: var(--navy); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 68px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(27,42,74,.18); }
+    .nav-logo { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
+    .logo-svg { width: 36px; height: 36px; flex-shrink: 0; }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .logo-name { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; color: #fff; letter-spacing: .01em; }
+    .logo-tagline { font-size: .6rem; font-weight: 500; color: var(--sage); letter-spacing: .18em; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,.75); text-decoration: none; font-size: .875rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: #fff; }
+
+    /* BREADCRUMB */
+    .breadcrumb { background: var(--navy); padding: .6rem 2rem; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .breadcrumb-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: .5rem; font-size: .8rem; color: rgba(255,255,255,.75); }
+    .breadcrumb-inner a { color: rgba(255,255,255,.75); text-decoration: none; transition: color .2s; }
+    .breadcrumb-inner a:hover { color: #fff; }
+    .breadcrumb-inner span { color: var(--digest); font-weight: 500; }
+
+    /* HERO */
+    .article-hero { background: var(--navy); padding: 3.5rem 2rem 3rem; position: relative; overflow: hidden; }
+    .article-hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(212,124,58,.12) 0%, transparent 70%); pointer-events: none; }
+    .article-hero::after { content: ''; position: absolute; bottom: -40px; left: 10%; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(122,158,135,.10) 0%, transparent 70%); pointer-events: none; }
+    .hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+    .category-badge { display: inline-flex; align-items: center; gap: .4rem; background: rgba(212,124,58,.15); border: 1px solid rgba(212,124,58,.3); color: var(--digest); font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; padding: .3rem .75rem; border-radius: 100px; margin-bottom: 1.25rem; }
+    .article-hero h1 { font-family: 'Fraunces', serif; font-size: clamp(2rem,5vw,3rem); font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: .5rem; }
+    .article-hero h1 span { color: var(--digest); }
+    .hero-subtitle { font-size: 1rem; color: rgba(255,255,255,.85); font-style: italic; font-family: 'Fraunces', serif; margin-bottom: 1.75rem; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+    .meta-item { display: flex; align-items: center; gap: .4rem; font-size: .8rem; color: rgba(255,255,255,.80); }
+
+    /* JUMP NAV */
+    .jump-nav { background: #fff; border-bottom: 1px solid var(--border); padding: 0 2rem; position: sticky; top: 68px; z-index: 90; }
+    .jump-nav-inner { max-width: 900px; margin: 0 auto; display: flex; overflow-x: auto; scrollbar-width: none; }
+    .jump-nav-inner::-webkit-scrollbar { display: none; }
+    .jump-link { display: flex; align-items: center; gap: .4rem; padding: .9rem 1.1rem; font-size: .8rem; font-weight: 500; color: var(--text); text-decoration: none; border-bottom: 2px solid transparent; white-space: nowrap; transition: color .2s, border-color .2s; }
+    .jump-link:hover { color: var(--navy); border-bottom-color: var(--navy); }
+    .jump-link .num { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; background: var(--digest-light); color: var(--digest); font-size: .65rem; font-weight: 700; flex-shrink: 0; }
+
+    /* LAYOUT */
+    .article-layout { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+    .article-section { margin-bottom: 3.5rem; scroll-margin-top: 150px; }
+    .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+    .section-number { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; flex-shrink: 0; }
+    .section-title { font-family: 'Fraunces', serif; font-size: 1.45rem; font-weight: 600; color: var(--navy); line-height: 1.2; }
+    .article-section p { margin-bottom: 1rem; color: var(--text); font-weight: 400; }
+    .article-section p:last-child { margin-bottom: 0; }
+    .subsection-title { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 600; color: var(--navy); margin: 1.75rem 0 .75rem; }
+
+    /* KEY TERMS */
+    .key-terms-box { background: var(--navy); border-radius: 12px; padding: 1.5rem 1.75rem; margin-bottom: 3.5rem; }
+    .key-terms-header { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.25rem; padding-bottom: .85rem; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .key-terms-header h3 { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 600; color: #fff; }
+    .key-terms-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; }
+    .key-term { display: flex; flex-direction: column; gap: .2rem; padding: .75rem 1rem; background: rgba(255,255,255,.05); border-radius: 8px; border-left: 3px solid var(--digest); }
+    .key-term-word { font-size: .88rem; font-weight: 700; color: var(--digest); letter-spacing: .02em; }
+    .key-term-def { font-size: .92rem; color: rgba(255,255,255,.90); line-height: 1.55; }
+
+    /* STAT BANNER */
+    .stat-banner { display: flex; align-items: center; gap: 1.25rem; padding: 1rem 1.25rem; border-radius: 12px; margin: 1.25rem 0; }
+    .stat-banner.dig { background: rgba(212,124,58,.08); border: 1px solid rgba(212,124,58,.2); }
+    .stat-banner.sage { background: rgba(122,158,135,.08); border: 1px solid rgba(122,158,135,.2); }
+    .stat-number { font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 700; line-height: 1; flex-shrink: 0; color: var(--digest); }
+    .stat-banner.sage .stat-number { color: var(--sage); }
+    .stat-text { font-size: .92rem; line-height: 1.55; color: var(--text); font-weight: 400; }
+    .stat-text strong { font-weight: 600; color: var(--navy); }
+    .source-note { font-size: .75rem; color: var(--muted); font-style: italic; margin-top: .3rem; display: block; }
+
+    /* MATTER LIST */
+    .matter-list { list-style: none; display: flex; flex-direction: column; gap: .85rem; }
+    .matter-list li { display: flex; gap: .9rem; align-items: flex-start; background: #fff; border: 1px solid var(--border); border-left: 3px solid var(--digest); border-radius: 0 8px 8px 0; padding: .85rem 1.1rem; font-size: .95rem; line-height: 1.6; color: var(--text); font-weight: 400; }
+    .matter-list li::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--digest); flex-shrink: 0; margin-top: .55rem; }
+
+    /* PROGRESSION TABLE */
+    .progression-table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: .92rem; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(27,42,74,.08); }
+    .progression-table thead tr { background: var(--navy); }
+    .progression-table thead th { padding: .75rem 1rem; text-align: left; font-weight: 600; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: #fff; }
+    .progression-table tbody tr { background: #fff; border-bottom: 1px solid var(--border); }
+    .progression-table tbody tr:last-child { border-bottom: none; }
+    .progression-table tbody tr:nth-child(even) { background: var(--digest-light); }
+    .progression-table tbody td { padding: .8rem 1rem; line-height: 1.55; color: var(--text); font-weight: 400; }
+    .progression-table tbody td:first-child { font-weight: 600; color: var(--navy); }
+
+    /* CALLOUTS */
+    .callout { border-radius: 10px; padding: 1rem 1.25rem; margin: 1.25rem 0; font-size: .95rem; line-height: 1.65; font-weight: 400; }
+    .callout-amber { background: rgba(212,124,58,.08); border: 1px solid rgba(212,124,58,.25); color: var(--text); }
+    .callout-amber strong { color: var(--digest); font-weight: 600; }
+    .callout-sage { background: rgba(122,158,135,.08); border: 1px solid rgba(122,158,135,.25); color: var(--text); }
+    .callout-sage strong { color: #2D5E4A; font-weight: 600; }
+    .callout-red { background: rgba(232,99,74,.08); border: 1px solid rgba(232,99,74,.25); color: var(--text); }
+    .callout-red strong { color: #8B2010; font-weight: 600; }
+
+    /* DATA TABLE */
+    .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .92rem; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(27,42,74,.08); }
+    .data-table thead tr { background: var(--digest); }
+    .data-table thead th { padding: .75rem 1rem; text-align: left; font-weight: 600; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: #fff; }
+    .data-table tbody tr { background: #fff; border-bottom: 1px solid var(--border); }
+    .data-table tbody tr:last-child { border-bottom: none; }
+    .data-table tbody tr:nth-child(even) { background: var(--digest-light); }
+    .data-table tbody td { padding: .8rem 1rem; line-height: 1.55; color: var(--text); font-weight: 400; }
+    .data-table tbody td:first-child { font-weight: 600; color: var(--navy); }
+
+    /* WEIGHT LOSS STEPS */
+    .weight-steps { display: flex; gap: 1rem; margin: 1.25rem 0; flex-wrap: wrap; }
+    .weight-step { flex: 1; min-width: 160px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.2rem; text-align: center; }
+    .weight-step-num { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 700; color: var(--digest); line-height: 1; }
+    .weight-step-label { font-size: .88rem; font-weight: 700; color: var(--navy); margin-top: .3rem; }
+    .weight-step-effect { font-size: .82rem; color: var(--muted); margin-top: .2rem; line-height: 1.4; }
+
+    /* RESEARCH ITEMS */
+    .research-items { display: flex; flex-direction: column; gap: 1.25rem; }
+    .research-item { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.4rem; position: relative; }
+    .research-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 4px 0 0 4px; background: var(--navy); }
+    .research-item h4 { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: .6rem; }
+    .research-item p { font-size: .95rem; line-height: 1.7; color: var(--text); font-weight: 400; margin-bottom: .6rem; }
+    .research-item p:last-child { margin-bottom: 0; }
+
+    /* REFERENCES */
+    .ref-block { margin-bottom: .85rem; padding: .85rem 1rem; background: #fff; border: 1px solid var(--border); border-radius: 8px; }
+    .ref-full { font-size: .85rem; line-height: 1.6; color: var(--text); font-weight: 400; margin-bottom: .5rem; }
+    .ref-links { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .ref-pill { display: inline-flex; align-items: center; font-size: .72rem; font-weight: 600; letter-spacing: .04em; padding: .2rem .6rem; border-radius: 100px; text-decoration: none; transition: background .2s; }
+    .ref-pill-journal { background: #EBF2ED; color: #2D5E4A; border: 1px solid rgba(122,158,135,.35); }
+    .ref-pill-journal:hover { background: rgba(122,158,135,.25); }
+    .ref-pill-pubmed { background: #EEF4FD; color: #1A4A8A; border: 1px solid rgba(46,107,168,.3); }
+    .ref-pill-pubmed:hover { background: rgba(46,107,168,.15); }
+
+    /* PUTTING IT TOGETHER */
+    .putting-together { background: var(--navy); border-radius: 14px; padding: 1.75rem 2rem; margin-top: 2rem; position: relative; overflow: hidden; }
+    .putting-together::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, rgba(212,124,58,.10) 0%, transparent 70%); pointer-events: none; }
+    .putting-together-header { display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem; padding-bottom: .85rem; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .putting-together-header h5 { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 600; color: #fff; }
+    .putting-together p { font-size: 1rem; color: rgba(255,255,255,.90); line-height: 1.75; margin-bottom: .75rem; position: relative; z-index: 1; font-weight: 400; font-style: italic; }
+    .putting-together p:last-child { margin-bottom: 0; }
+    .putting-together p strong { color: #fff; font-weight: 600; font-style: normal; }
+
+    /* DISCLAIMER */
+    .disclaimer { background: rgba(232,99,74,.06); border: 1px solid rgba(232,99,74,.2); border-radius: 12px; padding: 1.1rem 1.4rem; display: flex; gap: .85rem; align-items: flex-start; margin-top: 3rem; }
+    .disclaimer svg { width: 20px; height: 20px; color: var(--coral); flex-shrink: 0; margin-top: .1rem; }
+    .disclaimer p { font-size: .85rem; color: #7A3020; line-height: 1.6; margin: 0; font-weight: 400; }
+
+    footer { background: var(--navy); color: rgba(255,255,255,.65); text-align: center; padding: 2rem; font-size: .8rem; }
+    footer a { color: var(--sage); text-decoration: none; }
+
+    @media(max-width:600px) { nav{padding:0 1rem} .nav-links{display:none} .article-hero{padding:2.5rem 1rem 2rem} .article-layout{padding:2rem 1rem 4rem} .breadcrumb{padding:.6rem 1rem} .jump-nav{padding:0 1rem} .key-terms-grid{grid-template-columns:1fr} .weight-steps{flex-direction:column} }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg class="logo-svg" viewBox="0 0 40 40" fill="none">
+      <rect x="2" y="8" width="17" height="24" rx="2" stroke="#FAF7F2" stroke-width="1.5" fill="none"/>
+      <rect x="21" y="8" width="17" height="24" rx="2" stroke="#FAF7F2" stroke-width="1.5" fill="none"/>
+      <line x1="20" y1="8" x2="20" y2="32" stroke="#E8634A" stroke-width="1.5"/>
+      <line x1="6" y1="15" x2="15" y2="15" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="6" y1="19" x2="15" y2="19" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="6" y1="23" x2="12" y2="23" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="15" x2="34" y2="15" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="19" x2="34" y2="19" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="23" x2="31" y2="23" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-name">helf.school</span>
+      <span class="logo-tagline">Health Education</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="helf-school-conditions.html">Conditions</a></li>
+    <li><a href="helf-school-membership.html">Membership</a></li>
+  </ul>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Home</a>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <a href="helf-school-conditions.html">Conditions</a>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Fatty Liver Disease (MASLD)</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="article-hero">
+  <div class="hero-inner">
+    <div class="category-badge">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.5"/></svg>
+      Digestive Health · Article 17
+    </div>
+    <h1>Fatty Liver Disease: <span>MASLD Explained</span></h1>
+    <p class="hero-subtitle">What fatty liver disease actually is, why so many people have it without knowing, and what the evidence says about reversing it</p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3l2 1.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+        13–15 minute read
+      </div>
+      <div class="meta-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 11l3-3 2.5 2.5 4.5-6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        References verified April 2026
+      </div>
+      <div class="meta-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5C4.5 1.5 2.5 3.5 2.5 6c0 3.5 4.5 6.5 4.5 6.5s4.5-3 4.5-6.5c0-2.5-2-4.5-4.5-4.5z" stroke="currentColor" stroke-width="1.2"/></svg>
+        Health education — not medical advice
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JUMP NAV -->
+<nav class="jump-nav">
+  <div class="jump-nav-inner">
+    <a href="#what-is-it" class="jump-link"><span class="num">1</span> What is MASLD?</a>
+    <a href="#why-it-matters" class="jump-link"><span class="num">2</span> Why does it matter?</a>
+    <a href="#what-doctor" class="jump-link"><span class="num">3</span> What your doctor will do</a>
+    <a href="#research" class="jump-link"><span class="num">4</span> What the research shows</a>
+  </div>
+</nav>
+
+<div class="article-layout">
+
+  <!-- SECTION 1 -->
+  <section class="article-section" id="what-is-it">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <h2 class="section-title">What is MASLD?</h2>
+    </div>
+
+    <p>MASLD — Metabolic dysfunction-Associated Steatotic Liver Disease — is the current name for what most people know as fatty liver disease, previously called NAFLD (non-alcoholic fatty liver disease). The name changed in 2023 to better reflect the underlying metabolic causes and to reduce the stigma of the old "non-alcoholic" framing. If you were told you have a fatty liver, NAFLD, or MASLD — these refer to the same spectrum of conditions.</p>
+
+    <p>At its simplest, MASLD means that excess fat has accumulated in the liver — in people who drink little or no alcohol. The liver is not supposed to store significant amounts of fat. When it does, the result is a condition that ranges from completely silent and reversible at one end, to serious, progressive liver disease at the other.</p>
+
+    <div class="stat-banner dig">
+      <div class="stat-number">1 in 5</div>
+      <div class="stat-text">
+        <strong>people in the UK are estimated to have MASLD</strong> — approximately 9.9 million people. Most have no symptoms and do not know they have it. It is the most common chronic liver condition in the UK and is increasing year on year.
+        <span class="source-note">Source: British Liver Trust / GlobalData epidemiology 2024</span>
+      </div>
+    </div>
+
+    <h3 class="subsection-title">The spectrum — from fatty liver to serious disease</h3>
+
+    <p>MASLD is not a single condition. It describes a spectrum that progresses through several stages — though many people never progress beyond the earliest.</p>
+
+    <table class="progression-table">
+      <thead>
+        <tr>
+          <th>Stage</th>
+          <th>What it means</th>
+          <th>Typical outcome</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Steatosis (simple fatty liver)</td><td>Fat accumulation in liver cells, no significant inflammation</td><td>Often stable or reversible with lifestyle change</td></tr>
+        <tr><td>MASH (Metabolic dysfunction-Associated SteatoHepatitis)</td><td>Fat plus inflammation and liver cell damage — previously called NASH</td><td>Can progress to fibrosis if untreated</td></tr>
+        <tr><td>Fibrosis</td><td>Scar tissue forming in the liver as a result of repeated inflammation</td><td>Reversible at early stages with significant intervention</td></tr>
+        <tr><td>Cirrhosis</td><td>Advanced scarring — liver architecture permanently disrupted</td><td>Largely irreversible; risk of liver failure and cancer rises significantly</td></tr>
+        <tr><td>Hepatocellular carcinoma (HCC)</td><td>Primary liver cancer arising from MASLD-related damage</td><td>Serious — MASLD is a leading cause of liver cancer in the UK</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="subsection-title">What causes MASLD?</h3>
+
+    <p>MASLD develops when the liver accumulates more fat than it can process. This happens against a background of <strong>metabolic dysfunction</strong> — disrupted insulin signalling, excess calorie intake, and impaired fat metabolism. The key risk factors are well established:</p>
+
+    <ul class="matter-list" style="margin-top:.75rem">
+      <li><strong>Obesity — particularly abdominal obesity.</strong> Excess visceral fat drives insulin resistance, which increases the flow of fatty acids to the liver and promotes fat storage. This is the strongest single risk factor.</li>
+      <li><strong>Type 2 diabetes and insulin resistance.</strong> Approximately 65% of people with type 2 diabetes have MASLD. Insulin resistance promotes fat accumulation in the liver and drives progression to MASH.</li>
+      <li><strong>High blood triglycerides, high blood pressure, and low HDL cholesterol</strong> — the components of metabolic syndrome — are each independently associated with MASLD and accelerate progression.</li>
+      <li><strong>Diet.</strong> High intake of ultra-processed foods, added sugars (particularly fructose), and refined carbohydrates drives liver fat accumulation. A Western dietary pattern is one of the strongest modifiable contributors.</li>
+      <li><strong>Physical inactivity.</strong> Sedentary behaviour independently increases liver fat and insulin resistance, separate from its effect on weight.</li>
+    </ul>
+
+    <div class="callout callout-amber" style="margin-top:1.5rem">
+      <strong>Waist circumference matters more than weight alone.</strong> BMI does not distinguish between fat stored under the skin and fat stored around the abdominal organs — visceral fat. It is visceral fat that drives insulin resistance and liver fat accumulation. Waist circumference is a more clinically useful measure: risk is increased above <strong>94cm (37 inches) in men</strong> and <strong>80cm (31.5 inches) in women</strong>. High risk thresholds are 102cm in men and 88cm in women. You can have a normal BMI and a high-risk waist measurement — and vice versa.
+    </div>
+
+  </section>
+
+  <!-- KEY TERMS -->
+  <div class="key-terms-box">
+    <div class="key-terms-header">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M9 4H5a1 1 0 00-1 1v10a1 1 0 001 1h10a1 1 0 001-1v-4M13 4h3v3M10 10l6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>Key Terms</h3>
+    </div>
+    <div class="key-terms-grid">
+      <div class="key-term">
+        <span class="key-term-word">MASLD</span>
+        <span class="key-term-def">Metabolic dysfunction-Associated Steatotic Liver Disease — the current name for fatty liver disease not caused by alcohol. Replaces the older term NAFLD (non-alcoholic fatty liver disease) as of 2023.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">MASH</span>
+        <span class="key-term-def">Metabolic dysfunction-Associated SteatoHepatitis — the more serious form of MASLD, involving liver inflammation and cell damage in addition to fat accumulation. Previously called NASH. The stage most likely to progress to fibrosis.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Hepatic steatosis</span>
+        <span class="key-term-def">Excess fat accumulation in liver cells (hepatocytes). Defined as fat content affecting more than 5% of liver cells. The earliest and most reversible stage of MASLD.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Fibrosis</span>
+        <span class="key-term-def">Scar tissue that forms in the liver in response to repeated inflammation. Staged F0 (none) to F4 (cirrhosis). Early fibrosis (F1–F2) can improve with treatment. Advanced fibrosis (F3–F4) is much harder to reverse.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Insulin resistance</span>
+        <span class="key-term-def">A state in which cells respond less effectively to insulin, leading to higher blood sugar and increased fat delivery to the liver. The central metabolic driver of MASLD.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">FIB-4 score</span>
+        <span class="key-term-def">A simple blood test calculation (using age, AST, ALT, and platelet count) that estimates the likelihood of significant liver fibrosis. Used as the first-line assessment tool in primary care. Score below 1.3 is low risk; above 2.67 warrants specialist referral.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Transient elastography (FibroScan)</span>
+        <span class="key-term-def">A non-invasive ultrasound-based scan that measures liver stiffness — a proxy for fibrosis. Used as a second step when FIB-4 is indeterminate. Avoids the need for liver biopsy in most patients.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Metabolic syndrome</span>
+        <span class="key-term-def">A cluster of conditions — abdominal obesity, high blood pressure, raised blood sugar, high triglycerides, and low HDL cholesterol — that together significantly increase the risk of MASLD, type 2 diabetes, and cardiovascular disease.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Hepatocellular carcinoma (HCC)</span>
+        <span class="key-term-def">The most common form of primary liver cancer. MASLD-related HCC is one of the fastest-growing causes of liver cancer in the UK, and can occur even without cirrhosis in some patients.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">Waist circumference</span>
+        <span class="key-term-def">A direct measure of visceral (abdominal) fat — the type most strongly linked to insulin resistance and MASLD. Increased risk: above 94cm in men, 80cm in women. High risk: above 102cm in men, 88cm in women. More clinically meaningful than BMI alone for MASLD risk.</span>
+      </div>
+      <div class="key-term">
+        <span class="key-term-word">GLP-1 receptor agonists</span>
+        <span class="key-term-def">A class of medications (including semaglutide (Ozempic, Wegovy) and liraglutide (Victoza, Saxenda)) originally developed for type 2 diabetes and obesity that also reduce liver fat and improve MASLD. Currently used for their licensed indications; NICE appraisal for MASLD-specific use is pending.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <section class="article-section" id="why-it-matters">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <h2 class="section-title">Why does it matter?</h2>
+    </div>
+
+    <ul class="matter-list">
+      <li>Most people with MASLD have no symptoms — and no idea they have it. The liver has no pain receptors. Fatty liver disease is almost always silent until it is advanced. This means millions of people in the UK are walking around with a condition that, if identified early, is often reversible — but if left undetected, can progress quietly to cirrhosis or liver cancer over years or decades.</li>
+      <li>MASLD is the leading cause of chronic liver disease in the UK and the developed world — and it is increasing. Rising rates of obesity, type 2 diabetes, and ultra-processed food consumption are driving prevalence upward in every age group, including children and adolescents.</li>
+      <li>It significantly increases the risk of serious liver complications. A minority of people with MASLD will progress to MASH, and a minority of those will develop cirrhosis. But because the pool of people with MASLD is so large — approximately 10 million in the UK — even a small percentage translates into a very large number of people with serious liver disease.</li>
+      <li>MASLD is strongly linked to cardiovascular disease — which remains the leading cause of death in people with MASLD. The shared risk factors (insulin resistance, dyslipidaemia, hypertension, obesity) mean that managing MASLD and managing cardiovascular risk are largely the same conversation.</li>
+      <li>The good news: early MASLD is reversible. Lifestyle change — particularly weight loss, dietary improvement, and exercise — can reduce liver fat, improve inflammation, and even reverse early fibrosis. The evidence for this is robust and consistent. This is a condition where patient knowledge and action genuinely matter.</li>
+    </ul>
+
+    <div class="callout callout-red" style="margin-top:1.5rem">
+      <strong>Symptoms that warrant urgent assessment:</strong> jaundice (yellowing of skin or eyes), significant unexplained fatigue, abdominal swelling, easy bruising or bleeding, or confusion. These may indicate advanced liver disease. If you experience any of these, speak to your GP promptly.
+    </div>
+
+  </section>
+
+  <!-- SECTION 3 -->
+  <section class="article-section" id="what-doctor">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <h2 class="section-title">What your doctor might do</h2>
+    </div>
+
+    <p>MASLD is often picked up incidentally — on an ultrasound done for another reason, or when a routine blood test shows mildly elevated liver enzymes (ALT or AST). Many GPs now proactively screen people with known risk factors: obesity, type 2 diabetes, or metabolic syndrome.</p>
+
+    <h3 class="subsection-title">Investigations — a stepwise approach</h3>
+
+    <p>The EASL/EASD/EASO 2024 guidelines recommend a structured two-step approach to assess how serious the MASLD is — specifically, to identify whether significant fibrosis (scarring) is present.</p>
+
+    <table class="data-table">
+      <thead><tr><th>Step</th><th>Test</th><th>What it shows</th></tr></thead>
+      <tbody>
+        <tr><td>Step 1</td><td>FIB-4 score (blood test calculation)</td><td>Estimates fibrosis risk using age, AST, ALT, and platelet count. Score &lt;1.3 = low risk (no further evaluation needed). Score &gt;2.67 = high risk (specialist referral). 1.3–2.67 = indeterminate → proceed to step 2</td></tr>
+        <tr><td>Step 2</td><td>Transient elastography (FibroScan)</td><td>Measures liver stiffness non-invasively — a proxy for fibrosis. Avoids liver biopsy in most cases. Liver stiffness &lt;8 kPa = low risk. &gt;12 kPa = high risk</td></tr>
+        <tr><td>If needed</td><td>Liver biopsy</td><td>Definitive assessment of fibrosis stage and presence of MASH. Reserved for cases where non-invasive tests are indeterminate or results would change management</td></tr>
+        <tr><td>Imaging</td><td>Ultrasound</td><td>Can detect moderate-to-severe steatosis but is not sensitive enough to detect early fat accumulation or fibrosis</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="subsection-title">Treatment — lifestyle is the cornerstone</h3>
+
+    <p>There is currently no licensed pharmacological treatment specifically for MASLD in the UK. A NICE technology appraisal for resmetirom (Rezdiffra) is awaiting development. Semaglutide (Ozempic, Wegovy) and other GLP-1 receptor agonists are showing significant promise in clinical trials and may be prescribed for their licensed indications of obesity or type 2 diabetes, with MASLD benefit as an additional effect.</p>
+
+    <p>For the vast majority of people with MASLD, <strong>lifestyle intervention is both the first-line and the most effective treatment available</strong>.</p>
+
+    <div class="weight-steps">
+      <div class="weight-step">
+        <div class="weight-step-num">≥5%</div>
+        <div class="weight-step-label">weight loss</div>
+        <div class="weight-step-effect">Reduces hepatic steatosis (liver fat)</div>
+      </div>
+      <div class="weight-step">
+        <div class="weight-step-num">≥7%</div>
+        <div class="weight-step-label">weight loss</div>
+        <div class="weight-step-effect">Improves necroinflammation — reduces MASH activity</div>
+      </div>
+      <div class="weight-step">
+        <div class="weight-step-num">≥10%</div>
+        <div class="weight-step-label">weight loss</div>
+        <div class="weight-step-effect">Stabilises or reverses fibrosis — even at F2–F3</div>
+      </div>
+    </div>
+
+    <p>These thresholds are the most important numbers in MASLD management. They come from multiple randomised trials and are endorsed by the EASL/EASD/EASO 2024 guidelines. The key message: <strong>even modest, sustained weight loss makes a clinically meaningful difference.</strong></p>
+
+    <div class="callout callout-amber" style="margin-top:1rem;margin-bottom:1.5rem">
+      <strong>Your GP may measure your waist circumference, not just your weight.</strong> Visceral fat — the fat stored around the abdominal organs — is far more metabolically harmful than fat stored under the skin. Waist circumference is a direct measure of it. Risk is increased above <strong>94cm (37 inches) in men</strong> and <strong>80cm (31.5 inches) in women</strong>. High-risk thresholds are 102cm in men and 88cm in women. Waist-to-height ratio (waist circumference should be less than half your height) is also increasingly used. These measurements are more clinically meaningful than BMI alone in the context of MASLD.
+    </div>
+
+    <h3 class="subsection-title">Diet and exercise</h3>
+
+    <p>The Mediterranean dietary pattern has the strongest evidence base for MASLD — reducing liver fat and improving insulin sensitivity across multiple randomised trials. Specific targets include: reducing ultra-processed food, added sugar (especially fructose-containing drinks and foods), and refined carbohydrates; increasing vegetables, legumes, fish, and olive oil.</p>
+
+    <p>Physical activity improves liver fat and insulin resistance independently of weight loss. Both aerobic exercise and resistance training are effective. The EASL guidelines recommend at least 150–300 minutes of moderate-intensity activity per week.</p>
+
+    <div class="callout callout-sage" style="margin-top:1.5rem">
+      <strong>Coffee has genuine evidence behind it.</strong> Multiple studies have found that regular coffee consumption (2–3 cups per day) is associated with slower progression of liver disease in MASLD. The EASL 2024 guidelines explicitly recommend increasing coffee consumption as a lifestyle intervention. The mechanism involves anti-inflammatory and antifibrotic effects of coffee's bioactive compounds.
+    </div>
+
+  </section>
+
+  <!-- SECTION 4 -->
+  <section class="article-section" id="research">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <h2 class="section-title">What the research shows</h2>
+    </div>
+
+    <div class="research-items">
+
+      <div class="research-item">
+        <h4>EASL/EASD/EASO Clinical Practice Guidelines — the current international standard</h4>
+        <p>The joint European guidelines for MASLD management, published in the Journal of Hepatology in June 2024, represent the most comprehensive and up-to-date evidence synthesis available. They define MASLD as steatotic liver disease in the presence of at least one cardiometabolic risk factor and the absence of harmful alcohol intake. Key recommendations include: FIB-4 as first-line fibrosis assessment; lifestyle modification (weight loss, exercise, dietary change, coffee, alcohol reduction) as the primary treatment; GLP-1 receptor agonists for eligible patients with obesity or type 2 diabetes; and consideration of resmetirom (Rezdiffra) for non-cirrhotic MASH with significant fibrosis (stage ≥2) where locally approved. The guidelines explicitly state that no MASH-targeted pharmacotherapy is currently recommended for the cirrhotic stage.</p>
+        <div class="ref-block">
+          <p class="ref-full"><strong>European Association for the Study of the Liver (EASL); European Association for the Study of Diabetes (EASD); European Association for the Study of Obesity (EASO).</strong> EASL–EASD–EASO Clinical Practice Guidelines on the management of metabolic dysfunction-associated steatotic liver disease (MASLD). <em>Journal of Hepatology</em> 2024;81(3):492–542. DOI: 10.1016/j.jhep.2024.04.031</p>
+          <div class="ref-links">
+            <a href="https://www.journal-of-hepatology.eu/article/S0168-8278(24)00329-5/fulltext" target="_blank" class="ref-pill ref-pill-journal">J Hepatol Full Text</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <h4>Weight loss thresholds — the evidence base for the 5%/7%/10% targets</h4>
+        <p>Multiple randomised controlled trials and systematic reviews have established the dose-response relationship between weight loss and liver outcomes in MASLD. A widely cited synthesis confirmed that sustained weight loss of ≥5% reduces hepatic steatosis, ≥7% improves necroinflammation (the activity component of MASH), and ≥10% stabilises or reverses fibrosis — including at F2–F3 stage. These thresholds form the basis of clinical guidance worldwide and are endorsed by the EASL 2024 guidelines. The challenge is sustaining the weight loss: trials consistently show that the benefit is maintained only while the weight loss is maintained.</p>
+        <div class="ref-block">
+          <p class="ref-full"><strong>Romero-Gómez M, Zelber-Sagi S, Trenell M.</strong> Treatment of NAFLD with diet, physical activity and exercise. <em>Journal of Hepatology</em> 2017;67(4):829–846. DOI: 10.1016/j.jhep.2017.05.016</p>
+          <div class="ref-links">
+            <a href="https://www.sciencedirect.com/science/article/abs/pii/S0168827817320524" target="_blank" class="ref-pill ref-pill-journal">ScienceDirect Abstract</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/28545937/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 28545937</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <h4>Mediterranean diet — the strongest dietary evidence for MASLD</h4>
+        <p>A randomised controlled trial involving 259 participants with MASLD found that a 12-week Mediterranean diet intervention reduced hepatic steatosis by 39% and improved insulin sensitivity compared to a standard low-fat diet. A separate calorie-restricted lifestyle programme in 196 adults with MASLD reduced liver fat by 25% over 52 weeks. The Mediterranean pattern — high in vegetables, legumes, fish, olive oil, and whole grains, low in red and processed meat and added sugars — consistently outperforms other dietary patterns in MASLD trials, likely through its combined effects on insulin resistance, inflammation, and gut microbiome composition.</p>
+        <div class="ref-block">
+          <p class="ref-full">Evidence synthesised from multiple RCTs reviewed in: <strong>Karimi F, Shirafkan M, Kalantar M, et al.</strong> Dietary Interventions in Metabolic Dysfunction-Associated Steatotic Liver Disease: A Narrative Review. <em>International Journal of Molecular Sciences</em> 2025;26(19):9625. DOI: 10.3390/ijms26199625</p>
+          <div class="ref-links">
+            <a href="https://www.mdpi.com/1422-0067/26/19/9625" target="_blank" class="ref-pill ref-pill-journal">IJMS Full Text</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <h4>UK prevalence and the diagnosis gap — British Liver Trust 2025</h4>
+        <p>A report from the British Liver Trust published in June 2025 highlighted critical gaps in MASLD diagnosis and care in the UK. MASLD is estimated to affect up to 1 in 5 people in the UK — approximately 10 million people — yet the vast majority remain undiagnosed. Diagnosed prevalent cases were estimated at approximately 5.2 million in 2024, meaning roughly half of those affected are unidentified. The report called for MASLD to be given the same clinical attention as other major chronic conditions, and raised serious concerns about NHS capacity to manage the growing patient population. Adolescent and younger adult prevalence is increasing in parallel with rising rates of obesity and metabolic syndrome in these age groups.</p>
+        <div class="ref-block">
+          <p class="ref-full"><strong>British Liver Trust.</strong> Urgent action needed as new research reveals gaps in fatty liver disease diagnosis and care. Published June 2025. Based on GlobalData epidemiological analysis of UK MASLD prevalence 2024–2032.</p>
+          <div class="ref-links">
+            <a href="https://britishlivertrust.org.uk/urgent-action-needed-as-new-research-reveals-gaps-in-fatty-liver-disease-diagnosis-and-care/" target="_blank" class="ref-pill ref-pill-journal">British Liver Trust Report</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <h4>GLP-1 receptor agonists — emerging pharmacological evidence</h4>
+        <p>Semaglutide (Ozempic, Wegovy — the active ingredient in both) has been studied specifically in MASH in the ESSENCE trial — a phase 3 randomised controlled trial. Results presented in 2024 found that semaglutide produced significant histological improvement in MASH activity and fibrosis compared to placebo. GLP-1 receptor agonists reduce liver fat through multiple mechanisms: weight loss, reduced hepatic lipogenesis, improved insulin sensitivity, and possible direct hepatic effects. They are not currently licensed specifically for MASLD in the UK, but may be prescribed for their licensed indications (type 2 diabetes, obesity) in patients who also have MASLD. The EASL 2024 guidelines support their use in eligible patients.</p>
+        <div class="ref-block">
+          <p class="ref-full">⚑ ESSENCE trial results — semaglutide in MASH. Full publication pending at time of writing; presented at EASL 2024. Please verify current publication status before citing.</p>
+          <div class="ref-links">
+            <a href="https://www.journal-of-hepatology.eu/article/S0168-8278(24)00329-5/fulltext" target="_blank" class="ref-pill ref-pill-journal">EASL 2024 Guidelines (GLP-1 section)</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PUTTING IT TOGETHER -->
+    <div class="putting-together">
+      <div class="putting-together-header">
+        <svg viewBox="0 0 20 20" fill="none" width="20" height="20"><path d="M10 2l2.5 5 5.5.8-4 3.9.9 5.5L10 14.5l-4.9 2.7.9-5.5L2 7.8l5.5-.8L10 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <h5>Putting it all together</h5>
+      </div>
+      <p>MASLD is one of the most common chronic conditions in the UK — and one of the most under-recognised. Most people with it feel nothing. Their liver is accumulating fat, and potentially progressing through inflammation to scarring, while they go about their daily lives entirely unaware.</p>
+      <p>The encouraging truth is that early MASLD is highly responsive to lifestyle change. A 5–10% reduction in body weight, a shift toward a Mediterranean dietary pattern, regular physical activity, and reduced sugar and processed food intake can reduce liver fat, dampen inflammation, and reverse early fibrosis. These are not small effects. They are among the most powerful interventions in hepatology.</p>
+      <p><strong>If you have known risk factors — obesity, type 2 diabetes, metabolic syndrome, or a routine blood test showing elevated liver enzymes — it is worth raising fatty liver disease with your GP. Early identification changes outcomes. And the conversation is worth having.</strong></p>
+    </div>
+
+  </section>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4M10 14h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <p><strong>This article is health education, not medical advice.</strong> It is intended to help you understand MASLD and the evidence around it — not to replace a consultation with your own doctor. If you are concerned about your liver health or any of the risk factors discussed here, please speak with your GP.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>helf.school — <a href="index.html">Home</a> · <a href="helf-school-conditions.html">Conditions</a> · Health Education for Everyone</p>
+  <p style="margin-top:.5rem;font-size:.72rem;opacity:.6">© 2025 helf.school. All content is health education only — not medical advice.</p>
+</footer>
+
+</body>
+</html>
