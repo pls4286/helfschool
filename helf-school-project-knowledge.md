@@ -1,5 +1,5 @@
 # helf.school — Project Knowledge Document
-*Last updated: April 2026 — comprehensive reference for all Claude sessions*
+*Last updated: April 2026 — updated to include medical term lay-clarification standard, current article inventory, and three-file architecture*
 
 ---
 
@@ -67,14 +67,14 @@ Open-book SVG with "HEALTH EDUCATION" tagline beneath helf.school wordmark.
 - `helf-school-conditions.html` — conditions library
 - `helf-school-membership.html` — membership pricing
 
-### Membership pricing (CONFIRMED CORRECT as of April 2026)
+### Membership pricing (CONFIRMED — must reflect on all pages)
 | Tier | Price |
 |------|-------|
 | Explorer (free) | £0 |
 | Member | £6/month or £60/year |
 | Lifetime | £150 one-off |
 
-✅ Both `index.html` and `helf-school-membership.html` confirmed correct.
+⚠️ `index.html` and membership page currently show INCORRECT prices (£7/£15). Must be updated.
 
 ### Members-only content
 Full article library · Research analyses · Evidence ratings · Glossary · New content feed · Saved articles · Monthly Q&A
@@ -89,27 +89,17 @@ Free = read-only. Paid members = full access. Needs: thread creation, member pro
 ## 5. ARTICLE INVENTORY
 
 ### Cardiovascular Series (Articles 01–07) — ALL COMPLETE
-| # | Title | Article HTML | Visuals | Teleprompter |
-|---|-------|-------------|---------|--------------|
-| 01 | Hypertension | hypertension.html | hypertension-visuals.html | hypertension-teleprompter.html |
-| 02 | Cholesterol Explained | cholesterol.html | cholesterol-visuals.html | cholesterol-teleprompter.html |
-| 03 | How Doctors Estimate Heart Attack Risk | heart-attack-risk.html | heart-attack-risk-visuals.html | heart-attack-risk-teleprompter.html |
-| 04 | Statins — Benefits & Risks | statins.html | statins-visuals.html | statins-teleprompter.html |
-| 05 | How to Reduce Cardiovascular Risk with Lifestyle Changes | lifestyle-changes.html | lifestyle-visuals.html | lifestyle-teleprompter.html |
-| 06 | Salt and Blood Pressure | salt-blood-pressure.html | salt-visuals.html | salt-teleprompter.html |
-| 07 | Do Supplements Lower Cholesterol? | supplements-cholesterol.html | supplements-visuals.html | supplements-teleprompter.html |
+| # | Title | Article HTML | Script | Visuals | Teleprompter |
+|---|-------|-------------|--------|---------|--------------|
+| 01 | Hypertension | hypertension.html | hypertension-script.html | hypertension-visuals.html | hypertension-teleprompter.html |
+| 02 | Cholesterol Explained | cholesterol.html | cholesterol-script.html | cholesterol-visuals.html | cholesterol-teleprompter.html |
+| 03 | How Doctors Estimate Heart Attack Risk | heart-attack-risk.html | heart-attack-risk-script.html | heart-attack-risk-visuals.html | heart-attack-risk-teleprompter.html |
+| 04 | Statins — Benefits & Risks | statins.html | statins-script.html | statins-visuals.html | statins-teleprompter.html |
+| 05 | How to Reduce Cardiovascular Risk with Lifestyle Changes | lifestyle-changes.html | lifestyle-script.html | lifestyle-visuals.html | lifestyle-teleprompter.html |
+| 06 | Salt and Blood Pressure | salt-blood-pressure.html | salt-script.html | salt-visuals.html | salt-teleprompter.html |
+| 07 | Do Supplements Lower Cholesterol? | supplements-cholesterol.html | supplements-script.html | supplements-visuals.html | supplements-teleprompter.html |
 
-### Practical Health Series (Articles 08–12) — PLANNED
-| # | Title | Status |
-|---|-------|--------|
-| 08 | The Mediterranean Diet | Not yet built |
-| 09 | Sleep — Why It Matters More Than You Think | Not yet built |
-| 10 | Exercise and Movement — The Evidence | Not yet built |
-| 11 | Stress and the Body | Not yet built |
-| 12 | Alcohol — What the Evidence Actually Shows | Not yet built |
-
-**Series colour:** Practical `#7A6A2E`  
-**Series rationale:** Each article covers one modifiable factor at the intersection of multiple conditions — actionable without a prescription or referral. Mediterranean diet is Article 08 as it is referenced across cardiovascular, MASLD, and digestive articles.
+### Articles 08–12 — RESERVED (series TBC, not yet built)
 
 ### Digestive Health Series (Articles 13–17+) — IN PROGRESS
 | # | Title | Article HTML | Visuals | Teleprompter | Screen files |
@@ -152,22 +142,34 @@ Key Terms box sits **between sections 1 and 2** — navy background, alphabetica
 
 Research claims flagged ⚑ for Paul review before publishing.
 
-### Drug naming standard
-Every generic drug name must be followed immediately by the brand name(s) in brackets. Examples: semaglutide (Ozempic, Wegovy), atorvastatin (Lipitor), infliximab (Remicade), mesalazine (Asacol, Octasa). Apply to all articles.
-
 ### References standard
 Every research item must include:
 - Full citation: authors, full title, journal, year, volume, pages, DOI
-- Pill links: journal full text + PubMed/PMC — **only if verified working by web search in the same session**
-- Use `.ref-block / .ref-full / .ref-links` CSS pattern
+- Pill links: journal full text + PubMed/PMC (only if verified by web search in same session)
+- Use `.ref-block / .ref-full / .ref-links` CSS pattern from supplements-cholesterol.html
 - Short link alone is NOT sufficient
 
-⚠️ PubMed IDs are UNRELIABLE from training data. Rule: no PubMed/PMC pill links unless verified by web search in same session. Omit and flag ⚑ if unverified.
-
-⚠️ Every URL must be verified to actually resolve to the correct article before inclusion. Never include a link that has not been confirmed working in the same session.
+⚠️ PubMed IDs are UNRELIABLE from training data. Confirmed wrong IDs found previously. Rule: no PubMed/PMC pill links unless verified by web search in same session. Omit and flag ⚑ if unverified. Journal DOI links acceptable. Paul checks every link before any article goes live.
 
 ### Pre-draft verification
-Before presenting any article, script, or visuals HTML, verify via web search that every cited study, trial, or statistic: (1) exists, (2) relates to the correct condition, (3) supports the claim made, (4) every URL resolves correctly.
+Before presenting any article, script, or visuals HTML, verify via web search that every cited study, trial, or statistic: (1) exists, (2) relates to the correct condition, (3) supports the claim made.
+
+### Medical term lay-clarification standard
+Whenever a medical or technical term is used in an article, a plain-English meaning in brackets must follow it — **every time it appears**, not just the first mention. Apply in prose, tables, bullet lists, and callouts. Short-form brackets are acceptable in space-constrained table cells.
+
+Examples:
+- ataxia (problems with balance and coordination)
+- peripheral neuropathy (nerve tingling/numbness)
+- steatorrhoea (pale, floating stools)
+- villous atrophy (flattening of the gut lining)
+- crypt hyperplasia (overgrowth of the gut's repair cells)
+- mucosal recovery (healing of the gut lining)
+- dermatitis herpetiformis (itchy blistering rash)
+- malabsorption (poor absorption of nutrients)
+- subfertility (difficulty conceiving)
+- immunosuppressive treatment (drugs that calm the immune system)
+
+This standard applies to all new and existing articles.
 
 ### Readability
 - Body text: `#2C2C2C`, explicit `font-weight:400`
@@ -192,6 +194,7 @@ Every article `.article-section` CSS rule MUST include:
 ```css
 .article-section { scroll-margin-top: 150px; }
 ```
+This compensates for sticky main nav (68px) + sticky jump nav (~46px) + breathing room. Without it, tab navigation scrolls section headings behind the nav bars. Never omit.
 
 ### Inline source references
 - Min `0.75rem`, `rgba(255,255,255,0.55)` on dark / `#2C2C2C` on light
@@ -201,33 +204,49 @@ Every article `.article-section` CSS rule MUST include:
 
 ## 8. VIDEO STANDARDS
 
+### Article vs teleprompter depth
+For technically complex topics, the **article HTML is the full-depth reference** — nuanced science, complications with honest figures, full diagnostic detail. The **teleprompter is the practical 5–6 min doorway** for a general audience — simplified, warm, focused on symptoms, testing traps, and treatment reality. Serious complications are mentioned in a single calm line, not detailed with statistics. Build the article first at full depth, then extract the practical 20% for the teleprompter.
+
 ### Standard intro (every video, Segment 0)
 > "I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about [TOPIC]. Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. If anything feels relevant to you personally, please take it to your own doctor. Right — let's get into it."
 ~15–18 seconds.
 
-### Three files per article (current standard)
-1. **Article HTML** — website page
-2. **Visuals HTML** — camera-facing screen, keyboard nav (← →), no script text
-3. **Teleprompter HTML** — scrolling teleprompter for filming
+### Three-file architecture (current standard)
+Each video requires **three** HTML files. Old combined presenter/script files (e.g. `cholesterol-presenter.html`) are superseded.
 
-### Teleprompter spec
-- Default speed: `PX_PER_SEC_BASE = 20`, speed levels `[8,14,20,28,38,52]`
+**(1) Article HTML** — `[slug].html`
+- Website page for readers
+- Full depth, all references, all technical nuance
+
+**(2) Visuals HTML** — `[slug]-visuals.html`
+- Camera-facing slide deck
+- Diagrams, animations, stat cards, research cards
+- Keyboard navigation (← → arrows)
+- No script text
+
+**(3) Teleprompter HTML** — `[slug]-teleprompter.html`
+- Scrolling script on phone/tablet beside camera lens
+- Default speed: speed level 3 (`PX_PER_SEC_BASE = 20`)
 - Default font: `1.9rem`
 - Speed control: 1–6 via +/− buttons
 - Font control: A+ / A− buttons
-- Visual cue boxes at **bottom of each segment** — amber/red bordered box: "COMING UP — Screen X: [description] · advance now"
-- Auto-scroll via RAF loop
-- Touch swipe support for phone/tablet
-- Segment jump navigation dots
+- Visual cue boxes at **bottom of each segment** — amber border for visuals advance, red border for screen file switch
+- RAF auto-scroll loop, touch swipe, segment jump dots
 
 ### Screen files
-Standalone full-screen HTML files for camera filming.
+Standalone full-screen HTML files for camera filming (e.g. `ar-sphincter-screen.html`, `coeliac-villi-screen.html`).
 - Full-screen, auto-animate on load, bold for filming
-- Layout: `flex-start`, `6vh` top padding
 - Footer: min `clamp(.65rem,1vw,.80rem)`, `rgba(255,255,255,0.65)`
+- Referenced by bold red `.diagram-cue` box in teleprompter
 
-### Visuals research slide standard
-In every visuals HTML file, the "What the research shows" slide must have each research card's key finding highlighted — the single most important number, percentage, or conclusion must be bold and in the accent colour. Never bury the headline finding in plain body text.
+### GIF capture settings
+Scale 0.62 · Every 2nd frame · 120 colours · Under 1.5MB total PPTX
+
+### Graphics standard
+Standalone animation HTMLs = GIF capture sources ONLY. Never embedded directly in articles or presenters. Each presenter contains its own inline recreation in the `visuals{}` object. Both standalone and inline versions must exist for every segment visual.
+
+### Article ↔ presenter consistency
+All trial names, years, citation authors, and statistics must match across article and presenter files. Cross-check before upload.
 
 ---
 
@@ -296,19 +315,18 @@ All visuals HTML files must fill the screen boldly and be readable at distance:
 Run before uploading any article or presenter:
 
 1. **Readability** — no pale text colours, explicit font-weight:400 on body
-2. **References** — full citation blocks with DOI and pill links (verified working in same session)
+2. **References** — full citation blocks with DOI and pill links (verified)
 3. **Research flags** — all ⚑ claims verified against source before finalising
-4. **Links** — every URL confirmed to resolve to the correct article
-5. **Drug names** — all generic drug names have brand names in brackets
-6. **Article ↔ visuals consistency** — all facts, names, years, citations match
-7. **Scroll offset** — `scroll-margin-top: 150px` present on `.article-section`
-8. **Visuals visibility** — no source text below opacity 0.70, all font sizes within spec
+4. **Graphics** — standalone animation file exists AND presenter has matching inline visual
+5. **Article ↔ presenter consistency** — all facts, names, years, citations match
+6. **Scroll offset** — `scroll-margin-top: 150px` present on `.article-section`
+7. **Visuals visibility** — no source text below opacity 0.70, all font sizes within spec
 
 ---
 
 ## 11. APPROVED RESEARCH SOURCES
 
-BMJ · NICE guidelines · Cochrane Database · NEJM · The Lancet · JAMA · BMJ Best Practice · PubMed · NHS/NHS Digital · ONS · CDC · WHO · Global Burden of Disease Study · ESC/EAS guidelines · EASL/EASD/EASO guidelines · BSG guidelines
+BMJ · NICE guidelines · Cochrane Database · NEJM · The Lancet · JAMA · BMJ Best Practice · PubMed · NHS/NHS Digital · ONS · CDC · WHO · Global Burden of Disease Study · ESC/EAS guidelines
 
 Do NOT use: non-peer-reviewed sources, commercial health sites, forum content.
 
@@ -360,9 +378,11 @@ Do NOT use: non-peer-reviewed sources, commercial health sites, forum content.
 | File type | Pattern | Example |
 |-----------|---------|---------|
 | Article | `[slug].html` | `hypertension.html` |
+| Script | `[slug]-script.html` | `hypertension-script.html` |
 | Visuals | `[slug]-visuals.html` | `hypertension-visuals.html` |
 | Teleprompter | `[slug]-teleprompter.html` | `hypertension-teleprompter.html` |
 | Screen file | `[slug-abbrev]-[name]-screen.html` | `ar-sphincter-screen.html` |
+| GIF source | `[slug]-[name]-gif.html` | `bloating-gut-gif.html` |
 
 ---
 
@@ -392,4 +412,5 @@ At the end of each productive session, update this document to reflect:
 - Any completed tasks checked off
 - New outstanding items added
 - Any standard changes or new instructions agreed
+
 Download updated .md from outputs and upload to both GitHub and the Claude Project to replace the previous version.
