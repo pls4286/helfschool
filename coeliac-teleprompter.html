@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <title>Coeliac Disease — Teleprompter | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #1B2A4A;
+      --digest: #D47C3A;
+      --amber: #E8A84A;
+      --coral: #E8634A;
+      --bg: #0d0d0d;
+      --text: #f0f0f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; background: var(--bg); }
+
+    /* TOPBAR */
+    #topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--navy); border-bottom: 2px solid var(--digest);
+      padding: .45rem 1rem;
+      display: flex; align-items: center; justify-content: space-between; gap: .75rem;
+    }
+    #topbar-title { font-family: 'DM Sans', sans-serif; font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.85); }
+    #controls { display: flex; align-items: center; gap: .4rem; flex-shrink: 0; }
+    .ctrl-btn {
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+      color: #fff; font-size: .72rem; font-weight: 700; padding: .2rem .5rem;
+      border-radius: 4px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background .15s;
+    }
+    .ctrl-btn:hover { background: rgba(255,255,255,.2); }
+    .ctrl-label { font-size: .65rem; color: rgba(255,255,255,.5); font-family: 'DM Sans', sans-serif; }
+    #speed-display { font-size: .72rem; font-weight: 700; color: var(--amber); min-width: 14px; text-align: center; font-family: 'DM Sans', sans-serif; }
+    #play-btn {
+      background: var(--digest); border: none; color: #fff;
+      font-size: .72rem; font-weight: 700; padding: .25rem .7rem;
+      border-radius: 4px; cursor: pointer; font-family: 'DM Sans', sans-serif; letter-spacing: .04em;
+    }
+    #play-btn:hover { filter: brightness(1.1); }
+
+    /* SEGMENT DOTS */
+    #seg-dots {
+      position: fixed; right: .6rem; top: 50%; transform: translateY(-50%);
+      z-index: 100; display: flex; flex-direction: column; gap: .4rem;
+    }
+    .seg-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.3);
+      cursor: pointer; transition: background .2s;
+    }
+    .seg-dot.active { background: var(--digest); border-color: var(--digest); }
+    .seg-dot:hover { background: rgba(255,255,255,.45); }
+
+    /* SCROLL */
+    #scroll-wrap { position: fixed; top: 44px; bottom: 0; left: 0; right: 0; overflow: hidden; }
+    #scroll-content { padding: 60vh 4rem 60vh; max-width: 840px; margin: 0 auto; will-change: transform; }
+
+    /* FOCUS */
+    #focus-line { position: fixed; top: 50%; left: 0; right: 0; height: 2px; background: rgba(212,124,58,.2); pointer-events: none; z-index: 50; }
+    #focus-top { position: fixed; top: 44px; left: 0; right: 0; height: 34%; background: linear-gradient(to bottom, var(--bg) 0%, transparent 100%); pointer-events: none; z-index: 50; }
+    #focus-bottom { position: fixed; bottom: 0; left: 0; right: 0; height: 34%; background: linear-gradient(to top, var(--bg) 0%, transparent 100%); pointer-events: none; z-index: 50; }
+
+    /* SEGMENT LABEL */
+    .seg-label {
+      font-family: 'DM Sans', sans-serif; font-size: .7rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--digest); margin-bottom: 1.4rem; margin-top: 5rem;
+      padding-bottom: .4rem; border-bottom: 1px solid rgba(212,124,58,.25);
+    }
+    .seg-label:first-child { margin-top: 0; }
+
+    /* SCRIPT */
+    .line { font-family: 'DM Sans', sans-serif; font-size: 1.9rem; line-height: 1.8; color: var(--text); font-weight: 400; margin-bottom: 1.5rem; }
+    .line strong { font-weight: 700; color: #fff; }
+    .line em { color: var(--amber); font-style: normal; font-weight: 600; }
+
+    /* PAUSE */
+    .pause {
+      display: inline-block;
+      background: rgba(232,99,74,.15); border: 1px solid rgba(232,99,74,.35);
+      color: var(--coral); font-size: 1.1rem; font-weight: 700;
+      padding: .1rem .45rem; border-radius: 4px; margin: 0 .3rem; vertical-align: middle; letter-spacing: .04em;
+    }
+
+    /* CUE BOX */
+    .cue-box {
+      background: rgba(232,168,74,.06); border: 2px solid var(--amber);
+      border-radius: 10px; padding: .9rem 1.2rem; margin: 2rem 0 4rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .cue-label { font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--amber); margin-bottom: .4rem; }
+    .cue-text { font-size: 1.1rem; font-weight: 600; color: #fff; line-height: 1.55; }
+    .cue-text span { color: var(--amber); }
+
+    /* DIAGRAM CUE — red for screen file switch */
+    .diagram-cue {
+      background: rgba(232,99,74,.10); border: 2px solid var(--coral);
+      border-radius: 10px; padding: .9rem 1.2rem; margin: 2rem 0 4rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .diagram-cue .cue-label { color: var(--coral); }
+    .diagram-cue .cue-text span { color: var(--coral); font-weight: 700; }
+  </style>
+</head>
+<body>
+
+<div id="topbar">
+  <div id="topbar-title">Coeliac Disease · Digestive Health · Article 18</div>
+  <div id="controls">
+    <span class="ctrl-label">SPEED</span>
+    <button class="ctrl-btn" onclick="changeSpeed(-1)">−</button>
+    <span id="speed-display">3</span>
+    <button class="ctrl-btn" onclick="changeSpeed(1)">+</button>
+    <span class="ctrl-label" style="margin-left:.4rem">FONT</span>
+    <button class="ctrl-btn" onclick="changeFont(-1)">A−</button>
+    <button class="ctrl-btn" onclick="changeFont(1)">A+</button>
+    <button id="play-btn" onclick="togglePlay()">▶ PLAY</button>
+  </div>
+</div>
+
+<div id="seg-dots">
+  <div class="seg-dot active" onclick="jumpToSeg(0)" title="Intro"></div>
+  <div class="seg-dot" onclick="jumpToSeg(1)" title="What is it?"></div>
+  <div class="seg-dot" onclick="jumpToSeg(2)" title="Why it matters"></div>
+  <div class="seg-dot" onclick="jumpToSeg(3)" title="The testing trap"></div>
+  <div class="seg-dot" onclick="jumpToSeg(4)" title="What your doctor will do"></div>
+  <div class="seg-dot" onclick="jumpToSeg(5)" title="Research"></div>
+  <div class="seg-dot" onclick="jumpToSeg(6)" title="Closing"></div>
+</div>
+
+<div id="focus-top"></div>
+<div id="focus-line"></div>
+<div id="focus-bottom"></div>
+
+<div id="scroll-wrap">
+  <div id="scroll-content">
+
+    <!-- ═══ SEGMENT 0 — INTRODUCTION ═══ -->
+    <div class="seg-label" data-seg="0">Segment 0 — Introduction</div>
+
+    <p class="line">"I'm Dr Paul — I spent <strong>over twenty years as an NHS GP</strong> before I retired in 2019. Today I want to talk to you about <strong>coeliac disease</strong>."</p>
+
+    <p class="line">"Now, I do have to say upfront — what I'm giving you here is <strong>health education, not medical advice</strong>. If anything feels relevant to you personally, please take it to your own doctor. Right — <em>let's get into it.</em>"</p>
+
+    <div class="cue-box">
+      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
+      <div class="cue-text">Slide 1: <span>Intro title slide</span> · helf.school logo · Digestive Health Series · Article 18 · "1 in 100 / 1 in 3 diagnosed"</div>
+    </div>
+
+    <!-- ═══ SEGMENT 1 — WHAT IS IT? ═══ -->
+    <div class="seg-label" data-seg="1">Segment 1 — What coeliac disease actually is</div>
+
+    <p class="line">"Coeliac disease is <strong>a lifelong autoimmune condition</strong>. When someone with coeliac eats gluten — the protein in wheat, rye, and barley — their own immune system <strong>attacks the lining of their small intestine</strong>."</p>
+
+    <p class="line">"It's not a food allergy. It's not the same as a gluten intolerance. It's a <em>specific autoimmune reaction</em> — and over time, that reaction damages the tiny finger-like projections in the gut called <strong>villi</strong>. The villi are what absorb nutrients from your food. When they're damaged, you stop absorbing properly." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"To give you an idea of the scale — the absorbing surface of a healthy small bowel is <strong>roughly the size of a tennis court</strong>. In untreated coeliac disease, that can collapse down to something closer to a <strong>dining table</strong>. That's why iron levels fall, that's why people get tired, that's why bones get thinner — the gut simply isn't doing its job." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"One more thing worth saying upfront. There is <strong>a genetic element</strong> — it runs in families. If you have a parent, sibling, or child with coeliac disease, your own risk is <strong>about 1 in 10</strong>. That's significantly higher than the general population."</p>
+
+    <div class="diagram-cue">
+      <div class="cue-label">🔴 Switch to Screen File — Second Screen</div>
+      <div class="cue-text">Open: <span>coeliac-villi-screen.html</span> · healthy villi vs atrophied villi — side by side animation</div>
+    </div>
+
+    <!-- ═══ SEGMENT 2 — WHY IT MATTERS ═══ -->
+    <div class="seg-label" data-seg="2">Segment 2 — Why it matters, and why it gets missed</div>
+
+    <p class="line">"Here's the thing that really matters about coeliac disease. In the UK, roughly <strong>1 in 100 people have it</strong> — that's about 700,000 people. But we think only about <strong>1 in 3</strong> of those is actually diagnosed. Two out of every three people with coeliac disease <em>don't yet know they have it</em>." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"Why does it get missed so often? Because it doesn't always show up the way people expect. Yes — some people do have the <strong>classic picture</strong>. Diarrhoea, bloating, weight loss, stomach pain. That's the textbook case."</p>
+
+    <p class="line">"But a huge number of people present completely differently. <strong>Unexplained iron deficiency</strong> — that's often the only clue. Persistent <strong>fatigue</strong> with no obvious cause. Recurrent <strong>mouth ulcers</strong>. An <strong>itchy blistering rash</strong> on the elbows or knees. <strong>Early osteoporosis</strong>. Unexplained <strong>infertility</strong> or <strong>recurrent miscarriage</strong>. Brain fog, migraines, balance problems. <em>All of those can be coeliac disease.</em>" <span class="pause">PAUSE</span></p>
+
+    <p class="line">"And here's a really important one — as many as <strong>1 in 4 people</strong> who are eventually diagnosed with coeliac disease were first told they had <strong>irritable bowel syndrome</strong>. That's why the guidance is clear: if someone has new IBS-type symptoms, they should be tested for coeliac disease. Because the treatments are <em>completely different</em>."</p>
+
+    <p class="line">"The average delay from first symptoms to a proper diagnosis, in UK studies, is <strong>around eleven years</strong>. Eleven years of feeling unwell, of being bounced between appointments, of damage accumulating quietly in the gut. And because coeliac disease left untreated carries <strong>a small but real increased risk of serious complications</strong> — including a rare bowel lymphoma — getting the diagnosis right, and getting it earlier, genuinely matters." <span class="pause">PAUSE</span></p>
+
+    <div class="cue-box">
+      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
+      <div class="cue-text">Slide 4: <span>The diagnosis gap</span> · 11 years · 2 in 3 undiagnosed · 1 in 10 first-degree relatives</div>
+    </div>
+
+    <!-- ═══ SEGMENT 3 — THE TESTING TRAP ═══ -->
+    <div class="seg-label" data-seg="3">Segment 3 — The testing trap</div>
+
+    <p class="line">"Now — this next bit is <em>the single most important thing</em> I want to say in this whole video. If you take nothing else from the next few minutes, <strong>please take this</strong>." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"If you think you might have coeliac disease — or your doctor is about to test you for it — <strong>do not stop eating gluten before the test is done</strong>."</p>
+
+    <p class="line">"I'll say that again. <strong>Keep eating gluten until the blood test is taken.</strong>" <span class="pause">PAUSE</span></p>
+
+    <p class="line">"Here's why. The blood test works by looking for <strong>the immune reaction</strong> that happens when someone with coeliac eats gluten. If you stop gluten first, <strong>the reaction quietens down</strong>. The antibodies fall. The test comes back negative — even if coeliac disease is there. And then you get told you don't have it, when actually you do."</p>
+
+    <p class="line">"This is probably the commonest mistake people make. Someone feels terrible on bread, cuts gluten out, feels better, goes to the GP, gets the blood test — and it's <em>negative</em>. Not because they don't have coeliac disease, but because they stopped eating gluten too early." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"The guidance is clear — you need to be eating gluten, in <strong>more than one meal a day, for at least six weeks</strong>, before the test is done. Same thing goes for the biopsy if you get that far. Keep gluten in. Get tested. <em>Then</em> decide."</p>
+
+    <div class="cue-box">
+      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
+      <div class="cue-text">Slide 5: <span>The testing trap warning slide</span> · "Do not stop gluten before the test" · consequence flow</div>
+    </div>
+
+    <!-- ═══ SEGMENT 4 — WHAT YOUR DOCTOR WILL DO ═══ -->
+    <div class="seg-label" data-seg="4">Segment 4 — What your doctor will do</div>
+
+    <p class="line">"So what does testing actually look like? It starts with a <strong>simple blood test</strong> from your GP. The main one is called <strong>tTG</strong> — tissue transglutaminase. It looks for the antibody the body makes when someone with coeliac eats gluten."</p>
+
+    <p class="line">"If that blood test comes back strongly positive, the next step is almost always <strong>referral to a gastroenterologist</strong> for an <strong>endoscopy</strong> — a camera test where small tissue samples are taken from the top of the small bowel. That's the <strong>gold standard</strong> for confirming the diagnosis." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"There's now a newer pathway for some adults — where the blood result is very strongly positive and there are no red-flag symptoms — where a biopsy isn't always needed. But for most people, a biopsy is still the standard, and that's absolutely fine."</p>
+
+    <p class="line">"What about treatment? Here's where coeliac disease is unusual — there is <strong>no medication that cures it</strong>. The treatment is <strong>a strict, lifelong gluten-free diet</strong>. And I want to stress the word <em>strict</em>. A gluten-free diet is not a low-gluten diet. Even tiny amounts — a shared toaster, a bit of gravy thickener, the wrong soy sauce — can keep the immune reaction going." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"Gluten hides in places people don't expect. Some <strong>sausages and processed meats</strong>. Some <strong>sauces and stock cubes</strong>. <strong>Malt vinegar</strong>. <strong>Some medications</strong> that use wheat starch. Even some <strong>lipsticks</strong>. This is why — if you're newly diagnosed — getting a session with a <strong>registered dietitian</strong> is worth its weight in gold. And <strong>Coeliac UK</strong> is an excellent practical resource for anyone living with it."</p>
+
+    <p class="line">"The good news is that once gluten is out of the diet, <strong>the gut heals</strong>. In children, that healing is pretty complete within two years. In adults it's slower — about a third recover fully at two years, about two thirds at five years. But the <em>direction of travel is the same</em>. Bones strengthen. Iron levels recover. Energy comes back. And the long-term risks drop substantially." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"Once diagnosed, coeliac disease needs <strong>annual review</strong> — usually a repeat antibody level, a check on iron, folate, B12, vitamin D, calcium, and a bone density scan at some point. A pneumonia vaccination is recommended too, because coeliac disease can affect how the spleen works. All of this becomes routine — but it matters."</p>
+
+    <div class="cue-box">
+      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
+      <div class="cue-text">Slide 6: <span>Diagnostic pathway</span> · blood test → referral → biopsy → no-biopsy pathway · four steps animating in</div>
+    </div>
+
+    <!-- ═══ SEGMENT 5 — WHAT THE RESEARCH SHOWS ═══ -->
+    <div class="seg-label" data-seg="5">Segment 5 — What the research shows</div>
+
+    <p class="line">"Let me take you through the key research very briefly. <span class="pause">PAUSE</span> The most comprehensive modern review is a paper in <strong>The Lancet in 2022</strong> — Catassi and colleagues. It confirms coeliac disease is now a <strong>global disease</strong>, not a European one, and that <em>long-term outcomes are driven, above all, by how strictly the gluten-free diet is followed</em>."</p>
+
+    <p class="line">"On UK numbers — a 2023 study from Annals of Family Medicine using data on <strong>38 million people</strong> registered with UK GPs confirms that diagnosis has <strong>nearly doubled in twenty years</strong> — but we still only have about a third of cases identified. The gap is enormous." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"The UK diagnostic standard is <strong>NICE guideline NG20</strong>. First-line blood test is total IgA plus IgA tTG. If that's positive, referral for biopsy. And the 2021 paper from Penny and colleagues in <em>Gut</em> has underpinned the newer no-biopsy pathway for selected adults — showing 95% confirmation when blood antibody levels are at least ten times the upper limit."</p>
+
+    <p class="line">"So the evidence is consistent. <strong>It's common. It's under-diagnosed. It's treatable. And strict gluten avoidance genuinely protects against complications.</strong>" <span class="pause">PAUSE</span></p>
+
+    <div class="cue-box">
+      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
+      <div class="cue-text">Slide 8: <span>Research cards</span> · Lancet 2022 · CPRD Ann Fam Med 2023 · Penny Gut 2021 · NICE NG20</div>
+    </div>
+
+    <!-- ═══ SEGMENT 6 — CLOSING ═══ -->
+    <div class="seg-label" data-seg="6">Segment 6 — Closing</div>
+
+    <p class="line">"So — if you take one thing from today, let it be this. If you've had <strong>ongoing gut symptoms</strong>, or <strong>unexplained tiredness</strong>, or <strong>anaemia nobody's got to the bottom of</strong>, or a close relative with coeliac disease — <em>ask your GP about being tested</em>."</p>
+
+    <p class="line">"And whatever you do — <strong>keep eating gluten until the test is done</strong>. That one step alone makes all the difference between getting the right answer and missing it for another five or ten years." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"If you found this helpful, there's more on <strong>helf.school</strong> — the full article, with all the references, is there for anyone who wants to go deeper. Remember — this is health education. Take what's useful to <em>your</em> doctor. <strong>Thanks for watching.</strong>"</p>
+
+    <div class="cue-box">
+      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
+      <div class="cue-text">Slide 10: <span>Closing slide</span> · helf.school logo · Health Education for Everyone · article pills</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const SPEED_LEVELS = [8, 14, 20, 28, 38, 52];
+  let speedIndex = 2;
+  let baseFontSize = 1.9;
+  let playing = false;
+  let rafId = null;
+  let lastTime = null;
+  let scrollY = 0;
+
+  const content = document.getElementById('scroll-content');
+  const playBtn = document.getElementById('play-btn');
+  const speedDisplay = document.getElementById('speed-display');
+  const dots = document.querySelectorAll('.seg-dot');
+  const segLabels = document.querySelectorAll('.seg-label');
+
+  function setTranslate(y) { content.style.transform = `translateY(${-y}px)`; }
+
+  function togglePlay() {
+    playing = !playing;
+    playBtn.textContent = playing ? '⏸ PAUSE' : '▶ PLAY';
+    if (playing) { lastTime = null; rafId = requestAnimationFrame(tick); }
+    else { cancelAnimationFrame(rafId); }
+  }
+
+  function tick(ts) {
+    if (!playing) return;
+    if (lastTime === null) lastTime = ts;
+    const dt = (ts - lastTime) / 1000;
+    lastTime = ts;
+    scrollY += SPEED_LEVELS[speedIndex] * dt;
+    const maxScroll = content.scrollHeight - window.innerHeight + 44;
+    if (scrollY >= maxScroll) { scrollY = maxScroll; togglePlay(); }
+    setTranslate(scrollY);
+    updateDots();
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function changeSpeed(dir) {
+    speedIndex = Math.max(0, Math.min(5, speedIndex + dir));
+    speedDisplay.textContent = speedIndex + 1;
+  }
+
+  function changeFont(dir) {
+    baseFontSize = Math.max(1.2, Math.min(2.8, baseFontSize + dir * 0.1));
+    document.querySelectorAll('.line').forEach(el => el.style.fontSize = baseFontSize + 'rem');
+  }
+
+  function jumpToSeg(idx) {
+    const label = segLabels[idx];
+    if (!label) return;
+    const contentTop = content.getBoundingClientRect().top;
+    const labelOffset = label.getBoundingClientRect().top - contentTop + scrollY;
+    scrollY = Math.max(0, labelOffset - window.innerHeight * 0.5 + 44);
+    setTranslate(scrollY);
+    updateDots();
+  }
+
+  function updateDots() {
+    const mid = window.innerHeight * 0.5;
+    let active = 0;
+    segLabels.forEach((label, i) => { if (label.getBoundingClientRect().top <= mid) active = i; });
+    dots.forEach((d, i) => d.classList.toggle('active', i === active));
+  }
+
+  // Touch
+  let touchStartY = 0, touchScrollStart = 0;
+  document.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; touchScrollStart = scrollY; if (playing) togglePlay(); }, { passive: true });
+  document.addEventListener('touchmove', e => { scrollY = Math.max(0, touchScrollStart + (touchStartY - e.touches[0].clientY)); setTranslate(scrollY); updateDots(); }, { passive: true });
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (e.code === 'Space') { e.preventDefault(); togglePlay(); }
+    if (e.code === 'ArrowUp') { scrollY = Math.max(0, scrollY - 80); setTranslate(scrollY); }
+    if (e.code === 'ArrowDown') { scrollY += 80; setTranslate(scrollY); }
+  });
+
+  setTranslate(0);
+</script>
+</body>
+
+<div id="dl-btn-wrap" style="position:fixed;bottom:10px;left:12px;z-index:9999;opacity:.55;transition:opacity .2s" onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=.55">
+  <button onclick="helfDownload('coeliac-teleprompter.html')" style="background:#1B2A4A;color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:6px;padding:.25rem .65rem;font-size:.65rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.04em">⬇ coeliac-teleprompter.html</button>
+</div>
+<script id="dl-btn-script">
+function helfDownload(fn){
+  var c=document.documentElement.cloneNode(true);
+  var d=c.querySelector('#dl-btn-wrap');if(d)d.parentNode.removeChild(d);
+  var s=c.querySelector('#dl-btn-script');if(s)s.parentNode.removeChild(s);
+  var b=new Blob(['<!DOCTYPE html>\n'+c.outerHTML],{type:'text/html;charset=utf-8'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=fn;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);
+}
+</script>
+</html>

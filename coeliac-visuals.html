@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.13/html-to-image.min.js" integrity="sha512-iZ2ORl595Wx6miw+GuadDet4WQbdSWS3JLMoNfY8cRGoEFy6oT3G9IbcrBeL6AfkgpA51ETt/faX6yLV+/gFJg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      (function() {
+        const originalConsole = window.console;
+        window.console = {
+          log: (...args) => {
+            originalConsole.log(...args);
+            window.parent.postMessage({ type: 'console', message: args.join(' ') }, '*');
+          },
+          error: (...args) => {
+            originalConsole.error(...args);
+            window.parent.postMessage({ type: 'console', message: 'Error: ' + args.join(' ') }, '*');
+          },
+          warn: (...args) => {
+            originalConsole.warn(...args);
+            window.parent.postMessage({ type: 'console', message: 'Warning: ' + args.join(' ') }, '*');
+          }
+        };
+
+        let requestId = 0;
+        let callbacksMap = new Map();
+        let streamControllers = new Map();
+        
+        window.claude = {
+          complete: (prompt) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'claudeComplete', id, prompt }, '*');
+            });
+          }
+        };
+
+        window.storage = {
+          get: (key, shared = false) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'storageGet', id, key, shared }, '*');
+            });
+          },
+          set: (key, value, shared = false) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'storageSet', id, key, value, shared }, '*');
+            });
+          },
+          delete: (key, shared = false) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'storageDelete', id, key, shared }, '*');
+            });
+          },
+          list: (prefix, shared = false) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'storageList', id, prefix, shared }, '*');
+            });
+          }
+        };
+
+        let pendingBlobs = new Map();
+        URL.createObjectURL = (blob) => {
+          // Store the blob and create an ID and URL for it
+          const blobId = `blob-${Date.now()}-${Math.random()}`;
+          pendingBlobs.set(blobId, blob);
+          return `blob-request://${blobId}`;
+        };
+
+        URL.revokeObjectURL = (url) => {
+          // Remove the blob from our store
+          const blobId = url.replace("blob-request://", "");
+          pendingBlobs.delete(blobId);
+        };
+
+        const getBlobFromURL = (url) => {
+          const blobId = url.replace("blob-request://", "");
+          return pendingBlobs.get(blobId);
+        };
+
+        // Override global fetch with streaming support
+        window.fetch = (url, init = {}) => {
+          return new Promise((resolve, reject) => {
+            const id = requestId++;
+            const channelId = `fetch-${id}-${Date.now()}`;
+            
+            callbacksMap.set(id, { 
+              resolve: (response) => {
+                // Create a ReadableStream for the response body
+                const stream = new ReadableStream({
+                  start(controller) {
+                    streamControllers.set(channelId, controller);
+                  },
+                  cancel() {
+                    streamControllers.delete(channelId);
+                  }
+                });
+                
+                // Create and return the Response with the stream
+                resolve(new Response(stream, {
+                  status: response.status,
+                  statusText: response.statusText,
+                  headers: response.headers
+                }));
+              },
+              reject,
+              channelId
+            });
+            
+            window.parent.postMessage({
+              type: 'proxyFetch',
+              id,
+              url,
+              init,
+              channelId
+            }, '*');
+          });
+        };
+
+        window.addEventListener('message', async (event) => {
+          if (event.data.type === 'takeScreenshot') {
+            const rootElement = document.getElementById('artifacts-component-root-html');
+            if (!rootElement) {
+              window.parent.postMessage({
+                type: 'screenshotError',
+                error: new Error('Root element not found'),
+              }, '*');
+            }
+            const screenshot = await htmlToImage.toPng(rootElement, {
+              imagePlaceholder:
+                "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjePDgwX8ACOQDoNsk0PMAAAAASUVORK5CYII=",
+            });
+            window.parent.postMessage({
+              type: 'screenshotData',
+              data: screenshot,
+            }, '*');
+          } else if (event.data.type === 'claudeComplete') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.completion);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'proxyFetchResponse') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+              callbacksMap.delete(event.data.id);
+            } else {
+              // Initial response with headers, status, etc.
+              callback.resolve({
+                status: event.data.status,
+                statusText: event.data.statusText,
+                headers: event.data.headers
+              });
+              // Don't delete the callback yet if streaming
+              if (!event.data.body) {
+                callbacksMap.delete(event.data.id);
+              }
+            }
+          } else if (event.data.type === 'proxyFetchStream') {
+            // Handle streaming data chunks
+            const controller = streamControllers.get(event.data.channelId);
+            if (controller) {
+              if (event.data.error) {
+                controller.error(new Error(event.data.error));
+                streamControllers.delete(event.data.channelId);
+              } else if (event.data.done) {
+                controller.close();
+                streamControllers.delete(event.data.channelId);
+                // Clean up the callback
+                const callback = Array.from(callbacksMap.entries()).find(
+                  ([_, value]) => value.channelId === event.data.channelId
+                );
+                if (callback) {
+                  callbacksMap.delete(callback[0]);
+                }
+              } else if (event.data.chunk) {
+                controller.enqueue(new Uint8Array(event.data.chunk));
+              }
+            }
+          } else if (event.data.type === 'storageGet') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.result);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'storageSet') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.result);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'storageDelete') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.result);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'storageList') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.result);
+            }
+            callbacksMap.delete(event.data.id);
+          }
+        });
+
+        window.addEventListener('click', (event) => {
+          const isEl = event.target instanceof HTMLElement;
+          if (!isEl) return;
+    
+          // find ancestor links
+          const linkEl = event.target.closest("a");
+          if (!linkEl || !linkEl.href) return;
+    
+          event.preventDefault();
+          event.stopImmediatePropagation();
+    
+          if (linkEl.href.startsWith("blob-request:")) {
+            const blob = getBlobFromURL(linkEl.href);
+            if (!blob) return;
+            void blob.arrayBuffer().then((data) => {
+              window.parent.postMessage({
+                type: "downloadFile",
+                filename: linkEl.download,
+                data,
+                mimeType: blob.type || "application/octet-stream",
+              });
+            });
+          } else if (linkEl.href.startsWith("data:")) {
+            const [header, base64Data] = linkEl.href.split(",");
+            const mimeMatch = header.match(/data:([^;]+)/);
+            const mimeType = mimeMatch ? mimeMatch[1] : "application/octet-stream";
+            const binaryString = atob(base64Data);
+            const data = Uint8Array.from(binaryString, (c) =>
+              c.charCodeAt(0),
+            ).buffer;
+            window.parent.postMessage({
+              type: "downloadFile",
+              filename: linkEl.download,
+              data,
+              mimeType,
+            });
+          } else {
+            let linkUrl;
+            try {
+              linkUrl = new URL(linkEl.href);
+            } catch (error) {
+              return;
+            }
+    
+            if (linkUrl.hostname === window.location.hostname) return;
+      
+            window.parent.postMessage({
+              type: 'openExternal',
+              href: linkEl.href,
+            }, '*');
+          }
+      });
+
+        const originalOpen = window.open;
+        window.open = function (url) {
+          window.parent.postMessage({
+            type: "openExternal",
+            href: url,
+          }, "*");
+        };
+
+        window.addEventListener('error', (event) => {
+          window.parent.postMessage({ type: 'console', message: 'Uncaught Error: ' + event.message }, '*');
+        });
+      })();
+    </script>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coeliac Disease — Visuals | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1B2A4A;
+      --coral: #E8634A;
+      --cream: #FAF7F2;
+      --sage: #7A9E87;
+      --digest: #D47C3A;
+      --amber: #E8A84A;
+      --red: #E8634A;
+      --bg: #0f1623;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: var(--bg); overflow: hidden; font-family: 'DM Sans', sans-serif; }
+
+    /* TOPBAR */
+    #topbar {
+      position: fixed; top: 0; left: 0; right: 0; height: 48px; z-index: 100;
+      background: var(--navy); border-bottom: 2px solid var(--digest);
+      display: flex; align-items: center; justify-content: space-between; padding: 0 1.25rem;
+    }
+    .tb-left { display: flex; flex-direction: column; }
+    .tb-title { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: #fff; line-height: 1.1; }
+    .tb-sub { font-size: .75rem; color: rgba(255,255,255,.75); }
+    .tb-right { display: flex; align-items: center; gap: 1rem; }
+    .slide-counter { font-size: .85rem; font-weight: 700; color: rgba(255,255,255,.90); font-family: 'DM Sans', sans-serif; }
+    .kb-hint { font-size: .72rem; color: rgba(255,255,255,.60); }
+
+    /* STAGE */
+    #stage {
+      position: fixed; top: 48px; left: 0; right: 0; bottom: 0;
+      display: flex; align-items: flex-start; justify-content: center;
+      padding: 4vh 2.5rem 3vh;
+    }
+
+    /* SLIDES */
+    .slide { display: none; width: 100%; max-width: 1100px; animation: fadeIn .35s ease; }
+    .slide.active { display: flex; flex-direction: column; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* INTRO / CLOSING SLIDES */
+    .intro-wrap, .closing-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 75vh; text-align: center; gap: 1.5rem; }
+    .intro-badge { font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--digest); background: rgba(212,124,58,.14); border: 1px solid rgba(212,124,58,.35); padding: .3rem .85rem; border-radius: 100px; }
+    .intro-title { font-family: 'Fraunces', serif; font-size: clamp(2.2rem, 4.5vw, 3.4rem); font-weight: 700; color: #fff; line-height: 1.15; max-width: 900px; }
+    .intro-title span { color: var(--digest); }
+    .intro-tagline { font-size: 1.05rem; color: rgba(255,255,255,.85); font-style: italic; font-family: 'Fraunces', serif; max-width: 700px; }
+    .intro-stat-row { display: flex; gap: 3rem; justify-content: center; margin-top: .75rem; flex-wrap: wrap; }
+    .intro-stat { text-align: center; }
+    .intro-stat-num { font-family: 'Fraunces', serif; font-size: 3rem; font-weight: 700; color: var(--digest); line-height: 1; }
+    .intro-stat-label { font-size: .95rem; color: rgba(255,255,255,.90); margin-top: .3rem; font-weight: 500; }
+    .intro-stat-source { font-size: .75rem; color: rgba(255,255,255,.65); margin-top: .2rem; font-style: italic; }
+
+    /* SLIDE TITLE */
+    .slide-title { font-family: 'Fraunces', serif; font-size: clamp(1.5rem, 2.7vw, 2.15rem); font-weight: 700; color: #fff; margin-bottom: 1.5rem; padding-bottom: .75rem; border-bottom: 2px solid rgba(212,124,58,.35); }
+    .slide-title span { color: var(--digest); }
+
+    /* VILLI DIAGRAM */
+    .villi-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: stretch; }
+    .villi-card { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 1.25rem 1.5rem; display: flex; flex-direction: column; align-items: center; }
+    .villi-card.healthy { border-top: 4px solid var(--sage); }
+    .villi-card.atrophied { border-top: 4px solid var(--coral); }
+    .villi-label { font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: .65rem; }
+    .villi-card.healthy .villi-label { color: var(--sage); }
+    .villi-card.atrophied .villi-label { color: var(--coral); }
+    .villi-svg { width: 100%; max-width: 360px; height: 180px; }
+    .villi-caption { font-size: .9rem; color: rgba(255,255,255,.85); margin-top: .65rem; text-align: center; line-height: 1.5; }
+    .villi-caption strong { color: #fff; font-weight: 700; }
+    .absorption-note { margin-top: 1.1rem; text-align: center; font-size: 1rem; color: rgba(255,255,255,.90); background: rgba(212,124,58,.10); border: 1px solid rgba(212,124,58,.28); border-radius: 12px; padding: .75rem 1.25rem; }
+    .absorption-note strong { color: var(--digest); font-weight: 700; }
+
+    /* SYMPTOMS TWO-COLUMN */
+    .symptoms-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .sym-card { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 1.25rem 1.4rem; border-top: 4px solid; }
+    .sym-card.classic { border-top-color: var(--sage); }
+    .sym-card.atypical { border-top-color: var(--coral); }
+    .sym-card h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: .85rem; }
+    .sym-card.classic h3 { color: var(--sage); }
+    .sym-card.atypical h3 { color: var(--coral); }
+    .sym-list { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    .sym-list li { font-size: .95rem; color: rgba(255,255,255,.90); padding-left: 1.1rem; position: relative; line-height: 1.5; }
+    .sym-list li::before { content: '•'; position: absolute; left: 0; top: 0; font-weight: 700; }
+    .sym-card.classic .sym-list li::before { color: var(--sage); }
+    .sym-card.atypical .sym-list li::before { color: var(--coral); }
+    .sym-footer { margin-top: 1.2rem; text-align: center; font-size: .95rem; color: rgba(255,255,255,.85); font-style: italic; padding: .75rem 1.25rem; background: rgba(232,168,74,.08); border: 1px solid rgba(232,168,74,.25); border-radius: 10px; }
+    .sym-footer strong { color: var(--amber); font-style: normal; font-weight: 700; }
+
+    /* DIAGNOSIS GAP - BIG STAT DISPLAY */
+    .gap-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; gap: 1.75rem; }
+    .gap-big-stat { text-align: center; }
+    .gap-num { font-family: 'Fraunces', serif; font-size: clamp(5rem, 9vw, 7.5rem); font-weight: 700; color: var(--digest); line-height: 1; }
+    .gap-label { font-size: 1.3rem; color: rgba(255,255,255,.95); margin-top: .5rem; font-weight: 600; }
+    .gap-source { font-size: .85rem; color: rgba(255,255,255,.70); margin-top: .3rem; font-style: italic; }
+    .gap-secondary { display: flex; gap: 2.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+    .gap-sec-stat { text-align: center; }
+    .gap-sec-num { font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 700; color: var(--amber); line-height: 1; }
+    .gap-sec-label { font-size: .95rem; color: rgba(255,255,255,.90); margin-top: .3rem; max-width: 220px; line-height: 1.4; }
+
+    /* TESTING TRAP SLIDE */
+    .trap-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 65vh; gap: 1.5rem; }
+    .trap-warn { background: rgba(232,99,74,.12); border: 2px solid rgba(232,99,74,.55); border-radius: 18px; padding: 2rem 2.5rem; max-width: 820px; text-align: center; }
+    .trap-icon { font-size: 3rem; margin-bottom: .5rem; }
+    .trap-heading { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 700; color: var(--coral); line-height: 1.2; margin-bottom: .85rem; }
+    .trap-body { font-size: 1.05rem; color: rgba(255,255,255,.95); line-height: 1.65; }
+    .trap-body strong { color: #fff; font-weight: 700; }
+    .trap-flow { display: flex; align-items: center; justify-content: center; gap: .85rem; margin-top: 1.25rem; flex-wrap: wrap; font-size: .95rem; color: rgba(255,255,255,.85); }
+    .trap-flow-step { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); padding: .5rem 1rem; border-radius: 100px; font-weight: 600; }
+    .trap-flow-arrow { color: var(--coral); font-weight: 700; font-size: 1.2rem; }
+
+    /* DIAGNOSTIC PATHWAY - STEP CARDS */
+    .path-steps { display: flex; flex-direction: column; gap: .85rem; }
+    .path-step { display: flex; align-items: flex-start; gap: 1.1rem; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; padding: 1rem 1.3rem; opacity: 0; transform: translateX(-16px); transition: opacity .4s ease, transform .4s ease; }
+    .path-step.visible { opacity: 1; transform: translateX(0); }
+    .path-num { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; flex-shrink: 0; background: rgba(212,124,58,.2); color: var(--digest); }
+    .path-title { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: .25rem; }
+    .path-desc { font-size: .93rem; color: rgba(255,255,255,.85); line-height: 1.55; }
+    .path-desc strong { color: var(--amber); font-weight: 700; }
+
+    /* RECOVERY CARDS */
+    .recovery-row { display: flex; gap: 1.25rem; flex-wrap: wrap; margin-top: 1rem; }
+    .rec-card { flex: 1; min-width: 200px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 1.5rem 1.5rem; text-align: center; }
+    .rec-card.highlight { background: rgba(122,158,135,.12); border-color: rgba(122,158,135,.35); }
+    .rec-num { font-family: 'Fraunces', serif; font-size: 3.2rem; font-weight: 700; color: var(--digest); line-height: 1; }
+    .rec-card.highlight .rec-num { color: var(--sage); }
+    .rec-timeframe { font-size: 1rem; color: #fff; margin-top: .5rem; font-weight: 700; }
+    .rec-desc { font-size: .88rem; color: rgba(255,255,255,.80); margin-top: .4rem; line-height: 1.5; }
+    .rec-footer { text-align: center; font-size: .95rem; color: rgba(255,255,255,.85); margin-top: 1.2rem; font-style: italic; }
+    .rec-footer strong { color: var(--sage); font-style: normal; font-weight: 700; }
+
+    /* RESEARCH CARDS */
+    .research-grid { display: flex; flex-direction: column; gap: .85rem; }
+    .r-card { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); border-left: 4px solid var(--digest); border-radius: 0 12px 12px 0; padding: 1rem 1.3rem; }
+    .r-title { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: var(--digest); margin-bottom: .3rem; }
+    .r-finding { font-size: .93rem; color: rgba(255,255,255,.90); line-height: 1.6; }
+    .r-finding strong { color: var(--amber); font-weight: 700; }
+    .r-source { font-size: .78rem; color: rgba(255,255,255,.70); margin-top: .3rem; font-style: italic; }
+
+    /* CTA CARDS */
+    .cta-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; margin-top: .5rem; }
+    .cta-card { background: rgba(212,124,58,.1); border: 1px solid rgba(212,124,58,.28); border-radius: 14px; padding: 1.5rem 1.4rem; text-align: center; }
+    .cta-icon { font-size: 2.2rem; margin-bottom: .75rem; }
+    .cta-title { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: .4rem; }
+    .cta-desc { font-size: .93rem; color: rgba(255,255,255,.85); line-height: 1.55; }
+
+    /* CLOSING */
+    .closing-logo { font-family: 'Fraunces', serif; font-size: 2.6rem; font-weight: 700; color: #fff; }
+    .closing-logo span { color: var(--digest); }
+    .closing-tagline { font-size: 1rem; color: rgba(255,255,255,.75); letter-spacing: .14em; text-transform: uppercase; font-weight: 600; }
+    .closing-url { font-size: 1.15rem; color: var(--sage); font-weight: 600; margin-top: .25rem; }
+    .article-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem; margin-top: 1rem; max-width: 780px; }
+    .a-pill { font-size: .72rem; font-weight: 700; padding: .25rem .65rem; border-radius: 100px; background: rgba(255,255,255,.08); color: rgba(255,255,255,.80); border: 1px solid rgba(255,255,255,.15); }
+    .a-pill.current { background: rgba(212,124,58,.22); color: var(--digest); border-color: rgba(212,124,58,.45); }
+
+    footer {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      text-align: center; padding: .4rem;
+      font-size: clamp(.65rem, 1vw, .80rem); color: rgba(255,255,255,.65);
+      background: rgba(15,22,35,.6);
+    }
+  </style>
+</head>
+<body id="artifacts-component-root-html">
+
+<div id="topbar">
+  <div class="tb-left">
+    <div class="tb-title">Coeliac Disease</div>
+    <div class="tb-sub">helf.school · Digestive Health Series · Article 18</div>
+  </div>
+  <div class="tb-right">
+    <span class="kb-hint">← → to navigate</span>
+    <span class="slide-counter" id="counter">10 / 10</span>
+  </div>
+</div>
+
+<div id="stage">
+
+  <!-- ═══ SLIDE 1 — INTRO ═══ -->
+  <div class="slide" id="s1">
+    <div class="intro-wrap">
+      <div class="intro-badge">Digestive Health · Article 18</div>
+      <div class="intro-title">Coeliac Disease:<br><span>the silent condition</span> hiding in plain sight</div>
+      <div class="intro-tagline">What it actually is, how to spot it, and the testing trap almost everyone falls into</div>
+      <div class="intro-stat-row">
+        <div class="intro-stat">
+          <div class="intro-stat-num">1 in 100</div>
+          <div class="intro-stat-label">people in the UK have it</div>
+          <div class="intro-stat-source">NHS · Coeliac UK</div>
+        </div>
+        <div class="intro-stat">
+          <div class="intro-stat-num">1 in 3</div>
+          <div class="intro-stat-label">is actually diagnosed</div>
+          <div class="intro-stat-source">CPRD, Ann Fam Med 2023</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 2 — WHAT IT ACTUALLY IS ═══ -->
+  <div class="slide" id="s2">
+    <div class="slide-title">What coeliac disease <span>actually is</span></div>
+    <div class="villi-row">
+      <div class="villi-card healthy">
+        <div class="villi-label">Healthy gut lining</div>
+        <svg class="villi-svg" viewBox="0 0 360 180" xmlns="http://www.w3.org/2000/svg">
+          <!-- Base line -->
+          <line x1="10" y1="160" x2="350" y2="160" stroke="#7A9E87" stroke-width="3"></line>
+          <!-- Tall villi -->
+          <g fill="none" stroke="#7A9E87" stroke-width="3" stroke-linecap="round">
+            <path d="M30 160 Q30 80 40 60 Q50 80 50 160"></path>
+            <path d="M60 160 Q60 75 72 55 Q82 75 82 160"></path>
+            <path d="M92 160 Q92 85 102 65 Q112 85 112 160"></path>
+            <path d="M122 160 Q122 70 134 50 Q144 70 144 160"></path>
+            <path d="M154 160 Q154 80 164 60 Q174 80 174 160"></path>
+            <path d="M184 160 Q184 75 196 55 Q206 75 206 160"></path>
+            <path d="M216 160 Q216 82 228 62 Q238 82 238 160"></path>
+            <path d="M248 160 Q248 70 260 50 Q270 70 270 160"></path>
+            <path d="M280 160 Q280 78 292 58 Q302 78 302 160"></path>
+            <path d="M312 160 Q312 82 322 62 Q332 82 332 160"></path>
+          </g>
+        </svg>
+        <div class="villi-caption"><strong>Tall, finger-like villi</strong> absorb nutrients from food — iron, folate, calcium, vitamins.</div>
+      </div>
+      <div class="villi-card atrophied">
+        <div class="villi-label">Coeliac disease — after gluten</div>
+        <svg class="villi-svg" viewBox="0 0 360 180" xmlns="http://www.w3.org/2000/svg">
+          <!-- Base line -->
+          <line x1="10" y1="160" x2="350" y2="160" stroke="#E8634A" stroke-width="3"></line>
+          <!-- Flattened villi -->
+          <g fill="none" stroke="#E8634A" stroke-width="3" stroke-linecap="round">
+            <path d="M30 160 Q35 145 45 140 Q55 145 55 160"></path>
+            <path d="M65 160 Q70 148 80 144 Q90 148 90 160"></path>
+            <path d="M100 160 Q105 144 115 140 Q125 144 125 160"></path>
+            <path d="M135 160 Q140 150 150 146 Q160 150 160 160"></path>
+            <path d="M170 160 Q175 144 185 138 Q195 144 195 160"></path>
+            <path d="M205 160 Q210 148 220 144 Q230 148 230 160"></path>
+            <path d="M240 160 Q245 146 255 142 Q265 146 265 160"></path>
+            <path d="M275 160 Q280 150 290 146 Q300 150 300 160"></path>
+            <path d="M310 160 Q315 146 325 142 Q335 146 335 160"></path>
+          </g>
+          <!-- Immune cells (red dots) -->
+          <g fill="#FF6B6B" opacity="0.8">
+            <circle cx="48" cy="152" r="2.5"></circle>
+            <circle cx="82" cy="154" r="2.5"></circle>
+            <circle cx="118" cy="151" r="2.5"></circle>
+            <circle cx="152" cy="155" r="2.5"></circle>
+            <circle cx="188" cy="150" r="2.5"></circle>
+            <circle cx="222" cy="153" r="2.5"></circle>
+            <circle cx="258" cy="152" r="2.5"></circle>
+            <circle cx="292" cy="155" r="2.5"></circle>
+            <circle cx="328" cy="152" r="2.5"></circle>
+          </g>
+        </svg>
+        <div class="villi-caption"><strong>Villi flatten and shrink</strong> — the absorbing surface collapses, and nutrients are lost.</div>
+      </div>
+    </div>
+    <div class="absorption-note">The absorbing surface of the small bowel can drop from the size of a <strong>tennis court</strong> to something closer to a <strong>dining table</strong>.</div>
+  </div>
+
+  <!-- ═══ SLIDE 3 — CLASSIC VS ATYPICAL ═══ -->
+  <div class="slide" id="s3">
+    <div class="slide-title">Two very different <span>presentations</span></div>
+    <div class="symptoms-grid">
+      <div class="sym-card classic">
+        <h3>Classic</h3>
+        <ul class="sym-list">
+          <li>Chronic diarrhoea</li>
+          <li>Abdominal pain, bloating, wind</li>
+          <li>Weight loss, poor appetite</li>
+          <li>Pale, floating stools (steatorrhoea)</li>
+          <li>Faltering growth in children</li>
+          <li>Nausea, vomiting</li>
+        </ul>
+      </div>
+      <div class="sym-card atypical">
+        <h3>Atypical — where most cases hide</h3>
+        <ul class="sym-list">
+          <li>Iron deficiency anaemia — often the only clue</li>
+          <li>Unexplained fatigue</li>
+          <li>Recurrent mouth ulcers</li>
+          <li>Early osteoporosis</li>
+          <li>Unexplained infertility, recurrent miscarriage</li>
+          <li>Ataxia, neuropathy, brain fog, migraines</li>
+          <li>Itchy blistering rash (dermatitis herpetiformis)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sym-footer">Up to <strong>1 in 4</strong> people later diagnosed with coeliac disease were first told they had <strong>IBS</strong>.</div>
+  </div>
+
+  <!-- ═══ SLIDE 4 — THE DIAGNOSIS GAP ═══ -->
+  <div class="slide" id="s4">
+    <div class="slide-title">The <span>diagnosis gap</span></div>
+    <div class="gap-wrap">
+      <div class="gap-big-stat">
+        <div class="gap-num">11 years</div>
+        <div class="gap-label">average delay from first symptoms to diagnosis</div>
+        <div class="gap-source">Rej et al., NHS England National Centre for Refractory Coeliac Disease</div>
+      </div>
+      <div class="gap-secondary">
+        <div class="gap-sec-stat">
+          <div class="gap-sec-num">~2 in 3</div>
+          <div class="gap-sec-label">people with coeliac disease in the UK remain undiagnosed</div>
+        </div>
+        <div class="gap-sec-stat">
+          <div class="gap-sec-num">1 in 10</div>
+          <div class="gap-sec-label">first-degree relatives of a coeliac will have it too</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 5 — THE TESTING TRAP ═══ -->
+  <div class="slide" id="s5">
+    <div class="trap-wrap">
+      <div class="trap-warn">
+        <div class="trap-icon">⚠️</div>
+        <div class="trap-heading">Do not stop gluten<br>before the test.</div>
+        <div class="trap-body">The blood test and the biopsy only work <strong>while the immune reaction is active</strong>. Stop gluten first, and the tests come back negative — even when coeliac disease is there.<br><br>Keep gluten in the diet, in more than one meal a day, for at least <strong>six weeks</strong> before testing.</div>
+        <div class="trap-flow">
+          <div class="trap-flow-step">Stop gluten early</div>
+          <span class="trap-flow-arrow">→</span>
+          <div class="trap-flow-step">Tests come back negative</div>
+          <span class="trap-flow-arrow">→</span>
+          <div class="trap-flow-step">Diagnosis missed for years</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 6 — DIAGNOSTIC PATHWAY ═══ -->
+  <div class="slide" id="s6">
+    <div class="slide-title">How the <span>diagnosis</span> is made</div>
+    <div class="path-steps">
+      <div class="path-step visible">
+        <div class="path-num">1</div>
+        <div>
+          <div class="path-title">Blood test — while eating gluten</div>
+          <div class="path-desc">Total IgA plus <strong>IgA tTG</strong> — the main coeliac antibody. If IgA is low (IgA deficiency), an IgG-based test is used instead.</div>
+        </div>
+      </div>
+      <div class="path-step visible">
+        <div class="path-num">2</div>
+        <div>
+          <div class="path-title">Positive result → specialist referral</div>
+          <div class="path-desc">A positive tTG means the probability is high. The next step is a gastroenterologist — not starting gluten-free.</div>
+        </div>
+      </div>
+      <div class="path-step visible">
+        <div class="path-num">3</div>
+        <div>
+          <div class="path-title">Endoscopy with duodenal biopsy</div>
+          <div class="path-desc">The gold standard. Small tissue samples confirm villous atrophy and make the diagnosis definitive.</div>
+        </div>
+      </div>
+      <div class="path-step visible">
+        <div class="path-num">4</div>
+        <div>
+          <div class="path-title">Or the no-biopsy pathway — for selected adults</div>
+          <div class="path-desc">BSG 2020: in adults under 55, classic symptoms, no red flags, tTG <strong>≥ 10× upper limit</strong> + positive EMA → biopsy can be avoided. 95% confirmation rate.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 7 — VILLOUS RECOVERY ═══ -->
+  <div class="slide" id="s7">
+    <div class="slide-title">What the gut does <span>when gluten is removed</span></div>
+    <div class="recovery-row">
+      <div class="rec-card">
+        <div class="rec-num">~34%</div>
+        <div class="rec-timeframe">adults · 2 years</div>
+        <div class="rec-desc">complete villous recovery on a strict gluten-free diet</div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">~66%</div>
+        <div class="rec-timeframe">adults · 5 years</div>
+        <div class="rec-desc">complete villous recovery on a strict gluten-free diet</div>
+      </div>
+      <div class="rec-card highlight">
+        <div class="rec-num">~95%</div>
+        <div class="rec-timeframe">children · 2 years</div>
+        <div class="rec-desc">children heal faster and more completely than adults</div>
+      </div>
+    </div>
+    <div class="rec-footer">Gut healing is slower in older adults — but the <strong>trajectory is the same</strong>. Strict adherence is the lever that moves everything.</div>
+  </div>
+
+  <!-- ═══ SLIDE 8 — RESEARCH ═══ -->
+  <div class="slide" id="s8">
+    <div class="slide-title">What the <span>research</span> shows</div>
+    <div class="research-grid">
+
+      <div class="r-card">
+        <div class="r-title">The Lancet 2022 — the modern comprehensive review</div>
+        <div class="r-finding">Coeliac disease is now recognised as a <strong>global disease</strong> — not predominantly European — and prevalence continues to rise. Long-term outcomes are determined by <strong>strictness of gluten-free diet adherence</strong>.</div>
+        <div class="r-source">Catassi C et al., Lancet 2022;399:2413–2426</div>
+      </div>
+
+      <div class="r-card">
+        <div class="r-title">UK CPRD study — the diagnosis gap</div>
+        <div class="r-finding">Diagnosed UK prevalence in 2020 was <strong>0.36%</strong> — against a true prevalence of ~1%. Diagnosis has nearly doubled in 20 years, but <strong>two thirds still unidentified</strong>.</div>
+        <div class="r-source">Shiha MG et al., Ann Fam Med 2023</div>
+      </div>
+
+      <div class="r-card">
+        <div class="r-title">BSG no-biopsy pathway — Gut 2021</div>
+        <div class="r-finding">In selected adults with tTG <strong>≥ 10× ULN</strong> plus positive EMA, histological confirmation was achieved in <strong>~95%</strong> across UK cohorts — enabling diagnosis without biopsy.</div>
+        <div class="r-source">Penny HA et al., Gut 2021;70:876–883</div>
+      </div>
+
+      <div class="r-card">
+        <div class="r-title">NICE NG20 — UK guideline standard</div>
+        <div class="r-finding">First-line: total IgA + IgA tTG. Positive → specialist referral for biopsy. <strong>HLA testing not recommended in primary care.</strong> Test while still eating gluten.</div>
+        <div class="r-source">NICE guideline NG20 · last reviewed 2024</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 9 — THREE TAKE-HOMES ═══ -->
+  <div class="slide" id="s9">
+    <div class="slide-title">Three things to <span>take home</span></div>
+    <div class="cta-grid">
+      <div class="cta-card">
+        <div class="cta-icon">🩺</div>
+        <div class="cta-title">Ask the question</div>
+        <div class="cta-desc">If you have persistent gut symptoms, unexplained anaemia, or a close relative with coeliac — ask your GP to test you. Two in three cases are still being missed.</div>
+      </div>
+      <div class="cta-card">
+        <div class="cta-icon">🍞</div>
+        <div class="cta-title">Keep eating gluten</div>
+        <div class="cta-desc">Do not start gluten-free before the blood test. The test needs the immune reaction to be active — eating gluten for at least six weeks matters.</div>
+      </div>
+      <div class="cta-card">
+        <div class="cta-icon">✅</div>
+        <div class="cta-title">Strict is the word</div>
+        <div class="cta-desc">Once diagnosed, a strict lifelong gluten-free diet lets the gut heal. A dietitian and Coeliac UK make the practical side far easier.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 10 — CLOSING ═══ -->
+  <div class="slide active" id="s10">
+    <div class="closing-wrap">
+      <div class="closing-logo">helf<span>.</span>school</div>
+      <div class="closing-tagline">Health Education · Not Medical Advice</div>
+      <div class="closing-url">helf.school</div>
+      <div class="article-pills">
+        <span class="a-pill">01 Hypertension</span>
+        <span class="a-pill">02 Cholesterol</span>
+        <span class="a-pill">03 Heart Attack Risk</span>
+        <span class="a-pill">04 Statins</span>
+        <span class="a-pill">05 Lifestyle</span>
+        <span class="a-pill">06 Salt</span>
+        <span class="a-pill">07 Supplements</span>
+        <span class="a-pill">13 Acid Reflux</span>
+        <span class="a-pill">14 Bloating</span>
+        <span class="a-pill">15 IBD</span>
+        <span class="a-pill">16 IBS</span>
+        <span class="a-pill">17 MASLD</span>
+        <span class="a-pill current">18 Coeliac</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>helf.school · Health Education · Coeliac Disease · Article 18</footer>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+  let current = 0;
+  const total = slides.length;
+
+  function showSlide(n) {
+    slides[current].classList.remove('active');
+    current = (n + total) % total;
+    slides[current].classList.add('active');
+    counter.textContent = `${current + 1} / ${total}`;
+    triggerAnimations(current);
+  }
+
+  function triggerAnimations(idx) {
+    if (idx === 5) { // Slide 6 — diagnostic pathway steps
+      // reset
+      document.querySelectorAll('#s6 .path-step').forEach(s => s.classList.remove('visible'));
+      setTimeout(() => {
+        document.querySelectorAll('#s6 .path-step').forEach((s, i) => {
+          setTimeout(() => s.classList.add('visible'), i * 200);
+        });
+      }, 100);
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') showSlide(current + 1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') showSlide(current - 1);
+  });
+
+  // Touch swipe
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', e => {
+    const dx = tx - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 40) showSlide(current + (dx > 0 ? 1 : -1));
+  }, { passive: true });
+
+  // Trigger animations on first visible slide if needed
+  triggerAnimations(0);
+</script>
+
+
+
+
+
+</body></html>
