@@ -348,22 +348,21 @@ Do NOT use: non-peer-reviewed sources, commercial health sites, forum content.
 
 ### Completed ✅
 - All Cardiovascular Series articles 01–07 — article, visuals, teleprompter complete
-- All Digestive Series articles 13–16 — article, visuals, teleprompter complete
-- Article 15 IBD — all files including ibd-gut-screen.html complete
-- Article 17 MASLD — article HTML built, visuals and teleprompter still needed
+- All Digestive Series articles 13–18 — article, visuals, teleprompter complete
+- Article 17 MASLD — article, visuals, and teleprompter all complete ⚑ verify ESSENCE trial before going live
+- Article 18 Coeliac disease — all files complete including coeliac-villi-screen.html
 - Pricing confirmed correct on index.html and membership page
 - Project knowledge document updated April 2026
+- Medical term lay-clarification standard added to all standards
 
-### Immediate — Article 17 MASLD
-- [ ] Build masld-visuals.html
-- [ ] Build masld-teleprompter.html
-- [ ] Verify ESSENCE trial publication status before going live ⚑
+### Immediate
+- [ ] Verify ESSENCE trial (semaglutide MASH) publication status ⚑ before masld.html goes live
 
 ### Near-term
 - [ ] Practical Health Series — Articles 08–12 (Mediterranean diet, Sleep, Exercise, Stress, Alcohol)
-- [ ] Digestive Series — Article 18 Coeliac disease
-- [ ] Continue Digestive Series 19+
+- [ ] Digestive Series — Article 19+ (continue)
 - [ ] Build community forum
+- [ ] Apply medical term lay-clarification standard retrospectively to existing articles (01–17)
 
 ### Each new article requires
 1. Article HTML
