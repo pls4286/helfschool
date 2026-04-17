@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Coeliac — Villi Screen | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #1B2A4A;
+      --coral: #E8634A;
+      --sage: #7A9E87;
+      --digest: #D47C3A;
+      --amber: #E8A84A;
+      --bg: #0f1623;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: var(--bg); overflow: hidden; font-family: 'DM Sans', sans-serif; }
+
+    .screen {
+      display: flex; flex-direction: column;
+      height: 100vh; padding: 5vh 3vw 3vh;
+    }
+
+    /* TITLE */
+    .screen-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700; color: #fff; text-align: center;
+      margin-bottom: .3rem;
+    }
+    .screen-title span { color: var(--digest); }
+    .screen-sub {
+      font-size: clamp(.85rem, 1.4vw, 1.05rem);
+      color: rgba(255,255,255,.75);
+      text-align: center; margin-bottom: 3vh;
+    }
+
+    /* TWO-PANEL LAYOUT */
+    .panels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2vw;
+      flex: 1;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      padding: 2.5vh 2vw;
+      display: flex; flex-direction: column;
+      align-items: center;
+    }
+    .panel.healthy { border-top: 4px solid var(--sage); }
+    .panel.damaged { border-top: 4px solid var(--coral); }
+
+    .panel-label {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      font-weight: 700; margin-bottom: 1vh;
+      text-align: center;
+    }
+    .panel.healthy .panel-label { color: var(--sage); }
+    .panel.damaged .panel-label { color: var(--coral); }
+
+    .panel-sub {
+      font-size: clamp(.75rem, 1.15vw, .92rem);
+      color: rgba(255,255,255,.70);
+      text-align: center; margin-bottom: 2vh;
+      line-height: 1.45;
+    }
+
+    /* SVG WRAPPER */
+    .villi-wrap {
+      flex: 1; width: 100%;
+      display: flex; align-items: flex-end; justify-content: center;
+      min-height: 0;
+    }
+    .villi-svg { width: 100%; height: 100%; max-height: 42vh; }
+
+    /* FACT CHIPS */
+    .panel-facts {
+      display: flex; flex-direction: column; gap: .6vh;
+      width: 100%; margin-top: 2vh;
+    }
+    .panel-fact {
+      display: flex; align-items: flex-start; gap: .6rem;
+      font-size: clamp(.75rem, 1.1vw, .92rem);
+      color: rgba(255,255,255,.85); line-height: 1.45;
+    }
+    .fact-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      flex-shrink: 0; margin-top: .35rem;
+    }
+    .panel.healthy .fact-dot { background: var(--sage); }
+    .panel.damaged .fact-dot { background: var(--coral); }
+
+    /* ABSORPTION BAR */
+    .absorption-bar {
+      width: 100%; margin-top: 1.5vh;
+      background: rgba(255,255,255,.08);
+      border-radius: 100px; overflow: hidden;
+      height: 10px;
+    }
+    .absorption-fill {
+      height: 100%; border-radius: 100px;
+      transition: width 1.8s ease;
+    }
+    .panel.healthy .absorption-fill { background: var(--sage); }
+    .panel.damaged .absorption-fill { background: var(--coral); }
+    .absorption-label {
+      font-size: clamp(.68rem, 1vw, .82rem);
+      color: rgba(255,255,255,.65);
+      margin-top: .4vh; text-align: center;
+    }
+
+    /* BOTTOM CALLOUT */
+    .callout {
+      margin-top: 2vh;
+      background: rgba(212,124,58,.08);
+      border: 1px solid rgba(212,124,58,.30);
+      border-radius: 12px;
+      padding: 1.2vh 1.5vw;
+      text-align: center;
+      font-size: clamp(.8rem, 1.2vw, 1rem);
+      color: rgba(255,255,255,.90);
+      line-height: 1.5;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    .callout.show { opacity: 1; }
+    .callout strong { color: var(--digest); }
+
+    footer {
+      text-align: center;
+      font-size: clamp(.65rem, 1vw, .80rem);
+      color: rgba(255,255,255,.65);
+      padding-top: 1.5vh;
+    }
+  </style>
+</head>
+<body>
+
+<div class="screen">
+
+  <div class="screen-title">The Gut Lining in <span>Coeliac Disease</span></div>
+  <div class="screen-sub">How gluten damages the villi — and what happens when gluten is removed</div>
+
+  <div class="panels">
+
+    <!-- HEALTHY PANEL -->
+    <div class="panel healthy">
+      <div class="panel-label">Healthy gut lining</div>
+      <div class="panel-sub">No gluten exposure · normal absorption</div>
+
+      <div class="villi-wrap">
+        <svg class="villi-svg" viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
+          <!-- Base layer -->
+          <rect x="0" y="230" width="420" height="30" fill="rgba(122,158,135,0.15)" rx="4"/>
+          <line x1="0" y1="230" x2="420" y2="230" stroke="#7A9E87" stroke-width="3"/>
+
+          <!-- Tall healthy villi — 10 villi -->
+          <g id="healthy-villi" stroke="#7A9E87" stroke-width="3.5" fill="rgba(122,158,135,0.12)" stroke-linecap="round" stroke-linejoin="round">
+            <path class="villus" d="M20 230 Q20 155 32 128 Q44 155 44 230 Z" opacity="0"/>
+            <path class="villus" d="M55 230 Q55 148 69 118 Q83 148 83 230 Z" opacity="0"/>
+            <path class="villus" d="M94 230 Q94 158 106 130 Q118 158 118 230 Z" opacity="0"/>
+            <path class="villus" d="M129 230 Q129 145 143 115 Q157 145 157 230 Z" opacity="0"/>
+            <path class="villus" d="M168 230 Q168 152 180 122 Q192 152 192 230 Z" opacity="0"/>
+            <path class="villus" d="M203 230 Q203 148 217 118 Q231 148 231 230 Z" opacity="0"/>
+            <path class="villus" d="M242 230 Q242 155 254 127 Q266 155 266 230 Z" opacity="0"/>
+            <path class="villus" d="M277 230 Q277 145 291 115 Q305 145 305 230 Z" opacity="0"/>
+            <path class="villus" d="M316 230 Q316 152 328 122 Q340 152 340 230 Z" opacity="0"/>
+            <path class="villus" d="M351 230 Q351 148 365 120 Q379 148 379 230 Z" opacity="0"/>
+          </g>
+
+          <!-- Blood vessel dots inside villi (nutrient absorption) -->
+          <g id="blood-dots" opacity="0">
+            <circle cx="32" cy="175" r="4" fill="#E8634A" opacity=".7"/>
+            <circle cx="69" cy="165" r="4" fill="#E8634A" opacity=".7"/>
+            <circle cx="106" cy="172" r="4" fill="#E8634A" opacity=".7"/>
+            <circle cx="143" cy="162" r="4" fill="#E8634A" opacity=".7"/>
+            <circle cx="180" cy="168" r="4" fill="#E8634A" opacity=".7"/>
+            <circle cx="217" cy="165" r="4" fill="#E8634A" opacity=".7"/>
+            <circle cx="254" cy="170" r="4" fill="#E8634A" opacity=".7"/>
+            <circle cx="291" cy="162" r="4" fill="#E8634A" opacity=".7"/>
+            <circle cx="328" cy="168" r="4" fill="#E8634A" opacity=".7"/>
+            <circle cx="365" cy="166" r="4" fill="#E8634A" opacity=".7"/>
+          </g>
+
+          <!-- Surface area label -->
+          <text id="surface-label" x="210" y="105" text-anchor="middle" font-family="DM Sans" font-size="13" fill="rgba(122,158,135,0.90)" font-weight="600" opacity="0">↕ Full absorbing surface</text>
+          <line id="surface-line" x1="210" y1="110" x2="210" y2="228" stroke="rgba(122,158,135,0.40)" stroke-width="1.5" stroke-dasharray="4,3" opacity="0"/>
+        </svg>
+      </div>
+
+      <div class="panel-facts">
+        <div class="panel-fact"><div class="fact-dot"></div>Tall finger-like projections</div>
+        <div class="panel-fact"><div class="fact-dot"></div>Absorbing surface ≈ a tennis court</div>
+        <div class="panel-fact"><div class="fact-dot"></div>Iron, calcium, folate, vitamin D absorbed normally</div>
+      </div>
+
+      <div class="absorption-bar">
+        <div class="absorption-fill" id="healthy-bar" style="width:0%"></div>
+      </div>
+      <div class="absorption-label">Absorption capacity: <strong id="healthy-pct" style="color:var(--sage)">0%</strong></div>
+    </div>
+
+    <!-- DAMAGED PANEL -->
+    <div class="panel damaged">
+      <div class="panel-label">Coeliac disease — gluten present</div>
+      <div class="panel-sub">Immune attack flattens the lining</div>
+
+      <div class="villi-wrap">
+        <svg class="villi-svg" viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
+          <!-- Base layer -->
+          <rect x="0" y="230" width="420" height="30" fill="rgba(232,99,74,0.10)" rx="4"/>
+          <line x1="0" y1="230" x2="420" y2="230" stroke="#E8634A" stroke-width="3"/>
+
+          <!-- Flattened / atrophied villi -->
+          <g id="damaged-villi" stroke="#E8634A" stroke-width="3" fill="rgba(232,99,74,0.10)" stroke-linecap="round" stroke-linejoin="round">
+            <path class="flat-villus" d="M20 230 Q24 210 38 204 Q52 210 52 230 Z" opacity="0"/>
+            <path class="flat-villus" d="M60 230 Q64 212 78 206 Q92 212 92 230 Z" opacity="0"/>
+            <path class="flat-villus" d="M100 230 Q104 208 118 202 Q132 208 132 230 Z" opacity="0"/>
+            <path class="flat-villus" d="M140 230 Q144 212 158 205 Q172 212 172 230 Z" opacity="0"/>
+            <path class="flat-villus" d="M180 230 Q184 210 196 204 Q208 210 208 230 Z" opacity="0"/>
+            <path class="flat-villus" d="M216 230 Q220 212 234 206 Q248 212 248 230 Z" opacity="0"/>
+            <path class="flat-villus" d="M256 230 Q260 210 272 204 Q284 210 284 230 Z" opacity="0"/>
+            <path class="flat-villus" d="M292 230 Q296 212 310 206 Q324 212 324 230 Z" opacity="0"/>
+            <path class="flat-villus" d="M332 230 Q336 210 348 204 Q360 210 360 230 Z" opacity="0"/>
+            <path class="flat-villus" d="M368 230 Q372 212 384 206 Q396 212 396 230 Z" opacity="0"/>
+          </g>
+
+          <!-- Immune cells (inflammation dots) -->
+          <g id="immune-cells" opacity="0">
+            <circle cx="38" cy="218" r="5" fill="#FF6B6B" opacity=".85"/>
+            <circle cx="78" cy="219" r="5" fill="#FF6B6B" opacity=".85"/>
+            <circle cx="118" cy="216" r="5" fill="#FF6B6B" opacity=".85"/>
+            <circle cx="158" cy="218" r="5" fill="#FF6B6B" opacity=".85"/>
+            <circle cx="196" cy="217" r="5" fill="#FF6B6B" opacity=".85"/>
+            <circle cx="234" cy="219" r="5" fill="#FF6B6B" opacity=".85"/>
+            <circle cx="272" cy="217" r="5" fill="#FF6B6B" opacity=".85"/>
+            <circle cx="310" cy="218" r="5" fill="#FF6B6B" opacity=".85"/>
+            <circle cx="348" cy="217" r="5" fill="#FF6B6B" opacity=".85"/>
+            <circle cx="384" cy="219" r="5" fill="#FF6B6B" opacity=".85"/>
+            <!-- Scattered extra immune cells -->
+            <circle cx="58" cy="224" r="3.5" fill="#FF6B6B" opacity=".6"/>
+            <circle cx="138" cy="222" r="3.5" fill="#FF6B6B" opacity=".6"/>
+            <circle cx="216" cy="223" r="3.5" fill="#FF6B6B" opacity=".6"/>
+            <circle cx="295" cy="223" r="3.5" fill="#FF6B6B" opacity=".6"/>
+            <circle cx="368" cy="222" r="3.5" fill="#FF6B6B" opacity=".6"/>
+          </g>
+
+          <!-- Immune cell label -->
+          <text id="immune-label" x="210" y="175" text-anchor="middle" font-family="DM Sans" font-size="13" fill="rgba(255,107,107,0.90)" font-weight="600" opacity="0">● immune cells attacking</text>
+
+          <!-- Collapsed surface label -->
+          <text id="flat-label" x="210" y="195" text-anchor="middle" font-family="DM Sans" font-size="13" fill="rgba(232,99,74,0.90)" font-weight="600" opacity="0">Villi flattened — absorbing surface collapsed</text>
+        </svg>
+      </div>
+
+      <div class="panel-facts">
+        <div class="panel-fact"><div class="fact-dot"></div>Villi shrink and flatten (villous atrophy)</div>
+        <div class="panel-fact"><div class="fact-dot"></div>Absorbing surface collapses toward a dining table</div>
+        <div class="panel-fact"><div class="fact-dot"></div>Nutrients pass through unabsorbed</div>
+      </div>
+
+      <div class="absorption-bar">
+        <div class="absorption-fill" id="damaged-bar" style="width:0%"></div>
+      </div>
+      <div class="absorption-label">Absorption capacity: <strong id="damaged-pct" style="color:var(--coral)">100%</strong></div>
+    </div>
+
+  </div>
+
+  <div class="callout" id="callout">
+    Remove gluten → immune attack stops → villi recover → absorption restores. <strong>This is why the gluten-free diet works — and why it must be strict and lifelong.</strong>
+  </div>
+
+</div>
+
+<footer>helf.school · Health Education · Coeliac Disease · Article 18 · coeliac-villi-screen.html</footer>
+
+<script>
+  function animNum(el, from, to, duration, suffix) {
+    const start = performance.now();
+    function step(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(from + (to - from) * ease) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function fadeIn(el, delay) {
+    setTimeout(() => {
+      el.style.transition = 'opacity 0.7s ease';
+      el.style.opacity = '1';
+    }, delay);
+  }
+
+  window.addEventListener('load', () => {
+
+    // Phase 1 — Healthy villi grow in (0.4s stagger)
+    const healthyVilli = document.querySelectorAll('#healthy-villi .villus');
+    healthyVilli.forEach((v, i) => {
+      setTimeout(() => {
+        v.style.transition = 'opacity 0.5s ease';
+        v.style.opacity = '1';
+      }, 300 + i * 120);
+    });
+
+    // Phase 2 — Blood vessels appear (after villi)
+    setTimeout(() => {
+      document.getElementById('blood-dots').style.transition = 'opacity 0.6s ease';
+      document.getElementById('blood-dots').style.opacity = '1';
+      document.getElementById('surface-label').style.transition = 'opacity 0.6s ease';
+      document.getElementById('surface-label').style.opacity = '1';
+      document.getElementById('surface-line').style.transition = 'opacity 0.6s ease';
+      document.getElementById('surface-line').style.opacity = '1';
+    }, 1800);
+
+    // Phase 3 — Healthy absorption bar fills
+    setTimeout(() => {
+      document.getElementById('healthy-bar').style.width = '95%';
+      animNum(document.getElementById('healthy-pct'), 0, 95, 1800, '%');
+    }, 2000);
+
+    // Phase 4 — Damaged villi appear
+    const flatVilli = document.querySelectorAll('#damaged-villi .flat-villus');
+    flatVilli.forEach((v, i) => {
+      setTimeout(() => {
+        v.style.transition = 'opacity 0.5s ease';
+        v.style.opacity = '1';
+      }, 2600 + i * 100);
+    });
+
+    // Phase 5 — Immune cells swarm in
+    setTimeout(() => {
+      document.getElementById('immune-cells').style.transition = 'opacity 0.7s ease';
+      document.getElementById('immune-cells').style.opacity = '1';
+      document.getElementById('immune-label').style.transition = 'opacity 0.6s ease';
+      document.getElementById('immune-label').style.opacity = '1';
+    }, 3800);
+
+    // Phase 6 — Damaged absorption bar drops
+    setTimeout(() => {
+      document.getElementById('damaged-bar').style.width = '15%';
+      animNum(document.getElementById('damaged-pct'), 100, 15, 1800, '%');
+      document.getElementById('flat-label').style.transition = 'opacity 0.6s ease';
+      document.getElementById('flat-label').style.opacity = '1';
+    }, 4200);
+
+    // Phase 7 — Callout appears
+    setTimeout(() => {
+      document.getElementById('callout').classList.add('show');
+    }, 6200);
+
+  });
+</script>
+
+</body>
+
+<div id="dl-btn-wrap" style="position:fixed;bottom:10px;left:12px;z-index:9999;opacity:.55;transition:opacity .2s" onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=.55">
+  <button onclick="helfDownload('coeliac-villi-screen.html')" style="background:#1B2A4A;color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:6px;padding:.25rem .65rem;font-size:.65rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.04em">⬇ coeliac-villi-screen.html</button>
+</div>
+<script id="dl-btn-script">
+function helfDownload(fn){
+  var c=document.documentElement.cloneNode(true);
+  var d=c.querySelector('#dl-btn-wrap');if(d)d.parentNode.removeChild(d);
+  var s=c.querySelector('#dl-btn-script');if(s)s.parentNode.removeChild(s);
+  var b=new Blob(['<!DOCTYPE html>\n'+c.outerHTML],{type:'text/html;charset=utf-8'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=fn;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);
+}
+</script>
+</html>
