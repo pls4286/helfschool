@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Exercise — helf.school</title>
+  <meta name="description" content="What does the evidence actually show about exercise — including its effect on lifespan? A clear, evidence-based guide from Dr Paul, retired NHS GP."/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--navy:#1B2A4A;--coral:#E8634A;--cream:#FAF7F2;--sage:#7A9E87;--amber:#E8A84A;--practical:#7A6A2E;--text:#2C2C2C}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'DM Sans',sans-serif;font-weight:400;color:var(--text);background:var(--cream);line-height:1.7}
+
+    /* NAV */
+    .site-nav{background:var(--navy);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+    .nav-logo{display:flex;align-items:center;gap:.5rem;text-decoration:none}
+    .logo-text{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;color:#fff}
+    .logo-dot{color:var(--coral)}
+    .logo-tag{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+    .nav-back{font-size:.82rem;color:rgba(255,255,255,.75);text-decoration:none;display:flex;align-items:center;gap:.35rem}
+    .nav-back:hover{color:#fff}
+
+    /* HERO */
+    .hero{background:linear-gradient(135deg,var(--navy) 0%,#2c3025 60%,#1a2018 100%);padding:4rem 2rem 3rem;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:-40%;right:-8%;width:600px;height:600px;background:radial-gradient(circle,rgba(122,106,46,.22) 0%,transparent 70%);pointer-events:none}
+    .hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(232,168,74,.12) 0%,transparent 70%);pointer-events:none}
+    .hero-inner{max-width:860px;margin:0 auto;position:relative}
+    .breadcrumb{display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;font-size:.78rem;color:rgba(255,255,255,.75)}
+    .breadcrumb a{color:rgba(255,255,255,.75);text-decoration:none}
+    .breadcrumb a:hover{color:#fff}
+    .breadcrumb-sep{color:rgba(255,255,255,.4)}
+    .series-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(122,106,46,.2);border:1px solid rgba(122,106,46,.5);color:#d4b84a;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .8rem;border-radius:100px;margin-bottom:1rem}
+    .hero h1{font-family:'Fraunces',serif;font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;color:#fff;line-height:1.12;margin-bottom:.85rem}
+    .hero-subtitle{font-size:1.05rem;color:rgba(255,255,255,.88);line-height:1.6;max-width:640px;margin-bottom:1.75rem}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:1.25rem;font-size:.8rem;color:rgba(255,255,255,.82)}
+    .meta-item{display:flex;align-items:center;gap:.35rem}
+
+    /* ARTICLE BODY */
+    .article-body{max-width:860px;margin:0 auto;padding:0 2rem 4rem}
+
+    .article-section{padding:3rem 0;border-bottom:1px solid rgba(27,42,74,.08);scroll-margin-top:150px}
+    .article-section:last-child{border-bottom:none}
+    .section-label{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--practical);margin-bottom:.5rem}
+    .section-title{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.5vw,1.85rem);font-weight:700;color:var(--navy);margin-bottom:1.25rem;line-height:1.2}
+    .article-section p{font-size:1rem;color:var(--text);font-weight:400;line-height:1.78;margin-bottom:1rem}
+    .article-section p:last-child{margin-bottom:0}
+
+    /* STEPS ORIGIN STORY */
+    .steps-story{background:linear-gradient(135deg,#1B2A4A,#283a5c);border-radius:14px;padding:1.5rem 1.75rem;margin:1.75rem 0;color:#fff;border-left:4px solid var(--practical)}
+    .ss-label{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#d4b84a;margin-bottom:.4rem}
+    .ss-title{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:700;color:#fff;line-height:1.25;margin-bottom:.8rem}
+    .ss-body{font-size:.92rem;color:rgba(255,255,255,.92);line-height:1.65;font-weight:400;margin-bottom:.75rem}
+    .ss-body:last-child{margin-bottom:0}
+    .ss-body strong{color:#fff;font-weight:700}
+    .ss-body em{color:#d4b84a;font-style:italic;font-weight:500}
+    .ss-kanji{display:inline-block;background:rgba(212,184,74,.15);border:1px solid rgba(212,184,74,.4);border-radius:8px;padding:.35rem .8rem;font-family:'Fraunces',serif;font-size:1.25rem;color:#d4b84a;margin:0 .2rem;vertical-align:middle;font-weight:700}
+
+    /* NHS QUIZ CALLOUT */
+    .nhs-quiz{background:linear-gradient(135deg,#eaf4ef,#f7f2e3);border:1.5px solid #7A9E87;border-radius:14px;padding:1.25rem 1.5rem;margin:1.5rem 0;display:flex;gap:1.1rem;align-items:center;text-decoration:none;color:inherit;transition:transform .15s,box-shadow .15s}
+    .nhs-quiz:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(122,158,135,.25)}
+    .nhs-quiz-icon{font-size:2rem;flex-shrink:0;line-height:1}
+    .nhs-quiz-content{flex:1}
+    .nhs-quiz-label{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3a6a50;margin-bottom:.2rem}
+    .nhs-quiz-title{font-family:'Fraunces',serif;font-weight:700;color:var(--navy);font-size:1.05rem;margin-bottom:.2rem;line-height:1.25}
+    .nhs-quiz-body{font-size:.88rem;color:#2c2c2c;line-height:1.52;font-weight:400}
+    .nhs-quiz-arrow{font-size:1.5rem;color:var(--practical);flex-shrink:0;font-weight:700}
+
+    /* BOTH VALUABLE CALLOUT */
+    .both-valuable{background:linear-gradient(135deg,rgba(122,158,135,.14),rgba(212,184,74,.08));border:1.5px solid rgba(122,158,135,.4);border-radius:14px;padding:1.35rem 1.5rem;margin:1.5rem 0;display:flex;gap:1.1rem;align-items:flex-start}
+    .bv-icon{font-size:1.7rem;flex-shrink:0;line-height:1;margin-top:.05rem}
+    .bv-content{flex:1}
+    .bv-title{font-family:'Fraunces',serif;font-weight:700;color:var(--navy);font-size:1.1rem;margin-bottom:.45rem;line-height:1.25}
+    .bv-body{font-size:.94rem;color:#2c2c2c;line-height:1.65;font-weight:400}
+    .bv-body strong{color:var(--navy);font-weight:700}
+    .bv-body em{color:#4a6a50;font-style:italic;font-weight:500}
+
+    /* FOUR TYPES GRID */
+    .types-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.75rem 0}
+    .type-card{border-radius:14px;padding:1.2rem 1.25rem;display:flex;flex-direction:column;gap:.5rem;min-height:0}
+    .type-card.aero{background:#2e5038}
+    .type-card.strg{background:#553c22}
+    .type-card.flex{background:#3a4466}
+    .type-card.bal{background:#5a3838}
+    .type-icon{font-size:1.7rem;line-height:1}
+    .type-label{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+    .type-card.aero .type-label{color:#7ecc99}
+    .type-card.strg .type-label{color:#e8c060}
+    .type-card.flex .type-label{color:#9eb0e0}
+    .type-card.bal .type-label{color:#e8a090}
+    .type-name{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;color:#fff;line-height:1.2}
+    .type-desc{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.55;font-weight:400;flex:1}
+    .type-examples{font-size:.82rem;color:rgba(255,255,255,.78);line-height:1.5;padding-top:.5rem;border-top:1px solid rgba(255,255,255,.15);font-weight:500}
+
+    /* GUIDELINES CALLOUT */
+    .guidelines{background:linear-gradient(135deg,rgba(122,106,46,.1),rgba(212,184,74,.05));border:1px solid rgba(212,184,74,.3);border-radius:16px;padding:1.5rem 1.75rem;margin:1.75rem 0}
+    .gl-title{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+    .gl-rows{display:flex;flex-direction:column;gap:.75rem}
+    .gl-row{display:flex;gap:1rem;align-items:flex-start;padding:.75rem 0;border-bottom:1px dashed rgba(27,42,74,.1)}
+    .gl-row:last-child{border-bottom:none;padding-bottom:0}
+    .gl-icon{font-size:1.4rem;line-height:1;flex-shrink:0}
+    .gl-content{flex:1}
+    .gl-heading{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:.15rem}
+    .gl-body{font-size:.88rem;color:#3a3a3a;line-height:1.55;font-weight:400}
+    .gl-body strong{color:var(--navy)}
+
+    /* TALK TEST */
+    .talk-test{background:#fff;border:1px solid rgba(27,42,74,.1);border-radius:12px;padding:1.1rem 1.3rem;margin:1.25rem 0;display:flex;gap:1rem;align-items:flex-start;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    .talk-icon{font-size:1.5rem;flex-shrink:0}
+    .talk-content{flex:1}
+    .talk-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+    .talk-body{font-size:.9rem;color:#3a3a3a;line-height:1.58;font-weight:400}
+    .talk-body strong{color:var(--navy);font-weight:700}
+
+    /* KEY TERMS */
+    .key-terms-box{background:var(--navy);border-radius:16px;padding:2rem 2.25rem;margin:2.5rem 0}
+    .key-terms-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem}
+    .key-terms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:.9rem}
+    .term-item{padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.07)}
+    .term-name{font-size:.88rem;font-weight:700;color:#d4b84a;margin-bottom:.25rem}
+    .term-def{font-size:.92rem;color:rgba(255,255,255,.92);line-height:1.52}
+
+    /* WHY IT MATTERS — benefit list */
+    .benefit-list{list-style:none;margin:1.25rem 0;display:flex;flex-direction:column;gap:.85rem}
+    .benefit-list li{display:flex;align-items:flex-start;gap:.9rem;padding:1rem 1.25rem;background:#fff;border-radius:12px;border-left:4px solid var(--practical);box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    .benefit-list li.hero{border-left-color:#b89040;background:linear-gradient(135deg,#fff,#fff8ea)}
+    .benefit-num{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:700;color:var(--practical);flex-shrink:0;line-height:1;margin-top:.05rem;opacity:.45}
+    .benefit-list li.hero .benefit-num{color:#b89040;opacity:.65}
+    .benefit-content{flex:1}
+    .benefit-title{font-weight:700;color:var(--navy);font-size:.97rem;margin-bottom:.2rem}
+    .benefit-desc{font-size:.9rem;color:#3a3a3a;line-height:1.58;font-weight:400}
+
+    /* DOCTOR CALLOUTS */
+    .doctor-callout{background:#fff;border:1px solid rgba(27,42,74,.1);border-radius:14px;padding:1.3rem 1.5rem;margin:1rem 0;display:flex;gap:1rem;align-items:flex-start}
+    .doctor-icon{font-size:1.4rem;flex-shrink:0;margin-top:.1rem}
+    .doctor-callout-text{flex:1}
+    .doctor-callout-title{font-weight:700;color:var(--navy);font-size:.93rem;margin-bottom:.3rem}
+    .doctor-callout-body{font-size:.9rem;color:#3a3a3a;line-height:1.62;font-weight:400}
+
+    /* CAUTION BOX */
+    .caution{background:#fef5f3;border:1px solid #e89080;border-radius:14px;padding:1.3rem 1.5rem;margin:1.25rem 0}
+    .caution-title{font-family:'Fraunces',serif;font-size:1.02rem;font-weight:700;color:#9a3a2a;margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+    .caution-list{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+    .caution-list li{font-size:.9rem;color:#4a2520;line-height:1.55;padding-left:1.3rem;position:relative;font-weight:400}
+    .caution-list li::before{content:'⚠';position:absolute;left:0;top:0;color:#c8423a;font-size:.95rem}
+
+    /* RESEARCH CARDS */
+    .research-grid{display:flex;flex-direction:column;gap:1.5rem;margin:1.5rem 0}
+    .research-card{background:var(--navy);border-radius:16px;overflow:hidden}
+    .rc-header{padding:1.1rem 1.5rem .9rem;border-bottom:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+    .rc-trial-name{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;color:#fff}
+    .rc-journal{font-size:.75rem;color:rgba(255,255,255,.75);margin-top:.15rem}
+    .rc-type-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:100px;font-size:.67rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.82);padding:.2rem .65rem;white-space:nowrap;flex-shrink:0}
+    .rc-body{padding:1.25rem 1.5rem;display:flex;gap:1.5rem;align-items:flex-start}
+    .rc-stat{flex-shrink:0;text-align:center;background:rgba(255,255,255,.06);border-radius:12px;padding:1rem 1.25rem;min-width:170px;max-width:220px}
+    .rc-stat-num{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;line-height:1.05}
+    .rc-stat-label{font-size:1rem;color:#fff;font-weight:700;margin-top:.5rem;line-height:1.4}
+    .rc-detail{flex:1}
+    .rc-detail p{font-size:.9rem;color:rgba(255,255,255,.90);line-height:1.64;margin-bottom:.65rem;font-weight:400}
+    .rc-detail p:last-child{margin-bottom:0}
+    .rc-detail strong{color:#fff;font-weight:600}
+
+    /* CONCLUSION BOX */
+    .conclusion-box{background:var(--navy);border-radius:16px;padding:2rem 2.25rem;margin:1.5rem 0}
+    .conclusion-box p{color:rgba(255,255,255,.92);font-size:1rem;line-height:1.78;margin-bottom:1rem;font-weight:400}
+    .conclusion-box p:last-child{margin-bottom:0;font-style:italic;color:rgba(255,255,255,.96)}
+    .conclusion-box strong{color:#fff;font-weight:700}
+
+    /* DISCLAIMER */
+    .disclaimer{background:#fffbec;border:1px solid #e8c84a;border-radius:12px;padding:1rem 1.25rem;margin:1.5rem 0;font-size:.85rem;color:#5c4800;line-height:1.58}
+
+    /* REFERENCES */
+    .references-section{margin-top:3rem;padding-top:2rem;border-top:2px solid rgba(27,42,74,.1)}
+    .references-title{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:1.25rem}
+    .ref-block{margin-bottom:1.25rem;padding:1rem 1.25rem;background:#fff;border-radius:10px;border-left:3px solid var(--practical)}
+    .ref-num{font-size:.72rem;font-weight:700;color:var(--practical);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
+    .ref-full{font-size:.88rem;color:var(--text);line-height:1.58;margin-bottom:.5rem}
+    .ref-links{display:flex;flex-wrap:wrap;gap:.5rem}
+    .ref-pill{display:inline-block;cursor:pointer;background:var(--navy);color:#fff;text-decoration:none;font-size:.72rem;font-weight:600;padding:.28rem .75rem;border-radius:100px;transition:background .15s}
+    .ref-pill:hover{background:var(--practical);color:#fff}
+
+    /* FOOTER */
+    .site-footer{background:var(--navy);color:rgba(255,255,255,.7);text-align:center;padding:2rem;font-size:.8rem}
+    .site-footer a{color:rgba(255,255,255,.85);text-decoration:none}
+
+    @media(max-width:640px){
+      .hero{padding:2.5rem 1.25rem 2rem}
+      .article-body{padding:0 1.25rem 3rem}
+      .rc-body{flex-direction:column}
+      .key-terms-grid{grid-template-columns:1fr}
+      .types-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a class="nav-logo" href="index.html">
+    <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
+      <path d="M11 2C8 2 5.5 4 4 6.5 2.5 9 2.5 12 4 14.5c1 1.8 2.8 3 5 3.4V4.5" stroke="#E8634A" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M11 2C14 2 16.5 4 18 6.5 19.5 9 19.5 12 18 14.5c-1 1.8-2.8 3-5 3.4V4.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <div class="logo-text">helf<span class="logo-dot">.</span>school</div>
+      <div class="logo-tag">Health Education</div>
+    </div>
+  </a>
+  <a class="nav-back" href="helf-school-conditions.html">← All conditions</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">›</span>
+      <a href="helf-school-conditions.html">Conditions</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Exercise</span>
+    </div>
+    <div class="series-pill">📋 Practical Health Series · Article 10</div>
+    <h1>Exercise</h1>
+    <p class="hero-subtitle">The most well-evidenced way to add years to your life — and to live them better. What the research actually shows, in plain English.</p>
+    <div class="hero-meta">
+      <span class="meta-item">📖 10 min read</span>
+      <span class="meta-item">👨‍⚕️ Dr Paul · Retired NHS GP</span>
+      <span class="meta-item">📅 April 2026</span>
+      <span class="meta-item">🔬 Evidence-based</span>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE BODY -->
+<div class="article-body">
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer" style="margin-top:1.75rem">
+    <strong>Health education — not medical advice.</strong> This article is for general information. If you have medical conditions, have been unwell, or are significantly unfit, speak to your GP before starting a new exercise programme.
+  </div>
+
+  <!-- NHS HEALTHY CHOICES QUIZ -->
+  <a class="nhs-quiz" href="https://www.nhs.uk/better-health/healthy-choices-quiz/" target="_blank" rel="noopener">
+    <div class="nhs-quiz-icon">🧭</div>
+    <div class="nhs-quiz-content">
+      <div class="nhs-quiz-label">Free NHS Tool · 5 minutes</div>
+      <div class="nhs-quiz-title">Take the NHS Healthy Choices Quiz</div>
+      <div class="nhs-quiz-body">A quick lifestyle check from NHS Better Health covering movement, eating, alcohol, smoking, mental health and sleep. Gives you a score out of 10 and signposts free NHS apps and resources — a practical starting point before you read on.</div>
+    </div>
+    <div class="nhs-quiz-arrow">→</div>
+  </a>
+
+  <!-- SECTION 1 -->
+  <div class="article-section" id="what-is-it">
+    <div class="section-label">Section 1</div>
+    <h2 class="section-title">What counts as exercise?</h2>
+
+    <p>Exercise is not the same as physical activity — and it is genuinely important to separate them, because people often dismiss their own movement as "not really exercise". <strong>Physical activity</strong> is anything that gets your muscles working and uses energy: walking to the shops, cleaning the house, playing with grandchildren, digging the garden, taking the stairs. <strong>Exercise</strong> is a subset of physical activity — planned, structured, repetitive movement specifically aimed at improving or maintaining fitness: a gym session, a run, a swim, a cycling club.</p>
+
+    <div class="both-valuable">
+      <div class="bv-icon">✨</div>
+      <div class="bv-content">
+        <div class="bv-title">Both are valuable — and both count</div>
+        <div class="bv-body">This is one of the most important messages in exercise science. For nearly every health outcome that has been studied — cardiovascular disease, diabetes, depression, dementia, lifespan — what matters is <strong>the total amount of movement across the day and week</strong>, not whether it was called "exercise" or happened in a gym. A 45-minute walk around the park, an afternoon spent gardening, walking up the stairs instead of taking the lift, pushing a pram around — all of it counts. <em>Structured exercise is excellent. Everyday activity is excellent too.</em> The people who benefit most are those who find ways to do both.</div>
+      </div>
+    </div>
+
+    <p>Within that bigger picture, there are four broad <em>types</em> of exercise, and each serves a different biological purpose. A balanced approach includes some of all four:</p>
+
+    <div class="types-grid">
+
+      <div class="type-card aero">
+        <div class="type-icon">🏃</div>
+        <div class="type-label">Type 1 — Aerobic</div>
+        <div class="type-name">Cardiovascular exercise</div>
+        <div class="type-desc">Anything that raises your heart rate for a sustained period. The best-evidenced type for heart disease prevention, mental health, and longevity.</div>
+        <div class="type-examples"><strong>Examples:</strong> Brisk walking · swimming · cycling · running · dancing · gardening at pace</div>
+      </div>
+
+      <div class="type-card strg">
+        <div class="type-icon">💪</div>
+        <div class="type-label">Type 2 — Strength</div>
+        <div class="type-name">Muscle-strengthening</div>
+        <div class="type-desc">Working your muscles against resistance. Preserves muscle mass (which declines from around age 30), protects bones, and <em>independently</em> reduces risk of many chronic diseases.</div>
+        <div class="type-examples"><strong>Examples:</strong> Bodyweight exercises (squats, press-ups) · resistance bands · weights · heavy gardening · carrying shopping</div>
+      </div>
+
+      <div class="type-card flex">
+        <div class="type-icon">🧘</div>
+        <div class="type-label">Type 3 — Flexibility</div>
+        <div class="type-name">Stretching &amp; mobility</div>
+        <div class="type-desc">Keeping joints moving through their full range. Supports everyday function — reaching, bending, turning — and reduces stiffness, particularly as we age.</div>
+        <div class="type-examples"><strong>Examples:</strong> Yoga · Pilates · tai chi · stretching routines · mobility work</div>
+      </div>
+
+      <div class="type-card bal">
+        <div class="type-icon">⚖️</div>
+        <div class="type-label">Type 4 — Balance</div>
+        <div class="type-name">Stability &amp; fall prevention</div>
+        <div class="type-desc">Often overlooked, but critical from midlife onwards. Falls are the leading cause of injury in older adults — and balance training genuinely reduces that risk.</div>
+        <div class="type-examples"><strong>Examples:</strong> Tai chi · yoga · single-leg exercises · dance · specific fall-prevention programmes</div>
+      </div>
+
+    </div>
+
+    <div class="guidelines">
+      <div class="gl-title">🇬🇧 UK Chief Medical Officers' Physical Activity Guidelines (2019)</div>
+      <div class="gl-rows">
+        <div class="gl-row">
+          <div class="gl-icon">❤️</div>
+          <div class="gl-content">
+            <div class="gl-heading">Aerobic — at least one of these per week</div>
+            <div class="gl-body"><strong>150 minutes of moderate-intensity activity</strong> (e.g. brisk walking — around 30 minutes, 5 days a week), <strong>OR 75 minutes of vigorous-intensity activity</strong> (e.g. running, cycling hard, swimming fast), <strong>OR an equivalent mix</strong> of the two.</div>
+          </div>
+        </div>
+        <div class="gl-row">
+          <div class="gl-icon">💪</div>
+          <div class="gl-content">
+            <div class="gl-heading">Strength — 2+ days a week</div>
+            <div class="gl-body">Activities working all the major muscle groups — legs, hips, back, core, chest, shoulders, and arms. This is a <strong>genuine requirement</strong>, not an add-on, and is often under-done.</div>
+          </div>
+        </div>
+        <div class="gl-row">
+          <div class="gl-icon">🪑</div>
+          <div class="gl-content">
+            <div class="gl-heading">Reduce prolonged sitting</div>
+            <div class="gl-body">Break up long periods of being sedentary (sitting or lying still during waking hours, excluding sleeping). Extended sitting independently raises risk, even in people who otherwise meet the activity targets.</div>
+          </div>
+        </div>
+        <div class="gl-row">
+          <div class="gl-icon">⚖️</div>
+          <div class="gl-content">
+            <div class="gl-heading">Older adults — add balance work</div>
+            <div class="gl-body">For adults aged 65 and over, <strong>2 days a week</strong> of activity that improves balance and coordination is specifically recommended — to maintain function and reduce falls.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p>What does <em>moderate</em> actually feel like? The simplest guide is the <strong>talk test</strong> — it works better than trying to count a heart rate:</p>
+
+    <div class="talk-test">
+      <div class="talk-icon">🗣️</div>
+      <div class="talk-content">
+        <div class="talk-title">The talk test — how to tell intensity</div>
+        <div class="talk-body"><strong>Moderate intensity:</strong> you can talk, but not sing. You are slightly warm and breathing harder than usual. A brisk walk is a good anchor. <strong>Vigorous intensity:</strong> you cannot say more than a few words without pausing for breath. You are breathing hard and probably sweating. <strong>Light intensity:</strong> you can sing — useful movement, but not what the guidelines are measuring.</div>
+      </div>
+    </div>
+
+    <p>One more principle worth knowing upfront: <strong>something is always better than nothing</strong>. The single biggest health dividend comes not from hitting the full guidelines, but from moving from <em>no activity</em> to <em>any activity</em>. The first 15 minutes a day of movement delivers a disproportionately large amount of the benefit — as you'll see in the research section.</p>
+
+  </div>
+
+  <!-- KEY TERMS -->
+  <div class="key-terms-box">
+    <div class="key-terms-title">📖 Key Terms</div>
+    <div class="key-terms-grid">
+      <div class="term-item">
+        <div class="term-name">Aerobic exercise</div>
+        <div class="term-def">Activity that raises the heart rate for a sustained period and uses oxygen for energy — walking, running, swimming, cycling.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Cardiac rehabilitation</div>
+        <div class="term-def">Supervised programme of exercise and education offered on the NHS after a heart attack, bypass surgery, or similar cardiac event.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">MET (metabolic equivalent)</div>
+        <div class="term-def">A unit used in research to express the energy cost of activity. 1 MET is at-rest energy use; brisk walking is around 3–4 METs; running is 8+ METs.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Moderate-intensity</div>
+        <div class="term-def">Activity where you can still talk but not sing. Raises heart rate and breathing noticeably but not to the point of gasping.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">MVPA</div>
+        <div class="term-def">Moderate-to-Vigorous Physical Activity — the combined total used in most population health research.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Resistance training</div>
+        <div class="term-def">Any form of strength work using a load — body weight, bands, dumbbells, machines — to challenge the muscles.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Sarcopenia</div>
+        <div class="term-def">Age-related loss of muscle mass and strength (from the Greek for "poverty of flesh"). Begins quietly from around age 30 and accelerates from the 50s onwards.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Sedentary behaviour</div>
+        <div class="term-def">Sitting or lying still during waking hours, using very little energy — distinct from "inactive". Extended sitting raises risk even in people who exercise regularly.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Talk test</div>
+        <div class="term-def">A simple way to gauge intensity: if you can talk but not sing, you're at moderate intensity; if you can only manage a few words, you're at vigorous intensity.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Vigorous-intensity</div>
+        <div class="term-def">Activity where you cannot say more than a few words without pausing for breath. Examples: running, fast cycling, sport, swimming laps.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">VO₂ max</div>
+        <div class="term-def">The maximum amount of oxygen your body can use during intense exercise. A powerful predictor of cardiovascular fitness and longevity — improvable at any age.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="article-section" id="why-it-matters">
+    <div class="section-label">Section 2</div>
+    <h2 class="section-title">Why does it matter?</h2>
+
+    <p>Of all the lifestyle factors studied in medicine, physical activity has one of the broadest and most consistent evidence bases — and its effect on <em>lifespan itself</em> is often more dramatic than people realise. Six areas stand out most clearly:</p>
+
+    <ul class="benefit-list">
+      <li class="hero">
+        <div class="benefit-num">1</div>
+        <div class="benefit-content">
+          <div class="benefit-title">Lifespan — years of life gained</div>
+          <div class="benefit-desc">This is the headline effect, and it is striking. Large prospective studies — the kind that follow hundreds of thousands of people over many years — consistently show that regular physical activity adds <strong>2 to 4.5 years of life expectancy</strong>. Even 15 minutes of moderate activity a day, less than half the recommended amount, is associated with around <strong>3 additional years</strong> of life compared to being inactive. Crucially, the biggest individual dividend comes from moving off the sofa — going from nothing to something — not from hitting the full target.</div>
+        </div>
+      </li>
+      <li>
+        <div class="benefit-num">2</div>
+        <div class="benefit-content">
+          <div class="benefit-title">Cardiovascular disease and stroke</div>
+          <div class="benefit-desc">The single best-evidenced area. Regular aerobic activity lowers blood pressure, improves cholesterol profiles, reduces resting heart rate, and improves endothelial function (the health of the lining of blood vessels). Meta-analyses consistently show around a <strong>20–30% reduction in cardiovascular events (heart attacks, strokes, and cardiovascular deaths)</strong> in people who meet the guidelines compared to those who do not.</div>
+        </div>
+      </li>
+      <li>
+        <div class="benefit-num">3</div>
+        <div class="benefit-content">
+          <div class="benefit-title">Type 2 diabetes and metabolic health</div>
+          <div class="benefit-desc">Exercise improves insulin sensitivity (the body's ability to respond to the hormone that controls blood sugar) — and does so within days of starting, not weeks. Regular activity reduces the risk of developing type 2 diabetes by roughly 30–40%, and is part of standard first-line management for those already diagnosed.</div>
+        </div>
+      </li>
+      <li>
+        <div class="benefit-num">4</div>
+        <div class="benefit-content">
+          <div class="benefit-title">Mental health — depression and anxiety</div>
+          <div class="benefit-desc">The evidence for exercise as a mood intervention is now strong. A large 2022 meta-analysis in JAMA Psychiatry found a curvilinear (curve-shaped) relationship with depression risk — the biggest benefit coming from relatively small doses of activity. <strong>Half the recommended amount still produced a substantial effect</strong>, suggesting that almost any movement is protective for mental health.</div>
+        </div>
+      </li>
+      <li>
+        <div class="benefit-num">5</div>
+        <div class="benefit-content">
+          <div class="benefit-title">Brain health and dementia</div>
+          <div class="benefit-desc">Physical activity is one of the few modifiable risk factors for cognitive decline with good evidence behind it. It improves cerebral blood flow, supports growth of new brain cells in the hippocampus (the brain's main memory centre), and reduces vascular dementia risk through its cardiovascular benefits. The 2020 Lancet Commission on dementia prevention includes physical inactivity as one of 12 modifiable risk factors. ⚑</div>
+        </div>
+      </li>
+      <li>
+        <div class="benefit-num">6</div>
+        <div class="benefit-content">
+          <div class="benefit-title">Bones, muscle, and falls</div>
+          <div class="benefit-desc">This is where strength and balance training earn their place alongside aerobic work. From around age 30, we start losing muscle mass — around 3–8% per decade, accelerating from the 50s. Strength training slows or reverses that loss, preserves bone density, and — combined with balance work — meaningfully reduces falls in older adults. Muscle-strengthening activity has <em>independent</em> effects on mortality: 30–60 minutes a week is associated with around 10–20% lower risk of dying.</div>
+        </div>
+      </li>
+    </ul>
+
+    <p>What makes exercise remarkable is the <strong>breadth</strong> of its effect. Most medical interventions target a single system. Exercise works on cardiovascular, metabolic, musculoskeletal, immune, cognitive, and mental health systems <em>simultaneously</em> — and most of the benefit appears with quite modest amounts. It is, as one prominent cardiologist has put it, "the closest thing we have to a wonder drug".</p>
+
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="article-section" id="doctor-advice">
+    <div class="section-label">Section 3</div>
+    <h2 class="section-title">What your doctor might do</h2>
+
+    <p>Exercise rarely gets the time it deserves in a standard 10-minute GP appointment, but it is increasingly built into NHS pathways for chronic disease and cardiovascular risk. Here is what you might encounter in practice.</p>
+
+    <div class="doctor-callout">
+      <div class="doctor-icon">❤️</div>
+      <div class="doctor-callout-text">
+        <div class="doctor-callout-title">Cardiovascular risk consultations</div>
+        <div class="doctor-callout-body">If you have raised blood pressure, raised cholesterol, or an elevated <strong>QRISK score</strong> (the UK tool used to estimate 10-year cardiovascular risk), your GP or practice nurse will usually include activity advice alongside any medication. Evidence-based targets — 150 minutes of moderate activity a week, plus strength training — sit at the heart of this conversation.</div>
+      </div>
+    </div>
+
+    <div class="doctor-callout">
+      <div class="doctor-icon">🏥</div>
+      <div class="doctor-callout-text">
+        <div class="doctor-callout-title">Cardiac rehabilitation</div>
+        <div class="doctor-callout-body"><strong>Cardiac rehab</strong> is an NHS programme offered after a heart attack, bypass surgery, stent placement, or other significant cardiac event. It typically combines supervised exercise, education, psychological support, and dietary guidance. Participation is consistently associated with lower rates of re-hospitalisation and better long-term outcomes — yet uptake in the UK remains below what the evidence would support.</div>
+      </div>
+    </div>
+
+    <div class="doctor-callout">
+      <div class="doctor-icon">📋</div>
+      <div class="doctor-callout-text">
+        <div class="doctor-callout-title">NHS Exercise Referral schemes</div>
+        <div class="doctor-callout-body">Many areas of the UK offer <strong>Exercise Referral schemes</strong> — typically <strong>12 weeks</strong> of subsidised or free access to a local leisure centre, with an appointed instructor, for people with specific health conditions (cardiovascular risk, raised blood pressure, diabetes, obesity, mental health, musculoskeletal problems, and others). Schemes go by various local names — "Exercise on Referral", "GP Referral", "Physical Activity Referral", or bespoke local brands — and eligibility, cost, and availability vary by area (they are commissioned locally by Integrated Care Boards — the NHS bodies that plan and fund health services for a region). Ask your GP, practice nurse, or local council whether one runs where you live.</div>
+      </div>
+    </div>
+
+    <div class="doctor-callout">
+      <div class="doctor-icon">🦴</div>
+      <div class="doctor-callout-text">
+        <div class="doctor-callout-title">Physiotherapy and musculoskeletal services</div>
+        <div class="doctor-callout-body">For persistent pain, reduced function, post-injury recovery, or osteoporosis, <strong>NHS physiotherapy</strong> — now often accessible via self-referral in many CCGs — is typically the right entry point. A good physiotherapist will not just treat the injured part but build a graded return to activity around it.</div>
+      </div>
+    </div>
+
+    <div class="doctor-callout">
+      <div class="doctor-icon">💊</div>
+      <div class="doctor-callout-text">
+        <div class="doctor-callout-title">The "pill versus exercise" conversation</div>
+        <div class="doctor-callout-body">In many cardiovascular risk scenarios, exercise and medication are not alternatives — they work through different mechanisms and their effects add together. A statin (e.g. atorvastatin / Lipitor) lowers cholesterol; exercise lowers cholesterol, blood pressure, inflammation, and improves glucose control. <strong>Neither replaces the other.</strong> If you have been prescribed medication for cardiovascular risk, exercise makes it work better, not less necessary.</div>
+      </div>
+    </div>
+
+    <div class="caution">
+      <div class="caution-title">⚠️ When to check with your doctor before starting (or stepping up) exercise</div>
+      <ul class="caution-list">
+        <li>Recent heart attack, stent, bypass surgery, or new chest pain — wait for cardiac rehab guidance</li>
+        <li>Unstable angina (chest pain at rest or with minimal exertion) — needs assessment first</li>
+        <li>Uncontrolled high blood pressure or an undiagnosed rapid or irregular heartbeat</li>
+        <li>Severe osteoporosis with previous fragility fractures — high-impact activity may need modifying</li>
+        <li>Acute joint flares (inflammatory arthritis, recent surgery) — needs physio input</li>
+        <li>Significant breathlessness on mild exertion that has not been investigated</li>
+        <li>Pregnancy — most activity is safe and recommended, but follow current NHS guidance and discuss if you were inactive before pregnancy</li>
+      </ul>
+    </div>
+
+    <p>One important framing: if you are sedentary and out of practice, the right starting point is <strong>not</strong> a gym membership or a running plan — it is usually just <em>walking</em>. A daily walk, built gradually, accrues the largest share of the health benefit for the lowest risk of injury and the highest chance of actually sticking with it. You can add intensity, strength work, and variety once the habit is in place.</p>
+
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="article-section" id="research">
+    <div class="section-label">Section 4</div>
+    <h2 class="section-title">What the research shows</h2>
+
+    <p>Exercise has been studied in more people, for longer, than almost any other health intervention. Six pieces of evidence anchor what we know — covering lifespan, dose-response, strength training, depression, and daily steps. The last of these, on steps, starts with a short historical note before the evidence — because the famous "10,000 steps a day" target has a surprising origin that is worth knowing about.</p>
+
+    <div class="research-grid">
+
+      <!-- WEN 2011 -->
+      <div class="research-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-trial-name">Wen et al. — 15 minutes a day, three years of life</div>
+            <div class="rc-journal">Wen CP, Wai JPM, Tsai MK, et al. · The Lancet · 2011</div>
+          </div>
+          <div class="rc-type-pill">Prospective Cohort</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-stat">
+            <div class="rc-stat-num" style="color:#7ecc99">+3 years</div>
+            <div class="rc-stat-label">life expectancy<br><span style="font-size:.82rem;font-weight:400;color:rgba(255,255,255,.85)">from 15 min/day of moderate activity</span></div>
+          </div>
+          <div class="rc-detail">
+            <p><strong>Who was studied:</strong> Over 416,000 adults in Taiwan, followed for an average of 8 years. Participants reported their weekly activity at health screening and were tracked for mortality.</p>
+            <p><strong>Key finding:</strong> Compared to people who were inactive, those doing just <strong>92 minutes of moderate activity a week</strong> (around 15 minutes a day) had a <strong>14% lower all-cause mortality</strong> and lived, on average, <strong>3 years longer</strong>. Every additional 15 minutes a day of activity beyond that further reduced mortality by 4%.</p>
+            <p><strong>Why it matters:</strong> The first large study to quantify the mortality benefit of activity <em>below</em> the conventional 150-minutes-a-week guideline. The message: the biggest dividend comes from getting off the sofa, not from hitting the full target.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOORE 2012 -->
+      <div class="research-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-trial-name">Moore et al. — years of life gained by dose</div>
+            <div class="rc-journal">Moore SC, Patel AV, Matthews CE, et al. · PLOS Medicine · 2012</div>
+          </div>
+          <div class="rc-type-pill">Pooled Cohort Analysis</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-stat">
+            <div class="rc-stat-num" style="color:#7ecc99">+1.8 to +4.5y</div>
+            <div class="rc-stat-label">life expectancy gained<br><span style="font-size:.82rem;font-weight:400;color:rgba(255,255,255,.85)">from low to highest activity levels</span></div>
+          </div>
+          <div class="rc-detail">
+            <p><strong>Who was studied:</strong> A pooled analysis of six large prospective cohort studies led by the US National Cancer Institute — more than 650,000 adults aged 40 and above, followed for a median of 10 years.</p>
+            <p><strong>Key finding:</strong> A clear dose-response relationship. <strong>Half the recommended activity</strong> (about 75 min of brisk walking a week) was associated with <strong>+1.8 years</strong> of life. Hitting the guideline added <strong>3.4 years</strong>. At the highest level (450+ min/week) the gain reached <strong>+4.5 years</strong>. These benefits held across normal-weight, overweight, and obese groups.</p>
+            <p><strong>Why it matters:</strong> The clearest quantification in the literature of the <em>years-of-life-gained</em> translation of physical activity. Benefit was present at every level studied.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- AREM 2015 -->
+      <div class="research-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-trial-name">Arem et al. — dose-response plateau</div>
+            <div class="rc-journal">Arem H, Moore SC, Patel A, et al. · JAMA Internal Medicine · 2015</div>
+          </div>
+          <div class="rc-type-pill">Pooled Cohort Analysis</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-stat">
+            <div class="rc-stat-num" style="color:#7ecc99">~20% ↓</div>
+            <div class="rc-stat-label">all-cause mortality<br><span style="font-size:.82rem;font-weight:400;color:rgba(255,255,255,.85)">at guideline activity · plateau at 3–5× · no harm at 10×</span></div>
+          </div>
+          <div class="rc-detail">
+            <p><strong>Who was studied:</strong> A pooled analysis of six US and Swedish prospective cohorts with a median follow-up of 14 years, examining how different amounts of leisure-time activity related to mortality.</p>
+            <p><strong>Key finding:</strong> Meeting the minimum recommended activity (7.5 MET-hours per week) was associated with about a <strong>20% reduction in mortality</strong>. Benefit continued to rise but <em>plateaued at 3–5 times the recommended minimum</em>. Critically, there was <strong>no excess mortality at 10 times the minimum</strong> — i.e. very high activity levels were not harmful.</p>
+            <p><strong>Why it matters:</strong> Quietly reassures high-volume exercisers and clarifies the practical truth — most of the mortality dividend is captured by reaching the guideline, with diminishing extra return for exceeding it. No evidence of a "too much" threshold in the observed range.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOMMA 2022 -->
+      <div class="research-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-trial-name">Momma et al. — strength training &amp; mortality</div>
+            <div class="rc-journal">Momma H, Kawakami R, Honda T, Sawada SS. · British Journal of Sports Medicine · 2022</div>
+          </div>
+          <div class="rc-type-pill">Meta-Analysis · 16 cohorts</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-stat">
+            <div class="rc-stat-num" style="color:#e8c060">10–20% ↓</div>
+            <div class="rc-stat-label">mortality &amp; major disease<br><span style="font-size:.82rem;font-weight:400;color:rgba(255,255,255,.85)">from 30–60 min/week of strength work</span></div>
+          </div>
+          <div class="rc-detail">
+            <p><strong>What was studied:</strong> A systematic review and meta-analysis of 16 prospective cohort studies quantifying the association between muscle-strengthening activity and all-cause mortality, cardiovascular disease, total cancer, and diabetes — independently of any aerobic activity.</p>
+            <p><strong>Key finding:</strong> <strong>Just 30–60 minutes of strength training per week</strong> was associated with a 10–20% lower risk of all-cause mortality, cardiovascular disease, total cancer, and diabetes. The benefit followed a J-shaped curve, with no further advantage from doing <em>more</em> than about an hour a week.</p>
+            <p><strong>Why it matters:</strong> Strength training has historically been framed as "for the musculoskeletal system". This study is among the clearest evidence that strength work has <em>independent</em> effects on mortality and major disease risk — a reason to treat it as a genuine requirement, not an optional extra.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PEARCE 2022 -->
+      <div class="research-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-trial-name">Pearce et al. — exercise and depression risk</div>
+            <div class="rc-journal">Pearce M, Garcia L, Abbas A, et al. · JAMA Psychiatry · 2022</div>
+          </div>
+          <div class="rc-type-pill">Meta-Analysis · 15 studies</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-stat">
+            <div class="rc-stat-num" style="color:#7ecc99">–18% / –25%</div>
+            <div class="rc-stat-label">lower depression risk<br><span style="font-size:.82rem;font-weight:400;color:rgba(255,255,255,.85)">half · full recommended activity</span></div>
+          </div>
+          <div class="rc-detail">
+            <p><strong>What was studied:</strong> A systematic review and dose-response meta-analysis of 15 prospective studies — over 2 million person-years of follow-up — examining how physical activity relates to risk of developing depression.</p>
+            <p><strong>Key finding:</strong> A <strong>curve-shaped (curvilinear) relationship</strong>, with the biggest reduction in depression risk at the lowest levels of activity. Adults doing <strong>half the recommended amount</strong> (about 75 minutes of brisk walking a week) already had an <strong>18% lower risk</strong> of depression than those doing nothing. At the <strong>full recommended amount</strong> the reduction was <strong>25%</strong>, with diminishing extra benefit beyond that.</p>
+            <p><strong>Why it matters:</strong> Mirrors the pattern seen with mortality — the biggest mental health dividend from activity comes not from doing a lot, but from doing <em>any</em>. A powerful message for those who feel overwhelmed by the standard guidelines.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- DING 2025 -->
+      <div class="steps-story">
+        <div class="ss-label">📜 Where did "10,000 steps a day" come from?</div>
+        <div class="ss-title">A 1960s pedometer marketing campaign — not a clinical study</div>
+        <div class="ss-body">The "10,000 steps a day" target has <strong>no original medical evidence behind it at all</strong>. In 1965, shortly after the Tokyo Olympics, a Japanese company — Yamasa Tokei Keiki — launched the world's first consumer pedometer called the <em>Manpo-kei</em> <span class="ss-kanji">万歩計</span> — which translates directly as "10,000 steps meter". The number was chosen partly because the Japanese character for 10,000 <span class="ss-kanji">万</span> resembles a person walking, and partly because it made for a catchy, round, memorable marketing slogan.</div>
+        <div class="ss-body">The figure stuck. It filtered into fitness trackers, smartwatches, and public health messaging — and by the 2000s had become the default daily target worldwide, cited as if it were settled science. It was not. <strong>It was a marketing device.</strong> Only recently has the research caught up — and the real picture turns out to be more encouraging than the 10,000-step target ever suggested.</div>
+      </div>
+
+      <div class="research-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-trial-name">Ding et al. — daily steps &amp; health outcomes</div>
+            <div class="rc-journal">Ding D, Nguyen B, Nau T, et al. · The Lancet Public Health · 2025</div>
+          </div>
+          <div class="rc-type-pill">Meta-Analysis · 57 studies</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-stat">
+            <div class="rc-stat-num" style="color:#7ecc99">~7,000</div>
+            <div class="rc-stat-label">steps/day<br><span style="font-size:.82rem;font-weight:400;color:rgba(255,255,255,.85)">where most health benefit is captured · 47% ↓ all-cause mortality vs 2,000/day</span></div>
+          </div>
+          <div class="rc-detail">
+            <p><strong>What was studied:</strong> The largest and most comprehensive review of daily steps to date — 57 studies from 35 cohorts across more than 10 countries, examining how step counts relate to all-cause mortality, cardiovascular disease, cancer, type 2 diabetes, dementia, depression, physical function, and falls. Led by Professor Melody Ding at the University of Sydney.</p>
+            <p><strong>Key finding:</strong> Compared with 2,000 steps a day, <strong>7,000 steps a day</strong> was associated with a <strong>47% lower risk of all-cause mortality</strong>, a 25% lower risk of cardiovascular disease, a 38% lower risk of dementia, a 22% lower risk of depressive symptoms, and a 28% lower risk of falls. For most outcomes the curve <em>plateaued</em> around 5,000–7,000 steps — meaning the jump from 7,000 to 10,000 made very little further difference.</p>
+            <p><strong>Why it matters:</strong> Replaces the old 10,000-step target with a realistic, evidence-based one. Critically, the benefit appears well <em>below</em> 7,000 too — going from 2,000 to 4,000 steps a day alone was associated with a <strong>36% lower mortality risk</strong>. The clearest message in the literature: <em>every thousand steps counts, and the biggest dividend is nearest the bottom of the curve</em>.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- PUTTING IT ALL TOGETHER -->
+  <div class="article-section" id="conclusion">
+    <h2 class="section-title">Putting it all together</h2>
+    <div class="conclusion-box">
+      <p>If we could put the benefits of regular exercise into a single tablet, it would be the most widely prescribed medicine on earth. The evidence is now unambiguous: regular physical activity lowers cardiovascular risk, reduces diabetes and cancer risk, protects against dementia and depression, preserves muscle and bone, and <strong>adds years of healthy life</strong> — typically 2 to 4.5 of them, depending on the dose.</p>
+      <p>What makes the evidence genuinely encouraging is where the biggest dividend lies. It is <em>not</em> at the top of the curve. It is in the move from doing <strong>nothing</strong> to doing <strong>something</strong>. Fifteen minutes a day of brisk walking adds roughly three years of life. Half the recommended amount still meaningfully reduces depression and cardiovascular risk. Strength training — just half an hour to an hour a week — independently lowers mortality. None of this requires a gym, a plan, or a transformation. It requires a starting point.</p>
+      <p>The practical takeaway is straightforward. Walk more. Sit less. Add two sessions of strength work a week — even bodyweight exercises at home will do. Build in some balance and mobility as you get older. And remember — the most useful exercise programme in the world is <strong>the one you will actually keep doing</strong>. <strong>Begin where you are. A few minutes of movement today is worth more than a perfect plan you never start.</strong></p>
+    </div>
+  </div>
+
+  <!-- REFERENCES -->
+  <div class="references-section">
+    <h3 class="references-title">References</h3>
+
+    <div class="ref-block">
+      <div class="ref-num">1 — UK Physical Activity Guidelines</div>
+      <div class="ref-full">UK Chief Medical Officers. Physical Activity Guidelines: UK Chief Medical Officers' Report. Department of Health and Social Care; published 7 September 2019.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.gov.uk/government/publications/physical-activity-guidelines-uk-chief-medical-officers-report" target="_blank" rel="noopener">GOV.UK · CMO Guidelines ✓</a>
+        <a class="ref-pill" href="https://www.nhs.uk/live-well/exercise/physical-activity-guidelines-for-adults-aged-19-to-64/" target="_blank" rel="noopener">NHS · Adults 19–64 ✓</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">2 — 15 min/day &amp; life expectancy</div>
+      <div class="ref-full">Wen CP, Wai JPM, Tsai MK, Yang YC, Cheng TYD, Lee M-C, Chan HT, Tsao CK, Tsai SP, Wu X. Minimum amount of physical activity for reduced mortality and extended life expectancy: a prospective cohort study. <em>The Lancet</em>. 2011;378(9798):1244–1253. DOI: 10.1016/S0140-6736(11)60749-6</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(11)60749-6/abstract" target="_blank" rel="noopener">Lancet Full Text ✓</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/21846575/" target="_blank" rel="noopener">PubMed ✓</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">3 — Years of life gained</div>
+      <div class="ref-full">Moore SC, Patel AV, Matthews CE, Berrington de Gonzalez A, Park Y, Katki HA, Linet MS, Weiderpass E, Visvanathan K, Helzlsouer KJ, Thun M, Gapstur SM, Hartge P, Lee I-M. Leisure time physical activity of moderate to vigorous intensity and mortality: a large pooled cohort analysis. <em>PLOS Medicine</em>. 2012;9(11):e1001335. DOI: 10.1371/journal.pmed.1001335</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1001335" target="_blank" rel="noopener">PLOS Medicine Full Text ✓</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/23139642/" target="_blank" rel="noopener">PubMed ✓</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">4 — Dose-response mortality</div>
+      <div class="ref-full">Arem H, Moore SC, Patel A, Hartge P, Berrington de Gonzalez A, Visvanathan K, Campbell PT, Freedman M, Weiderpass E, Adami HO, Linet MS, Lee I-M, Matthews CE. Leisure time physical activity and mortality: a detailed pooled analysis of the dose-response relationship. <em>JAMA Internal Medicine</em>. 2015;175(6):959–967. DOI: 10.1001/jamainternmed.2015.0533</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2212267" target="_blank" rel="noopener">JAMA Intern Med Full Text ✓</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/25844730/" target="_blank" rel="noopener">PubMed ✓</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">5 — Strength training &amp; mortality</div>
+      <div class="ref-full">Momma H, Kawakami R, Honda T, Sawada SS. Muscle-strengthening activities are associated with lower risk and mortality in major non-communicable diseases: a systematic review and meta-analysis of cohort studies. <em>British Journal of Sports Medicine</em>. 2022;56(13):755–763. DOI: 10.1136/bjsports-2021-105061</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://bjsm.bmj.com/content/56/13/755" target="_blank" rel="noopener">BJSM Full Text ✓</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/35228201/" target="_blank" rel="noopener">PubMed ✓</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">6 — Exercise &amp; depression risk</div>
+      <div class="ref-full">Pearce M, Garcia L, Abbas A, Strain T, Schuch FB, Golubic R, Kelly P, Khan S, Utukuri M, Laird Y, Mok A, Smith A, Tainio M, Brage S, Woodcock J. Association between physical activity and risk of depression: a systematic review and meta-analysis. <em>JAMA Psychiatry</em>. 2022;79(6):550–559. DOI: 10.1001/jamapsychiatry.2022.0609</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://jamanetwork.com/journals/jamapsychiatry/fullarticle/2790780" target="_blank" rel="noopener">JAMA Psychiatry Full Text ✓</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/35416941/" target="_blank" rel="noopener">PubMed ✓</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">7 — Daily steps &amp; health outcomes</div>
+      <div class="ref-full">Ding D, Nguyen B, Nau T, Luo M, Del Pozo Cruz B, Dempsey PC, Munn Z, Jefferis BJ, Sherrington C, Calleja EA, Chong KH, Davis R, Francois ME, Tiedemann A, Biddle SJH, Okely A, Bauman A, Ekelund U, Clare P, Owen K. Daily steps and health outcomes in adults: a systematic review and dose-response meta-analysis. <em>The Lancet Public Health</em>. 2025;10(8):e668–e681. DOI: 10.1016/S2468-2667(25)00164-1</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.thelancet.com/journals/lanpub/article/PIIS2468-2667(25)00164-1/fulltext" target="_blank" rel="noopener">Lancet Public Health Full Text ✓</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/40713949/" target="_blank" rel="noopener">PubMed ✓</a>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- /article-body -->
+
+<footer class="site-footer">
+  <p>helf.school · Practical Health Series · Article 10 · Exercise · exercise.html</p>
+  <p style="margin-top:.4rem">Health education for everyone — not medical advice. Always speak to your own doctor about your personal health.</p>
+  <p style="margin-top:.6rem"><a href="index.html">Home</a> · <a href="helf-school-conditions.html">All articles</a> · <a href="helf-school-membership.html">Membership</a></p>
+</footer>
+
+</body>
+</html>
