@@ -1,15 +1,38 @@
 # helf.school — Project Knowledge Document
-*Last updated: April 2026 — updated to include medical term lay-clarification standard, current article inventory, and three-file architecture*
+*Last updated: April 2026 — comprehensive reference for all Claude sessions*
 
 ---
 
-## 1. PROJECT OVERVIEW
+## 🚨 1. READ THIS FIRST — UPLOADED FILES ARE NOT CORRUPTED
 
-**Site:** helf.school  
-**GitHub:** pls4286/helfschool — live at pls4286.github.io/helfschool  
-**Upload method:** Drag-and-drop at github.com/pls4286/helfschool/upload/main  
-**Browser:** Microsoft Edge (incognito — extension conflict)  
-**Owner:** Dr Paul — retired NHS GP, over 20 years experience, ill-health retired end of 2019  
+**Claude must read this section at the start of every session before commenting on project file state.**
+
+### The false-alarm problem
+When files are uploaded to this Claude Project via drag-and-drop from Microsoft Edge, the upload mechanism captures the **Claude.ai loader HTML page** (the thing that renders the Claude interface in the browser) rather than the actual file content. These upload artefacts look like this:
+
+- **File size:** ~5140 bytes (script/teleprompter/screen) or ~6170 bytes (hypertension/IBS)
+- **Content starts with:** `<!doctype html><html data-build-id="..." data-git-hash="..." ... class="h-screen antialiased scroll-smooth">`
+- Contains references to `assets-proxy.anthropic.com` and `claude-ai/v2/assets/`
+
+### These files are NOT corrupted. The real files:
+- Live on GitHub at `github.com/pls4286/helfschool`
+- Are intact and live on the website at `pls4286.github.io/helfschool`
+- Can be viewed by clicking "Raw" on the GitHub file page
+
+### The rule — applies to every session
+> **NEVER raise a false alarm about "corrupted" project files based on byte size or visible loader HTML in the uploaded project context. The filename + the article inventory table in Section 6 below are the source of truth for what exists. If a real file inspection is needed, ask Paul to paste the content from GitHub Raw view.**
+
+This has caused a full false-alarm session already. It must not happen again. If Claude notices a file that looks like a loader artefact, it should ignore the visible content and refer to the filename and inventory below.
+
+---
+
+## 2. PROJECT OVERVIEW
+
+**Site:** helf.school
+**GitHub:** pls4286/helfschool — live at pls4286.github.io/helfschool
+**Upload method (to GitHub):** Drag-and-drop at github.com/pls4286/helfschool/upload/main
+**Browser:** Microsoft Edge (incognito — extension conflict)
+**Owner:** Dr Paul — retired NHS GP, over 20 years experience, ill-health retired end of 2019
 
 **Mission:** "To give every person access to clear, honest, evidence-based health education — helping them become a more informed, empowered participant in their own care."
 
@@ -19,7 +42,7 @@
 
 ---
 
-## 2. DR PAUL
+## 3. DR PAUL
 
 - Retired NHS GP, over 20 years experience
 - Tier One ill-health retired by Chief Medical Officer for NHS at end of 2019 (stress)
@@ -27,10 +50,11 @@
 - Core philosophy: good medicine begins with truly listening
 - Felt like "a square peg in a round hole" by 2018 as appointment times shortened
 - Presents on video as "Dr Paul" (surname not used publicly)
+- Communicates in UPPERCASE, prefers brief direct responses
 
 ---
 
-## 3. DESIGN SYSTEM
+## 4. DESIGN SYSTEM
 
 ### Colours
 | Token | Hex |
@@ -41,7 +65,7 @@
 | Sage | #7A9E87 |
 | Amber | #E8A84A |
 
-### Category Colours
+### Category colours
 | Series | Hex |
 |--------|-----|
 | Cardiovascular | #C8423A |
@@ -60,62 +84,74 @@ Open-book SVG with "HEALTH EDUCATION" tagline beneath helf.school wordmark.
 
 ---
 
-## 4. SITE ARCHITECTURE
+## 5. SITE ARCHITECTURE
 
 ### Public pages
 - `index.html` — homepage
 - `helf-school-conditions.html` — conditions library
 - `helf-school-membership.html` — membership pricing
 
-### Membership pricing (CONFIRMED — must reflect on all pages)
+### Membership pricing (LIVE — confirmed correct)
 | Tier | Price |
 |------|-------|
 | Explorer (free) | £0 |
 | Member | £6/month or £60/year |
 | Lifetime | £150 one-off |
 
-⚠️ `index.html` and membership page currently show INCORRECT prices (£7/£15). Must be updated.
+✅ Confirmed correct on index.html and membership page.
 
 ### Members-only content
 Full article library · Research analyses · Evidence ratings · Glossary · New content feed · Saved articles · Monthly Q&A
 
 ### Community forum (planned, not yet built)
-Categories: Living with AF · Medications & Treatments · Lifestyle & Prevention · Research Discussion · Mental Health & Heart · Introductions  
-Rules: Be kind · No medical advice · Refer to articles for info · Respect privacy · 999 for emergencies  
+Categories: Living with AF · Medications & Treatments · Lifestyle & Prevention · Research Discussion · Mental Health & Heart · Introductions
+Rules: Be kind · No medical advice · Refer to articles for info · Respect privacy · 999 for emergencies
 Free = read-only. Paid members = full access. Needs: thread creation, member profiles, moderation dashboard, crisis signposting, weekly digest.
 
 ---
 
-## 5. ARTICLE INVENTORY
+## 6. ARTICLE INVENTORY
 
-### Cardiovascular Series (Articles 01–07) — ALL COMPLETE
-| # | Title | Article HTML | Script | Visuals | Teleprompter |
-|---|-------|-------------|--------|---------|--------------|
-| 01 | Hypertension | hypertension.html | hypertension-script.html | hypertension-visuals.html | hypertension-teleprompter.html |
-| 02 | Cholesterol Explained | cholesterol.html | cholesterol-script.html | cholesterol-visuals.html | cholesterol-teleprompter.html |
-| 03 | How Doctors Estimate Heart Attack Risk | heart-attack-risk.html | heart-attack-risk-script.html | heart-attack-risk-visuals.html | heart-attack-risk-teleprompter.html |
-| 04 | Statins — Benefits & Risks | statins.html | statins-script.html | statins-visuals.html | statins-teleprompter.html |
-| 05 | How to Reduce Cardiovascular Risk with Lifestyle Changes | lifestyle-changes.html | lifestyle-script.html | lifestyle-visuals.html | lifestyle-teleprompter.html |
-| 06 | Salt and Blood Pressure | salt-blood-pressure.html | salt-script.html | salt-visuals.html | salt-teleprompter.html |
-| 07 | Do Supplements Lower Cholesterol? | supplements-cholesterol.html | supplements-script.html | supplements-visuals.html | supplements-teleprompter.html |
+### Cardiovascular Series (Articles 01–07) — ✅ ALL COMPLETE
+| # | Title | Article HTML | Visuals | Teleprompter |
+|---|-------|-------------|---------|--------------|
+| 01 | Hypertension | hypertension.html | hypertension-visuals.html | hypertension-teleprompter.html |
+| 02 | Cholesterol Explained | cholesterol.html | cholesterol-visuals.html | cholesterol-teleprompter.html |
+| 03 | How Doctors Estimate Heart Attack Risk | heart-attack-risk.html | heart-attack-risk-visuals.html | heart-attack-risk-teleprompter.html |
+| 04 | Statins — Benefits & Risks | statins.html | statins-visuals.html | statins-teleprompter.html |
+| 05 | How to Reduce Cardiovascular Risk with Lifestyle Changes | lifestyle-changes.html | lifestyle-visuals.html | lifestyle-teleprompter.html |
+| 06 | Salt and Blood Pressure | salt-blood-pressure.html | salt-visuals.html | salt-teleprompter.html |
+| 07 | Do Supplements Lower Cholesterol? | supplements-cholesterol.html | supplements-visuals.html | supplements-teleprompter.html |
 
-### Articles 08–12 — RESERVED (series TBC, not yet built)
+*Note: Old script files (e.g. hypertension-script.html) exist on GitHub for some articles but are superseded by the three-file standard. No new script files are created.*
 
-### Digestive Health Series (Articles 13–17+) — IN PROGRESS
+### Practical Health Series (Articles 08–12) — IN PROGRESS
+| # | Title | Article HTML | Visuals | Teleprompter |
+|---|-------|-------------|---------|--------------|
+| 08 | The Mediterranean Diet | mediterranean-diet.html ✅ | mediterranean-diet-visuals.html ✅ | mediterranean-diet-teleprompter.html ⚑ confirm |
+| 09 | Sleep | sleep.html ✅ | sleep-visuals.html ✅ | sleep-teleprompter.html ✅ |
+| 10 | Exercise | exercise.html ✅ | exercise-visuals.html ✅ | exercise-teleprompter.html ✅ |
+| 11 | Stress | not started | — | — |
+| 12 | Alcohol | not started | — | — |
+
+### Digestive Health Series (Articles 13–18) — ✅ ALL COMPLETE
 | # | Title | Article HTML | Visuals | Teleprompter | Screen files |
 |---|-------|-------------|---------|--------------|--------------|
 | 13 | Acid Reflux | acid-reflux.html | acid-reflux-visuals.html | acid-reflux-teleprompter.html | ar-sphincter-screen.html, ar-barretts-screen.html |
 | 14 | Bloating | bloating.html | bloating-visuals.html | bloating-teleprompter.html | bloating-gut-screen.html, bloating-fodmap-screen.html |
 | 15 | IBD: Crohn's Disease and Ulcerative Colitis | ibd.html | ibd-visuals.html | ibd-teleprompter.html | ibd-gut-screen.html |
 | 16 | IBS | ibs.html | ibs-visuals.html | ibs-teleprompter.html | — |
-| 17 | Fatty Liver Disease (MASLD) | masld.html ⚑ in progress | — | — | — |
-| 18+ | Coeliac disease (planned next) | — | — | — | — |
+| 17 | Fatty Liver Disease (MASLD) | masld.html ⚑ | masld-visuals.html | masld-teleprompter.html | — |
+| 18 | Coeliac Disease | coeliac.html | coeliac-visuals.html | coeliac-teleprompter.html | coeliac-villi-screen.html |
 
-**Article 17 notes:** masld.html built April 2026. ESSENCE trial reference flagged ⚑ — verify publication status before going live. Drug brand names included throughout. Waist circumference thresholds included in Sections 1 and 3.
+**Article 17 note:** ESSENCE trial reference flagged ⚑ — verify publication status before masld.html goes live.
+
+### Digestive Health Series — Article 19+
+Continuing series — topics TBC.
 
 ---
 
-## 6. WORKFLOW — NEW ARTICLE
+## 7. WORKFLOW — NEW ARTICLE
 
 Build in this order:
 1. **Pre-draft verification** — web search every key claim, statistic, and study before writing
@@ -124,11 +160,11 @@ Build in this order:
 4. **Teleprompter HTML** — `[article]-teleprompter.html`
 5. **Screen HTMLs** — standalone full-screen diagrams where needed
 
-Old script files (e.g. ibd-script.html) are superseded. Three files per article is the current standard.
+Old script files are superseded. **Three files per article** is the current standard.
 
 ---
 
-## 7. ARTICLE STANDARDS
+## 8. ARTICLE STANDARDS
 
 ### Structure
 1. What is it?
@@ -142,6 +178,12 @@ Key Terms box sits **between sections 1 and 2** — navy background, alphabetica
 
 Research claims flagged ⚑ for Paul review before publishing.
 
+### Medical term lay-clarification standard
+When a medical/technical term is used in an article, a plain-English meaning in brackets must follow — every time, not just first mention. Examples: ataxia (balance/coordination problems), peripheral neuropathy (nerve tingling/numbness), cardiovascular events (heart attacks, strokes, and cardiovascular deaths), Integrated Care Boards (NHS bodies that plan and fund health services for a region). Apply in prose, tables, bullets, callouts. Short-form brackets OK in tight table cells.
+
+### Drug naming
+Always include brand name(s) in brackets after generic name — e.g. semaglutide (Ozempic, Wegovy), atorvastatin (Lipitor), infliximab (Remicade). Apply to all articles.
+
 ### References standard
 Every research item must include:
 - Full citation: authors, full title, journal, year, volume, pages, DOI
@@ -152,24 +194,7 @@ Every research item must include:
 ⚠️ PubMed IDs are UNRELIABLE from training data. Confirmed wrong IDs found previously. Rule: no PubMed/PMC pill links unless verified by web search in same session. Omit and flag ⚑ if unverified. Journal DOI links acceptable. Paul checks every link before any article goes live.
 
 ### Pre-draft verification
-Before presenting any article, script, or visuals HTML, verify via web search that every cited study, trial, or statistic: (1) exists, (2) relates to the correct condition, (3) supports the claim made.
-
-### Medical term lay-clarification standard
-Whenever a medical or technical term is used in an article, a plain-English meaning in brackets must follow it — **every time it appears**, not just the first mention. Apply in prose, tables, bullet lists, and callouts. Short-form brackets are acceptable in space-constrained table cells.
-
-Examples:
-- ataxia (problems with balance and coordination)
-- peripheral neuropathy (nerve tingling/numbness)
-- steatorrhoea (pale, floating stools)
-- villous atrophy (flattening of the gut lining)
-- crypt hyperplasia (overgrowth of the gut's repair cells)
-- mucosal recovery (healing of the gut lining)
-- dermatitis herpetiformis (itchy blistering rash)
-- malabsorption (poor absorption of nutrients)
-- subfertility (difficulty conceiving)
-- immunosuppressive treatment (drugs that calm the immune system)
-
-This standard applies to all new and existing articles.
+Before presenting any article, script, or visuals HTML, verify via web search that every cited study, trial, or statistic: (1) exists, (2) relates to the correct condition, (3) supports the claim made, and (4) every URL/DOI resolves to the correct article.
 
 ### Readability
 - Body text: `#2C2C2C`, explicit `font-weight:400`
@@ -178,9 +203,9 @@ This standard applies to all new and existing articles.
 - No `fadeUp` or `opacity:0` animations on body sections — content must be immediately visible
 
 ### Hero visibility
-- Hero subtitle: `rgba(255,255,255,0.85)`
-- Meta items: `rgba(255,255,255,0.80)`
-- Breadcrumb: `rgba(255,255,255,0.75)`
+- Hero subtitle: min `rgba(255,255,255,0.85)`
+- Meta items: min `rgba(255,255,255,0.80)`
+- Breadcrumb: min `rgba(255,255,255,0.75)`
 - Values below 0.60 not permitted
 
 ### Key Terms box visibility
@@ -202,17 +227,10 @@ This compensates for sticky main nav (68px) + sticky jump nav (~46px) + breathin
 
 ---
 
-## 8. VIDEO STANDARDS
-
-### Article vs teleprompter depth
-For technically complex topics, the **article HTML is the full-depth reference** — nuanced science, complications with honest figures, full diagnostic detail. The **teleprompter is the practical 5–6 min doorway** for a general audience — simplified, warm, focused on symptoms, testing traps, and treatment reality. Serious complications are mentioned in a single calm line, not detailed with statistics. Build the article first at full depth, then extract the practical 20% for the teleprompter.
-
-### Standard intro (every video, Segment 0)
-> "I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about [TOPIC]. Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. If anything feels relevant to you personally, please take it to your own doctor. Right — let's get into it."
-~15–18 seconds.
+## 9. VIDEO STANDARDS
 
 ### Three-file architecture (current standard)
-Each video requires **three** HTML files. Old combined presenter/script files (e.g. `cholesterol-presenter.html`) are superseded.
+Each video requires **three** HTML files. Old combined presenter/script files are superseded.
 
 **(1) Article HTML** — `[slug].html`
 - Website page for readers
@@ -233,6 +251,21 @@ Each video requires **three** HTML files. Old combined presenter/script files (e
 - Visual cue boxes at **bottom of each segment** — amber border for visuals advance, red border for screen file switch
 - RAF auto-scroll loop, touch swipe, segment jump dots
 
+### Standard intro (every video, Segment 0)
+> "I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about [TOPIC]. Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. If anything feels relevant to you personally, please take it to your own doctor. Right — let's get into it."
+~15–18 seconds.
+
+### Video length standard — 4 to 5 minutes maximum
+People get bored easily on video — shorter is better. Teleprompter word count should be approximately **600–750 words total** (assuming ~150 wpm delivery). Aim for tight, punchy segments. When writing or revising, if word count exceeds ~750, cut — remove redundant examples, tighten preamble, merge segments. Applies to every video in every series.
+
+### Teleprompter core standard — messages, statistics, pointers
+Every teleprompter must deliver:
+1. **Fundamental MESSAGES** — clearly and precisely
+2. **Key STATISTICS** — exact numbers, no rounding drift from article
+3. **Specific practical POINTERS** — what the viewer should do (e.g. "add 1,000 steps/day", not "move more")
+
+Every segment must serve message, statistic, or action. Cut what doesn't. Warm, non-prescriptive tone retained — but clarity and impact come first. Article is the full-depth reference; teleprompter is the tight, high-impact doorway.
+
 ### Screen files
 Standalone full-screen HTML files for camera filming (e.g. `ar-sphincter-screen.html`, `coeliac-villi-screen.html`).
 - Full-screen, auto-animate on load, bold for filming
@@ -250,12 +283,23 @@ All trial names, years, citation authors, and statistics must match across artic
 
 ---
 
-## 9. VISUALS FILE STANDARDS
+## 10. VISUALS FILE STANDARDS
 
 ### Screen presence
 All visuals HTML files must fill the screen boldly and be readable at distance:
 - Stage padding: maximum `0.6rem 0.75rem`
 - No artificial `max-width` below `100%` on content wrappers
+
+### 🔑 Slide layout standard — learnt from exercise build
+The following rules prevent recurring text/alignment/card issues during slide design:
+
+1. **Multi-row grids MUST have explicit `grid-template-rows`** (e.g. `1fr 1fr`, `1fr 1fr 1fr`) — without this, auto-rows size to content and the bottom row drops off screen.
+2. **Cards in constrained grids MUST have `min-height: 0` + `overflow: hidden`** — without these, long content bleeds into the next row.
+3. **Maximum 3 vertical blocks per card** (heading + main content + label/badge). Four or more elements stacked always becomes cramped and overlaps.
+4. **Sub-text must be ONE short line** (≤ 12 words). Longer explanation belongs in the teleprompter — not the slide.
+5. **Comparison stats: context AT TOP** in Fraunces accent colour showing *what* is being compared (e.g. "2,000 → 4,000 steps/day"). Never bury the comparison in tiny italic sub-text.
+6. **No redundant hero banners** that duplicate what the slide-title already says.
+7. **Tight padding for constrained slides:** card padding `0.65–0.9rem`, internal card gap `0.4–0.7rem`, grid gap `0.6–0.75rem`.
 
 ### Font sizes (minimum)
 | Text type | Minimum |
@@ -301,16 +345,24 @@ All visuals HTML files must fill the screen boldly and be readable at distance:
 - Stat card source: `0.75rem`, `rgba(255,255,255,0.65)`
 - Opacity 0.35 or below NOT permitted
 
-### Visuals impact
-- SVG diagrams fill min 40% available width
-- SVG labels min 13px, key terms min 16px, stroke widths min 2.5px
-- Key stats min 4rem
-- Card text min 0.88rem
-- Every visual must communicate core message at a glance from 3 feet
+### Call-to-action slides
+Every CTA gets its own full-screen slide. Required elements:
+- Dominant timeframe/action label in Fraunces serif 3rem+, bold, high-contrast
+- Large central visual or icon at 5rem+
+- Clear action title at 1.8–2rem
+- Brief supporting body
+- Concrete example chips where relevant
+
+### Research card stat standard
+Stat boxes must show OUTCOMES — effect sizes, risk changes, response rates — NEVER participant counts or study counts.
+- Good: "+12% / +30% mortality risk", "~30% CV event reduction"
+- Bad: "1.38M participants", "87 RCTs", "Curvilinear" (descriptive word, not outcome)
+
+Participant counts belong in body detail, not headline stat.
 
 ---
 
-## 10. QC PASS — REQUIRED BEFORE EVERY UPLOAD
+## 11. QC PASS — REQUIRED BEFORE EVERY UPLOAD
 
 Run before uploading any article or presenter:
 
@@ -321,10 +373,12 @@ Run before uploading any article or presenter:
 5. **Article ↔ presenter consistency** — all facts, names, years, citations match
 6. **Scroll offset** — `scroll-margin-top: 150px` present on `.article-section`
 7. **Visuals visibility** — no source text below opacity 0.70, all font sizes within spec
+8. **Slide layout** — multi-row grids have explicit rows; cards have min-height:0 + overflow:hidden; no 4+ vertical blocks per card; sub-text ≤ 12 words
+9. **Video length** — teleprompter 600–750 words (4–5 min target)
 
 ---
 
-## 11. APPROVED RESEARCH SOURCES
+## 12. APPROVED RESEARCH SOURCES
 
 BMJ · NICE guidelines · Cochrane Database · NEJM · The Lancet · JAMA · BMJ Best Practice · PubMed · NHS/NHS Digital · ONS · CDC · WHO · Global Burden of Disease Study · ESC/EAS guidelines
 
@@ -332,7 +386,7 @@ Do NOT use: non-peer-reviewed sources, commercial health sites, forum content.
 
 ---
 
-## 12. PRODUCTION SETUP — VIDEO RECORDING
+## 13. PRODUCTION SETUP — VIDEO RECORDING
 
 **Method:** OBS Studio (free) compositing camera feed + visuals HTML
 - Camera films Dr Paul speaking to camera
@@ -344,25 +398,30 @@ Do NOT use: non-peer-reviewed sources, commercial health sites, forum content.
 
 ---
 
-## 13. OUTSTANDING TASKS (as of April 2026)
+## 14. OUTSTANDING TASKS (as of April 2026)
 
 ### Completed ✅
 - All Cardiovascular Series articles 01–07 — article, visuals, teleprompter complete
 - All Digestive Series articles 13–18 — article, visuals, teleprompter complete
-- Article 17 MASLD — article, visuals, and teleprompter all complete ⚑ verify ESSENCE trial before going live
-- Article 18 Coeliac disease — all files complete including coeliac-villi-screen.html
-- Pricing confirmed correct on index.html and membership page
-- Project knowledge document updated April 2026
+- Practical Health Series Article 08 Mediterranean Diet — article + visuals confirmed
+- **Article 09 Sleep** — article, visuals, teleprompter all built this April 2026 session
+- **Article 10 Exercise** — article, visuals, teleprompter all built this April 2026 session
+- Pricing confirmed correct (£0/£6/£60/£150) on index.html and membership page
 - Medical term lay-clarification standard added to all standards
+- Video length standard (4–5 min max) established
+- Teleprompter core standard (messages + stats + pointers) established
+- Visuals slide layout standard established
 
 ### Immediate
 - [ ] Verify ESSENCE trial (semaglutide MASH) publication status ⚑ before masld.html goes live
+- [ ] Confirm whether mediterranean-diet-teleprompter.html exists
+- [ ] Lancet Commission on dementia — verify 12 vs 14 modifiable risk factors ⚑ (exercise.html reference)
 
 ### Near-term
-- [ ] Practical Health Series — Articles 08–12 (Mediterranean diet, Sleep, Exercise, Stress, Alcohol)
-- [ ] Digestive Series — Article 19+ (continue)
+- [ ] Build Article 11 Stress and Article 12 Alcohol
+- [ ] Digestive Series — Article 19+ (topics TBC)
 - [ ] Build community forum
-- [ ] Apply medical term lay-clarification standard retrospectively to existing articles (01–17)
+- [ ] Apply medical term lay-clarification standard retrospectively to existing articles (01–18)
 
 ### Each new article requires
 1. Article HTML
@@ -372,20 +431,21 @@ Do NOT use: non-peer-reviewed sources, commercial health sites, forum content.
 
 ---
 
-## 14. FILE NAMING CONVENTION
+## 15. FILE NAMING CONVENTION
 
 | File type | Pattern | Example |
 |-----------|---------|---------|
 | Article | `[slug].html` | `hypertension.html` |
-| Script | `[slug]-script.html` | `hypertension-script.html` |
 | Visuals | `[slug]-visuals.html` | `hypertension-visuals.html` |
 | Teleprompter | `[slug]-teleprompter.html` | `hypertension-teleprompter.html` |
 | Screen file | `[slug-abbrev]-[name]-screen.html` | `ar-sphincter-screen.html` |
 | GIF source | `[slug]-[name]-gif.html` | `bloating-gut-gif.html` |
 
+*Note: Old script files (e.g. hypertension-script.html) exist on GitHub for some articles but are superseded by the three-file standard. No new script files are created.*
+
 ---
 
-## 15. COMMUNICATION STYLE
+## 16. COMMUNICATION STYLE
 
 - Dr Paul communicates in UPPERCASE
 - Prefers brief, direct responses
@@ -395,16 +455,20 @@ Do NOT use: non-peer-reviewed sources, commercial health sites, forum content.
 
 ---
 
-## 16. FILE UPLOAD METHOD
+## 17. FILE UPLOAD METHOD
 
-The drag-and-drop upload in Edge incognito captures the browser page rather than the file. Reliable methods:
+### Uploading TO GitHub
+The drag-and-drop upload in Edge incognito works for GitHub. Most reliable methods to get file contents into chat:
 - **From local file:** Open in Notepad → Ctrl+A → Ctrl+C → paste into chat
 - **From GitHub:** Find file → click Raw → Ctrl+A → Ctrl+C → paste into chat
 - **Download from Claude outputs:** Use the Artifact download button — NEVER Ctrl+S or browser File → Save
 
+### Uploading TO Claude Project (for knowledge sync)
+⚠️ Drag-and-drop from Edge incognito to this Claude Project captures the browser page (Claude.ai loader HTML) rather than the file. This is a known limitation — see Section 1 above. Real files still exist on GitHub; don't panic.
+
 ---
 
-## 17. END-OF-SESSION UPDATE PROTOCOL
+## 18. END-OF-SESSION UPDATE PROTOCOL
 
 At the end of each productive session, update this document to reflect:
 - New files built and their status
@@ -412,4 +476,4 @@ At the end of each productive session, update this document to reflect:
 - New outstanding items added
 - Any standard changes or new instructions agreed
 
-Download updated .md from outputs and upload to both GitHub and the Claude Project to replace the previous version.
+Download updated `.md` from outputs and upload to **both GitHub and the Claude Project** to replace the previous version. This step is critical — if it is skipped, the next session will start from stale information.
