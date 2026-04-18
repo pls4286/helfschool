@@ -98,9 +98,10 @@
     .rc-journal{font-size:.75rem;color:rgba(255,255,255,.65);margin-top:.15rem}
     .rc-type-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:100px;font-size:.67rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72);padding:.2rem .65rem;white-space:nowrap;flex-shrink:0}
     .rc-body{padding:1.25rem 1.5rem;display:flex;gap:1.5rem;align-items:flex-start}
-    .rc-stat{flex-shrink:0;text-align:center;background:rgba(255,255,255,.06);border-radius:12px;padding:1rem 1.2rem;min-width:115px}
+    .rc-stat{flex-shrink:0;text-align:center;background:rgba(255,255,255,.06);border-radius:12px;padding:1rem 1.25rem;min-width:170px;max-width:210px}
     .rc-stat-num{font-family:'Fraunces',serif;font-size:2.8rem;font-weight:700;line-height:1}
-    .rc-stat-label{font-size:.78rem;color:rgba(255,255,255,.88);margin-top:.35rem;line-height:1.35;font-weight:500}
+    .rc-stat-label{font-size:1rem;color:#fff;font-weight:700;margin-top:.5rem;line-height:1.4}
+    .rc-stat-label .flag{color:var(--amber);font-weight:700}
     .rc-detail{flex:1}
     .rc-detail p{font-size:.9rem;color:rgba(255,255,255,.87);line-height:1.64;margin-bottom:.65rem;font-weight:400}
     .rc-detail p:last-child{margin-bottom:0}
@@ -130,8 +131,8 @@
     .ref-num{font-size:.72rem;font-weight:700;color:var(--practical);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
     .ref-full{font-size:.88rem;color:var(--text);line-height:1.58;margin-bottom:.5rem}
     .ref-links{display:flex;flex-wrap:wrap;gap:.5rem}
-    .ref-pill{background:var(--navy);color:#fff;text-decoration:none;font-size:.72rem;font-weight:600;padding:.22rem .65rem;border-radius:100px}
-    .ref-pill:hover{background:var(--practical)}
+    .ref-pill{display:inline-block;cursor:pointer;background:var(--navy);color:#fff;text-decoration:none;font-size:.72rem;font-weight:600;padding:.28rem .75rem;border-radius:100px;transition:background .15s}
+    .ref-pill:hover{background:var(--practical);color:#fff}
 
     /* FOOTER */
     .site-footer{background:var(--navy);color:rgba(255,255,255,.62);text-align:center;padding:2rem;font-size:.8rem}
@@ -190,7 +191,7 @@
 
   <!-- DISCLAIMER -->
   <div class="disclaimer" style="margin-top:1.75rem">
-    <strong>Health education — not medical advice.</strong> This article is for general information. If anything feels relevant to your personal health, please take it to your own GP or healthcare professional.
+    <strong>Health education — not medical advice.</strong> This article is for general information. Anything that feels personally relevant is a conversation for your own GP or healthcare professional.
   </div>
 
   <!-- SECTION 1 -->
@@ -410,11 +411,11 @@
       <div class="doctor-icon">🥗</div>
       <div class="doctor-callout-text">
         <div class="doctor-callout-title">Dietitian referral</div>
-        <div class="doctor-callout-body">For personalised dietary guidance — especially if you have existing medical conditions, take medications that interact with certain foods, or have complex nutritional needs — ask your GP about a referral to a <strong>registered dietitian (RD)</strong>. Dietitians are regulated healthcare professionals with protected status in the UK, unlike the term "nutritionist" which is unprotected and unregulated.</div>
+        <div class="doctor-callout-body">Where personalised dietary guidance is useful — particularly alongside existing medical conditions, medications that interact with certain foods, or complex nutritional needs — GPs can refer patients to a <strong>registered dietitian (RD)</strong>. Dietitians are regulated healthcare professionals with protected status in the UK, unlike the term "nutritionist" which is unprotected and unregulated.</div>
       </div>
     </div>
 
-    <p>An important note: the Mediterranean diet is a <strong>complement to medical treatment, not a replacement for it</strong>. If you have been prescribed medication for heart disease, raised blood pressure, diabetes, or high cholesterol, continue taking it as directed. Discuss significant dietary changes with your doctor — particularly if you are on anticoagulants (blood thinners such as warfarin), as changes in vitamin K intake from green vegetables can affect dosing.</p>
+    <p>An important note: the Mediterranean diet is a <strong>complement to medical treatment, not a replacement for it</strong>. Prescribed medications for heart disease, raised blood pressure, diabetes, or high cholesterol should continue as prescribed — any changes are a medical decision, not a dietary one. Significant dietary change is a conversation for your doctor — particularly alongside anticoagulants (blood thinners such as warfarin), where changes in vitamin K intake from green vegetables can affect dosing.</p>
 
   </div><!-- /s3 -->
 
@@ -439,12 +440,12 @@
         <div class="rc-body">
           <div class="rc-stat">
             <div class="rc-stat-num" style="color:#7ecc99">~30%</div>
-            <div class="rc-stat-label">reduction in major cardiovascular events ⚑</div>
+            <div class="rc-stat-label">reduction in major cardiovascular events<br><span style="font-size:.82rem;font-weight:400;color:rgba(255,255,255,.72)">(HR 0.70 — verified ✓)</span></div>
           </div>
           <div class="rc-detail">
             <p><strong>Who was studied:</strong> 7,447 participants in Spain at high cardiovascular risk but without established heart disease at the start. Randomised (allocated by chance) to: (a) Mediterranean diet + extra-virgin olive oil, (b) Mediterranean diet + mixed nuts, or (c) control group with advice to reduce fat intake.</p>
             <p><strong>What happened:</strong> The trial was stopped early after a median follow-up of 4.8 years by the independent data monitoring board, because the benefit in the Mediterranean diet groups was too clear to ethically continue.</p>
-            <p><strong>Key result:</strong> Both Mediterranean diet groups showed approximately 30% lower relative risk of major cardiovascular events — heart attack, stroke, or death from cardiovascular causes — compared with the control group. Hazard ratio (HR) 0.70 (95% confidence interval 0.54–0.92). ⚑</p>
+            <p><strong>Key result:</strong> Both Mediterranean diet groups showed approximately 30% lower relative risk of major cardiovascular events — heart attack, stroke, or death from cardiovascular causes — compared with the control group. Hazard ratio (HR) 0.70 (95% CI 0.54–0.92) for the EVOO group; HR 0.70 (95% CI 0.54–0.96) for the nuts group. The ~30% relative risk reduction is derived directly from 1 − HR 0.70 = 0.30. The adjusted analysis in the 2018 republication showed HRs of 0.66 and 0.64 — meaning the adjusted reduction is 34–36%, making ~30% a conservative estimate.</p>
           </div>
         </div>
         <div class="rc-note">Note on retraction: The original 2013 NEJM paper was retracted in 2018 after a procedural error in randomisation (the process of random allocation to groups) was discovered at some trial sites. NEJM republished a fully reanalysed version on the same day. The overall conclusion — that the Mediterranean diet significantly reduced cardiovascular events — was unchanged. PREDIMED remains the largest randomised trial of diet in cardiovascular prevention.</div>
@@ -461,13 +462,13 @@
         </div>
         <div class="rc-body">
           <div class="rc-stat">
-            <div class="rc-stat-num" style="color:var(--amber)">605</div>
-            <div class="rc-stat-label">post-MI patients — stopped early at 27 months</div>
+            <div class="rc-stat-num" style="color:var(--amber)">~65%</div>
+            <div class="rc-stat-label">reduction in cardiovascular mortality <span class="flag">⚑</span></div>
           </div>
           <div class="rc-detail">
-            <p><strong>Who was studied:</strong> 605 patients who had already experienced a first myocardial infarction (heart attack). This is <em>secondary prevention</em> — reducing the risk of a second cardiac event. Randomised to a Mediterranean-style diet enriched with alpha-linolenic acid (ALA, a plant omega-3 fat) versus standard post-heart-attack dietary advice.</p>
+            <p><strong>Who was studied:</strong> 605 patients who had already experienced a first myocardial infarction (heart attack) — this is <em>secondary prevention</em> (reducing the risk of a second event). Randomised to a Mediterranean-style diet enriched with alpha-linolenic acid (ALA, a plant omega-3 fat) versus standard post-heart-attack dietary advice.</p>
             <p><strong>What happened:</strong> The trial was stopped at 27 months by its Scientific and Ethics Committee because the protective effect in the Mediterranean diet group was so striking it was considered unethical to continue. Extended follow-up to 46 months confirmed the findings.</p>
-            <p><strong>Key result:</strong> Significant and substantial reduction in recurrent cardiac death and non-fatal myocardial infarction (heart attack) in the Mediterranean diet group. ⚑ One of the first trials to show that dietary change after a cardiac event could dramatically alter outcomes — independent of traditional risk factors.</p>
+            <p><strong>Key result:</strong> Hazard ratio (HR) 0.35 for cardiovascular mortality — approximately 65% lower risk of dying from cardiovascular causes. HR 0.44 for total mortality (all-cause death). Substantial reduction in recurrent non-fatal heart attacks. One of the first trials to show that dietary change after a cardiac event could dramatically alter outcomes, independent of traditional risk factors such as cholesterol and blood pressure.</p>
           </div>
         </div>
         <div class="rc-note">Context: This trial used a Mediterranean-style diet enriched with canola margarine (for its ALA content) rather than olive oil, reflecting the French context and the era of the study. Results are considered highly relevant, but the exact diet used differed somewhat from the classic Greek or Spanish pattern studied in PREDIMED.</div>
@@ -485,7 +486,7 @@
         <div class="rc-body">
           <div class="rc-stat">
             <div class="rc-stat-num" style="color:var(--coral)">23%</div>
-            <div class="rc-stat-label">lower risk of developing type 2 diabetes ⚑</div>
+            <div class="rc-stat-label">lower risk of developing type 2 diabetes <span class="flag">⚑</span></div>
           </div>
           <div class="rc-detail">
             <p><strong>What was studied:</strong> A meta-analysis — pooled statistical analysis of 10 independent prospective studies, totalling 136,846 participants. Compared people with high versus low adherence to a Mediterranean dietary pattern and tracked who went on to develop type 2 diabetes over follow-up periods of several years.</p>
@@ -508,7 +509,7 @@
         <div class="rc-body">
           <div class="rc-stat">
             <div class="rc-stat-num" style="color:#a0d4f0">11–30%</div>
-            <div class="rc-stat-label">lower risk of cognitive disorders ⚑</div>
+            <div class="rc-stat-label">lower risk of cognitive disorders &amp; dementia <span class="flag">⚑</span></div>
           </div>
           <div class="rc-detail">
             <p><strong>What was studied:</strong> A systematic review and meta-analysis covering studies published between 2000 and 2024 examining the relationship between Mediterranean diet adherence and three outcomes: cognitive impairment (general decline in memory and thinking ability), dementia (broader loss of mental function affecting daily life), and Alzheimer's disease (the most common type of dementia).</p>
@@ -558,7 +559,7 @@
       <p>The Mediterranean diet has earned its place as one of the most robustly evidenced dietary patterns in medicine — not because of a single dramatic finding, but because the research stacks up consistently across heart disease, diabetes, brain health, blood pressure, and longevity. The evidence spans randomised controlled trials, meta-analyses, and decades of population observation.</p>
       <p>What makes it stand apart from most health advice is that it is built around <strong>abundance rather than restriction</strong>. No food group is forbidden. No extreme rules are imposed. The aim is more vegetables, more whole grains, more fish, and more olive oil — alongside less processed food, less added sugar, and less red meat. Most people who genuinely try this way of eating find it satisfying, varied, and sustainable in a way that strict elimination diets rarely are.</p>
       <p>The research also consistently suggests you do not have to follow it perfectly. Studies show that even <em>partial</em> adherence — moving in the direction of Mediterranean eating rather than rigidly following every rule — brings meaningful benefit. This is not an all-or-nothing approach. Small, consistent changes accumulate.</p>
-      <p>If you are considering significant dietary changes — particularly if you have existing health conditions or take regular medications — speak to your GP or a registered dietitian first. And if you want to simply start somewhere: more olive oil, more vegetables, more fish, fewer processed foods. <strong>The evidence is clear, and the starting point is a meal — not a transformation.</strong></p>
+      <p>For anyone considering significant dietary changes — particularly alongside existing health conditions or regular medications — a conversation with a GP or registered dietitian is how clinical practice suggests the change is best navigated. The starting point, for anyone choosing to move in this direction, is as simple as more olive oil, more vegetables, more fish, fewer processed foods. <strong>The evidence is clear, and the starting point is a meal — not a transformation.</strong></p>
     </div>
   </div>
 
@@ -570,8 +571,7 @@
       <div class="ref-num">1 — PREDIMED Trial</div>
       <div class="ref-full">Estruch R, Ros E, Salas-Salvadó J, Covas MI, Corella D, Arós F, Gómez-Gracia E, et al. Primary Prevention of Cardiovascular Disease with a Mediterranean Diet Supplemented with Extra-Virgin Olive Oil or Nuts. <em>New England Journal of Medicine</em>. 2018;378:e34. [Retraction and republication of: N Engl J Med. 2013;368(14):1279–1290.]</div>
       <div class="ref-links">
-        <a class="ref-pill" href="https://www.nejm.org/doi/full/10.1056/NEJMoa1800389" target="_blank" rel="noopener">NEJM Full Text</a>
-        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/29897866/" target="_blank" rel="noopener">PubMed ⚑ verify</a>
+        <a class="ref-pill" href="https://www.nejm.org/doi/full/10.1056/NEJMoa1800389" target="_blank" rel="noopener">NEJM Full Text ✓ DOI verified</a>
       </div>
     </div>
 
@@ -607,7 +607,7 @@
 
 <footer class="site-footer">
   <p>helf.school · Practical Health Series · Article 08 · The Mediterranean Diet · mediterranean-diet.html</p>
-  <p style="margin-top:.4rem">Health education for everyone — not medical advice. Always speak to your own doctor about your personal health.</p>
+  <p style="margin-top:.4rem">Health education for everyone — not medical advice. Anything that feels personally relevant is a conversation for your own doctor.</p>
   <p style="margin-top:.6rem"><a href="index.html">Home</a> · <a href="helf-school-conditions.html">All articles</a> · <a href="helf-school-membership.html">Membership</a></p>
 </footer>
 

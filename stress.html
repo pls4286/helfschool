@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stress — helf.school</title>
+  <meta name="description" content="What stress actually is, how chronic stress affects your body, and what the research shows reliably helps. A clear, evidence-based guide from Dr Paul, retired NHS GP."/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--navy:#1B2A4A;--coral:#E8634A;--cream:#FAF7F2;--sage:#7A9E87;--amber:#E8A84A;--practical:#7A6A2E;--text:#2C2C2C}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'DM Sans',sans-serif;font-weight:400;color:var(--text);background:var(--cream);line-height:1.7}
+
+    /* NAV */
+    .site-nav{background:var(--navy);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+    .nav-logo{display:flex;align-items:center;gap:.5rem;text-decoration:none}
+    .logo-text{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;color:#fff}
+    .logo-dot{color:var(--coral)}
+    .logo-tag{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+    .nav-back{font-size:.82rem;color:rgba(255,255,255,.75);text-decoration:none;display:flex;align-items:center;gap:.35rem}
+    .nav-back:hover{color:#fff}
+
+    /* HERO */
+    .hero{background:linear-gradient(135deg,var(--navy) 0%,#2a3550 55%,#1d2540 100%);padding:4rem 2rem 3rem;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:-40%;right:-8%;width:600px;height:600px;background:radial-gradient(circle,rgba(122,106,46,.2) 0%,transparent 70%);pointer-events:none}
+    .hero-inner{max-width:860px;margin:0 auto;position:relative}
+    .breadcrumb{display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;font-size:.78rem;color:rgba(255,255,255,.75)}
+    .breadcrumb a{color:rgba(255,255,255,.75);text-decoration:none}
+    .breadcrumb a:hover{color:#fff}
+    .breadcrumb-sep{color:rgba(255,255,255,.4)}
+    .series-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(122,106,46,.22);border:1px solid rgba(122,106,46,.55);color:#d4b84a;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .8rem;border-radius:100px;margin-bottom:1rem}
+    .hero h1{font-family:'Fraunces',serif;font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;color:#fff;line-height:1.12;margin-bottom:.85rem}
+    .hero-subtitle{font-size:1.05rem;color:rgba(255,255,255,.88);line-height:1.6;max-width:640px;margin-bottom:1.75rem}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:1.25rem;font-size:.8rem;color:rgba(255,255,255,.82)}
+    .meta-item{display:flex;align-items:center;gap:.35rem}
+
+    /* ARTICLE BODY */
+    .article-body{max-width:860px;margin:0 auto;padding:0 2rem 4rem}
+    .article-section{padding:3rem 0;border-bottom:1px solid rgba(27,42,74,.08);scroll-margin-top:150px}
+    .article-section:last-child{border-bottom:none}
+    .section-label{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--practical);margin-bottom:.5rem}
+    .section-title{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.5vw,1.85rem);font-weight:700;color:var(--navy);margin-bottom:1.25rem;line-height:1.2}
+    .sub-title{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--practical);margin:2rem 0 1rem;line-height:1.3}
+    .article-section p{font-size:1rem;color:var(--text);font-weight:400;line-height:1.78;margin-bottom:1rem}
+    .article-section p:last-child{margin-bottom:0}
+
+    /* OPENING LIVED-EXPERIENCE CALLOUT */
+    .lived-experience{background:linear-gradient(135deg,#f8f3e4 0%,#f0e8d0 100%);border-left:4px solid var(--practical);border-radius:10px;padding:1.4rem 1.6rem;margin:1.5rem 0;font-size:1.02rem;color:#3a3528;line-height:1.75;font-style:italic}
+    .lived-experience strong{font-style:normal;color:var(--navy);font-weight:700}
+
+    /* BODY-SYSTEMS LIST (Section 2) */
+    .systems-list{list-style:none;margin:1.25rem 0;display:flex;flex-direction:column;gap:.95rem}
+    .systems-list li{display:flex;align-items:flex-start;gap:1rem;padding:1.1rem 1.35rem;background:#fff;border-radius:12px;border-left:4px solid var(--practical);box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    .sys-icon{font-size:1.5rem;flex-shrink:0;margin-top:.05rem}
+    .sys-content{flex:1}
+    .sys-title{font-weight:700;color:var(--navy);font-size:1rem;margin-bottom:.35rem;font-family:'Fraunces',serif}
+    .sys-desc{font-size:.92rem;color:#3a3a3a;line-height:1.6;font-weight:400}
+    .sys-desc strong{color:var(--navy);font-weight:700}
+
+    /* KEY TERMS */
+    .key-terms-box{background:var(--navy);border-radius:16px;padding:2rem 2.25rem;margin:2.5rem 0}
+    .key-terms-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem}
+    .key-terms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:.9rem}
+    .term-item{padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.07)}
+    .term-name{font-size:.88rem;font-weight:700;color:#d4b84a;margin-bottom:.25rem}
+    .term-def{font-size:.92rem;color:rgba(255,255,255,.92);line-height:1.52}
+
+    /* DOCTOR CALLOUTS */
+    .doctor-callout{background:#fff;border:1px solid rgba(27,42,74,.1);border-radius:14px;padding:1.25rem 1.5rem;margin:.9rem 0;display:flex;gap:1rem;align-items:flex-start}
+    .doctor-icon{font-size:1.4rem;flex-shrink:0;margin-top:.1rem}
+    .doctor-callout-text{flex:1}
+    .doctor-callout-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+    .doctor-callout-body{font-size:.9rem;color:#3a3a3a;line-height:1.62;font-weight:400}
+    .doctor-callout-body strong{color:var(--navy)}
+
+    /* RED-FLAG CALLOUT — WHEN TO SEEK URGENT HELP */
+    .red-flag-box{background:linear-gradient(135deg,#4a1a1a 0%,#3a1212 100%);border-radius:16px;padding:1.75rem 1.9rem;margin:2rem 0 .5rem;border:2px solid #c84a3a;box-shadow:0 4px 20px rgba(200,74,58,.15)}
+    .red-flag-label{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#ff9b8a;margin-bottom:.4rem;display:flex;align-items:center;gap:.5rem}
+    .red-flag-title{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:.6rem;line-height:1.25}
+    .red-flag-intro{font-size:.95rem;color:rgba(255,255,255,.9);line-height:1.64;margin-bottom:1.1rem;font-weight:400}
+    .red-flag-list{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.2rem}
+    .red-flag-list li{display:flex;align-items:flex-start;gap:.7rem;font-size:.92rem;color:rgba(255,255,255,.95);line-height:1.55;font-weight:400;padding:.55rem .8rem;background:rgba(0,0,0,.22);border-radius:8px;border-left:3px solid #ff6a4a}
+    .red-flag-list li strong{color:#ffb5a0;font-weight:700}
+    .red-flag-list .rf-bullet{color:#ff6a4a;font-weight:700;flex-shrink:0;font-size:1rem;line-height:1.4}
+    .crisis-panel{background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:1.1rem 1.25rem;margin-top:.4rem}
+    .crisis-title{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#ffb5a0;margin-bottom:.65rem}
+    .crisis-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem}
+    .crisis-item{padding:.55rem .8rem;background:rgba(255,255,255,.06);border-radius:6px;font-size:.88rem;color:#fff;line-height:1.5}
+    .crisis-item strong{color:#ffd7c7;font-weight:700}
+    .crisis-item a{color:#ffd7c7;text-decoration:underline;text-decoration-color:rgba(255,215,199,.4);text-underline-offset:2px}
+    .crisis-item a:hover{text-decoration-color:#ffd7c7}
+
+    /* RESEARCH SPLIT HEADER */
+    .research-half{margin-top:2rem;padding:1rem 1.25rem;background:var(--navy);border-radius:10px 10px 0 0;color:#fff}
+    .research-half-label{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#d4b84a;margin-bottom:.3rem}
+    .research-half-title{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;color:#fff;line-height:1.3}
+
+    /* RESEARCH CARDS */
+    .research-grid{display:flex;flex-direction:column;gap:1.4rem;margin:1rem 0 1.5rem}
+    .research-card{background:var(--navy);border-radius:16px;overflow:hidden}
+    .rc-header{padding:1.1rem 1.5rem .9rem;border-bottom:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+    .rc-trial-name{font-family:'Fraunces',serif;font-size:1.12rem;font-weight:700;color:#fff;line-height:1.3}
+    .rc-journal{font-size:.75rem;color:rgba(255,255,255,.65);margin-top:.2rem}
+    .rc-type-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:100px;font-size:.67rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.78);padding:.22rem .7rem;white-space:nowrap;flex-shrink:0}
+    .rc-body{padding:1.25rem 1.5rem;display:flex;gap:1.5rem;align-items:flex-start}
+    .rc-stat{flex-shrink:0;text-align:center;background:rgba(255,255,255,.06);border-radius:12px;padding:1rem 1.15rem;min-width:170px;max-width:210px}
+    .rc-stat-num{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;line-height:1}
+    .rc-stat-label{font-size:.92rem;color:#fff;font-weight:700;margin-top:.5rem;line-height:1.4}
+    .rc-stat-label .flag{color:var(--amber);font-weight:700}
+    .rc-detail{flex:1}
+    .rc-detail p{font-size:.92rem;color:rgba(255,255,255,.9);line-height:1.64;margin-bottom:.65rem;font-weight:400}
+    .rc-detail p:last-child{margin-bottom:0}
+    .rc-detail strong{color:#fff;font-weight:600}
+    .rc-for-you{padding:.95rem 1.5rem;background:rgba(232,168,74,.12);border-top:1px solid rgba(232,168,74,.25);font-size:.92rem;color:rgba(255,255,255,.92);line-height:1.55}
+    .rc-for-you strong{color:var(--amber);font-weight:700;letter-spacing:.05em}
+
+    /* MECHANISMS GRID */
+    .mechanism-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:1.25rem 0}
+    .mech-card{background:#fff;border:1px solid rgba(27,42,74,.1);border-radius:12px;padding:1.1rem 1.25rem}
+    .mech-icon{font-size:1.4rem;margin-bottom:.5rem}
+    .mech-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:.3rem;font-family:'Fraunces',serif}
+    .mech-body{font-size:.88rem;color:#3a3a3a;line-height:1.6;font-weight:400}
+
+    /* CTA THREE-TIER */
+    .cta-section{margin:2.5rem 0 1.5rem}
+    .cta-intro{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:700;color:var(--navy);margin-bottom:1rem;text-align:center}
+    .cta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.1rem}
+    .cta-card{border-radius:16px;padding:1.5rem 1.4rem;color:#fff;display:flex;flex-direction:column;min-height:280px}
+    .cta-now{background:linear-gradient(135deg,#c84a3a 0%,#a03a2a 100%)}
+    .cta-week{background:linear-gradient(135deg,#7a6a2e 0%,#5c501f 100%)}
+    .cta-ongoing{background:linear-gradient(135deg,#2e6ba8 0%,#1f4e80 100%)}
+    .cta-timeframe{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:.4rem;letter-spacing:.02em}
+    .cta-subtitle{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.82);margin-bottom:1rem}
+    .cta-options{list-style:none;display:flex;flex-direction:column;gap:.55rem;flex:1}
+    .cta-options li{font-size:.88rem;line-height:1.55;color:rgba(255,255,255,.95);padding-left:1.2rem;position:relative}
+    .cta-options li::before{content:'→';position:absolute;left:0;color:var(--amber);font-weight:700}
+    .cta-options li strong{color:#fff;font-weight:700}
+
+    /* CONCLUSION BOX */
+    .conclusion-box{background:var(--navy);border-radius:16px;padding:2rem 2.25rem;margin:1.5rem 0}
+    .conclusion-box p{color:rgba(255,255,255,.9);font-size:1rem;line-height:1.78;margin-bottom:1rem;font-weight:400;font-style:italic}
+    .conclusion-box p:last-child{margin-bottom:0;color:rgba(255,255,255,.96)}
+    .conclusion-box strong{color:#fff;font-weight:700;font-style:normal}
+
+    /* DISCLAIMER */
+    .disclaimer{background:#fffbec;border:1px solid #e8c84a;border-radius:12px;padding:1rem 1.25rem;margin:1.5rem 0;font-size:.85rem;color:#5c4800;line-height:1.58}
+
+    /* REFERENCES */
+    .references-section{margin-top:3rem;padding-top:2rem;border-top:2px solid rgba(27,42,74,.1)}
+    .references-title{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:1.25rem}
+    .ref-block{margin-bottom:1.25rem;padding:1rem 1.25rem;background:#fff;border-radius:10px;border-left:3px solid var(--practical)}
+    .ref-num{font-size:.72rem;font-weight:700;color:var(--practical);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
+    .ref-full{font-size:.88rem;color:var(--text);line-height:1.58;margin-bottom:.5rem}
+    .ref-links{display:flex;flex-wrap:wrap;gap:.5rem}
+    .ref-pill{display:inline-block;cursor:pointer;background:var(--navy);color:#fff;text-decoration:none;font-size:.72rem;font-weight:600;padding:.28rem .75rem;border-radius:100px;transition:background .15s}
+    .ref-pill:hover{background:var(--practical);color:#fff}
+
+    /* FOOTER */
+    .site-footer{background:var(--navy);color:rgba(255,255,255,.62);text-align:center;padding:2rem;font-size:.8rem}
+    .site-footer a{color:rgba(255,255,255,.75);text-decoration:none}
+
+    @media(max-width:640px){
+      .hero{padding:2.5rem 1.25rem 2rem}
+      .article-body{padding:0 1.25rem 3rem}
+      .rc-body{flex-direction:column}
+      .key-terms-grid{grid-template-columns:1fr}
+      .mechanism-grid{grid-template-columns:1fr}
+      .cta-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a class="nav-logo" href="index.html">
+    <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
+      <path d="M11 2C8 2 5.5 4 4 6.5 2.5 9 2.5 12 4 14.5c1 1.8 2.8 3 5 3.4V4.5" stroke="#E8634A" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M11 2C14 2 16.5 4 18 6.5 19.5 9 19.5 12 18 14.5c-1 1.8-2.8 3-5 3.4V4.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <div class="logo-text">helf<span class="logo-dot">.</span>school</div>
+      <div class="logo-tag">Health Education</div>
+    </div>
+  </a>
+  <a class="nav-back" href="helf-school-conditions.html">← All conditions</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">›</span>
+      <a href="helf-school-conditions.html">Conditions</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Stress</span>
+    </div>
+    <div class="series-pill">📋 Practical Health Series · Article 11</div>
+    <h1>Stress — What It Is, What It's Doing to You, and What Actually Helps</h1>
+    <p class="hero-subtitle">Chronic stress is not a character flaw. It's physiology that forgot how to switch off. Here's what the research shows it does to your body — and what the research shows reliably helps.</p>
+    <div class="hero-meta">
+      <span class="meta-item">📖 9 min read</span>
+      <span class="meta-item">👨‍⚕️ Dr Paul · Retired NHS GP</span>
+      <span class="meta-item">📅 April 2026</span>
+      <span class="meta-item">🔬 Evidence-based</span>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE BODY -->
+<div class="article-body">
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer" style="margin-top:1.75rem">
+    <strong>Health education — not medical advice.</strong> This article is for general information. If stress is affecting your daily life, please speak to your own GP. If you are in crisis, contact the Samaritans on 116 123 (UK, free, 24/7) or your local emergency service.
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="article-section" id="what-is-it">
+    <div class="section-label">Section 1</div>
+    <h2 class="section-title">What is stress?</h2>
+
+    <div class="lived-experience">
+      Your heart races. Your stomach knots. You lie awake at 3am running through tomorrow. Your shoulders have been tense for weeks. You snap at the people you love most and you can't quite remember why. <strong>That feeling is not a character flaw. It's physiology.</strong>
+    </div>
+
+    <p>Stress is your body's built-in response to perceived threat. Within seconds of your brain flagging something as a problem — a work email, an argument, a near-miss in traffic — the <strong>amygdala</strong> (the brain's threat-processing region) signals an alarm. Adrenaline surges, your heart speeds up, your breathing quickens, blood flow shifts toward your muscles, and your senses sharpen. Seconds later, the <strong>HPA axis</strong> (the hypothalamic-pituitary-adrenal system — the body's master stress-hormone control circuit) releases <strong>cortisol</strong> (the main stress hormone, from the adrenal glands above your kidneys).</p>
+
+    <p>This is the <strong>fight-or-flight response</strong> (the body's automatic mobilisation for immediate action under threat). It is not a bug. It is a feature. It kept your ancestors alive when they had to run, fight, or climb. In short bursts — a job interview, a deadline, a quick argument — it still works for you today: it focuses your attention, mobilises energy, and sharpens your reactions.</p>
+
+    <p>The problem is that the modern world rarely produces short, sharp threats that resolve in thirty seconds. It produces long, grinding ones. A demanding job. Financial pressure. A difficult relationship. Caring for a relative. Health worries. A phone that never stops. When the stress response doesn't switch off, cortisol stays elevated, inflammation builds, sleep fragments, digestion suffers, mood dips — and every system designed for a brief emergency is left running for weeks, months, or years.</p>
+
+    <p>This is the important distinction:</p>
+
+    <ul class="systems-list">
+      <li>
+        <div class="sys-icon">⚡</div>
+        <div class="sys-content">
+          <div class="sys-title">Acute stress — short, resolves quickly</div>
+          <div class="sys-desc">A surge of adrenaline and cortisol in response to a specific challenge, followed by the body returning to baseline. <strong>This is healthy and useful.</strong> The system does exactly what it was designed to do.</div>
+        </div>
+      </li>
+      <li>
+        <div class="sys-icon">🌀</div>
+        <div class="sys-content">
+          <div class="sys-title">Chronic stress — sustained, doesn't reset</div>
+          <div class="sys-desc">The same response running continuously for weeks, months, or years. The body never gets the "all clear" signal. <strong>This is where the damage accumulates</strong> — what researchers call <em>allostatic load</em>: the cumulative wear and tear of a stress system that never stands down.</div>
+        </div>
+      </li>
+    </ul>
+
+    <p>Nearly everyone experiences acute stress. A growing number of people live with chronic stress — and this is the form the research below is about.</p>
+
+    <!-- KEY TERMS -->
+    <div class="key-terms-box">
+      <div class="key-terms-title">📖 Key Terms</div>
+      <div class="key-terms-grid">
+        <div class="term-item">
+          <div class="term-name">Acute stress</div>
+          <div class="term-def">Short-term stress response to an immediate challenge — useful in doses, resolves when the challenge passes.</div>
+        </div>
+        <div class="term-item">
+          <div class="term-name">Allostatic load</div>
+          <div class="term-def">The cumulative "wear and tear" on the body caused by repeated or prolonged activation of the stress response.</div>
+        </div>
+        <div class="term-item">
+          <div class="term-name">Amygdala</div>
+          <div class="term-def">The brain region that detects threat and triggers the stress response. Hyperactive in chronic stress and anxiety.</div>
+        </div>
+        <div class="term-item">
+          <div class="term-name">Chronic stress</div>
+          <div class="term-def">Stress that persists over weeks, months, or years without full resolution — the form linked to long-term health effects.</div>
+        </div>
+        <div class="term-item">
+          <div class="term-name">Cortisol</div>
+          <div class="term-def">The main stress hormone, released by the adrenal glands. Helpful short-term; damaging when chronically raised.</div>
+        </div>
+        <div class="term-item">
+          <div class="term-name">Fight-or-flight response</div>
+          <div class="term-def">The body's automatic mobilisation for action under threat — surge of adrenaline, faster heart rate, tense muscles.</div>
+        </div>
+        <div class="term-item">
+          <div class="term-name">HPA axis</div>
+          <div class="term-def">Hypothalamic-pituitary-adrenal axis — the hormonal feedback circuit that controls cortisol release and the long-arm stress response.</div>
+        </div>
+        <div class="term-item">
+          <div class="term-name">Inflammation</div>
+          <div class="term-def">The immune system's response to perceived damage. Useful short-term; a key driver of chronic disease when persistent.</div>
+        </div>
+        <div class="term-item">
+          <div class="term-name">Psychosocial stress</div>
+          <div class="term-def">Stress arising from life circumstances — work, relationships, finances, status, and major life events.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="article-section" id="why-matter">
+    <div class="section-label">Section 2</div>
+    <h2 class="section-title">Why does it matter? How chronic stress affects you and your life</h2>
+
+    <p>When the stress response doesn't switch off, it reaches every major system in your body. You may already recognise some of what follows — chronic stress is one of the most under-diagnosed contributors to how people actually feel day-to-day.</p>
+
+    <ul class="systems-list">
+      <li>
+        <div class="sys-icon">❤️</div>
+        <div class="sys-content">
+          <div class="sys-title">Your heart and arteries</div>
+          <div class="sys-desc">Blood pressure creeps up. Resting heart rate sits higher. Arteries become inflamed. Over months and years, this quietly raises the risk of heart attack and stroke. <strong>If you've noticed chest tightness during a stressful stretch, that is the same physiology the research below maps.</strong></div>
+        </div>
+      </li>
+      <li>
+        <div class="sys-icon">🧠</div>
+        <div class="sys-content">
+          <div class="sys-title">Your mind — sleep, mood, memory</div>
+          <div class="sys-desc">Sleep usually breaks down first — trouble falling asleep, waking at 3am, unrefreshing sleep. Concentration wavers. Short-term memory slips. Mood dips. <strong>Anxiety</strong> (persistent worry, often about future events) and <strong>depression</strong> (low mood, loss of interest, fatigue) become substantially more likely.</div>
+        </div>
+      </li>
+      <li>
+        <div class="sys-icon">🦠</div>
+        <div class="sys-content">
+          <div class="sys-title">Your gut</div>
+          <div class="sys-desc">The gut and brain are directly wired together via the <strong>vagus nerve</strong> (the main nerve connecting the brain to the abdomen). Chronic stress worsens reflux, bloating, and IBS (irritable bowel syndrome — cramping, urgency, altered stool) symptoms. Appetite swings — some eat more, some eat less. Either way, digestion suffers.</div>
+        </div>
+      </li>
+      <li>
+        <div class="sys-icon">🛡️</div>
+        <div class="sys-content">
+          <div class="sys-title">Your immune system</div>
+          <div class="sys-desc">Short-term stress sharpens immunity; chronic stress dampens it while driving background inflammation. You pick up colds more easily. Wounds heal more slowly. Existing inflammatory conditions — eczema, psoriasis, IBD — can flare.</div>
+        </div>
+      </li>
+      <li>
+        <div class="sys-icon">🍷</div>
+        <div class="sys-content">
+          <div class="sys-title">The behaviour spiral</div>
+          <div class="sys-desc">Stress pulls you toward the things that calm you quickly and harm you slowly: the second glass of wine, the takeaway, the missed walk, the cigarette for those who smoke. Each seems small. Over months, the cascade does real damage — and each setback feeds more stress.</div>
+        </div>
+      </li>
+    </ul>
+
+    <p>None of this is weakness. Understanding <em>what</em> is happening is the first step toward changing it — because almost every one of these pathways has an evidence-based route out.</p>
+
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="article-section" id="doctor">
+    <div class="section-label">Section 3</div>
+    <h2 class="section-title">What your doctor might do</h2>
+
+    <p>If chronic stress is affecting your daily life, bringing it to your GP is one of the most useful things you can do. Here's what to expect — and how to get the most from the appointment.</p>
+
+    <div class="doctor-callout">
+      <div class="doctor-icon">👂</div>
+      <div class="doctor-callout-text">
+        <div class="doctor-callout-title">Listen, without rushing to fix</div>
+        <div class="doctor-callout-body">A good GP starts by understanding what is actually going on — at work, at home, in your head, in your body. NHS appointments are short, so <strong>write down your three main concerns before you go in</strong>, so nothing gets missed.</div>
+      </div>
+    </div>
+
+    <div class="doctor-callout">
+      <div class="doctor-icon">📋</div>
+      <div class="doctor-callout-text">
+        <div class="doctor-callout-title">Screen for anxiety and depression</div>
+        <div class="doctor-callout-body">Short validated questionnaires — <strong>PHQ-9</strong> (a 9-item screen for depression) and <strong>GAD-7</strong> (a 7-item screen for generalised anxiety) — each take about two minutes. They help identify whether you've crossed from "stressed" into a treatable clinical condition where specific therapies work particularly well.</div>
+      </div>
+    </div>
+
+    <div class="doctor-callout">
+      <div class="doctor-icon">🔍</div>
+      <div class="doctor-callout-text">
+        <div class="doctor-callout-title">Look at the whole picture</div>
+        <div class="doctor-callout-body">Sleep. Exercise. Alcohol. Caffeine. Diet. Work. Relationships. Money. Each can either amplify or buffer stress. A thoughtful GP will explore all of these before reaching for medication — because addressing the amplifiers often changes the whole trajectory.</div>
+      </div>
+    </div>
+
+    <div class="doctor-callout">
+      <div class="doctor-icon">💬</div>
+      <div class="doctor-callout-text">
+        <div class="doctor-callout-title">Signpost NHS Talking Therapies</div>
+        <div class="doctor-callout-body"><strong>NHS Talking Therapies</strong> (previously called IAPT) delivers NICE-recommended therapies — CBT, mindfulness-based therapies, counselling — free on the NHS in England. You can <strong>self-refer directly — you don't need a GP letter</strong>. Search "NHS Talking Therapies" plus your area, or use the NHS website's service finder.</div>
+      </div>
+    </div>
+
+    <div class="doctor-callout">
+      <div class="doctor-icon">💊</div>
+      <div class="doctor-callout-text">
+        <div class="doctor-callout-title">Consider medication where appropriate</div>
+        <div class="doctor-callout-body">Antidepressants — particularly SSRIs (selective serotonin reuptake inhibitors) such as <strong>sertraline (Lustral)</strong> or <strong>fluoxetine (Prozac)</strong> — are genuinely useful for moderate-to-severe anxiety and depression. They are not treatment for "a bit of stress", but where symptoms meet clinical threshold, they help. Decisions are individualised and reversible — a conversation, not a prescription pad.</div>
+      </div>
+    </div>
+
+    <div class="doctor-callout">
+      <div class="doctor-icon">🩺</div>
+      <div class="doctor-callout-text">
+        <div class="doctor-callout-title">Rule out physical causes that mimic stress</div>
+        <div class="doctor-callout-body">Some physical conditions masquerade as, or amplify, stress symptoms: an overactive or underactive thyroid, iron-deficiency anaemia (low haemoglobin), low vitamin D, untreated sleep apnoea (breathing pauses in sleep). A simple blood panel and a sleep-pattern question often pick these up.</div>
+      </div>
+    </div>
+
+    <!-- RED FLAG CALLOUT -->
+    <div class="red-flag-box">
+      <div class="red-flag-label">🚩 Red-flag signs — what clinicians take seriously</div>
+      <div class="red-flag-title">Patterns that signal stress has shifted into time-sensitive territory</div>
+      <div class="red-flag-intro">Stress itself is common. The patterns below, however, are recognised in clinical practice as markers that something has moved beyond the everyday — into territory that responds best to prompt, specialist help rather than watchful waiting. They are the signs a GP or specialist would want addressed the same day, not held over to a routine appointment weeks later.</div>
+
+      <ul class="red-flag-list">
+        <li><span class="rf-bullet">●</span><div><strong>Thoughts of self-harm, of ending one's life, or of being unable to go on.</strong> These thoughts are treatable. UK crisis services respond 24 hours a day, and do not require any threshold of "serious enough" to be used.</div></li>
+        <li><span class="rf-bullet">●</span><div><strong>A sense of hopelessness, numbness, or disconnection from reality</strong> — watching life from outside, or feeling that nothing around is quite real.</div></li>
+        <li><span class="rf-bullet">●</span><div><strong>Panic attacks that are frequent, severe, or preventing someone leaving the house</strong> — intense surges of fear with racing heart, breathlessness, dizziness, chest tightness, or a sense of impending doom.</div></li>
+        <li><span class="rf-bullet">●</span><div><strong>Day-to-day functioning breaking down</strong> — work, self-care, eating, or sleep failing for several days running.</div></li>
+        <li><span class="rf-bullet">●</span><div><strong>New or worsening chest pain, severe breathlessness, or fainting.</strong> Stress can produce chest discomfort — but in clinical practice, these symptoms are always assessed urgently to rule out cardiac or other physical causes first.</div></li>
+        <li><span class="rf-bullet">●</span><div><strong>Increasing reliance on alcohol, drugs, or other substances to cope</strong> — with the amount creeping up, or the ability to stop slipping.</div></li>
+        <li><span class="rf-bullet">●</span><div><strong>People close to a person expressing concern.</strong> Clinical experience suggests worry from those who know someone well often precedes the person recognising it themselves.</div></li>
+      </ul>
+
+      <div class="crisis-panel">
+        <div class="crisis-title">UK services that exist for this</div>
+        <div class="crisis-grid">
+          <div class="crisis-item"><strong>Samaritans</strong> · <a href="tel:116123">116 123</a> · free, 24/7, for any kind of distress</div>
+          <div class="crisis-item"><strong>NHS 111</strong> · <a href="tel:111">dial 111, option 2</a> · mental health urgent care</div>
+          <div class="crisis-item"><strong>Shout text line</strong> · text <strong>SHOUT to 85258</strong> · free, 24/7</div>
+          <div class="crisis-item"><strong>999 or A&amp;E</strong> · for situations of immediate danger</div>
+          <div class="crisis-item"><strong>GP same-day appointments</strong> · urgent mental health slots are available; mentioning this at booking usually secures priority</div>
+          <div class="crisis-item"><strong>Mind infoline</strong> · <a href="tel:03001233393">0300 123 3393</a> · Mon–Fri 9am–6pm · information and support</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="article-section" id="research">
+    <div class="section-label">Section 4</div>
+    <h2 class="section-title">What the research shows</h2>
+
+    <p>The research into stress does two important things. First, it confirms that chronic stress genuinely affects your body — this is not vague, and it is not in your head. Second, the same body of research tells us what reliably helps, so you can act on evidence rather than guess. Here are the key findings in two halves.</p>
+
+    <!-- PART A: STRESS EFFECTS -->
+    <div class="research-half">
+      <div class="research-half-label">Part A</div>
+      <div class="research-half-title">Research confirming what chronic stress is doing to your body</div>
+    </div>
+
+    <div class="research-grid">
+
+      <!-- INTERHEART -->
+      <div class="research-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-trial-name">INTERHEART — Psychosocial Factors and Heart Attack</div>
+            <div class="rc-journal">Rosengren A, Hawken S, Ôunpuu S, et al. · The Lancet · 2004 · 52 countries</div>
+          </div>
+          <div class="rc-type-pill">Case-Control · First MI</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-stat">
+            <div class="rc-stat-num" style="color:var(--coral)">~33%</div>
+            <div class="rc-stat-label">of first heart-attack risk attributable to psychosocial factors</div>
+          </div>
+          <div class="rc-detail">
+            <p><strong>What was studied:</strong> Over 11,000 people who had just had a first heart attack, compared with over 13,000 matched controls, across 52 countries. Researchers asked about stress at work, stress at home, financial stress, major life events, depression, and perceived control over life.</p>
+            <p><strong>Key result:</strong> Psychosocial factors were one of the nine biggest drivers of first heart attack — alongside smoking, high blood pressure, high cholesterol, diabetes, and abdominal obesity. When pooled, these factors accounted for roughly a third of heart-attack risk across the population studied. The effect was seen across every region and ethnic group.</p>
+          </div>
+        </div>
+        <div class="rc-for-you"><strong>WHAT THIS MEANS FOR YOU:</strong> if your life is chronically stressed, it is genuinely working against your heart — in the same league as smoking or high blood pressure. This is not a lifestyle opinion. It's a global, 52-country signal.</div>
+      </div>
+
+      <!-- KIVIMAKI IPD-WORK -->
+      <div class="research-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-trial-name">IPD-Work — Job Strain and Coronary Heart Disease</div>
+            <div class="rc-journal">Kivimäki M, Nyberg ST, Batty GD, et al. · The Lancet · 2012</div>
+          </div>
+          <div class="rc-type-pill">IPD Meta-Analysis · 13 cohorts</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-stat">
+            <div class="rc-stat-num" style="color:var(--amber)">+23%</div>
+            <div class="rc-stat-label">higher risk of coronary heart disease with job strain<br><span style="font-size:.78rem;font-weight:400;color:rgba(255,255,255,.78)">HR 1·23 (95% CI 1·10–1·37)</span></div>
+          </div>
+          <div class="rc-detail">
+            <p><strong>What was studied:</strong> An individual-participant-data meta-analysis — the gold standard for pooling cohort evidence — of nearly 200,000 working adults across 13 European studies. "Job strain" was defined as <em>high demands combined with low control</em> — the classic unhealthy work pattern.</p>
+            <p><strong>Key result:</strong> Workers with job strain had a 23% higher risk of developing coronary heart disease over follow-up than those without. The effect held after adjusting for age, sex, socioeconomic status, and conventional cardiovascular risk factors. The population-attributable risk was modest (~3.4%) — smaller than smoking or blood pressure — but real, and consistent across countries.</p>
+          </div>
+        </div>
+        <div class="rc-for-you"><strong>WHAT THIS MEANS FOR YOU:</strong> if your job feels like high pressure with little autonomy over how you do it, that specific combination carries real cardiovascular weight. It's not just uncomfortable — the risk is measurable.</div>
+      </div>
+
+      <!-- TAWAKOL -->
+      <div class="research-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-trial-name">The Amygdala–Inflammation Pathway</div>
+            <div class="rc-journal">Tawakol A, Ishai A, Takx RA, et al. · The Lancet · 2017 · Massachusetts General &amp; Harvard</div>
+          </div>
+          <div class="rc-type-pill">Imaging Study · Mechanism</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-stat">
+            <div class="rc-stat-num" style="color:#e8a090">brain<br>→ blood<br>→ heart</div>
+            <div class="rc-stat-label">the mechanism, traced for the first time</div>
+          </div>
+          <div class="rc-detail">
+            <p><strong>What was studied:</strong> Researchers used whole-body PET-CT imaging (a scan that detects metabolic activity) to trace activity in the brain's amygdala, in the bone marrow, and in the walls of the arteries, then tracked the same individuals for several years to see who went on to develop cardiovascular disease.</p>
+            <p><strong>Key result:</strong> Higher resting amygdala activity independently predicted subsequent heart attacks and strokes. The mechanism: amygdala activation → signalling to the bone marrow → increased production of inflammatory white blood cells → inflammation in the artery walls → atherosclerosis and cardiovascular events. Perceived stress scores correlated with every step of this chain, including C-reactive protein (a standard blood marker of inflammation).</p>
+          </div>
+        </div>
+        <div class="rc-for-you"><strong>WHAT THIS MEANS FOR YOU:</strong> when you feel chronically stressed, a measurable inflammatory process is unfolding in your body. The connection from stress to heart is no longer vague — it has been imaged, step by step. And that means it is potentially reversible.</div>
+      </div>
+
+    </div>
+
+    <!-- PART B: WHAT HELPS -->
+    <div class="research-half">
+      <div class="research-half-label">Part B</div>
+      <div class="research-half-title">Research confirming what reliably lowers stress — so you can act on it</div>
+    </div>
+
+    <div class="research-grid">
+
+      <!-- MEDITATION / MBSR -->
+      <div class="research-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-trial-name">Meditation &amp; Mindfulness — Two Large Systematic Reviews</div>
+            <div class="rc-journal">Goyal M et al. JAMA Intern Med 2014 · Khoury B et al. J Psychosom Res 2015</div>
+          </div>
+          <div class="rc-type-pill">Systematic Reviews</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-stat">
+            <div class="rc-stat-num" style="color:#7ecc99">moderate<br>effect</div>
+            <div class="rc-stat-label">on stress, anxiety, depression<br><span style="font-size:.78rem;font-weight:400;color:rgba(255,255,255,.78)">Hedges' g ≈ 0·53</span></div>
+          </div>
+          <div class="rc-detail">
+            <p><strong>What was studied:</strong> Two major systematic reviews. Goyal (JAMA Internal Medicine, 2014) pooled trials of meditation programmes across diverse adult clinical populations. Khoury (2015) pooled trials of <strong>MBSR</strong> (Mindfulness-Based Stress Reduction — a standardised 8-week course developed by Jon Kabat-Zinn at the University of Massachusetts) in healthy adults.</p>
+            <p><strong>Key result:</strong> Meditation and mindfulness programmes produce small-to-moderate reductions in stress, anxiety, and depression — with MBSR showing moderate effects on anxiety and depression, and larger effects on perceived stress. Benefits persisted at follow-up, and practice effects accumulated with consistent daily use, typically from around 10 minutes per day upward.</p>
+          </div>
+        </div>
+        <div class="rc-for-you"><strong>WHAT THIS MEANS FOR YOU:</strong> a daily 10-minute meditation habit, or an 8-week MBSR course, is genuinely effective. Free options include the NHS Every Mind Matters site, Insight Timer, and many MBSR courses run locally in the UK.</div>
+      </div>
+
+      <!-- CBT -->
+      <div class="research-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-trial-name">Cognitive Behavioural Therapy for Anxiety</div>
+            <div class="rc-journal">Carpenter JK, Andrews LA, Witcraft SM, Powers MB, Smits JAJ, Hofmann SG. · Depression &amp; Anxiety · 2018</div>
+          </div>
+          <div class="rc-type-pill">Meta-Analysis · Placebo-Controlled RCTs</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-stat">
+            <div class="rc-stat-num" style="color:#a0d4f0">large<br>effect</div>
+            <div class="rc-stat-label">for generalised anxiety &amp; acute stress disorders<br><span style="font-size:.78rem;font-weight:400;color:rgba(255,255,255,.78)">Hedges' g ≈ 0·56 (overall)</span></div>
+          </div>
+          <div class="rc-detail">
+            <p><strong>What was studied:</strong> A meta-analysis of 41 randomised placebo-controlled trials of CBT (Cognitive Behavioural Therapy — a structured talking therapy that trains you to notice and reshape unhelpful thought patterns, and to experiment with new behavioural responses) for anxiety-related disorders in adults.</p>
+            <p><strong>Key result:</strong> CBT produced moderate placebo-controlled reductions in target symptoms overall (Hedges' g = 0·56), with <strong>large effect sizes specifically for generalised anxiety disorder</strong> (GAD — persistent, uncontrollable worry about everyday things, lasting months or longer) <strong>and acute stress disorder</strong> (intense stress reactions in the first month after a frightening or traumatic event). Response rates were roughly three times higher with CBT than with placebo. The effects were durable at follow-up.</p>
+          </div>
+        </div>
+        <div class="rc-for-you"><strong>WHAT THIS MEANS FOR YOU:</strong> if your stress has tipped into persistent worry or anxiety, CBT works — and it works particularly well for the conditions most stress-driven. NHS Talking Therapies delivers it free in England. Self-referral is usually quickest.</div>
+      </div>
+
+      <!-- EXERCISE -->
+      <div class="research-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-trial-name">Physical Activity — Meta-Meta-Analysis</div>
+            <div class="rc-journal">Rebar AL, Stanton R, Geard D, et al. · Health Psychology Review · 2015 ⚑</div>
+          </div>
+          <div class="rc-type-pill">Meta-Meta-Analysis · Non-Clinical Adults</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-stat">
+            <div class="rc-stat-num" style="color:var(--amber)">~38%</div>
+            <div class="rc-stat-label">reduction in anxiety symptoms<br><span style="font-size:.78rem;font-weight:400;color:rgba(255,255,255,.78)">SMD −0·38 (anxiety), −0·50 (depression)</span></div>
+          </div>
+          <div class="rc-detail">
+            <p><strong>What was studied:</strong> A meta-meta-analysis — a review of existing meta-analyses — covering effects of physical activity on depression across approximately 92 studies and on anxiety across approximately 306 study-level effects in non-clinical adult populations.</p>
+            <p><strong>Key result:</strong> Regular physical activity produced a medium-sized reduction in depression (SMD −0·50) and a small-to-medium reduction in anxiety (SMD −0·38). Effects were consistent across exercise types — aerobic, resistance, and mixed — suggesting that <em>regularity matters more than format</em>. Additional mechanisms include reduced inflammation, improved sleep quality, and increased production of mood-regulating neurochemicals.</p>
+          </div>
+        </div>
+        <div class="rc-for-you"><strong>WHAT THIS MEANS FOR YOU:</strong> a 30-minute brisk walk, three to five times a week, is evidence-based stress medicine. It doesn't need to be the gym. It doesn't need to be hard. It needs to be <em>regular</em>.</div>
+      </div>
+
+      <!-- NHS TALKING THERAPIES -->
+      <div class="research-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-trial-name">NHS Talking Therapies — Real-World Outcomes</div>
+            <div class="rc-journal">NHS England Digital · 2024 · England-wide programme data</div>
+          </div>
+          <div class="rc-type-pill">Real-World Evidence · National Service</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-stat">
+            <div class="rc-stat-num" style="color:#7ecc99">~50%</div>
+            <div class="rc-stat-label">recovery rate<br><span style="font-size:.78rem;font-weight:400;color:rgba(255,255,255,.78)">among those completing treatment</span></div>
+          </div>
+          <div class="rc-detail">
+            <p><strong>What was studied:</strong> NHS Talking Therapies (previously IAPT — Improving Access to Psychological Therapies) is the NHS England programme that delivers NICE-recommended psychological treatments free at the point of use. Outcomes are reported nationally from real-world data, not selected trial samples.</p>
+            <p><strong>Key result:</strong> Across more than 1.7 million referrals in recent years, approximately <strong>half of those who complete a course of treatment are classified as recovered</strong> — meaning their anxiety and depression scores fall below the clinical threshold. Many more improve meaningfully without crossing the recovery line. Self-referral is available — no GP letter required.</p>
+          </div>
+        </div>
+        <div class="rc-for-you"><strong>WHAT THIS MEANS FOR YOU:</strong> if you are struggling, NHS Talking Therapies is genuinely effective for roughly half of people who complete a course — and it's free. Search "NHS Talking Therapies" and your postcode. Self-refer. You don't need to see your GP first.</div>
+      </div>
+
+    </div>
+
+    <h3 class="sub-title">Why do these approaches work?</h3>
+    <p>Each of the evidence-based strategies above targets a different point in the stress-physiology chain:</p>
+
+    <div class="mechanism-grid">
+      <div class="mech-card">
+        <div class="mech-icon">🫁</div>
+        <div class="mech-title">Breath and breathing practices</div>
+        <div class="mech-body">Slow, extended out-breaths directly activate the <strong>vagus nerve</strong>, sending a "stand down" signal from body to brain. This is the fastest acting of all stress techniques — measurable within one to two minutes.</div>
+      </div>
+      <div class="mech-card">
+        <div class="mech-icon">🏃</div>
+        <div class="mech-title">Regular physical activity</div>
+        <div class="mech-body">Lowers resting cortisol, reduces low-grade inflammation, improves sleep architecture, and raises brain levels of serotonin, dopamine, and BDNF (a protein that supports brain cell growth and mood regulation).</div>
+      </div>
+      <div class="mech-card">
+        <div class="mech-icon">🧠</div>
+        <div class="mech-title">CBT and mindfulness</div>
+        <div class="mech-body">Break the self-reinforcing thought-emotion-body loop that keeps chronic stress running. Trains you to notice the spiral early and step out of it before cortisol and inflammation build up.</div>
+      </div>
+      <div class="mech-card">
+        <div class="mech-icon">🤝</div>
+        <div class="mech-title">Connection and social support</div>
+        <div class="mech-body">Genuine social support measurably buffers the stress response at the biological level — lower cortisol, lower inflammatory markers, and better cardiovascular outcomes. Isolation amplifies stress; connection dampens it.</div>
+      </div>
+    </div>
+
+    <!-- CALL TO ACTION — THREE-TIER -->
+    <div class="cta-section">
+      <div class="cta-intro">What can I actually do — now, this week, and ongoing?</div>
+      <div class="cta-grid">
+
+        <div class="cta-card cta-now">
+          <div class="cta-timeframe">Right Now</div>
+          <div class="cta-subtitle">Today · Free · No appointment</div>
+          <ul class="cta-options">
+            <li><strong>5 minutes of slow breathing</strong> — 4 seconds in, 6 seconds out</li>
+            <li><strong>A 15-minute walk outside</strong> — daylight counts twice</li>
+            <li><strong>Write down the one thing</strong> weighing on you most</li>
+            <li><strong>Phone one person</strong> who knows you well</li>
+          </ul>
+        </div>
+
+        <div class="cta-card cta-week">
+          <div class="cta-timeframe">This Week</div>
+          <div class="cta-subtitle">Evidence-backed · Free or low-cost</div>
+          <ul class="cta-options">
+            <li><strong>Self-refer</strong> to NHS Talking Therapies online</li>
+            <li><strong>Try a free mindfulness app</strong> — 10 min daily</li>
+            <li><strong>Schedule 3 × 30-min</strong> walks or exercise sessions</li>
+            <li><strong>Book a GP appointment</strong> if symptoms persist</li>
+          </ul>
+        </div>
+
+        <div class="cta-card cta-ongoing">
+          <div class="cta-timeframe">Ongoing</div>
+          <div class="cta-subtitle">Bigger commitments with durable returns</div>
+          <ul class="cta-options">
+            <li><strong>An 8-week MBSR course</strong> — in person or online</li>
+            <li><strong>A CBT self-help book</strong> — e.g. <em>Mind Over Mood</em></li>
+            <li><strong>A regular movement routine</strong> you actually enjoy</li>
+            <li><strong>Build a real-world connection habit</strong></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PUTTING IT ALL TOGETHER -->
+  <div class="article-section" id="conclusion">
+    <h2 class="section-title">Putting it all together</h2>
+    <div class="conclusion-box">
+      <p>Chronic stress is not a character flaw. It is your body's ancient survival system stuck in the "on" position, trying to solve modern problems it was never designed to face. The feelings you recognise — the tight chest, the poor sleep, the short fuse, the wine at 9pm, the stomach that won't settle — all sit on a real, measurable physiology.</p>
+      <p>The research makes two things clear. First, chronic stress genuinely affects your heart, your mind, your gut, your immune system, and your behaviour — this is not in your head, and it is not weakness. Second, and more importantly, the same research tells us what reliably helps: breathing practice, regular movement, talking therapies such as CBT, mindfulness, and real-world human connection. None of these are miracles. All of them have been tested against placebo and have held up.</p>
+      <p>You do not need to fix all of this today. Start with one thing — five minutes of slow breathing after you finish reading this, a short walk tomorrow, a self-referral to NHS Talking Therapies this week. Small, evidence-based steps, taken consistently, are how the research actually reaches your daily life.</p>
+      <p><strong>You are not broken. You are carrying a system that needs support — and we now know, in careful detail, what support actually works.</strong></p>
+    </div>
+  </div>
+
+  <!-- REFERENCES -->
+  <div class="references-section">
+    <h3 class="references-title">References</h3>
+
+    <div class="ref-block">
+      <div class="ref-num">1 — INTERHEART (Psychosocial Factors)</div>
+      <div class="ref-full">Rosengren A, Hawken S, Ôunpuu S, Sliwa K, Zubaid M, Almahmeed WA, et al. Association of psychosocial risk factors with risk of acute myocardial infarction in 11 119 cases and 13 648 controls from 52 countries (the INTERHEART study): case-control study. <em>The Lancet</em>. 2004;364(9438):953–962. DOI: 10.1016/S0140-6736(04)17019-0. PMID: 15364186.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(04)17019-0/fulltext" target="_blank" rel="noopener">Lancet Full Text</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/15364186/" target="_blank" rel="noopener">PubMed ⚑ verify</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">2 — IPD-Work (Job Strain and CHD)</div>
+      <div class="ref-full">Kivimäki M, Nyberg ST, Batty GD, Fransson EI, Heikkilä K, Alfredsson L, et al. Job strain as a risk factor for coronary heart disease: a collaborative meta-analysis of individual participant data. <em>The Lancet</em>. 2012;380(9852):1491–1497. DOI: 10.1016/S0140-6736(12)60994-5. PMID: 22981903.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(12)60994-5/fulltext" target="_blank" rel="noopener">Lancet Full Text</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/22981903/" target="_blank" rel="noopener">PubMed ⚑ verify</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">3 — Amygdala, Inflammation and Cardiovascular Events</div>
+      <div class="ref-full">Tawakol A, Ishai A, Takx RAP, Figueroa AL, Ali A, Kaiser Y, et al. Relation between resting amygdalar activity and cardiovascular events: a longitudinal and cohort study. <em>The Lancet</em>. 2017;389(10071):834–845. DOI: 10.1016/S0140-6736(16)31714-7. PMID: 28088338.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(16)31714-7/fulltext" target="_blank" rel="noopener">Lancet Full Text</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/28088338/" target="_blank" rel="noopener">PubMed ⚑ verify</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">4 — Meditation Programmes (Goyal)</div>
+      <div class="ref-full">Goyal M, Singh S, Sibinga EMS, Gould NF, Rowland-Seymour A, Sharma R, et al. Meditation programs for psychological stress and well-being: a systematic review and meta-analysis. <em>JAMA Internal Medicine</em>. 2014;174(3):357–368. DOI: 10.1001/jamainternmed.2013.13018. PMID: 24395196.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/1809754" target="_blank" rel="noopener">JAMA Full Text</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/24395196/" target="_blank" rel="noopener">PubMed ⚑ verify</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">5 — MBSR in Healthy Adults (Khoury)</div>
+      <div class="ref-full">Khoury B, Sharma M, Rush SE, Fournier C. Mindfulness-based stress reduction for healthy individuals: a meta-analysis. <em>Journal of Psychosomatic Research</em>. 2015;78(6):519–528. DOI: 10.1016/j.jpsychores.2015.03.009. ⚑ verify DOI before publication.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/25818837/" target="_blank" rel="noopener">PubMed ⚑ verify</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">6 — CBT for Anxiety-Related Disorders (Carpenter et al.)</div>
+      <div class="ref-full">Carpenter JK, Andrews LA, Witcraft SM, Powers MB, Smits JAJ, Hofmann SG. Cognitive behavioral therapy for anxiety and related disorders: A meta-analysis of randomized placebo-controlled trials. <em>Depression and Anxiety</em>. 2018;35(6):502–514. DOI: 10.1002/da.22728. PMID: 29451967. ⚑ verify DOI before publication.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/29451967/" target="_blank" rel="noopener">PubMed ⚑ verify</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">7 — Physical Activity and Mental Health (Rebar et al.)</div>
+      <div class="ref-full">Rebar AL, Stanton R, Geard D, Short C, Duncan MJ, Vandelanotte C. A meta-meta-analysis of the effect of physical activity on depression and anxiety in non-clinical adult populations. <em>Health Psychology Review</em>. 2015;9(3):366–378. DOI: 10.1080/17437199.2015.1022901. PMID: 25739893. ⚑ verify DOI before publication.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/25739893/" target="_blank" rel="noopener">PubMed ⚑ verify</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">8 — NHS Talking Therapies — Programme Outcomes</div>
+      <div class="ref-full">NHS England Digital. NHS Talking Therapies for anxiety and depression — monthly and annual statistics. England-wide outcome data. 2024. ⚑ link to latest published report to be confirmed before publication.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://digital.nhs.uk/data-and-information/publications/statistical/nhs-talking-therapies-for-anxiety-and-depression-annual-reports" target="_blank" rel="noopener">NHS Digital</a>
+        <a class="ref-pill" href="https://www.nhs.uk/mental-health/talking-therapies-medicine-treatments/talking-therapies-and-counselling/nhs-talking-therapies/" target="_blank" rel="noopener">NHS Self-Referral</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <p>helf.school · Practical Health Series · Article 11 · Stress · stress.html</p>
+  <p style="margin-top:.4rem">Health education for everyone — not medical advice. Always speak to your own doctor about your personal health.</p>
+  <p style="margin-top:.6rem"><a href="index.html">Home</a> · <a href="helf-school-conditions.html">All articles</a> · <a href="helf-school-membership.html">Membership</a></p>
+</footer>
+
+</body>
+</html>
