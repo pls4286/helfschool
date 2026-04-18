@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sleep — helf.school</title>
+  <meta name="description" content="What does the research actually show about sleep, health, and how to sleep better? A clear, evidence-based guide from Dr Paul, retired NHS GP."/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--navy:#1B2A4A;--coral:#E8634A;--cream:#FAF7F2;--sage:#7A9E87;--amber:#E8A84A;--practical:#7A6A2E;--text:#2C2C2C}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'DM Sans',sans-serif;font-weight:400;color:var(--text);background:var(--cream);line-height:1.7}
+
+    /* NAV */
+    .site-nav{background:var(--navy);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+    .nav-logo{display:flex;align-items:center;gap:.5rem;text-decoration:none}
+    .logo-text{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;color:#fff}
+    .logo-dot{color:var(--coral)}
+    .logo-tag{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+    .nav-back{font-size:.82rem;color:rgba(255,255,255,.75);text-decoration:none;display:flex;align-items:center;gap:.35rem}
+    .nav-back:hover{color:#fff}
+
+    /* HERO */
+    .hero{background:linear-gradient(135deg,var(--navy) 0%,#2a2840 60%,#1f1e30 100%);padding:4rem 2rem 3rem;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:-40%;right:-8%;width:600px;height:600px;background:radial-gradient(circle,rgba(122,106,46,.20) 0%,transparent 70%);pointer-events:none}
+    .hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(232,168,74,.10) 0%,transparent 70%);pointer-events:none}
+    .hero-inner{max-width:860px;margin:0 auto;position:relative}
+    .breadcrumb{display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;font-size:.78rem;color:rgba(255,255,255,.75)}
+    .breadcrumb a{color:rgba(255,255,255,.75);text-decoration:none}
+    .breadcrumb a:hover{color:#fff}
+    .breadcrumb-sep{color:rgba(255,255,255,.4)}
+    .series-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(122,106,46,.2);border:1px solid rgba(122,106,46,.5);color:#d4b84a;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .8rem;border-radius:100px;margin-bottom:1rem}
+    .hero h1{font-family:'Fraunces',serif;font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;color:#fff;line-height:1.12;margin-bottom:.85rem}
+    .hero-subtitle{font-size:1.05rem;color:rgba(255,255,255,.88);line-height:1.6;max-width:640px;margin-bottom:1.75rem}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:1.25rem;font-size:.8rem;color:rgba(255,255,255,.82)}
+    .meta-item{display:flex;align-items:center;gap:.35rem}
+
+    /* ARTICLE BODY */
+    .article-body{max-width:860px;margin:0 auto;padding:0 2rem 4rem}
+
+    .article-section{padding:3rem 0;border-bottom:1px solid rgba(27,42,74,.08);scroll-margin-top:150px}
+    .article-section:last-child{border-bottom:none}
+    .section-label{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--practical);margin-bottom:.5rem}
+    .section-title{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.5vw,1.85rem);font-weight:700;color:var(--navy);margin-bottom:1.25rem;line-height:1.2}
+    .article-section p{font-size:1rem;color:var(--text);font-weight:400;line-height:1.78;margin-bottom:1rem}
+    .article-section p:last-child{margin-bottom:0}
+
+    /* DURATION BY AGE — grid of cards */
+    .duration-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:.8rem;margin:1.75rem 0}
+    .duration-card{background:#fff;border:1px solid rgba(27,42,74,.1);border-radius:12px;padding:1rem 1.1rem;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+    .duration-age{font-size:.72rem;font-weight:700;color:var(--practical);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+    .duration-num{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:700;color:var(--navy);line-height:1;margin-bottom:.15rem}
+    .duration-unit{font-size:.78rem;color:#3a3a3a;font-weight:500}
+
+    /* SLEEP ARCHITECTURE — horizontal stacked stages */
+    .stage-grid{display:flex;flex-direction:column;gap:.75rem;margin:1.75rem 0}
+    .stage-card{border-radius:12px;overflow:hidden;display:flex;align-items:stretch}
+    .stage-bar{flex-shrink:0;width:110px;padding:1rem 1.2rem;display:flex;flex-direction:column;justify-content:center;gap:.15rem}
+    .stage-name{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;line-height:1.1}
+    .stage-share{font-size:.72rem;color:rgba(255,255,255,.88);font-weight:600}
+    .stage-body{flex:1;padding:1rem 1.25rem;background:#fff;border:1px solid rgba(27,42,74,.1);border-left:none;border-radius:0 12px 12px 0}
+    .stage-body-title{font-size:.85rem;font-weight:700;color:var(--navy);margin-bottom:.2rem}
+    .stage-body-text{font-size:.88rem;color:#3a3a3a;line-height:1.58;font-weight:400}
+
+    .stage-n1 .stage-bar{background:#3a5a7a}
+    .stage-n2 .stage-bar{background:#2e4a6a}
+    .stage-n3 .stage-bar{background:#1f3550}
+    .stage-rem .stage-bar{background:#6b4c70}
+
+    /* J-CURVE CALLOUT */
+    .j-curve{background:linear-gradient(135deg,#fff8e8 0%,#fff1d4 100%);border:1px solid #e8c84a;border-radius:14px;padding:1.25rem 1.5rem;margin:1.75rem 0;display:flex;gap:1.1rem;align-items:flex-start}
+    .j-curve-icon{font-size:1.6rem;flex-shrink:0;margin-top:.05rem}
+    .j-curve-text{flex:1}
+    .j-curve-title{font-weight:700;color:#5c4800;font-size:.98rem;margin-bottom:.35rem}
+    .j-curve-body{font-size:.9rem;color:#4a3900;line-height:1.6;font-weight:400}
+
+    /* KEY TERMS */
+    .key-terms-box{background:var(--navy);border-radius:16px;padding:2rem 2.25rem;margin:2.5rem 0}
+    .key-terms-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem}
+    .key-terms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:.9rem}
+    .term-item{padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.07)}
+    .term-name{font-size:.88rem;font-weight:700;color:#d4b84a;margin-bottom:.25rem}
+    .term-def{font-size:.92rem;color:rgba(255,255,255,.92);line-height:1.52}
+
+    /* WHY IT MATTERS — benefit list */
+    .benefit-list{list-style:none;margin:1.25rem 0;display:flex;flex-direction:column;gap:.85rem}
+    .benefit-list li{display:flex;align-items:flex-start;gap:.9rem;padding:1rem 1.25rem;background:#fff;border-radius:12px;border-left:4px solid var(--practical);box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    .benefit-num{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:700;color:var(--practical);flex-shrink:0;line-height:1;margin-top:.05rem;opacity:.45}
+    .benefit-content{flex:1}
+    .benefit-title{font-weight:700;color:var(--navy);font-size:.97rem;margin-bottom:.2rem}
+    .benefit-desc{font-size:.9rem;color:#3a3a3a;line-height:1.58;font-weight:400}
+
+    /* DOCTOR CALLOUTS */
+    .doctor-callout{background:#fff;border:1px solid rgba(27,42,74,.1);border-radius:14px;padding:1.3rem 1.5rem;margin:1rem 0;display:flex;gap:1rem;align-items:flex-start}
+    .doctor-icon{font-size:1.4rem;flex-shrink:0;margin-top:.1rem}
+    .doctor-callout-text{flex:1}
+    .doctor-callout-title{font-weight:700;color:var(--navy);font-size:.93rem;margin-bottom:.3rem}
+    .doctor-callout-body{font-size:.9rem;color:#3a3a3a;line-height:1.62;font-weight:400}
+
+    /* RED FLAGS BOX */
+    .red-flags{background:#fef5f3;border:1px solid #e89080;border-radius:14px;padding:1.3rem 1.5rem;margin:1.25rem 0}
+    .red-flags-title{font-family:'Fraunces',serif;font-size:1.02rem;font-weight:700;color:#9a3a2a;margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+    .red-flags-list{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+    .red-flags-list li{font-size:.9rem;color:#4a2520;line-height:1.55;padding-left:1.3rem;position:relative;font-weight:400}
+    .red-flags-list li::before{content:'⚠';position:absolute;left:0;top:0;color:#c8423a;font-size:.95rem}
+
+    /* RESEARCH CARDS */
+    .research-grid{display:flex;flex-direction:column;gap:1.5rem;margin:1.5rem 0}
+    .research-card{background:var(--navy);border-radius:16px;overflow:hidden}
+    .rc-header{padding:1.1rem 1.5rem .9rem;border-bottom:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+    .rc-trial-name{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;color:#fff}
+    .rc-journal{font-size:.75rem;color:rgba(255,255,255,.75);margin-top:.15rem}
+    .rc-type-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:100px;font-size:.67rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.82);padding:.2rem .65rem;white-space:nowrap;flex-shrink:0}
+    .rc-body{padding:1.25rem 1.5rem;display:flex;gap:1.5rem;align-items:flex-start}
+    .rc-stat{flex-shrink:0;text-align:center;background:rgba(255,255,255,.06);border-radius:12px;padding:1rem 1.25rem;min-width:170px;max-width:210px}
+    .rc-stat-num{font-family:'Fraunces',serif;font-size:2.8rem;font-weight:700;line-height:1}
+    .rc-stat-label{font-size:1rem;color:#fff;font-weight:700;margin-top:.5rem;line-height:1.4}
+    .rc-stat-label .flag{color:var(--amber);font-weight:700}
+    .rc-detail{flex:1}
+    .rc-detail p{font-size:.9rem;color:rgba(255,255,255,.90);line-height:1.64;margin-bottom:.65rem;font-weight:400}
+    .rc-detail p:last-child{margin-bottom:0}
+    .rc-detail strong{color:#fff;font-weight:600}
+
+    /* CONCLUSION BOX */
+    .conclusion-box{background:var(--navy);border-radius:16px;padding:2rem 2.25rem;margin:1.5rem 0}
+    .conclusion-box p{color:rgba(255,255,255,.92);font-size:1rem;line-height:1.78;margin-bottom:1rem;font-weight:400}
+    .conclusion-box p:last-child{margin-bottom:0;font-style:italic;color:rgba(255,255,255,.96)}
+    .conclusion-box strong{color:#fff;font-weight:700}
+
+    /* DISCLAIMER */
+    .disclaimer{background:#fffbec;border:1px solid #e8c84a;border-radius:12px;padding:1rem 1.25rem;margin:1.5rem 0;font-size:.85rem;color:#5c4800;line-height:1.58}
+
+    /* REFERENCES */
+    .references-section{margin-top:3rem;padding-top:2rem;border-top:2px solid rgba(27,42,74,.1)}
+    .references-title{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:1.25rem}
+    .ref-block{margin-bottom:1.25rem;padding:1rem 1.25rem;background:#fff;border-radius:10px;border-left:3px solid var(--practical)}
+    .ref-num{font-size:.72rem;font-weight:700;color:var(--practical);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
+    .ref-full{font-size:.88rem;color:var(--text);line-height:1.58;margin-bottom:.5rem}
+    .ref-links{display:flex;flex-wrap:wrap;gap:.5rem}
+    .ref-pill{display:inline-block;cursor:pointer;background:var(--navy);color:#fff;text-decoration:none;font-size:.72rem;font-weight:600;padding:.28rem .75rem;border-radius:100px;transition:background .15s}
+    .ref-pill:hover{background:var(--practical);color:#fff}
+
+    /* FOOTER */
+    .site-footer{background:var(--navy);color:rgba(255,255,255,.7);text-align:center;padding:2rem;font-size:.8rem}
+    .site-footer a{color:rgba(255,255,255,.85);text-decoration:none}
+
+    @media(max-width:640px){
+      .hero{padding:2.5rem 1.25rem 2rem}
+      .article-body{padding:0 1.25rem 3rem}
+      .rc-body{flex-direction:column}
+      .key-terms-grid{grid-template-columns:1fr}
+      .stage-card{flex-direction:column}
+      .stage-bar{width:100%;padding:.75rem 1.2rem}
+      .stage-body{border:1px solid rgba(27,42,74,.1);border-top:none;border-radius:0 0 12px 12px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a class="nav-logo" href="index.html">
+    <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
+      <path d="M11 2C8 2 5.5 4 4 6.5 2.5 9 2.5 12 4 14.5c1 1.8 2.8 3 5 3.4V4.5" stroke="#E8634A" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M11 2C14 2 16.5 4 18 6.5 19.5 9 19.5 12 18 14.5c-1 1.8-2.8 3-5 3.4V4.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <div class="logo-text">helf<span class="logo-dot">.</span>school</div>
+      <div class="logo-tag">Health Education</div>
+    </div>
+  </a>
+  <a class="nav-back" href="helf-school-conditions.html">← All conditions</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">›</span>
+      <a href="helf-school-conditions.html">Conditions</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Sleep</span>
+    </div>
+    <div class="series-pill">📋 Practical Health Series · Article 09</div>
+    <h1>Sleep</h1>
+    <p class="hero-subtitle">One of the most important things you do for your health — and one of the most commonly underestimated. What the evidence actually shows, in plain English.</p>
+    <div class="hero-meta">
+      <span class="meta-item">📖 9 min read</span>
+      <span class="meta-item">👨‍⚕️ Dr Paul · Retired NHS GP</span>
+      <span class="meta-item">📅 April 2026</span>
+      <span class="meta-item">🔬 Evidence-based</span>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE BODY -->
+<div class="article-body">
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer" style="margin-top:1.75rem">
+    <strong>Health education — not medical advice.</strong> This article is for general information. If anything feels relevant to your personal health, please take it to your own GP or healthcare professional.
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="article-section" id="what-is-it">
+    <div class="section-label">Section 1</div>
+    <h2 class="section-title">What is healthy sleep?</h2>
+
+    <p>Sleep is often described as a pause button — the hours we lose in order to live the rest of our day. Biologically, it is almost the opposite. Sleep is one of the most <strong>active, tightly regulated processes</strong> the body performs. Brain tissue is cleared of waste products, memory is consolidated (moved from short-term storage into long-term storage), hormones that control appetite, blood pressure, and blood sugar are reset, and tissues repair themselves. Cut sleep short, and nearly every one of these systems runs less well the following day.</p>
+
+    <p>Healthy sleep has three components, not one. How <em>much</em> you sleep matters — but so does <em>when</em> you sleep, and <em>how well</em> you cycle through the stages of sleep while you are doing it.</p>
+
+    <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;color:var(--navy);margin:1.5rem 0 .5rem;font-weight:700">How much sleep you need</h3>
+    <p>The <strong>NHS recommends 7 to 9 hours</strong> per night for most adults. Major international consensus statements (American Academy of Sleep Medicine, Sleep Research Society) agree: adults should sleep <strong>7 or more hours</strong> regularly for optimal health. Needs change across life stages:</p>
+
+    <div class="duration-grid">
+      <div class="duration-card">
+        <div class="duration-age">Newborns</div>
+        <div class="duration-num">14–17</div>
+        <div class="duration-unit">hours / 24h</div>
+      </div>
+      <div class="duration-card">
+        <div class="duration-age">Toddlers</div>
+        <div class="duration-num">11–14</div>
+        <div class="duration-unit">hours / 24h</div>
+      </div>
+      <div class="duration-card">
+        <div class="duration-age">Children</div>
+        <div class="duration-num">9–12</div>
+        <div class="duration-unit">hours / night</div>
+      </div>
+      <div class="duration-card">
+        <div class="duration-age">Teens</div>
+        <div class="duration-num">8–10</div>
+        <div class="duration-unit">hours / night</div>
+      </div>
+      <div class="duration-card">
+        <div class="duration-age">Adults</div>
+        <div class="duration-num">7–9</div>
+        <div class="duration-unit">hours / night</div>
+      </div>
+      <div class="duration-card">
+        <div class="duration-age">Older adults</div>
+        <div class="duration-num">7–8</div>
+        <div class="duration-unit">hours / night</div>
+      </div>
+    </div>
+
+    <p>Eight hours is often treated as the universal target, but it is really an average. Individual need varies — some people feel genuinely rested on 7 hours, others need closer to 9. What matters more is <strong>consistency</strong> and <strong>how you feel during the day</strong>. If you are persistently tired, needing caffeine to function, or falling asleep unintentionally when still, you are probably not getting enough good-quality sleep.</p>
+
+    <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;color:var(--navy);margin:1.75rem 0 .5rem;font-weight:700">Sleep architecture — the four stages</h3>
+    <p>A healthy night is not a single flat state — it is a series of <strong>cycles</strong>, each lasting roughly 90 minutes. Most adults go through 4 to 6 cycles per night, moving through four different stages of sleep, each with distinct functions:</p>
+
+    <div class="stage-grid">
+
+      <div class="stage-card stage-n1">
+        <div class="stage-bar">
+          <div class="stage-name">N1</div>
+          <div class="stage-share">~5% of night</div>
+        </div>
+        <div class="stage-body">
+          <div class="stage-body-title">Light sleep — the doorway</div>
+          <div class="stage-body-text">The transition from wakefulness to sleep. Easy to wake from. Brain activity starts to slow, muscles relax, and you may feel a brief falling sensation (a hypnic jerk — harmless and very common).</div>
+        </div>
+      </div>
+
+      <div class="stage-card stage-n2">
+        <div class="stage-bar">
+          <div class="stage-name">N2</div>
+          <div class="stage-share">~45% of night</div>
+        </div>
+        <div class="stage-body">
+          <div class="stage-body-title">Light sleep — the bulk of the night</div>
+          <div class="stage-body-text">The majority of sleep time. Body temperature drops, heart rate slows. Important for memory consolidation (the brain moving new information from short-term into long-term storage) and learning.</div>
+        </div>
+      </div>
+
+      <div class="stage-card stage-n3">
+        <div class="stage-bar">
+          <div class="stage-name">N3</div>
+          <div class="stage-share">~20% of night</div>
+        </div>
+        <div class="stage-body">
+          <div class="stage-body-title">Deep sleep — slow-wave sleep</div>
+          <div class="stage-body-text">The deepest, most restorative stage. Hardest to wake from. Growth hormone is released, tissues repair, the immune system resets, and the brain clears metabolic waste products. Most deep sleep happens in the first half of the night.</div>
+        </div>
+      </div>
+
+      <div class="stage-card stage-rem">
+        <div class="stage-bar">
+          <div class="stage-name">REM</div>
+          <div class="stage-share">~25% of night</div>
+        </div>
+        <div class="stage-body">
+          <div class="stage-body-title">Dreaming sleep — rapid eye movement</div>
+          <div class="stage-body-text">The brain is almost as active as when awake, but the body is temporarily paralysed (REM atonia — a safety feature that stops you acting out dreams). Critical for emotional processing, learning, and creativity. Most REM happens in the second half of the night — which is why cutting sleep short hits REM hardest.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <p>This is why <strong>quantity without quality does not count</strong>. Someone who sleeps seven hours but is fragmented by untreated sleep apnoea (pauses in breathing during sleep) will never reach enough deep or REM sleep, and will wake unrefreshed — even though the clock says they slept long enough.</p>
+
+    <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;color:var(--navy);margin:1.75rem 0 .5rem;font-weight:700">The J-curve — why more isn't better</h3>
+    <div class="j-curve">
+      <div class="j-curve-icon">📊</div>
+      <div class="j-curve-text">
+        <div class="j-curve-title">Both too little AND too much sleep are associated with increased risk</div>
+        <div class="j-curve-body">Large meta-analyses of millions of people consistently show a <strong>J-shaped or U-shaped curve</strong> for sleep duration and health outcomes: lowest risk sits around <strong>7 hours</strong> per night, with risk rising on either side. Persistent short sleep (under 6 hours) is linked to cardiovascular disease, type 2 diabetes, and dementia. Persistent long sleep (over 9 hours) is associated with higher mortality too — though here the long sleep is often a <em>marker</em> of underlying illness rather than the cause itself.</div>
+      </div>
+    </div>
+
+    <p>Finally — <strong>chronotype</strong> matters (your genetic tendency to be a morning lark or a night owl). Around half of individual variation in sleep timing is heritable ⚑. Forcing a natural night owl into a 6am schedule produces chronic sleep restriction even if the total hours look fine on paper.</p>
+
+  </div>
+
+  <!-- KEY TERMS -->
+  <div class="key-terms-box">
+    <div class="key-terms-title">📖 Key Terms</div>
+    <div class="key-terms-grid">
+      <div class="term-item">
+        <div class="term-name">CBT-I</div>
+        <div class="term-def">Cognitive Behavioural Therapy for Insomnia — a structured psychological treatment, usually 5–8 sessions. First-line NHS treatment for chronic insomnia.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Chronotype</div>
+        <div class="term-def">Your natural tendency toward being a morning person ("lark") or evening person ("owl"). Partly genetic, partly age-related.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Circadian rhythm</div>
+        <div class="term-def">The body's internal 24-hour clock, governed by a small region of the brain (the suprachiasmatic nucleus) and synchronised primarily by daylight.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Insomnia</div>
+        <div class="term-def">Persistent difficulty falling asleep, staying asleep, or waking unrefreshed — causing daytime impairment. Short-term (under 3 months) or long-term (3 months or more).</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Melatonin</div>
+        <div class="term-def">A hormone released by the brain (pineal gland) in response to darkness, helping signal the body that it is time to sleep.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">REM sleep</div>
+        <div class="term-def">Rapid Eye Movement sleep — the dreaming stage. Brain highly active, body temporarily paralysed. Critical for emotional processing and memory.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Sleep apnoea (obstructive)</div>
+        <div class="term-def">Repeated pauses in breathing during sleep caused by the airway narrowing or closing briefly. Common, often undiagnosed. Treatable with CPAP (a mask delivering pressurised air overnight).</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Sleep hygiene</div>
+        <div class="term-def">Everyday behaviours that support sleep — regular schedule, dark cool bedroom, limiting caffeine, winding down before bed. Helpful, but not on its own a treatment for chronic insomnia.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Sleep latency</div>
+        <div class="term-def">The time it takes to fall asleep after going to bed. A healthy range is typically 10–20 minutes.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Slow-wave sleep</div>
+        <div class="term-def">Also called N3 or deep sleep — the deepest, most restorative stage. Key for physical repair and waste clearance in the brain.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Z-drugs</div>
+        <div class="term-def">Non-benzodiazepine sleeping tablets — zopiclone, zolpidem, zaleplon. Work similarly to benzodiazepines. Licensed for short-term use only.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="article-section" id="why-it-matters">
+    <div class="section-label">Section 2</div>
+    <h2 class="section-title">Why does it matter?</h2>
+
+    <p>Sleep is often treated as a lifestyle preference — nice if you can get it, not essential. The evidence tells a different story. Persistent poor sleep affects nearly every major body system, and the consequences compound over decades. Five areas stand out most clearly in the research:</p>
+
+    <ul class="benefit-list">
+      <li>
+        <div class="benefit-num">1</div>
+        <div class="benefit-content">
+          <div class="benefit-title">Cardiovascular disease and stroke</div>
+          <div class="benefit-desc">A dose-response meta-analysis (pooled analysis of many studies) covering over 3.5 million people found a J-shaped relationship: lowest risk of heart attack, stroke, and cardiovascular death at around 7 hours' sleep. Persistent short sleep is independently linked to higher blood pressure, higher inflammation markers, and greater atherosclerosis (furring of the arteries).</div>
+        </div>
+      </li>
+      <li>
+        <div class="benefit-num">2</div>
+        <div class="benefit-content">
+          <div class="benefit-title">Type 2 diabetes and metabolic health</div>
+          <div class="benefit-desc">Short sleep reduces insulin sensitivity (the body's ability to respond to the hormone that controls blood sugar) — even a single week of restricted sleep in healthy adults produces measurable deterioration. In large meta-analyses, sleeping under 7 hours or over 8 hours is associated with meaningfully higher risk of developing type 2 diabetes.</div>
+        </div>
+      </li>
+      <li>
+        <div class="benefit-num">3</div>
+        <div class="benefit-content">
+          <div class="benefit-title">Brain health and dementia</div>
+          <div class="benefit-desc">Deep sleep is when the brain clears metabolic waste products — including amyloid beta, one of the proteins that accumulates in Alzheimer's disease. The Whitehall II study followed nearly 8,000 British civil servants for 25 years and found that persistent short sleep (6 hours or less) starting in midlife was associated with a 30% increased dementia risk, independent of other health factors.</div>
+        </div>
+      </li>
+      <li>
+        <div class="benefit-num">4</div>
+        <div class="benefit-content">
+          <div class="benefit-title">Mental health and mood</div>
+          <div class="benefit-desc">The relationship between sleep and mental health runs in both directions (bidirectional). Insomnia is both a common symptom of depression and anxiety, <em>and</em> a strong independent risk factor for developing them. Treating insomnia often improves mood — and in people with depression, addressing sleep is now considered a core part of treatment rather than an afterthought.</div>
+        </div>
+      </li>
+      <li>
+        <div class="benefit-num">5</div>
+        <div class="benefit-content">
+          <div class="benefit-title">Immune function and all-cause mortality</div>
+          <div class="benefit-desc">Sleep deprivation reduces the response to vaccines, increases susceptibility to respiratory infections, and disrupts the inflammatory regulation that underpins much of chronic disease. Pulling all this together, meta-analyses of population studies find that both persistent short sleep (under 6 hours) and persistent long sleep (over 9 hours) are associated with higher all-cause mortality (death from any cause).</div>
+        </div>
+      </li>
+    </ul>
+
+    <p>What makes sleep unusual as a health behaviour is its <strong>upstream position</strong>. Diet, exercise, and stress responses all depend on how well you slept the night before. A single bad night affects food choices and hunger hormones the next day; chronic poor sleep compounds into years of slightly worse everything. Conversely, when sleep improves, several other things tend to improve with it — almost free of charge.</p>
+
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="article-section" id="doctor-advice">
+    <div class="section-label">Section 3</div>
+    <h2 class="section-title">What your doctor might do</h2>
+
+    <p>Sleep problems are one of the most common reasons people see their GP — but the typical 10-minute appointment is not enough time to properly untangle them. Here is what a more thorough assessment looks like, and what NHS treatment pathways are available if you need them.</p>
+
+    <div class="doctor-callout">
+      <div class="doctor-icon">📔</div>
+      <div class="doctor-callout-text">
+        <div class="doctor-callout-title">A sleep diary — usually the first step</div>
+        <div class="doctor-callout-body">For at least two weeks, you record when you go to bed, roughly how long it took to fall asleep, any night-time waking, when you got up, and how rested you felt. This is simple but powerful — it often reveals patterns (such as napping, erratic bedtimes, or worry-driven waking) that are not obvious from memory alone, and it gives your GP something concrete to work with.</div>
+      </div>
+    </div>
+
+    <div class="doctor-callout">
+      <div class="doctor-icon">🫁</div>
+      <div class="doctor-callout-text">
+        <div class="doctor-callout-title">Screening for sleep apnoea</div>
+        <div class="doctor-callout-body">Obstructive sleep apnoea (OSA) is extraordinarily common — recent UK estimates suggest around 1 in 5 adults may have it, and the large majority are undiagnosed ⚑. Classic features are <strong>loud snoring, witnessed pauses in breathing, gasping or choking at night, and persistent daytime sleepiness</strong>. Your GP may use simple questionnaires (the <strong>Epworth Sleepiness Scale</strong> for daytime sleepiness, or <strong>STOP-Bang</strong> for apnoea risk) and refer for a sleep study if screening is positive. Treatment — most commonly CPAP (continuous positive airway pressure — a mask that keeps the airway open overnight) — can be genuinely life-changing.</div>
+      </div>
+    </div>
+
+    <div class="doctor-callout">
+      <div class="doctor-icon">🧠</div>
+      <div class="doctor-callout-text">
+        <div class="doctor-callout-title">CBT-I — the NHS first-line treatment for chronic insomnia</div>
+        <div class="doctor-callout-body"><strong>Cognitive Behavioural Therapy for Insomnia (CBT-I)</strong> is recommended by NICE as the first-line treatment for chronic insomnia in adults of any age. It combines sleep restriction (spending only the hours you actually sleep in bed), stimulus control (breaking the association between bed and wakefulness), and cognitive work on worries about sleep. Evidence shows it works at least as well as sleeping tablets in the short term, and <strong>much better in the long term</strong>. Access on the NHS varies — digital CBT-I programmes (delivered through apps or websites) are increasingly available and also effective. ⚑</div>
+      </div>
+    </div>
+
+    <div class="doctor-callout">
+      <div class="doctor-icon">💊</div>
+      <div class="doctor-callout-text">
+        <div class="doctor-callout-title">Sleeping tablets — the honest picture</div>
+        <div class="doctor-callout-body">Benzodiazepines and "Z-drugs" (zopiclone, zolpidem) are licensed by NICE for <strong>short-term use only — typically up to 4 weeks</strong>. They work quickly but have meaningful downsides: tolerance (needing higher doses to get the same effect), dependence, rebound insomnia on stopping, and a significantly increased risk of falls and fractures, particularly in older adults. They have a place for a short crisis, but are not a solution for long-term insomnia. If you are taking them long-term, your GP can work with you on a gradual taper — this is a common situation and nothing to feel judged about.</div>
+      </div>
+    </div>
+
+    <div class="doctor-callout">
+      <div class="doctor-icon">🌙</div>
+      <div class="doctor-callout-text">
+        <div class="doctor-callout-title">Special situations — menopause, shift work, older age</div>
+        <div class="doctor-callout-body">Sleep difficulties around the menopause (especially frequent night-time waking, often with night sweats) are extremely common and worth raising specifically — hormone replacement therapy (HRT) may help if other menopausal symptoms are present. Shift workers have specific challenges (circadian misalignment, social disruption) and may benefit from structured scheduling advice. In older adults, sleep patterns naturally change — more fragmented, lighter — and the goal shifts toward supporting quality rather than chasing the same totals as in younger life.</div>
+      </div>
+    </div>
+
+    <div class="red-flags">
+      <div class="red-flags-title">🚩 When to see your GP sooner</div>
+      <ul class="red-flags-list">
+        <li>Loud snoring with witnessed pauses in breathing, or waking gasping or choking</li>
+        <li>Persistent daytime sleepiness — falling asleep during meetings, while reading, or (dangerously) while driving</li>
+        <li>Persistent sleep problems that are affecting your daily life — mood, concentration, work, or relationships — in a way that makes it hard to cope</li>
+        <li>Low mood, anxiety, or thoughts of self-harm alongside poor sleep</li>
+        <li>New severe morning headaches, or waking with a racing heart</li>
+        <li>Acting out dreams physically (shouting, kicking, jumping out of bed) — may indicate REM sleep behaviour disorder, which needs assessment</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="article-section" id="research">
+    <div class="section-label">Section 4</div>
+    <h2 class="section-title">What the research shows</h2>
+
+    <p>Tens of thousands of studies have looked at sleep and health. Five core pieces of evidence anchor most of what we know — covering mortality, cardiovascular disease, type 2 diabetes, dementia, and the best treatment for chronic insomnia.</p>
+
+    <div class="research-grid">
+
+      <!-- YIN 2017 -->
+      <div class="research-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-trial-name">Yin et al. — sleep duration, cardiovascular events &amp; mortality</div>
+            <div class="rc-journal">Yin J, Jin X, Shan Z, et al. · Journal of the American Heart Association · 2017</div>
+          </div>
+          <div class="rc-type-pill">Meta-Analysis</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-stat">
+            <div class="rc-stat-num" style="color:#7ecc99">~7h</div>
+            <div class="rc-stat-label">lowest-risk sleep duration per day<br><span style="font-size:.82rem;font-weight:400;color:rgba(255,255,255,.85)">(U-shaped association)</span></div>
+          </div>
+          <div class="rc-detail">
+            <p><strong>Who was studied:</strong> A dose-response meta-analysis pulling together prospective cohort studies of generally healthy populations — more than <strong>3.5 million people</strong> followed for multiple years, examining sleep duration against four outcomes: all-cause mortality, total cardiovascular disease, coronary heart disease, and stroke.</p>
+            <p><strong>Key finding:</strong> A consistent <strong>U-shaped (J-shaped) relationship</strong> for all four outcomes — lowest risk at approximately 7 hours per day, with risk rising on both sides. The pattern held across men and women.</p>
+            <p><strong>Why it matters:</strong> This is among the strongest evidence that 7 hours is not just a rule of thumb — it is where the combined cardiovascular and mortality risk is lowest across very large populations.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAPPUCCIO 2010 -->
+      <div class="research-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-trial-name">Cappuccio et al. — sleep duration &amp; all-cause mortality</div>
+            <div class="rc-journal">Cappuccio FP, D'Elia L, Strazzullo P, Miller MA. · SLEEP · 2010</div>
+          </div>
+          <div class="rc-type-pill">Meta-Analysis</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-stat">
+            <div class="rc-stat-num" style="color:#e8a84a">+12% / +30%</div>
+            <div class="rc-stat-label">increased mortality risk<br><span style="font-size:.82rem;font-weight:400;color:rgba(255,255,255,.85)">short sleep (&lt;7h) &amp; long sleep (&gt;8h)</span></div>
+          </div>
+          <div class="rc-detail">
+            <p><strong>Who was studied:</strong> A systematic review and meta-analysis by Francesco Cappuccio's group at the University of Warwick, pooling 16 prospective studies following 1.38 million people for longer than 3 years, assessing sleep duration at baseline and all-cause mortality.</p>
+            <p><strong>Key finding:</strong> <strong>Both short and long sleep duration independently predicted higher risk of death.</strong> Short sleepers (typically under 7 hours) showed a 12% increased risk (RR 1.12, 95% CI 1.06–1.18). Long sleepers (typically over 8 hours) showed a 30% increased risk (RR 1.30, 95% CI 1.22–1.38) — although much of the long-sleep signal likely reflects underlying illness driving the longer sleep.</p>
+            <p><strong>Why it matters:</strong> One of the first large, carefully conducted meta-analyses establishing that sleep duration is not a neutral lifestyle variable — it independently tracks with mortality risk in the general population.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SHAN 2015 -->
+      <div class="research-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-trial-name">Shan et al. — sleep duration &amp; type 2 diabetes</div>
+            <div class="rc-journal">Shan Z, Ma H, Xie M, et al. · Diabetes Care · 2015</div>
+          </div>
+          <div class="rc-type-pill">Meta-Analysis</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-stat">
+            <div class="rc-stat-num" style="color:#7ecc99">7–8h</div>
+            <div class="rc-stat-label">lowest-risk sleep duration<br><span style="font-size:.82rem;font-weight:400;color:rgba(255,255,255,.85)">for developing type 2 diabetes</span></div>
+          </div>
+          <div class="rc-detail">
+            <p><strong>Who was studied:</strong> 10 prospective studies, <strong>482,502 participants</strong>, with 18,443 new (incident) cases of type 2 diabetes occurring over follow-up periods of 2.5 to 16 years.</p>
+            <p><strong>Key finding:</strong> A <strong>U-shaped dose-response relationship</strong>. Compared with 7 hours per night, each hour <em>less</em> sleep below that was associated with a 9% increase in type 2 diabetes risk, and each hour <em>more</em> sleep above 8 hours was associated with a 14% increase — so the penalty for oversleeping was slightly steeper than for undersleeping.</p>
+            <p><strong>Why it matters:</strong> Sleep deprivation has direct effects on insulin sensitivity and appetite-regulating hormones. This meta-analysis shows those short-term effects translate into long-term disease risk.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SABIA 2021 -->
+      <div class="research-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-trial-name">Sabia et al. — midlife sleep &amp; dementia (Whitehall II)</div>
+            <div class="rc-journal">Sabia S, Fayosse A, Dumurgier J, et al. · Nature Communications · 2021</div>
+          </div>
+          <div class="rc-type-pill">Prospective Cohort · 25-year</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-stat">
+            <div class="rc-stat-num" style="color:#e8a84a">+30%</div>
+            <div class="rc-stat-label">dementia risk with persistent short sleep<br><span style="font-size:.82rem;font-weight:400;color:rgba(255,255,255,.85)">(6h or less, from age 50)</span></div>
+          </div>
+          <div class="rc-detail">
+            <p><strong>Who was studied:</strong> <strong>7,959 participants</strong> in the Whitehall II study — a long-running UK cohort of British civil servants — followed for 25 years, with sleep duration recorded at ages 50, 60, and 70 and dementia diagnoses captured through NHS records.</p>
+            <p><strong>Key finding:</strong> People who consistently slept 6 hours or less per night in midlife had a <strong>~30% higher risk of developing dementia</strong> over the following 25 years — independently of cardiovascular risk factors, mental health, socioeconomic status, and other confounders. Hazard ratios were 1.22 at age 50 and 1.37 at age 60.</p>
+            <p><strong>Why it matters:</strong> The long follow-up window rules out the possibility that early brain changes were simply disrupting sleep. The study adds weight to the idea that chronically short sleep in midlife may be a <em>contributor</em> to later dementia, not only a symptom.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- VAN STRATEN 2018 -->
+      <div class="research-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-trial-name">van Straten et al. — CBT-I for insomnia</div>
+            <div class="rc-journal">van Straten A, van der Zweerde T, Kleiboer A, et al. · Sleep Medicine Reviews · 2018</div>
+          </div>
+          <div class="rc-type-pill">Meta-Analysis · 87 RCTs</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-stat">
+            <div class="rc-stat-num" style="color:#7ecc99">Lasting</div>
+            <div class="rc-stat-label">improvement in sleep<br><span style="font-size:.82rem;font-weight:400;color:rgba(255,255,255,.85)">effects persist long after treatment ends — unlike sleeping tablets</span></div>
+          </div>
+          <div class="rc-detail">
+            <p><strong>What was studied:</strong> A meta-analysis pooling 87 randomised controlled trials (118 separate treatment arms, 3,724 CBT-I patients vs 2,579 controls) comparing CBT-I — either the full package or individual components such as sleep restriction and stimulus control — against non-treated control groups.</p>
+            <p><strong>Key finding:</strong> CBT-I produced <strong>small-to-moderate but consistent improvements</strong> across the core insomnia outcomes — how long it takes to fall asleep, how much time is spent awake during the night, and subjective sleep quality. Effects were robust across age groups, across people with and without other health conditions, and whether or not participants were taking sleep medication.</p>
+            <p><strong>Why it matters:</strong> This is the evidence base behind NICE's recommendation of CBT-I as <strong>first-line treatment for chronic insomnia</strong>. Unlike sleeping tablets, the benefits persist long after the treatment ends — because the treatment works by changing the behaviours and thinking patterns that maintain insomnia, rather than by sedating the brain.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- PUTTING IT ALL TOGETHER -->
+  <div class="article-section" id="conclusion">
+    <h2 class="section-title">Putting it all together</h2>
+    <div class="conclusion-box">
+      <p>Sleep sits alongside diet and exercise as one of the three genuine pillars of practical health — yet it is usually the first to get squeezed, and the last to be taken seriously. The evidence is now unambiguous: persistent short sleep is associated with higher risk of cardiovascular disease, type 2 diabetes, dementia, depression, and earlier death. Long sleep is not the answer either — the data point to a J-shaped relationship, with the lowest risk sitting around 7 hours for most adults.</p>
+      <p>The encouraging news is that much of what causes chronic poor sleep is <strong>treatable</strong>. Obstructive sleep apnoea is extremely common, widely under-diagnosed, and genuinely life-changing when treated. Chronic insomnia responds well to CBT-I — which works better than sleeping tablets in the long term and is now the NHS first-line recommendation. Sleeping tablets have a short-term role but are not a long-term solution, and long-term use carries real risks, particularly in older people.</p>
+      <p>For anyone whose sleep is genuinely disrupted, the most important step is not a new pillow or a tracker — it is <strong>an honest conversation with your GP</strong>, a two-week sleep diary, and a willingness to look for treatable causes rather than accepting poor sleep as an inevitable part of life. <strong>Good sleep is not a luxury. It is medicine you make yourself, every night.</strong></p>
+    </div>
+  </div>
+
+  <!-- REFERENCES -->
+  <div class="references-section">
+    <h3 class="references-title">References</h3>
+
+    <div class="ref-block">
+      <div class="ref-num">1 — Sleep duration, cardiovascular events &amp; all-cause mortality</div>
+      <div class="ref-full">Yin J, Jin X, Shan Z, Li S, Huang H, Li P, Peng X, Peng Z, Yu K, Bao W, Yang W, Chen X, Liu L. Relationship of sleep duration with all-cause mortality and cardiovascular events: a systematic review and dose-response meta-analysis of prospective cohort studies. <em>Journal of the American Heart Association</em>. 2017;6(9):e005947. DOI: 10.1161/JAHA.117.005947</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.ahajournals.org/doi/10.1161/JAHA.117.005947" target="_blank" rel="noopener">JAHA Full Text ✓</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/28889101/" target="_blank" rel="noopener">PubMed ✓</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">2 — Sleep duration &amp; all-cause mortality meta-analysis</div>
+      <div class="ref-full">Cappuccio FP, D'Elia L, Strazzullo P, Miller MA. Sleep duration and all-cause mortality: a systematic review and meta-analysis of prospective studies. <em>SLEEP</em>. 2010;33(5):585–592. DOI: 10.1093/sleep/33.5.585</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://academic.oup.com/sleep/article/33/5/585/2454478" target="_blank" rel="noopener">SLEEP Full Text ✓</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/20469800/" target="_blank" rel="noopener">PubMed ✓</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">3 — Sleep duration &amp; risk of type 2 diabetes</div>
+      <div class="ref-full">Shan Z, Ma H, Xie M, Yan P, Guo Y, Bao W, Rong Y, Jackson CL, Hu FB, Liu L. Sleep duration and risk of type 2 diabetes: a meta-analysis of prospective studies. <em>Diabetes Care</em>. 2015;38(3):529–537. DOI: 10.2337/dc14-2073</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://diabetesjournals.org/care/article/38/3/529/37556" target="_blank" rel="noopener">Diabetes Care Full Text ✓</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/25715415/" target="_blank" rel="noopener">PubMed ✓</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">4 — Sleep duration in midlife &amp; dementia (Whitehall II)</div>
+      <div class="ref-full">Sabia S, Fayosse A, Dumurgier J, van Hees VT, Paquet C, Sommerlad A, Kivimäki M, Dugravot A, Singh-Manoux A. Association of sleep duration in middle and old age with incidence of dementia. <em>Nature Communications</em>. 2021;12(1):2289. DOI: 10.1038/s41467-021-22354-2</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.nature.com/articles/s41467-021-22354-2" target="_blank" rel="noopener">Nature Communications Full Text ✓</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/33879784/" target="_blank" rel="noopener">PubMed ✓</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">5 — Cognitive &amp; behavioural therapies for insomnia (CBT-I) meta-analysis</div>
+      <div class="ref-full">van Straten A, van der Zweerde T, Kleiboer A, Cuijpers P, Morin CM, Lancee J. Cognitive and behavioral therapies in the treatment of insomnia: a meta-analysis. <em>Sleep Medicine Reviews</em>. 2018;38:3–16. DOI: 10.1016/j.smrv.2017.02.001</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.sciencedirect.com/science/article/abs/pii/S1087079217300345" target="_blank" rel="noopener">Sleep Medicine Reviews ✓</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/28392168/" target="_blank" rel="noopener">PubMed ✓</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">6 — NICE guidance · CBT-I as first-line for chronic insomnia</div>
+      <div class="ref-full">NICE Clinical Knowledge Summary (CKS) — Insomnia. Cognitive behavioural therapy for insomnia (CBT-I) recommended as first-line treatment for chronic insomnia in adults of any age. Last revised 2025.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://cks.nice.org.uk/topics/insomnia/" target="_blank" rel="noopener">NICE CKS · Insomnia</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">7 — NICE guidance · short-term hypnotics for insomnia</div>
+      <div class="ref-full">National Institute for Health and Care Excellence (NICE). Guidance on the use of zaleplon, zolpidem and zopiclone for the short-term management of insomnia. Technology appraisal guidance [TA77]. 2004 (and subsequent updates).</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.nice.org.uk/guidance/ta77" target="_blank" rel="noopener">NICE TA77</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">8 — Recommended sleep duration · Joint Consensus Statement</div>
+      <div class="ref-full">Watson NF, Badr MS, Belenky G, Bliwise DL, Buxton OM, Buysse D, et al. Recommended amount of sleep for a healthy adult: a joint consensus statement of the American Academy of Sleep Medicine and Sleep Research Society. <em>SLEEP</em>. 2015;38(6):843–844.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4434546/" target="_blank" rel="noopener">PMC Full Text ✓</a>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <div class="ref-num">9 — NHS · sleep duration guidance for adults</div>
+      <div class="ref-full">NHS. Insomnia — overview. Adults need 7 to 9 hours of sleep on average. National Health Service guidance, 2023.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.nhs.uk/conditions/insomnia/" target="_blank" rel="noopener">NHS · Insomnia</a>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- /article-body -->
+
+<footer class="site-footer">
+  <p>helf.school · Practical Health Series · Article 09 · Sleep · sleep.html</p>
+  <p style="margin-top:.4rem">Health education for everyone — not medical advice. Always speak to your own doctor about your personal health.</p>
+  <p style="margin-top:.6rem"><a href="index.html">Home</a> · <a href="helf-school-conditions.html">All articles</a> · <a href="helf-school-membership.html">Membership</a></p>
+</footer>
+
+</body>
+</html>

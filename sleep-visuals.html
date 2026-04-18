@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sleep — Visuals | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--rem:#b48ac0;--deep:#3a6a9a}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
+
+    /* TOPBAR */
+    #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:var(--navy);border-bottom:2px solid var(--acc2);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
+    .tb-logo{display:flex;align-items:center;gap:.5rem}
+    .tb-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff}
+    .tb-dot{color:var(--coral)}
+    .tb-sub{font-size:.78rem;color:rgba(255,255,255,.78);margin-left:.25rem;font-weight:500}
+    .tb-right{display:flex;align-items:center;gap:1.2rem}
+    .slide-counter{font-size:.88rem;font-weight:700;color:rgba(255,255,255,.92)}
+    .kb-hint{font-size:.75rem;color:rgba(255,255,255,.65)}
+
+    /* STAGE */
+    #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:2.5vh 1.5rem 4vh;overflow:hidden}
+
+    /* SLIDES */
+    .slide{display:none;width:100%;max-width:1120px;height:100%;animation:sIn .35s ease}
+    .slide.active{display:flex;flex-direction:column;min-height:0}
+    @keyframes sIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+    .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.1vw,1.8rem);font-weight:700;color:#fff;margin-bottom:1rem;padding-bottom:.65rem;border-bottom:2px solid rgba(212,184,74,.3);flex-shrink:0}
+    .slide-title span{color:var(--acc)}
+
+    /* SEGMENT DOTS */
+    #dots{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:200}
+    .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .25s}
+    .dot.active{background:var(--acc);transform:scale(1.3)}
+
+    /* ─── SLIDE 1: INTRO ─── */
+    .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;text-align:center;gap:1.4rem}
+    .intro-badge{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.12);border:1px solid rgba(212,184,74,.3);padding:.3rem .9rem;border-radius:100px}
+    .intro-title{font-family:'Fraunces',serif;font-size:clamp(2.8rem,6vw,4.8rem);font-weight:700;color:#fff;line-height:1;max-width:860px;letter-spacing:-.02em}
+    .intro-title span{color:var(--acc)}
+    .intro-sub{font-size:1.15rem;color:rgba(255,255,255,.82);font-style:italic;font-family:'Fraunces',serif;max-width:640px;line-height:1.5;font-weight:400}
+    .intro-moon{font-size:3.5rem;line-height:1;margin-bottom:-.5rem}
+    .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.70);margin-top:.5rem}
+
+    /* ─── SLIDE 2: DURATION ─── */
+    .duration-wrap{display:flex;flex-direction:column;flex:1;min-height:0;gap:1.2rem}
+    .duration-hero{background:linear-gradient(135deg,rgba(212,184,74,.15),rgba(122,106,46,.10));border:2px solid rgba(212,184,74,.4);border-radius:18px;padding:1.3rem 2rem;display:flex;align-items:center;justify-content:center;gap:2rem;flex-shrink:0}
+    .dh-num{font-family:'Fraunces',serif;font-size:clamp(3.5rem,7vw,5.5rem);font-weight:700;color:var(--acc);line-height:1}
+    .dh-unit{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:700;color:rgba(255,255,255,.85);margin-left:-.5rem}
+    .dh-text{text-align:left}
+    .dh-text-title{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:700;color:#fff;line-height:1.2}
+    .dh-text-sub{font-size:.92rem;color:rgba(255,255,255,.78);margin-top:.35rem;line-height:1.4}
+    .duration-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.7rem;flex:1;min-height:0}
+    .d-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:.9rem .5rem;text-align:center;display:flex;flex-direction:column;justify-content:center;opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease}
+    .d-card.vis{opacity:1;transform:translateY(0)}
+    .d-card.adult{background:rgba(212,184,74,.15);border-color:rgba(212,184,74,.4)}
+    .d-age{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.70);margin-bottom:.3rem}
+    .d-card.adult .d-age{color:var(--acc)}
+    .d-num{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:700;color:#fff;line-height:1;margin-bottom:.1rem}
+    .d-unit{font-size:.75rem;color:rgba(255,255,255,.72);font-weight:500}
+
+    /* ─── SLIDE 3: SLEEP ARCHITECTURE ─── */
+    .arch-wrap{display:flex;flex-direction:column;flex:1;min-height:0;gap:1rem}
+    .arch-caption{font-size:.95rem;color:rgba(255,255,255,.80);text-align:center;font-weight:500;flex-shrink:0}
+    .arch-caption strong{color:var(--acc)}
+    .arch-chart{flex:1;min-height:0;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:1rem 1.25rem;display:flex;flex-direction:column;gap:.4rem}
+    .arch-svg-wrap{flex:1;min-height:0}
+    .arch-svg-wrap svg{width:100%;height:100%;display:block}
+    .arch-legend{display:flex;justify-content:center;gap:1.6rem;flex-shrink:0;padding-top:.3rem;flex-wrap:wrap}
+    .arch-leg{display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:rgba(255,255,255,.88);font-weight:600}
+    .arch-leg-sw{width:16px;height:16px;border-radius:4px}
+    .arch-leg-pct{font-size:.72rem;color:rgba(255,255,255,.65);font-weight:500;margin-left:.2rem}
+
+    /* ─── SLIDE 4: J-CURVE ─── */
+    .jcurve-wrap{display:flex;flex-direction:column;flex:1;min-height:0;gap:1rem;align-items:center;padding-top:.5rem}
+    .jcurve-headline{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.5vw,1.85rem);font-weight:700;color:#fff;text-align:center;max-width:820px;line-height:1.25}
+    .jcurve-headline span{color:var(--acc)}
+    .jcurve-svg{flex:1;max-width:900px;width:100%;min-height:0}
+    .jcurve-svg svg{width:100%;height:100%;display:block}
+    .jcurve-foot{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;width:100%;max-width:900px;flex-shrink:0;padding:.5rem 1rem}
+    .jcurve-foot-item{text-align:center;flex:1}
+    .jcurve-foot-label{font-size:.85rem;font-weight:700;color:#fff;margin-bottom:.2rem}
+    .jcurve-foot-detail{font-size:.78rem;color:rgba(255,255,255,.75);line-height:1.35}
+
+    /* ─── SLIDE 5: FIVE WAYS IT MATTERS ─── */
+    .matters-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.7rem;flex:1;min-height:0;align-items:stretch}
+    .m-card{border-radius:14px;padding:1rem .85rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .45s ease;min-height:0;overflow:hidden}
+    .m-card.vis{opacity:1;transform:translateY(0)}
+    .m-icon{font-size:2rem;line-height:1;flex-shrink:0}
+    .m-stat{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;line-height:1;flex-shrink:0}
+    .m-stat-sub{font-size:.72rem;font-weight:700;color:rgba(255,255,255,.85);letter-spacing:.02em;margin-top:-.2rem;flex-shrink:0;text-transform:uppercase}
+    .m-title{font-family:'Fraunces',serif;font-size:.98rem;font-weight:700;color:#fff;line-height:1.2;flex-shrink:0}
+    .m-body{font-size:.8rem;color:rgba(255,255,255,.82);line-height:1.45;font-weight:400;flex:1}
+    .m-src{font-size:.68rem;color:rgba(255,255,255,.65);padding-top:.3rem;border-top:1px solid rgba(255,255,255,.08);width:100%;flex-shrink:0;font-weight:500}
+    .m-heart{background:rgba(200,66,58,.12);border:1px solid rgba(200,66,58,.3)}
+    .m-heart .m-stat{color:#ff9080}
+    .m-diab{background:rgba(232,168,74,.12);border:1px solid rgba(232,168,74,.35)}
+    .m-diab .m-stat{color:#e8c060}
+    .m-brain{background:rgba(107,94,168,.14);border:1px solid rgba(107,94,168,.35)}
+    .m-brain .m-stat{color:#b8a8f0}
+    .m-mood{background:rgba(122,158,135,.14);border:1px solid rgba(122,158,135,.35)}
+    .m-mood .m-stat{color:#a0d8b0}
+    .m-life{background:rgba(232,99,74,.12);border:1px solid rgba(232,99,74,.3)}
+    .m-life .m-stat{color:#ff8a68}
+
+    /* ─── SLIDE 6: DOCTOR TOOLKIT ─── */
+    .doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;flex:1;min-height:0;align-items:stretch}
+    .doc-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:1.1rem 1.2rem;display:flex;gap:.9rem;align-items:flex-start;opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease}
+    .doc-card.vis{opacity:1;transform:translateY(0)}
+    .doc-card.hero{grid-column:span 2;background:linear-gradient(135deg,rgba(126,204,153,.13),rgba(74,154,101,.08));border:1px solid rgba(126,204,153,.35)}
+    .doc-icon{font-size:2rem;flex-shrink:0;line-height:1}
+    .doc-text{flex:1}
+    .doc-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin-bottom:.25rem}
+    .doc-card.hero .doc-label{color:#7ecc99}
+    .doc-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:.35rem;line-height:1.25}
+    .doc-body{font-size:.84rem;color:rgba(255,255,255,.85);line-height:1.5;font-weight:400}
+    .doc-body strong{color:#fff;font-weight:600}
+
+    /* ─── SLIDE 7: RESEARCH EVIDENCE ─── */
+    .ev-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;flex:1;min-height:0;align-items:stretch}
+    .ev-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:.95rem 1.1rem;display:flex;gap:1rem;align-items:center;opacity:0;transform:translateY(10px);transition:opacity .4s ease,transform .4s ease}
+    .ev-card.vis{opacity:1;transform:translateY(0)}
+    .ev-card.last{grid-column:span 2}
+    .ev-stat-box{flex-shrink:0;min-width:120px;background:rgba(0,0,0,.25);border-radius:10px;padding:.7rem .85rem;text-align:center}
+    .ev-stat{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:700;line-height:1}
+    .ev-stat.green{color:var(--good)}
+    .ev-stat.amber{color:var(--warn)}
+    .ev-stat.red{color:var(--bad)}
+    .ev-stat.purple{color:var(--rem)}
+    .ev-stat-lab{font-size:.7rem;color:rgba(255,255,255,.85);font-weight:600;margin-top:.2rem;line-height:1.3}
+    .ev-detail{flex:1;min-width:0}
+    .ev-trial{font-family:'Fraunces',serif;font-size:.92rem;font-weight:700;color:#fff;margin-bottom:.15rem;line-height:1.25}
+    .ev-journal{font-size:.72rem;color:rgba(255,255,255,.75);font-weight:500;margin-bottom:.35rem}
+    .ev-finding{font-size:.8rem;color:rgba(255,255,255,.88);line-height:1.45;font-weight:400}
+    .ev-finding strong{color:#fff;font-weight:700}
+
+    /* ─── SLIDES 8/9/10: FULL-SCREEN CTA ─── */
+    .cta-slide{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;text-align:center;gap:1.1rem;max-width:720px;margin:0 auto}
+    .cta-badge{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:.25rem .85rem;border-radius:100px;color:rgba(255,255,255,.78)}
+    .cta-timeframe{font-family:'Fraunces',serif;font-size:clamp(2.4rem,5vw,3.6rem);font-weight:700;line-height:1.05;letter-spacing:.01em}
+    .cta-today .cta-timeframe{color:#f0cc50}
+    .cta-week .cta-timeframe{color:#7ecc99}
+    .cta-first .cta-timeframe{color:#70b8e8}
+    .cta-icon-big{font-size:5rem;line-height:1}
+    .cta-title{font-family:'Fraunces',serif;font-size:clamp(1.5rem,2.8vw,2rem);font-weight:700;color:#fff;line-height:1.2;max-width:640px}
+    .cta-body{font-size:1rem;color:rgba(255,255,255,.85);line-height:1.65;max-width:580px;font-weight:400}
+    .cta-examples{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:.25rem}
+    .cta-chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:.3rem 1rem;font-size:.88rem;font-weight:600;color:rgba(255,255,255,.92)}
+
+    /* ─── SLIDE 11: CLOSING ─── */
+    .closing-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;text-align:center;gap:1.3rem}
+    .closing-logo{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;color:#fff}
+    .closing-logo span{color:var(--coral)}
+    .closing-tagline{font-size:.8rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72)}
+    .closing-title{font-family:'Fraunces',serif;font-size:clamp(1.6rem,3vw,2.3rem);font-weight:700;color:#fff;max-width:720px;line-height:1.25;font-style:italic}
+    .closing-title span{color:var(--acc)}
+    .closing-series{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.70)}
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div id="topbar">
+  <div class="tb-logo">
+    <svg width="20" height="16" viewBox="0 0 22 18" fill="none">
+      <path d="M11 2C8 2 5.5 4 4 6.5 2.5 9 2.5 12 4 14.5c1 1.8 2.8 3 5 3.4V4.5" stroke="#E8634A" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M11 2C14 2 16.5 4 18 6.5 19.5 9 19.5 12 18 14.5c-1 1.8-2.8 3-5 3.4V4.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <span class="tb-title">helf<span class="tb-dot">.</span>school</span>
+    <span class="tb-sub">Sleep · Practical Health Series · Article 09</span>
+  </div>
+  <div class="tb-right">
+    <span class="kb-hint">← → keys</span>
+    <span class="slide-counter" id="counter">1 / 11</span>
+  </div>
+</div>
+
+<!-- STAGE -->
+<div id="stage">
+
+  <!-- ═══ SLIDE 1: INTRO ═══ -->
+  <div class="slide active" id="s1">
+    <div class="intro-wrap">
+      <div class="intro-moon">🌙</div>
+      <div class="intro-badge">📋 Practical Health Series · Article 09</div>
+      <div class="intro-title"><span>Sleep</span></div>
+      <div class="intro-sub">One of the most important things you do for your health — and one of the most commonly underestimated.</div>
+      <div class="intro-tagline">helf.school · Health Education for Everyone</div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 2: HOW MUCH ═══ -->
+  <div class="slide" id="s2">
+    <div class="slide-title">How much sleep do adults actually <span>need</span>?</div>
+    <div class="duration-wrap">
+      <div class="duration-hero">
+        <div style="display:flex;align-items:baseline">
+          <div class="dh-num">7–9</div>
+          <div class="dh-unit">hours</div>
+        </div>
+        <div class="dh-text">
+          <div class="dh-text-title">NHS recommendation for most adults</div>
+          <div class="dh-text-sub">Individual need varies — some feel rested on 7, others need 9. Consistency matters more than hitting an exact number.</div>
+        </div>
+      </div>
+      <div class="duration-grid">
+        <div class="d-card" id="dc1"><div class="d-age">Newborns</div><div class="d-num">14–17</div><div class="d-unit">hours / 24h</div></div>
+        <div class="d-card" id="dc2"><div class="d-age">Toddlers</div><div class="d-num">11–14</div><div class="d-unit">hours / 24h</div></div>
+        <div class="d-card" id="dc3"><div class="d-age">Children</div><div class="d-num">9–12</div><div class="d-unit">hours / night</div></div>
+        <div class="d-card" id="dc4"><div class="d-age">Teens</div><div class="d-num">8–10</div><div class="d-unit">hours / night</div></div>
+        <div class="d-card adult" id="dc5"><div class="d-age">Adults</div><div class="d-num">7–9</div><div class="d-unit">hours / night</div></div>
+        <div class="d-card" id="dc6"><div class="d-age">Older adults</div><div class="d-num">7–8</div><div class="d-unit">hours / night</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 3: SLEEP ARCHITECTURE ═══ -->
+  <div class="slide" id="s3">
+    <div class="slide-title">Sleep is not a flat state — it's <span>four stages cycling through the night</span></div>
+    <div class="arch-wrap">
+      <div class="arch-caption">Each cycle ≈ <strong>90 minutes</strong> · Most adults have <strong>4–6 cycles</strong> per night · Most deep sleep early · Most REM near morning</div>
+      <div class="arch-chart">
+        <div class="arch-svg-wrap">
+          <svg viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <!-- Y-axis labels -->
+            <text x="10" y="50" font-family="DM Sans" font-size="16" font-weight="700" fill="#ffffff">Awake</text>
+            <text x="10" y="95" font-family="DM Sans" font-size="16" font-weight="700" fill="#8ab0e0">REM</text>
+            <text x="10" y="140" font-family="DM Sans" font-size="16" font-weight="700" fill="#9abadf">N1</text>
+            <text x="10" y="185" font-family="DM Sans" font-size="16" font-weight="700" fill="#7aa0ce">N2</text>
+            <text x="10" y="230" font-family="DM Sans" font-size="16" font-weight="700" fill="#5a86b8">N3</text>
+
+            <!-- Horizontal gridlines -->
+            <line x1="80" y1="45" x2="880" y2="45" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <line x1="80" y1="90" x2="880" y2="90" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <line x1="80" y1="135" x2="880" y2="135" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <line x1="80" y1="180" x2="880" y2="180" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <line x1="80" y1="225" x2="880" y2="225" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+            <!-- The hypnogram line showing cycles across 7 hours -->
+            <!-- Cycle 1 (0-90min): descends to deep sleep fast -->
+            <!-- Cycle 2-3: less deep sleep, more REM -->
+            <!-- Cycle 4-5: REM dominant -->
+            <path class="arch-line" d="
+              M 80 45
+              L 110 135 L 140 180 L 170 225 L 210 225 L 240 180 L 280 135 L 310 90
+              L 340 90
+              L 370 135 L 400 180 L 440 225 L 470 225 L 500 180 L 530 135 L 560 90
+              L 600 90
+              L 620 135 L 650 180 L 680 180 L 710 135 L 730 90
+              L 780 90
+              L 810 135 L 840 135
+              L 870 45
+            " stroke="#7ecc99" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"
+              stroke-dasharray="2000" stroke-dashoffset="2000">
+              <animate attributeName="stroke-dashoffset" from="2000" to="0" dur="2.5s" begin="0.3s" fill="freeze"/>
+            </path>
+
+            <!-- Stage bands (very subtle backgrounds) -->
+            <rect x="80" y="25" width="800" height="40" fill="rgba(255,255,255,0.02)"/>
+            <rect x="80" y="65" width="800" height="50" fill="rgba(180,138,192,0.08)"/>
+            <rect x="80" y="115" width="800" height="50" fill="rgba(58,106,154,0.06)"/>
+            <rect x="80" y="165" width="800" height="50" fill="rgba(58,106,154,0.10)"/>
+            <rect x="80" y="215" width="800" height="40" fill="rgba(58,106,154,0.14)"/>
+
+            <!-- Time axis -->
+            <line x1="80" y1="255" x2="880" y2="255" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+            <text x="80" y="275" font-family="DM Sans" font-size="13" font-weight="600" fill="rgba(255,255,255,0.80)">Lights out</text>
+            <text x="240" y="275" font-family="DM Sans" font-size="13" font-weight="600" fill="rgba(255,255,255,0.80)">Cycle 1</text>
+            <text x="440" y="275" font-family="DM Sans" font-size="13" font-weight="600" fill="rgba(255,255,255,0.80)">Cycle 2</text>
+            <text x="620" y="275" font-family="DM Sans" font-size="13" font-weight="600" fill="rgba(255,255,255,0.80)">Cycle 3</text>
+            <text x="790" y="275" font-family="DM Sans" font-size="13" font-weight="600" fill="rgba(255,255,255,0.80)">Cycle 4+</text>
+            <text x="830" y="295" font-family="DM Sans" font-size="13" font-weight="600" fill="rgba(255,255,255,0.80)">Wake</text>
+
+            <!-- Annotations on the line -->
+            <circle cx="180" cy="225" r="5" fill="#5a86b8">
+              <animate attributeName="r" values="4;7;4" dur="2s" repeatCount="indefinite" begin="3s"/>
+            </circle>
+            <text x="150" y="248" font-family="DM Sans" font-size="12" font-weight="700" fill="#9ac4e8">Deep sleep</text>
+
+            <circle cx="780" cy="90" r="5" fill="#b48ac0">
+              <animate attributeName="r" values="4;7;4" dur="2s" repeatCount="indefinite" begin="3s"/>
+            </circle>
+            <text x="735" y="78" font-family="DM Sans" font-size="12" font-weight="700" fill="#d6b0e0">REM peak</text>
+          </svg>
+        </div>
+        <div class="arch-legend">
+          <div class="arch-leg"><div class="arch-leg-sw" style="background:#9abadf"></div>N1 · Doorway<span class="arch-leg-pct">~5%</span></div>
+          <div class="arch-leg"><div class="arch-leg-sw" style="background:#7aa0ce"></div>N2 · Light sleep<span class="arch-leg-pct">~45%</span></div>
+          <div class="arch-leg"><div class="arch-leg-sw" style="background:#5a86b8"></div>N3 · Deep sleep<span class="arch-leg-pct">~20%</span></div>
+          <div class="arch-leg"><div class="arch-leg-sw" style="background:#b48ac0"></div>REM · Dreaming<span class="arch-leg-pct">~25%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 4: THE J-CURVE ═══ -->
+  <div class="slide" id="s4">
+    <div class="slide-title">Both <span>too little</span> and <span>too much</span> sleep are associated with increased risk</div>
+    <div class="jcurve-wrap">
+      <div class="jcurve-headline">The J-curve — mortality and cardiovascular risk is <span>lowest around 7 hours</span></div>
+      <div class="jcurve-svg">
+        <svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <!-- Y-axis -->
+          <line x1="90" y1="40" x2="90" y2="300" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+          <text x="50" y="50" font-family="DM Sans" font-size="13" font-weight="700" fill="rgba(255,255,255,0.85)" text-anchor="middle">High</text>
+          <text x="50" y="170" font-family="DM Sans" font-size="13" font-weight="700" fill="rgba(255,255,255,0.85)" text-anchor="middle">↑ Risk</text>
+          <text x="50" y="300" font-family="DM Sans" font-size="13" font-weight="700" fill="rgba(255,255,255,0.85)" text-anchor="middle">Low</text>
+
+          <!-- X-axis -->
+          <line x1="90" y1="300" x2="860" y2="300" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+          <text x="180" y="330" font-family="DM Sans" font-size="14" font-weight="700" fill="rgba(255,255,255,0.90)" text-anchor="middle">4h</text>
+          <text x="310" y="330" font-family="DM Sans" font-size="14" font-weight="700" fill="rgba(255,255,255,0.90)" text-anchor="middle">5h</text>
+          <text x="440" y="330" font-family="DM Sans" font-size="14" font-weight="700" fill="rgba(255,255,255,0.90)" text-anchor="middle">6h</text>
+          <text x="475" y="350" font-family="DM Sans" font-size="12" font-weight="600" fill="var(--acc)" text-anchor="middle">↓</text>
+          <text x="475" y="330" font-family="DM Sans" font-size="15" font-weight="700" fill="var(--acc)" text-anchor="middle">7h</text>
+          <text x="620" y="330" font-family="DM Sans" font-size="14" font-weight="700" fill="rgba(255,255,255,0.90)" text-anchor="middle">8h</text>
+          <text x="750" y="330" font-family="DM Sans" font-size="14" font-weight="700" fill="rgba(255,255,255,0.90)" text-anchor="middle">9h</text>
+          <text x="830" y="330" font-family="DM Sans" font-size="14" font-weight="700" fill="rgba(255,255,255,0.90)" text-anchor="middle">10h+</text>
+
+          <!-- Horizontal baseline (7h reference) -->
+          <line x1="90" y1="260" x2="860" y2="260" stroke="rgba(126,204,153,0.25)" stroke-width="1" stroke-dasharray="4,4"/>
+
+          <!-- The J-curve path -->
+          <path d="
+            M 180 110
+            C 250 150, 330 220, 400 255
+            C 450 267, 490 265, 520 255
+            C 590 225, 680 165, 830 85
+          " stroke="url(#jgrad)" stroke-width="5" fill="none" stroke-linecap="round"
+            stroke-dasharray="1400" stroke-dashoffset="1400">
+            <animate attributeName="stroke-dashoffset" from="1400" to="0" dur="1.8s" begin="0.3s" fill="freeze"/>
+          </path>
+
+          <defs>
+            <linearGradient id="jgrad" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0" stop-color="#e87a5a"/>
+              <stop offset="0.5" stop-color="#7ecc99"/>
+              <stop offset="1" stop-color="#e87a5a"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Optimum marker (7h) -->
+          <circle cx="475" cy="263" r="10" fill="#7ecc99" opacity="0">
+            <animate attributeName="opacity" from="0" to="1" dur=".4s" begin="2.2s" fill="freeze"/>
+            <animate attributeName="r" values="8;14;8" dur="2s" begin="2.6s" repeatCount="indefinite"/>
+          </circle>
+          <text x="475" y="235" font-family="Fraunces" font-size="18" font-weight="700" fill="#7ecc99" text-anchor="middle" opacity="0">
+            LOWEST RISK
+            <animate attributeName="opacity" from="0" to="1" dur=".4s" begin="2.3s" fill="freeze"/>
+          </text>
+
+          <!-- Short-sleep marker (5h) -->
+          <circle cx="310" cy="170" r="8" fill="#e87a5a" opacity="0">
+            <animate attributeName="opacity" from="0" to="1" dur=".4s" begin="2.5s" fill="freeze"/>
+          </circle>
+          <text x="310" y="140" font-family="DM Sans" font-size="14" font-weight="700" fill="#ff9a80" text-anchor="middle" opacity="0">
+            ↑ Risk
+            <animate attributeName="opacity" from="0" to="1" dur=".4s" begin="2.6s" fill="freeze"/>
+          </text>
+
+          <!-- Long-sleep marker (10h) -->
+          <circle cx="830" cy="85" r="8" fill="#e87a5a" opacity="0">
+            <animate attributeName="opacity" from="0" to="1" dur=".4s" begin="2.5s" fill="freeze"/>
+          </circle>
+          <text x="820" y="65" font-family="DM Sans" font-size="14" font-weight="700" fill="#ff9a80" text-anchor="middle" opacity="0">
+            ↑↑ Risk
+            <animate attributeName="opacity" from="0" to="1" dur=".4s" begin="2.6s" fill="freeze"/>
+          </text>
+
+          <!-- X-axis label -->
+          <text x="475" y="358" font-family="DM Sans" font-size="13" font-weight="600" fill="rgba(255,255,255,0.75)" text-anchor="middle">Sleep duration per night</text>
+        </svg>
+      </div>
+      <div class="jcurve-foot">
+        <div class="jcurve-foot-item">
+          <div class="jcurve-foot-label" style="color:#ff9a80">Short sleep (&lt;7h)</div>
+          <div class="jcurve-foot-detail">12% higher all-cause mortality · Higher CVD, diabetes, dementia risk</div>
+        </div>
+        <div class="jcurve-foot-item">
+          <div class="jcurve-foot-label" style="color:#7ecc99">~7 hours</div>
+          <div class="jcurve-foot-detail">The "sweet spot" where combined risk is lowest across very large populations</div>
+        </div>
+        <div class="jcurve-foot-item">
+          <div class="jcurve-foot-label" style="color:#ff9a80">Long sleep (&gt;8h)</div>
+          <div class="jcurve-foot-detail">30% higher all-cause mortality · Often a marker of underlying illness</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 5: FIVE WAYS IT MATTERS ═══ -->
+  <div class="slide" id="s5">
+    <div class="slide-title">Five ways poor sleep <span>matters</span> for your health</div>
+    <div class="matters-grid">
+      <div class="m-card m-heart" id="mc1">
+        <div class="m-icon">💔</div>
+        <div class="m-stat">↑ CVD</div>
+        <div class="m-stat-sub">heart &amp; stroke</div>
+        <div class="m-title">Cardiovascular</div>
+        <div class="m-body">U-shaped link to heart attack, stroke and CV death — lowest risk at ~7 hours.</div>
+        <div class="m-src">Yin JAHA 2017</div>
+      </div>
+      <div class="m-card m-diab" id="mc2">
+        <div class="m-icon">🩸</div>
+        <div class="m-stat">↑ T2DM</div>
+        <div class="m-stat-sub">diabetes risk</div>
+        <div class="m-title">Metabolic</div>
+        <div class="m-body">Short sleep reduces insulin sensitivity within days. U-shaped curve for type 2 diabetes.</div>
+        <div class="m-src">Shan Diabetes Care 2015</div>
+      </div>
+      <div class="m-card m-brain" id="mc3">
+        <div class="m-icon">🧠</div>
+        <div class="m-stat">+30%</div>
+        <div class="m-stat-sub">dementia risk</div>
+        <div class="m-title">Brain &amp; dementia</div>
+        <div class="m-body">Persistent short sleep from midlife linked to higher dementia risk 25 years on.</div>
+        <div class="m-src">Sabia Nature Comms 2021</div>
+      </div>
+      <div class="m-card m-mood" id="mc4">
+        <div class="m-icon">😔</div>
+        <div class="m-stat">↔</div>
+        <div class="m-stat-sub">two-way link</div>
+        <div class="m-title">Mental health</div>
+        <div class="m-body">Insomnia both causes and worsens depression and anxiety. Treating sleep helps mood.</div>
+        <div class="m-src">NICE · clinical guidance</div>
+      </div>
+      <div class="m-card m-life" id="mc5">
+        <div class="m-icon">⏳</div>
+        <div class="m-stat">+12% / +30%</div>
+        <div class="m-stat-sub">mortality (short/long)</div>
+        <div class="m-title">Mortality</div>
+        <div class="m-body">Both short sleep (&lt;7h) and long sleep (&gt;8h) linked to higher all-cause mortality.</div>
+        <div class="m-src">Cappuccio SLEEP 2010</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 6: WHAT YOUR DOCTOR CAN DO ═══ -->
+  <div class="slide" id="s6">
+    <div class="slide-title">What your doctor can actually <span>do</span> about sleep</div>
+    <div class="doc-grid">
+      <div class="doc-card hero" id="dk1">
+        <div class="doc-icon">📔</div>
+        <div class="doc-text">
+          <div class="doc-label">Step 1 · The starting point</div>
+          <div class="doc-title">Two-week sleep diary</div>
+          <div class="doc-body">Bedtime · time to fall asleep · night-time waking · rise time · how rested you felt. Simple, powerful — and it reveals patterns memory cannot.</div>
+        </div>
+      </div>
+      <div class="doc-card" id="dk2">
+        <div class="doc-icon">🫁</div>
+        <div class="doc-text">
+          <div class="doc-label">Screen for</div>
+          <div class="doc-title">Obstructive sleep apnoea</div>
+          <div class="doc-body"><strong>Loud snoring + daytime sleepiness</strong> warrants screening. Tools: Epworth Sleepiness Scale, STOP-Bang. Treatment (CPAP) can be life-changing.</div>
+        </div>
+      </div>
+      <div class="doc-card" id="dk3">
+        <div class="doc-icon">🧠</div>
+        <div class="doc-text">
+          <div class="doc-label">First-line treatment</div>
+          <div class="doc-title">CBT-I · cognitive behavioural therapy</div>
+          <div class="doc-body">NICE first-line for chronic insomnia at any age. Works better than sleeping tablets long-term. Face-to-face, group or digital apps available.</div>
+        </div>
+      </div>
+      <div class="doc-card" id="dk4">
+        <div class="doc-icon">💊</div>
+        <div class="doc-text">
+          <div class="doc-label">The honest picture</div>
+          <div class="doc-title">Sleeping tablets (Z-drugs, benzodiazepines)</div>
+          <div class="doc-body">Licensed for <strong>up to 4 weeks</strong>. Real risks long-term: tolerance, dependence, falls, fractures. Place for short crises — not a long-term answer.</div>
+        </div>
+      </div>
+      <div class="doc-card" id="dk5">
+        <div class="doc-icon">🌙</div>
+        <div class="doc-text">
+          <div class="doc-label">Flag if relevant</div>
+          <div class="doc-title">Menopause · shift work · older age</div>
+          <div class="doc-body">Each brings specific sleep challenges worth raising directly. HRT may help menopausal sleep disruption. Shift work needs structured scheduling advice.</div>
+        </div>
+      </div>
+      <div class="doc-card" id="dk6">
+        <div class="doc-icon">🩺</div>
+        <div class="doc-text">
+          <div class="doc-label">Also consider</div>
+          <div class="doc-title">Treatable underlying causes</div>
+          <div class="doc-body">Thyroid problems, reflux, restless legs, chronic pain, medications — all can disrupt sleep. A proper assessment looks for these rather than just treating symptoms.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 7: THE EVIDENCE ═══ -->
+  <div class="slide" id="s7">
+    <div class="slide-title">What the <span>evidence</span> actually shows</div>
+    <div class="ev-grid">
+
+      <div class="ev-card" id="ec1">
+        <div class="ev-stat-box">
+          <div class="ev-stat green">~7h</div>
+          <div class="ev-stat-lab">lowest-risk sleep duration</div>
+        </div>
+        <div class="ev-detail">
+          <div class="ev-trial">Yin et al. · sleep duration &amp; CVD</div>
+          <div class="ev-journal">JAHA · 2017 · meta-analysis · 3.5M+ people</div>
+          <div class="ev-finding">U-shaped relationship: <strong>lowest cardiovascular and mortality risk at ~7 hours</strong>, rising on either side.</div>
+        </div>
+      </div>
+
+      <div class="ev-card" id="ec2">
+        <div class="ev-stat-box">
+          <div class="ev-stat amber">+12% / +30%</div>
+          <div class="ev-stat-lab">mortality risk<br>(short / long sleep)</div>
+        </div>
+        <div class="ev-detail">
+          <div class="ev-trial">Cappuccio et al. · all-cause mortality</div>
+          <div class="ev-journal">SLEEP · 2010 · meta-analysis</div>
+          <div class="ev-finding"><strong>Short sleep 12% higher death risk · long sleep 30% higher</strong> — both independently predict mortality.</div>
+        </div>
+      </div>
+
+      <div class="ev-card" id="ec3">
+        <div class="ev-stat-box">
+          <div class="ev-stat green">7–8h</div>
+          <div class="ev-stat-lab">lowest-risk sleep for T2DM</div>
+        </div>
+        <div class="ev-detail">
+          <div class="ev-trial">Shan et al. · sleep &amp; type 2 diabetes</div>
+          <div class="ev-journal">Diabetes Care · 2015 · meta-analysis</div>
+          <div class="ev-finding">U-shape: each hour <em>less</em> below 7h = <strong>+9% T2DM risk</strong> · each hour <em>more</em> above 8h = <strong>+14% T2DM risk</strong>.</div>
+        </div>
+      </div>
+
+      <div class="ev-card" id="ec4">
+        <div class="ev-stat-box">
+          <div class="ev-stat purple">+30%</div>
+          <div class="ev-stat-lab">dementia risk<br>persistent short sleep</div>
+        </div>
+        <div class="ev-detail">
+          <div class="ev-trial">Sabia et al. · Whitehall II 25-yr follow-up</div>
+          <div class="ev-journal">Nature Communications · 2021</div>
+          <div class="ev-finding">Persistent short sleep (≤6h) from <strong>age 50 onwards = ~30% higher dementia risk</strong> 25 years later, independent of other factors.</div>
+        </div>
+      </div>
+
+      <div class="ev-card last" id="ec5">
+        <div class="ev-stat-box">
+          <div class="ev-stat green">Lasting</div>
+          <div class="ev-stat-lab">improvement in sleep</div>
+        </div>
+        <div class="ev-detail">
+          <div class="ev-trial">van Straten et al. · CBT-I meta-analysis</div>
+          <div class="ev-journal">Sleep Medicine Reviews · 2018 · 87 RCTs</div>
+          <div class="ev-finding">CBT-I produces <strong>consistent improvements in falling asleep, staying asleep, and sleep quality</strong> — and unlike sleeping tablets, effects persist long after treatment ends. Basis for the NICE first-line recommendation.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 8: CTA 1 — SLEEP DIARY ═══ -->
+  <div class="slide" id="s8">
+    <div class="cta-slide cta-today">
+      <div class="cta-badge">📋 Action 1</div>
+      <div class="cta-timeframe">Today</div>
+      <div class="cta-icon-big">📔</div>
+      <div class="cta-title">Start a <span style="color:#f0cc50">two-week sleep diary</span></div>
+      <div class="cta-body">Before you change anything, see the pattern. A simple pen-and-paper diary for two weeks gives you — and your GP — something concrete to work with.</div>
+      <div class="cta-examples">
+        <span class="cta-chip">Bedtime</span>
+        <span class="cta-chip">Time to fall asleep</span>
+        <span class="cta-chip">Night-waking</span>
+        <span class="cta-chip">Rise time</span>
+        <span class="cta-chip">How rested you felt</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 9: CTA 2 — OSA SCREEN ═══ -->
+  <div class="slide" id="s9">
+    <div class="cta-slide cta-week">
+      <div class="cta-badge">📋 Action 2</div>
+      <div class="cta-timeframe">This week</div>
+      <div class="cta-icon-big">🫁</div>
+      <div class="cta-title">If you <span style="color:#7ecc99">snore loudly and feel tired by day</span> — get screened</div>
+      <div class="cta-body">Obstructive sleep apnoea is common, widely missed, and genuinely treatable. Booking a GP appointment is the single most useful thing you can do if the pattern fits.</div>
+      <div class="cta-examples">
+        <span class="cta-chip">Loud snoring</span>
+        <span class="cta-chip">Witnessed pauses in breathing</span>
+        <span class="cta-chip">Gasping / choking</span>
+        <span class="cta-chip">Daytime sleepiness</span>
+        <span class="cta-chip">Morning headaches</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 10: CTA 3 — CBT-I ═══ -->
+  <div class="slide" id="s10">
+    <div class="cta-slide cta-first">
+      <div class="cta-badge">📋 Action 3</div>
+      <div class="cta-timeframe">First — not tablets</div>
+      <div class="cta-icon-big">🧠</div>
+      <div class="cta-title">If poor sleep has gone on for a long time — <span style="color:#70b8e8">ask about CBT-I</span></div>
+      <div class="cta-body">Cognitive behavioural therapy for insomnia is the NHS first-line treatment. It works at least as well as sleeping tablets short-term — and much better long-term. Ask your GP, or look into digital CBT-I programmes.</div>
+      <div class="cta-examples">
+        <span class="cta-chip">Sleep restriction</span>
+        <span class="cta-chip">Stimulus control</span>
+        <span class="cta-chip">Worry management</span>
+        <span class="cta-chip">Effects that last</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 11: CLOSING ═══ -->
+  <div class="slide" id="s11">
+    <div class="closing-wrap">
+      <div class="closing-logo">helf<span>.</span>school</div>
+      <div class="closing-tagline">Health Education for Everyone</div>
+      <div class="closing-title">Good sleep is not a luxury. It is <span>medicine you make yourself</span>, every night.</div>
+      <div class="closing-series">Practical Health Series · Article 09 · Sleep</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SEGMENT DOTS -->
+<div id="dots">
+  <div class="dot active" onclick="goTo(0)"></div>
+  <div class="dot" onclick="goTo(1)"></div>
+  <div class="dot" onclick="goTo(2)"></div>
+  <div class="dot" onclick="goTo(3)"></div>
+  <div class="dot" onclick="goTo(4)"></div>
+  <div class="dot" onclick="goTo(5)"></div>
+  <div class="dot" onclick="goTo(6)"></div>
+  <div class="dot" onclick="goTo(7)"></div>
+  <div class="dot" onclick="goTo(8)"></div>
+  <div class="dot" onclick="goTo(9)"></div>
+  <div class="dot" onclick="goTo(10)"></div>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('.dot');
+  let cur = 0;
+
+  function show(n){
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    document.getElementById('counter').textContent = (cur+1)+' / '+slides.length;
+    triggerSlide(cur);
+  }
+
+  function goTo(n){ show(n); }
+
+  document.addEventListener('keydown', e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowDown') show(cur+1);
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp') show(cur-1);
+  });
+
+  let tx=0, ty=0;
+  document.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; ty=e.touches[0].clientY; });
+  document.addEventListener('touchend', e=>{
+    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>40){ dx<0?show(cur+1):show(cur-1); }
+  });
+
+  function triggerSlide(n){
+    if(n===1) animateDuration();
+    if(n===4) animateMatters();
+    if(n===5) animateDocToolkit();
+    if(n===6) animateEvidence();
+  }
+
+  /* Slide 2 — duration cards */
+  function animateDuration(){
+    ['dc1','dc2','dc3','dc4','dc5','dc6'].forEach((id,i)=>{
+      setTimeout(()=>document.getElementById(id).classList.add('vis'), 200+i*180);
+    });
+  }
+
+  /* Slide 5 — matters cards */
+  function animateMatters(){
+    ['mc1','mc2','mc3','mc4','mc5'].forEach((id,i)=>{
+      setTimeout(()=>document.getElementById(id).classList.add('vis'), 200+i*220);
+    });
+  }
+
+  /* Slide 6 — doctor toolkit */
+  function animateDocToolkit(){
+    ['dk1','dk2','dk3','dk4','dk5','dk6'].forEach((id,i)=>{
+      setTimeout(()=>document.getElementById(id).classList.add('vis'), 200+i*180);
+    });
+  }
+
+  /* Slide 7 — evidence cards */
+  function animateEvidence(){
+    ['ec1','ec2','ec3','ec4','ec5'].forEach((id,i)=>{
+      setTimeout(()=>document.getElementById(id).classList.add('vis'), 200+i*200);
+    });
+  }
+
+  /* Reset animations on leaving a slide */
+  slides.forEach(s=>{
+    const obs = new MutationObserver(()=>{
+      if(!s.classList.contains('active')){
+        s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'));
+      }
+    });
+    obs.observe(s, {attributes:true});
+  });
+
+  /* Kick off slide 1 */
+  triggerSlide(0);
+</script>
+</body>
+</html>
