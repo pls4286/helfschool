@@ -1,5 +1,5 @@
 # helf.school — Project Knowledge Document
-*Last updated: April 2026 — comprehensive reference for all Claude sessions*
+*Last updated: April 2026 — comprehensive reference for all Claude sessions. Educational Voice TOP STANDARD added (see Section 8). Standard Intro revised.*
 
 ---
 
@@ -178,6 +178,32 @@ Key Terms box sits **between sections 1 and 2** — navy background, alphabetica
 
 Research claims flagged ⚑ for Paul review before publishing.
 
+### Educational voice — TOP STANDARD
+**DESCRIBES, never INSTRUCTS.** This standard applies to every article, visuals deck, teleprompter, screen file, CTA, disclaimer, and footer — and overrides any older phrasing.
+
+**AVOID (directive):**
+- "please speak to your GP"
+- "always tell / always discuss / always speak to"
+- "you should / you must / you need to"
+- "stop and seek urgent / seek medical advice"
+- "if concerns / if worried / if anything feels relevant to you personally"
+- "decision in partnership"
+- "don't avoid / don't ignore"
+- Any shortened version such as "conversation for your GP" or "conversation with your doctor"
+
+**USE (descriptive):**
+- **"conversation for you to have with your GP or healthcare professional"** — ALWAYS this full phrase. Never shortened. This is the single mandated phrase for signposting clinical discussion, disclaimers, footers, and video intros.
+- "in UK practice" (when describing typical clinical approach)
+- "clinically recognised as time-sensitive — 111/urgent GP exists for this" (for red-flag / time-sensitive features)
+- "NICE describes as shared decision" (for shared decision-making)
+- Describe what happens rather than instruct the reader: "the diary comes before the appointment" not "do it before your appointment"; "UK practice is to screen for X" not "your GP should screen for X"
+- Red-flag section headings use "Clinically time-sensitive features" rather than "When to see your GP"
+
+**Disclaimer (top of article, footer, and Segment 0 of every video):**
+> "Anything personally relevant is a conversation for you to have with your GP or healthcare professional."
+
+**CTA-title rule:** CTA titles must describe, not command. Example: "CBT-I is the NHS first-line option" — not "ask about CBT-I".
+
 ### Medical term lay-clarification standard
 When a medical/technical term is used in an article, a plain-English meaning in brackets must follow — every time, not just first mention. Examples: ataxia (balance/coordination problems), peripheral neuropathy (nerve tingling/numbness), cardiovascular events (heart attacks, strokes, and cardiovascular deaths), Integrated Care Boards (NHS bodies that plan and fund health services for a region). Apply in prose, tables, bullets, callouts. Short-form brackets OK in tight table cells.
 
@@ -252,8 +278,8 @@ Each video requires **three** HTML files. Old combined presenter/script files ar
 - RAF auto-scroll loop, touch swipe, segment jump dots
 
 ### Standard intro (every video, Segment 0)
-> "I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about [TOPIC]. Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. If anything feels relevant to you personally, please take it to your own doctor. Right — let's get into it."
-~15–18 seconds.
+> "I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about [TOPIC]. Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — let's get into it."
+~15–18 seconds. Uses the full educational-voice phrase — never shortened. See Section 8 Educational Voice standard.
 
 ### Video length standard — 4 to 5 minutes maximum
 People get bored easily on video — shorter is better. Teleprompter word count should be approximately **600–750 words total** (assuming ~150 wpm delivery). Aim for tight, punchy segments. When writing or revising, if word count exceeds ~750, cut — remove redundant examples, tighten preamble, merge segments. Applies to every video in every series.
@@ -403,7 +429,7 @@ Do NOT use: non-peer-reviewed sources, commercial health sites, forum content.
 ### Completed ✅
 - All Cardiovascular Series articles 01–07 — article, visuals, teleprompter complete
 - All Digestive Series articles 13–18 — article, visuals, teleprompter complete
-- Practical Health Series Article 08 Mediterranean Diet — article + visuals confirmed
+- Practical Health Series Article 08 Mediterranean Diet — article + visuals confirmed (teleprompter not built)
 - **Article 09 Sleep** — article, visuals, teleprompter all built this April 2026 session
 - **Article 10 Exercise** — article, visuals, teleprompter all built this April 2026 session
 - Pricing confirmed correct (£0/£6/£60/£150) on index.html and membership page
@@ -411,11 +437,14 @@ Do NOT use: non-peer-reviewed sources, commercial health sites, forum content.
 - Video length standard (4–5 min max) established
 - Teleprompter core standard (messages + stats + pointers) established
 - Visuals slide layout standard established
+- **Educational Voice TOP STANDARD** established and applied (see Section 8)
+- **Educational voice retrofit — articles 01–09 complete** (01 Hypertension, 02 Cholesterol, 03 Heart Attack Risk, 04 Statins, 05 Lifestyle Changes, 06 Salt, 07 Supplements, 08 Mediterranean Diet, 09 Sleep). All three files per article (where present) retrofitted to use full phrase "conversation for you to have with your GP or healthcare professional"
+- Standard video intro updated to use full educational-voice phrase (see Section 9)
 
 ### Immediate
 - [ ] Verify ESSENCE trial (semaglutide MASH) publication status ⚑ before masld.html goes live
-- [ ] Confirm whether mediterranean-diet-teleprompter.html exists
 - [ ] Lancet Commission on dementia — verify 12 vs 14 modifiable risk factors ⚑ (exercise.html reference)
+- [ ] **Continue educational voice retrofit** — articles 10 Exercise, 13 Acid Reflux, 14 Bloating, 15 IBD, 16 IBS, 17 MASLD, 18 Coeliac still to do
 
 ### Near-term
 - [ ] Build Article 11 Stress and Article 12 Alcohol
