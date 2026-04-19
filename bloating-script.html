@@ -85,12 +85,12 @@ const badgeLabel = { opening:'Opening', section:'Section', cta:'Call to Action',
 
 const slides = [
 
-  { type:'opening', label:'Intro · Dr Paul', title:'Introduction', section:'Opening — camera on Dr Paul', timing:'⏱ ~15 seconds',
+  { type:'opening', label:'Intro · Dr Paul', title:'Introduction', section:'Opening — camera on Dr Paul', timing:'⏱ ~15–18 seconds',
     visuals_screen: null,
     script: [
       `"I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019."`,
-      `"Today I want to talk to you about bloating — what's actually causing it, what the evidence says about managing it, and when it matters enough to see your doctor."`,
-      `"What I'm giving you here is health education, not medical advice. If anything feels relevant to you personally, please do take it to your own doctor."`,
+      `"Today I want to talk to you about bloating — what's actually causing it, what the evidence says about managing it, and when it crosses into clinically time-sensitive territory."`,
+      `"Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional."`,
       `"Right — let's get into it."`,
     ]
   },
@@ -101,7 +101,7 @@ const slides = [
       `"Bloating is one of the most common digestive symptoms there is. Nearly two thirds of UK adults experience it in any given month."`,
       `<span class="script-pause">PAUSE</span>`,
       `"Most people don't mention it to their GP. They assume it's normal, or something they ate, or just something to put up with. And yet bloating is the digestive symptom that causes the most anxiety — more than heartburn, more than abdominal pain."`,
-      `"So let's take it seriously. Because in most cases, there's a reason for it — and once you know the reason, it's manageable."`,
+      `"So let's take it seriously. Because in most cases, there's a reason for it — and once the reason is known, it's manageable."`,
     ]
   },
 
@@ -120,8 +120,8 @@ const slides = [
     visuals_screen: { file:'bloating-visuals.html → Screen 3', what:'Six causes cards animating in', graphic:'Six numbered cards animating in one by one: 🫧 Excess gas production · 🔄 Impaired gas transit · 🧠 Visceral hypersensitivity · 🦠 SIBO · 🥛 Food intolerances · ⚖️ Gut microbiome imbalance. Amber FODMAP callout below pointing to next screen.' },
     script: [
       `"So the six main causes are: excess gas production from fermentation; impaired gas transit; visceral hypersensitivity; SIBO; food intolerances — particularly lactose and fructose; and gut microbiome imbalance."`,
-      `"The reason this matters is that each one has a different approach. If you've been told to try a low-FODMAP diet and it hasn't worked, it's possible your bloating isn't FODMAP-driven — it might be visceral hypersensitivity, or constipation, or something else entirely."`,
-      `"There are also less common but important causes — coeliac disease, and in women, persistent unexplained bloating can occasionally be the first sign of an ovarian problem. That's a reason not to just ignore it."`,
+      `"The reason this matters is that each one has a different approach. If someone has been told to try a low-FODMAP diet and it hasn't worked, it's possible their bloating isn't FODMAP-driven — it might be visceral hypersensitivity, or constipation, or something else entirely."`,
+      `"There are also less common but important causes — coeliac disease, and in women, persistent unexplained bloating can occasionally be the first sign of an ovarian problem. Persistent unexplained bloating in women is <strong>clinically recognised as time-sensitive</strong> for exactly that reason."`,
     ]
   },
 
@@ -131,19 +131,19 @@ const slides = [
       `"FODMAPs — Fermentable Oligosaccharides, Disaccharides, Monosaccharides And Polyols. A group of short-chain carbohydrates that are poorly absorbed and rapidly fermented in the gut."`,
       `"The key ones: <strong>onion and garlic</strong> are among the highest FODMAP foods — they're in almost everything. <strong>Wheat</strong> — bread, pasta, cereals. <strong>Dairy</strong> — specifically the lactose. <strong>Apples, pears, mangoes</strong>. <strong>Beans and lentils</strong>."`,
       `"The low-FODMAP alternatives aren't restrictive — they're specific. Rice instead of wheat. Lactose-free milk instead of regular. Firm banana instead of apple. Hard cheese is fine. Strawberries are fine. Carrots are fine."`,
-      `"One critical point: the low-FODMAP diet is a diagnostic tool, not a permanent diet. You restrict for 2 to 6 weeks, then reintroduce foods one by one to find your specific triggers. Most people can eat the majority of foods again once they've identified what actually bothers them."`,
+      `"One critical point: the low-FODMAP diet is a diagnostic tool, not a permanent diet. In UK practice, foods are restricted for 2 to 6 weeks, then reintroduced one by one to identify specific triggers. Most people can eat the majority of foods again once the triggers are known."`,
     ]
   },
 
-  { type:'section', label:'Segment 5 · Section 3', title:'What Your Doctor Will Do', section:'Article Section 3 — investigations & management', timing:'⏱ 3:00–3:50',
+  { type:'section', label:'Segment 5 · Section 3', title:'What the GP Might Do', section:'Article Section 3 — investigations & management', timing:'⏱ 3:00–3:50',
     visuals_screen: { file:'bloating-visuals.html → Screen 5', what:'Investigation & management ladder', graphic:'Two-panel layout. Left: investigations table (blood tests, breath test, coeliac screen, pelvic ultrasound). Right: management ladder — 1 Dietary (low-FODMAP, lactose exclusion) · 2 Constipation · 3 Medications · 4 Gut-brain therapies (CBT/hypnotherapy).' },
     script: [
       `"Most bloating doesn't need extensive investigation — the history is usually informative enough. But there are targeted tests when there's clinical reason."`,
-      `"A blood test will check for coeliac disease, anaemia, and thyroid problems. A hydrogen breath test can diagnose lactose intolerance, fructose malabsorption, and SIBO. If you're a woman with new, persistent bloating, a pelvic ultrasound to check the ovaries is appropriate."`,
+      `"A blood test will check for coeliac disease, anaemia, and thyroid problems. A hydrogen breath test can diagnose lactose intolerance, fructose malabsorption, and SIBO. For women with new, persistent bloating, a pelvic ultrasound to check the ovaries is part of the pathway."`,
       `"Management depends on the cause. Dietary approaches — particularly a dietitian-led low-FODMAP trial — are first line. Lactose exclusion for 2 to 4 weeks is a simple first step. Addressing constipation matters — it significantly worsens bloating."`,
-      `"For medication: antispasmodics like mebeverine can help with spasm. Low-dose antidepressants modulate gut-brain signalling and are genuinely useful in IBS. Rifaximin is used for SIBO when confirmed."`,
+      `"For medication: antispasmodics like mebeverine (brand name Colofac) can help with spasm. Low-dose antidepressants modulate gut-brain signalling and are genuinely useful in IBS. Rifaximin — brand name Xifaxanta — is used for SIBO when confirmed."`,
       `"Gut-directed hypnotherapy and CBT have good evidence — particularly when there's anxiety or a significant gut-brain axis component."`,
-      `"One important caution: <strong>don't start a gluten-free diet before you've been tested for coeliac disease.</strong> Removing gluten beforehand will give a false-negative result."`,
+      `"One important point: <strong>coeliac testing requires gluten in the diet at the time of testing.</strong> In UK practice, starting a gluten-free diet beforehand gives a false-negative result — and the diagnosis can be missed entirely."`,
     ]
   },
 
@@ -154,16 +154,16 @@ const slides = [
       `"The Rome Foundation Global Epidemiology Study — 51,000 people across 26 countries including the UK — found that nearly 18% of the general population experience bloating at least once a week. Women are twice as likely as men. The authors noted it's significantly underscreened in primary care."`,
       `"The landmark FODMAP trial — Halmos and colleagues, Monash University, 2014 — was a randomised controlled crossover study. IBS patients on a low-FODMAP diet had significantly lower symptom scores, and specifically reduced bloating, pain, and wind. This is the study that put the low-FODMAP diet on the clinical map."`,
       `"A 2022 Gut network meta-analysis pooled 13 randomised trials and found the low-FODMAP diet ranked first for all endpoints — global symptoms, abdominal pain, and specifically bloating and distension."`,
-      `"And a 2025 UK survey confirmed that 64% of adults — including those with no diagnosed gut condition — had bloating in the past month. It was the symptom that caused the most anxiety. This tells us bloating is not a niche problem. It's a very common one that deserves proper attention."`,
+      `"And a 2025 UK survey confirmed that 64% of adults — including those with no diagnosed gut condition — had bloating in the past month. It was the symptom that caused the most anxiety. This tells us bloating is not a niche problem — it warrants proper clinical attention."`,
     ]
   },
 
-  { type:'cta', label:'Segment 7 · Call to Action', title:'Three Things You Can Do', section:'Call to action', timing:'⏱ 4:30–5:00',
-    visuals_screen: { file:'bloating-visuals.html → Screen 7', what:'Three action cards', graphic:'Three numbered cards: 1 — Talk to your GP (don\'t just put up with persistent bloating). 2 — Keep a food and symptom diary for 2 weeks before your appointment. 3 — If you want to try low-FODMAP, ask for a dietitian referral — don\'t do it alone.' },
+  { type:'cta', label:'Segment 7 · Call to Action', title:'Three Practical Steps', section:'Call to action', timing:'⏱ 4:30–5:00',
+    visuals_screen: { file:'bloating-visuals.html → Screen 7', what:'Three action cards', graphic:'Three numbered cards: 1 — Persistent bloating is a conversation for your GP or healthcare professional. 2 — A two-week food and symptom diary comes before the appointment. 3 — Dietitian-led low-FODMAP is the evidence-based pathway.' },
     script: [
-      `"<strong>First: if bloating is affecting your quality of life — talk to your GP.</strong> Don't just put up with it. There are good treatments, and there may be an underlying cause worth finding."`,
-      `"<strong>Second: keep a food and symptom diary for two weeks before you go.</strong> Write down what you eat and when symptoms occur. This is more useful than any test — it helps identify patterns, and it makes your GP appointment significantly more productive."`,
-      `"<strong>Third: if you want to trial low-FODMAP, ask for a referral to a registered dietitian.</strong> Done without guidance, the diet is often done incorrectly — either too restrictive, or the reintroduction phase is skipped. A dietitian makes a real difference to the outcome."`,
+      `"<strong>First: bloating that's affecting quality of life is a conversation for you to have with your GP or healthcare professional.</strong> In UK practice, there are good treatments — and there's usually an underlying cause worth finding."`,
+      `"<strong>Second: in UK practice, a two-week food and symptom diary comes before the appointment.</strong> Written notes of what's eaten and when symptoms occur are often more useful than any test — patterns emerge, and the GP conversation becomes significantly more productive."`,
+      `"<strong>Third: dietitian-led low-FODMAP is the evidence-based pathway.</strong> Without guidance, the diet is often done incorrectly — too restrictive, or the reintroduction phase skipped. Dietitian input makes a real difference to the outcome."`,
       `"The full article — including the FODMAP table and reference list — is at <strong>helf.school</strong>, Article 15 in the Digestive Health series."`,
     ]
   },
@@ -172,7 +172,7 @@ const slides = [
     visuals_screen: { file:'bloating-visuals.html → Screen 8', what:'helf.school closing card', graphic:'helf.school logo, tagline, series pills with Article 15 highlighted.' },
     script: [
       `"Bloating is one of those symptoms that gets dismissed too easily — by patients, and sometimes by doctors too."`,
-      `"Most of the time, there's a reason. And when you find it, it's manageable. That's worth knowing."`,
+      `"Most of the time, there's a reason. And when the reason is found, it's manageable. That's worth knowing."`,
       `<span class="script-pause">PAUSE</span>`,
       `"Thanks for watching. helf.school — take care of yourself."`,
     ]

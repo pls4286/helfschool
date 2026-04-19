@@ -40,8 +40,6 @@
     .nav-dot { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.20); cursor:pointer; transition:all .2s; }
     .nav-dot.active { background:var(--digest); transform:scale(1.3); }
 
-    /* ── SHARED COMPONENT STYLES ── */
-
     /* Stat card */
     .stat-card { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.12); border-radius:16px; padding:1.5rem 2rem; text-align:center; max-width:420px; }
     .stat-big { font-family:'Fraunces',serif; font-size:5rem; font-weight:700; color:var(--digest); line-height:1; }
@@ -156,35 +154,26 @@ const visuals = {
 
       <div style="display:flex;align-items:center;gap:1.5rem;">
 
-        <!-- GUT DIAGRAM — large -->
         <div style="flex:0 0 320px;display:flex;justify-content:center;">
           <svg viewBox="0 0 260 310" style="width:320px;height:auto;overflow:visible;" xmlns="http://www.w3.org/2000/svg">
             <text x="100" y="16" text-anchor="middle" font-family="DM Sans" font-size="13" fill="rgba(255,255,255,.85)" font-weight="700">Small Intestine</text>
-            <!-- Intestine tube — starts at y=36 to clear the label -->
             <path d="M60 36 Q38 52 50 72 Q62 92 88 86 Q114 80 102 102 Q90 124 62 120 Q34 116 44 138 Q54 160 82 156 Q110 152 100 176 Q90 200 62 196" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="20" stroke-linecap="round"/>
             <path d="M60 36 Q38 52 50 72 Q62 92 88 86 Q114 80 102 102 Q90 124 62 120 Q34 116 44 138 Q54 160 82 156 Q110 152 100 176 Q90 200 62 196" fill="none" stroke="#1B2A4A" stroke-width="15" stroke-linecap="round"/>
-            <!-- Amber food particles -->
             <circle cx="58" cy="62" r="5.5" fill="#E8A84A"/>
             <circle cx="76" cy="96" r="5"   fill="#E8A84A"/>
             <circle cx="56" cy="132" r="5.5" fill="#E8A84A"/>
             <circle cx="76" cy="168" r="5"   fill="#E8A84A" opacity=".7"/>
-            <!-- Right-side label -->
             <line x1="105" y1="102" x2="148" y2="92" stroke="rgba(255,255,255,.45)" stroke-width="1.2"/>
             <text x="150" y="86" font-family="DM Sans" font-size="11.5" fill="rgba(255,255,255,.80)">undigested carbs</text>
             <text x="150" y="100" font-family="DM Sans" font-size="11.5" fill="rgba(255,255,255,.80)">pass through</text>
-            <!-- Arrow to colon -->
             <line x1="88" y1="210" x2="88" y2="232" stroke="rgba(255,255,255,.55)" stroke-width="2" stroke-dasharray="5,3"/>
             <polygon points="88,242 80,226 96,226" fill="rgba(255,255,255,.55)"/>
-            <!-- COLON label -->
             <text x="88" y="258" text-anchor="middle" font-family="DM Sans" font-size="13" fill="rgba(255,255,255,.85)" font-weight="700">Colon</text>
-            <!-- Colon oval -->
             <ellipse cx="88" cy="288" rx="75" ry="18" fill="rgba(212,124,58,.15)" stroke="rgba(255,255,255,.70)" stroke-width="2.5"/>
             <text x="88" y="285" text-anchor="middle" font-family="DM Sans" font-size="11" fill="rgba(255,255,255,.85)">🦠 bacteria ferment</text>
-            <!-- GAS label to the right with pointer -->
             <line x1="163" y1="288" x2="175" y2="288" stroke="rgba(212,124,58,.80)" stroke-width="1.5"/>
             <text x="177" y="284" font-family="DM Sans" font-size="11.5" fill="#D47C3A" font-weight="800">→ GAS</text>
             <text x="177" y="298" font-family="DM Sans" font-size="11.5" fill="#D47C3A" font-weight="800">→ distension</text>
-            <!-- Gas bubbles -->
             <circle cx="58"  cy="278" r="9"  fill="rgba(212,124,58,.70)" opacity="0" style="animation:bubble 2.5s ease-in-out 0s infinite"/>
             <circle cx="88"  cy="272" r="12" fill="rgba(212,124,58,.55)" opacity="0" style="animation:bubble 2.5s ease-in-out .6s infinite"/>
             <circle cx="118" cy="278" r="9"  fill="rgba(212,124,58,.70)" opacity="0" style="animation:bubble 2.5s ease-in-out 1.3s infinite"/>
@@ -192,7 +181,6 @@ const visuals = {
           <style>@keyframes bubble{0%{opacity:0;transform:translateY(0) scale(.8)}30%{opacity:1}80%{opacity:.6;transform:translateY(-22px) scale(1.3)}100%{opacity:0;transform:translateY(-32px) scale(.9)}}</style>
         </div>
 
-        <!-- MECHANISM CARDS -->
         <div style="flex:1;display:flex;flex-direction:column;gap:.55rem;">
           <div class="bloat-step" style="background:rgba(212,124,58,.10);border:1px solid rgba(212,124,58,.30);border-radius:9px;padding:.7rem .95rem;opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease;">
             <div style="font-size:.88rem;font-weight:700;color:var(--digest);margin-bottom:.2rem;">🫧 Gas production</div>
@@ -264,7 +252,6 @@ const visuals = {
     <div style="width:100%;max-width:800px;display:flex;flex-direction:column;gap:.6rem;">
       <div style="font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.80);text-align:center;">FODMAPs — What to Trial-Exclude &amp; What to Eat Instead</div>
       <div style="border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.3);">
-        <!-- Header -->
         <div style="display:grid;grid-template-columns:110px 1fr 1fr;background:rgba(255,255,255,.05);">
           <div style="padding:.6rem .8rem;"></div>
           <div style="padding:.6rem .8rem;background:rgba(220,60,60,.20);border-left:1px solid rgba(255,255,255,.08);">
@@ -274,7 +261,6 @@ const visuals = {
             <span style="font-size:.8rem;font-weight:700;color:#86EFAC;">🟢 Low FODMAP — well tolerated</span>
           </div>
         </div>
-        <!-- Rows -->
         ${[
           ['🥛 Dairy',     'Cow\'s milk, yoghurt, soft cheese, ice cream',        'Lactose-free milk, hard cheese (cheddar), butter, brie'],
           ['🍞 Grains',    'Wheat bread, rye, barley, wheat pasta, most cereals', 'Rice, oats, quinoa, gluten-free bread & pasta, corn'],
@@ -289,7 +275,7 @@ const visuals = {
           <div style="padding:.55rem .8rem;font-size:.78rem;color:rgba(255,255,255,.82);border-left:2px solid rgba(60,180,100,.40);line-height:1.4;">${r[2]}</div>
         </div>`).join('')}
       </div>
-      <div style="font-size:.72rem;color:rgba(255,255,255,.65);text-align:center;padding:.2rem 0;">Restrict 2–6 weeks · Then reintroduce one food at a time · Ideally with a registered dietitian</div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.65);text-align:center;padding:.2rem 0;">Restricted 2–6 weeks · Then reintroduced one food at a time · Ideally with a registered dietitian</div>
     </div>`,
 
   s5: () => {
@@ -305,32 +291,32 @@ const visuals = {
         <div class="mgmt-num" style="background:rgba(212,124,58,.25);color:var(--digest);">1</div>
         <div class="mgmt-text">
           <h5>Targeted investigations</h5>
-          <p>Blood tests (coeliac, FBC, thyroid) · Hydrogen breath test (lactose, fructose, SIBO) · Pelvic ultrasound if new bloating in women</p>
+          <p>Blood tests (coeliac, FBC, thyroid) · Hydrogen breath test (lactose, fructose, SIBO) · Pelvic ultrasound for new bloating in women</p>
         </div>
       </div>
       <div class="mgmt-step">
         <div class="mgmt-num" style="background:rgba(122,158,135,.25);color:#7A9E87;">2</div>
         <div class="mgmt-text">
           <h5>Dietary approach (first-line)</h5>
-          <p>Dietitian-led low-FODMAP trial · Lactose exclusion 2–4 weeks · Address constipation — fibre, hydration, activity</p>
+          <p>Dietitian-led low-FODMAP trial · Lactose exclusion 2–4 weeks · Constipation addressed — fibre, hydration, activity</p>
         </div>
       </div>
       <div class="mgmt-step">
         <div class="mgmt-num" style="background:rgba(232,168,74,.25);color:var(--amber);">3</div>
         <div class="mgmt-text">
           <h5>Medications</h5>
-          <p>Antispasmodics (mebeverine) · Low-dose antidepressants (gut-brain modulation) · Rifaximin if SIBO confirmed</p>
+          <p>Antispasmodics (mebeverine [Colofac]) · Low-dose antidepressants (gut-brain modulation) · Rifaximin (Xifaxanta) where SIBO confirmed</p>
         </div>
       </div>
       <div class="mgmt-step">
         <div class="mgmt-num" style="background:rgba(107,94,168,.25);color:#9B8FD4;">4</div>
         <div class="mgmt-text">
           <h5>Gut-brain therapies</h5>
-          <p>Gut-directed hypnotherapy · CBT for IBS — particularly effective when anxiety or gut-brain axis is involved</p>
+          <p>Gut-directed hypnotherapy · CBT for IBS — particularly where anxiety or gut-brain axis is involved</p>
         </div>
       </div>
       <div style="background:rgba(232,99,74,.10);border:1px solid rgba(232,99,74,.30);border-radius:8px;padding:.6rem .9rem;font-size:.78rem;color:rgba(255,255,255,.85);line-height:1.5;margin-top:.1rem;">
-        ⚠️ <strong style="color:#fff;">Don't start gluten-free before coeliac testing</strong> — removing gluten beforehand will falsely normalise the result.
+        ⚠️ <strong style="color:#fff;">Coeliac testing requires gluten in the diet</strong> — starting gluten-free beforehand falsely normalises the result and can miss the diagnosis.
       </div>
     </div>`;
   },
@@ -362,7 +348,7 @@ const visuals = {
       <div class="rr">
         <div class="rr-badge">Tuck et al · Eur J Nutr 2025</div>
         <div class="rr-text">UK adults survey (n=516). 64% had bloating in the past month — even those with no diagnosed gut condition. Most anxiety-provoking symptom.</div>
-        <div class="rr-takehome">→ Bloating is not a niche problem — it deserves proper clinical attention.</div>
+        <div class="rr-takehome">→ Bloating is not a niche problem — it warrants proper clinical attention.</div>
       </div>
     </div>`;
   },
@@ -375,26 +361,26 @@ const visuals = {
     }, 100);
     return `
     <div class="cta-wrap">
-      <div style="font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.80);margin-bottom:.2rem;">Three Things You Can Do</div>
+      <div style="font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.80);margin-bottom:.2rem;">Three Practical Steps</div>
       <div class="cta-card">
         <div class="cta-num">1</div>
         <div class="cta-text">
-          <h5>Talk to your GP if bloating is affecting your life</h5>
-          <p>Don't just put up with it. Persistent bloating has causes — and most are treatable. It's worth a proper assessment.</p>
+          <h5>Persistent bloating is a conversation for your GP or healthcare professional</h5>
+          <p>Bloating has causes — and most are treatable. In UK practice, a symptom affecting daily life is worth proper assessment rather than indefinite management.</p>
         </div>
       </div>
       <div class="cta-card">
         <div class="cta-num">2</div>
         <div class="cta-text">
-          <h5>Keep a food and symptom diary for two weeks</h5>
-          <p>Write down what you eat and when symptoms occur. This is more useful than any test — it identifies patterns and makes your GP appointment far more productive.</p>
+          <h5>A food and symptom diary comes before the appointment</h5>
+          <p>Two weeks of written notes — what's eaten, when symptoms occur — is often more useful than any test. Patterns emerge, and the GP conversation becomes far more productive.</p>
         </div>
       </div>
       <div class="cta-card">
         <div class="cta-num">3</div>
         <div class="cta-text">
-          <h5>Ask for a dietitian referral before trying low-FODMAP</h5>
-          <p>The diet is often done incorrectly without guidance — too restrictive, or the reintroduction phase is skipped. A dietitian makes a meaningful difference to outcome.</p>
+          <h5>Dietitian-led low-FODMAP is the evidence-based pathway</h5>
+          <p>Without guidance, the diet is often done incorrectly — too restrictive, or the reintroduction phase skipped. Dietitian input makes a meaningful difference to outcome.</p>
         </div>
       </div>
     </div>`;
