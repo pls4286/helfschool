@@ -1,5 +1,5 @@
 # helf.school — Project Knowledge Document
-*Last updated: April 2026 — updated: retrofit status corrected (01–10 + 13 + 15 complete); GitHub raw URL fetch method added; article numbering corrected (IBD=14, Bloating=15).*
+*Last updated: April 2026 — updated: teleprompter cue-box standard changed to CUE → SCRIPT pattern; all 11 project-file teleprompters retrofitted; 4 stub teleprompters (cholesterol, heart-attack-risk, hypertension, ibs) need GitHub fetch + retrofit; stress article files added (visuals + teleprompter built).*
 
 ---
 
@@ -131,7 +131,7 @@ Free = read-only. Paid members = full access. Needs: thread creation, member pro
 | 08 | The Mediterranean Diet | mediterranean-diet.html ✅ | mediterranean-diet-visuals.html ✅ | mediterranean-diet-teleprompter.html ⚑ confirm |
 | 09 | Sleep | sleep.html ✅ | sleep-visuals.html ✅ | sleep-teleprompter.html ✅ |
 | 10 | Exercise | exercise.html ✅ | exercise-visuals.html ✅ | exercise-teleprompter.html ✅ |
-| 11 | Stress | not started | — | — |
+| 11 | Stress | not started | stress-visuals.html ✅ | stress-teleprompter.html ✅ |
 | 12 | Alcohol | not started | — | — |
 
 ### Digestive Health Series (Articles 13–18) — ✅ ALL COMPLETE
@@ -274,7 +274,7 @@ Each video requires **three** HTML files. Old combined presenter/script files ar
 - Default font: `1.9rem`
 - Speed control: 1–6 via +/− buttons
 - Font control: A+ / A− buttons
-- Visual cue boxes at **bottom of each segment** — amber border for visuals advance, red border for screen file switch
+- **CUE BOX PATTERN — cue box PRECEDES the script lines for its segment, not follows them.** Label reads `▶ ADVANCE NOW — then read`. Viewer sees visual before Dr Paul speaks about it. Advance the visual first, then read the script while it is on screen. `stress-teleprompter.html` is the canonical reference implementation.
 - RAF auto-scroll loop, touch swipe, segment jump dots
 
 ### Standard intro (every video, Segment 0)
@@ -435,7 +435,7 @@ Do NOT use: non-peer-reviewed sources, commercial health sites, forum content.
 - Teleprompter (`[article]-teleprompter.html`) on phone/tablet beside camera lens
 - Arrow keys advance visuals screen in sync with teleprompter cues
 
-**Teleprompter placement:** Phone/tablet propped just below or beside camera lens. Dr Paul reads from it, glances at camera. PAUSE markers indicate natural breaks. Visual cue boxes at segment ends signal when to advance the visuals screen.
+**Teleprompter placement:** Phone/tablet propped just below or beside camera lens. Dr Paul reads from it, glances at camera. PAUSE markers indicate natural breaks. **Cue boxes appear at the TOP of each segment** — advance the visuals screen first, then read the script while the viewer watches that visual.
 
 ---
 
@@ -455,11 +455,15 @@ Do NOT use: non-peer-reviewed sources, commercial health sites, forum content.
 - **Educational Voice TOP STANDARD** established and applied (see Section 8)
 - **Educational voice retrofit — articles 01–10, 13, 15 complete** (01 Hypertension, 02 Cholesterol, 03 Heart Attack Risk, 04 Statins, 05 Lifestyle Changes, 06 Salt, 07 Supplements, 08 Mediterranean Diet, 09 Sleep, 10 Exercise, 13 Acid Reflux, 15 Bloating). All three files per article (where present) retrofitted to use full phrase "conversation for you to have with your GP or healthcare professional".
 - Standard video intro updated to use full educational-voice phrase (see Section 9)
+- **Teleprompter cue-box standard changed** — cue box now PRECEDES script lines (▶ ADVANCE NOW — then read). stress-teleprompter.html is canonical reference.
+- **Teleprompter retrofit complete (11 files):** coeliac, ibd, lifestyle, masld, salt, sleep, statins, supplements (Format A — cue-box moved to top of each segment); acid-reflux, bloating (Format B — visual-cue moved to first position in JS lines array); exercise (Format C — .cue div moved to after .seg-head). All retrofitted files in outputs, ready for GitHub upload.
 
 ### Immediate
 - [ ] Verify ESSENCE trial (semaglutide MASH) publication status ⚑ before masld.html goes live
 - [ ] Lancet Commission on dementia — verify 12 vs 14 modifiable risk factors ⚑ (exercise.html reference)
 - [ ] **Continue educational voice retrofit** — articles 14 IBD, 16 IBS, 17 MASLD, 18 Coeliac still to do
+- [ ] **Teleprompter retrofit — 4 stub files** need GitHub raw fetch then cue-box retrofit: `cholesterol-teleprompter.html`, `heart-attack-risk-teleprompter.html`, `hypertension-teleprompter.html`, `ibs-teleprompter.html`. Raw URL format: `https://raw.githubusercontent.com/pls4286/helfschool/main/[filename].html`. Paste content into chat; Claude will apply same CUE → SCRIPT pattern.
+- [ ] Upload all 11 retrofitted teleprompters to GitHub (outputs folder ready)
 
 ### Near-term
 - [ ] Build Article 11 Stress and Article 12 Alcohol
