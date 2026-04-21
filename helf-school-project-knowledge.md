@@ -1,5 +1,5 @@
 # helf.school — Project Knowledge Document
-*Last updated: April 2026 — updated: teleprompter cue-box standard changed to CUE → SCRIPT pattern; all 11 project-file teleprompters retrofitted; 4 stub teleprompters (cholesterol, heart-attack-risk, hypertension, ibs) need GitHub fetch + retrofit; stress article files added (visuals + teleprompter built).*
+*Last updated: April 2026 — updated: Educational voice retrofit complete for ALL article HTML files 01–18 (excl. 12 Alcohol not started); masld.html © patched to 2026; ESSENCE trial ⚑ cleared (PubMed 40305708); Lancet Commission dementia 14 factors ⚑ cleared; all 16 teleprompters + all article HTMLs on GitHub.*
 
 ---
 
@@ -128,10 +128,10 @@ Free = read-only. Paid members = full access. Needs: thread creation, member pro
 ### Practical Health Series (Articles 08–12) — IN PROGRESS
 | # | Title | Article HTML | Visuals | Teleprompter |
 |---|-------|-------------|---------|--------------|
-| 08 | The Mediterranean Diet | mediterranean-diet.html ✅ | mediterranean-diet-visuals.html ✅ | mediterranean-diet-teleprompter.html ⚑ confirm |
+| 08 | The Mediterranean Diet | mediterranean-diet.html ✅ | mediterranean-diet-visuals.html ✅ | mediterranean-diet-teleprompter.html ✅ |
 | 09 | Sleep | sleep.html ✅ | sleep-visuals.html ✅ | sleep-teleprompter.html ✅ |
 | 10 | Exercise | exercise.html ✅ | exercise-visuals.html ✅ | exercise-teleprompter.html ✅ |
-| 11 | Stress | not started | stress-visuals.html ✅ | stress-teleprompter.html ✅ |
+| 11 | Stress | stress.html ✅ | stress-visuals.html ✅ | stress-teleprompter.html ✅ |
 | 12 | Alcohol | not started | — | — |
 
 ### Digestive Health Series (Articles 13–18) — ✅ ALL COMPLETE
@@ -141,10 +141,10 @@ Free = read-only. Paid members = full access. Needs: thread creation, member pro
 | 14 | IBD: Crohn's Disease and Ulcerative Colitis | ibd.html | ibd-visuals.html | ibd-teleprompter.html | ibd-gut-screen.html |
 | 15 | Bloating | bloating.html | bloating-visuals.html | bloating-teleprompter.html | bloating-gut-screen.html, bloating-fodmap-screen.html |
 | 16 | IBS | ibs.html | ibs-visuals.html | ibs-teleprompter.html | — |
-| 17 | Fatty Liver Disease (MASLD) | masld.html ⚑ | masld-visuals.html | masld-teleprompter.html | — |
+| 17 | Fatty Liver Disease (MASLD) | masld.html ✅ | masld-visuals.html | masld-teleprompter.html | — |
 | 18 | Coeliac Disease | coeliac.html | coeliac-visuals.html | coeliac-teleprompter.html | coeliac-villi-screen.html |
 
-**Article 17 note:** ESSENCE trial reference flagged ⚑ — verify publication status before masld.html goes live.
+**Article 17 note:** ESSENCE trial ⚑ CLEARED — published NEJM April 2025, PubMed 40305708 ✓. masld.html © updated to 2026. Ready for live.
 
 ### Digestive Health Series — Article 19+
 Continuing series — topics TBC.
@@ -206,6 +206,16 @@ Research claims flagged ⚑ for Paul review before publishing.
 
 ### Medical term lay-clarification standard
 When a medical/technical term is used in an article, a plain-English meaning in brackets must follow — every time, not just first mention. Examples: ataxia (balance/coordination problems), peripheral neuropathy (nerve tingling/numbness), cardiovascular events (heart attacks, strokes, and cardiovascular deaths), Integrated Care Boards (NHS bodies that plan and fund health services for a region). Apply in prose, tables, bullets, callouts. Short-form brackets OK in tight table cells.
+
+### Statistical term lay-clarification standard
+Statistical measures require plain-English brackets every time they appear — in all prose, research cards, tables, and callouts:
+- HR (hazard ratio — HR 1.23 = 23% higher risk)
+- PAR (population-attributable risk — share of population cases linked to this factor)
+- OR (odds ratio)
+- RR (relative risk)
+- SMD (standardised mean difference — effect size)
+- NNT (number needed to treat — how many people need the treatment for one to benefit)
+- CI (confidence interval — the range within which the true value most likely falls)
 
 ### Drug naming
 Always include brand name(s) in brackets after generic name — e.g. semaglutide (Ozempic, Wegovy), atorvastatin (Lipitor), infliximab (Remicade). Apply to all articles.
@@ -442,34 +452,33 @@ Do NOT use: non-peer-reviewed sources, commercial health sites, forum content.
 ## 14. OUTSTANDING TASKS (as of April 2026)
 
 ### Completed ✅
-- All Cardiovascular Series articles 01–07 — article, visuals, teleprompter complete
-- All Digestive Series articles 13–18 — article, visuals, teleprompter complete
-- Practical Health Series Article 08 Mediterranean Diet — article + visuals confirmed (teleprompter not built)
-- **Article 09 Sleep** — article, visuals, teleprompter all built this April 2026 session
-- **Article 10 Exercise** — article, visuals, teleprompter all built this April 2026 session
-- Pricing confirmed correct (£0/£6/£60/£150) on index.html and membership page
-- Medical term lay-clarification standard added to all standards
-- Video length standard (4–5 min max) established
-- Teleprompter core standard (messages + stats + pointers) established
-- Visuals slide layout standard established
-- **Educational Voice TOP STANDARD** established and applied (see Section 8)
-- **Educational voice retrofit — articles 01–10, 13, 15 complete** (01 Hypertension, 02 Cholesterol, 03 Heart Attack Risk, 04 Statins, 05 Lifestyle Changes, 06 Salt, 07 Supplements, 08 Mediterranean Diet, 09 Sleep, 10 Exercise, 13 Acid Reflux, 15 Bloating). All three files per article (where present) retrofitted to use full phrase "conversation for you to have with your GP or healthcare professional".
-- Standard video intro updated to use full educational-voice phrase (see Section 9)
-- **Teleprompter cue-box standard changed** — cue box now PRECEDES script lines (▶ ADVANCE NOW — then read). stress-teleprompter.html is canonical reference.
-- **Teleprompter retrofit complete (11 files):** coeliac, ibd, lifestyle, masld, salt, sleep, statins, supplements (Format A — cue-box moved to top of each segment); acid-reflux, bloating (Format B — visual-cue moved to first position in JS lines array); exercise (Format C — .cue div moved to after .seg-head). All retrofitted files in outputs, ready for GitHub upload.
-
-### Immediate
-- [ ] Verify ESSENCE trial (semaglutide MASH) publication status ⚑ before masld.html goes live
-- [ ] Lancet Commission on dementia — verify 12 vs 14 modifiable risk factors ⚑ (exercise.html reference)
-- [ ] **Continue educational voice retrofit** — articles 14 IBD, 16 IBS, 17 MASLD, 18 Coeliac still to do
-- [ ] **Teleprompter retrofit — 4 stub files** need GitHub raw fetch then cue-box retrofit: `cholesterol-teleprompter.html`, `heart-attack-risk-teleprompter.html`, `hypertension-teleprompter.html`, `ibs-teleprompter.html`. Raw URL format: `https://raw.githubusercontent.com/pls4286/helfschool/main/[filename].html`. Paste content into chat; Claude will apply same CUE → SCRIPT pattern.
-- [ ] Upload all 11 retrofitted teleprompters to GitHub (outputs folder ready)
+- All Cardiovascular Series articles 01–07 — article, visuals, teleprompter complete ✅
+- All Practical Series articles 08–11 — article, visuals, teleprompter complete ✅
+- All Digestive Series articles 13–18 — article, visuals, teleprompter complete ✅
+- All 16 teleprompters fully retrofitted — cue-box pattern + educational voice phrase correct ✅
+- **Educational voice retrofit — ALL article HTML files 01–18 (excl. 12) complete ✅**
+  - Articles 01–11 retrofitted in previous sessions
+  - Articles 13–18 (acid reflux, IBD, bloating, IBS, MASLD, coeliac) retrofitted and uploaded April 2026
+- masld.html © updated to 2026 ✅
+- **ESSENCE trial ⚑ CLEARED** — published NEJM April 2025, PubMed 40305708 ✓. masld.html ready for live.
+- **Lancet Commission dementia ⚑ CLEARED** — 14 modifiable risk factors confirmed (2024 update, DOI 10.1016/S0140-6736(24)01296-0). exercise.html updated.
+- Pricing confirmed correct (£0/£6/£60/£150) ✅
+- Medical term lay-clarification standard established ✅
+- Statistical term lay-clarification standard established ✅
+- Video length standard (4–5 min max) established ✅
+- Teleprompter core standard (messages + stats + pointers) established ✅
+- Visuals slide layout standard established ✅
+- Educational Voice TOP STANDARD established ✅
+- Standard video intro using full educational-voice phrase established ✅
+- Teleprompter cue-box standard (▶ ADVANCE NOW — then read) established ✅
+- stress.html — educational voice fixed, INTERHEART stat corrected to 32.5% PAR ✅
+- All files for articles 01–18 (excl. 12) uploaded to GitHub ✅
 
 ### Near-term
-- [ ] Build Article 11 Stress and Article 12 Alcohol
+- [ ] Build Article 12 Alcohol — all three files
 - [ ] Digestive Series — Article 19+ (topics TBC)
 - [ ] Build community forum
-- [ ] Apply medical term lay-clarification standard retrospectively to existing articles (01–18)
+- [ ] Apply medical/statistical term lay-clarification standard retrospectively to existing articles (01–18) — systematic pass still to do
 
 ### Each new article requires
 1. Article HTML
