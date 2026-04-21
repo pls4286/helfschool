@@ -112,7 +112,7 @@
     .data-table tbody td { padding: .8rem 1rem; line-height: 1.55; color: var(--text); font-weight: 400; }
     .data-table tbody td:first-child { font-weight: 600; color: var(--navy); }
 
-    /* NAVY TABLE — for symptom comparison */
+    /* NAVY TABLE */
     .comparison-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .92rem; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(27,42,74,.08); }
     .comparison-table thead tr { background: var(--navy); }
     .comparison-table thead th { padding: .75rem 1rem; text-align: left; font-weight: 600; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: #fff; }
@@ -122,7 +122,7 @@
     .comparison-table tbody td { padding: .8rem 1rem; line-height: 1.55; color: var(--text); font-weight: 400; vertical-align: top; }
     .comparison-table tbody td:first-child { font-weight: 600; color: var(--navy); width: 30%; }
 
-    /* RECOVERY CARDS — 2/5/10 year */
+    /* RECOVERY CARDS */
     .recovery-steps { display: flex; gap: 1rem; margin: 1.25rem 0; flex-wrap: wrap; }
     .recovery-step { flex: 1; min-width: 160px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.2rem; text-align: center; }
     .recovery-step-num { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 700; color: var(--digest); line-height: 1; }
@@ -615,7 +615,7 @@
       </div>
       <p>Coeliac disease is one of the most common chronic autoimmune conditions in the UK — and one of the most persistently under-diagnosed. Roughly two thirds of people who have it do not yet know, often because their symptoms have been attributed to irritable bowel syndrome, to tiredness, to anaemia of no obvious cause, or to nothing at all.</p>
       <p>The pathway to a diagnosis is not complicated. A simple blood test, taken while still eating gluten, picks up the vast majority of cases. A specialist endoscopy confirms them. Once identified, the treatment — a strict, lifelong gluten-free diet — is one of the most effective interventions in gastroenterology. Gut healing follows, nutrient deficiencies correct, bone density improves, and the long-term risk of complications falls substantially.</p>
-      <p><strong>If you have had persistent gut symptoms, unexplained anaemia or fatigue, a first-degree relative with coeliac disease, or an autoimmune condition such as type 1 diabetes or thyroid disease, it is worth raising coeliac disease with your GP. A blood test can be arranged — and keeping gluten in your diet until the test is done makes all the difference to getting the right answer.</strong></p>
+      <p><strong>If you have had persistent gut symptoms, unexplained anaemia or fatigue, a first-degree relative with coeliac disease, or an autoimmune condition such as type 1 diabetes or thyroid disease, it is worth raising coeliac disease at your next GP appointment. A blood test can be arranged — and keeping gluten in your diet until the test is done makes all the difference to getting the right answer.</strong></p>
     </div>
 
   </section>
@@ -623,7 +623,7 @@
   <!-- DISCLAIMER -->
   <div class="disclaimer">
     <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4M10 14h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-    <p><strong>This article is health education, not medical advice.</strong> It is intended to help you understand coeliac disease and the evidence around it — not to replace a consultation with your own doctor. If you are concerned about symptoms that could be coeliac disease, or you have a family history of it, please speak with your GP. Do not start a gluten-free diet before being tested — doing so can make the diagnosis much harder to confirm.</p>
+    <p><strong>This article is health education, not medical advice.</strong> It is intended to help you understand coeliac disease and the evidence around it — not to replace a consultation with your own doctor. If you are concerned about symptoms that could be coeliac disease, or you have a family history of it, that is a conversation for you to have with your GP or healthcare professional. Do not start a gluten-free diet before being tested — doing so can make the diagnosis much harder to confirm.</p>
   </div>
 
 </div>
@@ -634,18 +634,4 @@
 </footer>
 
 </body>
-
-<div id="dl-btn-wrap" style="position:fixed;bottom:12px;right:14px;z-index:9999">
-  <button onclick="helfDownload('coeliac.html')" style="background:#1B2A4A;color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:7px;padding:.35rem .9rem;font-size:.75rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.04em;box-shadow:0 2px 8px rgba(0,0,0,.25)">⬇ coeliac.html</button>
-</div>
-<script id="dl-btn-script">
-function helfDownload(fn){
-  var c=document.documentElement.cloneNode(true);
-  var d=c.querySelector('#dl-btn-wrap');if(d)d.parentNode.removeChild(d);
-  var s=c.querySelector('#dl-btn-script');if(s)s.parentNode.removeChild(s);
-  var b=new Blob(['<!DOCTYPE html>\n'+c.outerHTML],{type:'text/html;charset=utf-8'});
-  var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=fn;
-  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);
-}
-</script>
 </html>
