@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cholesterol Teleprompter - Dr Paul</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-  
   <style>
     :root {
       --bg: #0a0a0a;
@@ -13,155 +12,26 @@
       --accent: #C8423A;
       --muted: rgba(255,255,255,0.7);
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      overflow: hidden;
-      height: 100vh;
-    }
-
-    .controls {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0,0,0,0.9);
-      backdrop-filter: blur(10px);
-      padding: 0.75rem 1rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      z-index: 100;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .control-group {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .btn {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #fff;
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .btn:hover {
-      background: rgba(255,255,255,0.2);
-    }
-
-    .btn.active {
-      background: var(--accent);
-      border-color: var(--accent);
-    }
-
-    .speed-display, .font-display {
-      font-size: 0.8rem;
-      color: var(--muted);
-      min-width: 60px;
-      text-align: center;
-    }
-
-    .segment-dots {
-      display: flex;
-      gap: 0.3rem;
-      margin-left: auto;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .dot.active {
-      background: var(--accent);
-      transform: scale(1.2);
-    }
-
-    .content {
-      height: 100vh;
-      padding-top: 44px;
-      position: relative;
-      transform: translateY(0);
-      transition: transform 0.1s linear;
-    }
-
-    .line {
-      font-size: 1.9rem;
-      line-height: 1.8;
-      margin-bottom: 2rem;
-      padding: 0 2rem;
-      text-align: center;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .seg-label {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin: 3rem 0 2rem;
-      text-align: center;
-      padding: 0 2rem;
-    }
-
-    .cue-box {
-      background: rgba(200,66,58,0.15);
-      border: 2px solid var(--accent);
-      border-radius: 8px;
-      padding: 1rem 1.5rem;
-      margin: 2rem auto;
-      max-width: 700px;
-      text-align: center;
-    }
-
-    .cue-label {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.5rem;
-    }
-
-    .cue-text {
-      font-size: 1rem;
-      color: var(--muted);
-      line-height: 1.4;
-    }
-
-    strong {
-      font-weight: 700;
-      color: #fff;
-    }
-
-    .pause {
-      color: var(--accent);
-      font-weight: 600;
-      font-size: 0.9em;
-    }
-
-    em {
-      color: var(--accent);
-      font-style: italic;
-    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow: hidden; height: 100vh; }
+    .controls { position: fixed; top: 0; left: 0; right: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); padding: 0.75rem 1rem; display: flex; align-items: center; gap: 1rem; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .control-group { display: flex; align-items: center; gap: 0.5rem; }
+    .btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 0.8rem; cursor: pointer; transition: all 0.2s ease; }
+    .btn:hover { background: rgba(255,255,255,0.2); }
+    .btn.active { background: var(--accent); border-color: var(--accent); }
+    .speed-display, .font-display { font-size: 0.8rem; color: var(--muted); min-width: 60px; text-align: center; }
+    .segment-dots { display: flex; gap: 0.3rem; margin-left: auto; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.2s ease; }
+    .dot.active { background: var(--accent); transform: scale(1.2); }
+    .content { height: 100vh; padding-top: 44px; position: relative; transform: translateY(0); transition: transform 0.1s linear; }
+    .line { font-size: 1.9rem; line-height: 1.8; margin-bottom: 2rem; padding: 0 2rem; text-align: center; max-width: 900px; margin-left: auto; margin-right: auto; }
+    .seg-label { font-size: 1.1rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin: 3rem 0 2rem; text-align: center; padding: 0 2rem; }
+    .cue-box { background: rgba(200,66,58,0.15); border: 2px solid var(--accent); border-radius: 8px; padding: 1rem 1.5rem; margin: 2rem auto; max-width: 700px; text-align: center; }
+    .cue-label { font-size: 0.9rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+    .cue-text { font-size: 1rem; color: var(--muted); line-height: 1.4; }
+    strong { font-weight: 700; color: #fff; }
+    .pause { color: var(--accent); font-weight: 600; font-size: 0.9em; }
+    em { color: var(--accent); font-style: italic; }
   </style>
 </head>
 <body>
@@ -172,13 +42,11 @@
       <button id="speed-down" class="btn">-</button>
       <button id="speed-up" class="btn">+</button>
     </div>
-    
     <div class="control-group">
       <span class="font-display">Font: <span id="font-size">1.9</span>rem</span>
       <button id="font-down" class="btn">A-</button>
       <button id="font-up" class="btn">A+</button>
     </div>
-
     <div class="segment-dots">
       <div class="dot active" data-seg="0"></div>
       <div class="dot" data-seg="1"></div>
@@ -190,29 +58,30 @@
   </div>
 
   <div class="content" id="content">
+
     <!-- ═══ SEGMENT 0 ═══ -->
     <div class="seg-label" data-seg="0">Segment 0 — Introduction</div>
 
+    <div class="cue-box">
+      <div class="cue-label">▶ ADVANCE NOW — then read</div>
+      <div class="cue-text">Screen 1: Intro slide · helf.school logo · Cardiovascular Health Series · Article 02</div>
+    </div>
+
     <p class="line">"I'm Dr Paul — I spent <strong>over twenty years as an NHS GP</strong> before I retired in 2019. Today I want to talk to you about <strong>cholesterol</strong> — what it is, why it matters, and what the research actually shows."</p>
 
-    <p class="line">"Now, I do have to say upfront — what I'm giving you here is <strong>health education, not medical advice</strong>. If anything feels relevant to you personally, please take it to your own doctor. Right — <em>let's get into it.</em>"</p>
-
-    <div class="cue-box">
-      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
-      <div class="cue-text">Screen 1: <span>Intro slide</span> · helf.school logo · Cardiovascular Health Series · Article 02</div>
-    </div>
+    <p class="line">"Now, I do have to say upfront — what I'm giving you here is <strong>health education, not medical advice</strong>. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — <em>let's get into it.</em>"</p>
 
     <!-- ═══ SEGMENT 1 ═══ -->
     <div class="seg-label" data-seg="1">Segment 1 — What is cholesterol?</div>
 
+    <div class="cue-box">
+      <div class="cue-label">▶ ADVANCE NOW — then read</div>
+      <div class="cue-text">Screen 2: Cholesterol types · HDL vs LDL cards · good vs bad explanation</div>
+    </div>
+
     <p class="line">"Cholesterol is a waxy, fat-like substance that's essential for life. Every cell membrane in your body contains cholesterol. Your body needs it to make hormones, vitamin D, and bile acids that help digest fat."</p>
 
     <p class="line">"Here's the important bit — <strong>there are different types of cholesterol</strong>. When we talk about 'good' and 'bad' cholesterol, we're really talking about the proteins that carry cholesterol around your bloodstream — called lipoproteins." <span class="pause">PAUSE</span></p>
-
-    <div class="cue-box">
-      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
-      <div class="cue-text">Screen 2: <span>Cholesterol types</span> · HDL vs LDL cards · good vs bad explanation</div>
-    </div>
 
     <p class="line">"<strong>HDL cholesterol</strong> — high-density lipoprotein — is called 'good cholesterol' because it carries cholesterol away from your arteries back to your liver, where it's broken down or recycled. Think of it as a cleanup crew."</p>
 
@@ -221,12 +90,12 @@
     <!-- ═══ SEGMENT 2 ═══ -->
     <div class="seg-label" data-seg="2">Segment 2 — What should your levels be?</div>
 
-    <p class="line">"The target levels depend on your cardiovascular risk, but as a general guide: <strong>total cholesterol should be below 5 millimoles per litre</strong>, and <strong>LDL cholesterol below 3 millimoles per litre</strong>."</p>
-
     <div class="cue-box">
-      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
-      <div class="cue-text">Screen 3: <span>Target levels table</span> · Total, LDL, HDL targets · high risk patients</div>
+      <div class="cue-label">▶ ADVANCE NOW — then read</div>
+      <div class="cue-text">Screen 3: Target levels table · Total, LDL, HDL targets · high risk patients</div>
     </div>
+
+    <p class="line">"The target levels depend on your cardiovascular risk, but as a general guide: <strong>total cholesterol should be below 5 millimoles per litre</strong>, and <strong>LDL cholesterol below 3 millimoles per litre</strong>."</p>
 
     <p class="line">"For HDL — the good cholesterol — <strong>higher is better</strong>. We want to see levels above 1.0 in men and above 1.2 in women. If you've already had a heart attack or stroke, the targets are stricter — LDL should be below 1.8." <span class="pause">PAUSE</span></p>
 
@@ -235,12 +104,12 @@
     <!-- ═══ SEGMENT 3 ═══ -->
     <div class="seg-label" data-seg="3">Segment 3 — Why does it matter?</div>
 
-    <p class="line">"High cholesterol matters because it's one of the major risk factors for heart disease and stroke. In the UK, around <strong>60% of adults have raised cholesterol</strong>. That's nearly 40 million people."</p>
-
     <div class="cue-box">
-      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
-      <div class="cue-text">Screen 4: <span>Statistics</span> · 60% UK adults · 2.3× higher risk · 40% contribution to heart attacks</div>
+      <div class="cue-label">▶ ADVANCE NOW — then read</div>
+      <div class="cue-text">Screen 4: Statistics · 60% UK adults · 2.3× higher risk · 40% contribution to heart attacks</div>
     </div>
+
+    <p class="line">"High cholesterol matters because it's one of the major risk factors for heart disease and stroke. In the UK, around <strong>60% of adults have raised cholesterol</strong>. That's nearly 40 million people."</p>
 
     <p class="line">"People with high cholesterol have <strong>more than double the risk</strong> of developing heart disease compared to those with optimal levels. Cholesterol contributes to about <strong>40% of heart attacks</strong> globally." <span class="pause">PAUSE</span></p>
 
@@ -249,12 +118,12 @@
     <!-- ═══ SEGMENT 4 ═══ -->
     <div class="seg-label" data-seg="4">Segment 4 — What the research shows</div>
 
-    <p class="line">"The evidence on cholesterol treatment is <strong>overwhelming</strong>. The Cholesterol Treatment Trialists' study — the largest meta-analysis ever conducted — looked at data from over 170,000 people. They found that for every 1 millimole reduction in LDL cholesterol, <strong>major cardiovascular events dropped by 22%</strong>."</p>
-
     <div class="cue-box">
-      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
-      <div class="cue-text">Screen 5: <span>Research cards</span> · 22% reduction statins · 50% genetic risk · 36% stroke prevention</div>
+      <div class="cue-label">▶ ADVANCE NOW — then read</div>
+      <div class="cue-text">Screen 5: Research cards · 22% reduction statins · 50% genetic risk · 36% stroke prevention</div>
     </div>
+
+    <p class="line">"The evidence on cholesterol treatment is <strong>overwhelming</strong>. The Cholesterol Treatment Trialists' study — the largest meta-analysis ever conducted — looked at data from over 170,000 people. They found that for every 1 millimole reduction in LDL cholesterol, <strong>major cardiovascular events dropped by 22%</strong>."</p>
 
     <p class="line">"Perhaps even more convincing is the genetic evidence. People born with <strong>naturally low LDL cholesterol</strong> — due to genetic variants — have about <strong>50% lower risk of coronary heart disease</strong> over their lifetime. This tells us that cholesterol itself is causal, not just associated with heart disease." <span class="pause">PAUSE</span></p>
 
@@ -265,23 +134,23 @@
     <!-- ═══ SEGMENT 5 ═══ -->
     <div class="seg-label" data-seg="5">Segment 5 — Putting it together</div>
 
-    <p class="line">"So — cholesterol is mostly determined by genetics, not diet. LDL cholesterol is the main culprit in heart disease. High cholesterol is very common but usually symptomless."</p>
-
     <div class="cue-box">
-      <div class="cue-label">⬛ Coming Up — Advance Visuals Now</div>
-      <div class="cue-text">Screen 6: <span>Key takeaways</span> · 4 bullet points · helf.school closing</div>
+      <div class="cue-label">▶ ADVANCE NOW — then read</div>
+      <div class="cue-text">Screen 6: Key takeaways · 4 bullet points · helf.school closing</div>
     </div>
 
-    <p class="line">"If you're over 40, <strong>know your cholesterol levels</strong>. If they're high, discuss treatment options with your doctor. Statins are highly effective and safe for most people. Small reductions in cholesterol can make a <strong>big difference</strong> to your long-term cardiovascular risk."</p>
+    <p class="line">"So — cholesterol is mostly determined by genetics, not diet. LDL cholesterol is the main culprit in heart disease. High cholesterol is very common but usually symptomless."</p>
+
+    <p class="line">"If you're over 40, <strong>know your cholesterol levels</strong>. If they're high, a conversation with your doctor about treatment options is the right next step. Statins are highly effective and safe for most people. Small reductions in cholesterol can make a <strong>big difference</strong> to your long-term cardiovascular risk."</p>
 
     <p class="line">"That's cholesterol explained. <em>Thanks for watching.</em>"</p>
+
   </div>
 
   <script>
     const PX_PER_SEC_BASE = 20;
     const SPEED_LEVELS = [8, 14, 20, 28, 38, 52];
-    
-    let speedIndex = 2; // Default to level 3
+    let speedIndex = 2;
     let baseFontSize = 1.9;
     let playing = false;
     let scrollY = 0;
@@ -298,9 +167,7 @@
     speedDisplay.textContent = speedIndex + 1;
     fontDisplay.textContent = baseFontSize;
 
-    function setTranslate(y) {
-      content.style.transform = `translateY(${-y}px)`;
-    }
+    function setTranslate(y) { content.style.transform = `translateY(${-y}px)`; }
 
     function togglePlay() {
       playing = !playing;
@@ -350,23 +217,17 @@
       dots.forEach((d, i) => d.classList.toggle('active', i === active));
     }
 
-    // Event listeners
     playBtn.addEventListener('click', togglePlay);
     document.getElementById('speed-up').addEventListener('click', () => changeSpeed(1));
     document.getElementById('speed-down').addEventListener('click', () => changeSpeed(-1));
     document.getElementById('font-up').addEventListener('click', () => changeFont(1));
     document.getElementById('font-down').addEventListener('click', () => changeFont(-1));
+    dots.forEach((dot, i) => { dot.addEventListener('click', () => jumpToSeg(i)); });
 
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => jumpToSeg(i));
-    });
-
-    // Touch
     let touchStartY = 0, touchScrollStart = 0;
     document.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; touchScrollStart = scrollY; if (playing) togglePlay(); }, { passive: true });
     document.addEventListener('touchmove', e => { scrollY = Math.max(0, touchScrollStart + (touchStartY - e.touches[0].clientY)); setTranslate(scrollY); updateDots(); }, { passive: true });
 
-    // Keyboard
     document.addEventListener('keydown', e => {
       if (e.code === 'Space') { e.preventDefault(); togglePlay(); }
       if (e.code === 'ArrowUp') { scrollY = Math.max(0, scrollY - 80); setTranslate(scrollY); }
