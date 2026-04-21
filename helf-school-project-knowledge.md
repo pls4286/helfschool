@@ -1,5 +1,5 @@
 # helf.school — Project Knowledge Document
-*Last updated: April 2026 — comprehensive reference for all Claude sessions. Educational Voice TOP STANDARD added (see Section 8). Standard Intro revised.*
+*Last updated: April 2026 — updated: retrofit status corrected (01–10 + 13 + 15 complete); GitHub raw URL fetch method added; article numbering corrected (IBD=14, Bloating=15).*
 
 ---
 
@@ -20,7 +20,7 @@ When files are uploaded to this Claude Project via drag-and-drop from Microsoft 
 - Can be viewed by clicking "Raw" on the GitHub file page
 
 ### The rule — applies to every session
-> **NEVER raise a false alarm about "corrupted" project files based on byte size or visible loader HTML in the uploaded project context. The filename + the article inventory table in Section 6 below are the source of truth for what exists. If a real file inspection is needed, ask Paul to paste the content from GitHub Raw view.**
+> **NEVER raise a false alarm about "corrupted" project files based on byte size or visible loader HTML in the uploaded project context. The filename + the article inventory table in Section 6 below are the source of truth for what exists. If a real file inspection is needed, fetch via GitHub raw URL (see Section 17) or ask Paul to paste the content from GitHub Raw view.**
 
 This has caused a full false-alarm session already. It must not happen again. If Claude notices a file that looks like a loader artefact, it should ignore the visible content and refer to the filename and inventory below.
 
@@ -138,8 +138,8 @@ Free = read-only. Paid members = full access. Needs: thread creation, member pro
 | # | Title | Article HTML | Visuals | Teleprompter | Screen files |
 |---|-------|-------------|---------|--------------|--------------|
 | 13 | Acid Reflux | acid-reflux.html | acid-reflux-visuals.html | acid-reflux-teleprompter.html | ar-sphincter-screen.html, ar-barretts-screen.html |
-| 14 | Bloating | bloating.html | bloating-visuals.html | bloating-teleprompter.html | bloating-gut-screen.html, bloating-fodmap-screen.html |
-| 15 | IBD: Crohn's Disease and Ulcerative Colitis | ibd.html | ibd-visuals.html | ibd-teleprompter.html | ibd-gut-screen.html |
+| 14 | IBD: Crohn's Disease and Ulcerative Colitis | ibd.html | ibd-visuals.html | ibd-teleprompter.html | ibd-gut-screen.html |
+| 15 | Bloating | bloating.html | bloating-visuals.html | bloating-teleprompter.html | bloating-gut-screen.html, bloating-fodmap-screen.html |
 | 16 | IBS | ibs.html | ibs-visuals.html | ibs-teleprompter.html | — |
 | 17 | Fatty Liver Disease (MASLD) | masld.html ⚑ | masld-visuals.html | masld-teleprompter.html | — |
 | 18 | Coeliac Disease | coeliac.html | coeliac-visuals.html | coeliac-teleprompter.html | coeliac-villi-screen.html |
@@ -438,13 +438,13 @@ Do NOT use: non-peer-reviewed sources, commercial health sites, forum content.
 - Teleprompter core standard (messages + stats + pointers) established
 - Visuals slide layout standard established
 - **Educational Voice TOP STANDARD** established and applied (see Section 8)
-- **Educational voice retrofit — articles 01–09 complete** (01 Hypertension, 02 Cholesterol, 03 Heart Attack Risk, 04 Statins, 05 Lifestyle Changes, 06 Salt, 07 Supplements, 08 Mediterranean Diet, 09 Sleep). All three files per article (where present) retrofitted to use full phrase "conversation for you to have with your GP or healthcare professional"
+- **Educational voice retrofit — articles 01–10, 13, 15 complete** (01 Hypertension, 02 Cholesterol, 03 Heart Attack Risk, 04 Statins, 05 Lifestyle Changes, 06 Salt, 07 Supplements, 08 Mediterranean Diet, 09 Sleep, 10 Exercise, 13 Acid Reflux, 15 Bloating). All three files per article (where present) retrofitted to use full phrase "conversation for you to have with your GP or healthcare professional".
 - Standard video intro updated to use full educational-voice phrase (see Section 9)
 
 ### Immediate
 - [ ] Verify ESSENCE trial (semaglutide MASH) publication status ⚑ before masld.html goes live
 - [ ] Lancet Commission on dementia — verify 12 vs 14 modifiable risk factors ⚑ (exercise.html reference)
-- [ ] **Continue educational voice retrofit** — articles 10 Exercise, 13 Acid Reflux, 14 Bloating, 15 IBD, 16 IBS, 17 MASLD, 18 Coeliac still to do
+- [ ] **Continue educational voice retrofit** — articles 14 IBD, 16 IBS, 17 MASLD, 18 Coeliac still to do
 
 ### Near-term
 - [ ] Build Article 11 Stress and Article 12 Alcohol
@@ -494,6 +494,21 @@ The drag-and-drop upload in Edge incognito works for GitHub. Most reliable metho
 
 ### Uploading TO Claude Project (for knowledge sync)
 ⚠️ Drag-and-drop from Edge incognito to this Claude Project captures the browser page (Claude.ai loader HTML) rather than the file. This is a known limitation — see Section 1 above. Real files still exist on GitHub; don't panic.
+
+### Preferred method — fetching files into Claude (session start)
+**Use GitHub raw URLs via web_fetch.** This bypasses the Edge incognito loader-stub problem entirely.
+
+Raw URL format:
+```
+https://raw.githubusercontent.com/pls4286/helfschool/main/[filename].html
+```
+
+Example:
+```
+https://raw.githubusercontent.com/pls4286/helfschool/main/ibd.html
+```
+
+Fetch at session start for any files needed. Do NOT rely on project uploads for real file content — they may be loader stubs (~5140 bytes, starting `data-build-id`). Real content always lives on GitHub and is intact.
 
 ---
 
