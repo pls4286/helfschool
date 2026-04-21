@@ -311,6 +311,9 @@ All trial names, years, citation authors, and statistics must match across artic
 
 ## 10. VISUALS FILE STANDARDS
 
+### Visuals purpose standard
+Every visuals slide deck serves one job — make the evidence feel real and personal, then pull the viewer toward action. Stats are chosen because they answer "does this affect me?" or "can I change this?" — not because they are the most impressive numbers. Every research card connects forward to a CTA. The CTA slides are the destination; the evidence slides are the journey there. Visuals must be bold, striking, and immediately readable at filming distance. A layperson watching the video should be able to read every stat on screen, understand what it means for their life, and feel pulled toward the call to action by the time it appears.
+
 ### Screen presence
 All visuals HTML files must fill the screen boldly and be readable at distance:
 - Stage padding: maximum `0.6rem 0.75rem`
