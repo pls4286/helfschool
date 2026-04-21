@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <title>Stress — Teleprompter | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #1B2A4A;
+      --practical: #d4b84a;
+      --practical-deep: #7A6A2E;
+      --amber: #E8A84A;
+      --coral: #E8634A;
+      --bg: #0d0d0d;
+      --text: #f0f0f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; background: var(--bg); }
+
+    /* TOPBAR */
+    #topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--navy); border-bottom: 2px solid var(--practical);
+      padding: .45rem 1rem;
+      display: flex; align-items: center; justify-content: space-between; gap: .75rem;
+    }
+    #topbar-title { font-family: 'DM Sans', sans-serif; font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.85); }
+    #controls { display: flex; align-items: center; gap: .4rem; flex-shrink: 0; }
+    .ctrl-btn {
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+      color: #fff; font-size: .72rem; font-weight: 700; padding: .2rem .5rem;
+      border-radius: 4px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background .15s;
+    }
+    .ctrl-btn:hover { background: rgba(255,255,255,.2); }
+    .ctrl-label { font-size: .65rem; color: rgba(255,255,255,.6); font-family: 'DM Sans', sans-serif; }
+    #speed-display { font-size: .72rem; font-weight: 700; color: var(--practical); min-width: 14px; text-align: center; font-family: 'DM Sans', sans-serif; }
+    #play-btn {
+      background: var(--practical-deep); border: none; color: #fff;
+      font-size: .72rem; font-weight: 700; padding: .25rem .7rem;
+      border-radius: 4px; cursor: pointer; font-family: 'DM Sans', sans-serif; letter-spacing: .04em;
+    }
+    #play-btn:hover { filter: brightness(1.15); }
+
+    /* SEGMENT DOTS */
+    #seg-dots {
+      position: fixed; right: .6rem; top: 50%; transform: translateY(-50%);
+      z-index: 100; display: flex; flex-direction: column; gap: .4rem;
+    }
+    .seg-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.3);
+      cursor: pointer; transition: background .2s;
+    }
+    .seg-dot.active { background: var(--practical); border-color: var(--practical); }
+    .seg-dot:hover { background: rgba(255,255,255,.45); }
+
+    /* SCROLL */
+    #scroll-wrap { position: fixed; top: 44px; bottom: 0; left: 0; right: 0; overflow: hidden; }
+    #scroll-content { padding: 60vh 4rem 60vh; max-width: 840px; margin: 0 auto; will-change: transform; }
+
+    /* FOCUS */
+    #focus-line { position: fixed; top: 50%; left: 0; right: 0; height: 2px; background: rgba(212,184,74,.25); pointer-events: none; z-index: 50; }
+    #focus-top { position: fixed; top: 44px; left: 0; right: 0; height: 34%; background: linear-gradient(to bottom, var(--bg) 0%, transparent 100%); pointer-events: none; z-index: 50; }
+    #focus-bottom { position: fixed; bottom: 0; left: 0; right: 0; height: 34%; background: linear-gradient(to top, var(--bg) 0%, transparent 100%); pointer-events: none; z-index: 50; }
+
+    /* SEGMENT LABEL */
+    .seg-label {
+      font-family: 'DM Sans', sans-serif; font-size: .72rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--practical); margin-bottom: 1.4rem; margin-top: 5rem;
+      padding-bottom: .4rem; border-bottom: 1px solid rgba(212,184,74,.3);
+    }
+    .seg-label:first-child { margin-top: 0; }
+
+    /* SCRIPT */
+    .line { font-family: 'DM Sans', sans-serif; font-size: 1.9rem; line-height: 1.8; color: var(--text); font-weight: 400; margin-bottom: 1.5rem; }
+    .line strong { font-weight: 700; color: #fff; }
+    .line em { color: var(--practical); font-style: normal; font-weight: 600; }
+
+    /* PAUSE */
+    .pause {
+      display: inline-block;
+      background: rgba(232,99,74,.15); border: 1px solid rgba(232,99,74,.35);
+      color: var(--coral); font-size: 1.1rem; font-weight: 700;
+      padding: .1rem .45rem; border-radius: 4px; margin: 0 .3rem; vertical-align: middle; letter-spacing: .04em;
+    }
+
+    /* CUE BOX — amber for advance visuals */
+    .cue-box {
+      background: rgba(232,168,74,.06); border: 2px solid var(--amber);
+      border-radius: 10px; padding: .9rem 1.2rem; margin: 2rem 0 4rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .cue-label { font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--amber); margin-bottom: .4rem; }
+    .cue-text { font-size: 1.1rem; font-weight: 600; color: #fff; line-height: 1.55; }
+    .cue-text span { color: var(--amber); }
+
+    /* DIAGRAM CUE — red for screen file switch */
+    .diagram-cue {
+      background: rgba(232,99,74,.10); border: 2px solid var(--coral);
+      border-radius: 10px; padding: .9rem 1.2rem; margin: 2rem 0 4rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .diagram-cue .cue-label { color: var(--coral); }
+    .diagram-cue .cue-text span { color: var(--coral); font-weight: 700; }
+  </style>
+</head>
+<body>
+
+<div id="topbar">
+  <div id="topbar-title">Stress · Practical Health Series · Article 11</div>
+  <div id="controls">
+    <span class="ctrl-label">SPEED</span>
+    <button class="ctrl-btn" onclick="changeSpeed(-1)">−</button>
+    <span id="speed-display">3</span>
+    <button class="ctrl-btn" onclick="changeSpeed(1)">+</button>
+    <span class="ctrl-label" style="margin-left:.4rem">FONT</span>
+    <button class="ctrl-btn" onclick="changeFont(-1)">A−</button>
+    <button class="ctrl-btn" onclick="changeFont(1)">A+</button>
+    <button id="play-btn" onclick="togglePlay()">▶ PLAY</button>
+  </div>
+</div>
+
+<div id="seg-dots">
+  <div class="seg-dot active" onclick="jumpToSeg(0)" title="Intro"></div>
+  <div class="seg-dot" onclick="jumpToSeg(1)" title="Acute vs chronic"></div>
+  <div class="seg-dot" onclick="jumpToSeg(2)" title="Five systems"></div>
+  <div class="seg-dot" onclick="jumpToSeg(3)" title="What your doctor can do"></div>
+  <div class="seg-dot" onclick="jumpToSeg(4)" title="Research — cardiovascular impact"></div>
+  <div class="seg-dot" onclick="jumpToSeg(5)" title="Research — what helps"></div>
+  <div class="seg-dot" onclick="jumpToSeg(6)" title="Three actions"></div>
+  <div class="seg-dot" onclick="jumpToSeg(7)" title="Closing"></div>
+</div>
+
+<div id="focus-top"></div>
+<div id="focus-line"></div>
+<div id="focus-bottom"></div>
+
+<div id="scroll-wrap">
+  <div id="scroll-content">
+
+    <!-- ═══ SEGMENT 0 — INTRODUCTION ═══ -->
+    <div class="seg-label" data-seg="0">Segment 0 — Introduction</div>
+
+    <div class="cue-box">
+      <div class="cue-label">▶ ADVANCE NOW — then read</div>
+      <div class="cue-text">Slide 1: <span>Intro title slide</span> · 🌀 · helf.school · Practical Health Series · Article 11 · "Stress — What It Is, What It's Doing to You, and What Actually Helps"</div>
+    </div>
+
+    <p class="line">"I'm Dr Paul — I spent <strong>over twenty years as an NHS GP</strong> before I retired in 2019. Today I want to talk to you about <strong>stress</strong>."</p>
+
+    <p class="line">"Now, I do have to say upfront — what I'm giving you here is <strong>health education, not medical advice</strong>. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — <em>let's get into it.</em>"</p>
+
+    <!-- ═══ SEGMENT 1 — ACUTE vs CHRONIC ═══ -->
+    <div class="seg-label" data-seg="1">Segment 1 — The one distinction that changes everything</div>
+
+    <div class="cue-box">
+      <div class="cue-label">▶ ADVANCE NOW — then read</div>
+      <div class="cue-text">Slide 2: <span>Acute vs chronic</span> · two-column cards · ⚡ acute (green) / 🌀 chronic (red) · "allostatic load"</div>
+    </div>
+
+    <p class="line">"The first thing worth getting clear is the difference between <strong>acute stress</strong> and <strong>chronic stress</strong>. Because they are not the same thing at all." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"<strong>Acute stress</strong> — a surge of adrenaline and cortisol, the main stress hormone, for a specific challenge. An interview. An argument. A near-miss in traffic. <em>Then it's over.</em> The body returns to baseline. That is the system working exactly as designed. That's healthy."</p>
+
+    <p class="line">"<strong>Chronic stress</strong> is the same response running for weeks, months, years. Cortisol stays elevated. Inflammation builds. Sleep fragments. Mood drops. The body never gets the all-clear. Doctors sometimes call this allostatic load — <em>the cumulative wear and tear</em> on every system in your body."</p>
+
+    <p class="line">"Chronic stress is not a character flaw. It is <strong>physiology that forgot how to switch off</strong>." <span class="pause">PAUSE</span></p>
+
+    <!-- ═══ SEGMENT 2 — FIVE SYSTEMS ═══ -->
+    <div class="seg-label" data-seg="2">Segment 2 — Five systems chronic stress reaches</div>
+
+    <div class="cue-box">
+      <div class="cue-label">▶ ADVANCE NOW — then read</div>
+      <div class="cue-text">Slide 3: <span>Five systems</span> · five cards animating in · ❤️ heart · 🧠 mind · 🫁 gut · 🛡️ immune · 🍷 behaviour</div>
+    </div>
+
+    <p class="line">"So where does chronic stress go in the body? <strong>Five systems.</strong>" <span class="pause">PAUSE</span></p>
+
+    <p class="line">"Your <strong>heart and arteries</strong>. Blood pressure rises. Arteries inflame. Heart-attack risk climbs — in the same league as smoking, in the research."</p>
+
+    <p class="line">"Your <strong>mind and sleep</strong>. Sleep breaks down first — often a three-in-the-morning awakening with a mind that won't stop. Memory slips. Concentration wavers. Anxiety and depression become far more likely."</p>
+
+    <p class="line">"Your <strong>gut</strong>. The brain and gut are directly wired via the vagus nerve. Reflux, bloating, and IBS — cramping and urgency — all worsen with chronic stress."</p>
+
+    <p class="line">"Your <strong>immune system</strong> — dampened immunity and rising background inflammation. More colds, slower healing, flares of eczema and IBD."</p>
+
+    <p class="line">"And <strong>behaviour</strong>. Stress pulls toward quick fixes — extra alcohol, missed walks, poor food. Each one feeds more stress. The spiral tightens." <span class="pause">PAUSE</span></p>
+
+    <!-- ═══ SEGMENT 3 — WHAT YOUR DOCTOR CAN DO ═══ -->
+    <div class="seg-label" data-seg="3">Segment 3 — What a GP can actually do about stress</div>
+
+    <div class="cue-box">
+      <div class="cue-label">▶ ADVANCE NOW — then read</div>
+      <div class="cue-text">Slide 4: <span>What your doctor can do</span> · 5 doc cards animating in · hero: "Listen — whole picture" · PHQ-9/GAD-7 · NHS Talking Therapies · medication · preparation tip</div>
+    </div>
+
+    <p class="line">"A GP can't remove the source of your stress — but there are things a consultation can do." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"The starting point is <strong>listening to the whole picture</strong>. Work, home, sleep, alcohol, exercise, money, relationships — each one amplifies or buffers stress. <em>If you're going in — write down your three main concerns first.</em> NHS appointments are short."</p>
+
+    <p class="line">"A GP can screen for anxiety and depression using two short questionnaires — the <strong>PHQ-9</strong> and <strong>GAD-7</strong>. Two minutes each. They identify whether stress has crossed into a clinically treatable condition."</p>
+
+    <p class="line">"And they can point you toward <strong>NHS Talking Therapies</strong> — CBT, mindfulness, counselling. <strong>Free in England. You can self-refer — no GP letter needed.</strong> Search NHS Talking Therapies plus your postcode. Medication has a short-term role too, but for most people, talking therapy is the more durable option." <span class="pause">PAUSE</span></p>
+
+    <!-- ═══ SEGMENT 4 — RESEARCH A ═══ -->
+    <div class="seg-label" data-seg="4">Segment 4 — The research — cardiovascular impact</div>
+
+    <div class="cue-box">
+      <div class="cue-label">▶ ADVANCE NOW — then read</div>
+      <div class="cue-text">Slide 5: <span>Research A</span> · three evidence cards · INTERHEART / IPD-Work +23% / Tawakol amygdala pathway</div>
+    </div>
+
+    <p class="line">"Now the research. Three landmark studies — and they show that chronic stress is not soft. The data is hard." <span class="pause">PAUSE</span></p>
+
+    <p class="line">"<strong>INTERHEART</strong> — published in The Lancet in 2004 — 52 countries, over 11,000 cases. Psychosocial stress ranked alongside <strong>smoking, high blood pressure, and cholesterol</strong> as one of the nine biggest drivers of a first heart attack. Effect seen across every country and every ethnic group."</p>
+
+    <p class="line">"<strong>IPD-Work</strong> — The Lancet, 2012 — 197,000 adults across 13 studies. Job strain — high demands, low control — was linked to a <strong>23% higher coronary heart disease risk</strong>. Not just a hard job. A hard job where you have no autonomy."</p>
+
+    <p class="line">"And perhaps the most striking — <strong>Tawakol et al.</strong> in The Lancet, 2017, from Massachusetts General Hospital and Harvard. PET-CT scans traced the full biological pathway: amygdala activity in the brain drives bone marrow, which produces inflammatory cells, which inflame the artery wall, leading to <strong>heart attacks and strokes</strong>. Not vague. Not in your head. <em>Imaged.</em>" <span class="pause">PAUSE</span></p>
+
+    <!-- ═══ SEGMENT 5 — RESEARCH B ═══ -->
+    <div class="seg-label" data-seg="5">Segment 5 — The research — what reliably helps</div>
+
+    <div class="cue-box">
+      <div class="cue-label">▶ ADVANCE NOW — then read</div>
+      <div class="cue-text">Slide 6: <span>Research B</span> · three evidence cards · Rebar ~38% / NHS Talking Therapies ~50% / Carpenter CBT 3×</div>
+    </div>
+
+    <p class="line">"And now the other side — <strong>what the evidence says actually works.</strong>" <span class="pause">PAUSE</span></p>
+
+    <p class="line">"<strong>Rebar et al.</strong>, 2015 — a meta-meta-analysis in Health Psychology Review. Regular movement reduced anxiety symptoms by <strong>approximately 38%</strong>. Any format works — walking, cycling, resistance. Regularity matters more than intensity. Thirty minutes, three to five times a week, is evidence-based stress medicine."</p>
+
+    <p class="line">"<strong>NHS Talking Therapies</strong> — England-wide programme outcomes, NHS England Digital, 2024. Over 1.7 million referrals. Roughly <strong>half of people who complete a course</strong> are classified as recovered — anxiety and depression scores fall below clinical threshold. Real-world data, not selected trial samples."</p>
+
+    <p class="line">"<strong>Carpenter et al.</strong>, 2018, Depression and Anxiety — 41 placebo-controlled RCTs. CBT produced response rates <strong>roughly three times higher than placebo</strong> for generalised anxiety disorder. Large effect size. Effects durable at follow-up." <span class="pause">PAUSE</span></p>
+
+    <!-- ═══ SEGMENT 6 — THREE ACTIONS ═══ -->
+    <div class="seg-label" data-seg="6">Segment 6 — Three things to do</div>
+
+    <p class="line">"Three things to take away. <strong>All evidence-based. All accessible.</strong>" <span class="pause">PAUSE</span></p>
+
+    <div class="cue-box">
+      <div class="cue-label">▶ ADVANCE NOW — then read</div>
+      <div class="cue-text">Slide 8: <span>CTA 1 · RIGHT NOW · Five minutes slow breathing</span> · 🫁 · chips: 4 in · 6 out · measurable in 1–2 mins · activates vagus nerve · free</div>
+    </div>
+
+    <p class="line">"<strong>One — right now.</strong> Five minutes of slow breathing. <em>Four seconds in, six seconds out.</em> Extended out-breaths activate the vagus nerve — sending a measurable stand-down signal from body to brain within one to two minutes. It costs nothing. It is available right now."</p>
+
+    <div class="cue-box">
+      <div class="cue-label">▶ ADVANCE NOW — then read</div>
+      <div class="cue-text">Slide 9: <span>CTA 2 · THIS WEEK · Self-refer NHS Talking Therapies</span> · 💬 · chips: free on NHS · self-refer online · CBT / Mindfulness / Counselling · ~50% recovery rate</div>
+    </div>
+
+    <p class="line">"<strong>Two — this week.</strong> Self-refer to <strong>NHS Talking Therapies</strong>. Free in England. About a fifty percent recovery rate in real-world data. Search NHS Talking Therapies and your postcode. Takes roughly five minutes online. No GP appointment needed first."</p>
+
+    <div class="cue-box">
+      <div class="cue-label">▶ ADVANCE NOW — then read</div>
+      <div class="cue-text">Slide 10: <span>CTA 3 · ONGOING · 3 × 30-minute walks a week</span> · 🏃 · chips: 30 min · 3–5×/week · ~38% anxiety reduction · regularity matters most</div>
+    </div>
+
+    <p class="line">"<strong>Three — ongoing.</strong> Three thirty-minute walks a week. That is it. Regular movement reduced anxiety symptoms by approximately <strong>38%</strong> in the research. Any format works. Regularity matters most." <span class="pause">PAUSE</span></p>
+
+    <!-- ═══ SEGMENT 7 — CLOSING ═══ -->
+    <div class="seg-label" data-seg="7">Segment 7 — Closing</div>
+
+    <div class="cue-box">
+      <div class="cue-label">▶ ADVANCE NOW — then read</div>
+      <div class="cue-text">Slide 11: <span>Closing slide</span> · helf.school logo · "Chronic stress is physiology. The research tells us what works. Start with one thing."</div>
+    </div>
+
+    <p class="line">"One last thought. Chronic stress is physiology — <em>not a character flaw</em>. The research shows us exactly what it does to the body, and exactly what helps. <strong>You don't have to act on all three things today. Start with one.</strong>" <span class="pause">PAUSE</span></p>
+
+    <p class="line">"There's a full article on <strong>helf.school</strong> with all the references — you can go as deep as you like. This is health education. Take what's useful to <em>your</em> doctor. <strong>Thanks for watching.</strong>"</p>
+
+  </div>
+</div>
+
+<script>
+  const SPEED_LEVELS = [8, 14, 20, 28, 38, 52];
+  let speedIndex = 2;
+  let baseFontSize = 1.9;
+  let playing = false;
+  let rafId = null;
+  let lastTime = null;
+  let scrollY = 0;
+
+  const content = document.getElementById('scroll-content');
+  const playBtn = document.getElementById('play-btn');
+  const speedDisplay = document.getElementById('speed-display');
+  const dots = document.querySelectorAll('.seg-dot');
+  const segLabels = document.querySelectorAll('.seg-label');
+
+  function setTranslate(y) { content.style.transform = `translateY(${-y}px)`; }
+
+  function togglePlay() {
+    playing = !playing;
+    playBtn.textContent = playing ? '⏸ PAUSE' : '▶ PLAY';
+    if (playing) { lastTime = null; rafId = requestAnimationFrame(tick); }
+    else { cancelAnimationFrame(rafId); }
+  }
+
+  function tick(ts) {
+    if (!playing) return;
+    if (lastTime === null) lastTime = ts;
+    const dt = (ts - lastTime) / 1000;
+    lastTime = ts;
+    scrollY += SPEED_LEVELS[speedIndex] * dt;
+    const maxScroll = content.scrollHeight - window.innerHeight + 44;
+    if (scrollY >= maxScroll) { scrollY = maxScroll; togglePlay(); }
+    setTranslate(scrollY);
+    updateDots();
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function changeSpeed(dir) {
+    speedIndex = Math.max(0, Math.min(5, speedIndex + dir));
+    speedDisplay.textContent = speedIndex + 1;
+  }
+
+  function changeFont(dir) {
+    baseFontSize = Math.max(1.2, Math.min(2.8, baseFontSize + dir * 0.1));
+    document.querySelectorAll('.line').forEach(el => el.style.fontSize = baseFontSize + 'rem');
+  }
+
+  function jumpToSeg(idx) {
+    const label = segLabels[idx];
+    if (!label) return;
+    const contentTop = content.getBoundingClientRect().top;
+    const labelOffset = label.getBoundingClientRect().top - contentTop + scrollY;
+    scrollY = Math.max(0, labelOffset - window.innerHeight * 0.5 + 44);
+    setTranslate(scrollY);
+    updateDots();
+  }
+
+  function updateDots() {
+    const mid = window.innerHeight * 0.5;
+    let active = 0;
+    segLabels.forEach((label, i) => { if (label.getBoundingClientRect().top <= mid) active = i; });
+    dots.forEach((d, i) => d.classList.toggle('active', i === active));
+  }
+
+  // Touch
+  let touchStartY = 0, touchScrollStart = 0;
+  document.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; touchScrollStart = scrollY; if (playing) togglePlay(); }, { passive: true });
+  document.addEventListener('touchmove', e => { scrollY = Math.max(0, touchScrollStart + (touchStartY - e.touches[0].clientY)); setTranslate(scrollY); updateDots(); }, { passive: true });
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (e.code === 'Space') { e.preventDefault(); togglePlay(); }
+    if (e.code === 'ArrowUp') { scrollY = Math.max(0, scrollY - 80); setTranslate(scrollY); }
+    if (e.code === 'ArrowDown') { scrollY += 80; setTranslate(scrollY); }
+  });
+
+  setTranslate(0);
+</script>
+</body>
+</html>
