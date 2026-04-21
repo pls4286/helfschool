@@ -330,15 +330,27 @@ The following rules prevent recurring text/alignment/card issues during slide de
 6. **No redundant hero banners** that duplicate what the slide-title already says.
 7. **Tight padding for constrained slides:** card padding `0.65–0.9rem`, internal card gap `0.4–0.7rem`, grid gap `0.6–0.75rem`.
 
-### Font sizes (minimum)
+### Font sizes (minimum) — HARD FLOORS
+These are absolute minimums. When in doubt, go above them — never below. Apply to every element in every visuals file.
 | Text type | Minimum |
 |-----------|---------|
-| Source / reference text | `0.78rem` |
+| Source / reference text | `0.80rem` |
 | Description / body text | `0.93rem` |
 | Supporting / label text | `1.00rem` |
 | Heading text | `1.05rem` |
 
-### Stat figure sizes (minimum)
+### Opacity minimums — HARD FLOORS
+| Element | Minimum |
+|---------|---------|
+| Journal / source citations | `rgba(255,255,255,0.80)` — NOT 0.70 |
+| Body / finding text | `rgba(255,255,255,0.88)` — NOT 0.80 |
+| Supporting labels | `rgba(255,255,255,0.80)` |
+| Disclaimer footer (exception) | `0.18` permitted |
+
+**Enforcement rule:** Before finalising any visuals file, check every `.ev-journal`, `.doc-body`, `.sys-body`, `.mech-body`, and any equivalent class against these floors. If text is not clearly readable at arm's length on screen, it is too faint or too small — increase it regardless of whether it technically passes the minimum.
+
+### Grid layout — orphaned card rule
+When a grid has N cards where N does not fill the last row evenly, the orphaned card(s) in the last row get squashed by `overflow:hidden`. Fix: match column count to card count so every row is full, OR use `grid-template-columns: repeat(2,1fr)` as the default safe layout for 4–6 cards. A 3-col grid with 5 cards will always orphan one card.
 | Type | Minimum |
 |------|---------|
 | Hero stat | `4.0rem` |

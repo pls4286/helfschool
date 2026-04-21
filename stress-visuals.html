@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stress — Visuals | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--calm:#70b8e8}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
+
+    /* TOPBAR */
+    #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:var(--navy);border-bottom:2px solid var(--acc2);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
+    .tb-logo{display:flex;align-items:center;gap:.5rem}
+    .tb-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff}
+    .tb-dot{color:var(--coral)}
+    .tb-sub{font-size:.75rem;color:rgba(255,255,255,.75);margin-left:.25rem;font-weight:500}
+    .tb-right{display:flex;align-items:center;gap:1.2rem}
+    .slide-counter{font-size:.88rem;font-weight:700;color:rgba(255,255,255,.90)}
+    .kb-hint{font-size:.75rem;color:rgba(255,255,255,.62)}
+
+    /* STAGE */
+    #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:2.2vh 1.25rem 3.5vh;overflow:hidden}
+
+    /* SLIDES */
+    .slide{display:none;width:100%;max-width:1140px;height:100%;animation:sIn .32s ease}
+    .slide.active{display:flex;flex-direction:column;min-height:0}
+    @keyframes sIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+    .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.1vw,1.75rem);font-weight:700;color:#fff;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:2px solid rgba(212,184,74,.3);flex-shrink:0}
+    .slide-title span{color:var(--acc)}
+
+    /* SEGMENT DOTS */
+    #dots{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:200}
+    .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .25s}
+    .dot.active{background:var(--acc);transform:scale(1.3)}
+
+    /* ═══ SLIDE 1: INTRO ═══ */
+    .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.3rem}
+    .intro-badge{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.12);border:1px solid rgba(212,184,74,.3);padding:.3rem .9rem;border-radius:100px}
+    .intro-icon{font-size:4rem;line-height:1}
+    .intro-title{font-family:'Fraunces',serif;font-size:clamp(2.6rem,5.5vw,4.4rem);font-weight:700;color:#fff;line-height:1.05;max-width:860px;letter-spacing:-.02em}
+    .intro-title span{color:var(--acc)}
+    .intro-sub{font-size:1.1rem;color:rgba(255,255,255,.80);font-style:italic;font-family:'Fraunces',serif;max-width:680px;line-height:1.5;font-weight:400}
+    .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.70)}
+
+    /* ═══ SLIDE 2: ACUTE vs CHRONIC ═══ */
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;flex:1;min-height:0;grid-template-rows:1fr}
+    .ac-card{border-radius:18px;padding:1.5rem 1.6rem;display:flex;flex-direction:column;gap:.85rem;min-height:0;overflow:hidden}
+    .ac-acute{background:linear-gradient(135deg,rgba(122,158,135,.18),rgba(122,158,135,.08));border:2px solid rgba(122,158,135,.5)}
+    .ac-chronic{background:linear-gradient(135deg,rgba(232,99,74,.2),rgba(200,66,58,.1));border:2px solid rgba(232,99,74,.5)}
+    .ac-badge{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .75rem;border-radius:100px;display:inline-flex;align-items:center;gap:.4rem;width:fit-content;flex-shrink:0}
+    .ac-acute .ac-badge{background:rgba(126,204,153,.15);color:#7ecc99;border:1px solid rgba(126,204,153,.4)}
+    .ac-chronic .ac-badge{background:rgba(232,99,74,.15);color:#f08a70;border:1px solid rgba(232,99,74,.4)}
+    .ac-icon{font-size:2.6rem;flex-shrink:0}
+    .ac-title{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.2vw,1.7rem);font-weight:700;color:#fff;line-height:1.2;flex-shrink:0}
+    .ac-desc{font-size:.95rem;color:rgba(255,255,255,.85);line-height:1.6;font-weight:400}
+    .ac-desc strong{color:#fff;font-weight:700}
+    .ac-verdict{margin-top:auto;padding:.75rem 1rem;border-radius:10px;font-size:.93rem;font-weight:700;line-height:1.4;flex-shrink:0}
+    .ac-acute .ac-verdict{background:rgba(126,204,153,.12);color:#7ecc99;border:1px solid rgba(126,204,153,.25)}
+    .ac-chronic .ac-verdict{background:rgba(232,99,74,.12);color:#f08a70;border:1px solid rgba(232,99,74,.25)}
+
+    /* ═══ SLIDE 3: FIVE SYSTEMS ═══ */
+    .systems-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem;flex:1;min-height:0;grid-template-rows:1fr}
+    .sys-card{border-radius:14px;padding:1rem .9rem;display:flex;flex-direction:column;align-items:flex-start;gap:.5rem;min-height:0;overflow:hidden;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);opacity:0;transform:translateY(16px);transition:opacity .4s ease,transform .4s ease}
+    .sys-card.vis{opacity:1;transform:translateY(0)}
+    .sys-card.sc-heart{border-color:rgba(232,99,74,.45);background:rgba(232,99,74,.1)}
+    .sys-card.sc-mind{border-color:rgba(112,184,232,.45);background:rgba(112,184,232,.1)}
+    .sys-card.sc-gut{border-color:rgba(212,184,74,.45);background:rgba(212,184,74,.08)}
+    .sys-card.sc-immune{border-color:rgba(122,158,135,.45);background:rgba(122,158,135,.1)}
+    .sys-card.sc-behav{border-color:rgba(180,138,192,.45);background:rgba(180,138,192,.1)}
+    .sys-icon{font-size:1.9rem;flex-shrink:0}
+    .sys-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff;line-height:1.2;flex-shrink:0}
+    .sys-stat{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;line-height:1;flex-shrink:0}
+    .sc-heart .sys-stat{color:#f08a70}
+    .sc-mind .sys-stat{color:var(--calm)}
+    .sc-gut .sys-stat{color:var(--acc)}
+    .sc-immune .sys-stat{color:#7ecc99}
+    .sc-behav .sys-stat{color:#c49ad4}
+    .sys-body{font-size:.85rem;color:rgba(255,255,255,.82);line-height:1.5;font-weight:400}
+
+    /* ═══ SLIDE 4: DOCTOR ═══ */
+    .doc-grid{display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:auto 1fr 1fr;gap:.8rem;flex:1;min-height:0}
+    .doc-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:.9rem 1rem;display:flex;align-items:flex-start;gap:.75rem;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:opacity .38s ease,transform .38s ease}
+    .doc-card.vis{opacity:1;transform:translateY(0)}
+    .doc-card.hero{grid-column:1/-1;background:rgba(212,184,74,.1);border-color:rgba(212,184,74,.35)}
+    .doc-icon{font-size:1.5rem;flex-shrink:0;margin-top:.05rem}
+    .doc-text{flex:1;min-width:0}
+    .doc-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:.2rem}
+    .doc-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;line-height:1.25;margin-bottom:.3rem}
+    .doc-body{font-size:.93rem;color:rgba(255,255,255,.88);line-height:1.5;font-weight:400}
+    .doc-body strong{color:#fff;font-weight:700}
+
+    /* ═══ RESEARCH SLIDES ═══ */
+    .res-header{background:rgba(212,184,74,.12);border:1px solid rgba(212,184,74,.3);border-radius:10px;padding:.65rem 1rem;margin-bottom:.8rem;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .res-header-label{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);white-space:nowrap}
+    .res-header-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff}
+    .ev-grid{display:flex;flex-direction:column;gap:.75rem;flex:1;min-height:0}
+    .ev-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.11);border-radius:14px;display:flex;align-items:stretch;overflow:hidden;min-height:0;opacity:0;transform:translateY(12px);transition:opacity .4s ease,transform .4s ease}
+    .ev-card.vis{opacity:1;transform:translateY(0)}
+    .ev-stat-box{flex-shrink:0;width:162px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:.75rem .8rem;border-right:1px solid rgba(255,255,255,.1);text-align:center;background:rgba(0,0,0,.2)}
+    .ev-stat{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;line-height:1}
+    .ev-stat.coral{color:var(--coral)}
+    .ev-stat.amber{color:var(--warn)}
+    .ev-stat.red{color:#f08a70}
+    .ev-stat.good{color:var(--good)}
+    .ev-stat-lab{font-size:.82rem;color:rgba(255,255,255,.80);margin-top:.35rem;line-height:1.35;font-weight:600}
+    .ev-detail{flex:1;padding:.8rem 1rem;display:flex;flex-direction:column;justify-content:center;gap:.28rem;min-width:0}
+    .ev-trial{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;line-height:1.25}
+    .ev-journal{font-size:.80rem;color:rgba(255,255,255,.80);font-weight:600;margin-bottom:.15rem}
+    .ev-finding{font-size:.93rem;color:rgba(255,255,255,.92);line-height:1.55;font-weight:400}
+    .ev-finding strong{color:#fff;font-weight:700}
+
+    /* ═══ SLIDE 7: MECHANISMS ═══ */
+    .mech-grid{display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:1fr 1fr;gap:.9rem;flex:1;min-height:0}
+    .mech-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:1.1rem 1.2rem;display:flex;gap:.9rem;align-items:flex-start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:opacity .4s ease,transform .4s ease}
+    .mech-card.vis{opacity:1;transform:translateY(0)}
+    .mech-icon{font-size:2rem;flex-shrink:0}
+    .mech-text{flex:1;min-width:0}
+    .mech-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:.3rem;line-height:1.2}
+    .mech-body{font-size:.9rem;color:rgba(255,255,255,.83);line-height:1.55;font-weight:400}
+    .mech-body strong{color:var(--acc);font-weight:700}
+
+    /* ═══ CTA SLIDES ═══ */
+    .cta-slide{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1rem;padding:0 2rem}
+    .cta-badge{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:.28rem .9rem;border-radius:100px;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.80)}
+    .cta-timeframe{font-family:'Fraunces',serif;font-size:clamp(2.8rem,6vw,4.6rem);font-weight:700;line-height:1;letter-spacing:-.02em}
+    .cta-now .cta-timeframe{color:#f08a70}
+    .cta-week .cta-timeframe{color:var(--acc)}
+    .cta-ongoing .cta-timeframe{color:var(--good)}
+    .cta-icon-big{font-size:5rem;line-height:1}
+    .cta-title{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;color:#fff;line-height:1.25;max-width:720px}
+    .cta-body{font-size:1rem;color:rgba(255,255,255,.83);line-height:1.6;max-width:640px;font-weight:400}
+    .cta-examples{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:.3rem}
+    .cta-chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:100px;font-size:.85rem;font-weight:600;color:rgba(255,255,255,.92);padding:.3rem .85rem}
+
+    /* ═══ CLOSING ═══ */
+    .closing-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.2rem}
+    .closing-logo{font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:#fff;letter-spacing:-.03em}
+    .closing-logo span{color:var(--coral)}
+    .closing-tagline{font-size:.8rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.70)}
+    .closing-title{font-family:'Fraunces',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#fff;max-width:720px;line-height:1.25;margin:.4rem 0}
+    .closing-title span{color:var(--acc)}
+    .closing-series{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.70)}
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div id="topbar">
+  <div class="tb-logo">
+    <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
+      <path d="M11 2C8 2 5.5 4 4 6.5 2.5 9 2.5 12 4 14.5c1 1.8 2.8 3 5 3.4V4.5" stroke="#E8634A" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M11 2C14 2 16.5 4 18 6.5 19.5 9 19.5 12 18 14.5c-1 1.8-2.8 3-5 3.4V4.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <span class="tb-title">helf<span class="tb-dot">.</span>school</span>
+    <span class="tb-sub">Stress</span>
+  </div>
+  <div class="tb-right">
+    <span class="slide-counter" id="counter">1 / 11</span>
+    <span class="kb-hint">← → keys</span>
+  </div>
+</div>
+
+<!-- STAGE -->
+<div id="stage">
+
+  <!-- ═══ SLIDE 1: INTRO ═══ -->
+  <div class="slide active" id="s1">
+    <div class="intro-wrap">
+      <div class="intro-badge">📋 Practical Health Series · Article 11</div>
+      <div class="intro-icon">🌀</div>
+      <div class="intro-title">Stress — What It Is,<br>What It's Doing to You,<br>and <span>What Actually Helps</span></div>
+      <div class="intro-sub">Chronic stress is not a character flaw. It's physiology that forgot how to switch off.</div>
+      <div class="intro-tagline">helf.school · Health Education for Everyone</div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 2: ACUTE vs CHRONIC ═══ -->
+  <div class="slide" id="s2">
+    <div class="slide-title">The one distinction that <span>changes everything</span></div>
+    <div class="two-col">
+
+      <div class="ac-card ac-acute">
+        <div class="ac-badge">⚡ Acute stress</div>
+        <div class="ac-icon">⚡</div>
+        <div class="ac-title">Short. Resolves. Body resets.</div>
+        <div class="ac-desc">A surge of adrenaline and cortisol (the main stress hormone) for a specific challenge — interview, argument, near-miss in traffic. <strong>Then it's over. The body returns to baseline.</strong></div>
+        <div class="ac-verdict">✓ This is healthy. The system works exactly as designed.</div>
+      </div>
+
+      <div class="ac-card ac-chronic">
+        <div class="ac-badge">🌀 Chronic stress</div>
+        <div class="ac-icon">🌀</div>
+        <div class="ac-title">Sustained. Never resets. Damage accumulates.</div>
+        <div class="ac-desc">The same response running for weeks, months, years. Cortisol stays elevated. Inflammation builds. Sleep fragments. Mood drops. <strong>The body never gets the "all clear."</strong></div>
+        <div class="ac-verdict">⚠ Allostatic load — the cumulative wear and tear on every system in your body.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 3: FIVE SYSTEMS ═══ -->
+  <div class="slide" id="s3">
+    <div class="slide-title">Five systems <span>chronic stress reaches</span></div>
+    <div class="systems-grid">
+
+      <div class="sys-card sc-heart" id="sc1">
+        <div class="sys-icon">❤️</div>
+        <div class="sys-title">Heart &amp; arteries</div>
+        <div class="sys-stat">↑ BP</div>
+        <div class="sys-body">Blood pressure rises. Arteries inflame. Heart-attack risk rises — in the same league as smoking.</div>
+      </div>
+
+      <div class="sys-card sc-mind" id="sc2">
+        <div class="sys-icon">🧠</div>
+        <div class="sys-title">Mind, sleep, mood</div>
+        <div class="sys-stat">3am</div>
+        <div class="sys-body">Sleep breaks down first. Memory slips. Concentration wavers. Anxiety and depression become far more likely.</div>
+      </div>
+
+      <div class="sys-card sc-gut" id="sc3">
+        <div class="sys-icon">🫁</div>
+        <div class="sys-title">Gut</div>
+        <div class="sys-stat">↑ IBS</div>
+        <div class="sys-body">Brain and gut are directly wired together via the vagus nerve. Reflux, bloating, and IBS (cramping, urgency) all worsen.</div>
+      </div>
+
+      <div class="sys-card sc-immune" id="sc4">
+        <div class="sys-icon">🛡️</div>
+        <div class="sys-title">Immune system</div>
+        <div class="sys-stat">↓ defence<br>↑ inflam.</div>
+        <div class="sys-body">Dampened immunity plus rising background inflammation. More colds. Slower healing. Flares of eczema and IBD.</div>
+      </div>
+
+      <div class="sys-card sc-behav" id="sc5">
+        <div class="sys-icon">🍷</div>
+        <div class="sys-title">Behaviour spiral</div>
+        <div class="sys-stat">↑ risk</div>
+        <div class="sys-body">Stress pulls toward quick fixes — extra alcohol, missed walks, poor food. Each one feeds more stress. The spiral tightens.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 4: WHAT YOUR DOCTOR DOES ═══ -->
+  <div class="slide" id="s4">
+    <div class="slide-title">What a GP can <span>actually do</span> about stress</div>
+    <div class="doc-grid">
+
+      <div class="doc-card hero" id="dc1">
+        <div class="doc-icon">👂</div>
+        <div class="doc-text">
+          <div class="doc-label">The starting point</div>
+          <div class="doc-title">Listen — and look at the whole picture</div>
+          <div class="doc-body">Work. Home. Sleep. Alcohol. Exercise. Money. Relationships. Each amplifies or buffers stress. <strong>Write down your three main concerns before you go in — NHS appointments are short.</strong></div>
+        </div>
+      </div>
+
+      <div class="doc-card" id="dc2">
+        <div class="doc-icon">📋</div>
+        <div class="doc-text">
+          <div class="doc-label">Screen for</div>
+          <div class="doc-title">Anxiety &amp; depression — PHQ-9 + GAD-7</div>
+          <div class="doc-body">Two validated questionnaires, 2 minutes each. Identify if stress has crossed into a clinically treatable condition where specific therapies work particularly well.</div>
+        </div>
+      </div>
+
+      <div class="doc-card" id="dc3">
+        <div class="doc-icon">💬</div>
+        <div class="doc-text">
+          <div class="doc-label">Free · No GP letter needed</div>
+          <div class="doc-title">NHS Talking Therapies — self-refer</div>
+          <div class="doc-body">CBT, mindfulness, counselling — <strong>free on the NHS in England. Self-referral available.</strong> Search "NHS Talking Therapies" + your postcode. No appointment needed first.</div>
+        </div>
+      </div>
+
+      <div class="doc-card" id="dc4">
+        <div class="doc-icon">💊</div>
+        <div class="doc-text">
+          <div class="doc-label">When symptoms meet clinical threshold</div>
+          <div class="doc-title">SSRIs — sertraline (Lustral), fluoxetine (Prozac)</div>
+          <div class="doc-body">Genuinely effective for moderate-to-severe anxiety and depression. Not for "a bit of stress" — for when symptoms meet threshold. Decisions are individualised and reversible.</div>
+        </div>
+      </div>
+
+      <div class="doc-card" id="dc5">
+        <div class="doc-icon">🩺</div>
+        <div class="doc-text">
+          <div class="doc-label">Rule out physical mimics</div>
+          <div class="doc-title">Thyroid · Anaemia · Vitamin D · Sleep apnoea</div>
+          <div class="doc-body">These all masquerade as stress or amplify it — and a simple blood panel catches most of them. Part of any thorough assessment.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 5: RESEARCH A — WHAT STRESS DOES ═══ -->
+  <div class="slide" id="s5">
+    <div class="res-header">
+      <span class="res-header-label">Research · Part A</span>
+      <span class="res-header-title">What chronic stress is actually doing to your body</span>
+    </div>
+    <div class="ev-grid">
+
+      <div class="ev-card" id="ea1">
+        <div class="ev-stat-box">
+          <div class="ev-stat coral">~33%</div>
+          <div class="ev-stat-lab">of first heart-attack risk from psychosocial stress</div>
+        </div>
+        <div class="ev-detail">
+          <div class="ev-trial">INTERHEART — Psychosocial Factors &amp; Heart Attack</div>
+          <div class="ev-journal">Rosengren A et al. · The Lancet · 2004 · 52 countries · 11,000+ cases</div>
+          <div class="ev-finding">Psychosocial stress ranked alongside <strong>smoking, high blood pressure, and cholesterol</strong> as one of the nine biggest drivers of first heart attack. <strong>Effect seen across every country and every ethnic group.</strong> This is not a soft finding.</div>
+        </div>
+      </div>
+
+      <div class="ev-card" id="ea2">
+        <div class="ev-stat-box">
+          <div class="ev-stat amber">+23%</div>
+          <div class="ev-stat-lab">higher coronary heart disease risk from job strain</div>
+        </div>
+        <div class="ev-detail">
+          <div class="ev-trial">IPD-Work — Job Strain &amp; Coronary Heart Disease</div>
+          <div class="ev-journal">Kivimäki M et al. · The Lancet · 2012 · 197,000 adults across 13 studies</div>
+          <div class="ev-finding"><strong>High demands + low control at work</strong> = 23% higher coronary heart disease risk. The specific toxic pattern is pressure you can't do anything about. Not just a hard job — a hard job with no autonomy.</div>
+        </div>
+      </div>
+
+      <div class="ev-card" id="ea3">
+        <div class="ev-stat-box">
+          <div class="ev-stat red" style="font-size:1.15rem;line-height:1.35;font-weight:700">brain<br>↓<br>bone marrow<br>↓<br>arteries</div>
+          <div class="ev-stat-lab">the mechanism — imaged for the first time</div>
+        </div>
+        <div class="ev-detail">
+          <div class="ev-trial">Tawakol A et al. — The Amygdala–Inflammation Pathway</div>
+          <div class="ev-journal">The Lancet · 2017 · Massachusetts General Hospital &amp; Harvard</div>
+          <div class="ev-finding">PET-CT scans traced the pathway: <strong>amygdala (brain threat-centre) activity → bone marrow → inflammatory cells → artery wall inflammation → heart attacks and strokes.</strong> Perceived stress correlated with every step. <strong>Not vague. Not in your head. Imaged.</strong></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 6: RESEARCH B — WHAT HELPS ═══ -->
+  <div class="slide" id="s6">
+    <div class="res-header">
+      <span class="res-header-label">Research · Part B</span>
+      <span class="res-header-title">What reliably helps — so you can act on evidence, not guesswork</span>
+    </div>
+    <div class="ev-grid">
+
+      <div class="ev-card" id="eb1">
+        <div class="ev-stat-box">
+          <div class="ev-stat good">~38%</div>
+          <div class="ev-stat-lab">reduction in anxiety from regular exercise</div>
+        </div>
+        <div class="ev-detail">
+          <div class="ev-trial">Rebar AL et al. — Physical Activity &amp; Mental Health ⚑</div>
+          <div class="ev-journal">Health Psychology Review · 2015 · meta-meta-analysis</div>
+          <div class="ev-finding">Regular movement reduced anxiety symptoms by ~38% and depression by a medium effect size. <strong>Any format works — walking, cycling, resistance, mixed. Regularity matters more than intensity.</strong> 30 minutes, 3–5 times a week, is evidence-based stress medicine.</div>
+        </div>
+      </div>
+
+      <div class="ev-card" id="eb2">
+        <div class="ev-stat-box">
+          <div class="ev-stat good">~50%</div>
+          <div class="ev-stat-lab">recovery rate — NHS Talking Therapies completers</div>
+        </div>
+        <div class="ev-detail">
+          <div class="ev-trial">NHS Talking Therapies — England-wide Programme Outcomes</div>
+          <div class="ev-journal">NHS England Digital · 2024 · 1.7 million+ referrals</div>
+          <div class="ev-finding">Roughly <strong>half of people who complete a course are classified as recovered</strong> — anxiety and depression scores fall below clinical threshold. Real-world data, not selected trial samples. <strong>Free. Self-referral. No GP letter needed.</strong></div>
+        </div>
+      </div>
+
+      <div class="ev-card" id="eb3">
+        <div class="ev-stat-box">
+          <div class="ev-stat good" style="font-size:1.9rem;line-height:1.1">3× better<br><span style="font-size:1rem">than placebo</span></div>
+          <div class="ev-stat-lab">CBT response rate for generalised anxiety</div>
+        </div>
+        <div class="ev-detail">
+          <div class="ev-trial">Carpenter JK et al. — CBT for Anxiety-Related Disorders ⚑</div>
+          <div class="ev-journal">Depression &amp; Anxiety · 2018 · 41 placebo-controlled RCTs</div>
+          <div class="ev-finding">CBT (Cognitive Behavioural Therapy — structured therapy that trains you to notice and reshape unhelpful thought patterns) produced response rates <strong>roughly 3× higher than placebo</strong> for generalised anxiety disorder. Large effect size. <strong>Effects durable at follow-up.</strong> Available free via NHS Talking Therapies.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 7: WHY THESE WORK ═══ -->
+  <div class="slide" id="s7">
+    <div class="slide-title">Why these approaches <span>actually work</span> — the biology</div>
+    <div class="mech-grid">
+
+      <div class="mech-card" id="mc1">
+        <div class="mech-icon">🫁</div>
+        <div class="mech-text">
+          <div class="mech-title">Slow breathing — fastest acting</div>
+          <div class="mech-body">Extended out-breaths activate the <strong>vagus nerve</strong> — sending a measurable "stand down" signal from body to brain. <strong>Works within 1–2 minutes.</strong> 4 in, 6 out. Free. Immediate.</div>
+        </div>
+      </div>
+
+      <div class="mech-card" id="mc2">
+        <div class="mech-icon">🏃</div>
+        <div class="mech-text">
+          <div class="mech-title">Regular movement — multi-pathway</div>
+          <div class="mech-body">Lowers resting cortisol. Reduces inflammation. Improves sleep quality. Raises <strong>serotonin, dopamine, and BDNF</strong> (a protein that supports brain-cell growth and mood regulation).</div>
+        </div>
+      </div>
+
+      <div class="mech-card" id="mc3">
+        <div class="mech-icon">🧠</div>
+        <div class="mech-text">
+          <div class="mech-title">CBT &amp; mindfulness — break the loop</div>
+          <div class="mech-body">Both interrupt the thought-emotion-body cycle that keeps chronic stress running. <strong>Train you to notice the spiral early and step out before cortisol and inflammation build up.</strong></div>
+        </div>
+      </div>
+
+      <div class="mech-card" id="mc4">
+        <div class="mech-icon">🤝</div>
+        <div class="mech-text">
+          <div class="mech-title">Human connection — biologically active</div>
+          <div class="mech-body">Genuine social support measurably buffers the stress response — <strong>lower cortisol, lower inflammation, better cardiovascular outcomes.</strong> Isolation amplifies stress. Connection is medicine.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 8: CTA 1 — RIGHT NOW ═══ -->
+  <div class="slide" id="s8">
+    <div class="cta-slide cta-now">
+      <div class="cta-badge">📋 Action 1</div>
+      <div class="cta-timeframe">Right Now</div>
+      <div class="cta-icon-big">🫁</div>
+      <div class="cta-title">Five minutes of slow breathing — <span style="color:#f0cc50">this is evidence-based stress medicine</span></div>
+      <div class="cta-body">4 seconds in, 6 seconds out. Extended out-breaths activate the vagus nerve and send a measurable "stand down" signal to your brain within 1–2 minutes. It costs nothing and is available right now.</div>
+      <div class="cta-examples">
+        <span class="cta-chip">4 in · 6 out</span>
+        <span class="cta-chip">Measurable in 1–2 minutes</span>
+        <span class="cta-chip">Activates the vagus nerve</span>
+        <span class="cta-chip">Free · No equipment</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 9: CTA 2 — THIS WEEK ═══ -->
+  <div class="slide" id="s9">
+    <div class="cta-slide cta-week">
+      <div class="cta-badge">📋 Action 2</div>
+      <div class="cta-timeframe">This Week</div>
+      <div class="cta-icon-big">💬</div>
+      <div class="cta-title">Self-refer to <span style="color:#7ecc99">NHS Talking Therapies</span> — no GP letter needed</div>
+      <div class="cta-body">Free in England. ~50% recovery rate in real-world data. Search "NHS Talking Therapies" and your postcode. Self-referral takes about five minutes online. No GP appointment needed first.</div>
+      <div class="cta-examples">
+        <span class="cta-chip">Free on NHS</span>
+        <span class="cta-chip">Self-refer online</span>
+        <span class="cta-chip">CBT · Mindfulness · Counselling</span>
+        <span class="cta-chip">~50% recovery rate</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 10: CTA 3 — ONGOING ═══ -->
+  <div class="slide" id="s10">
+    <div class="cta-slide cta-ongoing">
+      <div class="cta-badge">📋 Action 3</div>
+      <div class="cta-timeframe">Ongoing</div>
+      <div class="cta-icon-big">🏃</div>
+      <div class="cta-title">3 × 30-minute walks a week — <span style="color:#7ecc99">the most accessible evidence-based option</span></div>
+      <div class="cta-body">Regular movement reduced anxiety symptoms by ~38% in the research. It doesn't need to be the gym. Any format works. It needs to be regular — and three sessions a week is enough for a meaningful, measurable effect.</div>
+      <div class="cta-examples">
+        <span class="cta-chip">30 min · 3–5×/week</span>
+        <span class="cta-chip">~38% anxiety reduction</span>
+        <span class="cta-chip">Any format works</span>
+        <span class="cta-chip">Regularity matters most</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 11: CLOSING ═══ -->
+  <div class="slide" id="s11">
+    <div class="closing-wrap">
+      <div class="closing-logo">helf<span>.</span>school</div>
+      <div class="closing-tagline">Health Education for Everyone</div>
+      <div class="closing-title">Chronic stress is physiology.<br><span>The research tells us what works.</span><br>Start with one thing.</div>
+      <div class="closing-series">Practical Health Series · Article 11 · Stress</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SEGMENT DOTS -->
+<div id="dots">
+  <div class="dot active" onclick="goTo(0)"></div>
+  <div class="dot" onclick="goTo(1)"></div>
+  <div class="dot" onclick="goTo(2)"></div>
+  <div class="dot" onclick="goTo(3)"></div>
+  <div class="dot" onclick="goTo(4)"></div>
+  <div class="dot" onclick="goTo(5)"></div>
+  <div class="dot" onclick="goTo(6)"></div>
+  <div class="dot" onclick="goTo(7)"></div>
+  <div class="dot" onclick="goTo(8)"></div>
+  <div class="dot" onclick="goTo(9)"></div>
+  <div class="dot" onclick="goTo(10)"></div>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('.dot');
+  let cur = 0;
+
+  function show(n){
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    document.getElementById('counter').textContent = (cur+1)+' / '+slides.length;
+    triggerSlide(cur);
+  }
+
+  function goTo(n){ show(n); }
+
+  document.addEventListener('keydown', e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowDown') show(cur+1);
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp') show(cur-1);
+  });
+
+  let tx=0;
+  document.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; });
+  document.addEventListener('touchend', e=>{
+    const dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>40){ dx<0?show(cur+1):show(cur-1); }
+  });
+
+  function triggerSlide(n){
+    if(n===2) animateSystems();
+    if(n===3) animateDoctor();
+    if(n===4) animateResA();
+    if(n===5) animateResB();
+    if(n===6) animateMech();
+  }
+
+  function animateSystems(){
+    ['sc1','sc2','sc3','sc4','sc5'].forEach((id,i)=>{
+      setTimeout(()=>document.getElementById(id).classList.add('vis'), 180+i*200);
+    });
+  }
+
+  function animateDoctor(){
+    ['dc1','dc2','dc3','dc4','dc5'].forEach((id,i)=>{
+      setTimeout(()=>document.getElementById(id).classList.add('vis'), 150+i*180);
+    });
+  }
+
+  function animateResA(){
+    ['ea1','ea2','ea3'].forEach((id,i)=>{
+      setTimeout(()=>document.getElementById(id).classList.add('vis'), 200+i*250);
+    });
+  }
+
+  function animateResB(){
+    ['eb1','eb2','eb3'].forEach((id,i)=>{
+      setTimeout(()=>document.getElementById(id).classList.add('vis'), 200+i*250);
+    });
+  }
+
+  function animateMech(){
+    ['mc1','mc2','mc3','mc4'].forEach((id,i)=>{
+      setTimeout(()=>document.getElementById(id).classList.add('vis'), 180+i*200);
+    });
+  }
+
+  /* Reset animations on slide leave */
+  slides.forEach(s=>{
+    const obs = new MutationObserver(()=>{
+      if(!s.classList.contains('active')){
+        s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'));
+      }
+    });
+    obs.observe(s, {attributes:true});
+  });
+
+  triggerSlide(0);
+</script>
+</body>
+</html>
