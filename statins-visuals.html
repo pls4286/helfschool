@@ -6,181 +6,561 @@
   <title>Statins — Visuals | helf.school</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root{--navy:#1B2A4A;--coral:#E8634A;--cream:#FAF7F2;--sage:#7A9E87;--amber:#E8A84A;--bg:#0f1623}
+    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--calm:#70b8e8}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
-    #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:var(--navy);border-bottom:2px solid var(--coral);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
+    #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:var(--navy);border-bottom:2px solid var(--acc2);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
+    .tb-logo{display:flex;align-items:center;gap:.5rem}
     .tb-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff}
-    .tb-sub{font-size:.75rem;color:rgba(255,255,255,.75)}
-    .tb-right{display:flex;align-items:center;gap:1rem}
-    .slide-counter{font-size:.85rem;font-weight:700;color:rgba(255,255,255,.90)}
-    .kb-hint{font-size:.72rem;color:rgba(255,255,255,.60)}
-    #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:6vh 2.5rem 3vh}
-    .slide{display:none;width:100%;max-width:1100px;animation:fadeIn .35s ease}
-    .slide.active{display:flex;flex-direction:column}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-    .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;color:#fff;margin-bottom:1.5rem;padding-bottom:.75rem;border-bottom:2px solid rgba(232,99,74,.3)}
-    .slide-title span{color:var(--coral)}
-    .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;text-align:center;gap:1.5rem}
-    .intro-badge{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--coral);background:rgba(232,99,74,.12);border:1px solid rgba(232,99,74,.3);padding:.3rem .85rem;border-radius:100px}
-    .intro-title{font-family:'Fraunces',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:700;color:#fff;line-height:1.15;max-width:800px}
-    .intro-title span{color:var(--coral)}
-    .intro-tagline{font-size:1rem;color:rgba(255,255,255,.70);font-style:italic;font-family:'Fraunces',serif}
-    .stat-row{display:flex;gap:1.25rem;flex-wrap:wrap}
-    .stat-card{flex:1;min-width:180px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:1.4rem 1.6rem;text-align:center}
-    .stat-card.hl{background:rgba(232,99,74,.1);border-color:rgba(232,99,74,.35)}
-    .stat-num{font-family:'Fraunces',serif;font-size:3.2rem;font-weight:700;color:var(--coral);line-height:1}
-    .stat-label{font-size:1rem;color:rgba(255,255,255,.90);margin-top:.5rem;font-weight:600;line-height:1.4}
-    .stat-source{font-size:.75rem;color:rgba(255,255,255,.65);margin-top:.4rem}
-    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
-    .info-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1.2rem 1.4rem}
-    .info-card h3{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;color:var(--coral);margin-bottom:.75rem}
-    .info-card p{font-size:.93rem;color:rgba(255,255,255,.80);line-height:1.6}
-    .step-list{display:flex;flex-direction:column;gap:.85rem}
-    .step{display:flex;align-items:flex-start;gap:1rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem 1.3rem;opacity:0;transform:translateX(-16px);transition:opacity .4s ease,transform .4s ease}
-    .step.vis{opacity:1;transform:translateX(0)}
-    .step-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0}
-    .s1 .step-num{background:rgba(122,158,135,.2);color:#7ADAAA}
-    .s2 .step-num{background:rgba(232,99,74,.2);color:var(--coral)}
-    .s3 .step-num{background:rgba(232,168,74,.2);color:var(--amber)}
-    .step-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:.25rem}
-    .step-desc{font-size:.93rem;color:rgba(255,255,255,.80);line-height:1.55}
-    .r-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-left:4px solid var(--coral);border-radius:0 12px 12px 0;padding:1rem 1.3rem;margin-bottom:.85rem}
-    .r-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:var(--coral);margin-bottom:.3rem}
-    .r-finding{font-size:.93rem;color:rgba(255,255,255,.80);line-height:1.6}
-    .r-source{font-size:.78rem;color:rgba(255,255,255,.70);margin-top:.3rem;font-style:italic}
-    .cta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;margin-bottom:1.5rem}
-    .cta-card{background:rgba(232,99,74,.08);border:1px solid rgba(232,99,74,.25);border-radius:14px;padding:1.5rem 1.4rem;text-align:center}
-    .cta-icon{font-size:2.2rem;margin-bottom:.75rem}
-    .cta-title{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:.4rem}
-    .cta-desc{font-size:.93rem;color:rgba(255,255,255,.80);line-height:1.55}
-    .closing-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.75rem}
-    .closing-logo{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;color:#fff}
-    .closing-logo span{color:var(--coral)}
-    .closing-tagline{font-size:1rem;color:rgba(255,255,255,.70);letter-spacing:.12em;text-transform:uppercase;font-weight:600}
-    .closing-url{font-size:1.1rem;color:var(--sage);font-weight:600;margin-top:.25rem}
-    .article-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;margin-top:.75rem}
-    .a-pill{font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:100px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.12)}
-    .a-pill.current{background:rgba(232,99,74,.2);color:var(--coral);border-color:rgba(232,99,74,.4)}
-    footer{position:fixed;bottom:0;left:0;right:0;text-align:center;padding:.4rem;font-size:clamp(.65rem,1vw,.80rem);color:rgba(255,255,255,.65);background:rgba(15,22,35,.6)}
-    .nocebo-box{background:rgba(232,168,74,.08);border:2px solid rgba(232,168,74,.3);border-radius:12px;padding:1.1rem 1.4rem;margin-top:1rem}
-    .nocebo-num{font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:var(--amber);line-height:1}
-    .nocebo-label{font-size:.95rem;color:rgba(255,255,255,.90);font-weight:600;margin-top:.25rem}
-    .nocebo-sub{font-size:.82rem;color:rgba(255,255,255,.70);margin-top:.2rem;line-height:1.5}
+    .tb-dot{color:var(--coral)}
+    .tb-sub{font-size:.75rem;color:rgba(255,255,255,.78);margin-left:.25rem;font-weight:500}
+    .tb-right{display:flex;align-items:center;gap:1.2rem}
+    .slide-counter{font-size:.88rem;font-weight:700;color:rgba(255,255,255,.90)}
+    .kb-hint{font-size:.75rem;color:rgba(255,255,255,.65)}
+    #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:2.2vh 1.25rem 3.5vh;overflow:hidden}
+    .slide{display:none;width:100%;max-width:1140px;height:100%;animation:sIn .32s ease}
+    .slide.active{display:flex;flex-direction:column;min-height:0}
+    @keyframes sIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.1vw,1.75rem);font-weight:700;color:#fff;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:2px solid rgba(212,184,74,.3);flex-shrink:0}
+    .slide-title span{color:var(--acc)}
+    #dots{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:200}
+    .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .25s}
+    .dot.active{background:var(--acc);transform:scale(1.3)}
+
+    .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.3rem}
+    .intro-badge{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.12);border:1px solid rgba(212,184,74,.3);padding:.3rem .9rem;border-radius:100px}
+    .intro-icon{font-size:4rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .intro-title{font-family:'Fraunces',serif;font-size:clamp(2.6rem,5.5vw,4.4rem);font-weight:700;color:#fff;line-height:1.05;max-width:960px;letter-spacing:-.02em}
+    .intro-title span{color:var(--acc)}
+    .intro-sub{font-size:1.1rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;max-width:680px;line-height:1.5;font-weight:400}
+    .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+
+    /* Mechanism+NICE overview (slide 2) */
+    .mech-over{display:flex;flex-direction:column;flex:1;gap:1rem;min-height:0}
+    .mech-block{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.28);border-radius:16px;padding:1.2rem 1.5rem;display:flex;gap:1.3rem;align-items:flex-start}
+    .mech-block-icon{font-size:2.4rem;line-height:1;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .mech-block-content{flex:1}
+    .mech-block-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.35rem;line-height:1.15;margin-bottom:.35rem}
+    .mech-block-body{font-size:1rem;color:rgba(255,255,255,.9);line-height:1.5}
+    .mech-block-body strong{color:var(--acc)}
+    .dose-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem}
+    .dose-card{background:rgba(126,204,153,.09);border:1px solid rgba(126,204,153,.4);border-radius:12px;padding:.85rem .9rem;text-align:center}
+    .dose-name{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;color:#fff;line-height:1.15;margin-bottom:.35rem}
+    .dose-use{font-size:.83rem;color:rgba(255,255,255,.85);line-height:1.3;margin-bottom:.3rem}
+    .dose-src{font-size:.75rem;color:rgba(255,255,255,.65);font-style:italic}
+
+    /* HORIZONTAL ROWS */
+    .sys-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.65rem;flex:1;min-height:0}
+    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:14px;padding:1rem 1.5rem;display:grid;grid-template-columns:72px 1fr auto;gap:1.5rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .sys-card.vis{opacity:1;transform:translateY(0)}
+    .sys-icon{font-size:2.8rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .sys-content{display:flex;flex-direction:column;gap:.25rem;min-width:0}
+    .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.4rem;line-height:1.12;letter-spacing:-.01em}
+    .sys-body{font-size:.98rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400}
+    .sys-stat{font-family:'Fraunces',serif;font-size:clamp(1.8rem,2.8vw,2.6rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:1rem}
+    .sys-stat.good{color:var(--good)}
+
+    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.65rem;flex:1;min-height:0}
+    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:1rem 1.5rem;display:grid;grid-template-columns:72px 1fr auto;gap:1.5rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .doc-card.vis{opacity:1;transform:translateY(0)}
+    .doc-icon{font-size:2.8rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .doc-content{display:flex;flex-direction:column;gap:.25rem;min-width:0}
+    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.4rem;line-height:1.12;letter-spacing:-.01em}
+    .doc-body{font-size:.98rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400}
+    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.8rem,2.8vw,2.6rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:1rem}
+
+    .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
+    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .45s ease}
+    .ev-card.vis{opacity:1;transform:translateY(0)}
+    .ev-stat{text-align:center;background:rgba(212,184,74,.09);border-radius:14px;padding:1.25rem .85rem}
+    .ev-num{font-family:'Fraunces',serif;font-size:3.4rem;font-weight:700;color:var(--acc);line-height:1;letter-spacing:-.02em}
+    .ev-num.bad{color:var(--bad)}
+    .ev-num.good{color:var(--good)}
+    .ev-label{font-size:1rem;font-weight:700;color:#fff;margin-top:.5rem;line-height:1.3}
+    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;margin-bottom:.25rem;line-height:1.15;letter-spacing:-.01em}
+    .ev-det .ev-journal{font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
+    .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400}
+
+    .mech-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
+    .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .mech-card.vis{opacity:1;transform:translateY(0)}
+    .mech-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .mech-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+    .mech-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12;letter-spacing:-.01em}
+    .mech-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400}
+    .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2vw,1.85rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
+
+    .cta-slide{position:relative}
+    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%, rgba(212,184,74,.18), rgba(212,184,74,.04) 45%, transparent 70%);pointer-events:none;z-index:0}
+    .cta-wrap-v2{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:.85rem;padding:.5rem}
+    .cta-badge-v2{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.42rem 1.15rem;border-radius:100px;box-shadow:0 0 30px rgba(212,184,74,.14)}
+    .cta-icon-v2{font-size:clamp(4.5rem,8vw,6rem);line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;filter:drop-shadow(0 0 30px rgba(212,184,74,.28));animation:pulseHalo 3.2s ease-in-out infinite}
+    @keyframes pulseHalo{0%,100%{filter:drop-shadow(0 0 28px rgba(212,184,74,.22))}50%{filter:drop-shadow(0 0 55px rgba(212,184,74,.55))}}
+    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(3.2rem,5.8vw,4.9rem);font-weight:700;color:#fff;line-height:1.02;max-width:1000px;letter-spacing:-.028em}
+    .cta-headline-v2 span{color:var(--acc)}
+    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.4vw,1.85rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);max-width:780px;line-height:1.32}
+    .cta-body-v2{font-size:1.05rem;color:rgba(255,255,255,.90);max-width:780px;line-height:1.52;font-weight:400}
+    .cta-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;max-width:900px;width:100%;margin-top:.25rem}
+    .cta-ac{background:linear-gradient(180deg,rgba(212,184,74,.16),rgba(212,184,74,.06));border:1.5px solid rgba(212,184,74,.45);border-radius:14px;padding:.95rem .55rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;text-align:center;transition:transform .25s ease}
+    .cta-ac:hover{transform:translateY(-2px)}
+    .cta-ac-icon{font-size:1.85rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .cta-ac-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.98rem;line-height:1.18}
+    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.8rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;margin-top:.6rem;max-width:900px}
+    .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.85);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left}
+    .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
+
+    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.6rem;padding:1.5rem}
+    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
+    .close-logo .dot{color:var(--coral)}
+    .close-sub{font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+    .close-headline{font-family:'Fraunces',serif;font-size:clamp(3rem,5.8vw,5.2rem);font-weight:700;color:#fff;max-width:1050px;line-height:1.08;letter-spacing:-.025em}
+    .close-headline span{color:var(--acc)}
+    .close-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1050px;width:100%}
+    .cst-card{background:rgba(212,184,74,.1);border:1px solid rgba(212,184,74,.35);border-radius:16px;padding:1.5rem 1.1rem;display:flex;flex-direction:column;align-items:center;gap:.55rem}
+    .cst-num{font-family:'Fraunces',serif;font-size:clamp(2.4rem,4.4vw,3.8rem);font-weight:700;color:var(--acc);line-height:.95;letter-spacing:-.02em}
+    .cst-lab{font-size:1.05rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.32}
+    .cst-src{font-size:.85rem;color:rgba(255,255,255,.72);font-style:italic}
+    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.3rem}
+
+    .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:.68rem;color:rgba(255,255,255,.18);z-index:90;white-space:nowrap}
   </style>
 </head>
 <body>
+
 <div id="topbar">
-  <div><div class="tb-title">Statins — Benefits &amp; Risks</div><div class="tb-sub">helf.school · Cardiovascular Series · Article 04</div></div>
-  <div class="tb-right"><span class="kb-hint">← → to navigate</span><span class="slide-counter" id="counter">1 / 6</span></div>
+  <div class="tb-logo">
+    <svg width="20" height="16" viewBox="0 0 22 18" fill="none">
+      <path d="M11 2C8 2 5.5 4 4 6.5 2.5 9 2.5 12 4 14.5c1 1.8 2.8 3 5 3.4V4.5" stroke="#E8634A" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M11 2C14 2 16.5 4 18 6.5 19.5 9 19.5 12 18 14.5c-1 1.8-2.8 3-5 3.4V4.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <span class="tb-title">helf<span class="tb-dot">.</span>school</span>
+    <span class="tb-sub">· Statins</span>
+  </div>
+  <div class="tb-right">
+    <span id="counter" class="slide-counter">1 / 10</span>
+    <span class="kb-hint">← → navigate</span>
+  </div>
 </div>
+
 <div id="stage">
 
-  <div class="slide active" id="s1">
+  <!-- SLIDE 1: INTRO -->
+  <div class="slide active">
     <div class="intro-wrap">
-      <div class="intro-badge">Cardiovascular Series · Article 04</div>
-      <div class="intro-title">Statins — <span>Benefits &amp; Risks</span></div>
-      <div class="intro-tagline">What the evidence actually says — cutting through the noise</div>
-      <div class="stat-row" style="justify-content:center;max-width:700px;">
-        <div class="stat-card hl"><div class="stat-num">1,000</div><div class="stat-label">heart attacks/strokes prevented per 10,000 patients (secondary prevention, 5 years)</div><div class="stat-source">CTT Collaboration, The Lancet 2026</div></div>
-        <div class="stat-card"><div class="stat-num">90%+</div><div class="stat-label">of muscle symptom reports in statin users are NOT caused by the statin</div><div class="stat-source">CTT Collaboration, The Lancet 2022</div></div>
-      </div>
+      <div class="intro-badge">📋 Cardiovascular Health Series · Article 04</div>
+      <div class="intro-icon">💊</div>
+      <div class="intro-title">Statins —<br/><span>benefits &amp; risks</span></div>
+      <div class="intro-sub">What the evidence actually shows — cutting through the noise.</div>
+      <div class="intro-tagline">Dr Paul · Retired NHS GP · helf.school</div>
     </div>
   </div>
 
-  <div class="slide" id="s2">
-    <div class="slide-title">How statins work — and who needs them</div>
-    <div class="two-col" style="margin-bottom:1.25rem">
-      <div class="info-card">
-        <h3>The mechanism</h3>
-        <p>Statins block <strong>HMG-CoA reductase</strong> — the key enzyme in the liver's cholesterol-making process. With this enzyme inhibited, the liver produces less cholesterol and draws more LDL from the bloodstream, lowering circulating levels.</p>
-        <p style="margin-top:.75rem">Each <strong>1 mmol/L reduction in LDL</strong> reduces the risk of major cardiovascular events by approximately <strong>one fifth</strong>.</p>
-      </div>
-      <div class="info-card">
-        <h3>Who is offered a statin (NICE NG238)</h3>
-        <p>✓ Anyone with established cardiovascular disease — regardless of cholesterol level</p>
-        <p style="margin-top:.5rem">✓ Anyone with a <strong>10-year QRISK3 score of 10% or above</strong></p>
-        <p style="margin-top:.5rem">✓ People aged 85+ where age alone warrants consideration</p>
-        <p style="margin-top:.5rem">~ Those below 10% risk where lifestyle change has been insufficient</p>
-      </div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-card hl"><div class="stat-num" style="font-size:2rem">Atorvastatin 20mg</div><div class="stat-label">Primary prevention (no existing CVD)</div><div class="stat-source">NICE NG238</div></div>
-      <div class="stat-card hl"><div class="stat-num" style="font-size:2rem">Atorvastatin 80mg</div><div class="stat-label">Secondary prevention (existing CVD)</div><div class="stat-source">NICE NG238</div></div>
-      <div class="stat-card"><div class="stat-num" style="font-size:1.8rem">≥40% reduction</div><div class="stat-label">Non-HDL cholesterol target</div><div class="stat-source">Treatment goal</div></div>
-    </div>
-  </div>
-
-  <div class="slide" id="s3">
-    <div class="slide-title">How many people does statin therapy <span>actually help?</span></div>
-    <p style="font-size:.95rem;color:rgba(255,255,255,.80);margin-bottom:1.25rem">Atorvastatin 40mg daily taken by 10,000 patients for five years — events prevented:</p>
-    <div class="stat-row" style="margin-bottom:1.25rem">
-      <div class="stat-card hl"><div class="stat-num">1,000</div><div class="stat-label">major cardiovascular events prevented</div><div class="stat-source">Secondary prevention — existing CVD</div></div>
-      <div class="stat-card"><div class="stat-num">500</div><div class="stat-label">major cardiovascular events prevented</div><div class="stat-source">Primary prevention — higher risk, no previous event</div></div>
-      <div class="stat-card"><div class="stat-num" style="font-size:2rem">57%</div><div class="stat-label">of higher-risk patients currently have a prescription</div><div class="stat-source">CVDPREVENT Audit 2025 — significant treatment gap</div></div>
-    </div>
-    <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem 1.3rem">
-      <div style="font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:.5rem">The treatment gap</div>
-      <p style="font-size:.95rem;color:rgba(255,255,255,.85);line-height:1.65">Fewer than half of people with existing cardiovascular disease have their cholesterol treated to target. Better statin uptake could prevent tens of thousands of heart attacks and strokes per year in the UK alone.</p>
-    </div>
-  </div>
-
-  <div class="slide" id="s4">
-    <div class="slide-title">The side effect story — <span>what the evidence actually shows</span></div>
-    <div class="two-col">
-      <div>
-        <div class="r-card">
-          <div class="r-title">CTT Collaboration — The Lancet 2022</div>
-          <div class="r-finding">Individual data from 150,000+ people across 23 trials. Statins caused only a small excess of mostly mild muscle pain. <strong>More than 90% of all muscle symptom reports</strong> were not caused by the statin itself. After year one, low/moderate intensity statins caused no significant increase in muscle symptoms vs placebo.</div>
-          <div class="r-source">Cholesterol Treatment Trialists, Lancet 2022</div>
-        </div>
-        <div class="r-card" style="margin-top:.85rem">
-          <div class="r-title">2026 Lancet label analysis</div>
-          <div class="r-finding">Most commonly cited side effects on statin packaging — cognitive impairment, depression, sleep disturbance, peripheral neuropathy — are <strong>not supported by causal evidence</strong> from randomised trials.</div>
-          <div class="r-source">CTT Collaboration, Lancet 2026</div>
+  <!-- SLIDE 2: HOW THEY WORK + WHO GETS THEM -->
+  <div class="slide">
+    <div class="slide-title">How statins work <span>— and who gets them</span></div>
+    <div class="mech-over">
+      <div class="mech-block">
+        <div class="mech-block-icon">🧬</div>
+        <div class="mech-block-content">
+          <div class="mech-block-title">The mechanism</div>
+          <div class="mech-block-body">Statins block <strong>HMG-CoA reductase</strong>, the rate-limiting enzyme in liver cholesterol synthesis. The liver compensates by pulling more LDL from the blood — circulating LDL falls. Each 1 mmol/L LDL drop cuts major cardiovascular events by ~22% (CTT meta-analysis).</div>
         </div>
       </div>
-      <div class="nocebo-box">
-        <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem">The Nocebo Effect — ASCOT-LLA Trial</div>
-        <div class="nocebo-num">41%</div>
-        <div class="nocebo-label">more muscle symptoms when patients knew they were taking a statin</div>
-        <div class="nocebo-sub" style="margin-top:.75rem">When the same patients were blinded — unaware whether they were taking statin or placebo — muscle symptoms were <strong>virtually identical in both groups</strong>.</div>
-        <div class="nocebo-sub" style="margin-top:.5rem">The expectation of harm leads to real, experienced symptoms — even when the drug is not the cause.</div>
-        <div style="font-size:.75rem;color:rgba(255,255,255,.65);margin-top:.5rem">Gupta A et al. ASCOT-LLA, The Lancet 2017</div>
+      <div class="mech-block">
+        <div class="mech-block-icon">📋</div>
+        <div class="mech-block-content">
+          <div class="mech-block-title">NICE NG238 — who is offered a statin</div>
+          <div class="mech-block-body">Anyone with <strong>established CVD</strong> (regardless of cholesterol), plus anyone with a 10-year <strong>QRISK3 ≥10%</strong>. Secondary prevention uses higher-intensity dose; primary prevention typically starts lower.</div>
+        </div>
+      </div>
+      <div class="dose-row">
+        <div class="dose-card">
+          <div class="dose-name">Atorvastatin 20 mg</div>
+          <div class="dose-use">Primary prevention (no existing CVD)</div>
+          <div class="dose-src">NICE NG238</div>
+        </div>
+        <div class="dose-card">
+          <div class="dose-name">Atorvastatin 80 mg</div>
+          <div class="dose-use">Secondary prevention (existing CVD)</div>
+          <div class="dose-src">NICE NG238</div>
+        </div>
+        <div class="dose-card">
+          <div class="dose-name">≥40% ↓</div>
+          <div class="dose-use">Non-HDL cholesterol treatment goal</div>
+          <div class="dose-src">Treatment target</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="slide" id="s5">
-    <div class="slide-title">What the <span>research shows</span></div>
-    <div class="r-card"><div class="r-title">CTT Collaboration — The Lancet 2010 (updated 2022, 2026)</div><div class="r-finding">26 randomised trials, 170,000+ participants. Each 1 mmol/L LDL reduction reduces major cardiovascular events by <span style="color:var(--coral);font-weight:700;">~20%</span>. Benefit holds across all ages, both sexes, regardless of starting cholesterol level.</div><div class="r-source">Cholesterol Treatment Trialists, Lancet 2010</div></div>
-    <div class="r-card"><div class="r-title">ASCOT-LLA — The Lancet 2017 (nocebo trial)</div><div class="r-finding">Blinded vs unblinded statin use in same patients. When unblinded: <span style="color:var(--coral);font-weight:700;">41% more muscle symptoms</span>. When blinded: <span style="color:var(--sage);font-weight:700;">no difference vs placebo</span>. Definitive demonstration of nocebo effect in statin therapy.</div><div class="r-source">Gupta A et al. Lancet 2017</div></div>
-    <div class="r-card"><div class="r-title">CVDPREVENT Audit 2025</div><div class="r-finding">Only <span style="color:var(--coral);font-weight:700;">57%</span> of higher-risk patients have a current lipid-lowering prescription. Fewer than <span style="color:var(--coral);font-weight:700;">50%</span> of those with existing CVD treated to recommended targets. Represents one of the largest preventable disease burdens in the NHS.</div><div class="r-source">NHS CVDPREVENT, 2025</div></div>
+  <!-- SLIDE 3: SIDE EFFECTS · RED · HONEST -->
+  <div class="slide">
+    <div class="slide-title">Side effects · <span>what the trial data show</span></div>
+    <div class="sys-grid">
+      <div class="sys-card" id="s1">
+        <div class="sys-icon">💪</div>
+        <div class="sys-content">
+          <div class="sys-title">Muscle pain — largely nocebo</div>
+          <div class="sys-body">CTT 2022 individual-data meta-analysis: over 90% of muscle symptom reports on statins were NOT caused by the drug itself.</div>
+        </div>
+        <div class="sys-stat">&gt;90%</div>
+      </div>
+      <div class="sys-card" id="s2">
+        <div class="sys-icon">🧠</div>
+        <div class="sys-content">
+          <div class="sys-title">Cognitive effects — no RCT signal</div>
+          <div class="sys-body">Cognitive impairment, sleep disturbance and depression are listed on packaging, but randomised trial evidence does not support a causal link.</div>
+        </div>
+        <div class="sys-stat">No signal</div>
+      </div>
+      <div class="sys-card" id="s3">
+        <div class="sys-icon">🍬</div>
+        <div class="sys-content">
+          <div class="sys-title">New-onset diabetes</div>
+          <div class="sys-body">A small absolute increase in predisposed individuals — mostly accelerating a diabetes already coming. CV benefit still outweighs it.</div>
+        </div>
+        <div class="sys-stat">~+0.1%/yr</div>
+      </div>
+      <div class="sys-card" id="s4">
+        <div class="sys-icon">🫀</div>
+        <div class="sys-content">
+          <div class="sys-title">Liver enzyme rise — usually mild</div>
+          <div class="sys-body">Small, usually reversible ALT rises. Severe liver injury is rare (&lt; 1 in 10,000). Routine LFTs at baseline and 3 months.</div>
+        </div>
+        <div class="sys-stat">~1%</div>
+      </div>
+      <div class="sys-card" id="s5">
+        <div class="sys-icon">⚠️</div>
+        <div class="sys-content">
+          <div class="sys-title">Serious myopathy — rare</div>
+          <div class="sys-body">Rhabdomyolysis is genuinely rare (&lt; 1 in 10,000). Usually linked to interacting drugs (some antibiotics, antifungals, antivirals, grapefruit).</div>
+        </div>
+        <div class="sys-stat">&lt;1 / 10k</div>
+      </div>
+    </div>
   </div>
 
-  <div class="slide" id="s6">
-    <div class="cta-grid">
-      <div class="cta-card"><div class="cta-icon">💊</div><div class="cta-title">Know the number</div><div class="cta-desc">QRISK3 is a free NHS cardiovascular risk calculator, routinely used in UK primary care. Understanding the number is how an informed conversation about treatment begins.</div></div>
-      <div class="cta-card"><div class="cta-icon">🗣️</div><div class="cta-title">A shared decision</div><div class="cta-desc">NICE guidance describes statin prescribing as a shared decision — weighing the person's risk, their preferences, and the evidence together, rather than an assumed yes.</div></div>
-      <div class="cta-card"><div class="cta-icon">⚠️</div><div class="cta-title">Side effects and dose</div><div class="cta-desc">In clinical practice, many statin side effects resolve by switching statin or adjusting dose. The research suggests stopping unilaterally, without that conversation, often leaves the cardiovascular risk unaddressed.</div></div>
-    </div>
-    <div class="closing-wrap">
-      <div class="closing-logo">helf<span>.</span>school</div>
-      <div class="closing-tagline">Health Education for Everyone</div>
-      <div class="closing-url">pls4286.github.io/helfschool</div>
-      <div class="article-pills">
-        <span class="a-pill">01 Hypertension</span><span class="a-pill">02 Cholesterol</span><span class="a-pill">03 Heart Attack Risk</span><span class="a-pill current">04 Statins</span><span class="a-pill">05 Lifestyle</span><span class="a-pill">06 Salt</span><span class="a-pill">07 Supplements</span>
+  <!-- SLIDE 4: BENEFITS · GREEN · WHO STATINS HELP -->
+  <div class="slide">
+    <div class="slide-title">Benefits · <span>what statins deliver</span></div>
+    <div class="doc-grid">
+      <div class="doc-card" id="d1">
+        <div class="doc-icon">💉</div>
+        <div class="doc-content">
+          <div class="doc-title">Secondary prevention</div>
+          <div class="doc-body">Treating 10,000 patients with existing CVD for 5 years prevents around 1,000 major cardiovascular events.</div>
+        </div>
+        <div class="doc-action">1,000 / 10k</div>
       </div>
+      <div class="doc-card" id="d2">
+        <div class="doc-icon">🛡️</div>
+        <div class="doc-content">
+          <div class="doc-title">Primary prevention (higher risk)</div>
+          <div class="doc-body">In higher-risk individuals without previous events, around 500 events prevented per 10,000 treated for 5 years.</div>
+        </div>
+        <div class="doc-action">500 / 10k</div>
+      </div>
+      <div class="doc-card" id="d3">
+        <div class="doc-icon">❤️</div>
+        <div class="doc-content">
+          <div class="doc-title">Heart-attack reduction</div>
+          <div class="doc-body">Roughly a quarter-reduction in major vascular events for each 1 mmol/L drop in LDL sustained over time.</div>
+        </div>
+        <div class="doc-action">−22%</div>
+      </div>
+      <div class="doc-card" id="d4">
+        <div class="doc-icon">🧠</div>
+        <div class="doc-content">
+          <div class="doc-title">Ischaemic stroke reduction</div>
+          <div class="doc-body">Statin therapy lowers ischaemic stroke rates proportionally to LDL reduction — meaningful in both sexes, all ages.</div>
+        </div>
+        <div class="doc-action">~−15%</div>
+      </div>
+      <div class="doc-card" id="d5">
+        <div class="doc-icon">🎯</div>
+        <div class="doc-content">
+          <div class="doc-title">All-cause mortality (higher risk)</div>
+          <div class="doc-body">In higher-risk groups, statin therapy also reduces overall mortality — not just cardiovascular events.</div>
+        </div>
+        <div class="doc-action">~−10%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: RESEARCH 1 — CTT EFFICACY -->
+  <div class="slide">
+    <div class="slide-title">Research · <span>do they work?</span></div>
+    <div class="ev-stage">
+      <div class="ev-card" id="e1">
+        <div class="ev-stat">
+          <div class="ev-num good">−22%</div>
+          <div class="ev-label">major vascular events · per 1 mmol/L ↓ LDL</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">CTT Collaboration — 26 statin trials</div>
+          <div class="ev-journal">Baigent et al · The Lancet · 2010 · n&gt;170,000</div>
+          <div class="ev-body">Largest individual-patient meta-analysis in cardiovascular medicine. Benefit held across <strong>age, sex, starting cholesterol, and baseline risk</strong>. Every additional 1 mmol/L drop delivers further protection.</div>
+        </div>
+      </div>
+      <div class="ev-card" id="e2">
+        <div class="ev-stat">
+          <div class="ev-num good">Confirmed</div>
+          <div class="ev-label">low-to-moderate doses · no excess muscle pain after year 1</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">CTT — muscle symptoms analysis</div>
+          <div class="ev-journal">The Lancet · 2022 · n=150,000+</div>
+          <div class="ev-body">Individual-patient data from 23 trials. <strong>Over 90%</strong> of muscle symptoms in statin users were not caused by the drug. Low/moderate-intensity dose — no significant excess vs placebo after the first year.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: RESEARCH 2 — NOCEBO -->
+  <div class="slide">
+    <div class="slide-title">Research · <span>the nocebo effect</span></div>
+    <div class="ev-stage">
+      <div class="ev-card" id="e3">
+        <div class="ev-stat">
+          <div class="ev-num bad">+41%</div>
+          <div class="ev-label">muscle symptoms when patients know it's a statin</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">ASCOT-LLA — nocebo analysis</div>
+          <div class="ev-journal">Gupta et al · The Lancet · 2017 · n≈10,000</div>
+          <div class="ev-body">When the <strong>same patients</strong> knew they were on a statin, muscle symptoms were 41% more common. When blinded, symptoms on statin and placebo were essentially identical — the expectation of harm can produce real symptoms.</div>
+        </div>
+      </div>
+      <div class="ev-card" id="e4">
+        <div class="ev-stat">
+          <div class="ev-num bad">Not<br/>supported</div>
+          <div class="ev-label">cognitive / depression / sleep — RCT evidence</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">Package-insert side effects — evidence review</div>
+          <div class="ev-journal">Multiple large RCTs · Cochrane reviews</div>
+          <div class="ev-body">Many of the most commonly-cited statin side effects — cognitive impairment, depression, sleep disturbance, peripheral neuropathy — are <strong>not supported by randomised evidence</strong> as being causally linked to statin therapy.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: RESEARCH 3 — TREATMENT GAP -->
+  <div class="slide">
+    <div class="slide-title">Research · <span>the treatment gap</span></div>
+    <div class="ev-stage">
+      <div class="ev-card" id="e5">
+        <div class="ev-stat">
+          <div class="ev-num bad">~57%</div>
+          <div class="ev-label">higher-risk patients with a current statin</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">CVDPREVENT Audit — UK primary care</div>
+          <div class="ev-journal">NHS / BHF · ongoing audit · 2024 data</div>
+          <div class="ev-body">Fewer than half of those with established CVD are at recommended cholesterol targets. Closing this gap could prevent <strong>tens of thousands</strong> of heart attacks and strokes per year in the UK.</div>
+        </div>
+      </div>
+      <div class="ev-card" id="e6">
+        <div class="ev-stat">
+          <div class="ev-num good">Switch &gt; stop</div>
+          <div class="ev-label">when muscle symptoms appear</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">Managing statin-intolerance — clinical pathways</div>
+          <div class="ev-journal">NICE NG238 · BHF / ESC guidance</div>
+          <div class="ev-body">Many people labelled "statin intolerant" tolerate a different statin or a lower dose. Stopping unilaterally without review often leaves the <strong>cardiovascular risk untreated</strong>. A switch or dose adjustment is worth discussing first.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: HOW STATINS PROTECT · AMBER -->
+  <div class="slide">
+    <div class="slide-title">How statins <span>actually protect</span></div>
+    <div class="mech-grid">
+      <div class="mech-card" id="m1">
+        <div class="mech-icon">🧪</div>
+        <div class="mech-content">
+          <div class="mech-title">HMG-CoA reductase block</div>
+          <div class="mech-body">Statins inhibit the rate-limiting enzyme in cholesterol synthesis — the liver makes less cholesterol internally.</div>
+        </div>
+        <div class="mech-outcome">→ Less synthesis</div>
+      </div>
+      <div class="mech-card" id="m2">
+        <div class="mech-icon">📥</div>
+        <div class="mech-content">
+          <div class="mech-title">LDL receptor upregulation</div>
+          <div class="mech-body">The liver responds by pulling more LDL out of the bloodstream to compensate — circulating LDL falls.</div>
+        </div>
+        <div class="mech-outcome">→ Lower LDL</div>
+      </div>
+      <div class="mech-card" id="m3">
+        <div class="mech-icon">🛡️</div>
+        <div class="mech-content">
+          <div class="mech-title">Plaque stabilisation</div>
+          <div class="mech-body">Statin therapy thickens the fibrous cap over existing plaques, making them less rupture-prone.</div>
+        </div>
+        <div class="mech-outcome">→ Fewer events</div>
+      </div>
+      <div class="mech-card" id="m4">
+        <div class="mech-icon">🔥</div>
+        <div class="mech-content">
+          <div class="mech-title">Anti-inflammatory action</div>
+          <div class="mech-body">Statins reduce vascular inflammation markers including CRP — part of the benefit beyond LDL-lowering.</div>
+        </div>
+        <div class="mech-outcome">→ Less inflammation</div>
+      </div>
+      <div class="mech-card" id="m5">
+        <div class="mech-icon">🌊</div>
+        <div class="mech-content">
+          <div class="mech-title">Endothelial function</div>
+          <div class="mech-body">Improve nitric-oxide signalling in the artery wall — arteries relax and dilate more normally.</div>
+        </div>
+        <div class="mech-outcome">→ Healthier vessels</div>
+      </div>
+      <div class="mech-card" id="m6">
+        <div class="mech-icon">💫</div>
+        <div class="mech-content">
+          <div class="mech-title">Pleiotropic effects</div>
+          <div class="mech-body">Benefits appear even when LDL drop is matched — statins offer protection beyond cholesterol lowering alone.</div>
+        </div>
+        <div class="mech-outcome">→ Extra benefit</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: CTA · HIGH-IMPACT -->
+  <div class="slide cta-slide">
+    <div class="cta-glow"></div>
+    <div class="cta-wrap-v2">
+      <div class="cta-badge-v2">Where to start</div>
+      <div class="cta-icon-v2">💊</div>
+      <div class="cta-headline-v2">Know the number.<br/><span>Have the conversation.</span></div>
+      <div class="cta-subline">The evidence is strong. The noise is stronger.</div>
+      <div class="cta-body-v2">A 1 mmol/L drop in LDL cuts major cardiovascular events by about a fifth. Over 90% of muscle symptoms reported on statins are not caused by the statin itself — switching or adjusting the dose is often more useful than stopping outright.</div>
+      <div class="cta-actions">
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🧮</div>
+          <div class="cta-ac-label">Get your QRISK</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🩸</div>
+          <div class="cta-ac-label">Know your LDL</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🗣️</div>
+          <div class="cta-ac-label">Shared decision</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🔄</div>
+          <div class="cta-ac-label">Switch, don't stop</div>
+        </div>
+      </div>
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">⚕️</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Any changes you're considering are a conversation for you to have with your GP or healthcare professional.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: CLOSING -->
+  <div class="slide">
+    <div class="close-wrap">
+      <div class="close-logo">helf<span class="dot">.</span>school</div>
+      <div class="close-sub">Health Education</div>
+      <div class="close-headline">Strong evidence. <span>Noisier reputation.</span></div>
+      <div class="close-stats">
+        <div class="cst-card">
+          <div class="cst-num">−22%</div>
+          <div class="cst-lab">CV events per 1 mmol/L ↓ LDL</div>
+          <div class="cst-src">CTT · Lancet 2010</div>
+        </div>
+        <div class="cst-card">
+          <div class="cst-num">&gt;90%</div>
+          <div class="cst-lab">of muscle symptoms not caused by statin</div>
+          <div class="cst-src">CTT · Lancet 2022</div>
+        </div>
+        <div class="cst-card">
+          <div class="cst-num">~57%</div>
+          <div class="cst-lab">of higher-risk patients currently treated</div>
+          <div class="cst-src">CVDPREVENT · NHS</div>
+        </div>
+      </div>
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">⚕️</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+      </div>
+      <div class="close-series">Cardiovascular Health Series · Article 04</div>
     </div>
   </div>
 
 </div>
-<footer>helf.school · Health Education · Statins — Benefits &amp; Risks · Article 04</footer>
+
+<div id="dots">
+  <div class="dot active" onclick="goTo(0)"></div>
+  <div class="dot" onclick="goTo(1)"></div>
+  <div class="dot" onclick="goTo(2)"></div>
+  <div class="dot" onclick="goTo(3)"></div>
+  <div class="dot" onclick="goTo(4)"></div>
+  <div class="dot" onclick="goTo(5)"></div>
+  <div class="dot" onclick="goTo(6)"></div>
+  <div class="dot" onclick="goTo(7)"></div>
+  <div class="dot" onclick="goTo(8)"></div>
+  <div class="dot" onclick="goTo(9)"></div>
+</div>
+
+<div class="disc">Health education — not medical advice. helf.school</div>
+
 <script>
-  const slides=document.querySelectorAll('.slide'),counter=document.getElementById('counter');let current=0;const total=slides.length;
-  function showSlide(n){slides[current].classList.remove('active');current=(n+total)%total;slides[current].classList.add('active');counter.textContent=`${current+1} / ${total}`;triggerAnim(current)}
-  function triggerAnim(idx){if(idx===2){setTimeout(()=>{document.querySelectorAll('.step').forEach((s,i)=>setTimeout(()=>s.classList.add('vis'),i*180))},100)}}
-  document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')showSlide(current+1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')showSlide(current-1)});
-  let tx=0;document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});document.addEventListener('touchend',e=>{const dx=tx-e.changedTouches[0].clientX;if(Math.abs(dx)>40)showSlide(current+(dx>0?1:-1))},{passive:true});
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('.dot');
+  let cur = 0;
+  function show(n){
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    document.getElementById('counter').textContent = (cur+1)+' / '+slides.length;
+    triggerSlide(cur);
+  }
+  function goTo(n){ show(n); }
+  document.addEventListener('keydown', e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowDown') show(cur+1);
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp') show(cur-1);
+  });
+  let tx=0;
+  document.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; });
+  document.addEventListener('touchend', e=>{
+    const dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>40){ dx<0?show(cur+1):show(cur-1); }
+  });
+  function triggerSlide(n){
+    if(n===2) animateGroup(['s1','s2','s3','s4','s5'], 170);
+    if(n===3) animateGroup(['d1','d2','d3','d4','d5'], 170);
+    if(n===4) animateGroup(['e1','e2'], 260);
+    if(n===5) animateGroup(['e3','e4'], 260);
+    if(n===6) animateGroup(['e5','e6'], 260);
+    if(n===7) animateGroup(['m1','m2','m3','m4','m5','m6'], 140);
+  }
+  function animateGroup(ids, step){
+    ids.forEach((id,i)=>{
+      setTimeout(()=>{
+        const el = document.getElementById(id);
+        if(el) el.classList.add('vis');
+      }, 180 + i*step);
+    });
+  }
+  slides.forEach(s=>{
+    const obs = new MutationObserver(()=>{
+      if(!s.classList.contains('active')){
+        s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'));
+      }
+    });
+    obs.observe(s, {attributes:true});
+  });
+  triggerSlide(0);
 </script>
-</body></html>
+</body>
+</html>

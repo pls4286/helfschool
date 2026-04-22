@@ -1,154 +1,582 @@
--items:center;justify-content:center;min-height:70vh;text-align:center;gap:1.5rem}
-    .intro-badge{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);background:rgba(232,168,74,.12);border:1px solid rgba(232,168,74,.3);padding:.3rem .85rem;border-radius:100px}
-    .intro-title{font-family:'Fraunces',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#fff;line-height:1.15;max-width:800px}
-    .intro-title span{color:var(--amber)}
-    .intro-tagline{font-size:1rem;color:rgba(255,255,255,.70);font-style:italic;font-family:'Fraunces',serif}
-    .stat-row{display:flex;gap:1.25rem;flex-wrap:wrap}
-    .stat-card{flex:1;min-width:180px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:1.3rem 1.5rem;text-align:center}
-    .stat-card.hl{background:rgba(232,168,74,.1);border-color:rgba(232,168,74,.35)}
-    .stat-num{font-family:'Fraunces',serif;font-size:3.2rem;font-weight:700;color:var(--amber);line-height:1}
-    .stat-label{font-size:.95rem;color:rgba(255,255,255,.90);margin-top:.5rem;font-weight:600;line-height:1.4}
-    .stat-source{font-size:.75rem;color:rgba(255,255,255,.65);margin-top:.4rem}
-    .r-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-left:4px solid var(--amber);border-radius:0 12px 12px 0;padding:1rem 1.3rem;margin-bottom:.85rem}
-    .r-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:var(--amber);margin-bottom:.3rem}
-    .r-finding{font-size:.93rem;color:rgba(255,255,255,.80);line-height:1.6}
-    .r-source{font-size:.78rem;color:rgba(255,255,255,.70);margin-top:.3rem;font-style:italic}
-    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
-    .info-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1.2rem 1.4rem}
-    .info-card h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:var(--amber);margin-bottom:.75rem}
-    .info-card p{font-size:.93rem;color:rgba(255,255,255,.80);line-height:1.6;margin-bottom:.5rem}
-    .tip-list{display:flex;flex-direction:column;gap:.6rem}
-    .tip{display:flex;align-items:flex-start;gap:.75rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:.7rem 1rem}
-    .tip-dot{width:8px;height:8px;border-radius:50%;background:var(--amber);flex-shrink:0;margin-top:.35rem}
-    .tip-text{font-size:.93rem;color:rgba(255,255,255,.80);line-height:1.5}
-    .cta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;margin-bottom:1.5rem}
-    .cta-card{background:rgba(232,168,74,.08);border:1px solid rgba(232,168,74,.25);border-radius:14px;padding:1.4rem;text-align:center}
-    .cta-icon{font-size:2.2rem;margin-bottom:.75rem}
-    .cta-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:.4rem}
-    .cta-desc{font-size:.9rem;color:rgba(255,255,255,.80);line-height:1.55}
-    .closing-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.75rem}
-    .closing-logo{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;color:#fff}
-    .closing-logo span{color:var(--coral)}
-    .closing-tagline{font-size:1rem;color:rgba(255,255,255,.70);letter-spacing:.12em;text-transform:uppercase;font-weight:600}
-    .closing-url{font-size:1.1rem;color:var(--sage);font-weight:600}
-    .article-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;margin-top:.75rem}
-    .a-pill{font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:100px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.12)}
-    .a-pill.current{background:rgba(232,168,74,.2);color:var(--amber);border-color:rgba(232,168,74,.4)}
-    footer{position:fixed;bottom:0;left:0;right:0;text-align:center;padding:.4rem;font-size:clamp(.65rem,1vw,.80rem);color:rgba(255,255,255,.65);background:rgba(15,22,35,.6)}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Salt &amp; Blood Pressure — Visuals | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--calm:#70b8e8}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
+    #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:var(--navy);border-bottom:2px solid var(--acc2);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
+    .tb-logo{display:flex;align-items:center;gap:.5rem}
+    .tb-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff}
+    .tb-dot{color:var(--coral)}
+    .tb-sub{font-size:.75rem;color:rgba(255,255,255,.78);margin-left:.25rem;font-weight:500}
+    .tb-right{display:flex;align-items:center;gap:1.2rem}
+    .slide-counter{font-size:.88rem;font-weight:700;color:rgba(255,255,255,.90)}
+    .kb-hint{font-size:.75rem;color:rgba(255,255,255,.65)}
+    #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:2.2vh 1.25rem 3.5vh;overflow:hidden}
+    .slide{display:none;width:100%;max-width:1140px;height:100%;animation:sIn .32s ease}
+    .slide.active{display:flex;flex-direction:column;min-height:0}
+    @keyframes sIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.1vw,1.75rem);font-weight:700;color:#fff;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:2px solid rgba(212,184,74,.3);flex-shrink:0}
+    .slide-title span{color:var(--acc)}
+    #dots{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:200}
+    .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .25s}
+    .dot.active{background:var(--acc);transform:scale(1.3)}
+
+    .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.3rem}
+    .intro-badge{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.12);border:1px solid rgba(212,184,74,.3);padding:.3rem .9rem;border-radius:100px}
+    .intro-icon{font-size:4rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .intro-title{font-family:'Fraunces',serif;font-size:clamp(2.6rem,5.5vw,4.4rem);font-weight:700;color:#fff;line-height:1.05;max-width:960px;letter-spacing:-.02em}
+    .intro-title span{color:var(--acc)}
+    .intro-sub{font-size:1.1rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;max-width:680px;line-height:1.5;font-weight:400}
+    .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+
+    /* Big picture (salt sources) slide 2 */
+    .src-stage{display:flex;flex-direction:column;flex:1;gap:1.1rem;min-height:0;align-items:center;justify-content:center}
+    .src-split{display:grid;grid-template-columns:3fr 1fr;gap:.75rem;width:100%;max-width:940px;height:110px}
+    .src-seg{border-radius:14px;padding:1rem 1.4rem;display:flex;flex-direction:column;justify-content:center}
+    .src-seg.hidden{background:linear-gradient(90deg,rgba(232,122,90,.2),rgba(232,122,90,.1));border:1px solid rgba(232,122,90,.5)}
+    .src-seg.added{background:linear-gradient(90deg,rgba(126,204,153,.16),rgba(126,204,153,.08));border:1px solid rgba(126,204,153,.45)}
+    .src-pct{font-family:'Fraunces',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#fff;line-height:.9}
+    .src-seg.hidden .src-pct{color:var(--bad)}
+    .src-seg.added .src-pct{color:var(--good)}
+    .src-desc{font-size:.95rem;color:rgba(255,255,255,.9);line-height:1.35;margin-top:.3rem}
+    .targets-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;max-width:940px;width:100%}
+    .tgt-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:14px;padding:1rem 1.3rem;display:flex;align-items:center;gap:1rem}
+    .tgt-ic{font-size:2.2rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .tgt-det{flex:1}
+    .tgt-num{font-family:'Fraunces',serif;font-weight:700;color:var(--acc);font-size:1.8rem;line-height:1;letter-spacing:-.01em}
+    .tgt-lbl{font-size:.95rem;color:rgba(255,255,255,.88);line-height:1.3;margin-top:.2rem}
+    .labels-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;max-width:940px;width:100%}
+    .lab-chip{padding:.6rem .9rem;border-radius:12px;text-align:center;font-size:.88rem;font-weight:600;color:#fff}
+    .lab-chip.high{background:rgba(232,122,90,.2);border:1px solid rgba(232,122,90,.55)}
+    .lab-chip.med{background:rgba(232,168,74,.18);border:1px solid rgba(232,168,74,.55)}
+    .lab-chip.low{background:rgba(126,204,153,.18);border:1px solid rgba(126,204,153,.55)}
+    .lab-chip strong{font-family:'Fraunces',serif;font-size:1rem;margin-right:.3rem}
+
+    /* HORIZONTAL ROWS */
+    .sys-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.65rem;flex:1;min-height:0}
+    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:14px;padding:1rem 1.5rem;display:grid;grid-template-columns:72px 1fr auto;gap:1.5rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .sys-card.vis{opacity:1;transform:translateY(0)}
+    .sys-icon{font-size:2.8rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .sys-content{display:flex;flex-direction:column;gap:.25rem;min-width:0}
+    .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.4rem;line-height:1.12;letter-spacing:-.01em}
+    .sys-body{font-size:.98rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400}
+    .sys-stat{font-family:'Fraunces',serif;font-size:clamp(1.8rem,2.8vw,2.6rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:1rem}
+
+    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
+    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .doc-card.vis{opacity:1;transform:translateY(0)}
+    .doc-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .doc-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12;letter-spacing:-.01em}
+    .doc-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400}
+    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2vw,1.85rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
+
+    .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
+    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .45s ease}
+    .ev-card.vis{opacity:1;transform:translateY(0)}
+    .ev-stat{text-align:center;background:rgba(212,184,74,.09);border-radius:14px;padding:1.25rem .85rem}
+    .ev-num{font-family:'Fraunces',serif;font-size:3.4rem;font-weight:700;color:var(--acc);line-height:1;letter-spacing:-.02em}
+    .ev-num.bad{color:var(--bad)}
+    .ev-num.good{color:var(--good)}
+    .ev-label{font-size:1rem;font-weight:700;color:#fff;margin-top:.5rem;line-height:1.3}
+    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;margin-bottom:.25rem;line-height:1.15;letter-spacing:-.01em}
+    .ev-det .ev-journal{font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
+    .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400}
+
+    .mech-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
+    .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .mech-card.vis{opacity:1;transform:translateY(0)}
+    .mech-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .mech-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+    .mech-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12;letter-spacing:-.01em}
+    .mech-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400}
+    .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2vw,1.85rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
+
+    .cta-slide{position:relative}
+    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%, rgba(212,184,74,.18), rgba(212,184,74,.04) 45%, transparent 70%);pointer-events:none;z-index:0}
+    .cta-wrap-v2{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:.85rem;padding:.5rem}
+    .cta-badge-v2{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.42rem 1.15rem;border-radius:100px;box-shadow:0 0 30px rgba(212,184,74,.14)}
+    .cta-icon-v2{font-size:clamp(4.5rem,8vw,6rem);line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;filter:drop-shadow(0 0 30px rgba(212,184,74,.28));animation:pulseHalo 3.2s ease-in-out infinite}
+    @keyframes pulseHalo{0%,100%{filter:drop-shadow(0 0 28px rgba(212,184,74,.22))}50%{filter:drop-shadow(0 0 55px rgba(212,184,74,.55))}}
+    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(3.2rem,5.8vw,4.9rem);font-weight:700;color:#fff;line-height:1.02;max-width:1000px;letter-spacing:-.028em}
+    .cta-headline-v2 span{color:var(--acc)}
+    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.4vw,1.85rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);max-width:780px;line-height:1.32}
+    .cta-body-v2{font-size:1.05rem;color:rgba(255,255,255,.90);max-width:780px;line-height:1.52;font-weight:400}
+    .cta-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;max-width:900px;width:100%;margin-top:.25rem}
+    .cta-ac{background:linear-gradient(180deg,rgba(212,184,74,.16),rgba(212,184,74,.06));border:1.5px solid rgba(212,184,74,.45);border-radius:14px;padding:.95rem .55rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;text-align:center;transition:transform .25s ease}
+    .cta-ac:hover{transform:translateY(-2px)}
+    .cta-ac-icon{font-size:1.85rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .cta-ac-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.98rem;line-height:1.18}
+    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.8rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;margin-top:.6rem;max-width:900px}
+    .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.85);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left}
+    .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
+
+    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.6rem;padding:1.5rem}
+    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
+    .close-logo .dot{color:var(--coral)}
+    .close-sub{font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+    .close-headline{font-family:'Fraunces',serif;font-size:clamp(3rem,5.8vw,5.2rem);font-weight:700;color:#fff;max-width:1050px;line-height:1.08;letter-spacing:-.025em}
+    .close-headline span{color:var(--acc)}
+    .close-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1050px;width:100%}
+    .cst-card{background:rgba(212,184,74,.1);border:1px solid rgba(212,184,74,.35);border-radius:16px;padding:1.5rem 1.1rem;display:flex;flex-direction:column;align-items:center;gap:.55rem}
+    .cst-num{font-family:'Fraunces',serif;font-size:clamp(2.4rem,4.4vw,3.8rem);font-weight:700;color:var(--acc);line-height:.95;letter-spacing:-.02em}
+    .cst-lab{font-size:1.05rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.32}
+    .cst-src{font-size:.85rem;color:rgba(255,255,255,.72);font-style:italic}
+    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.3rem}
+
+    .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:.68rem;color:rgba(255,255,255,.18);z-index:90;white-space:nowrap}
   </style>
 </head>
 <body>
+
 <div id="topbar">
-  <div><div class="tb-title">Salt and Blood Pressure</div><div class="tb-sub">helf.school · Cardiovascular Series · Article 06</div></div>
-  <div class="tb-right"><span class="kb-hint">← → to navigate</span><span class="slide-counter" id="counter">1 / 6</span></div>
+  <div class="tb-logo">
+    <svg width="20" height="16" viewBox="0 0 22 18" fill="none">
+      <path d="M11 2C8 2 5.5 4 4 6.5 2.5 9 2.5 12 4 14.5c1 1.8 2.8 3 5 3.4V4.5" stroke="#E8634A" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M11 2C14 2 16.5 4 18 6.5 19.5 9 19.5 12 18 14.5c-1 1.8-2.8 3-5 3.4V4.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <span class="tb-title">helf<span class="tb-dot">.</span>school</span>
+    <span class="tb-sub">· Salt &amp; Blood Pressure</span>
+  </div>
+  <div class="tb-right">
+    <span id="counter" class="slide-counter">1 / 10</span>
+    <span class="kb-hint">← → navigate</span>
+  </div>
 </div>
+
 <div id="stage">
 
-  <div class="slide active" id="s1">
+  <!-- SLIDE 1: INTRO -->
+  <div class="slide active">
     <div class="intro-wrap">
-      <div class="intro-badge">Cardiovascular Series · Article 06</div>
-      <div class="intro-title">Salt and <span>Blood Pressure</span></div>
-      <div class="intro-tagline">What the evidence shows about sodium, hidden salt, and your cardiovascular risk</div>
-      <div class="stat-row" style="justify-content:center;max-width:700px;margin-top:.5rem">
-        <div class="stat-card hl"><div class="stat-num">75%</div><div class="stat-label">of the salt we eat is already in our food — before we cook or add anything</div><div class="stat-source">NHS · BDA · National Diet &amp; Nutrition Survey</div></div>
-        <div class="stat-card"><div class="stat-num" style="font-size:2.2rem">8–14 mmHg</div><div class="stat-label">systolic BP reduction from low-sodium DASH diet — equivalent to one BP drug</div><div class="stat-source">DASH-Sodium Trial, NEJM 2001</div></div>
+      <div class="intro-badge">📋 Cardiovascular Health Series · Article 06</div>
+      <div class="intro-icon">🧂</div>
+      <div class="intro-title">Salt &amp;<br/><span>blood pressure</span></div>
+      <div class="intro-sub">Where UK salt actually comes from, what it does to blood pressure, and the swaps that move the number.</div>
+      <div class="intro-tagline">Dr Paul · Retired NHS GP · helf.school</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: WHERE DOES OUR SALT COME FROM -->
+  <div class="slide">
+    <div class="slide-title">Where UK salt <span>actually comes from</span></div>
+    <div class="src-stage">
+      <div class="src-split">
+        <div class="src-seg hidden">
+          <div class="src-pct">~75%</div>
+          <div class="src-desc">already in food — bread, cheese, ready meals, cured meats, sauces.</div>
+        </div>
+        <div class="src-seg added">
+          <div class="src-pct">~25%</div>
+          <div class="src-desc">added in cooking or at the table.</div>
+        </div>
+      </div>
+      <div class="targets-row">
+        <div class="tgt-card">
+          <div class="tgt-ic">🇬🇧</div>
+          <div class="tgt-det">
+            <div class="tgt-num">~8–9 g/day</div>
+            <div class="tgt-lbl">average UK adult intake</div>
+          </div>
+        </div>
+        <div class="tgt-card">
+          <div class="tgt-ic">🎯</div>
+          <div class="tgt-det">
+            <div class="tgt-num">6 g/day</div>
+            <div class="tgt-lbl">NHS / NICE upper limit (~1 tsp, all sources)</div>
+          </div>
+        </div>
+      </div>
+      <div class="labels-strip">
+        <div class="lab-chip high"><strong>🔴 High</strong> &gt; 1.5 g salt / 100g</div>
+        <div class="lab-chip med"><strong>🟡 Medium</strong> 0.3–1.5 g / 100g</div>
+        <div class="lab-chip low"><strong>🟢 Low</strong> &lt; 0.3 g / 100g</div>
       </div>
     </div>
   </div>
 
-  <div class="slide" id="s2">
-    <div class="slide-title">Where does our salt <span>actually come from?</span></div>
-    <div class="two-col" style="margin-bottom:1.25rem">
-      <div>
-        <div style="background:rgba(232,168,74,.12);border:2px solid rgba(232,168,74,.4);border-radius:14px;padding:1.4rem;text-align:center;margin-bottom:1rem">
-          <div style="font-family:'Fraunces',serif;font-size:4rem;font-weight:700;color:var(--amber);line-height:1">75%</div>
-          <div style="font-size:1rem;color:rgba(255,255,255,.90);font-weight:600;margin-top:.4rem">Already in food before we touch it</div>
-          <div style="font-size:.82rem;color:rgba(255,255,255,.65);margin-top:.3rem">Processed food · Bread · Cheese · Ready meals · Meat products</div>
+  <!-- SLIDE 3: WHERE SALT DRIVES HARM · RED -->
+  <div class="slide">
+    <div class="slide-title">Where excess salt <span>drives cardiovascular harm</span></div>
+    <div class="sys-grid">
+      <div class="sys-card" id="s1">
+        <div class="sys-icon">❤️</div>
+        <div class="sys-content">
+          <div class="sys-title">Blood pressure rise</div>
+          <div class="sys-body">Sustained sodium excess is a primary driver of hypertension — the main pathway by which salt damages the cardiovascular system.</div>
         </div>
-        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem;text-align:center">
-          <div style="font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;color:rgba(255,255,255,.5);line-height:1">25%</div>
-          <div style="font-size:.93rem;color:rgba(255,255,255,.60);margin-top:.3rem">Added during cooking or at the table</div>
+        <div class="sys-stat">8–14 mmHg</div>
+      </div>
+      <div class="sys-card" id="s2">
+        <div class="sys-icon">🧠</div>
+        <div class="sys-content">
+          <div class="sys-title">Stroke risk</div>
+          <div class="sys-body">Higher salt intake drives higher BP — the strongest modifiable risk factor for ischaemic and haemorrhagic stroke.</div>
+        </div>
+        <div class="sys-stat">↑ Stroke</div>
+      </div>
+      <div class="sys-card" id="s3">
+        <div class="sys-icon">💓</div>
+        <div class="sys-content">
+          <div class="sys-title">Heart attack &amp; heart failure</div>
+          <div class="sys-body">High BP accelerates coronary atherosclerosis, raises MI risk, and — over time — remodels the heart, contributing to failure.</div>
+        </div>
+        <div class="sys-stat">↑ CHD, HF</div>
+      </div>
+      <div class="sys-card" id="s4">
+        <div class="sys-icon">🫘</div>
+        <div class="sys-content">
+          <div class="sys-title">Kidney strain</div>
+          <div class="sys-body">Chronic sodium load stresses kidney filtration, accelerates chronic kidney disease, and worsens BP feedback loops.</div>
+        </div>
+        <div class="sys-stat">↑ CKD</div>
+      </div>
+      <div class="sys-card" id="s5">
+        <div class="sys-icon">🫀</div>
+        <div class="sys-content">
+          <div class="sys-title">Left-ventricular hypertrophy</div>
+          <div class="sys-body">Sustained afterload forces the left ventricle to thicken — an independent predictor of arrhythmia, heart failure and death.</div>
+        </div>
+        <div class="sys-stat">LVH</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: PRACTICAL SWAPS · GREEN -->
+  <div class="slide">
+    <div class="slide-title">Practical swaps · <span>what actually lowers intake</span></div>
+    <div class="doc-grid">
+      <div class="doc-card" id="d1">
+        <div class="doc-icon">🏷️</div>
+        <div class="doc-content">
+          <div class="doc-title">Check the label</div>
+          <div class="doc-body">Above 1.5 g salt / 100g is high — below 0.3 g is low. Two brands of the same product often differ 2–3×.</div>
+        </div>
+        <div class="doc-action">→ Read</div>
+      </div>
+      <div class="doc-card" id="d2">
+        <div class="doc-icon">🍞</div>
+        <div class="doc-content">
+          <div class="doc-title">Know the top UK sources</div>
+          <div class="doc-body">Bread, cheese, cured / processed meats, ready meals, sauces, crisps, breakfast cereals — daily foods, daily exposure.</div>
+        </div>
+        <div class="doc-action">→ Target</div>
+      </div>
+      <div class="doc-card" id="d3">
+        <div class="doc-icon">🍳</div>
+        <div class="doc-content">
+          <div class="doc-title">Home cook more often</div>
+          <div class="doc-body">Shifts intake from "already-in-food" 75% toward "added-by-you" — where you control the amount.</div>
+        </div>
+        <div class="doc-action">→ Cook</div>
+      </div>
+      <div class="doc-card" id="d4">
+        <div class="doc-icon">🌿</div>
+        <div class="doc-content">
+          <div class="doc-title">Herbs, spices, lemon, pepper</div>
+          <div class="doc-body">Effective flavour alternatives that don't raise blood pressure. Flavour does not require sodium.</div>
+        </div>
+        <div class="doc-action">→ Season</div>
+      </div>
+      <div class="doc-card" id="d5">
+        <div class="doc-icon">🍌</div>
+        <div class="doc-content">
+          <div class="doc-title">Add potassium-rich foods</div>
+          <div class="doc-body">Bananas, sweet potatoes, spinach, beans, lentils, dairy. Higher potassium is associated with lower stroke risk.</div>
+        </div>
+        <div class="doc-action">−24% stroke</div>
+      </div>
+      <div class="doc-card" id="d6">
+        <div class="doc-icon">👅</div>
+        <div class="doc-content">
+          <div class="doc-title">Taste before adding</div>
+          <div class="doc-body">Much added salt is habit, not need. Taste preference adjusts downward over ~2–4 weeks of lower intake.</div>
+        </div>
+        <div class="doc-action">→ Pause</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: RESEARCH 1 — INTERSALT + DASH-SODIUM -->
+  <div class="slide">
+    <div class="slide-title">Research · <span>salt and blood pressure</span></div>
+    <div class="ev-stage">
+      <div class="ev-card" id="e1">
+        <div class="ev-stat">
+          <div class="ev-num bad">Tracks</div>
+          <div class="ev-label">sodium intake · population BP · 52 countries</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">INTERSALT — international BP survey</div>
+          <div class="ev-journal">INTERSALT Cooperative Group · BMJ · 1988 · n&gt;10,000</div>
+          <div class="ev-body">Populations with the lowest sodium intakes had lower blood pressures and much less age-related BP rise. Sodium intake and blood pressure <strong>tracked closely</strong> across very different cultures and diets.</div>
         </div>
       </div>
-      <div class="info-card">
-        <h3>The UK target — 6g per day</h3>
-        <p>Most UK adults consume <strong style="color:var(--amber)">8–9g of salt per day</strong> — well above the NICE and NHS recommended maximum of 6g (roughly one teaspoon, including all salt already in food).</p>
-        <p>To convert food label sodium to salt: <strong style="color:#fff">multiply sodium by 2.5</strong></p>
-        <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:.75rem;margin-top:.5rem;font-size:.88rem;color:rgba(255,255,255,.75)">
-          <div style="margin-bottom:.3rem">🔴 <strong>High:</strong> &gt;1.5g salt per 100g</div>
-          <div style="margin-bottom:.3rem">🟡 <strong>Medium:</strong> 0.3–1.5g per 100g</div>
-          <div>🟢 <strong>Low:</strong> &lt;0.3g per 100g</div>
+      <div class="ev-card" id="e2">
+        <div class="ev-stat">
+          <div class="ev-num good">−8 to −14</div>
+          <div class="ev-label">mmHg systolic · low-Na DASH diet</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">DASH-Sodium — controlled feeding trial</div>
+          <div class="ev-journal">Sacks et al · NEJM · 2001 · n=412</div>
+          <div class="ev-body">A low-sodium DASH-style diet reduced systolic BP by <strong>8–14 mmHg</strong> in people with hypertension — a drop comparable to a single antihypertensive drug. Benefit also seen in normotensive participants.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="slide" id="s3">
-    <div class="slide-title">How salt raises <span>blood pressure</span></div>
-    <div class="stat-row" style="margin-bottom:1.25rem">
-      <div class="stat-card hl"><div class="stat-num" style="font-size:2rem">8–14 mmHg</div><div class="stat-label">systolic BP reduction from sodium reduction in people with hypertension</div><div class="stat-source">DASH-Sodium Trial · NEJM 2001</div></div>
-      <div class="stat-card"><div class="stat-num" style="font-size:2rem">24%</div><div class="stat-label">lower stroke risk with higher potassium intake</div><div class="stat-source">Aburto NJ et al. · BMJ 2013</div></div>
-      <div class="stat-card"><div class="stat-num" style="font-size:1.8rem">−42%</div><div class="stat-label">stroke mortality during UK salt reduction programme 2003–2011</div><div class="stat-source">He FJ et al. · BMJ Open 2014</div></div>
-    </div>
-    <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1.1rem 1.4rem">
-      <div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:.6rem">The mechanism</div>
-      <p style="font-size:.95rem;color:rgba(255,255,255,.85);line-height:1.7">Too much sodium → body retains water to dilute it → <strong style="color:#fff">increased blood volume</strong> → higher pressure on artery walls → sustained hypertension → accelerated atherosclerosis and cardiovascular damage.</p>
-    </div>
-  </div>
-
-  <div class="slide" id="s4">
-    <div class="slide-title">Practical steps — <span>where to focus</span></div>
-    <div class="two-col">
-      <div class="tip-list">
-        <div class="tip"><div class="tip-dot"></div><div class="tip-text"><strong style="color:#fff">Reduce processed &amp; packaged food</strong> — the single biggest lever. The main source of hidden salt.</div></div>
-        <div class="tip"><div class="tip-dot"></div><div class="tip-text"><strong style="color:#fff">Check labels</strong> — wide variation between brands of same product. Use high/medium/low guide.</div></div>
-        <div class="tip"><div class="tip-dot"></div><div class="tip-text"><strong style="color:#fff">Use herbs, spices, lemon, pepper</strong> — effective flavour alternatives that don't raise blood pressure.</div></div>
-        <div class="tip"><div class="tip-dot"></div><div class="tip-text"><strong style="color:#fff">Taste before adding</strong> — most people add salt by habit, not need.</div></div>
-      </div>
-      <div>
-        <div style="background:rgba(122,158,135,.1);border:1px solid rgba(122,158,135,.3);border-radius:12px;padding:1.2rem 1.4rem">
-          <div style="font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:var(--sage);margin-bottom:.75rem">Potassium — the other side</div>
-          <p style="font-size:.93rem;color:rgba(255,255,255,.80);line-height:1.6;margin-bottom:.75rem">Potassium directly counteracts sodium's effect on blood pressure. <strong style="color:#fff">24% lower stroke risk</strong> with higher potassium intake.</p>
-          <div style="font-size:.88rem;color:rgba(255,255,255,.70)">Rich sources: bananas · sweet potatoes · spinach · beans · lentils · dairy</div>
+  <!-- SLIDE 6: RESEARCH 2 — COCHRANE + UK PROGRAMME -->
+  <div class="slide">
+    <div class="slide-title">Research · <span>reducing salt at scale</span></div>
+    <div class="ev-stage">
+      <div class="ev-card" id="e3">
+        <div class="ev-stat">
+          <div class="ev-num good">Lower = lower</div>
+          <div class="ev-label">salt &amp; BP · sustained 4+ weeks</div>
         </div>
-        <div style="background:rgba(232,168,74,.08);border:1px solid rgba(232,168,74,.2);border-radius:10px;padding:.9rem 1.1rem;margin-top:1rem">
-          <div style="font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-bottom:.3rem">NICE NG136</div>
-          <div style="font-size:.9rem;color:rgba(255,255,255,.80);line-height:1.5">Salt reduction is first-line lifestyle advice for everyone with hypertension — alongside medication, not instead of it.</div>
+        <div class="ev-det">
+          <div class="ev-trial">Cochrane — long-term salt reduction</div>
+          <div class="ev-journal">He, Li, MacGregor · Cochrane Database · 2013</div>
+          <div class="ev-body">Sustained, modest salt reduction produced consistent, significant BP reductions in both hypertensive and normotensive adults — <strong>the lower the intake achieved, the lower the blood pressure</strong>, across the 3–12 g/day range.</div>
+        </div>
+      </div>
+      <div class="ev-card" id="e4">
+        <div class="ev-stat">
+          <div class="ev-num good">−15% Na</div>
+          <div class="ev-label">UK average intake · 2003–2011 programme</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">UK Salt Reduction Programme</div>
+          <div class="ev-journal">He et al · BMJ Open · 2014</div>
+          <div class="ev-body">UK average salt intake fell ~15% (≈1.4 g/day) between 2003 and 2011 through reformulation and labelling. Stroke mortality fell ~42% and ischaemic heart disease mortality ~40% over the same period — consistent with population-level benefit.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="slide" id="s5">
-    <div class="slide-title">What the <span>research shows</span></div>
-    <div class="r-card"><div class="r-title">INTERSALT Study — BMJ 1988</div><div class="r-finding">10,000+ people across 52 populations worldwide. Populations with lowest sodium intakes had significantly lower blood pressure — and far less age-related rise in BP. Sodium intake tracked blood pressure closely from near-zero to 242 mmol/24h.</div><div class="r-source">INTERSALT Cooperative Research Group · BMJ 1988;297:319–28</div></div>
-    <div class="r-card"><div class="r-title">DASH-Sodium Trial — NEJM 2001</div><div class="r-finding">412 adults. Low-sodium DASH diet reduced systolic BP by <span style="color:var(--amber);font-weight:700;">8–14 mmHg</span> systolic BP reduction — comparable to a single antihypertensive drug. Even normotensive individuals benefited meaningfully.</div><div class="r-source">Sacks FM et al. · NEJM 2001;344:3–10</div></div>
-    <div class="r-card"><div class="r-title">Cochrane Review — He, Li, MacGregor 2013</div><div class="r-finding">Modest sustained salt reduction over 4+ weeks produced consistent, significant BP reductions in both hypertensive and normotensive individuals. The lower the intake achieved, the lower the blood pressure — within 3–12g/day range.</div><div class="r-source">He FJ, Li J, MacGregor GA · Cochrane Database 2013</div></div>
-    <div class="r-card"><div class="r-title">UK Salt Reduction Programme — BMJ Open 2014</div><div class="r-finding">Average salt intake fell ~15% (1.4g/day) 2003–2011. Stroke mortality fell <span style="color:var(--amber);font-weight:700;">42%</span>. Ischaemic heart disease mortality fell <span style="color:var(--amber);font-weight:700;">40%</span>. Population-level change works.</div><div class="r-source">He FJ, Pombo-Rodrigues S, MacGregor GA · BMJ Open 2014;4:e004549</div></div>
+  <!-- SLIDE 7: RESEARCH 3 — POTASSIUM + NICE -->
+  <div class="slide">
+    <div class="slide-title">Research · <span>potassium — the other side</span></div>
+    <div class="ev-stage">
+      <div class="ev-card" id="e5">
+        <div class="ev-stat">
+          <div class="ev-num good">−24%</div>
+          <div class="ev-label">stroke risk · higher potassium intake</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">Potassium intake &amp; CV outcomes</div>
+          <div class="ev-journal">Aburto et al · BMJ · 2013 · WHO meta-analysis</div>
+          <div class="ev-body">Higher potassium intakes were associated with <strong>about 24% lower stroke risk</strong> and lower blood pressure. Potassium directly counteracts sodium's pressure-raising effect — fruit, vegetables, beans, and dairy are the main sources.</div>
+        </div>
+      </div>
+      <div class="ev-card" id="e6">
+        <div class="ev-stat">
+          <div class="ev-num good">First-line</div>
+          <div class="ev-label">lifestyle advice · NICE NG136</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">NICE guidance — hypertension in adults</div>
+          <div class="ev-journal">NICE NG136 · ongoing review</div>
+          <div class="ev-body">NICE places salt reduction as <strong>first-line lifestyle advice</strong> for everyone with hypertension — alongside medication where indicated, not instead of it.</div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="slide" id="s6">
-    <div class="cta-grid">
-      <div class="cta-card"><div class="cta-icon">🏷️</div><div class="cta-title">Check labels</div><div class="cta-desc">High salt = &gt;1.5g per 100g. Start with the foods you eat every day — bread, cereal, cheese.</div></div>
-      <div class="cta-card"><div class="cta-icon">🥗</div><div class="cta-title">Think sources not shakers</div><div class="cta-desc">75% of salt is already in food. More home cooking, less processed food = the biggest reduction.</div></div>
-      <div class="cta-card"><div class="cta-icon">🍌</div><div class="cta-title">Add potassium too</div><div class="cta-desc">Fruit, vegetables, beans, dairy. Potassium counteracts sodium — 24% lower stroke risk with higher intake.</div></div>
-    </div>
-    <div class="closing-wrap">
-      <div class="closing-logo">helf<span>.</span>school</div>
-      <div class="closing-tagline">Health Education for Everyone</div>
-      <div class="closing-url">pls4286.github.io/helfschool</div>
-      <div class="article-pills">
-        <span class="a-pill">01 Hypertension</span><span class="a-pill">02 Cholesterol</span><span class="a-pill">03 Heart Attack Risk</span><span class="a-pill">04 Statins</span><span class="a-pill">05 Lifestyle</span><span class="a-pill current">06 Salt</span><span class="a-pill">07 Supplements</span>
+  <!-- SLIDE 8: MECHANISMS · AMBER -->
+  <div class="slide">
+    <div class="slide-title">How excess salt <span>raises blood pressure</span></div>
+    <div class="mech-grid">
+      <div class="mech-card" id="m1">
+        <div class="mech-icon">💧</div>
+        <div class="mech-content">
+          <div class="mech-title">Volume expansion</div>
+          <div class="mech-body">Extra sodium pulls water into the bloodstream to maintain dilution — circulating volume rises.</div>
+        </div>
+        <div class="mech-outcome">→ ↑ Volume</div>
       </div>
+      <div class="mech-card" id="m2">
+        <div class="mech-icon">💪</div>
+        <div class="mech-content">
+          <div class="mech-title">Vessel stiffening</div>
+          <div class="mech-body">Sustained higher pressure stiffens artery walls over time, further raising systolic BP.</div>
+        </div>
+        <div class="mech-outcome">→ ↑ Stiffness</div>
+      </div>
+      <div class="mech-card" id="m3">
+        <div class="mech-icon">🌊</div>
+        <div class="mech-content">
+          <div class="mech-title">Endothelial dysfunction</div>
+          <div class="mech-body">High sodium impairs nitric-oxide signalling — arteries lose their ability to dilate properly.</div>
+        </div>
+        <div class="mech-outcome">→ ↓ NO</div>
+      </div>
+      <div class="mech-card" id="m4">
+        <div class="mech-icon">⚡</div>
+        <div class="mech-content">
+          <div class="mech-title">Sympathetic activation</div>
+          <div class="mech-body">Salt can increase sympathetic-nervous-system tone, raising heart rate and peripheral resistance.</div>
+        </div>
+        <div class="mech-outcome">→ ↑ SNS</div>
+      </div>
+      <div class="mech-card" id="m5">
+        <div class="mech-icon">🫘</div>
+        <div class="mech-content">
+          <div class="mech-title">Renal sodium handling</div>
+          <div class="mech-body">Alters renin-angiotensin-aldosterone signalling — kidneys hold onto more sodium, raising BP further.</div>
+        </div>
+        <div class="mech-outcome">→ RAAS</div>
+      </div>
+      <div class="mech-card" id="m6">
+        <div class="mech-icon">🫀</div>
+        <div class="mech-content">
+          <div class="mech-title">Cardiac remodelling</div>
+          <div class="mech-body">Chronic afterload thickens the left ventricle — a strong predictor of arrhythmia, failure and death.</div>
+        </div>
+        <div class="mech-outcome">→ LVH</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: CTA · HIGH-IMPACT -->
+  <div class="slide cta-slide">
+    <div class="cta-glow"></div>
+    <div class="cta-wrap-v2">
+      <div class="cta-badge-v2">Where to start</div>
+      <div class="cta-icon-v2">🧂</div>
+      <div class="cta-headline-v2">Sources, not shakers.<br/><span>Labels, not guesswork.</span></div>
+      <div class="cta-subline">75% of UK salt is already in food before you touch it.</div>
+      <div class="cta-body-v2">The biggest lever is reading labels on the daily foods — bread, cheese, sauces, ready meals. A sustained low-sodium DASH-style pattern can drop systolic BP by around 8–14 mmHg — comparable to a single BP drug.</div>
+      <div class="cta-actions">
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🏷️</div>
+          <div class="cta-ac-label">Check labels</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🍳</div>
+          <div class="cta-ac-label">Home cook more</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🌿</div>
+          <div class="cta-ac-label">Herbs &amp; spices</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🍌</div>
+          <div class="cta-ac-label">Potassium-rich foods</div>
+        </div>
+      </div>
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">⚕️</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Any changes you're considering are a conversation for you to have with your GP or healthcare professional.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: CLOSING -->
+  <div class="slide">
+    <div class="close-wrap">
+      <div class="close-logo">helf<span class="dot">.</span>school</div>
+      <div class="close-sub">Health Education</div>
+      <div class="close-headline">Sources. Labels. <span>Habits that stack.</span></div>
+      <div class="close-stats">
+        <div class="cst-card">
+          <div class="cst-num">~75%</div>
+          <div class="cst-lab">of UK salt already in food before cooking</div>
+          <div class="cst-src">NHS · BDA · NDNS</div>
+        </div>
+        <div class="cst-card">
+          <div class="cst-num">8–14</div>
+          <div class="cst-lab">mmHg systolic drop · low-Na DASH diet</div>
+          <div class="cst-src">DASH-Sodium · NEJM 2001</div>
+        </div>
+        <div class="cst-card">
+          <div class="cst-num">−24%</div>
+          <div class="cst-lab">stroke risk with higher potassium intake</div>
+          <div class="cst-src">Aburto · BMJ 2013</div>
+        </div>
+      </div>
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">⚕️</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+      </div>
+      <div class="close-series">Cardiovascular Health Series · Article 06</div>
     </div>
   </div>
 
 </div>
-<footer>helf.school · Health Education · Salt and Blood Pressure · Article 06</footer>
+
+<div id="dots">
+  <div class="dot active" onclick="goTo(0)"></div>
+  <div class="dot" onclick="goTo(1)"></div>
+  <div class="dot" onclick="goTo(2)"></div>
+  <div class="dot" onclick="goTo(3)"></div>
+  <div class="dot" onclick="goTo(4)"></div>
+  <div class="dot" onclick="goTo(5)"></div>
+  <div class="dot" onclick="goTo(6)"></div>
+  <div class="dot" onclick="goTo(7)"></div>
+  <div class="dot" onclick="goTo(8)"></div>
+  <div class="dot" onclick="goTo(9)"></div>
+</div>
+
+<div class="disc">Health education — not medical advice. helf.school</div>
+
 <script>
-  const slides=document.querySelectorAll('.slide'),counter=document.getElementById('counter');let current=0;const total=slides.length;
-  function showSlide(n){slides[current].classList.remove('active');current=(n+total)%total;slides[current].classList.add('active');counter.textContent=`${current+1} / ${total}`}
-  document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')showSlide(current+1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')showSlide(current-1)});
-  let tx=0;document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});document.addEventListener('touchend',e=>{const dx=tx-e.changedTouches[0].clientX;if(Math.abs(dx)>40)showSlide(current+(dx>0?1:-1))},{passive:true});
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('.dot');
+  let cur = 0;
+  function show(n){
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    document.getElementById('counter').textContent = (cur+1)+' / '+slides.length;
+    triggerSlide(cur);
+  }
+  function goTo(n){ show(n); }
+  document.addEventListener('keydown', e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowDown') show(cur+1);
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp') show(cur-1);
+  });
+  let tx=0;
+  document.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; });
+  document.addEventListener('touchend', e=>{
+    const dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>40){ dx<0?show(cur+1):show(cur-1); }
+  });
+  function triggerSlide(n){
+    if(n===2) animateGroup(['s1','s2','s3','s4','s5'], 160);
+    if(n===3) animateGroup(['d1','d2','d3','d4','d5','d6'], 140);
+    if(n===4) animateGroup(['e1','e2'], 260);
+    if(n===5) animateGroup(['e3','e4'], 260);
+    if(n===6) animateGroup(['e5','e6'], 260);
+    if(n===7) animateGroup(['m1','m2','m3','m4','m5','m6'], 140);
+  }
+  function animateGroup(ids, step){
+    ids.forEach((id,i)=>{
+      setTimeout(()=>{
+        const el = document.getElementById(id);
+        if(el) el.classList.add('vis');
+      }, 180 + i*step);
+    });
+  }
+  slides.forEach(s=>{
+    const obs = new MutationObserver(()=>{
+      if(!s.classList.contains('active')){
+        s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'));
+      }
+    });
+    obs.observe(s, {attributes:true});
+  });
+  triggerSlide(0);
 </script>
-</body></html>
+</body>
+</html>

@@ -1,585 +1,589 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hypertension Visuals - Dr Paul</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600;1,9..144,700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-  
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hypertension — Visuals | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --navy: #1B2A4A;
-      --coral: #E8634A;
-      --cream: #FAF7F2;
-      --sage: #7A9E87;
-      --amber: #E8A84A;
-      --cardio: #C8423A;
-    }
+    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--calm:#70b8e8;--cardio:#C8423A}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--navy);
-      color: #fff;
-      overflow: hidden;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    /* TOPBAR */
+    #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:var(--navy);border-bottom:2px solid var(--acc2);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
+    .tb-logo{display:flex;align-items:center;gap:.5rem}
+    .tb-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff}
+    .tb-dot{color:var(--coral)}
+    .tb-sub{font-size:.75rem;color:rgba(255,255,255,.78);margin-left:.25rem;font-weight:500}
+    .tb-right{display:flex;align-items:center;gap:1.2rem}
+    .slide-counter{font-size:.88rem;font-weight:700;color:rgba(255,255,255,.90)}
+    .kb-hint{font-size:.75rem;color:rgba(255,255,255,.65)}
 
-    .stage {
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.6rem 0.75rem;
-    }
+    /* STAGE */
+    #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:2.2vh 1.25rem 3.5vh;overflow:hidden}
+    .slide{display:none;width:100%;max-width:1140px;height:100%;animation:sIn .32s ease}
+    .slide.active{display:flex;flex-direction:column;min-height:0}
+    @keyframes sIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.1vw,1.75rem);font-weight:700;color:#fff;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:2px solid rgba(212,184,74,.3);flex-shrink:0}
+    .slide-title span{color:var(--acc)}
 
-    .slide {
-      width: 100%;
-      height: 100%;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-    }
+    /* DOTS */
+    #dots{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:200}
+    .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .25s}
+    .dot.active{background:var(--acc);transform:scale(1.3)}
 
-    .slide.active { display: flex; }
+    /* INTRO */
+    .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.3rem}
+    .intro-badge{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.12);border:1px solid rgba(212,184,74,.3);padding:.3rem .9rem;border-radius:100px}
+    .intro-icon{font-size:4rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .intro-title{font-family:'Fraunces',serif;font-size:clamp(2.6rem,5.5vw,4.4rem);font-weight:700;color:#fff;line-height:1.05;max-width:860px;letter-spacing:-.02em}
+    .intro-title span{color:var(--acc)}
+    .intro-sub{font-size:1.1rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;max-width:680px;line-height:1.5;font-weight:400}
+    .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
 
-    .slide-title {
-      font-family: 'Fraunces', serif;
-      font-size: clamp(1.4rem, 2.5vw, 2rem);
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 2px solid rgba(200,66,58,0.3);
-    }
+    /* BP DIAGRAM (slide 2) */
+    .bp-stage{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:1.8rem;min-height:0}
+    .bp-row{display:flex;align-items:center;justify-content:center;gap:1.6rem;flex-wrap:wrap}
+    .bp-box{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:20px;padding:2rem 2.25rem;min-width:260px;text-align:center}
+    .bp-num{font-family:'Fraunces',serif;font-size:clamp(4rem,8vw,5.8rem);font-weight:700;color:var(--acc);line-height:.95;letter-spacing:-.025em}
+    .bp-lbl{font-size:.95rem;color:rgba(255,255,255,.85);font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-top:.3rem}
+    .bp-det{font-size:1rem;color:rgba(255,255,255,.82);margin-top:.5rem;font-weight:400;line-height:1.4}
+    .bp-slash{font-family:'Fraunces',serif;font-size:clamp(4rem,8vw,5.5rem);font-weight:300;color:rgba(212,184,74,.4)}
+    .bp-strip{display:flex;align-items:center;justify-content:center;gap:1rem;padding:1rem 1.5rem;background:rgba(212,184,74,.12);border:1px solid rgba(212,184,74,.35);border-radius:12px;flex-shrink:0}
+    .bp-strip-icon{font-size:1.5rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .bp-strip-text{font-size:1.05rem;color:#fff;font-weight:500;font-family:'Fraunces',serif}
+    .bp-strip-text strong{color:var(--acc)}
 
-    .intro-badge {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--cardio);
-      background: rgba(200,66,58,0.12);
-      border: 1px solid rgba(200,66,58,0.3);
-      padding: 0.3rem 0.85rem;
-      border-radius: 100px;
-      margin-bottom: 1.5rem;
-    }
+    /* SYSTEMS GRID (slide 3) — HORIZONTAL ROW LAYOUT · HARM · RED */
+    .sys-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.65rem;flex:1;min-height:0}
+    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:14px;padding:1rem 1.5rem;display:grid;grid-template-columns:72px 1fr auto;gap:1.5rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .sys-card.vis{opacity:1;transform:translateY(0)}
+    .sys-icon{font-size:2.8rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .sys-content{display:flex;flex-direction:column;gap:.25rem;min-width:0}
+    .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;line-height:1.12;letter-spacing:-.01em}
+    .sys-body{font-size:1rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400}
+    .sys-stat{font-family:'Fraunces',serif;font-size:clamp(2.4rem,3.6vw,3.6rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:1rem}
 
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
-    }
+    /* DOCTOR GRID (slide 4) — HORIZONTAL ROW LAYOUT · ACTION · GREEN */
+    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
+    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .doc-card.vis{opacity:1;transform:translateY(0)}
+    .doc-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .doc-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12;letter-spacing:-.01em}
+    .doc-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400}
+    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.1vw,1.95rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
 
-    .logo-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.60);
-    }
+    /* RESEARCH (slides 5-7) */
+    .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
+    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .45s ease}
+    .ev-card.vis{opacity:1;transform:translateY(0)}
+    .ev-stat{text-align:center;background:rgba(212,184,74,.09);border-radius:14px;padding:1.25rem .85rem}
+    .ev-num{font-family:'Fraunces',serif;font-size:3.4rem;font-weight:700;color:var(--acc);line-height:1;letter-spacing:-.02em}
+    .ev-num.bad{color:var(--bad)}
+    .ev-num.good{color:var(--good)}
+    .ev-label{font-size:1rem;font-weight:700;color:#fff;margin-top:.5rem;line-height:1.3}
+    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;margin-bottom:.25rem;line-height:1.15;letter-spacing:-.01em}
+    .ev-det .ev-journal{font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
+    .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400}
 
-    .logo-text {
-      font-family: 'Fraunces', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-    }
+    /* MECHANISMS (slide 8) — HORIZONTAL ROW LAYOUT · MECHANISM · AMBER */
+    .mech-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
+    .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .mech-card.vis{opacity:1;transform:translateY(0)}
+    .mech-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .mech-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+    .mech-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12;letter-spacing:-.01em}
+    .mech-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400}
+    .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2vw,1.85rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
 
-    .tagline {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.70);
-      margin-bottom: 0.5rem;
-    }
+    /* CTA (slide 9) */
+    .cta-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.15rem}
+    .cta-badge{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.14);border:1px solid rgba(212,184,74,.35);padding:.3rem .9rem;border-radius:100px}
+    .cta-icon{font-size:5rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .cta-headline{font-family:'Fraunces',serif;font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:700;color:#fff;line-height:1.08;max-width:880px}
+    .cta-headline span{color:var(--acc)}
+    .cta-action{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:700;color:#fff;line-height:1.25;max-width:760px}
+    .cta-body{font-size:1rem;color:rgba(255,255,255,.90);max-width:700px;line-height:1.55}
+    .cta-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:.55rem;margin-top:.35rem}
+    .cta-chip{background:rgba(212,184,74,.12);border:1px solid rgba(212,184,74,.42);color:var(--acc);font-weight:600;font-size:.88rem;padding:.38rem 1rem;border-radius:100px}
 
-    .article-label {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.70);
-      font-weight: 500;
-    }
+    /* CLOSING (slide 10) */
+    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:2rem;padding:1.5rem}
+    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
+    .close-logo .dot{color:var(--coral)}
+    .close-sub{font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+    .close-headline{font-family:'Fraunces',serif;font-size:clamp(3rem,5.8vw,5.2rem);font-weight:700;color:#fff;max-width:1050px;line-height:1.08;letter-spacing:-.025em}
+    .close-headline span{color:var(--acc)}
+    .close-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1050px;width:100%}
+    .cst-card{background:rgba(212,184,74,.1);border:1px solid rgba(212,184,74,.35);border-radius:16px;padding:1.5rem 1.1rem;display:flex;flex-direction:column;align-items:center;gap:.55rem}
+    .cst-num{font-family:'Fraunces',serif;font-size:clamp(2.4rem,4.4vw,3.8rem);font-weight:700;color:var(--acc);line-height:.95;letter-spacing:-.02em}
+    .cst-lab{font-size:1.05rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.32}
+    .cst-src{font-size:.85rem;color:rgba(255,255,255,.72);font-style:italic}
+    .close-tag{font-size:1.25rem;color:rgba(255,255,255,.9);font-family:'Fraunces',serif;font-style:italic;max-width:880px;line-height:1.52}
+    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.3rem}
 
-    /* NAVIGATION */
-    .nav-hint {
-      position: fixed;
-      bottom: 1rem;
-      right: 1rem;
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.60);
-      background: rgba(0,0,0,0.3);
-      padding: 0.4rem 0.8rem;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-    }
+    /* ENHANCED CTA (slide 9) — HIGH-IMPACT PATTERN */
+    .cta-slide{position:relative}
+    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%, rgba(212,184,74,.18), rgba(212,184,74,.04) 45%, transparent 70%);pointer-events:none;z-index:0}
+    .cta-wrap-v2{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:.85rem;padding:.5rem}
+    .cta-badge-v2{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.42rem 1.15rem;border-radius:100px;box-shadow:0 0 30px rgba(212,184,74,.14)}
+    .cta-icon-v2{font-size:clamp(4.5rem,8vw,6rem);line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;filter:drop-shadow(0 0 30px rgba(212,184,74,.28));animation:pulseHalo 3.2s ease-in-out infinite}
+    @keyframes pulseHalo{0%,100%{filter:drop-shadow(0 0 28px rgba(212,184,74,.22))}50%{filter:drop-shadow(0 0 55px rgba(212,184,74,.55))}}
+    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(3.2rem,5.8vw,4.9rem);font-weight:700;color:#fff;line-height:1.02;max-width:1000px;letter-spacing:-.028em}
+    .cta-headline-v2 span{color:var(--acc)}
+    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.4vw,1.85rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);max-width:780px;line-height:1.32}
+    .cta-body-v2{font-size:1.05rem;color:rgba(255,255,255,.90);max-width:780px;line-height:1.52;font-weight:400}
+    .cta-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;max-width:900px;width:100%;margin-top:.25rem}
+    .cta-ac{background:linear-gradient(180deg,rgba(212,184,74,.16),rgba(212,184,74,.06));border:1.5px solid rgba(212,184,74,.45);border-radius:14px;padding:.95rem .55rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;text-align:center;transition:transform .25s ease}
+    .cta-ac:hover{transform:translateY(-2px)}
+    .cta-ac-icon{font-size:1.85rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .cta-ac-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.98rem;line-height:1.18}
+    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.8rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;margin-top:.6rem;max-width:900px}
+    .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.85);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left}
+    .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
 
-    .slide-counter {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.90);
-      font-weight: 600;
-    }
-
-    .topbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0,0,0,0.2);
-      backdrop-filter: blur(10px);
-      padding: 0.75rem 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .topbar-title {
-      font-family: 'Fraunces', serif;
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .topbar-subtitle {
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.75);
-      margin-left: 0.5rem;
-    }
-
-    /* STATS */
-    .stat-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1rem;
-      margin: 2rem 0;
-      width: 100%;
-      max-width: 900px;
-    }
-
-    .stat-card {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 12px;
-      padding: 1.25rem;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-family: 'Fraunces', serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--cardio);
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.90);
-      font-weight: 500;
-    }
-
-    .stat-source {
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.65);
-      margin-top: 0.3rem;
-      display: block;
-    }
-
-    /* BLOOD PRESSURE DIAGRAM */
-    .bp-diagram {
-      width: 100%;
-      max-width: 600px;
-      margin: 2rem 0;
-    }
-
-    .bp-reading {
-      font-family: 'Fraunces', serif;
-      font-size: 4rem;
-      font-weight: 700;
-      color: var(--cardio);
-      margin: 1rem 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-
-    .bp-labels {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 1rem;
-    }
-
-    .bp-label {
-      text-align: center;
-    }
-
-    .bp-label-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #fff;
-    }
-
-    .bp-label-desc {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.80);
-      margin-top: 0.2rem;
-    }
-
-    /* TREATMENT LADDER */
-    .treatment-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      width: 100%;
-      max-width: 700px;
-      margin: 2rem 0;
-    }
-
-    .treatment-step {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 12px;
-      padding: 1rem 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: stepIn 0.6s ease forwards;
-    }
-
-    .treatment-step:nth-child(1) { animation-delay: 0.2s; }
-    .treatment-step:nth-child(2) { animation-delay: 0.4s; }
-    .treatment-step:nth-child(3) { animation-delay: 0.6s; }
-    .treatment-step:nth-child(4) { animation-delay: 0.8s; }
-
-    @keyframes stepIn {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .step-number {
-      font-family: 'Fraunces', serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--cardio);
-      background: rgba(200,66,58,0.2);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .step-content h4 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 0.2rem;
-    }
-
-    .step-content p {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.80);
-      line-height: 1.4;
-    }
-
-    /* RESEARCH CARDS */
-    .research-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      width: 100%;
-      max-width: 900px;
-      margin: 2rem 0;
-    }
-
-    .research-card {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 12px;
-      padding: 1.25rem;
-      text-align: left;
-    }
-
-    .research-card h4 {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 0.75rem;
-    }
-
-    .research-finding {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--cardio);
-      margin-bottom: 0.5rem;
-    }
-
-    .research-desc {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.80);
-      line-height: 1.5;
-      margin-bottom: 0.75rem;
-    }
-
-    .research-source {
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.65);
-    }
-
-    .a-pill {
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 0.2rem 0.6rem;
-      border-radius: 100px;
-      background: rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.75);
-      border: 1px solid rgba(255,255,255,0.12);
-    }
+    .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:.68rem;color:rgba(255,255,255,.18);z-index:90;white-space:nowrap}
   </style>
 </head>
 <body>
-  <div class="topbar">
-    <div>
-      <span class="topbar-title">Hypertension</span>
-      <span class="topbar-subtitle">Dr Paul • Cardiovascular Health Series</span>
-    </div>
-    <div class="slide-counter">
-      <span id="current-slide">1</span> / <span id="total-slides">6</span>
+
+<div id="topbar">
+  <div class="tb-logo">
+    <svg width="20" height="16" viewBox="0 0 22 18" fill="none">
+      <path d="M11 2C8 2 5.5 4 4 6.5 2.5 9 2.5 12 4 14.5c1 1.8 2.8 3 5 3.4V4.5" stroke="#E8634A" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M11 2C14 2 16.5 4 18 6.5 19.5 9 19.5 12 18 14.5c-1 1.8-2.8 3-5 3.4V4.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <span class="tb-title">helf<span class="tb-dot">.</span>school</span>
+    <span class="tb-sub">· Hypertension</span>
+  </div>
+  <div class="tb-right">
+    <span id="counter" class="slide-counter">1 / 10</span>
+    <span class="kb-hint">← → navigate</span>
+  </div>
+</div>
+
+<div id="stage">
+
+  <!-- SLIDE 1: INTRO -->
+  <div class="slide active">
+    <div class="intro-wrap">
+      <div class="intro-badge">📋 Cardiovascular Health Series · Article 01</div>
+      <div class="intro-icon">🩸</div>
+      <div class="intro-title">Hypertension<br/>— the <span>silent killer</span></div>
+      <div class="intro-sub">What high blood pressure is, why it matters, and what the evidence says works.</div>
+      <div class="intro-tagline">Dr Paul · Retired NHS GP · helf.school</div>
     </div>
   </div>
 
-  <div class="stage">
-    <!-- SLIDE 1: INTRO -->
-    <div class="slide active">
-      <div class="intro-badge">Cardiovascular Health Series</div>
-      
-      <div class="logo-container">
-        <div class="logo-dot"></div>
-        <div class="logo-text">helf.school</div>
-      </div>
-
-      <h1 class="slide-title">Hypertension<br>(High Blood Pressure)</h1>
-      
-      <div class="tagline">HEALTH EDUCATION</div>
-      <div class="article-label">Article 01 • Dr Paul</div>
-    </div>
-
-    <!-- SLIDE 2: WHAT IS BLOOD PRESSURE -->
-    <div class="slide">
-      <h2 class="slide-title">Understanding Blood Pressure</h2>
-      
-      <div class="bp-reading">
-        <span>140</span>
-        <span style="font-size: 3rem; color: rgba(255,255,255,0.6);">/</span>
-        <span>90</span>
-        <span style="font-size: 1.5rem; color: rgba(255,255,255,0.7);">mmHg</span>
-      </div>
-
-      <div class="bp-labels">
-        <div class="bp-label">
-          <div class="bp-label-title">Systolic (140)</div>
-          <div class="bp-label-desc">Pressure when heart beats</div>
+  <!-- SLIDE 2: UNDERSTANDING BLOOD PRESSURE -->
+  <div class="slide">
+    <div class="slide-title">What is <span>blood pressure?</span></div>
+    <div class="bp-stage">
+      <div class="bp-row">
+        <div class="bp-box">
+          <div class="bp-num">140</div>
+          <div class="bp-lbl">Systolic</div>
+          <div class="bp-det">Pressure when the heart beats</div>
         </div>
-        <div class="bp-label">
-          <div class="bp-label-title">Diastolic (90)</div>
-          <div class="bp-label-desc">Pressure between beats</div>
+        <div class="bp-slash">/</div>
+        <div class="bp-box">
+          <div class="bp-num">90</div>
+          <div class="bp-lbl">Diastolic</div>
+          <div class="bp-det">Pressure between beats</div>
         </div>
       </div>
-
-      <p style="margin-top: 2rem; font-size: 0.9rem; color: rgba(255,255,255,0.80);">
-        140/90 mmHg or above = hypertension diagnosis
-      </p>
-    </div>
-
-    <!-- SLIDE 3: PREVALENCE STATS -->
-    <div class="slide">
-      <h2 class="slide-title">Why Does Hypertension Matter?</h2>
-      
-      <div class="stat-grid">
-        <div class="stat-card">
-          <span class="stat-number">1 in 4</span>
-          <div class="stat-label">UK adults have high blood pressure</div>
-          <span class="stat-source">NHS Digital</span>
-        </div>
-        
-        <div class="stat-card">
-          <span class="stat-number">50%</span>
-          <div class="stat-label">Don't know they have it</div>
-          <span class="stat-source">British Heart Foundation</span>
-        </div>
-        
-        <div class="stat-card">
-          <span class="stat-number">70,000</span>
-          <div class="stat-label">Deaths per year in UK</div>
-          <span class="stat-source">ONS • 2021</span>
-        </div>
+      <div class="bp-strip">
+        <div class="bp-strip-icon">⚠️</div>
+        <div class="bp-strip-text"><strong>140/90 mmHg or above</strong> in clinic = diagnosis threshold · NICE NG136</div>
       </div>
-
-      <p style="margin-top: 1.5rem; font-size: 0.9rem; color: rgba(255,255,255,0.80); max-width: 600px;">
-        Often called the "silent killer" because most people have no symptoms until serious complications develop
-      </p>
-    </div>
-
-    <!-- SLIDE 4: TREATMENT APPROACH -->
-    <div class="slide">
-      <h2 class="slide-title">Treatment Approach</h2>
-      
-      <div class="treatment-steps">
-        <div class="treatment-step">
-          <div class="step-number">1</div>
-          <div class="step-content">
-            <h4>Lifestyle Changes</h4>
-            <p>Reduce salt, lose weight, exercise regularly, limit alcohol</p>
-          </div>
-        </div>
-        
-        <div class="treatment-step">
-          <div class="step-number">2</div>
-          <div class="step-content">
-            <h4>Single Medication</h4>
-            <p>ACE inhibitor, calcium channel blocker, or thiazide diuretic</p>
-          </div>
-        </div>
-        
-        <div class="treatment-step">
-          <div class="step-number">3</div>
-          <div class="step-content">
-            <h4>Dual Therapy</h4>
-            <p>Combination of two medications if single drug insufficient</p>
-          </div>
-        </div>
-        
-        <div class="treatment-step">
-          <div class="step-number">4</div>
-          <div class="step-content">
-            <h4>Triple Therapy</h4>
-            <p>Three medications + specialist referral if needed</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SLIDE 5: RESEARCH FINDINGS -->
-    <div class="slide">
-      <h2 class="slide-title">What the Research Shows</h2>
-      
-      <div class="research-grid">
-        <div class="research-card">
-          <h4>Blood Pressure Reduction</h4>
-          <div class="research-finding">10 mmHg reduction</div>
-          <p class="research-desc">Reduces risk of heart disease by 20% and stroke by 27%</p>
-          <div class="research-source">Lancet • 2016 meta-analysis</div>
-        </div>
-        
-        <div class="research-card">
-          <h4>Lifestyle Interventions</h4>
-          <div class="research-finding">5-10 mmHg drop</div>
-          <p class="research-desc">Weight loss and salt reduction alone can achieve significant reductions</p>
-          <div class="research-source">Cochrane Review • 2020</div>
-        </div>
-        
-        <div class="research-card">
-          <h4>SPRINT Trial</h4>
-          <div class="research-finding">25% reduction</div>
-          <p class="research-desc">Lower BP targets (120 vs 140) reduced cardiovascular events</p>
-          <div class="research-source">NEJM • 2015</div>
-        </div>
-        
-        <div class="research-card">
-          <h4>24-Hour Monitoring</h4>
-          <div class="research-finding">Better outcomes</div>
-          <p class="research-desc">Ambulatory monitoring more accurate than clinic readings</p>
-          <div class="research-source">BMJ • 2019</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SLIDE 6: CLOSING -->
-    <div class="slide">
-      <div class="logo-container">
-        <div class="logo-dot"></div>
-        <div class="logo-text">helf.school</div>
-      </div>
-
-      <h2 class="slide-title">Key Takeaways</h2>
-      
-      <div style="max-width: 700px; text-align: left; margin: 2rem 0;">
-        <p style="font-size: 0.95rem; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 1rem;">
-          • Hypertension affects 1 in 4 UK adults — half don't know they have it
-        </p>
-        <p style="font-size: 0.95rem; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 1rem;">
-          • Often symptomless until serious complications develop
-        </p>
-        <p style="font-size: 0.95rem; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 1rem;">
-          • Lifestyle changes can achieve significant blood pressure reductions
-        </p>
-        <p style="font-size: 0.95rem; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 1rem;">
-          • Effective medications available with proven cardiovascular benefits
-        </p>
-      </div>
-      
-      <div class="tagline">HEALTH EDUCATION</div>
-      <div class="article-label">Next: Cholesterol — Article 02</div>
     </div>
   </div>
 
-  <div class="nav-hint">← → to navigate</div>
+  <!-- SLIDE 3: WHY IT MATTERS — FIVE BODY SYSTEMS · HARM · RED -->
+  <div class="slide">
+    <div class="slide-title">Why it matters: <span>five body systems</span></div>
+    <div class="sys-grid">
+      <div class="sys-card" id="s1">
+        <div class="sys-icon">❤️</div>
+        <div class="sys-content">
+          <div class="sys-title">Heart</div>
+          <div class="sys-body">Coronary artery disease, heart attack, heart failure. Every 20 mmHg rise doubles cardiovascular mortality.</div>
+        </div>
+        <div class="sys-stat">2×</div>
+      </div>
+      <div class="sys-card" id="s2">
+        <div class="sys-icon">🧠</div>
+        <div class="sys-content">
+          <div class="sys-title">Brain</div>
+          <div class="sys-body">Leading modifiable risk factor for stroke. Also drives vascular dementia through small-vessel damage.</div>
+        </div>
+        <div class="sys-stat">Stroke</div>
+      </div>
+      <div class="sys-card" id="s3">
+        <div class="sys-icon">🫘</div>
+        <div class="sys-content">
+          <div class="sys-title">Kidneys</div>
+          <div class="sys-body">Second-leading cause of kidney failure in the UK after diabetes. Often silent until advanced.</div>
+        </div>
+        <div class="sys-stat">2nd</div>
+      </div>
+      <div class="sys-card" id="s4">
+        <div class="sys-icon">👁️</div>
+        <div class="sys-content">
+          <div class="sys-title">Eyes</div>
+          <div class="sys-body">Hypertensive retinopathy — damaged retinal vessels, haemorrhages, and permanent vision loss.</div>
+        </div>
+        <div class="sys-stat">Retina</div>
+      </div>
+      <div class="sys-card" id="s5">
+        <div class="sys-icon">🩸</div>
+        <div class="sys-content">
+          <div class="sys-title">Arteries</div>
+          <div class="sys-body">Accelerates atherosclerosis, triggers aortic aneurysms, drives peripheral arterial disease.</div>
+        </div>
+        <div class="sys-stat">PAD</div>
+      </div>
+    </div>
+  </div>
 
-  <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    const totalSlides = slides.length;
-    
-    document.getElementById('total-slides').textContent = totalSlides;
+  <!-- SLIDE 4: WHAT YOUR DOCTOR MIGHT DO · ACTION · GREEN -->
+  <div class="slide">
+    <div class="slide-title">What your <span>doctor might do</span></div>
+    <div class="doc-grid">
+      <div class="doc-card" id="d1">
+        <div class="doc-icon">🩺</div>
+        <div class="doc-content">
+          <div class="doc-title">Clinic BP measurement</div>
+          <div class="doc-body">Multiple readings over several visits — single high readings alone don't confirm a diagnosis.</div>
+        </div>
+        <div class="doc-action">→ Check</div>
+      </div>
+      <div class="doc-card" id="d2">
+        <div class="doc-icon">📊</div>
+        <div class="doc-content">
+          <div class="doc-title">Ambulatory / home monitoring</div>
+          <div class="doc-body">24-hour ABPM or home readings confirm the diagnosis — NICE NG136 recommends this before treatment.</div>
+        </div>
+        <div class="doc-action">→ Confirm</div>
+      </div>
+      <div class="doc-card" id="d3">
+        <div class="doc-icon">🩸</div>
+        <div class="doc-content">
+          <div class="doc-title">Blood and urine tests</div>
+          <div class="doc-body">Kidney function, cholesterol, blood glucose, urine albumin — screens for causes and consequences.</div>
+        </div>
+        <div class="doc-action">→ Test</div>
+      </div>
+      <div class="doc-card" id="d4">
+        <div class="doc-icon">💓</div>
+        <div class="doc-content">
+          <div class="doc-title">ECG</div>
+          <div class="doc-body">Looks for left ventricular hypertrophy (thickened heart muscle) — a sign of long-standing strain.</div>
+        </div>
+        <div class="doc-action">→ Scan</div>
+      </div>
+      <div class="doc-card" id="d5">
+        <div class="doc-icon">🌿</div>
+        <div class="doc-content">
+          <div class="doc-title">Lifestyle guidance</div>
+          <div class="doc-body">Salt reduction, weight loss, physical activity, alcohol moderation, DASH-style eating pattern.</div>
+        </div>
+        <div class="doc-action">→ Advise</div>
+      </div>
+      <div class="doc-card" id="d6">
+        <div class="doc-icon">💊</div>
+        <div class="doc-content">
+          <div class="doc-title">Medications (NICE pathway)</div>
+          <div class="doc-body">ACE inhibitor / ARB, calcium channel blocker, thiazide — often combined. Specialist referral if resistant.</div>
+        </div>
+        <div class="doc-action">→ Treat</div>
+      </div>
+    </div>
+  </div>
 
-    function showSlide(n) {
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (n + totalSlides) % totalSlides;
-      slides[currentSlide].classList.add('active');
-      document.getElementById('current-slide').textContent = currentSlide + 1;
-    }
+  <!-- SLIDE 5: RESEARCH PART 1 — UK SCALE -->
+  <div class="slide">
+    <div class="slide-title">Research · <span>the UK picture</span></div>
+    <div class="ev-stage">
+      <div class="ev-card" id="e1">
+        <div class="ev-stat">
+          <div class="ev-num bad">1 in 4</div>
+          <div class="ev-label">UK adults have high blood pressure</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">Scale of hypertension in the UK</div>
+          <div class="ev-journal">British Heart Foundation · NHS Digital Health Survey for England</div>
+          <div class="ev-body">Roughly <strong>14 million people</strong> across England, Scotland, Wales and Northern Ireland. Prevalence rises steeply with age — more than half of over-65s are affected.</div>
+        </div>
+      </div>
+      <div class="ev-card" id="e2">
+        <div class="ev-stat">
+          <div class="ev-num bad">~50%</div>
+          <div class="ev-label">undiagnosed or poorly controlled</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">The "silent killer" problem</div>
+          <div class="ev-journal">British Heart Foundation · PHE / OHID estimates</div>
+          <div class="ev-body">Roughly half of adults with hypertension are either <strong>undiagnosed</strong> or diagnosed but not reaching target. Symptoms rarely appear until damage is advanced.</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'ArrowRight' || e.key === ' ') {
-        e.preventDefault();
-        showSlide(currentSlide + 1);
-      } else if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        showSlide(currentSlide - 1);
+  <!-- SLIDE 6: RESEARCH PART 2 — LOWERING BP WORKS -->
+  <div class="slide">
+    <div class="slide-title">Research · <span>treatment evidence</span></div>
+    <div class="ev-stage">
+      <div class="ev-card" id="e3">
+        <div class="ev-stat">
+          <div class="ev-num good">−20%</div>
+          <div class="ev-label">CHD · −27% stroke · per 10 mmHg ↓</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">Ettehad · BP-lowering meta-analysis</div>
+          <div class="ev-journal">The Lancet · 2016 · 123 trials · n=613,815</div>
+          <div class="ev-body">Every 10 mmHg reduction in systolic BP reduced major cardiovascular events by <strong>~20%</strong>, coronary heart disease by 17%, stroke by 27%, heart failure by 28%, and all-cause mortality by 13%.</div>
+        </div>
+      </div>
+      <div class="ev-card" id="e4">
+        <div class="ev-stat">
+          <div class="ev-num good">−25%</div>
+          <div class="ev-label">CV events · target &lt;120 vs &lt;140</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">SPRINT — intensive vs standard</div>
+          <div class="ev-journal">NEJM · 2015 · n=9,361 · stopped early for benefit</div>
+          <div class="ev-body">Intensive target (systolic &lt;120 mmHg) cut composite cardiovascular events by <strong>25%</strong> and all-cause mortality by 27% compared with standard (&lt;140). Trial stopped early on efficacy.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: RESEARCH PART 3 — LIFESTYLE IMPACT -->
+  <div class="slide">
+    <div class="slide-title">Research · <span>lifestyle impact</span></div>
+    <div class="ev-stage">
+      <div class="ev-card" id="e5">
+        <div class="ev-stat">
+          <div class="ev-num good">−8 to −14</div>
+          <div class="ev-label">mmHg · DASH diet · hypertensive adults</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">DASH-Sodium — dietary pattern trial</div>
+          <div class="ev-journal">Sacks et al · NEJM · 2001 · n=412</div>
+          <div class="ev-body">DASH-style eating (fruit, vegetables, whole grains, lean protein, low saturated fat) dropped systolic BP by up to <strong>14 mmHg</strong> — a reduction comparable to single-drug therapy.</div>
+        </div>
+      </div>
+      <div class="ev-card" id="e6">
+        <div class="ev-stat">
+          <div class="ev-num good">~1 mmHg</div>
+          <div class="ev-label">per kg lost · sustained weight reduction</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">Weight loss · Cochrane review</div>
+          <div class="ev-journal">Semlitsch et al · Cochrane Database · 2021</div>
+          <div class="ev-body">Sustained weight reduction lowers BP by around <strong>1 mmHg per kg</strong> lost. Salt reduction, regular aerobic activity, and alcohol moderation each add further independent reductions.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: MECHANISMS · AMBER -->
+  <div class="slide">
+    <div class="slide-title">How high BP <span>actually damages</span></div>
+    <div class="mech-grid">
+      <div class="mech-card" id="m1">
+        <div class="mech-icon">💪</div>
+        <div class="mech-content">
+          <div class="mech-title">Arterial wall stress</div>
+          <div class="mech-body">Constant high pressure damages the endothelium (inner lining) — accelerates plaque build-up and stiffens vessels.</div>
+        </div>
+        <div class="mech-outcome">→ Atherosclerosis</div>
+      </div>
+      <div class="mech-card" id="m2">
+        <div class="mech-icon">🫀</div>
+        <div class="mech-content">
+          <div class="mech-title">Left ventricular overload</div>
+          <div class="mech-body">The heart thickens (LVH) pumping against high pressure — eventually weakens and fails.</div>
+        </div>
+        <div class="mech-outcome">→ Heart failure</div>
+      </div>
+      <div class="mech-card" id="m3">
+        <div class="mech-icon">🧠</div>
+        <div class="mech-content">
+          <div class="mech-title">Small-vessel brain disease</div>
+          <div class="mech-body">Tiny deep vessels fray under pressure — microbleeds and white-matter lesions accumulate silently.</div>
+        </div>
+        <div class="mech-outcome">→ Vascular dementia</div>
+      </div>
+      <div class="mech-card" id="m4">
+        <div class="mech-icon">🫘</div>
+        <div class="mech-content">
+          <div class="mech-title">Glomerular hypertension</div>
+          <div class="mech-body">Pressure transmitted to the kidney's filtering units (glomeruli) scars them — nephrosclerosis develops.</div>
+        </div>
+        <div class="mech-outcome">→ Kidney failure</div>
+      </div>
+      <div class="mech-card" id="m5">
+        <div class="mech-icon">👁️</div>
+        <div class="mech-content">
+          <div class="mech-title">Retinal microvessel damage</div>
+          <div class="mech-body">Retinal arterioles narrow, leak and haemorrhage — detectable on eye examination long before symptoms.</div>
+        </div>
+        <div class="mech-outcome">→ Vision loss</div>
+      </div>
+      <div class="mech-card" id="m6">
+        <div class="mech-icon">⚡</div>
+        <div class="mech-content">
+          <div class="mech-title">Sympathetic overdrive</div>
+          <div class="mech-body">Chronic sympathetic (fight-or-flight) activation drives vasoconstriction and kidney sodium retention — a self-reinforcing loop.</div>
+        </div>
+        <div class="mech-outcome">→ BP spiral</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: CTA · HIGH-IMPACT -->
+  <div class="slide cta-slide">
+    <div class="cta-glow"></div>
+    <div class="cta-wrap-v2">
+      <div class="cta-badge-v2">Where to start</div>
+      <div class="cta-icon-v2">🩺</div>
+      <div class="cta-headline-v2">Know the number.<br/><span>Act on it early.</span></div>
+      <div class="cta-subline">Small drops. Large returns.</div>
+      <div class="cta-body-v2">A 10 mmHg fall in systolic blood pressure cuts stroke risk by more than a quarter. Change doesn't have to be dramatic to make a real difference to long-term outcomes.</div>
+      <div class="cta-actions">
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🩺</div>
+          <div class="cta-ac-label">Know your BP</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🥗</div>
+          <div class="cta-ac-label">DASH-style eating</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🧂</div>
+          <div class="cta-ac-label">Less salt</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🚶</div>
+          <div class="cta-ac-label">Daily movement</div>
+        </div>
+      </div>
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">⚕️</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Any changes you're considering are a conversation for you to have with your GP or healthcare professional.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: CLOSING -->
+  <div class="slide">
+    <div class="close-wrap">
+      <div class="close-logo">helf<span class="dot">.</span>school</div>
+      <div class="close-sub">Health Education</div>
+      <div class="close-headline">Silent to spot. <span>Solvable to treat.</span></div>
+      <div class="close-stats">
+        <div class="cst-card">
+          <div class="cst-num">1 in 4</div>
+          <div class="cst-lab">UK adults affected</div>
+          <div class="cst-src">NHS Digital · BHF</div>
+        </div>
+        <div class="cst-card">
+          <div class="cst-num">~50%</div>
+          <div class="cst-lab">undiagnosed or poorly controlled</div>
+          <div class="cst-src">BHF · OHID</div>
+        </div>
+        <div class="cst-card">
+          <div class="cst-num">10 mmHg</div>
+          <div class="cst-lab">drop → −20% CHD, −27% stroke</div>
+          <div class="cst-src">Ettehad · Lancet 2016</div>
+        </div>
+      </div>
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">⚕️</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+      </div>
+      <div class="close-series">Cardiovascular Health Series · Article 01</div>
+    </div>
+  </div>
+
+</div>
+
+<div id="dots">
+  <div class="dot active" onclick="goTo(0)"></div>
+  <div class="dot" onclick="goTo(1)"></div>
+  <div class="dot" onclick="goTo(2)"></div>
+  <div class="dot" onclick="goTo(3)"></div>
+  <div class="dot" onclick="goTo(4)"></div>
+  <div class="dot" onclick="goTo(5)"></div>
+  <div class="dot" onclick="goTo(6)"></div>
+  <div class="dot" onclick="goTo(7)"></div>
+  <div class="dot" onclick="goTo(8)"></div>
+  <div class="dot" onclick="goTo(9)"></div>
+</div>
+
+<div class="disc">Health education — not medical advice. helf.school</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('.dot');
+  let cur = 0;
+
+  function show(n){
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    document.getElementById('counter').textContent = (cur+1)+' / '+slides.length;
+    triggerSlide(cur);
+  }
+  function goTo(n){ show(n); }
+
+  document.addEventListener('keydown', e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowDown') show(cur+1);
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp') show(cur-1);
+  });
+
+  let tx=0;
+  document.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; });
+  document.addEventListener('touchend', e=>{
+    const dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>40){ dx<0?show(cur+1):show(cur-1); }
+  });
+
+  function triggerSlide(n){
+    if(n===2) animateGroup(['s1','s2','s3','s4','s5'], 170);
+    if(n===3) animateGroup(['d1','d2','d3','d4','d5','d6'], 140);
+    if(n===4) animateGroup(['e1','e2'], 260);
+    if(n===5) animateGroup(['e3','e4'], 260);
+    if(n===6) animateGroup(['e5','e6'], 260);
+    if(n===7) animateGroup(['m1','m2','m3','m4','m5','m6'], 140);
+  }
+
+  function animateGroup(ids, step){
+    ids.forEach((id,i)=>{
+      setTimeout(()=>{
+        const el = document.getElementById(id);
+        if(el) el.classList.add('vis');
+      }, 180 + i*step);
+    });
+  }
+
+  slides.forEach(s=>{
+    const obs = new MutationObserver(()=>{
+      if(!s.classList.contains('active')){
+        s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'));
       }
     });
+    obs.observe(s, {attributes:true});
+  });
 
-    // Auto-start animation for treatment steps when slide becomes active
-    const observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-          const target = mutation.target;
-          if (target.classList.contains('active')) {
-            const steps = target.querySelectorAll('.treatment-step');
-            steps.forEach((step, index) => {
-              step.style.animationDelay = `${0.2 + index * 0.2}s`;
-            });
-          }
-        }
-      });
-    });
-
-    slides.forEach(slide => {
-      observer.observe(slide, { attributes: true });
-    });
-  </script>
+  triggerSlide(0);
+</script>
 </body>
 </html>

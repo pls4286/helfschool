@@ -3,177 +3,565 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lifestyle Changes — Visuals | helf.school</title>
+  <title>Lifestyle &amp; Cardiovascular Risk — Visuals | helf.school</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--bg:#0f1623}
+    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--calm:#70b8e8}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
-    #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:var(--navy);border-bottom:2px solid var(--sage);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
+    #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:var(--navy);border-bottom:2px solid var(--acc2);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
+    .tb-logo{display:flex;align-items:center;gap:.5rem}
     .tb-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff}
-    .tb-sub{font-size:.75rem;color:rgba(255,255,255,.75)}
-    .tb-right{display:flex;align-items:center;gap:1rem}
-    .slide-counter{font-size:.85rem;font-weight:700;color:rgba(255,255,255,.90)}
-    .kb-hint{font-size:.72rem;color:rgba(255,255,255,.60)}
-    #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:6vh 2.5rem 3vh}
-    .slide{display:none;width:100%;max-width:1100px;animation:fadeIn .35s ease}
-    .slide.active{display:flex;flex-direction:column}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-    .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;color:#fff;margin-bottom:1.5rem;padding-bottom:.75rem;border-bottom:2px solid rgba(122,158,135,.3)}
-    .slide-title span{color:var(--sage)}
-    .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;text-align:center;gap:1.5rem}
-    .intro-badge{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sage);background:rgba(122,158,135,.12);border:1px solid rgba(122,158,135,.3);padding:.3rem .85rem;border-radius:100px}
-    .intro-title{font-family:'Fraunces',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#fff;line-height:1.15;max-width:800px}
-    .intro-title span{color:var(--sage)}
-    .intro-tagline{font-size:1rem;color:rgba(255,255,255,.70);font-style:italic;font-family:'Fraunces',serif}
-    .factor-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.25rem}
-    .factor-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem 1.1rem;text-align:center;opacity:0;transform:translateY(16px);transition:opacity .4s ease,transform .4s ease}
-    .factor-card.vis{opacity:1;transform:translateY(0)}
-    .factor-icon{font-size:2rem;margin-bottom:.5rem}
-    .factor-name{font-family:'Fraunces',serif;font-size:.95rem;font-weight:700;color:#fff;margin-bottom:.3rem}
-    .factor-desc{font-size:.82rem;color:rgba(255,255,255,.75);line-height:1.5}
-    .stat-row{display:flex;gap:1.25rem;flex-wrap:wrap}
-    .stat-card{flex:1;min-width:180px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:1.3rem 1.5rem;text-align:center}
-    .stat-card.hl{background:rgba(122,158,135,.1);border-color:rgba(122,158,135,.35)}
-    .stat-num{font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:var(--sage);line-height:1}
-    .stat-label{font-size:.95rem;color:rgba(255,255,255,.90);margin-top:.5rem;font-weight:600;line-height:1.4}
-    .stat-source{font-size:.75rem;color:rgba(255,255,255,.65);margin-top:.4rem}
-    .r-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-left:4px solid var(--sage);border-radius:0 12px 12px 0;padding:1rem 1.3rem;margin-bottom:.85rem}
-    .r-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:var(--sage);margin-bottom:.3rem}
-    .r-finding{font-size:.93rem;color:rgba(255,255,255,.80);line-height:1.6}
-    .r-source{font-size:.78rem;color:rgba(255,255,255,.70);margin-top:.3rem;font-style:italic}
-    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
-    .info-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1.2rem 1.4rem}
-    .info-card h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:var(--sage);margin-bottom:.75rem}
-    .info-card p{font-size:.93rem;color:rgba(255,255,255,.80);line-height:1.6;margin-bottom:.5rem}
-    .cta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;margin-bottom:1.5rem}
-    .cta-card{background:rgba(122,158,135,.08);border:1px solid rgba(122,158,135,.25);border-radius:14px;padding:1.4rem;text-align:center}
-    .cta-icon{font-size:2.2rem;margin-bottom:.75rem}
-    .cta-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:.4rem}
-    .cta-desc{font-size:.9rem;color:rgba(255,255,255,.80);line-height:1.55}
-    .closing-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.75rem}
-    .closing-logo{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;color:#fff}
-    .closing-logo span{color:var(--coral)}
-    .closing-tagline{font-size:1rem;color:rgba(255,255,255,.70);letter-spacing:.12em;text-transform:uppercase;font-weight:600}
-    .closing-url{font-size:1.1rem;color:var(--sage);font-weight:600}
-    .article-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;margin-top:.75rem}
-    .a-pill{font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:100px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.12)}
-    .a-pill.current{background:rgba(122,158,135,.2);color:var(--sage);border-color:rgba(122,158,135,.4)}
-    footer{position:fixed;bottom:0;left:0;right:0;text-align:center;padding:.4rem;font-size:clamp(.65rem,1vw,.80rem);color:rgba(255,255,255,.65);background:rgba(15,22,35,.6)}
+    .tb-dot{color:var(--coral)}
+    .tb-sub{font-size:.75rem;color:rgba(255,255,255,.78);margin-left:.25rem;font-weight:500}
+    .tb-right{display:flex;align-items:center;gap:1.2rem}
+    .slide-counter{font-size:.88rem;font-weight:700;color:rgba(255,255,255,.90)}
+    .kb-hint{font-size:.75rem;color:rgba(255,255,255,.65)}
+    #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:2.2vh 1.25rem 3.5vh;overflow:hidden}
+    .slide{display:none;width:100%;max-width:1140px;height:100%;animation:sIn .32s ease}
+    .slide.active{display:flex;flex-direction:column;min-height:0}
+    @keyframes sIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.1vw,1.75rem);font-weight:700;color:#fff;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:2px solid rgba(212,184,74,.3);flex-shrink:0}
+    .slide-title span{color:var(--acc)}
+    #dots{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:200}
+    .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .25s}
+    .dot.active{background:var(--acc);transform:scale(1.3)}
+
+    .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.3rem}
+    .intro-badge{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.12);border:1px solid rgba(212,184,74,.3);padding:.3rem .9rem;border-radius:100px}
+    .intro-icon{font-size:4rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .intro-title{font-family:'Fraunces',serif;font-size:clamp(2.6rem,5.5vw,4.4rem);font-weight:700;color:#fff;line-height:1.05;max-width:960px;letter-spacing:-.02em}
+    .intro-title span{color:var(--acc)}
+    .intro-sub{font-size:1.1rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;max-width:680px;line-height:1.5;font-weight:400}
+    .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+
+    /* Big-picture stats slide 2 */
+    .big-stage{display:flex;flex-direction:column;flex:1;gap:1.2rem;min-height:0;align-items:center;justify-content:center}
+    .big-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;width:100%;max-width:960px}
+    .big-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1.5px solid rgba(212,184,74,.45);border-radius:20px;padding:1.8rem 1.6rem;text-align:center;box-shadow:0 0 40px rgba(212,184,74,.08)}
+    .big-num{font-family:'Fraunces',serif;font-size:clamp(4rem,8.5vw,6.2rem);font-weight:700;color:var(--acc);line-height:.9;letter-spacing:-.03em;margin-bottom:.3rem}
+    .big-lbl{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:.45rem}
+    .big-body{font-size:.95rem;color:rgba(255,255,255,.88);line-height:1.45}
+    .big-src{font-size:.78rem;color:rgba(255,255,255,.65);font-style:italic;margin-top:.55rem}
+    .big-strip{display:flex;align-items:center;justify-content:center;gap:.9rem;padding:.85rem 1.5rem;background:rgba(126,204,153,.12);border:1px solid rgba(126,204,153,.4);border-radius:12px;max-width:920px}
+    .big-strip-icon{font-size:1.4rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .big-strip-text{font-size:1rem;color:#fff;font-weight:500;font-family:'Fraunces',serif;line-height:1.4}
+    .big-strip-text strong{color:var(--good)}
+
+    /* HORIZONTAL ROWS */
+    .sys-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
+    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .sys-card.vis{opacity:1;transform:translateY(0)}
+    .sys-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .sys-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+    .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12;letter-spacing:-.01em}
+    .sys-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400}
+    .sys-stat{font-family:'Fraunces',serif;font-size:clamp(1.5rem,2.3vw,2rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
+
+    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
+    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .doc-card.vis{opacity:1;transform:translateY(0)}
+    .doc-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .doc-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12;letter-spacing:-.01em}
+    .doc-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400}
+    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.5rem,2.3vw,2rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
+
+    .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
+    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .45s ease}
+    .ev-card.vis{opacity:1;transform:translateY(0)}
+    .ev-stat{text-align:center;background:rgba(212,184,74,.09);border-radius:14px;padding:1.25rem .85rem}
+    .ev-num{font-family:'Fraunces',serif;font-size:3.4rem;font-weight:700;color:var(--acc);line-height:1;letter-spacing:-.02em}
+    .ev-num.bad{color:var(--bad)}
+    .ev-num.good{color:var(--good)}
+    .ev-label{font-size:1rem;font-weight:700;color:#fff;margin-top:.5rem;line-height:1.3}
+    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;margin-bottom:.25rem;line-height:1.15;letter-spacing:-.01em}
+    .ev-det .ev-journal{font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
+    .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400}
+
+    .mech-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
+    .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .mech-card.vis{opacity:1;transform:translateY(0)}
+    .mech-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .mech-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+    .mech-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12;letter-spacing:-.01em}
+    .mech-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400}
+    .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2vw,1.85rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
+
+    .cta-slide{position:relative}
+    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%, rgba(212,184,74,.18), rgba(212,184,74,.04) 45%, transparent 70%);pointer-events:none;z-index:0}
+    .cta-wrap-v2{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:.85rem;padding:.5rem}
+    .cta-badge-v2{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.42rem 1.15rem;border-radius:100px;box-shadow:0 0 30px rgba(212,184,74,.14)}
+    .cta-icon-v2{font-size:clamp(4.5rem,8vw,6rem);line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;filter:drop-shadow(0 0 30px rgba(212,184,74,.28));animation:pulseHalo 3.2s ease-in-out infinite}
+    @keyframes pulseHalo{0%,100%{filter:drop-shadow(0 0 28px rgba(212,184,74,.22))}50%{filter:drop-shadow(0 0 55px rgba(212,184,74,.55))}}
+    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(3.2rem,5.8vw,4.9rem);font-weight:700;color:#fff;line-height:1.02;max-width:1000px;letter-spacing:-.028em}
+    .cta-headline-v2 span{color:var(--acc)}
+    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.4vw,1.85rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);max-width:780px;line-height:1.32}
+    .cta-body-v2{font-size:1.05rem;color:rgba(255,255,255,.90);max-width:780px;line-height:1.52;font-weight:400}
+    .cta-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;max-width:900px;width:100%;margin-top:.25rem}
+    .cta-ac{background:linear-gradient(180deg,rgba(212,184,74,.16),rgba(212,184,74,.06));border:1.5px solid rgba(212,184,74,.45);border-radius:14px;padding:.95rem .55rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;text-align:center;transition:transform .25s ease}
+    .cta-ac:hover{transform:translateY(-2px)}
+    .cta-ac-icon{font-size:1.85rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .cta-ac-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.98rem;line-height:1.18}
+    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.8rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;margin-top:.6rem;max-width:900px}
+    .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.85);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left}
+    .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
+
+    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.6rem;padding:1.5rem}
+    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
+    .close-logo .dot{color:var(--coral)}
+    .close-sub{font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+    .close-headline{font-family:'Fraunces',serif;font-size:clamp(3rem,5.8vw,5.2rem);font-weight:700;color:#fff;max-width:1050px;line-height:1.08;letter-spacing:-.025em}
+    .close-headline span{color:var(--acc)}
+    .close-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1050px;width:100%}
+    .cst-card{background:rgba(212,184,74,.1);border:1px solid rgba(212,184,74,.35);border-radius:16px;padding:1.5rem 1.1rem;display:flex;flex-direction:column;align-items:center;gap:.55rem}
+    .cst-num{font-family:'Fraunces',serif;font-size:clamp(2.4rem,4.4vw,3.8rem);font-weight:700;color:var(--acc);line-height:.95;letter-spacing:-.02em}
+    .cst-lab{font-size:1.05rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.32}
+    .cst-src{font-size:.85rem;color:rgba(255,255,255,.72);font-style:italic}
+    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.3rem}
+
+    .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:.68rem;color:rgba(255,255,255,.18);z-index:90;white-space:nowrap}
   </style>
 </head>
 <body>
+
 <div id="topbar">
-  <div><div class="tb-title">Lifestyle Changes &amp; Cardiovascular Risk</div><div class="tb-sub">helf.school · Cardiovascular Series · Article 05</div></div>
-  <div class="tb-right"><span class="kb-hint">← → to navigate</span><span class="slide-counter" id="counter">1 / 6</span></div>
+  <div class="tb-logo">
+    <svg width="20" height="16" viewBox="0 0 22 18" fill="none">
+      <path d="M11 2C8 2 5.5 4 4 6.5 2.5 9 2.5 12 4 14.5c1 1.8 2.8 3 5 3.4V4.5" stroke="#E8634A" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M11 2C14 2 16.5 4 18 6.5 19.5 9 19.5 12 18 14.5c-1 1.8-2.8 3-5 3.4V4.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <span class="tb-title">helf<span class="tb-dot">.</span>school</span>
+    <span class="tb-sub">· Lifestyle</span>
+  </div>
+  <div class="tb-right">
+    <span id="counter" class="slide-counter">1 / 10</span>
+    <span class="kb-hint">← → navigate</span>
+  </div>
 </div>
+
 <div id="stage">
 
-  <div class="slide active" id="s1">
+  <!-- SLIDE 1: INTRO -->
+  <div class="slide active">
     <div class="intro-wrap">
-      <div class="intro-badge">Cardiovascular Series · Article 05</div>
-      <div class="intro-title">How to Reduce Cardiovascular Risk with <span>Lifestyle Changes</span></div>
-      <div class="intro-tagline">What the research actually shows about diet, exercise, smoking, weight, alcohol, stress, and sleep</div>
-      <div class="stat-row" style="justify-content:center;max-width:700px;margin-top:.5rem">
-        <div class="stat-card hl"><div class="stat-num">90%+</div><div class="stat-label">of first heart attack risk explained by modifiable factors</div><div class="stat-source">INTERHEART Study, The Lancet 2004 · 30,000 people, 52 countries</div></div>
-        <div class="stat-card"><div class="stat-num">10+</div><div class="stat-label">years of CVD-free life added by addressing 5 key risk factors at age 50</div><div class="stat-source">NEJM 2022 — Global modifiable risk factor analysis</div></div>
-      </div>
+      <div class="intro-badge">📋 Cardiovascular Health Series · Article 05</div>
+      <div class="intro-icon">🌿</div>
+      <div class="intro-title">Lifestyle &amp;<br/><span>cardiovascular risk</span></div>
+      <div class="intro-sub">What the research actually shows about diet, activity, smoking, weight, alcohol and sleep.</div>
+      <div class="intro-tagline">Dr Paul · Retired NHS GP · helf.school</div>
     </div>
   </div>
 
-  <div class="slide" id="s2">
-    <div class="slide-title">Seven <span>modifiable factors</span> — the evidence-based levers</div>
-    <div class="factor-grid" id="factor-grid">
-      <div class="factor-card"><div class="factor-icon">🥗</div><div class="factor-name">Diet</div><div class="factor-desc">Mediterranean pattern reduces major cardiovascular events by ~30%</div></div>
-      <div class="factor-card" style="transition-delay:.1s"><div class="factor-icon">🚶</div><div class="factor-name">Physical Activity</div><div class="factor-desc">Even 75 min/week moderate activity reduces CVD risk by 17%</div></div>
-      <div class="factor-card" style="transition-delay:.2s"><div class="factor-icon">🚭</div><div class="factor-name">Smoking</div><div class="factor-desc">Stopping smoking cuts further cardiovascular event risk by 36%</div></div>
-      <div class="factor-card" style="transition-delay:.3s"><div class="factor-icon">⚖️</div><div class="factor-name">Body Weight</div><div class="factor-desc">5–10% weight reduction produces clinically meaningful risk reduction</div></div>
-      <div class="factor-card" style="transition-delay:.4s"><div class="factor-icon">🍷</div><div class="factor-name">Alcohol</div><div class="factor-desc">Apparent protective effect revised away by Mendelian randomisation studies</div></div>
-      <div class="factor-card" style="transition-delay:.5s"><div class="factor-icon">🧠</div><div class="factor-name">Stress</div><div class="factor-desc">Accounts for ~33% of attributable heart attack risk — INTERHEART</div></div>
-      <div class="factor-card" style="transition-delay:.6s"><div class="factor-icon">😴</div><div class="factor-name">Sleep</div><div class="factor-desc">J-shaped risk curve — optimal 7–8 hours; both too little and too much raise risk</div></div>
-      <div class="factor-card" style="transition-delay:.7s;border:1px solid rgba(122,158,135,.3);background:rgba(122,158,135,.08)"><div class="factor-icon">✅</div><div class="factor-name">These combine</div><div class="factor-desc">Effects are additive — addressing multiple factors multiplies the benefit</div></div>
-    </div>
-  </div>
-
-  <div class="slide" id="s3">
-    <div class="slide-title">Diet — <span>the strongest evidence</span></div>
-    <div class="two-col" style="margin-bottom:1.25rem">
-      <div class="r-card" style="margin-bottom:0">
-        <div class="r-title">PREDIMED Trial — NEJM 2018</div>
-        <div class="r-finding">7,447 people at high cardiovascular risk. Mediterranean diet supplemented with olive oil or nuts produced a <strong>~30% reduction in major cardiovascular events</strong> vs control diet over ~5 years. The most robust dietary RCT evidence available.</div>
-        <div class="r-source">Estruch R et al. NEJM 2018 (updated analysis)</div>
-      </div>
-      <div class="r-card" style="margin-bottom:0">
-        <div class="r-title">Ultra-processed foods — BMJ 2024</div>
-        <div class="r-finding">Umbrella review of meta-analyses found consistent associations between ultra-processed food consumption and increased cardiovascular risk, <strong>independent of overall diet quality</strong>. Strongest effect: processed meat and sugar-sweetened beverages.</div>
-        <div class="r-source">Lane MM et al. BMJ 2024</div>
-      </div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-card hl"><div class="stat-num" style="font-size:2.5rem;">30%</div><div class="stat-label">reduction in major cardiovascular events — Mediterranean diet</div><div class="stat-source">PREDIMED, NEJM 2018</div></div>
-      <div class="stat-card"><div class="stat-num" style="font-size:2rem;">8–14 mmHg</div><div class="stat-label">systolic BP reduction from low-sodium DASH dietary pattern</div><div class="stat-source">DASH-Sodium, NEJM 2001</div></div>
-    </div>
-  </div>
-
-  <div class="slide" id="s4">
-    <div class="slide-title">Smoking &amp; Exercise — <span>two of the most powerful levers</span></div>
-    <div class="two-col">
-      <div>
-        <div class="r-card">
-          <div class="r-title">Smoking cessation — Cochrane review</div>
-          <div class="r-finding">Stopping smoking reduces risk of further cardiovascular event in those who have already had one by approximately <strong>36%</strong> — a larger effect than almost any medication. Risk halves within 1 year. Approaches non-smoker level after 15 years.</div>
-          <div class="r-source">Cochrane Database — Smoking cessation and CVD outcomes</div>
+  <!-- SLIDE 2: BIG PICTURE -->
+  <div class="slide">
+    <div class="slide-title">The big picture · <span>lifestyle drives most CV risk</span></div>
+    <div class="big-stage">
+      <div class="big-row">
+        <div class="big-card">
+          <div class="big-num">~90%</div>
+          <div class="big-lbl">of first heart-attack risk</div>
+          <div class="big-body">is attributable to <strong>nine modifiable factors</strong> — lipids, smoking, BP, diabetes, obesity, diet, activity, alcohol, psychosocial stress.</div>
+          <div class="big-src">INTERHEART · Lancet 2004 · 52 countries · n=29,972</div>
         </div>
-        <div style="background:rgba(232,99,74,.08);border:1px solid rgba(232,99,74,.2);border-radius:10px;padding:.85rem 1.1rem;margin-top:.85rem">
-          <div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--coral);margin-bottom:.35rem">Smoking timeline</div>
-          <div style="font-size:.9rem;color:rgba(255,255,255,.85);line-height:1.6">1 year → excess risk halved<br>5 years → stroke risk approaches non-smoker<br>15 years → cardiovascular risk near non-smoker level</div>
+        <div class="big-card">
+          <div class="big-num">+10 yrs</div>
+          <div class="big-lbl">CVD-free life</div>
+          <div class="big-body">could be added by addressing <strong>five risk factors at age 50</strong> — BP, cholesterol, obesity, diabetes, smoking.</div>
+          <div class="big-src">Global modifiable risk-factor analysis · 2023</div>
         </div>
       </div>
-      <div>
-        <div class="r-card">
-          <div class="r-title">Physical activity — BJSM meta-analysis 2023</div>
-          <div class="r-finding">196 articles, 94 cohorts, 30 million+ participants. Just <span style="color:var(--sage);font-weight:700;">75 min/week</span> of moderate activity associated with a <span style="color:var(--sage);font-weight:700;">17% reduction in CVD risk</span>. Greatest gains seen moving from inactivity to even modest movement.</div>
-          <div class="r-source">Garcia L et al. BJSM 2023</div>
+      <div class="big-strip">
+        <div class="big-strip-icon">✅</div>
+        <div class="big-strip-text">Effects are <strong>additive</strong> — each lever you move adds further protection. You do not need all of them to benefit.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: WHAT DRIVES RISK · RED -->
+  <div class="slide">
+    <div class="slide-title">What drives <span>cardiovascular risk up</span></div>
+    <div class="sys-grid">
+      <div class="sys-card" id="s1">
+        <div class="sys-icon">🍔</div>
+        <div class="sys-content">
+          <div class="sys-title">Ultra-processed &amp; high-sodium diets</div>
+          <div class="sys-body">High processed meat, sugary drinks, refined snacks — associated with higher CV events, independent of total calories.</div>
         </div>
-        <div style="background:rgba(122,158,135,.08);border:1px solid rgba(122,158,135,.2);border-radius:10px;padding:.85rem 1.1rem;margin-top:.85rem">
-          <div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:.35rem">NICE recommendation</div>
-          <div style="font-size:.9rem;color:rgba(255,255,255,.85);line-height:1.6">150 min moderate activity/week<br>or 75 min vigorous activity/week<br>+ muscle strengthening ×2/week</div>
+        <div class="sys-stat">↑ CV events</div>
+      </div>
+      <div class="sys-card" id="s2">
+        <div class="sys-icon">🛋️</div>
+        <div class="sys-content">
+          <div class="sys-title">Sedentary behaviour</div>
+          <div class="sys-body">Prolonged sitting and minimal movement raise all-cause and cardiovascular mortality — independent of planned exercise.</div>
+        </div>
+        <div class="sys-stat">↑ Mortality</div>
+      </div>
+      <div class="sys-card" id="s3">
+        <div class="sys-icon">🚬</div>
+        <div class="sys-content">
+          <div class="sys-title">Current smoking</div>
+          <div class="sys-body">Current smokers carry around 2–4 times the cardiovascular risk of never-smokers. Every cigarette contributes.</div>
+        </div>
+        <div class="sys-stat">2–4×</div>
+      </div>
+      <div class="sys-card" id="s4">
+        <div class="sys-icon">⚖️</div>
+        <div class="sys-content">
+          <div class="sys-title">Excess weight · central adiposity</div>
+          <div class="sys-body">Visceral fat drives inflammation, insulin resistance and higher BP — central adiposity carries more risk than BMI alone.</div>
+        </div>
+        <div class="sys-stat">BMI ≥30</div>
+      </div>
+      <div class="sys-card" id="s5">
+        <div class="sys-icon">🍷</div>
+        <div class="sys-content">
+          <div class="sys-title">Alcohol intake</div>
+          <div class="sys-body">Mendelian randomisation: genetically higher alcohol linked to higher hypertension and CHD — no evidence of a protective dose.</div>
+        </div>
+        <div class="sys-stat">Linear harm</div>
+      </div>
+      <div class="sys-card" id="s6">
+        <div class="sys-icon">😴</div>
+        <div class="sys-content">
+          <div class="sys-title">Short or long sleep</div>
+          <div class="sys-body">J-shaped curve — both &lt;6 and &gt;9 hours per night independently associated with higher CV mortality.</div>
+        </div>
+        <div class="sys-stat">&lt;6 / &gt;9 h</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: WHAT MOVES THE DIAL · GREEN -->
+  <div class="slide">
+    <div class="slide-title">What moves <span>the dial — evidence-based levers</span></div>
+    <div class="doc-grid">
+      <div class="doc-card" id="d1">
+        <div class="doc-icon">🥗</div>
+        <div class="doc-content">
+          <div class="doc-title">Mediterranean eating pattern</div>
+          <div class="doc-body">More vegetables, fruit, legumes, fish, olive oil; less processed and red meat. Direction, not prescription.</div>
+        </div>
+        <div class="doc-action">−30%</div>
+      </div>
+      <div class="doc-card" id="d2">
+        <div class="doc-icon">🚶</div>
+        <div class="doc-content">
+          <div class="doc-title">Regular movement</div>
+          <div class="doc-body">Even 75 min/week moderate activity is associated with about 17% lower CV risk — biggest gains come from zero → some.</div>
+        </div>
+        <div class="doc-action">−17%</div>
+      </div>
+      <div class="doc-card" id="d3">
+        <div class="doc-icon">🚭</div>
+        <div class="doc-content">
+          <div class="doc-title">Stopping smoking</div>
+          <div class="doc-body">Cuts further CV event risk by ~36% in those with existing CVD. Risk halves within a year and approaches non-smoker level over 15 years.</div>
+        </div>
+        <div class="doc-action">−36%</div>
+      </div>
+      <div class="doc-card" id="d4">
+        <div class="doc-icon">⚖️</div>
+        <div class="doc-content">
+          <div class="doc-title">5–10% weight reduction</div>
+          <div class="doc-body">Produces clinically meaningful reductions in BP, lipids, HbA1c and cardiovascular event risk.</div>
+        </div>
+        <div class="doc-action">5–10%</div>
+      </div>
+      <div class="doc-card" id="d5">
+        <div class="doc-icon">🍷</div>
+        <div class="doc-content">
+          <div class="doc-title">Lower alcohol intake</div>
+          <div class="doc-body">For cardiovascular risk, less is consistently better. Current evidence does not support a "protective" moderate dose.</div>
+        </div>
+        <div class="doc-action">Lower = better</div>
+      </div>
+      <div class="doc-card" id="d6">
+        <div class="doc-icon">😴</div>
+        <div class="doc-content">
+          <div class="doc-title">7–8 hours sleep</div>
+          <div class="doc-body">Lowest CV mortality sits at 7–8 hours per night in pooled data — a target worth protecting, not optimising away.</div>
+        </div>
+        <div class="doc-action">7–8 h</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: RESEARCH 1 — INTERHEART -->
+  <div class="slide">
+    <div class="slide-title">Research · <span>how much is modifiable?</span></div>
+    <div class="ev-stage">
+      <div class="ev-card" id="e1">
+        <div class="ev-stat">
+          <div class="ev-num bad">~90%</div>
+          <div class="ev-label">first-MI risk · 9 modifiable factors</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">INTERHEART — 52 countries</div>
+          <div class="ev-journal">Yusuf et al · The Lancet · 2004 · n=29,972</div>
+          <div class="ev-body">Across populations, <strong>nine modifiable factors</strong> accounted for about 90% of population risk of a first heart attack. Psychosocial stress alone contributed ~33% of attributable risk.</div>
+        </div>
+      </div>
+      <div class="ev-card" id="e2">
+        <div class="ev-stat">
+          <div class="ev-num good">−50%</div>
+          <div class="ev-label">CHD events · favourable lifestyle · high genetic risk</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">Lifestyle × genetic risk</div>
+          <div class="ev-journal">Khera et al · NEJM · 2016 · n≈55,685</div>
+          <div class="ev-body">Even among those with the highest <strong>genetic</strong> risk, a favourable lifestyle — not smoking, healthy weight, regular activity, healthy diet — was associated with roughly 50% lower CHD event rates.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="slide" id="s5">
-    <div class="slide-title">What the <span>research shows</span> — key studies</div>
-    <div class="r-card"><div class="r-title">INTERHEART Study — The Lancet 2004</div><div class="r-finding">30,000+ people, 52 countries. Nine modifiable risk factors account for more than <strong>90% of the risk of a first heart attack</strong> worldwide. Psychosocial stress alone accounts for ~33% of attributable risk. The majority of factors are directly influenced by lifestyle.</div><div class="r-source">Yusuf S et al. Lancet 2004;364:937–952</div></div>
-    <div class="r-card"><div class="r-title">Global modifiable risk factors — NEJM 2022</div><div class="r-finding">Addressing five key modifiable risk factors at age 50 — high blood pressure, high cholesterol, obesity, diabetes, smoking — could add <strong>more than ten years of cardiovascular disease-free life</strong>.</div><div class="r-source">Di Cesare M et al. NEJM 2022</div></div>
-    <div class="r-card"><div class="r-title">Alcohol — JAMA Network Open 2022</div><div class="r-finding">Mendelian randomisation study, 371,463 UK Biobank participants. Genetically predicted alcohol intake associated with <strong>increased risk of hypertension and coronary artery disease</strong>. Apparent protective effect of moderate drinking largely explained by confounding.</div><div class="r-source">Biddinger KJ et al. JAMA Network Open 2022</div></div>
-    <div class="r-card"><div class="r-title">Sleep — JAHA meta-analysis 2019</div><div class="r-finding">74 studies, 3+ million participants. J-shaped relationship: both short sleep (&lt;6–7 hrs) and long sleep (&gt;8–9 hrs) independently associated with increased cardiovascular mortality. <strong>Lowest risk at 7–8 hours per night.</strong></div><div class="r-source">Yin J et al. JAHA 2019</div></div>
+  <!-- SLIDE 6: RESEARCH 2 — DIET + ACTIVITY -->
+  <div class="slide">
+    <div class="slide-title">Research · <span>diet &amp; activity</span></div>
+    <div class="ev-stage">
+      <div class="ev-card" id="e3">
+        <div class="ev-stat">
+          <div class="ev-num good">~−30%</div>
+          <div class="ev-label">major CV events · Mediterranean diet</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">PREDIMED — Mediterranean + olive oil / nuts</div>
+          <div class="ev-journal">Estruch et al · NEJM · 2018 · n=7,447</div>
+          <div class="ev-body">High-CV-risk adults randomised to a <strong>Mediterranean diet</strong> with added olive oil or nuts had about a 30% reduction in major cardiovascular events vs control over ~5 years — the strongest dietary RCT evidence available.</div>
+        </div>
+      </div>
+      <div class="ev-card" id="e4">
+        <div class="ev-stat">
+          <div class="ev-num good">−17%</div>
+          <div class="ev-label">CV risk · at just 75 min/wk moderate activity</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">Activity dose–response meta-analysis</div>
+          <div class="ev-journal">Garcia et al · BJSM · 2023 · n≈30M</div>
+          <div class="ev-body">Pooled data from 94 cohorts. Even <strong>half</strong> of recommended activity (~75 min/wk moderate) was linked to ~17% lower CV risk. Greatest marginal gain: moving from inactive to any regular movement.</div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="slide" id="s6">
-    <div class="cta-grid">
-      <div class="cta-card"><div class="cta-icon">🥗</div><div class="cta-title">Try the Mediterranean pattern</div><div class="cta-desc">More vegetables, fruit, fish, olive oil, legumes. Less processed meat, ultra-processed food. No rigid prescription — a direction.</div></div>
-      <div class="cta-card"><div class="cta-icon">🚶</div><div class="cta-title">Move more — any amount counts</div><div class="cta-desc">Half the recommended amount still reduces cardiovascular risk by 17%. The biggest gains come from moving from nothing to something.</div></div>
-      <div class="cta-card"><div class="cta-icon">🚭</div><div class="cta-title">If you smoke — stop</div><div class="cta-desc">The largest single lifestyle intervention available. NHS Stop Smoking Services are significantly more effective than willpower alone.</div></div>
-    </div>
-    <div class="closing-wrap">
-      <div class="closing-logo">helf<span>.</span>school</div>
-      <div class="closing-tagline">Health Education for Everyone</div>
-      <div class="closing-url">pls4286.github.io/helfschool</div>
-      <div class="article-pills">
-        <span class="a-pill">01 Hypertension</span><span class="a-pill">02 Cholesterol</span><span class="a-pill">03 Heart Attack Risk</span><span class="a-pill">04 Statins</span><span class="a-pill current">05 Lifestyle</span><span class="a-pill">06 Salt</span><span class="a-pill">07 Supplements</span>
+  <!-- SLIDE 7: RESEARCH 3 — SMOKING + SLEEP -->
+  <div class="slide">
+    <div class="slide-title">Research · <span>smoking, alcohol &amp; sleep</span></div>
+    <div class="ev-stage">
+      <div class="ev-card" id="e5">
+        <div class="ev-stat">
+          <div class="ev-num good">−36%</div>
+          <div class="ev-label">further CV events · after stopping smoking</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">Smoking cessation after CV events</div>
+          <div class="ev-journal">Cochrane review · cardiovascular outcomes</div>
+          <div class="ev-body">In people with established CV disease, stopping smoking reduced further cardiovascular events by around 36% — a larger effect than almost any single medication.</div>
+        </div>
       </div>
+      <div class="ev-card" id="e6">
+        <div class="ev-stat">
+          <div class="ev-num bad">J-curve</div>
+          <div class="ev-label">sleep duration &amp; CV mortality</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">Sleep &amp; CV mortality meta-analysis</div>
+          <div class="ev-journal">Yin et al · JAHA · 2019 · n&gt;3M</div>
+          <div class="ev-body">74 studies, over 3 million participants. Both <strong>short (&lt;6–7h)</strong> and <strong>long (&gt;8–9h)</strong> sleep were independently linked to higher CV mortality. Lowest risk clustered around 7–8 hours.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: MECHANISMS · AMBER -->
+  <div class="slide">
+    <div class="slide-title">How lifestyle <span>translates into heart protection</span></div>
+    <div class="mech-grid">
+      <div class="mech-card" id="m1">
+        <div class="mech-icon">🥗</div>
+        <div class="mech-content">
+          <div class="mech-title">Mediterranean pattern</div>
+          <div class="mech-body">Rich in polyphenols, fibre, unsaturated fats — lowers LDL, reduces inflammation, and supports a healthy gut microbiome.</div>
+        </div>
+        <div class="mech-outcome">→ ↓ Inflammation</div>
+      </div>
+      <div class="mech-card" id="m2">
+        <div class="mech-icon">🚶</div>
+        <div class="mech-content">
+          <div class="mech-title">Regular movement</div>
+          <div class="mech-body">Lowers resting BP, raises HDL, improves insulin sensitivity, and trains the cardiovascular system day-on-day.</div>
+        </div>
+        <div class="mech-outcome">→ ↓ BP, ↑ HDL</div>
+      </div>
+      <div class="mech-card" id="m3">
+        <div class="mech-icon">🚭</div>
+        <div class="mech-content">
+          <div class="mech-title">Smoking cessation</div>
+          <div class="mech-body">Endothelial function improves within weeks. Carbon monoxide clears, fibrinogen falls, clot-risk normalises over years.</div>
+        </div>
+        <div class="mech-outcome">→ ↑ Endothelium</div>
+      </div>
+      <div class="mech-card" id="m4">
+        <div class="mech-icon">⚖️</div>
+        <div class="mech-content">
+          <div class="mech-title">Weight reduction</div>
+          <div class="mech-body">Reduces visceral fat cytokines, improves BP, lipids, and glucose together — multiple risk factors move at once.</div>
+        </div>
+        <div class="mech-outcome">→ ↓ Cytokines</div>
+      </div>
+      <div class="mech-card" id="m5">
+        <div class="mech-icon">🍷</div>
+        <div class="mech-content">
+          <div class="mech-title">Lower alcohol</div>
+          <div class="mech-body">Less alcohol reduces BP, arrhythmia triggers (AF), liver strain, and inflammatory markers over time.</div>
+        </div>
+        <div class="mech-outcome">→ ↓ BP, AF</div>
+      </div>
+      <div class="mech-card" id="m6">
+        <div class="mech-icon">😴</div>
+        <div class="mech-content">
+          <div class="mech-title">Protected sleep</div>
+          <div class="mech-body">Stabilises BP overnight, calms the HPA stress axis, and supports metabolic regulation and inflammation control.</div>
+        </div>
+        <div class="mech-outcome">→ ↓ Stress axis</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: CTA · HIGH-IMPACT -->
+  <div class="slide cta-slide">
+    <div class="cta-glow"></div>
+    <div class="cta-wrap-v2">
+      <div class="cta-badge-v2">Where to start</div>
+      <div class="cta-icon-v2">🌿</div>
+      <div class="cta-headline-v2">Small levers.<br/><span>Stacked effects.</span></div>
+      <div class="cta-subline">You do not need all of them. Every one you move matters.</div>
+      <div class="cta-body-v2">Around 90% of first-heart-attack risk is modifiable. Even half the recommended activity is linked to ~17% lower CV risk. The biggest gains come from moving from nothing to something.</div>
+      <div class="cta-actions">
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🥗</div>
+          <div class="cta-ac-label">Mediterranean eating</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🚶</div>
+          <div class="cta-ac-label">Daily movement</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🚭</div>
+          <div class="cta-ac-label">Stop smoking</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">😴</div>
+          <div class="cta-ac-label">Protect 7–8 h sleep</div>
+        </div>
+      </div>
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">⚕️</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Any changes you're considering are a conversation for you to have with your GP or healthcare professional.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: CLOSING -->
+  <div class="slide">
+    <div class="close-wrap">
+      <div class="close-logo">helf<span class="dot">.</span>school</div>
+      <div class="close-sub">Health Education</div>
+      <div class="close-headline">Small levers. <span>Stacked protection.</span></div>
+      <div class="close-stats">
+        <div class="cst-card">
+          <div class="cst-num">~90%</div>
+          <div class="cst-lab">first-MI risk from modifiable factors</div>
+          <div class="cst-src">INTERHEART · Lancet 2004</div>
+        </div>
+        <div class="cst-card">
+          <div class="cst-num">−30%</div>
+          <div class="cst-lab">CV events · Mediterranean eating</div>
+          <div class="cst-src">PREDIMED · NEJM 2018</div>
+        </div>
+        <div class="cst-card">
+          <div class="cst-num">−36%</div>
+          <div class="cst-lab">further CV events · stop smoking</div>
+          <div class="cst-src">Cochrane review</div>
+        </div>
+      </div>
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">⚕️</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+      </div>
+      <div class="close-series">Cardiovascular Health Series · Article 05</div>
     </div>
   </div>
 
 </div>
-<footer>helf.school · Health Education · Lifestyle Changes &amp; Cardiovascular Risk · Article 05</footer>
+
+<div id="dots">
+  <div class="dot active" onclick="goTo(0)"></div>
+  <div class="dot" onclick="goTo(1)"></div>
+  <div class="dot" onclick="goTo(2)"></div>
+  <div class="dot" onclick="goTo(3)"></div>
+  <div class="dot" onclick="goTo(4)"></div>
+  <div class="dot" onclick="goTo(5)"></div>
+  <div class="dot" onclick="goTo(6)"></div>
+  <div class="dot" onclick="goTo(7)"></div>
+  <div class="dot" onclick="goTo(8)"></div>
+  <div class="dot" onclick="goTo(9)"></div>
+</div>
+
+<div class="disc">Health education — not medical advice. helf.school</div>
+
 <script>
-  const slides=document.querySelectorAll('.slide'),counter=document.getElementById('counter');let current=0;const total=slides.length;
-  function showSlide(n){slides[current].classList.remove('active');current=(n+total)%total;slides[current].classList.add('active');counter.textContent=`${current+1} / ${total}`;triggerAnim(current)}
-  function triggerAnim(idx){if(idx===1){setTimeout(()=>{document.querySelectorAll('.factor-card').forEach((c,i)=>setTimeout(()=>c.classList.add('vis'),i*120))},100)}}
-  document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')showSlide(current+1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')showSlide(current-1)});
-  let tx=0;document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});document.addEventListener('touchend',e=>{const dx=tx-e.changedTouches[0].clientX;if(Math.abs(dx)>40)showSlide(current+(dx>0?1:-1))},{passive:true});
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('.dot');
+  let cur = 0;
+  function show(n){
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    document.getElementById('counter').textContent = (cur+1)+' / '+slides.length;
+    triggerSlide(cur);
+  }
+  function goTo(n){ show(n); }
+  document.addEventListener('keydown', e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowDown') show(cur+1);
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp') show(cur-1);
+  });
+  let tx=0;
+  document.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; });
+  document.addEventListener('touchend', e=>{
+    const dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>40){ dx<0?show(cur+1):show(cur-1); }
+  });
+  function triggerSlide(n){
+    if(n===2) animateGroup(['s1','s2','s3','s4','s5','s6'], 140);
+    if(n===3) animateGroup(['d1','d2','d3','d4','d5','d6'], 140);
+    if(n===4) animateGroup(['e1','e2'], 260);
+    if(n===5) animateGroup(['e3','e4'], 260);
+    if(n===6) animateGroup(['e5','e6'], 260);
+    if(n===7) animateGroup(['m1','m2','m3','m4','m5','m6'], 140);
+  }
+  function animateGroup(ids, step){
+    ids.forEach((id,i)=>{
+      setTimeout(()=>{
+        const el = document.getElementById(id);
+        if(el) el.classList.add('vis');
+      }, 180 + i*step);
+    });
+  }
+  slides.forEach(s=>{
+    const obs = new MutationObserver(()=>{
+      if(!s.classList.contains('active')){
+        s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'));
+      }
+    });
+    obs.observe(s, {attributes:true});
+  });
+  triggerSlide(0);
 </script>
-</body></html>
+</body>
+</html>
