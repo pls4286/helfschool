@@ -97,16 +97,26 @@
     .mech-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400}
     .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2vw,1.85rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
 
-    /* CTA (slide 9) */
-    .cta-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.15rem}
-    .cta-badge{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.14);border:1px solid rgba(212,184,74,.35);padding:.3rem .9rem;border-radius:100px}
-    .cta-icon{font-size:5rem;line-height:1}
-    .cta-headline{font-family:'Fraunces',serif;font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:700;color:#fff;line-height:1.08;max-width:880px}
+    /* CTA (slide 9) · HIGH-IMPACT */
+    .cta-slide{position:relative}
+    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%, rgba(212,184,74,.18), rgba(212,184,74,.04) 45%, transparent 70%);pointer-events:none;z-index:0}
+    .cta-wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:.85rem;padding:.5rem}
+    .cta-badge{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.42rem 1.15rem;border-radius:100px;box-shadow:0 0 30px rgba(212,184,74,.14)}
+    .cta-icon{font-size:clamp(4.5rem,8vw,6rem);line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;filter:drop-shadow(0 0 30px rgba(212,184,74,.28));animation:pulseHalo 3.2s ease-in-out infinite}
+    @keyframes pulseHalo{0%,100%{filter:drop-shadow(0 0 28px rgba(212,184,74,.22))}50%{filter:drop-shadow(0 0 55px rgba(212,184,74,.55))}}
+    .cta-headline{font-family:'Fraunces',serif;font-size:clamp(3.2rem,5.8vw,4.9rem);font-weight:700;color:#fff;line-height:1.02;max-width:1000px;letter-spacing:-.028em}
     .cta-headline span{color:var(--acc)}
-    .cta-action{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:700;color:#fff;line-height:1.25;max-width:760px}
-    .cta-body{font-size:1rem;color:rgba(255,255,255,.90);max-width:700px;line-height:1.55}
-    .cta-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:.55rem;margin-top:.35rem}
-    .cta-chip{background:rgba(212,184,74,.12);border:1px solid rgba(212,184,74,.42);color:var(--acc);font-weight:600;font-size:.88rem;padding:.38rem 1rem;border-radius:100px}
+    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.4vw,1.85rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);max-width:780px;line-height:1.32}
+    .cta-body{font-size:1.05rem;color:rgba(255,255,255,.90);max-width:800px;line-height:1.52;font-weight:400}
+    .cta-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;max-width:920px;width:100%;margin-top:.25rem}
+    .cta-ac{background:linear-gradient(180deg,rgba(212,184,74,.16),rgba(212,184,74,.06));border:1.5px solid rgba(212,184,74,.45);border-radius:14px;padding:.95rem .55rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;text-align:center;transition:transform .25s ease}
+    .cta-ac:hover{transform:translateY(-2px)}
+    .cta-ac-icon{font-size:1.85rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .cta-ac-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.94rem;line-height:1.18}
+    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.8rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;margin-top:.6rem;max-width:920px}
+    .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.85);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left}
+    .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
 
     /* CLOSING (slide 10) */
     .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:2rem;padding:1.5rem}
@@ -120,7 +130,6 @@
     .cst-num{font-family:'Fraunces',serif;font-size:clamp(2.4rem,4.4vw,3.8rem);font-weight:700;color:var(--acc);line-height:.95;letter-spacing:-.02em}
     .cst-lab{font-size:1.05rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.32}
     .cst-src{font-size:.85rem;color:rgba(255,255,255,.72);font-style:italic}
-    .close-tag{font-size:1.25rem;color:rgba(255,255,255,.9);font-family:'Fraunces',serif;font-style:italic;max-width:880px;line-height:1.52}
     .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.3rem}
 
     .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:.68rem;color:rgba(255,255,255,.18);z-index:90;white-space:nowrap}
@@ -453,19 +462,36 @@
     </div>
   </div>
 
-  <!-- SLIDE 9: CTA -->
-  <div class="slide">
+  <!-- SLIDE 9: CTA · HIGH-IMPACT -->
+  <div class="slide cta-slide">
+    <div class="cta-glow"></div>
     <div class="cta-wrap">
       <div class="cta-badge">Where to start</div>
       <div class="cta-icon">🌿</div>
-      <div class="cta-headline">Most benefit comes from <span>drinking less</span> than you do now</div>
-      <div class="cta-action">Not perfect. Just less.</div>
-      <div class="cta-body">Blood pressure falls within weeks. Sleep improves within days. Fatty liver reverses within months. The curve is not all-or-nothing.</div>
-      <div class="cta-chips">
-        <span class="cta-chip">3+ drink-free days</span>
-        <span class="cta-chip">Smaller measures</span>
-        <span class="cta-chip">Lower ABV options</span>
-        <span class="cta-chip">Count your units</span>
+      <div class="cta-headline">Most benefit comes from<br/><span>drinking less than you do now.</span></div>
+      <div class="cta-subline">Not perfect. Just less.</div>
+      <div class="cta-body">Blood pressure falls within weeks. Sleep improves within days. Fatty liver reverses within months. The curve is not all-or-nothing — each step down is a real health return.</div>
+      <div class="cta-actions">
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🗓️</div>
+          <div class="cta-ac-label">3+ drink-free days a week</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">📏</div>
+          <div class="cta-ac-label">Smaller measures, fewer refills</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🍺</div>
+          <div class="cta-ac-label">Lower-ABV or alcohol-free options</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🔢</div>
+          <div class="cta-ac-label">Count your units honestly</div>
+        </div>
+      </div>
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">⚕️</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Any changes you're considering are a conversation for you to have with your GP or healthcare professional.</div>
       </div>
     </div>
   </div>
@@ -493,7 +519,10 @@
           <div class="cst-src">IARC · Group 1</div>
         </div>
       </div>
-      <div class="close-tag">Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">⚕️</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+      </div>
       <div class="close-series">Practical Health Series · Article 12</div>
     </div>
   </div>
