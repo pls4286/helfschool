@@ -6,7 +6,7 @@
   <title>The Mediterranean Diet — Visuals | helf.school</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520}
+    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--calm:#70b8e8}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
 
@@ -15,66 +15,64 @@
     .tb-logo{display:flex;align-items:center;gap:.5rem}
     .tb-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff}
     .tb-dot{color:var(--coral)}
-    .tb-sub{font-size:.75rem;color:rgba(255,255,255,.75);margin-left:.25rem}
+    .tb-sub{font-size:.75rem;color:rgba(255,255,255,.78);margin-left:.25rem;font-weight:500}
     .tb-right{display:flex;align-items:center;gap:1.2rem}
-    .slide-counter{font-size:.85rem;font-weight:700;color:rgba(255,255,255,.90)}
-    .kb-hint{font-size:.72rem;color:rgba(255,255,255,.60)}
+    .slide-counter{font-size:.88rem;font-weight:700;color:rgba(255,255,255,.90)}
+    .kb-hint{font-size:.75rem;color:rgba(255,255,255,.65)}
 
     /* STAGE */
-    #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:2.5vh 1.5rem 4vh;overflow:hidden}
+    #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:2.2vh 1.25rem 3.5vh;overflow:hidden}
 
     /* SLIDES */
-    .slide{display:none;width:100%;max-width:1120px;height:100%;animation:sIn .35s ease}
+    .slide{display:none;width:100%;max-width:1140px;height:100%;animation:sIn .32s ease}
     .slide.active{display:flex;flex-direction:column;min-height:0}
-    @keyframes sIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes sIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-    .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.2rem,2vw,1.7rem);font-weight:700;color:#fff;margin-bottom:1rem;padding-bottom:.65rem;border-bottom:2px solid rgba(212,184,74,.3);flex-shrink:0}
+    .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.1vw,1.75rem);font-weight:700;color:#fff;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:2px solid rgba(212,184,74,.3);flex-shrink:0}
     .slide-title span{color:var(--acc)}
 
     /* SEGMENT DOTS */
-    #dots{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:200}
+    #dots{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:200}
     .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .25s}
     .dot.active{background:var(--acc);transform:scale(1.3)}
 
     /* ─── SLIDE 1: INTRO ─── */
-    .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;text-align:center;gap:1.4rem}
-    .intro-badge{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.12);border:1px solid rgba(212,184,74,.3);padding:.3rem .9rem;border-radius:100px}
-    .intro-title{font-family:'Fraunces',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:700;color:#fff;line-height:1.1;max-width:860px}
+    .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.3rem}
+    .intro-badge{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.12);border:1px solid rgba(212,184,74,.3);padding:.3rem .9rem;border-radius:100px}
+    .intro-icon{font-size:4rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .intro-title{font-family:'Fraunces',serif;font-size:clamp(2.6rem,5.5vw,4.4rem);font-weight:700;color:#fff;line-height:1.05;max-width:860px;letter-spacing:-.02em}
     .intro-title span{color:var(--acc)}
-    .intro-sub{font-size:1.05rem;color:rgba(255,255,255,.72);font-style:italic;font-family:'Fraunces',serif;max-width:600px;line-height:1.5}
-    .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:.5rem}
+    .intro-sub{font-size:1.1rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;max-width:680px;line-height:1.5;font-weight:400}
+    .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
 
     /* ─── SLIDE 2: THE PLATE ─── */
     .plate-layout{display:flex;flex-direction:column;align-items:center;flex:1;min-height:0;gap:1rem}
     .plate-top{display:flex;align-items:center;justify-content:center;gap:2rem;flex-shrink:0}
     .plate-wrap{flex-shrink:0}
-    /* Food rows — horizontal strips with colour swatch, name, pct, description */
     .food-rows{display:flex;flex-direction:column;gap:.5rem;width:100%}
     .food-row{display:flex;align-items:center;gap:.9rem;padding:.6rem 1rem;border-radius:10px;background:rgba(255,255,255,.05);border-left:5px solid transparent;opacity:0;transform:translateY(10px);transition:opacity .4s ease,transform .4s ease}
     .food-row.vis{opacity:1;transform:translateY(0)}
     .food-row-pct{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;line-height:1;min-width:52px;text-align:right;flex-shrink:0}
     .food-row-div{width:1px;height:32px;background:rgba(255,255,255,.15);flex-shrink:0}
     .food-row-name{font-size:1rem;font-weight:700;color:#fff;min-width:140px;flex-shrink:0}
-    .food-row-desc{font-size:.82rem;color:rgba(255,255,255,.72);line-height:1.4;flex:1}
-    /* Stat in centre hub — handled via SVG text */
-    .plate-stat{background:rgba(232,99,74,.15);border:2px solid rgba(232,99,74,.5);border-radius:14px;padding:.75rem 1.25rem;opacity:0;transition:opacity .6s ease;text-align:center;flex-shrink:0}
+    .food-row-desc{font-size:.86rem;color:rgba(255,255,255,.82);line-height:1.4;flex:1;font-weight:400}
+    .plate-stat{background:rgba(126,204,153,.14);border:2px solid rgba(126,204,153,.5);border-radius:14px;padding:.75rem 1.25rem;opacity:0;transition:opacity .6s ease;text-align:center;flex-shrink:0}
     .plate-stat.vis{opacity:1}
-    .plate-stat-num{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;color:#ff7058;line-height:1}
-    .plate-stat-heading{font-size:.85rem;font-weight:700;color:#fff;margin-top:.2rem;line-height:1.3}
-    .plate-stat-label{font-size:.72rem;color:rgba(255,255,255,.78);margin-top:.2rem;line-height:1.35}
+    .plate-stat-num{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:var(--good);line-height:1;letter-spacing:-.02em}
+    .plate-stat-heading{font-size:.9rem;font-weight:700;color:#fff;margin-top:.2rem;line-height:1.3}
+    .plate-stat-label{font-size:.78rem;color:rgba(255,255,255,.82);margin-top:.25rem;line-height:1.35;font-style:italic}
 
     /* ─── SLIDE 3: FOOD TIERS ─── */
     .tiers-layout{display:flex;flex-direction:column;gap:.75rem;flex:1;min-height:0}
     .tier-row{border-radius:13px;overflow:hidden;opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease}
     .tier-row.vis{opacity:1;transform:translateY(0)}
     .tier-head{padding:.75rem 1.25rem;display:flex;align-items:center;gap:1rem}
-    .tier-head-icon{font-size:1.6rem;flex-shrink:0}
+    .tier-head-icon{font-size:1.6rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
     .tier-head-label{flex:1;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
-    /* THE BIG FREQUENCY BADGE — this is what needs to dominate */
     .tier-freq-badge{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:700;letter-spacing:.01em;line-height:1;padding:.3rem .9rem;border-radius:8px;flex-shrink:0;white-space:nowrap}
-    .tier-head-sub{font-size:.8rem;color:rgba(255,255,255,.72);line-height:1.35}
+    .tier-head-sub{font-size:.88rem;color:rgba(255,255,255,.82);line-height:1.35;font-weight:400}
     .tier-chips{padding:.55rem 1.25rem .75rem;display:flex;flex-wrap:wrap;gap:.4rem}
-    .chip{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:.22rem .8rem;font-size:.82rem;font-weight:500;color:rgba(255,255,255,.95)}
+    .chip{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);border-radius:100px;padding:.22rem .8rem;font-size:.85rem;font-weight:500;color:rgba(255,255,255,.95)}
 
     .t1-head{background:#2a5238}
     .t1-body{background:#1e3028}
@@ -85,98 +83,80 @@
     .t3-head{background:#5a3028}
     .t3-body{background:#3a2018}
     .t3-badge{background:#3a1a10;color:#f09080;border:2px solid #c06040}
-    .t3-chip{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.12)}
+    .t3-chip{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.15)}
 
     /* ─── SLIDE 4: PREDIMED ─── */
     .predimed-layout{display:flex;flex-direction:column;flex:1;min-height:0;gap:1rem}
-    .predimed-top{display:flex;align-items:center;gap:1.5rem;background:rgba(126,204,153,.08);border:1px solid rgba(126,204,153,.25);border-radius:14px;padding:1rem 1.5rem;flex-shrink:0}
-    .predimed-num{font-family:'Fraunces',serif;font-size:4.5rem;font-weight:700;color:#7ecc99;line-height:1;flex-shrink:0}
+    .predimed-top{display:flex;align-items:center;gap:1.5rem;background:rgba(126,204,153,.09);border:1px solid rgba(126,204,153,.32);border-radius:14px;padding:1rem 1.5rem;flex-shrink:0}
+    .predimed-num{font-family:'Fraunces',serif;font-size:4.5rem;font-weight:700;color:var(--good);line-height:1;flex-shrink:0;letter-spacing:-.02em}
     .predimed-top-text{flex:1}
-    .predimed-label{font-size:1rem;color:#fff;font-weight:700;line-height:1.3;margin-bottom:.2rem}
-    .predimed-sub{font-size:.78rem;color:rgba(255,255,255,.62);line-height:1.4}
-    .predimed-detail h3{font-family:'Fraunces',serif;font-size:1rem;color:rgba(255,255,255,.65);font-weight:700;margin-bottom:.65rem;text-transform:uppercase;letter-spacing:.08em;font-size:.7rem;flex-shrink:0}
+    .predimed-label{font-size:1.05rem;color:#fff;font-weight:700;line-height:1.3;margin-bottom:.25rem}
+    .predimed-sub{font-size:.85rem;color:rgba(255,255,255,.82);line-height:1.4;font-weight:400}
+    .predimed-head{font-family:'Fraunces',serif;font-size:.72rem;color:rgba(255,255,255,.72);font-weight:700;letter-spacing:.12em;text-transform:uppercase;flex-shrink:0}
     .predimed-facts{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;flex:1;min-height:0}
     .predimed-fact{display:flex;align-items:flex-start;gap:.65rem;padding:.75rem .9rem;background:rgba(255,255,255,.05);border-radius:10px;border-left:3px solid rgba(212,184,74,.4)}
-    .pf-icon{font-size:1.1rem;flex-shrink:0;margin-top:.05rem}
-    .pf-text{font-size:.86rem;color:rgba(255,255,255,.88);line-height:1.5;font-weight:400}
-    .pf-text strong{color:#fff;font-weight:600}
+    .pf-icon{font-size:1.1rem;flex-shrink:0;margin-top:.05rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .pf-text{font-size:.9rem;color:rgba(255,255,255,.90);line-height:1.5;font-weight:400}
+    .pf-text strong{color:#fff;font-weight:700}
     .bar-compare{background:rgba(255,255,255,.04);border-radius:10px;padding:.75rem 1rem;flex-shrink:0}
-    .bar-label{font-size:.72rem;color:rgba(255,255,255,.60);margin-bottom:.5rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+    .bar-label{font-size:.78rem;color:rgba(255,255,255,.78);margin-bottom:.5rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
     .bar-row{display:flex;align-items:center;gap:.7rem;margin-bottom:.45rem}
     .bar-row:last-child{margin-bottom:0}
-    .bar-name{font-size:.78rem;color:rgba(255,255,255,.85);width:150px;flex-shrink:0;font-weight:500}
-    .bar-track{flex:1;height:20px;background:rgba(255,255,255,.08);border-radius:10px;overflow:hidden;position:relative}
-    .bar-fill{height:100%;border-radius:10px;transition:width 1s ease .3s;width:0}
-    .bar-pct{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:.74rem;font-weight:700;color:#fff}
+    .bar-name{font-size:.82rem;color:rgba(255,255,255,.92);width:170px;flex-shrink:0;font-weight:500}
+    .bar-track{flex:1;height:22px;background:rgba(255,255,255,.08);border-radius:11px;overflow:hidden;position:relative}
+    .bar-fill{height:100%;border-radius:11px;transition:width 1s ease .3s;width:0}
+    .bar-pct{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:.8rem;font-weight:700;color:#fff}
     .bar-row.med .bar-fill{background:linear-gradient(90deg,#4a9a65,#7ecc99)}
     .bar-row.ctl .bar-fill{background:linear-gradient(90deg,#c85038,#e87858)}
 
-    /* ─── SLIDE 5: THREE BENEFITS ─── */
-    .benefits-grid{display:flex;gap:1.25rem;flex:1;align-items:stretch;min-height:0}
-    .ben-card{flex:1;border-radius:16px;padding:1.1rem 1.1rem .9rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;min-height:0;overflow:hidden}
+    /* ─── SLIDE 5: BENEFITS — HORIZONTAL ROWS · ACTION/PROTECTION · GREEN ─── */
+    .ben-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(3,1fr);gap:.65rem;flex:1;min-height:0}
+    .ben-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.32);border-radius:14px;padding:1rem 1.5rem;display:grid;grid-template-columns:72px 1fr auto;gap:1.5rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .45s ease}
     .ben-card.vis{opacity:1;transform:translateY(0)}
-    .ben-icon{font-size:2rem;line-height:1;flex-shrink:0}
-    .ben-reduction-label{font-size:.65rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:.18rem .75rem;border-radius:100px;display:flex;align-items:center;gap:.3rem;flex-shrink:0}
-    .ben-reduction-label .arr{font-size:.95rem;line-height:1}
-    .ben-num{font-family:'Fraunces',serif;font-size:3.2rem;font-weight:700;line-height:1;flex-shrink:0}
-    .ben-num-sub{font-size:.74rem;font-weight:700;color:rgba(255,255,255,.80);letter-spacing:.03em;margin-top:-.15rem;flex-shrink:0}
-    .ben-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff;flex-shrink:0}
-    .ben-desc{font-size:.82rem;color:rgba(255,255,255,.82);line-height:1.48;font-weight:400;flex:1}
-    .ben-source{font-size:.70rem;color:rgba(255,255,255,.60);padding-top:.35rem;border-top:1px solid rgba(255,255,255,.08);width:100%;flex-shrink:0}
-    .ben-heart{background:rgba(200,66,58,.12);border:1px solid rgba(200,66,58,.3)}
-    .ben-heart .ben-reduction-label{background:rgba(200,66,58,.25);border:1px solid rgba(200,66,58,.5);color:#ff9090}
-    .ben-diab{background:rgba(232,168,74,.1);border:1px solid rgba(232,168,74,.3)}
-    .ben-diab .ben-reduction-label{background:rgba(232,168,74,.2);border:1px solid rgba(232,168,74,.5);color:#e8d070}
-    .ben-brain{background:rgba(107,94,168,.12);border:1px solid rgba(107,94,168,.3)}
-    .ben-brain .ben-reduction-label{background:rgba(107,94,168,.25);border:1px solid rgba(107,94,168,.5);color:#c0b0f0}
+    .ben-icon{font-size:2.8rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .ben-content{display:flex;flex-direction:column;gap:.28rem;min-width:0}
+    .ben-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;line-height:1.12;letter-spacing:-.01em}
+    .ben-body{font-size:1rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400}
+    .ben-src{font-size:.8rem;color:rgba(255,255,255,.72);margin-top:.15rem;font-style:italic;line-height:1.35}
+    .ben-stat{font-family:'Fraunces',serif;font-size:clamp(2.4rem,3.6vw,3.4rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:1rem;display:flex;flex-direction:column;align-items:flex-end;gap:.2rem}
+    .ben-stat-lbl{font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(126,204,153,.95);line-height:1}
 
-    /* ─── SLIDE 6: HOW TO START ─── */
-    .start-layout{display:flex;gap:1.5rem;flex:1;align-items:stretch}
-    .start-card{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(212,184,74,.2);border-radius:16px;padding:1.5rem 1.25rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.9rem;opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
-    .start-card.vis{opacity:1;transform:translateY(0)}
-    .start-num{font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:rgba(212,184,74,.3);line-height:1}
-    .start-icon{font-size:2.5rem}
-    /* Butter→oil swap row */
-    .swap-row{display:flex;align-items:center;justify-content:center;gap:.7rem;background:rgba(0,0,0,.2);border-radius:14px;padding:.7rem 1.2rem}
-    .swap-from{display:flex;flex-direction:column;align-items:center;gap:.25rem}
-    .swap-from .s-emoji{font-size:2.4rem;line-height:1}
-    .swap-from .s-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.50)}
-    .swap-from.old .s-label{color:rgba(232,99,74,.75)}
-    .swap-from.new .s-label{color:rgba(212,184,74,.9)}
-    .swap-arrow{font-size:1.6rem;color:var(--acc);font-weight:700;line-height:1;flex-shrink:0}
-    .start-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;line-height:1.3}
-    .start-body{font-size:.85rem;color:rgba(255,255,255,.80);line-height:1.55;font-weight:400}
-    .start-badge{background:rgba(212,184,74,.15);border:1px solid rgba(212,184,74,.3);border-radius:100px;font-size:.72rem;font-weight:700;color:var(--acc);padding:.2rem .75rem;margin-top:auto}
+    /* ─── SLIDE 6: CTA · HIGH-IMPACT ─── */
+    .cta-slide{position:relative}
+    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%, rgba(212,184,74,.18), rgba(212,184,74,.04) 45%, transparent 70%);pointer-events:none;z-index:0}
+    .cta-wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:.85rem;padding:.5rem}
+    .cta-badge{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.42rem 1.15rem;border-radius:100px;box-shadow:0 0 30px rgba(212,184,74,.14)}
+    .cta-icon{font-size:clamp(4.5rem,8vw,6rem);line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;filter:drop-shadow(0 0 30px rgba(212,184,74,.28));animation:pulseHalo 3.2s ease-in-out infinite}
+    @keyframes pulseHalo{0%,100%{filter:drop-shadow(0 0 28px rgba(212,184,74,.22))}50%{filter:drop-shadow(0 0 55px rgba(212,184,74,.55))}}
+    .cta-headline{font-family:'Fraunces',serif;font-size:clamp(3.2rem,5.8vw,4.9rem);font-weight:700;color:#fff;line-height:1.02;max-width:1000px;letter-spacing:-.028em}
+    .cta-headline span{color:var(--acc)}
+    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.4vw,1.85rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);max-width:780px;line-height:1.32}
+    .cta-body{font-size:1.05rem;color:rgba(255,255,255,.90);max-width:780px;line-height:1.52;font-weight:400}
+    .cta-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;max-width:900px;width:100%;margin-top:.25rem}
+    .cta-ac{background:linear-gradient(180deg,rgba(212,184,74,.16),rgba(212,184,74,.06));border:1.5px solid rgba(212,184,74,.45);border-radius:14px;padding:.95rem .55rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;text-align:center;transition:transform .25s ease}
+    .cta-ac:hover{transform:translateY(-2px)}
+    .cta-ac-icon{font-size:1.85rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .cta-ac-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.98rem;line-height:1.18}
+    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.8rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;margin-top:.6rem;max-width:900px}
+    .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.85);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left}
+    .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
 
     /* ─── SLIDE 7: CLOSING ─── */
-    .closing-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;text-align:center;gap:1.3rem}
-    .closing-logo{font-family:'Fraunces',serif;font-size:2rem;font-weight:700;color:#fff}
-    .closing-logo span{color:var(--coral)}
-    .closing-tagline{font-size:.8rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.70)}
-    .closing-title{font-family:'Fraunces',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#fff;max-width:700px;line-height:1.2}
-    .closing-title span{color:var(--acc)}
-    .closing-sub{font-size:.95rem;color:rgba(255,255,255,.68);font-style:italic;font-family:'Fraunces',serif;max-width:520px;line-height:1.5}
-    .closing-series{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45)}
-    /* ─── SLIDES 6/7/8: FULL-SCREEN CTA ─── */
-    .cta-slide{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;text-align:center;gap:1.1rem;max-width:720px;margin:0 auto}
-    .cta-badge{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:.25rem .85rem;border-radius:100px;color:rgba(255,255,255,.65)}
-    .cta-timeframe{font-family:'Fraunces',serif;font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;line-height:1.05;letter-spacing:.01em}
-    .cta-today .cta-timeframe{color:#f0cc50}
-    .cta-week .cta-timeframe{color:#7ecc99}
-    .cta-month .cta-timeframe{color:#70b8e8}
-    /* Swap row (slide 6 only) */
-    .cta-swap-row{display:flex;align-items:center;justify-content:center;gap:1.5rem;background:rgba(0,0,0,.25);border-radius:18px;padding:1.2rem 2rem;margin:.25rem 0}
-    .cta-from{display:flex;flex-direction:column;align-items:center;gap:.5rem}
-    .cta-from-label{font-size:.95rem;font-weight:700;color:rgba(255,255,255,.85)}
-    .cta-from.old .cta-from-label{color:rgba(232,99,74,.85);text-decoration:line-through}
-    .cta-from.new .cta-from-label{color:#e8d060}
-    .cta-arrow{font-size:2.5rem;color:var(--acc);font-weight:700;line-height:1}
-    /* Big icon (slides 7/8) */
-    .cta-icon-big{font-size:5rem;line-height:1}
-    .cta-title{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;color:#fff;line-height:1.2;max-width:640px}
-    .cta-body{font-size:1rem;color:rgba(255,255,255,.82);line-height:1.65;max-width:580px;font-weight:400}
-    .cta-examples{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:.25rem}
-    .cta-chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:.3rem 1rem;font-size:.88rem;font-weight:600;color:rgba(255,255,255,.90)}
+    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.6rem;padding:1.5rem}
+    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
+    .close-logo .dot{color:var(--coral)}
+    .close-sub{font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+    .close-headline{font-family:'Fraunces',serif;font-size:clamp(2.6rem,5.2vw,4.4rem);font-weight:700;color:#fff;max-width:1000px;line-height:1.08;letter-spacing:-.025em}
+    .close-headline span{color:var(--acc)}
+    .close-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1000px;width:100%}
+    .cst-card{background:rgba(212,184,74,.1);border:1px solid rgba(212,184,74,.35);border-radius:16px;padding:1.3rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.45rem}
+    .cst-num{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3rem);font-weight:700;color:var(--acc);line-height:.95;letter-spacing:-.02em}
+    .cst-lab{font-size:.98rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.32}
+    .cst-src{font-size:.78rem;color:rgba(255,255,255,.72);font-style:italic}
+    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.2rem}
+
+    .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:.68rem;color:rgba(255,255,255,.22);z-index:90;white-space:nowrap}
   </style>
 </head>
 <body>
@@ -186,14 +166,14 @@
   <div class="tb-logo">
     <svg width="20" height="16" viewBox="0 0 22 18" fill="none">
       <path d="M11 2C8 2 5.5 4 4 6.5 2.5 9 2.5 12 4 14.5c1 1.8 2.8 3 5 3.4V4.5" stroke="#E8634A" stroke-width="1.8" stroke-linecap="round"/>
-      <path d="M11 2C14 2 16.5 4 18 6.5 19.5 9 19.5 12 18 14.5c-1 1.8-2.8 3-5 3.4V4.5" stroke="rgba(255,255,255,0.55)" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M11 2C14 2 16.5 4 18 6.5 19.5 9 19.5 12 18 14.5c-1 1.8-2.8 3-5 3.4V4.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round"/>
     </svg>
     <span class="tb-title">helf<span class="tb-dot">.</span>school</span>
-    <span class="tb-sub">The Mediterranean Diet · Practical Health Series · Article 08</span>
+    <span class="tb-sub">· The Mediterranean Diet</span>
   </div>
   <div class="tb-right">
-    <span class="kb-hint">← → keys</span>
-    <span class="slide-counter" id="counter">1 / 7</span>
+    <span id="counter" class="slide-counter">1 / 7</span>
+    <span class="kb-hint">← → navigate</span>
   </div>
 </div>
 
@@ -201,28 +181,21 @@
 <div id="stage">
 
   <!-- SLIDE 1: INTRO -->
-  <div class="slide active" id="s1">
+  <div class="slide active">
     <div class="intro-wrap">
       <div class="intro-badge">📋 Practical Health Series · Article 08</div>
+      <div class="intro-icon">🫒</div>
       <div class="intro-title">The <span>Mediterranean</span> Diet</div>
-      <div class="intro-sub">What does the evidence actually show — and how do you start?</div>
-      <div class="intro-tagline">helf.school · Health Education for Everyone</div>
+      <div class="intro-sub">What the evidence actually shows — and how to start from your next meal.</div>
+      <div class="intro-tagline">Dr Paul · Retired NHS GP · helf.school</div>
     </div>
   </div>
 
   <!-- SLIDE 2: THE PLATE -->
-  <div class="slide" id="s2">
+  <div class="slide">
     <div class="slide-title">A typical <span>Mediterranean plate</span> — approximate proportions per meal</div>
     <div class="plate-layout">
 
-      <!-- TOP ROW: correctly-proportioned donut + stat card -->
-      <!-- Arc maths: centre(100,100) r=88. θ from 12-o-clock clockwise.     -->
-      <!-- x=100+88·sin(θ)  y=100−88·cos(θ)                                  -->
-      <!-- Veg 35% → θ=126° → (171.2,151.7)  large-arc=0                    -->
-      <!-- Grains 25% → θ=216° → (48.3,171.2) large-arc=0                   -->
-      <!-- Fish 15% → θ=270° → (12,100)       large-arc=0                   -->
-      <!-- Legumes 15% → θ=324° → (48.3,28.8) large-arc=0                   -->
-      <!-- Oil 10% → θ=360° → (100,12)        large-arc=0                   -->
       <div class="plate-top">
         <div class="plate-wrap">
           <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -246,20 +219,20 @@
             <line x1="100" y1="100" x2="48.3" y2="28.8" stroke="#0d1520" stroke-width="2"/>
             <!-- Centre hole -->
             <circle cx="100" cy="100" r="38" fill="#0d1520"/>
-            <text x="100" y="96" text-anchor="middle" fill="rgba(255,255,255,0.50)" font-family="DM Sans,sans-serif" font-size="8.5" font-weight="700" letter-spacing="1">MED</text>
-            <text x="100" y="108" text-anchor="middle" fill="rgba(255,255,255,0.50)" font-family="DM Sans,sans-serif" font-size="8.5" font-weight="700" letter-spacing="1">DIET</text>
+            <text x="100" y="96" text-anchor="middle" fill="rgba(255,255,255,0.80)" font-family="DM Sans,sans-serif" font-size="8.5" font-weight="700" letter-spacing="1">MED</text>
+            <text x="100" y="108" text-anchor="middle" fill="rgba(255,255,255,0.80)" font-family="DM Sans,sans-serif" font-size="8.5" font-weight="700" letter-spacing="1">DIET</text>
           </svg>
         </div>
 
-        <!-- STAT CARD -->
+        <!-- STAT CARD — green (protective outcome) -->
         <div class="plate-stat" id="pstat">
           <div class="plate-stat-num">~30%</div>
-          <div class="plate-stat-heading">↓ reduction in heart attacks,<br>strokes &amp; CV death</div>
-          <div class="plate-stat-label">PREDIMED trial · NEJM 2018<br>7,447 participants</div>
+          <div class="plate-stat-heading">↓ heart attacks, strokes<br>&amp; cardiovascular death</div>
+          <div class="plate-stat-label">PREDIMED · NEJM 2018 · 7,447 participants</div>
         </div>
       </div>
 
-      <!-- FOOD ROWS — proportion of a typical meal plate -->
+      <!-- FOOD ROWS -->
       <div class="food-rows">
         <div class="food-row" id="li0" style="border-color:#3a7a50">
           <div class="food-row-pct" style="color:#5ecc80">35%</div>
@@ -297,7 +270,7 @@
   </div>
 
   <!-- SLIDE 3: FOOD TIERS -->
-  <div class="slide" id="s3">
+  <div class="slide">
     <div class="slide-title">Three <span>tiers</span> — what to eat freely, regularly, and occasionally</div>
     <div class="tiers-layout">
 
@@ -357,8 +330,8 @@
   </div>
 
   <!-- SLIDE 4: PREDIMED EVIDENCE -->
-  <div class="slide" id="s4">
-    <div class="slide-title">The <span>PREDIMED</span> trial — the largest dietary evidence we have</div>
+  <div class="slide">
+    <div class="slide-title">The <span>PREDIMED</span> trial — the strongest dietary evidence we have</div>
     <div class="predimed-layout">
 
       <!-- TOP: big stat + trial headline -->
@@ -366,12 +339,12 @@
         <div class="predimed-num">~30%</div>
         <div class="predimed-top-text">
           <div class="predimed-label">↓ reduction in heart attacks, strokes &amp; cardiovascular death</div>
-          <div class="predimed-sub">vs standard low-fat dietary advice · PREDIMED trial · New England Journal of Medicine 2018</div>
+          <div class="predimed-sub">vs a standard low-fat control diet · PREDIMED · New England Journal of Medicine 2018 re-analysis</div>
         </div>
       </div>
 
       <!-- FACT PANELS: 2×2 grid -->
-      <h3 class="predimed-detail" style="font-family:'Fraunces',serif;font-size:.7rem;color:rgba(255,255,255,.55);font-weight:700;letter-spacing:.12em;text-transform:uppercase;flex-shrink:0">What was studied</h3>
+      <h3 class="predimed-head">What was studied</h3>
       <div class="predimed-facts">
         <div class="predimed-fact">
           <div class="pf-icon">👥</div>
@@ -379,15 +352,15 @@
         </div>
         <div class="predimed-fact">
           <div class="pf-icon">🎲</div>
-          <div class="pf-text">Randomly assigned to: Mediterranean + olive oil · Mediterranean + nuts · or low-fat control</div>
+          <div class="pf-text">Randomly assigned to: Mediterranean + extra-virgin olive oil · Mediterranean + mixed nuts · or low-fat control</div>
         </div>
         <div class="predimed-fact">
           <div class="pf-icon">⏱️</div>
-          <div class="pf-text"><strong>Stopped after 4.8 years</strong> — monitoring board halted it early because the benefit was too clear to continue ethically</div>
+          <div class="pf-text"><strong>Stopped after 4.8 years</strong> — the monitoring board halted it early because the cardiovascular benefit was clear</div>
         </div>
         <div class="predimed-fact">
           <div class="pf-icon">📊</div>
-          <div class="pf-text">Hazard ratio 0.70 (95% CI 0.54–0.92) — a statistically robust result ⚑</div>
+          <div class="pf-text">Hazard ratio 0.70 (95% CI 0.54–0.92) — HR 0.70 = 30% lower risk vs the control group ⚑</div>
         </div>
       </div>
 
@@ -413,126 +386,115 @@
     </div>
   </div>
 
-  <!-- SLIDE 5: THREE BENEFITS -->
-  <div class="slide" id="s5">
+  <!-- SLIDE 5: BENEFITS · HORIZONTAL ROWS · PROTECTION · GREEN -->
+  <div class="slide">
     <div class="slide-title">The evidence goes well <span>beyond the heart</span></div>
-    <div class="benefits-grid">
+    <div class="ben-grid">
 
-      <div class="ben-card ben-heart" id="bc1">
+      <div class="ben-card" id="b1">
         <div class="ben-icon">❤️</div>
-        <div class="ben-reduction-label"><span class="arr">↓</span> RISK REDUCTION</div>
-        <div class="ben-num" style="color:#e87878">~30%</div>
-        <div class="ben-num-sub">fewer heart attacks &amp; strokes</div>
-        <div class="ben-title">Heart disease &amp; stroke</div>
-        <div class="ben-desc">Lower risk of major cardiovascular events in people at high risk — the strongest dietary evidence in prevention medicine</div>
-        <div class="ben-source">PREDIMED · NEJM 2018</div>
+        <div class="ben-content">
+          <div class="ben-title">Heart disease &amp; stroke</div>
+          <div class="ben-body">Lower risk of major cardiovascular events in people at high baseline risk — the strongest dietary evidence in prevention medicine.</div>
+          <div class="ben-src">PREDIMED · NEJM 2018 re-analysis</div>
+        </div>
+        <div class="ben-stat">
+          <span class="ben-stat-lbl">↓ Risk</span>
+          ~30%
+        </div>
       </div>
 
-      <div class="ben-card ben-diab" id="bc2">
+      <div class="ben-card" id="b2">
         <div class="ben-icon">🩺</div>
-        <div class="ben-reduction-label"><span class="arr">↓</span> RISK REDUCTION</div>
-        <div class="ben-num" style="color:#e8c870">23%</div>
-        <div class="ben-num-sub">lower risk of type 2 diabetes</div>
-        <div class="ben-title">Type 2 diabetes</div>
-        <div class="ben-desc">Lower risk of developing type 2 diabetes with higher adherence — consistent across 10 studies and 136,846 participants</div>
-        <div class="ben-source">Koloverou et al. · 2014 meta-analysis</div>
+        <div class="ben-content">
+          <div class="ben-title">Type 2 diabetes</div>
+          <div class="ben-body">Lower risk of developing type 2 diabetes at higher adherence — consistent across 10 studies and 136,846 participants.</div>
+          <div class="ben-src">Koloverou et al. · Metabolism · 2014 meta-analysis</div>
+        </div>
+        <div class="ben-stat">
+          <span class="ben-stat-lbl">↓ Risk</span>
+          23%
+        </div>
       </div>
 
-      <div class="ben-card ben-brain" id="bc3">
+      <div class="ben-card" id="b3">
         <div class="ben-icon">🧠</div>
-        <div class="ben-reduction-label"><span class="arr">↓</span> RISK REDUCTION</div>
-        <div class="ben-num" style="color:#b0a0e8">up to 30%</div>
-        <div class="ben-num-sub">lower risk of Alzheimer's disease</div>
-        <div class="ben-title">Dementia &amp; brain health</div>
-        <div class="ben-desc">Lower risk of Alzheimer's disease and cognitive decline — growing evidence from a 2025 meta-analysis covering 24 years of studies</div>
-        <div class="ben-source">Dominguez LJ et al. · GeroScience · 2025</div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- SLIDE 6: CTA — TODAY -->
-  <div class="slide" id="s6">
-    <div class="cta-slide cta-today">
-      <div class="cta-badge">Step 1 of 3</div>
-      <div class="cta-timeframe">TODAY'S CHANGE</div>
-      <div class="cta-swap-row">
-        <div class="cta-from old">
-          <svg width="90" height="84" viewBox="0 0 56 52" fill="none">
-            <rect x="4" y="14" width="48" height="28" rx="4" fill="#f5d97a"/>
-            <rect x="4" y="14" width="48" height="8" rx="4" fill="#e8c84a"/>
-            <rect x="4" y="14" width="6" height="28" rx="2" fill="#f0d060"/>
-            <rect x="46" y="14" width="6" height="28" rx="2" fill="#f0d060"/>
-            <rect x="10" y="24" width="36" height="10" rx="2" fill="#fff" opacity=".6"/>
-            <text x="28" y="32" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" font-weight="700" fill="#8a6a00">BUTTER</text>
-            <line x1="6" y1="6" x2="50" y2="50" stroke="rgba(220,60,50,.9)" stroke-width="4" stroke-linecap="round"/>
-            <line x1="50" y1="6" x2="6" y2="50" stroke="rgba(220,60,50,.9)" stroke-width="4" stroke-linecap="round"/>
-          </svg>
-          <span class="cta-from-label">Butter</span>
+        <div class="ben-content">
+          <div class="ben-title">Dementia &amp; brain health</div>
+          <div class="ben-body">Lower risk of Alzheimer's disease and cognitive decline — growing evidence from a 2025 meta-analysis covering 24 years of studies.</div>
+          <div class="ben-src">Dominguez LJ et al. · GeroScience · 2025</div>
         </div>
-        <div class="cta-arrow">→</div>
-        <div class="cta-from new">
-          <svg width="72" height="90" viewBox="0 0 48 58" fill="none">
-            <path d="M14 28 C14 20 10 16 10 10 L38 10 C38 16 34 20 34 28 L34 50 C34 53 31 55 24 55 C17 55 14 53 14 50 Z" fill="#c8b840"/>
-            <path d="M15 30 C15 23 11.5 18 11.5 12 L36.5 12 C36.5 18 33 23 33 30 L33 50 C33 52.5 30 53.5 24 53.5 C18 53.5 15 52.5 15 50 Z" fill="#d4b82a"/>
-            <path d="M15 36 L33 36 L33 50 C33 52.5 30 53.5 24 53.5 C18 53.5 15 52.5 15 50 Z" fill="#7a9e30" opacity=".9"/>
-            <rect x="19" y="4" width="10" height="7" rx="2" fill="#b8a82a"/>
-            <rect x="18" y="1" width="12" height="5" rx="2.5" fill="#e8634a"/>
-            <rect x="14" y="35" width="20" height="12" rx="2" fill="rgba(255,255,255,.2)"/>
-            <text x="24" y="43" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="5.5" font-weight="700" fill="#fff">OLIVE</text>
-            <text x="24" y="52" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="4.5" font-weight="600" fill="rgba(255,255,255,.7)">OIL</text>
-            <ellipse cx="20" cy="22" rx="2.5" ry="6" fill="rgba(255,255,255,.18)" transform="rotate(-15 20 22)"/>
-          </svg>
-          <span class="cta-from-label">Extra-virgin olive oil</span>
+        <div class="ben-stat">
+          <span class="ben-stat-lbl">↓ Risk</span>
+          ~30%
         </div>
       </div>
-      <div class="cta-title">Swap butter for extra-virgin olive oil</div>
-      <div class="cta-body">Use it for cooking, drizzling, and dressings. This single swap shifts your fat intake from saturated to monounsaturated — the most important fat in the Mediterranean diet.</div>
+
     </div>
   </div>
 
-  <!-- SLIDE 7: CTA — THIS WEEK -->
-  <div class="slide" id="s7">
-    <div class="cta-slide cta-week">
-      <div class="cta-badge">Step 2 of 3</div>
-      <div class="cta-timeframe">THIS WEEK'S CHANGE</div>
-      <div class="cta-icon-big">🐟</div>
-      <div class="cta-title">Add oily fish twice this week</div>
-      <div class="cta-body">Salmon, mackerel, sardines, herring, or anchovies. Tinned is completely fine — and affordable. Two portions a week is the Mediterranean target, and the research shows it makes a real difference to cardiovascular risk.</div>
-      <div class="cta-examples">
-        <span class="cta-chip">Tinned sardines on toast</span>
-        <span class="cta-chip">Salmon fillet with vegetables</span>
-        <span class="cta-chip">Mackerel with salad</span>
-        <span class="cta-chip">Anchovies in pasta</span>
+  <!-- SLIDE 6: CTA · HIGH-IMPACT -->
+  <div class="slide cta-slide">
+    <div class="cta-glow"></div>
+    <div class="cta-wrap">
+      <div class="cta-badge">Where to start</div>
+      <div class="cta-icon">🫒</div>
+      <div class="cta-headline">Start with one meal.<br/><span>Not a transformation.</span></div>
+      <div class="cta-subline">Small swaps. Long returns.</div>
+      <div class="cta-body">The Mediterranean diet isn't a strict regime — it's a pattern. Four practical shifts capture most of the evidence-based benefit, and each one can start at your next meal.</div>
+      <div class="cta-actions">
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🫒</div>
+          <div class="cta-ac-label">Swap butter for extra-virgin olive oil</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🐟</div>
+          <div class="cta-ac-label">Oily fish twice a week</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🥦</div>
+          <div class="cta-ac-label">Make vegetables the majority</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🫘</div>
+          <div class="cta-ac-label">Add beans &amp; whole grains</div>
+        </div>
+      </div>
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">⚕️</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Any changes you're considering are a conversation for you to have with your GP or healthcare professional.</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 8: CTA — THIS MONTH -->
-  <div class="slide" id="s8">
-    <div class="cta-slide cta-month">
-      <div class="cta-badge">Step 3 of 3</div>
-      <div class="cta-timeframe">THIS MONTH'S CHANGE</div>
-      <div class="cta-icon-big">🥦</div>
-      <div class="cta-title">Make vegetables the majority of every plate</div>
-      <div class="cta-body">Not a side dish — the centre of the meal. Aim for half your plate or more. More colour means more variety of protective compounds. Add a tin of chickpeas to stews, spinach to pasta, roast a tray of vegetables alongside everything.</div>
-      <div class="cta-examples">
-        <span class="cta-chip">Roasted Mediterranean veg</span>
-        <span class="cta-chip">Tinned chickpeas in stew</span>
-        <span class="cta-chip">Spinach into any pasta</span>
-        <span class="cta-chip">Big salad as the main</span>
+  <!-- SLIDE 7: CLOSING -->
+  <div class="slide">
+    <div class="close-wrap">
+      <div class="close-logo">helf<span class="dot">.</span>school</div>
+      <div class="close-sub">Health Education</div>
+      <div class="close-headline">A pattern, <span>not a diet.</span></div>
+      <div class="close-stats">
+        <div class="cst-card">
+          <div class="cst-num">~30%</div>
+          <div class="cst-lab">↓ cardiovascular events</div>
+          <div class="cst-src">PREDIMED · NEJM 2018</div>
+        </div>
+        <div class="cst-card">
+          <div class="cst-num">23%</div>
+          <div class="cst-lab">↓ type 2 diabetes risk</div>
+          <div class="cst-src">Koloverou · Metabolism 2014</div>
+        </div>
+        <div class="cst-card">
+          <div class="cst-num">~30%</div>
+          <div class="cst-lab">↓ Alzheimer's risk</div>
+          <div class="cst-src">Dominguez · GeroScience 2025</div>
+        </div>
       </div>
-    </div>
-  </div>
-
-  <!-- SLIDE 9: CLOSING -->
-  <div class="slide" id="s9">
-    <div class="closing-wrap">
-      <div class="closing-logo">helf<span>.</span>school</div>
-      <div class="closing-tagline">Health Education for Everyone</div>
-      <div class="closing-title">The evidence is clear — and the <span>starting point is a meal</span>, not a transformation</div>
-      <div class="closing-sub">What I'm giving you here is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
-      <div class="closing-series">Practical Health Series · Article 08 · The Mediterranean Diet</div>
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">⚕️</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+      </div>
+      <div class="close-series">Practical Health Series · Article 08 · The Mediterranean Diet</div>
     </div>
   </div>
 
@@ -547,9 +509,9 @@
   <div class="dot" onclick="goTo(4)"></div>
   <div class="dot" onclick="goTo(5)"></div>
   <div class="dot" onclick="goTo(6)"></div>
-  <div class="dot" onclick="goTo(7)"></div>
-  <div class="dot" onclick="goTo(8)"></div>
 </div>
+
+<div class="disc">Health education — not medical advice. helf.school</div>
 
 <script>
   const slides = document.querySelectorAll('.slide');
@@ -565,7 +527,6 @@
     document.getElementById('counter').textContent = (cur+1)+' / '+slides.length;
     triggerSlide(cur);
   }
-
   function goTo(n){ show(n); }
 
   document.addEventListener('keydown', e=>{
@@ -587,39 +548,32 @@
     if(n===4) animateBenefits();
   }
 
-  /* Slide 2 — food rows + stat */
   function animatePlate(){
     const rows=['li0','li1','li2','li3','li4'];
     rows.forEach((id,i)=>{
-      setTimeout(()=>document.getElementById(id).classList.add('vis'), 200+i*280);
+      setTimeout(()=>{ const el=document.getElementById(id); if(el) el.classList.add('vis'); }, 200+i*260);
     });
-    setTimeout(()=>document.getElementById('pstat').classList.add('vis'), 200+5*280);
+    setTimeout(()=>{ const el=document.getElementById('pstat'); if(el) el.classList.add('vis'); }, 200+5*260);
   }
-
-  /* Slide 3 — tiers */
   function animateTiers(){
     ['tr1','tr2','tr3'].forEach((id,i)=>{
-      setTimeout(()=>document.getElementById(id).classList.add('vis'), 200+i*300);
+      setTimeout(()=>{ const el=document.getElementById(id); if(el) el.classList.add('vis'); }, 200+i*280);
     });
   }
-
-  /* Slide 4 — bar chart */
   function animateBars(){
     setTimeout(()=>{
-      document.querySelectorAll('#s4 .bar-fill').forEach(f=>{
+      document.querySelectorAll('.slide.active .bar-fill').forEach(f=>{
         f.style.width = f.dataset.target;
       });
     }, 400);
   }
-
-  /* Slide 5 — benefit cards */
   function animateBenefits(){
-    ['bc1','bc2','bc3'].forEach((id,i)=>{
-      setTimeout(()=>document.getElementById(id).classList.add('vis'), 200+i*350);
+    ['b1','b2','b3'].forEach((id,i)=>{
+      setTimeout(()=>{ const el=document.getElementById(id); if(el) el.classList.add('vis'); }, 200+i*260);
     });
   }
 
-  /* Reset animations on re-visit */
+  /* Reset animations on leaving */
   slides.forEach(s=>{
     const obs = new MutationObserver(()=>{
       if(!s.classList.contains('active')){
@@ -630,7 +584,6 @@
     obs.observe(s, {attributes:true});
   });
 
-  /* Kick off slide 1 auto */
   triggerSlide(0);
 </script>
 </body>
