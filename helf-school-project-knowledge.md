@@ -1,5 +1,5 @@
 # helf.school — Project Knowledge Document
-*Last updated: April 2026 — updated: Educational voice retrofit complete for ALL article HTML files 01–18 (excl. 12 Alcohol not started); masld.html © patched to 2026; ESSENCE trial ⚑ cleared (PubMed 40305708); Lancet Commission dementia 14 factors ⚑ cleared; all 16 teleprompters + all article HTMLs on GitHub.*
+*Last updated: April 2026 — Article 12 Alcohol complete (all three files built with new high-impact design pattern). New standards locked in: horizontal-row visuals layout for 4–6 item slides, deck-wide colour narrative (red harm / amber mechanism / green action), inline superscript citations for every article stat, hero + disclaimer fills first screen. 17 visuals files queued for retrofit starting with Cardiovascular 01–07.*
 
 ---
 
@@ -125,14 +125,16 @@ Free = read-only. Paid members = full access. Needs: thread creation, member pro
 
 *Note: Old script files (e.g. hypertension-script.html) exist on GitHub for some articles but are superseded by the three-file standard. No new script files are created.*
 
-### Practical Health Series (Articles 08–12) — IN PROGRESS
+### Practical Health Series (Articles 08–12) — ✅ ALL COMPLETE
 | # | Title | Article HTML | Visuals | Teleprompter |
 |---|-------|-------------|---------|--------------|
 | 08 | The Mediterranean Diet | mediterranean-diet.html ✅ | mediterranean-diet-visuals.html ✅ | mediterranean-diet-teleprompter.html ✅ |
 | 09 | Sleep | sleep.html ✅ | sleep-visuals.html ✅ | sleep-teleprompter.html ✅ |
 | 10 | Exercise | exercise.html ✅ | exercise-visuals.html ✅ | exercise-teleprompter.html ✅ |
 | 11 | Stress | stress.html ✅ | stress-visuals.html ✅ | stress-teleprompter.html ✅ |
-| 12 | Alcohol | not started | — | — |
+| 12 | Alcohol | alcohol.html ✅ | alcohol-visuals.html ✅ | alcohol-teleprompter.html ✅ |
+
+**Article 12 note:** Built with the new high-impact visuals pattern (horizontal-row layout, deck-wide colour narrative, inline superscript citations). Serves as the canonical reference for the retrofit work.
 
 ### Digestive Health Series (Articles 13–18) — ✅ ALL COMPLETE
 | # | Title | Article HTML | Visuals | Teleprompter | Screen files |
@@ -229,6 +231,31 @@ Every research item must include:
 
 ⚠️ PubMed IDs are UNRELIABLE from training data. Confirmed wrong IDs found previously. Rule: no PubMed/PMC pill links unless verified by web search in same session. Omit and flag ⚑ if unverified. Journal DOI links acceptable. Paul checks every link before any article goes live.
 
+### 🔑 Inline citation standard (CANONICAL — from Article 12 Alcohol)
+**Every stat or specific research claim in article prose must carry a superscript reference number linking to the anchored entry in the references section.** Readers must always have a one-click route from any stat back to its source.
+
+**Implementation:**
+- Add `id="ref-N"` anchor to each reference block in the references section
+- Add inline superscript markers to every stat: `<sup class="ref-sup"><a href="#ref-N">N</a></sup>`
+- CSS: gold-accented pill styling, small pill background `rgba(122,106,46,.1)`, hover darker
+
+**Example from alcohol.html (Section 2):**
+> "...in 2023 the Office for National Statistics recorded **10,473 alcohol-specific deaths in the UK**<sup>10</sup> — the highest number since records began, and 38% higher than in 2019.<sup>10</sup>"
+
+Apply retrospectively to articles 01–11 and 13–18 during retrofit.
+
+### 🔑 First-screen standard (CANONICAL — from Article 12 Alcohol)
+**On landing, every article's first visible screen must show only the hero + the yellow health-disclaimer box.** Section 1 ("What is it?") begins below the fold, revealed on scroll.
+
+**Implementation:**
+- Hero CSS: `min-height: calc(100vh - 56px - 8.5rem); display: flex; align-items: center;`
+- The `8.5rem` reserves space below the hero for the yellow disclaimer block to sit within the viewport
+- Sticky nav is 56px; disclaimer + its top margin accounts for the ~8.5rem reservation
+
+**Why it matters:** Setting the frame on arrival — the reader sees the title, the author credit, the "health education — not medical advice" disclaimer, and nothing else. No content is half-visible peeking up from below. Section 1 properly starts when the reader chooses to engage.
+
+Apply retrospectively to articles 01–11 and 13–18 during retrofit.
+
 ### Pre-draft verification
 Before presenting any article, script, or visuals HTML, verify via web search that every cited study, trial, or statistic: (1) exists, (2) relates to the correct condition, (3) supports the claim made, and (4) every URL/DOI resolves to the correct article.
 
@@ -321,6 +348,28 @@ All trial names, years, citation authors, and statistics must match across artic
 
 ## 10. VISUALS FILE STANDARDS
 
+### 🔑 High-impact layout standard (CANONICAL — from Article 12 Alcohol)
+For slides presenting **4–6 parallel items** (systems affected, effects, mechanisms, doctor's tools, risk factors, stages), use **HORIZONTAL stacked rows**, not narrow vertical columns.
+
+**Card grid:** `icon (72px fixed) | content (title + body) | hero-stat (right)`
+
+**Why it works for the layperson:**
+- The stat can be 2.5–3.6rem (vs ~1.6rem crammed into narrow columns) — genuinely eye-catching
+- Body text reads as proper sentences, not 3-word fragment columns
+- Each row feels like a standalone headline — newspaper-front-page, not crowded index card
+- Icon (left) → content (middle) → stat (right) matches English reading direction
+
+**Deck-wide colour narrative — apply consistently:**
+| Colour | Variable | Use on... |
+|--------|----------|-----------|
+| 🔴 Red | `var(--bad)` + coral border | Harm / risk stats — *"this is what alcohol does to you"* |
+| 🟠 Amber | `var(--warn)` + amber border | Mechanism / pathway outcomes — *"this is HOW it does it"* |
+| 🟢 Green | `var(--good)` + sage border | Action / help columns — *"this is what can be done about it"* |
+
+A layperson moving through the deck unconsciously picks up the semantics: **red things happen → amber pathways explain → green things can be done**. That is sound educational design, not decoration.
+
+**Alcohol article 12 visuals is the canonical reference** — slides 3 (five systems), 4 (doctor's toolkit), 8 (mechanisms) all use this pattern. Apply during retrofit of articles 01–11 and 13–18.
+
 ### Visuals purpose standard
 Every visuals slide deck serves one job — make the evidence feel real and personal, then pull the viewer toward action. Stats are chosen because they answer "does this affect me?" or "can I change this?" — not because they are the most impressive numbers. Every research card connects forward to a CTA. The CTA slides are the destination; the evidence slides are the journey there. Visuals must be bold, striking, and immediately readable at filming distance. A layperson watching the video should be able to read every stat on screen, understand what it means for their life, and feel pulled toward the call to action by the time it appears.
 
@@ -329,16 +378,15 @@ All visuals HTML files must fill the screen boldly and be readable at distance:
 - Stage padding: maximum `0.6rem 0.75rem`
 - No artificial `max-width` below `100%` on content wrappers
 
-### 🔑 Slide layout standard — learnt from exercise build
-The following rules prevent recurring text/alignment/card issues during slide design:
-
-1. **Multi-row grids MUST have explicit `grid-template-rows`** (e.g. `1fr 1fr`, `1fr 1fr 1fr`) — without this, auto-rows size to content and the bottom row drops off screen.
+### Slide layout hygiene rules
+1. **Multi-row grids MUST have explicit `grid-template-rows`** (e.g. `1fr 1fr`, `repeat(6,1fr)`) — without this, auto-rows size to content and the bottom row drops off screen.
 2. **Cards in constrained grids MUST have `min-height: 0` + `overflow: hidden`** — without these, long content bleeds into the next row.
-3. **Maximum 3 vertical blocks per card** (heading + main content + label/badge). Four or more elements stacked always becomes cramped and overlaps.
-4. **Sub-text must be ONE short line** (≤ 12 words). Longer explanation belongs in the teleprompter — not the slide.
-5. **Comparison stats: context AT TOP** in Fraunces accent colour showing *what* is being compared (e.g. "2,000 → 4,000 steps/day"). Never bury the comparison in tiny italic sub-text.
-6. **No redundant hero banners** that duplicate what the slide-title already says.
-7. **Tight padding for constrained slides:** card padding `0.65–0.9rem`, internal card gap `0.4–0.7rem`, grid gap `0.6–0.75rem`.
+3. **Use emoji font-family stack** on icon elements: `"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif` — forces reliable colour-emoji rendering across OS/browser combinations. Avoids the "missing heart" / "missing brain" rendering issue seen with newer Unicode emojis (e.g. 🫀 from 2021).
+4. **Maximum 3 vertical blocks per card** (heading + main content + label/badge). Four or more elements stacked always becomes cramped and overlaps.
+5. **Sub-text must be ONE short line** (≤ 12 words). Longer explanation belongs in the teleprompter — not the slide.
+6. **Comparison stats: context AT TOP** in Fraunces accent colour showing *what* is being compared (e.g. "2,000 → 4,000 steps/day"). Never bury the comparison in tiny italic sub-text.
+7. **No redundant hero banners** that duplicate what the slide-title already says.
+8. **Tight padding for constrained slides:** card padding `0.65–0.9rem`, internal card gap `0.4–0.7rem`, grid gap `0.6–0.75rem`.
 
 ### Font sizes (minimum) — HARD FLOORS
 These are absolute minimums. When in doubt, go above them — never below. Apply to every element in every visuals file.
@@ -453,32 +501,52 @@ Do NOT use: non-peer-reviewed sources, commercial health sites, forum content.
 
 ### Completed ✅
 - All Cardiovascular Series articles 01–07 — article, visuals, teleprompter complete ✅
-- All Practical Series articles 08–11 — article, visuals, teleprompter complete ✅
+- All Practical Series articles 08–12 — article, visuals, teleprompter complete ✅
 - All Digestive Series articles 13–18 — article, visuals, teleprompter complete ✅
-- All 16 teleprompters fully retrofitted — cue-box pattern + educational voice phrase correct ✅
-- **Educational voice retrofit — ALL article HTML files 01–18 (excl. 12) complete ✅**
-  - Articles 01–11 retrofitted in previous sessions
-  - Articles 13–18 (acid reflux, IBD, bloating, IBS, MASLD, coeliac) retrofitted and uploaded April 2026
+- All 17 teleprompters fully retrofitted — cue-box pattern + educational voice phrase correct ✅
+- **Article 12 Alcohol — ALL THREE FILES COMPLETE ✅**
+  - Built with new high-impact design pattern (horizontal rows, colour narrative, inline citations, hero-fills-first-screen)
+  - Serves as canonical reference for the visuals retrofit
+- **Educational voice retrofit — ALL article HTML files 01–18 complete ✅**
 - masld.html © updated to 2026 ✅
-- **ESSENCE trial ⚑ CLEARED** — published NEJM April 2025, PubMed 40305708 ✓. masld.html ready for live.
-- **Lancet Commission dementia ⚑ CLEARED** — 14 modifiable risk factors confirmed (2024 update, DOI 10.1016/S0140-6736(24)01296-0). exercise.html updated.
+- **ESSENCE trial ⚑ CLEARED** — published NEJM April 2025, PubMed 40305708 ✓
+- **Lancet Commission dementia ⚑ CLEARED** — 14 modifiable risk factors confirmed (2024 update, DOI 10.1016/S0140-6736(24)01296-0)
 - Pricing confirmed correct (£0/£6/£60/£150) ✅
+- **NEW STANDARDS LOCKED IN (April 2026):**
+  - Horizontal-row visuals layout for 4–6 item slides ✅
+  - Deck-wide colour narrative (red harm / amber mechanism / green action) ✅
+  - Inline superscript citations for every article stat ✅
+  - Hero + disclaimer fills first screen, Section 1 below fold ✅
+  - Emoji font-family stack for reliable rendering ✅
 - Medical term lay-clarification standard established ✅
 - Statistical term lay-clarification standard established ✅
 - Video length standard (4–5 min max) established ✅
 - Teleprompter core standard (messages + stats + pointers) established ✅
-- Visuals slide layout standard established ✅
 - Educational Voice TOP STANDARD established ✅
 - Standard video intro using full educational-voice phrase established ✅
 - Teleprompter cue-box standard (▶ ADVANCE NOW — then read) established ✅
-- stress.html — educational voice fixed, INTERHEART stat corrected to 32.5% PAR ✅
-- All files for articles 01–18 (excl. 12) uploaded to GitHub ✅
 
-### Near-term
-- [ ] Build Article 12 Alcohol — all three files
-- [ ] Digestive Series — Article 19+ (topics TBC)
+### Near-term — RETROFIT QUEUE (17 visuals files)
+Applying the new high-impact pattern (horizontal rows + colour narrative + emoji font stack) to all pre-Article-12 visuals files. Priority order (confirmed with Paul April 2026):
+
+1. **Cardiovascular 01–07** (7 files) — FIRST — live since launch, highest visibility
+   - hypertension-visuals.html
+   - cholesterol-visuals.html
+   - heart-attack-risk-visuals.html
+   - statins-visuals.html
+   - lifestyle-visuals.html
+   - salt-visuals.html
+   - supplements-visuals.html
+2. **Practical 08–11** (4 files) — most recent, closest to new pattern already
+3. **Digestive 13–18** (6 files)
+
+Each retrofit: fetch current → redesign with horizontal rows + colour narrative for any 4–6 item slides → QC → present.
+
+### Also outstanding
+- [ ] Inline citation retrofit across articles 01–11 and 13–18 (same retrofit priority as visuals)
+- [ ] Hero-first-screen retrofit across articles 01–11 and 13–18
+- [ ] Digestive Series — Article 19+ (topic TBC)
 - [ ] Build community forum
-- [ ] Apply medical/statistical term lay-clarification standard retrospectively to existing articles (01–18) — systematic pass still to do
 
 ### Each new article requires
 1. Article HTML
