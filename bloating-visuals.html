@@ -3,443 +3,615 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>What Causes Bloating? — Visuals | helf.school</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <title>Bloating — Visuals | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --navy:#1B2A4A; --coral:#E8634A; --sage:#7A9E87; --amber:#E8A84A;
-      --digest:#D47C3A; --digest-dim:rgba(212,124,58,.18);
-    }
-    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:'DM Sans',sans-serif; background:#0F1A2E; color:#fff; height:100vh; overflow:hidden; display:flex; flex-direction:column; }
+    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--calm:#70b8e8;--digest:#D47C3A}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
 
-    .topbar { background:rgba(255,255,255,.04); border-bottom:1px solid rgba(255,255,255,.08); padding:0 1.5rem; height:48px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
-    .topbar-sub { font-size:.75rem; color:rgba(255,255,255,.75); }
-    .slide-counter { font-size:.85rem; font-weight:600; color:rgba(255,255,255,.90); }
+    /* TOPBAR */
+    #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:var(--navy);border-bottom:2px solid var(--digest);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
+    .tb-logo{display:flex;align-items:center;gap:.5rem}
+    .tb-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff}
+    .tb-dot{color:var(--coral)}
+    .tb-sub{font-size:.75rem;color:rgba(255,255,255,.78);margin-left:.25rem;font-weight:500}
+    .tb-right{display:flex;align-items:center;gap:1.2rem}
+    .slide-counter{font-size:.88rem;font-weight:700;color:rgba(255,255,255,.90)}
+    .kb-hint{font-size:.75rem;color:rgba(255,255,255,.65)}
 
-    .progress-bar { height:3px; background:rgba(255,255,255,.08); flex-shrink:0; }
-    .progress-fill { height:100%; background:var(--digest); transition:width .35s ease; }
+    /* STAGE */
+    #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:2.2vh 1.25rem 3.5vh;overflow:hidden}
 
-    .visual-stage { flex:1; background:var(--navy); display:flex; align-items:center; justify-content:center; padding:0.6rem 0.75rem; position:relative; overflow:hidden; }
-    .visual-stage::before { content:''; position:absolute; top:-80px; right:-80px; width:280px; height:280px; border-radius:50%; background:radial-gradient(circle,rgba(212,124,58,.1) 0%,transparent 70%); pointer-events:none; }
+    /* SLIDES */
+    .slide{display:none;width:100%;max-width:1140px;height:100%;animation:sIn .32s ease}
+    .slide.active{display:flex;flex-direction:column;min-height:0}
+    @keyframes sIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-    .slide-type-badge { position:absolute; top:12px; right:12px; font-size:.65rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:.22rem .65rem; border-radius:100px; }
-    .badge-opening  { background:rgba(232,99,74,.2);   color:#E8634A; }
-    .badge-section  { background:rgba(27,42,74,.6);    color:rgba(255,255,255,.85); }
-    .badge-cta      { background:rgba(122,158,135,.2); color:#7A9E87; }
-    .badge-closing  { background:rgba(232,168,74,.2);  color:#E8A84A; }
+    .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.1vw,1.75rem);font-weight:700;color:#fff;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:2px solid rgba(212,124,58,.35);flex-shrink:0}
+    .slide-title span{color:var(--digest)}
 
-    .visual-content { width:100%; max-height:100%; display:flex; align-items:center; justify-content:center; }
+    /* DOTS */
+    #dots{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:200}
+    .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .25s}
+    .dot.active{background:var(--digest);transform:scale(1.3)}
 
-    .bottom-nav { background:rgba(255,255,255,.03); border-top:1px solid rgba(255,255,255,.07); padding:.5rem 1.5rem; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
-    .nav-btn { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); color:rgba(255,255,255,.75); font-size:.82rem; font-weight:500; padding:.45rem 1rem; border-radius:7px; cursor:pointer; transition:all .2s; }
-    .nav-btn:hover { background:rgba(255,255,255,.10); color:#fff; }
-    .nav-btn:disabled { opacity:.3; cursor:not-allowed; }
-    .nav-btn-primary { background:var(--digest); border-color:var(--digest); color:#fff; }
-    .nav-dots { display:flex; gap:.4rem; }
-    .nav-dot { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.20); cursor:pointer; transition:all .2s; }
-    .nav-dot.active { background:var(--digest); transform:scale(1.3); }
+    /* ─── SLIDE 1: INTRO ─── */
+    .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.3rem}
+    .intro-badge{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--digest);background:rgba(212,124,58,.14);border:1px solid rgba(212,124,58,.35);padding:.3rem .9rem;border-radius:100px}
+    .intro-icon{font-size:4rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .intro-title{font-family:'Fraunces',serif;font-size:clamp(2.6rem,5.5vw,4.4rem);font-weight:700;color:#fff;line-height:1.05;max-width:900px;letter-spacing:-.02em}
+    .intro-title span{color:var(--digest)}
+    .intro-sub{font-size:1.1rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;max-width:680px;line-height:1.5;font-weight:400}
+    .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
 
-    /* Stat card */
-    .stat-card { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.12); border-radius:16px; padding:1.5rem 2rem; text-align:center; max-width:420px; }
-    .stat-big { font-family:'Fraunces',serif; font-size:5rem; font-weight:700; color:var(--digest); line-height:1; }
-    .stat-label { font-size:1.05rem; color:rgba(255,255,255,.90); margin-top:.6rem; line-height:1.45; font-weight:500; }
-    .stat-sub { font-size:.82rem; color:rgba(255,255,255,.65); margin-top:.5rem; line-height:1.5; }
-    .stat-source { font-size:.75rem; color:rgba(255,255,255,.65); margin-top:.85rem; }
+    /* ─── SLIDE 2: HERO STAT ─── */
+    .hero-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:1.4rem;text-align:center}
+    .hero-stat{background:linear-gradient(135deg,rgba(212,124,58,.18),rgba(212,124,58,.05));border:2px solid rgba(212,124,58,.5);border-radius:20px;padding:2.5rem 3rem;max-width:720px;width:100%;display:flex;flex-direction:column;align-items:center;gap:.8rem}
+    .hero-num{font-family:'Fraunces',serif;font-size:clamp(5rem,10vw,8rem);font-weight:700;color:var(--digest);line-height:1;letter-spacing:-.035em}
+    .hero-label{font-size:1.3rem;color:#fff;font-weight:700;line-height:1.4;max-width:540px}
+    .hero-sub{font-size:1rem;color:rgba(255,255,255,.90);line-height:1.5;max-width:560px;font-weight:400}
+    .hero-src{font-size:.82rem;color:rgba(255,255,255,.75);font-style:italic}
 
-    /* Cause cards */
-    .cause-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:.7rem; width:100%; max-width:780px; }
-    .cause-card { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.10); border-top:3px solid var(--digest); border-radius:10px; padding:.85rem 1rem; opacity:0; transform:translateY(10px); transition:opacity .4s ease, transform .4s ease; }
-    .cause-card.visible { opacity:1; transform:translateY(0); }
-    .cause-icon { font-size:1.9rem; margin-bottom:.4rem; }
-    .cause-title { font-size:.88rem; font-weight:700; color:#fff; margin-bottom:.3rem; }
-    .cause-desc { font-size:.78rem; color:rgba(255,255,255,.80); line-height:1.45; }
+    /* ─── SLIDE 3: ANATOMY · HOW BLOATING HAPPENS ─── */
+    .anat-wrap{display:grid;grid-template-columns:340px 1fr;gap:2rem;align-items:center;flex:1;min-height:0}
+    .anat-svg-wrap{display:flex;align-items:center;justify-content:center;min-height:0}
+    .anat-svg{width:100%;max-width:320px}
+    .mech-steps{display:flex;flex-direction:column;gap:.7rem;min-width:0}
+    .mech-step{background:linear-gradient(90deg,rgba(232,168,74,.1),rgba(232,168,74,.02));border:1px solid rgba(232,168,74,.35);border-radius:12px;padding:.85rem 1.2rem;display:grid;grid-template-columns:48px 1fr;gap:1rem;align-items:center;opacity:0;transform:translateY(10px);transition:all .4s ease}
+    .mech-step.vis{opacity:1;transform:translateY(0)}
+    .mech-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .mech-title{font-family:'Fraunces',serif;font-weight:700;color:var(--warn);font-size:1.1rem;line-height:1.15;margin-bottom:.15rem}
+    .mech-body{font-size:.92rem;color:rgba(255,255,255,.92);line-height:1.42;font-weight:400}
 
-    /* Management ladder */
-    .mgmt-wrap { width:100%; max-width:680px; display:flex; flex-direction:column; gap:.6rem; }
-    .mgmt-title { font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:.2rem; }
-    .mgmt-step { display:flex; align-items:flex-start; gap:.85rem; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.09); border-radius:10px; padding:.75rem 1rem; opacity:0; transform:translateY(8px); transition:opacity .4s ease, transform .4s ease; }
-    .mgmt-step.visible { opacity:1; transform:translateY(0); }
-    .mgmt-num { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.8rem; font-weight:700; flex-shrink:0; }
-    .mgmt-step:nth-child(2) .mgmt-num { background:rgba(122,158,135,.25); color:#7A9E87; }
-    .mgmt-step:nth-child(3) .mgmt-num { background:rgba(212,124,58,.25); color:var(--digest); }
-    .mgmt-step:nth-child(4) .mgmt-num { background:rgba(232,168,74,.25); color:var(--amber); }
-    .mgmt-step:nth-child(5) .mgmt-num { background:rgba(107,94,168,.25); color:#9B8FD4; }
-    .mgmt-text h5 { font-size:.88rem; font-weight:700; color:#fff; margin-bottom:.2rem; }
-    .mgmt-text p { font-size:.78rem; color:rgba(255,255,255,.80); line-height:1.45; }
+    /* ─── SLIDE 4: 6 CAUSES · HORIZONTAL ROWS · AMBER ─── */
+    .cause-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
+    .cause-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:14px;padding:.8rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .cause-card.vis{opacity:1;transform:translateY(0)}
+    .cause-icon{font-size:2.2rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .cause-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+    .cause-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.2rem;line-height:1.12;letter-spacing:-.01em}
+    .cause-body{font-size:.92rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400}
+    .cause-outcome{font-family:'Fraunces',serif;font-size:clamp(1rem,1.6vw,1.4rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
 
-    /* Research rows */
-    .research-wrap { width:100%; max-width:700px; display:flex; flex-direction:column; gap:.55rem; }
-    .rr-title { font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:.2rem; }
-    .rr { display:flex; flex-direction:column; gap:.25rem; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:9px; padding:.6rem .85rem; opacity:0; transition:opacity .4s ease; }
-    .rr.visible { opacity:1; }
-    .rr-badge { font-size:.62rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; background:rgba(212,124,58,.2); color:var(--digest); padding:.15rem .5rem; border-radius:100px; align-self:flex-start; }
-    .rr-text { font-size:.82rem; color:rgba(255,255,255,.85); line-height:1.5; }
-    .rr-takehome { font-size:.82rem; font-weight:700; color:#fff; background:rgba(212,124,58,.18); border-left:3px solid var(--digest); padding:.3rem .6rem; border-radius:0 6px 6px 0; margin-top:.2rem; }
+    /* ─── SLIDE 5: FODMAP TABLE ─── */
+    .fodmap-wrap{display:flex;flex-direction:column;gap:.65rem;flex:1;min-height:0}
+    .fodmap-table{border-radius:14px;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,.35);display:flex;flex-direction:column;flex:1;min-height:0}
+    .fodmap-head{display:grid;grid-template-columns:130px 1fr 1fr;background:rgba(255,255,255,.05);flex-shrink:0}
+    .fodmap-head-cell{padding:.7rem 1rem}
+    .fodmap-head-cell.red{background:rgba(232,99,74,.22);border-left:1px solid rgba(255,255,255,.08)}
+    .fodmap-head-cell.green{background:rgba(126,204,153,.17);border-left:1px solid rgba(255,255,255,.08)}
+    .fodmap-head-lbl{font-size:.88rem;font-weight:700}
+    .fodmap-head-cell.red .fodmap-head-lbl{color:#fca5a5}
+    .fodmap-head-cell.green .fodmap-head-lbl{color:#86efac}
+    .fodmap-row{display:grid;grid-template-columns:130px 1fr 1fr;flex:1;min-height:0;border-top:1px solid rgba(255,255,255,.08)}
+    .fodmap-row:nth-child(even){background:rgba(255,255,255,.03)}
+    .fodmap-row:nth-child(odd){background:rgba(255,255,255,.055)}
+    .fodmap-cat{padding:.55rem 1rem;font-size:.9rem;font-weight:700;color:#fff;display:flex;align-items:center}
+    .fodmap-cell{padding:.55rem 1rem;font-size:.88rem;color:rgba(255,255,255,.92);line-height:1.4;border-left:2px solid;display:flex;align-items:center;font-weight:400}
+    .fodmap-cell.red{border-left-color:rgba(232,99,74,.5)}
+    .fodmap-cell.green{border-left-color:rgba(126,204,153,.5)}
+    .fodmap-note{font-size:.85rem;color:rgba(255,255,255,.85);text-align:center;padding:.3rem 0;flex-shrink:0;font-weight:400;font-style:italic}
 
-    /* CTA cards */
-    .cta-wrap { width:100%; max-width:660px; display:flex; flex-direction:column; gap:.75rem; }
-    .cta-card { display:flex; align-items:flex-start; gap:.9rem; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.10); border-radius:12px; padding:.9rem 1.1rem; opacity:0; transform:translateY(10px); transition:opacity .45s ease, transform .45s ease; }
-    .cta-card.visible { opacity:1; transform:translateY(0); }
-    .cta-num { width:34px; height:34px; border-radius:50%; background:var(--digest); display:flex; align-items:center; justify-content:center; font-size:.9rem; font-weight:700; flex-shrink:0; }
-    .cta-text h5 { font-size:.92rem; font-weight:700; color:#fff; margin-bottom:.25rem; }
-    .cta-text p { font-size:.82rem; color:rgba(255,255,255,.82); line-height:1.5; }
+    /* ─── SLIDE 6: DOCTOR · HORIZONTAL ROWS · ACTION · GREEN ─── */
+    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.6rem;flex:1;min-height:0}
+    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.9rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .doc-card.vis{opacity:1;transform:translateY(0)}
+    .doc-icon{font-size:2.3rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .doc-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.22rem;line-height:1.12;letter-spacing:-.01em}
+    .doc-body{font-size:.92rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400}
+    .doc-body strong{color:#fff;font-weight:700}
+    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1rem,1.6vw,1.45rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
 
-    /* Intro / closing */
-    .intro-wrap { display:flex; flex-direction:column; align-items:center; gap:1rem; text-align:center; }
-    .intro-logo { font-family:'Fraunces',serif; font-size:2.8rem; font-weight:700; color:var(--digest); }
-    .intro-tagline { font-size:.78rem; color:rgba(255,255,255,.70); letter-spacing:.18em; text-transform:uppercase; }
-    .intro-topic { font-family:'Fraunces',serif; font-size:1.9rem; font-weight:700; color:#fff; line-height:1.25; max-width:340px; }
-    .intro-series { font-size:.78rem; color:rgba(255,255,255,.70); margin-top:.15rem; }
-    .end-logo { font-family:'Fraunces',serif; font-size:2.4rem; font-weight:700; color:var(--digest); text-align:center; }
-    .end-tagline { font-size:.82rem; color:rgba(255,255,255,.70); letter-spacing:.08em; text-align:center; margin-top:.35rem; }
-    .end-pills { display:flex; flex-wrap:wrap; gap:.4rem; justify-content:center; margin-top:1rem; max-width:480px; }
-    .end-pill { font-size:.7rem; font-weight:600; padding:.25rem .7rem; border-radius:100px; background:rgba(255,255,255,.08); color:rgba(255,255,255,.70); }
-    .end-pill.active { background:var(--digest); color:#fff; }
+    /* ─── SLIDE 7: RESEARCH · EV-CARDS ─── */
+    .ev-stage{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(4,1fr);gap:.65rem;flex:1;min-height:0}
+    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,124,58,.32);border-radius:12px;padding:.9rem 1.2rem;display:grid;grid-template-columns:150px 1fr;gap:1.2rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(12px);transition:all .42s ease}
+    .ev-card.vis{opacity:1;transform:translateY(0)}
+    .ev-stat-box{text-align:center;background:rgba(212,124,58,.12);border-radius:10px;padding:.75rem .5rem}
+    .ev-stat{font-family:'Fraunces',serif;font-size:1.75rem;font-weight:700;line-height:1;color:var(--digest);letter-spacing:-.02em}
+    .ev-stat-lab{font-size:.78rem;color:rgba(255,255,255,.92);font-weight:700;margin-top:.3rem;line-height:1.3}
+    .ev-detail{min-width:0}
+    .ev-trial{font-family:'Fraunces',serif;font-size:1.08rem;font-weight:700;color:#fff;margin-bottom:.15rem;line-height:1.2;letter-spacing:-.01em}
+    .ev-journal{font-size:.82rem;color:rgba(255,255,255,.85);margin-bottom:.3rem;font-weight:500}
+    .ev-finding{font-size:.88rem;color:rgba(255,255,255,.92);line-height:1.45;font-weight:400}
+    .ev-finding strong{color:#fff;font-weight:700}
+
+    /* ─── SLIDE 8: CTA · HIGH-IMPACT ─── */
+    .cta-slide{position:relative}
+    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%, rgba(212,184,74,.18), rgba(212,184,74,.04) 45%, transparent 70%);pointer-events:none;z-index:0}
+    .cta-wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:.85rem;padding:.5rem}
+    .cta-badge{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.42rem 1.15rem;border-radius:100px;box-shadow:0 0 30px rgba(212,184,74,.14)}
+    .cta-icon{font-size:clamp(4.5rem,8vw,6rem);line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;filter:drop-shadow(0 0 30px rgba(212,184,74,.28));animation:pulseHalo 3.2s ease-in-out infinite}
+    @keyframes pulseHalo{0%,100%{filter:drop-shadow(0 0 28px rgba(212,184,74,.22))}50%{filter:drop-shadow(0 0 55px rgba(212,184,74,.55))}}
+    .cta-headline{font-family:'Fraunces',serif;font-size:clamp(3.2rem,5.8vw,4.9rem);font-weight:700;color:#fff;line-height:1.02;max-width:1000px;letter-spacing:-.028em}
+    .cta-headline span{color:var(--acc)}
+    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.4vw,1.85rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);max-width:780px;line-height:1.32}
+    .cta-body{font-size:1.05rem;color:rgba(255,255,255,.90);max-width:800px;line-height:1.52;font-weight:400}
+    .cta-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;max-width:920px;width:100%;margin-top:.25rem}
+    .cta-ac{background:linear-gradient(180deg,rgba(212,184,74,.16),rgba(212,184,74,.06));border:1.5px solid rgba(212,184,74,.45);border-radius:14px;padding:.95rem .55rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;text-align:center;transition:transform .25s ease}
+    .cta-ac:hover{transform:translateY(-2px)}
+    .cta-ac-icon{font-size:1.85rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .cta-ac-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.94rem;line-height:1.18}
+    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.8rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;margin-top:.6rem;max-width:920px}
+    .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.85);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left}
+    .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
+
+    /* ─── SLIDE 9: CLOSING ─── */
+    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.6rem;padding:1.5rem}
+    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
+    .close-logo .dot{color:var(--coral)}
+    .close-sub{font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+    .close-headline{font-family:'Fraunces',serif;font-size:clamp(2.4rem,4.8vw,4rem);font-weight:700;color:#fff;max-width:1000px;line-height:1.08;letter-spacing:-.025em}
+    .close-headline span{color:var(--digest)}
+    .close-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1000px;width:100%}
+    .cst-card{background:rgba(212,124,58,.12);border:1px solid rgba(212,124,58,.4);border-radius:16px;padding:1.3rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.45rem}
+    .cst-num{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3rem);font-weight:700;color:var(--digest);line-height:.95;letter-spacing:-.02em}
+    .cst-lab{font-size:.98rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.32}
+    .cst-src{font-size:.78rem;color:rgba(255,255,255,.72);font-style:italic}
+    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.2rem}
+
+    .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:.68rem;color:rgba(255,255,255,.22);z-index:90;white-space:nowrap}
+
+    /* gut bubble animation */
+    @keyframes bubble{0%{opacity:0;transform:translateY(0) scale(.8)}30%{opacity:1}80%{opacity:.6;transform:translateY(-22px) scale(1.3)}100%{opacity:0;transform:translateY(-32px) scale(.9)}}
   </style>
 </head>
 <body>
 
-<div class="topbar">
-  <div class="topbar-sub">helf.school · Digestive Health Series · Article 15 — What Causes Bloating? · Visuals Screen</div>
-  <div class="slide-counter">Screen <span id="slideNum">1</span> of 9</div>
+<!-- TOPBAR -->
+<div id="topbar">
+  <div class="tb-logo">
+    <svg width="20" height="16" viewBox="0 0 22 18" fill="none">
+      <path d="M11 2C8 2 5.5 4 4 6.5 2.5 9 2.5 12 4 14.5c1 1.8 2.8 3 5 3.4V4.5" stroke="#E8634A" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M11 2C14 2 16.5 4 18 6.5 19.5 9 19.5 12 18 14.5c-1 1.8-2.8 3-5 3.4V4.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <span class="tb-title">helf<span class="tb-dot">.</span>school</span>
+    <span class="tb-sub">· Bloating</span>
+  </div>
+  <div class="tb-right">
+    <span id="counter" class="slide-counter">1 / 9</span>
+    <span class="kb-hint">← → navigate</span>
+  </div>
 </div>
-<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:11.1%"></div></div>
 
-<div class="visual-stage">
-  <div class="slide-type-badge" id="typeBadge"></div>
-  <div class="visual-content" id="visualContent"></div>
+<!-- STAGE -->
+<div id="stage">
+
+  <!-- SLIDE 1: INTRO -->
+  <div class="slide active">
+    <div class="intro-wrap">
+      <div class="intro-badge">📋 Digestive Health Series · Article 14</div>
+      <div class="intro-icon">🫧</div>
+      <div class="intro-title">Bloating —<br/><span>not a niche problem.</span></div>
+      <div class="intro-sub">Why it happens, what causes it, and the evidence-based steps that actually help most people.</div>
+      <div class="intro-tagline">Dr Paul · Retired NHS GP · helf.school</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: 64% HERO STAT -->
+  <div class="slide">
+    <div class="hero-wrap">
+      <div class="hero-stat">
+        <div class="hero-num">64%</div>
+        <div class="hero-label">of UK adults reported bloating in the past month</div>
+        <div class="hero-sub">Including people with no diagnosed gut condition. The most anxiety-provoking digestive symptom in the UK.</div>
+        <div class="hero-src">Tuck et al. · European Journal of Nutrition · 2025 · UK survey, n=516 ⚑</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: ANATOMY · HOW BLOATING HAPPENS -->
+  <div class="slide">
+    <div class="slide-title">How bloating <span>actually happens</span></div>
+    <div class="anat-wrap">
+      <div class="anat-svg-wrap">
+        <svg class="anat-svg" viewBox="0 0 260 310" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
+          <text x="100" y="16" text-anchor="middle" font-family="DM Sans" font-size="13" fill="rgba(255,255,255,.92)" font-weight="700">Small Intestine</text>
+          <path d="M60 36 Q38 52 50 72 Q62 92 88 86 Q114 80 102 102 Q90 124 62 120 Q34 116 44 138 Q54 160 82 156 Q110 152 100 176 Q90 200 62 196" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="20" stroke-linecap="round"/>
+          <path d="M60 36 Q38 52 50 72 Q62 92 88 86 Q114 80 102 102 Q90 124 62 120 Q34 116 44 138 Q54 160 82 156 Q110 152 100 176 Q90 200 62 196" fill="none" stroke="#1B2A4A" stroke-width="15" stroke-linecap="round"/>
+          <circle cx="58" cy="62" r="5.5" fill="#E8A84A"/>
+          <circle cx="76" cy="96" r="5" fill="#E8A84A"/>
+          <circle cx="56" cy="132" r="5.5" fill="#E8A84A"/>
+          <circle cx="76" cy="168" r="5" fill="#E8A84A" opacity=".75"/>
+          <line x1="105" y1="102" x2="148" y2="92" stroke="rgba(255,255,255,.55)" stroke-width="1.2"/>
+          <text x="150" y="86" font-family="DM Sans" font-size="11.5" fill="rgba(255,255,255,.92)">undigested carbs</text>
+          <text x="150" y="100" font-family="DM Sans" font-size="11.5" fill="rgba(255,255,255,.92)">pass through</text>
+          <line x1="88" y1="210" x2="88" y2="232" stroke="rgba(255,255,255,.65)" stroke-width="2" stroke-dasharray="5,3"/>
+          <polygon points="88,242 80,226 96,226" fill="rgba(255,255,255,.65)"/>
+          <text x="88" y="258" text-anchor="middle" font-family="DM Sans" font-size="13" fill="rgba(255,255,255,.92)" font-weight="700">Colon</text>
+          <ellipse cx="88" cy="288" rx="75" ry="18" fill="rgba(212,124,58,.18)" stroke="rgba(255,255,255,.80)" stroke-width="2.5"/>
+          <text x="88" y="285" text-anchor="middle" font-family="DM Sans" font-size="11" fill="rgba(255,255,255,.92)">🦠 bacteria ferment</text>
+          <line x1="163" y1="288" x2="175" y2="288" stroke="rgba(212,124,58,.9)" stroke-width="1.5"/>
+          <text x="177" y="284" font-family="DM Sans" font-size="11.5" fill="#D47C3A" font-weight="800">→ GAS</text>
+          <text x="177" y="298" font-family="DM Sans" font-size="11.5" fill="#D47C3A" font-weight="800">→ distension</text>
+          <circle cx="58" cy="278" r="9" fill="rgba(212,124,58,.75)" opacity="0" style="animation:bubble 2.5s ease-in-out 0s infinite"/>
+          <circle cx="88" cy="272" r="12" fill="rgba(212,124,58,.60)" opacity="0" style="animation:bubble 2.5s ease-in-out .6s infinite"/>
+          <circle cx="118" cy="278" r="9" fill="rgba(212,124,58,.75)" opacity="0" style="animation:bubble 2.5s ease-in-out 1.3s infinite"/>
+        </svg>
+      </div>
+      <div class="mech-steps">
+        <div class="mech-step" id="m1">
+          <div class="mech-icon">🫧</div>
+          <div>
+            <div class="mech-title">Gas production</div>
+            <div class="mech-body">Bacteria ferment undigested FODMAPs in the colon → hydrogen, CO₂, methane.</div>
+          </div>
+        </div>
+        <div class="mech-step" id="m2">
+          <div class="mech-icon">🔄</div>
+          <div>
+            <div class="mech-title">Impaired transit</div>
+            <div class="mech-body">Gas doesn't move through efficiently — constipation and slow motility cause pressure to build.</div>
+          </div>
+        </div>
+        <div class="mech-step" id="m3">
+          <div class="mech-icon">🧠</div>
+          <div>
+            <div class="mech-title">Visceral hypersensitivity</div>
+            <div class="mech-body">Oversensitive gut nerves — normal gas feels painful. A central mechanism in IBS.</div>
+          </div>
+        </div>
+        <div class="mech-step" id="m4">
+          <div class="mech-icon">🦠</div>
+          <div>
+            <div class="mech-title">SIBO</div>
+            <div class="mech-body">Small intestinal bacterial overgrowth — bloating starts within minutes of eating.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: 6 CAUSES · HORIZONTAL ROWS · AMBER -->
+  <div class="slide">
+    <div class="slide-title">The <span>six main causes</span> of bloating</div>
+    <div class="cause-grid">
+
+      <div class="cause-card" id="c1">
+        <div class="cause-icon">🫧</div>
+        <div class="cause-content">
+          <div class="cause-title">Excess gas production</div>
+          <div class="cause-body">Bacteria ferment undigested carbs (FODMAPs) in the colon — producing hydrogen, CO₂ and methane.</div>
+        </div>
+        <div class="cause-outcome">→ Gas</div>
+      </div>
+
+      <div class="cause-card" id="c2">
+        <div class="cause-icon">🔄</div>
+        <div class="cause-content">
+          <div class="cause-title">Impaired gas transit</div>
+          <div class="cause-body">Gas doesn't move through efficiently. Slow motility and constipation cause pressure to build.</div>
+        </div>
+        <div class="cause-outcome">→ Pressure</div>
+      </div>
+
+      <div class="cause-card" id="c3">
+        <div class="cause-icon">🧠</div>
+        <div class="cause-content">
+          <div class="cause-title">Visceral hypersensitivity</div>
+          <div class="cause-body">Oversensitive gut nerves — normal gas feels painful. Central mechanism in IBS (irritable bowel syndrome).</div>
+        </div>
+        <div class="cause-outcome">→ Pain</div>
+      </div>
+
+      <div class="cause-card" id="c4">
+        <div class="cause-icon">🦠</div>
+        <div class="cause-content">
+          <div class="cause-title">SIBO — small intestinal bacterial overgrowth</div>
+          <div class="cause-body">Bacteria in the small intestine fermenting food too early — bloating starts minutes after eating.</div>
+        </div>
+        <div class="cause-outcome">→ Early onset</div>
+      </div>
+
+      <div class="cause-card" id="c5">
+        <div class="cause-icon">🥛</div>
+        <div class="cause-content">
+          <div class="cause-title">Food intolerances</div>
+          <div class="cause-body">Lactose, fructose, and other poorly absorbed sugars fermented by gut bacteria.</div>
+        </div>
+        <div class="cause-outcome">→ Trigger</div>
+      </div>
+
+      <div class="cause-card" id="c6">
+        <div class="cause-icon">⚖️</div>
+        <div class="cause-content">
+          <div class="cause-title">Microbiome imbalance</div>
+          <div class="cause-body">Individual differences in gut bacteria determine how much gas is produced from fermentation.</div>
+        </div>
+        <div class="cause-outcome">→ Variance</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SLIDE 5: FODMAP TABLE -->
+  <div class="slide">
+    <div class="slide-title">FODMAPs — what to <span>trial-exclude</span> &amp; what to eat instead</div>
+    <div class="fodmap-wrap">
+      <div class="fodmap-table">
+        <div class="fodmap-head">
+          <div class="fodmap-head-cell"></div>
+          <div class="fodmap-head-cell red"><span class="fodmap-head-lbl">🔴 High FODMAP — trial-exclude</span></div>
+          <div class="fodmap-head-cell green"><span class="fodmap-head-lbl">🟢 Low FODMAP — well tolerated</span></div>
+        </div>
+        <div class="fodmap-row">
+          <div class="fodmap-cat">🥛 Dairy</div>
+          <div class="fodmap-cell red">Cow's milk, yoghurt, soft cheese, ice cream</div>
+          <div class="fodmap-cell green">Lactose-free milk, hard cheese (cheddar), butter, brie</div>
+        </div>
+        <div class="fodmap-row">
+          <div class="fodmap-cat">🍞 Grains</div>
+          <div class="fodmap-cell red">Wheat bread, rye, barley, wheat pasta, most cereals</div>
+          <div class="fodmap-cell green">Rice, oats, quinoa, gluten-free bread &amp; pasta, corn</div>
+        </div>
+        <div class="fodmap-row">
+          <div class="fodmap-cat">🧅 Vegetables</div>
+          <div class="fodmap-cell red">Onion, garlic, leek, asparagus, cauliflower, mushrooms</div>
+          <div class="fodmap-cell green">Carrot, tomato, courgette, spinach, potato, pepper</div>
+        </div>
+        <div class="fodmap-row">
+          <div class="fodmap-cat">🍎 Fruit</div>
+          <div class="fodmap-cell red">Apple, pear, mango, watermelon, cherry, dried fruit</div>
+          <div class="fodmap-cell green">Banana (firm), strawberry, blueberry, orange, kiwi</div>
+        </div>
+        <div class="fodmap-row">
+          <div class="fodmap-cat">🫘 Legumes</div>
+          <div class="fodmap-cell red">Baked beans, lentils, chickpeas, kidney beans</div>
+          <div class="fodmap-cell green">Canned rinsed chickpeas (small), firm tofu, tempeh</div>
+        </div>
+        <div class="fodmap-row">
+          <div class="fodmap-cat">🍯 Sweeteners</div>
+          <div class="fodmap-cell red">Honey, sorbitol, mannitol, xylitol, fructose</div>
+          <div class="fodmap-cell green">Sugar (small), maple syrup (small), glucose, stevia</div>
+        </div>
+      </div>
+      <div class="fodmap-note">Restricted 2–6 weeks · then reintroduced one food at a time · ideally with a registered dietitian.</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: DOCTOR · HORIZONTAL ROWS · GREEN -->
+  <div class="slide">
+    <div class="slide-title">What your <span>doctor might do</span> — stepped approach</div>
+    <div class="doc-grid">
+
+      <div class="doc-card" id="d1">
+        <div class="doc-icon">🧪</div>
+        <div class="doc-content">
+          <div class="doc-title">Targeted investigations first</div>
+          <div class="doc-body">Blood tests (coeliac tTG, FBC, thyroid) · hydrogen breath test (lactose, fructose, SIBO) · pelvic ultrasound for new bloating in women over 50.</div>
+        </div>
+        <div class="doc-action">1st-line</div>
+      </div>
+
+      <div class="doc-card" id="d2">
+        <div class="doc-icon">🥗</div>
+        <div class="doc-content">
+          <div class="doc-title">Dietary approach — dietitian-led low-FODMAP</div>
+          <div class="doc-body">Dietitian-led low-FODMAP trial. Lactose exclusion 2–4 weeks. Constipation addressed — fibre, hydration, activity.</div>
+        </div>
+        <div class="doc-action">Dietitian</div>
+      </div>
+
+      <div class="doc-card" id="d3">
+        <div class="doc-icon">💊</div>
+        <div class="doc-content">
+          <div class="doc-title">Medications — selected cases</div>
+          <div class="doc-body">Antispasmodics: mebeverine (Colofac) · low-dose tricyclic antidepressants: amitriptyline (for gut-brain modulation) · rifaximin (Xifaxanta) where SIBO confirmed.</div>
+        </div>
+        <div class="doc-action">Targeted Rx</div>
+      </div>
+
+      <div class="doc-card" id="d4">
+        <div class="doc-icon">🧠</div>
+        <div class="doc-content">
+          <div class="doc-title">Gut–brain therapies</div>
+          <div class="doc-body">Gut-directed hypnotherapy · CBT (cognitive behavioural therapy) for IBS — particularly where anxiety or the gut-brain axis is involved.</div>
+        </div>
+        <div class="doc-action">Psych-gut</div>
+      </div>
+
+      <div class="doc-card" id="d5">
+        <div class="doc-icon">⚠️</div>
+        <div class="doc-content">
+          <div class="doc-title">Coeliac testing needs gluten in the diet</div>
+          <div class="doc-body"><strong>Do not stop gluten before testing.</strong> Starting gluten-free beforehand falsely normalises the result and can miss the diagnosis.</div>
+        </div>
+        <div class="doc-action">Critical</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SLIDE 7: RESEARCH · EV-CARDS -->
+  <div class="slide">
+    <div class="slide-title">What the <span>evidence</span> actually shows</div>
+    <div class="ev-stage">
+
+      <div class="ev-card" id="e1">
+        <div class="ev-stat-box">
+          <div class="ev-stat">~18%</div>
+          <div class="ev-stat-lab">experience bloating ≥ weekly · globally</div>
+        </div>
+        <div class="ev-detail">
+          <div class="ev-trial">Rome Foundation — global bloating survey</div>
+          <div class="ev-journal">Rome Foundation · 2023 · 51,425 people · 26 countries</div>
+          <div class="ev-finding">Nearly <strong>18% experience bloating at least once a week</strong>. Women roughly twice as likely as men. Strongly associated with abdominal pain — and significantly underscreened in primary care ⚑.</div>
+        </div>
+      </div>
+
+      <div class="ev-card" id="e2">
+        <div class="ev-stat-box">
+          <div class="ev-stat">↓ Bloating</div>
+          <div class="ev-stat-lab">low-FODMAP vs normal diet · IBS</div>
+        </div>
+        <div class="ev-detail">
+          <div class="ev-trial">Halmos et al. — landmark low-FODMAP crossover RCT</div>
+          <div class="ev-journal">Gastroenterology · 2014 · Monash University · 30 IBS patients</div>
+          <div class="ev-finding">Crossover trial. Low-FODMAP significantly reduced bloating, pain and wind compared with normal diet. <strong>The evidence-based first-line dietary treatment for IBS bloating</strong> ⚑.</div>
+        </div>
+      </div>
+
+      <div class="ev-card" id="e3">
+        <div class="ev-stat-box">
+          <div class="ev-stat">Ranked 1st</div>
+          <div class="ev-stat-lab">low-FODMAP for bloating · 13 RCTs</div>
+        </div>
+        <div class="ev-detail">
+          <div class="ev-trial">Black, Staudacher &amp; Ford — network meta-analysis</div>
+          <div class="ev-journal">Gut · 2022 · 13 RCTs · 944 patients</div>
+          <div class="ev-finding">Low-FODMAP <strong>ranked first</strong> for global symptoms, pain, and specifically bloating/distension. Strongest dietary evidence for bloating relief across all interventions studied ⚑.</div>
+        </div>
+      </div>
+
+      <div class="ev-card" id="e4">
+        <div class="ev-stat-box">
+          <div class="ev-stat">64%</div>
+          <div class="ev-stat-lab">UK adults · past-month bloating</div>
+        </div>
+        <div class="ev-detail">
+          <div class="ev-trial">Tuck et al. — UK adult prevalence</div>
+          <div class="ev-journal">European Journal of Nutrition · 2025 · UK survey · n=516</div>
+          <div class="ev-finding"><strong>64%</strong> had bloating in the past month — even those with no diagnosed gut condition. Most anxiety-provoking symptom. Bloating is not niche — it warrants proper clinical attention ⚑.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SLIDE 8: CTA · HIGH-IMPACT -->
+  <div class="slide cta-slide">
+    <div class="cta-glow"></div>
+    <div class="cta-wrap">
+      <div class="cta-badge">Where to start</div>
+      <div class="cta-icon">🫧</div>
+      <div class="cta-headline">Bloating has causes.<br/><span>Most are treatable.</span></div>
+      <div class="cta-subline">Keep a diary. See a dietitian. Don't stop gluten before testing.</div>
+      <div class="cta-body">The vast majority of bloating responds to targeted investigation and dietitian-led diet work. These four steps cover the evidence-based starting points.</div>
+      <div class="cta-actions">
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🩺</div>
+          <div class="cta-ac-label">GP review if daily or new</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">📔</div>
+          <div class="cta-ac-label">2-week food &amp; symptom diary</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">🥗</div>
+          <div class="cta-ac-label">Dietitian-led low-FODMAP trial</div>
+        </div>
+        <div class="cta-ac">
+          <div class="cta-ac-icon">⚠️</div>
+          <div class="cta-ac-label">Keep gluten for coeliac test</div>
+        </div>
+      </div>
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">⚕️</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Any changes you're considering are a conversation for you to have with your GP or healthcare professional.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: CLOSING -->
+  <div class="slide">
+    <div class="close-wrap">
+      <div class="close-logo">helf<span class="dot">.</span>school</div>
+      <div class="close-sub">Health Education</div>
+      <div class="close-headline">Common. Treatable. <span>Worth looking at properly.</span></div>
+      <div class="close-stats">
+        <div class="cst-card">
+          <div class="cst-num">64%</div>
+          <div class="cst-lab">UK adults · past-month bloating</div>
+          <div class="cst-src">Tuck · Eur J Nutr 2025</div>
+        </div>
+        <div class="cst-card">
+          <div class="cst-num">Rank 1</div>
+          <div class="cst-lab">low-FODMAP · bloating evidence</div>
+          <div class="cst-src">Black · Gut 2022</div>
+        </div>
+        <div class="cst-card">
+          <div class="cst-num">2× Women</div>
+          <div class="cst-lab">weekly bloating · global data</div>
+          <div class="cst-src">Rome Foundation 2023</div>
+        </div>
+      </div>
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">⚕️</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+      </div>
+      <div class="close-series">Digestive Health Series · Article 14 · Bloating</div>
+    </div>
+  </div>
+
+</div><!-- /stage -->
+
+<!-- DOTS -->
+<div id="dots">
+  <div class="dot active" onclick="goTo(0)"></div>
+  <div class="dot" onclick="goTo(1)"></div>
+  <div class="dot" onclick="goTo(2)"></div>
+  <div class="dot" onclick="goTo(3)"></div>
+  <div class="dot" onclick="goTo(4)"></div>
+  <div class="dot" onclick="goTo(5)"></div>
+  <div class="dot" onclick="goTo(6)"></div>
+  <div class="dot" onclick="goTo(7)"></div>
+  <div class="dot" onclick="goTo(8)"></div>
 </div>
 
-<div class="bottom-nav">
-  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>← Previous</button>
-  <div class="nav-dots" id="navDots"></div>
-  <button class="nav-btn nav-btn-primary" id="nextBtn" onclick="navigate(1)">Next →</button>
-</div>
+<div class="disc">Health education — not medical advice. helf.school</div>
 
 <script>
-const TOTAL = 9;
-const slideTypes  = ['opening','opening','section','section','section','section','section','cta','closing'];
-const slideTitles = ['Intro','64% Stat','What Happens','6 Causes','FODMAPs','What Doctor Does','Research','Action','Sign-off'];
-const badgeCls = { opening:'badge-opening', section:'badge-section', cta:'badge-cta', closing:'badge-closing' };
-const badgeLbl = { opening:'Opening', section:'Section', cta:'Call to Action', closing:'Closing' };
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('.dot');
+  let cur = 0;
 
-const visuals = {
+  function show(n){
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    document.getElementById('counter').textContent = (cur+1)+' / '+slides.length;
+    triggerSlide(cur);
+  }
+  function goTo(n){ show(n); }
 
-  s0: () => `
-    <div class="intro-wrap">
-      <div class="intro-logo">helf<span style="color:rgba(255,255,255,.60)">.</span>school</div>
-      <div class="intro-tagline">Health Education</div>
-      <div class="intro-topic">What Causes Bloating?</div>
-      <div class="intro-series">Digestive Health Series · Article 15</div>
-    </div>`,
+  document.addEventListener('keydown', e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowDown') show(cur+1);
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp') show(cur-1);
+  });
 
-  s1: () => `
-    <div class="stat-card">
-      <div class="stat-big">64%</div>
-      <div class="stat-label">of UK adults reported bloating<br>in the past month</div>
-      <div class="stat-sub">Including those with no diagnosed gut condition.<br>The most anxiety-provoking digestive symptom in the UK.</div>
-      <div class="stat-source">Tuck et al · European Journal of Nutrition · 2025 · UK adults survey (n=516)</div>
-    </div>`,
+  let tx=0, ty=0;
+  document.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; ty=e.touches[0].clientY; });
+  document.addEventListener('touchend', e=>{
+    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>40){ dx<0?show(cur+1):show(cur-1); }
+  });
 
-  s2: () => {
-    setTimeout(() => {
-      document.querySelectorAll('.bloat-step').forEach((el, i) => {
-        setTimeout(() => el.classList.add('visible'), i * 400);
-      });
-    }, 200);
-    return `
-    <div style="width:100%;max-width:860px;display:flex;flex-direction:column;gap:.6rem;">
-      <div style="font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.80);text-align:center;">How Bloating Actually Happens</div>
+  function triggerSlide(n){
+    if(n===2) animateGroup(['m1','m2','m3','m4'], 200);
+    if(n===3) animateGroup(['c1','c2','c3','c4','c5','c6'], 150);
+    if(n===5) animateGroup(['d1','d2','d3','d4','d5'], 170);
+    if(n===6) animateGroup(['e1','e2','e3','e4'], 220);
+  }
+  function animateGroup(ids, step){
+    ids.forEach((id,i)=>{
+      setTimeout(()=>{ const el=document.getElementById(id); if(el) el.classList.add('vis'); }, 200 + i*step);
+    });
+  }
 
-      <div style="display:flex;align-items:center;gap:1.5rem;">
+  slides.forEach(s=>{
+    const obs = new MutationObserver(()=>{
+      if(!s.classList.contains('active')){
+        s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'));
+      }
+    });
+    obs.observe(s, {attributes:true});
+  });
 
-        <div style="flex:0 0 320px;display:flex;justify-content:center;">
-          <svg viewBox="0 0 260 310" style="width:320px;height:auto;overflow:visible;" xmlns="http://www.w3.org/2000/svg">
-            <text x="100" y="16" text-anchor="middle" font-family="DM Sans" font-size="13" fill="rgba(255,255,255,.85)" font-weight="700">Small Intestine</text>
-            <path d="M60 36 Q38 52 50 72 Q62 92 88 86 Q114 80 102 102 Q90 124 62 120 Q34 116 44 138 Q54 160 82 156 Q110 152 100 176 Q90 200 62 196" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="20" stroke-linecap="round"/>
-            <path d="M60 36 Q38 52 50 72 Q62 92 88 86 Q114 80 102 102 Q90 124 62 120 Q34 116 44 138 Q54 160 82 156 Q110 152 100 176 Q90 200 62 196" fill="none" stroke="#1B2A4A" stroke-width="15" stroke-linecap="round"/>
-            <circle cx="58" cy="62" r="5.5" fill="#E8A84A"/>
-            <circle cx="76" cy="96" r="5"   fill="#E8A84A"/>
-            <circle cx="56" cy="132" r="5.5" fill="#E8A84A"/>
-            <circle cx="76" cy="168" r="5"   fill="#E8A84A" opacity=".7"/>
-            <line x1="105" y1="102" x2="148" y2="92" stroke="rgba(255,255,255,.45)" stroke-width="1.2"/>
-            <text x="150" y="86" font-family="DM Sans" font-size="11.5" fill="rgba(255,255,255,.80)">undigested carbs</text>
-            <text x="150" y="100" font-family="DM Sans" font-size="11.5" fill="rgba(255,255,255,.80)">pass through</text>
-            <line x1="88" y1="210" x2="88" y2="232" stroke="rgba(255,255,255,.55)" stroke-width="2" stroke-dasharray="5,3"/>
-            <polygon points="88,242 80,226 96,226" fill="rgba(255,255,255,.55)"/>
-            <text x="88" y="258" text-anchor="middle" font-family="DM Sans" font-size="13" fill="rgba(255,255,255,.85)" font-weight="700">Colon</text>
-            <ellipse cx="88" cy="288" rx="75" ry="18" fill="rgba(212,124,58,.15)" stroke="rgba(255,255,255,.70)" stroke-width="2.5"/>
-            <text x="88" y="285" text-anchor="middle" font-family="DM Sans" font-size="11" fill="rgba(255,255,255,.85)">🦠 bacteria ferment</text>
-            <line x1="163" y1="288" x2="175" y2="288" stroke="rgba(212,124,58,.80)" stroke-width="1.5"/>
-            <text x="177" y="284" font-family="DM Sans" font-size="11.5" fill="#D47C3A" font-weight="800">→ GAS</text>
-            <text x="177" y="298" font-family="DM Sans" font-size="11.5" fill="#D47C3A" font-weight="800">→ distension</text>
-            <circle cx="58"  cy="278" r="9"  fill="rgba(212,124,58,.70)" opacity="0" style="animation:bubble 2.5s ease-in-out 0s infinite"/>
-            <circle cx="88"  cy="272" r="12" fill="rgba(212,124,58,.55)" opacity="0" style="animation:bubble 2.5s ease-in-out .6s infinite"/>
-            <circle cx="118" cy="278" r="9"  fill="rgba(212,124,58,.70)" opacity="0" style="animation:bubble 2.5s ease-in-out 1.3s infinite"/>
-          </svg>
-          <style>@keyframes bubble{0%{opacity:0;transform:translateY(0) scale(.8)}30%{opacity:1}80%{opacity:.6;transform:translateY(-22px) scale(1.3)}100%{opacity:0;transform:translateY(-32px) scale(.9)}}</style>
-        </div>
-
-        <div style="flex:1;display:flex;flex-direction:column;gap:.55rem;">
-          <div class="bloat-step" style="background:rgba(212,124,58,.10);border:1px solid rgba(212,124,58,.30);border-radius:9px;padding:.7rem .95rem;opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease;">
-            <div style="font-size:.88rem;font-weight:700;color:var(--digest);margin-bottom:.2rem;">🫧 Gas production</div>
-            <div style="font-size:.80rem;color:rgba(255,255,255,.88);line-height:1.45;">Bacteria ferment undigested FODMAPs → hydrogen, CO₂, methane gas</div>
-          </div>
-          <div class="bloat-step" style="background:rgba(122,158,135,.10);border:1px solid rgba(122,158,135,.30);border-radius:9px;padding:.7rem .95rem;opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease;">
-            <div style="font-size:.88rem;font-weight:700;color:#7A9E87;margin-bottom:.2rem;">🔄 Impaired transit</div>
-            <div style="font-size:.80rem;color:rgba(255,255,255,.88);line-height:1.45;">Gas doesn't move through — constipation and slow motility cause pressure build-up</div>
-          </div>
-          <div class="bloat-step" style="background:rgba(107,94,168,.10);border:1px solid rgba(107,94,168,.30);border-radius:9px;padding:.7rem .95rem;opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease;">
-            <div style="font-size:.88rem;font-weight:700;color:#9B8FD4;margin-bottom:.2rem;">🧠 Visceral hypersensitivity</div>
-            <div style="font-size:.80rem;color:rgba(255,255,255,.88);line-height:1.45;">Oversensitive gut nerves — normal gas feels painful. Central to IBS.</div>
-          </div>
-          <div class="bloat-step" style="background:rgba(232,99,74,.10);border:1px solid rgba(232,99,74,.30);border-radius:9px;padding:.7rem .95rem;opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease;">
-            <div style="font-size:.88rem;font-weight:700;color:#E8634A;margin-bottom:.2rem;">🦠 SIBO</div>
-            <div style="font-size:.80rem;color:rgba(255,255,255,.88);line-height:1.45;">Bacteria in the small intestine — bloating within minutes of eating</div>
-          </div>
-        </div>
-
-      </div>
-    </div>`;
-  },
-
-  s3: () => {
-    setTimeout(() => {
-      document.querySelectorAll('.cause-card').forEach((el, i) => {
-        setTimeout(() => el.classList.add('visible'), 150 + i * 220);
-      });
-    }, 100);
-    return `
-    <div style="width:100%;max-width:780px;display:flex;flex-direction:column;gap:.6rem;">
-      <div style="font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.80);text-align:center;">The Six Main Causes of Bloating</div>
-      <div class="cause-grid">
-        <div class="cause-card">
-          <div class="cause-icon">🫧</div>
-          <div class="cause-title">Excess gas production</div>
-          <div class="cause-desc">Bacteria ferment undigested carbs (FODMAPs) in the colon — producing hydrogen, CO₂ and methane</div>
-        </div>
-        <div class="cause-card">
-          <div class="cause-icon">🔄</div>
-          <div class="cause-title">Impaired gas transit</div>
-          <div class="cause-desc">Gas doesn't move through efficiently — slow motility and constipation cause pressure to build</div>
-        </div>
-        <div class="cause-card">
-          <div class="cause-icon">🧠</div>
-          <div class="cause-title">Visceral hypersensitivity</div>
-          <div class="cause-desc">Oversensitive gut nerves — normal gas feels painful. Central mechanism in IBS</div>
-        </div>
-        <div class="cause-card">
-          <div class="cause-icon">🦠</div>
-          <div class="cause-title">SIBO</div>
-          <div class="cause-desc">Bacteria in the small intestine fermenting food too early — bloating starts minutes after eating</div>
-        </div>
-        <div class="cause-card">
-          <div class="cause-icon">🥛</div>
-          <div class="cause-title">Food intolerances</div>
-          <div class="cause-desc">Lactose, fructose, and other poorly absorbed sugars fermented by gut bacteria</div>
-        </div>
-        <div class="cause-card">
-          <div class="cause-icon">⚖️</div>
-          <div class="cause-title">Microbiome imbalance</div>
-          <div class="cause-desc">Individual differences in gut bacteria determine how much gas is produced from fermentation</div>
-        </div>
-      </div>
-    </div>`;
-  },
-
-  s4: () => `
-    <div style="width:100%;max-width:800px;display:flex;flex-direction:column;gap:.6rem;">
-      <div style="font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.80);text-align:center;">FODMAPs — What to Trial-Exclude &amp; What to Eat Instead</div>
-      <div style="border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.3);">
-        <div style="display:grid;grid-template-columns:110px 1fr 1fr;background:rgba(255,255,255,.05);">
-          <div style="padding:.6rem .8rem;"></div>
-          <div style="padding:.6rem .8rem;background:rgba(220,60,60,.20);border-left:1px solid rgba(255,255,255,.08);">
-            <span style="font-size:.8rem;font-weight:700;color:#FCA5A5;">🔴 High FODMAP — trial-exclude</span>
-          </div>
-          <div style="padding:.6rem .8rem;background:rgba(60,180,100,.15);border-left:1px solid rgba(255,255,255,.08);">
-            <span style="font-size:.8rem;font-weight:700;color:#86EFAC;">🟢 Low FODMAP — well tolerated</span>
-          </div>
-        </div>
-        ${[
-          ['🥛 Dairy',     'Cow\'s milk, yoghurt, soft cheese, ice cream',        'Lactose-free milk, hard cheese (cheddar), butter, brie'],
-          ['🍞 Grains',    'Wheat bread, rye, barley, wheat pasta, most cereals', 'Rice, oats, quinoa, gluten-free bread & pasta, corn'],
-          ['🧅 Vegetables','Onion, garlic, leek, asparagus, cauliflower, mushrooms','Carrot, tomato, courgette, spinach, potato, pepper, cucumber'],
-          ['🍎 Fruit',     'Apple, pear, mango, watermelon, cherry, dried fruit',  'Banana (firm), strawberry, blueberry, orange, kiwi, grape'],
-          ['🫘 Legumes',   'Baked beans, lentils, chickpeas, kidney beans',        'Canned rinsed chickpeas (small), firm tofu, tempeh'],
-          ['🍯 Sweeteners','Honey, sorbitol, mannitol, xylitol, fructose',         'Sugar (small), maple syrup (small), glucose, stevia'],
-        ].map((r, i) => `
-        <div style="display:grid;grid-template-columns:110px 1fr 1fr;background:${i%2===0 ? 'rgba(255,255,255,.03)' : 'rgba(255,255,255,.06)'};border-top:1px solid rgba(255,255,255,.06);">
-          <div style="padding:.55rem .8rem;font-size:.8rem;font-weight:700;color:rgba(255,255,255,.90);display:flex;align-items:center;">${r[0]}</div>
-          <div style="padding:.55rem .8rem;font-size:.78rem;color:rgba(255,255,255,.82);border-left:2px solid rgba(220,60,60,.40);line-height:1.4;">${r[1]}</div>
-          <div style="padding:.55rem .8rem;font-size:.78rem;color:rgba(255,255,255,.82);border-left:2px solid rgba(60,180,100,.40);line-height:1.4;">${r[2]}</div>
-        </div>`).join('')}
-      </div>
-      <div style="font-size:.72rem;color:rgba(255,255,255,.65);text-align:center;padding:.2rem 0;">Restricted 2–6 weeks · Then reintroduced one food at a time · Ideally with a registered dietitian</div>
-    </div>`,
-
-  s5: () => {
-    setTimeout(() => {
-      document.querySelectorAll('.mgmt-step').forEach((el, i) => {
-        setTimeout(() => el.classList.add('visible'), 200 + i * 350);
-      });
-    }, 100);
-    return `
-    <div class="mgmt-wrap">
-      <div class="mgmt-title">Investigation &amp; Management — Stepped Approach</div>
-      <div class="mgmt-step">
-        <div class="mgmt-num" style="background:rgba(212,124,58,.25);color:var(--digest);">1</div>
-        <div class="mgmt-text">
-          <h5>Targeted investigations</h5>
-          <p>Blood tests (coeliac, FBC, thyroid) · Hydrogen breath test (lactose, fructose, SIBO) · Pelvic ultrasound for new bloating in women</p>
-        </div>
-      </div>
-      <div class="mgmt-step">
-        <div class="mgmt-num" style="background:rgba(122,158,135,.25);color:#7A9E87;">2</div>
-        <div class="mgmt-text">
-          <h5>Dietary approach (first-line)</h5>
-          <p>Dietitian-led low-FODMAP trial · Lactose exclusion 2–4 weeks · Constipation addressed — fibre, hydration, activity</p>
-        </div>
-      </div>
-      <div class="mgmt-step">
-        <div class="mgmt-num" style="background:rgba(232,168,74,.25);color:var(--amber);">3</div>
-        <div class="mgmt-text">
-          <h5>Medications</h5>
-          <p>Antispasmodics (mebeverine [Colofac]) · Low-dose antidepressants (gut-brain modulation) · Rifaximin (Xifaxanta) where SIBO confirmed</p>
-        </div>
-      </div>
-      <div class="mgmt-step">
-        <div class="mgmt-num" style="background:rgba(107,94,168,.25);color:#9B8FD4;">4</div>
-        <div class="mgmt-text">
-          <h5>Gut-brain therapies</h5>
-          <p>Gut-directed hypnotherapy · CBT for IBS — particularly where anxiety or gut-brain axis is involved</p>
-        </div>
-      </div>
-      <div style="background:rgba(232,99,74,.10);border:1px solid rgba(232,99,74,.30);border-radius:8px;padding:.6rem .9rem;font-size:.78rem;color:rgba(255,255,255,.85);line-height:1.5;margin-top:.1rem;">
-        ⚠️ <strong style="color:#fff;">Coeliac testing requires gluten in the diet</strong> — starting gluten-free beforehand falsely normalises the result and can miss the diagnosis.
-      </div>
-    </div>`;
-  },
-
-  s6: () => {
-    setTimeout(() => {
-      document.querySelectorAll('.rr').forEach((el, i) => {
-        setTimeout(() => el.classList.add('visible'), 200 + i * 300);
-      });
-    }, 100);
-    return `
-    <div class="research-wrap">
-      <div class="rr-title">Key Evidence</div>
-      <div class="rr">
-        <div class="rr-badge">Rome Foundation 2023</div>
-        <div class="rr-text">Global study, 51,425 people in 26 countries. Nearly 18% experience bloating ≥once/week. Women twice as likely as men. Strongly associated with abdominal pain.</div>
-        <div class="rr-takehome">→ Bloating is common globally and significantly underscreened in primary care.</div>
-      </div>
-      <div class="rr">
-        <div class="rr-badge">Halmos et al · Gastroenterology 2014</div>
-        <div class="rr-text">Landmark RCT crossover, Monash University. Low-FODMAP diet vs normal diet in 30 IBS patients. Significantly reduced bloating, pain and wind.</div>
-        <div class="rr-takehome">→ Low-FODMAP is the evidence-based first-line dietary treatment for IBS bloating.</div>
-      </div>
-      <div class="rr">
-        <div class="rr-badge">Black, Staudacher &amp; Ford · Gut 2022</div>
-        <div class="rr-text">Network meta-analysis of 13 RCTs, 944 patients. Low-FODMAP ranked first for global symptoms, pain, and specifically bloating/distension.</div>
-        <div class="rr-takehome">→ Strongest dietary evidence for bloating relief across all interventions studied.</div>
-      </div>
-      <div class="rr">
-        <div class="rr-badge">Tuck et al · Eur J Nutr 2025</div>
-        <div class="rr-text">UK adults survey (n=516). 64% had bloating in the past month — even those with no diagnosed gut condition. Most anxiety-provoking symptom.</div>
-        <div class="rr-takehome">→ Bloating is not a niche problem — it warrants proper clinical attention.</div>
-      </div>
-    </div>`;
-  },
-
-  s7: () => {
-    setTimeout(() => {
-      document.querySelectorAll('.cta-card').forEach((el, i) => {
-        setTimeout(() => el.classList.add('visible'), 200 + i * 350);
-      });
-    }, 100);
-    return `
-    <div class="cta-wrap">
-      <div style="font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.80);margin-bottom:.2rem;">Three Practical Steps</div>
-      <div class="cta-card">
-        <div class="cta-num">1</div>
-        <div class="cta-text">
-          <h5>Persistent bloating is a conversation for your GP or healthcare professional</h5>
-          <p>Bloating has causes — and most are treatable. In UK practice, a symptom affecting daily life is worth proper assessment rather than indefinite management.</p>
-        </div>
-      </div>
-      <div class="cta-card">
-        <div class="cta-num">2</div>
-        <div class="cta-text">
-          <h5>A food and symptom diary comes before the appointment</h5>
-          <p>Two weeks of written notes — what's eaten, when symptoms occur — is often more useful than any test. Patterns emerge, and the GP conversation becomes far more productive.</p>
-        </div>
-      </div>
-      <div class="cta-card">
-        <div class="cta-num">3</div>
-        <div class="cta-text">
-          <h5>Dietitian-led low-FODMAP is the evidence-based pathway</h5>
-          <p>Without guidance, the diet is often done incorrectly — too restrictive, or the reintroduction phase skipped. Dietitian input makes a meaningful difference to outcome.</p>
-        </div>
-      </div>
-    </div>`;
-  },
-
-  s8: () => `
-    <div class="intro-wrap">
-      <div class="end-logo">helf<span style="color:rgba(255,255,255,.60)">.</span>school</div>
-      <div class="end-tagline">Evidence-based health education for everyone</div>
-      <div class="end-pills">
-        <span class="end-pill">01 Hypertension</span>
-        <span class="end-pill">02 Cholesterol</span>
-        <span class="end-pill">03 Heart Attack Risk</span>
-        <span class="end-pill">04 Statins</span>
-        <span class="end-pill">05 Lifestyle</span>
-        <span class="end-pill">06 Salt</span>
-        <span class="end-pill">07 Supplements</span>
-        <span class="end-pill">13 Acid Reflux</span>
-        <span class="end-pill active">15 Bloating</span>
-      </div>
-    </div>`,
-};
-
-const visualKeys = ['s0','s1','s2','s3','s4','s5','s6','s7','s8'];
-let current = 0;
-
-function renderSlide(idx) {
-  document.getElementById('visualContent').innerHTML = visuals[visualKeys[idx]]();
-  document.getElementById('slideNum').textContent = idx + 1;
-  document.getElementById('progressFill').style.width = ((idx+1)/TOTAL*100) + '%';
-  document.getElementById('prevBtn').disabled = idx === 0;
-  document.getElementById('nextBtn').textContent = idx === TOTAL-1 ? '✓ Done' : 'Next →';
-  const b = document.getElementById('typeBadge');
-  b.className = 'slide-type-badge ' + badgeCls[slideTypes[idx]];
-  b.textContent = badgeLbl[slideTypes[idx]];
-  document.querySelectorAll('.nav-dot').forEach((d,i) => d.classList.toggle('active', i===idx));
-}
-
-function navigate(dir) {
-  const n = current + dir;
-  if (n < 0 || n >= TOTAL) return;
-  current = n; renderSlide(n);
-}
-
-const de = document.getElementById('navDots');
-slideTitles.forEach((t,i) => {
-  const d = document.createElement('div');
-  d.className = 'nav-dot' + (i===0?' active':'');
-  d.title = t;
-  d.onclick = () => { current=i; renderSlide(i); };
-  de.appendChild(d);
-});
-
-document.addEventListener('keydown', e => {
-  if (e.key==='ArrowRight'||e.key==='ArrowDown') navigate(1);
-  if (e.key==='ArrowLeft'||e.key==='ArrowUp')   navigate(-1);
-});
-
-renderSlide(0);
+  triggerSlide(0);
 </script>
 </body>
 </html>
