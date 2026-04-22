@@ -55,44 +55,47 @@
     .gs-num{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:700;color:var(--acc);line-height:1}
     .gs-text{font-size:.95rem;color:#fff;font-weight:500}
 
-    /* SYSTEMS GRID (slide 3) */
-    .sys-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem;flex:1;min-height:0;grid-template-rows:1fr}
-    .sys-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(232,122,90,.25);border-radius:14px;padding:1.1rem .95rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    /* SYSTEMS GRID (slide 3) — HORIZONTAL ROW LAYOUT */
+    .sys-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.65rem;flex:1;min-height:0}
+    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:14px;padding:1rem 1.5rem;display:grid;grid-template-columns:72px 1fr auto;gap:1.5rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .sys-card.vis{opacity:1;transform:translateY(0)}
-    .sys-icon{font-size:2.4rem;line-height:1}
-    .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.02rem;line-height:1.15}
-    .sys-stat{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:700;color:var(--bad);line-height:1;margin-top:.1rem}
-    .sys-body{font-size:.82rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400}
+    .sys-icon{font-size:2.8rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .sys-content{display:flex;flex-direction:column;gap:.25rem;min-width:0}
+    .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;line-height:1.12;letter-spacing:-.01em}
+    .sys-body{font-size:1rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400}
+    .sys-stat{font-family:'Fraunces',serif;font-size:clamp(2.4rem,3.6vw,3.6rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:1rem}
 
-    /* DOCTOR GRID (slide 4) */
-    .doc-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:.75rem;flex:1;min-height:0}
-    .doc-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(122,158,135,.3);border-radius:14px;padding:1rem 1.15rem;display:flex;flex-direction:column;gap:.35rem;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    /* DOCTOR GRID (slide 4) — HORIZONTAL ROW LAYOUT */
+    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
+    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .doc-card.vis{opacity:1;transform:translateY(0)}
-    .doc-head{display:flex;align-items:center;gap:.55rem}
-    .doc-icon{font-size:1.6rem;line-height:1;flex-shrink:0}
-    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1rem;line-height:1.2}
-    .doc-body{font-size:.85rem;color:rgba(255,255,255,.88);line-height:1.5;font-weight:400}
+    .doc-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .doc-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12;letter-spacing:-.01em}
+    .doc-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400}
+    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.1vw,1.95rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
 
     /* RESEARCH (slides 5-7) */
-    .ev-stage{display:flex;flex-direction:column;gap:.85rem;flex:1;min-height:0}
-    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.3);border-radius:14px;padding:1rem 1.25rem;display:grid;grid-template-columns:180px 1fr;gap:1.1rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .45s ease}
+    .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
+    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .45s ease}
     .ev-card.vis{opacity:1;transform:translateY(0)}
-    .ev-stat{text-align:center;background:rgba(212,184,74,.08);border-radius:12px;padding:.85rem .7rem}
-    .ev-num{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:var(--acc);line-height:1}
+    .ev-stat{text-align:center;background:rgba(212,184,74,.09);border-radius:14px;padding:1.25rem .85rem}
+    .ev-num{font-family:'Fraunces',serif;font-size:3.4rem;font-weight:700;color:var(--acc);line-height:1;letter-spacing:-.02em}
     .ev-num.bad{color:var(--bad)}
-    .ev-label{font-size:.82rem;font-weight:700;color:#fff;margin-top:.35rem;line-height:1.35}
-    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;margin-bottom:.15rem}
-    .ev-det .ev-journal{font-size:.8rem;color:rgba(255,255,255,.82);margin-bottom:.4rem}
-    .ev-det .ev-body{font-size:.88rem;color:rgba(255,255,255,.90);line-height:1.55;font-weight:400}
+    .ev-label{font-size:1rem;font-weight:700;color:#fff;margin-top:.5rem;line-height:1.3}
+    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;margin-bottom:.25rem;line-height:1.15;letter-spacing:-.01em}
+    .ev-det .ev-journal{font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
+    .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400}
 
-    /* MECHANISMS (slide 8) */
-    .mech-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:.7rem;flex:1;min-height:0}
-    .mech-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(232,168,74,.3);border-radius:14px;padding:.9rem 1.05rem;display:flex;flex-direction:column;gap:.3rem;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    /* MECHANISMS (slide 8) — HORIZONTAL ROW LAYOUT */
+    .mech-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
+    .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .mech-card.vis{opacity:1;transform:translateY(0)}
-    .mech-hd{display:flex;align-items:center;gap:.5rem}
-    .mech-i{font-size:1.5rem;line-height:1;flex-shrink:0}
-    .mech-t{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.95rem;line-height:1.2}
-    .mech-b{font-size:.82rem;color:rgba(255,255,255,.88);line-height:1.48;font-weight:400}
+    .mech-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .mech-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+    .mech-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12;letter-spacing:-.01em}
+    .mech-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400}
+    .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2vw,1.85rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
 
     /* CTA (slide 9) */
     .cta-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.15rem}
@@ -106,19 +109,19 @@
     .cta-chip{background:rgba(212,184,74,.12);border:1px solid rgba(212,184,74,.42);color:var(--acc);font-weight:600;font-size:.88rem;padding:.38rem 1rem;border-radius:100px}
 
     /* CLOSING (slide 10) */
-    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.1rem;padding:1rem}
-    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:1.85rem;font-weight:700;color:#fff}
+    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:2rem;padding:1.5rem}
+    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
     .close-logo .dot{color:var(--coral)}
-    .close-sub{font-size:.8rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.72)}
-    .close-headline{font-family:'Fraunces',serif;font-size:clamp(2rem,4vw,2.9rem);font-weight:700;color:#fff;max-width:880px;line-height:1.15}
+    .close-sub{font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+    .close-headline{font-family:'Fraunces',serif;font-size:clamp(3rem,5.8vw,5.2rem);font-weight:700;color:#fff;max-width:1050px;line-height:1.08;letter-spacing:-.025em}
     .close-headline span{color:var(--acc)}
-    .close-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:.5rem 0;max-width:900px;width:100%}
-    .cst-card{background:rgba(212,184,74,.08);border:1px solid rgba(212,184,74,.28);border-radius:12px;padding:.9rem}
-    .cst-num{font-family:'Fraunces',serif;font-size:1.85rem;font-weight:700;color:var(--acc);line-height:1}
-    .cst-lab{font-size:.78rem;color:rgba(255,255,255,.90);font-weight:600;margin-top:.3rem;line-height:1.3}
-    .cst-src{font-size:.72rem;color:rgba(255,255,255,.70);margin-top:.35rem;font-style:italic}
-    .close-tag{font-size:.85rem;color:rgba(255,255,255,.75);font-family:'Fraunces',serif;font-style:italic;max-width:680px;line-height:1.5}
-    .close-series{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.70);margin-top:.3rem}
+    .close-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1050px;width:100%}
+    .cst-card{background:rgba(212,184,74,.1);border:1px solid rgba(212,184,74,.35);border-radius:16px;padding:1.5rem 1.1rem;display:flex;flex-direction:column;align-items:center;gap:.55rem}
+    .cst-num{font-family:'Fraunces',serif;font-size:clamp(2.4rem,4.4vw,3.8rem);font-weight:700;color:var(--acc);line-height:.95;letter-spacing:-.02em}
+    .cst-lab{font-size:1.05rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.32}
+    .cst-src{font-size:.85rem;color:rgba(255,255,255,.72);font-style:italic}
+    .close-tag{font-size:1.25rem;color:rgba(255,255,255,.9);font-family:'Fraunces',serif;font-style:italic;max-width:880px;line-height:1.52}
+    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.3rem}
 
     .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:.68rem;color:rgba(255,255,255,.18);z-index:90;white-space:nowrap}
   </style>
@@ -212,33 +215,43 @@
     <div class="sys-grid">
       <div class="sys-card" id="s1">
         <div class="sys-icon">🧬</div>
-        <div class="sys-title">Cancer</div>
+        <div class="sys-content">
+          <div class="sys-title">Cancer</div>
+          <div class="sys-body">Mouth, throat, oesophagus, liver, bowel, female breast. IARC Group 1 carcinogen since 1988.</div>
+        </div>
         <div class="sys-stat">7 types</div>
-        <div class="sys-body">Mouth, throat, oesophagus, liver, bowel, female breast — IARC Group 1 carcinogen since 1988.</div>
       </div>
       <div class="sys-card" id="s2">
-        <div class="sys-icon">🫀</div>
-        <div class="sys-title">Heart &amp; circulation</div>
-        <div class="sys-stat">↑ BP · AF</div>
-        <div class="sys-body">Genetics show risk rises monotonically with intake — no protective dose for CV disease.</div>
+        <div class="sys-icon">❤️</div>
+        <div class="sys-content">
+          <div class="sys-title">Heart</div>
+          <div class="sys-body">Raises blood pressure and triggers atrial fibrillation. No protective dose — risk rises with every unit.</div>
+        </div>
+        <div class="sys-stat">1.3×</div>
       </div>
       <div class="sys-card" id="s3">
-        <div class="sys-icon">🫁</div>
-        <div class="sys-title">Liver</div>
-        <div class="sys-stat">3 stages</div>
-        <div class="sys-body">Steatosis → hepatitis → cirrhosis. 75% of UK alcohol-specific deaths are from liver disease.</div>
+        <div class="sys-icon">🩸</div>
+        <div class="sys-content">
+          <div class="sys-title">Liver</div>
+          <div class="sys-body">75% of UK alcohol-specific deaths are from liver disease. Progresses: fatty liver → hepatitis → cirrhosis.</div>
+        </div>
+        <div class="sys-stat">75%</div>
       </div>
       <div class="sys-card" id="s4">
         <div class="sys-icon">🧠</div>
-        <div class="sys-title">Brain</div>
-        <div class="sys-stat">Shrinks</div>
-        <div class="sys-body">Grey &amp; white matter loss detectable from 1–2 units/day. Raises dementia risk long-term.</div>
+        <div class="sys-content">
+          <div class="sys-title">Brain</div>
+          <div class="sys-body">Grey and white matter loss detectable from 1–2 units per day. Raises long-term dementia risk.</div>
+        </div>
+        <div class="sys-stat">1 unit</div>
       </div>
       <div class="sys-card" id="s5">
         <div class="sys-icon">💭</div>
-        <div class="sys-title">Mood &amp; sleep</div>
-        <div class="sys-stat">Worsens</div>
-        <div class="sys-body">Fragments sleep, flattens mood, weakens antidepressants, raises suicide risk.</div>
+        <div class="sys-content">
+          <div class="sys-title">Mood &amp; sleep</div>
+          <div class="sys-body">Fragments sleep, flattens mood, weakens antidepressants. Raises suicide risk at higher intakes.</div>
+        </div>
+        <div class="sys-stat">↓ Sleep</div>
       </div>
     </div>
   </div>
@@ -248,28 +261,52 @@
     <div class="slide-title">What your <span>doctor might do</span></div>
     <div class="doc-grid">
       <div class="doc-card" id="d1">
-        <div class="doc-head"><span class="doc-icon">📋</span><span class="doc-title">AUDIT-C screen</span></div>
-        <div class="doc-body">Three questions — frequency, typical amount, binge episodes. Score ≥5 = fuller assessment.</div>
+        <div class="doc-icon">📋</div>
+        <div class="doc-content">
+          <div class="doc-title">AUDIT-C screen</div>
+          <div class="doc-body">Three quick questions — frequency, typical amount, binge episodes. Score ≥5 triggers full assessment.</div>
+        </div>
+        <div class="doc-action">→ Screen</div>
       </div>
       <div class="doc-card" id="d2">
-        <div class="doc-head"><span class="doc-icon">🩸</span><span class="doc-title">Blood tests</span></div>
-        <div class="doc-body">LFTs, GGT, FBC with MCV — pick up chronic heavy drinking, not social use.</div>
+        <div class="doc-icon">🩸</div>
+        <div class="doc-content">
+          <div class="doc-title">Blood tests</div>
+          <div class="doc-body">LFTs, GGT, and red-cell size (MCV) pick up chronic heavy use. Social drinking often looks normal.</div>
+        </div>
+        <div class="doc-action">→ Test</div>
       </div>
       <div class="doc-card" id="d3">
-        <div class="doc-head"><span class="doc-icon">🔬</span><span class="doc-title">Liver assessment</span></div>
-        <div class="doc-body">FibroScan or ultrasound if concern. Hepatology referral for advanced scarring.</div>
+        <div class="doc-icon">🔬</div>
+        <div class="doc-content">
+          <div class="doc-title">Liver assessment</div>
+          <div class="doc-body">FibroScan measures liver scarring without a biopsy. Ultrasound identifies fatty liver; hepatology referral for advanced cases.</div>
+        </div>
+        <div class="doc-action">→ Scan</div>
       </div>
       <div class="doc-card" id="d4">
-        <div class="doc-head"><span class="doc-icon">💬</span><span class="doc-title">Brief intervention</span></div>
-        <div class="doc-body">Short structured conversation — risk, motivation, practical goals. Cochrane-backed.</div>
+        <div class="doc-icon">💬</div>
+        <div class="doc-content">
+          <div class="doc-title">Brief intervention</div>
+          <div class="doc-body">Short structured conversation — personal risk, motivation, practical goals. Cochrane-reviewed and evidence-backed.</div>
+        </div>
+        <div class="doc-action">→ Guide</div>
       </div>
       <div class="doc-card" id="d5">
-        <div class="doc-head"><span class="doc-icon">⚕️</span><span class="doc-title">NICE CG115 pathway</span></div>
-        <div class="doc-body">CBT, acamprosate, naltrexone, supervised withdrawal with thiamine cover.</div>
+        <div class="doc-icon">⚕️</div>
+        <div class="doc-content">
+          <div class="doc-title">NICE CG115 pathway</div>
+          <div class="doc-body">CBT, medications (acamprosate, naltrexone), supervised withdrawal with thiamine cover for dependence.</div>
+        </div>
+        <div class="doc-action">→ Treat</div>
       </div>
       <div class="doc-card" id="d6">
-        <div class="doc-head"><span class="doc-icon">🤝</span><span class="doc-title">Community support</span></div>
-        <div class="doc-body">Local ICB services, Alcoholics Anonymous, SMART Recovery, Alcohol Change UK.</div>
+        <div class="doc-icon">🤝</div>
+        <div class="doc-content">
+          <div class="doc-title">Community support</div>
+          <div class="doc-body">Local ICB services, Alcoholics Anonymous, SMART Recovery, Alcohol Change UK, online self-help tools.</div>
+        </div>
+        <div class="doc-action">→ Support</div>
       </div>
     </div>
   </div>
@@ -366,28 +403,52 @@
     <div class="slide-title">How alcohol <span>actually harms</span></div>
     <div class="mech-grid">
       <div class="mech-card" id="m1">
-        <div class="mech-hd"><span class="mech-i">🧬</span><span class="mech-t">DNA damage</span></div>
-        <div class="mech-b">Acetaldehyde (alcohol's breakdown product) binds to DNA and causes mutations — the main route to cancer.</div>
+        <div class="mech-icon">🧬</div>
+        <div class="mech-content">
+          <div class="mech-title">DNA damage</div>
+          <div class="mech-body">Acetaldehyde (alcohol's breakdown product) binds directly to DNA, causes mutations, and blocks DNA repair.</div>
+        </div>
+        <div class="mech-outcome">→ Cancer</div>
       </div>
       <div class="mech-card" id="m2">
-        <div class="mech-hd"><span class="mech-i">🔥</span><span class="mech-t">Oxidative stress</span></div>
-        <div class="mech-b">Reactive molecules damage cells; chronic drinking drives systemic inflammation across organs.</div>
+        <div class="mech-icon">🔥</div>
+        <div class="mech-content">
+          <div class="mech-title">Oxidative stress</div>
+          <div class="mech-body">Reactive oxygen species damage cells; chronic drinking drives systemic inflammation across organs.</div>
+        </div>
+        <div class="mech-outcome">→ Inflammation</div>
       </div>
       <div class="mech-card" id="m3">
-        <div class="mech-hd"><span class="mech-i">💧</span><span class="mech-t">Hormone disruption</span></div>
-        <div class="mech-b">Raises oestrogen, lowers SHBG — key mechanism in female breast cancer.</div>
+        <div class="mech-icon">💧</div>
+        <div class="mech-content">
+          <div class="mech-title">Hormone disruption</div>
+          <div class="mech-body">Raises circulating oestrogen and lowers sex hormone-binding globulin — key pathway in female breast cancer.</div>
+        </div>
+        <div class="mech-outcome">→ Breast cancer</div>
       </div>
       <div class="mech-card" id="m4">
-        <div class="mech-hd"><span class="mech-i">🫀</span><span class="mech-t">Cardiac irritation</span></div>
-        <div class="mech-b">Triggers atrial fibrillation; raises BP; weakens heart muscle at high intakes.</div>
+        <div class="mech-icon">❤️</div>
+        <div class="mech-content">
+          <div class="mech-title">Cardiac irritation</div>
+          <div class="mech-body">Triggers atrial fibrillation directly; raises blood pressure acutely and chronically; weakens the heart muscle at high intakes.</div>
+        </div>
+        <div class="mech-outcome">→ AF + BP</div>
       </div>
       <div class="mech-card" id="m5">
-        <div class="mech-hd"><span class="mech-i">🍽️</span><span class="mech-t">Gut barrier loss</span></div>
-        <div class="mech-b">Damages gut lining ("leaky gut") — drives liver inflammation and immune activation.</div>
+        <div class="mech-icon">🍽️</div>
+        <div class="mech-content">
+          <div class="mech-title">Gut barrier loss</div>
+          <div class="mech-body">Damages the gut lining ("leaky gut") — bacterial products cross into the blood and drive liver inflammation.</div>
+        </div>
+        <div class="mech-outcome">→ Liver load</div>
       </div>
       <div class="mech-card" id="m6">
-        <div class="mech-hd"><span class="mech-i">🧠</span><span class="mech-t">Neurotoxicity</span></div>
-        <div class="mech-b">Directly toxic to neurons; blocks thiamine — cause of Wernicke-Korsakoff syndrome.</div>
+        <div class="mech-icon">🧠</div>
+        <div class="mech-content">
+          <div class="mech-title">Neurotoxicity</div>
+          <div class="mech-body">Directly toxic to brain cells; blocks thiamine (vitamin B1) absorption — the cause of Wernicke-Korsakoff.</div>
+        </div>
+        <div class="mech-outcome">→ Memory loss</div>
       </div>
     </div>
   </div>
