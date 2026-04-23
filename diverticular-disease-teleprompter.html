@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diverticular Disease — Teleprompter · helf.school</title>
+  <style>
+    :root {
+      --bg: #0A0F1A; --text: #F0EDE8; --accent: #D47C3A;
+      --cue-bg: rgba(212,124,58,0.18); --cue-border: #D47C3A;
+      --pause-bg: rgba(122,158,135,0.18); --pause-border: #7A9E87;
+      --warn-bg: rgba(200,66,58,0.18); --warn-border: #C8423A;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Georgia', serif; font-size: 1.9rem; line-height: 1.65; overflow: hidden; height: 100vh; user-select: none; }
+
+    .controls { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(10,15,26,0.95); border-bottom: 1px solid rgba(212,124,58,0.35); display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.8rem; flex-wrap: wrap; }
+    .ctrl-label { font-family: sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(240,237,232,0.55); }
+    .ctrl-btn { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: var(--text); border-radius: 5px; padding: 0.28rem 0.65rem; cursor: pointer; }
+    .ctrl-btn:hover { background: rgba(255,255,255,0.15); }
+    .ctrl-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .ctrl-sep { width: 1px; height: 24px; background: rgba(255,255,255,0.15); }
+    .ctrl-speed-display { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; color: var(--accent); min-width: 28px; text-align: center; }
+    .word-count { font-family: sans-serif; font-size: 0.68rem; color: rgba(240,237,232,0.45); margin-left: auto; }
+
+    .scroll-wrap { position: absolute; top: 56px; left: 0; right: 0; bottom: 48px; overflow: hidden; }
+    .scroll-inner { padding: 3rem 2.2rem 40vh; will-change: transform; }
+
+    .segment { margin-bottom: 2.8rem; }
+
+    .cue-box { background: var(--cue-bg); border: 2px solid var(--cue-border); border-radius: 8px; padding: 0.55rem 1rem; margin-bottom: 1.1rem; font-family: sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); display: flex; align-items: center; gap: 0.5rem; }
+    .cue-arrow { font-size: 1rem; flex-shrink: 0; }
+
+    .pause { background: var(--pause-bg); border-left: 3px solid var(--pause-border); border-radius: 0 6px 6px 0; padding: 0.4rem 0.9rem; margin: 1rem 0; font-family: sans-serif; font-size: 0.80rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #7A9E87; }
+
+    .stat { color: var(--accent); font-weight: 700; }
+
+    .warn-box { background: var(--warn-bg); border: 2px solid var(--warn-border); border-radius: 8px; padding: 0.55rem 1rem; margin: 1rem 0; font-family: sans-serif; font-size: 0.85rem; font-weight: 700; color: #FF8A80; }
+
+    .dots-bar { position: fixed; bottom: 0; left: 0; right: 0; height: 48px; background: rgba(10,15,26,0.95); border-top: 1px solid rgba(212,124,58,0.25); display: flex; align-items: center; justify-content: center; gap: 0.5rem; z-index: 50; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.22); cursor: pointer; transition: background 0.2s, transform 0.2s; }
+    .dot.active { background: var(--accent); transform: scale(1.3); }
+    .dot-label { font-family: sans-serif; font-size: 0.62rem; color: rgba(240,237,232,0.45); margin: 0 0.3rem; }
+  </style>
+</head>
+<body>
+
+<div class="controls">
+  <span class="ctrl-label">Speed</span>
+  <button class="ctrl-btn" id="btn-slower">−</button>
+  <span class="ctrl-speed-display" id="speed-display">3</span>
+  <button class="ctrl-btn" id="btn-faster">+</button>
+  <div class="ctrl-sep"></div>
+  <span class="ctrl-label">Font</span>
+  <button class="ctrl-btn" id="btn-smaller">A−</button>
+  <button class="ctrl-btn" id="btn-bigger">A+</button>
+  <div class="ctrl-sep"></div>
+  <button class="ctrl-btn" id="btn-pause">⏸ Pause</button>
+  <button class="ctrl-btn" id="btn-reset">↑ Top</button>
+  <span class="word-count">~650 words · ~4.5 min</span>
+</div>
+
+<div class="scroll-wrap" id="scroll-wrap">
+<div class="scroll-inner" id="scroll-inner">
+
+  <!-- SEGMENT 0 — INTRO -->
+  <div class="segment" id="seg-0">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 1 — Title card</div>
+
+    I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about diverticular disease.
+
+    <div class="pause">— brief pause —</div>
+
+    Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — let's get into it.
+  </div>
+
+  <!-- SEGMENT 1 — WHAT IS IT -->
+  <div class="segment" id="seg-1">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 2 — Three stages</div>
+
+    So what is diverticular disease? It starts with diverticula — small pouches that bulge outward through weak spots in the wall of the large bowel. They're very common, especially in older adults.
+
+    <div class="pause">— pause —</div>
+
+    There are three stages to understand. First — diverticulosis. That's when you have diverticula but no symptoms at all. <span class="stat">About 75% of people with diverticula are in this category.</span> They're often found incidentally on a scan done for something else, and the answer is: do nothing. No treatment, no diet changes, nothing to worry about.
+
+    <div class="pause">— pause —</div>
+
+    Second is diverticular disease — when the pouches start causing symptoms. Lower left abdominal pain, bloating, changes in bowel habit. That's managed with lifestyle changes. And third is diverticulitis — when the pouches become infected or inflamed. That's the more serious end of the spectrum.
+  </div>
+
+  <!-- SEGMENT 2 — RISK FACTORS -->
+  <div class="segment" id="seg-2">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 3 — Risk factors</div>
+
+    Why does it develop? It's strongly linked to a low-fibre Western diet. Diverticular disease is rare in rural sub-Saharan Africa and parts of Asia where fibre intake is high — and it was virtually unknown before the 20th century. <span class="stat">The average UK adult eats about 18 grams of fibre per day. The recommended level is 30 grams.</span>
+
+    <div class="pause">— pause —</div>
+
+    Other risk factors include age — it becomes much more common after 50 — obesity, low physical activity, and smoking. And there's something important to know about medications: regular use of ibuprofen and similar anti-inflammatory drugs — what we call NSAIDs — is clinically recognised as increasing the risk of bowel perforation in people with diverticular disease. That's worth knowing, because these are very commonly taken drugs.
+  </div>
+
+  <!-- SEGMENT 3 — DIET MYTH -->
+  <div class="segment" id="seg-3">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 4 — Seeds and nuts myth</div>
+
+    Now I want to address something that many people with diverticular disease have been told — and it turns out to be wrong.
+
+    <div class="pause">— pause —</div>
+
+    For decades, the standard advice was to avoid seeds, nuts, popcorn, and fruit skins. The theory was that these small particles might get trapped inside diverticula and cause infection. It sounds plausible — but there was never any evidence behind it.
+
+    <div class="pause">— pause —</div>
+
+    In 2019, NICE — the body that sets clinical guidelines in England — explicitly reversed this advice. <span class="stat">There is no need to avoid seeds, nuts, or fruit skins.</span> Not only is there no evidence they cause diverticulitis — avoiding them may actually reduce fibre intake, which is counterproductive. These foods are a useful source of the very thing that helps protect the bowel.
+  </div>
+
+  <!-- SEGMENT 4 — WHAT DOCTORS DO -->
+  <div class="segment" id="seg-4">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 5 — Doctor's toolkit</div>
+
+    So what happens in practice? For asymptomatic diverticulosis — reassurance and no treatment. For symptomatic diverticular disease, the focus is on lifestyle: gradually increasing dietary fibre to 30 grams per day, adequate fluids, regular exercise, stopping smoking.
+
+    <div class="pause">— pause —</div>
+
+    For pain, paracetamol and antispasmodics are the recommended options. NSAIDs and opioid painkillers are clinically recognised as increasing the risk of bowel perforation — which is why NICE identifies them as drugs to use with caution in this condition. And here's another significant change from previous practice: antibiotics are no longer routinely recommended for uncomplicated diverticulitis. Multiple randomised trials showed they don't reduce complications or speed recovery in uncomplicated cases. That's a meaningful shift.
+
+    <div class="pause">— pause —</div>
+
+    For more serious presentations — suspected abscess, or signs of peritonitis — a CT scan is the investigation of choice, and hospital assessment is the recognised clinical pathway.
+  </div>
+
+  <!-- SEGMENT 5 — EVIDENCE -->
+  <div class="segment" id="seg-5">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 6 — The evidence</div>
+
+    What does the evidence actually show? There are two important studies.
+
+    <div class="pause">— pause —</div>
+
+    First, a 2020 meta-analysis pooling five prospective cohort studies involving <span class="stat">865,000 participants</span> found a clear dose-response relationship between dietary fibre and diverticular disease risk. At 30 grams per day — the UK recommended intake — risk was <span class="stat">41% lower</span> compared to very low intake. At 40 grams, it was 58% lower. The relationship was consistent and there was no evidence of bias.
+
+    <div class="pause">— pause —</div>
+
+    Second, the EPIC-Oxford cohort — a large UK study of 47,000 people in England and Scotland — found that vegetarians had a <span class="stat">31% lower risk</span> of diverticular disease compared to meat eaters. After accounting for other factors, the main driver was fibre intake. Those with the highest fibre consumption had 41% lower risk than those with the lowest.
+  </div>
+
+  <!-- SEGMENT 6 — CTA / CLOSE -->
+  <div class="segment" id="seg-6">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 7 — CTA</div>
+
+    So — what are the key takeaways?
+
+    <div class="pause">— pause —</div>
+
+    If diverticula are found incidentally on a scan — that is not a diagnosis of disease. 75% of people with diverticula will never develop symptoms, and no treatment is needed.
+
+    <div class="pause">— pause —</div>
+
+    Dietary fibre is the strongest modifiable factor — 30 grams per day is the target, and most UK adults are well below that. Seeds, nuts, and fruit skins are fine — the old advice was wrong and has been formally reversed.
+
+    <div class="pause">— pause —</div>
+
+    If symptoms do develop — lower left abdominal pain that is worsening, coming with fever, or accompanied by rigors — that is a recognised pattern that warrants a clinical assessment.
+
+    <div class="pause">— pause —</div>
+
+    As always — anything personally relevant here is a conversation for you to have with your GP or healthcare professional. I'm Dr Paul. Thanks for watching.
+
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW · SLIDE 8 — Closing card</div>
+  </div>
+
+</div>
+</div>
+
+<div class="dots-bar" id="dots-bar">
+  <span class="dot-label">Seg</span>
+  <div class="dot active" data-seg="0" title="Intro"></div>
+  <div class="dot" data-seg="1" title="What is it"></div>
+  <div class="dot" data-seg="2" title="Risk factors"></div>
+  <div class="dot" data-seg="3" title="Diet myth"></div>
+  <div class="dot" data-seg="4" title="What doctors do"></div>
+  <div class="dot" data-seg="5" title="The evidence"></div>
+  <div class="dot" data-seg="6" title="CTA / Close"></div>
+</div>
+
+<script>
+  const PX_PER_SEC_BASE = 20;
+  const SPEED_LEVELS = [0, 8, 14, 20, 28, 38, 50];
+  let speedLevel = 3, fontSize = 1.9, paused = false, pos = 0, lastTs = null;
+  const wrap = document.getElementById('scroll-wrap');
+  const inner = document.getElementById('scroll-inner');
+  const spdDisp = document.getElementById('speed-display');
+
+  function applyFont() { inner.style.fontSize = fontSize + 'rem'; }
+
+  function raf(ts) {
+    if (!paused) {
+      if (lastTs !== null) { pos += SPEED_LEVELS[speedLevel] * (ts - lastTs) / 1000; inner.style.transform = 'translateY(-' + pos + 'px)'; }
+      lastTs = ts;
+    } else { lastTs = null; }
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  const dots = document.querySelectorAll('.dot');
+  const segs = document.querySelectorAll('.segment');
+
+  function updateDots() {
+    let active = 0;
+    segs.forEach((seg, i) => { if (pos >= seg.offsetTop - 80) active = i; });
+    dots.forEach(d => d.classList.remove('active'));
+    if (dots[active]) dots[active].classList.add('active');
+  }
+  setInterval(updateDots, 400);
+
+  dots.forEach(d => d.addEventListener('click', () => {
+    const seg = segs[parseInt(d.dataset.seg)];
+    if (seg) { pos = Math.max(0, seg.offsetTop - 80); inner.style.transform = 'translateY(-' + pos + 'px)'; }
+  }));
+
+  document.getElementById('btn-faster').addEventListener('click', () => { speedLevel = Math.min(6, speedLevel + 1); spdDisp.textContent = speedLevel; });
+  document.getElementById('btn-slower').addEventListener('click', () => { speedLevel = Math.max(0, speedLevel - 1); spdDisp.textContent = speedLevel; });
+  document.getElementById('btn-bigger').addEventListener('click', () => { fontSize = Math.min(3.2, +(fontSize + 0.15).toFixed(2)); applyFont(); });
+  document.getElementById('btn-smaller').addEventListener('click', () => { fontSize = Math.max(1.2, +(fontSize - 0.15).toFixed(2)); applyFont(); });
+  const pauseBtn = document.getElementById('btn-pause');
+  pauseBtn.addEventListener('click', () => { paused = !paused; pauseBtn.textContent = paused ? '▶ Resume' : '⏸ Pause'; pauseBtn.classList.toggle('active', paused); });
+  document.getElementById('btn-reset').addEventListener('click', () => { pos = 0; inner.style.transform = 'translateY(0)'; });
+
+  let ty = 0;
+  wrap.addEventListener('touchstart', e => { ty = e.touches[0].clientY; paused = true; pauseBtn.textContent = '▶ Resume'; pauseBtn.classList.add('active'); });
+  wrap.addEventListener('touchmove', e => { e.preventDefault(); const dy = e.touches[0].clientY - ty; pos = Math.max(0, pos - dy * 0.8); inner.style.transform = 'translateY(-' + pos + 'px)'; ty = e.touches[0].clientY; }, { passive: false });
+
+  applyFont();
+</script>
+</body>
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diverticular Disease — Visuals · helf.school</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #1B2A4A; --digestive: #D47C3A; --sage: #7A9E87;
+      --amber: #E8A84A; --bad: #C8423A;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; font-family: 'DM Sans', sans-serif; font-weight: 400; overflow: hidden; background: #000; }
+
+    .stage { width: 100vw; height: 100vh; position: relative; overflow: hidden; }
+
+    /* TOPBAR */
+    .topbar { position: absolute; top: 0; left: 0; right: 0; height: 52px; background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: space-between; padding: 0 1.1rem; z-index: 20; backdrop-filter: blur(6px); }
+    .topbar-left { display: flex; align-items: center; gap: 0.65rem; }
+    .topbar-logo { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.05rem; color: #fff; }
+    .topbar-sep { width:1px; height:20px; background:rgba(255,255,255,0.25); }
+    .topbar-series { font-size: 0.75rem; color: rgba(255,255,255,0.80); font-weight: 500; }
+    .slide-counter { font-size: 0.85rem; color: rgba(255,255,255,0.90); font-weight: 600; }
+    .kbd-hint { font-size: 0.72rem; color: rgba(255,255,255,0.60); }
+
+    /* SLIDES */
+    .slide { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; padding: 0.6rem 0.75rem; padding-top: 58px; display: grid; }
+    .slide.active { opacity: 1; pointer-events: all; }
+
+    .slide-title-block { margin-bottom: 0.55rem; }
+    .slide-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; color: var(--digestive); margin-bottom: 0.22rem; }
+    .slide-title { font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(1.3rem, 2.6vw, 1.85rem); color: #fff; line-height: 1.15; }
+    .slide-subtitle { font-size: 0.80rem; color: rgba(255,255,255,0.80); margin-top: 0.2rem; }
+
+    /* SLIDE 1 — INTRO */
+    #slide-1 { background: linear-gradient(135deg, var(--navy) 0%, #1E3C1E 55%, #2A4A1A 100%); display: flex; align-items: center; justify-content: center; padding-top: 52px; }
+    #slide-1::before { content:''; position:absolute; top:-80px; right:-80px; width:500px; height:500px; background: radial-gradient(circle, rgba(212,124,58,0.20) 0%, transparent 65%); border-radius:50%; }
+    .intro-inner { text-align: center; position: relative; z-index: 1; max-width: 760px; padding: 1rem; }
+    .intro-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(212,124,58,0.22); border: 1px solid rgba(212,124,58,0.40); border-radius: 20px; padding: 0.3rem 0.9rem; margin-bottom: 1.2rem; }
+    .intro-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--digestive); }
+    .intro-badge-text { font-size: 0.80rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.90); }
+    .intro-title { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(2.4rem, 6vw, 4.8rem); color: #fff; line-height: 1.05; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .intro-subtitle { font-size: clamp(0.95rem, 1.8vw, 1.15rem); color: rgba(255,255,255,0.85); max-width: 580px; margin: 0 auto 1.8rem; line-height: 1.55; }
+    .intro-stats { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
+    .intro-stat-n { font-family: 'Fraunces', serif; font-weight: 900; font-size: 2.5rem; color: var(--digestive); line-height: 1; }
+    .intro-stat-l { font-size: 0.80rem; color: rgba(255,255,255,0.80); margin-top: 0.2rem; }
+
+    /* SLIDE 2 — THE THREE STAGES (AMBER/MECHANISM) */
+    #slide-2 { background: linear-gradient(160deg, #1A1A0A 0%, #2A2010 100%); grid-template-rows: auto 1fr; }
+    .stages-rows { display: grid; grid-template-rows: 1fr 1fr 1fr; gap: 0.6rem; min-height: 0; }
+    .stage-row { display: grid; grid-template-columns: 72px 1fr auto; align-items: start; border-radius: 0 10px 10px 0; padding: 0.9rem 1rem; gap: 0.8rem; min-height: 0; overflow: hidden; }
+    .stage-row.asymptomatic { background: rgba(122,158,135,0.12); border-left: 4px solid var(--sage); }
+    .stage-row.symptomatic { background: rgba(232,168,74,0.12); border-left: 4px solid var(--amber); }
+    .stage-row.itis { background: rgba(200,66,58,0.12); border-left: 4px solid var(--bad); }
+    .stage-icon { font-size: 2.2rem; text-align: center; font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif; padding-top: 0.1rem; }
+    .stage-content { min-height: 0; }
+    .stage-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; line-height: 1.2; }
+    .stage-title.green { color: var(--sage); }
+    .stage-title.amber { color: var(--amber); }
+    .stage-title.red { color: #FF8A80; }
+    .stage-body { font-size: 0.93rem; color: rgba(255,255,255,0.88); line-height: 1.5; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+    .stage-stat { font-family: 'Fraunces', serif; font-weight: 900; font-size: 2.6rem; line-height: 1; text-align: right; flex-shrink: 0; padding-top: 0.1rem; }
+    .stage-stat.green { color: var(--sage); }
+    .stage-stat.amber { color: var(--amber); }
+    .stage-stat.red { color: #FF8A80; }
+
+    /* SLIDE 3 — RISK FACTORS (AMBER) */
+    #slide-3 { background: linear-gradient(160deg, #1A1A0A 0%, #2A2010 100%); grid-template-rows: auto 1fr; }
+    .risk-rows { display: grid; grid-template-rows: 1fr 1fr 1fr 1fr 1fr; gap: 0.5rem; min-height: 0; }
+    .risk-row { display: grid; grid-template-columns: 72px 1fr auto; align-items: start; background: rgba(232,168,74,0.10); border-left: 3px solid var(--amber); border-radius: 0 8px 8px 0; padding: 0.65rem 0.9rem; gap: 0.7rem; min-height: 0; overflow: hidden; }
+    .risk-icon { font-size: 1.9rem; text-align: center; font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif; padding-top: 0.1rem; }
+    .risk-content { min-height: 0; }
+    .risk-title { font-size: 1.0rem; font-weight: 700; color: var(--amber); margin-bottom: 0.2rem; }
+    .risk-body { font-size: 0.93rem; color: rgba(255,255,255,0.88); line-height: 1.45; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+    .risk-stat { font-family: 'Fraunces', serif; font-weight: 900; font-size: 2.4rem; color: var(--amber); line-height: 1; text-align: right; flex-shrink: 0; padding-top: 0.1rem; }
+
+    /* SLIDE 4 — DIET MYTH BUSTED */
+    #slide-4 { background: linear-gradient(160deg, #0A1A10 0%, #0F2818 100%); grid-template-rows: auto 1fr; }
+    .myth-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; gap: 0.7rem; min-height: 0; }
+    .myth-card { border-radius: 10px; padding: 1.1rem 1.15rem; display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+    .myth-card.old { background: rgba(200,66,58,0.12); border: 1px solid rgba(200,66,58,0.30); }
+    .myth-card.new { background: rgba(122,158,135,0.12); border: 1px solid rgba(122,158,135,0.30); }
+    .myth-badge { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 20px; display: inline-block; align-self: flex-start; margin-bottom: 0.6rem; }
+    .myth-badge.old { background: rgba(200,66,58,0.22); color: #FF8A80; border: 1px solid rgba(200,66,58,0.35); }
+    .myth-badge.new { background: rgba(122,158,135,0.22); color: var(--sage); border: 1px solid rgba(122,158,135,0.35); }
+    .myth-icon { font-size: 2.4rem; margin-bottom: 0.5rem; font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif; }
+    .myth-title { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.1rem; color: #fff; line-height: 1.25; margin-bottom: 0.5rem; }
+    .myth-body { font-size: 0.93rem; color: rgba(255,255,255,0.88); line-height: 1.5; flex: 1; overflow: hidden; }
+    .myth-source { font-size: 0.80rem; color: rgba(255,255,255,0.80); margin-top: auto; padding-top: 0.5rem; }
+
+    /* SLIDE 5 — DOCTOR'S TOOLKIT (GREEN) */
+    #slide-5 { background: linear-gradient(160deg, #0A1A10 0%, #0F2818 100%); grid-template-rows: auto 1fr; }
+    .doc-rows { display: grid; grid-template-rows: 1fr 1fr 1fr 1fr 1fr; gap: 0.5rem; min-height: 0; }
+    .doc-row { display: grid; grid-template-columns: 72px 1fr auto; align-items: start; background: rgba(122,158,135,0.10); border-left: 3px solid var(--sage); border-radius: 0 8px 8px 0; padding: 0.65rem 0.9rem; gap: 0.7rem; min-height: 0; overflow: hidden; }
+    .doc-icon { font-size: 1.9rem; text-align: center; font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif; padding-top: 0.1rem; }
+    .doc-content { min-height: 0; }
+    .doc-title { font-size: 1.0rem; font-weight: 700; color: var(--sage); margin-bottom: 0.2rem; }
+    .doc-body { font-size: 0.93rem; color: rgba(255,255,255,0.88); line-height: 1.45; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+    .doc-stat { font-family: 'Fraunces', serif; font-weight: 900; font-size: 2.4rem; color: var(--sage); line-height: 1; text-align: right; flex-shrink: 0; padding-top: 0.1rem; }
+
+    /* SLIDE 6 — EVIDENCE CARDS */
+    #slide-6 { background: linear-gradient(160deg, #0F1E38 0%, var(--navy) 100%); grid-template-rows: auto 1fr; }
+    .ev-cards { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; gap: 0.65rem; min-height: 0; }
+    .ev-card { background: rgba(255,255,255,0.05); border-radius: 10px; padding: 1rem 1.1rem; display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.10); min-height: 0; overflow: hidden; }
+    .ev-badge { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: rgba(212,124,58,0.22); color: var(--digestive); border: 1px solid rgba(212,124,58,0.35); padding: 0.2rem 0.6rem; border-radius: 20px; display: inline-block; align-self: flex-start; margin-bottom: 0.55rem; }
+    .ev-title { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.0rem; color: #fff; line-height: 1.25; margin-bottom: 0.5rem; }
+    .ev-stat-block { background: rgba(255,255,255,0.08); border-radius: 8px; padding: 0.8rem 1rem; margin-bottom: 0.7rem; }
+    .ev-stat-context { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(255,255,255,0.60); margin-bottom: 0.15rem; }
+    .ev-stat-row { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; line-height: 1.15; margin-bottom: 0.25rem; }
+    .ev-stat { font-family: 'Fraunces', serif; font-weight: 900; font-size: 2.8rem; line-height: 1; flex-shrink: 0; }
+    .ev-stat-what { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.25rem; color: #fff; line-height: 1.2; }
+    .ev-stat-label { font-size: 0.95rem; font-weight: 600; color: rgba(255,255,255,0.85); line-height: 1.4; }
+    .ev-finding { font-size: 0.93rem; color: rgba(255,255,255,0.88); line-height: 1.5; flex: 1; overflow: hidden; }
+    .ev-journal { font-size: 0.80rem; color: rgba(255,255,255,0.80); margin-top: auto; padding-top: 0.5rem; }
+
+    /* SLIDE 7 — CTA (horizontal rows) */
+    #slide-7 {
+      background: radial-gradient(ellipse at 50% 30%, rgba(212,124,58,0.35) 0%, rgba(27,42,74,0.97) 55%, #080E1C 100%);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 58px 1.1rem 0.6rem;
+    }
+    .cta-header { text-align: center; padding-bottom: 0.4rem; }
+    .cta-title { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(1.5rem, 3.0vw, 2.2rem); color: #fff; line-height: 1.1; letter-spacing: -0.02em; }
+    .cta-sub { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(0.82rem, 1.4vw, 0.95rem); color: rgba(255,255,255,0.80); margin-top: 0.2rem; }
+    .cta-rows { display: grid; grid-template-rows: 1fr 1fr 1fr 1fr; gap: 0.45rem; min-height: 0; }
+    .cta-row { display: grid; grid-template-columns: 60px 1fr auto; align-items: start; background: rgba(255,255,255,0.06); border: 1px solid rgba(212,124,58,0.30); border-left: 4px solid var(--digestive); border-radius: 0 10px 10px 0; padding: 0.6rem 0.9rem; gap: 0.7rem; min-height: 0; overflow: hidden; }
+    .cta-row-icon { font-size: 1.7rem; text-align: center; font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif; padding-top: 0.1rem; }
+    .cta-row-content { min-height: 0; }
+    .cta-row-title { font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(0.95rem, 1.6vw, 1.08rem); color: #fff; line-height: 1.2; margin-bottom: 0.18rem; }
+    .cta-row-body { font-size: 0.90rem; color: rgba(255,255,255,0.85); line-height: 1.4; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+    .cta-row-word { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(1.4rem, 2.4vw, 2.0rem); color: var(--digestive); line-height: 1; text-align: right; flex-shrink: 0; padding-top: 0.1rem; white-space: nowrap; }
+    .cta-disclaimer { background: rgba(255,255,255,0.04); border: 1px dashed rgba(255,255,255,0.25); border-radius: 8px; padding: 0.5rem 1rem; font-size: 0.80rem; color: rgba(255,255,255,0.85); line-height: 1.45; text-align: center; margin-top: 0.4rem; }
+    .cta-disclaimer strong { color: #fff; }
+
+    /* SLIDE 8 — CLOSING */
+    #slide-8 { background: var(--navy); display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 52px; }
+    .closing-inner { max-width: 680px; padding: 1.5rem; }
+    .closing-logo { font-family: 'Fraunces', serif; font-weight: 900; font-size: 2.5rem; color: #fff; margin-bottom: 0.4rem; }
+    .closing-dot { color: var(--digestive); }
+    .closing-tagline { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.70); margin-bottom: 2rem; }
+    .closing-message { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(1.2rem, 2.5vw, 1.6rem); color: rgba(255,255,255,0.88); line-height: 1.45; margin-bottom: 1.5rem; }
+    .closing-disclaimer { font-size: 0.82rem; color: rgba(255,255,255,0.65); line-height: 1.55; }
+    .closing-series { font-size: 0.80rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.70); margin-top: 1.5rem; }
+  </style>
+</head>
+<body>
+<div class="stage" id="stage">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-logo">helf.school</div>
+      <div class="topbar-sep"></div>
+      <div class="topbar-series">Digestive Health · Article 20</div>
+      <div class="topbar-sep"></div>
+      <div class="topbar-series">Diverticular Disease</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:1.2rem;">
+      <div class="kbd-hint">← → to navigate</div>
+      <div class="slide-counter" id="counter">1 / 8</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 1 — INTRO -->
+  <div class="slide active" id="slide-1">
+    <div class="intro-inner">
+      <div class="intro-badge"><div class="intro-badge-dot"></div><span class="intro-badge-text">Digestive Health Series · Article 20</span></div>
+      <div class="intro-title">Diverticular Disease</div>
+      <div class="intro-subtitle">Most people with diverticula never know they have them. This is what the evidence says about diet, lifestyle — and the old advice that turned out to be wrong.</div>
+      <div class="intro-stats">
+        <div><div class="intro-stat-n">1 in 2</div><div class="intro-stat-l">UK adults by older age</div></div>
+        <div><div class="intro-stat-n">75%</div><div class="intro-stat-l">remain asymptomatic</div></div>
+        <div><div class="intro-stat-n">41%</div><div class="intro-stat-l">risk cut with 30g fibre</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2 — THREE STAGES -->
+  <div class="slide" id="slide-2">
+    <div class="slide-title-block">
+      <div class="slide-eyebrow">Understanding the spectrum</div>
+      <div class="slide-title">Three different stages — three different experiences</div>
+      <div class="slide-subtitle">The distinction matters — most people are in stage 1 and need no treatment</div>
+    </div>
+    <div class="stages-rows">
+      <div class="stage-row asymptomatic">
+        <div class="stage-icon">🤫</div>
+        <div class="stage-content">
+          <div class="stage-title green">Diverticulosis — silent pouches</div>
+          <div class="stage-body">Diverticula present but causing no symptoms. Found incidentally on colonoscopy or scan. No treatment, no dietary restrictions, no follow-up required.</div>
+        </div>
+        <div class="stage-stat green">75%</div>
+      </div>
+      <div class="stage-row symptomatic">
+        <div class="stage-icon">😖</div>
+        <div class="stage-content">
+          <div class="stage-title amber">Diverticular disease — symptomatic</div>
+          <div class="stage-body">Lower left abdominal pain, bloating, altered bowel habit. Pain typically relieved by passing wind or stool. Managed with lifestyle: fibre, fluids, exercise.</div>
+        </div>
+        <div class="stage-stat amber">25%</div>
+      </div>
+      <div class="stage-row itis">
+        <div class="stage-icon">🤒</div>
+        <div class="stage-content">
+          <div class="stage-title red">Diverticulitis — inflamed or infected</div>
+          <div class="stage-body">Persistent lower left pain with fever, nausea, tenderness. Can be uncomplicated (managed at home) or complicated — involving abscess, perforation, or peritonitis.</div>
+        </div>
+        <div class="stage-stat red">~5%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3 — RISK FACTORS (AMBER) -->
+  <div class="slide" id="slide-3">
+    <div class="slide-title-block">
+      <div class="slide-eyebrow">Why diverticula form</div>
+      <div class="slide-title">Risk factors — a Western lifestyle pattern</div>
+      <div class="slide-subtitle">Rare in rural Africa and Asia — strongly linked to low-fibre Westernised diet</div>
+    </div>
+    <div class="risk-rows">
+      <div class="risk-row">
+        <div class="risk-icon">🌾</div>
+        <div class="risk-content">
+          <div class="risk-title">Low dietary fibre</div>
+          <div class="risk-body">The strongest modifiable risk factor. Average UK adult consumes ~18g/day — well below the recommended 30g. Low fibre increases colonic pressure during bowel contractions, weakening the bowel wall.</div>
+        </div>
+        <div class="risk-stat">18g</div>
+      </div>
+      <div class="risk-row">
+        <div class="risk-icon">🎂</div>
+        <div class="risk-content">
+          <div class="risk-title">Age</div>
+          <div class="risk-body">Rare before 40. Affects ~5–10% of those aged 45+, rising to ~80% of those aged 85+. Cumulative low-fibre diet and progressive bowel wall weakening over decades.</div>
+        </div>
+        <div class="risk-stat">85+</div>
+      </div>
+      <div class="risk-row">
+        <div class="risk-icon">⚖️</div>
+        <div class="risk-content">
+          <div class="risk-title">Obesity and low physical activity</div>
+          <div class="risk-body">Both independently increase risk. Physical activity improves gut motility (bowel movement) and reduces colonic pressure. Obesity is a particularly strong risk factor in younger adults under 50.</div>
+        </div>
+        <div class="risk-stat">↑BMI</div>
+      </div>
+      <div class="risk-row">
+        <div class="risk-icon">🚬</div>
+        <div class="risk-content">
+          <div class="risk-title">Smoking</div>
+          <div class="risk-body">Increases risk of diverticular disease and complications. NICE NG147 identifies smoking cessation as part of the first-line management of symptomatic diverticular disease.</div>
+        </div>
+        <div class="risk-stat">↑Risk</div>
+      </div>
+      <div class="risk-row">
+        <div class="risk-icon">💊</div>
+        <div class="risk-content">
+          <div class="risk-title">NSAIDs and opioids</div>
+          <div class="risk-body">Regular use of non-steroidal anti-inflammatory drugs (such as ibuprofen) or opioid painkillers increases the risk of diverticular perforation. NICE advises avoiding both where possible.</div>
+        </div>
+        <div class="risk-stat">⚠️</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4 — DIET MYTH BUSTED -->
+  <div class="slide" id="slide-4">
+    <div class="slide-title-block">
+      <div class="slide-eyebrow">Old advice vs current evidence</div>
+      <div class="slide-title">The seeds and nuts myth — reversed by NICE 2019</div>
+      <div class="slide-subtitle">Source: NICE NG147 · 2019, amended September 2024</div>
+    </div>
+    <div class="myth-grid">
+      <div class="myth-card old">
+        <div class="myth-badge old">❌ Old advice — now reversed</div>
+        <div class="myth-icon">🚫</div>
+        <div class="myth-title">Avoid seeds, nuts, popcorn, and fruit skins</div>
+        <div class="myth-body">For decades, people with diverticular disease were routinely told to avoid seeds, nuts, popcorn, and fruit skins — on the theory that they might lodge inside diverticula and trigger inflammation or infection. This advice was widely given by GPs and dietitians and caused significant dietary restriction in many people.</div>
+        <div class="myth-source">Theoretical basis only — no evidence ever supported this</div>
+      </div>
+      <div class="myth-card new">
+        <div class="myth-badge new">✅ Current NICE guidance</div>
+        <div class="myth-icon">🥜</div>
+        <div class="myth-title">No need to avoid seeds, nuts, or fruit skins</div>
+        <div class="myth-body">NICE NG147 explicitly states there is no need to avoid these foods. Not only is there no evidence they cause diverticulitis — avoiding them may reduce fibre intake, which is counterproductive. These foods are a useful source of dietary fibre and should form part of a healthy, balanced diet in people with diverticular disease.</div>
+        <div class="myth-source">NICE NG147 · 2019, amended September 2024</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5 — DOCTOR'S TOOLKIT (GREEN) -->
+  <div class="slide" id="slide-5">
+    <div class="slide-title-block">
+      <div class="slide-eyebrow">What your doctor does</div>
+      <div class="slide-title">Management pathway — UK practice</div>
+      <div class="slide-subtitle">Source: NICE NG147</div>
+    </div>
+    <div class="doc-rows">
+      <div class="doc-row">
+        <div class="doc-icon">🌾</div>
+        <div class="doc-content">
+          <div class="doc-title">Lifestyle first — fibre, fluids, exercise, smoking</div>
+          <div class="doc-body">Gradual increase to 30g fibre/day; ~2L fluid daily; regular physical activity; stop smoking; achieve healthy weight. First-line for all symptomatic disease.</div>
+        </div>
+        <div class="doc-stat">30g</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-icon">💊</div>
+        <div class="doc-content">
+          <div class="doc-title">Paracetamol + antispasmodics for pain</div>
+          <div class="doc-body">Paracetamol for abdominal pain; antispasmodics (bowel muscle relaxants) for cramping. NSAIDs and opioids explicitly avoided — both increase risk of bowel perforation.</div>
+        </div>
+        <div class="doc-stat">No NSAID</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-icon">🚫</div>
+        <div class="doc-content">
+          <div class="doc-title">No antibiotics for uncomplicated disease</div>
+          <div class="doc-body">Major change from previous practice. Antibiotics are not recommended for uncomplicated diverticular disease or uncomplicated acute diverticulitis — trial evidence shows no benefit.</div>
+        </div>
+        <div class="doc-stat">No ABx</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-icon">🔬</div>
+        <div class="doc-content">
+          <div class="doc-title">CT scan for suspected diverticulitis</div>
+          <div class="doc-body">CT scanning is the investigation of choice to confirm acute diverticulitis and identify complications (abscess, perforation). Colonoscopy typically follows 6–8 weeks later to exclude colorectal cancer.</div>
+        </div>
+        <div class="doc-stat">CT</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-icon">🏥</div>
+        <div class="doc-content">
+          <div class="doc-title">Surgery — for complications only</div>
+          <div class="doc-body">Emergency surgery for peritonitis or perforation. Elective sigmoid colectomy (removal of the sigmoid colon) considered for recurrent disease significantly affecting quality of life.</div>
+        </div>
+        <div class="doc-stat">Rare</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6 — EVIDENCE -->
+  <div class="slide" id="slide-6">
+    <div class="slide-title-block">
+      <div class="slide-eyebrow">The research</div>
+      <div class="slide-title">Fibre, diet, and diverticular disease — the evidence</div>
+      <div class="slide-subtitle">Source: Aune et al. Eur J Nutr 2020 · Crowe et al. BMJ 2011</div>
+    </div>
+    <div class="ev-cards">
+      <div class="ev-card">
+        <div class="ev-badge">Meta-Analysis · 2020</div>
+        <div class="ev-title">Dietary fibre and diverticular disease risk — 865,829 participants</div>
+        <div class="ev-stat-block">
+          <div class="ev-stat-context">Key finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-stat" style="color:var(--digestive);">41%</div>
+            <div class="ev-stat-what">lower risk of diverticular disease</div>
+          </div>
+          <div class="ev-stat-label">at 30g dietary fibre per day vs low intake (7.5g/day)</div>
+        </div>
+        <div class="ev-finding">Risk fell 23% at 20g/day, 41% at 30g/day, and 58% at 40g/day. The UK recommended intake is 30g — average actual UK intake is ~18g. Five cohort studies, consistent dose-response.</div>
+        <div class="ev-journal">Aune D et al. · Eur J Nutr · 2020 · DOI: 10.1007/s00394-019-01967-w</div>
+      </div>
+      <div class="ev-card">
+        <div class="ev-badge">UK Cohort · BMJ · 2011</div>
+        <div class="ev-title">EPIC-Oxford — 47,033 UK adults: vegetarians vs meat eaters</div>
+        <div class="ev-stat-block">
+          <div class="ev-stat-context">Key finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-stat" style="color:var(--sage);">31%</div>
+            <div class="ev-stat-what">lower risk of diverticular disease</div>
+          </div>
+          <div class="ev-stat-label">in vegetarians vs meat eaters — adjusted for BMI, smoking, alcohol, activity</div>
+        </div>
+        <div class="ev-finding">47,033 UK participants followed 11.6 years. Those with the highest fibre intake had 41% lower risk than those with the lowest — the association was primarily driven by fibre, not meat avoidance.</div>
+        <div class="ev-journal">Crowe FL et al. · BMJ · 2011 · DOI: 10.1136/bmj.d4131</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7 — CTA -->
+  <div class="slide" id="slide-7">
+    <div class="cta-header">
+      <div class="cta-title">What to take away from this</div>
+      <div class="cta-sub">Four things worth knowing about diverticular disease</div>
+    </div>
+    <div class="cta-rows">
+      <div class="cta-row">
+        <div class="cta-row-icon">🤫</div>
+        <div class="cta-row-content">
+          <div class="cta-row-title">Most diverticula are silent — finding them is not a diagnosis of disease</div>
+          <div class="cta-row-body">75% remain silent for life — an incidental finding needs no treatment and no diet changes.</div>
+        </div>
+        <div class="cta-row-word">75%</div>
+      </div>
+      <div class="cta-row">
+        <div class="cta-row-icon">🌾</div>
+        <div class="cta-row-content">
+          <div class="cta-row-title">Dietary fibre is the strongest modifiable factor — 30g per day</div>
+          <div class="cta-row-body">A 41% risk reduction at 30g/day versus low intake. Most UK adults consume only 18g. Wholegrains, fruit, vegetables, and pulses all count.</div>
+        </div>
+        <div class="cta-row-word">30g</div>
+      </div>
+      <div class="cta-row">
+        <div class="cta-row-icon">🥜</div>
+        <div class="cta-row-content">
+          <div class="cta-row-title">Seeds, nuts, and fruit skins are fine — old advice was wrong</div>
+          <div class="cta-row-body">NICE reversed decades of guidance in 2019. There is no evidence these foods cause diverticulitis — and avoiding them reduces fibre intake unnecessarily.</div>
+        </div>
+        <div class="cta-row-word">✅ Fine</div>
+      </div>
+      <div class="cta-row">
+        <div class="cta-row-icon">🚫</div>
+        <div class="cta-row-content">
+          <div class="cta-row-title">Antibiotics are no longer routine — and NSAIDs carry real risk</div>
+          <div class="cta-row-body">No antibiotics for uncomplicated diverticulitis — evidence shows no benefit. NSAIDs increase perforation risk.</div>
+        </div>
+        <div class="cta-row-word">No ABx</div>
+      </div>
+    </div>
+    <div class="cta-disclaimer">
+      <strong>⚕️ Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+    </div>
+  </div>
+
+  <!-- SLIDE 8 — CLOSING -->
+  <div class="slide" id="slide-8">
+    <div class="closing-inner">
+      <div class="closing-logo">helf<span class="closing-dot">.</span>school</div>
+      <div class="closing-tagline">Health Education</div>
+      <div class="closing-message">"Most diverticula stay quiet for life. The evidence points clearly toward dietary fibre — and the good news is the bowel responds to dietary change at any age."</div>
+      <div class="closing-disclaimer">⚕️ Health education — not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+      <div class="closing-series">Digestive Health Series · Article 20 of 21</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+  let current = 0;
+  function show(n) {
+    slides[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    counter.textContent = (current + 1) + ' / ' + slides.length;
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') show(current + 1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   show(current - 1);
+  });
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+  document.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (dx < -40) show(current + 1);
+    if (dx >  40) show(current - 1);
+  });
+</script>
+</body>
+</html>

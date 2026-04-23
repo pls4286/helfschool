@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diverticular Disease — helf.school</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:    #1B2A4A;
+      --coral:   #E8634A;
+      --cream:   #FAF7F2;
+      --sage:    #7A9E87;
+      --amber:   #E8A84A;
+      --digestive: #D47C3A;
+      --digestive-dark: #B5651D;
+      --digestive-light: rgba(212,124,58,0.12);
+      --bad:     #C8423A;
+      --text:    #2C2C2C;
+      --heading-font: 'Fraunces', Georgia, serif;
+      --body-font:    'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--body-font); font-weight: 400; color: var(--text); background: var(--cream); line-height: 1.7; }
+    a { color: var(--digestive); }
+    a:hover { color: var(--digestive-dark); }
+
+    /* NAV */
+    .main-nav { position: sticky; top: 0; z-index: 100; height: 56px; background: var(--navy); display: flex; align-items: center; padding: 0 1.5rem; gap: 1.5rem; }
+    .nav-logo { display: flex; align-items: center; gap: 0.55rem; text-decoration: none; }
+    .nav-logo-text { font-family: var(--heading-font); font-weight: 700; font-size: 1.15rem; color: #fff; }
+    .nav-logo-tag { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.10em; color: rgba(255,255,255,0.60); text-transform: uppercase; }
+    .nav-sep { width: 1px; height: 24px; background: rgba(255,255,255,0.18); }
+    .nav-breadcrumb { font-size: 0.82rem; color: rgba(255,255,255,0.78); display: flex; align-items: center; gap: 0.4rem; }
+    .nav-breadcrumb a { color: rgba(255,255,255,0.78); text-decoration: none; }
+    .nav-breadcrumb a:hover { color: #fff; }
+    .nav-breadcrumb .sep { color: rgba(255,255,255,0.40); }
+    .nav-series-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--digestive); margin-right: 0.3rem; }
+
+    /* HERO */
+    .hero { background: linear-gradient(135deg, var(--navy) 0%, #2C4A2A 50%, #1a3a2a 100%); min-height: calc(100vh - 56px - 8.5rem); display: flex; align-items: center; padding: 3rem 1.5rem 2rem; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 420px; height: 420px; background: radial-gradient(circle, rgba(212,124,58,0.18) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+    .hero::after { content: ''; position: absolute; bottom: -80px; left: -40px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(122,158,135,0.14) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+    .hero-inner { max-width: 820px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-series { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(212,124,58,0.20); border: 1px solid rgba(212,124,58,0.40); border-radius: 20px; padding: 0.30rem 0.85rem; margin-bottom: 1.5rem; }
+    .hero-series-text { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.90); }
+    .hero h1 { font-family: var(--heading-font); font-weight: 900; font-size: clamp(2.4rem, 5.5vw, 3.8rem); line-height: 1.10; color: #fff; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .hero-subtitle { font-size: clamp(1.05rem, 2.2vw, 1.25rem); color: rgba(255,255,255,0.88); max-width: 600px; margin-bottom: 2rem; line-height: 1.6; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 1rem 2rem; }
+    .hero-meta-item { font-size: 0.82rem; color: rgba(255,255,255,0.80); display: flex; align-items: center; gap: 0.35rem; }
+    .hero-meta-item strong { color: rgba(255,255,255,0.95); font-weight: 600; }
+
+    /* DISCLAIMER */
+    .disclaimer-bar { background: #FFF8E7; border-top: 3px solid var(--amber); padding: 0.95rem 1.5rem; }
+    .disclaimer-bar-inner { max-width: 820px; margin: 0 auto; display: flex; align-items: flex-start; gap: 0.65rem; }
+    .disclaimer-bar-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.05rem; }
+    .disclaimer-bar p { font-size: 0.88rem; color: #5C4A1A; line-height: 1.5; }
+    .disclaimer-bar p strong { font-weight: 700; color: #3D2E00; }
+
+    /* JUMP NAV */
+    .jump-nav { position: sticky; top: 56px; z-index: 90; background: #fff; border-bottom: 1px solid rgba(0,0,0,0.08); overflow-x: auto; scrollbar-width: none; }
+    .jump-nav::-webkit-scrollbar { display: none; }
+    .jump-nav-inner { max-width: 820px; margin: 0 auto; display: flex; padding: 0 1.5rem; }
+    .jump-nav a { white-space: nowrap; font-size: 0.82rem; font-weight: 600; color: #666; text-decoration: none; padding: 0.75rem 0.9rem; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .jump-nav a:hover { color: var(--digestive); border-bottom-color: var(--digestive); }
+
+    /* ARTICLE BODY */
+    .article-body { max-width: 820px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+    .article-section { padding-top: 3rem; scroll-margin-top: 150px; }
+    .section-label { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; color: var(--digestive); margin-bottom: 0.6rem; }
+    .section-label::before { content: ''; display: inline-block; width: 14px; height: 2px; background: var(--digestive); }
+    .section-title { font-family: var(--heading-font); font-weight: 700; font-size: clamp(1.6rem, 3.5vw, 2.1rem); color: var(--navy); line-height: 1.2; margin-bottom: 1.4rem; }
+    .section-body p { font-size: 1.02rem; color: var(--text); font-weight: 400; margin-bottom: 1.1rem; line-height: 1.75; }
+    .section-body p:last-child { margin-bottom: 0; }
+    .section-body h3 { font-family: var(--heading-font); font-weight: 700; font-size: 1.15rem; color: var(--navy); margin: 1.6rem 0 0.7rem; }
+
+    /* KEY TERMS */
+    .key-terms { background: var(--navy); border-radius: 12px; padding: 1.8rem 2rem; margin: 3rem 0; }
+    .key-terms-header { font-family: var(--heading-font); font-weight: 700; font-size: 1.1rem; color: #fff; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.5rem; }
+    .key-terms-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem 2rem; }
+    @media (max-width: 580px) { .key-terms-grid { grid-template-columns: 1fr; } }
+    .key-term dt { font-size: 0.88rem; font-weight: 700; color: var(--digestive); margin-bottom: 0.2rem; }
+    .key-term dd { font-size: 0.92rem; color: rgba(255,255,255,0.90); line-height: 1.55; }
+
+    /* SECTION 2 STAT GRID */
+    .why-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; margin: 1.6rem 0 2rem; }
+    @media (max-width: 520px) { .why-stat-grid { grid-template-columns: 1fr; } }
+    .why-stat-card { background: #fff; border-radius: 10px; border: 1px solid rgba(0,0,0,0.07); padding: 1.2rem 1.3rem; border-top: 3px solid var(--digestive); }
+    .why-stat-n { font-family: var(--heading-font); font-weight: 900; font-size: clamp(2.4rem, 4.5vw, 3.2rem); color: var(--digestive); line-height: 1; margin-bottom: 0.35rem; }
+    .why-stat-label { font-size: 1.00rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; line-height: 1.3; }
+    .why-stat-body { font-size: 0.93rem; color: var(--text); font-weight: 400; line-height: 1.6; }
+
+    /* CALLOUT BOX — reversed advice */
+    .reversed-advice-box { background: #EFF8F3; border: 2px solid var(--sage); border-radius: 10px; padding: 1.2rem 1.4rem; margin: 1.8rem 0; }
+    .reversed-advice-title { font-size: 0.95rem; font-weight: 700; color: #2E6A4A; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .reversed-advice-body { font-size: 0.95rem; color: var(--text); line-height: 1.65; }
+
+    /* DOCTOR CARDS */
+    .doctor-cards { display: flex; flex-direction: column; gap: 1rem; margin: 1.6rem 0; }
+    .doctor-card { background: #fff; border-radius: 10px; border: 1px solid rgba(0,0,0,0.08); padding: 1rem 1.25rem; display: flex; align-items: flex-start; gap: 1rem; }
+    .doctor-card-icon { font-size: 1.6rem; flex-shrink: 0; width: 44px; text-align: center; margin-top: 0.1rem; font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif; }
+    .doctor-card-title { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 0.25rem; }
+    .doctor-card-body { font-size: 0.95rem; color: var(--text); font-weight: 400; line-height: 1.6; }
+
+    /* RED FLAG */
+    .red-flag-box { background: #FFF2F2; border: 2px solid #C8423A; border-radius: 10px; padding: 1.2rem 1.4rem; margin: 1.8rem 0; }
+    .red-flag-box-title { font-size: 0.95rem; font-weight: 700; color: #C8423A; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem; }
+    .red-flag-box ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .red-flag-box ul li { font-size: 0.95rem; color: var(--text); font-weight: 400; display: flex; align-items: flex-start; gap: 0.5rem; line-height: 1.55; }
+    .red-flag-box ul li::before { content: '▸'; color: #C8423A; font-size: 0.8rem; margin-top: 0.2rem; flex-shrink: 0; }
+
+    /* RESEARCH CARDS */
+    .research-cards { display: flex; flex-direction: column; gap: 1.5rem; margin: 1.8rem 0; }
+    .research-card { background: var(--navy); border-radius: 12px; padding: 1.5rem 1.7rem; color: #fff; }
+    .research-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.8rem; }
+    .research-card-badge { font-size: 0.70rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: rgba(212,124,58,0.25); color: var(--digestive); border: 1px solid rgba(212,124,58,0.35); padding: 0.25rem 0.7rem; border-radius: 20px; white-space: nowrap; }
+    .research-card-title { font-family: var(--heading-font); font-weight: 700; font-size: 1.08rem; color: #fff; line-height: 1.3; flex: 1; }
+    .research-card-meta { font-size: 0.80rem; color: rgba(255,255,255,0.80); margin-bottom: 0.9rem; }
+    .research-card-stat { background: rgba(255,255,255,0.08); border-radius: 8px; padding: 0.8rem 1rem; margin-bottom: 0.9rem; }
+    .research-card-stat-number { font-family: var(--heading-font); font-weight: 900; font-size: 2.5rem; color: var(--digestive); line-height: 1; }
+    .research-card-stat-label { font-size: 0.88rem; color: rgba(255,255,255,0.80); margin-top: 0.2rem; }
+    .research-card-body { font-size: 0.95rem; color: rgba(255,255,255,0.88); line-height: 1.65; margin-bottom: 0.9rem; }
+    .research-card-source { font-size: 0.80rem; color: rgba(255,255,255,0.80); }
+
+    /* PUTTING IT ALL TOGETHER */
+    .putting-together { background: var(--navy); border-radius: 12px; padding: 2rem 2.2rem; margin: 3rem 0 2rem; }
+    .putting-together-title { font-family: var(--heading-font); font-weight: 700; font-size: 1.15rem; color: var(--digestive); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .putting-together p { font-size: 1rem; color: rgba(255,255,255,0.90); line-height: 1.75; font-style: italic; margin-bottom: 0.9rem; }
+    .putting-together p:last-child { margin-bottom: 0; font-style: normal; font-weight: 700; color: #fff; }
+
+    /* INLINE CITATIONS */
+    .ref-sup { font-size: 0.70rem; vertical-align: super; line-height: 0; }
+    .ref-sup a { background: rgba(122,106,46,0.12); color: var(--amber); text-decoration: none; padding: 0.05rem 0.28rem; border-radius: 3px; font-weight: 700; font-family: var(--body-font); }
+    .ref-sup a:hover { background: rgba(122,106,46,0.25); color: var(--amber); }
+
+    /* REFERENCES */
+    .references { margin-top: 3rem; padding-top: 2rem; border-top: 2px solid rgba(0,0,0,0.08); }
+    .references-title { font-family: var(--heading-font); font-weight: 700; font-size: 1.3rem; color: var(--navy); margin-bottom: 1.4rem; }
+    .ref-block { display: flex; gap: 1rem; margin-bottom: 1.3rem; align-items: flex-start; }
+    .ref-num { flex-shrink: 0; width: 26px; height: 26px; background: var(--digestive); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; margin-top: 0.15rem; }
+    .ref-full { font-size: 0.88rem; color: var(--text); font-weight: 400; line-height: 1.6; }
+    .ref-links { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.35rem; }
+    .ref-pill { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.75rem; font-weight: 600; padding: 0.22rem 0.65rem; border-radius: 20px; text-decoration: none; border: 1px solid; }
+    .ref-pill-journal { background: rgba(27,42,74,0.07); color: var(--navy); border-color: rgba(27,42,74,0.20); }
+    .ref-pill-journal:hover { background: rgba(27,42,74,0.14); color: var(--navy); }
+    .ref-pill-pubmed { background: rgba(212,124,58,0.10); color: var(--digestive-dark); border-color: rgba(212,124,58,0.30); }
+    .ref-pill-pubmed:hover { background: rgba(212,124,58,0.20); color: var(--digestive-dark); }
+
+    /* FOOTER */
+    .site-footer { background: var(--navy); padding: 2.5rem 1.5rem; text-align: center; }
+    .site-footer p { font-size: 0.82rem; color: rgba(255,255,255,0.60); line-height: 1.6; }
+    .site-footer a { color: rgba(255,255,255,0.75); }
+
+    @media (max-width: 640px) {
+      .hero { padding: 2rem 1rem 1.5rem; }
+      .article-body { padding: 0 1rem 3rem; }
+      .key-terms { padding: 1.4rem 1.2rem; }
+      .research-card { padding: 1.2rem 1.3rem; }
+      .putting-together { padding: 1.5rem 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="main-nav" aria-label="Site navigation">
+  <a href="index.html" class="nav-logo">
+    <svg width="26" height="26" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <rect x="4" y="8" width="15" height="24" rx="2" fill="none" stroke="#fff" stroke-width="2.2"/>
+      <rect x="21" y="8" width="15" height="24" rx="2" fill="none" stroke="#fff" stroke-width="2.2"/>
+      <path d="M19 10 C19 10 20 18 20 20 C20 22 19 30 19 30" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+    </svg>
+    <span>
+      <div class="nav-logo-text">helf.school</div>
+      <div class="nav-logo-tag">Health Education</div>
+    </span>
+  </a>
+  <div class="nav-sep"></div>
+  <nav class="nav-breadcrumb" aria-label="Breadcrumb">
+    <a href="helf-school-conditions.html">Conditions</a>
+    <span class="sep">›</span>
+    <span><span class="nav-series-dot"></span>Digestive Health</span>
+    <span class="sep">›</span>
+    <span>Diverticular Disease</span>
+  </nav>
+</nav>
+
+<!-- HERO -->
+<header class="hero" aria-label="Article header">
+  <div class="hero-inner">
+    <div class="hero-series">
+      <span class="nav-series-dot"></span>
+      <span class="hero-series-text">Digestive Health · Article 20</span>
+    </div>
+    <h1>Diverticular Disease</h1>
+    <p class="hero-subtitle">By the age of 70, around half of UK adults have diverticula in their bowel — most without ever knowing it. This article explains the difference between diverticulosis, diverticular disease, and diverticulitis, and what the evidence says about diet, lifestyle, and treatment.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">👨‍⚕️ <strong>Dr Paul</strong>&ensp;NHS GP (Retd.)</div>
+      <div class="hero-meta-item">📅 <strong>2026</strong></div>
+      <div class="hero-meta-item">⏱ <strong>8 min read</strong></div>
+      <div class="hero-meta-item">🔬 <strong>Evidence-based</strong></div>
+    </div>
+  </div>
+</header>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer-bar" role="note" aria-label="Health education disclaimer">
+  <div class="disclaimer-bar-inner">
+    <span class="disclaimer-bar-icon">⚕️</span>
+    <p><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+  </div>
+</div>
+
+<!-- JUMP NAV -->
+<nav class="jump-nav" aria-label="Jump to section">
+  <div class="jump-nav-inner">
+    <a href="#what-is-it">What is it?</a>
+    <a href="#why-it-matters">Why it matters</a>
+    <a href="#what-doctors-do">What doctors do</a>
+    <a href="#research">The research</a>
+  </div>
+</nav>
+
+<!-- ARTICLE BODY -->
+<main class="article-body">
+
+  <!-- SECTION 1 -->
+  <section id="what-is-it" class="article-section" aria-labelledby="s1-title">
+    <div class="section-label">Section 1</div>
+    <h2 class="section-title" id="s1-title">What is diverticular disease?</h2>
+    <div class="section-body">
+      <p>Diverticula (singular: diverticulum) are small pouches that bulge outward through weak spots in the wall of the large bowel (colon). They form when the inner lining of the bowel pushes through gaps in the muscular layer — a process similar to the inner tube of a bicycle tyre bulging through a weak spot in the outer tyre. They are typically 5–10mm in diameter and most commonly develop in the sigmoid colon (the S-shaped lower section of the large bowel on the left side of the abdomen), though they can occur anywhere in the colon.</p>
+      <p>Diverticular disease is described using three related but distinct terms, and the distinction matters:</p>
+
+      <h3>Diverticulosis</h3>
+      <p>The presence of diverticula without any symptoms. This is the most common state — the vast majority of people with diverticula are entirely unaware of them. Diverticulosis is considered a normal feature of the ageing bowel in Western populations rather than a disease in its own right. No treatment is needed and no dietary restrictions are required.</p>
+
+      <h3>Diverticular disease</h3>
+      <p>When diverticula cause symptoms — typically intermittent lower left abdominal pain, bloating, and changes in bowel habit (either looser or more constipated stools). The pain may be triggered by eating and relieved by passing wind or stool. Symptoms can overlap significantly with irritable bowel syndrome (IBS — a functional gut disorder causing chronic abdominal pain and altered bowel habit without structural abnormality), and the two conditions can coexist.</p>
+
+      <h3>Diverticulitis</h3>
+      <p>When one or more diverticula become infected or inflamed — producing more persistent pain, fever, and tenderness, usually in the lower left abdomen. Diverticulitis can be <strong>uncomplicated</strong> (confined to the bowel wall) or <strong>complicated</strong> — involving a pericolic abscess (a collection of pus around the bowel), perforation (a tear through the bowel wall), fistula (an abnormal channel to an adjacent organ such as the bladder), or peritonitis (widespread abdominal infection from bowel contents entering the abdomen).</p>
+
+      <h3>Why is it so common?</h3>
+      <p>Diverticular disease is strongly associated with a low-fibre diet, physical inactivity, obesity, and smoking — all hallmarks of Western lifestyles. It is sometimes described as a "disease of Western civilisation" because it is rare in rural sub-Saharan Africa and parts of Asia where dietary fibre intake is high, but increasingly prevalent in populations that have adopted Western dietary patterns. The condition was rare before the 20th century and has increased markedly since industrialisation and the widespread adoption of processed, low-fibre foods.</p>
+    </div>
+  </section>
+
+  <!-- KEY TERMS -->
+  <section class="key-terms" aria-label="Key terms glossary">
+    <div class="key-terms-header">📖 Key Terms</div>
+    <dl class="key-terms-grid">
+      <div class="key-term">
+        <dt>Diverticulum / Diverticula</dt>
+        <dd>A small pouch (diverticulum) or pouches (diverticula) that bulge outward through weak spots in the wall of the large bowel.</dd>
+      </div>
+      <div class="key-term">
+        <dt>Diverticulosis</dt>
+        <dd>The presence of diverticula without any symptoms — the most common state. Considered a normal feature of the ageing bowel in Western populations.</dd>
+      </div>
+      <div class="key-term">
+        <dt>Diverticular disease</dt>
+        <dd>Diverticula that are causing symptoms — typically lower left abdominal pain, bloating, and altered bowel habit — without active infection or inflammation.</dd>
+      </div>
+      <div class="key-term">
+        <dt>Diverticulitis</dt>
+        <dd>Active infection or inflammation of one or more diverticula, producing persistent pain, fever, and tenderness. Can be uncomplicated or complicated.</dd>
+      </div>
+      <div class="key-term">
+        <dt>Sigmoid colon</dt>
+        <dd>The S-shaped lower section of the large bowel on the left side of the abdomen — the most common site for diverticula to develop in Western populations.</dd>
+      </div>
+      <div class="key-term">
+        <dt>Abscess</dt>
+        <dd>A localised collection of pus. A pericolic abscess (around the bowel) is a complication of diverticulitis, sometimes requiring drainage.</dd>
+      </div>
+      <div class="key-term">
+        <dt>Peritonitis</dt>
+        <dd>Widespread infection of the abdominal cavity, occurring if a diverticulum perforates (tears through the bowel wall) and gut contents enter the abdomen. A surgical emergency.</dd>
+      </div>
+      <div class="key-term">
+        <dt>Fistula</dt>
+        <dd>An abnormal channel that forms between the bowel and an adjacent organ — most commonly the bladder (colovesical fistula) — as a complication of recurrent diverticulitis.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- SECTION 2 -->
+  <section id="why-it-matters" class="article-section" aria-labelledby="s2-title">
+    <div class="section-label">Section 2</div>
+    <h2 class="section-title" id="s2-title">Why does it matter?</h2>
+
+    <div class="why-stat-grid">
+      <div class="why-stat-card">
+        <div class="why-stat-n">1 in 2</div>
+        <div class="why-stat-label">UK adults affected by older age</div>
+        <div class="why-stat-body">Diverticular disease affects around 1 in 3 people in their lifetime, rising to 1 in 2 as they get older<sup class="ref-sup"><a href="#ref-1">1</a></sup> — making it one of the most prevalent digestive conditions in the UK.</div>
+      </div>
+      <div class="why-stat-card">
+        <div class="why-stat-n">75%</div>
+        <div class="why-stat-label">of those with diverticula remain asymptomatic</div>
+        <div class="why-stat-body">The majority of people with diverticulosis will never develop symptoms or complications throughout their lifetime and require no treatment.<sup class="ref-sup"><a href="#ref-2">2</a></sup></div>
+      </div>
+      <div class="why-stat-card">
+        <div class="why-stat-n">41%</div>
+        <div class="why-stat-label">lower risk of diverticular disease with 30g fibre daily</div>
+        <div class="why-stat-body">A meta-analysis of 865,829 people found a 41% reduction in risk at 30g/day dietary fibre versus low intake<sup class="ref-sup"><a href="#ref-3">3</a></sup> — the strongest modifiable factor identified.</div>
+      </div>
+      <div class="why-stat-card">
+        <div class="why-stat-n">80%</div>
+        <div class="why-stat-label">of people aged 85+ have diverticula</div>
+        <div class="why-stat-body">The condition is rare before age 40 but becomes almost universal in older adults in Western countries<sup class="ref-sup"><a href="#ref-2">2</a></sup> — strongly linked to cumulative dietary fibre deficiency over decades.</div>
+      </div>
+    </div>
+
+    <div class="section-body">
+      <p>While most diverticula cause no trouble, the minority that do become symptomatic or inflamed can significantly affect quality of life. Acute diverticulitis accounts for a substantial number of emergency hospital admissions in England each year, and complicated diverticulitis — with abscess, perforation, or peritonitis — carries real risk.</p>
+      <p>The educational value for a lay audience lies in two areas: first, understanding the distinction between the three stages so that an incidental finding of diverticulosis does not cause unnecessary anxiety; and second, understanding the dietary evidence — which is strong — and the reversal of long-standing dietary advice about seeds and nuts.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 3 -->
+  <section id="what-doctors-do" class="article-section" aria-labelledby="s3-title">
+    <div class="section-label">Section 3</div>
+    <h2 class="section-title" id="s3-title">What your doctor might do</h2>
+    <div class="section-body">
+      <p>Management in UK practice depends entirely on which stage of the spectrum a person is in — asymptomatic diverticulosis, symptomatic diverticular disease, or acute diverticulitis.</p>
+    </div>
+
+    <div class="doctor-cards">
+      <div class="doctor-card">
+        <div class="doctor-card-icon">⏸️</div>
+        <div>
+          <div class="doctor-card-title">Diverticulosis — reassurance and no treatment needed</div>
+          <div class="doctor-card-body">NICE guideline NG147<sup class="ref-sup"><a href="#ref-4">4</a></sup> is clear: people with asymptomatic diverticulosis found incidentally on imaging or colonoscopy (direct camera examination of the bowel) do not need treatment. In UK practice, the finding is explained, dietary and lifestyle advice is offered, and no follow-up or intervention is arranged unless symptoms develop. There is no need to avoid any particular foods.</div>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doctor-card-icon">🌾</div>
+        <div>
+          <div class="doctor-card-title">Lifestyle measures — fibre, fluids, and weight</div>
+          <div class="doctor-card-body">For symptomatic diverticular disease, first-line management centres on lifestyle: a gradual increase in dietary fibre (from wholegrains, fruit, vegetables, and pulses) toward 30g per day; adequate fluid intake (approximately 2 litres per day); regular physical activity; weight management; and stopping smoking. A bulk-forming laxative (such as ispaghula husk — a soluble fibre supplement that absorbs water and softens stool) may be used if constipation persists despite dietary changes.</div>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doctor-card-icon">💊</div>
+        <div>
+          <div class="doctor-card-title">Pain management — paracetamol and antispasmodics only</div>
+          <div class="doctor-card-body">NICE NG147<sup class="ref-sup"><a href="#ref-4">4</a></sup> recommends paracetamol (acetaminophen — a commonly used analgesic) for abdominal pain and antispasmodics (medications that relax intestinal muscle spasm) for cramping. NSAIDs (non-steroidal anti-inflammatory drugs such as ibuprofen) and opioid analgesics (codeine, tramadol) are clinically recognised as increasing the risk of diverticular perforation (tearing through the bowel wall) — which is why in UK practice their use in diverticular disease is treated with caution.</div>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doctor-card-icon">🚫</div>
+        <div>
+          <div class="doctor-card-title">Antibiotics — NOT recommended for uncomplicated disease</div>
+          <div class="doctor-card-body">A significant change in UK practice based on NICE NG147: antibiotics are no longer routinely prescribed for uncomplicated diverticular disease or uncomplicated acute diverticulitis that can be managed at home. Multiple randomised trials have shown they do not reduce complications or speed recovery in uncomplicated cases. Antibiotics are reserved for complicated diverticulitis — where there is suspected abscess, perforation, or systemic infection (infection spreading beyond the bowel).</div>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doctor-card-icon">🔬</div>
+        <div>
+          <div class="doctor-card-title">CT scan for suspected diverticulitis</div>
+          <div class="doctor-card-body">When acute diverticulitis is suspected — lower left abdominal pain with fever and raised inflammatory markers (CRP — C-reactive protein — a blood test marker of inflammation; white cell count) — CT scanning is the investigation of choice to confirm the diagnosis and assess for complications. It identifies abscesses, perforation, and fistulas. Ultrasound is less reliable for diverticulitis. Colonoscopy (direct camera examination of the bowel) is typically arranged 6–8 weeks after recovery from an acute episode to exclude colorectal cancer (cancer of the large bowel or rectum), as the symptoms can overlap.</div>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doctor-card-icon">🏥</div>
+        <div>
+          <div class="doctor-card-title">Surgery — reserved for complications</div>
+          <div class="doctor-card-body">Emergency surgery is indicated for peritonitis (widespread abdominal infection), large abscesses not amenable to drainage, and free perforation. Elective surgery (planned sigmoid colectomy — removal of the sigmoid colon) may be considered for recurrent episodes of diverticulitis significantly affecting quality of life, or for complications such as fistula. The decision involves weighing the benefits against the risks of colorectal surgery, and in UK practice is described as a shared clinical decision between the patient and their surgical team.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reversed-advice-box" role="note">
+      <div class="reversed-advice-title">✅ Old advice reversed — seeds, nuts, and fruit skins are fine</div>
+      <div class="reversed-advice-body">For decades, people with diverticular disease were routinely advised to avoid seeds, nuts, popcorn, and fruit skins — on the theoretical basis that these might lodge in diverticula and trigger inflammation. NICE NG147<sup class="ref-sup"><a href="#ref-4">4</a></sup> explicitly states there is no need to avoid these foods. There is no evidence that they cause diverticulitis, and avoiding them may actually reduce fibre intake — counterproductive given the strong fibre evidence.</div>
+    </div>
+
+    <div class="red-flag-box" role="note" aria-label="Clinically time-sensitive features">
+      <div class="red-flag-box-title">⚠️ Clinically time-sensitive features</div>
+      <ul>
+        <li><strong>Peritonitis</strong> — generalised abdominal pain, board-like rigidity of the abdomen, high fever: suggests bowel perforation — clinically recognised as a surgical emergency. 999 exists for this.</li>
+        <li><strong>Severe, worsening lower left abdominal pain with high fever and rigors</strong> (uncontrolled shivering) suggest complicated diverticulitis — clinically recognised as requiring urgent hospital assessment. 111 and urgent GP services exist for this.</li>
+        <li><strong>Frank rectal bleeding</strong> (bright or dark red blood from the back passage) that is significant in volume is a recognised feature of diverticular haemorrhage — clinically recognised as requiring assessment.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SECTION 4 -->
+  <section id="research" class="article-section" aria-labelledby="s4-title">
+    <div class="section-label">Section 4</div>
+    <h2 class="section-title" id="s4-title">What the research shows</h2>
+
+    <div class="research-cards">
+
+      <!-- Card 1 — Fibre meta-analysis -->
+      <div class="research-card">
+        <div class="research-card-header">
+          <div class="research-card-title">Dietary fibre and risk of diverticular disease — systematic review and meta-analysis</div>
+          <div class="research-card-badge">Meta-Analysis</div>
+        </div>
+        <div class="research-card-meta">European Journal of Nutrition · 2020 · DOI: 10.1007/s00394-019-01967-w · PubMed: 31037341</div>
+        <div class="research-card-stat">
+          <div class="research-card-stat-number">41%</div>
+          <div class="research-card-stat-label">reduction in risk of diverticular disease at 30g fibre per day versus low intake (7.5g/day)</div>
+        </div>
+        <div class="research-card-body">This meta-analysis pooled five prospective cohort studies involving 865,829 participants and 19,282 cases of diverticular disease — the largest synthesis of dietary fibre and diverticular disease risk to date. The summary relative risk (RR — the risk in the high-fibre group compared to the low-fibre group) was 0.74 (95% CI — the range within which the true value most likely falls — 0.71–0.78) per 10g increase in daily fibre. The dose-response relationship was consistent: a 23% risk reduction at 20g/day, 41% at 30g/day, and 58% at 40g/day — compared to a very low intake of 7.5g/day. Results were consistent across all subgroup analyses and showed no evidence of publication bias. The UK recommended daily intake of dietary fibre is 30g per day; the average UK adult consumes approximately 18g — well below target.</div>
+        <div class="research-card-source">Aune D, Sen A, Norat T, Riboli E. Eur J Nutr. 2020;59(2):421–432. DOI: <a href="https://doi.org/10.1007/s00394-019-01967-w" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85)">10.1007/s00394-019-01967-w</a></div>
+      </div>
+
+      <!-- Card 2 — EPIC Oxford -->
+      <div class="research-card">
+        <div class="research-card-header">
+          <div class="research-card-title">EPIC-Oxford cohort — diet and risk of diverticular disease in British vegetarians and non-vegetarians</div>
+          <div class="research-card-badge">UK Cohort · BMJ</div>
+        </div>
+        <div class="research-card-meta">BMJ · 2011 · DOI: 10.1136/bmj.d4131 · PubMed: 21771850</div>
+        <div class="research-card-stat">
+          <div class="research-card-stat-number">31%</div>
+          <div class="research-card-stat-label">lower risk of diverticular disease in vegetarians versus meat eaters — 47,033 UK participants</div>
+        </div>
+        <div class="research-card-body">This prospective cohort study followed 47,033 men and women living in England and Scotland, of whom 33% were vegetarian. After a mean follow-up of 11.6 years, vegetarians had a significantly lower risk of being admitted to hospital or dying from diverticular disease compared to meat eaters — a hazard ratio (HR — HR below 1 means lower risk) of 0.69 (95% CI 0.55–0.86), representing a 31% lower risk. The association was largely explained by fibre intake: those in the highest fifth of fibre consumption had a risk 41% lower than those in the lowest fifth (HR 0.59, 95% CI 0.46–0.78). The study is significant because it was conducted in UK participants, used linked hospital and death records to identify cases, and adjusted for multiple confounders including BMI (body mass index), smoking, alcohol, and physical activity.</div>
+        <div class="research-card-source">Crowe FL, Appleby PN, Allen NE, Key TJ. BMJ. 2011;343:d4131. DOI: <a href="https://doi.org/10.1136/bmj.d4131" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85)">10.1136/bmj.d4131</a></div>
+      </div>
+
+      <!-- Card 3 — NICE NG147 -->
+      <div class="research-card">
+        <div class="research-card-header">
+          <div class="research-card-title">NICE guideline NG147 — diverticular disease: diagnosis and management</div>
+          <div class="research-card-badge">NICE Guideline</div>
+        </div>
+        <div class="research-card-meta">National Institute for Health and Care Excellence · Published 2019, amended September 2024, confirmed current 2025</div>
+        <div class="research-card-stat">
+          <div class="research-card-stat-number">No</div>
+          <div class="research-card-stat-label">antibiotics for uncomplicated diverticular disease — a significant change from previous practice, based on trial evidence</div>
+        </div>
+        <div class="research-card-body">NICE NG147 represents the current UK framework for managing diverticular disease across the full spectrum. Its key recommendations include: no treatment needed for asymptomatic diverticulosis; dietary advice with no restriction on seeds, nuts, or fruit skins — explicitly reversing decades of prior guidance; lifestyle-based management (fibre, fluids, exercise, smoking cessation) for symptomatic disease; no routine antibiotics for uncomplicated diverticulitis; avoidance of NSAIDs and opioids due to increased perforation risk; and CT scanning as the primary investigation for suspected acute diverticulitis. The guideline emphasises that colonoscopy after recovery from acute diverticulitis is in UK practice to exclude colorectal cancer, as symptom overlap can make clinical distinction difficult.</div>
+        <div class="research-card-source">NICE NG147. <a href="https://www.nice.org.uk/guidance/ng147" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85)">nice.org.uk/guidance/ng147</a></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PUTTING IT ALL TOGETHER -->
+  <section class="putting-together" aria-label="Summary">
+    <div class="putting-together-title">🔑 Putting it all together</div>
+    <p>Diverticular disease is one of the most common digestive conditions in the UK — and one of the most misunderstood. The majority of people with diverticula (diverticulosis) will never develop symptoms and need no treatment, no dietary restrictions, and no follow-up. The anxiety that sometimes follows an incidental finding is not supported by the evidence.</p>
+    <p>The dietary evidence is strong: a high-fibre diet — 30g per day — is associated with a 41% reduction in the risk of developing diverticular disease. The average UK adult consumes around 18g per day, well below this level. The reversal of the long-standing advice to avoid seeds, nuts, and fruit skins is equally important — these foods may actually be beneficial, not harmful.</p>
+    <p>For those who do develop symptoms, management in UK practice is lifestyle-based. Antibiotics are no longer routinely used even for acute diverticulitis, and NSAIDs — still commonly taken for joint pain and other conditions — carry a recognised risk of perforation that is worth knowing about.</p>
+    <p><strong>Most diverticula are silent and harmless. The evidence points clearly toward dietary fibre as the key modifiable factor — and the good news is that the bowel responds to changes in diet at any age.</strong></p>
+  </section>
+
+  <!-- REFERENCES -->
+  <section class="references" aria-label="References">
+    <h2 class="references-title">References</h2>
+
+    <div class="ref-block" id="ref-1">
+      <div class="ref-num">1</div>
+      <div>
+        <div class="ref-full">Guts UK / Bowel Research UK. <em>Diverticular disease priority setting partnership.</em> 2025. Available at: gutscharity.org.uk</div>
+        <div class="ref-links">
+          <a class="ref-pill ref-pill-journal" href="https://gutscharity.org.uk/research/psps/the-future-diverticular-disease-research/" target="_blank" rel="noopener">Guts UK PSP</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-block" id="ref-2">
+      <div class="ref-num">2</div>
+      <div>
+        <div class="ref-full">Patient.info. Diverticular Disease and Diverticulitis (professional reference). Last updated June 2024. Based on NHS/NICE guidance and peer-reviewed sources.</div>
+        <div class="ref-links">
+          <a class="ref-pill ref-pill-journal" href="https://patient.info/doctor/gastroenterology/diverticular-disease" target="_blank" rel="noopener">Patient.info</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-block" id="ref-3">
+      <div class="ref-num">3</div>
+      <div>
+        <div class="ref-full">Aune D, Sen A, Norat T, Riboli E. Dietary fibre intake and the risk of diverticular disease: a systematic review and meta-analysis of prospective studies. <em>European Journal of Nutrition.</em> 2020;59(2):421–432.</div>
+        <div class="ref-links">
+          <a class="ref-pill ref-pill-journal" href="https://doi.org/10.1007/s00394-019-01967-w" target="_blank" rel="noopener">DOI: 10.1007/s00394-019-01967-w</a>
+          <a class="ref-pill ref-pill-pubmed" href="https://pubmed.ncbi.nlm.nih.gov/31037341/" target="_blank" rel="noopener">PubMed: 31037341</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-block" id="ref-4">
+      <div class="ref-num">4</div>
+      <div>
+        <div class="ref-full">National Institute for Health and Care Excellence. <em>Diverticular disease: diagnosis and management.</em> NICE guideline NG147. Published November 2019; amended September 2024; confirmed current 2025.</div>
+        <div class="ref-links">
+          <a class="ref-pill ref-pill-journal" href="https://www.nice.org.uk/guidance/ng147" target="_blank" rel="noopener">NICE NG147</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-block" id="ref-5">
+      <div class="ref-num">5</div>
+      <div>
+        <div class="ref-full">Crowe FL, Appleby PN, Allen NE, Key TJ. Diet and risk of diverticular disease in Oxford cohort of European Prospective Investigation into Cancer and Nutrition (EPIC): prospective study of British vegetarians and non-vegetarians. <em>BMJ.</em> 2011;343:d4131.</div>
+        <div class="ref-links">
+          <a class="ref-pill ref-pill-journal" href="https://doi.org/10.1136/bmj.d4131" target="_blank" rel="noopener">DOI: 10.1136/bmj.d4131</a>
+          <a class="ref-pill ref-pill-pubmed" href="https://pubmed.ncbi.nlm.nih.gov/21771850/" target="_blank" rel="noopener">PubMed: 21771850</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p>⚕️ <strong style="color:rgba(255,255,255,0.80);">Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+  <p style="margin-top:0.7rem;">© 2026 helf.school · <a href="index.html">Home</a> · <a href="helf-school-conditions.html">Conditions</a> · <a href="helf-school-membership.html">Membership</a></p>
+</footer>
+
+</body>
+</html>
