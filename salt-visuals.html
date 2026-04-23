@@ -15,7 +15,7 @@
     .tb-dot{color:var(--coral)}
     .tb-sub{font-size:.75rem;color:rgba(255,255,255,.78);margin-left:.25rem;font-weight:500}
     .tb-right{display:flex;align-items:center;gap:1.2rem}
-    .slide-counter{font-size:.88rem;font-weight:700;color:rgba(255,255,255,.90)}
+    .slide-counter{font-size:.85rem;font-weight:700;color:rgba(255,255,255,.90)}
     .kb-hint{font-size:.75rem;color:rgba(255,255,255,.65)}
     #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:2.2vh 1.25rem 3.5vh;overflow:hidden}
     .slide{display:none;width:100%;max-width:1140px;height:100%;animation:sIn .32s ease}
@@ -27,6 +27,7 @@
     .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .25s}
     .dot.active{background:var(--acc);transform:scale(1.3)}
 
+    /* INTRO */
     .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.3rem}
     .intro-badge{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.12);border:1px solid rgba(212,184,74,.3);padding:.3rem .9rem;border-radius:100px}
     .intro-icon{font-size:4rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
@@ -35,7 +36,7 @@
     .intro-sub{font-size:1.1rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;max-width:680px;line-height:1.5;font-weight:400}
     .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
 
-    /* Big picture (salt sources) slide 2 */
+    /* SLIDE 2 — SALT SOURCES */
     .src-stage{display:flex;flex-direction:column;flex:1;gap:1.1rem;min-height:0;align-items:center;justify-content:center}
     .src-split{display:grid;grid-template-columns:3fr 1fr;gap:.75rem;width:100%;max-width:940px;height:110px}
     .src-seg{border-radius:14px;padding:1rem 1.4rem;display:flex;flex-direction:column;justify-content:center}
@@ -44,13 +45,13 @@
     .src-pct{font-family:'Fraunces',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#fff;line-height:.9}
     .src-seg.hidden .src-pct{color:var(--bad)}
     .src-seg.added .src-pct{color:var(--good)}
-    .src-desc{font-size:.95rem;color:rgba(255,255,255,.9);line-height:1.35;margin-top:.3rem}
+    .src-desc{font-size:.95rem;color:rgba(255,255,255,.90);line-height:1.35;margin-top:.3rem;font-weight:400}
     .targets-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;max-width:940px;width:100%}
     .tgt-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:14px;padding:1rem 1.3rem;display:flex;align-items:center;gap:1rem}
     .tgt-ic{font-size:2.2rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
     .tgt-det{flex:1}
     .tgt-num{font-family:'Fraunces',serif;font-weight:700;color:var(--acc);font-size:1.8rem;line-height:1;letter-spacing:-.01em}
-    .tgt-lbl{font-size:.95rem;color:rgba(255,255,255,.88);line-height:1.3;margin-top:.2rem}
+    .tgt-lbl{font-size:.95rem;color:rgba(255,255,255,.88);line-height:1.3;margin-top:.2rem;font-weight:400}
     .labels-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;max-width:940px;width:100%}
     .lab-chip{padding:.6rem .9rem;border-radius:12px;text-align:center;font-size:.88rem;font-weight:600;color:#fff}
     .lab-chip.high{background:rgba(232,122,90,.2);border:1px solid rgba(232,122,90,.55)}
@@ -58,30 +59,32 @@
     .lab-chip.low{background:rgba(126,204,153,.18);border:1px solid rgba(126,204,153,.55)}
     .lab-chip strong{font-family:'Fraunces',serif;font-size:1rem;margin-right:.3rem}
 
-    /* HORIZONTAL ROWS */
-    .sys-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.65rem;flex:1;min-height:0}
-    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:14px;padding:1rem 1.5rem;display:grid;grid-template-columns:72px 1fr auto;gap:1.5rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    /* 5-ROW CARDS — slide 3 */
+    .sys-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.45rem;flex:1;min-height:0}
+    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:12px;padding:.7rem 1.2rem;display:grid;grid-template-columns:58px 1fr auto;gap:1.1rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .sys-card.vis{opacity:1;transform:translateY(0)}
-    .sys-icon{font-size:2.8rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .sys-content{display:flex;flex-direction:column;gap:.25rem;min-width:0}
-    .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.4rem;line-height:1.12;letter-spacing:-.01em}
-    .sys-body{font-size:.98rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400}
-    .sys-stat{font-family:'Fraunces',serif;font-size:clamp(1.8rem,2.8vw,2.6rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:1rem}
+    .sys-icon{font-size:2.2rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .sys-content{display:flex;flex-direction:column;gap:.18rem;min-width:0}
+    .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.2rem;line-height:1.12;letter-spacing:-.01em}
+    .sys-body{font-size:.93rem;color:rgba(255,255,255,.90);line-height:1.38;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .sys-stat{font-family:'Fraunces',serif;font-size:clamp(1.5rem,2.4vw,2.2rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:.75rem}
 
-    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
-    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    /* 6-ROW CARDS — slides 4, 8 */
+    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
+    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .doc-card.vis{opacity:1;transform:translateY(0)}
-    .doc-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .doc-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
-    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12;letter-spacing:-.01em}
-    .doc-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400}
-    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2vw,1.85rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
+    .doc-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .doc-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
+    .doc-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem}
 
+    /* EV CARDS */
     .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
     .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .45s ease}
     .ev-card.vis{opacity:1;transform:translateY(0)}
-    .ev-stat{text-align:center;background:rgba(212,184,74,.09);border-radius:14px;padding:1.25rem .85rem}
-    .ev-num{font-family:'Fraunces',serif;font-size:3.4rem;font-weight:700;color:var(--acc);line-height:1;letter-spacing:-.02em}
+    .ev-stat{text-align:center;background:rgba(212,184,74,.09);border-radius:14px;padding:1.25rem .85rem;overflow:hidden}
+    .ev-num{font-family:'Fraunces',serif;font-size:clamp(2rem,3.4vw,3.4rem);font-weight:700;color:var(--acc);line-height:1;letter-spacing:-.02em;word-break:break-word;overflow-wrap:break-word}
     .ev-num.bad{color:var(--bad)}
     .ev-num.good{color:var(--good)}
     .ev-label{font-size:1rem;font-weight:700;color:#fff;margin-top:.5rem;line-height:1.3}
@@ -89,35 +92,39 @@
     .ev-det .ev-journal{font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
     .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400}
 
-    .mech-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
-    .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    /* 6-ROW MECH CARDS */
+    .mech-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
+    .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .mech-card.vis{opacity:1;transform:translateY(0)}
-    .mech-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .mech-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
-    .mech-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12;letter-spacing:-.01em}
-    .mech-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400}
-    .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2vw,1.85rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
+    .mech-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .mech-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+    .mech-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
+    .mech-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.7vw,1.55rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem}
 
+    /* CTA SLIDE 9 — HORIZONTAL ROWS, NO ICON */
     .cta-slide{position:relative}
-    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%, rgba(212,184,74,.18), rgba(212,184,74,.04) 45%, transparent 70%);pointer-events:none;z-index:0}
-    .cta-wrap-v2{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:.85rem;padding:.5rem}
-    .cta-badge-v2{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.42rem 1.15rem;border-radius:100px;box-shadow:0 0 30px rgba(212,184,74,.14)}
-    .cta-icon-v2{font-size:clamp(4.5rem,8vw,6rem);line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;filter:drop-shadow(0 0 30px rgba(212,184,74,.28));animation:pulseHalo 3.2s ease-in-out infinite}
-    @keyframes pulseHalo{0%,100%{filter:drop-shadow(0 0 28px rgba(212,184,74,.22))}50%{filter:drop-shadow(0 0 55px rgba(212,184,74,.55))}}
-    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(3.2rem,5.8vw,4.9rem);font-weight:700;color:#fff;line-height:1.02;max-width:1000px;letter-spacing:-.028em}
+    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(212,184,74,.18),rgba(212,184,74,.04) 45%,transparent 70%);pointer-events:none;z-index:0}
+    .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem;gap:.45rem;min-height:0;overflow:hidden}
+    .cta-top{display:flex;flex-direction:column;align-items:center;gap:.3rem;text-align:center}
+    .cta-badge-v2{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.3rem .95rem;border-radius:100px}
+    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:700;color:#fff;line-height:1.02;letter-spacing:-.028em}
     .cta-headline-v2 span{color:var(--acc)}
-    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.4vw,1.85rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);max-width:780px;line-height:1.32}
-    .cta-body-v2{font-size:1.05rem;color:rgba(255,255,255,.90);max-width:780px;line-height:1.52;font-weight:400}
-    .cta-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;max-width:900px;width:100%;margin-top:.25rem}
-    .cta-ac{background:linear-gradient(180deg,rgba(212,184,74,.16),rgba(212,184,74,.06));border:1.5px solid rgba(212,184,74,.45);border-radius:14px;padding:.95rem .55rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;text-align:center;transition:transform .25s ease}
-    .cta-ac:hover{transform:translateY(-2px)}
-    .cta-ac-icon{font-size:1.85rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .cta-ac-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.98rem;line-height:1.18}
-    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.8rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;margin-top:.6rem;max-width:900px}
+    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(.95rem,1.5vw,1.2rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);line-height:1.3}
+    .cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.4rem;min-height:0;overflow:hidden}
+    .cta-row-v2{background:linear-gradient(90deg,rgba(212,184,74,.12),rgba(212,184,74,.04));border-left:4px solid var(--acc);border-radius:0 10px 10px 0;padding:.6rem .95rem;display:grid;grid-template-columns:52px 1fr auto;gap:.9rem;align-items:start;min-height:0;overflow:hidden}
+    .cta-row-icon{font-size:1.7rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .cta-row-mid{display:flex;flex-direction:column;gap:.12rem;min-width:0}
+    .cta-row-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.95rem;line-height:1.15}
+    .cta-row-body-v2{font-size:.82rem;color:rgba(255,255,255,.90);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .cta-row-word-v2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.2rem,2vw,1.7rem);color:var(--acc);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:.6rem}
+    .cta-bottom{display:flex;justify-content:center;flex-shrink:0}
+    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.75rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;max-width:900px;width:100%}
     .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.85);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left}
+    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.88);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left;font-weight:400}
     .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
 
+    /* CLOSING */
     .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.6rem;padding:1.5rem}
     .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
     .close-logo .dot{color:var(--coral)}
@@ -130,7 +137,6 @@
     .cst-lab{font-size:1.05rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.32}
     .cst-src{font-size:.85rem;color:rgba(255,255,255,.72);font-style:italic}
     .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.3rem}
-
     .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:.68rem;color:rgba(255,255,255,.18);z-index:90;white-space:nowrap}
   </style>
 </head>
@@ -159,7 +165,7 @@
       <div class="intro-badge">📋 Cardiovascular Health Series · Article 06</div>
       <div class="intro-icon">🧂</div>
       <div class="intro-title">Salt &amp;<br/><span>blood pressure</span></div>
-      <div class="intro-sub">Where UK salt actually comes from, what it does to blood pressure, and the swaps that move the number.</div>
+      <div class="intro-sub">Where UK salt actually comes from, what it does to blood pressure, and the habits that move the number.</div>
       <div class="intro-tagline">Dr Paul · Retired NHS GP · helf.school</div>
     </div>
   </div>
@@ -202,7 +208,7 @@
     </div>
   </div>
 
-  <!-- SLIDE 3: WHERE SALT DRIVES HARM · RED -->
+  <!-- SLIDE 3: WHERE SALT DRIVES HARM · RED · 5 ROWS -->
   <div class="slide">
     <div class="slide-title">Where excess salt <span>drives cardiovascular harm</span></div>
     <div class="sys-grid">
@@ -226,7 +232,7 @@
         <div class="sys-icon">💓</div>
         <div class="sys-content">
           <div class="sys-title">Heart attack &amp; heart failure</div>
-          <div class="sys-body">High BP accelerates coronary atherosclerosis, raises MI risk, and — over time — remodels the heart, contributing to failure.</div>
+          <div class="sys-body">High BP accelerates coronary atherosclerosis, raises MI risk, and over time remodels the heart, contributing to failure.</div>
         </div>
         <div class="sys-stat">↑ CHD, HF</div>
       </div>
@@ -249,7 +255,7 @@
     </div>
   </div>
 
-  <!-- SLIDE 4: PRACTICAL SWAPS · GREEN -->
+  <!-- SLIDE 4: PRACTICAL SWAPS · GREEN · 6 ROWS -->
   <div class="slide">
     <div class="slide-title">Practical swaps · <span>what actually lowers intake</span></div>
     <div class="doc-grid">
@@ -265,7 +271,7 @@
         <div class="doc-icon">🍞</div>
         <div class="doc-content">
           <div class="doc-title">Know the top UK sources</div>
-          <div class="doc-body">Bread, cheese, cured / processed meats, ready meals, sauces, crisps, breakfast cereals — daily foods, daily exposure.</div>
+          <div class="doc-body">Bread, cheese, cured meats, ready meals, sauces, crisps, breakfast cereals — daily foods, daily exposure.</div>
         </div>
         <div class="doc-action">→ Target</div>
       </div>
@@ -273,7 +279,7 @@
         <div class="doc-icon">🍳</div>
         <div class="doc-content">
           <div class="doc-title">Home cook more often</div>
-          <div class="doc-body">Shifts intake from "already-in-food" 75% toward "added-by-you" — where you control the amount.</div>
+          <div class="doc-body">Shifts intake from the 75% already in food toward the 25% that can be controlled directly.</div>
         </div>
         <div class="doc-action">→ Cook</div>
       </div>
@@ -289,7 +295,7 @@
         <div class="doc-icon">🍌</div>
         <div class="doc-content">
           <div class="doc-title">Add potassium-rich foods</div>
-          <div class="doc-body">Bananas, sweet potatoes, spinach, beans, lentils, dairy. Higher potassium is associated with lower stroke risk.</div>
+          <div class="doc-body">Bananas, sweet potatoes, spinach, beans, dairy. Higher potassium is associated with 24% lower stroke risk.</div>
         </div>
         <div class="doc-action">−24% stroke</div>
       </div>
@@ -297,26 +303,26 @@
         <div class="doc-icon">👅</div>
         <div class="doc-content">
           <div class="doc-title">Taste before adding</div>
-          <div class="doc-body">Much added salt is habit, not need. Taste preference adjusts downward over ~2–4 weeks of lower intake.</div>
+          <div class="doc-body">Much added salt is habit, not need. Salt taste preference adjusts downward over 2–4 weeks of lower intake.</div>
         </div>
         <div class="doc-action">→ Pause</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 5: RESEARCH 1 — INTERSALT + DASH-SODIUM -->
+  <!-- SLIDE 5: RESEARCH — INTERSALT + DASH-SODIUM -->
   <div class="slide">
     <div class="slide-title">Research · <span>salt and blood pressure</span></div>
     <div class="ev-stage">
       <div class="ev-card" id="e1">
         <div class="ev-stat">
-          <div class="ev-num bad">Tracks</div>
+          <div class="ev-num bad" style="font-size:2rem">Dose-response</div>
           <div class="ev-label">sodium intake · population BP · 52 countries</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">INTERSALT — international BP survey</div>
           <div class="ev-journal">INTERSALT Cooperative Group · BMJ · 1988 · n&gt;10,000</div>
-          <div class="ev-body">Populations with the lowest sodium intakes had lower blood pressures and much less age-related BP rise. Sodium intake and blood pressure <strong>tracked closely</strong> across very different cultures and diets.</div>
+          <div class="ev-body">Populations with the lowest sodium intakes had lower blood pressures and far less age-related BP rise. Sodium intake and blood pressure <strong>tracked closely</strong> across very different cultures and diets worldwide.</div>
         </div>
       </div>
       <div class="ev-card" id="e2">
@@ -333,13 +339,13 @@
     </div>
   </div>
 
-  <!-- SLIDE 6: RESEARCH 2 — COCHRANE + UK PROGRAMME -->
+  <!-- SLIDE 6: RESEARCH — COCHRANE + UK PROGRAMME -->
   <div class="slide">
     <div class="slide-title">Research · <span>reducing salt at scale</span></div>
     <div class="ev-stage">
       <div class="ev-card" id="e3">
         <div class="ev-stat">
-          <div class="ev-num good">Lower = lower</div>
+          <div class="ev-num good" style="font-size:2rem">Lower = lower</div>
           <div class="ev-label">salt &amp; BP · sustained 4+ weeks</div>
         </div>
         <div class="ev-det">
@@ -350,19 +356,19 @@
       </div>
       <div class="ev-card" id="e4">
         <div class="ev-stat">
-          <div class="ev-num good">−15% Na</div>
-          <div class="ev-label">UK average intake · 2003–2011 programme</div>
+          <div class="ev-num good">−42%</div>
+          <div class="ev-label">stroke mortality · UK salt programme 2003–2011</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">UK Salt Reduction Programme</div>
           <div class="ev-journal">He et al · BMJ Open · 2014</div>
-          <div class="ev-body">UK average salt intake fell ~15% (≈1.4 g/day) between 2003 and 2011 through reformulation and labelling. Stroke mortality fell ~42% and ischaemic heart disease mortality ~40% over the same period — consistent with population-level benefit.</div>
+          <div class="ev-body">UK average salt intake fell ~15% (≈1.4 g/day) between 2003 and 2011 through reformulation and labelling. Stroke mortality fell <strong>~42%</strong> and ischaemic heart disease mortality ~40% over the same period.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 7: RESEARCH 3 — POTASSIUM + NICE -->
+  <!-- SLIDE 7: RESEARCH — POTASSIUM + NICE -->
   <div class="slide">
     <div class="slide-title">Research · <span>potassium — the other side</span></div>
     <div class="ev-stage">
@@ -374,12 +380,12 @@
         <div class="ev-det">
           <div class="ev-trial">Potassium intake &amp; CV outcomes</div>
           <div class="ev-journal">Aburto et al · BMJ · 2013 · WHO meta-analysis</div>
-          <div class="ev-body">Higher potassium intakes were associated with <strong>about 24% lower stroke risk</strong> and lower blood pressure. Potassium directly counteracts sodium's pressure-raising effect — fruit, vegetables, beans, and dairy are the main sources.</div>
+          <div class="ev-body">Higher potassium intakes associated with <strong>about 24% lower stroke risk</strong> and lower blood pressure. Potassium directly counteracts sodium's pressure-raising effect — fruit, vegetables, beans, and dairy are the main sources.</div>
         </div>
       </div>
       <div class="ev-card" id="e6">
         <div class="ev-stat">
-          <div class="ev-num good">First-line</div>
+          <div class="ev-num good" style="font-size:2rem">First-line</div>
           <div class="ev-label">lifestyle advice · NICE NG136</div>
         </div>
         <div class="ev-det">
@@ -391,7 +397,7 @@
     </div>
   </div>
 
-  <!-- SLIDE 8: MECHANISMS · AMBER -->
+  <!-- SLIDE 8: MECHANISMS · AMBER · 6 ROWS -->
   <div class="slide">
     <div class="slide-title">How excess salt <span>raises blood pressure</span></div>
     <div class="mech-grid">
@@ -399,7 +405,7 @@
         <div class="mech-icon">💧</div>
         <div class="mech-content">
           <div class="mech-title">Volume expansion</div>
-          <div class="mech-body">Extra sodium pulls water into the bloodstream to maintain dilution — circulating volume rises.</div>
+          <div class="mech-body">Extra sodium pulls water into the bloodstream to maintain dilution — circulating volume rises, pressure increases.</div>
         </div>
         <div class="mech-outcome">→ ↑ Volume</div>
       </div>
@@ -446,36 +452,54 @@
     </div>
   </div>
 
-  <!-- SLIDE 9: CTA · HIGH-IMPACT -->
+  <!-- SLIDE 9: CTA · HORIZONTAL ROWS · NO ICON -->
   <div class="slide cta-slide">
     <div class="cta-glow"></div>
     <div class="cta-wrap-v2">
-      <div class="cta-badge-v2">Where to start</div>
-      <div class="cta-icon-v2">🧂</div>
-      <div class="cta-headline-v2">Sources, not shakers.<br/><span>Labels, not guesswork.</span></div>
-      <div class="cta-subline">75% of UK salt is already in food before you touch it.</div>
-      <div class="cta-body-v2">The biggest lever is reading labels on the daily foods — bread, cheese, sauces, ready meals. A sustained low-sodium DASH-style pattern can drop systolic BP by around 8–14 mmHg — comparable to a single BP drug.</div>
-      <div class="cta-actions">
-        <div class="cta-ac">
-          <div class="cta-ac-icon">🏷️</div>
-          <div class="cta-ac-label">Check labels</div>
+      <div class="cta-top">
+        <div class="cta-badge-v2">What the evidence shows</div>
+        <div class="cta-headline-v2">Sources, not shakers.<br/><span>Labels, not guesswork.</span></div>
+        <div class="cta-subline">75% of UK salt is already in food before it's touched.</div>
+      </div>
+      <div class="cta-rows-v2">
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">🏷️</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Check labels on daily foods</div>
+            <div class="cta-row-body-v2">Bread, cheese, sauces, ready meals — high is &gt;1.5g/100g. Two brands of the same product often differ 2–3×</div>
+          </div>
+          <div class="cta-row-word-v2">&gt;1.5g = high</div>
         </div>
-        <div class="cta-ac">
-          <div class="cta-ac-icon">🍳</div>
-          <div class="cta-ac-label">Home cook more</div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">🍳</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Home cook more often</div>
+            <div class="cta-row-body-v2">Shifts intake from the 75% already in food toward the 25% directly controllable — the biggest single lever</div>
+          </div>
+          <div class="cta-row-word-v2">75% hidden</div>
         </div>
-        <div class="cta-ac">
-          <div class="cta-ac-icon">🌿</div>
-          <div class="cta-ac-label">Herbs &amp; spices</div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">💊</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Low-sodium DASH diet effect</div>
+            <div class="cta-row-body-v2">A sustained low-sodium eating pattern can drop systolic BP by 8–14 mmHg — comparable to a single blood pressure drug</div>
+          </div>
+          <div class="cta-row-word-v2">8–14 mmHg</div>
         </div>
-        <div class="cta-ac">
-          <div class="cta-ac-icon">🍌</div>
-          <div class="cta-ac-label">Potassium-rich foods</div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">🍌</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Increase potassium-rich foods</div>
+            <div class="cta-row-body-v2">Fruit, veg, beans, dairy — potassium directly counteracts sodium's pressure effect, linked to 24% lower stroke risk</div>
+          </div>
+          <div class="cta-row-word-v2">−24% stroke</div>
         </div>
       </div>
-      <div class="med-disclaimer">
-        <div class="med-disc-icon">⚕️</div>
-        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Any changes you're considering are a conversation for you to have with your GP or healthcare professional.</div>
+      <div class="cta-bottom">
+        <div class="med-disclaimer">
+          <div class="med-disc-icon">⚕️</div>
+          <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -529,53 +553,24 @@
 <div class="disc">Health education — not medical advice. helf.school</div>
 
 <script>
-  const slides = document.querySelectorAll('.slide');
-  const dots   = document.querySelectorAll('.dot');
-  let cur = 0;
-  function show(n){
-    slides[cur].classList.remove('active');
-    dots[cur].classList.remove('active');
-    cur = (n + slides.length) % slides.length;
-    slides[cur].classList.add('active');
-    dots[cur].classList.add('active');
-    document.getElementById('counter').textContent = (cur+1)+' / '+slides.length;
-    triggerSlide(cur);
-  }
-  function goTo(n){ show(n); }
-  document.addEventListener('keydown', e=>{
-    if(e.key==='ArrowRight'||e.key==='ArrowDown') show(cur+1);
-    if(e.key==='ArrowLeft'||e.key==='ArrowUp') show(cur-1);
-  });
+  const slides=document.querySelectorAll('.slide'),dots=document.querySelectorAll('.dot');
+  let cur=0;
+  function show(n){slides[cur].classList.remove('active');dots[cur].classList.remove('active');cur=(n+slides.length)%slides.length;slides[cur].classList.add('active');dots[cur].classList.add('active');document.getElementById('counter').textContent=(cur+1)+' / '+slides.length;triggerSlide(cur)}
+  function goTo(n){show(n)}
+  document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')show(cur+1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')show(cur-1)});
   let tx=0;
-  document.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; });
-  document.addEventListener('touchend', e=>{
-    const dx=e.changedTouches[0].clientX-tx;
-    if(Math.abs(dx)>40){ dx<0?show(cur+1):show(cur-1); }
-  });
+  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX});
+  document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40){dx<0?show(cur+1):show(cur-1)}});
   function triggerSlide(n){
-    if(n===2) animateGroup(['s1','s2','s3','s4','s5'], 160);
-    if(n===3) animateGroup(['d1','d2','d3','d4','d5','d6'], 140);
-    if(n===4) animateGroup(['e1','e2'], 260);
-    if(n===5) animateGroup(['e3','e4'], 260);
-    if(n===6) animateGroup(['e5','e6'], 260);
-    if(n===7) animateGroup(['m1','m2','m3','m4','m5','m6'], 140);
+    if(n===2)animateGroup(['s1','s2','s3','s4','s5'],160);
+    if(n===3)animateGroup(['d1','d2','d3','d4','d5','d6'],140);
+    if(n===4)animateGroup(['e1','e2'],260);
+    if(n===5)animateGroup(['e3','e4'],260);
+    if(n===6)animateGroup(['e5','e6'],260);
+    if(n===7)animateGroup(['m1','m2','m3','m4','m5','m6'],140);
   }
-  function animateGroup(ids, step){
-    ids.forEach((id,i)=>{
-      setTimeout(()=>{
-        const el = document.getElementById(id);
-        if(el) el.classList.add('vis');
-      }, 180 + i*step);
-    });
-  }
-  slides.forEach(s=>{
-    const obs = new MutationObserver(()=>{
-      if(!s.classList.contains('active')){
-        s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'));
-      }
-    });
-    obs.observe(s, {attributes:true});
-  });
+  function animateGroup(ids,step){ids.forEach((id,i)=>{setTimeout(()=>{const el=document.getElementById(id);if(el)el.classList.add('vis')},180+i*step)})}
+  slides.forEach(s=>{const obs=new MutationObserver(()=>{if(!s.classList.contains('active')){s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'))}});obs.observe(s,{attributes:true})});
   triggerSlide(0);
 </script>
 </body>
