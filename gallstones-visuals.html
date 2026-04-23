@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallstones — Visuals · helf.school</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:    #1B2A4A;
+      --coral:   #E8634A;
+      --cream:   #FAF7F2;
+      --sage:    #7A9E87;
+      --amber:   #E8A84A;
+      --digestive: #D47C3A;
+      --bad:     #C8423A;
+      --warn:    #D47C3A;
+      --good:    #7A9E87;
+      --gold:    #E8A84A;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%; height: 100%;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      overflow: hidden;
+      background: #000;
+    }
+
+    /* ── STAGE ─────────────────────────────────── */
+    .stage {
+      width: 100vw; height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── TOPBAR ────────────────────────────────── */
+    .topbar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 52px;
+      background: rgba(0,0,0,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.1rem;
+      z-index: 20;
+      backdrop-filter: blur(6px);
+    }
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .topbar-logo {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #fff;
+    }
+    .topbar-sep { width:1px; height:20px; background:rgba(255,255,255,0.25); }
+    .topbar-series {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.80);
+      font-weight: 500;
+    }
+    .topbar-sub {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.75);
+    }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    .slide-counter {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.90);
+      font-weight: 600;
+    }
+    .kbd-hint {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.60);
+    }
+
+    /* ── SLIDES ────────────────────────────────── */
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      padding: 0.6rem 0.75rem;
+      padding-top: 58px;
+      display: grid;
+    }
+    .slide.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* ── SLIDE TITLE ───────────────────────────── */
+    .slide-title-block {
+      margin-bottom: 0.55rem;
+    }
+    .slide-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--digestive);
+      margin-bottom: 0.22rem;
+    }
+    .slide-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: clamp(1.3rem, 2.6vw, 1.85rem);
+      color: #fff;
+      line-height: 1.15;
+    }
+    .slide-subtitle {
+      font-size: 0.80rem;
+      color: rgba(255,255,255,0.80);
+      margin-top: 0.2rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       SLIDE 1 — INTRO
+    ═══════════════════════════════════════════ */
+    #slide-1 {
+      background: linear-gradient(135deg, var(--navy) 0%, #2C4A6E 55%, #1a3a2a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 52px;
+    }
+    #slide-1::before {
+      content:'';
+      position:absolute;
+      top:-80px; right:-80px;
+      width:500px; height:500px;
+      background: radial-gradient(circle, rgba(212,124,58,0.22) 0%, transparent 65%);
+      border-radius:50%;
+    }
+    #slide-1::after {
+      content:'';
+      position:absolute;
+      bottom:-80px; left:-60px;
+      width:380px; height:380px;
+      background: radial-gradient(circle, rgba(122,158,135,0.14) 0%, transparent 65%);
+      border-radius:50%;
+    }
+    .intro-inner {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      padding: 1rem;
+    }
+    .intro-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(212,124,58,0.22);
+      border: 1px solid rgba(212,124,58,0.40);
+      border-radius: 20px;
+      padding: 0.3rem 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+    .intro-badge-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--digestive);
+    }
+    .intro-badge-text {
+      font-size: 0.80rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.90);
+    }
+    .intro-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      color: #fff;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .intro-subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: rgba(255,255,255,0.85);
+      max-width: 560px;
+      margin: 0 auto 1.8rem;
+      line-height: 1.55;
+    }
+    .intro-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .intro-stat {
+      text-align: center;
+    }
+    .intro-stat-n {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 2.5rem;
+      color: var(--digestive);
+      line-height: 1;
+    }
+    .intro-stat-l {
+      font-size: 0.80rem;
+      color: rgba(255,255,255,0.80);
+      margin-top: 0.2rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       SLIDE 2 — SCALE / PREVALENCE
+    ═══════════════════════════════════════════ */
+    #slide-2 {
+      background: linear-gradient(160deg, #0F1E38 0%, #1B2A4A 100%);
+      grid-template-rows: auto 1fr;
+    }
+    .scale-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr;
+      gap: 0.65rem;
+    }
+    .scale-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 1.2rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border: 1px solid rgba(255,255,255,0.10);
+      min-height: 0;
+      overflow: hidden;
+    }
+    .scale-card-icon {
+      font-size: 2rem;
+      margin-bottom: 0.6rem;
+      font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+    }
+    .scale-card-n {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      color: var(--digestive);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .scale-card-title {
+      font-size: 1.0rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.35rem;
+      line-height: 1.3;
+    }
+    .scale-card-body {
+      font-size: 0.93rem;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.5;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .scale-card-source {
+      font-size: 0.80rem;
+      color: rgba(255,255,255,0.80);
+      margin-top: auto;
+      padding-top: 0.6rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       SLIDE 3 — RISK FACTORS (AMBER — MECHANISM)
+    ═══════════════════════════════════════════ */
+    #slide-3 {
+      background: linear-gradient(160deg, #1A1A0A 0%, #2A2010 100%);
+      grid-template-rows: auto 1fr;
+    }
+    .risk-rows {
+      display: grid;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+      gap: 0.5rem;
+      min-height: 0;
+    }
+    .risk-row {
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      align-items: start;
+      background: rgba(232,168,74,0.10);
+      border-left: 3px solid var(--amber);
+      border-radius: 0 8px 8px 0;
+      padding: 0.65rem 0.9rem;
+      gap: 0.7rem;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .risk-icon {
+      font-size: 1.9rem;
+      text-align: center;
+      font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+      padding-top: 0.1rem;
+    }
+    .risk-content { min-height: 0; }
+    .risk-title {
+      font-size: 1.0rem;
+      font-weight: 700;
+      color: var(--amber);
+      margin-bottom: 0.2rem;
+    }
+    .risk-body {
+      font-size: 0.93rem;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.45;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .risk-stat {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 2.4rem;
+      color: var(--amber);
+      line-height: 1;
+      text-align: right;
+      flex-shrink: 0;
+      padding-top: 0.1rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       SLIDE 4 — COMPLICATIONS (RED — HARM)
+    ═══════════════════════════════════════════ */
+    #slide-4 {
+      background: linear-gradient(160deg, #1A0808 0%, #2A1010 100%);
+      grid-template-rows: auto 1fr;
+    }
+    .harm-rows {
+      display: grid;
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+      gap: 0.6rem;
+      min-height: 0;
+    }
+    .harm-row {
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      align-items: start;
+      background: rgba(200,66,58,0.10);
+      border-left: 3px solid var(--bad);
+      border-radius: 0 8px 8px 0;
+      padding: 0.7rem 0.9rem;
+      gap: 0.7rem;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .harm-icon {
+      font-size: 1.9rem;
+      text-align: center;
+      font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+      padding-top: 0.1rem;
+    }
+    .harm-content { min-height: 0; }
+    .harm-title {
+      font-size: 1.0rem;
+      font-weight: 700;
+      color: #FF8A80;
+      margin-bottom: 0.2rem;
+    }
+    .harm-body {
+      font-size: 0.93rem;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.45;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .harm-stat {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 2.4rem;
+      color: #FF8A80;
+      line-height: 1;
+      text-align: right;
+      flex-shrink: 0;
+      padding-top: 0.1rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       SLIDE 5 — DOCTOR'S TOOLKIT (GREEN — ACTION)
+    ═══════════════════════════════════════════ */
+    #slide-5 {
+      background: linear-gradient(160deg, #0A1A10 0%, #0F2818 100%);
+      grid-template-rows: auto 1fr;
+    }
+    .doc-rows {
+      display: grid;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+      gap: 0.5rem;
+      min-height: 0;
+    }
+    .doc-row {
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      align-items: start;
+      background: rgba(122,158,135,0.10);
+      border-left: 3px solid var(--good);
+      border-radius: 0 8px 8px 0;
+      padding: 0.65rem 0.9rem;
+      gap: 0.7rem;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .doc-icon {
+      font-size: 1.9rem;
+      text-align: center;
+      font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+      padding-top: 0.1rem;
+    }
+    .doc-content { min-height: 0; }
+    .doc-title {
+      font-size: 1.0rem;
+      font-weight: 700;
+      color: var(--sage);
+      margin-bottom: 0.2rem;
+    }
+    .doc-body {
+      font-size: 0.93rem;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.45;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .doc-stat {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 2.4rem;
+      color: var(--sage);
+      line-height: 1;
+      text-align: right;
+      flex-shrink: 0;
+      padding-top: 0.1rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       SLIDE 6 — C-GALL RCT RESEARCH CARD
+    ═══════════════════════════════════════════ */
+    #slide-6 {
+      background: linear-gradient(160deg, #0F1E38 0%, #1B2A4A 100%);
+      grid-template-rows: auto 1fr;
+    }
+    .ev-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+      gap: 0.65rem;
+      min-height: 0;
+    }
+    .ev-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(255,255,255,0.10);
+      min-height: 0;
+      overflow: hidden;
+    }
+    .ev-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(212,124,58,0.22);
+      color: var(--digestive);
+      border: 1px solid rgba(212,124,58,0.35);
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 0.55rem;
+      align-self: flex-start;
+    }
+    .ev-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.0rem;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 0.5rem;
+    }
+    .ev-stat {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 3.0rem;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .ev-stat-label {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.80);
+      line-height: 1.4;
+      margin-bottom: 0.55rem;
+    }
+    .ev-finding {
+      font-size: 0.93rem;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.5;
+      flex: 1;
+      overflow: hidden;
+    }
+    .ev-journal {
+      font-size: 0.80rem;
+      color: rgba(255,255,255,0.80);
+      margin-top: auto;
+      padding-top: 0.5rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       SLIDE 7 — NICE GUIDELINES / KEY MESSAGES
+    ═══════════════════════════════════════════ */
+    #slide-7 {
+      background: linear-gradient(160deg, #0A1A10 0%, #0F2818 100%);
+      grid-template-rows: auto 1fr;
+    }
+    .nice-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr;
+      gap: 0.65rem;
+      min-height: 0;
+    }
+    .nice-card {
+      background: rgba(122,158,135,0.10);
+      border-radius: 10px;
+      padding: 1rem 1.05rem;
+      border: 1px solid rgba(122,158,135,0.25);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .nice-card-icon {
+      font-size: 2rem;
+      margin-bottom: 0.55rem;
+      font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+    }
+    .nice-card-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.3rem;
+    }
+    .nice-card-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 0.5rem;
+    }
+    .nice-card-body {
+      font-size: 0.93rem;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.5;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex: 1;
+    }
+    .nice-card-source {
+      font-size: 0.80rem;
+      color: rgba(255,255,255,0.80);
+      margin-top: auto;
+      padding-top: 0.5rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       SLIDE 8 — CTA
+    ═══════════════════════════════════════════ */
+    #slide-8 {
+      background: radial-gradient(ellipse at 50% 30%, rgba(212,124,58,0.35) 0%, rgba(27,42,74,0.97) 55%, #080E1C 100%);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 58px 1.1rem 0.8rem;
+    }
+    .cta-header {
+      text-align: center;
+      padding-bottom: 0.7rem;
+    }
+    .cta-halo {
+      font-size: 2.8rem;
+      animation: halo-pulse 3.2s ease-in-out infinite;
+      font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    @keyframes halo-pulse {
+      0%, 100% { filter: drop-shadow(0 0 10px rgba(212,124,58,0.5)); }
+      50% { filter: drop-shadow(0 0 32px rgba(212,124,58,0.95)); }
+    }
+    .cta-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .cta-sub {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: clamp(0.88rem, 1.6vw, 1.05rem);
+      color: rgba(255,255,255,0.80);
+      margin-top: 0.25rem;
+    }
+    .cta-rows {
+      display: grid;
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+      gap: 0.55rem;
+      min-height: 0;
+    }
+    .cta-row {
+      display: grid;
+      grid-template-columns: 68px 1fr auto;
+      align-items: start;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(212,124,58,0.30);
+      border-left: 4px solid var(--digestive);
+      border-radius: 0 10px 10px 0;
+      padding: 0.75rem 1rem;
+      gap: 0.8rem;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .cta-row-icon {
+      font-size: 2.0rem;
+      text-align: center;
+      font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+      padding-top: 0.1rem;
+    }
+    .cta-row-content { min-height: 0; }
+    .cta-row-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: clamp(1.0rem, 1.8vw, 1.15rem);
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 0.22rem;
+    }
+    .cta-row-body {
+      font-size: 0.93rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.45;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .cta-row-word {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      color: var(--digestive);
+      line-height: 1;
+      text-align: right;
+      flex-shrink: 0;
+      padding-top: 0.1rem;
+      white-space: nowrap;
+    }
+    .cta-disclaimer {
+      background: rgba(255,255,255,0.04);
+      border: 1px dashed rgba(255,255,255,0.25);
+      border-radius: 8px;
+      padding: 0.6rem 1rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+      text-align: center;
+      margin-top: 0.55rem;
+    }
+    .cta-disclaimer strong { color: #fff; }
+
+    /* ═══════════════════════════════════════════
+       SLIDE 9 — CLOSING
+    ═══════════════════════════════════════════ */
+    #slide-9 {
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 52px;
+    }
+    .closing-inner {
+      max-width: 680px;
+      padding: 1.5rem;
+    }
+    .closing-logo {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 2.5rem;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+    .closing-dot { color: var(--digestive); }
+    .closing-tagline {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.70);
+      margin-bottom: 2rem;
+    }
+    .closing-message {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      color: rgba(255,255,255,0.88);
+      line-height: 1.45;
+      margin-bottom: 1.5rem;
+    }
+    .closing-disclaimer {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.55;
+    }
+    .closing-series {
+      font-size: 0.80rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.70);
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+
+  <!-- ── TOPBAR ───────────────────────────── -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-logo">helf.school</div>
+      <div class="topbar-sep"></div>
+      <div class="topbar-series">Digestive Health · Article 19</div>
+      <div class="topbar-sep"></div>
+      <div class="topbar-sub">Gallstones</div>
+    </div>
+    <div class="topbar-right">
+      <div class="kbd-hint">← → to navigate</div>
+      <div class="slide-counter" id="counter">1 / 9</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 1 — INTRO
+  ══════════════════════════════════════ -->
+  <div class="slide active" id="slide-1">
+    <div class="intro-inner">
+      <div class="intro-badge">
+        <div class="intro-badge-dot"></div>
+        <span class="intro-badge-text">Digestive Health Series · Article 19</span>
+      </div>
+      <div class="intro-title">Gallstones</div>
+      <div class="intro-subtitle">Most people with gallstones never know they have them — but for some, they cause serious problems. Here's what the evidence says.</div>
+      <div class="intro-stats">
+        <div class="intro-stat">
+          <div class="intro-stat-n">15%</div>
+          <div class="intro-stat-l">of UK adults affected</div>
+        </div>
+        <div class="intro-stat">
+          <div class="intro-stat-n">80%</div>
+          <div class="intro-stat-l">remain asymptomatic</div>
+        </div>
+        <div class="intro-stat">
+          <div class="intro-stat-n">66K</div>
+          <div class="intro-stat-l">ops in UK each year</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 2 — SCALE
+  ══════════════════════════════════════ -->
+  <div class="slide" id="slide-2">
+    <div class="slide-title-block">
+      <div class="slide-eyebrow">How common is it?</div>
+      <div class="slide-title">Gallstones in numbers</div>
+      <div class="slide-subtitle">Source: CGH meta-analysis 2024 · NIHR C-GALL 2024 · Surgery (Oxford) 2023</div>
+    </div>
+    <div class="scale-cards">
+      <div class="scale-card">
+        <div class="scale-card-icon">🇬🇧</div>
+        <div class="scale-card-n">15–20%</div>
+        <div class="scale-card-title">of UK adults have gallstones</div>
+        <div class="scale-card-body">One of the most prevalent digestive conditions in the country — millions of people, most symptom-free.</div>
+        <div class="scale-card-source">Surgery (Oxford), 2023</div>
+      </div>
+      <div class="scale-card">
+        <div class="scale-card-icon">🔇</div>
+        <div class="scale-card-n">80%</div>
+        <div class="scale-card-title">are "silent" — no symptoms</div>
+        <div class="scale-card-body">The majority of people with gallstones will never develop pain, complications, or need any treatment.</div>
+        <div class="scale-card-source">C-GALL RCT, NIHR 2024</div>
+      </div>
+      <div class="scale-card">
+        <div class="scale-card-icon">🔪</div>
+        <div class="scale-card-n">66,660</div>
+        <div class="scale-card-title">cholecystectomies per year in UK</div>
+        <div class="scale-card-body">When symptoms occur, keyhole gallbladder removal is the standard treatment — making it one of the most common surgical procedures.</div>
+        <div class="scale-card-source">Surgery (Oxford), 2023</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 3 — RISK FACTORS (AMBER/MECHANISM)
+  ══════════════════════════════════════ -->
+  <div class="slide" id="slide-3">
+    <div class="slide-title-block">
+      <div class="slide-eyebrow">Why gallstones form</div>
+      <div class="slide-title">The "5 Fs" — classic risk profile</div>
+      <div class="slide-subtitle">Each factor changes bile composition or gallbladder emptying — Source: established clinical evidence</div>
+    </div>
+    <div class="risk-rows">
+      <div class="risk-row">
+        <div class="risk-icon">♀️</div>
+        <div class="risk-content">
+          <div class="risk-title">Female</div>
+          <div class="risk-body">Oestrogen raises cholesterol levels in bile and slows gallbladder contractions — both promote stone formation.</div>
+        </div>
+        <div class="risk-stat">2×</div>
+      </div>
+      <div class="risk-row">
+        <div class="risk-icon">🎂</div>
+        <div class="risk-content">
+          <div class="risk-title">Forty</div>
+          <div class="risk-body">Risk increases steadily with age as bile composition shifts and gallbladder motility (emptying ability) declines.</div>
+        </div>
+        <div class="risk-stat">↑age</div>
+      </div>
+      <div class="risk-row">
+        <div class="risk-icon">🤰</div>
+        <div class="risk-content">
+          <div class="risk-title">Fertile (pregnant)</div>
+          <div class="risk-body">Pregnancy amplifies oestrogen and progesterone effects — bile becomes more cholesterol-saturated and the gallbladder empties more slowly.</div>
+        </div>
+        <div class="risk-stat">↑3×</div>
+      </div>
+      <div class="risk-row">
+        <div class="risk-icon">⚖️</div>
+        <div class="risk-content">
+          <div class="risk-title">Fat (overweight)</div>
+          <div class="risk-body">Excess body fat increases cholesterol output in bile; rapid weight loss also raises risk by causing cholesterol supersaturation.</div>
+        </div>
+        <div class="risk-stat">BMI↑</div>
+      </div>
+      <div class="risk-row">
+        <div class="risk-icon">🧬</div>
+        <div class="risk-content">
+          <div class="risk-title">Fair (+ family history)</div>
+          <div class="risk-body">Gallstones run in families — a first-degree relative with gallstones increases personal risk substantially.</div>
+        </div>
+        <div class="risk-stat">↑FH</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 4 — COMPLICATIONS (RED/HARM)
+  ══════════════════════════════════════ -->
+  <div class="slide" id="slide-4">
+    <div class="slide-title-block">
+      <div class="slide-eyebrow">When gallstones cause problems</div>
+      <div class="slide-title">Complications — what can go wrong</div>
+      <div class="slide-subtitle">Most gallstones stay silent. These are the complications that arise when stones block bile ducts.</div>
+    </div>
+    <div class="harm-rows">
+      <div class="harm-row">
+        <div class="harm-icon">😣</div>
+        <div class="harm-content">
+          <div class="harm-title">Biliary colic</div>
+          <div class="harm-body">Severe cramping upper right abdominal pain — stone temporarily blocks the cystic duct. Typically lasts 30 min–several hours then subsides.</div>
+        </div>
+        <div class="harm-stat">30m+</div>
+      </div>
+      <div class="harm-row">
+        <div class="harm-icon">🤒</div>
+        <div class="harm-content">
+          <div class="harm-title">Acute cholecystitis</div>
+          <div class="harm-body">Prolonged blockage inflames the gallbladder — persistent pain, fever, and Murphy's sign (tenderness on deep breath). Requires hospital assessment and surgery within 1 week (NICE CG188).</div>
+        </div>
+        <div class="harm-stat">1 wk</div>
+      </div>
+      <div class="harm-row">
+        <div class="harm-icon">💛</div>
+        <div class="harm-content">
+          <div class="harm-title">Choledocholithiasis + jaundice</div>
+          <div class="harm-body">Stone passes into the common bile duct — bile backs up causing yellow skin and eyes, pale stools, dark urine. Requires ERCP to clear the duct.</div>
+        </div>
+        <div class="harm-stat">CBD</div>
+      </div>
+      <div class="harm-row">
+        <div class="harm-icon">⚠️</div>
+        <div class="harm-content">
+          <div class="harm-title">Cholangitis + pancreatitis</div>
+          <div class="harm-body">Charcot's triad (pain + fever + jaundice) suggests bile duct infection — clinically time-sensitive. 111 and urgent GP services exist for this. Gallstone pancreatitis can range from mild to life-threatening.</div>
+        </div>
+        <div class="harm-stat">999↑</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 5 — DOCTOR'S TOOLKIT (GREEN/ACTION)
+  ══════════════════════════════════════ -->
+  <div class="slide" id="slide-5">
+    <div class="slide-title-block">
+      <div class="slide-eyebrow">What your doctor does</div>
+      <div class="slide-title">Diagnosis and treatment pathway</div>
+      <div class="slide-subtitle">In UK practice — Source: NICE CG188</div>
+    </div>
+    <div class="doc-rows">
+      <div class="doc-row">
+        <div class="doc-icon">🗣️</div>
+        <div class="doc-content">
+          <div class="doc-title">History + 5 Fs assessment</div>
+          <div class="doc-body">Pain character, duration, timing; fever, jaundice, dark urine; risk factors including BMI, pregnancies, family history, medications.</div>
+        </div>
+        <div class="doc-stat">Hx</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-icon">🩸</div>
+        <div class="doc-content">
+          <div class="doc-title">Blood tests — LFTs + CRP + amylase</div>
+          <div class="doc-body">Raised bilirubin / ALP (alkaline phosphatase) → bile duct involvement. Raised amylase / lipase → pancreatic involvement.</div>
+        </div>
+        <div class="doc-stat">LFTs</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-icon">🔊</div>
+        <div class="doc-content">
+          <div class="doc-title">Ultrasound — first-line imaging</div>
+          <div class="doc-body">Non-invasive, no radiation; detects gallbladder stones and features of cholecystitis. Less sensitive for small CBD stones.</div>
+        </div>
+        <div class="doc-stat">US</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-icon">🧲</div>
+        <div class="doc-content">
+          <div class="doc-title">MRCP if CBD stones suspected</div>
+          <div class="doc-body">MRI-based imaging of the bile and pancreatic ducts — detailed, non-invasive; replaced diagnostic ERCP for most patients.</div>
+        </div>
+        <div class="doc-stat">MRI</div>
+      </div>
+      <div class="doc-row">
+        <div class="doc-icon">🔪</div>
+        <div class="doc-content">
+          <div class="doc-title">Laparoscopic cholecystectomy</div>
+          <div class="doc-body">Keyhole gallbladder removal — typically day-case. Standard treatment for symptomatic gallstones; NICE recommends within 1 week for acute cholecystitis.</div>
+        </div>
+        <div class="doc-stat">Day</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 6 — C-GALL RCT EVIDENCE
+  ══════════════════════════════════════ -->
+  <div class="slide" id="slide-6">
+    <div class="slide-title-block">
+      <div class="slide-eyebrow">The research</div>
+      <div class="slide-title">Surgery vs watchful waiting — the C-GALL trial</div>
+      <div class="slide-subtitle">Source: C-GALL RCT · Health Technol Assess · 2024 · DOI: 10.3310/MNBY3104</div>
+    </div>
+    <div class="ev-cards">
+      <div class="ev-card">
+        <div class="ev-badge">UK RCT · 2024</div>
+        <div class="ev-title">C-GALL: cholecystectomy vs conservative management</div>
+        <div class="ev-stat" style="color:var(--digestive);">~50%</div>
+        <div class="ev-stat-label">of those assigned to watchful waiting crossed over to surgery within 2 years due to symptoms or complications</div>
+        <div class="ev-finding">Adults with symptomatic uncomplicated gallstones were randomised 1:1 to immediate surgery or watchful waiting, with 24 months follow-up. No significant difference in overall quality of life was found between the two groups — but condition-specific quality of life significantly favoured surgery (mean difference 9.0, p&lt;0.001). Around half of those in the watchful-waiting group ultimately crossed over to surgery within two years.</div>
+        <div class="ev-journal">NIHR Health Technology Assessment · Innes K, Ahmed I et al.</div>
+      </div>
+      <div class="ev-card">
+        <div class="ev-badge">Key Findings</div>
+        <div class="ev-title">What the C-GALL trial tells us</div>
+        <div class="ev-stat" style="color:var(--sage);">9.0</div>
+        <div class="ev-stat-label">mean difference in condition-specific quality of life score — favouring surgery at 24 months (95% CI 4.1–14.0)</div>
+        <div class="ev-finding">For uncomplicated symptomatic gallstones, surgery delivers better disease-specific outcomes than watchful waiting. For overall pain scores the difference was not significant — both approaches are clinically acceptable. NICE recommends surgery for symptomatic gallstones based on this and earlier evidence.</div>
+        <div class="ev-journal">Condition-specific QoL significantly favoured cholecystectomy · p&lt;0.001</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 7 — NICE / KEY MESSAGES
+  ══════════════════════════════════════ -->
+  <div class="slide" id="slide-7">
+    <div class="slide-title-block">
+      <div class="slide-eyebrow">NICE CG188 — what UK guidelines say</div>
+      <div class="slide-title">Three key clinical recommendations</div>
+      <div class="slide-subtitle">NICE Clinical Guideline CG188 · Published 2014 · Confirmed current 2025</div>
+    </div>
+    <div class="nice-cards">
+      <div class="nice-card">
+        <div class="nice-card-icon">⏸️</div>
+        <div class="nice-card-label">Asymptomatic</div>
+        <div class="nice-card-title">No treatment needed for silent gallstones</div>
+        <div class="nice-card-body">NICE recommends reassurance only for asymptomatic gallstones found in a normal gallbladder. Most will never cause problems — watchful waiting is the appropriate approach. No surgery referral is needed unless symptoms develop.</div>
+        <div class="nice-card-source">NICE CG188 · Rec 1.1.1</div>
+      </div>
+      <div class="nice-card">
+        <div class="nice-card-icon">🔪</div>
+        <div class="nice-card-label">Symptomatic</div>
+        <div class="nice-card-title">Offer keyhole surgery for symptomatic gallstones</div>
+        <div class="nice-card-body">Laparoscopic cholecystectomy is the recommended treatment for symptomatic gallstone disease (biliary colic or cholecystitis). Day-case surgery is the standard approach. People can eat normally after successful treatment.</div>
+        <div class="nice-card-source">NICE CG188 · Rec 1.2.2</div>
+      </div>
+      <div class="nice-card">
+        <div class="nice-card-icon">⏰</div>
+        <div class="nice-card-label">Acute cholecystitis</div>
+        <div class="nice-card-title">Surgery within 1 week of diagnosis</div>
+        <div class="nice-card-body">For acute cholecystitis (inflamed gallbladder), NICE identifies early laparoscopic cholecystectomy — within 1 week — as a key priority. Earlier surgery reduces risk of recurrent episodes and complications during the waiting period.</div>
+        <div class="nice-card-source">NICE CG188 · Key priority rec 1.2.4</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 8 — CTA
+  ══════════════════════════════════════ -->
+  <div class="slide" id="slide-8">
+    <div class="cta-header">
+      <span class="cta-halo">🫀</span>
+      <div class="cta-title">What to take away from this</div>
+      <div class="cta-sub">Four things worth remembering about gallstones</div>
+    </div>
+    <div class="cta-rows">
+      <div class="cta-row">
+        <div class="cta-row-icon">🔇</div>
+        <div class="cta-row-content">
+          <div class="cta-row-title">Most gallstones are silent — and stay that way</div>
+          <div class="cta-row-body">Around 80% of people with gallstones never develop symptoms. An incidental finding on a scan is not a reason to panic.</div>
+        </div>
+        <div class="cta-row-word">80%</div>
+      </div>
+      <div class="cta-row">
+        <div class="cta-row-icon">😣</div>
+        <div class="cta-row-content">
+          <div class="cta-row-title">Biliary colic is the signal that stones are causing problems</div>
+          <div class="cta-row-body">Severe upper right abdominal pain after a fatty meal — lasting 30 minutes or more — is the classic presentation. Worth reporting.</div>
+        </div>
+        <div class="cta-row-word">30m+</div>
+      </div>
+      <div class="cta-row">
+        <div class="cta-row-icon">⚠️</div>
+        <div class="cta-row-content">
+          <div class="cta-row-title">Pain + fever + jaundice together is a recognised red flag</div>
+          <div class="cta-row-body">Charcot's triad suggests bile duct infection — clinically time-sensitive. 111 and urgent GP services exist for this combination.</div>
+        </div>
+        <div class="cta-row-word">Urgent</div>
+      </div>
+      <div class="cta-row">
+        <div class="cta-row-icon">🔪</div>
+        <div class="cta-row-content">
+          <div class="cta-row-title">Keyhole surgery is safe, effective, and usually day-case</div>
+          <div class="cta-row-body">The C-GALL trial confirms surgery produces better disease-specific outcomes — and around half of those who choose watchful waiting end up having it anyway.</div>
+        </div>
+        <div class="cta-row-word">~50%</div>
+      </div>
+    </div>
+    <div class="cta-disclaimer">
+      <strong>⚕️ Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 9 — CLOSING
+  ══════════════════════════════════════ -->
+  <div class="slide" id="slide-9">
+    <div class="closing-inner">
+      <div class="closing-logo">helf<span class="closing-dot">.</span>school</div>
+      <div class="closing-tagline">Health Education</div>
+      <div class="closing-message">"Most gallstones stay quiet for life. Knowing what to look for means you're ready if they don't."</div>
+      <div class="closing-disclaimer">⚕️ Health education — not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+      <div class="closing-series">Digestive Health Series · Article 19 of 21</div>
+    </div>
+  </div>
+
+</div><!-- /stage -->
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+  let current = 0;
+
+  function show(n) {
+    slides[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    counter.textContent = (current + 1) + ' / ' + slides.length;
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') show(current + 1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   show(current - 1);
+  });
+
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+  document.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (dx < -40) show(current + 1);
+    if (dx >  40) show(current - 1);
+  });
+</script>
+</body>
+</html>

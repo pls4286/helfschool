@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallstones — helf.school</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ────────────────────────────────── */
+    :root {
+      --navy:    #1B2A4A;
+      --coral:   #E8634A;
+      --cream:   #FAF7F2;
+      --sage:    #7A9E87;
+      --amber:   #E8A84A;
+      --digestive: #D47C3A;
+      --digestive-dark: #B5651D;
+      --digestive-light: rgba(212,124,58,0.12);
+      --bad:     #C8423A;
+      --warn:    #E8A84A;
+      --good:    #7A9E87;
+      --text:    #2C2C2C;
+      --heading-font: 'Fraunces', Georgia, serif;
+      --body-font:    'DM Sans', sans-serif;
+    }
+
+    /* ── RESET ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--body-font);
+      font-weight: 400;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.7;
+    }
+    a { color: var(--digestive); }
+    a:hover { color: var(--digestive-dark); }
+
+    /* ── NAV ───────────────────────────────────── */
+    .main-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 56px;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      padding: 0 1.5rem;
+      gap: 1.5rem;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      text-decoration: none;
+    }
+    .nav-logo-text {
+      font-family: var(--heading-font);
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo-tag {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      color: rgba(255,255,255,0.60);
+      text-transform: uppercase;
+    }
+    .nav-sep { width: 1px; height: 24px; background: rgba(255,255,255,0.18); }
+    .nav-breadcrumb {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.78);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .nav-breadcrumb a { color: rgba(255,255,255,0.78); text-decoration: none; }
+    .nav-breadcrumb a:hover { color: #fff; }
+    .nav-breadcrumb .sep { color: rgba(255,255,255,0.40); }
+    .nav-series-dot {
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--digestive);
+      margin-right: 0.3rem;
+    }
+
+    /* ── HERO ──────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #2C4A6E 50%, #1a3a2a 100%);
+      min-height: calc(100vh - 56px - 8.5rem);
+      display: flex;
+      align-items: center;
+      padding: 3rem 1.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(212,124,58,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -40px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(122,158,135,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 820px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-series {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(212,124,58,0.20);
+      border: 1px solid rgba(212,124,58,0.40);
+      border-radius: 20px;
+      padding: 0.30rem 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero-series-text {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.90);
+    }
+    .hero h1 {
+      font-family: var(--heading-font);
+      font-weight: 900;
+      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+      line-height: 1.10;
+      color: #fff;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .hero-subtitle {
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      color: rgba(255,255,255,0.88);
+      max-width: 600px;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+    }
+    .hero-meta-item {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.80);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .hero-meta-item strong {
+      color: rgba(255,255,255,0.95);
+      font-weight: 600;
+    }
+
+    /* ── DISCLAIMER ────────────────────────────── */
+    .disclaimer-bar {
+      background: #FFF8E7;
+      border-top: 3px solid var(--amber);
+      padding: 0.95rem 1.5rem;
+    }
+    .disclaimer-bar-inner {
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+    }
+    .disclaimer-bar-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+    .disclaimer-bar p {
+      font-size: 0.88rem;
+      color: #5C4A1A;
+      line-height: 1.5;
+    }
+    .disclaimer-bar p strong {
+      font-weight: 700;
+      color: #3D2E00;
+    }
+
+    /* ── JUMP NAV ──────────────────────────────── */
+    .jump-nav {
+      position: sticky;
+      top: 56px;
+      z-index: 90;
+      background: #fff;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .jump-nav::-webkit-scrollbar { display: none; }
+    .jump-nav-inner {
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      padding: 0 1.5rem;
+    }
+    .jump-nav a {
+      white-space: nowrap;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #666;
+      text-decoration: none;
+      padding: 0.75rem 0.9rem;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .jump-nav a:hover {
+      color: var(--digestive);
+      border-bottom-color: var(--digestive);
+    }
+
+    /* ── ARTICLE BODY ──────────────────────────── */
+    .article-body {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+    .article-section {
+      padding-top: 3rem;
+      scroll-margin-top: 150px;
+    }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--digestive);
+      margin-bottom: 0.6rem;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 14px; height: 2px;
+      background: var(--digestive);
+    }
+    .section-title {
+      font-family: var(--heading-font);
+      font-weight: 700;
+      font-size: clamp(1.6rem, 3.5vw, 2.1rem);
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 1.4rem;
+    }
+    .section-body p {
+      font-size: 1.02rem;
+      color: var(--text);
+      font-weight: 400;
+      margin-bottom: 1.1rem;
+      line-height: 1.75;
+    }
+    .section-body p:last-child { margin-bottom: 0; }
+
+    /* ── STAT CALLOUT ──────────────────────────── */
+    .stat-callout {
+      background: var(--digestive-light);
+      border-left: 4px solid var(--digestive);
+      border-radius: 0 8px 8px 0;
+      padding: 1.1rem 1.4rem;
+      margin: 1.6rem 0;
+    }
+    .stat-callout-number {
+      font-family: var(--heading-font);
+      font-weight: 900;
+      font-size: 2.8rem;
+      color: var(--digestive);
+      line-height: 1;
+    }
+    .stat-callout-label {
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: 500;
+      margin-top: 0.3rem;
+    }
+
+    /* ── KEY TERMS ─────────────────────────────── */
+    .key-terms {
+      background: var(--navy);
+      border-radius: 12px;
+      padding: 1.8rem 2rem;
+      margin: 3rem 0;
+    }
+    .key-terms-header {
+      font-family: var(--heading-font);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .key-terms-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem 2rem;
+    }
+    @media (max-width: 580px) {
+      .key-terms-grid { grid-template-columns: 1fr; }
+    }
+    .key-term dt {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--digestive);
+      margin-bottom: 0.2rem;
+    }
+    .key-term dd {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.90);
+      line-height: 1.55;
+    }
+
+    /* ── WHY STAT GRID ─────────────────────────── */
+    .why-stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem;
+      margin: 1.6rem 0 2rem;
+    }
+    @media (max-width: 520px) {
+      .why-stat-grid { grid-template-columns: 1fr; }
+    }
+    .why-stat-card {
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.07);
+      padding: 1.2rem 1.3rem;
+      border-top: 3px solid var(--digestive);
+    }
+    .why-stat-n {
+      font-family: var(--heading-font);
+      font-weight: 900;
+      font-size: clamp(2.4rem, 4.5vw, 3.2rem);
+      color: var(--digestive);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .why-stat-label {
+      font-size: 1.00rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+    .why-stat-body {
+      font-size: 0.93rem;
+      color: var(--text);
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    /* ── DOCTOR CARDS ──────────────────────────── */
+    .doctor-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 1.6rem 0;
+    }
+    .doctor-card {
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.08);
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .doctor-card-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+      width: 44px;
+      text-align: center;
+      margin-top: 0.1rem;
+    }
+    .doctor-card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+    .doctor-card-body {
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    /* ── RED FLAG ──────────────────────────────── */
+    .red-flag-box {
+      background: #FFF2F2;
+      border: 2px solid #C8423A;
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      margin: 1.8rem 0;
+    }
+    .red-flag-box-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #C8423A;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .red-flag-box ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .red-flag-box ul li {
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: 400;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      line-height: 1.55;
+    }
+    .red-flag-box ul li::before {
+      content: '▸';
+      color: #C8423A;
+      font-size: 0.8rem;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    /* ── RESEARCH CARDS ────────────────────────── */
+    .research-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin: 1.8rem 0;
+    }
+    .research-card {
+      background: var(--navy);
+      border-radius: 12px;
+      padding: 1.5rem 1.7rem;
+      color: #fff;
+    }
+    .research-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .research-card-badge {
+      font-size: 0.70rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(212,124,58,0.25);
+      color: var(--digestive);
+      border: 1px solid rgba(212,124,58,0.35);
+      padding: 0.25rem 0.7rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .research-card-title {
+      font-family: var(--heading-font);
+      font-weight: 700;
+      font-size: 1.08rem;
+      color: #fff;
+      line-height: 1.3;
+      flex: 1;
+    }
+    .research-card-meta {
+      font-size: 0.80rem;
+      color: rgba(255,255,255,0.80);
+      margin-bottom: 0.9rem;
+    }
+    .research-card-body {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+    .research-card-stat {
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      margin-bottom: 0.9rem;
+    }
+    .research-card-stat-number {
+      font-family: var(--heading-font);
+      font-weight: 900;
+      font-size: 2.5rem;
+      color: var(--digestive);
+      line-height: 1;
+    }
+    .research-card-stat-label {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.80);
+      margin-top: 0.2rem;
+    }
+    .research-card-source {
+      font-size: 0.80rem;
+      color: rgba(255,255,255,0.80);
+    }
+
+    /* ── PUTTING IT TOGETHER ───────────────────── */
+    .putting-together {
+      background: var(--navy);
+      border-radius: 12px;
+      padding: 2rem 2.2rem;
+      margin: 3rem 0 2rem;
+    }
+    .putting-together-title {
+      font-family: var(--heading-font);
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--digestive);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .putting-together p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.90);
+      line-height: 1.75;
+      font-style: italic;
+      margin-bottom: 0.9rem;
+    }
+    .putting-together p:last-child {
+      margin-bottom: 0;
+      font-style: normal;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* ── INLINE CITATION SUPERSCRIPTS ─────────── */
+    .ref-sup {
+      font-size: 0.70rem;
+      vertical-align: super;
+      line-height: 0;
+    }
+    .ref-sup a {
+      background: rgba(122,106,46,0.12);
+      color: var(--amber);
+      text-decoration: none;
+      padding: 0.05rem 0.28rem;
+      border-radius: 3px;
+      font-weight: 700;
+      font-family: var(--body-font);
+    }
+    .ref-sup a:hover {
+      background: rgba(122,106,46,0.25);
+      color: var(--amber);
+    }
+
+    /* ── REFERENCES ────────────────────────────── */
+    .references {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 2px solid rgba(0,0,0,0.08);
+    }
+    .references-title {
+      font-family: var(--heading-font);
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-bottom: 1.4rem;
+    }
+    .ref-block {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.3rem;
+      align-items: flex-start;
+    }
+    .ref-num {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      background: var(--digestive);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-top: 0.15rem;
+    }
+    .ref-full {
+      font-size: 0.88rem;
+      color: var(--text);
+      font-weight: 400;
+      line-height: 1.6;
+    }
+    .ref-links {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.35rem;
+    }
+    .ref-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.22rem 0.65rem;
+      border-radius: 20px;
+      text-decoration: none;
+      border: 1px solid;
+    }
+    .ref-pill-journal {
+      background: rgba(27,42,74,0.07);
+      color: var(--navy);
+      border-color: rgba(27,42,74,0.20);
+    }
+    .ref-pill-journal:hover {
+      background: rgba(27,42,74,0.14);
+      color: var(--navy);
+    }
+    .ref-pill-pubmed {
+      background: rgba(212,124,58,0.10);
+      color: var(--digestive-dark);
+      border-color: rgba(212,124,58,0.30);
+    }
+    .ref-pill-pubmed:hover {
+      background: rgba(212,124,58,0.20);
+      color: var(--digestive-dark);
+    }
+
+    /* ── FOOTER ────────────────────────────────── */
+    .site-footer {
+      background: var(--navy);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+    .site-footer p {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.60);
+      line-height: 1.6;
+    }
+    .site-footer a { color: rgba(255,255,255,0.75); }
+
+    /* ── TABLES ────────────────────────────────── */
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.4rem 0;
+      font-size: 0.95rem;
+    }
+    .info-table th {
+      background: var(--navy);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+    .info-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      color: var(--text);
+      font-weight: 400;
+      vertical-align: top;
+      line-height: 1.55;
+    }
+    .info-table tr:last-child td { border-bottom: none; }
+    .info-table tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    .info-table-note {
+      font-size: 0.82rem;
+      color: #555;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    /* ── RESPONSIVE ────────────────────────────── */
+    @media (max-width: 640px) {
+      .hero-meta { gap: 0.6rem 1.2rem; }
+      .hero { padding: 2rem 1rem 1.5rem; }
+      .article-body { padding: 0 1rem 3rem; }
+      .key-terms { padding: 1.4rem 1.2rem; }
+      .research-card { padding: 1.2rem 1.3rem; }
+      .putting-together { padding: 1.5rem 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ NAV -->
+<nav class="main-nav" aria-label="Site navigation">
+  <a href="index.html" class="nav-logo">
+    <svg width="26" height="26" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <rect x="4" y="8" width="15" height="24" rx="2" fill="none" stroke="#fff" stroke-width="2.2"/>
+      <rect x="21" y="8" width="15" height="24" rx="2" fill="none" stroke="#fff" stroke-width="2.2"/>
+      <path d="M19 10 C19 10 20 18 20 20 C20 22 19 30 19 30" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+    </svg>
+    <span>
+      <div class="nav-logo-text">helf.school</div>
+      <div class="nav-logo-tag">Health Education</div>
+    </span>
+  </a>
+  <div class="nav-sep"></div>
+  <nav class="nav-breadcrumb" aria-label="Breadcrumb">
+    <a href="helf-school-conditions.html">Conditions</a>
+    <span class="sep">›</span>
+    <span><span class="nav-series-dot"></span>Digestive Health</span>
+    <span class="sep">›</span>
+    <span>Gallstones</span>
+  </nav>
+</nav>
+
+<!-- ═══════════════════════════════════════════ HERO (first screen) -->
+<header class="hero" aria-label="Article header">
+  <div class="hero-inner">
+    <div class="hero-series">
+      <span class="nav-series-dot"></span>
+      <span class="hero-series-text">Digestive Health · Article 19</span>
+    </div>
+    <h1>Gallstones</h1>
+    <p class="hero-subtitle">Most people with gallstones never know they have them. This article explains how gallstones form, why some cause serious problems, and what the evidence says about when surgery is — and isn't — the right answer.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">👨‍⚕️ <strong>Dr Paul</strong>&ensp;NHS GP (Retd.)</div>
+      <div class="hero-meta-item">📅 <strong>2026</strong></div>
+      <div class="hero-meta-item">⏱ <strong>8 min read</strong></div>
+      <div class="hero-meta-item">🔬 <strong>Evidence-based</strong></div>
+    </div>
+  </div>
+</header>
+
+<!-- DISCLAIMER — sits below hero within first-screen viewport -->
+<div class="disclaimer-bar" role="note" aria-label="Health education disclaimer">
+  <div class="disclaimer-bar-inner">
+    <span class="disclaimer-bar-icon">⚕️</span>
+    <p><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ JUMP NAV -->
+<nav class="jump-nav" aria-label="Jump to section">
+  <div class="jump-nav-inner">
+    <a href="#what-is-it">What is it?</a>
+    <a href="#why-it-matters">Why it matters</a>
+    <a href="#what-doctors-do">What doctors do</a>
+    <a href="#research">The research</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════ ARTICLE BODY -->
+<main class="article-body">
+
+  <!-- ─────────────────── SECTION 1 -->
+  <section id="what-is-it" class="article-section" aria-labelledby="s1-title">
+    <div class="section-label">Section 1</div>
+    <h2 class="section-title" id="s1-title">What are gallstones?</h2>
+    <div class="section-body">
+      <p>The gallbladder is a small, pear-shaped organ tucked beneath the liver on the upper right side of the abdomen. Its job is to store bile — a yellow-green digestive fluid made by the liver — and release it into the small intestine after meals to help break down fats.</p>
+      <p>Gallstones are hard, solid deposits that form inside the gallbladder when the balance of substances in bile goes wrong. They range in size from a grain of sand to a golf ball, and a person can have one or several hundred at the same time.</p>
+
+      <h3 style="font-family:var(--heading-font); font-weight:700; font-size:1.15rem; color:var(--navy); margin:1.6rem 0 0.7rem;">Two main types</h3>
+      <p>Around <strong>80% of gallstones are cholesterol stones</strong> — formed when bile contains too much cholesterol relative to bile salts and lecithin, causing cholesterol to crystallise and clump together. The remaining <strong>20% are pigment stones</strong> — smaller, darker deposits made mainly of bilirubin (a product of red blood cell breakdown), and associated with conditions such as liver cirrhosis (scarring of the liver) and haemolytic anaemia (a blood disorder where red cells break down too quickly).</p>
+
+      <h3 style="font-family:var(--heading-font); font-weight:700; font-size:1.15rem; color:var(--navy); margin:1.6rem 0 0.7rem;">Who gets them?</h3>
+      <p>Gallstones are one of the most common digestive conditions in the UK. They are significantly more common in women than men, and risk increases with age. Medical students have long used the "5 Fs" as a quick-recall memory aid for the classic risk profile: <strong>Female, Forty, Fertile, Fat, and Fair</strong>. While no mnemonic captures the full picture, these factors do reflect real biological risk: oestrogen (a female sex hormone) raises cholesterol levels in bile and slows gallbladder emptying; pregnancy amplifies both effects; and excess body weight increases cholesterol output in bile.</p>
+
+      <p>Other important risk factors include a family history of gallstones, rapid weight loss, long-term fasting, and certain medications including HRT (hormone replacement therapy) and some contraceptive pills.</p>
+
+      <h3 style="font-family:var(--heading-font); font-weight:700; font-size:1.15rem; color:var(--navy); margin:1.6rem 0 0.7rem;">Most gallstones cause no symptoms</h3>
+      <p>The majority of people with gallstones — around 80%<sup class="ref-sup"><a href="#ref-1">1</a></sup> — never experience any symptoms at all. These are called "silent" or asymptomatic gallstones, often discovered incidentally during an ultrasound or scan done for another reason. For most of these people, no treatment is needed.</p>
+
+      <p>The problems begin when a gallstone moves out of the gallbladder and gets wedged in one of the bile ducts — the small tubes connecting the gallbladder to the liver, small intestine, and pancreas. This triggers a cascade of possible complications depending on which duct is blocked and for how long.</p>
+
+      <div class="stat-callout">
+        <div class="stat-callout-number">80%</div>
+        <div class="stat-callout-label">of people with gallstones never develop symptoms<sup class="ref-sup"><a href="#ref-1">1</a></sup></div>
+      </div>
+
+      <h3 style="font-family:var(--heading-font); font-weight:700; font-size:1.15rem; color:var(--navy); margin:1.6rem 0 0.7rem;">What happens when they do cause symptoms</h3>
+      <p>When a gallstone temporarily blocks the cystic duct (the tube leading out of the gallbladder), it causes <strong>biliary colic</strong> — a severe, cramping pain in the upper right abdomen or the centre of the abdomen, often radiating to the right shoulder or back. The pain typically comes on suddenly after a fatty meal, lasts 30 minutes to several hours, and then subsides as the stone moves back or passes through. Despite the word "colic", the pain is usually constant during the episode rather than coming in waves.</p>
+      <p>If the blockage persists, the gallbladder becomes inflamed — a condition called <strong>acute cholecystitis</strong> (infection and swelling of the gallbladder). This produces more prolonged pain with fever, nausea, and tenderness on pressing the upper right abdomen. Gallstones can also travel into the common bile duct (the main tube draining bile from the liver) — called <strong>choledocholithiasis</strong> — causing jaundice (yellowing of the skin and whites of the eyes), or into the pancreatic duct, triggering <strong>gallstone pancreatitis</strong> (inflammation of the pancreas).</p>
+    </div>
+  </section>
+
+  <!-- ─────────────────── KEY TERMS -->
+  <section class="key-terms" aria-label="Key terms glossary">
+    <div class="key-terms-header">📖 Key Terms</div>
+    <dl class="key-terms-grid">
+      <div class="key-term">
+        <dt>Bile</dt>
+        <dd>A yellow-green digestive fluid made by the liver and stored in the gallbladder; released after meals to help digest fats.</dd>
+      </div>
+      <div class="key-term">
+        <dt>Biliary colic</dt>
+        <dd>Severe, cramping upper abdominal pain caused by a gallstone temporarily blocking the cystic duct; typically lasting 30 minutes to several hours.</dd>
+      </div>
+      <div class="key-term">
+        <dt>Cholecystectomy</dt>
+        <dd>Surgical removal of the gallbladder; most commonly performed as keyhole (laparoscopic) surgery under general anaesthetic.</dd>
+      </div>
+      <div class="key-term">
+        <dt>Acute cholecystitis</dt>
+        <dd>Inflammation and infection of the gallbladder, usually caused by a gallstone blocking the cystic duct; causes persistent pain, fever, and tenderness.</dd>
+      </div>
+      <div class="key-term">
+        <dt>Cholelithiasis</dt>
+        <dd>The medical term for the presence of gallstones inside the gallbladder.</dd>
+      </div>
+      <div class="key-term">
+        <dt>Choledocholithiasis</dt>
+        <dd>Gallstones that have passed into the common bile duct (the main tube draining bile from the liver); can cause jaundice and cholangitis.</dd>
+      </div>
+      <div class="key-term">
+        <dt>ERCP</dt>
+        <dd>Endoscopic Retrograde Cholangiopancreatography — a procedure combining a flexible camera (endoscope) with X-ray imaging to examine and treat problems in the bile and pancreatic ducts.</dd>
+      </div>
+      <div class="key-term">
+        <dt>Gallstone pancreatitis</dt>
+        <dd>Inflammation of the pancreas triggered when a gallstone blocks the shared channel through which bile and pancreatic juices drain into the small intestine.</dd>
+      </div>
+      <div class="key-term">
+        <dt>Cholangitis</dt>
+        <dd>Infection and inflammation of the bile ducts, usually caused by a blocked common bile duct; a potentially serious complication requiring urgent treatment.</dd>
+      </div>
+      <div class="key-term">
+        <dt>Jaundice</dt>
+        <dd>Yellowing of the skin and whites of the eyes, caused by a build-up of bilirubin when bile cannot flow normally; a sign that the bile duct may be blocked.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- ─────────────────── SECTION 2 -->
+  <section id="why-it-matters" class="article-section" aria-labelledby="s2-title">
+    <div class="section-label">Section 2</div>
+    <h2 class="section-title" id="s2-title">Why does it matter?</h2>
+
+    <div class="why-stat-grid">
+      <div class="why-stat-card">
+        <div class="why-stat-n">15–20%</div>
+        <div class="why-stat-label">of UK adults have gallstones</div>
+        <div class="why-stat-body">One of the most prevalent digestive conditions in the country — and around <strong>66,660 cholecystectomies</strong> (gallbladder removals) are performed in the UK every year.<sup class="ref-sup"><a href="#ref-2">2</a></sup></div>
+      </div>
+      <div class="why-stat-card">
+        <div class="why-stat-n">80%</div>
+        <div class="why-stat-label">remain silent throughout life</div>
+        <div class="why-stat-body">The majority of people with gallstones never develop symptoms and never need treatment — they are often found incidentally on a scan done for something else.<sup class="ref-sup"><a href="#ref-1">1</a></sup></div>
+      </div>
+      <div class="why-stat-card">
+        <div class="why-stat-n">7.6%</div>
+        <div class="why-stat-label">prevalence in women vs 5.4% in men</div>
+        <div class="why-stat-body">A 2024 meta-analysis of over <strong>32 million people</strong> confirmed the female predominance globally<sup class="ref-sup"><a href="#ref-3">3</a></sup> — driven by oestrogen's effects on bile composition and gallbladder motility (how well the gallbladder contracts to empty).</div>
+      </div>
+      <div class="why-stat-card">
+        <div class="why-stat-n">22%</div>
+        <div class="why-stat-label">become symptomatic within 10 years</div>
+        <div class="why-stat-body">A cohort study of 22,257 patients found 10% developed symptoms within 5 years and 22% within 10 years — rising to 33% by 15 years.<sup class="ref-sup"><a href="#ref-5">5</a></sup> The longer stones remain silent, the less likely they are to cause problems.</div>
+      </div>
+    </div>
+
+    <div class="section-body">
+      <p>The scale of gallstone disease makes it a significant public health issue — not because most cases are dangerous, but because the minority that do become symptomatic can escalate quickly. Gallstone pancreatitis is one of the leading causes of acute pancreatitis (sudden inflammation of the pancreas) in the UK, and cholangitis (bile duct infection) carries a meaningful mortality risk when not recognised and treated promptly.</p>
+      <p>Understanding the distinction between silent and symptomatic gallstones — and the factors that determine who crosses that line — is what this article is about. Most people with gallstones never need surgery. For those who do, the evidence now provides a clearer picture of when and why.</p>
+    </div>
+  </section>
+
+  <!-- ─────────────────── SECTION 3 -->
+  <section id="what-doctors-do" class="article-section" aria-labelledby="s3-title">
+    <div class="section-label">Section 3</div>
+    <h2 class="section-title" id="s3-title">What your doctor might do</h2>
+    <div class="section-body">
+      <p>When gallstones are suspected — whether due to symptoms or as an incidental finding — assessment in UK practice typically follows a structured pathway.</p>
+    </div>
+
+    <div class="doctor-cards">
+      <div class="doctor-card">
+        <div class="doctor-card-icon">🗣️</div>
+        <div>
+          <div class="doctor-card-title">History and examination</div>
+          <div class="doctor-card-body">The clinical history focuses on the character, location, and timing of any pain; associated features such as fever, jaundice (yellowing of the skin), or dark urine; and risk factors including BMI (body mass index), parity (number of pregnancies), family history, and relevant medications. On examination, Murphy's sign — tenderness and a pause in breathing when pressure is applied below the right rib cage during deep inspiration — is a classic indicator of acute cholecystitis. The 5 Fs risk profile (Female, Forty, Fertile, Fat, Fair) is a well-established clinical heuristic, though gallstones can and do occur outside this profile.</div>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doctor-card-icon">🩸</div>
+        <div>
+          <div class="doctor-card-title">Blood tests</div>
+          <div class="doctor-card-body">A standard assessment includes a full blood count (FBC), liver function tests (LFTs — measuring bilirubin, ALT, AST, ALP, and albumin), CRP (C-reactive protein — a marker of inflammation), and serum amylase or lipase (enzymes elevated in pancreatitis — inflammation of the pancreas). Raised bilirubin or ALP (alkaline phosphatase — an enzyme elevated when bile flow is obstructed) suggests a stone in the common bile duct. Elevated amylase points to pancreatic involvement.</div>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doctor-card-icon">🔊</div>
+        <div>
+          <div class="doctor-card-title">Ultrasound — first-line imaging</div>
+          <div class="doctor-card-body">Abdominal ultrasound is the primary investigation for suspected gallstones. It is non-invasive, involves no radiation, and detects gallbladder stones with high accuracy. It can also identify gallbladder wall thickening and pericholecystic fluid (fluid around the gallbladder) consistent with cholecystitis, and assess for bile duct dilation (widening of the bile duct, suggesting blockage). It is less reliable for visualising small stones within the common bile duct itself.</div>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doctor-card-icon">🧲</div>
+        <div>
+          <div class="doctor-card-title">MRCP for suspected bile duct stones</div>
+          <div class="doctor-card-body">If blood tests or ultrasound suggest stones in the common bile duct, MRCP (Magnetic Resonance Cholangiopancreatography — an MRI scan that creates detailed images of the bile and pancreatic ducts) provides a high-resolution, non-invasive view. It has replaced diagnostic ERCP for most patients, as ERCP (Endoscopic Retrograde Cholangiopancreatography) carries procedural risks and is now reserved primarily for treatment rather than diagnosis.</div>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doctor-card-icon">⏸️</div>
+        <div>
+          <div class="doctor-card-title">Watchful waiting for asymptomatic gallstones</div>
+          <div class="doctor-card-body">NICE guideline CG188<sup class="ref-sup"><a href="#ref-4">4</a></sup> recommends reassurance and no treatment for asymptomatic gallstones found in an otherwise normal gallbladder and biliary tree. The evidence supports this approach: the majority of people with silent gallstones will never develop complications. In UK practice, this means the incidental finding of gallstones on a scan is explained to the patient, who is advised about symptoms to watch for, and no surgical referral is made unless symptoms develop.</div>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doctor-card-icon">🔪</div>
+        <div>
+          <div class="doctor-card-title">Laparoscopic cholecystectomy — keyhole gallbladder removal</div>
+          <div class="doctor-card-body">NICE CG188<sup class="ref-sup"><a href="#ref-4">4</a></sup> recommends offering laparoscopic (keyhole) cholecystectomy to people with symptomatic gallstones — including those who have had biliary colic or acute cholecystitis. In UK practice this is typically performed as a day-case procedure under general anaesthetic using 3–4 small incisions. Recovery is usually 1–2 weeks. The gallbladder is not essential for normal digestion — the liver continues to produce bile, which drains directly into the small intestine.</div>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doctor-card-icon">🔬</div>
+        <div>
+          <div class="doctor-card-title">ERCP for bile duct stones</div>
+          <div class="doctor-card-body">Where stones are confirmed in the common bile duct (choledocholithiasis), ERCP is the standard treatment in UK practice. A flexible endoscope is passed through the mouth into the small intestine to the bile duct opening, the opening is widened (sphincterotomy — cutting the valve at the end of the bile duct), and stones are removed using a balloon or basket. This is typically performed before or at the time of cholecystectomy.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="red-flag-box" role="note" aria-label="Clinically time-sensitive features">
+      <div class="red-flag-box-title">⚠️ Clinically time-sensitive features</div>
+      <ul>
+        <li><strong>Charcot's triad</strong> — right upper abdominal pain + fever + jaundice (yellowing of skin/eyes): suggests acute cholangitis (bile duct infection), clinically recognised as time-sensitive — 111 and urgent GP services exist for this.</li>
+        <li><strong>Reynold's pentad</strong> — Charcot's triad plus low blood pressure and confusion: suggests severe cholangitis with septic shock — 999 exists for this.</li>
+        <li><strong>Severe, persistent abdominal pain with vomiting</strong> that is not settling may indicate acute pancreatitis or cholecystitis — both clinically recognised as requiring hospital assessment.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ─────────────────── SECTION 4 -->
+  <section id="research" class="article-section" aria-labelledby="s4-title">
+    <div class="section-label">Section 4</div>
+    <h2 class="section-title" id="s4-title">What the research shows</h2>
+
+    <div class="research-cards">
+
+      <!-- Research Card 1 — Global Epidemiology -->
+      <div class="research-card">
+        <div class="research-card-header">
+          <div class="research-card-title">Global prevalence of gallstones: a systematic review and meta-analysis</div>
+          <div class="research-card-badge">Meta-Analysis</div>
+        </div>
+        <div class="research-card-meta">Clinical Gastroenterology and Hepatology · 2024 · DOI: 10.1016/j.cgh.2024.01.051</div>
+        <div class="research-card-stat">
+          <div class="research-card-stat-number">7.6%</div>
+          <div class="research-card-stat-label">gallstone prevalence in women globally — versus 5.4% in men (32.6 million participants)</div>
+        </div>
+        <div class="research-card-body">This large meta-analysis pooled data from 115 studies involving over 32.6 million participants to produce the most comprehensive global picture of gallstone prevalence to date. The overall pooled prevalence was 6.1% (95% CI — the range within which the true value most likely falls — 5.6–6.5%). When restricted to imaging-based detection (ultrasound or CT), the figure rose to 6.7% — reflecting that questionnaire-based studies likely under-detect asymptomatic cases. In Europe and the UK specifically, prevalence is higher, estimated at 15–20% of the general adult population — consistent with the rates seen in UK surgical practice.<sup class="ref-sup"><a href="#ref-2">2</a></sup> The study confirmed women are more affected than men across all regions, with a pooled prevalence of <strong>7.6% in females versus 5.4% in males</strong> — a pattern attributed primarily to the effects of oestrogen (a female sex hormone) on bile composition and gallbladder emptying. Prevalence increased with age across all subgroups.</div>
+        <div class="research-card-source">Ke H et al. Clin Gastroenterol Hepatol. 2024. DOI: <a href="https://doi.org/10.1016/j.cgh.2024.01.051" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85)">10.1016/j.cgh.2024.01.051</a></div>
+      </div>
+
+      <!-- Research Card 2 — C-GALL RCT -->
+      <div class="research-card">
+        <div class="research-card-header">
+          <div class="research-card-title">C-GALL RCT — surgery versus watchful waiting for symptomatic gallstones</div>
+          <div class="research-card-badge">UK RCT</div>
+        </div>
+        <div class="research-card-meta">Health Technology Assessment (NIHR) · 2024 · DOI: 10.3310/MNBY3104 · PubMed: 38943314</div>
+        <div class="research-card-stat">
+          <div class="research-card-stat-number">~50%</div>
+          <div class="research-card-stat-label">of those assigned to watchful waiting crossed over to surgery within 2 years</div>
+        </div>
+        <div class="research-card-body">The C-GALL trial was a UK-based randomised controlled trial comparing laparoscopic cholecystectomy with conservative (watchful waiting) management in adults with uncomplicated symptomatic gallstone disease — those who had experienced biliary colic or acute cholecystitis but without serious complications. Adults suitable for surgery were randomised to either immediate cholecystectomy or observation, with follow-up of up to 24 months. The primary outcome was quality of life (QoL — overall wellbeing and physical function) measured using the SF-36 bodily pain domain (a validated patient questionnaire score).</div>
+        <div class="research-card-body">The headline finding was that there was <strong>no significant difference in overall quality of life or bodily pain scores between the two groups at 24 months</strong>. However, condition-specific quality of life — how much the gallstone disease affected daily life — <strong>favoured surgery</strong> at 24 months (mean difference — MD — 9.0, 95% CI 4.1 to 14.0, p&lt;0.001). People in the surgery group reported fewer ongoing problems related to their gallstone disease. From a cost perspective, conservative management was less costly over 24 months (mean difference −£1,033), though the incremental cost-effectiveness ratio (ICER — how much extra it costs to gain one quality-adjusted life-year) of £55,235 was above the standard NHS threshold of £20,000–£30,000 per QALY (quality-adjusted life-year — one year of life in perfect health). Notably, around half of people in the conservative management group went on to have surgery within 2 years, either due to worsening symptoms or complications.</div>
+        <div class="research-card-source">Innes K, Ahmed I et al. Health Technol Assess. 2024;28(26):1–151. DOI: <a href="https://doi.org/10.3310/MNBY3104" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85)">10.3310/MNBY3104</a></div>
+      </div>
+
+      <!-- Research Card 3 — NICE CG188 -->
+      <div class="research-card">
+        <div class="research-card-header">
+          <div class="research-card-title">NICE guideline CG188 — gallstone disease: diagnosis and management</div>
+          <div class="research-card-badge">NICE Guideline</div>
+        </div>
+        <div class="research-card-meta">National Institute for Health and Care Excellence · Published 2014, last reviewed 2018, confirmed current 2025</div>
+        <div class="research-card-stat">
+          <div class="research-card-stat-number">1 week</div>
+          <div class="research-card-stat-label">NICE target for cholecystectomy in acute cholecystitis — to reduce risk of complications during waiting period</div>
+        </div>
+        <div class="research-card-body">NICE CG188 is the primary clinical framework used in England and Wales for gallstone management. Its key recommendations reflect the prevailing evidence: asymptomatic gallstones found in a normal gallbladder and biliary tree should not be treated — patients are simply reassured that no intervention is needed unless symptoms develop. For symptomatic gallstones, laparoscopic cholecystectomy is the recommended treatment. For acute cholecystitis, the guideline identifies early surgery (within 1 week of diagnosis) as a key priority for implementation — earlier cholecystectomy reduces the risk of recurrent episodes during a prolonged waiting period. Where common bile duct stones are confirmed, ERCP before or at the time of cholecystectomy is recommended to clear the duct. NICE also advises that following successful treatment, people do not need to restrict their diet — fatty foods only trigger symptoms when stones are present and blocking ducts.</div>
+        <div class="research-card-source">NICE CG188. <a href="https://www.nice.org.uk/guidance/cg188" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85)">nice.org.uk/guidance/cg188</a></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─────────────────── PUTTING IT ALL TOGETHER -->
+  <section class="putting-together" aria-label="Summary">
+    <div class="putting-together-title">🔑 Putting it all together</div>
+    <p>Gallstones are extremely common — affecting roughly 1 in 7 UK adults — but the majority cause no problems and require no treatment. The key distinction is between silent (asymptomatic) gallstones, where current evidence and NICE guidance support watchful waiting, and symptomatic gallstones, where laparoscopic cholecystectomy (keyhole gallbladder removal) remains the standard treatment in the UK.</p>
+    <p>The C-GALL trial — the best UK evidence to date — confirms that for uncomplicated symptomatic gallstones, surgery produces better condition-specific quality of life outcomes than watchful waiting over two years, even if the difference in overall pain scores is modest. Around half of people who choose watchful waiting will end up having surgery anyway. Understanding this helps people weigh up whether to proceed with surgery or wait.</p>
+    <p>The serious complications — acute cholecystitis, bile duct obstruction, gallstone pancreatitis, and cholangitis — are clinically time-sensitive and require prompt hospital assessment. If you or someone you know develops upper right abdominal pain with fever and jaundice, that combination is a recognised red flag. Everything else — the risk factors, the follow-up, the surgical decision — is a conversation for you to have with your GP or healthcare professional.</p>
+    <p><strong>Most gallstones stay silent for life. Those that do speak up now have a well-evidenced treatment pathway — and knowing what to look for is the first step.</strong></p>
+  </section>
+
+  <!-- ─────────────────── REFERENCES -->
+  <section class="references" aria-label="References">
+    <h2 class="references-title">References</h2>
+
+    <div class="ref-block" id="ref-1">
+      <div class="ref-num">1</div>
+      <div>
+        <div class="ref-full">Innes K, Ahmed I, Hudson J, Hernández R, Gillies K, Bruce R, et al. Laparoscopic cholecystectomy versus conservative management for adults with uncomplicated symptomatic gallstones: the C-GALL RCT. <em>Health Technology Assessment.</em> 2024;28(26):1–151.</div>
+        <div class="ref-links">
+          <a class="ref-pill ref-pill-journal" href="https://doi.org/10.3310/MNBY3104" target="_blank" rel="noopener">DOI: 10.3310/MNBY3104</a>
+          <a class="ref-pill ref-pill-pubmed" href="https://pubmed.ncbi.nlm.nih.gov/38943314/" target="_blank" rel="noopener">PubMed: 38943314</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-block" id="ref-2">
+      <div class="ref-num">2</div>
+      <div>
+        <div class="ref-full">Gana T, Narula HS. Management of asymptomatic cholelithiasis. <em>Surgery (Oxford).</em> 2023;41(7):436–439. ⚑ <em>Full citation details to be verified before publication.</em></div>
+        <div class="ref-links">
+          <a class="ref-pill ref-pill-journal" href="https://www.sciencedirect.com/science/article/abs/pii/S0263931923000765" target="_blank" rel="noopener">View article</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-block" id="ref-3">
+      <div class="ref-num">3</div>
+      <div>
+        <div class="ref-full">Ke H, Wang H, Ye M, et al. Global epidemiology of gallstones in the 21st century: a systematic review and meta-analysis. <em>Clinical Gastroenterology and Hepatology.</em> 2024. Published online February 2024.</div>
+        <div class="ref-links">
+          <a class="ref-pill ref-pill-journal" href="https://doi.org/10.1016/j.cgh.2024.01.051" target="_blank" rel="noopener">DOI: 10.1016/j.cgh.2024.01.051</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-block" id="ref-4">
+      <div class="ref-num">4</div>
+      <div>
+        <div class="ref-full">National Institute for Health and Care Excellence. <em>Gallstone disease: diagnosis and management.</em> Clinical guideline CG188. Published October 2014; last reviewed August 2018; confirmed current 2025.</div>
+        <div class="ref-links">
+          <a class="ref-pill ref-pill-journal" href="https://www.nice.org.uk/guidance/cg188" target="_blank" rel="noopener">NICE CG188</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-block" id="ref-5">
+      <div class="ref-num">5</div>
+      <div>
+        <div class="ref-full">Morris-Stiff G, Sarvepalli S, Hu B, Gupta N, Lal P, Burke CA, et al. The natural history of asymptomatic gallstones: a longitudinal study and prediction model. <em>Clinical Gastroenterology and Hepatology.</em> 2023;21(2):319–327.e4.</div>
+        <div class="ref-links">
+          <a class="ref-pill ref-pill-journal" href="https://doi.org/10.1016/j.cgh.2022.04.010" target="_blank" rel="noopener">DOI: 10.1016/j.cgh.2022.04.010</a>
+          <a class="ref-pill ref-pill-pubmed" href="https://pubmed.ncbi.nlm.nih.gov/35513234/" target="_blank" rel="noopener">PubMed: 35513234</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════ FOOTER -->
+<footer class="site-footer">
+  <p>⚕️ <strong style="color:rgba(255,255,255,0.80);">Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+  <p style="margin-top:0.7rem;">© 2026 helf.school · <a href="index.html">Home</a> · <a href="helf-school-conditions.html">Conditions</a> · <a href="helf-school-membership.html">Membership</a></p>
+</footer>
+
+</body>
+</html>
