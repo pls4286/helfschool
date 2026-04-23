@@ -50,13 +50,13 @@
     .plate-top{display:flex;align-items:center;justify-content:center;gap:2rem;flex-shrink:0}
     .plate-wrap{flex-shrink:0}
     .food-rows{display:flex;flex-direction:column;gap:.5rem;width:100%}
-    .food-row{display:flex;align-items:center;gap:.9rem;padding:.6rem 1rem;border-radius:10px;background:rgba(255,255,255,.05);border-left:5px solid transparent;opacity:0;transform:translateY(10px);transition:opacity .4s ease,transform .4s ease}
+    .food-row{display:flex;align-items:center;gap:.9rem;padding:.6rem 1rem;border-radius:10px;background:rgba(255,255,255,.05);border-left:5px solid transparent;opacity:1;transform:translateY(0);transition:opacity .4s ease,transform .4s ease}
     .food-row.vis{opacity:1;transform:translateY(0)}
     .food-row-pct{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;line-height:1;min-width:52px;text-align:right;flex-shrink:0}
     .food-row-div{width:1px;height:32px;background:rgba(255,255,255,.15);flex-shrink:0}
     .food-row-name{font-size:1rem;font-weight:700;color:#fff;min-width:140px;flex-shrink:0}
     .food-row-desc{font-size:.86rem;color:rgba(255,255,255,.82);line-height:1.4;flex:1;font-weight:400}
-    .plate-stat{background:rgba(126,204,153,.14);border:2px solid rgba(126,204,153,.5);border-radius:14px;padding:.75rem 1.25rem;opacity:0;transition:opacity .6s ease;text-align:center;flex-shrink:0}
+    .plate-stat{background:rgba(126,204,153,.14);border:2px solid rgba(126,204,153,.5);border-radius:14px;padding:.75rem 1.25rem;opacity:1;transition:opacity .6s ease;text-align:center;flex-shrink:0}
     .plate-stat.vis{opacity:1}
     .plate-stat-num{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:var(--good);line-height:1;letter-spacing:-.02em}
     .plate-stat-heading{font-size:.9rem;font-weight:700;color:#fff;margin-top:.2rem;line-height:1.3}
@@ -64,7 +64,7 @@
 
     /* ─── SLIDE 3: FOOD TIERS ─── */
     .tiers-layout{display:flex;flex-direction:column;gap:.75rem;flex:1;min-height:0}
-    .tier-row{border-radius:13px;overflow:hidden;opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease}
+    .tier-row{border-radius:13px;overflow:hidden;opacity:1;transform:translateY(0);transition:opacity .45s ease,transform .45s ease}
     .tier-row.vis{opacity:1;transform:translateY(0)}
     .tier-head{padding:.75rem 1.25rem;display:flex;align-items:center;gap:1rem}
     .tier-head-icon{font-size:1.6rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
@@ -111,7 +111,7 @@
 
     /* ─── SLIDE 5: BENEFITS — HORIZONTAL ROWS · ACTION/PROTECTION · GREEN ─── */
     .ben-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(3,1fr);gap:.65rem;flex:1;min-height:0}
-    .ben-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.32);border-radius:14px;padding:1rem 1.5rem;display:grid;grid-template-columns:72px 1fr auto;gap:1.5rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .45s ease}
+    .ben-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.32);border-radius:14px;padding:1rem 1.5rem;display:grid;grid-template-columns:72px 1fr auto;gap:1.5rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .45s ease}
     .ben-card.vis{opacity:1;transform:translateY(0)}
     .ben-icon{font-size:2.8rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
     .ben-content{display:flex;flex-direction:column;gap:.28rem;min-width:0}
@@ -226,7 +226,7 @@
         </div>
 
         <!-- STAT CARD — green (protective outcome) -->
-        <div class="plate-stat" id="pstat">
+        <div class="plate-stat animate-ready" id="pstat">
           <div class="plate-stat-num">~30%</div>
           <div class="plate-stat-heading">↓ heart attacks, strokes<br>&amp; cardiovascular death</div>
           <div class="plate-stat-label">PREDIMED · NEJM 2018 · 7,447 participants</div>
@@ -235,31 +235,31 @@
 
       <!-- FOOD ROWS -->
       <div class="food-rows">
-        <div class="food-row" id="li0" style="border-color:#3a7a50">
+        <div class="food-row animate-ready" id="li0" style="border-color:#3a7a50">
           <div class="food-row-pct" style="color:#5ecc80">35%</div>
           <div class="food-row-div"></div>
           <div class="food-row-name">🥦 Vegetables &amp; fruit</div>
           <div class="food-row-desc">The largest portion — in abundance at every meal, as varied and colourful as possible.</div>
         </div>
-        <div class="food-row" id="li1" style="border-color:#c8a44a">
+        <div class="food-row animate-ready" id="li1" style="border-color:#c8a44a">
           <div class="food-row-pct" style="color:#e8c860">25%</div>
           <div class="food-row-div"></div>
           <div class="food-row-name">🌾 Whole grains</div>
           <div class="food-row-desc">Bread, pasta, rice — wholegrain where possible, not refined white.</div>
         </div>
-        <div class="food-row" id="li2" style="border-color:#3a7ab8">
+        <div class="food-row animate-ready" id="li2" style="border-color:#3a7ab8">
           <div class="food-row-pct" style="color:#6aaae0">15%</div>
           <div class="food-row-div"></div>
           <div class="food-row-name">🐟 Fish &amp; seafood</div>
           <div class="food-row-desc">Especially oily fish — salmon, mackerel, sardines. At least twice a week.</div>
         </div>
-        <div class="food-row" id="li3" style="border-color:#8a4a9a">
+        <div class="food-row animate-ready" id="li3" style="border-color:#8a4a9a">
           <div class="food-row-pct" style="color:#c080d8">15%</div>
           <div class="food-row-div"></div>
           <div class="food-row-name">🫘 Legumes</div>
           <div class="food-row-desc">Lentils, chickpeas, beans, peas — on days without fish. High in fibre and plant protein.</div>
         </div>
-        <div class="food-row" id="li4" style="border-color:#c87a30">
+        <div class="food-row animate-ready" id="li4" style="border-color:#c87a30">
           <div class="food-row-pct" style="color:#e8a050">10%</div>
           <div class="food-row-div"></div>
           <div class="food-row-name">🫒 Olive oil &amp; nuts</div>
@@ -275,7 +275,7 @@
     <div class="slide-title">Three <span>tiers</span> — what to eat freely, regularly, and occasionally</div>
     <div class="tiers-layout">
 
-      <div class="tier-row" id="tr1">
+      <div class="tier-row animate-ready" id="tr1">
         <div class="tier-head t1-head">
           <div class="tier-head-icon">🌿</div>
           <div class="tier-head-label">
@@ -294,7 +294,7 @@
         </div>
       </div>
 
-      <div class="tier-row" id="tr2">
+      <div class="tier-row animate-ready" id="tr2">
         <div class="tier-head t2-head">
           <div class="tier-head-icon">🐟</div>
           <div class="tier-head-label">
@@ -310,7 +310,7 @@
         </div>
       </div>
 
-      <div class="tier-row" id="tr3">
+      <div class="tier-row animate-ready" id="tr3">
         <div class="tier-head t3-head">
           <div class="tier-head-icon">⚠️</div>
           <div class="tier-head-label">
@@ -392,7 +392,7 @@
     <div class="slide-title">The evidence goes well <span>beyond the heart</span></div>
     <div class="ben-grid">
 
-      <div class="ben-card" id="b1">
+      <div class="ben-card animate-ready" id="b1">
         <div class="ben-icon">❤️</div>
         <div class="ben-content">
           <div class="ben-title">Heart disease &amp; stroke</div>
@@ -405,7 +405,7 @@
         </div>
       </div>
 
-      <div class="ben-card" id="b2">
+      <div class="ben-card animate-ready" id="b2">
         <div class="ben-icon">🩺</div>
         <div class="ben-content">
           <div class="ben-title">Type 2 diabetes</div>
@@ -418,7 +418,7 @@
         </div>
       </div>
 
-      <div class="ben-card" id="b3">
+      <div class="ben-card animate-ready" id="b3">
         <div class="ben-icon">🧠</div>
         <div class="ben-content">
           <div class="ben-title">Dementia &amp; brain health</div>

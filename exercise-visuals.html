@@ -107,7 +107,7 @@
 
     /* ─── SLIDE 6: SIX BENEFITS · HORIZONTAL ROWS · PROTECTION · GREEN ─── */
     .ben-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .ben-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.32);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .ben-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.32);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
     .ben-card.vis{opacity:1;transform:translateY(0)}
     .ben-card.hero{border-color:rgba(212,184,74,.55);background:linear-gradient(90deg,rgba(212,184,74,.12),rgba(212,184,74,.04))}
     .ben-icon{font-size:1.9rem;line-height:1;text-align:center;padding-top:.1rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
@@ -122,7 +122,7 @@
 
     /* ─── SLIDE 7: WHAT YOUR DOCTOR CAN DO · HORIZONTAL ROWS · ACTION · GREEN ─── */
     .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
     .doc-card.vis{opacity:1;transform:translateY(0)}
     .doc-card.key{grid-row:span 2;border-color:rgba(232,168,74,.5);background:linear-gradient(90deg,rgba(232,168,74,.10),rgba(232,168,74,.03));padding:1.1rem 1.3rem}
     .doc-icon{font-size:1.9rem;line-height:1;text-align:center;padding-top:.1rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
@@ -156,11 +156,17 @@
     /* ─── SLIDE 9: RESEARCH EVIDENCE ─── */
     .ev-stage{display:flex;flex-direction:column;gap:.55rem;flex:1;min-height:0}
     .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:12px;padding:.75rem 1.1rem;display:grid;grid-template-columns:170px 1fr;gap:1.2rem;align-items:center;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .42s ease}
+    .ev-card.animate-ready{opacity:0;transform:translateY(14px)}
     .ev-card.vis{opacity:1;transform:translateY(0)}
     .ev-stat-box{text-align:center;background:rgba(212,184,74,.09);border-radius:10px;padding:.75rem .5rem}
-    .ev-stat{font-family:'Fraunces',serif;font-size:1.75rem;font-weight:700;line-height:1;color:var(--good);letter-spacing:-.02em}
-    .ev-stat.amber{color:var(--warn)}
-    .ev-stat-lab{font-size:.75rem;color:rgba(255,255,255,.92);font-weight:700;margin-top:.3rem;line-height:1.3}
+    .ev-kf-label{font-size:.6rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(212,184,74,.7);margin-bottom:.4rem}
+    .ev-stat-row{display:flex;align-items:baseline;gap:.4rem;justify-content:center;flex-wrap:wrap;margin-bottom:.3rem}
+    .ev-num{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;line-height:1;letter-spacing:-.02em;flex-shrink:0}
+    .ev-num.good{color:var(--good)}
+    .ev-num.warn{color:var(--warn)}
+    .ev-num.bad{color:var(--bad)}
+    .ev-outcome{font-size:.88rem;font-weight:700;color:#fff;line-height:1.25;text-align:left}
+    .ev-conditions{font-size:.8rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.3}
     .ev-detail{min-width:0}
     .ev-trial{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:.15rem;line-height:1.18;letter-spacing:-.01em}
     .ev-journal{font-size:.8rem;color:rgba(255,255,255,.85);margin-bottom:.3rem;font-weight:500}
@@ -423,7 +429,7 @@
         </div>
       </div>
 
-      <div class="ben-card" id="b2">
+      <div class="ben-card animate-ready" id="b2">
         <div class="ben-icon">❤️</div>
         <div class="ben-content">
           <div class="ben-title">Cardiovascular events</div>
@@ -435,7 +441,7 @@
         </div>
       </div>
 
-      <div class="ben-card" id="b3">
+      <div class="ben-card animate-ready" id="b3">
         <div class="ben-icon">🍬</div>
         <div class="ben-content">
           <div class="ben-title">Type 2 diabetes</div>
@@ -447,7 +453,7 @@
         </div>
       </div>
 
-      <div class="ben-card" id="b4">
+      <div class="ben-card animate-ready" id="b4">
         <div class="ben-icon">🧠</div>
         <div class="ben-content">
           <div class="ben-title">Depression risk</div>
@@ -459,7 +465,7 @@
         </div>
       </div>
 
-      <div class="ben-card" id="b5">
+      <div class="ben-card animate-ready" id="b5">
         <div class="ben-icon">🧩</div>
         <div class="ben-content">
           <div class="ben-title">Dementia risk</div>
@@ -471,7 +477,7 @@
         </div>
       </div>
 
-      <div class="ben-card" id="b6">
+      <div class="ben-card animate-ready" id="b6">
         <div class="ben-icon">🦴</div>
         <div class="ben-content">
           <div class="ben-title">Mortality — from strength work</div>
@@ -491,7 +497,7 @@
     <div class="slide-title">What <span>your doctor</span> can help with</div>
     <div class="doc-grid">
 
-      <div class="doc-card" id="d1">
+      <div class="doc-card animate-ready" id="d1">
         <div class="doc-icon">❤️</div>
         <div class="doc-content">
           <div class="doc-title">Cardiovascular risk review</div>
@@ -500,7 +506,7 @@
         <div class="doc-action">→ Review</div>
       </div>
 
-      <div class="doc-card" id="d2">
+      <div class="doc-card animate-ready" id="d2">
         <div class="doc-icon">🏥</div>
         <div class="doc-content">
           <div class="doc-title">Cardiac rehabilitation</div>
@@ -509,7 +515,7 @@
         <div class="doc-action">NHS</div>
       </div>
 
-      <div class="doc-card" id="d3">
+      <div class="doc-card animate-ready" id="d3">
         <div class="doc-icon">📋</div>
         <div class="doc-content">
           <div class="doc-title">NHS Exercise Referral schemes</div>
@@ -518,7 +524,7 @@
         <div class="doc-action">GP referral</div>
       </div>
 
-      <div class="doc-card" id="d4">
+      <div class="doc-card animate-ready" id="d4">
         <div class="doc-icon">🦴</div>
         <div class="doc-content">
           <div class="doc-title">Physiotherapy</div>
@@ -576,10 +582,14 @@
   <div class="slide">
     <div class="slide-title">The evidence · <span>lifespan &amp; dose-response</span></div>
     <div class="ev-stage">
-      <div class="ev-card" id="e1">
+      <div class="ev-card animate-ready" id="e1">
         <div class="ev-stat-box">
-          <div class="ev-stat">+3 yrs</div>
-          <div class="ev-stat-lab">life expectancy</div>
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good">+3 yrs</div>
+            <div class="ev-outcome">longer life expectancy</div>
+          </div>
+          <div class="ev-conditions">at just 15 min/day moderate activity — Lancet 2011</div>
         </div>
         <div class="ev-detail">
           <div class="ev-trial">Wen et al. — 15 minutes a day</div>
@@ -587,10 +597,14 @@
           <div class="ev-finding">Just <strong>15 minutes a day</strong> of moderate activity = <strong>+3 years of life</strong>. Well below guideline, still enormous.</div>
         </div>
       </div>
-      <div class="ev-card" id="e2">
+      <div class="ev-card animate-ready" id="e2">
         <div class="ev-stat-box">
-          <div class="ev-stat" style="font-size:1.4rem">+1.8 / +4.5y</div>
-          <div class="ev-stat-lab">years gained</div>
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good" style="font-size:1.4rem">+1.8 / +4.5y</div>
+          </div>
+          <div class="ev-outcome" style="text-align:center">years of life gained</div>
+          <div class="ev-conditions">half-guideline / full guideline — clear dose-response</div>
         </div>
         <div class="ev-detail">
           <div class="ev-trial">Moore et al. — dose-response</div>
@@ -598,10 +612,14 @@
           <div class="ev-finding">Half-guideline = <strong>+1.8 years</strong>. Highest dose = <strong>+4.5 years</strong>. Clear dose-response.</div>
         </div>
       </div>
-      <div class="ev-card" id="e3">
+      <div class="ev-card animate-ready" id="e3">
         <div class="ev-stat-box">
-          <div class="ev-stat">–20%</div>
-          <div class="ev-stat-lab">mortality · plateau</div>
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good">–20%</div>
+            <div class="ev-outcome">lower mortality</div>
+          </div>
+          <div class="ev-conditions">at guideline level — plateaus at 3–5× guideline, no harm at 10×</div>
         </div>
         <div class="ev-detail">
           <div class="ev-trial">Arem et al. — dose-response plateau</div>
@@ -616,10 +634,14 @@
   <div class="slide">
     <div class="slide-title">The evidence · <span>strength, mood &amp; steps</span></div>
     <div class="ev-stage">
-      <div class="ev-card" id="e4">
+      <div class="ev-card animate-ready" id="e4">
         <div class="ev-stat-box">
-          <div class="ev-stat amber">–10–20%</div>
-          <div class="ev-stat-lab">mortality &amp; disease</div>
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num warn" style="font-size:2rem">–10–20%</div>
+          </div>
+          <div class="ev-outcome" style="text-align:center">lower mortality &amp; disease</div>
+          <div class="ev-conditions">from just 30–60 min/week strength training — independent benefit</div>
         </div>
         <div class="ev-detail">
           <div class="ev-trial">Momma et al. — strength training</div>
@@ -627,10 +649,14 @@
           <div class="ev-finding"><strong>30–60 min/week</strong> of strength work — independent mortality benefit on top of any aerobic activity.</div>
         </div>
       </div>
-      <div class="ev-card" id="e5">
+      <div class="ev-card animate-ready" id="e5">
         <div class="ev-stat-box">
-          <div class="ev-stat" style="font-size:1.4rem">–18% / –25%</div>
-          <div class="ev-stat-lab">depression risk</div>
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good" style="font-size:1.4rem">–18% / –25%</div>
+          </div>
+          <div class="ev-outcome" style="text-align:center">lower depression risk</div>
+          <div class="ev-conditions">at half-dose / full dose of recommended activity</div>
         </div>
         <div class="ev-detail">
           <div class="ev-trial">Pearce et al. — exercise &amp; depression</div>
@@ -638,10 +664,14 @@
           <div class="ev-finding">Half-dose = <strong>–18%</strong> · full dose = <strong>–25%</strong>. Biggest marginal benefit at the lowest end of the scale.</div>
         </div>
       </div>
-      <div class="ev-card" id="e6">
+      <div class="ev-card animate-ready" id="e6">
         <div class="ev-stat-box">
-          <div class="ev-stat">–47%</div>
-          <div class="ev-stat-lab">mortality · 7k steps</div>
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good">–47%</div>
+            <div class="ev-outcome">lower mortality</div>
+          </div>
+          <div class="ev-conditions">at 7,000 steps vs 2,000 — benefit plateaus; 10,000 was marketing</div>
         </div>
         <div class="ev-detail">
           <div class="ev-trial">Ding et al. — daily steps (2025)</div>

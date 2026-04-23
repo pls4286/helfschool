@@ -1,359 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-  <title>The Mediterranean Diet — Teleprompter | helf.school</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mediterranean Diet — Teleprompter · helf.school</title>
   <style>
     :root {
-      --navy: #1B2A4A;
-      --practical: #d4b84a;
-      --practical-deep: #7A6A2E;
-      --amber: #E8A84A;
-      --coral: #E8634A;
-      --bg: #0d0d0d;
-      --text: #f0f0f0;
+      --bg: #0A0F1A; --text: #F0EDE8; --accent: #d4b84a;
+      --cue-bg: rgba(212,184,74,0.18); --cue-border: #d4b84a;
+      --pause-bg: rgba(200,66,58,0.18); --pause-border: #C8423A;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; overflow: hidden; background: var(--bg); }
-
-    /* TOPBAR */
-    #topbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--navy); border-bottom: 2px solid var(--practical);
-      padding: .45rem 1rem;
-      display: flex; align-items: center; justify-content: space-between; gap: .75rem;
-    }
-    #topbar-title { font-family: 'DM Sans', sans-serif; font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.85); }
-    #controls { display: flex; align-items: center; gap: .4rem; flex-shrink: 0; }
-    .ctrl-btn {
-      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
-      color: #fff; font-size: .72rem; font-weight: 700; padding: .2rem .5rem;
-      border-radius: 4px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background .15s;
-    }
-    .ctrl-btn:hover { background: rgba(255,255,255,.2); }
-    .ctrl-label { font-size: .65rem; color: rgba(255,255,255,.6); font-family: 'DM Sans', sans-serif; }
-    #speed-display { font-size: .72rem; font-weight: 700; color: var(--practical); min-width: 14px; text-align: center; font-family: 'DM Sans', sans-serif; }
-    #play-btn {
-      background: var(--practical-deep); border: none; color: #fff;
-      font-size: .72rem; font-weight: 700; padding: .25rem .7rem;
-      border-radius: 4px; cursor: pointer; font-family: 'DM Sans', sans-serif; letter-spacing: .04em;
-    }
-    #play-btn:hover { filter: brightness(1.15); }
-
-    /* SEGMENT DOTS */
-    #seg-dots {
-      position: fixed; right: .6rem; top: 50%; transform: translateY(-50%);
-      z-index: 100; display: flex; flex-direction: column; gap: .4rem;
-    }
-    .seg-dot {
-      width: 10px; height: 10px; border-radius: 50%;
-      background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.3);
-      cursor: pointer; transition: background .2s;
-    }
-    .seg-dot.active { background: var(--practical); border-color: var(--practical); }
-    .seg-dot:hover { background: rgba(255,255,255,.45); }
-
-    /* SCROLL */
-    #scroll-wrap { position: fixed; top: 44px; bottom: 0; left: 0; right: 0; overflow: hidden; }
-    #scroll-content { padding: 60vh 4rem 60vh; max-width: 840px; margin: 0 auto; will-change: transform; }
-
-    /* FOCUS */
-    #focus-line { position: fixed; top: 50%; left: 0; right: 0; height: 2px; background: rgba(212,184,74,.25); pointer-events: none; z-index: 50; }
-    #focus-top { position: fixed; top: 44px; left: 0; right: 0; height: 34%; background: linear-gradient(to bottom, var(--bg) 0%, transparent 100%); pointer-events: none; z-index: 50; }
-    #focus-bottom { position: fixed; bottom: 0; left: 0; right: 0; height: 34%; background: linear-gradient(to top, var(--bg) 0%, transparent 100%); pointer-events: none; z-index: 50; }
-
-    /* SEGMENT LABEL */
-    .seg-label {
-      font-family: 'DM Sans', sans-serif; font-size: .72rem; font-weight: 700;
-      letter-spacing: .14em; text-transform: uppercase;
-      color: var(--practical); margin-bottom: 1.4rem; margin-top: 5rem;
-      padding-bottom: .4rem; border-bottom: 1px solid rgba(212,184,74,.3);
-    }
-    .seg-label:first-child { margin-top: 0; }
-
-    /* SCRIPT */
-    .line { font-family: 'DM Sans', sans-serif; font-size: 1.9rem; line-height: 1.8; color: var(--text); font-weight: 400; margin-bottom: 1.5rem; }
-    .line strong { font-weight: 700; color: #fff; }
-    .line em { color: var(--practical); font-style: normal; font-weight: 600; }
-
-    /* PAUSE */
-    .pause {
-      display: inline-block;
-      background: rgba(232,99,74,.15); border: 1px solid rgba(232,99,74,.35);
-      color: var(--coral); font-size: 1.1rem; font-weight: 700;
-      padding: .1rem .45rem; border-radius: 4px; margin: 0 .3rem; vertical-align: middle; letter-spacing: .04em;
-    }
-
-    /* CUE BOX */
-    .cue-box {
-      background: rgba(232,168,74,.06); border: 2px solid var(--amber);
-      border-radius: 10px; padding: .9rem 1.2rem; margin: 2rem 0 4rem;
-      font-family: 'DM Sans', sans-serif;
-    }
-    .cue-label { font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--amber); margin-bottom: .4rem; }
-    .cue-text { font-size: 1.1rem; font-weight: 600; color: #fff; line-height: 1.55; }
-    .cue-text span { color: var(--amber); }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Georgia', serif; font-size: 1.9rem; line-height: 1.65; overflow: hidden; height: 100vh; user-select: none; }
+    .controls { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(10,15,26,0.95); border-bottom: 1px solid rgba(212,184,74,0.35); display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.8rem; flex-wrap: wrap; }
+    .ctrl-label { font-family: sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(240,237,232,0.55); }
+    .ctrl-btn { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: var(--text); border-radius: 5px; padding: 0.28rem 0.65rem; cursor: pointer; }
+    .ctrl-btn:hover { background: rgba(255,255,255,0.15); }
+    .ctrl-btn.active { background: var(--accent); border-color: var(--accent); color: #1B2A4A; }
+    .ctrl-sep { width: 1px; height: 24px; background: rgba(255,255,255,0.15); }
+    .ctrl-speed-display { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; color: var(--accent); min-width: 28px; text-align: center; }
+    .word-count { font-family: sans-serif; font-size: 0.68rem; color: rgba(240,237,232,0.45); margin-left: auto; }
+    .scroll-wrap { position: absolute; top: 56px; left: 0; right: 0; bottom: 48px; overflow: hidden; }
+    .scroll-inner { padding: 3rem 2.2rem 40vh; will-change: transform; }
+    .segment { margin-bottom: 2.8rem; }
+    .cue-box { background: var(--cue-bg); border: 2px solid var(--cue-border); border-radius: 8px; padding: 0.55rem 1rem; margin-bottom: 1.1rem; font-family: sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); display: flex; align-items: center; gap: 0.5rem; }
+    .cue-arrow { font-size: 1rem; flex-shrink: 0; }
+    .pause { background: var(--pause-bg); border-left: 3px solid var(--pause-border); border-radius: 0 6px 6px 0; padding: 0.4rem 0.9rem; margin: 1rem 0; font-family: sans-serif; font-size: 0.80rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #C8423A; }
+    .stat { color: var(--accent); font-weight: 700; }
+    .dots-bar { position: fixed; bottom: 0; left: 0; right: 0; height: 48px; background: rgba(10,15,26,0.95); border-top: 1px solid rgba(212,184,74,0.25); display: flex; align-items: center; justify-content: center; gap: 0.5rem; z-index: 50; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.22); cursor: pointer; transition: background 0.2s, transform 0.2s; }
+    .dot.active { background: var(--accent); transform: scale(1.3); }
+    .dot-label { font-family: sans-serif; font-size: 0.62rem; color: rgba(240,237,232,0.45); margin: 0 0.3rem; }
   </style>
 </head>
 <body>
 
-<div id="topbar">
-  <div id="topbar-title">The Mediterranean Diet · Practical Health Series · Article 08</div>
-  <div id="controls">
-    <span class="ctrl-label">SPEED</span>
-    <button class="ctrl-btn" onclick="changeSpeed(-1)">−</button>
-    <span id="speed-display">3</span>
-    <button class="ctrl-btn" onclick="changeSpeed(1)">+</button>
-    <span class="ctrl-label" style="margin-left:.4rem">FONT</span>
-    <button class="ctrl-btn" onclick="changeFont(-1)">A−</button>
-    <button class="ctrl-btn" onclick="changeFont(1)">A+</button>
-    <button id="play-btn" onclick="togglePlay()">▶ PLAY</button>
-  </div>
+<div class="controls">
+  <span class="ctrl-label">Speed</span>
+  <button class="ctrl-btn" id="btn-slower">−</button>
+  <span class="ctrl-speed-display" id="speed-display">3</span>
+  <button class="ctrl-btn" id="btn-faster">+</button>
+  <div class="ctrl-sep"></div>
+  <span class="ctrl-label">Font</span>
+  <button class="ctrl-btn" id="btn-smaller">A−</button>
+  <button class="ctrl-btn" id="btn-bigger">A+</button>
+  <div class="ctrl-sep"></div>
+  <button class="ctrl-btn" id="btn-pause">⏸ Pause</button>
+  <button class="ctrl-btn" id="btn-reset">↑ Top</button>
+  <span class="word-count">~680 words · ~4.5 min</span>
 </div>
 
-<div id="seg-dots">
-  <div class="seg-dot active" onclick="jumpToSeg(0)" title="Intro"></div>
-  <div class="seg-dot" onclick="jumpToSeg(1)" title="What is it?"></div>
-  <div class="seg-dot" onclick="jumpToSeg(2)" title="Three tiers"></div>
-  <div class="seg-dot" onclick="jumpToSeg(3)" title="PREDIMED evidence"></div>
-  <div class="seg-dot" onclick="jumpToSeg(4)" title="Beyond the heart"></div>
-  <div class="seg-dot" onclick="jumpToSeg(5)" title="Today's change"></div>
-  <div class="seg-dot" onclick="jumpToSeg(6)" title="This week's change"></div>
-  <div class="seg-dot" onclick="jumpToSeg(7)" title="This month's change"></div>
-  <div class="seg-dot" onclick="jumpToSeg(8)" title="Closing"></div>
+<div class="scroll-wrap" id="scroll-wrap">
+<div class="scroll-inner" id="scroll-inner">
+
+  <!-- SEGMENT 0 — INTRO -->
+  <div class="segment" id="seg-0">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 1 — Title card</div>
+
+    I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about the Mediterranean diet — what it actually involves, and what the research shows.
+
+    <div class="pause">— brief pause —</div>
+
+    Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — let's get into it.
+  </div>
+
+  <!-- SEGMENT 1 — WHAT IS IT -->
+  <div class="segment" id="seg-1">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 2 — The plate</div>
+
+    The Mediterranean diet isn't a rulebook. It's a pattern of eating that developed across the coastal regions of southern Europe — and it's now one of the most thoroughly studied dietary patterns in medicine.
+
+    <div class="pause">— pause —</div>
+
+    The pattern is built around vegetables and fruit — roughly a third of the plate. Whole grains alongside. Oily fish at least twice weekly. Legumes — lentils and chickpeas — regularly in place of meat. And throughout everything, extra-virgin olive oil as the main cooking and dressing fat, in place of butter.
+
+    The olive oil shift matters more than most people realise. It moves fat intake from saturated to monounsaturated — and that shift is one of the most important features of the whole pattern.
+  </div>
+
+  <!-- SEGMENT 2 — THREE TIERS -->
+  <div class="segment" id="seg-2">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 3 — Three tiers</div>
+
+    The pattern is sometimes described in three tiers.
+
+    <div class="pause">— pause —</div>
+
+    At every meal, the bulk of the plate: vegetables, fruit, whole grains, legumes, nuts, olive oil. This is the foundation.
+
+    Several times a week: oily fish — salmon, mackerel, sardines — at least twice. Eggs, poultry, and moderate dairy on the other days.
+
+    <div class="pause">— pause —</div>
+
+    Occasionally, not daily: red meat, processed meat, added sugar, refined grains, ultra-processed food. Not excluded — just infrequent.
+
+    The key finding from the research is that the pattern is characterised by abundance, not restriction. And studies consistently show that even partial adherence — moving in the direction without following every element — produces meaningful benefit.
+  </div>
+
+  <!-- SEGMENT 3 — PREDIMED -->
+  <div class="segment" id="seg-3">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 4 — PREDIMED trial</div>
+
+    So what does the evidence actually show? The landmark study is PREDIMED — one of the largest dietary intervention trials ever conducted.
+
+    <div class="pause">— pause —</div>
+
+    Seven thousand four hundred and forty-seven people at high cardiovascular risk, randomised to Mediterranean diet with olive oil, Mediterranean diet with nuts, or standard low-fat dietary advice.
+
+    The trial was stopped after four point eight years — because the benefit was already too clear to continue ethically.
+
+    <div class="pause">— pause —</div>
+
+    The Mediterranean diet group had approximately <span class="stat">thirty percent fewer major cardiovascular events</span> — heart attacks, strokes, and cardiovascular deaths — compared to the low-fat control. Published in the New England Journal of Medicine. The strongest dietary evidence in preventive medicine.
+  </div>
+
+  <!-- SEGMENT 4 — BEYOND THE HEART -->
+  <div class="segment" id="seg-4">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 5 — Three benefit cards</div>
+
+    What makes the Mediterranean diet unusual is that the evidence extends well beyond cardiovascular disease.
+
+    <div class="pause">— pause —</div>
+
+    Type 2 diabetes: a meta-analysis of ten studies and over 136,000 participants found <span class="stat">twenty-three percent lower risk</span> of developing type 2 diabetes with higher adherence.
+
+    Brain health: a 2025 meta-analysis published in GeroScience found up to <span class="stat">thirty percent lower risk of Alzheimer's disease</span>, and around eleven percent lower risk of dementia overall.
+
+    <div class="pause">— pause —</div>
+
+    Blood pressure and cholesterol also improve — the pattern's high potassium content from vegetables counters sodium, and the replacement of saturated fat with olive oil and nuts improves LDL cholesterol.
+  </div>
+
+  <!-- SEGMENT 5 — CTA -->
+  <div class="segment" id="seg-5">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 6 — CTA</div>
+
+    The Mediterranean diet has one of the strongest evidence bases of any dietary pattern in medicine. Not because of one dramatic finding — but because the research stacks up consistently across heart disease, diabetes, brain health, blood pressure, and longevity.
+
+    <div class="pause">— pause —</div>
+
+    The three changes with the strongest evidence basis in the Mediterranean pattern are: replacing butter with extra-virgin olive oil; including oily fish at least twice weekly; and building vegetables into the majority of each meal.
+
+    The evidence is clear that even partial adherence brings real benefit. A full transformation is not required — movement in the direction is what the research consistently supports.
+
+    <div class="pause">— pause —</div>
+
+    As always — anything personally relevant here is a conversation for you to have with your GP or healthcare professional. I'm Dr Paul. Thanks for watching.
+
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW · SLIDE 7 — Closing card</div>
+  </div>
+
+</div>
 </div>
 
-<div id="focus-top"></div>
-<div id="focus-line"></div>
-<div id="focus-bottom"></div>
-
-<div id="scroll-wrap">
-  <div id="scroll-content">
-
-    <!-- ═══ SEGMENT 0 — INTRODUCTION ═══ -->
-    <div class="seg-label" data-seg="0">Segment 0 — Introduction</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 1: <span>Intro title slide</span> · helf.school · Practical Health Series · Article 08 · "The Mediterranean Diet"</div>
-    </div>
-
-    <p class="line">"I'm Dr Paul — I spent <strong>over twenty years as an NHS GP</strong> before I retired in 2019. Today I want to talk to you about <strong>the Mediterranean diet</strong> — what it actually involves, and what the research shows."</p>
-
-    <p class="line">"Now, I do have to say upfront — what I'm giving you here is <strong>health education, not medical advice</strong>. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — <em>let's get into it.</em>"</p>
-
-    <!-- ═══ SEGMENT 1 — WHAT IS IT? ═══ -->
-    <div class="seg-label" data-seg="1">Segment 1 — What is the Mediterranean diet?</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 2: <span>The plate</span> · food proportion rows animating in · stat card (~30% CV reduction)</div>
-    </div>
-
-    <p class="line">"The Mediterranean diet isn't a rulebook. It's a <strong>pattern of eating</strong> that developed across the coastal regions of southern Europe — and it's now one of the most thoroughly studied dietary patterns in medicine."</p>
-
-    <p class="line">"The centrepiece is <strong>vegetables and fruit</strong> — roughly a third of your plate. Whole grains alongside. <strong>Oily fish at least twice a week</strong>. Legumes — lentils and chickpeas — regularly in place of meat. And throughout everything, <strong>extra-virgin olive oil</strong> as the main cooking and dressing fat, replacing butter." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"That olive oil swap matters more than most people realise. It shifts your fat intake from saturated to monounsaturated — and that shift is one of the most important changes in the whole pattern."</p>
-
-    <!-- ═══ SEGMENT 2 — THREE TIERS ═══ -->
-    <div class="seg-label" data-seg="2">Segment 2 — Three tiers</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 3: <span>Three tiers</span> · daily / several times a week / occasional — rows animating in</div>
-    </div>
-
-    <p class="line">"Here's the practical framework. <strong>Three tiers.</strong>"</p>
-
-    <p class="line">"<em>Daily, at every meal:</em> vegetables, fruit, whole grains, legumes, nuts, olive oil. This is the bulk. The foundation. The majority of what you eat."</p>
-
-    <p class="line">"<em>Several times a week:</em> oily fish — salmon, mackerel, sardines — at least twice. Eggs, poultry, moderate dairy on the other days." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"<em>Occasionally, not daily:</em> red meat, processed meat, added sugar, refined grains, ultra-processed food. Not forbidden — just rare."</p>
-
-    <p class="line">"The key message is this: <strong>abundance, not restriction</strong>. No food group is cut out entirely. Studies show that even partial adherence — moving in the direction without following every rule — brings meaningful benefit."</p>
-
-    <!-- ═══ SEGMENT 3 — PREDIMED ═══ -->
-    <div class="seg-label" data-seg="3">Segment 3 — The PREDIMED evidence</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 4: <span>PREDIMED trial</span> · ~30% stat · bar chart animating · trial detail cards</div>
-    </div>
-
-    <p class="line">"So what does the evidence actually show? The landmark study is <strong>PREDIMED</strong> — one of the largest dietary intervention trials ever conducted."</p>
-
-    <p class="line">"Seven thousand four hundred and forty-seven people at high cardiovascular risk, randomised to Mediterranean diet with olive oil, Mediterranean diet with nuts, or standard low-fat dietary advice." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"The trial was <strong>stopped after four point eight years</strong> — because the benefit was already too clear to continue ethically."</p>
-
-    <p class="line">"The Mediterranean diet group had approximately <strong>thirty percent fewer major cardiovascular events</strong> — heart attacks, strokes, and cardiovascular deaths — compared to the low-fat control. Published in the <em>New England Journal of Medicine</em>. The strongest dietary evidence in preventive medicine."</p>
-
-    <!-- ═══ SEGMENT 4 — BEYOND THE HEART ═══ -->
-    <div class="seg-label" data-seg="4">Segment 4 — Beyond the heart</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 5: <span>Three benefit cards</span> · heart / diabetes / brain · animating in · ~30%, 23%, up to 30%</div>
-    </div>
-
-    <p class="line">"What makes the Mediterranean diet unusual is that the evidence extends <strong>well beyond cardiovascular disease</strong>."</p>
-
-    <p class="line">"<em>Type 2 diabetes:</em> a meta-analysis of ten studies and over a hundred and thirty-six thousand participants found <strong>twenty-three percent lower risk</strong> of developing type 2 diabetes with higher adherence to the Mediterranean diet." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"<em>Brain health:</em> a 2025 meta-analysis published in <em>GeroScience</em> found <strong>up to thirty percent lower risk of Alzheimer's disease</strong>, and around eleven percent lower risk of dementia overall."</p>
-
-    <p class="line">"Blood pressure and cholesterol also improve naturally — the diet's high potassium content from vegetables counters sodium, and replacing saturated fat with olive oil and nuts improves LDL cholesterol." <span class="pause">PAUSE</span></p>
-
-    <!-- ═══ SEGMENT 5 — CTA TODAY ═══ -->
-    <div class="seg-label" data-seg="5">Segment 5 — Today's change</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Screen 6: <span>CTA slide</span> · four horizontal action rows</div>
-    </div>
-
-    <p class="line">"Three changes — ranked by impact. <em>Start today.</em>"</p>
-
-    <p class="line">"<strong>Swap butter for extra-virgin olive oil.</strong> Cooking, drizzling, dressings. This single swap shifts your fat intake from saturated to monounsaturated — the most protective fat in the Mediterranean diet. It's affordable. It's practical. The research behind it is clear."</p>
-
-    <!-- ═══ SEGMENT 6 — CTA THIS WEEK ═══ -->
-    <div class="seg-label" data-seg="6">Segment 6 — This week's change</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Stay on <span>Screen 6: CTA slide</span> · 🐟 · "Add oily fish twice this week" · example chips</div>
-    </div>
-
-    <p class="line">"<strong>This week: add oily fish twice.</strong> Salmon, mackerel, sardines, herring, anchovies. <em>Tinned is completely fine</em> — and significantly cheaper than fresh."</p>
-
-    <p class="line">"Two portions a week is the Mediterranean target. Tinned sardines on toast. Mackerel with salad. Salmon fillet with vegetables. A tin of anchovies in pasta. The cardiovascular and anti-inflammatory benefit is well-established."</p>
-
-    <!-- ═══ SEGMENT 7 — CTA THIS MONTH ═══ -->
-    <div class="seg-label" data-seg="7">Segment 7 — This month's change</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Stay on <span>Screen 6: CTA slide</span> · 🥦 · "Make vegetables the majority of every plate" · example chips</div>
-    </div>
-
-    <p class="line">"<strong>This month: make vegetables the majority of every plate.</strong> Not a side dish — the centre of the meal. Aim for half your plate or more."</p>
-
-    <p class="line">"Add a tin of chickpeas to stews. Spinach into any pasta. Roast a tray of vegetables alongside everything. More colour means more variety of protective compounds. This is the foundation the whole pattern rests on."</p>
-
-    <!-- ═══ SEGMENT 8 — CLOSING ═══ -->
-    <div class="seg-label" data-seg="8">Segment 8 — Closing</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Screen 7: <span>Closing slide</span> · helf.school logo · "The starting point is a meal, not a transformation"</div>
-    </div>
-
-    <p class="line">"The Mediterranean diet has one of the strongest evidence bases of any dietary pattern in medicine. Not because of one dramatic finding — but because the research stacks up <strong>consistently</strong> across heart disease, diabetes, brain health, blood pressure, and longevity." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"The starting point is as simple as this: <em>more olive oil, more vegetables, more fish, fewer processed foods</em>. You don't have to follow it perfectly. The evidence is clear that even partial adherence brings real benefit."</p>
-
-    <p class="line">"The starting point is a meal — not a transformation. <em>Thanks for watching.</em>"</p>
-
-  </div>
+<div class="dots-bar" id="dots-bar">
+  <span class="dot-label">Seg</span>
+  <div class="dot active" data-seg="0" title="Intro"></div>
+  <div class="dot" data-seg="1" title="What is it"></div>
+  <div class="dot" data-seg="2" title="Three tiers"></div>
+  <div class="dot" data-seg="3" title="PREDIMED"></div>
+  <div class="dot" data-seg="4" title="Beyond the heart"></div>
+  <div class="dot" data-seg="5" title="CTA"></div>
 </div>
 
 <script>
-  const PX_PER_SEC_BASE = 20;
-  const SPEED_LEVELS = [8, 14, 20, 28, 38, 52];
-  let speedIndex = 2;
-  let fontSize = 1.9;
-  let playing = false;
-  let scrollY = 0;
-  let lastTime = null;
-  let rafId = null;
-
+  const SPEED_LEVELS = [0, 8, 14, 20, 28, 38, 50];
+  let speedLevel = 3, fontSize = 1.9, paused = false, pos = 0, lastTs = null;
   const wrap = document.getElementById('scroll-wrap');
-  const content = document.getElementById('scroll-content');
-  const playBtn = document.getElementById('play-btn');
-  const speedDisplay = document.getElementById('speed-display');
-  const segLabels = document.querySelectorAll('[data-seg]');
-  const segDots = document.querySelectorAll('.seg-dot');
-
-  function setTranslate(y) {
-    content.style.transform = `translateY(${-y}px)`;
+  const inner = document.getElementById('scroll-inner');
+  const spdDisp = document.getElementById('speed-display');
+  function applyFont() { inner.style.fontSize = fontSize + 'rem'; }
+  function raf(ts) {
+    if (!paused) {
+      if (lastTs !== null) { pos += SPEED_LEVELS[speedLevel] * (ts - lastTs) / 1000; inner.style.transform = 'translateY(-' + pos + 'px)'; }
+      lastTs = ts;
+    } else { lastTs = null; }
+    requestAnimationFrame(raf);
   }
-
-  function togglePlay() {
-    playing = !playing;
-    playBtn.textContent = playing ? '⏸ PAUSE' : '▶ PLAY';
-    if (playing) { lastTime = null; rafId = requestAnimationFrame(tick); }
-    else { cancelAnimationFrame(rafId); }
-  }
-
-  function tick(ts) {
-    if (!playing) return;
-    if (lastTime === null) lastTime = ts;
-    const dt = (ts - lastTime) / 1000;
-    lastTime = ts;
-    scrollY += SPEED_LEVELS[speedIndex] * dt;
-    const maxScroll = content.scrollHeight - wrap.clientHeight;
-    if (scrollY >= maxScroll) { scrollY = maxScroll; togglePlay(); }
-    setTranslate(scrollY);
-    updateDots();
-    rafId = requestAnimationFrame(tick);
-  }
-
-  function changeSpeed(dir) {
-    speedIndex = Math.max(0, Math.min(5, speedIndex + dir));
-    speedDisplay.textContent = speedIndex + 1;
-  }
-
-  function changeFont(dir) {
-    fontSize = Math.max(1.2, Math.min(2.8, fontSize + dir * 0.1));
-    document.querySelectorAll('.line').forEach(el => el.style.fontSize = fontSize + 'rem');
-  }
-
-  function jumpToSeg(idx) {
-    if (playing) togglePlay();
-    const label = segLabels[idx];
-    if (!label) return;
-    const mid = wrap.clientHeight * 0.5;
-    const labelTop = label.offsetTop - parseFloat(getComputedStyle(content).paddingTop);
-    scrollY = Math.max(0, labelTop - mid + content.offsetTop);
-    setTranslate(scrollY);
-    updateDots();
-  }
-
+  requestAnimationFrame(raf);
+  const dots = document.querySelectorAll('.dot');
+  const segs = document.querySelectorAll('.segment');
   function updateDots() {
-    const mid = scrollY + wrap.clientHeight * 0.5;
     let active = 0;
-    segLabels.forEach((label, i) => {
-      const top = label.offsetTop - parseFloat(getComputedStyle(content).paddingTop);
-      if (top <= mid + 60) active = i;
-    });
-    segDots.forEach((d, i) => d.classList.toggle('active', i === active));
+    segs.forEach((seg, i) => { if (pos >= seg.offsetTop - 80) active = i; });
+    dots.forEach(d => d.classList.remove('active'));
+    if (dots[active]) dots[active].classList.add('active');
   }
-
-  // Touch
-  let touchStartY = 0, touchScrollStart = 0;
-  wrap.addEventListener('touchstart', e => {
-    if (playing) togglePlay();
-    touchStartY = e.touches[0].clientY;
-    touchScrollStart = scrollY;
-  }, { passive: true });
-  wrap.addEventListener('touchmove', e => {
-    scrollY = Math.max(0, touchScrollStart + (touchStartY - e.touches[0].clientY));
-    setTranslate(scrollY);
-    updateDots();
-  }, { passive: true });
-
-  // Keyboard
-  document.addEventListener('keydown', e => {
-    if (e.code === 'Space') { e.preventDefault(); togglePlay(); }
-    if (e.code === 'ArrowUp') { scrollY = Math.max(0, scrollY - 100); setTranslate(scrollY); updateDots(); }
-    if (e.code === 'ArrowDown') { scrollY += 100; setTranslate(scrollY); updateDots(); }
+  setInterval(updateDots, 400);
+  dots.forEach(d => d.addEventListener('click', () => {
+    const seg = segs[parseInt(d.dataset.seg)];
+    if (seg) { pos = Math.max(0, seg.offsetTop - 80); inner.style.transform = 'translateY(-' + pos + 'px)'; }
+  }));
+  document.getElementById('btn-faster').addEventListener('click', () => { speedLevel = Math.min(6, speedLevel + 1); spdDisp.textContent = speedLevel; });
+  document.getElementById('btn-slower').addEventListener('click', () => { speedLevel = Math.max(0, speedLevel - 1); spdDisp.textContent = speedLevel; });
+  document.getElementById('btn-bigger').addEventListener('click', () => { fontSize = Math.min(3.2, +(fontSize + 0.15).toFixed(2)); applyFont(); });
+  document.getElementById('btn-smaller').addEventListener('click', () => { fontSize = Math.max(1.2, +(fontSize - 0.15).toFixed(2)); applyFont(); });
+  const pauseBtn = document.getElementById('btn-pause');
+  pauseBtn.addEventListener('click', () => {
+    paused = !paused;
+    pauseBtn.textContent = paused ? '▶ Resume' : '⏸ Pause';
+    pauseBtn.classList.toggle('active', paused);
   });
-
-  setTranslate(0);
+  document.getElementById('btn-reset').addEventListener('click', () => { pos = 0; inner.style.transform = 'translateY(0)'; });
+  let ty = 0;
+  wrap.addEventListener('touchstart', e => { ty = e.touches[0].clientY; paused = true; pauseBtn.textContent = '▶ Resume'; pauseBtn.classList.add('active'); });
+  wrap.addEventListener('touchmove', e => { e.preventDefault(); const dy = e.touches[0].clientY - ty; pos = Math.max(0, pos - dy * 0.8); inner.style.transform = 'translateY(-' + pos + 'px)'; ty = e.touches[0].clientY; }, { passive: false });
+  applyFont();
 </script>
 </body>
 </html>
