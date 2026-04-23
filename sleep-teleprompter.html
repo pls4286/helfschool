@@ -1,366 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-  <title>Sleep — Teleprompter | helf.school</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sleep — Teleprompter · helf.school</title>
   <style>
     :root {
-      --navy: #1B2A4A;
-      --practical: #d4b84a;
-      --practical-deep: #7A6A2E;
-      --amber: #E8A84A;
-      --coral: #E8634A;
-      --bg: #0d0d0d;
-      --text: #f0f0f0;
+      --bg: #0A0F1A; --text: #F0EDE8; --accent: #7A9E87;
+      --cue-bg: rgba(122,158,135,0.18); --cue-border: #7A9E87;
+      --pause-bg: rgba(200,66,58,0.18); --pause-border: #C8423A;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; overflow: hidden; background: var(--bg); }
-
-    /* TOPBAR */
-    #topbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--navy); border-bottom: 2px solid var(--practical);
-      padding: .45rem 1rem;
-      display: flex; align-items: center; justify-content: space-between; gap: .75rem;
-    }
-    #topbar-title { font-family: 'DM Sans', sans-serif; font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.85); }
-    #controls { display: flex; align-items: center; gap: .4rem; flex-shrink: 0; }
-    .ctrl-btn {
-      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
-      color: #fff; font-size: .72rem; font-weight: 700; padding: .2rem .5rem;
-      border-radius: 4px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background .15s;
-    }
-    .ctrl-btn:hover { background: rgba(255,255,255,.2); }
-    .ctrl-label { font-size: .65rem; color: rgba(255,255,255,.6); font-family: 'DM Sans', sans-serif; }
-    #speed-display { font-size: .72rem; font-weight: 700; color: var(--practical); min-width: 14px; text-align: center; font-family: 'DM Sans', sans-serif; }
-    #play-btn {
-      background: var(--practical-deep); border: none; color: #fff;
-      font-size: .72rem; font-weight: 700; padding: .25rem .7rem;
-      border-radius: 4px; cursor: pointer; font-family: 'DM Sans', sans-serif; letter-spacing: .04em;
-    }
-    #play-btn:hover { filter: brightness(1.15); }
-
-    /* SEGMENT DOTS */
-    #seg-dots {
-      position: fixed; right: .6rem; top: 50%; transform: translateY(-50%);
-      z-index: 100; display: flex; flex-direction: column; gap: .4rem;
-    }
-    .seg-dot {
-      width: 10px; height: 10px; border-radius: 50%;
-      background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.3);
-      cursor: pointer; transition: background .2s;
-    }
-    .seg-dot.active { background: var(--practical); border-color: var(--practical); }
-    .seg-dot:hover { background: rgba(255,255,255,.45); }
-
-    /* SCROLL */
-    #scroll-wrap { position: fixed; top: 44px; bottom: 0; left: 0; right: 0; overflow: hidden; }
-    #scroll-content { padding: 60vh 4rem 60vh; max-width: 840px; margin: 0 auto; will-change: transform; }
-
-    /* FOCUS */
-    #focus-line { position: fixed; top: 50%; left: 0; right: 0; height: 2px; background: rgba(212,184,74,.25); pointer-events: none; z-index: 50; }
-    #focus-top { position: fixed; top: 44px; left: 0; right: 0; height: 34%; background: linear-gradient(to bottom, var(--bg) 0%, transparent 100%); pointer-events: none; z-index: 50; }
-    #focus-bottom { position: fixed; bottom: 0; left: 0; right: 0; height: 34%; background: linear-gradient(to top, var(--bg) 0%, transparent 100%); pointer-events: none; z-index: 50; }
-
-    /* SEGMENT LABEL */
-    .seg-label {
-      font-family: 'DM Sans', sans-serif; font-size: .72rem; font-weight: 700;
-      letter-spacing: .14em; text-transform: uppercase;
-      color: var(--practical); margin-bottom: 1.4rem; margin-top: 5rem;
-      padding-bottom: .4rem; border-bottom: 1px solid rgba(212,184,74,.3);
-    }
-    .seg-label:first-child { margin-top: 0; }
-
-    /* SCRIPT */
-    .line { font-family: 'DM Sans', sans-serif; font-size: 1.9rem; line-height: 1.8; color: var(--text); font-weight: 400; margin-bottom: 1.5rem; }
-    .line strong { font-weight: 700; color: #fff; }
-    .line em { color: var(--practical); font-style: normal; font-weight: 600; }
-
-    /* PAUSE */
-    .pause {
-      display: inline-block;
-      background: rgba(232,99,74,.15); border: 1px solid rgba(232,99,74,.35);
-      color: var(--coral); font-size: 1.1rem; font-weight: 700;
-      padding: .1rem .45rem; border-radius: 4px; margin: 0 .3rem; vertical-align: middle; letter-spacing: .04em;
-    }
-
-    /* CUE BOX — yellow for advance visuals */
-    .cue-box {
-      background: rgba(232,168,74,.06); border: 2px solid var(--amber);
-      border-radius: 10px; padding: .9rem 1.2rem; margin: 2rem 0 4rem;
-      font-family: 'DM Sans', sans-serif;
-    }
-    .cue-label { font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--amber); margin-bottom: .4rem; }
-    .cue-text { font-size: 1.1rem; font-weight: 600; color: #fff; line-height: 1.55; }
-    .cue-text span { color: var(--amber); }
-
-    /* DIAGRAM CUE — red for screen file switch */
-    .diagram-cue {
-      background: rgba(232,99,74,.10); border: 2px solid var(--coral);
-      border-radius: 10px; padding: .9rem 1.2rem; margin: 2rem 0 4rem;
-      font-family: 'DM Sans', sans-serif;
-    }
-    .diagram-cue .cue-label { color: var(--coral); }
-    .diagram-cue .cue-text span { color: var(--coral); font-weight: 700; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Georgia', serif; font-size: 1.9rem; line-height: 1.65; overflow: hidden; height: 100vh; user-select: none; }
+    .controls { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(10,15,26,0.95); border-bottom: 1px solid rgba(122,158,135,0.35); display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.8rem; flex-wrap: wrap; }
+    .ctrl-label { font-family: sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(240,237,232,0.55); }
+    .ctrl-btn { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: var(--text); border-radius: 5px; padding: 0.28rem 0.65rem; cursor: pointer; }
+    .ctrl-btn:hover { background: rgba(255,255,255,0.15); }
+    .ctrl-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .ctrl-sep { width: 1px; height: 24px; background: rgba(255,255,255,0.15); }
+    .ctrl-speed-display { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; color: var(--accent); min-width: 28px; text-align: center; }
+    .word-count { font-family: sans-serif; font-size: 0.68rem; color: rgba(240,237,232,0.45); margin-left: auto; }
+    .scroll-wrap { position: absolute; top: 56px; left: 0; right: 0; bottom: 48px; overflow: hidden; }
+    .scroll-inner { padding: 3rem 2.2rem 40vh; will-change: transform; }
+    .segment { margin-bottom: 2.8rem; }
+    .cue-box { background: var(--cue-bg); border: 2px solid var(--cue-border); border-radius: 8px; padding: 0.55rem 1rem; margin-bottom: 1.1rem; font-family: sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); display: flex; align-items: center; gap: 0.5rem; }
+    .cue-arrow { font-size: 1rem; flex-shrink: 0; }
+    .pause { background: var(--pause-bg); border-left: 3px solid var(--pause-border); border-radius: 0 6px 6px 0; padding: 0.4rem 0.9rem; margin: 1rem 0; font-family: sans-serif; font-size: 0.80rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #C8423A; }
+    .stat { color: var(--accent); font-weight: 700; }
+    .dots-bar { position: fixed; bottom: 0; left: 0; right: 0; height: 48px; background: rgba(10,15,26,0.95); border-top: 1px solid rgba(122,158,135,0.25); display: flex; align-items: center; justify-content: center; gap: 0.5rem; z-index: 50; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.22); cursor: pointer; transition: background 0.2s, transform 0.2s; }
+    .dot.active { background: var(--accent); transform: scale(1.3); }
+    .dot-label { font-family: sans-serif; font-size: 0.62rem; color: rgba(240,237,232,0.45); margin: 0 0.3rem; }
   </style>
 </head>
 <body>
 
-<div id="topbar">
-  <div id="topbar-title">Sleep · Practical Health Series · Article 09</div>
-  <div id="controls">
-    <span class="ctrl-label">SPEED</span>
-    <button class="ctrl-btn" onclick="changeSpeed(-1)">−</button>
-    <span id="speed-display">3</span>
-    <button class="ctrl-btn" onclick="changeSpeed(1)">+</button>
-    <span class="ctrl-label" style="margin-left:.4rem">FONT</span>
-    <button class="ctrl-btn" onclick="changeFont(-1)">A−</button>
-    <button class="ctrl-btn" onclick="changeFont(1)">A+</button>
-    <button id="play-btn" onclick="togglePlay()">▶ PLAY</button>
-  </div>
+<div class="controls">
+  <span class="ctrl-label">Speed</span>
+  <button class="ctrl-btn" id="btn-slower">−</button>
+  <span class="ctrl-speed-display" id="speed-display">3</span>
+  <button class="ctrl-btn" id="btn-faster">+</button>
+  <div class="ctrl-sep"></div>
+  <span class="ctrl-label">Font</span>
+  <button class="ctrl-btn" id="btn-smaller">A−</button>
+  <button class="ctrl-btn" id="btn-bigger">A+</button>
+  <div class="ctrl-sep"></div>
+  <button class="ctrl-btn" id="btn-pause">⏸ Pause</button>
+  <button class="ctrl-btn" id="btn-reset">↑ Top</button>
+  <span class="word-count">~900 words · ~6 min</span>
 </div>
 
-<div id="seg-dots">
-  <div class="seg-dot active" onclick="jumpToSeg(0)" title="Intro"></div>
-  <div class="seg-dot" onclick="jumpToSeg(1)" title="How much sleep"></div>
-  <div class="seg-dot" onclick="jumpToSeg(2)" title="Sleep architecture"></div>
-  <div class="seg-dot" onclick="jumpToSeg(3)" title="The J-curve"></div>
-  <div class="seg-dot" onclick="jumpToSeg(4)" title="Why it matters"></div>
-  <div class="seg-dot" onclick="jumpToSeg(5)" title="What your doctor can do"></div>
-  <div class="seg-dot" onclick="jumpToSeg(6)" title="The evidence"></div>
-  <div class="seg-dot" onclick="jumpToSeg(7)" title="Three actions"></div>
-  <div class="seg-dot" onclick="jumpToSeg(8)" title="Closing"></div>
+<div class="scroll-wrap" id="scroll-wrap">
+<div class="scroll-inner" id="scroll-inner">
+
+  <!-- SEGMENT 0 — INTRO -->
+  <div class="segment" id="seg-0">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 1 — Title card</div>
+
+    I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk about sleep — what the evidence actually shows, and why it matters far more than most people realise.
+
+    <div class="pause">— brief pause —</div>
+
+    Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — let's get into it.
+  </div>
+
+  <!-- SEGMENT 1 — HOW MUCH SLEEP -->
+  <div class="segment" id="seg-1">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 2 — How much sleep · 7–9 hours</div>
+
+    Let's start with the question everyone asks first. How much sleep does an adult actually need?
+
+    <div class="pause">— pause —</div>
+
+    For most adults, the NHS recommendation is between seven and nine hours a night. That's it. It's not eight. Eight is just the average — some people genuinely do fine on seven, others need every minute of nine.
+
+    What matters more than hitting an exact number is how someone feels during the day. Constant tiredness, reliance on caffeine just to function, falling asleep when sitting still — these are recognised markers of insufficient or poor-quality sleep, whatever the clock says.
+
+    <div class="pause">— pause —</div>
+
+    Those numbers shift across life. Newborns need up to seventeen hours a day. Teenagers need eight to ten — their brains are rewiring. Older adults often sleep a bit less, and that's usually within normal range rather than a problem requiring intervention.
+  </div>
+
+  <!-- SEGMENT 2 — SLEEP ARCHITECTURE -->
+  <div class="segment" id="seg-2">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 3 — Sleep architecture</div>
+
+    Here's something worth knowing. Sleep is not the hours you lose. Biologically, it's almost the opposite — sleep is one of the most active, tightly regulated things the body does.
+
+    <div class="pause">— pause —</div>
+
+    During sleep, the brain clears out waste products, consolidates memories from short-term into long-term storage, and resets the hormones that regulate appetite, blood pressure, and blood sugar.
+
+    A good night isn't one flat state. There are four stages, cycling over and over. Light sleep — the doorway. Deeper light sleep — the bulk of the night. Deep sleep, or slow-wave sleep — when the body physically repairs itself. And REM — dreaming sleep — when the brain processes emotion and consolidates learning.
+
+    <div class="pause">— pause —</div>
+
+    Each cycle takes about ninety minutes, and most adults complete four to six cycles a night. Most deep sleep comes in the first half of the night, most REM in the second. Which is why cutting sleep short in the morning specifically reduces REM.
+  </div>
+
+  <!-- SEGMENT 3 — THE J-CURVE -->
+  <div class="segment" id="seg-3">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 4 — The J-curve</div>
+
+    The assumption that more sleep is always better doesn't hold up in the evidence.
+
+    <div class="pause">— pause —</div>
+
+    When researchers pool large studies — millions of people followed for years — a J-shaped curve consistently emerges. Risk of cardiovascular disease, type 2 diabetes, even all-cause mortality — rises on both sides of the optimum.
+
+    Too little sleep — under seven hours — raises risk. Too much sleep — over nine — also raises risk. The lowest point sits right around <span class="stat">seven hours a night</span>. That pattern appears again and again across independent datasets.
+
+    <div class="pause">— pause —</div>
+
+    On long sleep — a lot of that signal in the data isn't long sleep causing harm. It's long sleep being a marker of something else — an underlying illness, depression, a chronic condition. Long sleep is a flag worth noting, not necessarily a cause.
+
+    Short sleep, on the other hand, does have direct causal effects. Even a single week of restricted sleep in otherwise healthy adults produces measurable changes in blood sugar control, blood pressure, and appetite hormones.
+  </div>
+
+  <!-- SEGMENT 4 — FIVE WAYS POOR SLEEP MATTERS -->
+  <div class="segment" id="seg-4">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 5 — Five impact areas</div>
+
+    What does persistent poor sleep actually do? Five big areas in the research.
+
+    <div class="pause">— pause —</div>
+
+    One — the heart. Short sleep is linked to higher blood pressure, higher inflammation, more atherosclerosis, and more cardiovascular events over time.
+
+    Two — metabolism. Short sleep reduces insulin sensitivity within days. In large meta-analyses, sleeping under seven hours or over eight hours is linked to a meaningfully higher risk of type 2 diabetes.
+
+    Three — the brain. This one is particularly significant. Deep sleep is when the brain clears out waste — including some of the proteins that accumulate in Alzheimer's disease. The Whitehall II study followed nearly 8,000 people for 25 years, finding that persistent short sleep in midlife was linked to a <span class="stat">30% higher dementia risk</span>, independent of other factors.
+
+    <div class="pause">— pause —</div>
+
+    Four — mood. Insomnia and depression are bidirectionally linked. Poor sleep worsens depression and anxiety and is an independent risk factor for developing them. Sleep is now seen as part of managing mood, not a side issue.
+
+    Five — overall mortality. The largest meta-analyses show that both persistent short sleep and persistent long sleep track with higher all-cause mortality.
+  </div>
+
+  <!-- SEGMENT 5 — WHAT DOCTORS DO -->
+  <div class="segment" id="seg-5">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 6 — Doctor's toolkit</div>
+
+    When sleep difficulties are raised in UK practice, a structured assessment is the starting point — not a prescription pad.
+
+    <div class="pause">— pause —</div>
+
+    A two-week sleep diary is one of the most clinically useful tools — bedtime, time to fall asleep, any waking, rise time, how rested. The pattern it reveals is often more informative than anything a tracker produces.
+
+    Where loud snoring is present alongside daytime tiredness, UK practice is to screen for obstructive sleep apnoea — a condition that is very common, very underdiagnosed, and very treatable. Recent UK estimates suggest something like one in five adults may have it.
+
+    <div class="pause">— pause —</div>
+
+    For long-standing insomnia, the NHS first-line treatment is not sleeping tablets. It's cognitive behavioural therapy for insomnia — CBT-I. It works at least as well as tablets short-term, and much better long-term, because the effects persist after treatment ends. NHS access is available through GPs, NHS Talking Therapies, and digital programmes like Sleepio in some UK regions.
+
+    On sleeping tablets — z-drugs and benzodiazepines are licensed for up to four weeks. Used long-term, they lose their effect and carry a significantly higher risk of falls and fractures, particularly in older adults. A planned, gradual reduction is something GPs routinely support.
+  </div>
+
+  <!-- SEGMENT 6 — THE EVIDENCE -->
+  <div class="segment" id="seg-6">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 7 — Research cards</div>
+
+    A quick tour of the key evidence.
+
+    <div class="pause">— pause —</div>
+
+    The Yin meta-analysis in the Journal of the American Heart Association in 2017 — over three and a half million people — is where the seven-hour optimum comes from.
+
+    The Cappuccio group at Warwick, in SLEEP in 2010, showed short sleep is associated with a <span class="stat">12% higher death risk</span>, long sleep with a 30% higher risk.
+
+    The Shan meta-analysis in Diabetes Care 2015 — each hour below seven is linked to <span class="stat">9% more type 2 diabetes</span>, each hour above eight to 14% more.
+
+    The Whitehall II dementia study in Nature Communications 2021 — 25 years of follow-up, <span class="stat">30% higher dementia risk</span> with persistent short sleep from age 50.
+
+    And the van Straten CBT-I meta-analysis in Sleep Medicine Reviews 2018 — 87 trials — is the evidence base behind the NICE first-line recommendation.
+  </div>
+
+  <!-- SEGMENT 7 — CTA -->
+  <div class="segment" id="seg-7">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 8 — CTA</div>
+
+    Three things clinically recognised as useful starting points for anyone who wants to improve their sleep.
+
+    <div class="pause">— pause —</div>
+
+    First — a two-week sleep diary. Five things each morning — roughly when you went to bed, how long it took to fall asleep, whether there was any waking, when you got up, and how rested you felt. Two weeks reveals a pattern that's difficult to see in the moment.
+
+    <div class="pause">— pause —</div>
+
+    Second — loud snoring alongside daytime tiredness is a recognised symptom pattern for obstructive sleep apnoea. Assessment through UK primary care is the recognised clinical pathway.
+
+    Third — for persistent insomnia affecting daily life, CBT-I is the evidence-led first step in UK clinical practice. The evidence for it outperforms sleeping tablets on every long-term outcome. NHS access pathways exist.
+
+    <div class="pause">— pause —</div>
+
+    As always — anything personally relevant here is a conversation for you to have with your GP or healthcare professional.
+
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 9 — Closing card</div>
+  </div>
+
+  <!-- SEGMENT 8 — CLOSE -->
+  <div class="segment" id="seg-8">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 9 — Closing</div>
+
+    One last thought. Sleep tends to be the first thing squeezed and the last thing taken seriously. The evidence is now clear that this is the wrong way round. Sleep sits alongside diet and exercise as a genuine pillar of health — and unlike the other two, it doesn't require buying anything or changing what's on the plate.
+
+    <div class="pause">— pause —</div>
+
+    There's a full article on helf.school with all the references. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. I'm Dr Paul. Thanks for watching.
+
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW · SLIDE 10 — Closing card</div>
+  </div>
+
+</div>
 </div>
 
-<div id="focus-top"></div>
-<div id="focus-line"></div>
-<div id="focus-bottom"></div>
-
-<div id="scroll-wrap">
-  <div id="scroll-content">
-
-    <!-- ═══ SEGMENT 0 — INTRODUCTION ═══ -->
-    <div class="seg-label" data-seg="0">Segment 0 — Introduction</div>
-<div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 1: <span>Intro title slide</span> · 🌙 · helf.school · Practical Health Series · Article 09 · "Sleep"</div>
-    </div>
-
-
-    <p class="line">"I'm Dr Paul — I spent <strong>over twenty years as an NHS GP</strong> before I retired in 2019. Today I want to talk to you about <strong>sleep</strong>."</p>
-
-    <p class="line">"Now, I do have to say upfront — what I'm giving you here is <strong>health education, not medical advice</strong>. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — <em>let's get into it.</em>"</p><!-- ═══ SEGMENT 1 — HOW MUCH SLEEP ═══ -->
-    <div class="seg-label" data-seg="1">Segment 1 — How much sleep do you actually need?</div>
-<div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 2: <span>How much sleep</span> · "7–9 hours" hero · life-stage cards animating in</div>
-    </div>
-
-
-    <p class="line">"Let's start with the question everyone asks first. <strong>How much sleep do I actually need?</strong>" <span class="pause">PAUSE</span></p>
-
-    <p class="line">"For most adults, the NHS recommendation is <strong>between seven and nine hours a night</strong>. That's it. It's not eight. Eight is just the average — some people genuinely do fine on seven, others need every minute of nine."</p>
-
-    <p class="line">"What matters more than hitting an exact number is <em>how you feel during the day</em>. If you're constantly tired, reaching for caffeine just to function, or falling asleep when you sit still — you're probably not getting enough good-quality sleep, whatever the clock says." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"Those numbers shift across life. Newborns need up to seventeen hours a day. Teenagers really do need eight to ten — their brains are rewiring. Older adults often sleep a bit less, and that's usually normal, not a problem to fix."</p><!-- ═══ SEGMENT 2 — SLEEP ARCHITECTURE ═══ -->
-    <div class="seg-label" data-seg="2">Segment 2 — Sleep is not a pause button</div>
-<div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 3: <span>Sleep architecture</span> · animated hypnogram · four stages cycling across a night</div>
-    </div>
-
-
-    <p class="line">"Here's something worth knowing. Sleep is <em>not</em> the hours you lose. Biologically, it's almost the opposite. <strong>Sleep is one of the most active, tightly regulated things your body does</strong>." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"While you're asleep, your brain is clearing out waste products, moving memories from short-term storage into long-term storage, and resetting the hormones that control your appetite, your blood pressure, and your blood sugar for the next day."</p>
-
-    <p class="line">"A good night isn't one flat state. You cycle through <strong>four stages</strong>, over and over. Light sleep — the doorway. Deeper light sleep — the bulk of the night. <strong>Deep sleep</strong>, also called slow-wave sleep — that's when the body physically repairs itself. And then <strong>REM</strong> — dreaming sleep — when the brain processes emotion and consolidates learning." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"Each cycle takes about <strong>ninety minutes</strong>, and most adults get through four to six of them a night. Here's the important bit: <em>most of your deep sleep comes in the first half of the night, and most of your REM comes in the second half</em>. Which is why — when you cut sleep short in the morning — the thing you lose most is REM."</p><!-- ═══ SEGMENT 3 — THE J-CURVE ═══ -->
-    <div class="seg-label" data-seg="3">Segment 3 — Why more isn't better</div>
-<div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 4: <span>The J-curve</span> · animated U-shape · 7h lowest-risk marker pulsing · short/long sleep risk markers</div>
-    </div>
-
-
-    <p class="line">"You might assume that if seven to nine hours is the target, then <em>more</em> sleep is always better. It isn't." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"When researchers pool together large studies — millions of people followed for years — they consistently find a <strong>J-shaped curve</strong>. Risk of cardiovascular disease, type 2 diabetes, even death — <em>rises on both sides</em> of the optimum."</p>
-
-    <p class="line">"Too little sleep — under seven hours — raises risk. <strong>Too much sleep — over nine — also raises risk</strong>. The lowest point sits right around <strong>seven hours a night</strong>. That's where the data lands, again and again."</p>
-
-    <p class="line">"Now — I'll give you the honest picture on long sleep. A lot of the long-sleep signal in the data isn't long sleep <em>causing</em> harm. It's long sleep being a <strong>marker</strong> of something else going on — an underlying illness, a depressive episode, a chronic condition that's making someone sleep more. So long sleep is a flag, not necessarily a cause." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"Short sleep, on the other hand, <em>does</em> have direct causal effects. Even a single week of restricted sleep, in otherwise healthy adults, produces measurable changes in blood sugar control, blood pressure, and appetite hormones."</p><!-- ═══ SEGMENT 4 — WHY POOR SLEEP MATTERS ═══ -->
-    <div class="seg-label" data-seg="4">Segment 4 — Five ways poor sleep catches up with you</div>
-<div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 5: <span>Five ways it matters</span> · 5 impact cards animating in · Cardio · Metabolic · Dementia · Mood · Mortality</div>
-    </div>
-
-
-    <p class="line">"So — what does persistent poor sleep actually do? <strong>Five big ones</strong>, in the research." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"<strong>One — your heart</strong>. Short sleep is linked to higher blood pressure, higher inflammation, more atherosclerosis — the furring of the arteries — and more heart attacks and strokes over time."</p>
-
-    <p class="line">"<strong>Two — your metabolism</strong>. Short sleep reduces insulin sensitivity within days. In large meta-analyses, sleeping under seven hours or over eight hours is linked to a meaningfully higher risk of developing type 2 diabetes."</p>
-
-    <p class="line">"<strong>Three — your brain</strong>. This one really matters. Deep sleep is when the brain clears out waste, <em>including</em> some of the proteins that build up in Alzheimer's disease. The Whitehall II study in the UK followed nearly 8,000 people for 25 years, and found that <strong>persistent short sleep in midlife was linked to a 30% higher dementia risk</strong>, independent of other factors." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"<strong>Four — your mood</strong>. Insomnia and depression run both ways. Poor sleep worsens depression and anxiety — <em>and</em> is an independent risk factor for developing them. Treating sleep is now seen as part of treating mood, not a side issue."</p>
-
-    <p class="line">"<strong>Five — overall mortality</strong>. The largest meta-analyses show that both persistent short sleep and persistent long sleep track with higher all-cause mortality." <span class="pause">PAUSE</span></p><!-- ═══ SEGMENT 5 — WHAT YOUR DOCTOR CAN DO ═══ -->
-    <div class="seg-label" data-seg="5">Segment 5 — What your doctor can actually do</div>
-<div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 6: <span>Doctor's toolkit</span> · sleep diary hero · OSA · CBT-I · tablets honest picture · six cards</div>
-    </div>
-
-
-    <p class="line">"If sleep is a real problem for you — the good news is, <strong>this is treatable</strong>. Here's what a good GP consultation actually looks like." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"First — a <strong>two-week sleep diary</strong>. Simple as it sounds. Bedtime, time to fall asleep, any waking, rise time, how rested you felt. <em>The diary comes before the appointment.</em> It's a more powerful bit of information than anything a tracker will give you." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"Second — if you <strong>snore loudly and feel tired by day</strong>, UK practice is to screen for <strong>obstructive sleep apnoea</strong>. This is extraordinarily common — recent UK estimates suggest something like <em>one in five adults</em> may have it, and most are undiagnosed. Treatment — usually with a CPAP mask at night — can be genuinely life-changing." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"Third — for long-standing insomnia, the <strong>NHS first-line treatment is not sleeping tablets</strong>. It's a talking therapy called <strong>CBT-I</strong> — cognitive behavioural therapy for insomnia. It works at least as well as tablets short-term, and <em>much better</em> long-term, because the effects last after you stop. You can get it face-to-face, in a group, or through digital apps on the NHS."</p>
-
-    <p class="line">"And fourth — on <strong>sleeping tablets</strong>. Here's the honest picture. Z-drugs and benzodiazepines — zopiclone, zolpidem, and the older benzodiazepines — are licensed for <strong>up to four weeks</strong>. Used long-term, they lose their effect, they cause dependence, and they <em>significantly</em> raise the risk of falls and fractures, particularly in older people. For anyone on them long-term, clinical experience suggests this is no reason for self-judgement — a gentle, planned taper is something GPs routinely support, and the conversation is worth having at the right moment."</p><!-- ═══ SEGMENT 6 — THE EVIDENCE ═══ -->
-    <div class="seg-label" data-seg="6">Segment 6 — The evidence, very briefly</div>
-<div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 7: <span>The evidence</span> · 5 research cards · outcome stats · Yin · Cappuccio · Shan · Sabia · van Straten</div>
-    </div>
-
-
-    <p class="line">"Quick tour of the key evidence. <span class="pause">PAUSE</span> The <strong>Yin meta-analysis</strong> in the Journal of the American Heart Association in 2017 — over three and a half million people — is where the seven-hour optimum comes from."</p>
-
-    <p class="line">"The <strong>Cappuccio group at the University of Warwick</strong>, in the journal SLEEP in 2010, showed short sleep comes with a 12% higher death risk, and long sleep a 30% higher risk." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"The <strong>Shan meta-analysis</strong>, Diabetes Care 2015 — each hour below seven is linked to 9% more type 2 diabetes, each hour above eight is linked to 14% more."</p>
-
-    <p class="line">"The <strong>Whitehall II dementia study</strong>, in Nature Communications in 2021 — 25 years of follow-up, 30% higher dementia risk with persistent short sleep from age 50."</p>
-
-    <p class="line">"And the <strong>van Straten CBT-I meta-analysis</strong> in Sleep Medicine Reviews in 2018 — 87 trials — is the evidence base behind the NICE first-line recommendation." <span class="pause">PAUSE</span></p><!-- ═══ SEGMENT 7 — THREE ACTIONS ═══ -->
-    <div class="seg-label" data-seg="7">Segment 7 — Three practical things to do</div>
-<div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Screen 8: <span>CTA slide</span> · 📔 · 5 action chips</div>
-    </div>
-
-
-    <p class="line">"Three things to take away. <span class="pause">PAUSE</span> If your sleep is something you want to improve — here's where to start." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"<strong>One — today</strong>. Start a <strong>two-week sleep diary</strong>. Pen and paper. Five things each morning — roughly when you went to bed, how long it took you to fall asleep, whether you woke in the night, when you got up, and how rested you felt. After two weeks you'll see a pattern you didn't know was there."</p><p class="line">"<strong>Two — this week</strong>. If you <strong>snore loudly and feel tired by day</strong> — book a GP appointment. Obstructive sleep apnoea is the one thing above all others that's worth looking for. It's common, it's missed, and it's treatable."</p>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Stay on <span>Screen 8: CTA slide</span> · 🫁 · 5 symptom chips</div>
-    </div>
-
-    <p class="line">"<strong>Three — first, not tablets</strong>. For persistent insomnia affecting daily life, the evidence-led first step in UK clinical practice is <strong>CBT-I</strong> — not medication. CBT-I has the best long-term evidence. Tablets have their place for a short crisis, but the research is clear they are <strong>not</strong> the answer to chronic insomnia. NHS access to CBT-I is available through GPs and through NHS Talking Therapies, and an online version called Sleepio is available in some UK regions."</p>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Stay on <span>Screen 8: CTA slide</span> · 🧠 · 4 action chips</div>
-    </div>
-
-    <!-- ═══ SEGMENT 8 — CLOSING ═══ -->
-    <div class="seg-label" data-seg="8">Segment 8 — Closing</div>
-<div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Screen 9: <span>Closing slide</span> · helf.school logo · "Good sleep is not a luxury. It is medicine you make yourself, every night."</div>
-    </div>
-
-
-    <p class="line">"One last thought. Sleep tends to be the first thing we squeeze and the last thing we take seriously. The evidence is now very clear that <em>this is the wrong way round</em>. Sleep sits alongside diet and exercise as a genuine pillar of health — and unlike the other two, it doesn't ask you to buy anything or change what's on your plate." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"If you found this useful, there's a full article on <strong>helf.school</strong> with all the references, and you can go as deep as you like. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. <strong>Thanks for watching.</strong>"</p>
-
-  </div>
+<div class="dots-bar" id="dots-bar">
+  <span class="dot-label">Seg</span>
+  <div class="dot active" data-seg="0" title="Intro"></div>
+  <div class="dot" data-seg="1" title="How much sleep"></div>
+  <div class="dot" data-seg="2" title="Sleep architecture"></div>
+  <div class="dot" data-seg="3" title="The J-curve"></div>
+  <div class="dot" data-seg="4" title="Five impact areas"></div>
+  <div class="dot" data-seg="5" title="What doctors do"></div>
+  <div class="dot" data-seg="6" title="The evidence"></div>
+  <div class="dot" data-seg="7" title="CTA"></div>
+  <div class="dot" data-seg="8" title="Close"></div>
 </div>
 
 <script>
-  const SPEED_LEVELS = [8, 14, 20, 28, 38, 52];
-  let speedIndex = 2;
-  let baseFontSize = 1.9;
-  let playing = false;
-  let rafId = null;
-  let lastTime = null;
-  let scrollY = 0;
-
-  const content = document.getElementById('scroll-content');
-  const playBtn = document.getElementById('play-btn');
-  const speedDisplay = document.getElementById('speed-display');
-  const dots = document.querySelectorAll('.seg-dot');
-  const segLabels = document.querySelectorAll('.seg-label');
-
-  function setTranslate(y) { content.style.transform = `translateY(${-y}px)`; }
-
-  function togglePlay() {
-    playing = !playing;
-    playBtn.textContent = playing ? '⏸ PAUSE' : '▶ PLAY';
-    if (playing) { lastTime = null; rafId = requestAnimationFrame(tick); }
-    else { cancelAnimationFrame(rafId); }
+  const SPEED_LEVELS = [0, 8, 14, 20, 28, 38, 50];
+  let speedLevel = 3, fontSize = 1.9, paused = false, pos = 0, lastTs = null;
+  const wrap  = document.getElementById('scroll-wrap');
+  const inner = document.getElementById('scroll-inner');
+  const spdDisp = document.getElementById('speed-display');
+  function applyFont() { inner.style.fontSize = fontSize + 'rem'; }
+  function raf(ts) {
+    if (!paused) {
+      if (lastTs !== null) { pos += SPEED_LEVELS[speedLevel] * (ts - lastTs) / 1000; inner.style.transform = 'translateY(-' + pos + 'px)'; }
+      lastTs = ts;
+    } else { lastTs = null; }
+    requestAnimationFrame(raf);
   }
-
-  function tick(ts) {
-    if (!playing) return;
-    if (lastTime === null) lastTime = ts;
-    const dt = (ts - lastTime) / 1000;
-    lastTime = ts;
-    scrollY += SPEED_LEVELS[speedIndex] * dt;
-    const maxScroll = content.scrollHeight - window.innerHeight + 44;
-    if (scrollY >= maxScroll) { scrollY = maxScroll; togglePlay(); }
-    setTranslate(scrollY);
-    updateDots();
-    rafId = requestAnimationFrame(tick);
-  }
-
-  function changeSpeed(dir) {
-    speedIndex = Math.max(0, Math.min(5, speedIndex + dir));
-    speedDisplay.textContent = speedIndex + 1;
-  }
-
-  function changeFont(dir) {
-    baseFontSize = Math.max(1.2, Math.min(2.8, baseFontSize + dir * 0.1));
-    document.querySelectorAll('.line').forEach(el => el.style.fontSize = baseFontSize + 'rem');
-  }
-
-  function jumpToSeg(idx) {
-    const label = segLabels[idx];
-    if (!label) return;
-    const contentTop = content.getBoundingClientRect().top;
-    const labelOffset = label.getBoundingClientRect().top - contentTop + scrollY;
-    scrollY = Math.max(0, labelOffset - window.innerHeight * 0.5 + 44);
-    setTranslate(scrollY);
-    updateDots();
-  }
-
+  requestAnimationFrame(raf);
+  const dots = document.querySelectorAll('.dot');
+  const segs = document.querySelectorAll('.segment');
   function updateDots() {
-    const mid = window.innerHeight * 0.5;
     let active = 0;
-    segLabels.forEach((label, i) => { if (label.getBoundingClientRect().top <= mid) active = i; });
-    dots.forEach((d, i) => d.classList.toggle('active', i === active));
+    segs.forEach((seg, i) => { if (pos >= seg.offsetTop - 80) active = i; });
+    dots.forEach(d => d.classList.remove('active'));
+    if (dots[active]) dots[active].classList.add('active');
   }
-
-  // Touch
-  let touchStartY = 0, touchScrollStart = 0;
-  document.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; touchScrollStart = scrollY; if (playing) togglePlay(); }, { passive: true });
-  document.addEventListener('touchmove', e => { scrollY = Math.max(0, touchScrollStart + (touchStartY - e.touches[0].clientY)); setTranslate(scrollY); updateDots(); }, { passive: true });
-
-  // Keyboard
-  document.addEventListener('keydown', e => {
-    if (e.code === 'Space') { e.preventDefault(); togglePlay(); }
-    if (e.code === 'ArrowUp') { scrollY = Math.max(0, scrollY - 80); setTranslate(scrollY); }
-    if (e.code === 'ArrowDown') { scrollY += 80; setTranslate(scrollY); }
+  setInterval(updateDots, 400);
+  dots.forEach(d => d.addEventListener('click', () => {
+    const seg = segs[parseInt(d.dataset.seg)];
+    if (seg) { pos = Math.max(0, seg.offsetTop - 80); inner.style.transform = 'translateY(-' + pos + 'px)'; }
+  }));
+  document.getElementById('btn-faster').addEventListener('click', () => { speedLevel = Math.min(6, speedLevel + 1); spdDisp.textContent = speedLevel; });
+  document.getElementById('btn-slower').addEventListener('click', () => { speedLevel = Math.max(0, speedLevel - 1); spdDisp.textContent = speedLevel; });
+  document.getElementById('btn-bigger').addEventListener('click', () => { fontSize = Math.min(3.2, +(fontSize + 0.15).toFixed(2)); applyFont(); });
+  document.getElementById('btn-smaller').addEventListener('click', () => { fontSize = Math.max(1.2, +(fontSize - 0.15).toFixed(2)); applyFont(); });
+  const pauseBtn = document.getElementById('btn-pause');
+  pauseBtn.addEventListener('click', () => {
+    paused = !paused;
+    pauseBtn.textContent = paused ? '▶ Resume' : '⏸ Pause';
+    pauseBtn.classList.toggle('active', paused);
   });
-
-  setTranslate(0);
+  document.getElementById('btn-reset').addEventListener('click', () => { pos = 0; inner.style.transform = 'translateY(0)'; });
+  let ty = 0;
+  wrap.addEventListener('touchstart', e => { ty = e.touches[0].clientY; paused = true; pauseBtn.textContent = '▶ Resume'; pauseBtn.classList.add('active'); });
+  wrap.addEventListener('touchmove', e => { e.preventDefault(); const dy = e.touches[0].clientY - ty; pos = Math.max(0, pos - dy * 0.8); inner.style.transform = 'translateY(-' + pos + 'px)'; ty = e.touches[0].clientY; }, { passive: false });
+  applyFont();
 </script>
 </body>
 </html>
