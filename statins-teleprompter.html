@@ -1,123 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-  <title>Statins — Teleprompter | helf.school</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Statins — Teleprompter · helf.school</title>
   <style>
-    :root { --navy:#1B2A4A; --coral:#E8634A; --sage:#7A9E87; --amber:#E8A84A; --bg:#0d0d0d; --text:#f0f0f0; }
-    *{box-sizing:border-box;margin:0;padding:0} html,body{height:100%;overflow:hidden;background:var(--bg)}
-    #topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--navy);border-bottom:2px solid var(--coral);padding:.45rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem}
-    #topbar-title{font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;color:rgba(255,255,255,.85)}
-    #controls{display:flex;align-items:center;gap:.4rem;flex-shrink:0}
-    .ctrl-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:.72rem;font-weight:700;padding:.2rem .5rem;border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s}
-    .ctrl-btn:hover{background:rgba(255,255,255,.2)}
-    .ctrl-label{font-size:.65rem;color:rgba(255,255,255,.5);font-family:'DM Sans',sans-serif}
-    #speed-display{font-size:.72rem;font-weight:700;color:var(--amber);min-width:14px;text-align:center;font-family:'DM Sans',sans-serif}
-    #play-btn{background:var(--coral);border:none;color:#fff;font-size:.72rem;font-weight:700;padding:.25rem .7rem;border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.04em}
-    #play-btn:hover{filter:brightness(1.1)}
-    #seg-dots{position:fixed;right:.6rem;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:.4rem}
-    .seg-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);cursor:pointer;transition:background .2s}
-    .seg-dot.active{background:var(--coral);border-color:var(--coral)}
-    .seg-dot:hover{background:rgba(255,255,255,.45)}
-    #scroll-wrap{position:fixed;top:44px;bottom:0;left:0;right:0;overflow:hidden}
-    #scroll-content{padding:60vh 4rem 60vh;max-width:840px;margin:0 auto;will-change:transform}
-    #focus-line{position:fixed;top:50%;left:0;right:0;height:2px;background:rgba(232,99,74,.2);pointer-events:none;z-index:50}
-    #focus-top{position:fixed;top:44px;left:0;right:0;height:34%;background:linear-gradient(to bottom,var(--bg) 0%,transparent 100%);pointer-events:none;z-index:50}
-    #focus-bottom{position:fixed;bottom:0;left:0;right:0;height:34%;background:linear-gradient(to top,var(--bg) 0%,transparent 100%);pointer-events:none;z-index:50}
-    .seg-label{font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--coral);margin-bottom:1.4rem;margin-top:5rem;padding-bottom:.4rem;border-bottom:1px solid rgba(232,99,74,.25)}
-    .seg-label:first-child{margin-top:0}
-    .line{font-family:'DM Sans',sans-serif;font-size:1.9rem;line-height:1.8;color:var(--text);font-weight:400;margin-bottom:1.5rem}
-    .line strong{font-weight:700;color:#fff}
-    .line em{color:var(--amber);font-style:normal;font-weight:600}
-    .pause{display:inline-block;background:rgba(232,99,74,.15);border:1px solid rgba(232,99,74,.35);color:var(--coral);font-size:1.1rem;font-weight:700;padding:.1rem .45rem;border-radius:4px;margin:0 .3rem;vertical-align:middle;letter-spacing:.04em}
-    .cue-box{background:rgba(232,168,74,.06);border:2px solid var(--amber);border-radius:10px;padding:.9rem 1.2rem;margin:2rem 0 4rem;font-family:'DM Sans',sans-serif}
-    .cue-label{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:.4rem}
-    .cue-text{font-size:1.1rem;font-weight:600;color:#fff;line-height:1.55}
-    .cue-text span{color:var(--amber)}
+    :root {
+      --bg: #0A0F1A; --text: #F0EDE8; --accent: #C8423A;
+      --cue-bg: rgba(200,66,58,0.18); --cue-border: #C8423A;
+      --pause-bg: rgba(122,158,135,0.18); --pause-border: #7A9E87;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Georgia', serif; font-size: 1.9rem; line-height: 1.65; overflow: hidden; height: 100vh; user-select: none; }
+
+    .controls { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(10,15,26,0.95); border-bottom: 1px solid rgba(200,66,58,0.35); display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.8rem; flex-wrap: wrap; }
+    .ctrl-label { font-family: sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(240,237,232,0.55); }
+    .ctrl-btn { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: var(--text); border-radius: 5px; padding: 0.28rem 0.65rem; cursor: pointer; }
+    .ctrl-btn:hover { background: rgba(255,255,255,0.15); }
+    .ctrl-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .ctrl-sep { width: 1px; height: 24px; background: rgba(255,255,255,0.15); }
+    .ctrl-speed-display { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; color: var(--accent); min-width: 28px; text-align: center; }
+    .word-count { font-family: sans-serif; font-size: 0.68rem; color: rgba(240,237,232,0.45); margin-left: auto; }
+
+    .scroll-wrap { position: absolute; top: 56px; left: 0; right: 0; bottom: 48px; overflow: hidden; }
+    .scroll-inner { padding: 3rem 2.2rem 40vh; will-change: transform; }
+
+    .segment { margin-bottom: 2.8rem; }
+
+    .cue-box { background: var(--cue-bg); border: 2px solid var(--cue-border); border-radius: 8px; padding: 0.55rem 1rem; margin-bottom: 1.1rem; font-family: sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); display: flex; align-items: center; gap: 0.5rem; }
+    .cue-arrow { font-size: 1rem; flex-shrink: 0; }
+
+    .pause { background: var(--pause-bg); border-left: 3px solid var(--pause-border); border-radius: 0 6px 6px 0; padding: 0.4rem 0.9rem; margin: 1rem 0; font-family: sans-serif; font-size: 0.80rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #7A9E87; }
+
+    .stat { color: var(--accent); font-weight: 700; }
+
+    .dots-bar { position: fixed; bottom: 0; left: 0; right: 0; height: 48px; background: rgba(10,15,26,0.95); border-top: 1px solid rgba(200,66,58,0.25); display: flex; align-items: center; justify-content: center; gap: 0.5rem; z-index: 50; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.22); cursor: pointer; transition: background 0.2s, transform 0.2s; }
+    .dot.active { background: var(--accent); transform: scale(1.3); }
+    .dot-label { font-family: sans-serif; font-size: 0.62rem; color: rgba(240,237,232,0.45); margin: 0 0.3rem; }
   </style>
 </head>
 <body>
-<div id="topbar">
-  <div id="topbar-title">Statins — Benefits &amp; Risks · Cardiovascular · Article 04</div>
-  <div id="controls">
-    <span class="ctrl-label">SPEED</span>
-    <button class="ctrl-btn" onclick="changeSpeed(-1)">−</button>
-    <span id="speed-display">3</span>
-    <button class="ctrl-btn" onclick="changeSpeed(1)">+</button>
-    <span class="ctrl-label" style="margin-left:.4rem">FONT</span>
-    <button class="ctrl-btn" onclick="changeFont(-1)">A−</button>
-    <button class="ctrl-btn" onclick="changeFont(1)">A+</button>
-    <button id="play-btn" onclick="togglePlay()">▶ PLAY</button>
+
+<div class="controls">
+  <span class="ctrl-label">Speed</span>
+  <button class="ctrl-btn" id="btn-slower">−</button>
+  <span class="ctrl-speed-display" id="speed-display">3</span>
+  <button class="ctrl-btn" id="btn-faster">+</button>
+  <div class="ctrl-sep"></div>
+  <span class="ctrl-label">Font</span>
+  <button class="ctrl-btn" id="btn-smaller">A−</button>
+  <button class="ctrl-btn" id="btn-bigger">A+</button>
+  <div class="ctrl-sep"></div>
+  <button class="ctrl-btn" id="btn-pause">⏸ Pause</button>
+  <button class="ctrl-btn" id="btn-reset">↑ Top</button>
+  <span class="word-count">~660 words · ~4.5 min</span>
+</div>
+
+<div class="scroll-wrap" id="scroll-wrap">
+<div class="scroll-inner" id="scroll-inner">
+
+  <!-- SEGMENT 0 — INTRO -->
+  <div class="segment" id="seg-0">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 1 — Title card</div>
+
+    I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about statins — what they are, what the evidence actually shows, and how to make sense of the noise around them.
+
+    <div class="pause">— brief pause —</div>
+
+    What I'm giving you here is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — let's get into it.
   </div>
+
+  <!-- SEGMENT 1 — WHAT ARE STATINS -->
+  <div class="segment" id="seg-1">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 2 — How statins work</div>
+
+    Statins are a class of medication that lower LDL cholesterol — the so-called bad cholesterol — by reducing the amount the liver produces. They work by blocking an enzyme called <span class="stat">HMG-CoA reductase</span> — the key step in the body's cholesterol-making process.
+
+    <div class="pause">— pause —</div>
+
+    The most commonly prescribed statin in the UK is <span class="stat">atorvastatin</span> — usually 20mg for primary prevention, 80mg for secondary prevention. They're taken once daily, long-term, and in clinical practice they're initiated alongside lifestyle measures — the two are complementary.
+
+    <div class="pause">— pause —</div>
+
+    Statins are one of the most thoroughly studied drugs in the history of medicine. Over <span class="stat">170,000 participants</span> across 26 major trials. The evidence base is formidable.
+  </div>
+
+  <!-- SEGMENT 2 — WHY IT MATTERS -->
+  <div class="segment" id="seg-2">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDES 3–4 — Side effects and benefits</div>
+
+    Statins are one of the most important tools available for preventing heart attacks and strokes. But they're significantly underused. As of 2025, only around <span class="stat">57%</span> of patients at higher cardiovascular risk had a current prescription for lipid-lowering therapy.
+
+    <div class="pause">— pause —</div>
+
+    Why? Largely because of concerns about side effects — many of which are not supported by the best available evidence. The nocebo effect — where the expectation of harm leads to real, experienced symptoms — plays a significant role here. We'll get to that in the evidence section.
+
+    <div class="pause">— pause —</div>
+
+    The numbers matter. For every 10,000 people with existing cardiovascular disease taking a statin for five years — approximately <span class="stat">1,000</span> avoid a major cardiovascular event. For primary prevention — higher risk, no previous event — that figure is <span class="stat">500</span>. These are large, meaningful numbers.
+  </div>
+
+  <!-- SEGMENT 3 — WHAT DOCTORS DO -->
+  <div class="segment" id="seg-3">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 2 — Dosing table</div>
+
+    Under current NICE guidance — NG238 — statin therapy is clinically indicated for anyone with established cardiovascular disease regardless of cholesterol level, and for anyone with a 10-year QRISK3 score of <span class="stat">10% or above</span>. For those below 10%, statins can now be considered — particularly where lifestyle measures alone have not been sufficient.
+
+    <div class="pause">— pause —</div>
+
+    The recommended first-choice statin in the UK is atorvastatin. Primary prevention: 20mg daily. Secondary prevention — existing cardiovascular disease: <span class="stat">80mg</span> daily. The treatment target for primary prevention is a reduction in non-HDL cholesterol of at least 40%.
+
+    <div class="pause">— pause —</div>
+
+    On muscle symptoms — in UK clinical practice, switching to a different statin or adjusting the dose is the recognised approach when symptoms arise. The outcome that cardiovascular medicine is most concerned about is stopping without review — which leaves risk unaddressed while the individual had been receiving protection.
+  </div>
+
+  <!-- SEGMENT 4 — THE EVIDENCE -->
+  <div class="segment" id="seg-4">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDES 5–7 — Research evidence</div>
+
+    The Cholesterol Treatment Trialists' Collaboration — the world's largest pooled analysis of statin data — has consistently found that each <span class="stat">1 mmol/L reduction in LDL</span> reduces the risk of major cardiovascular events by approximately one fifth. This holds across men and women, all ages studied, regardless of starting cholesterol level.
+
+    <div class="pause">— pause —</div>
+
+    On side effects — the 2022 CTT meta-analysis, drawing on individual data from over <span class="stat">150,000 people</span> across 23 trials, found that statins caused only a small excess of mostly mild muscle pain. More than <span class="stat">90% of all muscle symptom reports</span> in people taking statins were not caused by the statin itself.
+
+    <div class="pause">— pause —</div>
+
+    The ASCOT-LLA trial demonstrated the nocebo effect clearly. When patients knew they were taking a statin, muscle symptoms were <span class="stat">41% more likely</span> than in those who didn't know. When the same patients were blinded — unaware of what they were taking — muscle symptoms were virtually identical to placebo. The expectation of harm produced real symptoms.
+
+    <div class="pause">— pause —</div>
+
+    And a 2026 Lancet analysis of statin product labels concluded that most side effects listed on packaging — including cognitive impairment, depression, and sleep disturbance — are <span class="stat">not supported by causal evidence</span> from randomised trials.
+  </div>
+
+  <!-- SEGMENT 5 — CLOSE -->
+  <div class="segment" id="seg-5">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 9 — CTA</div>
+
+    So — what are the key points?
+
+    <div class="pause">— pause —</div>
+
+    Statins are among the most effective and best-evidenced medicines in cardiovascular prevention. For people at significant risk, the benefits substantially outweigh the genuine risks. Concern about side effects is understandable, but the blinded trial evidence is clear — most reported muscle symptoms are not caused by the drug.
+
+    <div class="pause">— pause —</div>
+
+    Around 4 in 10 people at higher cardiovascular risk remain untreated. Closing that treatment gap could prevent tens of thousands of heart attacks and strokes per year in the UK. The evidence is strong. The noise is stronger.
+
+    <div class="pause">— pause —</div>
+
+    As always — anything personally relevant here is a conversation for you to have with your GP or healthcare professional. I'm Dr Paul. Thanks for watching.
+
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW · SLIDE 10 — Closing card</div>
+  </div>
+
 </div>
-<div id="seg-dots">
-  <div class="seg-dot active" onclick="jumpToSeg(0)" title="Intro"></div>
-  <div class="seg-dot" onclick="jumpToSeg(1)" title="What are statins?"></div>
-  <div class="seg-dot" onclick="jumpToSeg(2)" title="Why it matters"></div>
-  <div class="seg-dot" onclick="jumpToSeg(3)" title="What your doctor will do"></div>
-  <div class="seg-dot" onclick="jumpToSeg(4)" title="Research"></div>
-  <div class="seg-dot" onclick="jumpToSeg(5)" title="Closing"></div>
 </div>
-<div id="focus-top"></div><div id="focus-line"></div><div id="focus-bottom"></div>
-<div id="scroll-wrap"><div id="scroll-content">
 
-  <div class="seg-label" data-seg="0">Segment 0 — Introduction</div>
-<div class="cue-box"><div class="cue-label">▶ ADVANCE NOW — then read</div><div class="cue-text">Screen 1: <span>Intro title slide</span> · Cardiovascular Series · Article 04</div></div>
+<div class="dots-bar" id="dots-bar">
+  <span class="dot-label">Seg</span>
+  <div class="dot active" data-seg="0" title="Intro"></div>
+  <div class="dot" data-seg="1" title="What are statins"></div>
+  <div class="dot" data-seg="2" title="Why it matters"></div>
+  <div class="dot" data-seg="3" title="What doctors do"></div>
+  <div class="dot" data-seg="4" title="The evidence"></div>
+  <div class="dot" data-seg="5" title="Close"></div>
+</div>
 
-  <p class="line">"I'm Dr Paul — I spent <strong>over twenty years as an NHS GP</strong> before I retired in 2019. Today I want to talk to you about <strong>statins</strong> — what they are, what the evidence actually shows, and how to make sense of the noise around them."</p>
-  <p class="line">"What I'm giving you is <strong>health education, not medical advice</strong>. If any of this feels relevant to you personally, take it to your own doctor. Right — <em>let's get into it.</em>"</p>
-
-  <div class="seg-label" data-seg="1">Segment 1 — What are statins?</div>
-<div class="cue-box"><div class="cue-label">▶ ADVANCE NOW — then read</div><div class="cue-text">Screen 2: <span>How statins work</span> · liver enzyme · LDL reduction mechanism</div></div>
-
-  <p class="line">"Statins are a class of medication that <strong>lower LDL cholesterol</strong> — the so-called bad cholesterol — by reducing the amount the liver produces. They work by blocking an enzyme called <strong>HMG-CoA reductase</strong> — the key step in the body's cholesterol-making process."</p>
-  <p class="line">"The most commonly prescribed statin in the UK is <strong>atorvastatin</strong> — usually 20mg for primary prevention, 80mg for secondary prevention. They're taken once daily, long-term. And they work best <strong>alongside</strong> lifestyle changes — not instead of them." <span class="pause">PAUSE</span></p>
-  <p class="line">"Statins are one of the most thoroughly studied drugs in the history of medicine. Over <strong>170,000 participants</strong> across 26 major trials. The evidence base is formidable."</p>
-
-  <div class="seg-label" data-seg="2">Segment 2 — Why does it matter?</div>
-<div class="cue-box"><div class="cue-label">▶ ADVANCE NOW — then read</div><div class="cue-text">Screen 3: <span>People grid</span> · 1,000 / 500 events prevented per 10,000</div></div>
-
-  <p class="line">"Statins are one of the most important tools we have for <strong>preventing heart attacks and strokes</strong>. But here's the problem — they're significantly <strong>underused</strong>. As of 2025, only around 57% of patients at higher cardiovascular risk had a current prescription for lipid-lowering therapy."</p>
-  <p class="line">"Why? Largely because of concerns about side effects — many of which are <em>not supported by the best available evidence</em>. <span class="pause">PAUSE</span> The nocebo effect — where the expectation of harm leads to real, experienced symptoms — plays a huge role here. We'll get to that in the research section."</p>
-  <p class="line">"The numbers matter. For every 10,000 people with <strong>existing cardiovascular disease</strong> taking a statin for five years — approximately <strong>1,000</strong> avoid a major cardiovascular event. For primary prevention — higher risk, no previous event — that figure is <strong>500</strong>. These are large, meaningful numbers." <span class="pause">PAUSE</span></p>
-
-  <div class="seg-label" data-seg="3">Segment 3 — What your doctor will do</div>
-<div class="cue-box"><div class="cue-label">▶ ADVANCE NOW — then read</div><div class="cue-text">Screen 4: <span>Dosing table</span> · atorvastatin 20mg / 80mg · QRISK3 threshold</div></div>
-
-  <p class="line">"Under current NICE guidance, statins should be offered to anyone with <strong>established cardiovascular disease</strong> regardless of cholesterol level, and anyone with a <strong>10-year QRISK3 score of 10% or above</strong>. For those below 10%, statins can now be considered — particularly if lifestyle changes haven't been enough." <span class="pause">PAUSE</span></p>
-  <p class="line">"The recommended first-choice statin in the UK is <strong>atorvastatin</strong>. Primary prevention: 20mg daily. Secondary prevention — existing cardiovascular disease: <strong>80mg</strong> daily. The treatment target is a reduction in non-HDL cholesterol of at least 40%."</p>
-  <p class="line">"On side effects — particularly muscle symptoms — the clinical picture is worth knowing. In UK practice, switching to a different statin or adjusting the dose often resolves the problem. The research shows the outcome medicine is most concerned about is stopping unilaterally — which leaves the cardiovascular risk unaddressed while the person was being protected." <span class="pause">PAUSE</span></p>
-
-  <div class="seg-label" data-seg="4">Segment 4 — What the research shows</div>
-<div class="cue-box"><div class="cue-label">▶ ADVANCE NOW — then read</div><div class="cue-text">Screen 5: <span>Research cards</span> · CTT 2022 · ASCOT-LLA · 90% muscle symptoms not caused by statin</div></div>
-
-  <p class="line">"The Cholesterol Treatment Trialists' Collaboration — the world's largest pooled analysis of statin data — has consistently found that each <strong>1 mmol/L reduction in LDL</strong> reduces the risk of major cardiovascular events by approximately <strong>one fifth</strong>. This holds across men and women, all ages studied, regardless of starting cholesterol level."</p>
-  <p class="line">"On side effects — the 2022 CTT meta-analysis, drawing on individual data from over <strong>150,000 people</strong> across 23 trials, found that statins caused only a small excess of mostly mild muscle pain. More than <strong>90% of all muscle symptom reports</strong> in people taking statins were not caused by the statin itself." <span class="pause">PAUSE</span></p>
-  <p class="line">"The ASCOT-LLA trial demonstrated this beautifully. When patients <em>knew</em> they were taking a statin, muscle symptoms were 41% more likely than in those who didn't know. When the same patients were blinded — unaware of what they were taking — muscle symptoms were <strong>virtually identical</strong> to placebo. That's the nocebo effect in action."</p>
-  <p class="line">"And a 2026 Lancet analysis of statin product labels concluded that most of the side effects listed on packaging — including cognitive impairment, depression, sleep disturbance — are <strong>not supported by causal evidence</strong> from randomised trials." <span class="pause">PAUSE</span></p>
-
-  <div class="seg-label" data-seg="5">Segment 5 — Closing</div>
-<div class="cue-box"><div class="cue-label">▶ ADVANCE NOW — then read</div><div class="cue-text">Screen 6: <span>Closing slide</span> · helf.school · Health Education for Everyone</div></div>
-
-  <p class="line">"So — statins are among the most effective and best-evidenced medicines in cardiovascular prevention. For people at significant risk, the benefits <strong>substantially outweigh</strong> the genuine risks."</p>
-  <p class="line">"The decision to take a statin should always be made <strong>in partnership with your doctor</strong> — based on your individual risk profile, your preferences, and your circumstances. If you've been offered one and you're hesitant — take what you've heard today to that conversation. <em>That's exactly what it's for.</em>" <span class="pause">PAUSE</span></p>
-  <p class="line">"More on <strong>helf.school</strong> — the full article with all the references is there. Thanks for watching."</p></div></div>
 <script>
-  const SPEED_LEVELS=[8,14,20,28,38,52];let speedIndex=2,baseFontSize=1.9,playing=false,rafId=null,lastTime=null,scrollY=0;
-  const content=document.getElementById('scroll-content'),playBtn=document.getElementById('play-btn'),speedDisplay=document.getElementById('speed-display'),dots=document.querySelectorAll('.seg-dot'),segLabels=document.querySelectorAll('.seg-label');
-  function setTranslate(y){content.style.transform=`translateY(${-y}px)`}
-  function togglePlay(){playing=!playing;playBtn.textContent=playing?'⏸ PAUSE':'▶ PLAY';if(playing){lastTime=null;rafId=requestAnimationFrame(tick)}else{cancelAnimationFrame(rafId)}}
-  function tick(ts){if(!playing)return;if(lastTime===null)lastTime=ts;const dt=(ts-lastTime)/1000;lastTime=ts;scrollY+=SPEED_LEVELS[speedIndex]*dt;const max=content.scrollHeight-window.innerHeight+44;if(scrollY>=max){scrollY=max;togglePlay()}setTranslate(scrollY);updateDots();rafId=requestAnimationFrame(tick)}
-  function changeSpeed(dir){speedIndex=Math.max(0,Math.min(5,speedIndex+dir));speedDisplay.textContent=speedIndex+1}
-  function changeFont(dir){baseFontSize=Math.max(1.2,Math.min(2.8,baseFontSize+dir*0.1));document.querySelectorAll('.line').forEach(el=>el.style.fontSize=baseFontSize+'rem')}
-  function jumpToSeg(idx){const label=segLabels[idx];if(!label)return;const contentTop=content.getBoundingClientRect().top;const labelOffset=label.getBoundingClientRect().top-contentTop+scrollY;scrollY=Math.max(0,labelOffset-window.innerHeight*0.5+44);setTranslate(scrollY);updateDots()}
-  function updateDots(){const mid=window.innerHeight*0.5;let active=0;segLabels.forEach((label,i)=>{if(label.getBoundingClientRect().top<=mid)active=i});dots.forEach((d,i)=>d.classList.toggle('active',i===active))}
-  let touchStartY=0,touchScrollStart=0;
-  document.addEventListener('touchstart',e=>{touchStartY=e.touches[0].clientY;touchScrollStart=scrollY;if(playing)togglePlay()},{passive:true});
-  document.addEventListener('touchmove',e=>{scrollY=Math.max(0,touchScrollStart+(touchStartY-e.touches[0].clientY));setTranslate(scrollY);updateDots()},{passive:true});
-  document.addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();togglePlay()}if(e.code==='ArrowUp'){scrollY=Math.max(0,scrollY-80);setTranslate(scrollY)}if(e.code==='ArrowDown'){scrollY+=80;setTranslate(scrollY)}});
-  setTranslate(0);
+  const SPEED_LEVELS = [0, 8, 14, 20, 28, 38, 50];
+  let speedLevel = 3, fontSize = 1.9, paused = false, pos = 0, lastTs = null;
+  const wrap  = document.getElementById('scroll-wrap');
+  const inner = document.getElementById('scroll-inner');
+  const spdDisp = document.getElementById('speed-display');
+
+  function applyFont() { inner.style.fontSize = fontSize + 'rem'; }
+
+  function raf(ts) {
+    if (!paused) {
+      if (lastTs !== null) { pos += SPEED_LEVELS[speedLevel] * (ts - lastTs) / 1000; inner.style.transform = 'translateY(-' + pos + 'px)'; }
+      lastTs = ts;
+    } else { lastTs = null; }
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  const dots = document.querySelectorAll('.dot');
+  const segs = document.querySelectorAll('.segment');
+
+  function updateDots() {
+    let active = 0;
+    segs.forEach((seg, i) => { if (pos >= seg.offsetTop - 80) active = i; });
+    dots.forEach(d => d.classList.remove('active'));
+    if (dots[active]) dots[active].classList.add('active');
+  }
+  setInterval(updateDots, 400);
+
+  dots.forEach(d => d.addEventListener('click', () => {
+    const seg = segs[parseInt(d.dataset.seg)];
+    if (seg) { pos = Math.max(0, seg.offsetTop - 80); inner.style.transform = 'translateY(-' + pos + 'px)'; }
+  }));
+
+  document.getElementById('btn-faster').addEventListener('click', () => { speedLevel = Math.min(6, speedLevel + 1); spdDisp.textContent = speedLevel; });
+  document.getElementById('btn-slower').addEventListener('click', () => { speedLevel = Math.max(0, speedLevel - 1); spdDisp.textContent = speedLevel; });
+  document.getElementById('btn-bigger').addEventListener('click', () => { fontSize = Math.min(3.2, +(fontSize + 0.15).toFixed(2)); applyFont(); });
+  document.getElementById('btn-smaller').addEventListener('click', () => { fontSize = Math.max(1.2, +(fontSize - 0.15).toFixed(2)); applyFont(); });
+
+  const pauseBtn = document.getElementById('btn-pause');
+  pauseBtn.addEventListener('click', () => {
+    paused = !paused;
+    pauseBtn.textContent = paused ? '▶ Resume' : '⏸ Pause';
+    pauseBtn.classList.toggle('active', paused);
+  });
+  document.getElementById('btn-reset').addEventListener('click', () => { pos = 0; inner.style.transform = 'translateY(0)'; });
+
+  let ty = 0;
+  wrap.addEventListener('touchstart', e => { ty = e.touches[0].clientY; paused = true; pauseBtn.textContent = '▶ Resume'; pauseBtn.classList.add('active'); });
+  wrap.addEventListener('touchmove', e => { e.preventDefault(); const dy = e.touches[0].clientY - ty; pos = Math.max(0, pos - dy * 0.8); inner.style.transform = 'translateY(-' + pos + 'px)'; ty = e.touches[0].clientY; }, { passive: false });
+
+  applyFont();
 </script>
-</body></html>
+</body>
+</html>

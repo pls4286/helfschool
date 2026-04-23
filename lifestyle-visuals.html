@@ -36,7 +36,7 @@
     .intro-sub{font-size:1.1rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;max-width:680px;line-height:1.5;font-weight:400}
     .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
 
-    /* SLIDE 2 — BIG PICTURE */
+    /* BIG PICTURE */
     .big-stage{display:flex;flex-direction:column;flex:1;gap:1.2rem;min-height:0;align-items:center;justify-content:center}
     .big-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;width:100%;max-width:960px}
     .big-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1.5px solid rgba(212,184,74,.45);border-radius:20px;padding:1.8rem 1.6rem;text-align:center;box-shadow:0 0 40px rgba(212,184,74,.08)}
@@ -49,50 +49,57 @@
     .big-strip-text{font-size:1rem;color:#fff;font-weight:500;font-family:'Fraunces',serif;line-height:1.4}
     .big-strip-text strong{color:var(--good)}
 
-    /* 6-ROW CARDS — confirmed sizing (slides 3,4,8) */
+    /* 6-ROW CARDS */
     .sys-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .sys-card.animate-ready{opacity:0;transform:translateY(14px)}
     .sys-card.vis{opacity:1;transform:translateY(0)}
     .sys-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
     .sys-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
     .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
     .sys-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .sys-stat{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem}
+    .sys-stat{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
     .sys-stat.good{color:var(--good)}
 
     .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .doc-card.animate-ready{opacity:0;transform:translateY(14px)}
     .doc-card.vis{opacity:1;transform:translateY(0)}
     .doc-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
     .doc-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
     .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
     .doc-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem}
+    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
 
-    /* EV CARDS */
+    /* EVIDENCE CARDS — new ev-stat-row pattern, opacity:1 default */
     .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
-    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .45s ease}
+    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .45s ease}
+    .ev-card.animate-ready{opacity:0;transform:translateY(14px)}
     .ev-card.vis{opacity:1;transform:translateY(0)}
-    .ev-stat{text-align:center;background:rgba(212,184,74,.09);border-radius:14px;padding:1.25rem .85rem;overflow:hidden}
-    .ev-num{font-family:'Fraunces',serif;font-size:clamp(2rem,3.4vw,3.4rem);font-weight:700;color:var(--acc);line-height:1;letter-spacing:-.02em;word-break:break-word;overflow-wrap:break-word}
+    .ev-stat-box{background:rgba(212,184,74,.09);border-radius:14px;padding:1.25rem .85rem;text-align:center}
+    .ev-kf-label{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(212,184,74,.7);margin-bottom:.55rem}
+    .ev-stat-row{display:flex;align-items:baseline;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:.45rem}
+    .ev-num{font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:var(--acc);line-height:1;letter-spacing:-.02em;flex-shrink:0}
     .ev-num.bad{color:var(--bad)}
     .ev-num.good{color:var(--good)}
-    .ev-label{font-size:1rem;font-weight:700;color:#fff;margin-top:.5rem;line-height:1.3}
+    .ev-outcome{font-size:1rem;font-weight:700;color:#fff;line-height:1.3;text-align:left}
+    .ev-conditions{font-size:.95rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.35}
     .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;margin-bottom:.25rem;line-height:1.15;letter-spacing:-.01em}
     .ev-det .ev-journal{font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
     .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400}
 
     /* 6-ROW MECH CARDS */
     .mech-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .mech-card.animate-ready{opacity:0;transform:translateY(14px)}
     .mech-card.vis{opacity:1;transform:translateY(0)}
     .mech-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
     .mech-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
     .mech-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
     .mech-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.7vw,1.55rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem}
+    .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.7vw,1.55rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
 
-    /* CTA SLIDE 9 — HORIZONTAL ROWS, NO ICON */
+    /* CTA SLIDE 9 — horizontal rows (already correct, keeping as-is) */
     .cta-slide{position:relative}
     .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(212,184,74,.18),rgba(212,184,74,.04) 45%,transparent 70%);pointer-events:none;z-index:0}
     .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem;gap:.45rem;min-height:0;overflow:hidden}
@@ -185,11 +192,11 @@
     </div>
   </div>
 
-  <!-- SLIDE 3: WHAT DRIVES RISK · RED · 6 ROWS -->
+  <!-- SLIDE 3: WHAT DRIVES RISK UP -->
   <div class="slide">
     <div class="slide-title">What drives <span>cardiovascular risk up</span></div>
     <div class="sys-grid">
-      <div class="sys-card" id="s1">
+      <div class="sys-card animate-ready" id="s1">
         <div class="sys-icon">🍔</div>
         <div class="sys-content">
           <div class="sys-title">Ultra-processed &amp; high-sodium diets</div>
@@ -197,7 +204,7 @@
         </div>
         <div class="sys-stat">↑ CV events</div>
       </div>
-      <div class="sys-card" id="s2">
+      <div class="sys-card animate-ready" id="s2">
         <div class="sys-icon">🛋️</div>
         <div class="sys-content">
           <div class="sys-title">Sedentary behaviour</div>
@@ -205,7 +212,7 @@
         </div>
         <div class="sys-stat">↑ Mortality</div>
       </div>
-      <div class="sys-card" id="s3">
+      <div class="sys-card animate-ready" id="s3">
         <div class="sys-icon">🚬</div>
         <div class="sys-content">
           <div class="sys-title">Current smoking</div>
@@ -213,7 +220,7 @@
         </div>
         <div class="sys-stat">2–4×</div>
       </div>
-      <div class="sys-card" id="s4">
+      <div class="sys-card animate-ready" id="s4">
         <div class="sys-icon">⚖️</div>
         <div class="sys-content">
           <div class="sys-title">Excess weight · central adiposity</div>
@@ -221,7 +228,7 @@
         </div>
         <div class="sys-stat">BMI ≥30</div>
       </div>
-      <div class="sys-card" id="s5">
+      <div class="sys-card animate-ready" id="s5">
         <div class="sys-icon">🍷</div>
         <div class="sys-content">
           <div class="sys-title">Alcohol intake</div>
@@ -229,7 +236,7 @@
         </div>
         <div class="sys-stat">Linear harm</div>
       </div>
-      <div class="sys-card" id="s6">
+      <div class="sys-card animate-ready" id="s6">
         <div class="sys-icon">😴</div>
         <div class="sys-content">
           <div class="sys-title">Short or long sleep</div>
@@ -240,11 +247,11 @@
     </div>
   </div>
 
-  <!-- SLIDE 4: WHAT MOVES THE DIAL · GREEN · 6 ROWS -->
+  <!-- SLIDE 4: WHAT MOVES THE DIAL -->
   <div class="slide">
     <div class="slide-title">What moves <span>the dial — evidence-based levers</span></div>
     <div class="doc-grid">
-      <div class="doc-card" id="d1">
+      <div class="doc-card animate-ready" id="d1">
         <div class="doc-icon">🥗</div>
         <div class="doc-content">
           <div class="doc-title">Mediterranean eating pattern</div>
@@ -252,7 +259,7 @@
         </div>
         <div class="doc-action">−30%</div>
       </div>
-      <div class="doc-card" id="d2">
+      <div class="doc-card animate-ready" id="d2">
         <div class="doc-icon">🚶</div>
         <div class="doc-content">
           <div class="doc-title">Regular movement</div>
@@ -260,7 +267,7 @@
         </div>
         <div class="doc-action">−17%</div>
       </div>
-      <div class="doc-card" id="d3">
+      <div class="doc-card animate-ready" id="d3">
         <div class="doc-icon">🚭</div>
         <div class="doc-content">
           <div class="doc-title">Stopping smoking</div>
@@ -268,7 +275,7 @@
         </div>
         <div class="doc-action">−36%</div>
       </div>
-      <div class="doc-card" id="d4">
+      <div class="doc-card animate-ready" id="d4">
         <div class="doc-icon">⚖️</div>
         <div class="doc-content">
           <div class="doc-title">5–10% weight reduction</div>
@@ -276,15 +283,15 @@
         </div>
         <div class="doc-action">5–10%</div>
       </div>
-      <div class="doc-card" id="d5">
+      <div class="doc-card animate-ready" id="d5">
         <div class="doc-icon">🍷</div>
         <div class="doc-content">
           <div class="doc-title">Lower alcohol intake</div>
           <div class="doc-body">Current evidence does not support a "protective" moderate dose — for CV risk, less is consistently better.</div>
         </div>
-        <div class="doc-action">Lower = better</div>
+        <div class="doc-action">Lower</div>
       </div>
-      <div class="doc-card" id="d6">
+      <div class="doc-card animate-ready" id="d6">
         <div class="doc-icon">😴</div>
         <div class="doc-content">
           <div class="doc-title">7–8 hours sleep</div>
@@ -295,14 +302,18 @@
     </div>
   </div>
 
-  <!-- SLIDE 5: RESEARCH — INTERHEART -->
+  <!-- SLIDE 5: RESEARCH — INTERHEART + GENETIC RISK -->
   <div class="slide">
     <div class="slide-title">Research · <span>how much is modifiable?</span></div>
     <div class="ev-stage">
-      <div class="ev-card" id="e1">
-        <div class="ev-stat">
-          <div class="ev-num bad">~90%</div>
-          <div class="ev-label">first-MI risk · 9 modifiable factors</div>
+      <div class="ev-card animate-ready" id="e1">
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num bad">~90%</div>
+            <div class="ev-outcome">of first heart-attack risk</div>
+          </div>
+          <div class="ev-conditions">from 9 modifiable factors — consistent across 52 countries</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">INTERHEART — 52 countries</div>
@@ -310,10 +321,14 @@
           <div class="ev-body">Across populations, <strong>nine modifiable factors</strong> accounted for about 90% of population risk of a first heart attack. Psychosocial stress alone contributed ~33% of attributable risk.</div>
         </div>
       </div>
-      <div class="ev-card" id="e2">
-        <div class="ev-stat">
-          <div class="ev-num good">−50%</div>
-          <div class="ev-label">CHD events · favourable lifestyle · high genetic risk</div>
+      <div class="ev-card animate-ready" id="e2">
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good">−50%</div>
+            <div class="ev-outcome">lower CHD event rate</div>
+          </div>
+          <div class="ev-conditions">in highest genetic risk group with favourable lifestyle</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Lifestyle × genetic risk</div>
@@ -328,10 +343,14 @@
   <div class="slide">
     <div class="slide-title">Research · <span>diet &amp; activity</span></div>
     <div class="ev-stage">
-      <div class="ev-card" id="e3">
-        <div class="ev-stat">
-          <div class="ev-num good">~−30%</div>
-          <div class="ev-label">major CV events · Mediterranean diet</div>
+      <div class="ev-card animate-ready" id="e3">
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good">~30%</div>
+            <div class="ev-outcome">fewer major CV events</div>
+          </div>
+          <div class="ev-conditions">Mediterranean diet with olive oil or nuts vs control — PREDIMED</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">PREDIMED — Mediterranean + olive oil / nuts</div>
@@ -339,10 +358,14 @@
           <div class="ev-body">High-CV-risk adults randomised to a <strong>Mediterranean diet</strong> with added olive oil or nuts had about a 30% reduction in major cardiovascular events vs control over ~5 years — the strongest dietary RCT evidence available.</div>
         </div>
       </div>
-      <div class="ev-card" id="e4">
-        <div class="ev-stat">
-          <div class="ev-num good">−17%</div>
-          <div class="ev-label">CV risk · at just 75 min/wk moderate activity</div>
+      <div class="ev-card animate-ready" id="e4">
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good">−17%</div>
+            <div class="ev-outcome">lower cardiovascular risk</div>
+          </div>
+          <div class="ev-conditions">at just 75 min/week moderate activity — half recommended level</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Activity dose–response meta-analysis</div>
@@ -355,12 +378,16 @@
 
   <!-- SLIDE 7: RESEARCH — SMOKING + SLEEP -->
   <div class="slide">
-    <div class="slide-title">Research · <span>smoking, alcohol &amp; sleep</span></div>
+    <div class="slide-title">Research · <span>smoking &amp; sleep</span></div>
     <div class="ev-stage">
-      <div class="ev-card" id="e5">
-        <div class="ev-stat">
-          <div class="ev-num good">−36%</div>
-          <div class="ev-label">further CV events · after stopping smoking</div>
+      <div class="ev-card animate-ready" id="e5">
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good">−36%</div>
+            <div class="ev-outcome">fewer further CV events</div>
+          </div>
+          <div class="ev-conditions">after stopping smoking in people with established CVD</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Smoking cessation after CV events</div>
@@ -368,10 +395,14 @@
           <div class="ev-body">In people with established CV disease, stopping smoking reduced further cardiovascular events by around 36% — a larger effect than almost any single medication.</div>
         </div>
       </div>
-      <div class="ev-card" id="e6">
-        <div class="ev-stat">
-          <div class="ev-num bad" style="font-size:2rem">J-curve</div>
-          <div class="ev-label">sleep duration &amp; CV mortality</div>
+      <div class="ev-card animate-ready" id="e6">
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num bad" style="font-size:1.8rem">J-curve</div>
+            <div class="ev-outcome">sleep &amp; CV mortality</div>
+          </div>
+          <div class="ev-conditions">lowest risk at 7–8 hrs — both &lt;6 and &gt;9 hrs raise risk</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Sleep &amp; CV mortality meta-analysis</div>
@@ -382,19 +413,19 @@
     </div>
   </div>
 
-  <!-- SLIDE 8: MECHANISMS · AMBER · 6 ROWS -->
+  <!-- SLIDE 8: MECHANISMS -->
   <div class="slide">
     <div class="slide-title">How lifestyle <span>translates into heart protection</span></div>
     <div class="mech-grid">
-      <div class="mech-card" id="m1">
+      <div class="mech-card animate-ready" id="m1">
         <div class="mech-icon">🥗</div>
         <div class="mech-content">
           <div class="mech-title">Mediterranean pattern</div>
-          <div class="mech-body">Rich in polyphenols, fibre, unsaturated fats — lowers LDL, reduces inflammation, and supports a healthy gut microbiome.</div>
+          <div class="mech-body">Rich in polyphenols, fibre, unsaturated fats — lowers LDL, reduces inflammation, supports gut microbiome.</div>
         </div>
         <div class="mech-outcome">→ ↓ Inflammation</div>
       </div>
-      <div class="mech-card" id="m2">
+      <div class="mech-card animate-ready" id="m2">
         <div class="mech-icon">🚶</div>
         <div class="mech-content">
           <div class="mech-title">Regular movement</div>
@@ -402,7 +433,7 @@
         </div>
         <div class="mech-outcome">→ ↓ BP, ↑ HDL</div>
       </div>
-      <div class="mech-card" id="m3">
+      <div class="mech-card animate-ready" id="m3">
         <div class="mech-icon">🚭</div>
         <div class="mech-content">
           <div class="mech-title">Smoking cessation</div>
@@ -410,7 +441,7 @@
         </div>
         <div class="mech-outcome">→ ↑ Endothelium</div>
       </div>
-      <div class="mech-card" id="m4">
+      <div class="mech-card animate-ready" id="m4">
         <div class="mech-icon">⚖️</div>
         <div class="mech-content">
           <div class="mech-title">Weight reduction</div>
@@ -418,7 +449,7 @@
         </div>
         <div class="mech-outcome">→ ↓ Cytokines</div>
       </div>
-      <div class="mech-card" id="m5">
+      <div class="mech-card animate-ready" id="m5">
         <div class="mech-icon">🍷</div>
         <div class="mech-content">
           <div class="mech-title">Lower alcohol</div>
@@ -426,7 +457,7 @@
         </div>
         <div class="mech-outcome">→ ↓ BP, AF</div>
       </div>
-      <div class="mech-card" id="m6">
+      <div class="mech-card animate-ready" id="m6">
         <div class="mech-icon">😴</div>
         <div class="mech-content">
           <div class="mech-title">Protected sleep</div>
@@ -437,7 +468,7 @@
     </div>
   </div>
 
-  <!-- SLIDE 9: CTA · HORIZONTAL ROWS · NO ICON -->
+  <!-- SLIDE 9: CTA — HORIZONTAL ROWS -->
   <div class="slide cta-slide">
     <div class="cta-glow"></div>
     <div class="cta-wrap-v2">
@@ -459,7 +490,7 @@
           <div class="cta-row-icon">🚶</div>
           <div class="cta-row-mid">
             <div class="cta-row-label">Regular movement</div>
-            <div class="cta-row-body-v2">Even half the recommended activity — 75 min/week — is linked to 17% lower CV risk; biggest gains come from zero to some</div>
+            <div class="cta-row-body-v2">Even half the recommended activity — 75 min/week — is linked to 17% lower CV risk; biggest gains from zero to some</div>
           </div>
           <div class="cta-row-word-v2">−17%</div>
         </div>
@@ -467,7 +498,7 @@
           <div class="cta-row-icon">🚭</div>
           <div class="cta-row-mid">
             <div class="cta-row-label">Stop smoking</div>
-            <div class="cta-row-body-v2">The largest single lifestyle intervention available — cuts further CV events by ~36%, larger than most medications</div>
+            <div class="cta-row-body-v2">The largest single lifestyle intervention — cuts further CV events by ~36%, larger than most medications</div>
           </div>
           <div class="cta-row-word-v2">−36%</div>
         </div>
@@ -540,9 +571,18 @@
 <script>
   const slides=document.querySelectorAll('.slide'),dots=document.querySelectorAll('.dot');
   let cur=0;
-  function show(n){slides[cur].classList.remove('active');dots[cur].classList.remove('active');cur=(n+slides.length)%slides.length;slides[cur].classList.add('active');dots[cur].classList.add('active');document.getElementById('counter').textContent=(cur+1)+' / '+slides.length;triggerSlide(cur)}
+  function show(n){
+    slides[cur].classList.remove('active');dots[cur].classList.remove('active');
+    cur=(n+slides.length)%slides.length;
+    slides[cur].classList.add('active');dots[cur].classList.add('active');
+    document.getElementById('counter').textContent=(cur+1)+' / '+slides.length;
+    triggerSlide(cur);
+  }
   function goTo(n){show(n)}
-  document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')show(cur+1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')show(cur-1)});
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowDown')show(cur+1);
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp')show(cur-1);
+  });
   let tx=0;
   document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX});
   document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40){dx<0?show(cur+1):show(cur-1)}});
@@ -554,8 +594,15 @@
     if(n===6)animateGroup(['e5','e6'],260);
     if(n===7)animateGroup(['m1','m2','m3','m4','m5','m6'],140);
   }
-  function animateGroup(ids,step){ids.forEach((id,i)=>{setTimeout(()=>{const el=document.getElementById(id);if(el)el.classList.add('vis')},180+i*step)})}
-  slides.forEach(s=>{const obs=new MutationObserver(()=>{if(!s.classList.contains('active')){s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'))}});obs.observe(s,{attributes:true})});
+  function animateGroup(ids,step){
+    ids.forEach((id,i)=>{setTimeout(()=>{const el=document.getElementById(id);if(el)el.classList.add('vis')},180+i*step)});
+  }
+  slides.forEach(s=>{
+    const obs=new MutationObserver(()=>{
+      if(!s.classList.contains('active')){s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'))}
+    });
+    obs.observe(s,{attributes:true});
+  });
   triggerSlide(0);
 </script>
 </body>

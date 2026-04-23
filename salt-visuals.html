@@ -61,7 +61,8 @@
 
     /* 5-ROW CARDS — slide 3 */
     .sys-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.45rem;flex:1;min-height:0}
-    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:12px;padding:.7rem 1.2rem;display:grid;grid-template-columns:58px 1fr auto;gap:1.1rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:12px;padding:.7rem 1.2rem;display:grid;grid-template-columns:58px 1fr auto;gap:1.1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .sys-card.animate-ready{opacity:0;transform:translateY(14px)}
     .sys-card.vis{opacity:1;transform:translateY(0)}
     .sys-icon{font-size:2.2rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
     .sys-content{display:flex;flex-direction:column;gap:.18rem;min-width:0}
@@ -71,7 +72,8 @@
 
     /* 6-ROW CARDS — slides 4, 8 */
     .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .doc-card.animate-ready{opacity:0;transform:translateY(14px)}
     .doc-card.vis{opacity:1;transform:translateY(0)}
     .doc-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
     .doc-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
@@ -81,20 +83,25 @@
 
     /* EV CARDS */
     .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
-    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .45s ease}
+    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .45s ease}
+    .ev-card.animate-ready{opacity:0;transform:translateY(14px)}
     .ev-card.vis{opacity:1;transform:translateY(0)}
-    .ev-stat{text-align:center;background:rgba(212,184,74,.09);border-radius:14px;padding:1.25rem .85rem;overflow:hidden}
-    .ev-num{font-family:'Fraunces',serif;font-size:clamp(2rem,3.4vw,3.4rem);font-weight:700;color:var(--acc);line-height:1;letter-spacing:-.02em;word-break:break-word;overflow-wrap:break-word}
+    .ev-stat-box{background:rgba(212,184,74,.09);border-radius:14px;padding:1.25rem .85rem;text-align:center}
+    .ev-kf-label{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(212,184,74,.7);margin-bottom:.55rem}
+    .ev-stat-row{display:flex;align-items:baseline;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:.45rem}
+    .ev-num{font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:var(--acc);line-height:1;letter-spacing:-.02em;flex-shrink:0}
     .ev-num.bad{color:var(--bad)}
     .ev-num.good{color:var(--good)}
-    .ev-label{font-size:1rem;font-weight:700;color:#fff;margin-top:.5rem;line-height:1.3}
+    .ev-outcome{font-size:1rem;font-weight:700;color:#fff;line-height:1.3;text-align:left}
+    .ev-conditions{font-size:.95rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.35}
     .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;margin-bottom:.25rem;line-height:1.15;letter-spacing:-.01em}
     .ev-det .ev-journal{font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
     .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400}
 
     /* 6-ROW MECH CARDS */
     .mech-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .mech-card.animate-ready{opacity:0;transform:translateY(14px)}
     .mech-card.vis{opacity:1;transform:translateY(0)}
     .mech-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
     .mech-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
@@ -212,7 +219,7 @@
   <div class="slide">
     <div class="slide-title">Where excess salt <span>drives cardiovascular harm</span></div>
     <div class="sys-grid">
-      <div class="sys-card" id="s1">
+      <div class="sys-card animate-ready" id="s1">
         <div class="sys-icon">❤️</div>
         <div class="sys-content">
           <div class="sys-title">Blood pressure rise</div>
@@ -220,7 +227,7 @@
         </div>
         <div class="sys-stat">8–14 mmHg</div>
       </div>
-      <div class="sys-card" id="s2">
+      <div class="sys-card animate-ready" id="s2">
         <div class="sys-icon">🧠</div>
         <div class="sys-content">
           <div class="sys-title">Stroke risk</div>
@@ -228,7 +235,7 @@
         </div>
         <div class="sys-stat">↑ Stroke</div>
       </div>
-      <div class="sys-card" id="s3">
+      <div class="sys-card animate-ready" id="s3">
         <div class="sys-icon">💓</div>
         <div class="sys-content">
           <div class="sys-title">Heart attack &amp; heart failure</div>
@@ -236,7 +243,7 @@
         </div>
         <div class="sys-stat">↑ CHD, HF</div>
       </div>
-      <div class="sys-card" id="s4">
+      <div class="sys-card animate-ready" id="s4">
         <div class="sys-icon">🫘</div>
         <div class="sys-content">
           <div class="sys-title">Kidney strain</div>
@@ -244,7 +251,7 @@
         </div>
         <div class="sys-stat">↑ CKD</div>
       </div>
-      <div class="sys-card" id="s5">
+      <div class="sys-card animate-ready" id="s5">
         <div class="sys-icon">🫀</div>
         <div class="sys-content">
           <div class="sys-title">Left-ventricular hypertrophy</div>
@@ -259,7 +266,7 @@
   <div class="slide">
     <div class="slide-title">Practical swaps · <span>what actually lowers intake</span></div>
     <div class="doc-grid">
-      <div class="doc-card" id="d1">
+      <div class="doc-card animate-ready" id="d1">
         <div class="doc-icon">🏷️</div>
         <div class="doc-content">
           <div class="doc-title">Check the label</div>
@@ -267,7 +274,7 @@
         </div>
         <div class="doc-action">→ Read</div>
       </div>
-      <div class="doc-card" id="d2">
+      <div class="doc-card animate-ready" id="d2">
         <div class="doc-icon">🍞</div>
         <div class="doc-content">
           <div class="doc-title">Know the top UK sources</div>
@@ -275,7 +282,7 @@
         </div>
         <div class="doc-action">→ Target</div>
       </div>
-      <div class="doc-card" id="d3">
+      <div class="doc-card animate-ready" id="d3">
         <div class="doc-icon">🍳</div>
         <div class="doc-content">
           <div class="doc-title">Home cook more often</div>
@@ -283,7 +290,7 @@
         </div>
         <div class="doc-action">→ Cook</div>
       </div>
-      <div class="doc-card" id="d4">
+      <div class="doc-card animate-ready" id="d4">
         <div class="doc-icon">🌿</div>
         <div class="doc-content">
           <div class="doc-title">Herbs, spices, lemon, pepper</div>
@@ -291,7 +298,7 @@
         </div>
         <div class="doc-action">→ Season</div>
       </div>
-      <div class="doc-card" id="d5">
+      <div class="doc-card animate-ready" id="d5">
         <div class="doc-icon">🍌</div>
         <div class="doc-content">
           <div class="doc-title">Add potassium-rich foods</div>
@@ -299,7 +306,7 @@
         </div>
         <div class="doc-action">−24% stroke</div>
       </div>
-      <div class="doc-card" id="d6">
+      <div class="doc-card animate-ready" id="d6">
         <div class="doc-icon">👅</div>
         <div class="doc-content">
           <div class="doc-title">Taste before adding</div>
@@ -314,10 +321,14 @@
   <div class="slide">
     <div class="slide-title">Research · <span>salt and blood pressure</span></div>
     <div class="ev-stage">
-      <div class="ev-card" id="e1">
-        <div class="ev-stat">
-          <div class="ev-num bad" style="font-size:2rem">Dose-response</div>
-          <div class="ev-label">sodium intake · population BP · 52 countries</div>
+      <div class="ev-card animate-ready" id="e1">
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num bad" style="font-size:2rem">Dose-response</div>
+          </div>
+          <div class="ev-outcome" style="text-align:center">sodium intake and blood pressure</div>
+          <div class="ev-conditions">confirmed across 52 countries and 10,000+ participants</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">INTERSALT — international BP survey</div>
@@ -325,10 +336,14 @@
           <div class="ev-body">Populations with the lowest sodium intakes had lower blood pressures and far less age-related BP rise. Sodium intake and blood pressure <strong>tracked closely</strong> across very different cultures and diets worldwide.</div>
         </div>
       </div>
-      <div class="ev-card" id="e2">
-        <div class="ev-stat">
-          <div class="ev-num good">−8 to −14</div>
-          <div class="ev-label">mmHg systolic · low-Na DASH diet</div>
+      <div class="ev-card animate-ready" id="e2">
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good" style="font-size:2.2rem">−8 to −14</div>
+            <div class="ev-outcome">mmHg systolic BP</div>
+          </div>
+          <div class="ev-conditions">from low-sodium DASH diet — comparable to a single drug</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">DASH-Sodium — controlled feeding trial</div>
@@ -343,10 +358,14 @@
   <div class="slide">
     <div class="slide-title">Research · <span>reducing salt at scale</span></div>
     <div class="ev-stage">
-      <div class="ev-card" id="e3">
-        <div class="ev-stat">
-          <div class="ev-num good" style="font-size:2rem">Lower = lower</div>
-          <div class="ev-label">salt &amp; BP · sustained 4+ weeks</div>
+      <div class="ev-card animate-ready" id="e3">
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good" style="font-size:2rem">Lower = lower</div>
+          </div>
+          <div class="ev-outcome" style="text-align:center">salt intake, lower blood pressure</div>
+          <div class="ev-conditions">sustained over 4+ weeks — dose-response confirmed</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Cochrane — long-term salt reduction</div>
@@ -354,10 +373,14 @@
           <div class="ev-body">Sustained, modest salt reduction produced consistent, significant BP reductions in both hypertensive and normotensive adults — <strong>the lower the intake achieved, the lower the blood pressure</strong>, across the 3–12 g/day range.</div>
         </div>
       </div>
-      <div class="ev-card" id="e4">
-        <div class="ev-stat">
-          <div class="ev-num good">−42%</div>
-          <div class="ev-label">stroke mortality · UK salt programme 2003–2011</div>
+      <div class="ev-card animate-ready" id="e4">
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good">−42%</div>
+            <div class="ev-outcome">stroke mortality</div>
+          </div>
+          <div class="ev-conditions">during UK salt reduction programme 2003–2011</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">UK Salt Reduction Programme</div>
@@ -372,10 +395,14 @@
   <div class="slide">
     <div class="slide-title">Research · <span>potassium — the other side</span></div>
     <div class="ev-stage">
-      <div class="ev-card" id="e5">
-        <div class="ev-stat">
-          <div class="ev-num good">−24%</div>
-          <div class="ev-label">stroke risk · higher potassium intake</div>
+      <div class="ev-card animate-ready" id="e5">
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good">−24%</div>
+            <div class="ev-outcome">lower stroke risk</div>
+          </div>
+          <div class="ev-conditions">associated with higher potassium intake — WHO meta-analysis</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Potassium intake &amp; CV outcomes</div>
@@ -383,10 +410,14 @@
           <div class="ev-body">Higher potassium intakes associated with <strong>about 24% lower stroke risk</strong> and lower blood pressure. Potassium directly counteracts sodium's pressure-raising effect — fruit, vegetables, beans, and dairy are the main sources.</div>
         </div>
       </div>
-      <div class="ev-card" id="e6">
-        <div class="ev-stat">
-          <div class="ev-num good" style="font-size:2rem">First-line</div>
-          <div class="ev-label">lifestyle advice · NICE NG136</div>
+      <div class="ev-card animate-ready" id="e6">
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good" style="font-size:2rem">First-line</div>
+          </div>
+          <div class="ev-outcome" style="text-align:center">lifestyle recommendation</div>
+          <div class="ev-conditions">NICE NG136 — for all adults with hypertension</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">NICE guidance — hypertension in adults</div>
@@ -401,7 +432,7 @@
   <div class="slide">
     <div class="slide-title">How excess salt <span>raises blood pressure</span></div>
     <div class="mech-grid">
-      <div class="mech-card" id="m1">
+      <div class="mech-card animate-ready" id="m1">
         <div class="mech-icon">💧</div>
         <div class="mech-content">
           <div class="mech-title">Volume expansion</div>
@@ -409,7 +440,7 @@
         </div>
         <div class="mech-outcome">→ ↑ Volume</div>
       </div>
-      <div class="mech-card" id="m2">
+      <div class="mech-card animate-ready" id="m2">
         <div class="mech-icon">💪</div>
         <div class="mech-content">
           <div class="mech-title">Vessel stiffening</div>
@@ -417,7 +448,7 @@
         </div>
         <div class="mech-outcome">→ ↑ Stiffness</div>
       </div>
-      <div class="mech-card" id="m3">
+      <div class="mech-card animate-ready" id="m3">
         <div class="mech-icon">🌊</div>
         <div class="mech-content">
           <div class="mech-title">Endothelial dysfunction</div>
@@ -425,7 +456,7 @@
         </div>
         <div class="mech-outcome">→ ↓ NO</div>
       </div>
-      <div class="mech-card" id="m4">
+      <div class="mech-card animate-ready" id="m4">
         <div class="mech-icon">⚡</div>
         <div class="mech-content">
           <div class="mech-title">Sympathetic activation</div>
@@ -433,7 +464,7 @@
         </div>
         <div class="mech-outcome">→ ↑ SNS</div>
       </div>
-      <div class="mech-card" id="m5">
+      <div class="mech-card animate-ready" id="m5">
         <div class="mech-icon">🫘</div>
         <div class="mech-content">
           <div class="mech-title">Renal sodium handling</div>
@@ -441,7 +472,7 @@
         </div>
         <div class="mech-outcome">→ RAAS</div>
       </div>
-      <div class="mech-card" id="m6">
+      <div class="mech-card animate-ready" id="m6">
         <div class="mech-icon">🫀</div>
         <div class="mech-content">
           <div class="mech-title">Cardiac remodelling</div>
