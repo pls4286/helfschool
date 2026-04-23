@@ -6,7 +6,7 @@
   <title>Cholesterol — Visuals | helf.school</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--calm:#70b8e8}
+    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--calm:#70b8e8;--cardio:#C8423A}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
 
@@ -30,6 +30,7 @@
     .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .25s}
     .dot.active{background:var(--acc);transform:scale(1.3)}
 
+    /* INTRO */
     .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.3rem}
     .intro-badge{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.12);border:1px solid rgba(212,184,74,.3);padding:.3rem .9rem;border-radius:100px}
     .intro-icon{font-size:4rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
@@ -38,7 +39,7 @@
     .intro-sub{font-size:1.1rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;max-width:680px;line-height:1.5;font-weight:400}
     .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
 
-    /* HDL/LDL diagram (slide 2) */
+    /* HDL/LDL DIAGRAM (slide 2) */
     .lipid-stage{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:1.5rem;min-height:0}
     .lipid-row{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;width:100%;max-width:960px}
     .lipid-box{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.3);border-radius:18px;padding:1.5rem 1.6rem;text-align:center}
@@ -55,67 +56,74 @@
     .lipid-strip-text{font-size:1rem;color:#fff;font-weight:500;font-family:'Fraunces',serif}
     .lipid-strip-text strong{color:var(--acc)}
 
-    /* HORIZONTAL ROWS — shared across decks */
+    /* HARM ROWS (slide 3) — RED */
     .sys-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.65rem;flex:1;min-height:0}
-    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:14px;padding:1rem 1.5rem;display:grid;grid-template-columns:72px 1fr auto;gap:1.5rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:14px;padding:1rem 1.5rem;display:grid;grid-template-columns:72px 1fr auto;gap:1.5rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .sys-card.vis{opacity:1;transform:translateY(0)}
-    .sys-icon{font-size:2.8rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .sys-icon{font-size:2.8rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
     .sys-content{display:flex;flex-direction:column;gap:.25rem;min-width:0}
-    .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;line-height:1.12;letter-spacing:-.01em}
-    .sys-body{font-size:1rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400}
-    .sys-stat{font-family:'Fraunces',serif;font-size:clamp(2.4rem,3.6vw,3.6rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:1rem}
+    .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;line-height:1.12}
+    .sys-body{font-size:1rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .sys-stat{font-family:'Fraunces',serif;font-size:clamp(2.4rem,3.6vw,3.6rem);font-weight:700;color:var(--bad);line-height:1;text-align:right;white-space:nowrap;padding-left:1rem;padding-top:.1rem}
 
+    /* DOCTOR ROWS (slide 4) — GREEN */
     .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
-    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .doc-card.vis{opacity:1;transform:translateY(0)}
-    .doc-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .doc-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
     .doc-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
-    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12;letter-spacing:-.01em}
-    .doc-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400}
-    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.1vw,1.95rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
+    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12}
+    .doc-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.1vw,1.95rem);font-weight:700;color:var(--good);line-height:1;text-align:right;white-space:nowrap;padding-left:.75rem;padding-top:.1rem}
 
+    /* EVIDENCE CARDS — UPDATED STAT BLOCK PATTERN */
     .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
     .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .45s ease}
     .ev-card.vis{opacity:1;transform:translateY(0)}
-    .ev-stat{text-align:center;background:rgba(212,184,74,.09);border-radius:14px;padding:1.25rem .85rem}
-    .ev-num{font-family:'Fraunces',serif;font-size:3.4rem;font-weight:700;color:var(--acc);line-height:1;letter-spacing:-.02em}
+    .ev-stat{background:rgba(212,184,74,.09);border-radius:14px;padding:1.1rem .9rem;text-align:left}
+    .ev-stat-context{font-size:.68rem;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:rgba(255,255,255,.60);margin-bottom:.2rem}
+    .ev-num{font-family:'Fraunces',serif;font-size:3.0rem;font-weight:700;line-height:1;letter-spacing:-.02em;margin-bottom:.25rem}
     .ev-num.bad{color:var(--bad)}
     .ev-num.good{color:var(--good)}
-    .ev-label{font-size:1rem;font-weight:700;color:#fff;margin-top:.5rem;line-height:1.3}
-    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;margin-bottom:.25rem;line-height:1.15;letter-spacing:-.01em}
+    .ev-num.warn{color:var(--warn)}
+    .ev-what{font-size:1.0rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:.3rem}
+    .ev-label{font-size:.82rem;color:rgba(255,255,255,.80);line-height:1.4}
+    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;margin-bottom:.25rem;line-height:1.15}
     .ev-det .ev-journal{font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
     .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400}
 
+    /* MECHANISM ROWS (slide 8) — AMBER */
     .mech-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
-    .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .mech-card.vis{opacity:1;transform:translateY(0)}
-    .mech-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .mech-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
     .mech-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
-    .mech-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12;letter-spacing:-.01em}
-    .mech-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400}
-    .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2vw,1.85rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
+    .mech-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12}
+    .mech-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2vw,1.85rem);font-weight:700;color:var(--warn);line-height:1;text-align:right;white-space:nowrap;padding-left:.75rem;padding-top:.1rem}
 
-    /* HIGH-IMPACT CTA */
+    /* CTA SLIDE 9 — HIGH-IMPACT HORIZONTAL ROWS */
     .cta-slide{position:relative}
     .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%, rgba(212,184,74,.18), rgba(212,184,74,.04) 45%, transparent 70%);pointer-events:none;z-index:0}
-    .cta-wrap-v2{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:.85rem;padding:.5rem}
-    .cta-badge-v2{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.42rem 1.15rem;border-radius:100px;box-shadow:0 0 30px rgba(212,184,74,.14)}
-    .cta-icon-v2{font-size:clamp(4.5rem,8vw,6rem);line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;filter:drop-shadow(0 0 30px rgba(212,184,74,.28));animation:pulseHalo 3.2s ease-in-out infinite}
-    @keyframes pulseHalo{0%,100%{filter:drop-shadow(0 0 28px rgba(212,184,74,.22))}50%{filter:drop-shadow(0 0 55px rgba(212,184,74,.55))}}
-    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(3.2rem,5.8vw,4.9rem);font-weight:700;color:#fff;line-height:1.02;max-width:1000px;letter-spacing:-.028em}
+    .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem 0;gap:.55rem}
+    .cta-header{text-align:center}
+    .cta-badge-v2{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.42rem 1.15rem;border-radius:100px;display:inline-block;margin-bottom:.4rem}
+    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(2.2rem,4.0vw,3.2rem);font-weight:700;color:#fff;line-height:1.05;letter-spacing:-.028em}
     .cta-headline-v2 span{color:var(--acc)}
-    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.4vw,1.85rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);max-width:780px;line-height:1.32}
-    .cta-body-v2{font-size:1.05rem;color:rgba(255,255,255,.90);max-width:780px;line-height:1.52;font-weight:400}
-    .cta-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;max-width:900px;width:100%;margin-top:.25rem}
-    .cta-ac{background:linear-gradient(180deg,rgba(212,184,74,.16),rgba(212,184,74,.06));border:1.5px solid rgba(212,184,74,.45);border-radius:14px;padding:.95rem .55rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;text-align:center;transition:transform .25s ease}
-    .cta-ac:hover{transform:translateY(-2px)}
-    .cta-ac-icon{font-size:1.85rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .cta-ac-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.98rem;line-height:1.18}
-    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.8rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;margin-top:.6rem;max-width:900px}
-    .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.85);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left}
+    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.4rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.85);margin-top:.2rem}
+    .cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.5rem;min-height:0}
+    .cta-row-v2{display:grid;grid-template-columns:60px 1fr auto;align-items:start;background:rgba(255,255,255,.06);border:1px solid rgba(212,184,74,.30);border-left:4px solid var(--acc);border-radius:0 10px 10px 0;padding:.65rem .9rem;gap:.75rem;min-height:0;overflow:hidden}
+    .cta-row-icon-v2{font-size:1.9rem;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .cta-row-content-v2{min-height:0}
+    .cta-row-title-v2{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(.95rem,1.6vw,1.1rem);color:#fff;line-height:1.2;margin-bottom:.15rem}
+    .cta-row-body-v2{font-size:.88rem;color:rgba(255,255,255,.85);line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+    .cta-row-word-v2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.5rem,2.4vw,2.0rem);color:var(--acc);line-height:1;text-align:right;flex-shrink:0;white-space:nowrap;padding-top:.1rem}
+    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.7rem 1.1rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px}
+    .med-disc-icon{font-size:1.2rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .med-disc-text{font-size:.88rem;color:rgba(255,255,255,.85);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left}
     .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
 
+    /* CLOSING */
     .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.6rem;padding:1.5rem}
     .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
     .close-logo .dot{color:var(--coral)}
@@ -156,8 +164,8 @@
     <div class="intro-wrap">
       <div class="intro-badge">📋 Cardiovascular Health Series · Article 02</div>
       <div class="intro-icon">🩸</div>
-      <div class="intro-title">Cholesterol<br/><span>the full picture</span></div>
-      <div class="intro-sub">What cholesterol is, why LDL matters most, and what the evidence really says about lowering it.</div>
+      <div class="intro-title">Cholesterol —<br/><span>the full picture</span></div>
+      <div class="intro-sub">What cholesterol is, why LDL matters most, and what the evidence shows about lowering it.</div>
       <div class="intro-tagline">Dr Paul · Retired NHS GP · helf.school</div>
     </div>
   </div>
@@ -176,18 +184,18 @@
         <div class="lipid-box bad">
           <div class="lipid-tag">Harmful at high levels</div>
           <div class="lipid-name">LDL</div>
-          <div class="lipid-desc">Deposits cholesterol into artery walls — the main driver of atherosclerosis.</div>
-          <div class="lipid-target">Target &lt; 3.0 mmol/L · High-risk &lt; 1.8</div>
+          <div class="lipid-desc">Deposits cholesterol into artery walls — the main driver of atherosclerosis (arterial plaque build-up).</div>
+          <div class="lipid-target">Target &lt; 3.0 mmol/L · High-risk &lt; 2.0</div>
         </div>
       </div>
       <div class="lipid-strip">
         <div class="lipid-strip-icon">💡</div>
-        <div class="lipid-strip-text">Total cholesterol = HDL + LDL + other lipoproteins · <strong>non-HDL cholesterol</strong> is the modern treatment target</div>
+        <div class="lipid-strip-text">Total cholesterol = HDL + LDL + other lipoproteins · <strong>non-HDL cholesterol</strong> is the modern clinical treatment target · NICE NG238</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 3: WHY IT MATTERS · HARM · RED -->
+  <!-- SLIDE 3: WHY IT MATTERS — HARM — RED -->
   <div class="slide">
     <div class="slide-title">Why it matters: <span>where cholesterol causes harm</span></div>
     <div class="sys-grid">
@@ -195,7 +203,7 @@
         <div class="sys-icon">❤️</div>
         <div class="sys-content">
           <div class="sys-title">Heart — coronary disease</div>
-          <div class="sys-body">Main driver of angina, heart attack, and sudden cardiac death. Each 1 mmol/L LDL rise raises major vascular events.</div>
+          <div class="sys-body">Main driver of angina, heart attack, and sudden cardiac death. Each 1 mmol/L LDL rise significantly increases major vascular event risk.</div>
         </div>
         <div class="sys-stat">1 mmol/L</div>
       </div>
@@ -203,7 +211,7 @@
         <div class="sys-icon">🧠</div>
         <div class="sys-content">
           <div class="sys-title">Brain — ischaemic stroke</div>
-          <div class="sys-body">Atherosclerosis in neck and brain arteries triggers ischaemic stroke and transient ischaemic attacks (TIA).</div>
+          <div class="sys-body">Atherosclerosis in neck and brain arteries triggers ischaemic stroke (brain tissue damage from blocked blood supply) and transient ischaemic attacks (TIA).</div>
         </div>
         <div class="sys-stat">Stroke</div>
       </div>
@@ -211,15 +219,15 @@
         <div class="sys-icon">🦵</div>
         <div class="sys-content">
           <div class="sys-title">Legs — peripheral arterial disease</div>
-          <div class="sys-body">Leg-artery narrowing causes exercise pain (claudication); in severe cases, tissue loss and amputation risk.</div>
+          <div class="sys-body">Leg-artery narrowing causes exercise pain (claudication — cramping due to inadequate blood flow); in severe cases, tissue loss and amputation risk.</div>
         </div>
         <div class="sys-stat">PAD</div>
       </div>
       <div class="sys-card" id="s4">
         <div class="sys-icon">🩸</div>
         <div class="sys-content">
-          <div class="sys-title">Aorta — aneurysm &amp; dissection</div>
-          <div class="sys-body">Atherosclerotic weakening of the aorta contributes to abdominal aortic aneurysm and dissection risk.</div>
+          <div class="sys-title">Aorta — aneurysm and dissection</div>
+          <div class="sys-body">Atherosclerotic weakening of the aorta (the body's main artery) contributes to abdominal aortic aneurysm and risk of aortic dissection.</div>
         </div>
         <div class="sys-stat">Aorta</div>
       </div>
@@ -227,14 +235,14 @@
         <div class="sys-icon">🧬</div>
         <div class="sys-content">
           <div class="sys-title">Inherited — familial hypercholesterolaemia</div>
-          <div class="sys-body">Affects roughly 1 in 250 UK adults. Untreated, drives early heart attack — often before age 55 in men, 60 in women.</div>
+          <div class="sys-body">Affects roughly 1 in 250 UK adults — most undiagnosed. Untreated FH drives early heart attack, often before age 55 in men and 60 in women.</div>
         </div>
         <div class="sys-stat">1 in 250</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 4: DOCTOR · ACTION · GREEN -->
+  <!-- SLIDE 4: DOCTOR — GREEN — ACTION -->
   <div class="slide">
     <div class="slide-title">What your <span>doctor might do</span></div>
     <div class="doc-grid">
@@ -242,225 +250,253 @@
         <div class="doc-icon">🩸</div>
         <div class="doc-content">
           <div class="doc-title">Full lipid panel</div>
-          <div class="doc-body">Total, HDL, non-HDL, and triglycerides. Fasting no longer required for most adults (NICE NG238).</div>
+          <div class="doc-body">Total, HDL, non-HDL, and triglycerides. Fasting no longer required for most adults under NICE NG238.</div>
         </div>
-        <div class="doc-action">→ Test</div>
+        <div class="doc-action">Test</div>
       </div>
       <div class="doc-card" id="d2">
         <div class="doc-icon">🧮</div>
         <div class="doc-content">
-          <div class="doc-title">QRISK3 risk calculation</div>
-          <div class="doc-body">Estimates 10-year cardiovascular risk using age, sex, BP, cholesterol, family history, and comorbidities.</div>
+          <div class="doc-title">QRISK3 cardiovascular risk calculation</div>
+          <div class="doc-body">Estimates 10-year cardiovascular risk using age, sex, blood pressure, cholesterol, family history, and comorbidities.</div>
         </div>
-        <div class="doc-action">→ Calculate</div>
+        <div class="doc-action">Calculate</div>
       </div>
       <div class="doc-card" id="d3">
         <div class="doc-icon">🔍</div>
         <div class="doc-content">
           <div class="doc-title">Rule out secondary causes</div>
-          <div class="doc-body">Thyroid, kidney and liver function, diabetes screen, and a review of any medications that raise lipids.</div>
+          <div class="doc-body">Thyroid, kidney and liver function, diabetes screen, and review of any medications known to raise lipid levels.</div>
         </div>
-        <div class="doc-action">→ Exclude</div>
+        <div class="doc-action">Exclude</div>
       </div>
       <div class="doc-card" id="d4">
         <div class="doc-icon">🌿</div>
         <div class="doc-content">
-          <div class="doc-title">Lifestyle guidance</div>
-          <div class="doc-body">Mediterranean / DASH-style eating, regular activity, weight management, and limiting alcohol and saturated fats.</div>
+          <div class="doc-title">Lifestyle measures</div>
+          <div class="doc-body">Mediterranean or DASH-style eating, regular aerobic activity, weight management, and reducing saturated fat and alcohol are all clinically recognised as improving lipid profiles.</div>
         </div>
-        <div class="doc-action">→ Advise</div>
+        <div class="doc-action">Lifestyle</div>
       </div>
       <div class="doc-card" id="d5">
         <div class="doc-icon">💊</div>
         <div class="doc-content">
-          <div class="doc-title">Statin ± ezetimibe</div>
-          <div class="doc-body">NICE NG238 pathway — atorvastatin (Lipitor) is first line. Ezetimibe added when LDL target not reached.</div>
+          <div class="doc-title">Statin ± ezetimibe — NICE NG238 pathway</div>
+          <div class="doc-body">Atorvastatin is first line. Ezetimibe (a non-statin that reduces cholesterol absorption) is added when LDL target is not reached on statin alone.</div>
         </div>
-        <div class="doc-action">→ Treat</div>
+        <div class="doc-action">Treat</div>
       </div>
       <div class="doc-card" id="d6">
         <div class="doc-icon">🏥</div>
         <div class="doc-content">
           <div class="doc-title">Specialist lipid clinic</div>
-          <div class="doc-body">For suspected familial hypercholesterolaemia, statin intolerance, or when PCSK9 inhibitors may be needed.</div>
+          <div class="doc-body">For suspected familial hypercholesterolaemia, statin intolerance, or where PCSK9 inhibitors (a newer drug class) may be indicated.</div>
         </div>
-        <div class="doc-action">→ Refer</div>
+        <div class="doc-action">Refer</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 5: RESEARCH 1 — UK PICTURE -->
+  <!-- SLIDE 5: RESEARCH — UK PICTURE -->
   <div class="slide">
     <div class="slide-title">Research · <span>the UK picture</span></div>
     <div class="ev-stage">
       <div class="ev-card" id="e1">
         <div class="ev-stat">
-          <div class="ev-num bad">~50%</div>
-          <div class="ev-label">UK adults with raised total cholesterol (≥5 mmol/L)</div>
+          <div class="ev-stat-context">Key finding</div>
+          <div class="ev-num bad">59%</div>
+          <div class="ev-what">of England adults have raised total cholesterol</div>
+          <div class="ev-label">≥5 mmol/L — the most common modifiable cardiovascular risk factor in the UK · NHS Health Survey for England 2021</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Scale of raised cholesterol in the UK</div>
-          <div class="ev-journal">NHS Health Survey for England · BHF data</div>
-          <div class="ev-body">Raised cholesterol is one of the <strong>most common</strong> modifiable cardiovascular risk factors in the UK. Most people have no symptoms — detection needs a blood test.</div>
+          <div class="ev-journal">NHS Health Survey for England · NHS Digital</div>
+          <div class="ev-body">Most people with raised cholesterol have <strong>no symptoms</strong> — the condition is detectable only through a blood test. The NHS Health Check programme offers testing every five years to everyone aged 40–74 in England, but detection rates remain incomplete.</div>
         </div>
       </div>
       <div class="ev-card" id="e2">
         <div class="ev-stat">
+          <div class="ev-stat-context">Key finding</div>
           <div class="ev-num bad">40–60%</div>
-          <div class="ev-label">heritability of LDL cholesterol in twin studies</div>
+          <div class="ev-what">of LDL cholesterol variation is inherited</div>
+          <div class="ev-label">twin and family studies — diet plays a role, but genetics sets the baseline</div>
         </div>
         <div class="ev-det">
-          <div class="ev-trial">Cholesterol is largely genetic</div>
-          <div class="ev-journal">Twin &amp; family studies · multiple cohorts</div>
-          <div class="ev-body">Diet plays a role, but genetics sets the dial. Family history of early heart disease raises the case for checking cholesterol earlier, even in people who look healthy.</div>
+          <div class="ev-trial">Cholesterol is largely determined by genetics</div>
+          <div class="ev-journal">Twin and family studies · multiple cohorts</div>
+          <div class="ev-body">Diet plays a meaningful role, but for most people <strong>genetics sets the dial</strong>. Family history of early heart disease raises the clinical case for earlier cholesterol assessment, even in people who appear healthy. This is especially true for familial hypercholesterolaemia.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 6: RESEARCH 2 — STATIN TRIALS -->
+  <!-- SLIDE 6: RESEARCH — LDL LOWERING -->
   <div class="slide">
     <div class="slide-title">Research · <span>LDL lowering works</span></div>
     <div class="ev-stage">
       <div class="ev-card" id="e3">
         <div class="ev-stat">
-          <div class="ev-num good">−22%</div>
-          <div class="ev-label">major vascular events per 1 mmol/L ↓ LDL</div>
+          <div class="ev-stat-context">Key finding</div>
+          <div class="ev-num good">~22%</div>
+          <div class="ev-what">reduction in major vascular events</div>
+          <div class="ev-label">per 1 mmol/L fall in LDL · CTT meta-analysis · 170,000 participants · The Lancet 2010</div>
         </div>
         <div class="ev-det">
-          <div class="ev-trial">CTT meta-analysis — 26 trials</div>
-          <div class="ev-journal">Baigent et al · The Lancet · 2010 · n=170,000</div>
-          <div class="ev-body">Every 1 mmol/L reduction in LDL cholesterol cut major vascular events by <strong>~22%</strong>, coronary deaths by ~20%, and all-cause mortality by ~10%.</div>
+          <div class="ev-trial">CTT meta-analysis — 26 trials · 170,000 participants</div>
+          <div class="ev-journal">Baigent et al · The Lancet · 2010</div>
+          <div class="ev-body">Every 1 mmol/L reduction in LDL cholesterol cut major vascular events by <strong>approximately 22%</strong>, coronary deaths by ~20%, and all-cause mortality by ~10%. The benefit was consistent regardless of starting LDL level, age, or sex — one of the most robust findings in cardiovascular medicine.</div>
         </div>
       </div>
       <div class="ev-card" id="e4">
         <div class="ev-stat">
-          <div class="ev-num good">−6.4%</div>
-          <div class="ev-label">CV events · ezetimibe added to statin</div>
+          <div class="ev-stat-context">Key finding</div>
+          <div class="ev-num good">6.4%</div>
+          <div class="ev-what">additional reduction in cardiovascular events</div>
+          <div class="ev-label">from adding ezetimibe to statin therapy · IMPROVE-IT · NEJM 2015 · n=18,144</div>
         </div>
         <div class="ev-det">
-          <div class="ev-trial">IMPROVE-IT trial</div>
+          <div class="ev-trial">IMPROVE-IT — ezetimibe added to statin</div>
           <div class="ev-journal">Cannon et al · NEJM · 2015 · n=18,144</div>
-          <div class="ev-body">Adding ezetimibe (Ezetrol) to statin therapy produced a further LDL drop of ~0.4 mmol/L and a <strong>6.4%</strong> relative reduction in CV events over 7 years.</div>
+          <div class="ev-body">Adding ezetimibe to statin therapy produced a further LDL reduction of approximately 0.4 mmol/L and a <strong>6.4% relative reduction</strong> in cardiovascular events over 7 years. This confirmed that further LDL lowering beyond statins alone translates into additional clinical benefit.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 7: RESEARCH 3 — LIFETIME EXPOSURE -->
+  <!-- SLIDE 7: RESEARCH — LIFETIME EXPOSURE -->
   <div class="slide">
-    <div class="slide-title">Research · <span>lifetime exposure matters</span></div>
+    <div class="slide-title">Research · <span>lifetime LDL exposure matters</span></div>
     <div class="ev-stage">
       <div class="ev-card" id="e5">
         <div class="ev-stat">
+          <div class="ev-stat-context">Key finding</div>
           <div class="ev-num good">~55%</div>
-          <div class="ev-label">lower CHD risk per 1 mmol/L lifetime ↓ LDL</div>
+          <div class="ev-what">lower coronary heart disease risk</div>
+          <div class="ev-label">per 1 mmol/L lower lifetime LDL — Mendelian randomisation · n=312,321 · JACC 2012</div>
         </div>
         <div class="ev-det">
-          <div class="ev-trial">Mendelian randomisation — Ference</div>
+          <div class="ev-trial">Mendelian randomisation — lifetime LDL and CHD risk</div>
           <div class="ev-journal">Ference et al · JACC · 2012 · n=312,321</div>
-          <div class="ev-body">Using genes as a natural experiment, each 1 mmol/L lower LDL sustained from birth corresponds to about a <strong>55% reduction</strong> in coronary heart disease — roughly three-fold the short-term trial effect.</div>
+          <div class="ev-body">Using genetic variants as a natural experiment, each 1 mmol/L lower LDL sustained from birth corresponded to approximately <strong>55% lower coronary heart disease risk</strong> — roughly three times the effect seen in short-term drug trials. This finding underlines the clinical importance of earlier intervention in younger people with elevated LDL.</div>
         </div>
       </div>
       <div class="ev-card" id="e6">
         <div class="ev-stat">
+          <div class="ev-stat-context">Key finding</div>
           <div class="ev-num bad">×20</div>
-          <div class="ev-label">early MI risk · untreated FH vs general pop.</div>
+          <div class="ev-what">higher risk of early myocardial infarction in untreated FH</div>
+          <div class="ev-label">vs general population · Simon Broome Register · NICE CG71</div>
         </div>
         <div class="ev-det">
-          <div class="ev-trial">Familial hypercholesterolaemia — NICE CG71</div>
+          <div class="ev-trial">Familial hypercholesterolaemia — untreated risk</div>
           <div class="ev-journal">NICE CG71 · Simon Broome Register</div>
-          <div class="ev-body">Untreated FH carries a <strong>~20-fold</strong> higher risk of early coronary disease. Early statin treatment brings risk close to population baseline — strong case for cascade screening.</div>
+          <div class="ev-body">Untreated familial hypercholesterolaemia carries approximately a <strong>20-fold higher risk</strong> of early coronary disease. Early statin treatment brings cardiovascular risk close to population baseline — making cascade screening of first-degree relatives a recognised clinical priority in UK guidelines.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 8: MECHANISMS · AMBER -->
+  <!-- SLIDE 8: MECHANISMS — AMBER -->
   <div class="slide">
     <div class="slide-title">How cholesterol <span>drives heart disease</span></div>
     <div class="mech-grid">
       <div class="mech-card" id="m1">
         <div class="mech-icon">🔓</div>
         <div class="mech-content">
-          <div class="mech-title">LDL breach</div>
-          <div class="mech-body">Small LDL particles slip through the artery's inner lining (endothelium) into the wall itself.</div>
+          <div class="mech-title">LDL wall entry</div>
+          <div class="mech-body">Small LDL particles penetrate the endothelium (inner lining of the artery) into the vessel wall itself.</div>
         </div>
-        <div class="mech-outcome">→ Wall entry</div>
+        <div class="mech-outcome">Wall entry</div>
       </div>
       <div class="mech-card" id="m2">
         <div class="mech-icon">🧪</div>
         <div class="mech-content">
           <div class="mech-title">LDL oxidation</div>
-          <div class="mech-body">Inside the wall, LDL is oxidised — which converts it into an inflammatory trigger.</div>
+          <div class="mech-body">Inside the arterial wall, LDL is oxidised — converting it into a potent inflammatory trigger.</div>
         </div>
-        <div class="mech-outcome">→ Ox-LDL</div>
+        <div class="mech-outcome">Ox-LDL</div>
       </div>
       <div class="mech-card" id="m3">
         <div class="mech-icon">🧫</div>
         <div class="mech-content">
           <div class="mech-title">Foam cell formation</div>
-          <div class="mech-body">Macrophages (immune cells) engulf oxidised LDL and become bloated "foam cells" that cannot leave.</div>
+          <div class="mech-body">Macrophages (immune cells) engulf oxidised LDL and become bloated "foam cells" — unable to leave the vessel wall.</div>
         </div>
-        <div class="mech-outcome">→ Foam cells</div>
+        <div class="mech-outcome">Foam cells</div>
       </div>
       <div class="mech-card" id="m4">
         <div class="mech-icon">🛡️</div>
         <div class="mech-content">
           <div class="mech-title">Plaque build-up</div>
-          <div class="mech-body">Layers of foam cells, lipid debris, and fibrous tissue form an atherosclerotic plaque that narrows the artery.</div>
+          <div class="mech-body">Layers of foam cells, lipid debris, and fibrous tissue form an atherosclerotic plaque that progressively narrows the artery.</div>
         </div>
-        <div class="mech-outcome">→ Plaque</div>
+        <div class="mech-outcome">Plaque</div>
       </div>
       <div class="mech-card" id="m5">
         <div class="mech-icon">💥</div>
         <div class="mech-content">
           <div class="mech-title">Plaque rupture</div>
-          <div class="mech-body">The fibrous cap tears, exposing the lipid core. Unstable plaques often rupture unpredictably.</div>
+          <div class="mech-body">The fibrous cap tears, exposing the lipid core to the blood. Rupture is often unpredictable and occurs without warning.</div>
         </div>
-        <div class="mech-outcome">→ Rupture</div>
+        <div class="mech-outcome">Rupture</div>
       </div>
       <div class="mech-card" id="m6">
         <div class="mech-icon">🩸</div>
         <div class="mech-content">
-          <div class="mech-title">Clot and occlusion</div>
-          <div class="mech-body">Platelets rapidly form a clot on the ruptured plaque, blocking the vessel — causing a heart attack or ischaemic stroke.</div>
+          <div class="mech-title">Clot and vessel occlusion</div>
+          <div class="mech-body">Platelets form a clot on the ruptured plaque, rapidly blocking blood flow — the mechanism behind heart attack and ischaemic stroke.</div>
         </div>
-        <div class="mech-outcome">→ MI / stroke</div>
+        <div class="mech-outcome">MI / stroke</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 9: CTA · HIGH-IMPACT -->
+  <!-- SLIDE 9: CTA — HIGH-IMPACT HORIZONTAL ROWS -->
   <div class="slide cta-slide">
     <div class="cta-glow"></div>
     <div class="cta-wrap-v2">
-      <div class="cta-badge-v2">Where to start</div>
-      <div class="cta-icon-v2">🩸</div>
-      <div class="cta-headline-v2">Know your number.<br/><span>The earlier, the better.</span></div>
-      <div class="cta-subline">Lifetime LDL exposure is what drives risk.</div>
-      <div class="cta-body-v2">A 1 mmol/L drop in LDL cuts major cardiovascular events by around a fifth. The longer the lower number is held, the bigger the protection.</div>
-      <div class="cta-actions">
-        <div class="cta-ac">
-          <div class="cta-ac-icon">🩸</div>
-          <div class="cta-ac-label">Know your LDL</div>
+      <div class="cta-header">
+        <div class="cta-badge-v2">What the evidence shows</div>
+        <div class="cta-headline-v2">Know the number.<br/><span>The evidence is clear.</span></div>
+        <div class="cta-subline">Lifetime LDL exposure is what drives risk.</div>
+      </div>
+      <div class="cta-rows-v2">
+        <div class="cta-row-v2">
+          <div class="cta-row-icon-v2">🩸</div>
+          <div class="cta-row-content-v2">
+            <div class="cta-row-title-v2">High cholesterol is clinically silent — only a blood test can detect it</div>
+            <div class="cta-row-body-v2">59% of England adults have raised total cholesterol. Most have no symptoms and are unaware.</div>
+          </div>
+          <div class="cta-row-word-v2">59%</div>
         </div>
-        <div class="cta-ac">
-          <div class="cta-ac-icon">🥗</div>
-          <div class="cta-ac-label">Mediterranean eating</div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon-v2">📉</div>
+          <div class="cta-row-content-v2">
+            <div class="cta-row-title-v2">Each 1 mmol/L LDL reduction cuts major cardiovascular events by ~22%</div>
+            <div class="cta-row-body-v2">A consistent finding across 170,000 participants in randomised trials — the evidence base for statin therapy is among the most robust in medicine.</div>
+          </div>
+          <div class="cta-row-word-v2">−22%</div>
         </div>
-        <div class="cta-ac">
-          <div class="cta-ac-icon">🚶</div>
-          <div class="cta-ac-label">Daily movement</div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon-v2">🧬</div>
+          <div class="cta-row-content-v2">
+            <div class="cta-row-title-v2">Lower LDL from birth is associated with ~55% lower lifetime CHD risk</div>
+            <div class="cta-row-body-v2">Genetic evidence confirms LDL is causal — and that the earlier it is reduced, the greater the long-term cardiovascular protection.</div>
+          </div>
+          <div class="cta-row-word-v2">−55%</div>
         </div>
-        <div class="cta-ac">
-          <div class="cta-ac-icon">💊</div>
-          <div class="cta-ac-label">Follow prescribed meds</div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon-v2">💊</div>
+          <div class="cta-row-content-v2">
+            <div class="cta-row-title-v2">No supplement matches statin therapy for LDL reduction</div>
+            <div class="cta-row-body-v2">The SPORT trial found ~38% LDL reduction from low-dose statin vs no significant reduction from fish oil, garlic, cinnamon, turmeric, plant sterols, or red yeast rice.</div>
+          </div>
+          <div class="cta-row-word-v2">38%</div>
         </div>
       </div>
       <div class="med-disclaimer">
         <div class="med-disc-icon">⚕️</div>
-        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Any changes you're considering are a conversation for you to have with your GP or healthcare professional.</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
       </div>
     </div>
   </div>
@@ -473,18 +509,18 @@
       <div class="close-headline">Lifelong number. <span>Lifelong protection.</span></div>
       <div class="close-stats">
         <div class="cst-card">
-          <div class="cst-num">~50%</div>
-          <div class="cst-lab">UK adults with raised cholesterol</div>
-          <div class="cst-src">NHS Health Survey · BHF</div>
+          <div class="cst-num">59%</div>
+          <div class="cst-lab">England adults with raised total cholesterol</div>
+          <div class="cst-src">NHS Health Survey for England 2021</div>
         </div>
         <div class="cst-card">
-          <div class="cst-num">−22%</div>
-          <div class="cst-lab">CV events per 1 mmol/L ↓ LDL</div>
-          <div class="cst-src">CTT · Lancet 2010</div>
+          <div class="cst-num">~22%</div>
+          <div class="cst-lab">fewer major CV events per 1 mmol/L ↓ LDL</div>
+          <div class="cst-src">CTT · Lancet · 170,000 participants</div>
         </div>
         <div class="cst-card">
           <div class="cst-num">1 in 250</div>
-          <div class="cst-lab">UK prevalence of FH — largely undiagnosed</div>
+          <div class="cst-lab">UK adults with FH — largely undiagnosed</div>
           <div class="cst-src">NICE CG71</div>
         </div>
       </div>
@@ -518,11 +554,9 @@
   const dots   = document.querySelectorAll('.dot');
   let cur = 0;
   function show(n){
-    slides[cur].classList.remove('active');
-    dots[cur].classList.remove('active');
+    slides[cur].classList.remove('active'); dots[cur].classList.remove('active');
     cur = (n + slides.length) % slides.length;
-    slides[cur].classList.add('active');
-    dots[cur].classList.add('active');
+    slides[cur].classList.add('active'); dots[cur].classList.add('active');
     document.getElementById('counter').textContent = (cur+1)+' / '+slides.length;
     triggerSlide(cur);
   }
@@ -546,19 +580,10 @@
     if(n===7) animateGroup(['m1','m2','m3','m4','m5','m6'], 140);
   }
   function animateGroup(ids, step){
-    ids.forEach((id,i)=>{
-      setTimeout(()=>{
-        const el = document.getElementById(id);
-        if(el) el.classList.add('vis');
-      }, 180 + i*step);
-    });
+    ids.forEach((id,i)=>{ setTimeout(()=>{ const el=document.getElementById(id); if(el) el.classList.add('vis'); }, 180+i*step); });
   }
   slides.forEach(s=>{
-    const obs = new MutationObserver(()=>{
-      if(!s.classList.contains('active')){
-        s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'));
-      }
-    });
+    const obs = new MutationObserver(()=>{ if(!s.classList.contains('active')){ s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis')); } });
     obs.observe(s, {attributes:true});
   });
   triggerSlide(0);

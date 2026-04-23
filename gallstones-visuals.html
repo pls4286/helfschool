@@ -496,18 +496,22 @@
       line-height: 1.25;
       margin-bottom: 0.5rem;
     }
+    .ev-stat-block { background: rgba(255,255,255,0.08); border-radius: 8px; padding: 0.8rem 1rem; margin-bottom: 0.7rem; }
+    .ev-stat-context { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(255,255,255,0.60); margin-bottom: 0.15rem; }
+    .ev-stat-row { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; line-height: 1.15; margin-bottom: 0.25rem; }
     .ev-stat {
       font-family: 'Fraunces', serif;
       font-weight: 900;
-      font-size: 3.0rem;
+      font-size: 2.8rem;
       line-height: 1;
-      margin-bottom: 0.3rem;
+      flex-shrink: 0;
     }
+    .ev-stat-what { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.25rem; color: #fff; line-height: 1.2; }
     .ev-stat-label {
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.80);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
       line-height: 1.4;
-      margin-bottom: 0.55rem;
     }
     .ev-finding {
       font-size: 0.93rem;
@@ -989,17 +993,29 @@
       <div class="ev-card">
         <div class="ev-badge">UK RCT · 2024</div>
         <div class="ev-title">C-GALL: cholecystectomy vs conservative management</div>
-        <div class="ev-stat" style="color:var(--digestive);">~50%</div>
-        <div class="ev-stat-label">of those assigned to watchful waiting crossed over to surgery within 2 years due to symptoms or complications</div>
-        <div class="ev-finding">Adults with symptomatic uncomplicated gallstones were randomised 1:1 to immediate surgery or watchful waiting, with 24 months follow-up. No significant difference in overall quality of life was found between the two groups — but condition-specific quality of life significantly favoured surgery (mean difference 9.0, p&lt;0.001). Around half of those in the watchful-waiting group ultimately crossed over to surgery within two years.</div>
+        <div class="ev-stat-block">
+          <div class="ev-stat-context">Key finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-stat" style="color:var(--digestive);">~50%</div>
+            <div class="ev-stat-what">crossed over to surgery within 2 years</div>
+          </div>
+          <div class="ev-stat-label">of those assigned to watchful waiting — due to symptoms or complications</div>
+        </div>
+        <div class="ev-finding">Adults randomised 1:1 to surgery or watchful waiting, 24 months follow-up. No significant difference in overall quality of life — but condition-specific quality of life significantly favoured surgery (mean difference 9.0, p&lt;0.001).</div>
         <div class="ev-journal">NIHR Health Technology Assessment · Innes K, Ahmed I et al.</div>
       </div>
       <div class="ev-card">
         <div class="ev-badge">Key Findings</div>
         <div class="ev-title">What the C-GALL trial tells us</div>
-        <div class="ev-stat" style="color:var(--sage);">9.0</div>
-        <div class="ev-stat-label">mean difference in condition-specific quality of life score — favouring surgery at 24 months (95% CI 4.1–14.0)</div>
-        <div class="ev-finding">For uncomplicated symptomatic gallstones, surgery delivers better disease-specific outcomes than watchful waiting. For overall pain scores the difference was not significant — both approaches are clinically acceptable. NICE recommends surgery for symptomatic gallstones based on this and earlier evidence.</div>
+        <div class="ev-stat-block">
+          <div class="ev-stat-context">Key finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-stat" style="color:var(--sage);">9.0</div>
+            <div class="ev-stat-what">point improvement in disease-specific quality of life</div>
+          </div>
+          <div class="ev-stat-label">favouring surgery at 24 months (95% CI 4.1–14.0, p&lt;0.001)</div>
+        </div>
+        <div class="ev-finding">Surgery delivers better disease-specific outcomes than watchful waiting. For overall pain scores the difference was not significant — both approaches are clinically acceptable. NICE recommends surgery for symptomatic gallstones.</div>
         <div class="ev-journal">Condition-specific QoL significantly favoured cholecystectomy · p&lt;0.001</div>
       </div>
     </div>
