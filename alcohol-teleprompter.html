@@ -1,347 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-  <title>Alcohol — Teleprompter | helf.school</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alcohol — Teleprompter · helf.school</title>
   <style>
     :root {
-      --navy: #1B2A4A;
-      --practical: #d4b84a;
-      --practical-deep: #7A6A2E;
-      --amber: #E8A84A;
-      --coral: #E8634A;
-      --bg: #0d0d0d;
-      --text: #f0f0f0;
+      --bg: #0A0F1A; --text: #F0EDE8; --accent: #d4b84a;
+      --cue-bg: rgba(212,184,74,0.18); --cue-border: #d4b84a;
+      --pause-bg: rgba(200,66,58,0.18); --pause-border: #C8423A;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; overflow: hidden; background: var(--bg); }
-
-    /* TOPBAR */
-    #topbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--navy); border-bottom: 2px solid var(--practical);
-      padding: .45rem 1rem;
-      display: flex; align-items: center; justify-content: space-between; gap: .75rem;
-    }
-    #topbar-title { font-family: 'DM Sans', sans-serif; font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.85); }
-    #controls { display: flex; align-items: center; gap: .4rem; flex-shrink: 0; }
-    .ctrl-btn {
-      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
-      color: #fff; font-size: .72rem; font-weight: 700; padding: .2rem .5rem;
-      border-radius: 4px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background .15s;
-    }
-    .ctrl-btn:hover { background: rgba(255,255,255,.2); }
-    .ctrl-label { font-size: .65rem; color: rgba(255,255,255,.62); font-family: 'DM Sans', sans-serif; }
-    #speed-display { font-size: .72rem; font-weight: 700; color: var(--practical); min-width: 14px; text-align: center; font-family: 'DM Sans', sans-serif; }
-    #play-btn {
-      background: var(--practical-deep); border: none; color: #fff;
-      font-size: .72rem; font-weight: 700; padding: .25rem .7rem;
-      border-radius: 4px; cursor: pointer; font-family: 'DM Sans', sans-serif; letter-spacing: .04em;
-    }
-    #play-btn:hover { filter: brightness(1.15); }
-
-    /* SEGMENT DOTS */
-    #seg-dots {
-      position: fixed; right: .6rem; top: 50%; transform: translateY(-50%);
-      z-index: 100; display: flex; flex-direction: column; gap: .4rem;
-    }
-    .seg-dot {
-      width: 10px; height: 10px; border-radius: 50%;
-      background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.3);
-      cursor: pointer; transition: background .2s;
-    }
-    .seg-dot.active { background: var(--practical); border-color: var(--practical); }
-    .seg-dot:hover { background: rgba(255,255,255,.45); }
-
-    /* SCROLL */
-    #scroll-wrap { position: fixed; top: 44px; bottom: 0; left: 0; right: 0; overflow: hidden; }
-    #scroll-content { padding: 60vh 4rem 60vh; max-width: 840px; margin: 0 auto; will-change: transform; }
-
-    /* FOCUS */
-    #focus-line { position: fixed; top: 50%; left: 0; right: 0; height: 2px; background: rgba(212,184,74,.25); pointer-events: none; z-index: 50; }
-    #focus-top { position: fixed; top: 44px; left: 0; right: 0; height: 34%; background: linear-gradient(to bottom, var(--bg) 0%, transparent 100%); pointer-events: none; z-index: 50; }
-    #focus-bottom { position: fixed; bottom: 0; left: 0; right: 0; height: 34%; background: linear-gradient(to top, var(--bg) 0%, transparent 100%); pointer-events: none; z-index: 50; }
-
-    /* SEGMENT LABEL */
-    .seg-label {
-      font-family: 'DM Sans', sans-serif; font-size: .72rem; font-weight: 700;
-      letter-spacing: .14em; text-transform: uppercase;
-      color: var(--practical); margin-bottom: 1.4rem; margin-top: 5rem;
-      padding-bottom: .4rem; border-bottom: 1px solid rgba(212,184,74,.3);
-    }
-    .seg-label:first-child { margin-top: 0; }
-
-    /* SCRIPT */
-    .line { font-family: 'DM Sans', sans-serif; font-size: 1.9rem; line-height: 1.8; color: var(--text); font-weight: 400; margin-bottom: 1.5rem; }
-    .line strong { font-weight: 700; color: #fff; }
-    .line em { color: var(--practical); font-style: normal; font-weight: 600; }
-
-    /* PAUSE */
-    .pause {
-      display: inline-block;
-      background: rgba(232,99,74,.15); border: 1px solid rgba(232,99,74,.35);
-      color: var(--coral); font-size: 1.1rem; font-weight: 700;
-      padding: .1rem .45rem; border-radius: 4px; margin: 0 .3rem; vertical-align: middle; letter-spacing: .04em;
-    }
-
-    /* CUE BOX — amber for advance visuals */
-    .cue-box {
-      background: rgba(232,168,74,.06); border: 2px solid var(--amber);
-      border-radius: 10px; padding: .9rem 1.2rem; margin: 2rem 0 4rem;
-      font-family: 'DM Sans', sans-serif;
-    }
-    .cue-label { font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--amber); margin-bottom: .4rem; }
-    .cue-text { font-size: 1.1rem; font-weight: 600; color: #fff; line-height: 1.55; }
-    .cue-text span { color: var(--amber); }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Georgia', serif; font-size: 1.9rem; line-height: 1.65; overflow: hidden; height: 100vh; user-select: none; }
+    .controls { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(10,15,26,0.95); border-bottom: 1px solid rgba(212,184,74,0.35); display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.8rem; flex-wrap: wrap; }
+    .ctrl-label { font-family: sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(240,237,232,0.55); }
+    .ctrl-btn { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: var(--text); border-radius: 5px; padding: 0.28rem 0.65rem; cursor: pointer; }
+    .ctrl-btn:hover { background: rgba(255,255,255,0.15); }
+    .ctrl-btn.active { background: var(--accent); border-color: var(--accent); color: #1B2A4A; }
+    .ctrl-sep { width: 1px; height: 24px; background: rgba(255,255,255,0.15); }
+    .ctrl-speed-display { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; color: var(--accent); min-width: 28px; text-align: center; }
+    .word-count { font-family: sans-serif; font-size: 0.68rem; color: rgba(240,237,232,0.45); margin-left: auto; }
+    .scroll-wrap { position: absolute; top: 56px; left: 0; right: 0; bottom: 48px; overflow: hidden; }
+    .scroll-inner { padding: 3rem 2.2rem 40vh; will-change: transform; }
+    .segment { margin-bottom: 2.8rem; }
+    .cue-box { background: var(--cue-bg); border: 2px solid var(--cue-border); border-radius: 8px; padding: 0.55rem 1rem; margin-bottom: 1.1rem; font-family: sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); display: flex; align-items: center; gap: 0.5rem; }
+    .cue-arrow { font-size: 1rem; flex-shrink: 0; }
+    .pause { background: var(--pause-bg); border-left: 3px solid var(--pause-border); border-radius: 0 6px 6px 0; padding: 0.4rem 0.9rem; margin: 1rem 0; font-family: sans-serif; font-size: 0.80rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #C8423A; }
+    .stat { color: var(--accent); font-weight: 700; }
+    .dots-bar { position: fixed; bottom: 0; left: 0; right: 0; height: 48px; background: rgba(10,15,26,0.95); border-top: 1px solid rgba(212,184,74,0.25); display: flex; align-items: center; justify-content: center; gap: 0.5rem; z-index: 50; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.22); cursor: pointer; transition: background 0.2s, transform 0.2s; }
+    .dot.active { background: var(--accent); transform: scale(1.3); }
+    .dot-label { font-family: sans-serif; font-size: 0.62rem; color: rgba(240,237,232,0.45); margin: 0 0.3rem; }
   </style>
 </head>
 <body>
 
-<div id="topbar">
-  <div id="topbar-title">Alcohol · Practical Health Series · Article 12</div>
-  <div id="controls">
-    <span class="ctrl-label">SPEED</span>
-    <button class="ctrl-btn" onclick="changeSpeed(-1)">−</button>
-    <span id="speed-display">3</span>
-    <button class="ctrl-btn" onclick="changeSpeed(1)">+</button>
-    <span class="ctrl-label" style="margin-left:.4rem">FONT</span>
-    <button class="ctrl-btn" onclick="changeFont(-1)">A−</button>
-    <button class="ctrl-btn" onclick="changeFont(1)">A+</button>
-    <button id="play-btn" onclick="togglePlay()">▶ PLAY</button>
-  </div>
+<div class="controls">
+  <span class="ctrl-label">Speed</span>
+  <button class="ctrl-btn" id="btn-slower">−</button>
+  <span class="ctrl-speed-display" id="speed-display">3</span>
+  <button class="ctrl-btn" id="btn-faster">+</button>
+  <div class="ctrl-sep"></div>
+  <span class="ctrl-label">Font</span>
+  <button class="ctrl-btn" id="btn-smaller">A−</button>
+  <button class="ctrl-btn" id="btn-bigger">A+</button>
+  <div class="ctrl-sep"></div>
+  <button class="ctrl-btn" id="btn-pause">⏸ Pause</button>
+  <button class="ctrl-btn" id="btn-reset">↑ Top</button>
+  <span class="word-count">~780 words · ~5.5 min</span>
 </div>
 
-<div id="seg-dots">
-  <div class="seg-dot active" onclick="jumpToSeg(0)" title="Intro"></div>
-  <div class="seg-dot" onclick="jumpToSeg(1)" title="Units &amp; guideline"></div>
-  <div class="seg-dot" onclick="jumpToSeg(2)" title="Five systems"></div>
-  <div class="seg-dot" onclick="jumpToSeg(3)" title="What your doctor does"></div>
-  <div class="seg-dot" onclick="jumpToSeg(4)" title="Research — Global Burden"></div>
-  <div class="seg-dot" onclick="jumpToSeg(5)" title="Research — J-curve debunked"></div>
-  <div class="seg-dot" onclick="jumpToSeg(6)" title="Research — brain &amp; dementia"></div>
-  <div class="seg-dot" onclick="jumpToSeg(7)" title="What to do"></div>
-  <div class="seg-dot" onclick="jumpToSeg(8)" title="Closing"></div>
+<div class="scroll-wrap" id="scroll-wrap">
+<div class="scroll-inner" id="scroll-inner">
+
+  <!-- SEGMENT 0 — INTRO -->
+  <div class="segment" id="seg-0">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 1 — Title card</div>
+    I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about alcohol.
+    <div class="pause">— brief pause —</div>
+    Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — let's get into it.
+  </div>
+
+  <!-- SEGMENT 1 — UNITS -->
+  <div class="segment" id="seg-1">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 2 — UK units grid</div>
+    First — the UK unit. One unit is <span class="stat">10 millilitres of pure alcohol</span>.
+    <div class="pause">— pause —</div>
+    A small glass of wine — 1.5 units. A large glass — 3. A bottle of wine — 9. A pint of lager — about 2.3. A single spirit — 1 unit.
+    <div class="pause">— pause —</div>
+    The UK Chief Medical Officers' guideline, updated in 2016 — no more than <span class="stat">14 units a week</span>, men and women. Spread over three or more days, with drink-free days in between. 14 units is about six pints of lager, or a bottle and a half of wine — for the whole week.
+  </div>
+
+  <!-- SEGMENT 2 — FIVE SYSTEMS -->
+  <div class="segment" id="seg-2">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 3 — Five systems</div>
+    Alcohol reaches every organ. Five systems matter most.
+    <div class="pause">— pause —</div>
+    Cancer. Alcohol is an established cause of <span class="stat">seven cancers</span> — mouth, throat, oesophagus, liver, bowel, and female breast. A Group 1 carcinogen — same category as tobacco. Around 11,900 UK cancer cases a year are attributable to alcohol.
+    <div class="pause">— pause —</div>
+    Heart and circulation. Raises blood pressure. Triggers atrial fibrillation. Genetic studies show risk rises with every unit — no protective dose.
+    Liver. Three stages — fatty liver, inflammation, cirrhosis. Three-quarters of UK alcohol-specific deaths are from liver disease.
+    <div class="pause">— pause —</div>
+    Brain. MRI studies show shrinkage detectable from one to two units a day. Long-term heavy drinking raises dementia risk.
+    And mood and sleep. It fragments sleep, flattens mood, weakens antidepressants. It feels like it helps. The data says otherwise.
+  </div>
+
+  <!-- SEGMENT 3 — WHAT DOCTORS DO -->
+  <div class="segment" id="seg-3">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 4 — What your doctor might do</div>
+    A GP's first move is the AUDIT-C — three quick questions that identify drinking already in the risk zone.
+    <div class="pause">— pause —</div>
+    Blood tests — liver function, GGT, red-cell size — flag chronic heavy use. If the liver looks stressed, a FibroScan measures scarring without a biopsy.
+    For drinking above 14 units but not dependent, the NHS response is a brief intervention — a structured conversation about risk, motivation, and goals. Cochrane-backed.
+    <div class="pause">— pause —</div>
+    Where there's dependence, NICE CG115 describes stepped care — CBT, acamprosate and naltrexone, and supervised withdrawal. Abrupt withdrawal in heavy drinkers is clinically recognised as requiring medical supervision — that's why it's managed carefully, with thiamine cover.
+  </div>
+
+  <!-- SEGMENT 4 — GBD RESEARCH -->
+  <div class="segment" id="seg-4">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 5 — Global Burden of Disease</div>
+    Now the research. This is where the story has changed.
+    <div class="pause">— pause —</div>
+    The Global Burden of Disease study, in The Lancet 2018, pooled data from 195 countries. <span class="stat">2.8 million alcohol-attributable deaths globally</span>. Seventh-leading risk factor worldwide. Headline finding: the level that minimises overall health risk is zero.
+    <div class="pause">— pause —</div>
+    The 2022 follow-up refined it by age. For adults under 40, the lowest-risk intake is near zero. For over-40s, a small amount may be net-neutral — but only at intakes well below 14 units a week.
+  </div>
+
+  <!-- SEGMENT 5 — J-CURVE DEBUNKED -->
+  <div class="segment" id="seg-5">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 6 — J-curve debunked</div>
+    The idea that a glass a day is good for you has largely unravelled.
+    <div class="pause">— pause —</div>
+    Biddinger, JAMA Network Open 2022 — UK Biobank data, 371,000 people, using genetic markers as a natural experiment. Each standard-deviation rise in alcohol gave <span class="stat">1.3 times the risk of high blood pressure</span>, 1.4 times coronary artery disease. Risk rises monotonically. No protective dose.
+    <div class="pause">— pause —</div>
+    Zhao, JAMA Network Open 2023 — pooled 107 studies, 4.8 million people. Corrected for the old bias of classing former heavy drinkers as non-drinkers. Low-to-moderate drinking showed no mortality benefit. The J-curve was an artefact.
+  </div>
+
+  <!-- SEGMENT 6 — BRAIN + DEMENTIA -->
+  <div class="segment" id="seg-6">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 7 — Brain and dementia</div>
+    Two more — the brain, and dementia.
+    <div class="pause">— pause —</div>
+    Daviet, Nature Communications 2022 — MRI scans of 36,000 UK Biobank adults. Grey and white matter loss detectable from one to two units a day. At age 50, going from one to two units a day equated to brain changes equivalent to ageing by about <span class="stat">two years</span>.
+    <div class="pause">— pause —</div>
+    Sabia, BMJ 2018 — 9,000 UK civil servants, followed for 23 years. Drinkers above 14 units showed a stepwise dementia rise — about <span class="stat">17% higher risk per 7 units above guideline</span>. The Lancet Commission 2024 confirms alcohol as one of 14 modifiable dementia risk factors.
+  </div>
+
+  <!-- SEGMENT 7 — CTA -->
+  <div class="segment" id="seg-7">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 9 — CTA</div>
+    So what does the evidence point toward?
+    <div class="pause">— pause —</div>
+    Stopping completely carries the lowest overall health risk — that option is always there. For those who continue drinking, the evidence is equally clear: any reduction produces measurable benefit. Blood pressure falls within weeks. Sleep improves within days. Fatty liver reverses within months.
+    <div class="pause">— pause —</div>
+    Four patterns that the evidence links to lower harm: including three or more drink-free days each week; choosing smaller measures and lower-ABV options; and understanding actual weekly unit intake — most people underestimate by half.
+    <div class="pause">— pause —</div>
+    As always — anything personally relevant here is a conversation for you to have with your GP or healthcare professional.
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 8 — Mechanisms (silent)</div>
+  </div>
+
+  <!-- SEGMENT 8 — CLOSE -->
+  <div class="segment" id="seg-8">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 10 — Closing</div>
+    A last thought. This isn't about judgement. Alcohol has been part of human culture for thousands of years. The point is clarity about what is actually being traded.
+    <div class="pause">— pause —</div>
+    The modern evidence is clear — less is better. The full article with every reference is on helf.school. I'm Dr Paul. Thanks for watching.
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW · SLIDE 10 — Closing card</div>
+  </div>
+
+</div>
 </div>
 
-<div id="focus-top"></div>
-<div id="focus-line"></div>
-<div id="focus-bottom"></div>
-
-<div id="scroll-wrap">
-  <div id="scroll-content">
-
-    <!-- ═══ SEGMENT 0 — INTRODUCTION ═══ -->
-    <div class="seg-label" data-seg="0">Segment 0 — Introduction</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 1: <span>Intro title slide</span> · 🍷 · helf.school · Practical Health Series · Article 12 · "Alcohol and Health — what the modern evidence actually shows"</div>
-    </div>
-
-    <p class="line">"I'm Dr Paul — I spent <strong>over twenty years as an NHS GP</strong> before I retired in 2019. Today I want to talk to you about <strong>alcohol</strong>."</p>
-
-    <p class="line">"Now, I do have to say upfront — what I'm giving you here is <strong>health education, not medical advice</strong>. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — <em>let's get into it.</em>"</p>
-
-    <!-- ═══ SEGMENT 1 — UNITS &amp; GUIDELINE ═══ -->
-    <div class="seg-label" data-seg="1">Segment 1 — What is a UK unit?</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 2: <span>UK units grid</span> · six drink cards animating in · 1.5 / 3.0 / 9.0 / 2.3 / 3.0 / 1.0 units · "14 units/week" guideline strip</div>
-    </div>
-
-    <p class="line">"First — the UK unit. <strong>One unit is 10 millilitres of pure alcohol.</strong>" <span class="pause">PAUSE</span></p>
-
-    <p class="line">"A <strong>small glass of wine</strong> — 1.5 units. A <strong>large glass</strong> — 3. A <strong>bottle of wine</strong> — 9. A <strong>pint of lager</strong> — about 2.3. A <strong>single spirit</strong> — 1 unit."</p>
-
-    <p class="line">"The UK Chief Medical Officers' guideline, updated in 2016 — <strong>no more than 14 units a week</strong>, men and women. <em>Spread over three or more days</em>, with drink-free days in between. 14 units is about six pints of lager, or a bottle and a half of wine — <em>for the whole week</em>." <span class="pause">PAUSE</span></p>
-
-    <!-- ═══ SEGMENT 2 — WHY IT MATTERS ═══ -->
-    <div class="seg-label" data-seg="2">Segment 2 — Five systems alcohol affects</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 3: <span>Five systems</span> · five horizontal rows · 🧬 Cancer · ❤️ Heart · 🩸 Liver · 🧠 Brain · 💭 Mood &amp; sleep · red stats on right</div>
-    </div>
-
-    <p class="line">"Alcohol reaches every organ. <strong>Five systems</strong> matter most." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"<strong>Cancer.</strong> Alcohol causes <strong>seven cancers</strong> — mouth, throat, oesophagus, liver, bowel, and female breast. Group 1 carcinogen — same category as tobacco. In the UK, about <em>11,900 cancer cases a year</em> are attributable to alcohol."</p>
-
-    <p class="line">"<strong>Heart and circulation.</strong> Raises blood pressure. Triggers atrial fibrillation. Genetics show risk rises with <em>every unit</em> — no protective dose."</p>
-
-    <p class="line">"<strong>Liver.</strong> Three stages — fatty liver, inflammation, cirrhosis. Three-quarters of UK alcohol-specific deaths are from liver disease."</p>
-
-    <p class="line">"<strong>Brain.</strong> MRI studies show shrinkage from <em>one to two units a day</em>. Long-term heavy drinking raises dementia risk."</p>
-
-    <p class="line">"And <strong>mood and sleep</strong>. It fragments sleep, flattens mood, weakens antidepressants. <em>Feels like it helps. Data says it doesn't.</em>" <span class="pause">PAUSE</span></p>
-
-    <!-- ═══ SEGMENT 3 — WHAT YOUR DOCTOR DOES ═══ -->
-    <div class="seg-label" data-seg="3">Segment 3 — What your GP might do</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 4: <span>What your doctor does</span> · six cards · 📋 AUDIT-C · 🩸 bloods · 🔬 FibroScan · 💬 brief intervention · ⚕️ NICE CG115 · 🤝 community</div>
-    </div>
-
-    <p class="line">"A GP's first move is the <strong>AUDIT-C</strong> — three quick questions. Picks up drinking already in the risk zone."</p>
-
-    <p class="line">"Blood tests — liver function, GGT, red-cell size — flag chronic heavy use. If the liver looks stressed, a <strong>FibroScan</strong> measures scarring without a biopsy."</p>
-
-    <p class="line">"For drinking above 14 units but not dependent, the NHS answer is a <strong>brief intervention</strong> — structured conversation about risk, motivation, goals. Cochrane-backed."</p>
-
-    <p class="line">"Where there's dependence, <strong>NICE CG115</strong> describes stepped care — CBT, <em>acamprosate and naltrexone</em>, and supervised withdrawal. <strong>Abrupt withdrawal in heavy drinkers can be dangerous</strong> — that's why it's medically supervised." <span class="pause">PAUSE</span></p>
-
-    <!-- ═══ SEGMENT 4 — RESEARCH GBD ═══ -->
-    <div class="seg-label" data-seg="4">Segment 4 — Research: the Global Burden of Disease</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 5: <span>Research A</span> · two evidence cards · GBD 2016 · 2.8M deaths · GBD 2020 · 1.34B drinkers · age-specific curve</div>
-    </div>
-
-    <p class="line">"Now the research. This is where the story has changed." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"The <strong>Global Burden of Disease study</strong>, in The Lancet 2018, pooled data from 195 countries. <strong>2.8 million alcohol-attributable deaths globally</strong>. Seventh-leading risk factor worldwide. Headline finding: the level that minimises <em>overall</em> health risk is <strong>zero</strong>."</p>
-
-    <p class="line">"The 2022 follow-up refined it by age. For <strong>adults under 40, the lowest-risk intake is near zero</strong>. For over-40s, a small amount may be net-neutral — but only at intakes <em>well below</em> 14 units a week." <span class="pause">PAUSE</span></p>
-
-    <!-- ═══ SEGMENT 5 — J-CURVE DEBUNKED ═══ -->
-    <div class="seg-label" data-seg="5">Segment 5 — The J-curve debunked</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 6: <span>Research B</span> · two evidence cards · Biddinger UK Biobank 1.3× HTN · Zhao 107 studies 4.8M — no mortality benefit</div>
-    </div>
-
-    <p class="line">"You've heard that <em>a glass a day is good for you</em>. That idea has largely unravelled." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"<strong>Biddinger, JAMA Network Open 2022</strong> — UK Biobank data, <strong>371,000 people</strong>, using genetic markers as a natural experiment. Each standard-deviation rise in alcohol gave <strong>1.3× the risk of high blood pressure</strong>, 1.4× coronary artery disease. <em>Risk rises monotonically.</em> No protective dose."</p>
-
-    <p class="line">"<strong>Zhao, JAMA Network Open 2023</strong> — pooled <strong>107 studies, 4.8 million people</strong>. Corrected for the old bias of classing former heavy drinkers as non-drinkers. <strong>Low-to-moderate drinking showed no mortality benefit.</strong> The J-curve was an artefact." <span class="pause">PAUSE</span></p>
-
-    <!-- ═══ SEGMENT 6 — BRAIN &amp; DEMENTIA ═══ -->
-    <div class="seg-label" data-seg="6">Segment 6 — Research: brain and dementia</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 7: <span>Research C</span> · two evidence cards · Daviet brain MRI · ~2 yrs ageing at 1→2 units/day · Sabia Whitehall II · +17% dementia per 7-unit rise</div>
-    </div>
-
-    <p class="line">"Two more — the brain, and dementia." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"<strong>Daviet, Nature Communications 2022</strong> — MRI scans of <strong>36,000 UK Biobank adults</strong>. Grey and white matter loss detectable from <em>one to two units a day</em>. At age 50, going from one to two units a day equated to brain changes of <strong>ageing by about two years</strong>."</p>
-
-    <p class="line">"<strong>Sabia, BMJ 2018</strong> — 9,000 UK civil servants, followed for <strong>23 years</strong>. Drinkers above 14 units showed a stepwise dementia rise — about <strong>17% higher risk per 7 units above guideline</strong>. The Lancet Commission 2024 confirms alcohol as one of <em>14 modifiable dementia risk factors</em>." <span class="pause">PAUSE</span></p>
-
-    <!-- ═══ SEGMENT 7 — WHAT TO DO ═══ -->
-    <div class="seg-label" data-seg="7">Segment 7 — What to take away</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE TWICE — past mechanisms (silent), land on CTA</div>
-      <div class="cue-text">Slide 8 <em style="color:rgba(255,255,255,.7);font-weight:500">(let mechanisms breathe, no narration)</em> → Slide 9: <span>CTA slide</span> · 🌿 · "Most benefit comes from drinking less than you do now" · chips: 3+ drink-free days · smaller measures · lower ABV · count units</div>
-    </div>
-
-    <p class="line">"So what do you take from all this? <strong>Less is better. Drink-free days matter.</strong>" <span class="pause">PAUSE</span></p>
-
-    <p class="line">"<strong>Stopping completely carries the lowest overall health risk</strong> — that option is always there. For those who choose to keep drinking, the evidence is just as clear: <em>any reduction produces measurable benefit</em>. Blood pressure falls within weeks. Sleep improves within days. Fatty liver reverses within months."</p>
-
-    <p class="line">"Four practical moves for cutting down. <strong>Three or more drink-free days.</strong> <strong>Smaller measures</strong> — 125ml glass instead of 250. <strong>Lower-ABV options</strong> — 4% beer instead of 5.5%. And <strong>count your units</strong> — volume × ABV ÷ 1000. <em>Most people underestimate by half.</em>" <span class="pause">PAUSE</span></p>
-
-    <!-- ═══ SEGMENT 8 — CLOSING ═══ -->
-    <div class="seg-label" data-seg="8">Segment 8 — Closing</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 10: <span>Closing slide</span> · helf.school logo · "The evidence is clear. Less is better." · 14 units · 10,473 deaths · 7 cancers</div>
-    </div>
-
-    <p class="line">"A last thought. This isn't about judgement. Alcohol has been part of human culture for thousands of years. <strong>The point is clarity about what is being traded.</strong>" <span class="pause">PAUSE</span></p>
-
-    <p class="line">"The modern evidence is clear — <em>less is better</em>. The full article with every reference is on <strong>helf.school</strong>. Take what's useful to <em>your</em> doctor. <strong>Thanks for watching.</strong>"</p>
-
-  </div>
+<div class="dots-bar" id="dots-bar">
+  <span class="dot-label">Seg</span>
+  <div class="dot active" data-seg="0"></div>
+  <div class="dot" data-seg="1"></div>
+  <div class="dot" data-seg="2"></div>
+  <div class="dot" data-seg="3"></div>
+  <div class="dot" data-seg="4"></div>
+  <div class="dot" data-seg="5"></div>
+  <div class="dot" data-seg="6"></div>
+  <div class="dot" data-seg="7"></div>
+  <div class="dot" data-seg="8"></div>
 </div>
 
 <script>
-  const SPEED_LEVELS = [8, 14, 20, 28, 38, 52];
-  let speedIndex = 2;
-  let baseFontSize = 1.9;
-  let playing = false;
-  let rafId = null;
-  let lastTime = null;
-  let scrollY = 0;
-
-  const content = document.getElementById('scroll-content');
-  const playBtn = document.getElementById('play-btn');
-  const speedDisplay = document.getElementById('speed-display');
-  const dots = document.querySelectorAll('.seg-dot');
-  const segLabels = document.querySelectorAll('.seg-label');
-
-  function setTranslate(y) { content.style.transform = `translateY(${-y}px)`; }
-
-  function togglePlay() {
-    playing = !playing;
-    playBtn.textContent = playing ? '⏸ PAUSE' : '▶ PLAY';
-    if (playing) { lastTime = null; rafId = requestAnimationFrame(tick); }
-    else { cancelAnimationFrame(rafId); }
+  const SPEED_LEVELS = [0, 8, 14, 20, 28, 38, 50];
+  let speedLevel = 3, fontSize = 1.9, paused = false, pos = 0, lastTs = null;
+  const wrap = document.getElementById('scroll-wrap'), inner = document.getElementById('scroll-inner');
+  const spdDisp = document.getElementById('speed-display');
+  function applyFont() { inner.style.fontSize = fontSize + 'rem'; }
+  function raf(ts) {
+    if (!paused) { if (lastTs !== null) { pos += SPEED_LEVELS[speedLevel] * (ts - lastTs) / 1000; inner.style.transform = 'translateY(-' + pos + 'px)'; } lastTs = ts; } else { lastTs = null; }
+    requestAnimationFrame(raf);
   }
-
-  function tick(ts) {
-    if (!playing) return;
-    if (lastTime === null) lastTime = ts;
-    const dt = (ts - lastTime) / 1000;
-    lastTime = ts;
-    scrollY += SPEED_LEVELS[speedIndex] * dt;
-    const maxScroll = content.scrollHeight - window.innerHeight + 44;
-    if (scrollY >= maxScroll) { scrollY = maxScroll; togglePlay(); }
-    setTranslate(scrollY);
-    updateDots();
-    rafId = requestAnimationFrame(tick);
-  }
-
-  function changeSpeed(dir) {
-    speedIndex = Math.max(0, Math.min(5, speedIndex + dir));
-    speedDisplay.textContent = speedIndex + 1;
-  }
-
-  function changeFont(dir) {
-    baseFontSize = Math.max(1.2, Math.min(2.8, baseFontSize + dir * 0.1));
-    document.querySelectorAll('.line').forEach(el => el.style.fontSize = baseFontSize + 'rem');
-  }
-
-  function jumpToSeg(idx) {
-    const label = segLabels[idx];
-    if (!label) return;
-    const contentTop = content.getBoundingClientRect().top;
-    const labelOffset = label.getBoundingClientRect().top - contentTop + scrollY;
-    scrollY = Math.max(0, labelOffset - window.innerHeight * 0.5 + 44);
-    setTranslate(scrollY);
-    updateDots();
-  }
-
-  function updateDots() {
-    const mid = window.innerHeight * 0.5;
-    let active = 0;
-    segLabels.forEach((label, i) => { if (label.getBoundingClientRect().top <= mid) active = i; });
-    dots.forEach((d, i) => d.classList.toggle('active', i === active));
-  }
-
-  // Touch
-  let touchStartY = 0, touchScrollStart = 0;
-  document.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; touchScrollStart = scrollY; if (playing) togglePlay(); }, { passive: true });
-  document.addEventListener('touchmove', e => { scrollY = Math.max(0, touchScrollStart + (touchStartY - e.touches[0].clientY)); setTranslate(scrollY); updateDots(); }, { passive: true });
-
-  // Keyboard
-  document.addEventListener('keydown', e => {
-    if (e.code === 'Space') { e.preventDefault(); togglePlay(); }
-    if (e.code === 'ArrowUp') { scrollY = Math.max(0, scrollY - 80); setTranslate(scrollY); }
-    if (e.code === 'ArrowDown') { scrollY += 80; setTranslate(scrollY); }
-  });
-
-  setTranslate(0);
+  requestAnimationFrame(raf);
+  const dots = document.querySelectorAll('.dot'), segs = document.querySelectorAll('.segment');
+  function updateDots() { let a = 0; segs.forEach((s,i) => { if (pos >= s.offsetTop - 80) a = i; }); dots.forEach(d => d.classList.remove('active')); if (dots[a]) dots[a].classList.add('active'); }
+  setInterval(updateDots, 400);
+  dots.forEach(d => d.addEventListener('click', () => { const s = segs[parseInt(d.dataset.seg)]; if (s) { pos = Math.max(0, s.offsetTop - 80); inner.style.transform = 'translateY(-' + pos + 'px)'; } }));
+  document.getElementById('btn-faster').addEventListener('click', () => { speedLevel = Math.min(6, speedLevel + 1); spdDisp.textContent = speedLevel; });
+  document.getElementById('btn-slower').addEventListener('click', () => { speedLevel = Math.max(0, speedLevel - 1); spdDisp.textContent = speedLevel; });
+  document.getElementById('btn-bigger').addEventListener('click', () => { fontSize = Math.min(3.2, +(fontSize + 0.15).toFixed(2)); applyFont(); });
+  document.getElementById('btn-smaller').addEventListener('click', () => { fontSize = Math.max(1.2, +(fontSize - 0.15).toFixed(2)); applyFont(); });
+  const pauseBtn = document.getElementById('btn-pause');
+  pauseBtn.addEventListener('click', () => { paused = !paused; pauseBtn.textContent = paused ? '▶ Resume' : '⏸ Pause'; pauseBtn.classList.toggle('active', paused); });
+  document.getElementById('btn-reset').addEventListener('click', () => { pos = 0; inner.style.transform = 'translateY(0)'; });
+  let ty = 0;
+  wrap.addEventListener('touchstart', e => { ty = e.touches[0].clientY; paused = true; pauseBtn.textContent = '▶ Resume'; pauseBtn.classList.add('active'); });
+  wrap.addEventListener('touchmove', e => { e.preventDefault(); const dy = e.touches[0].clientY - ty; pos = Math.max(0, pos - dy * 0.8); inner.style.transform = 'translateY(-' + pos + 'px)'; ty = e.touches[0].clientY; }, { passive: false });
+  applyFont();
 </script>
 </body>
 </html>
