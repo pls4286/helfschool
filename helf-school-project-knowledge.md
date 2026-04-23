@@ -476,8 +476,32 @@ Slide 9: **full-width horizontal rows** — NOT chips or small cards.
 | Supporting labels | `rgba(255,255,255,0.80)` |
 | Disclaimer footer (exception) | `0.18` |
 
-### Research card stat standard
-Stat boxes show OUTCOMES — effect sizes, risk changes — NEVER participant counts as headline.
+### Navy research card standard (LOCKED — confirmed lifestyle-changes.html)
+
+Every navy research card in every article Section 4 uses this three-layer visual hierarchy. **Non-negotiable — apply to all articles, new and retrofit.**
+
+```css
+/* Layer 1 — Stat + finding: reads as ONE bold unit */
+.rc-stat { font-family:'Fraunces',serif; font-size:2.4rem; font-weight:700; color:var(--coral); line-height:1; flex-shrink:0; }
+.rc-stat-label { font-size:1.1rem; color:#fff; line-height:1.4; font-weight:700; flex:1; min-width:180px; }
+
+/* Layer 2 — Summary statement: the key takeaway for this piece of research */
+.rc-title { font-family:'Fraunces',serif; font-size:1.3rem; font-weight:700; color:var(--coral); margin-bottom:.7rem; line-height:1.25; }
+
+/* Layer 3 — Explanation: fuller context paragraph */
+.rc-body { font-size:1.05rem; line-height:1.75; color:rgba(255,255,255,.92); font-weight:400; }
+```
+
+**Reading order on navy background:**
+1. `rc-stat` (large coral number) + `rc-stat-label` (bold white finding) — ONE visual unit, separated by dividing line
+2. `rc-title` (coral headline) — the one-line summary statement for this research finding
+3. `rc-body` (white prose) — the explanation
+
+**The rc-stat-label MUST be bold white** — it is NOT a footnote to the number. The number and the finding text together form a single complete statement (e.g. "~30% — reduction in major cardiovascular events on Mediterranean diet").
+
+**The rc-title MUST be coral** — it is the most important human-readable summary sentence for the reader, not a section label. It must stand out clearly against the navy background.
+
+These values apply to statins.html (retrofit required) and all future articles.
 
 ---
 
