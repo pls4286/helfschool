@@ -5,176 +5,195 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Mediterranean Diet — helf.school</title>
   <meta name="description" content="What does the research actually show about the Mediterranean diet? A clear, evidence-based guide from Dr Paul, retired NHS GP."/>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root{--navy:#1B2A4A;--coral:#E8634A;--cream:#FAF7F2;--sage:#7A9E87;--amber:#E8A84A;--practical:#7A6A2E;--text:#2C2C2C}
+    :root{--navy:#1B2A4A;--coral:#E8634A;--cream:#FAF7F2;--sage:#7A9E87;--amber:#E8A84A;--practical:#7A6A2E;--coral-light:#FDEEE9;--sage-light:#EBF2ED;--text:#2C2C2C;--muted:#5A6170;--border:#E5DDD4}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'DM Sans',sans-serif;font-weight:400;color:var(--text);background:var(--cream);line-height:1.7}
-
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;font-weight:400;color:var(--text);background:var(--cream);line-height:1.75;font-size:17px}
     /* NAV */
-    .site-nav{background:var(--navy);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-    .nav-logo{display:flex;align-items:center;gap:.5rem;text-decoration:none}
-    .logo-text{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;color:#fff}
-    .logo-dot{color:var(--coral)}
-    .logo-tag{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
-    .nav-back{font-size:.82rem;color:rgba(255,255,255,.75);text-decoration:none;display:flex;align-items:center;gap:.35rem}
-    .nav-back:hover{color:#fff}
-
+    nav{background:var(--navy);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(27,42,74,.18)}
+    .nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none}
+    .logo-svg{width:36px;height:36px;flex-shrink:0}
+    .logo-text{display:flex;flex-direction:column;line-height:1.1}
+    .logo-name{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600;color:#fff;letter-spacing:.01em}
+    .logo-tagline{font-size:.6rem;font-weight:500;color:var(--sage);letter-spacing:.18em;text-transform:uppercase}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:.875rem;font-weight:500;transition:color .2s}
+    .nav-links a:hover{color:#fff}
+    /* BREADCRUMB */
+    .breadcrumb{background:var(--navy);padding:.6rem 2rem;border-bottom:1px solid rgba(255,255,255,.08)}
+    .breadcrumb-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:rgba(255,255,255,.75)}
+    .breadcrumb-inner a{color:rgba(255,255,255,.75);text-decoration:none;transition:color .2s}
+    .breadcrumb-inner a:hover{color:rgba(255,255,255,.95)}
+    .breadcrumb-inner span{color:var(--coral);font-weight:500}
     /* HERO */
-    .hero{background:linear-gradient(135deg,var(--navy) 0%,#243a20 60%,#1a3020 100%);padding:4rem 2rem 3rem;position:relative;overflow:hidden}
-    .hero::before{content:'';position:absolute;top:-40%;right:-8%;width:600px;height:600px;background:radial-gradient(circle,rgba(122,106,46,.18) 0%,transparent 70%);pointer-events:none}
-    .hero-inner{max-width:860px;margin:0 auto;position:relative}
-    .breadcrumb{display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;font-size:.78rem;color:rgba(255,255,255,.75)}
-    .breadcrumb a{color:rgba(255,255,255,.75);text-decoration:none}
-    .breadcrumb a:hover{color:#fff}
-    .breadcrumb-sep{color:rgba(255,255,255,.4)}
-    .series-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(122,106,46,.2);border:1px solid rgba(122,106,46,.5);color:#d4b84a;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .8rem;border-radius:100px;margin-bottom:1rem}
-    .hero h1{font-family:'Fraunces',serif;font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;color:#fff;line-height:1.12;margin-bottom:.85rem}
-    .hero-subtitle{font-size:1.05rem;color:rgba(255,255,255,.88);line-height:1.6;max-width:640px;margin-bottom:1.75rem}
-    .hero-meta{display:flex;flex-wrap:wrap;gap:1.25rem;font-size:.8rem;color:rgba(255,255,255,.82)}
+    .article-hero{background:linear-gradient(135deg,var(--navy) 0%,#243a20 60%,#1a3020 100%);padding:3.5rem 2rem 3rem;position:relative;overflow:hidden}
+    .article-hero::before{content:'';position:absolute;top:-40%;right:-8%;width:600px;height:600px;background:radial-gradient(circle,rgba(122,106,46,.18) 0%,transparent 70%);pointer-events:none}
+    .hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+    .category-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(122,106,46,.2);border:1px solid rgba(122,106,46,.5);color:#d4b84a;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .8rem;border-radius:100px;margin-bottom:1rem}
+    .article-hero h1{font-family:'Fraunces',serif;font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;color:#fff;line-height:1.12;margin-bottom:.85rem}
+    .hero-subtitle{font-size:1rem;color:rgba(255,255,255,.85);line-height:1.6;max-width:640px;margin-bottom:1.75rem;font-style:italic;font-family:'Fraunces',serif}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:1.25rem;font-size:.8rem;color:rgba(255,255,255,.80)}
     .meta-item{display:flex;align-items:center;gap:.35rem}
-
-    /* ARTICLE BODY */
-    .article-body{max-width:860px;margin:0 auto;padding:0 2rem 4rem}
-
-    .article-section{padding:3rem 0;border-bottom:1px solid rgba(27,42,74,.08);scroll-margin-top:150px}
+    /* AMBER BAR */
+    .disclaimer-bar{background:rgba(232,168,74,.12);border-bottom:1px solid rgba(232,168,74,.3);padding:.65rem 2rem}
+    .disclaimer-bar-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:.6rem;font-size:.78rem;color:#7A5A10;font-weight:500}
+    .disclaimer-bar-inner svg{width:15px;height:15px;color:var(--amber);flex-shrink:0}
+    /* JUMP NAV */
+    .jump-nav{background:#fff;border-bottom:1px solid var(--border);padding:0 2rem;position:sticky;top:68px;z-index:90}
+    .jump-nav-inner{max-width:900px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+    .jump-nav-inner::-webkit-scrollbar{display:none}
+    .jump-link{display:flex;align-items:center;gap:.4rem;padding:.9rem 1.1rem;font-size:.8rem;font-weight:500;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;transition:color .2s,border-color .2s}
+    .jump-link:hover{color:var(--navy);border-bottom-color:var(--navy)}
+    .jump-link .num{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--coral-light);color:var(--coral);font-size:.65rem;font-weight:700;flex-shrink:0}
+    /* LAYOUT */
+    .article-layout{max-width:900px;margin:0 auto;padding:3rem 2rem 5rem}
+    .article-section{scroll-margin-top:150px;margin-bottom:3.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(27,42,74,.08)}
     .article-section:last-child{border-bottom:none}
-    .section-label{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--practical);margin-bottom:.5rem}
-    .section-title{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.5vw,1.85rem);font-weight:700;color:var(--navy);margin-bottom:1.25rem;line-height:1.2}
-    .article-section p{font-size:1rem;color:var(--text);font-weight:400;line-height:1.78;margin-bottom:1rem}
+    .section-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+    .section-number{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;flex-shrink:0}
+    .section-title{font-family:'Fraunces',serif;font-size:1.45rem;font-weight:600;color:var(--navy);line-height:1.2}
+    .article-section p{margin-bottom:1rem;color:var(--text);font-weight:400;font-size:1rem;line-height:1.78}
     .article-section p:last-child{margin-bottom:0}
-
-    /* THREE-TIER FOOD DISPLAY */
+    /* TIER GRID */
     .tier-grid{display:flex;flex-direction:column;gap:1rem;margin:1.75rem 0}
     .tier-card{border-radius:14px;overflow:hidden}
     .tier-header{padding:.9rem 1.3rem;display:flex;align-items:center;gap:.8rem}
-    .tier-icon{font-size:1.5rem}
+    .tier-icon{font-size:1.5rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
     .tier-label-group{flex:1}
     .tier-label{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.1rem}
     .tier-name{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;line-height:1.2}
-    .tier-freq{font-size:.78rem;color:rgba(255,255,255,.82)}
+    .tier-freq{font-size:.78rem;color:rgba(255,255,255,.82);font-weight:400}
     .tier-body{padding:.85rem 1.3rem 1.1rem;display:flex;flex-wrap:wrap;gap:.5rem}
     .food-chip{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);border-radius:100px;padding:.28rem .85rem;font-size:.84rem;font-weight:500;color:rgba(255,255,255,.95)}
-
-    .tier-1 .tier-header{background:#2a5238}
-    .tier-1 .tier-body{background:#243d2e}
-    .tier-1 .tier-label{color:#7ecc99}
-    .tier-2 .tier-header{background:#6b4c18}
-    .tier-2 .tier-body{background:#5c4012}
-    .tier-2 .tier-label{color:#e8c96a}
-    .tier-3 .tier-header{background:#5a3028}
-    .tier-3 .tier-body{background:#4a2720}
-    .tier-3 .tier-label{color:#e8a090}
+    .tier-1 .tier-header{background:#2a5238}.tier-1 .tier-body{background:#243d2e}.tier-1 .tier-label{color:#7ecc99}
+    .tier-2 .tier-header{background:#6b4c18}.tier-2 .tier-body{background:#5c4012}.tier-2 .tier-label{color:#e8c96a}
+    .tier-3 .tier-header{background:#5a3028}.tier-3 .tier-body{background:#4a2720}.tier-3 .tier-label{color:#e8a090}
     .tier-3 .food-chip{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14)}
-
     /* KEY TERMS */
-    .key-terms-box{background:var(--navy);border-radius:16px;padding:2rem 2.25rem;margin:2.5rem 0}
-    .key-terms-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem}
-    .key-terms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:.9rem}
-    .term-item{padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.07)}
-    .term-name{font-size:.88rem;font-weight:700;color:#d4b84a;margin-bottom:.25rem}
-    .term-def{font-size:.92rem;color:rgba(255,255,255,.92);line-height:1.52}
-
-    /* WHY IT MATTERS — benefit list */
+    .key-terms-box{background:var(--navy);border-radius:16px;padding:1.75rem 2rem;margin:2.5rem 0}
+    .key-terms-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:1.25rem;padding-bottom:.85rem;border-bottom:1px solid rgba(255,255,255,.12)}
+    .key-terms-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+    .term-item{padding:.75rem 1rem;background:rgba(255,255,255,.05);border-radius:8px;border-left:3px solid #d4b84a}
+    .term-name{font-size:.88rem;font-weight:700;color:#d4b84a;margin-bottom:.2rem}
+    .term-def{font-size:.92rem;color:rgba(255,255,255,.90);line-height:1.52;font-weight:400}
+    /* STAT GRID */
+    .stat-grid-2x2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem}
+    .stat-cell{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.4rem;position:relative;overflow:hidden}
+    .stat-cell::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:4px 0 0 4px;background:var(--navy)}
+    .stat-cell-number{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:var(--navy);line-height:1;margin-bottom:.3rem}
+    .stat-cell-number.coral{color:var(--coral)}
+    .stat-cell-number.sage{color:var(--sage)}
+    .stat-cell-number.practical{color:var(--practical)}
+    .stat-cell-label{font-size:.88rem;font-weight:500;color:var(--text);line-height:1.5;margin-bottom:.4rem}
+    .stat-cell-source{font-size:.75rem;color:var(--text);font-style:italic}
+    /* BENEFIT LIST */
     .benefit-list{list-style:none;margin:1.25rem 0;display:flex;flex-direction:column;gap:.85rem}
     .benefit-list li{display:flex;align-items:flex-start;gap:.9rem;padding:1rem 1.25rem;background:#fff;border-radius:12px;border-left:4px solid var(--practical);box-shadow:0 1px 4px rgba(0,0,0,.06)}
     .benefit-num{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:700;color:var(--practical);flex-shrink:0;line-height:1;margin-top:.05rem;opacity:.45}
     .benefit-content{flex:1}
     .benefit-title{font-weight:700;color:var(--navy);font-size:.97rem;margin-bottom:.2rem}
-    .benefit-desc{font-size:.9rem;color:#3a3a3a;line-height:1.58;font-weight:400}
-
+    .benefit-desc{font-size:.9rem;color:var(--text);line-height:1.58;font-weight:400}
     /* DOCTOR CALLOUTS */
     .doctor-callout{background:#fff;border:1px solid rgba(27,42,74,.1);border-radius:14px;padding:1.3rem 1.5rem;margin:1rem 0;display:flex;gap:1rem;align-items:flex-start}
-    .doctor-icon{font-size:1.4rem;flex-shrink:0;margin-top:.1rem}
+    .doctor-icon{font-size:1.4rem;flex-shrink:0;margin-top:.1rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
     .doctor-callout-text{flex:1}
     .doctor-callout-title{font-weight:700;color:var(--navy);font-size:.93rem;margin-bottom:.3rem}
-    .doctor-callout-body{font-size:.9rem;color:#3a3a3a;line-height:1.62;font-weight:400}
-
-    /* RESEARCH CARDS */
-    .research-grid{display:flex;flex-direction:column;gap:1.5rem;margin:1.5rem 0}
-    .research-card{background:var(--navy);border-radius:16px;overflow:hidden}
-    .rc-header{padding:1.1rem 1.5rem .9rem;border-bottom:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
-    .rc-trial-name{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;color:#fff}
-    .rc-journal{font-size:.75rem;color:rgba(255,255,255,.65);margin-top:.15rem}
-    .rc-type-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:100px;font-size:.67rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72);padding:.2rem .65rem;white-space:nowrap;flex-shrink:0}
-    .rc-body{padding:1.25rem 1.5rem;display:flex;gap:1.5rem;align-items:flex-start}
-    .rc-stat{flex-shrink:0;text-align:center;background:rgba(255,255,255,.06);border-radius:12px;padding:1rem 1.25rem;min-width:170px;max-width:210px}
-    .rc-stat-num{font-family:'Fraunces',serif;font-size:2.8rem;font-weight:700;line-height:1}
-    .rc-stat-label{font-size:1rem;color:#fff;font-weight:700;margin-top:.5rem;line-height:1.4}
-    .rc-stat-label .flag{color:var(--amber);font-weight:700}
-    .rc-detail{flex:1}
-    .rc-detail p{font-size:.9rem;color:rgba(255,255,255,.87);line-height:1.64;margin-bottom:.65rem;font-weight:400}
-    .rc-detail p:last-child{margin-bottom:0}
-    .rc-detail strong{color:#fff;font-weight:600}
-    .rc-note{padding:.85rem 1.5rem;background:rgba(0,0,0,.15);border-top:1px solid rgba(255,255,255,.08);font-size:.8rem;color:rgba(255,255,255,.58);font-style:italic}
-
-    /* MECHANISMS CALLOUT */
+    .doctor-callout-body{font-size:.9rem;color:var(--text);line-height:1.62;font-weight:400}
+    /* NAVY RESEARCH CARDS */
+    .research-items{display:flex;flex-direction:column;gap:1.25rem}
+    .research-card-navy{background:var(--navy);border-radius:12px;padding:1.4rem 1.6rem;position:relative;overflow:hidden}
+    .research-card-navy::before{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(212,184,74,.08) 0%,transparent 70%);pointer-events:none}
+    .rc-stat-row{display:flex;align-items:baseline;gap:.85rem;margin-bottom:.85rem;padding-bottom:.85rem;border-bottom:1px solid rgba(255,255,255,.12);flex-wrap:wrap}
+    .rc-stat{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;color:#d4b84a;line-height:1;flex-shrink:0}
+    .rc-stat-label{font-size:1.1rem;color:#fff;line-height:1.4;font-weight:700;flex:1;min-width:180px}
+    .rc-source-pill{display:inline-flex;align-items:center;font-size:.72rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.80);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);padding:.2rem .65rem;border-radius:100px;text-decoration:none;transition:background .2s;white-space:nowrap}
+    .rc-source-pill:hover{background:rgba(255,255,255,.14)}
+    .rc-title{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:var(--coral);margin-bottom:.7rem;line-height:1.25}
+    .rc-body{font-size:1.05rem;line-height:1.75;color:rgba(255,255,255,.92);font-weight:400}
+    .rc-body p{margin-bottom:.65rem}
+    .rc-body p:last-child{margin-bottom:0}
+    .rc-note{margin-top:.85rem;padding-top:.85rem;border-top:1px solid rgba(255,255,255,.08);font-size:.82rem;color:rgba(255,255,255,.70);font-style:italic;line-height:1.55}
+    /* MECHANISM GRID */
     .mechanism-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:1.25rem 0}
     .mech-card{background:#fff;border:1px solid rgba(27,42,74,.1);border-radius:12px;padding:1.1rem 1.25rem}
-    .mech-icon{font-size:1.4rem;margin-bottom:.5rem}
+    .mech-icon{font-size:1.4rem;margin-bottom:.5rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
     .mech-title{font-weight:700;color:var(--navy);font-size:.93rem;margin-bottom:.3rem}
-    .mech-body{font-size:.88rem;color:#3a3a3a;line-height:1.58;font-weight:400}
-
-    /* CONCLUSION BOX */
-    .conclusion-box{background:var(--navy);border-radius:16px;padding:2rem 2.25rem;margin:1.5rem 0}
-    .conclusion-box p{color:rgba(255,255,255,.9);font-size:1rem;line-height:1.78;margin-bottom:1rem;font-weight:400}
-    .conclusion-box p:last-child{margin-bottom:0;font-style:italic;color:rgba(255,255,255,.96)}
-    .conclusion-box strong{color:#fff;font-weight:700}
-
-    /* DISCLAIMER */
-    .disclaimer{background:#fffbec;border:1px solid #e8c84a;border-radius:12px;padding:1rem 1.25rem;margin:1.5rem 0;font-size:.85rem;color:#5c4800;line-height:1.58}
-
+    .mech-body{font-size:.88rem;color:var(--text);line-height:1.58;font-weight:400}
+    /* PUTTING IT ALL TOGETHER */
+    .putting-together{background:var(--navy);border-radius:16px;padding:2rem 2.25rem;margin-top:2rem;position:relative;overflow:hidden}
+    .putting-together::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(212,184,74,.1) 0%,transparent 70%);pointer-events:none}
+    .putting-together-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;padding-bottom:.85rem;border-bottom:1px solid rgba(255,255,255,.12)}
+    .putting-together-header svg{width:20px;height:20px;color:var(--coral);flex-shrink:0}
+    .putting-together-header h5{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;color:#fff}
+    .putting-together p{color:rgba(255,255,255,.88);font-size:1rem;line-height:1.78;margin-bottom:.85rem;font-weight:400;font-style:italic}
+    .putting-together p:last-child{margin-bottom:0}
+    .putting-together p strong{color:#fff;font-weight:700;font-style:normal}
     /* REFERENCES */
-    .references-section{margin-top:3rem;padding-top:2rem;border-top:2px solid rgba(27,42,74,.1)}
-    .references-title{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:1.25rem}
-    .ref-block{margin-bottom:1.25rem;padding:1rem 1.25rem;background:#fff;border-radius:10px;border-left:3px solid var(--practical)}
+    .references-section{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}
+    .references-section h3{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;color:var(--navy);margin-bottom:1.25rem}
+    .ref-block{margin-bottom:1.25rem;padding:1rem 1.25rem;background:#fff;border-radius:10px;border-left:4px solid var(--practical)}
     .ref-num{font-size:.72rem;font-weight:700;color:var(--practical);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
-    .ref-full{font-size:.88rem;color:var(--text);line-height:1.58;margin-bottom:.5rem}
+    .ref-full{font-size:.88rem;color:var(--text);line-height:1.58;margin-bottom:.5rem;font-weight:400}
     .ref-links{display:flex;flex-wrap:wrap;gap:.5rem}
-    .ref-pill{display:inline-block;cursor:pointer;background:var(--navy);color:#fff;text-decoration:none;font-size:.72rem;font-weight:600;padding:.28rem .75rem;border-radius:100px;transition:background .15s}
-    .ref-pill:hover{background:var(--practical);color:#fff}
-
+    .ref-pill{display:inline-block;background:var(--navy);color:#fff;text-decoration:none;font-size:.72rem;font-weight:600;padding:.28rem .75rem;border-radius:100px;transition:background .15s}
+    .ref-pill:hover{background:var(--practical)}
+    sup a{color:var(--coral);font-size:.7em;font-weight:700;text-decoration:none;vertical-align:super;margin-left:.05em}
+    sup a:hover{text-decoration:underline}
+    /* DISCLAIMER */
+    .disclaimer{background:var(--coral-light);border:1px solid rgba(232,99,74,.2);border-radius:12px;padding:1.1rem 1.4rem;display:flex;gap:.85rem;align-items:flex-start;margin-top:3rem}
+    .disclaimer svg{width:20px;height:20px;color:var(--coral);flex-shrink:0;margin-top:.1rem}
+    .disclaimer p{font-size:.82rem;color:#7A3020;line-height:1.6;margin:0;font-weight:400}
+    .disclaimer strong{font-weight:600}
     /* FOOTER */
-    .site-footer{background:var(--navy);color:rgba(255,255,255,.62);text-align:center;padding:2rem;font-size:.8rem}
-    .site-footer a{color:rgba(255,255,255,.75);text-decoration:none}
-
-    @media(max-width:640px){
-      .hero{padding:2.5rem 1.25rem 2rem}
-      .article-body{padding:0 1.25rem 3rem}
-      .rc-body{flex-direction:column}
-      .key-terms-grid{grid-template-columns:1fr}
-      .mechanism-grid{grid-template-columns:1fr}
-    }
+    footer{background:var(--navy);color:rgba(255,255,255,.5);text-align:center;padding:2rem;font-size:.8rem}
+    footer a{color:var(--sage);text-decoration:none}
+    @media(max-width:600px){nav{padding:0 1rem}.nav-links{display:none}.article-hero{padding:2.5rem 1rem 2rem}.article-layout{padding:2rem 1rem 4rem}.breadcrumb{padding:.6rem 1rem}.jump-nav{padding:0 1rem}.key-terms-grid{grid-template-columns:1fr}.stat-grid-2x2{grid-template-columns:1fr}.mechanism-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="site-nav">
-  <a class="nav-logo" href="index.html">
-    <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
-      <path d="M11 2C8 2 5.5 4 4 6.5 2.5 9 2.5 12 4 14.5c1 1.8 2.8 3 5 3.4V4.5" stroke="#E8634A" stroke-width="1.8" stroke-linecap="round"/>
-      <path d="M11 2C14 2 16.5 4 18 6.5 19.5 9 19.5 12 18 14.5c-1 1.8-2.8 3-5 3.4V4.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round"/>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg class="logo-svg" viewBox="0 0 40 40" fill="none">
+      <rect x="2" y="8" width="17" height="24" rx="2" stroke="#FAF7F2" stroke-width="1.5" fill="none"/>
+      <rect x="21" y="8" width="17" height="24" rx="2" stroke="#FAF7F2" stroke-width="1.5" fill="none"/>
+      <line x1="20" y1="8" x2="20" y2="32" stroke="#E8634A" stroke-width="1.5"/>
+      <line x1="6" y1="15" x2="15" y2="15" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="6" y1="19" x2="15" y2="19" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="6" y1="23" x2="12" y2="23" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="15" x2="34" y2="15" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="19" x2="34" y2="19" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="23" x2="31" y2="23" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
     </svg>
-    <div>
-      <div class="logo-text">helf<span class="logo-dot">.</span>school</div>
-      <div class="logo-tag">Health Education</div>
+    <div class="logo-text">
+      <span class="logo-name">helf.school</span>
+      <span class="logo-tagline">Health Education</span>
     </div>
   </a>
-  <a class="nav-back" href="helf-school-conditions.html">← All conditions</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="helf-school-conditions.html">Conditions</a></li>
+    <li><a href="helf-school-membership.html">Membership</a></li>
+  </ul>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Home</a>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <a href="helf-school-conditions.html">Conditions</a>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <a href="helf-school-conditions.html">Practical Health</a>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>The Mediterranean Diet</span>
+  </div>
+</div>
+
+<header class="article-hero">
   <div class="hero-inner">
-    <div class="breadcrumb">
-      <a href="index.html">Home</a>
-      <span class="breadcrumb-sep">›</span>
-      <a href="helf-school-conditions.html">Conditions</a>
-      <span class="breadcrumb-sep">›</span>
-      <span>Mediterranean Diet</span>
-    </div>
-    <div class="series-pill">📋 Practical Health Series · Article 08</div>
+    <div class="category-badge">📋 Practical Health Series · Article 08</div>
     <h1>The Mediterranean Diet</h1>
     <p class="hero-subtitle">One of the most studied dietary patterns in medicine — what the evidence actually shows, in plain English.</p>
     <div class="hero-meta">
@@ -184,31 +203,42 @@
       <span class="meta-item">🔬 Evidence-based</span>
     </div>
   </div>
+</header>
+
+<div class="disclaimer-bar">
+  <div class="disclaimer-bar-inner">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    Health education — not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+  </div>
 </div>
 
-<!-- ARTICLE BODY -->
-<div class="article-body">
-
-  <!-- DISCLAIMER -->
-  <div class="disclaimer" style="margin-top:1.75rem">
-    <strong>Health education — not medical advice.</strong> This article is for general information. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+<nav class="jump-nav" aria-label="Jump to section">
+  <div class="jump-nav-inner">
+    <a href="#what-is-it" class="jump-link"><span class="num">1</span> What is it?</a>
+    <a href="#why-it-matters" class="jump-link"><span class="num">2</span> Why does it matter?</a>
+    <a href="#doctor-advice" class="jump-link"><span class="num">3</span> What your doctor might do</a>
+    <a href="#research" class="jump-link"><span class="num">4</span> What the research shows</a>
   </div>
+</nav>
+
+<main class="article-layout">
 
   <!-- SECTION 1 -->
   <div class="article-section" id="what-is-it">
-    <div class="section-label">Section 1</div>
-    <h2 class="section-title">What is the Mediterranean diet?</h2>
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <h2 class="section-title">What is the Mediterranean diet?</h2>
+    </div>
 
     <p>The Mediterranean diet is not a weight-loss plan, a calorie-counting programme, or a set of strict rules. It is a <strong>pattern of eating</strong> inspired by the traditional food habits of communities around the Mediterranean Sea — particularly in Greece, Crete, southern Italy, and Spain — during the mid-20th century, before industrialised food systems fundamentally changed what those populations ate.</p>
 
-    <p>Researchers first began studying these populations in the 1950s and 1960s, when epidemiologists (scientists who study patterns of disease) noticed something striking: people in Mediterranean countries had significantly lower rates of cardiovascular disease (heart disease and stroke) than Northern Europe and North America — despite eating a relatively high-fat diet. The difference, it turned out, was <em>which</em> fats they were eating, and what else was on the plate.</p>
+    <p>Researchers first began studying these populations in the 1950s and 1960s, when epidemiologists noticed something striking: people in Mediterranean countries had significantly lower rates of cardiovascular disease than Northern Europe and North America — despite eating a relatively high-fat diet. The difference, it turned out, was <em>which</em> fats they were eating, and what else was on the plate.</p>
 
-    <p>The diet is built around five principles: <strong>abundant plant foods</strong> at every meal; <strong>olive oil as the primary fat</strong> replacing butter and animal fats; <strong>fish and seafood regularly</strong>, especially oily fish; <strong>moderate amounts</strong> of dairy, poultry and eggs; and <strong>red meat and processed foods rarely</strong> rather than daily.</p>
+    <p>The diet is built around five principles: <strong>abundant plant foods</strong> at every meal; <strong>olive oil as the primary fat</strong> replacing butter and animal fats; <strong>fish and seafood regularly</strong>, especially oily fish; <strong>moderate amounts</strong> of dairy, poultry, and eggs; and <strong>red meat and processed foods rarely</strong> rather than daily.</p>
 
     <p>Below is a practical breakdown across three tiers — what to eat freely, what to include regularly, and what to keep occasional:</p>
 
     <div class="tier-grid">
-
       <div class="tier-card tier-1">
         <div class="tier-header">
           <div class="tier-icon">🌿</div>
@@ -229,7 +259,6 @@
           <span class="food-chip">💧 Water as the main drink</span>
         </div>
       </div>
-
       <div class="tier-card tier-2">
         <div class="tier-header">
           <div class="tier-icon">🐟</div>
@@ -247,7 +276,6 @@
           <span class="food-chip">🧀 Yogurt &amp; cheese — moderate amounts</span>
         </div>
       </div>
-
       <div class="tier-card tier-3">
         <div class="tier-header">
           <div class="tier-icon">⚠️</div>
@@ -265,129 +293,113 @@
           <span class="food-chip">🛒 Ultra-processed foods generally</span>
         </div>
       </div>
-
     </div>
 
     <p>One important point: this is not a calorie-counting diet. There are no portion scales or macro targets. The approach is about <strong>food quality and food patterns</strong> — what you eat, and how often — rather than strict gram measurements. Research consistently shows this pattern-based approach is more sustainable and more effective long-term than diets built around restriction and counting.</p>
-
-  </div><!-- /s1 -->
+  </div>
 
   <!-- KEY TERMS -->
   <div class="key-terms-box">
-    <div class="key-terms-title"><span>📘</span> Key Terms</div>
+    <div class="key-terms-title">📘 Key Terms</div>
     <div class="key-terms-grid">
-      <div class="term-item">
-        <div class="term-name">Alpha-linolenic acid (ALA)</div>
-        <div class="term-def">A plant-based omega-3 fat (healthy fat) found in walnuts, flaxseed and some plant oils. Different from the omega-3s in oily fish but still beneficial. Featured prominently in the Lyon Diet Heart Study.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">Atherosclerosis</div>
-        <div class="term-def">The furring-up or narrowing of arteries (blood vessels) caused by the build-up of fatty plaques in the artery walls. Increases the risk of heart attacks and strokes. The Mediterranean diet appears to slow this process.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">Cardiovascular disease</div>
-        <div class="term-def">The umbrella term for conditions affecting the heart and blood vessels — including coronary heart disease (blocked arteries supplying the heart), heart attacks, strokes, and peripheral arterial disease (blocked leg arteries).</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">Extra-virgin olive oil (EVOO)</div>
-        <div class="term-def">The least-processed form of olive oil, made by cold-pressing whole olives without heat or chemicals. Rich in oleic acid (a healthy monounsaturated fat) and polyphenols (plant antioxidants). Used generously in place of butter.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">Glycaemic index (GI)</div>
-        <div class="term-def">A measure of how quickly a food raises blood sugar (glucose) levels. High-GI foods (white bread, sugary drinks) cause rapid spikes; low-GI foods (legumes, whole grains) raise blood sugar more slowly. The Mediterranean diet is naturally low-GI.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">HbA1c</div>
-        <div class="term-def">Glycated haemoglobin — a blood test that shows the average blood sugar level over the past two to three months. Used to diagnose and monitor type 2 diabetes and prediabetes (borderline raised blood sugar).</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">Legumes</div>
-        <div class="term-def">The plant family including lentils, chickpeas, butter beans, kidney beans, and peas. High in plant protein, soluble fibre (fibre that dissolves in water), and slow-release carbohydrates. Consistently linked to positive health outcomes.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">Monounsaturated fats</div>
-        <div class="term-def">A type of healthy unsaturated fat found in olive oil, avocados, and some nuts. Associated with improved cholesterol levels and lower cardiovascular risk when they replace saturated fats (found in butter, cheese, and fatty meat).</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">Omega-3 fatty acids</div>
-        <div class="term-def">A group of healthy unsaturated fats. Marine omega-3s (EPA and DHA) are found in oily fish; plant omega-3s (ALA) in walnuts and flaxseed. Linked to reduced inflammation, lower triglycerides (blood fats), and better heart health.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">Polyphenols</div>
-        <div class="term-def">Naturally occurring plant chemicals with antioxidant (cell-protecting) and anti-inflammatory properties. Found in olive oil, vegetables, fruit, nuts, and red wine. One of the proposed mechanisms behind the Mediterranean diet's broad health effects.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">Primary prevention</div>
-        <div class="term-def">Preventing a disease in someone who has not yet had it — e.g. reducing the risk of a first heart attack through dietary change.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">Secondary prevention</div>
-        <div class="term-def">Reducing the risk of a second event in someone who has already had a heart attack, stroke, or similar illness. The Lyon Diet Heart Study was a secondary prevention trial.</div>
-      </div>
+      <div class="term-item"><div class="term-name">Alpha-linolenic acid (ALA)</div><div class="term-def">A plant-based omega-3 fat found in walnuts, flaxseed, and some plant oils. Different from the omega-3s in oily fish (EPA and DHA) but still beneficial. Featured prominently in the Lyon Diet Heart Study.</div></div>
+      <div class="term-item"><div class="term-name">Atherosclerosis</div><div class="term-def">The furring-up or narrowing of arteries caused by the build-up of fatty plaques in the artery walls. Increases the risk of heart attacks and strokes. The Mediterranean diet appears to slow this process.</div></div>
+      <div class="term-item"><div class="term-name">Cardiovascular disease</div><div class="term-def">The umbrella term for conditions affecting the heart and blood vessels — including coronary heart disease, heart attacks, strokes, and peripheral arterial disease.</div></div>
+      <div class="term-item"><div class="term-name">Extra-virgin olive oil (EVOO)</div><div class="term-def">The least-processed form of olive oil, made by cold-pressing whole olives. Rich in oleic acid (a healthy monounsaturated fat) and polyphenols (plant antioxidants). Used generously in place of butter.</div></div>
+      <div class="term-item"><div class="term-name">HbA1c</div><div class="term-def">Glycated haemoglobin — a blood test showing the average blood sugar level over the past two to three months. Used to diagnose and monitor type 2 diabetes and prediabetes.</div></div>
+      <div class="term-item"><div class="term-name">Legumes</div><div class="term-def">The plant family including lentils, chickpeas, butter beans, kidney beans, and peas. High in plant protein, soluble fibre, and slow-release carbohydrates. Consistently linked to positive health outcomes.</div></div>
+      <div class="term-item"><div class="term-name">Monounsaturated fats</div><div class="term-def">A type of healthy unsaturated fat found in olive oil, avocados, and some nuts. Associated with improved cholesterol levels and lower cardiovascular risk when they replace saturated fats.</div></div>
+      <div class="term-item"><div class="term-name">Polyphenols</div><div class="term-def">Naturally occurring plant chemicals with antioxidant and anti-inflammatory properties. Found in olive oil, vegetables, fruit, and nuts. One of the proposed mechanisms behind the Mediterranean diet's broad health effects.</div></div>
+      <div class="term-item"><div class="term-name">Primary prevention</div><div class="term-def">Preventing a disease in someone who has not yet had it — e.g. reducing the risk of a first heart attack through dietary change.</div></div>
+      <div class="term-item"><div class="term-name">Secondary prevention</div><div class="term-def">Reducing the risk of a second event in someone who has already had a heart attack, stroke, or similar illness. The Lyon Diet Heart Study was a secondary prevention trial.</div></div>
     </div>
   </div>
 
   <!-- SECTION 2 -->
   <div class="article-section" id="why-it-matters">
-    <div class="section-label">Section 2</div>
-    <h2 class="section-title">Why does it matter?</h2>
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <h2 class="section-title">Why does it matter?</h2>
+    </div>
 
-    <p>The Mediterranean diet has one of the broadest and most consistent evidence bases of any dietary pattern studied in medicine. Most interventions show benefit in one area; this one has been associated with meaningful reductions across several major causes of illness and death. Five areas stand out most clearly:</p>
+    <p>The Mediterranean diet has one of the broadest and most consistent evidence bases of any dietary pattern studied in medicine. Most interventions show benefit in one area; this one has been associated with meaningful reductions across several major causes of illness and death.</p>
+
+    <div class="stat-grid-2x2">
+      <div class="stat-cell">
+        <div class="stat-cell-number coral">~30%</div>
+        <div class="stat-cell-label">reduction in major cardiovascular events (heart attacks, strokes, cardiovascular death) — the largest dietary intervention trial in cardiovascular prevention<sup><a href="#ref-1">1</a></sup></div>
+        <div class="stat-cell-source">PREDIMED Trial, NEJM 2018</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-number practical">23%</div>
+        <div class="stat-cell-label">lower risk of developing type 2 diabetes with higher adherence — consistent across 10 prospective studies and 136,846 participants<sup><a href="#ref-3">3</a></sup></div>
+        <div class="stat-cell-source">Koloverou et al, J Am Coll Nutr 2014</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-number coral">~30%</div>
+        <div class="stat-cell-label">lower risk of Alzheimer's disease in a 2025 meta-analysis spanning 24 years of studies — part of a broader cognitive benefit picture<sup><a href="#ref-4">4</a></sup></div>
+        <div class="stat-cell-source">Dominguez LJ et al, GeroScience 2025</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-number practical">~65%</div>
+        <div class="stat-cell-label">lower cardiovascular mortality in people who had already had a heart attack — the secondary prevention finding from the Lyon Diet Heart Study<sup><a href="#ref-2">2</a></sup></div>
+        <div class="stat-cell-source">Lyon Diet Heart Study, Circulation 1999</div>
+      </div>
+    </div>
 
     <ul class="benefit-list">
       <li>
         <div class="benefit-num">1</div>
         <div class="benefit-content">
           <div class="benefit-title">Heart disease and stroke</div>
-          <div class="benefit-desc">The strongest evidence base. The PREDIMED trial — one of the largest dietary intervention trials ever conducted — found approximately 30% relative risk reduction in major cardiovascular events (heart attacks, strokes, cardiovascular death) in high-risk individuals. The Lyon Diet Heart Study found striking reductions in recurrent heart attacks in people who had already had one.</div>
+          <div class="benefit-desc">The strongest evidence base. The PREDIMED trial found approximately 30% relative risk reduction in major cardiovascular events in high-risk individuals. The Lyon Diet Heart Study found striking reductions in recurrent heart attacks in people who had already had one.</div>
         </div>
       </li>
       <li>
         <div class="benefit-num">2</div>
         <div class="benefit-content">
           <div class="benefit-title">Type 2 diabetes</div>
-          <div class="benefit-desc">Multiple large meta-analyses (pooled analyses of many independent studies) consistently show 19–23% lower risk of developing type 2 diabetes with higher adherence. In people who already have diabetes, the diet also improves HbA1c (average blood sugar) and reduces the need for intensification of medication.</div>
+          <div class="benefit-desc">Multiple large meta-analyses consistently show 19–23% lower risk of developing type 2 diabetes with higher adherence. In people who already have diabetes, the diet also improves HbA1c (average blood sugar) and reduces the need for intensification of medication.</div>
         </div>
       </li>
       <li>
         <div class="benefit-num">3</div>
         <div class="benefit-content">
           <div class="benefit-title">Cognitive decline and dementia</div>
-          <div class="benefit-desc">Growing evidence links Mediterranean eating patterns to slower cognitive decline (gradual loss of memory and thinking ability) and meaningfully lower risk of dementia — including Alzheimer's disease. A 2025 meta-analysis found 11–30% lower risk across different categories of cognitive disorder.</div>
+          <div class="benefit-desc">Growing evidence links Mediterranean eating patterns to slower cognitive decline and meaningfully lower risk of dementia — including Alzheimer's disease. A 2025 meta-analysis found 11–30% lower risk across different categories of cognitive disorder.</div>
         </div>
       </li>
       <li>
         <div class="benefit-num">4</div>
         <div class="benefit-content">
           <div class="benefit-title">Blood pressure and cholesterol</div>
-          <div class="benefit-desc">The diet is naturally supportive of both. High vegetable and legume intake provides potassium (which counters sodium's blood-pressure-raising effect), and replacing saturated fats with olive oil and nuts improves LDL cholesterol (low-density lipoprotein — the type associated with atherosclerosis, or furring-up of arteries).</div>
+          <div class="benefit-desc">The diet is naturally supportive of both. High vegetable and legume intake provides potassium (which counters sodium's blood-pressure-raising effect), and replacing saturated fats with olive oil and nuts improves LDL cholesterol.</div>
         </div>
       </li>
       <li>
         <div class="benefit-num">5</div>
         <div class="benefit-content">
           <div class="benefit-title">Overall longevity</div>
-          <div class="benefit-desc">Large observational studies (tracking populations over years without intervening in their diet) consistently link higher Mediterranean diet adherence to lower all-cause mortality (death from any cause) and longer healthy life expectancy. The effects appear dose-related — even partial adherence brings benefit.</div>
+          <div class="benefit-desc">Large observational studies consistently link higher Mediterranean diet adherence to lower all-cause mortality and longer healthy life expectancy. The effects appear dose-related — even partial adherence brings benefit.</div>
         </div>
       </li>
     </ul>
-
-    <p>What makes the Mediterranean diet unusual is that it achieves these effects not by cutting out an entire food group or following an extreme protocol, but through a <strong>cumulative pattern of mostly whole, plant-rich foods</strong>. No single ingredient is the magic bullet. It is the combination that matters — and that combination happens to be genuinely enjoyable, affordable, and sustainable.</p>
-
-  </div><!-- /s2 -->
+  </div>
 
   <!-- SECTION 3 -->
   <div class="article-section" id="doctor-advice">
-    <div class="section-label">Section 3</div>
-    <h2 class="section-title">What your doctor might do</h2>
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <h2 class="section-title">What your doctor might do</h2>
+    </div>
 
-    <p>In a typical NHS GP appointment, detailed dietary counselling is rarely the central focus — time constraints make it difficult. But dietary guidance is increasingly built into cardiovascular risk consultations, diabetes care, and long-term condition management. Here is what you might encounter in practice:</p>
+    <p>In a typical NHS GP appointment, detailed dietary counselling is rarely the central focus — time constraints make it difficult. But dietary guidance is increasingly built into cardiovascular risk consultations, diabetes care, and long-term condition management.</p>
 
     <div class="doctor-callout">
       <div class="doctor-icon">❤️</div>
       <div class="doctor-callout-text">
         <div class="doctor-callout-title">Cardiovascular risk reduction</div>
-        <div class="doctor-callout-body">If you have raised cholesterol, hypertension (high blood pressure), or an elevated QRISK score (the UK tool used to estimate 10-year cardiovascular risk), your GP or practice nurse may advise reducing saturated fat and processed food while increasing oily fish, nuts, and plant-based foods. This broadly aligns with Mediterranean principles. The <strong>European Society of Cardiology (ESC) 2021 guidelines on cardiovascular disease prevention</strong> explicitly recommend the Mediterranean diet as part of a heart-healthy lifestyle. ⚑</div>
+        <div class="doctor-callout-body">Where raised cholesterol, hypertension (high blood pressure), or an elevated QRISK score is identified, a GP or practice nurse may advise reducing saturated fat and processed food while increasing oily fish, nuts, and plant-based foods. This broadly aligns with Mediterranean principles. The European Society of Cardiology (ESC) 2021 guidelines on cardiovascular disease prevention explicitly recommend the Mediterranean diet as part of a heart-healthy lifestyle. ⚑</div>
       </div>
     </div>
 
@@ -395,7 +407,7 @@
       <div class="doctor-icon">🩺</div>
       <div class="doctor-callout-text">
         <div class="doctor-callout-title">Pre-diabetes and type 2 diabetes</div>
-        <div class="doctor-callout-body">The <strong>NHS Diabetes Prevention Programme (NDPP)</strong> is a free group-based lifestyle programme offered to people identified as at risk of type 2 diabetes — your GP can refer you if your blood tests suggest prediabetes (borderline raised blood sugar). The dietary advice given is broadly consistent with a Mediterranean-style approach.</div>
+        <div class="doctor-callout-body">The NHS Diabetes Prevention Programme (NDPP) is a free group-based lifestyle programme offered to people identified as at risk of type 2 diabetes — referral is available where blood tests suggest prediabetes (borderline raised blood sugar). The dietary advice given is broadly consistent with a Mediterranean-style approach.</div>
       </div>
     </div>
 
@@ -403,7 +415,7 @@
       <div class="doctor-icon">🫀</div>
       <div class="doctor-callout-text">
         <div class="doctor-callout-title">After a cardiac event</div>
-        <div class="doctor-callout-body"><strong>Cardiac rehabilitation (Cardiac Rehab)</strong> programmes are offered following a heart attack, bypass surgery (where blocked arteries are bypassed using a graft), or other significant cardiac event. These programmes typically include dietary guidance aligned with Mediterranean principles, alongside supervised exercise and psychological support.</div>
+        <div class="doctor-callout-body">Cardiac Rehabilitation programmes are offered following a heart attack, bypass surgery, or other significant cardiac event. These programmes typically include dietary guidance aligned with Mediterranean principles, alongside supervised exercise and psychological support.</div>
       </div>
     </div>
 
@@ -411,204 +423,156 @@
       <div class="doctor-icon">🥗</div>
       <div class="doctor-callout-text">
         <div class="doctor-callout-title">Dietitian referral</div>
-        <div class="doctor-callout-body">Where personalised dietary guidance is useful — particularly alongside existing medical conditions, medications that interact with certain foods, or complex nutritional needs — GPs can refer patients to a <strong>registered dietitian (RD)</strong>. Dietitians are regulated healthcare professionals with protected status in the UK, unlike the term "nutritionist" which is unprotected and unregulated.</div>
+        <div class="doctor-callout-body">Where personalised dietary guidance is useful — particularly alongside existing medical conditions, medications that interact with certain foods, or complex nutritional needs — GPs can refer to a registered dietitian (RD). Dietitians are regulated healthcare professionals with protected status in the UK, unlike the term "nutritionist" which is unprotected.</div>
       </div>
     </div>
 
-    <p>An important note: the Mediterranean diet is a <strong>complement to medical treatment, not a replacement for it</strong>. Prescribed medications for heart disease, raised blood pressure, diabetes, or high cholesterol continue as prescribed — any changes are a medical decision, not a dietary one. Significant dietary change is a conversation for you to have with your GP or healthcare professional — particularly alongside anticoagulants (blood thinners such as warfarin), where changes in vitamin K intake from green vegetables can affect dosing.</p>
-
-  </div><!-- /s3 -->
+    <p>An important note: the Mediterranean diet is a <strong>complement to medical treatment, not a replacement for it</strong>. Prescribed medications for heart disease, raised blood pressure, diabetes, or high cholesterol continue as prescribed — any changes are a medical decision. Significant dietary change alongside anticoagulants (blood thinners such as warfarin) is a conversation for you to have with your GP or healthcare professional, as changes in vitamin K intake from green vegetables can affect dosing.</p>
+  </div>
 
   <!-- SECTION 4 -->
   <div class="article-section" id="research">
-    <div class="section-label">Section 4</div>
-    <h2 class="section-title">What the research shows</h2>
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <h2 class="section-title">What the research shows</h2>
+    </div>
 
-    <p>Thousands of studies have examined the Mediterranean diet, but four findings form the core of the evidence base. Together they cover primary prevention (stopping disease in the first place), secondary prevention (after a cardiac event), diabetes, and cognitive decline.</p>
+    <p>Thousands of studies have examined the Mediterranean diet, but four findings form the core of the evidence base — covering primary prevention, secondary prevention, diabetes, and cognitive decline.</p>
 
-    <div class="research-grid">
+    <div class="research-items">
 
-      <!-- PREDIMED -->
-      <div class="research-card">
-        <div class="rc-header">
-          <div>
-            <div class="rc-trial-name">PREDIMED Trial</div>
-            <div class="rc-journal">Estruch R, Ros E, Salas-Salvadó J, et al. · New England Journal of Medicine · 2013 (republished 2018)</div>
-          </div>
-          <div class="rc-type-pill">RCT · Primary Prevention</div>
+      <div class="research-card-navy" id="ref-1">
+        <div class="rc-stat-row">
+          <span class="rc-stat">~30%</span>
+          <span class="rc-stat-label">reduction in major cardiovascular events (heart attacks, strokes, cardiovascular death) vs control diet — in the largest randomised dietary trial in cardiovascular prevention</span>
+          <a href="https://www.nejm.org/doi/full/10.1056/NEJMoa1800389" target="_blank" class="rc-source-pill">Estruch et al · NEJM 2018</a>
         </div>
+        <div class="rc-title">PREDIMED Trial — the strongest dietary evidence in preventive medicine</div>
         <div class="rc-body">
-          <div class="rc-stat">
-            <div class="rc-stat-num" style="color:#7ecc99">~30%</div>
-            <div class="rc-stat-label">reduction in major cardiovascular events<br><span style="font-size:.82rem;font-weight:400;color:rgba(255,255,255,.72)">(HR 0.70 — verified ✓)</span></div>
-          </div>
-          <div class="rc-detail">
-            <p><strong>Who was studied:</strong> 7,447 participants in Spain at high cardiovascular risk but without established heart disease at the start. Randomised (allocated by chance) to: (a) Mediterranean diet + extra-virgin olive oil, (b) Mediterranean diet + mixed nuts, or (c) control group with advice to reduce fat intake.</p>
-            <p><strong>What happened:</strong> The trial was stopped early after a median follow-up of 4.8 years by the independent data monitoring board, because the benefit in the Mediterranean diet groups was too clear to ethically continue.</p>
-            <p><strong>Key result:</strong> Both Mediterranean diet groups showed approximately 30% lower relative risk of major cardiovascular events — heart attack, stroke, or death from cardiovascular causes — compared with the control group. Hazard ratio (HR) 0.70 (95% CI 0.54–0.92) for the EVOO group; HR 0.70 (95% CI 0.54–0.96) for the nuts group. The ~30% relative risk reduction is derived directly from 1 − HR 0.70 = 0.30. The adjusted analysis in the 2018 republication showed HRs of 0.66 and 0.64 — meaning the adjusted reduction is 34–36%, making ~30% a conservative estimate.</p>
-          </div>
+          <p><strong>Who was studied:</strong> 7,447 participants in Spain at high cardiovascular risk but without established heart disease at the start. Randomised to: (a) Mediterranean diet + extra-virgin olive oil, (b) Mediterranean diet + mixed nuts, or (c) control group with advice to reduce fat intake.</p>
+          <p><strong>What happened:</strong> The trial was stopped early after a median follow-up of 4.8 years by the independent data monitoring board, because the benefit in the Mediterranean diet groups was too clear to ethically continue.</p>
+          <p><strong>Key result:</strong> Both Mediterranean diet groups showed approximately 30% lower relative risk of major cardiovascular events. Hazard ratio 0.70 (95% CI 0.54–0.92) for the EVOO group. The adjusted analysis in the 2018 republication showed HRs of 0.66–0.64, making ~30% a conservative estimate of the reduction.</p>
         </div>
-        <div class="rc-note">Note on retraction: The original 2013 NEJM paper was retracted in 2018 after a procedural error in randomisation (the process of random allocation to groups) was discovered at some trial sites. NEJM republished a fully reanalysed version on the same day. The overall conclusion — that the Mediterranean diet significantly reduced cardiovascular events — was unchanged. PREDIMED remains the largest randomised trial of diet in cardiovascular prevention.</div>
+        <div class="rc-note">Note on the republication: The original 2013 NEJM paper was retracted and republished in 2018 after a procedural error in randomisation was discovered at some trial sites. The overall conclusion — that the Mediterranean diet significantly reduced cardiovascular events — was unchanged. PREDIMED remains the largest randomised trial of diet in cardiovascular prevention.</div>
       </div>
 
-      <!-- LYON -->
-      <div class="research-card">
-        <div class="rc-header">
-          <div>
-            <div class="rc-trial-name">Lyon Diet Heart Study</div>
-            <div class="rc-journal">de Lorgeril M, Salen P, Martin JL, Monjaud I, Delaye J, Mamelle N. · Circulation · 1999</div>
-          </div>
-          <div class="rc-type-pill">RCT · Secondary Prevention</div>
+      <div class="research-card-navy" id="ref-2">
+        <div class="rc-stat-row">
+          <span class="rc-stat">~65%</span>
+          <span class="rc-stat-label">lower risk of cardiovascular mortality in people who had already had a heart attack — trial stopped at 27 months because the protective effect was too striking to continue ethically</span>
+          <a href="https://www.ahajournals.org/doi/10.1161/01.cir.99.6.779" target="_blank" class="rc-source-pill">de Lorgeril et al · Circulation 1999</a>
         </div>
+        <div class="rc-title">Lyon Diet Heart Study — the most dramatic secondary prevention result in dietary research ⚑</div>
         <div class="rc-body">
-          <div class="rc-stat">
-            <div class="rc-stat-num" style="color:var(--amber)">~65%</div>
-            <div class="rc-stat-label">reduction in cardiovascular mortality <span class="flag">⚑</span></div>
-          </div>
-          <div class="rc-detail">
-            <p><strong>Who was studied:</strong> 605 patients who had already experienced a first myocardial infarction (heart attack) — this is <em>secondary prevention</em> (reducing the risk of a second event). Randomised to a Mediterranean-style diet enriched with alpha-linolenic acid (ALA, a plant omega-3 fat) versus standard post-heart-attack dietary advice.</p>
-            <p><strong>What happened:</strong> The trial was stopped at 27 months by its Scientific and Ethics Committee because the protective effect in the Mediterranean diet group was so striking it was considered unethical to continue. Extended follow-up to 46 months confirmed the findings.</p>
-            <p><strong>Key result:</strong> Hazard ratio (HR) 0.35 for cardiovascular mortality — approximately 65% lower risk of dying from cardiovascular causes. HR 0.44 for total mortality (all-cause death). Substantial reduction in recurrent non-fatal heart attacks. One of the first trials to show that dietary change after a cardiac event could dramatically alter outcomes, independent of traditional risk factors such as cholesterol and blood pressure.</p>
-          </div>
+          <p><strong>Who was studied:</strong> 605 patients who had already experienced a first myocardial infarction (heart attack) — secondary prevention. Randomised to a Mediterranean-style diet enriched with alpha-linolenic acid (ALA, a plant omega-3) versus standard post-heart-attack dietary advice.</p>
+          <p><strong>Key result:</strong> Hazard ratio 0.35 for cardiovascular mortality — approximately 65% lower risk of dying from cardiovascular causes. HR 0.44 for total mortality. Substantial reduction in recurrent non-fatal heart attacks. One of the first trials to show that dietary change after a cardiac event could dramatically alter outcomes, independent of traditional risk factors.</p>
         </div>
-        <div class="rc-note">Context: This trial used a Mediterranean-style diet enriched with canola margarine (for its ALA content) rather than olive oil, reflecting the French context and the era of the study. Results are considered highly relevant, but the exact diet used differed somewhat from the classic Greek or Spanish pattern studied in PREDIMED.</div>
+        <div class="rc-note">Context: This trial used a Mediterranean-style diet enriched with canola margarine for its ALA content, rather than olive oil — reflecting the French context and era of the study. Results are considered highly relevant, but the exact diet differed somewhat from the classic Greek or Spanish pattern studied in PREDIMED.</div>
       </div>
 
-      <!-- T2D -->
-      <div class="research-card">
-        <div class="rc-header">
-          <div>
-            <div class="rc-trial-name">Type 2 Diabetes — Meta-Analysis</div>
-            <div class="rc-journal">Koloverou E, Esposito K, Giugliano D, Panagiotakos D · Journal of the American College of Nutrition · 2014</div>
-          </div>
-          <div class="rc-type-pill">Meta-Analysis · 136,846 participants</div>
+      <div class="research-card-navy" id="ref-3">
+        <div class="rc-stat-row">
+          <span class="rc-stat">23%</span>
+          <span class="rc-stat-label">lower risk of developing type 2 diabetes with higher Mediterranean diet adherence — consistent across 10 prospective studies and 136,846 participants ⚑</span>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/24931280/" target="_blank" class="rc-source-pill">Koloverou et al · J Am Coll Nutr 2014</a>
         </div>
+        <div class="rc-title">Mediterranean diet and type 2 diabetes — consistent across populations and study designs</div>
         <div class="rc-body">
-          <div class="rc-stat">
-            <div class="rc-stat-num" style="color:var(--coral)">23%</div>
-            <div class="rc-stat-label">lower risk of developing type 2 diabetes <span class="flag">⚑</span></div>
-          </div>
-          <div class="rc-detail">
-            <p><strong>What was studied:</strong> A meta-analysis — pooled statistical analysis of 10 independent prospective studies, totalling 136,846 participants. Compared people with high versus low adherence to a Mediterranean dietary pattern and tracked who went on to develop type 2 diabetes over follow-up periods of several years.</p>
-            <p><strong>Key result:</strong> Higher adherence to the Mediterranean diet was associated with a 23% lower risk of developing type 2 diabetes. Relative risk 0.77 (95% CI 0.66–0.89). The effect was consistent across different populations and study designs.</p>
-            <p><strong>Additional evidence:</strong> Meta-analyses of randomised controlled trials show the Mediterranean diet reduces HbA1c (the blood test measuring average blood sugar over three months) by 0.32%–0.53% compared with a standard low-fat diet in people who already have type 2 diabetes — a clinically meaningful improvement in blood sugar control. ⚑</p>
-          </div>
+          <p><strong>What was studied:</strong> A meta-analysis — pooled statistical analysis of 10 independent prospective studies, totalling 136,846 participants. Compared people with high versus low adherence to a Mediterranean dietary pattern and tracked who developed type 2 diabetes.</p>
+          <p><strong>Key result:</strong> Higher adherence associated with 23% lower risk of developing type 2 diabetes. Relative risk 0.77 (95% CI 0.66–0.89). The effect was consistent across different populations and study designs.</p>
+          <p><strong>Additional evidence:</strong> Meta-analyses of randomised controlled trials show the Mediterranean diet reduces HbA1c (average blood sugar) by 0.32%–0.53% compared with a standard low-fat diet in people who already have type 2 diabetes — a clinically meaningful improvement in blood sugar control. ⚑</p>
         </div>
-        <div class="rc-note">⚑ PMID 24931280 — DOI to be verified before publication. The 23% figure is consistently replicated across multiple subsequent meta-analyses (reported range: 19–23% depending on populations studied).</div>
       </div>
 
-      <!-- DEMENTIA -->
-      <div class="research-card">
-        <div class="rc-header">
-          <div>
-            <div class="rc-trial-name">Cognitive Decline &amp; Dementia — Meta-Analysis</div>
-            <div class="rc-journal">Dominguez LJ et al. · GeroScience · 2025 · DOI: 10.1007/s11357-024-01488-3</div>
-          </div>
-          <div class="rc-type-pill">Meta-Analysis · Brain Health</div>
+      <div class="research-card-navy" id="ref-4">
+        <div class="rc-stat-row">
+          <span class="rc-stat">11–30%</span>
+          <span class="rc-stat-label">lower risk across cognitive disorders — from 11% lower dementia risk to 30% lower Alzheimer's risk — in a 2025 meta-analysis spanning 24 years of studies ⚑</span>
+          <a href="https://link.springer.com/article/10.1007/s11357-024-01488-3" target="_blank" class="rc-source-pill">Dominguez LJ et al · GeroScience 2025</a>
         </div>
+        <div class="rc-title">Mediterranean eating and brain health — growing and consistent evidence</div>
         <div class="rc-body">
-          <div class="rc-stat">
-            <div class="rc-stat-num" style="color:#a0d4f0">11–30%</div>
-            <div class="rc-stat-label">lower risk of cognitive disorders &amp; dementia <span class="flag">⚑</span></div>
-          </div>
-          <div class="rc-detail">
-            <p><strong>What was studied:</strong> A systematic review and meta-analysis covering studies published between 2000 and 2024 examining the relationship between Mediterranean diet adherence and three outcomes: cognitive impairment (general decline in memory and thinking ability), dementia (broader loss of mental function affecting daily life), and Alzheimer's disease (the most common type of dementia).</p>
-            <p><strong>Key results:</strong></p>
-            <p>— Cognitive impairment (memory and thinking problems): HR 0.82 → <strong>approximately 18% lower risk</strong><br>
-            — Dementia: HR 0.89 → <strong>approximately 11% lower risk</strong><br>
-            — Alzheimer's disease: HR 0.70 → <strong>approximately 30% lower risk</strong></p>
-            <p><strong>Important caveat:</strong> Most underlying studies are observational — they track people's diets and outcomes without intervening. This makes establishing direct cause-and-effect harder than in a randomised trial. However, the association is strong, consistent, and biologically plausible given the diet's well-documented anti-inflammatory and vascular effects.</p>
-          </div>
+          <p><strong>What was studied:</strong> A systematic review and meta-analysis covering studies published between 2000 and 2024 examining Mediterranean diet adherence and three outcomes: cognitive impairment, dementia, and Alzheimer's disease.</p>
+          <p><strong>Key results:</strong> Cognitive impairment: HR 0.82 — approximately 18% lower risk. Dementia: HR 0.89 — approximately 11% lower risk. Alzheimer's disease: HR 0.70 — approximately 30% lower risk.</p>
+          <p><strong>Important caveat:</strong> Most underlying studies are observational — they track people's diets and outcomes without intervening. This makes establishing direct cause-and-effect harder than in a randomised trial. However, the association is strong, consistent, and biologically plausible given the diet's well-documented anti-inflammatory and vascular effects.</p>
         </div>
-        <div class="rc-note">Published January 2025 — confirm availability before article goes live.</div>
       </div>
 
     </div>
 
-    <p><strong>Why might the Mediterranean diet have such broad effects?</strong> Researchers are still refining the answer, but several mechanisms are well established:</p>
+    <p style="margin-top:1.75rem"><strong>Why might the Mediterranean diet have such broad effects?</strong> Researchers are still refining the answer, but several mechanisms are well established:</p>
 
     <div class="mechanism-grid">
       <div class="mech-card">
         <div class="mech-icon">🔥</div>
         <div class="mech-title">Anti-inflammatory action</div>
-        <div class="mech-body">Chronic low-grade inflammation (persistent, low-level immune activation) drives heart disease, type 2 diabetes, dementia, and some cancers. Olive oil polyphenols, omega-3 fatty acids from fish, and antioxidants (cell-protecting molecules) from vegetables consistently reduce inflammatory markers in the bloodstream.</div>
+        <div class="mech-body">Chronic low-grade inflammation drives heart disease, type 2 diabetes, dementia, and some cancers. Olive oil polyphenols, omega-3 fatty acids from fish, and antioxidants from vegetables consistently reduce inflammatory markers in the bloodstream.</div>
       </div>
       <div class="mech-card">
         <div class="mech-icon">🫀</div>
-        <div class="mech-title">Vascular (blood vessel) protection</div>
-        <div class="mech-body">The diet improves endothelial function (the lining of blood vessels), reduces LDL cholesterol (particularly the oxidised form that triggers atherosclerosis — the furring-up of arteries), lowers blood pressure, and reduces triglycerides (blood fats linked to cardiovascular risk).</div>
+        <div class="mech-title">Vascular protection</div>
+        <div class="mech-body">The diet improves endothelial function (the lining of blood vessels), reduces LDL cholesterol — particularly the oxidised form that triggers atherosclerosis — lowers blood pressure, and reduces triglycerides (blood fats linked to cardiovascular risk).</div>
       </div>
       <div class="mech-card">
         <div class="mech-icon">⚡</div>
         <div class="mech-title">Metabolic benefits</div>
-        <div class="mech-body">Improves insulin sensitivity (the body's ability to respond to insulin, the hormone that controls blood sugar), reduces visceral fat (the deep abdominal fat most strongly linked to metabolic disease), and supports a healthy weight — not through calorie restriction but through the satiety (fullness) provided by fibre, protein, and healthy fats.</div>
+        <div class="mech-body">Improves insulin sensitivity, reduces visceral fat (the deep abdominal fat most strongly linked to metabolic disease), and supports a healthy weight — not through calorie restriction but through the satiety provided by fibre, protein, and healthy fats.</div>
       </div>
       <div class="mech-card">
         <div class="mech-icon">🦠</div>
         <div class="mech-title">Gut microbiome</div>
-        <div class="mech-body">The high fibre content from diverse plant foods supports a rich, diverse gut microbiome (the community of bacteria and microorganisms in the intestine). Emerging research links a healthy microbiome to improved immune function, reduced inflammation, and better metabolic health — all relevant to the diet's broader effects.</div>
+        <div class="mech-body">The high fibre content from diverse plant foods supports a rich, diverse gut microbiome. Emerging research links a healthy microbiome to improved immune function, reduced inflammation, and better metabolic health.</div>
       </div>
     </div>
 
-  </div><!-- /s4 -->
-
-  <!-- PUTTING IT ALL TOGETHER -->
-  <div class="article-section" id="conclusion">
-    <h2 class="section-title">Putting it all together</h2>
-    <div class="conclusion-box">
-      <p>The Mediterranean diet has earned its place as one of the most robustly evidenced dietary patterns in medicine — not because of a single dramatic finding, but because the research stacks up consistently across heart disease, diabetes, brain health, blood pressure, and longevity. The evidence spans randomised controlled trials, meta-analyses, and decades of population observation.</p>
-      <p>What makes it stand apart from most health advice is that it is built around <strong>abundance rather than restriction</strong>. No food group is forbidden. No extreme rules are imposed. The aim is more vegetables, more whole grains, more fish, and more olive oil — alongside less processed food, less added sugar, and less red meat. Most people who genuinely try this way of eating find it satisfying, varied, and sustainable in a way that strict elimination diets rarely are.</p>
-      <p>The research also consistently suggests you do not have to follow it perfectly. Studies show that even <em>partial</em> adherence — moving in the direction of Mediterranean eating rather than rigidly following every rule — brings meaningful benefit. This is not an all-or-nothing approach. Small, consistent changes accumulate.</p>
-      <p>For anyone considering significant dietary changes — particularly alongside existing health conditions or regular medications — this is a conversation for you to have with your GP or healthcare professional, or a registered dietitian, as clinical practice suggests. The starting point, for anyone choosing to move in this direction, is as simple as more olive oil, more vegetables, more fish, fewer processed foods. <strong>The evidence is clear, and the starting point is a meal — not a transformation.</strong></p>
-    </div>
-  </div>
-
-  <!-- REFERENCES -->
-  <div class="references-section">
-    <h3 class="references-title">References</h3>
-
-    <div class="ref-block">
-      <div class="ref-num">1 — PREDIMED Trial</div>
-      <div class="ref-full">Estruch R, Ros E, Salas-Salvadó J, Covas MI, Corella D, Arós F, Gómez-Gracia E, et al. Primary Prevention of Cardiovascular Disease with a Mediterranean Diet Supplemented with Extra-Virgin Olive Oil or Nuts. <em>New England Journal of Medicine</em>. 2018;378:e34. [Retraction and republication of: N Engl J Med. 2013;368(14):1279–1290.]</div>
-      <div class="ref-links">
-        <a class="ref-pill" href="https://www.nejm.org/doi/full/10.1056/NEJMoa1800389" target="_blank" rel="noopener">NEJM Full Text ✓ DOI verified</a>
+    <!-- PUTTING IT ALL TOGETHER -->
+    <div class="putting-together" style="margin-top:2rem">
+      <div class="putting-together-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+        <h5>Putting it all together</h5>
       </div>
+      <p>The Mediterranean diet has earned its place as one of the most robustly evidenced dietary patterns in medicine — not because of a single dramatic finding, but because the research stacks up consistently across heart disease, diabetes, brain health, blood pressure, and longevity.</p>
+      <p>What makes it stand apart from most health advice is that it is built around <strong>abundance rather than restriction</strong>. No food group is forbidden. No extreme rules are imposed. The aim is more vegetables, more whole grains, more fish, and more olive oil — alongside less processed food, less added sugar, and less red meat.</p>
+      <p>The research also consistently suggests that even <em>partial</em> adherence — moving in the direction of Mediterranean eating rather than rigidly following every rule — brings meaningful benefit. This is not an all-or-nothing approach. Small, consistent changes accumulate.</p>
+      <p><strong>For anyone considering significant dietary changes — particularly alongside existing health conditions or regular medications — this is a conversation for you to have with your GP or healthcare professional. The starting point is a meal, not a transformation.</strong></p>
     </div>
 
-    <div class="ref-block">
-      <div class="ref-num">2 — Lyon Diet Heart Study</div>
-      <div class="ref-full">de Lorgeril M, Salen P, Martin JL, Monjaud I, Delaye J, Mamelle N. Mediterranean diet, traditional risk factors, and the rate of cardiovascular complications after myocardial infarction: final report of the Lyon Diet Heart Study. <em>Circulation</em>. 1999;99(6):779–785. DOI: 10.1161/01.cir.99.6.779</div>
-      <div class="ref-links">
-        <a class="ref-pill" href="https://www.ahajournals.org/doi/10.1161/01.cir.99.6.779" target="_blank" rel="noopener">Circulation Full Text</a>
-        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/9989963/" target="_blank" rel="noopener">PubMed ⚑ verify</a>
+    <!-- REFERENCES -->
+    <div class="references-section">
+      <h3>References</h3>
+      <div class="ref-block">
+        <div class="ref-num">1 — PREDIMED Trial</div>
+        <div class="ref-full">Estruch R, Ros E, Salas-Salvadó J, et al. Primary Prevention of Cardiovascular Disease with a Mediterranean Diet Supplemented with Extra-Virgin Olive Oil or Nuts. <em>New England Journal of Medicine.</em> 2018;378:e34.</div>
+        <div class="ref-links"><a class="ref-pill" href="https://www.nejm.org/doi/full/10.1056/NEJMoa1800389" target="_blank">NEJM Full Text · DOI verified ✓</a></div>
       </div>
-    </div>
-
-    <div class="ref-block">
-      <div class="ref-num">3 — Type 2 Diabetes Meta-Analysis</div>
-      <div class="ref-full">Koloverou E, Esposito K, Giugliano D, Panagiotakos D. The effect of Mediterranean diet on the development of type 2 diabetes mellitus: a meta-analysis of 10 prospective studies and 136,846 participants. <em>Journal of the American College of Nutrition</em>. 2014;33(4):310–315. PMID: 24931280. ⚑ DOI to be verified before publication.</div>
-      <div class="ref-links">
-        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/24931280/" target="_blank" rel="noopener">PubMed ⚑ verify</a>
+      <div class="ref-block">
+        <div class="ref-num">2 — Lyon Diet Heart Study</div>
+        <div class="ref-full">de Lorgeril M, Salen P, Martin JL, Monjaud I, Delaye J, Mamelle N. Mediterranean diet, traditional risk factors, and the rate of cardiovascular complications after myocardial infarction. <em>Circulation.</em> 1999;99(6):779–785. DOI: 10.1161/01.cir.99.6.779</div>
+        <div class="ref-links"><a class="ref-pill" href="https://www.ahajournals.org/doi/10.1161/01.cir.99.6.779" target="_blank">Circulation Full Text</a><a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/9989963/" target="_blank">PubMed ⚑ verify</a></div>
       </div>
-    </div>
-
-    <div class="ref-block">
-      <div class="ref-num">4 — Cognitive Decline &amp; Dementia Meta-Analysis</div>
-      <div class="ref-full">Dominguez LJ et al. The role of the Mediterranean diet in reducing the risk of cognitive impairment, dementia, and Alzheimer's disease: a meta-analysis. <em>GeroScience</em>. 2025. DOI: 10.1007/s11357-024-01488-3</div>
-      <div class="ref-links">
-        <a class="ref-pill" href="https://link.springer.com/article/10.1007/s11357-024-01488-3" target="_blank" rel="noopener">GeroScience Full Text</a>
-        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/39797935/" target="_blank" rel="noopener">PubMed</a>
+      <div class="ref-block">
+        <div class="ref-num">3 — Type 2 Diabetes Meta-Analysis</div>
+        <div class="ref-full">Koloverou E, Esposito K, Giugliano D, Panagiotakos D. The effect of Mediterranean diet on the development of type 2 diabetes mellitus: a meta-analysis of 10 prospective studies and 136,846 participants. <em>J Am Coll Nutr.</em> 2014;33(4):310–315. PMID: 24931280. ⚑ DOI to be verified before publication.</div>
+        <div class="ref-links"><a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/24931280/" target="_blank">PubMed ⚑ verify</a></div>
+      </div>
+      <div class="ref-block">
+        <div class="ref-num">4 — Cognitive Decline &amp; Dementia Meta-Analysis</div>
+        <div class="ref-full">Dominguez LJ et al. The role of the Mediterranean diet in reducing the risk of cognitive impairment, dementia, and Alzheimer's disease: a meta-analysis. <em>GeroScience.</em> 2025. DOI: 10.1007/s11357-024-01488-3</div>
+        <div class="ref-links"><a class="ref-pill" href="https://link.springer.com/article/10.1007/s11357-024-01488-3" target="_blank">GeroScience Full Text</a><a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/39797935/" target="_blank">PubMed</a></div>
       </div>
     </div>
 
   </div>
 
-</div><!-- /article-body -->
+  <div class="disclaimer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <p><strong>This article is for health education only.</strong> It is not a substitute for medical advice, diagnosis, or treatment. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+  </div>
 
-<footer class="site-footer">
-  <p>helf.school · Practical Health Series · Article 08 · The Mediterranean Diet · mediterranean-diet.html</p>
-  <p style="margin-top:.4rem">Health education for everyone — not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
-  <p style="margin-top:.6rem"><a href="index.html">Home</a> · <a href="helf-school-conditions.html">All articles</a> · <a href="helf-school-membership.html">Membership</a></p>
+</main>
+
+<footer>
+  <p>&copy; 2026 helf.school &nbsp;&middot;&nbsp; Health education for everyone &nbsp;&middot;&nbsp; <a href="#">Privacy</a> &nbsp;&middot;&nbsp; <a href="helf-school-membership.html">Membership</a></p>
 </footer>
 
 </body>

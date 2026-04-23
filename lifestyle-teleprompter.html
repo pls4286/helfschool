@@ -4,101 +4,41 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
   <title>Lifestyle Changes — Teleprompter | helf.school</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --navy: #1B2A4A;
-      --cardio: #C8423A;
-      --sage: #7A9E87;
-      --amber: #E8A84A;
-      --coral: #E8634A;
-      --bg: #0d0d0d;
-      --text: #f0f0f0;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; overflow: hidden; background: var(--bg); }
-
-    /* TOPBAR */
-    #topbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--navy); border-bottom: 2px solid var(--sage);
-      padding: .45rem 1rem;
-      display: flex; align-items: center; justify-content: space-between; gap: .75rem;
-    }
-    #topbar-title { font-family: 'DM Sans', sans-serif; font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.85); }
-    #controls { display: flex; align-items: center; gap: .4rem; flex-shrink: 0; }
-    .ctrl-btn {
-      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
-      color: #fff; font-size: .72rem; font-weight: 700; padding: .2rem .5rem;
-      border-radius: 4px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background .15s;
-    }
-    .ctrl-btn:hover { background: rgba(255,255,255,.2); }
-    .ctrl-label { font-size: .65rem; color: rgba(255,255,255,.6); font-family: 'DM Sans', sans-serif; }
-    #speed-display { font-size: .72rem; font-weight: 700; color: var(--amber); min-width: 14px; text-align: center; font-family: 'DM Sans', sans-serif; }
-    #play-btn {
-      background: var(--sage); border: none; color: #fff;
-      font-size: .72rem; font-weight: 700; padding: .25rem .7rem;
-      border-radius: 4px; cursor: pointer; font-family: 'DM Sans', sans-serif; letter-spacing: .04em;
-    }
-    #play-btn:hover { filter: brightness(1.15); }
-
-    /* SEGMENT DOTS */
-    #seg-dots {
-      position: fixed; right: .6rem; top: 50%; transform: translateY(-50%);
-      z-index: 100; display: flex; flex-direction: column; gap: .4rem;
-    }
-    .seg-dot {
-      width: 10px; height: 10px; border-radius: 50%;
-      background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.3);
-      cursor: pointer; transition: background .2s;
-    }
-    .seg-dot.active { background: var(--sage); border-color: var(--sage); }
-    .seg-dot:hover { background: rgba(255,255,255,.45); }
-
-    /* SCROLL */
-    #scroll-wrap { position: fixed; top: 44px; bottom: 0; left: 0; right: 0; overflow: hidden; }
-    #scroll-content { padding: 60vh 4rem 60vh; max-width: 840px; margin: 0 auto; will-change: transform; }
-
-    /* FOCUS */
-    #focus-line { position: fixed; top: 50%; left: 0; right: 0; height: 2px; background: rgba(122,158,135,.2); pointer-events: none; z-index: 50; }
-    #focus-top { position: fixed; top: 44px; left: 0; right: 0; height: 34%; background: linear-gradient(to bottom, var(--bg) 0%, transparent 100%); pointer-events: none; z-index: 50; }
-    #focus-bottom { position: fixed; bottom: 0; left: 0; right: 0; height: 34%; background: linear-gradient(to top, var(--bg) 0%, transparent 100%); pointer-events: none; z-index: 50; }
-
-    /* SEGMENT LABEL */
-    .seg-label {
-      font-family: 'DM Sans', sans-serif; font-size: .72rem; font-weight: 700;
-      letter-spacing: .14em; text-transform: uppercase;
-      color: var(--sage); margin-bottom: 1.4rem; margin-top: 5rem;
-      padding-bottom: .4rem; border-bottom: 1px solid rgba(122,158,135,.3);
-    }
-    .seg-label:first-child { margin-top: 0; }
-
-    /* SCRIPT */
-    .line { font-family: 'DM Sans', sans-serif; font-size: 1.9rem; line-height: 1.8; color: var(--text); font-weight: 400; margin-bottom: 1.5rem; }
-    .line strong { font-weight: 700; color: #fff; }
-    .line em { color: var(--sage); font-style: normal; font-weight: 600; }
-
-    /* PAUSE */
-    .pause {
-      display: inline-block;
-      background: rgba(232,99,74,.15); border: 1px solid rgba(232,99,74,.35);
-      color: var(--coral); font-size: 1.1rem; font-weight: 700;
-      padding: .1rem .45rem; border-radius: 4px; margin: 0 .3rem; vertical-align: middle; letter-spacing: .04em;
-    }
-
-    /* CUE BOX */
-    .cue-box {
-      background: rgba(232,168,74,.06); border: 2px solid var(--amber);
-      border-radius: 10px; padding: .9rem 1.2rem; margin: 2rem 0 4rem;
-      font-family: 'DM Sans', sans-serif;
-    }
-    .cue-label { font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--amber); margin-bottom: .4rem; }
-    .cue-text { font-size: 1.1rem; font-weight: 600; color: #fff; line-height: 1.55; }
-    .cue-text span { color: var(--amber); }
+    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--bg:#0d0d0d;--text:#f0f0f0}
+    *{box-sizing:border-box;margin:0;padding:0}html,body{height:100%;overflow:hidden;background:var(--bg)}
+    #topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--navy);border-bottom:2px solid var(--sage);padding:.45rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem}
+    #topbar-title{font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;color:rgba(255,255,255,.85)}
+    #controls{display:flex;align-items:center;gap:.4rem;flex-shrink:0}
+    .ctrl-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:.72rem;font-weight:700;padding:.2rem .5rem;border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s}
+    .ctrl-btn:hover{background:rgba(255,255,255,.2)}
+    .ctrl-label{font-size:.65rem;color:rgba(255,255,255,.5);font-family:'DM Sans',sans-serif}
+    #speed-display{font-size:.72rem;font-weight:700;color:var(--amber);min-width:14px;text-align:center;font-family:'DM Sans',sans-serif}
+    #play-btn{background:var(--sage);border:none;color:#fff;font-size:.72rem;font-weight:700;padding:.25rem .7rem;border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.04em}
+    #play-btn:hover{filter:brightness(1.1)}
+    #seg-dots{position:fixed;right:.6rem;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:.4rem}
+    .seg-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);cursor:pointer;transition:background .2s}
+    .seg-dot.active{background:var(--sage);border-color:var(--sage)}
+    .seg-dot:hover{background:rgba(255,255,255,.45)}
+    #scroll-wrap{position:fixed;top:44px;bottom:0;left:0;right:0;overflow:hidden}
+    #scroll-content{padding:60vh 4rem 60vh;max-width:840px;margin:0 auto;will-change:transform}
+    #focus-line{position:fixed;top:50%;left:0;right:0;height:2px;background:rgba(122,158,135,.2);pointer-events:none;z-index:50}
+    #focus-top{position:fixed;top:44px;left:0;right:0;height:34%;background:linear-gradient(to bottom,var(--bg) 0%,transparent 100%);pointer-events:none;z-index:50}
+    #focus-bottom{position:fixed;bottom:0;left:0;right:0;height:34%;background:linear-gradient(to top,var(--bg) 0%,transparent 100%);pointer-events:none;z-index:50}
+    .seg-label{font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sage);margin-bottom:1.4rem;margin-top:5rem;padding-bottom:.4rem;border-bottom:1px solid rgba(122,158,135,.25)}
+    .seg-label:first-child{margin-top:0}
+    .line{font-family:'DM Sans',sans-serif;font-size:1.9rem;line-height:1.8;color:var(--text);font-weight:400;margin-bottom:1.5rem}
+    .line strong{font-weight:700;color:#fff}
+    .line em{color:var(--amber);font-style:normal;font-weight:600}
+    .pause{display:inline-block;background:rgba(232,99,74,.15);border:1px solid rgba(232,99,74,.35);color:var(--coral);font-size:1.1rem;font-weight:700;padding:.1rem .45rem;border-radius:4px;margin:0 .3rem;vertical-align:middle;letter-spacing:.04em}
+    .cue-box{background:rgba(232,168,74,.06);border:2px solid var(--amber);border-radius:10px;padding:.9rem 1.2rem;margin:2rem 0 4rem;font-family:'DM Sans',sans-serif}
+    .cue-label{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:.4rem}
+    .cue-text{font-size:1.1rem;font-weight:600;color:#fff;line-height:1.55}
+    .cue-text span{color:var(--amber)}
   </style>
 </head>
 <body>
-
 <div id="topbar">
   <div id="topbar-title">Lifestyle Changes &amp; Cardiovascular Risk · Cardiovascular · Article 05</div>
   <div id="controls">
@@ -112,222 +52,75 @@
     <button id="play-btn" onclick="togglePlay()">▶ PLAY</button>
   </div>
 </div>
-
 <div id="seg-dots">
-  <div class="seg-dot active" onclick="jumpToSeg(0)" title="Intro"></div>
-  <div class="seg-dot" onclick="jumpToSeg(1)" title="Big picture"></div>
-  <div class="seg-dot" onclick="jumpToSeg(2)" title="What drives risk up"></div>
-  <div class="seg-dot" onclick="jumpToSeg(3)" title="What moves the dial"></div>
-  <div class="seg-dot" onclick="jumpToSeg(4)" title="Research — modifiable risk"></div>
-  <div class="seg-dot" onclick="jumpToSeg(5)" title="Research — diet &amp; activity"></div>
-  <div class="seg-dot" onclick="jumpToSeg(6)" title="Research — smoking &amp; sleep"></div>
-  <div class="seg-dot" onclick="jumpToSeg(7)" title="Mechanisms"></div>
-  <div class="seg-dot" onclick="jumpToSeg(8)" title="Closing"></div>
+  <div class="seg-dot active" onclick="jumpToSeg(0)"></div>
+  <div class="seg-dot" onclick="jumpToSeg(1)"></div>
+  <div class="seg-dot" onclick="jumpToSeg(2)"></div>
+  <div class="seg-dot" onclick="jumpToSeg(3)"></div>
+  <div class="seg-dot" onclick="jumpToSeg(4)"></div>
+  <div class="seg-dot" onclick="jumpToSeg(5)"></div>
 </div>
+<div id="focus-top"></div><div id="focus-line"></div><div id="focus-bottom"></div>
+<div id="scroll-wrap"><div id="scroll-content">
 
-<div id="focus-top"></div>
-<div id="focus-line"></div>
-<div id="focus-bottom"></div>
+  <div class="seg-label" data-seg="0">Segment 0 — Introduction</div>
+  <div class="cue-box"><div class="cue-label">▶ ADVANCE NOW — then read</div><div class="cue-text">Screen 1: <span>Intro title slide</span> · Cardiovascular Series · Article 05</div></div>
 
-<div id="scroll-wrap">
-  <div id="scroll-content">
+  <p class="line">"I'm Dr Paul — I spent <strong>over twenty years as an NHS GP</strong> before I retired in 2019. Today I want to talk to you about how lifestyle changes can <strong>reduce the risk of heart attack and stroke</strong>."</p>
+  <p class="line">"Now, I do have to say upfront — what I'm giving you here is <strong>health education, not medical advice</strong>. Anything personally relevant is a conversation for you to have with your <strong>GP or healthcare professional</strong>. Right — <em>let's get into it.</em>"</p>
 
-    <!-- ═══ SEGMENT 0 — INTRODUCTION ═══ -->
-    <div class="seg-label" data-seg="0">Segment 0 — Introduction</div>
+  <div class="seg-label" data-seg="1">Segment 1 — What is it?</div>
+  <div class="cue-box"><div class="cue-label">▶ ADVANCE NOW — then read</div><div class="cue-text">Screen 2: <span>Seven factor cards</span> · diet · exercise · smoking · weight · alcohol · stress · sleep</div></div>
 
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 1: <span>Intro title slide</span> · 🌿 · helf.school · Cardiovascular Health Series · Article 05 · "Lifestyle &amp; cardiovascular risk"</div>
-    </div>
+  <p class="line">"Cardiovascular disease develops over <strong>decades</strong>. The good news — and it is genuinely good news — is that the factors driving that process are largely <strong>modifiable</strong>. The choices made every day have a measurable effect on long-term risk."</p>
+  <p class="line">"This isn't about what's theoretically plausible. It's about what has been <strong>tested in large studies</strong>, across real populations, and found to make a meaningful difference." <span class="pause">PAUSE</span></p>
+  <p class="line">"The seven factors covered today — <strong>diet, physical activity, smoking, body weight, alcohol, stress, and sleep</strong> — are not equally powerful, and they don't work in isolation. But together, they represent the most evidence-based levers available."</p>
 
-    <p class="line">"I'm Dr Paul — I spent <strong>over twenty years as an NHS GP</strong> before I retired in 2019. Today I want to talk to you about <strong>lifestyle changes and cardiovascular risk</strong> — specifically, what the research actually shows about what makes a difference."</p>
+  <div class="seg-label" data-seg="2">Segment 2 — Why does it matter?</div>
+  <div class="cue-box"><div class="cue-label">▶ ADVANCE NOW — then read</div><div class="cue-text">Screen 3: <span>INTERHEART stat card</span> · 90% of heart attack risk from modifiable factors</div></div>
 
-    <p class="line">"Now, I do have to say upfront — what I'm giving you here is <strong>health education, not medical advice</strong>. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — <em>let's get into it.</em>"</p>
+  <p class="line">"The INTERHEART study — over 30,000 people across 52 countries — found that <strong>nine modifiable risk factors</strong> account for more than <strong>90% of the risk of a first heart attack</strong> worldwide. The majority of those factors are directly influenced by lifestyle." <span class="pause">PAUSE</span></p>
+  <p class="line">"A New England Journal of Medicine analysis found that addressing five key modifiable risk factors at age 50 is associated with <strong>more than ten years of additional cardiovascular disease-free life</strong>. These are not small numbers."</p>
+  <p class="line">"And these changes work through multiple pathways at once. Improving diet lowers blood pressure and cholesterol. Exercise reduces insulin resistance. Stopping smoking begins to reduce risk <strong>within months</strong>. The effects are additive — and in some combinations, <em>more</em> than additive." <span class="pause">PAUSE</span></p>
 
-    <!-- ═══ SEGMENT 1 — BIG PICTURE ═══ -->
-    <div class="seg-label" data-seg="1">Segment 1 — The big picture</div>
+  <div class="seg-label" data-seg="3">Segment 3 — The evidence by factor</div>
+  <div class="cue-box"><div class="cue-label">▶ ADVANCE NOW — then read</div><div class="cue-text">Screen 4: <span>Mediterranean diet card + smoking timeline</span> · PREDIMED 30% · smoking risk reduction</div></div>
 
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 2: <span>Big picture stats</span> · two gold cards · ~90% first-MI risk modifiable / +10 years CVD-free life · additive effects strip</div>
-    </div>
+  <p class="line">"On <strong>diet</strong> — the PREDIMED trial found a Mediterranean diet reduced major cardiovascular events by approximately <strong>30%</strong>. That's a randomised controlled trial. Nearly 7,500 people. The strongest dietary evidence available."</p>
+  <p class="line">"On <strong>physical activity</strong> — even modest increases make a meaningful difference. Even half the recommended 150 minutes per week is associated with about a <strong>17% reduction in cardiovascular risk</strong>. The biggest gains come from moving from nothing to something." <span class="pause">PAUSE</span></p>
+  <p class="line">"<strong>Smoking</strong> — the single most powerful modifiable cardiovascular risk factor. The benefits of stopping begin within months. After one year, excess risk is halved. After 15 years, risk approaches that of a lifelong non-smoker."</p>
+  <p class="line">"<strong>Stress and sleep</strong> — chronic psychological stress is an independent predictor of heart attack, contributing around a third of attributable risk in INTERHEART. And both too little and too much sleep independently raise cardiovascular mortality. These are not soft factors." <span class="pause">PAUSE</span></p>
 
-    <p class="line">"The <strong>INTERHEART study</strong> — 29,000 people across 52 countries — found that <strong>nine modifiable risk factors</strong> account for more than 90% of the risk of a first heart attack worldwide. The majority are directly influenced by lifestyle."</p>
+  <div class="seg-label" data-seg="4">Segment 4 — What the research shows</div>
+  <div class="cue-box"><div class="cue-label">▶ ADVANCE NOW — then read</div><div class="cue-text">Screen 5: <span>Research cards</span> · PREDIMED · INTERHEART · NEJM 2022 · BMJ 2024</div></div>
 
-    <p class="line">"A <strong>New England Journal of Medicine</strong> analysis found that addressing five key modifiable risk factors at age 50 — blood pressure, cholesterol, obesity, diabetes, and smoking — could add <strong>more than ten years of cardiovascular disease-free life</strong>. These are not small numbers." <span class="pause">PAUSE</span></p>
+  <p class="line">"PREDIMED — published in the New England Journal of Medicine, 2018 — is the strongest dietary evidence available. Mediterranean diet supplemented with olive oil or nuts: <strong>30% reduction in major cardiovascular events</strong> compared to a control diet, over nearly five years."</p>
+  <p class="line">"On ultra-processed foods — a 2024 BMJ umbrella review found consistent associations between higher consumption and increased cardiovascular risk, <strong>independent of overall diet quality</strong>. The associations were strongest for processed meat and sugar-sweetened beverages." <span class="pause">PAUSE</span></p>
+  <p class="line">"On alcohol — the apparent protective effect of moderate drinking has been largely <strong>revised away</strong> by Mendelian randomisation studies that correct for confounding. For cardiovascular risk, the evidence consistently points to less being better."</p>
+  <p class="line">"The message across all the evidence is consistent: <strong>direction matters more than perfection</strong>. Small, sustained changes in the right direction produce measurable reductions in cardiovascular risk." <span class="pause">PAUSE</span></p>
 
-    <p class="line">"And the effects <strong>stack</strong>. Each factor you address adds further protection — and some combinations are more than additive."</p>
+  <div class="seg-label" data-seg="5">Segment 5 — Closing</div>
+  <div class="cue-box"><div class="cue-label">▶ ADVANCE NOW — then read</div><div class="cue-text">Screen 6: <span>Closing slide</span> · helf.school · Health Education for Everyone</div></div>
 
-    <!-- ═══ SEGMENT 2 — WHAT DRIVES RISK UP ═══ -->
-    <div class="seg-label" data-seg="2">Segment 2 — What drives risk up</div>
+  <p class="line">"So — cardiovascular disease is not inevitable. The research is clear that diet, movement, smoking, alcohol, and sleep all have real, measurable, clinically significant effects on risk."</p>
+  <p class="line">"The research suggests that sustained change in even one or two areas produces meaningful reductions in risk — and that the more factors addressed, the greater the benefit. What that looks like in practice is a <strong>conversation for you to have with your GP or healthcare professional</strong>." <span class="pause">PAUSE</span></p>
+  <p class="line">"More on <strong>helf.school</strong> — all the references are there. Thanks for watching."</p>
 
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 3: <span>What drives risk up</span> · six red cards animating in · ultra-processed diet / sedentary / smoking / weight / alcohol / short-long sleep</div>
-    </div>
-
-    <p class="line">"So what actually <strong>drives cardiovascular risk up</strong>? Ultra-processed diets and high sodium raise blood pressure and promote inflammation. Prolonged sitting is now recognised as an <strong>independent cardiovascular risk factor</strong> — separate from whether you exercise at all." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"Current smokers carry <strong>two to four times</strong> the cardiovascular risk of non-smokers. The Mendelian randomisation evidence on alcohol removes the apparent protective effect — genetically higher alcohol intake is associated with higher blood pressure and coronary disease. And <strong>both too little and too much sleep</strong> — under six or over nine hours — independently raise cardiovascular mortality."</p>
-
-    <!-- ═══ SEGMENT 3 — WHAT MOVES THE DIAL ═══ -->
-    <div class="seg-label" data-seg="3">Segment 3 — What moves the dial</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 4: <span>What moves the dial</span> · six green cards · Mediterranean −30% / movement −17% / stop smoking −36% / weight 5–10% / lower alcohol / 7–8h sleep</div>
-    </div>
-
-    <p class="line">"On the other side. A <strong>Mediterranean eating pattern</strong> is associated with around a <strong>30% reduction</strong> in major cardiovascular events — from a randomised controlled trial. Even <strong>75 minutes per week</strong> of moderate movement — half the recommended amount — is linked to approximately <strong>17% lower cardiovascular risk</strong>." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"<strong>Stopping smoking</strong> reduces further cardiovascular events by around <strong>36%</strong> in people with established disease — a larger effect than almost any single medication. A 5 to 10% reduction in body weight produces clinically meaningful reductions in blood pressure, cholesterol, and blood glucose together. And protecting <strong>7 to 8 hours of sleep</strong> sits at the lowest point on the cardiovascular mortality curve."</p>
-
-    <!-- ═══ SEGMENT 4 — RESEARCH: MODIFIABLE RISK ═══ -->
-    <div class="seg-label" data-seg="4">Segment 4 — Research: modifiable risk</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 5: <span>Research — modifiable risk</span> · INTERHEART ~90% / Khera et al −50% CHD events with favourable lifestyle even at high genetic risk</div>
-    </div>
-
-    <p class="line">"The <strong>INTERHEART study</strong> — Yusuf and colleagues, The Lancet, 2004 — found that psychosocial stress alone accounted for approximately <strong>33% of attributable heart attack risk</strong> globally. That makes it one of the largest single contributors in the whole dataset." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"A 2016 <strong>New England Journal of Medicine</strong> analysis by Khera and colleagues found something equally important: even in people with the highest <strong>genetic cardiovascular risk</strong>, a favourable lifestyle — not smoking, healthy weight, regular activity, healthy diet — was associated with roughly <strong>50% lower coronary event rates</strong>. Genetics is not cardiovascular destiny."</p>
-
-    <!-- ═══ SEGMENT 5 — RESEARCH: DIET & ACTIVITY ═══ -->
-    <div class="seg-label" data-seg="5">Segment 5 — Research: diet &amp; activity</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 6: <span>Research — diet &amp; activity</span> · PREDIMED −30% CV events · Garcia BJSM 2023 −17% CV risk at 75 min/wk</div>
-    </div>
-
-    <p class="line">"<strong>PREDIMED</strong> — published in the NEJM in 2018. Nearly 7,500 people at high cardiovascular risk, randomised to a Mediterranean diet supplemented with extra-virgin olive oil or nuts. <strong>Around 30% reduction in major cardiovascular events</strong> compared to a control diet over nearly five years. The strongest dietary evidence we have." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"On physical activity — the <strong>Garcia meta-analysis</strong> in the British Journal of Sports Medicine, 2023. Ninety-four cohorts, over <strong>30 million participants</strong>. The most important finding: the greatest marginal gains came from moving from <strong>complete inactivity to any regular movement at all</strong>. Half the recommended amount — 75 minutes a week — produced a 17% risk reduction."</p>
-
-    <!-- ═══ SEGMENT 6 — RESEARCH: SMOKING & SLEEP ═══ -->
-    <div class="seg-label" data-seg="6">Segment 6 — Research: smoking &amp; sleep</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 7: <span>Research — smoking &amp; sleep</span> · Cochrane −36% CV events after stopping · Yin JAHA 2019 J-curve sleep &amp; CV mortality</div>
-    </div>
-
-    <p class="line">"A <strong>Cochrane review</strong> of smoking cessation and cardiovascular outcomes found that stopping smoking after a cardiovascular event reduced further events by around <strong>36%</strong> — larger than almost any single medication. Excess risk approximately <strong>halves within a year</strong>. Over fifteen years, risk approaches that of a lifelong non-smoker." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"On sleep — <strong>Yin and colleagues</strong>, Journal of the American Heart Association, 2019. 74 studies, over 3 million participants. A <strong>J-shaped relationship</strong>: both under 6 to 7 hours and over 8 to 9 hours per night were independently associated with higher cardiovascular mortality. Lowest risk sits at <strong>7 to 8 hours</strong>."</p>
-
-    <!-- ═══ SEGMENT 7 — MECHANISMS ═══ -->
-    <div class="seg-label" data-seg="7">Segment 7 — How it translates</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 8: <span>How lifestyle translates into heart protection</span> · six amber mechanism cards · Mediterranean / movement / smoking / weight / alcohol / sleep</div>
-    </div>
-
-    <p class="line">"These factors work through <strong>multiple pathways at once</strong>. The Mediterranean pattern lowers LDL and reduces inflammation. Exercise improves vascular function and insulin sensitivity. Stopping smoking begins <strong>restoring the endothelium</strong> — the inner lining of the blood vessels — within weeks." <span class="pause">PAUSE</span></p>
-
-    <p class="line">"Protecting sleep stabilises overnight blood pressure and calms the body's <strong>stress axis</strong>. Changes in one factor tend to support changes in others — <em>better sleep reduces stress, reduced stress improves dietary choices, regular movement improves sleep.</em>"</p>
-
-    <!-- ═══ SEGMENT 8 — CTA & CLOSING ═══ -->
-    <div class="seg-label" data-seg="8">Segment 8 — CTA &amp; Closing</div>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 9: <span>CTA slide</span> · 🌿 · "Small levers. Stacked effects." · four action cards · Mediterranean / movement / stop smoking / protect sleep</div>
-    </div>
-
-    <p class="line">"The research points consistently in the same direction. Meaningful change in even <strong>one or two</strong> of these areas produces measurable reductions in cardiovascular risk — and the evidence says those effects accumulate. Direction matters more than perfection." <span class="pause">PAUSE</span></p>
-
-    <div class="cue-box">
-      <div class="cue-label">▶ ADVANCE NOW — then read</div>
-      <div class="cue-text">Slide 10: <span>Closing slide</span> · helf.school · three stat cards · −90% modifiable / −30% PREDIMED / −36% stop smoking</div>
-    </div>
-
-    <p class="line">"All the references are on <strong>helf.school</strong> — everything covered here links back to the source. Thanks for watching."</p>
-
-  </div>
-</div>
-
+</div></div>
 <script>
-  const SPEED_LEVELS = [8, 14, 20, 28, 38, 52];
-  let speedIndex = 2, baseFontSize = 1.9, playing = false, rafId = null, lastTime = null, scrollY = 0;
-
-  const content     = document.getElementById('scroll-content');
-  const playBtn     = document.getElementById('play-btn');
-  const speedDisp   = document.getElementById('speed-display');
-  const dots        = document.querySelectorAll('.seg-dot');
-  const segLabels   = document.querySelectorAll('.seg-label');
-
-  function setTranslate(y) { content.style.transform = `translateY(${-y}px)`; }
-
-  function togglePlay() {
-    playing = !playing;
-    playBtn.textContent = playing ? '⏸ PAUSE' : '▶ PLAY';
-    if (playing) { lastTime = null; rafId = requestAnimationFrame(tick); }
-    else { cancelAnimationFrame(rafId); }
-  }
-
-  function tick(ts) {
-    if (!playing) return;
-    if (lastTime === null) lastTime = ts;
-    const dt = (ts - lastTime) / 1000;
-    lastTime = ts;
-    scrollY += SPEED_LEVELS[speedIndex] * dt;
-    const max = content.scrollHeight - window.innerHeight + 44;
-    if (scrollY >= max) { scrollY = max; togglePlay(); }
-    setTranslate(scrollY);
-    updateDots();
-    rafId = requestAnimationFrame(tick);
-  }
-
-  function changeSpeed(dir) {
-    speedIndex = Math.max(0, Math.min(5, speedIndex + dir));
-    speedDisp.textContent = speedIndex + 1;
-  }
-
-  function changeFont(dir) {
-    baseFontSize = Math.max(1.2, Math.min(2.8, baseFontSize + dir * 0.1));
-    document.querySelectorAll('.line').forEach(el => el.style.fontSize = baseFontSize + 'rem');
-  }
-
-  function jumpToSeg(idx) {
-    const label = segLabels[idx];
-    if (!label) return;
-    const contentTop = content.getBoundingClientRect().top;
-    const labelOffset = label.getBoundingClientRect().top - contentTop + scrollY;
-    scrollY = Math.max(0, labelOffset - window.innerHeight * 0.5 + 44);
-    setTranslate(scrollY);
-    updateDots();
-  }
-
-  function updateDots() {
-    const mid = window.innerHeight * 0.5;
-    let active = 0;
-    segLabels.forEach((label, i) => { if (label.getBoundingClientRect().top <= mid) active = i; });
-    dots.forEach((d, i) => d.classList.toggle('active', i === active));
-  }
-
-  let touchStartY = 0, touchScrollStart = 0;
-  document.addEventListener('touchstart', e => {
-    touchStartY = e.touches[0].clientY;
-    touchScrollStart = scrollY;
-    if (playing) togglePlay();
-  }, { passive: true });
-  document.addEventListener('touchmove', e => {
-    scrollY = Math.max(0, touchScrollStart + (touchStartY - e.touches[0].clientY));
-    setTranslate(scrollY);
-    updateDots();
-  }, { passive: true });
-
-  document.addEventListener('keydown', e => {
-    if (e.code === 'Space') { e.preventDefault(); togglePlay(); }
-    if (e.code === 'ArrowUp')   { scrollY = Math.max(0, scrollY - 80); setTranslate(scrollY); }
-    if (e.code === 'ArrowDown') { scrollY += 80; setTranslate(scrollY); }
-  });
-
+  const SPEED_LEVELS=[8,14,20,28,38,52];let speedIndex=2,baseFontSize=1.9,playing=false,rafId=null,lastTime=null,scrollY=0;
+  const content=document.getElementById('scroll-content'),playBtn=document.getElementById('play-btn'),speedDisplay=document.getElementById('speed-display'),dots=document.querySelectorAll('.seg-dot'),segLabels=document.querySelectorAll('.seg-label');
+  function setTranslate(y){content.style.transform=`translateY(${-y}px)`}
+  function togglePlay(){playing=!playing;playBtn.textContent=playing?'⏸ PAUSE':'▶ PLAY';if(playing){lastTime=null;rafId=requestAnimationFrame(tick)}else{cancelAnimationFrame(rafId)}}
+  function tick(ts){if(!playing)return;if(lastTime===null)lastTime=ts;const dt=(ts-lastTime)/1000;lastTime=ts;scrollY+=SPEED_LEVELS[speedIndex]*dt;const max=content.scrollHeight-window.innerHeight+44;if(scrollY>=max){scrollY=max;togglePlay()}setTranslate(scrollY);updateDots();rafId=requestAnimationFrame(tick)}
+  function changeSpeed(dir){speedIndex=Math.max(0,Math.min(5,speedIndex+dir));speedDisplay.textContent=speedIndex+1}
+  function changeFont(dir){baseFontSize=Math.max(1.2,Math.min(2.8,baseFontSize+dir*0.1));document.querySelectorAll('.line').forEach(el=>el.style.fontSize=baseFontSize+'rem')}
+  function jumpToSeg(idx){const label=segLabels[idx];if(!label)return;const contentTop=content.getBoundingClientRect().top;const labelOffset=label.getBoundingClientRect().top-contentTop+scrollY;scrollY=Math.max(0,labelOffset-window.innerHeight*0.5+44);setTranslate(scrollY);updateDots()}
+  function updateDots(){const mid=window.innerHeight*0.5;let active=0;segLabels.forEach((label,i)=>{if(label.getBoundingClientRect().top<=mid)active=i});dots.forEach((d,i)=>d.classList.toggle('active',i===active))}
+  let touchStartY=0,touchScrollStart=0;
+  document.addEventListener('touchstart',e=>{touchStartY=e.touches[0].clientY;touchScrollStart=scrollY;if(playing)togglePlay()},{passive:true});
+  document.addEventListener('touchmove',e=>{scrollY=Math.max(0,touchScrollStart+(touchStartY-e.touches[0].clientY));setTranslate(scrollY);updateDots()},{passive:true});
+  document.addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();togglePlay()}if(e.code==='ArrowUp'){scrollY=Math.max(0,scrollY-80);setTranslate(scrollY)}if(e.code==='ArrowDown'){scrollY+=80;setTranslate(scrollY)}});
   setTranslate(0);
 </script>
-</body>
-</html>
+</body></html>

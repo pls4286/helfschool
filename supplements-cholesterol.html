@@ -4,993 +4,611 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Do Supplements Lower Cholesterol? | helf.school</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --navy:  #1B2A4A;
-      --coral: #E8634A;
-      --cream: #FAF7F2;
-      --sage:  #7A9E87;
-      --amber: #E8A84A;
-      --text:  #2C3E50;
-      --light-navy: #243559;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      color: var(--text);
-      line-height: 1.7;
-    }
-
-    /* ── HEADER ── */
-    header {
-      background: var(--navy);
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-    }
-
-    .logo-svg {
-      width: 36px;
-      height: 36px;
-    }
-
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
-
-    .logo-text .brand {
-      font-family: 'Fraunces', serif;
-      color: #fff;
-      font-size: 1.15rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-
-    .logo-text .tagline {
-      color: var(--coral);
-      font-size: 0.6rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 500;
-    }
-
-    nav a {
-      color: rgba(255,255,255,0.75);
-      text-decoration: none;
-      font-size: 0.85rem;
-      margin-left: 1.5rem;
-      transition: color 0.2s;
-    }
-    nav a:hover { color: #fff; }
-    nav a.active { color: var(--coral); }
-
-    /* ── HERO ── */
-    .hero {
-      background: var(--navy);
-      color: #fff;
-      padding: 3.5rem 2rem 3rem;
-      text-align: center;
-    }
-
-    .series-badge {
-      display: inline-block;
-      background: rgba(232,99,74,0.2);
-      border: 1px solid var(--coral);
-      color: var(--coral);
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.9rem;
-      border-radius: 2rem;
-      margin-bottom: 1.25rem;
-      font-weight: 500;
-    }
-
-    .hero h1 {
-      font-family: 'Fraunces', serif;
-      font-size: clamp(1.8rem, 4vw, 2.9rem);
-      font-weight: 600;
-      max-width: 720px;
-      margin: 0 auto 1rem;
-      line-height: 1.2;
-    }
-
-    .hero-sub {
-      color: rgba(255,255,255,0.7);
-      max-width: 600px;
-      margin: 0 auto 2rem;
-      font-size: 1.05rem;
-    }
-
-    .hero-meta {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.55);
-    }
-
-    .hero-meta span { display: flex; align-items: center; gap: 0.4rem; }
-
-    /* ── LAYOUT ── */
-    .container {
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 3rem 2rem;
-    }
-
-    /* ── SECTION HEADINGS ── */
-    .section-head {
-      display: flex;
-      align-items: center;
-      gap: 0.9rem;
-      margin-bottom: 1.5rem;
-      margin-top: 2.8rem;
-    }
-
-    .section-num {
-      background: var(--coral);
-      color: #fff;
-      font-family: 'Fraunces', serif;
-      font-size: 1rem;
-      font-weight: 600;
-      width: 2.1rem;
-      height: 2.1rem;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .section-head h2 {
-      font-family: 'Fraunces', serif;
-      font-size: 1.55rem;
-      font-weight: 600;
-      color: var(--navy);
-      line-height: 1.2;
-    }
-
-    /* ── BODY TEXT ── */
-    p { margin-bottom: 1.1rem; }
-
-    /* ── KEY TERMS BOX ── */
-    .key-terms {
-      background: var(--navy);
-      border-radius: 12px;
-      padding: 2rem 2.2rem;
-      margin: 2.5rem 0;
-    }
-
-    .key-terms h3 {
-      font-family: 'Fraunces', serif;
-      color: var(--coral);
-      font-size: 1.15rem;
-      font-weight: 600;
-      margin-bottom: 1.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .terms-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-    }
-
-    @media (max-width: 600px) {
-      .terms-grid { grid-template-columns: 1fr; }
-    }
-
-    .term {
-      border-left: 3px solid var(--sage);
-      padding-left: 0.9rem;
-    }
-
-    .term strong {
-      display: block;
-      color: var(--amber);
-      font-size: 0.85rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 0.25rem;
-    }
-
-    .term p {
-      color: rgba(255,255,255,0.8);
-      font-size: 0.88rem;
-      margin: 0;
-      line-height: 1.5;
-    }
-
-    /* ── BULLET LIST ── */
-    .matters-list {
-      list-style: none;
-      margin: 1rem 0 1.5rem;
-    }
-
-    .matters-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.8rem;
-      margin-bottom: 0.85rem;
-      font-size: 0.97rem;
-    }
-
-    .matters-list li::before {
-      content: '';
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--coral);
-      margin-top: 0.55rem;
-      flex-shrink: 0;
-    }
-
-    /* ── SUPPLEMENT CARDS ── */
-    .supplement-cards {
-      display: grid;
-      gap: 1.2rem;
-      margin: 1.8rem 0;
-    }
-
-    .supp-card {
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid rgba(27,42,74,0.1);
-    }
-
-    .supp-card-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem 1.2rem;
-    }
-
-    .supp-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      flex-shrink: 0;
-    }
-
-    .supp-card-header h3 {
-      font-family: 'Fraunces', serif;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--navy);
-    }
-
-    .supp-verdict {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.6rem;
-      border-radius: 2rem;
-      margin-left: auto;
-    }
-
-    .verdict-good { background: rgba(122,158,135,0.15); color: var(--sage); border: 1px solid var(--sage); }
-    .verdict-mixed { background: rgba(232,168,74,0.15); color: var(--amber); border: 1px solid var(--amber); }
-    .verdict-caution { background: rgba(232,99,74,0.15); color: var(--coral); border: 1px solid var(--coral); }
-
-    .supp-card-body {
-      background: #fff;
-      padding: 1rem 1.2rem;
-      font-size: 0.92rem;
-      border-top: 1px solid rgba(27,42,74,0.08);
-    }
-
-    .supp-card-body p { margin-bottom: 0.6rem; }
-    .supp-card-body p:last-child { margin-bottom: 0; }
-
-    .supp-effect-row {
-      display: flex;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-      margin-top: 0.6rem;
-    }
-
-    .effect-tag {
-      font-size: 0.75rem;
-      padding: 0.2rem 0.65rem;
-      border-radius: 2rem;
-      font-weight: 500;
-    }
-
-    .tag-ldl { background: rgba(232,99,74,0.1); color: #c0432a; }
-    .tag-trig { background: rgba(122,158,135,0.12); color: #4e7e62; }
-    .tag-hdl { background: rgba(232,168,74,0.12); color: #b47d1a; }
-    .tag-none { background: rgba(150,150,150,0.1); color: #666; }
-    .tag-risk { background: rgba(232,99,74,0.18); color: #a83020; }
-
-    /* ── COMPARISON TABLE ── */
-    .compare-table-wrap {
-      overflow-x: auto;
-      margin: 1.8rem 0;
-      border-radius: 10px;
-      border: 1px solid rgba(27,42,74,0.1);
-    }
-
-    .compare-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.88rem;
-      min-width: 520px;
-    }
-
-    .compare-table thead {
-      background: var(--navy);
-      color: #fff;
-    }
-
-    .compare-table thead th {
-      padding: 0.85rem 1rem;
-      text-align: left;
-      font-weight: 500;
-      font-size: 0.82rem;
-      letter-spacing: 0.03em;
-    }
-
-    .compare-table thead th:first-child {
-      border-radius: 10px 0 0 0;
-    }
-
-    .compare-table thead th:last-child {
-      border-radius: 0 10px 0 0;
-    }
-
-    .compare-table tbody tr:nth-child(even) {
-      background: rgba(27,42,74,0.03);
-    }
-
-    .compare-table tbody td {
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid rgba(27,42,74,0.07);
-      vertical-align: middle;
-    }
-
-    .compare-table tbody tr:last-child td { border-bottom: none; }
-
-    .dot-yes { color: var(--sage); font-size: 1.1rem; }
-    .dot-partial { color: var(--amber); font-size: 1.1rem; }
-    .dot-no { color: var(--coral); font-size: 1.1rem; }
-
-    /* ── CALLOUT BOXES ── */
-    .callout {
-      border-radius: 10px;
-      padding: 1.3rem 1.5rem;
-      margin: 1.6rem 0;
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-
-    .callout-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 0.1rem; }
-
-    .callout-navy { background: var(--navy); color: rgba(255,255,255,0.9); }
-    .callout-navy strong { color: var(--coral); }
-
-    .callout-amber { background: rgba(232,168,74,0.12); border: 1px solid rgba(232,168,74,0.3); }
-    .callout-amber strong { color: #8f5e10; }
-
-    .callout-sage { background: rgba(122,158,135,0.1); border: 1px solid rgba(122,158,135,0.25); }
-    .callout-sage strong { color: #3d6e52; }
-
-    .callout-coral { background: rgba(232,99,74,0.08); border: 1px solid rgba(232,99,74,0.2); }
-    .callout-coral strong { color: #a83020; }
-
-    .callout p { margin: 0; font-size: 0.93rem; line-height: 1.6; }
-    .callout strong { display: block; margin-bottom: 0.35rem; font-size: 0.95rem; }
-
-    /* ── DOCTOR BOX ── */
-    .doctor-box {
-      background: rgba(27,42,74,0.05);
-      border-left: 4px solid var(--navy);
-      border-radius: 0 10px 10px 0;
-      padding: 1.3rem 1.5rem;
-      margin: 1.6rem 0;
-    }
-
-    .doctor-box h4 {
-      font-family: 'Fraunces', serif;
-      font-size: 1rem;
-      color: var(--navy);
-      margin-bottom: 0.7rem;
-    }
-
-    .doctor-box ul { list-style: none; }
-    .doctor-box ul li {
-      position: relative;
-      padding-left: 1.4rem;
-      margin-bottom: 0.6rem;
-      font-size: 0.93rem;
-    }
-
-    .doctor-box ul li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--coral);
-    }
-
-    /* ── RESEARCH FLAG ── */
-    .flag { color: var(--coral); font-size: 0.85rem; }
-
-    /* ── RESEARCH SECTION ── */
-    .research-item {
-      border-bottom: 1px solid rgba(27,42,74,0.1);
-      padding: 1.2rem 0;
-    }
-
-    .research-item:last-child { border-bottom: none; }
-
-    .research-item h4 {
-      font-family: 'Fraunces', serif;
-      font-size: 1rem;
-      color: var(--navy);
-      margin-bottom: 0.5rem;
-    }
-
-    .research-item p { margin-bottom: 0.5rem; font-size: 0.93rem; }
-
-    .research-ref {
-      display: inline-block;
-      font-size: 0.78rem;
-      color: var(--sage);
-      text-decoration: none;
-      border: 1px solid var(--sage);
-      padding: 0.2rem 0.6rem;
-      border-radius: 2rem;
-      margin-top: 0.3rem;
-    }
-
-    .research-ref:hover { background: var(--sage); color: #fff; }
-
-    /* ── CONCLUSION BOX ── */
-    .conclusion {
-      background: var(--navy);
-      color: rgba(255,255,255,0.9);
-      border-radius: 14px;
-      padding: 2.5rem 2.5rem;
-      margin: 2.5rem 0;
-    }
-
-    .conclusion h3 {
-      font-family: 'Fraunces', serif;
-      color: var(--coral);
-      font-size: 1.2rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .conclusion p {
-      font-style: italic;
-      line-height: 1.75;
-      font-size: 0.98rem;
-      margin-bottom: 1rem;
-    }
-
-    .conclusion .closing-line {
-      font-style: italic;
-      font-weight: 600;
-      color: #fff;
-      font-size: 1.02rem;
-      margin-bottom: 0;
-    }
-
-    /* ── DISCLAIMER ── */
-    .disclaimer {
-      background: rgba(27,42,74,0.04);
-      border: 1px solid rgba(27,42,74,0.1);
-      border-radius: 8px;
-      padding: 1rem 1.3rem;
-      font-size: 0.8rem;
-      color: #666;
-      margin-top: 2.5rem;
-      line-height: 1.6;
-    }
-
-    /* ── NAV FOOTER ── */
-    .article-nav {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-top: 2.5rem;
-      flex-wrap: wrap;
-    }
-
-    .art-nav-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: var(--navy);
-      color: #fff;
-      text-decoration: none;
-      padding: 0.75rem 1.2rem;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      transition: background 0.2s;
-      max-width: 260px;
-    }
-
-    .art-nav-btn:hover { background: var(--light-navy); }
-    .art-nav-btn.next { margin-left: auto; text-align: right; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--navy);
-      color: rgba(255,255,255,0.6);
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.82rem;
-      margin-top: 3rem;
-    }
-
-    footer strong { color: #fff; }
-    footer a { color: var(--coral); text-decoration: none; }
-
-    /* ── DIVIDER ── */
-    .divider {
-      border: none;
-      border-top: 1px solid rgba(27,42,74,0.1);
-      margin: 2rem 0;
-    }
-
-    /* ── HIGHLIGHT ── */
-    .hl-coral { color: var(--coral); font-weight: 600; }
-    .hl-sage { color: var(--sage); font-weight: 600; }
-    .hl-navy { color: var(--navy); font-weight: 600; }
+    :root{--navy:#1B2A4A;--coral:#E8634A;--cream:#FAF7F2;--sage:#7A9E87;--amber:#E8A84A;--coral-light:#FDEEE9;--sage-light:#EBF2ED;--text:#2C2C2C;--muted:#5A6170;--border:#E5DDD4}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;font-weight:400;background:var(--cream);color:var(--text);font-size:17px;line-height:1.75}
+    nav{background:var(--navy);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(27,42,74,.18)}
+    .nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none}
+    .logo-svg{width:36px;height:36px;flex-shrink:0}
+    .logo-text{display:flex;flex-direction:column;line-height:1.1}
+    .logo-name{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600;color:#fff;letter-spacing:.01em}
+    .logo-tagline{font-size:.6rem;font-weight:500;color:var(--sage);letter-spacing:.18em;text-transform:uppercase}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:.875rem;font-weight:500;transition:color .2s}
+    .nav-links a:hover{color:#fff}
+    .breadcrumb{background:var(--navy);padding:.6rem 2rem;border-bottom:1px solid rgba(255,255,255,.08)}
+    .breadcrumb-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:rgba(255,255,255,.75)}
+    .breadcrumb-inner a{color:rgba(255,255,255,.75);text-decoration:none;transition:color .2s}
+    .breadcrumb-inner a:hover{color:rgba(255,255,255,.95)}
+    .breadcrumb-inner span{color:var(--coral);font-weight:500}
+    .article-hero{background:var(--navy);padding:3.5rem 2rem 3rem;position:relative;overflow:hidden}
+    .article-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(232,99,74,.12) 0%,transparent 70%);pointer-events:none}
+    .article-hero::after{content:'';position:absolute;bottom:-40px;left:10%;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(122,158,135,.1) 0%,transparent 70%);pointer-events:none}
+    .hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+    .category-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(232,99,74,.15);border:1px solid rgba(232,99,74,.3);color:var(--coral);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .75rem;border-radius:100px;margin-bottom:1.25rem}
+    .article-hero h1{font-family:'Fraunces',serif;font-size:clamp(2rem,5vw,3rem);font-weight:700;color:#fff;line-height:1.15;margin-bottom:.5rem}
+    .article-hero h1 span{color:var(--coral)}
+    .hero-subtitle{font-size:1rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;margin-bottom:1.75rem}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:1.25rem}
+    .meta-item{display:flex;align-items:center;gap:.4rem;font-size:.8rem;color:rgba(255,255,255,.80)}
+    .meta-item svg{width:14px;height:14px;opacity:.8}
+    .disclaimer-bar{background:rgba(232,168,74,.12);border-bottom:1px solid rgba(232,168,74,.3);padding:.65rem 2rem}
+    .disclaimer-bar-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:.6rem;font-size:.78rem;color:#7A5A10;font-weight:500}
+    .disclaimer-bar-inner svg{width:15px;height:15px;color:var(--amber);flex-shrink:0}
+    .jump-nav{background:#fff;border-bottom:1px solid var(--border);padding:0 2rem;position:sticky;top:68px;z-index:90}
+    .jump-nav-inner{max-width:900px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+    .jump-nav-inner::-webkit-scrollbar{display:none}
+    .jump-link{display:flex;align-items:center;gap:.4rem;padding:.9rem 1.1rem;font-size:.8rem;font-weight:500;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;transition:color .2s,border-color .2s}
+    .jump-link:hover{color:var(--navy);border-bottom-color:var(--navy)}
+    .jump-link .num{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--coral-light);color:var(--coral);font-size:.65rem;font-weight:700;flex-shrink:0}
+    .article-layout{max-width:900px;margin:0 auto;padding:3rem 2rem 5rem}
+    .article-section{scroll-margin-top:150px;margin-bottom:3.5rem}
+    .section-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+    .section-number{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;flex-shrink:0}
+    .section-title{font-family:'Fraunces',serif;font-size:1.45rem;font-weight:600;color:var(--navy);line-height:1.2}
+    .article-section p{margin-bottom:1rem;color:var(--text);font-weight:400}
+    .article-section p:last-child{margin-bottom:0}
+    /* KEY TERMS */
+    .key-terms-box{background:var(--navy);border-radius:12px;padding:1.5rem 1.75rem;margin-bottom:3.5rem}
+    .key-terms-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;padding-bottom:.85rem;border-bottom:1px solid rgba(255,255,255,.12)}
+    .key-terms-header svg{width:20px;height:20px;color:var(--coral);flex-shrink:0}
+    .key-terms-header h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;color:#fff}
+    .key-terms-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+    .key-term{display:flex;flex-direction:column;gap:.2rem;padding:.75rem 1rem;background:rgba(255,255,255,.05);border-radius:8px;border-left:3px solid var(--coral)}
+    .key-term-word{font-size:.88rem;font-weight:700;color:var(--coral);letter-spacing:.02em}
+    .key-term-def{font-size:.92rem;color:rgba(255,255,255,.90);line-height:1.55;font-weight:400}
+    /* STAT GRID */
+    .stat-grid-2x2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem}
+    .stat-cell{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.4rem;position:relative;overflow:hidden}
+    .stat-cell::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:4px 0 0 4px;background:var(--navy)}
+    .stat-cell-number{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;color:var(--navy);line-height:1;margin-bottom:.3rem}
+    .stat-cell-number.coral{color:var(--coral)}
+    .stat-cell-number.sage{color:var(--sage)}
+    .stat-cell-number.amber{color:var(--amber)}
+    .stat-cell-label{font-size:.88rem;font-weight:500;color:var(--text);line-height:1.5;margin-bottom:.4rem}
+    .stat-cell-source{font-size:.75rem;color:var(--text);font-style:italic}
+    /* SUPPLEMENT CARDS */
+    .supplement-cards{display:grid;gap:1.2rem;margin:1.8rem 0}
+    .supp-card{border-radius:10px;overflow:hidden;border:1px solid var(--border)}
+    .supp-card-header{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem}
+    .supp-icon{width:42px;height:42px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .supp-card-header h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;color:var(--navy)}
+    .supp-verdict{font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .6rem;border-radius:2rem;margin-left:auto;white-space:nowrap}
+    .verdict-good{background:rgba(122,158,135,.15);color:var(--sage);border:1px solid var(--sage)}
+    .verdict-mixed{background:rgba(232,168,74,.15);color:var(--amber);border:1px solid var(--amber)}
+    .verdict-caution{background:rgba(232,99,74,.15);color:var(--coral);border:1px solid var(--coral)}
+    .supp-card-body{background:#fff;padding:1rem 1.2rem;font-size:.92rem;border-top:1px solid var(--border);color:var(--text);font-weight:400}
+    .supp-card-body p{margin-bottom:.6rem;color:var(--text)}
+    .supp-card-body p:last-child{margin-bottom:0}
+    .supp-card-body strong{color:var(--navy);font-weight:600}
+    .supp-effect-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.6rem}
+    .effect-tag{font-size:.75rem;padding:.2rem .65rem;border-radius:2rem;font-weight:500}
+    .tag-ldl{background:rgba(232,99,74,.1);color:#c0432a}
+    .tag-trig{background:rgba(122,158,135,.12);color:#4e7e62}
+    .tag-hdl{background:rgba(232,168,74,.12);color:#b47d1a}
+    .tag-none{background:rgba(150,150,150,.1);color:#666}
+    .tag-risk{background:rgba(232,99,74,.18);color:#a83020}
+    /* COMPARISON TABLE */
+    .compare-table-wrap{overflow-x:auto;margin:1.8rem 0;border-radius:10px;border:1px solid var(--border)}
+    .compare-table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+    .compare-table thead{background:var(--navy);color:#fff}
+    .compare-table thead th{padding:.85rem 1rem;text-align:left;font-weight:500;font-size:.82rem;letter-spacing:.03em}
+    .compare-table tbody tr:nth-child(even){background:rgba(27,42,74,.03)}
+    .compare-table tbody td{padding:.75rem 1rem;border-bottom:1px solid var(--border);vertical-align:middle;font-weight:400;color:var(--text)}
+    .compare-table tbody tr:last-child td{border-bottom:none}
+    .compare-table tbody td strong{color:var(--navy);font-weight:600}
+    .dot-yes{color:var(--sage);font-size:1.1rem}
+    .dot-partial{color:var(--amber);font-size:1.1rem}
+    .dot-no{color:var(--coral);font-size:1.1rem}
+    /* CALLOUTS */
+    .callout{border-radius:10px;padding:1.3rem 1.5rem;margin:1.6rem 0;display:flex;gap:1rem;align-items:flex-start}
+    .callout-icon{font-size:1.3rem;flex-shrink:0;margin-top:.1rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .callout-amber{background:rgba(232,168,74,.12);border:1px solid rgba(232,168,74,.3)}
+    .callout-amber strong{color:#8f5e10}
+    .callout-sage{background:rgba(122,158,135,.1);border:1px solid rgba(122,158,135,.25)}
+    .callout-sage strong{color:#3d6e52}
+    .callout p{margin:0;font-size:.93rem;line-height:1.6;color:var(--text);font-weight:400}
+    .callout strong{display:block;margin-bottom:.35rem;font-size:.95rem}
+    /* DOCTOR BOX */
+    .doctor-box{background:rgba(27,42,74,.05);border-left:4px solid var(--navy);border-radius:0 10px 10px 0;padding:1.3rem 1.5rem;margin:1.6rem 0}
+    .doctor-box h4{font-family:'Fraunces',serif;font-size:1rem;color:var(--navy);margin-bottom:.7rem;font-weight:600}
+    .doctor-box ul{list-style:none}
+    .doctor-box ul li{position:relative;padding-left:1.4rem;margin-bottom:.6rem;font-size:.93rem;color:var(--text);font-weight:400}
+    .doctor-box ul li::before{content:'→';position:absolute;left:0;color:var(--coral)}
+    /* SUBSECTION */
+    .subsection-title{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;color:var(--navy);margin:1.75rem 0 .75rem}
+    /* NAVY RESEARCH CARDS */
+    .research-items{display:flex;flex-direction:column;gap:1.25rem}
+    .research-card-navy{background:var(--navy);border-radius:12px;padding:1.4rem 1.6rem;position:relative;overflow:hidden}
+    .research-card-navy::before{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(232,99,74,.08) 0%,transparent 70%);pointer-events:none}
+    .rc-stat-row{display:flex;align-items:baseline;gap:.85rem;margin-bottom:.85rem;padding-bottom:.85rem;border-bottom:1px solid rgba(255,255,255,.12);flex-wrap:wrap}
+    .rc-stat{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;color:var(--coral);line-height:1;flex-shrink:0}
+    .rc-stat-label{font-size:1.1rem;color:#fff;line-height:1.4;font-weight:700;flex:1;min-width:180px}
+    .rc-source-pill{display:inline-flex;align-items:center;font-size:.72rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.80);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);padding:.2rem .65rem;border-radius:100px;text-decoration:none;transition:background .2s;white-space:nowrap}
+    .rc-source-pill:hover{background:rgba(255,255,255,.14)}
+    .rc-title{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:var(--coral);margin-bottom:.7rem;line-height:1.25}
+    .rc-body{font-size:1.05rem;line-height:1.75;color:rgba(255,255,255,.92);font-weight:400}
+    .rc-body p{margin-bottom:.65rem}
+    .rc-body p:last-child{margin-bottom:0}
+    /* PUTTING IT ALL TOGETHER */
+    .putting-together{background:var(--navy);border-radius:14px;padding:1.75rem 2rem;margin-top:2rem;position:relative;overflow:hidden}
+    .putting-together::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(232,99,74,.1) 0%,transparent 70%);pointer-events:none}
+    .putting-together-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;padding-bottom:.85rem;border-bottom:1px solid rgba(255,255,255,.12)}
+    .putting-together-header svg{width:20px;height:20px;color:var(--coral);flex-shrink:0}
+    .putting-together-header h5{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;color:#fff}
+    .putting-together p{font-size:1rem;color:rgba(255,255,255,.88);line-height:1.75;margin-bottom:.75rem;font-style:italic;font-weight:400}
+    .putting-together p:last-child{margin-bottom:0}
+    .putting-together p strong{color:#fff;font-weight:700;font-style:normal}
+    /* REFERENCES */
+    .references-section{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}
+    .references-section h3{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;color:var(--navy);margin-bottom:1.25rem}
+    .ref-block{margin-bottom:1.25rem;padding-left:1.1rem;border-left:3px solid var(--border)}
+    .ref-number{font-size:.75rem;font-weight:700;color:var(--coral);margin-bottom:.2rem;display:block}
+    .ref-full{font-size:.82rem;line-height:1.6;color:var(--text);margin-bottom:.35rem;font-weight:400}
+    .ref-links{display:flex;flex-wrap:wrap;gap:.4rem}
+    .ref-pill{display:inline-flex;align-items:center;font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--navy);background:var(--sage-light);border:1px solid rgba(122,158,135,.3);padding:.15rem .55rem;border-radius:100px;text-decoration:none;transition:background .2s}
+    .ref-pill:hover{background:rgba(122,158,135,.25)}
+    sup a{color:var(--coral);font-size:.7em;font-weight:700;text-decoration:none;vertical-align:super;margin-left:.05em}
+    sup a:hover{text-decoration:underline}
+    /* DISCLAIMER */
+    .disclaimer{background:var(--coral-light);border:1px solid rgba(232,99,74,.2);border-radius:12px;padding:1.1rem 1.4rem;display:flex;gap:.85rem;align-items:flex-start;margin-top:3rem}
+    .disclaimer svg{width:20px;height:20px;color:var(--coral);flex-shrink:0;margin-top:.1rem}
+    .disclaimer p{font-size:.82rem;color:#7A3020;line-height:1.6;margin:0;font-weight:400}
+    .disclaimer strong{font-weight:600}
+    footer{background:var(--navy);color:rgba(255,255,255,.5);text-align:center;padding:2rem;font-size:.8rem}
+    footer a{color:var(--sage);text-decoration:none}
+    hr.divider{border:none;border-top:1px solid var(--border);margin:2rem 0}
+    @media(max-width:600px){nav{padding:0 1rem}.nav-links{display:none}.article-hero{padding:2.5rem 1rem 2rem}.article-layout{padding:2rem 1rem 4rem}.breadcrumb{padding:.6rem 1rem}.jump-nav{padding:0 1rem}.key-terms-grid{grid-template-columns:1fr}.stat-grid-2x2{grid-template-columns:1fr}.compare-table-wrap{font-size:.8rem}}
   </style>
 </head>
-
 <body>
 
-<!-- ═══ HEADER ═══ -->
-<header>
-  <a class="logo-area" href="index.html">
-    <!-- Open-book SVG logo -->
-    <svg class="logo-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="2" y="8" width="16" height="24" rx="2" fill="#7A9E87" opacity="0.8"/>
-      <rect x="22" y="8" width="16" height="24" rx="2" fill="#7A9E87" opacity="0.8"/>
-      <rect x="2" y="8" width="16" height="24" rx="2" stroke="#FAF7F2" stroke-width="1.5" fill="none"/>
-      <rect x="22" y="8" width="16" height="24" rx="2" stroke="#FAF7F2" stroke-width="1.5" fill="none"/>
-      <line x1="20" y1="8" x2="20" y2="32" stroke="#FAF7F2" stroke-width="1.5"/>
-      <line x1="6" y1="15" x2="14" y2="15" stroke="#FAF7F2" stroke-width="1.2" opacity="0.6"/>
-      <line x1="6" y1="19" x2="14" y2="19" stroke="#FAF7F2" stroke-width="1.2" opacity="0.6"/>
-      <line x1="6" y1="23" x2="14" y2="23" stroke="#FAF7F2" stroke-width="1.2" opacity="0.6"/>
-      <line x1="26" y1="15" x2="34" y2="15" stroke="#FAF7F2" stroke-width="1.2" opacity="0.6"/>
-      <line x1="26" y1="19" x2="34" y2="19" stroke="#FAF7F2" stroke-width="1.2" opacity="0.6"/>
-      <line x1="26" y1="23" x2="34" y2="23" stroke="#FAF7F2" stroke-width="1.2" opacity="0.6"/>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg class="logo-svg" viewBox="0 0 40 40" fill="none">
+      <rect x="2" y="8" width="17" height="24" rx="2" stroke="#FAF7F2" stroke-width="1.5" fill="none"/>
+      <rect x="21" y="8" width="17" height="24" rx="2" stroke="#FAF7F2" stroke-width="1.5" fill="none"/>
+      <line x1="20" y1="8" x2="20" y2="32" stroke="#E8634A" stroke-width="1.5"/>
+      <line x1="6" y1="15" x2="15" y2="15" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="6" y1="19" x2="15" y2="19" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="6" y1="23" x2="12" y2="23" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="15" x2="34" y2="15" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="19" x2="34" y2="19" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="23" x2="31" y2="23" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
     </svg>
     <div class="logo-text">
-      <span class="brand">helf.school</span>
-      <span class="tagline">Health Education</span>
+      <span class="logo-name">helf.school</span>
+      <span class="logo-tagline">Health Education</span>
     </div>
   </a>
-  <nav>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="helf-school-conditions.html">Conditions</a></li>
+    <li><a href="helf-school-membership.html">Membership</a></li>
+  </ul>
+</nav>
+
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
     <a href="index.html">Home</a>
-    <a href="helf-school-conditions.html" class="active">Conditions</a>
-    <a href="helf-school-membership.html">Membership</a>
-  </nav>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <a href="helf-school-conditions.html">Conditions</a>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <a href="helf-school-conditions.html">Cardiovascular Health</a>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Do Supplements Lower Cholesterol?</span>
+  </div>
+</div>
+
+<header class="article-hero">
+  <div class="hero-inner">
+    <div class="category-badge">♥ Cardiovascular Health · Article 07</div>
+    <h1>Do Supplements <span>Lower Cholesterol?</span></h1>
+    <p class="hero-subtitle">What the evidence actually shows about fish oil, plant sterols, red yeast rice, and other popular supplements</p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        9 minute read
+      </div>
+      <div class="meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Evidence-based
+      </div>
+      <div class="meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        Sources: JACC · NEJM · BMJ · Cochrane · EFSA · NICE
+      </div>
+    </div>
+  </div>
 </header>
 
-<!-- ═══ HERO ═══ -->
-<section class="hero">
-  <span class="series-badge">Cardiovascular Series · Article 07 of 07</span>
-  <h1>Do Supplements Lower Cholesterol?</h1>
-  <p class="hero-sub">What the evidence actually shows about fish oil, plant sterols, red yeast rice, and other popular supplements</p>
-  <div class="hero-meta">
-    <span>🕐 9 min read</span>
-    <span>📚 Evidence-based</span>
-    <span>✍️ helf.school</span>
+<div class="disclaimer-bar">
+  <div class="disclaimer-bar-inner">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    Health education — not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
   </div>
-</section>
+</div>
 
-<!-- ═══ MAIN CONTENT ═══ -->
-<main class="container">
-
-  <!-- ─── SECTION 1: What is it? ─── -->
-  <div class="section-head">
-    <div class="section-num">1</div>
-    <h2>What is it?</h2>
+<nav class="jump-nav" aria-label="Jump to section">
+  <div class="jump-nav-inner">
+    <a href="#what-is-it" class="jump-link"><span class="num">1</span> What is it?</a>
+    <a href="#why-matters" class="jump-link"><span class="num">2</span> Why does it matter?</a>
+    <a href="#what-doctor" class="jump-link"><span class="num">3</span> What your doctor might do</a>
+    <a href="#research" class="jump-link"><span class="num">4</span> What the research shows</a>
   </div>
+</nav>
 
-  <p>Walk into any pharmacy or health food shop in the UK and you'll find an entire aisle of supplements promising to support cholesterol, protect your heart, or promote healthy lipid levels. Fish oil capsules, plant sterol drinks, red yeast rice tablets, garlic extract, niacin — the options can feel overwhelming. And they're not cheap.</p>
+<main class="article-layout">
 
-  <p>Millions of people take these products every year, often hoping to avoid or reduce prescription medication, or simply to do something extra for their heart health. The UK supplement market is worth billions of pounds annually. But the critical question is: what does the scientific evidence actually say?</p>
+  <!-- SECTION 1 -->
+  <section class="article-section" id="what-is-it">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <h2 class="section-title">What is it?</h2>
+    </div>
+    <p>Walk into any pharmacy or health food shop in the UK and there is an entire aisle of supplements promising to support cholesterol, protect your heart, or promote healthy lipid levels. Fish oil capsules, plant sterol drinks, red yeast rice tablets, garlic extract, niacin — the options can feel overwhelming. And they're not cheap.</p>
+    <p>Millions of people take these products every year, often hoping to avoid or reduce prescription medication, or simply to do something extra for their heart health. The UK supplement market is worth billions of pounds annually. But the critical question is: what does the scientific evidence actually say?</p>
+    <p>The honest answer is nuanced. Some supplements have genuinely meaningful evidence behind them. Others have been repeatedly shown to perform no better than a placebo in rigorous trials. And a small number carry real safety concerns that are widely underappreciated.</p>
+    <p>This article works through the main cholesterol-related supplements one by one — looking at what they are, what effect they actually have on cholesterol numbers, and what is known (and not known) about whether that translates into reduced heart disease risk.</p>
+  </section>
 
-  <p>The honest answer is nuanced. Some supplements have genuinely meaningful evidence behind them. Others have been repeatedly shown to perform no better than a placebo in rigorous trials. And a small number carry real safety concerns that are widely underappreciated.</p>
-
-  <p>This article works through the main cholesterol-related supplements one by one — looking at what they are, what effect they actually have on cholesterol numbers, and what we know (and don't know) about whether that translates into reduced heart disease risk.</p>
-
-  <!-- ─── KEY TERMS BOX ─── -->
-  <div class="key-terms">
-    <h3>📖 Key Terms</h3>
-    <div class="terms-grid">
-
-      <div class="term">
-        <strong>Dietary Supplement</strong>
-        <p>A product taken by mouth that contains a "dietary ingredient" such as a vitamin, mineral, herb, or plant extract. Unlike medicines, supplements are not required to prove they work before being sold.</p>
+  <!-- KEY TERMS -->
+  <div class="key-terms-box">
+    <div class="key-terms-header">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+      <h3>Key Terms</h3>
+    </div>
+    <div class="key-terms-grid">
+      <div class="key-term">
+        <span class="key-term-word">Dietary Supplement</span>
+        <span class="key-term-def">A product taken by mouth containing a vitamin, mineral, herb, or plant extract. Unlike medicines, supplements are not required to prove they work before being sold.</span>
       </div>
-
-      <div class="term">
-        <strong>HDL Cholesterol</strong>
-        <p>Often called "good" cholesterol. HDL helps carry cholesterol away from the arteries and back to the liver. Higher levels are generally associated with lower cardiovascular risk.</p>
+      <div class="key-term">
+        <span class="key-term-word">LDL Cholesterol</span>
+        <span class="key-term-def">Often called "bad" cholesterol. High LDL levels are a major risk factor for atherosclerosis (artery narrowing) and heart disease. Most cholesterol-lowering treatments target LDL reduction.</span>
       </div>
-
-      <div class="term">
-        <strong>LDL Cholesterol</strong>
-        <p>Often called "bad" cholesterol. High LDL levels are a major risk factor for atherosclerosis (artery narrowing) and heart disease. Most cholesterol-lowering treatments target LDL reduction.</p>
+      <div class="key-term">
+        <span class="key-term-word">HDL Cholesterol</span>
+        <span class="key-term-def">Often called "good" cholesterol. HDL helps carry cholesterol away from the arteries and back to the liver. Higher levels are generally associated with lower cardiovascular risk.</span>
       </div>
-
-      <div class="term">
-        <strong>Monacolin K</strong>
-        <p>The active compound in red yeast rice. It is chemically identical to lovastatin, a prescription statin drug — meaning it works the same way and carries the same potential side effects.</p>
+      <div class="key-term">
+        <span class="key-term-word">Triglycerides</span>
+        <span class="key-term-def">A type of fat found in the blood. High triglycerides often accompany high cholesterol and can independently raise cardiovascular risk. Some supplements affect triglycerides without affecting LDL.</span>
       </div>
-
-      <div class="term">
-        <strong>Phytosterols (Plant Sterols &amp; Stanols)</strong>
-        <p>Naturally occurring plant compounds with a similar structure to cholesterol. They compete with cholesterol for absorption in the gut, reducing how much cholesterol enters the bloodstream.</p>
+      <div class="key-term">
+        <span class="key-term-word">Monacolin K</span>
+        <span class="key-term-def">The active compound in red yeast rice. It is chemically identical to lovastatin (Mevacor) — a prescription statin drug — meaning it works the same way and carries the same potential side effects.</span>
       </div>
-
-      <div class="term">
-        <strong>Placebo</strong>
-        <p>An inactive dummy treatment used in clinical trials. A supplement only "works" in a meaningful sense if it outperforms placebo — many do not in well-controlled studies.</p>
+      <div class="key-term">
+        <span class="key-term-word">Phytosterols (Plant Sterols &amp; Stanols)</span>
+        <span class="key-term-def">Naturally occurring plant compounds with a similar structure to cholesterol. They compete with cholesterol for absorption in the gut, reducing how much cholesterol enters the bloodstream.</span>
       </div>
-
-      <div class="term">
-        <strong>Randomised Controlled Trial (RCT)</strong>
-        <p>The gold standard of clinical evidence. Participants are randomly assigned to receive either a treatment or a placebo, allowing researchers to accurately measure the treatment's true effect.</p>
+      <div class="key-term">
+        <span class="key-term-word">Randomised Controlled Trial (RCT)</span>
+        <span class="key-term-def">The gold standard of clinical evidence. Participants are randomly assigned to receive either a treatment or a placebo, allowing researchers to accurately measure the treatment's true effect.</span>
       </div>
-
-      <div class="term">
-        <strong>Triglycerides</strong>
-        <p>A type of fat found in the blood. High triglycerides often accompany high cholesterol and can independently raise cardiovascular risk. Some supplements affect triglycerides without affecting LDL.</p>
+      <div class="key-term">
+        <span class="key-term-word">Placebo</span>
+        <span class="key-term-def">An inactive dummy treatment used in clinical trials. A supplement only "works" in a meaningful sense if it outperforms placebo — many do not in well-controlled studies.</span>
       </div>
-
     </div>
   </div>
 
-  <!-- ─── SECTION 2: Why does it matter? ─── -->
-  <div class="section-head">
-    <div class="section-num">2</div>
-    <h2>Why does it matter?</h2>
-  </div>
+  <!-- SECTION 2 -->
+  <section class="article-section" id="why-matters">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <h2 class="section-title">Why does it matter?</h2>
+    </div>
 
-  <ul class="matters-list">
-    <li>Millions of people take cholesterol supplements every year, often spending significant money on products with limited or no proven benefit for reducing heart attack or stroke risk.</li>
-    <li>A landmark 2022 study published in the <em>Journal of the American College of Cardiology</em> found that six of the most popular "heart health" supplements — including fish oil, garlic, cinnamon, and turmeric — performed no better than a placebo at lowering LDL cholesterol over 28 days.</li>
-    <li>Lowering cholesterol numbers on a blood test is not the same as reducing heart attack or stroke risk. Even if a supplement lowers LDL, it may not translate into the clinical benefits that well-studied medicines like statins have demonstrated.</li>
-    <li>Some supplements — particularly red yeast rice — carry real safety risks including muscle damage and liver injury that are often not appreciated by people buying them as "natural" alternatives.</li>
-    <li>Understanding what supplements can and cannot do empowers people to make informed decisions, have better conversations with their GP, and direct their effort and money towards approaches with robust evidence.</li>
-  </ul>
+    <p>Millions of people take cholesterol supplements every year, often spending significant money on products with limited or no proven benefit for reducing heart attack or stroke risk. Understanding what the evidence actually shows is an important part of making informed decisions about heart health.</p>
 
-  <!-- ─── SECTION 3: The supplements ─── -->
-  <div class="section-head">
-    <div class="section-num">3</div>
-    <h2>What your doctor might discuss with you</h2>
-  </div>
-
-  <p>If you mention cholesterol supplements to your GP, they will likely want to explore why you're considering them — and whether your overall cardiovascular risk has been properly assessed. Here is what the evidence shows for the most commonly used supplements, and what a doctor might say about each one.</p>
-
-  <hr class="divider" />
-
-  <!-- SUPPLEMENT CARDS -->
-  <div class="supplement-cards">
-
-    <!-- Plant Sterols -->
-    <div class="supp-card">
-      <div class="supp-card-header" style="background: rgba(122,158,135,0.08);">
-        <div class="supp-icon" style="background: rgba(122,158,135,0.15);">🌿</div>
-        <h3>Plant Sterols &amp; Stanols (Phytosterols)</h3>
-        <span class="supp-verdict verdict-good">Strongest Evidence</span>
+    <div class="stat-grid-2x2">
+      <div class="stat-cell">
+        <div class="stat-cell-number coral">−37.9%</div>
+        <div class="stat-cell-label">LDL reduction from low-dose rosuvastatin (Crestor) 5mg vs 0% from six popular supplements — in the same head-to-head randomised trial<sup><a href="#ref-1">1</a></sup></div>
+        <div class="stat-cell-source">SPORT Trial, JACC 2023</div>
       </div>
-      <div class="supp-card-body">
-        <p><strong>What they are:</strong> Plant-derived compounds found naturally in small amounts in vegetable oils, nuts, and grains. Added to products like Benecol and Flora ProActiv drinks, spreads, and yoghurts — and also sold as tablet supplements.</p>
-        <p><strong>How they work:</strong> They compete with cholesterol for absorption in the gut. Because they are structurally similar to cholesterol, they "take its place" in the digestive process, meaning less dietary and bile cholesterol is absorbed into the bloodstream.</p>
-        <p><strong>The evidence:</strong> This is the best-evidenced supplement for LDL reduction. A large meta-analysis of 124 studies found that consuming around 2 grams per day was associated with an LDL reduction of approximately 7–12%. The British Dietetic Association confirms these figures. The effect is real, consistent, and well-replicated across dozens of trials.</p>
-        <p><strong>The important caveat:</strong> Lowering LDL with plant sterols has not been shown to reduce the risk of heart attacks or strokes in large outcome trials. UK guidelines therefore do not currently recommend them specifically for cardiovascular disease prevention — the evidence supports the cholesterol-lowering effect, but the downstream benefit remains unproven. They are not a substitute for prescribed medication in those at high risk.</p>
-        <div class="supp-effect-row">
-          <span class="effect-tag tag-ldl">✓ LDL ↓ 7–12%</span>
-          <span class="effect-tag tag-trig">→ Triglycerides: minimal effect</span>
-          <span class="effect-tag tag-hdl">→ HDL: minimal effect</span>
+      <div class="stat-cell">
+        <div class="stat-cell-number sage">7–12%</div>
+        <div class="stat-cell-label">LDL reduction from plant sterols 2g/day — the best-evidenced supplement for LDL lowering, confirmed across 124 randomised controlled trials<sup><a href="#ref-2">2</a></sup></div>
+        <div class="stat-cell-source">Meta-analysis, Br J Nutr 2014</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-number coral">0%</div>
+        <div class="stat-cell-label">meaningful LDL reduction from fish oil, garlic, cinnamon, or turmeric — all performed at placebo level in the SPORT head-to-head trial<sup><a href="#ref-1">1</a></sup></div>
+        <div class="stat-cell-source">SPORT Trial, JACC 2023</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-number amber" style="font-size:1.6rem">No safe dose</div>
+        <div class="stat-cell-label">of monacolin K from red yeast rice — EFSA's 2025 conclusion, following reports of serious adverse reactions at doses as low as 3mg/day<sup><a href="#ref-3">3</a></sup></div>
+        <div class="stat-cell-source">EFSA, January 2025</div>
+      </div>
+    </div>
+
+    <p>A critical distinction runs through this entire topic: <strong>lowering cholesterol numbers on a blood test is not the same as reducing heart attack or stroke risk</strong>. Even if a supplement lowers LDL, it may not translate into the clinical benefits that well-studied medicines like statins have demonstrated in large outcome trials.</p>
+  </section>
+
+  <!-- SECTION 3 -->
+  <section class="article-section" id="what-doctor">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <h2 class="section-title">What your doctor might do</h2>
+    </div>
+
+    <p>When cholesterol supplements are raised in a GP appointment, the conversation will typically turn first to whether overall cardiovascular risk has been properly assessed — since that determines what kind of intervention, if any, is actually warranted. Here is what the evidence shows for the most commonly used supplements, and how they fit into clinical practice.</p>
+
+    <hr class="divider" />
+
+    <div class="supplement-cards">
+
+      <div class="supp-card">
+        <div class="supp-card-header" style="background:rgba(122,158,135,.08)">
+          <div class="supp-icon" style="background:rgba(122,158,135,.15)">🌿</div>
+          <h3>Plant Sterols &amp; Stanols (Phytosterols)</h3>
+          <span class="supp-verdict verdict-good">Strongest Evidence</span>
+        </div>
+        <div class="supp-card-body">
+          <p><strong>What they are:</strong> Plant-derived compounds found naturally in vegetable oils, nuts, and grains. Added to products like Benecol and Flora ProActiv drinks, spreads, and yoghurts — and also sold as tablet supplements.</p>
+          <p><strong>The evidence:</strong> A large meta-analysis of 124 studies found that consuming around 2 grams per day was associated with an LDL reduction of approximately 7–12%. This is the best-evidenced supplement effect on LDL — real, consistent, and well-replicated.</p>
+          <p><strong>The important caveat:</strong> Lowering LDL with plant sterols has not been shown to reduce the risk of heart attacks or strokes in large outcome trials. UK guidelines therefore do not currently recommend them specifically for cardiovascular disease prevention. They are not a substitute for prescribed medication in those at significant risk.</p>
+          <div class="supp-effect-row">
+            <span class="effect-tag tag-ldl">✓ LDL ↓ 7–12%</span>
+            <span class="effect-tag tag-trig">→ Triglycerides: minimal effect</span>
+            <span class="effect-tag tag-hdl">→ HDL: minimal effect</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Red Yeast Rice -->
-    <div class="supp-card">
-      <div class="supp-card-header" style="background: rgba(232,99,74,0.08);">
-        <div class="supp-icon" style="background: rgba(232,99,74,0.1);">🍚</div>
-        <h3>Red Yeast Rice</h3>
-        <span class="supp-verdict verdict-caution">Caution Advised</span>
-      </div>
-      <div class="supp-card-body">
-        <p><strong>What it is:</strong> Rice fermented with the mould <em>Monascus purpureus</em>. The fermentation produces a compound called monacolin K — which is chemically identical to the prescription statin lovastatin.</p>
-        <p><strong>How it works:</strong> In exactly the same way as a statin — it inhibits the enzyme (HMG-CoA reductase) that the liver uses to produce cholesterol. This is not a "natural" alternative to a statin; it is, in biochemical terms, a statin.</p>
-        <p><strong>The evidence on cholesterol:</strong> Studies have shown LDL reductions in the range of 15–25% with preparations containing sufficient monacolin K. However, the amount of active ingredient varies enormously between products.</p>
-        <p><strong>Safety concerns — these are significant:</strong> Because monacolin K is identical to a prescription drug, it carries the same risk of side effects: muscle pain, muscle breakdown (rhabdomyolysis), and liver damage. In 2025, the European Food Safety Authority (EFSA) concluded there is no dose of monacolin K from red yeast rice that can be considered safe. UK regulations (MHRA) may classify products with high monacolin content as unlicensed medicines. Products available online may contain unregulated and unpredictable amounts. NICE does not recommend red yeast rice as an evidence-based cardiovascular strategy.</p>
-        <p><strong>Regulatory position:</strong> In the EU (and followed by the UK), red yeast rice supplements are now restricted to a maximum of 3 mg of monacolins per daily dose — a level at which the cholesterol-lowering effect is significantly reduced. The EU revoked the previous health claim for monacolin K in August 2024.</p>
-        <div class="supp-effect-row">
-          <span class="effect-tag tag-ldl">↓ LDL (if high monacolin content)</span>
-          <span class="effect-tag tag-risk">⚠ Muscle damage risk</span>
-          <span class="effect-tag tag-risk">⚠ Liver injury risk</span>
+      <div class="supp-card">
+        <div class="supp-card-header" style="background:rgba(232,99,74,.08)">
+          <div class="supp-icon" style="background:rgba(232,99,74,.1)">🍚</div>
+          <h3>Red Yeast Rice</h3>
+          <span class="supp-verdict verdict-caution">Caution Advised</span>
+        </div>
+        <div class="supp-card-body">
+          <p><strong>What it is:</strong> Rice fermented with the mould <em>Monascus purpureus</em>. The fermentation produces monacolin K — which is chemically identical to the prescription statin lovastatin (Mevacor).</p>
+          <p><strong>How it works:</strong> In exactly the same way as a statin — it inhibits HMG-CoA reductase. This is not a "natural" alternative to a statin; in biochemical terms, it is a statin.</p>
+          <p><strong>Safety concerns:</strong> Because monacolin K is identical to a prescription drug, it carries the same risk of side effects: muscle pain, muscle breakdown (rhabdomyolysis), and liver damage. In January 2025, the European Food Safety Authority (EFSA) concluded there is no dose of monacolin K from red yeast rice that can be considered safe as a food supplement. The EU revoked the health claim for monacolin K in August 2024. Products available online may contain unregulated and unpredictable amounts of active ingredient.</p>
+          <div class="supp-effect-row">
+            <span class="effect-tag tag-ldl">↓ LDL (if high monacolin content)</span>
+            <span class="effect-tag tag-risk">⚠ Muscle damage risk</span>
+            <span class="effect-tag tag-risk">⚠ Liver injury risk</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Omega-3 Fish Oil -->
-    <div class="supp-card">
-      <div class="supp-card-header" style="background: rgba(232,168,74,0.08);">
-        <div class="supp-icon" style="background: rgba(232,168,74,0.12);">🐟</div>
-        <h3>Omega-3 / Fish Oil</h3>
-        <span class="supp-verdict verdict-mixed">Nuanced</span>
-      </div>
-      <div class="supp-card-body">
-        <p><strong>What it is:</strong> Supplements containing eicosapentaenoic acid (EPA) and docosahexaenoic acid (DHA), the omega-3 fatty acids found in oily fish. Widely sold for "heart health."</p>
-        <p><strong>On cholesterol specifically:</strong> Standard fish oil supplements do not lower LDL cholesterol — and at some doses may actually increase it slightly. This is important for people who buy fish oil expecting a cholesterol-lowering benefit.</p>
-        <p><strong>On triglycerides:</strong> Fish oil does meaningfully lower triglycerides. A large 2023 meta-analysis of 90 randomised trials involving over 72,000 participants found a clear, dose-dependent reduction in triglycerides. High-dose prescribed omega-3 preparations (such as icosapent ethyl) are used clinically for this purpose.</p>
-        <p><strong>On heart attack and stroke risk:</strong> This is genuinely complex. Eating oily fish twice a week is associated with lower cardiovascular mortality. Supplement trials give more mixed results. A large 2024 BMJ Medicine observational study found fish oil may increase risk of atrial fibrillation in those without established heart disease, while potentially benefiting those who already have it. The British Heart Foundation does not recommend fish oil supplements for general heart disease prevention. In specific high-risk contexts — particularly very high triglycerides — prescribed omega-3 preparations may be used under medical supervision.</p>
-        <div class="supp-effect-row">
-          <span class="effect-tag tag-trig">✓ Triglycerides ↓ (dose-dependent)</span>
-          <span class="effect-tag tag-none">→ LDL: no benefit / possible slight ↑</span>
-          <span class="effect-tag tag-hdl">→ HDL: modest ↑ in some studies</span>
+      <div class="supp-card">
+        <div class="supp-card-header" style="background:rgba(232,168,74,.08)">
+          <div class="supp-icon" style="background:rgba(232,168,74,.12)">🐟</div>
+          <h3>Omega-3 / Fish Oil</h3>
+          <span class="supp-verdict verdict-mixed">Nuanced</span>
+        </div>
+        <div class="supp-card-body">
+          <p><strong>What it is:</strong> Supplements containing EPA and DHA, the omega-3 fatty acids found in oily fish. Widely sold for "heart health."</p>
+          <p><strong>On cholesterol specifically:</strong> Standard fish oil supplements do not lower LDL cholesterol — and at some doses may actually increase it slightly. Fish oil does meaningfully lower triglycerides at high doses.</p>
+          <p><strong>On heart attack and stroke risk:</strong> The evidence is genuinely mixed. A large 2024 UK Biobank study found fish oil supplements may increase risk of atrial fibrillation (irregular heart rhythm) in those without established heart disease, while potentially benefiting those who already have it. The British Heart Foundation does not recommend fish oil supplements for general heart disease prevention.</p>
+          <div class="supp-effect-row">
+            <span class="effect-tag tag-trig">✓ Triglycerides ↓ (dose-dependent)</span>
+            <span class="effect-tag tag-none">→ LDL: no benefit / possible slight ↑</span>
+            <span class="effect-tag tag-risk">⚠ Possible ↑ AF risk in those without CVD</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Garlic -->
-    <div class="supp-card">
-      <div class="supp-card-header" style="background: rgba(27,42,74,0.04);">
-        <div class="supp-icon" style="background: rgba(27,42,74,0.06);">🧄</div>
-        <h3>Garlic Extract</h3>
-        <span class="supp-verdict verdict-mixed">Weak Evidence</span>
-      </div>
-      <div class="supp-card-body">
-        <p><strong>What it is:</strong> Concentrated garlic in capsule form, often standardised to contain allicin, thought to be the key active compound. Widely marketed for heart and cholesterol health.</p>
-        <p><strong>The evidence:</strong> The evidence is not encouraging. A well-designed Stanford University trial found that taking raw garlic or garlic supplements almost daily for six months had no meaningful effect on LDL cholesterol levels. The 2022 Journal of the American College of Cardiology study mentioned above found that garlic supplements actually slightly increased LDL compared to placebo over 28 days.</p>
-        <p>Garlic in food — as part of a Mediterranean-style diet — remains a sensible dietary choice. As an isolated supplement for cholesterol management, the evidence is not there.</p>
-        <div class="supp-effect-row">
-          <span class="effect-tag tag-none">→ LDL: no consistent benefit</span>
-          <span class="effect-tag tag-none">→ No meaningful cardiovascular outcome data</span>
+      <div class="supp-card">
+        <div class="supp-card-header" style="background:rgba(27,42,74,.04)">
+          <div class="supp-icon" style="background:rgba(27,42,74,.06)">🧄</div>
+          <h3>Garlic Extract</h3>
+          <span class="supp-verdict verdict-mixed">Weak Evidence</span>
+        </div>
+        <div class="supp-card-body">
+          <p><strong>The evidence:</strong> Not encouraging. A well-designed Stanford University trial found that raw garlic or garlic supplements taken almost daily for six months had no meaningful effect on LDL cholesterol. In the SPORT trial, garlic supplements actually slightly increased LDL compared to placebo.</p>
+          <p>Garlic in food — as part of a Mediterranean-style diet — remains a sensible dietary choice. As an isolated supplement for cholesterol management, the evidence is not there.</p>
+          <div class="supp-effect-row">
+            <span class="effect-tag tag-none">→ LDL: no consistent benefit</span>
+            <span class="effect-tag tag-none">→ No meaningful cardiovascular outcome data</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Niacin -->
-    <div class="supp-card">
-      <div class="supp-card-header" style="background: rgba(232,168,74,0.05);">
-        <div class="supp-icon" style="background: rgba(232,168,74,0.1);">💊</div>
-        <h3>Niacin (Vitamin B3)</h3>
-        <span class="supp-verdict verdict-caution">Not Recommended</span>
-      </div>
-      <div class="supp-card-body">
-        <p><strong>What it is:</strong> Niacin (nicotinic acid) is a B vitamin that at high doses can affect cholesterol levels. It can raise HDL ("good") cholesterol and lower triglycerides, and was at one point used as a prescribed medication.</p>
-        <p><strong>The problem:</strong> This effect is only seen at prescription doses significantly higher than those available in over-the-counter supplements. At lower doses, it has no meaningful cholesterol effect. At the doses that do have an effect, niacin can cause intense skin flushing and other side effects — and large trials have not shown it to reduce heart attacks or strokes when added to statin therapy.</p>
-        <p><strong>A newer concern:</strong> A 2024 study in <em>Nature Medicine</em> found that excess niacin intake may raise the risk of cardiovascular events through a previously unknown pathway involving inflammation. This finding is important context for anyone considering high-dose niacin supplementation.</p>
-        <div class="supp-effect-row">
-          <span class="effect-tag tag-none">→ Supplement doses: no meaningful effect</span>
-          <span class="effect-tag tag-risk">⚠ High-dose: side effects, cardiovascular concern</span>
+      <div class="supp-card">
+        <div class="supp-card-header" style="background:rgba(232,168,74,.05)">
+          <div class="supp-icon" style="background:rgba(232,168,74,.1)">💊</div>
+          <h3>Niacin (Vitamin B3)</h3>
+          <span class="supp-verdict verdict-caution">Not Recommended</span>
+        </div>
+        <div class="supp-card-body">
+          <p><strong>The problem:</strong> The cholesterol effect of niacin is only seen at prescription doses significantly higher than those available over the counter. At lower doses, it has no meaningful cholesterol effect. At the doses that do have an effect, niacin can cause intense skin flushing — and large trials have not shown it to reduce heart attacks or strokes when added to statin therapy.</p>
+          <p><strong>A newer concern:</strong> A 2024 study in <em>Nature Medicine</em> found that excess niacin intake may raise the risk of cardiovascular events through a previously unknown inflammatory pathway. This is important context for anyone considering high-dose niacin supplementation.</p>
+          <div class="supp-effect-row">
+            <span class="effect-tag tag-none">→ Supplement doses: no meaningful effect</span>
+            <span class="effect-tag tag-risk">⚠ High-dose: side effects, cardiovascular concern</span>
+          </div>
         </div>
       </div>
+
     </div>
 
-    <!-- Bergamot / Polyphenols -->
-    <div class="supp-card">
-      <div class="supp-card-header" style="background: rgba(122,158,135,0.05);">
-        <div class="supp-icon" style="background: rgba(122,158,135,0.1);">🍊</div>
-        <h3>Bergamot &amp; Polyphenol Extracts</h3>
-        <span class="supp-verdict verdict-mixed">Early Evidence</span>
+    <h3 class="subsection-title">At a glance: how the supplements compare</h3>
+
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Supplement</th><th>Lowers LDL?</th><th>Lowers Triglycerides?</th><th>Reduces Heart Events?</th><th>Key Safety Concern?</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Plant sterols/stanols</strong></td><td><span class="dot-yes">✓</span> Yes (7–12%)</td><td><span class="dot-no">✗</span> Minimal</td><td><span class="dot-no">?</span> Not proven</td><td>None known at recommended doses</td></tr>
+          <tr><td><strong>Red yeast rice</strong></td><td><span class="dot-yes">✓</span> Yes (if high monacolin)</td><td><span class="dot-partial">~</span> Some</td><td><span class="dot-no">?</span> Limited data</td><td>Muscle damage, liver injury — same as statins</td></tr>
+          <tr><td><strong>Fish oil (omega-3)</strong></td><td><span class="dot-no">✗</span> No / slight ↑</td><td><span class="dot-yes">✓</span> Yes (dose-dependent)</td><td><span class="dot-partial">~</span> Mixed evidence</td><td>Possible ↑ atrial fibrillation risk</td></tr>
+          <tr><td><strong>Garlic extract</strong></td><td><span class="dot-no">✗</span> No</td><td><span class="dot-no">✗</span> No</td><td><span class="dot-no">✗</span> No</td><td>None significant</td></tr>
+          <tr><td><strong>Niacin (high dose)</strong></td><td><span class="dot-partial">~</span> Some (prescription doses only)</td><td><span class="dot-partial">~</span> Some</td><td><span class="dot-no">✗</span> Not shown</td><td>Flushing, possible cardiovascular harm</td></tr>
+          <tr><td><strong>Cinnamon / Turmeric</strong></td><td><span class="dot-no">✗</span> No</td><td><span class="dot-no">✗</span> No</td><td><span class="dot-no">✗</span> No</td><td>None significant at supplement doses</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-amber">
+      <div class="callout-icon">⚠️</div>
+      <div>
+        <strong>The "natural" label is not the same as "safe"</strong>
+        <p>Red yeast rice is often chosen as a "natural" alternative to statins. But the active compound, monacolin K, is chemically identical to the prescription statin lovastatin (Mevacor). The risks — including serious muscle breakdown and liver damage — are the same. The key difference is that supplements are not regulated in the same way as medicines, so the amount of active ingredient in any given product cannot be verified.</p>
       </div>
-      <div class="supp-card-body">
-        <p><strong>What they are:</strong> Extracts from citrus fruits, particularly bergamot (the flavouring in Earl Grey tea), marketed for cholesterol management. Also includes various polyphenol-based supplements.</p>
-        <p><strong>The evidence:</strong> Some studies have shown modest cholesterol-lowering effects. A 2022 network meta-analysis found bergamot was among the more effective of several supplements studied. However, the evidence base remains limited compared to plant sterols or statins — most trials are small and short. This is an area of genuine ongoing research rather than established medicine.</p>
-        <div class="supp-effect-row">
-          <span class="effect-tag tag-ldl">→ LDL: modest reduction in some studies</span>
-          <span class="effect-tag tag-none">→ Outcome trials: insufficient data</span>
+    </div>
+
+    <div class="doctor-box">
+      <h4>What is discussed in UK clinical practice</h4>
+      <ul>
+        <li>Overall cardiovascular risk matters more than any single cholesterol number. A GP will typically discuss the full risk profile using a tool like QRISK3 before recommending any cholesterol-lowering strategy.</li>
+        <li>For those at meaningful cardiovascular risk, the evidence base strongly favours statins over supplements. Statins (atorvastatin/Lipitor, rosuvastatin/Crestor) typically reduce LDL by 30–50% and have decades of evidence showing reduced heart attacks and strokes.</li>
+        <li>Plant sterols may be a reasonable addition for mildly elevated cholesterol and low overall cardiovascular risk — alongside dietary and lifestyle changes, not instead of them.</li>
+        <li>Red yeast rice is relevant to clinical conversations because it can interact with other medications and carries the same risks as a prescribed statin — the same discussion that would apply to statin prescribing applies here.</li>
+        <li>Fish oil at high prescribed doses has a specific role in treating very high triglycerides — a conversation for a GP. Over-the-counter supplements for general heart health are not currently recommended by UK guidelines.</li>
+        <li>Supplement use — including over-the-counter products — is relevant when any new medication is being considered, as interactions can occur. This is part of the standard medicines review conversation.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- SECTION 4 -->
+  <section class="article-section" id="research">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <h2 class="section-title">What the research shows</h2>
+    </div>
+    <div class="research-items">
+
+      <div class="research-card-navy">
+        <div class="rc-stat-row">
+          <span class="rc-stat">−37.9%</span>
+          <span class="rc-stat-label">LDL reduction from rosuvastatin (Crestor) 5mg — vs no significant reduction from any of six popular supplements in the same trial</span>
+          <a href="https://www.jacc.org/doi/10.1016/j.jacc.2022.10.013" target="_blank" class="rc-source-pill">Laffin et al · JACC 2023</a>
+        </div>
+        <div class="rc-title">Supplements vs statin — the head-to-head result is unusually clean</div>
+        <div class="rc-body">
+          <p>The SPORT trial<sup><a href="#ref-1" style="color:var(--coral)">1</a></sup> at Cleveland Clinic randomly assigned 190 adults aged 40–75 to receive either rosuvastatin (Crestor) 5mg, a placebo, or one of six popular supplements — fish oil, cinnamon, garlic, turmeric, plant sterols, or red yeast rice — for 28 days. The statin reduced LDL by an average of 37.9%. All six supplements performed no differently from placebo on LDL reduction. Garlic actually slightly increased LDL versus placebo.</p>
         </div>
       </div>
+
+      <div class="research-card-navy">
+        <div class="rc-stat-row">
+          <span class="rc-stat">7–12%</span>
+          <span class="rc-stat-label">LDL reduction from plant sterols 2g/day — a real, consistent effect confirmed across 124 randomised trials, but not yet linked to fewer cardiovascular events</span>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/24780090/" target="_blank" class="rc-source-pill">Ras et al · Br J Nutr 2014</a>
+        </div>
+        <div class="rc-title">Plant sterols lower the number — but outcome benefit remains unproven</div>
+        <div class="rc-body">
+          <p>A large meta-analysis examining 124 randomised controlled trials<sup><a href="#ref-2" style="color:var(--coral)">2</a></sup> found that consuming 0.6–3.3g per day of plant sterols or stanols reduced LDL cholesterol by an average of 6–12%, with the effect plateauing above 3g per day. The British Dietetic Association cites 2g per day as associated with a 7.5–12% LDL reduction. Importantly, no large randomised trial has yet demonstrated that this LDL reduction translates into fewer heart attacks or strokes.</p>
+        </div>
+      </div>
+
+      <div class="research-card-navy">
+        <div class="rc-stat-row">
+          <span class="rc-stat" style="font-size:2rem;align-self:center">No safe dose</span>
+          <span class="rc-stat-label">of monacolin K from red yeast rice — EFSA's January 2025 conclusion, following serious adverse reactions including rhabdomyolysis at doses as low as 3mg/day</span>
+          <a href="https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2025.9276" target="_blank" class="rc-source-pill">EFSA · January 2025</a>
+        </div>
+        <div class="rc-title">Red yeast rice — why European regulators acted</div>
+        <div class="rc-body">
+          <p>In January 2025, the European Food Safety Authority (EFSA)<sup><a href="#ref-3" style="color:var(--coral)">3</a></sup> concluded that there is no safe dose of monacolin K in food supplements — individual cases of serious adverse reactions, including rhabdomyolysis (severe muscle breakdown — a medically significant pattern warranting prompt assessment) and acute liver injury, have been reported at doses as low as 3mg per day. The EU revoked the health claim for monacolin K in August 2024. UK regulations (MHRA) may treat products with significant monacolin content as unlicensed medicines.</p>
+        </div>
+      </div>
+
+      <div class="research-card-navy">
+        <div class="rc-stat-row">
+          <span class="rc-stat">+13%</span>
+          <span class="rc-stat-label">higher risk of atrial fibrillation in regular fish oil users without prior cardiovascular disease — UK Biobank, 415,000 participants, 2024</span>
+          <a href="https://bmjmedicine.bmj.com/content/3/1/e000451" target="_blank" class="rc-source-pill">Chen et al · BMJ Medicine 2024</a>
+        </div>
+        <div class="rc-title">Fish oil and atrial fibrillation — the largest dataset finding</div>
+        <div class="rc-body">
+          <p>A large UK Biobank cohort study<sup><a href="#ref-4" style="color:var(--coral)">4</a></sup> including over 415,000 adults found that regular fish oil supplement use was associated with an increased risk of developing atrial fibrillation (AF — an irregular heart rhythm) and stroke in people without pre-existing cardiovascular disease, while appearing to reduce the risk of progression to more serious events in those already with heart conditions. This is an observational finding and cannot prove causation, but it substantially complicates the "safe default supplement" framing of fish oil.</p>
+        </div>
+      </div>
+
+      <div class="research-card-navy">
+        <div class="rc-stat-row">
+          <span class="rc-stat">−22%</span>
+          <span class="rc-stat-label">reduction in major cardiovascular events per 1 mmol/L LDL reduction from statins — confirmed across 26 trials and 170,000+ participants, with no supplement evidence base comparable</span>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/21067804/" target="_blank" class="rc-source-pill">CTT · The Lancet 2010</a>
+        </div>
+        <div class="rc-title">Why statins remain the benchmark — and why supplements don't compare</div>
+        <div class="rc-body">
+          <p>Statins — when used appropriately for people at meaningful cardiovascular risk — have one of the most robust evidence bases in all of medicine.<sup><a href="#ref-5" style="color:var(--coral)">5</a></sup> Over decades and in trials involving hundreds of thousands of people, they have been shown to substantially reduce heart attacks, strokes, and cardiovascular deaths. No cholesterol-lowering supplement has an evidence base remotely comparable for clinical outcomes. This does not mean supplements have no role — but it does mean the comparison is not equivalent.</p>
+        </div>
+      </div>
+
     </div>
 
-  </div>
-
-  <!-- ─── COMPARISON TABLE ─── -->
-  <h3 style="font-family: 'Fraunces', serif; color: var(--navy); margin-top: 1.5rem; margin-bottom: 0.75rem; font-size: 1.1rem;">At a glance: how the supplements compare</h3>
-
-  <div class="compare-table-wrap">
-    <table class="compare-table">
-      <thead>
-        <tr>
-          <th>Supplement</th>
-          <th>Lowers LDL?</th>
-          <th>Lowers Triglycerides?</th>
-          <th>Reduces Heart Events?</th>
-          <th>Key Safety Concern?</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Plant sterols/stanols</strong></td>
-          <td><span class="dot-yes">✓</span> Yes (7–12%)</td>
-          <td><span class="dot-no">✗</span> Minimal</td>
-          <td><span class="dot-no">?</span> Not proven</td>
-          <td>None known at recommended doses</td>
-        </tr>
-        <tr>
-          <td><strong>Red yeast rice</strong></td>
-          <td><span class="dot-yes">✓</span> Yes (if high monacolin)</td>
-          <td><span class="dot-partial">~</span> Some</td>
-          <td><span class="dot-no">?</span> Limited data</td>
-          <td>Muscle damage, liver injury — identical to statins</td>
-        </tr>
-        <tr>
-          <td><strong>Fish oil (omega-3)</strong></td>
-          <td><span class="dot-no">✗</span> No / slight ↑</td>
-          <td><span class="dot-yes">✓</span> Yes (dose-dependent)</td>
-          <td><span class="dot-partial">~</span> Mixed evidence</td>
-          <td>Possible ↑ atrial fibrillation risk</td>
-        </tr>
-        <tr>
-          <td><strong>Garlic extract</strong></td>
-          <td><span class="dot-no">✗</span> No</td>
-          <td><span class="dot-no">✗</span> No</td>
-          <td><span class="dot-no">✗</span> No</td>
-          <td>None significant</td>
-        </tr>
-        <tr>
-          <td><strong>Niacin (high dose)</strong></td>
-          <td><span class="dot-partial">~</span> Some (prescription doses only)</td>
-          <td><span class="dot-partial">~</span> Some</td>
-          <td><span class="dot-no">✗</span> Not shown</td>
-          <td>Flushing, possible cardiovascular harm</td>
-        </tr>
-        <tr>
-          <td><strong>Bergamot extract</strong></td>
-          <td><span class="dot-partial">~</span> Modest (limited evidence)</td>
-          <td><span class="dot-partial">~</span> Possibly</td>
-          <td><span class="dot-no">?</span> Insufficient data</td>
-          <td>Limited long-term safety data</td>
-        </tr>
-        <tr>
-          <td><strong>Cinnamon / Turmeric</strong></td>
-          <td><span class="dot-no">✗</span> No</td>
-          <td><span class="dot-no">✗</span> No</td>
-          <td><span class="dot-no">✗</span> No</td>
-          <td>None significant at supplement doses</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="callout callout-amber">
-    <div class="callout-icon">⚠️</div>
-    <div>
-      <strong>The "natural" label is not the same as "safe"</strong>
-      <p>Red yeast rice is often chosen as a "natural" alternative to statins. But the active compound, monacolin K, is chemically identical to the prescription statin lovastatin. The risks — including serious muscle breakdown and liver damage — are the same. The key difference is that supplements are not regulated in the same way as medicines, so you cannot be certain how much active ingredient you are actually getting.</p>
+    <div class="callout callout-sage" style="margin-top:1.5rem">
+      <div class="callout-icon">💡</div>
+      <div>
+        <strong>The difference between changing a number and changing an outcome</strong>
+        <p>Plant sterols genuinely lower LDL on a blood test. But lowering LDL is only valuable if it reduces the risk of a heart attack or stroke. For statins, this link has been demonstrated in large, long-term trials. For plant sterol supplements, the number changes — but the proven outcome benefit is not yet there. This distinction matters when weighing up the value of a supplement versus prescribed treatment.</p>
+      </div>
     </div>
-  </div>
 
-  <!-- ─── SECTION 4: What the research shows ─── -->
-  <div class="section-head">
-    <div class="section-num">4</div>
-    <h2>What the research shows</h2>
-  </div>
-
-  <div class="doctor-box">
-    <h4>What might your doctor say?</h4>
-    <ul>
-      <li>Your overall cardiovascular risk matters more than any single number. A GP will usually discuss your full risk profile using a tool like QRISK3 before recommending any cholesterol-lowering strategy.</li>
-      <li>If cholesterol reduction is the goal, the evidence strongly favours statins over supplements for those at meaningful risk. Statins typically reduce LDL by 30–50% and have decades of evidence showing reduced heart attacks and strokes.</li>
-      <li>Plant sterols may be a reasonable addition if you have mildly elevated cholesterol and low overall cardiovascular risk — though they shouldn't replace dietary and lifestyle changes.</li>
-      <li>Red yeast rice should be discussed honestly. If your doctor is aware you're taking it, they'll want to know because it can interact with other medications and carries the same risks as a prescribed statin.</li>
-      <li>Fish oil prescribed at high doses has a specific role in treating very high triglycerides. Over-the-counter supplements for general heart health are not currently recommended by UK guidelines.</li>
-      <li>Always tell your GP and pharmacist about any supplements you take — they can interact with prescription medicines in ways that may be harmful.</li>
-    </ul>
-  </div>
-
-  <div class="research-item">
-    <h4>The "Six Supplements" Trial (2022) <span class="flag">⚑</span></h4>
-    <p>Researchers at Cleveland Clinic randomly assigned 190 adults aged 40–75 to receive either a low-dose statin (rosuvastatin 5 mg), a placebo, or one of six popular supplements — fish oil, cinnamon, garlic, turmeric, plant sterols, or red yeast rice — for 28 days. The statin reduced LDL by an average of 37.9%. All six supplements performed no differently from placebo on LDL reduction. Garlic actually slightly increased LDL versus placebo.</p>
-    <a href="https://www.jacc.org/doi/10.1016/j.jacc.2022.10.013" class="research-ref" target="_blank" rel="noopener">Laffin LJ et al. J Am Coll Cardiol 2022</a>
-  </div>
-
-  <div class="research-item">
-    <h4>Plant Sterols — the 124-Study Meta-Analysis <span class="flag">⚑</span></h4>
-    <p>A large meta-analysis examining 124 randomised controlled trials found that consuming 0.6–3.3 g per day of plant sterols or stanols reduced LDL cholesterol by an average of 6–12%, with the effect plateauing above 3 g per day. The British Dietetic Association cites 2 g per day as associated with a 7.5–12% LDL reduction. Importantly, no large trial has yet demonstrated that this LDL reduction translates into fewer heart attacks or strokes.</p>
-    <a href="https://pubmed.ncbi.nlm.nih.gov/24780090/" class="research-ref" target="_blank" rel="noopener">Trautwein &amp; Demonty, Br J Nutr 2014</a>
-  </div>
-
-  <div class="research-item">
-    <h4>EFSA Safety Opinion on Red Yeast Rice (2025) <span class="flag">⚑</span></h4>
-    <p>In 2025, the European Food Safety Authority (EFSA) concluded that there is no dose of monacolin K from red yeast rice that can be considered safe as a food supplement. Individual cases of serious adverse reactions — including rhabdomyolysis (severe muscle breakdown) and acute liver injury — have been reported at doses as low as 3 mg per day. The EU revoked the health claim for monacolin K in August 2024. UK regulations (MHRA) may treat products with significant monacolin content as unlicensed medicines.</p>
-    <a href="https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2025.9276" class="research-ref" target="_blank" rel="noopener">EFSA Journal 2025 — Monacolins from Red Yeast Rice</a>
-  </div>
-
-  <div class="research-item">
-    <h4>Omega-3 and Triglycerides — 90-Trial Meta-Analysis (2023) <span class="flag">⚑</span></h4>
-    <p>A major meta-analysis published in the <em>Journal of the American Heart Association</em> pooled data from 90 randomised trials involving 72,598 participants. It found that omega-3 supplementation (EPA and DHA) reduced triglycerides in a near-linear dose-dependent fashion — but did not lower LDL cholesterol, and at low doses may modestly increase it. The triglyceride-lowering effect was most pronounced at doses above 2 g per day and in people with elevated triglycerides at baseline. This supports the use of high-dose prescribed omega-3 preparations for hypertriglyceridaemia rather than standard OTC supplements for general cholesterol management.</p>
-    <a href="https://www.ahajournals.org/doi/10.1161/JAHA.123.029512" class="research-ref" target="_blank" rel="noopener">Wang et al. JAHA 2023 — Omega-3 Dose-Response Meta-Analysis</a>
-  </div>
-
-  <div class="research-item">
-    <h4>Fish Oil and Atrial Fibrillation (BMJ Medicine, 2024) <span class="flag">⚑</span></h4>
-    <p>A large UK Biobank cohort study including over 400,000 adults, published in <em>BMJ Medicine</em>, found that regular use of fish oil supplements was associated with an increased risk of developing atrial fibrillation and stroke in people who had no pre-existing cardiovascular disease, while appearing to reduce the risk of progressing from atrial fibrillation to a more serious heart attack in those already with heart conditions. This is a significant observational finding, though it cannot prove causation, and it adds to the complexity of the fish oil picture.</p>
-    <a href="https://bmjmedicine.bmj.com/content/3/1/e000451" class="research-ref" target="_blank" rel="noopener">Chen et al. BMJ Medicine 2024 — Fish Oil and Cardiovascular Course</a>
-  </div>
-
-  <div class="research-item">
-    <h4>Statins vs Supplements — the Bigger Picture</h4>
-    <p>Statins — when used appropriately for people at meaningful cardiovascular risk — have one of the most robust evidence bases in all of medicine. Over decades and in trials involving hundreds of thousands of people, they have been shown to substantially reduce heart attacks, strokes, and cardiovascular deaths. No cholesterol-lowering supplement has an evidence base remotely comparable for clinical outcomes. This does not mean supplements have no role — but it does mean the comparison is not equivalent.</p>
-    <a href="https://www.nice.org.uk/guidance/cg181" class="research-ref" target="_blank" rel="noopener">NICE Guideline CG181 — Cardiovascular Disease Risk</a>
-  </div>
-
-  <div class="callout callout-sage">
-    <div class="callout-icon">💡</div>
-    <div>
-      <strong>The difference between changing a number and changing an outcome</strong>
-      <p>Plant sterols genuinely lower LDL on a blood test. But lowering LDL is only valuable if it reduces the risk of a heart attack or stroke. For statins, this link has been demonstrated in large, long-term trials. For plant sterol supplements, we have the number change — but not yet the proven outcome benefit. This distinction matters when weighing up the value of a supplement versus prescribed treatment.</p>
+    <!-- PUTTING IT ALL TOGETHER -->
+    <div class="putting-together">
+      <div class="putting-together-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+        <h5>Putting it all together</h5>
+      </div>
+      <p>The supplement market is built on a powerful idea — that there must be a gentler, more "natural" path to the same health benefit as prescription medicine. For cholesterol, this idea is appealing but the evidence tells a more complicated story.</p>
+      <p>Plant sterols stand out as the supplement with the best evidence for genuinely lowering LDL cholesterol, and they are safe at recommended doses. Fish oil has a clear effect on triglycerides — not LDL — and the picture on heart disease prevention is genuinely mixed. Red yeast rice is effectively an unregulated statin, with the same mechanism and the same risks, but without the quality controls that apply to licensed medicines.</p>
+      <p>For other popular supplements — garlic, cinnamon, turmeric — the evidence does not support their use for cholesterol management, despite widespread marketing for exactly that purpose.</p>
+      <p><strong>For people at meaningful cardiovascular risk, whether any intervention is appropriate — and which one — is a conversation for you to have with your GP or healthcare professional based on the full picture of individual risk.</strong></p>
     </div>
-  </div>
 
-  <!-- ─── PUTTING IT ALL TOGETHER ─── -->
-  <div class="conclusion">
-    <h3>Putting it all together</h3>
-    <p>The supplement market is built on a powerful idea: that there must be a gentler, more "natural" path to the same health benefit as prescription medicine. For cholesterol, this idea is appealing — but the evidence tells a more complicated story.</p>
-    <p>Plant sterols stand out as the supplement with the best evidence for genuinely lowering LDL cholesterol, and they are safe at recommended doses. Fish oil has a clear and real effect on triglycerides, though not on LDL, and the picture on heart disease prevention is genuinely mixed. Red yeast rice is effectively an unregulated statin — with the same mechanism and the same risks, but without the quality controls that apply to licensed medicines.</p>
-    <p>For other popular supplements — garlic, cinnamon, turmeric, and similar — the evidence does not support their use for cholesterol management, despite their widespread marketing for exactly that purpose.</p>
-    <p>The hardest truth is that for people at meaningful risk of heart disease, the available evidence strongly favours properly prescribed and monitored medication — alongside the lifestyle changes that have been shown to make a real difference. Supplements can be part of a health-conscious approach to life, but they are not a substitute for understanding your cardiovascular risk and making decisions with your GP based on the full picture.</p>
-    <p class="closing-line">Knowing what works, what doesn't, and what to watch out for is exactly the kind of evidence-based understanding that puts you in the best position to look after your heart.</p>
-  </div>
+    <!-- REFERENCES -->
+    <div class="references-section">
+      <h3>References</h3>
 
-  <!-- ─── ARTICLE NAVIGATION ─── -->
-  <div class="article-nav">
-    <a href="salt-blood-pressure.html" class="art-nav-btn">
-      ← Article 06<br><small>Salt and Blood Pressure</small>
-    </a>
-    <a href="helf-school-conditions.html" class="art-nav-btn next">
-      All Cardiovascular Articles →
-    </a>
-  </div>
+      <div class="ref-block" id="ref-1">
+        <span class="ref-number">1</span>
+        <div class="ref-full">Laffin LJ, Bruemmer D, Garcia M, et al. Comparative effectiveness of a low-dose rosuvastatin vs various dietary supplements on lipid levels: a randomised clinical trial. <em>J Am Coll Cardiol.</em> 2023;81(7):609–609.</div>
+        <div class="ref-links"><a href="https://doi.org/10.1016/j.jacc.2022.10.013" target="_blank" class="ref-pill">DOI</a><a href="https://www.jacc.org/doi/10.1016/j.jacc.2022.10.013" target="_blank" class="ref-pill">Full text</a></div>
+      </div>
 
-  <!-- ─── DISCLAIMER ─── -->
+      <div class="ref-block" id="ref-2">
+        <span class="ref-number">2</span>
+        <div class="ref-full">Ras RT, Geleijnse JM, Trautwein EA. LDL-cholesterol-lowering effect of plant sterols and stanols across different dose ranges: a meta-analysis of randomised controlled studies. <em>Br J Nutr.</em> 2014;112(2):214–219.</div>
+        <div class="ref-links"><a href="https://doi.org/10.1017/S0007114514000750" target="_blank" class="ref-pill">DOI</a><a href="https://pubmed.ncbi.nlm.nih.gov/24780090/" target="_blank" class="ref-pill">PubMed 24780090</a></div>
+      </div>
+
+      <div class="ref-block" id="ref-3">
+        <span class="ref-number">3</span>
+        <div class="ref-full">EFSA Panel on Food Additives and Nutrient Sources added to Food. Safety of monacolins from red yeast rice. <em>EFSA Journal.</em> 2025;23(1):e9276.</div>
+        <div class="ref-links"><a href="https://doi.org/10.2903/j.efsa.2025.9276" target="_blank" class="ref-pill">DOI</a><a href="https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2025.9276" target="_blank" class="ref-pill">Full text</a></div>
+      </div>
+
+      <div class="ref-block" id="ref-4">
+        <span class="ref-number">4</span>
+        <div class="ref-full">Chen GC, Qian F, Yu J, et al. Regular use of fish oil supplements and course of cardiovascular diseases: prospective cohort study. <em>BMJ Medicine.</em> 2024;3(1):e000451.</div>
+        <div class="ref-links"><a href="https://doi.org/10.1136/bmjmed-2023-000451" target="_blank" class="ref-pill">DOI</a><a href="https://bmjmedicine.bmj.com/content/3/1/e000451" target="_blank" class="ref-pill">Full text</a></div>
+      </div>
+
+      <div class="ref-block" id="ref-5">
+        <span class="ref-number">5</span>
+        <div class="ref-full">Cholesterol Treatment Trialists' (CTT) Collaboration. Efficacy and safety of more intensive lowering of LDL cholesterol: a meta-analysis of data from 170,000 participants in 26 randomised trials. <em>The Lancet.</em> 2010;376(9753):1670–1681.</div>
+        <div class="ref-links"><a href="https://doi.org/10.1016/S0140-6736(10)61350-5" target="_blank" class="ref-pill">DOI</a><a href="https://pubmed.ncbi.nlm.nih.gov/21067804/" target="_blank" class="ref-pill">PubMed 21067804</a></div>
+      </div>
+
+    </div>
+  </section>
+
   <div class="disclaimer">
-    <strong>Health Education — Not Medical Advice.</strong> This article is for educational purposes only and does not constitute medical advice, diagnosis, or treatment. Research flags (⚑) indicate claims Paul has verified or wishes to review. Always discuss your individual health circumstances, medications, and supplement use with your own GP or healthcare team.
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <p><strong>This article is for health education only.</strong> It is not a substitute for medical advice, diagnosis, or treatment. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
   </div>
 
 </main>
 
-<!-- ═══ FOOTER ═══ -->
 <footer>
-  <p><strong>helf.school</strong> — Evidence-based health education for everyone</p>
-  <p style="margin-top: 0.5rem;">Built with care by <a href="#">Dr Paul</a> · Cardiovascular Series Article 07</p>
+  <p>&copy; 2026 helf.school &nbsp;&middot;&nbsp; Health education for everyone &nbsp;&middot;&nbsp; <a href="#">Privacy</a> &nbsp;&middot;&nbsp; <a href="helf-school-membership.html">Membership</a></p>
 </footer>
 
 </body>
