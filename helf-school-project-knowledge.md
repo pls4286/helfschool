@@ -367,6 +367,13 @@ Every evidence card (slides 5–7) uses the updated stat block:
 
 Number and outcome read as ONE UNIT — layperson reads the full finding in one pass.
 
+**ev-num word labels — HARD RULE (confirmed error slides 5–7, statins-visuals):**
+When `.ev-num` contains a word or phrase rather than a number, the standard 3.0–3.4rem font-size overflows the stat box. Apply these caps — no exceptions:
+- Short word (e.g. "Switch", "Confirmed") → `font-size: 2rem`
+- Two-word / two-line (e.g. "Not supported") → `font-size: 1.7rem; line-height: 1.2`
+- Numeric stats (e.g. −22%, >90%, ~57%) → standard `font-size: 3.0rem`
+Always add to `.ev-stat`: `overflow: hidden` — prevents bleed into the `.ev-det` column regardless of label length.
+
 **Canonical reference:** diverticular-disease-visuals.html slide 6.
 
 ```css
@@ -398,6 +405,15 @@ For slides with 4–6 parallel items (systems affected, mechanisms, doctor's too
 - Icons: `padding-top: 0.1rem`
 - Emoji font stack: `"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif`
 
+**Row count → sizing guide (confirmed via statins-visuals):**
+| Rows | Gap | Padding | Icon | Title | Body |
+|------|-----|---------|------|-------|------|
+| 4 | .65rem | 1rem 1.5rem | 2.8rem | 1.4rem | .98rem |
+| 5 | .45rem | .70rem 1.2rem | 2.2rem | 1.2rem | .93rem |
+| 6 | .35rem | .60rem 1.1rem | 1.9rem | 1.1rem | .88rem |
+
+These are confirmed working values — do not increase them for slides with these row counts.
+
 ---
 
 ### CTA/Takeaway slide standard (MANDATORY — locked April 2026)
@@ -406,19 +422,28 @@ Slide 9: **full-width horizontal rows** — NOT chips or small cards.
 
 **Structure:**
 ```css
-.cta-wrap-v2 { display: grid; grid-template-rows: auto 1fr auto; height: 100%; }
-.cta-rows-v2 { display: grid; grid-template-rows: 1fr 1fr 1fr 1fr; gap: .5rem; }
-.cta-row-v2 { display: grid; grid-template-columns: 60px 1fr auto; align-items: start; border-left: 4px solid var(--acc); border-radius: 0 10px 10px 0; }
-.cta-row-body-v2 { font-size: .88rem; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.cta-row-word-v2 { font-family:'Fraunces',serif; font-weight:900; font-size:clamp(1.5rem,2.4vw,2.0rem); color:var(--acc); }
+.cta-wrap-v2 { display: grid; grid-template-rows: auto 1fr auto; height: 100%; padding: .4rem; gap: .45rem; min-height: 0; overflow: hidden; }
+.cta-rows-v2 { display: grid; grid-template-rows: 1fr 1fr 1fr 1fr; gap: .4rem; min-height: 0; overflow: hidden; }
+.cta-row-v2 { display: grid; grid-template-columns: 52px 1fr auto; align-items: start; border-left: 4px solid var(--acc); border-radius: 0 10px 10px 0; padding: .6rem .95rem; min-height: 0; overflow: hidden; }
+.cta-row-body-v2 { font-size: .82rem; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.cta-row-word-v2 { font-family:'Fraunces',serif; font-weight:900; font-size:clamp(1.2rem,2vw,1.7rem); color:var(--acc); }
 ```
+
+**Top section confirmed sizes (prevent bottom overflow):**
+- Icon: `clamp(2.2rem,3.8vw,3.2rem)` — NEVER larger
+- Headline: `clamp(2rem,3.8vw,3.2rem)` — NEVER larger
+- Subline: `clamp(.95rem,1.5vw,1.2rem)` — NEVER larger
+- `.cta-top` gap: `.3rem` · outer wrap gap: `.45rem`
 
 **Required elements:**
 - Radial glow background
 - Badge: "What the evidence shows"
-- Headline: descriptive NOT instructional ("The evidence is clear" — never "Act on it early")
 - 4 horizontal rows with stat/word on right
-- Full disclaimer phrase at bottom
+- `.cta-bottom` with `flex-shrink: 0` — full disclaimer phrase
+
+**OVERFLOW RULE:** `.cta-wrap-v2` and `.cta-rows-v2` MUST both have `min-height:0; overflow:hidden` — without this the bottom disclaimer is pushed off screen.
+
+**CTA ICON RULE:** The large emoji icon (`.cta-icon-v2`) on slide 9 is OMITTED by default. The badge + headline + subline + 4 rows + disclaimer already fill the slide. The icon wastes vertical space and pushes content off screen. Do not include it unless the slide has fewer than 4 rows and space is confirmed available.
 
 ---
 
