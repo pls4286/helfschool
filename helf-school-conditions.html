@@ -135,8 +135,8 @@
 
   .page-hero p {
     font-size: 1rem;
-    color: rgba(255,255,255,0.6);
-    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    font-weight: 400;
     line-height: 1.75;
     margin-bottom: 2rem;
     max-width: 580px;
@@ -161,8 +161,8 @@
   .hero-stat-num span { color: var(--coral); }
   .hero-stat-label {
     font-size: 0.78rem;
-    color: rgba(255,255,255,0.45);
-    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    font-weight: 400;
     margin-top: 0.2rem;
   }
 
@@ -227,11 +227,8 @@
   .chip.active { border-color: transparent; color: white; }
   .chip[data-cat="all"].active { background: var(--navy); }
   .chip[data-cat="cardio"].active { background: var(--cat-cardio); }
-  .chip[data-cat="neuro"].active { background: var(--cat-neuro); }
-  .chip[data-cat="digestive"].active { background: var(--cat-digestive); }
-  .chip[data-cat="fatigue"].active { background: var(--cat-fatigue); }
-  .chip[data-cat="medical"].active { background: var(--cat-medical); }
   .chip[data-cat="practical"].active { background: var(--cat-practical); }
+  .chip[data-cat="digestive"].active { background: var(--cat-digestive); }
 
   /* ─── DISCLAIMER ─── */
   .disclaimer-inline {
@@ -240,7 +237,7 @@
     padding: 0.9rem 5rem;
     font-size: 0.82rem;
     color: var(--navy-mid);
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.5;
   }
   .disclaimer-inline strong { font-weight: 600; }
@@ -290,7 +287,7 @@
   .category-subtitle {
     font-size: 0.83rem;
     color: var(--text-muted);
-    font-weight: 300;
+    font-weight: 400;
     margin-top: 0.2rem;
   }
 
@@ -321,6 +318,8 @@
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    text-decoration: none;
+    color: inherit;
   }
 
   .article-tile::before {
@@ -382,11 +381,6 @@
     color: var(--sage);
   }
 
-  .status-members {
-    background: #FEE8E7;
-    color: var(--heart-red);
-  }
-
   .article-arrow {
     font-size: 0.8rem;
     color: var(--text-muted);
@@ -403,25 +397,13 @@
   .cat-cardio .article-tile:hover { border-color: rgba(200,66,58,0.2); }
   .cat-cardio .article-num { color: var(--cat-cardio); opacity: 0.7; }
 
-  .cat-neuro .article-tile::before { background: var(--cat-neuro); }
-  .cat-neuro .article-tile:hover { border-color: rgba(107,94,168,0.2); }
-  .cat-neuro .article-num { color: var(--cat-neuro); opacity: 0.7; }
+  .cat-practical .article-tile::before { background: var(--cat-practical); }
+  .cat-practical .article-tile:hover { border-color: rgba(122,106,46,0.2); }
+  .cat-practical .article-num { color: var(--cat-practical); opacity: 0.7; }
 
   .cat-digestive .article-tile::before { background: var(--cat-digestive); }
   .cat-digestive .article-tile:hover { border-color: rgba(212,124,58,0.2); }
   .cat-digestive .article-num { color: var(--cat-digestive); opacity: 0.7; }
-
-  .cat-fatigue .article-tile::before { background: var(--cat-fatigue); }
-  .cat-fatigue .article-tile:hover { border-color: rgba(58,138,122,0.2); }
-  .cat-fatigue .article-num { color: var(--cat-fatigue); opacity: 0.7; }
-
-  .cat-medical .article-tile::before { background: var(--cat-medical); }
-  .cat-medical .article-tile:hover { border-color: rgba(46,107,168,0.2); }
-  .cat-medical .article-num { color: var(--cat-medical); opacity: 0.7; }
-
-  .cat-practical .article-tile::before { background: var(--cat-practical); }
-  .cat-practical .article-tile:hover { border-color: rgba(122,106,46,0.2); }
-  .cat-practical .article-num { color: var(--cat-practical); opacity: 0.7; }
 
   /* ─── COMING SOON MODAL ─── */
   .modal-overlay {
@@ -478,7 +460,7 @@
     font-size: 0.88rem;
     color: var(--text-muted);
     line-height: 1.7;
-    font-weight: 300;
+    font-weight: 400;
     margin-bottom: 1.75rem;
   }
 
@@ -536,7 +518,7 @@
   footer p {
     font-size: 0.82rem;
     color: rgba(255,255,255,0.4);
-    font-weight: 300;
+    font-weight: 400;
   }
 
   .footer-disclaimer {
@@ -544,8 +526,8 @@
     border-top: 1px solid rgba(200,66,58,0.2);
     padding: 1rem 5rem;
     font-size: 0.79rem;
-    color: rgba(255,200,198,0.75);
-    font-weight: 300;
+    color: rgba(255,200,198,0.80);
+    font-weight: 400;
     line-height: 1.6;
   }
 
@@ -567,7 +549,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="helf-school.html" class="nav-logo">
+  <a href="index.html" class="nav-logo">
     <svg viewBox="0 0 260 56" xmlns="http://www.w3.org/2000/svg" style="height:44px;width:auto;">
       <path d="M4 8 Q4 4 8 4 L28 4 L28 50 L8 50 Q4 50 4 46 Z" fill="none" stroke="#1C2B3A" stroke-width="2" stroke-linejoin="round"/>
       <path d="M28 4 L48 4 Q52 4 52 8 L52 46 Q52 50 48 50 L28 50 Z" fill="none" stroke="#1C2B3A" stroke-width="2" stroke-linejoin="round"/>
@@ -588,10 +570,10 @@
     </svg>
   </a>
   <ul class="nav-links">
-    <li><a href="helf-school.html#about-dr-paul">Dr Paul</a></li>
-    <li><a href="helf-school.html#why">Why helf.school</a></li>
+    <li><a href="index.html#about-dr-paul">Dr Paul</a></li>
+    <li><a href="index.html#why">Why helf.school</a></li>
     <li><a href="#" class="active">Conditions</a></li>
-    <li><a href="helf-school.html#community">Community</a></li>
+    <li><a href="index.html#community">Community</a></li>
     <li><a href="helf-school-membership.html">Membership</a></li>
     <li><a href="helf-school-membership.html" class="nav-cta">Join Free</a></li>
   </ul>
@@ -605,12 +587,12 @@
     <p>Browse our growing library of health topics — each written by Dr Paul, grounded in evidence, and explained clearly without jargon. New articles added regularly.</p>
     <div class="hero-stats">
       <div>
-        <div class="hero-stat-num">6</div>
-        <div class="hero-stat-label">topic categories</div>
+        <div class="hero-stat-num">3</div>
+        <div class="hero-stat-label">series published</div>
       </div>
       <div>
-        <div class="hero-stat-num">38</div>
-        <div class="hero-stat-label">planned articles</div>
+        <div class="hero-stat-num">20</div>
+        <div class="hero-stat-label">articles live now</div>
       </div>
       <div>
         <div class="hero-stat-num">∞</div>
@@ -629,17 +611,14 @@
   <div class="filter-chips">
     <button class="chip active" data-cat="all" onclick="setFilter('all', this)">All topics</button>
     <button class="chip" data-cat="cardio" onclick="setFilter('cardio', this)">❤️ Cardiovascular</button>
-    <button class="chip" data-cat="neuro" onclick="setFilter('neuro', this)">🧠 Neurological</button>
-    <button class="chip" data-cat="digestive" onclick="setFilter('digestive', this)">🫁 Digestive</button>
-    <button class="chip" data-cat="fatigue" onclick="setFilter('fatigue', this)">😴 Fatigue & Sleep</button>
-    <button class="chip" data-cat="medical" onclick="setFilter('medical', this)">🔬 Medical Decisions</button>
-    <button class="chip" data-cat="practical" onclick="setFilter('practical', this)">📋 Practical</button>
+    <button class="chip" data-cat="practical" onclick="setFilter('practical', this)">🌿 Practical Health</button>
+    <button class="chip" data-cat="digestive" onclick="setFilter('digestive', this)">🫁 Digestive Health</button>
   </div>
 </div>
 
 <!-- DISCLAIMER -->
 <div class="disclaimer-inline">
-  📋 <strong>Reminder:</strong> Everything on helf.school is health education, not medical advice. Anything that feels personally relevant is a conversation for your own doctor or healthcare professional.
+  ⚕️ <strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
 </div>
 
 <!-- CONTENT -->
@@ -649,27 +628,19 @@
   <div class="category-section cat-cardio" data-category="cardio">
     <div class="category-header">
       <div class="category-icon-wrap" style="background:var(--cat-cardio-light); width:72px; height:72px; padding:6px;">
-        <!-- Anatomical heart SVG -->
         <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-          <!-- Heart outline -->
           <path d="M30 52 Q10 38 8 24 Q6 12 16 10 Q24 8 30 18 Q36 8 44 10 Q54 12 52 24 Q50 38 30 52Z"
             fill="none" stroke="#C8423A" stroke-width="2.2" stroke-linejoin="round"/>
-          <!-- Aorta -->
           <path d="M24 12 Q22 6 26 3 Q30 1 33 4 Q36 7 34 12"
             fill="none" stroke="#C8423A" stroke-width="2" stroke-linecap="round"/>
-          <!-- Pulmonary artery -->
           <path d="M26 10 Q20 6 14 8 Q10 10 10 14"
             fill="none" stroke="#C8423A" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
-          <!-- Right pulmonary -->
           <path d="M33 6 Q40 2 46 6 Q50 10 48 16"
             fill="none" stroke="#C8423A" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
-          <!-- Left ventricle line -->
           <path d="M22 28 Q24 36 30 44"
             fill="none" stroke="#C8423A" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-          <!-- Septum -->
           <path d="M30 18 Q29 32 30 44"
             fill="none" stroke="#C8423A" stroke-width="1.2" stroke-linecap="round" opacity="0.35" stroke-dasharray="2,2"/>
-          <!-- Heartbeat line across middle -->
           <path d="M8 32 L14 32 L17 26 L20 38 L24 22 L27 36 L30 32 L46 32"
             fill="none" stroke="#C8423A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
         </svg>
@@ -678,7 +649,7 @@
         <div class="category-title">Cardiovascular Health</div>
         <div class="category-subtitle">Understanding your heart, blood pressure, cholesterol, and risk</div>
       </div>
-      <div class="category-count" style="background:var(--cat-cardio-light);color:var(--cat-cardio)">8 articles</div>
+      <div class="category-count" style="background:var(--cat-cardio-light);color:var(--cat-cardio)">7 articles</div>
     </div>
     <div class="articles-grid">
       <a class="article-tile" href="hypertension.html">
@@ -729,104 +700,89 @@
           <span class="article-arrow">→</span>
         </div>
       </a>
-      <div class="article-tile" onclick="openModal('Do Supplements Lower Cholesterol?')">
+      <a class="article-tile" href="supplements-cholesterol.html">
         <div class="article-num">07</div>
         <div class="article-tile-title">Do Supplements Lower Cholesterol?</div>
         <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
+          <span class="article-status status-available">● Read now</span>
           <span class="article-arrow">→</span>
         </div>
-      </div>
-      <div class="article-tile" onclick="openModal('Salt and Blood Pressure — What the Evidence Shows')">
-        <div class="article-num">08</div>
-        <div class="article-tile-title">Salt and Blood Pressure — What the Evidence Shows</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </div>
+      </a>
     </div>
   </div>
 
-  <!-- 2. NEUROLOGICAL HEALTH -->
-  <div class="category-section cat-neuro" data-category="neuro">
+  <!-- 2. PRACTICAL HEALTH -->
+  <div class="category-section cat-practical" data-category="practical">
     <div class="category-header">
-      <div class="category-icon-wrap" style="background:var(--cat-neuro-light); width:72px; height:72px; padding:6px;">
-        <!-- Anatomical brain SVG -->
+      <div class="category-icon-wrap" style="background:var(--cat-practical-light); width:72px; height:72px; padding:6px;">
         <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-          <!-- Left hemisphere outer -->
-          <path d="M30 52 Q14 50 10 40 Q6 30 10 20 Q14 10 22 8 Q28 6 30 10"
-            fill="none" stroke="#6B5EA8" stroke-width="2" stroke-linejoin="round"/>
-          <!-- Right hemisphere outer -->
-          <path d="M30 10 Q32 6 38 8 Q46 10 50 20 Q54 30 50 40 Q46 50 30 52"
-            fill="none" stroke="#6B5EA8" stroke-width="2" stroke-linejoin="round"/>
-          <!-- Centre divide -->
-          <line x1="30" y1="10" x2="30" y2="52" stroke="#6B5EA8" stroke-width="1.2" stroke-dasharray="2,2" opacity="0.4"/>
-          <!-- Left hemisphere folds (sulci) -->
-          <path d="M14 20 Q20 18 24 22" fill="none" stroke="#6B5EA8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-          <path d="M10 30 Q18 27 22 32" fill="none" stroke="#6B5EA8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-          <path d="M12 40 Q20 37 24 42" fill="none" stroke="#6B5EA8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-          <path d="M16 14 Q22 12 26 16" fill="none" stroke="#6B5EA8" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
-          <!-- Right hemisphere folds -->
-          <path d="M46 20 Q40 18 36 22" fill="none" stroke="#6B5EA8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-          <path d="M50 30 Q42 27 38 32" fill="none" stroke="#6B5EA8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-          <path d="M48 40 Q40 37 36 42" fill="none" stroke="#6B5EA8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-          <path d="M44 14 Q38 12 34 16" fill="none" stroke="#6B5EA8" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
-          <!-- Brain stem -->
-          <path d="M26 52 Q26 57 30 58 Q34 57 34 52"
-            fill="none" stroke="#6B5EA8" stroke-width="2" stroke-linecap="round"/>
-          <!-- Cerebellum -->
-          <path d="M22 50 Q22 54 26 55" fill="none" stroke="#6B5EA8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-          <path d="M38 50 Q38 54 34 55" fill="none" stroke="#6B5EA8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+          <!-- Sun -->
+          <circle cx="30" cy="20" r="7" fill="none" stroke="#7A6A2E" stroke-width="2"/>
+          <line x1="30" y1="8" x2="30" y2="5" stroke="#7A6A2E" stroke-width="2" stroke-linecap="round"/>
+          <line x1="30" y1="35" x2="30" y2="32" stroke="#7A6A2E" stroke-width="2" stroke-linecap="round"/>
+          <line x1="18" y1="20" x2="15" y2="20" stroke="#7A6A2E" stroke-width="2" stroke-linecap="round"/>
+          <line x1="45" y1="20" x2="42" y2="20" stroke="#7A6A2E" stroke-width="2" stroke-linecap="round"/>
+          <line x1="21.5" y1="11.5" x2="19.4" y2="9.4" stroke="#7A6A2E" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="40.6" y1="30.6" x2="38.5" y2="28.5" stroke="#7A6A2E" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="38.5" y1="11.5" x2="40.6" y2="9.4" stroke="#7A6A2E" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="19.4" y1="30.6" x2="21.5" y2="28.5" stroke="#7A6A2E" stroke-width="1.8" stroke-linecap="round"/>
+          <!-- Leaf / plant growth -->
+          <path d="M20 52 Q20 42 28 38 Q22 42 30 45 Q24 48 30 52"
+            fill="none" stroke="#7A6A2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Stem -->
+          <line x1="30" y1="52" x2="30" y2="40" stroke="#7A6A2E" stroke-width="1.8" stroke-linecap="round"/>
+          <!-- Second leaf -->
+          <path d="M40 50 Q40 42 32 39 Q38 42 30 45 Q36 47 30 52"
+            fill="none" stroke="#7A6A2E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.65"/>
         </svg>
       </div>
       <div class="category-title-group">
-        <div class="category-title">Neurological Health & Common Symptoms</div>
-        <div class="category-subtitle">Headaches, dizziness, fainting, and what they may mean</div>
+        <div class="category-title">Practical Health</div>
+        <div class="category-subtitle">Diet, sleep, exercise, stress and alcohol — the lifestyle foundations of health</div>
       </div>
-      <div class="category-count" style="background:var(--cat-neuro-light);color:var(--cat-neuro)">5 articles</div>
+      <div class="category-count" style="background:var(--cat-practical-light);color:var(--cat-practical)">5 articles</div>
     </div>
     <div class="articles-grid">
-      <div class="article-tile" onclick="openModal('Migraine vs Headache — What\'s the Difference?')">
+      <a class="article-tile" href="mediterranean-diet.html">
+        <div class="article-num">08</div>
+        <div class="article-tile-title">The Mediterranean Diet</div>
+        <div class="article-tile-footer">
+          <span class="article-status status-available">● Read now</span>
+          <span class="article-arrow">→</span>
+        </div>
+      </a>
+      <a class="article-tile" href="sleep.html">
         <div class="article-num">09</div>
-        <div class="article-tile-title">Migraine vs Headache — What's the Difference?</div>
+        <div class="article-tile-title">Sleep and Your Health</div>
         <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
+          <span class="article-status status-available">● Read now</span>
           <span class="article-arrow">→</span>
         </div>
-      </div>
-      <div class="article-tile" onclick="openModal('Why Do I Get Dizzy?')">
+      </a>
+      <a class="article-tile" href="exercise.html">
         <div class="article-num">10</div>
-        <div class="article-tile-title">Why Do I Get Dizzy?</div>
+        <div class="article-tile-title">Exercise — the Evidence Base</div>
         <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
+          <span class="article-status status-available">● Read now</span>
           <span class="article-arrow">→</span>
         </div>
-      </div>
-      <div class="article-tile" onclick="openModal('What Causes Tension Headaches?')">
+      </a>
+      <a class="article-tile" href="stress.html">
         <div class="article-num">11</div>
-        <div class="article-tile-title">What Causes Tension Headaches?</div>
+        <div class="article-tile-title">Stress and the Body</div>
         <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
+          <span class="article-status status-available">● Read now</span>
           <span class="article-arrow">→</span>
         </div>
-      </div>
-      <div class="article-tile" onclick="openModal('When Do Headaches Need Investigating?')">
+      </a>
+      <a class="article-tile" href="alcohol.html">
         <div class="article-num">12</div>
-        <div class="article-tile-title">When Do Headaches Need Investigating?</div>
+        <div class="article-tile-title">Alcohol — What the Evidence Shows</div>
         <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
+          <span class="article-status status-available">● Read now</span>
           <span class="article-arrow">→</span>
         </div>
-      </div>
-      <div class="article-tile" onclick="openModal('What Do Doctors Consider When Someone Faints?')">
-        <div class="article-num">13</div>
-        <div class="article-tile-title">What Do Doctors Consider When Someone Faints?</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </div>
+      </a>
     </div>
   </div>
 
@@ -834,350 +790,97 @@
   <div class="category-section cat-digestive" data-category="digestive">
     <div class="category-header">
       <div class="category-icon-wrap" style="background:var(--cat-digestive-light); width:72px; height:72px; padding:6px;">
-        <!-- Anatomical digestive system SVG illustration -->
         <svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-          <!-- Oesophagus -->
           <path d="M30 2 L30 14" stroke="#D47C3A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <!-- Stomach -->
           <path d="M30 14 Q20 14 18 20 Q15 28 20 34 Q24 38 30 36 Q36 34 36 28 Q37 20 30 14Z"
             fill="none" stroke="#D47C3A" stroke-width="2" stroke-linejoin="round"/>
-          <!-- Small intestine — coiled loops -->
           <path d="M24 38 Q14 40 14 46 Q14 52 22 53 Q30 54 30 48 Q30 42 22 42 Q16 42 16 48 Q16 54 24 55 Q32 56 32 50"
             fill="none" stroke="#D47C3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          <!-- Large intestine — frame around small intestine -->
           <path d="M32 50 Q34 58 34 62 Q34 68 28 70 Q22 72 18 68 Q14 64 14 58 Q14 54 16 54"
             fill="none" stroke="#D47C3A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
-          <!-- Ascending colon -->
           <path d="M14 54 Q10 50 10 42 Q10 36 14 36 Q18 36 20 38"
             fill="none" stroke="#D47C3A" stroke-width="2.2" stroke-linecap="round" opacity="0.7"/>
-          <!-- Transverse colon -->
           <path d="M14 36 Q22 32 30 32 Q38 32 42 36"
             fill="none" stroke="#D47C3A" stroke-width="2.2" stroke-linecap="round" opacity="0.7"/>
-          <!-- Descending colon -->
           <path d="M42 36 Q46 42 46 50 Q46 56 42 60 Q38 64 36 62"
             fill="none" stroke="#D47C3A" stroke-width="2.2" stroke-linecap="round" opacity="0.7"/>
-          <!-- Rectum -->
           <path d="M28 70 Q28 75 30 78" stroke="#D47C3A" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
         </svg>
       </div>
       <div class="category-title-group">
         <div class="category-title">Digestive Health</div>
-        <div class="category-subtitle">Reflux, bloating, IBS, gut health and the evidence behind treatments</div>
+        <div class="category-subtitle">Reflux, IBS, IBD, liver disease, coeliac and the evidence behind treatments</div>
       </div>
-      <div class="category-count" style="background:var(--cat-digestive-light);color:var(--cat-digestive)">7 articles</div>
+      <div class="category-count" style="background:var(--cat-digestive-light);color:var(--cat-digestive)">8 live · 1 coming</div>
     </div>
     <div class="articles-grid">
-      <div class="article-tile" onclick="openModal('Acid Reflux — Causes, Symptoms & Treatment')">
+      <a class="article-tile" href="acid-reflux.html">
+        <div class="article-num">13</div>
+        <div class="article-tile-title">Acid Reflux and GORD</div>
+        <div class="article-tile-footer">
+          <span class="article-status status-available">● Read now</span>
+          <span class="article-arrow">→</span>
+        </div>
+      </a>
+      <a class="article-tile" href="ibd.html">
         <div class="article-num">14</div>
-        <div class="article-tile-title">Acid Reflux — Causes, Symptoms & Treatment</div>
+        <div class="article-tile-title">IBD — Crohn's &amp; Ulcerative Colitis</div>
         <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
+          <span class="article-status status-available">● Read now</span>
           <span class="article-arrow">→</span>
         </div>
-      </div>
-      <div class="article-tile" onclick="openModal('What Causes Bloating?')">
+      </a>
+      <a class="article-tile" href="bloating.html">
         <div class="article-num">15</div>
-        <div class="article-tile-title">What Causes Bloating?</div>
+        <div class="article-tile-title">Bloating — Causes and Evidence</div>
         <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
+          <span class="article-status status-available">● Read now</span>
           <span class="article-arrow">→</span>
         </div>
-      </div>
-      <div class="article-tile" onclick="openModal('Understanding Irritable Bowel Syndrome')">
+      </a>
+      <a class="article-tile" href="ibs.html">
         <div class="article-num">16</div>
-        <div class="article-tile-title">Understanding Irritable Bowel Syndrome</div>
+        <div class="article-tile-title">Irritable Bowel Syndrome (IBS)</div>
         <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
+          <span class="article-status status-available">● Read now</span>
           <span class="article-arrow">→</span>
         </div>
-      </div>
-      <div class="article-tile" onclick="openModal('How Proton Pump Inhibitors Work')">
+      </a>
+      <a class="article-tile" href="masld.html">
         <div class="article-num">17</div>
-        <div class="article-tile-title">How Proton Pump Inhibitors Work</div>
+        <div class="article-tile-title">Fatty Liver Disease (MASLD)</div>
         <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
+          <span class="article-status status-available">● Read now</span>
           <span class="article-arrow">→</span>
         </div>
-      </div>
-      <div class="article-tile" onclick="openModal('When Does Indigestion Need Investigating?')">
+      </a>
+      <a class="article-tile" href="coeliac.html">
         <div class="article-num">18</div>
-        <div class="article-tile-title">When Does Indigestion Need Investigating?</div>
+        <div class="article-tile-title">Coeliac Disease</div>
         <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
+          <span class="article-status status-available">● Read now</span>
           <span class="article-arrow">→</span>
         </div>
-      </div>
-      <div class="article-tile" onclick="openModal('Diet and Digestive Symptoms')">
+      </a>
+      <a class="article-tile" href="gallstones.html">
         <div class="article-num">19</div>
-        <div class="article-tile-title">Diet and Digestive Symptoms</div>
+        <div class="article-tile-title">Gallstones</div>
         <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
+          <span class="article-status status-available">● Read now</span>
           <span class="article-arrow">→</span>
         </div>
-      </div>
-      <div class="article-tile" onclick="openModal('Gut Health — What the Evidence Actually Shows')">
+      </a>
+      <a class="article-tile" href="diverticular-disease.html">
         <div class="article-num">20</div>
-        <div class="article-tile-title">Gut Health — What the Evidence Actually Shows</div>
+        <div class="article-tile-title">Diverticular Disease</div>
         <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
+          <span class="article-status status-available">● Read now</span>
           <span class="article-arrow">→</span>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 4. FATIGUE, SLEEP & STRESS -->
-  <div class="category-section cat-fatigue" data-category="fatigue">
-    <div class="category-header">
-      <div class="category-icon-wrap" style="background:var(--cat-fatigue-light); width:72px; height:72px; padding:6px;">
-        <!-- Fatigue/sleep SVG — reclining figure with brain waves -->
-        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-          <!-- Moon -->
-          <path d="M44 8 Q38 10 36 16 Q34 22 38 26 Q44 28 50 24 Q46 30 40 30 Q30 30 28 20 Q26 10 34 6 Q38 4 44 8Z"
-            fill="none" stroke="#3A8A7A" stroke-width="1.8" stroke-linejoin="round"/>
-          <!-- Pillow -->
-          <ellipse cx="14" cy="46" rx="10" ry="5" fill="none" stroke="#3A8A7A" stroke-width="1.8"/>
-          <!-- Reclining head -->
-          <circle cx="14" cy="38" r="7" fill="none" stroke="#3A8A7A" stroke-width="2"/>
-          <!-- Closed eye -->
-          <path d="M11 38 Q14 36 17 38" fill="none" stroke="#3A8A7A" stroke-width="1.5" stroke-linecap="round"/>
-          <!-- Body lying down -->
-          <path d="M20 42 Q30 40 42 41 Q50 42 54 46"
-            fill="none" stroke="#3A8A7A" stroke-width="2.2" stroke-linecap="round"/>
-          <!-- Brain/stress waves above head -->
-          <path d="M18 28 Q22 24 26 28 Q30 32 34 28 Q38 24 42 28"
-            fill="none" stroke="#3A8A7A" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-          <path d="M20 22 Q24 18 28 22 Q32 26 36 22"
-            fill="none" stroke="#3A8A7A" stroke-width="1.2" stroke-linecap="round" opacity="0.35"/>
-          <!-- Zzzs -->
-          <text x="30" y="16" font-family="serif" font-size="7" fill="#3A8A7A" opacity="0.6" font-weight="bold">z</text>
-          <text x="35" y="10" font-family="serif" font-size="9" fill="#3A8A7A" opacity="0.5" font-weight="bold">z</text>
-        </svg>
-      </div>
-      <div class="category-title-group">
-        <div class="category-title">Fatigue, Sleep & Stress</div>
-        <div class="category-subtitle">Understanding tiredness, sleep disorders, stress and anxiety</div>
-      </div>
-      <div class="category-count" style="background:var(--cat-fatigue-light);color:var(--cat-fatigue)">6 articles</div>
-    </div>
-    <div class="articles-grid">
-      <div class="article-tile" onclick="openModal('Why Am I Always Tired?')">
+      </a>
+      <div class="article-tile" onclick="openModal('Constipation')">
         <div class="article-num">21</div>
-        <div class="article-tile-title">Why Am I Always Tired?</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </div>
-      <div class="article-tile" onclick="openModal('Understanding Sleep Disorders')">
-        <div class="article-num">22</div>
-        <div class="article-tile-title">Understanding Sleep Disorders</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </div>
-      <div class="article-tile" onclick="openModal('Stress and Physical Problems')">
-        <div class="article-num">23</div>
-        <div class="article-tile-title">Stress and Physical Problems</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </div>
-      <div class="article-tile" onclick="openModal('Anxiety and the Body')">
-        <div class="article-num">24</div>
-        <div class="article-tile-title">Anxiety and the Body</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </div>
-      <div class="article-tile" onclick="openModal('Why Do People Wake at Night?')">
-        <div class="article-num">25</div>
-        <div class="article-tile-title">Why Do People Wake at Night?</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </div>
-      <div class="article-tile" onclick="openModal('Lifestyle and Energy Levels')">
-        <div class="article-num">26</div>
-        <div class="article-tile-title">Lifestyle and Energy Levels</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 5. MEDICAL DECISION MAKING -->
-  <div class="category-section cat-medical" data-category="medical">
-    <div class="category-header">
-      <div class="category-icon-wrap" style="background:var(--cat-medical-light); width:72px; height:72px; padding:6px;">
-        <!-- Medical decision making SVG — balance scales with DNA helix -->
-        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-          <!-- Central pole -->
-          <line x1="30" y1="6" x2="30" y2="54" stroke="#2E6BA8" stroke-width="2.2" stroke-linecap="round"/>
-          <!-- Balance beam -->
-          <line x1="10" y1="20" x2="50" y2="20" stroke="#2E6BA8" stroke-width="2" stroke-linecap="round"/>
-          <!-- Left pan strings -->
-          <line x1="14" y1="20" x2="12" y2="32" stroke="#2E6BA8" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
-          <line x1="20" y1="20" x2="18" y2="32" stroke="#2E6BA8" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
-          <!-- Left pan -->
-          <path d="M10 32 Q15 36 20 32" fill="none" stroke="#2E6BA8" stroke-width="2" stroke-linecap="round"/>
-          <!-- Right pan strings (slightly lower — unbalanced) -->
-          <line x1="40" y1="20" x2="40" y2="34" stroke="#2E6BA8" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
-          <line x1="46" y1="20" x2="46" y2="34" stroke="#2E6BA8" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
-          <!-- Right pan -->
-          <path d="M38 34 Q43 38 48 34" fill="none" stroke="#2E6BA8" stroke-width="2" stroke-linecap="round"/>
-          <!-- Risk label left pan - small cross -->
-          <line x1="15" y1="26" x2="15" y2="30" stroke="#2E6BA8" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-          <line x1="13" y1="28" x2="17" y2="28" stroke="#2E6BA8" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-          <!-- Benefit label right pan — small tick -->
-          <path d="M41 29 L43 31 L47 27" fill="none" stroke="#2E6BA8" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-          <!-- Magnifying glass at top -->
-          <circle cx="30" cy="11" r="5" fill="none" stroke="#2E6BA8" stroke-width="1.8"/>
-          <line x1="34" y1="15" x2="37" y2="18" stroke="#2E6BA8" stroke-width="2" stroke-linecap="round"/>
-          <!-- Base -->
-          <path d="M24 54 Q30 52 36 54" fill="none" stroke="#2E6BA8" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div class="category-title-group">
-        <div class="category-title">Medical Decision Making</div>
-        <div class="category-subtitle">How doctors think, how evidence works, and how to interpret it</div>
-      </div>
-      <div class="category-count" style="background:var(--cat-medical-light);color:var(--cat-medical)">6 articles</div>
-    </div>
-    <div class="articles-grid">
-      <div class="article-tile" onclick="openModal('How Doctors Balance Risks and Benefits')">
-        <div class="article-num">27</div>
-        <div class="article-tile-title">How Doctors Balance Risks and Benefits</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </div>
-      <div class="article-tile" onclick="openModal('Why Screening Tests Can Be Controversial')">
-        <div class="article-num">28</div>
-        <div class="article-tile-title">Why Screening Tests Can Be Controversial</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </div>
-      <div class="article-tile" onclick="openModal('False Positives in Medical Testing')">
-        <div class="article-num">29</div>
-        <div class="article-tile-title">False Positives in Medical Testing</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </div>
-      <div class="article-tile" onclick="openModal('Why Some Treatments Work for Some People')">
-        <div class="article-num">30</div>
-        <div class="article-tile-title">Why Some Treatments Work for Some People</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </div>
-      <div class="article-tile" onclick="openModal('Why Randomised Trials Matter')">
-        <div class="article-num">31</div>
-        <div class="article-tile-title">Why Randomised Trials Matter</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </div>
-      <div class="article-tile" onclick="openModal('Observational Studies Explained')">
-        <div class="article-num">32</div>
-        <div class="article-tile-title">Observational Studies Explained</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 6. PRACTICAL ARTICLES -->
-  <div class="category-section cat-practical" data-category="practical">
-    <div class="category-header">
-      <div class="category-icon-wrap" style="background:var(--cat-practical-light); width:72px; height:72px; padding:6px;">
-        <!-- Practical articles SVG — clipboard with stethoscope -->
-        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-          <!-- Clipboard board -->
-          <rect x="10" y="12" width="36" height="44" rx="3" fill="none" stroke="#7A6A2E" stroke-width="2"/>
-          <!-- Clipboard top clip -->
-          <rect x="22" y="8" width="16" height="8" rx="4" fill="none" stroke="#7A6A2E" stroke-width="2"/>
-          <!-- Clipboard hole -->
-          <circle cx="30" cy="12" r="2" fill="none" stroke="#7A6A2E" stroke-width="1.5"/>
-          <!-- Lines on clipboard -->
-          <line x1="16" y1="24" x2="40" y2="24" stroke="#7A6A2E" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-          <line x1="16" y1="30" x2="40" y2="30" stroke="#7A6A2E" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-          <line x1="16" y1="36" x2="32" y2="36" stroke="#7A6A2E" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-          <!-- Tick/checkmark on line 1 -->
-          <path d="M16 24 L18 26 L22 22" fill="none" stroke="#7A6A2E" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
-          <!-- Stethoscope -->
-          <path d="M34 38 Q34 44 38 46 Q44 48 46 44 Q48 40 44 38 Q40 36 38 40"
-            fill="none" stroke="#7A6A2E" stroke-width="2" stroke-linecap="round"/>
-          <!-- Stethoscope earpieces -->
-          <path d="M34 38 Q32 34 30 34" fill="none" stroke="#7A6A2E" stroke-width="1.8" stroke-linecap="round"/>
-          <circle cx="44" cy="44" r="3" fill="none" stroke="#7A6A2E" stroke-width="1.8"/>
-        </svg>
-      </div>
-      <div class="category-title-group">
-        <div class="category-title">Practical Articles</div>
-        <div class="category-subtitle">Making the most of your healthcare — appointments, questions, and understanding</div>
-      </div>
-      <div class="category-count" style="background:var(--cat-practical-light);color:var(--cat-practical)">6 articles</div>
-    </div>
-    <div class="articles-grid">
-      <div class="article-tile" onclick="openModal('How to Prepare for a Doctor\'s Appointment')">
-        <div class="article-num">33</div>
-        <div class="article-tile-title">How to Prepare for a Doctor's Appointment</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </div>
-      <div class="article-tile" onclick="openModal('Questions to Ask Your Doctor')">
-        <div class="article-num">34</div>
-        <div class="article-tile-title">Questions to Ask Your Doctor</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </div>
-      <div class="article-tile" onclick="openModal('What Do Doctors Mean by Inflammation?')">
-        <div class="article-num">35</div>
-        <div class="article-tile-title">What Do Doctors Mean by "Inflammation"?</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </div>
-      <div class="article-tile" onclick="openModal('Why Lifestyle Advice Matters')">
-        <div class="article-num">36</div>
-        <div class="article-tile-title">Why Lifestyle Advice Matters</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </div>
-      <div class="article-tile" onclick="openModal('What Happens During a GP Consultation?')">
-        <div class="article-num">37</div>
-        <div class="article-tile-title">What Happens During a GP Consultation?</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-coming">Coming soon</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </div>
-      <div class="article-tile" onclick="openModal('The Future of Medical Evidence')">
-        <div class="article-num">38</div>
-        <div class="article-tile-title">The Future of Medical Evidence</div>
+        <div class="article-tile-title">Constipation</div>
         <div class="article-tile-footer">
           <span class="article-status status-coming">Coming soon</span>
           <span class="article-arrow">→</span>
@@ -1204,11 +907,11 @@
 
 <!-- FOOTER -->
 <footer>
-  <a href="helf-school.html" class="footer-logo">helf<span>.</span>school</a>
-  <p>© 2025 helf.school · Health education, not medical advice · <a href="#" style="color:rgba(255,255,255,0.4);text-decoration:none">Privacy</a> · <a href="#" style="color:rgba(255,255,255,0.4);text-decoration:none">Terms</a></p>
+  <a href="index.html" class="footer-logo">helf<span>.</span>school</a>
+  <p>© 2026 helf.school · Health education, not medical advice · <a href="#" style="color:rgba(255,255,255,0.4);text-decoration:none">Privacy</a> · <a href="#" style="color:rgba(255,255,255,0.4);text-decoration:none">Terms</a></p>
 </footer>
 <div class="footer-disclaimer">
-  ⚕️ Everything on helf.school is health education, not medical advice. Anything that feels personally relevant is a conversation for your own doctor or healthcare professional. For life-threatening emergencies in the UK, the emergency number is 999.
+  ⚕️ Everything on helf.school is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. For life-threatening emergencies in the UK, the emergency number is 999.
 </div>
 
 <script>
@@ -1247,11 +950,9 @@
       var title = tile.querySelector('.article-tile-title').textContent.toLowerCase();
       tile.style.display = title.includes(query) ? '' : 'none';
     });
-    // Show all categories when searching
     document.querySelectorAll('.category-section').forEach(function(sec) {
       sec.style.display = '';
     });
-    // Reset filter chips
     if (query.length > 0) {
       document.querySelectorAll('.chip').forEach(function(c) { c.classList.remove('active'); });
       document.querySelector('[data-cat="all"]').classList.add('active');
