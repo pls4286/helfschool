@@ -27,7 +27,6 @@
     .slide{display:none;width:100%;max-width:1140px;height:100%;animation:sIn .32s ease}
     .slide.active{display:flex;flex-direction:column;min-height:0}
     @keyframes sIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-
     .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.1vw,1.75rem);font-weight:700;color:#fff;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:2px solid rgba(212,124,58,.35);flex-shrink:0}
     .slide-title span{color:var(--digest)}
 
@@ -58,21 +57,23 @@
     .anat-svg-wrap{display:flex;align-items:center;justify-content:center;min-height:0}
     .anat-svg{width:100%;max-width:320px}
     .mech-steps{display:flex;flex-direction:column;gap:.7rem;min-width:0}
-    .mech-step{background:linear-gradient(90deg,rgba(232,168,74,.1),rgba(232,168,74,.02));border:1px solid rgba(232,168,74,.35);border-radius:12px;padding:.85rem 1.2rem;display:grid;grid-template-columns:48px 1fr;gap:1rem;align-items:center;opacity:0;transform:translateY(10px);transition:all .4s ease}
+    .mech-step{background:linear-gradient(90deg,rgba(232,168,74,.1),rgba(232,168,74,.02));border:1px solid rgba(232,168,74,.35);border-radius:12px;padding:.85rem 1.2rem;display:grid;grid-template-columns:48px 1fr;gap:1rem;align-items:start;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .mech-step.animate-ready{opacity:0;transform:translateY(10px)}
     .mech-step.vis{opacity:1;transform:translateY(0)}
-    .mech-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .mech-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
     .mech-title{font-family:'Fraunces',serif;font-weight:700;color:var(--warn);font-size:1.1rem;line-height:1.15;margin-bottom:.15rem}
-    .mech-body{font-size:.92rem;color:rgba(255,255,255,.92);line-height:1.42;font-weight:400}
+    .mech-body{font-size:.88rem;color:rgba(255,255,255,.90);line-height:1.38;font-weight:400}
 
     /* ─── SLIDE 4: 6 CAUSES · HORIZONTAL ROWS · AMBER ─── */
-    .cause-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
-    .cause-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:14px;padding:.8rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .cause-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
+    .cause-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .cause-card.animate-ready{opacity:0;transform:translateY(14px)}
     .cause-card.vis{opacity:1;transform:translateY(0)}
-    .cause-icon{font-size:2.2rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .cause-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
-    .cause-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.2rem;line-height:1.12;letter-spacing:-.01em}
-    .cause-body{font-size:.92rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400}
-    .cause-outcome{font-family:'Fraunces',serif;font-size:clamp(1rem,1.6vw,1.4rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
+    .cause-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .cause-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+    .cause-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
+    .cause-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .cause-outcome{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
 
     /* ─── SLIDE 5: FODMAP TABLE ─── */
     .fodmap-wrap{display:flex;flex-direction:column;gap:.65rem;flex:1;min-height:0}
@@ -93,52 +94,60 @@
     .fodmap-cell.green{border-left-color:rgba(126,204,153,.5)}
     .fodmap-note{font-size:.85rem;color:rgba(255,255,255,.85);text-align:center;padding:.3rem 0;flex-shrink:0;font-weight:400;font-style:italic}
 
-    /* ─── SLIDE 6: DOCTOR · HORIZONTAL ROWS · ACTION · GREEN ─── */
-    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.6rem;flex:1;min-height:0}
-    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.9rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    /* ─── SLIDE 6: DOCTOR · HORIZONTAL ROWS · GREEN ─── */
+    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.55rem;flex:1;min-height:0}
+    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .doc-card.animate-ready{opacity:0;transform:translateY(14px)}
     .doc-card.vis{opacity:1;transform:translateY(0)}
-    .doc-icon{font-size:2.3rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .doc-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
-    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.22rem;line-height:1.12;letter-spacing:-.01em}
-    .doc-body{font-size:.92rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400}
+    .doc-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .doc-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
+    .doc-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
     .doc-body strong{color:#fff;font-weight:700}
-    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1rem,1.6vw,1.45rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
+    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
 
-    /* ─── SLIDE 7: RESEARCH · EV-CARDS ─── */
-    .ev-stage{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(4,1fr);gap:.65rem;flex:1;min-height:0}
-    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,124,58,.32);border-radius:12px;padding:.9rem 1.2rem;display:grid;grid-template-columns:150px 1fr;gap:1.2rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(12px);transition:all .42s ease}
+    /* ─── SLIDES 7–8: RESEARCH · EV-CARDS — 2 per slide ─── */
+    .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
+    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,124,58,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .45s ease}
+    .ev-card.animate-ready{opacity:0;transform:translateY(14px)}
     .ev-card.vis{opacity:1;transform:translateY(0)}
-    .ev-stat-box{text-align:center;background:rgba(212,124,58,.12);border-radius:10px;padding:.75rem .5rem}
-    .ev-stat{font-family:'Fraunces',serif;font-size:1.75rem;font-weight:700;line-height:1;color:var(--digest);letter-spacing:-.02em}
-    .ev-stat-lab{font-size:.78rem;color:rgba(255,255,255,.92);font-weight:700;margin-top:.3rem;line-height:1.3}
-    .ev-detail{min-width:0}
-    .ev-trial{font-family:'Fraunces',serif;font-size:1.08rem;font-weight:700;color:#fff;margin-bottom:.15rem;line-height:1.2;letter-spacing:-.01em}
-    .ev-journal{font-size:.82rem;color:rgba(255,255,255,.85);margin-bottom:.3rem;font-weight:500}
-    .ev-finding{font-size:.88rem;color:rgba(255,255,255,.92);line-height:1.45;font-weight:400}
-    .ev-finding strong{color:#fff;font-weight:700}
+    .ev-stat-box{background:rgba(212,124,58,.09);border-radius:14px;padding:1.25rem .85rem;text-align:center;overflow:hidden}
+    .ev-kf-label{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(212,124,58,.8);margin-bottom:.55rem}
+    .ev-stat-row{display:flex;align-items:baseline;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:.45rem}
+    .ev-num{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;line-height:1;letter-spacing:-.02em;flex-shrink:0}
+    .ev-num.good{color:var(--good)}
+    .ev-num.bad{color:var(--bad)}
+    .ev-num.warn{color:var(--warn)}
+    .ev-outcome{font-size:.95rem;font-weight:700;color:#fff;line-height:1.3;text-align:left}
+    .ev-conditions{font-size:.88rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.35}
+    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.4rem;margin-bottom:.25rem;line-height:1.15;letter-spacing:-.01em}
+    .ev-det .ev-journal{font-size:.92rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
+    .ev-det .ev-body{font-size:1rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400}
+    .ev-det .ev-body strong{color:#fff;font-weight:700}
 
-    /* ─── SLIDE 8: CTA · HIGH-IMPACT ─── */
+    /* ─── SLIDE 9: CTA · cta-wrap-v2 ─── */
     .cta-slide{position:relative}
-    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%, rgba(212,184,74,.18), rgba(212,184,74,.04) 45%, transparent 70%);pointer-events:none;z-index:0}
-    .cta-wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:.85rem;padding:.5rem}
-    .cta-badge{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.42rem 1.15rem;border-radius:100px;box-shadow:0 0 30px rgba(212,184,74,.14)}
-    .cta-icon{font-size:clamp(4.5rem,8vw,6rem);line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;filter:drop-shadow(0 0 30px rgba(212,184,74,.28));animation:pulseHalo 3.2s ease-in-out infinite}
-    @keyframes pulseHalo{0%,100%{filter:drop-shadow(0 0 28px rgba(212,184,74,.22))}50%{filter:drop-shadow(0 0 55px rgba(212,184,74,.55))}}
-    .cta-headline{font-family:'Fraunces',serif;font-size:clamp(3.2rem,5.8vw,4.9rem);font-weight:700;color:#fff;line-height:1.02;max-width:1000px;letter-spacing:-.028em}
-    .cta-headline span{color:var(--acc)}
-    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.4vw,1.85rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);max-width:780px;line-height:1.32}
-    .cta-body{font-size:1.05rem;color:rgba(255,255,255,.90);max-width:800px;line-height:1.52;font-weight:400}
-    .cta-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;max-width:920px;width:100%;margin-top:.25rem}
-    .cta-ac{background:linear-gradient(180deg,rgba(212,184,74,.16),rgba(212,184,74,.06));border:1.5px solid rgba(212,184,74,.45);border-radius:14px;padding:.95rem .55rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;text-align:center;transition:transform .25s ease}
-    .cta-ac:hover{transform:translateY(-2px)}
-    .cta-ac-icon{font-size:1.85rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .cta-ac-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.94rem;line-height:1.18}
-    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.8rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;margin-top:.6rem;max-width:920px}
+    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(212,184,74,.18),rgba(212,184,74,.04) 45%,transparent 70%);pointer-events:none;z-index:0}
+    .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem;gap:.45rem;min-height:0;overflow:hidden}
+    .cta-top{display:flex;flex-direction:column;align-items:center;gap:.3rem;text-align:center}
+    .cta-badge-v2{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.3rem .95rem;border-radius:100px}
+    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:700;color:#fff;line-height:1.02;letter-spacing:-.028em}
+    .cta-headline-v2 span{color:var(--acc)}
+    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(.95rem,1.5vw,1.2rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);line-height:1.3}
+    .cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.4rem;min-height:0;overflow:hidden}
+    .cta-row-v2{background:linear-gradient(90deg,rgba(212,184,74,.12),rgba(212,184,74,.04));border-left:4px solid var(--acc);border-radius:0 10px 10px 0;padding:.6rem .95rem;display:grid;grid-template-columns:52px 1fr auto;gap:.9rem;align-items:start;min-height:0;overflow:hidden}
+    .cta-row-icon{font-size:1.7rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .cta-row-mid{display:flex;flex-direction:column;gap:.12rem;min-width:0}
+    .cta-row-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.95rem;line-height:1.15}
+    .cta-row-body-v2{font-size:.82rem;color:rgba(255,255,255,.90);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .cta-row-word-v2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.2rem,2vw,1.7rem);color:var(--acc);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:.6rem}
+    .cta-bottom{display:flex;justify-content:center;flex-shrink:0}
+    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.75rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;max-width:900px;width:100%}
     .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.85);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left}
+    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.88);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left;font-weight:400}
     .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
 
-    /* ─── SLIDE 9: CLOSING ─── */
+    /* ─── SLIDE 10: CLOSING ─── */
     .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.6rem;padding:1.5rem}
     .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
     .close-logo .dot{color:var(--coral)}
@@ -171,7 +180,7 @@
     <span class="tb-sub">· Bloating</span>
   </div>
   <div class="tb-right">
-    <span id="counter" class="slide-counter">1 / 9</span>
+    <span id="counter" class="slide-counter">1 / 10</span>
     <span class="kb-hint">← → navigate</span>
   </div>
 </div>
@@ -182,7 +191,7 @@
   <!-- SLIDE 1: INTRO -->
   <div class="slide active">
     <div class="intro-wrap">
-      <div class="intro-badge">📋 Digestive Health Series · Article 14</div>
+      <div class="intro-badge">📋 Digestive Health Series · Article 15</div>
       <div class="intro-icon">🫧</div>
       <div class="intro-title">Bloating —<br/><span>not a niche problem.</span></div>
       <div class="intro-sub">Why it happens, what causes it, and the evidence-based steps that actually help most people.</div>
@@ -232,28 +241,28 @@
         </svg>
       </div>
       <div class="mech-steps">
-        <div class="mech-step" id="m1">
+        <div class="mech-step animate-ready" id="m1">
           <div class="mech-icon">🫧</div>
           <div>
             <div class="mech-title">Gas production</div>
             <div class="mech-body">Bacteria ferment undigested FODMAPs in the colon → hydrogen, CO₂, methane.</div>
           </div>
         </div>
-        <div class="mech-step" id="m2">
+        <div class="mech-step animate-ready" id="m2">
           <div class="mech-icon">🔄</div>
           <div>
             <div class="mech-title">Impaired transit</div>
             <div class="mech-body">Gas doesn't move through efficiently — constipation and slow motility cause pressure to build.</div>
           </div>
         </div>
-        <div class="mech-step" id="m3">
+        <div class="mech-step animate-ready" id="m3">
           <div class="mech-icon">🧠</div>
           <div>
             <div class="mech-title">Visceral hypersensitivity</div>
             <div class="mech-body">Oversensitive gut nerves — normal gas feels painful. A central mechanism in IBS.</div>
           </div>
         </div>
-        <div class="mech-step" id="m4">
+        <div class="mech-step animate-ready" id="m4">
           <div class="mech-icon">🦠</div>
           <div>
             <div class="mech-title">SIBO</div>
@@ -269,7 +278,7 @@
     <div class="slide-title">The <span>six main causes</span> of bloating</div>
     <div class="cause-grid">
 
-      <div class="cause-card" id="c1">
+      <div class="cause-card animate-ready" id="c1">
         <div class="cause-icon">🫧</div>
         <div class="cause-content">
           <div class="cause-title">Excess gas production</div>
@@ -278,7 +287,7 @@
         <div class="cause-outcome">→ Gas</div>
       </div>
 
-      <div class="cause-card" id="c2">
+      <div class="cause-card animate-ready" id="c2">
         <div class="cause-icon">🔄</div>
         <div class="cause-content">
           <div class="cause-title">Impaired gas transit</div>
@@ -287,7 +296,7 @@
         <div class="cause-outcome">→ Pressure</div>
       </div>
 
-      <div class="cause-card" id="c3">
+      <div class="cause-card animate-ready" id="c3">
         <div class="cause-icon">🧠</div>
         <div class="cause-content">
           <div class="cause-title">Visceral hypersensitivity</div>
@@ -296,7 +305,7 @@
         <div class="cause-outcome">→ Pain</div>
       </div>
 
-      <div class="cause-card" id="c4">
+      <div class="cause-card animate-ready" id="c4">
         <div class="cause-icon">🦠</div>
         <div class="cause-content">
           <div class="cause-title">SIBO — small intestinal bacterial overgrowth</div>
@@ -305,7 +314,7 @@
         <div class="cause-outcome">→ Early onset</div>
       </div>
 
-      <div class="cause-card" id="c5">
+      <div class="cause-card animate-ready" id="c5">
         <div class="cause-icon">🥛</div>
         <div class="cause-content">
           <div class="cause-title">Food intolerances</div>
@@ -314,7 +323,7 @@
         <div class="cause-outcome">→ Trigger</div>
       </div>
 
-      <div class="cause-card" id="c6">
+      <div class="cause-card animate-ready" id="c6">
         <div class="cause-icon">⚖️</div>
         <div class="cause-content">
           <div class="cause-title">Microbiome imbalance</div>
@@ -376,7 +385,7 @@
     <div class="slide-title">What your <span>doctor might do</span> — stepped approach</div>
     <div class="doc-grid">
 
-      <div class="doc-card" id="d1">
+      <div class="doc-card animate-ready" id="d1">
         <div class="doc-icon">🧪</div>
         <div class="doc-content">
           <div class="doc-title">Targeted investigations first</div>
@@ -385,7 +394,7 @@
         <div class="doc-action">1st-line</div>
       </div>
 
-      <div class="doc-card" id="d2">
+      <div class="doc-card animate-ready" id="d2">
         <div class="doc-icon">🥗</div>
         <div class="doc-content">
           <div class="doc-title">Dietary approach — dietitian-led low-FODMAP</div>
@@ -394,16 +403,16 @@
         <div class="doc-action">Dietitian</div>
       </div>
 
-      <div class="doc-card" id="d3">
+      <div class="doc-card animate-ready" id="d3">
         <div class="doc-icon">💊</div>
         <div class="doc-content">
           <div class="doc-title">Medications — selected cases</div>
-          <div class="doc-body">Antispasmodics: mebeverine (Colofac) · low-dose tricyclic antidepressants: amitriptyline (for gut-brain modulation) · rifaximin (Xifaxanta) where SIBO confirmed.</div>
+          <div class="doc-body">Antispasmodics: mebeverine (Colofac) · low-dose amitriptyline for gut-brain modulation · rifaximin (Xifaxanta) where SIBO confirmed.</div>
         </div>
         <div class="doc-action">Targeted Rx</div>
       </div>
 
-      <div class="doc-card" id="d4">
+      <div class="doc-card animate-ready" id="d4">
         <div class="doc-icon">🧠</div>
         <div class="doc-content">
           <div class="doc-title">Gut–brain therapies</div>
@@ -412,11 +421,11 @@
         <div class="doc-action">Psych-gut</div>
       </div>
 
-      <div class="doc-card" id="d5">
+      <div class="doc-card animate-ready" id="d5">
         <div class="doc-icon">⚠️</div>
         <div class="doc-content">
-          <div class="doc-title">Coeliac testing needs gluten in the diet</div>
-          <div class="doc-body"><strong>Do not stop gluten before testing.</strong> Starting gluten-free beforehand falsely normalises the result and can miss the diagnosis.</div>
+          <div class="doc-title">Coeliac testing requires gluten in the diet</div>
+          <div class="doc-body">Coeliac testing requires gluten in the diet at the time of testing — starting gluten-free beforehand gives a false-negative result and the diagnosis can be missed.</div>
         </div>
         <div class="doc-action">Critical</div>
       </div>
@@ -424,97 +433,139 @@
     </div>
   </div>
 
-  <!-- SLIDE 7: RESEARCH · EV-CARDS -->
+  <!-- SLIDE 7: RESEARCH — prevalence + FODMAP RCT -->
   <div class="slide">
-    <div class="slide-title">What the <span>evidence</span> actually shows</div>
+    <div class="slide-title">What the <span>evidence</span> shows · prevalence &amp; diet</div>
     <div class="ev-stage">
 
-      <div class="ev-card" id="e1">
+      <div class="ev-card animate-ready" id="e1">
         <div class="ev-stat-box">
-          <div class="ev-stat">~18%</div>
-          <div class="ev-stat-lab">experience bloating ≥ weekly · globally</div>
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num warn">~18%</div>
+            <div class="ev-outcome">experience bloating weekly</div>
+          </div>
+          <div class="ev-conditions">globally — women twice as likely as men</div>
         </div>
-        <div class="ev-detail">
+        <div class="ev-det">
           <div class="ev-trial">Rome Foundation — global bloating survey</div>
           <div class="ev-journal">Rome Foundation · 2023 · 51,425 people · 26 countries</div>
-          <div class="ev-finding">Nearly <strong>18% experience bloating at least once a week</strong>. Women roughly twice as likely as men. Strongly associated with abdominal pain — and significantly underscreened in primary care ⚑.</div>
+          <div class="ev-body">Nearly <strong>18% experience bloating at least once a week</strong>. Women roughly twice as likely as men. Strongly associated with abdominal pain — and significantly underscreened in primary care ⚑.</div>
         </div>
       </div>
 
-      <div class="ev-card" id="e2">
+      <div class="ev-card animate-ready" id="e2">
         <div class="ev-stat-box">
-          <div class="ev-stat">↓ Bloating</div>
-          <div class="ev-stat-lab">low-FODMAP vs normal diet · IBS</div>
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good" style="font-size:2rem">↓ Bloating</div>
+            <div class="ev-outcome">vs normal diet · IBS</div>
+          </div>
+          <div class="ev-conditions">low-FODMAP crossover RCT · Monash 2014</div>
         </div>
-        <div class="ev-detail">
-          <div class="ev-trial">Halmos et al. — landmark low-FODMAP crossover RCT</div>
+        <div class="ev-det">
+          <div class="ev-trial">Halmos et al. — landmark low-FODMAP RCT</div>
           <div class="ev-journal">Gastroenterology · 2014 · Monash University · 30 IBS patients</div>
-          <div class="ev-finding">Crossover trial. Low-FODMAP significantly reduced bloating, pain and wind compared with normal diet. <strong>The evidence-based first-line dietary treatment for IBS bloating</strong> ⚑.</div>
+          <div class="ev-body">Crossover trial. Low-FODMAP significantly reduced bloating, pain and wind compared with normal diet. <strong>The evidence-based first-line dietary treatment for IBS bloating</strong> ⚑.</div>
         </div>
       </div>
 
-      <div class="ev-card" id="e3">
+    </div>
+  </div>
+
+  <!-- SLIDE 8: RESEARCH — network meta-analysis + UK prevalence -->
+  <div class="slide">
+    <div class="slide-title">What the <span>evidence</span> shows · best diet &amp; UK data</div>
+    <div class="ev-stage">
+
+      <div class="ev-card animate-ready" id="e3">
         <div class="ev-stat-box">
-          <div class="ev-stat">Ranked 1st</div>
-          <div class="ev-stat-lab">low-FODMAP for bloating · 13 RCTs</div>
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good" style="font-size:1.9rem">Ranked 1st</div>
+            <div class="ev-outcome">for bloating reduction</div>
+          </div>
+          <div class="ev-conditions">network meta-analysis · 13 RCTs · 944 patients</div>
         </div>
-        <div class="ev-detail">
+        <div class="ev-det">
           <div class="ev-trial">Black, Staudacher &amp; Ford — network meta-analysis</div>
           <div class="ev-journal">Gut · 2022 · 13 RCTs · 944 patients</div>
-          <div class="ev-finding">Low-FODMAP <strong>ranked first</strong> for global symptoms, pain, and specifically bloating/distension. Strongest dietary evidence for bloating relief across all interventions studied ⚑.</div>
+          <div class="ev-body">Low-FODMAP <strong>ranked first</strong> for global symptoms, pain, and specifically bloating and distension. Strongest dietary evidence for bloating relief across all interventions studied ⚑.</div>
         </div>
       </div>
 
-      <div class="ev-card" id="e4">
+      <div class="ev-card animate-ready" id="e4">
         <div class="ev-stat-box">
-          <div class="ev-stat">64%</div>
-          <div class="ev-stat-lab">UK adults · past-month bloating</div>
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num warn">64%</div>
+            <div class="ev-outcome">UK adults · past-month bloating</div>
+          </div>
+          <div class="ev-conditions">including those with no diagnosed gut condition</div>
         </div>
-        <div class="ev-detail">
+        <div class="ev-det">
           <div class="ev-trial">Tuck et al. — UK adult prevalence</div>
           <div class="ev-journal">European Journal of Nutrition · 2025 · UK survey · n=516</div>
-          <div class="ev-finding"><strong>64%</strong> had bloating in the past month — even those with no diagnosed gut condition. Most anxiety-provoking symptom. Bloating is not niche — it warrants proper clinical attention ⚑.</div>
+          <div class="ev-body"><strong>64%</strong> had bloating in the past month — even those with no diagnosed gut condition. Most anxiety-provoking symptom. Bloating is not niche — it warrants proper clinical attention ⚑.</div>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- SLIDE 8: CTA · HIGH-IMPACT -->
+  <!-- SLIDE 9: CTA · cta-wrap-v2 HORIZONTAL ROWS -->
   <div class="slide cta-slide">
     <div class="cta-glow"></div>
-    <div class="cta-wrap">
-      <div class="cta-badge">Where to start</div>
-      <div class="cta-icon">🫧</div>
-      <div class="cta-headline">Bloating has causes.<br/><span>Most are treatable.</span></div>
-      <div class="cta-subline">Keep a diary. See a dietitian. Don't stop gluten before testing.</div>
-      <div class="cta-body">The vast majority of bloating responds to targeted investigation and dietitian-led diet work. These four steps cover the evidence-based starting points.</div>
-      <div class="cta-actions">
-        <div class="cta-ac">
-          <div class="cta-ac-icon">🩺</div>
-          <div class="cta-ac-label">GP review if daily or new</div>
+    <div class="cta-wrap-v2">
+      <div class="cta-top">
+        <div class="cta-badge-v2">What the evidence shows</div>
+        <div class="cta-headline-v2">Bloating has causes.<br/><span>Most are treatable.</span></div>
+        <div class="cta-subline">Targeted investigation and dietitian-led diet work resolves the vast majority of persistent bloating.</div>
+      </div>
+      <div class="cta-rows-v2">
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">🩺</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Frequent or new bloating — worth investigating</div>
+            <div class="cta-row-body-v2">In UK practice, targeted investigations identify coeliac disease, SIBO, and food intolerances — all of which have specific treatments</div>
+          </div>
+          <div class="cta-row-word-v2">→ GP</div>
         </div>
-        <div class="cta-ac">
-          <div class="cta-ac-icon">📔</div>
-          <div class="cta-ac-label">2-week food &amp; symptom diary</div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">📔</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Food &amp; symptom diary first</div>
+            <div class="cta-row-body-v2">A 2-week record of what's eaten and when symptoms occur — patterns often more useful than tests at identifying triggers</div>
+          </div>
+          <div class="cta-row-word-v2">2 weeks</div>
         </div>
-        <div class="cta-ac">
-          <div class="cta-ac-icon">🥗</div>
-          <div class="cta-ac-label">Dietitian-led low-FODMAP trial</div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">🥗</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Dietitian-led low-FODMAP — evidence-based</div>
+            <div class="cta-row-body-v2">Ranked first across 13 RCTs — restrict 2–6 weeks, then systematic reintroduction to identify specific triggers</div>
+          </div>
+          <div class="cta-row-word-v2">Ranked 1st</div>
         </div>
-        <div class="cta-ac">
-          <div class="cta-ac-icon">⚠️</div>
-          <div class="cta-ac-label">Keep gluten for coeliac test</div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">⚠️</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Gluten in diet before coeliac testing</div>
+            <div class="cta-row-body-v2">Coeliac testing requires gluten in the diet — starting gluten-free beforehand produces false-negative results and the diagnosis can be missed</div>
+          </div>
+          <div class="cta-row-word-v2">Critical</div>
         </div>
       </div>
-      <div class="med-disclaimer">
-        <div class="med-disc-icon">⚕️</div>
-        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Any changes you're considering are a conversation for you to have with your GP or healthcare professional.</div>
+      <div class="cta-bottom">
+        <div class="med-disclaimer">
+          <div class="med-disc-icon">⚕️</div>
+          <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 9: CLOSING -->
+  <!-- SLIDE 10: CLOSING -->
   <div class="slide">
     <div class="close-wrap">
       <div class="close-logo">helf<span class="dot">.</span>school</div>
@@ -541,7 +592,7 @@
         <div class="med-disc-icon">⚕️</div>
         <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
       </div>
-      <div class="close-series">Digestive Health Series · Article 14 · Bloating</div>
+      <div class="close-series">Digestive Health Series · Article 15 · Bloating</div>
     </div>
   </div>
 
@@ -558,6 +609,7 @@
   <div class="dot" onclick="goTo(6)"></div>
   <div class="dot" onclick="goTo(7)"></div>
   <div class="dot" onclick="goTo(8)"></div>
+  <div class="dot" onclick="goTo(9)"></div>
 </div>
 
 <div class="disc">Health education — not medical advice. helf.school</div>
@@ -592,13 +644,14 @@
 
   function triggerSlide(n){
     if(n===2) animateGroup(['m1','m2','m3','m4'], 200);
-    if(n===3) animateGroup(['c1','c2','c3','c4','c5','c6'], 150);
-    if(n===5) animateGroup(['d1','d2','d3','d4','d5'], 170);
-    if(n===6) animateGroup(['e1','e2','e3','e4'], 220);
+    if(n===3) animateGroup(['c1','c2','c3','c4','c5','c6'], 140);
+    if(n===5) animateGroup(['d1','d2','d3','d4','d5'], 140);
+    if(n===6) animateGroup(['e1','e2'], 260);
+    if(n===7) animateGroup(['e3','e4'], 260);
   }
   function animateGroup(ids, step){
     ids.forEach((id,i)=>{
-      setTimeout(()=>{ const el=document.getElementById(id); if(el) el.classList.add('vis'); }, 200 + i*step);
+      setTimeout(()=>{ const el=document.getElementById(id); if(el) el.classList.add('vis'); }, 180 + i*step);
     });
   }
 
