@@ -452,7 +452,7 @@ Scale 0.62 · every 2nd frame · 120 colours · under 1.5MB total PPTX
 ## 12. QC CHECKLIST (run before every upload)
 
 1. Readability — no pale text below colour minimums specified above
-2. References — full citation blocks with DOI; pill links verified in same session
+2. References — full citation blocks with DOI; pill links verified in same session; **each cited stat confirmed to be in the specific paper cited, not just in a secondary source that references it**
 3. Research flags ⚑ — all claims verified against source; no unverified links
 4. Graphics — standalone animation file exists; presenter has matching inline visual
 5. Article ↔ presenter consistency — all facts, study names, years, citations match exactly
@@ -509,8 +509,12 @@ No non-peer-reviewed sources, commercial health sites, or forum content permitte
 Before presenting any article, visuals, or teleprompter HTML — verify via web search that every cited study, trial, or statistic:
 1. Exists as a real published paper
 2. Relates to the correct condition
-3. Supports the specific claim made in the article
-4. URL/DOI resolves to the correct article
+3. **Contains the specific stat or finding claimed — not just plausibly could contain it**
+4. URL/DOI resolves to the correct article — fetch the abstract or full text if needed to confirm
+
+**Step 3 is the step that fails most often.** Finding a paper by the same author on the same topic is not sufficient. The specific numerical claim must be traceable to that specific paper. If the stat appears in a secondary source (a review, a guidance document, an editorial) that itself cites a primary paper, cite the primary paper — not the secondary source.
+
+**How to apply step 3:** When a stat is found in a search result, identify which paper it originates from before assigning a reference. If the source paper references another paper for the stat, trace it back to the original. Never cite a guidance or consensus document as the source of epidemiological data that the guidance is merely summarising.
 
 Never include an unverified link. Never assume a study exists based on a plausible-sounding citation. Never cite NICE CG99 for adult constipation — it covers children and young people only. The correct adult reference is NICE CKS at `cks.nice.org.uk/constipation`.
 
@@ -573,7 +577,10 @@ If `create_file` reports "file already exists", delete the existing placeholder 
 - Research card 2: fibre supplementation response rate 77% vs 44% (Christodoulides 2016)
 - Important distinction: fibre evidence is for fibre supplements (psyllium/ispaghula) not dietary fibre from whole foods — clearly stated in the article
 
-### Lay-clarification rule was too narrow — broadened April 2026
+### Secondary source cited instead of primary research paper — April 2026
+In the headaches article (Article 23), Reference 5 was incorrectly cited as Kernick et al BJGP 2008;58(557):880 — a consensus imaging guidance document. The correct paper was Kernick et al BJGP 2007;57(542):695 — the actual case-control study of 3,505 patients that generated the "<1 in 1,000" PPV finding. The 2008 paper references the 2007 paper but does not contain the primary data. The error occurred because the pre-draft check confirmed the 2008 paper existed and was by the same author on the same topic — but did not verify that the specific stat was in that paper.
+
+**The rule strengthened as a result:** Step 3 of the pre-draft verification rule now explicitly requires confirming the specific stat is in the specific paper. When a stat appears in a secondary source, trace it back to the primary paper and cite that instead. See Section 16 for the full updated rule.
 The original lay-clarification rule listed only statistical terms (HR, RR, OR, SMD, NNT, CI, PAR). This caused anatomical and clinical terms — periorbital, temporal, rhinorrhoea, conjunctival redness — to slip through QC without lay definitions in the headaches article (Article 23). The rule has been broadened: **every medical or clinical term a lay reader would not immediately understand requires a plain English definition in brackets on first use in each section.** This is now a general rule, not a list of specific terms. See Section 8 and QC item 8 for the full updated rule.
 Any clinical term that carries significant implications for the reader must have an inline lay definition in the same sentence, not just a Key Terms box entry. This was confirmed in April 2026 when "teratogenic" appeared in the migraine article Preventive Treatment section without a lay explanation. The fix: "Topiramate is teratogenic (capable of causing harm to a developing foetus)". A Key Terms entry alone is insufficient — readers may not scroll to the Key Terms box, and safety-critical information must be immediately intelligible in context. See QC item 17 and Section 8 for the full rule.
 
