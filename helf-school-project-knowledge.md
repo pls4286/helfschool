@@ -120,8 +120,19 @@ Article 21: article HTML built April 2026. Visuals built April 2026. Teleprompte
 | 20 | Diverticular Disease | diverticular-disease | All 3 files on GitHub ✅ |
 | 21 | Constipation | constipation | All 3 files built April 2026 ✅ — upload to GitHub |
 
-**Total articles live on site:** 20
-**Article 21:** all 3 files complete — upload constipation.html, constipation-visuals.html, constipation-teleprompter.html to GitHub
+### Series D — Neurological Health (Articles 22–26)
+Article 22: all three files built April 2026 — upload to GitHub pending.
+Articles 23–26: not yet built.
+
+| # | Title | Slug | Status |
+|---|-------|------|--------|
+| 22 | Migraine | migraine | All 3 files built April 2026 ✅ — upload to GitHub |
+| 23 | Headaches — Types and Red Flags | headaches | Not yet built |
+| 24 | Dizziness and Vertigo | dizziness-vertigo | Not yet built |
+| 25 | Memory, Cognition and Dementia | memory-dementia | Not yet built |
+| 26 | Epilepsy — What It Is and How It's Managed | epilepsy | Not yet built |
+
+**Total articles live on site:** 20 (Article 21 pending upload; Article 22 pending upload)
 
 ---
 
@@ -295,7 +306,14 @@ Required every time for medical terms AND statistical measures in all prose, res
 - CI (confidence interval)
 - PAR (population-attributable risk)
 
-### People-centred content structure
+### Inline lay definitions — safety-critical and Key Terms box terms
+Two rules apply to all article HTML files:
+
+**Rule 1 — Safety-critical terms:** Any clinical term that carries significant implications for the reader — especially safety-critical ones such as teratogenicity, hepatotoxicity, nephrotoxicity, arrhythmia, or similar — must always have an **inline lay definition** in the same sentence where the term first appears. A Key Terms box entry alone is not sufficient. Example: "Topiramate is teratogenic (capable of causing harm to a developing foetus)". This rule exists because readers may not scroll to the Key Terms box, and the safety implication must be immediately intelligible.
+
+**Rule 2 — Structured lists and criteria boxes:** When a medical term that appears in the Key Terms box also appears in a structured list, numbered criteria, or diagnostic criteria box — where prose inline explanation is not practical — add **(see Key Terms below)** immediately after the term. Example: "photophobia (see Key Terms below) and phonophobia (see Key Terms below)" in the ICHD-3 criteria list. This was confirmed as the correct approach in April 2026 when the migraine article ICHD-3 criteria box presented photophobia and phonophobia without any lay context.
+
+Both rules apply on first use per section. In the Key Terms box itself, the full definition is always present.
 - Frame everything around how the condition affects the reader and their life
 - Research used two ways: (1) confirm what the condition does to them, (2) show what works so they can act
 - CTAs = "what can I do NOW/LATER for MY condition, backed by research" — never generic
@@ -439,6 +457,8 @@ Scale 0.62 · every 2nd frame · 120 colours · under 1.5MB total PPTX
 14. No `opacity:0` animations on article body sections — content immediately visible
 15. **ev-stat-box — `.ev-conditions` font is `.78rem`, padding is `.9rem .75rem`, `overflow:hidden` present — check before delivery on every visuals file**
 16. **NICE guideline numbers — verify CG vs NG via web search in the same session. Never cite from memory. CG = pre-2014 format; NG = post-2014 format. Wrong series = wrong document.**
+17. **Safety-critical terms — any term like teratogenic, hepatotoxic, nephrotoxic must have an inline lay definition in the same sentence, not just a Key Terms entry**
+18. **Structured lists and criteria boxes — any Key Terms box term appearing in a list or criteria box must have "(see Key Terms below)" added immediately after it**
 
 ---
 
@@ -543,6 +563,12 @@ If `create_file` reports "file already exists", delete the existing placeholder 
 - Research card 2: fibre supplementation response rate 77% vs 44% (Christodoulides 2016)
 - Important distinction: fibre evidence is for fibre supplements (psyllium/ispaghula) not dietary fibre from whole foods — clearly stated in the article
 
+### Safety-critical terms require inline lay definitions — LOCKED APRIL 2026
+Any clinical term that carries significant implications for the reader must have an inline lay definition in the same sentence, not just a Key Terms box entry. This was confirmed in April 2026 when "teratogenic" appeared in the migraine article Preventive Treatment section without a lay explanation. The fix: "Topiramate is teratogenic (capable of causing harm to a developing foetus)". A Key Terms entry alone is insufficient — readers may not scroll to the Key Terms box, and safety-critical information must be immediately intelligible in context. See QC item 17 and Section 8 for the full rule.
+
+### Structured lists — Key Terms terms need "(see Key Terms below)" — LOCKED APRIL 2026
+When a medical term from the Key Terms box appears in a structured list, numbered criteria, or diagnostic criteria box where prose inline explanation is not practical, add "(see Key Terms below)" immediately after the term. Confirmed in April 2026 when the migraine ICHD-3 criteria box presented "photophobia and phonophobia" without any lay context. Fix: "photophobia (see Key Terms below) and phonophobia (see Key Terms below)". Does not apply where an inline lay explanation already appears in the same sentence. See QC item 18 and Section 8 for the full rule.
+
 ### NICE guideline number verification — CG vs NG — LOCKED APRIL 2026
 NICE uses two guideline series: **CG (Clinical Guidelines)** published before ~2014, and **NG (NICE Guidelines)** published from ~2014 onwards. These are entirely separate documents — citing the wrong series produces a link to the wrong guideline or a carers/unrelated document.
 
@@ -571,7 +597,9 @@ The session-start-rules.md file fell out of sync with the project knowledge mult
 
 ### Immediate
 - Upload Article 21 files to GitHub: `constipation.html` · `constipation-visuals.html` · `constipation-teleprompter.html`
-- Update `helf-school-conditions.html` to show Article 21 as live (currently shows "Coming soon")
+- Upload Article 22 files to GitHub: `migraine.html` · `migraine-visuals.html` · `migraine-teleprompter.html`
+- Update `helf-school-conditions.html` to show Articles 21 and 22 as live
+- Build Article 23 — `headaches.html` (Headaches — Types and Red Flags)
 
 ### Verification
 - `hypertension.html` references 5 & 6 — Cochrane PubMed IDs flagged ⚑ unverified — check before confirming article complete
@@ -616,9 +644,9 @@ The Claude project holds **visuals, teleprompter, and screen files only**. Artic
 | `hypertension-visuals.html` | Canonical CTA slide reference |
 
 ### Files confirmed in Claude project (April 2026)
-**Teleprompters (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd · ibs · bloating · coeliac · masld · acid-reflux · constipation
+**Teleprompters (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine
 
-**Visuals (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd (screen) · ibs · bloating · coeliac · masld · acid-reflux · constipation
+**Visuals (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd (screen) · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine
 
 **Screen files:** Ar_barretts-screen · Ar_sphincter-screen · ibd-gut-screen · bloating-gut-screen · bloating-fodmap-screen
 
