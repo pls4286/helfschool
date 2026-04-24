@@ -50,9 +50,21 @@ The single fastest check for whether a teleprompter file is the correct canonica
 
 ## ⛔ RULE 6 — THE ARTICLE INVENTORY IS THE SOURCE OF TRUTH
 
-Section 6 of `helf-school-project-knowledge.md` contains the complete status of every article file. This table was maintained carefully and is accurate.
+Section 3 of `helf-school-project-knowledge.md` contains the complete status of every article file. This table is maintained carefully and is accurate.
 
 **The rule:** At the start of a session, Claude reads this table. Claude does not re-audit files that are marked ✅ unless Paul explicitly asks. Claude does not tell Paul that retrofit work needs doing if the project knowledge document says it has already been done.
+
+---
+
+## ⛔ RULE 6A — PROJECT KNOWLEDGE ALWAYS OVERRIDES THIS FILE ON STATUS
+
+**THIS IS THE MOST IMPORTANT CONFLICT-RESOLUTION RULE.**
+
+If the file status table in THIS document (session-start-rules.md) contradicts the article inventory in `helf-school-project-knowledge.md`, the project knowledge document is ALWAYS correct.
+
+**Why this rule exists:** The status table in this file has repeatedly fallen out of sync with the project knowledge document because both files were not updated together at session end. Every time this happened, Claude defaulted to the wrong (outdated) information in this file and told Dr Paul that work had not been done when it had — causing repeated arguments and wasted time across multiple sessions in April 2026.
+
+**The rule:** In any conflict between the two documents, project knowledge wins. Claude never flags outstanding work based on this file alone. Claude never says retrofits are undone if project knowledge says they are done.
 
 ---
 
@@ -79,17 +91,27 @@ Every file Paul downloads must use the Artifact panel download button. Never Ctr
 
 At the end of every session involving new builds or decisions:
 1. Update `helf-school-project-knowledge.md`
-2. Paul downloads it via Artifact panel
-3. Paul uploads it to BOTH GitHub AND the Claude Project
-4. Paul uploads this session-start-rules file if it has been updated
+2. Update THIS file (`helf-school-session-start-rules.md`) — especially the status table below
+3. Paul downloads both via Artifact panel
+4. Paul uploads BOTH to GitHub AND the Claude Project
 
-**The rule:** Claude prompts Paul to do this at the end of every productive session. Claude does not assume this has happened.
+**The rule:** Both files must be updated and uploaded together. If only one is updated, they fall out of sync and Rule 6A conflict will repeat. Claude prompts Paul to do this at the end of every productive session.
 
 ---
 
-## CONFIRMED FILE STATUS AS OF END OF APRIL 2026 SESSIONS
+## ⛔ RULE 10 — NICE CG99 IS CHILDREN ONLY
 
-### Cardiovascular Series (01–07) — ALL COMPLETE ON GITHUB
+Never cite NICE CG99 in any adult article. It covers constipation in children and young people only. The correct adult constipation reference is NICE CKS at cks.nice.org.uk/constipation. This rule exists because the error is easy to make and is clinically significant.
+
+---
+
+## CONFIRMED FILE STATUS — UPDATED APRIL 2026
+
+**AUTHORITY NOTE: If any entry below conflicts with the article inventory in `helf-school-project-knowledge.md`, the project knowledge document is correct. Update this table accordingly.**
+
+### Cardiovascular Series (01–07) — ALL COMPLETE ON GITHUB ✅
+All article HTML, visuals, and teleprompter files confirmed correct.
+
 | File | Status |
 |------|--------|
 | hypertension.html + visuals + teleprompter | ✅ Confirmed correct |
@@ -100,64 +122,51 @@ At the end of every session involving new builds or decisions:
 | salt-blood-pressure.html + visuals + teleprompter | ✅ Confirmed correct |
 | supplements-cholesterol.html + visuals + teleprompter | ✅ Confirmed correct |
 
-### Practical Health Series (08–12) — VISUALS + TELEPROMPTERS BUILT, UPLOADS PENDING
-| File | Status |
-|------|--------|
-| mediterranean-diet.html | ✅ On GitHub |
-| mediterranean-diet-visuals.html | 🔄 Built — upload to GitHub |
-| mediterranean-diet-teleprompter.html | 🔄 Built — upload to GitHub |
-| sleep.html + visuals + teleprompter | ✅ All on GitHub |
-| exercise.html | ✅ On GitHub |
-| exercise-visuals.html | 🔄 Built — upload to GitHub |
-| exercise-teleprompter.html | 🔄 Built — upload to GitHub |
-| stress.html | ⚠️ On GitHub — needs 1 manual voice fix before use (see project knowledge Section 6) |
-| stress-visuals.html | 🔄 Built — upload to GitHub |
-| stress-teleprompter.html | 🔄 Built — upload to GitHub |
-| alcohol.html | ⚠️ On GitHub — needs 1 manual voice fix before use (see project knowledge Section 6) |
-| alcohol-visuals.html | 🔄 Built — upload to GitHub |
-| alcohol-teleprompter.html | 🔄 Built — upload to GitHub |
+### Practical Health Series (08–12) — ALL COMPLETE ✅
+Educational voice retrofit confirmed complete.
 
-### Digestive Health Series (13–20) — VISUALS + TELEPROMPTERS BUILT, UPLOADS PENDING
 | File | Status |
 |------|--------|
-| acid-reflux.html | ✅ On GitHub — article HTML retrofit still needed |
-| acid-reflux-visuals.html | 🔄 Built this session — upload to GitHub + Claude Project |
-| acid-reflux-teleprompter.html | 🔄 Built this session — upload to GitHub + Claude Project |
-| ibd.html | ✅ On GitHub — article HTML retrofit still needed |
-| ibd-visuals.html | 🔄 Built this session — upload to GitHub + Claude Project |
-| ibd-teleprompter.html | 🔄 Built this session — upload to GitHub + Claude Project |
-| bloating.html | ✅ On GitHub — article HTML retrofit still needed |
-| bloating-visuals.html | 🔄 Built this session — upload to GitHub + Claude Project |
-| bloating-teleprompter.html | 🔄 Built this session — upload to GitHub + Claude Project |
-| ibs.html | ✅ On GitHub — article HTML retrofit still needed |
-| ibs-visuals.html | 🔄 Built this session — upload to GitHub + Claude Project |
-| ibs-teleprompter.html | 🔄 Built this session — upload to GitHub + Claude Project |
-| masld.html | ✅ On GitHub — article HTML retrofit still needed |
-| masld-visuals.html | 🔄 Built this session — upload to GitHub + Claude Project |
-| masld-teleprompter.html | 🔄 Built this session — upload to GitHub + Claude Project |
-| coeliac.html | ✅ On GitHub — article HTML retrofit still needed |
-| coeliac-visuals.html | 🔄 Built this session — upload to GitHub + Claude Project |
-| coeliac-teleprompter.html | 🔄 Built this session — upload to GitHub + Claude Project |
+| mediterranean-diet.html + visuals + teleprompter | ✅ All confirmed correct |
+| sleep.html + visuals + teleprompter | ✅ All confirmed correct |
+| exercise.html + visuals + teleprompter | ✅ All confirmed correct |
+| stress.html + visuals + teleprompter | ✅ All confirmed correct |
+| alcohol.html + visuals + teleprompter | ✅ All confirmed correct |
+
+### Digestive Health Series (13–21)
+
+**Articles 13–20: ALL COMPLETE ON GITHUB ✅**
+Article HTML retrofits confirmed complete. Visuals and teleprompters confirmed built. Educational voice retrofit confirmed complete.
+
+| File | Status |
+|------|--------|
+| acid-reflux.html + visuals + teleprompter | ✅ All confirmed correct |
+| ibd.html + visuals + teleprompter | ✅ All confirmed correct |
+| bloating.html + visuals + teleprompter | ✅ All confirmed correct |
+| ibs.html + visuals + teleprompter | ✅ All confirmed correct |
+| masld.html + visuals + teleprompter | ✅ All confirmed correct |
+| coeliac.html + visuals + teleprompter | ✅ All confirmed correct |
 | gallstones.html + visuals + teleprompter | ✅ All confirmed correct |
 | diverticular-disease.html + visuals + teleprompter | ✅ All confirmed correct |
 
-### NOT YET BUILT
-- Article 21 (Constipation) — **DO NOT BUILD** until Articles 13–18 article HTML retrofits are complete
+**Article 21 — Constipation — IN PROGRESS**
 
-### NEXT PRIORITY — Articles 13–18 article HTML retrofits
-Each article HTML (acid-reflux.html, ibd.html, bloating.html, ibs.html, masld.html, coeliac.html) needs:
-- Full voice audit
-- Inline citations
-- Research card stat standard (outcomes, not participant counts)
-- Disclaimer bar (yellow, below hero)
-
-Method: fetch from GitHub raw URL → paste into Claude → audit and rebuild → upload. One article per session.
+| File | Status |
+|------|--------|
+| constipation.html | ✅ Article HTML built April 2026 |
+| constipation-visuals.html | 🔄 Built April 2026 — upload to GitHub |
+| constipation-teleprompter.html | ⏳ To build |
 
 ### OUTSTANDING CITATION FLAGS
 - hypertension.html refs 5 + 6 — Cochrane PubMed IDs flagged ⚑ unverified
+
+### NEXT WORK
+1. constipation-teleprompter.html — build after visuals confirmed
+2. Neurological Series planning — define article list before any builds
+3. hypertension.html refs 5 & 6 — verify when convenient
 
 ---
 
 ## THE ONE THING THAT MUST HAPPEN AT THE END OF EVERY SESSION
 
-Upload both `helf-school-project-knowledge.md` and `helf-school-session-start-rules.md` to the Claude Project. Without this, the next session's Claude starts without context and the same problems repeat.
+Upload BOTH `helf-school-project-knowledge.md` AND `helf-school-session-start-rules.md` to the Claude Project AND to GitHub. Both files. Both destinations. Without this, the next session's Claude starts with conflicting information and the same problems repeat.
