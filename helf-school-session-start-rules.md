@@ -153,9 +153,9 @@ Article HTML retrofits confirmed complete. Visuals and teleprompters confirmed b
 
 | File | Status |
 |------|--------|
-| constipation.html | ✅ Article HTML built April 2026 |
-| constipation-visuals.html | 🔄 Built April 2026 — upload to GitHub |
-| constipation-teleprompter.html | ⏳ To build |
+| constipation.html | ✅ Built April 2026 — upload to GitHub |
+| constipation-visuals.html | ✅ Built April 2026 — upload to GitHub |
+| constipation-teleprompter.html | ✅ Built April 2026 — upload to GitHub |
 
 ### OUTSTANDING CITATION FLAGS
 - hypertension.html refs 5 + 6 — Cochrane PubMed IDs flagged ⚑ unverified

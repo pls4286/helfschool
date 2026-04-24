@@ -118,10 +118,10 @@ Article 21: article HTML built April 2026. Visuals built April 2026. Teleprompte
 | 18 | Coeliac Disease | coeliac | All 3 files on GitHub ✅ |
 | 19 | Gallstones | gallstones | All 3 files on GitHub ✅ |
 | 20 | Diverticular Disease | diverticular-disease | All 3 files on GitHub ✅ |
-| 21 | Constipation | constipation | Article HTML ✅ · Visuals ✅ built April 2026 · Teleprompter ⏳ outstanding |
+| 21 | Constipation | constipation | All 3 files built April 2026 ✅ — upload to GitHub |
 
 **Total articles live on site:** 20
-**Article 21:** article HTML and visuals complete, teleprompter outstanding
+**Article 21:** all 3 files complete — upload constipation.html, constipation-visuals.html, constipation-teleprompter.html to GitHub
 
 ---
 
@@ -557,7 +557,8 @@ The session-start-rules.md file fell out of sync with the project knowledge mult
 ## 19. OUTSTANDING TASKS (April 2026)
 
 ### Immediate
-- `constipation-teleprompter.html` — to build next
+- Upload Article 21 files to GitHub: `constipation.html` · `constipation-visuals.html` · `constipation-teleprompter.html`
+- Update `helf-school-conditions.html` to show Article 21 as live (currently shows "Coming soon")
 
 ### Verification
 - `hypertension.html` references 5 & 6 — Cochrane PubMed IDs flagged ⚑ unverified — check before confirming article complete
@@ -565,7 +566,7 @@ The session-start-rules.md file fell out of sync with the project knowledge mult
 ### Series planning
 - **Neurological series** — next series after Digestive Health. Article list not yet defined. Plan before building any Neurological content.
 
-### Retrofit backlog (Articles 01–11 only — 13–18 confirmed complete)
+### Retrofit backlog (Articles 01–11 only — 13–20 confirmed complete)
 - Research card stat standard
 - Inline citations (superscripts)
 - CTA slide standard
@@ -602,9 +603,9 @@ The Claude project holds **visuals, teleprompter, and screen files only**. Artic
 | `hypertension-visuals.html` | Canonical CTA slide reference |
 
 ### Files confirmed in Claude project (April 2026)
-**Teleprompters (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd · ibs · bloating · coeliac · masld · acid-reflux
+**Teleprompters (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd · ibs · bloating · coeliac · masld · acid-reflux · constipation
 
-**Visuals (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd (screen) · ibs · bloating · coeliac · masld · acid-reflux
+**Visuals (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd (screen) · ibs · bloating · coeliac · masld · acid-reflux · constipation
 
 **Screen files:** Ar_barretts-screen · Ar_sphincter-screen · ibd-gut-screen · bloating-gut-screen · bloating-fodmap-screen
 
