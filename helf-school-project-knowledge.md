@@ -296,8 +296,18 @@ Apply everywhere, on first mention per section:
 - infliximab (Remicade)
 - adalimumab (Humira)
 
-### Lay-clarification brackets
-Required every time for medical terms AND statistical measures in all prose, research cards, tables, and callouts:
+### Lay-clarification brackets — ALL medical terminology
+**The general rule:** Every medical or clinical term that a lay reader would not immediately understand must have a plain English definition in brackets on first use in each section. This applies to anatomical terms, physiological terms, symptom descriptors, drug class names, procedural terms, and diagnostic labels — not just statistical measures.
+
+Examples of terms requiring lay clarification:
+- Anatomical: periorbital (around the eye) · temporal (at the temple) · ipsilateral (same side) · bilateral (both sides)
+- Symptoms: lacrimation (tearing) · rhinorrhoea (runny nose) · ptosis (drooping eyelid) · miosis (pupil constriction) · conjunctival redness (redness of the white of the eye)
+- Clinical: teratogenic (capable of causing harm to a developing foetus) · hepatotoxic (toxic to the liver) · tachycardia (fast heart rate)
+- Drug classes: tricyclic antidepressant · beta-blocker · prokinetic antiemetic
+
+**Why this keeps failing:** Earlier versions of this rule listed only statistical terms. Any term not on the explicit list was not caught at QC. The rule is now general: if a lay reader might not know it, it needs a definition in brackets on first use.
+
+**Statistical measures** (also require lay clarification on first use per section):
 - HR (hazard ratio — HR 1.23 = 23% higher risk)
 - RR (relative risk)
 - OR (odds ratio)
@@ -448,7 +458,7 @@ Scale 0.62 · every 2nd frame · 120 colours · under 1.5MB total PPTX
 5. Article ↔ presenter consistency — all facts, study names, years, citations match exactly
 6. Educational voice — no forbidden phrases; canonical phrase correct and in full throughout
 7. Drug names — brand names in brackets after all generics
-8. Lay-clarification — statistical terms bracketed on first use in each section
+8. **Lay-clarification — ALL medical terminology in brackets on first use per section, not just statistical terms. Anatomical, physiological, symptom, drug class, and diagnostic terms all require plain English definitions. If a lay reader might not know it, it needs a bracket definition. Statistical terms (HR, RR, OR, SMD, NNT, CI, PAR) are included in this rule.**
 9. Research card stats — outcomes only; never participant/study counts or cost figures
 10. CTA slide — disclaimer box present with full canonical phrase
 11. Closing slide — same disclaimer box present
@@ -563,7 +573,8 @@ If `create_file` reports "file already exists", delete the existing placeholder 
 - Research card 2: fibre supplementation response rate 77% vs 44% (Christodoulides 2016)
 - Important distinction: fibre evidence is for fibre supplements (psyllium/ispaghula) not dietary fibre from whole foods — clearly stated in the article
 
-### Safety-critical terms require inline lay definitions — LOCKED APRIL 2026
+### Lay-clarification rule was too narrow — broadened April 2026
+The original lay-clarification rule listed only statistical terms (HR, RR, OR, SMD, NNT, CI, PAR). This caused anatomical and clinical terms — periorbital, temporal, rhinorrhoea, conjunctival redness — to slip through QC without lay definitions in the headaches article (Article 23). The rule has been broadened: **every medical or clinical term a lay reader would not immediately understand requires a plain English definition in brackets on first use in each section.** This is now a general rule, not a list of specific terms. See Section 8 and QC item 8 for the full updated rule.
 Any clinical term that carries significant implications for the reader must have an inline lay definition in the same sentence, not just a Key Terms box entry. This was confirmed in April 2026 when "teratogenic" appeared in the migraine article Preventive Treatment section without a lay explanation. The fix: "Topiramate is teratogenic (capable of causing harm to a developing foetus)". A Key Terms entry alone is insufficient — readers may not scroll to the Key Terms box, and safety-critical information must be immediately intelligible in context. See QC item 17 and Section 8 for the full rule.
 
 ### Structured lists — Key Terms terms need "(see Key Terms below)" — LOCKED APRIL 2026

@@ -68,14 +68,16 @@ If the file status table in THIS document (session-start-rules.md) contradicts t
 
 ---
 
-## ⛔ RULE 7 — VOICE AUDIT BEFORE EVERY OUTPUT
+## ⛔ RULE 7 — VOICE AUDIT AND LAY-CLARIFICATION BEFORE EVERY OUTPUT
 
-Before presenting any helf.school file (article, visuals, teleprompter), Claude runs a full internal voice audit. The site must describe clinical reality — never instruct the reader. This is a legal protection for Dr Paul.
+Before presenting any helf.school file (article, visuals, teleprompter), Claude runs a full internal voice audit AND a lay-clarification audit. The site must describe clinical reality — never instruct the reader. This is a legal protection for Dr Paul.
 
 Forbidden: "you should", "speak to your GP", "seek help", "call 999/111", "avoid", "don't".
 Required full phrase: "Anything personally relevant is a conversation for you to have with your GP or healthcare professional."
 
-**The rule:** The audit happens before output. Paul must never need to ask for it.
+**Lay-clarification audit:** Every medical or clinical term that a lay reader would not immediately understand must have a plain English definition in brackets on first use in each section. This applies to ALL medical terminology — anatomical terms, physiological terms, symptom descriptors, drug class names — not just the statistical terms listed in the project knowledge. If Claude is unsure whether a lay reader would know a term, the answer is to define it.
+
+**The rule:** Both audits happen before output. Paul must never need to ask for either.
 
 ---
 
