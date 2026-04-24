@@ -1,107 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-  <title>Acid Reflux — Causes, Symptoms and Treatment — Teleprompter | helf.school</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acid Reflux — Teleprompter · helf.school</title>
   <style>
-    :root { --bg:#000; --text:#fff; --highlight:#D47C3A; }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html,body{width:100%;height:100%;background:var(--bg);font-family:'DM Sans',sans-serif;overflow:hidden;touch-action:none}
-    .controls{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.90);border-bottom:1px solid rgba(255,255,255,.10);height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 1rem;gap:.5rem}
-    .ctrl-left{display:flex;align-items:center;gap:.75rem} .ctrl-right{display:flex;align-items:center;gap:.5rem}
-    .ctrl-btn{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.20);color:#fff;font-size:.8rem;font-weight:600;padding:.35rem .85rem;border-radius:7px;cursor:pointer;transition:background .15s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
-    .ctrl-btn:hover,.ctrl-btn:active{background:rgba(255,255,255,.22)} .ctrl-btn.active{background:var(--highlight);border-color:var(--highlight)}
-    .speed-wrap,.font-wrap{display:flex;align-items:center;gap:.4rem}
-    .speed-label,.font-label{font-size:.72rem;color:rgba(255,255,255,.55);white-space:nowrap}
-    .speed-btn,.font-btn{width:28px;height:28px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:.9rem;font-weight:700;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
-    .speed-btn:active,.font-btn:active{background:rgba(255,255,255,.25)}
-    .speed-val{font-size:.8rem;font-weight:600;color:var(--highlight);min-width:18px;text-align:center}
-    .seg-indicator{font-size:.72rem;color:rgba(255,255,255,.45);white-space:nowrap} .seg-indicator span{color:var(--highlight);font-weight:600}
-    .scroll-outer{position:fixed;top:52px;bottom:56px;left:0;right:0;overflow:hidden}
-    .scroll-outer::before,.scroll-outer::after{content:'';position:absolute;left:0;right:0;z-index:10;pointer-events:none}
-    .scroll-outer::before{top:0;height:80px;background:linear-gradient(to bottom,#000 0%,transparent 100%)}
-    .scroll-outer::after{bottom:0;height:80px;background:linear-gradient(to top,#000 0%,transparent 100%)}
-    .reading-line{position:absolute;top:50%;left:0;right:0;height:2px;background:rgba(212,124,58,.35);z-index:9;pointer-events:none}
-    .scroll-inner{padding:50vh 2rem 50vh;will-change:transform}
-    .segment{margin-bottom:3.5rem}
-    .seg-header{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid rgba(255,255,255,.10)}
-    .seg-badge{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .55rem;border-radius:100px}
-    .sb-opening{background:rgba(212,124,58,.25);color:var(--highlight)} .sb-section{background:rgba(255,255,255,.10);color:rgba(255,255,255,.70)}
-    .sb-cta{background:rgba(122,158,135,.25);color:#7A9E87} .sb-closing{background:rgba(232,168,74,.25);color:#E8A84A}
-    .seg-name{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.45)} .seg-time{font-size:.68rem;color:rgba(255,255,255,.30);margin-left:auto}
-    .seg-heading{font-size:1rem;font-weight:600;color:rgba(255,255,255,.40);margin-bottom:.85rem;letter-spacing:.02em}
-    .script-line{font-size:1.9rem;line-height:1.75;color:#fff;font-weight:400;margin-bottom:.9rem;padding:.25rem 0}
-    .script-line strong{color:var(--highlight);font-weight:600} .script-line em{font-style:italic;color:rgba(255,255,255,.80)}
-    .pause-marker{display:inline-flex;align-items:center;gap:.4rem;background:rgba(212,124,58,.15);border:1px solid rgba(212,124,58,.35);color:var(--highlight);font-size:.85rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .9rem;border-radius:100px;margin:.3rem 0}
-    .visual-cue{display:flex;align-items:center;gap:.6rem;background:rgba(232,99,74,.12);border:2px solid rgba(232,99,74,.50);border-radius:10px;padding:.55rem 1rem;margin:.5rem 0}
-    .visual-cue-icon{font-size:1.1rem;flex-shrink:0} .visual-cue-text{font-size:.95rem;font-weight:700;color:#fff;line-height:1.4} .visual-cue-text span{color:#E8634A}
-    .bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.90);border-top:1px solid rgba(255,255,255,.10);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 1rem;gap:.5rem}
-    .nav-btn{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:.82rem;font-weight:600;padding:.4rem 1rem;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s}
-    .nav-btn:active{background:rgba(255,255,255,.25)} .nav-btn.primary{background:var(--highlight);border-color:var(--highlight)} .nav-btn.primary:active{background:#C06A2A}
-    .progress-dots{display:flex;gap:.35rem}
-    .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18);cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent} .dot.active{background:var(--highlight);transform:scale(1.4)}
+    :root {
+      --bg: #0A0F1A; --text: #F0EDE8; --accent: #D47C3A;
+      --cue-bg: rgba(212,124,58,0.18); --cue-border: #D47C3A;
+      --pause-bg: rgba(200,66,58,0.18); --pause-border: #C8423A;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Georgia', serif; font-size: 1.9rem; line-height: 1.65; overflow: hidden; height: 100vh; user-select: none; }
+
+    .controls { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(10,15,26,0.95); border-bottom: 1px solid rgba(212,124,58,0.35); display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.8rem; flex-wrap: wrap; }
+    .ctrl-label { font-family: sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(240,237,232,0.55); }
+    .ctrl-btn { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: var(--text); border-radius: 5px; padding: 0.28rem 0.65rem; cursor: pointer; }
+    .ctrl-btn:hover { background: rgba(255,255,255,0.15); }
+    .ctrl-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .ctrl-sep { width: 1px; height: 24px; background: rgba(255,255,255,0.15); }
+    .ctrl-speed-display { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; color: var(--accent); min-width: 28px; text-align: center; }
+    .word-count { font-family: sans-serif; font-size: 0.68rem; color: rgba(240,237,232,0.45); margin-left: auto; }
+
+    .scroll-wrap { position: absolute; top: 56px; left: 0; right: 0; bottom: 48px; overflow: hidden; }
+    .scroll-inner { padding: 3rem 2.2rem 40vh; will-change: transform; }
+
+    .segment { margin-bottom: 2.8rem; }
+
+    .cue-box { background: var(--cue-bg); border: 2px solid var(--cue-border); border-radius: 8px; padding: 0.55rem 1rem; margin-bottom: 1.1rem; font-family: sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); display: flex; align-items: center; gap: 0.5rem; }
+    .cue-arrow { font-size: 1rem; flex-shrink: 0; }
+
+    .pause { background: var(--pause-bg); border-left: 3px solid var(--pause-border); border-radius: 0 6px 6px 0; padding: 0.4rem 0.9rem; margin: 1rem 0; font-family: sans-serif; font-size: 0.80rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #C8423A; }
+
+    .stat { color: var(--accent); font-weight: 700; }
+
+    .dots-bar { position: fixed; bottom: 0; left: 0; right: 0; height: 48px; background: rgba(10,15,26,0.95); border-top: 1px solid rgba(212,124,58,0.25); display: flex; align-items: center; justify-content: center; gap: 0.5rem; z-index: 50; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.22); cursor: pointer; transition: background 0.2s, transform 0.2s; }
+    .dot.active { background: var(--accent); transform: scale(1.3); }
+    .dot-label { font-family: sans-serif; font-size: 0.62rem; color: rgba(240,237,232,0.45); margin: 0 0.3rem; }
   </style>
 </head>
 <body>
+
 <div class="controls">
-  <div class="ctrl-left">
-    <button class="ctrl-btn" id="playBtn" onclick="togglePlay()">▶ Play</button>
-    <button class="ctrl-btn" onclick="resetScroll()">↺ Reset</button>
-    <div class="speed-wrap"><div class="speed-label">Speed</div><div class="speed-btn" onclick="changeSpeed(-1)">−</div><div class="speed-val" id="speedVal">1</div><div class="speed-btn" onclick="changeSpeed(1)">+</div></div>
-    <div class="font-wrap"><div class="font-label">Size</div><div class="font-btn" onclick="changeFont(-2)">A−</div><div class="font-btn" onclick="changeFont(2)">A+</div></div>
+  <span class="ctrl-label">Speed</span>
+  <button class="ctrl-btn" id="btn-slower">−</button>
+  <span class="ctrl-speed-display" id="speed-display">3</span>
+  <button class="ctrl-btn" id="btn-faster">+</button>
+  <div class="ctrl-sep"></div>
+  <span class="ctrl-label">Font</span>
+  <button class="ctrl-btn" id="btn-smaller">A−</button>
+  <button class="ctrl-btn" id="btn-bigger">A+</button>
+  <div class="ctrl-sep"></div>
+  <button class="ctrl-btn" id="btn-pause">⏸ Pause</button>
+  <button class="ctrl-btn" id="btn-reset">↑ Top</button>
+  <span class="word-count">~670 words · ~4.5 min</span>
+</div>
+
+<div class="scroll-wrap" id="scroll-wrap">
+<div class="scroll-inner" id="scroll-inner">
+
+  <!-- SEGMENT 0 — INTRO -->
+  <div class="segment" id="seg-0">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 1 — Title card</div>
+
+    I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about acid reflux — what it is, what it does over time, and what the evidence says about treating it.
+
+    <div class="pause">— brief pause —</div>
+
+    Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — let's get into it.
   </div>
-  <div class="ctrl-right"><div class="seg-indicator">Segment <span id="segDisplay">1</span> of 9</div></div>
+
+  <!-- SEGMENT 1 — WHAT IS IT -->
+  <div class="segment" id="seg-1">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 2 — LOS anatomy diagram</div>
+
+    Around <span class="stat">one in four UK adults</span> have regular heartburn. Most manage it with antacids from the chemist and never mention it to their GP. And yet persistent reflux is one of the most undertreated conditions I encountered in general practice — not because treatment doesn't work, but because people assume it's just something to put up with.
+
+    <div class="pause">— pause —</div>
+
+    Between the oesophagus — the gullet — and the stomach there's a muscular valve called the lower oesophageal sphincter. In normal digestion it opens for food, then closes tightly. In acid reflux it doesn't close properly — and stomach acid travels back up. The oesophageal lining isn't designed to handle acid. That inflammation is what you feel as heartburn — the burning behind the breastbone.
+
+    When this happens frequently enough to cause symptoms or damage, it becomes GORD — Gastro-Oesophageal Reflux Disease. Occasional heartburn is normal. GORD is when it becomes your normal.
+  </div>
+
+  <!-- SEGMENT 2 — RISK FACTORS -->
+  <div class="segment" id="seg-2">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 3 — Risk factor cards</div>
+
+    Several things weaken that valve or increase pressure on the stomach. <span class="stat">Excess weight</span> is the biggest modifiable factor — abdominal pressure pushes contents upwards. A <span class="stat">hiatus hernia</span> physically disrupts the sphincter mechanism. <span class="stat">Smoking</span> weakens the valve and reduces saliva, which normally neutralises stray acid.
+
+    <div class="pause">— pause —</div>
+
+    Pregnancy — both hormonal relaxation of the sphincter and a growing uterus increasing abdominal pressure. Certain medications — NSAIDs like ibuprofen, calcium channel blockers, some antidepressants — can all worsen reflux. And meal timing matters: large meals, eating late, lying flat soon after eating all increase the opportunity for acid escape.
+  </div>
+
+  <!-- SEGMENT 3 — WHY IT MATTERS — BARRETT'S -->
+  <div class="segment" id="seg-3">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 4 — Barrett's pathway</div>
+
+    For most people GORD is a nuisance. But I want to be direct about why it matters more than that.
+
+    <div class="pause">— pause —</div>
+
+    Repeated acid exposure inflames the oesophagus. Over time this can cause erosions, ulceration, and in some cases narrowing — making swallowing progressively difficult.
+
+    More importantly: in around <span class="stat">10 to 15%</span> of people with longstanding GORD, the normal oesophageal lining is replaced by a different cell type. This is called Barrett's oesophagus — a precancerous change. Each year approximately <span class="stat">0.33% of people with Barrett's</span> develop oesophageal cancer — around 1 in 300 per year.
+
+    <div class="pause">— pause —</div>
+
+    That risk is low for any individual in any given year. But it compounds. And it's the reason that persistent, longstanding reflux — particularly in middle-aged and older men — warrants proper assessment. The NHS has surveillance programmes for Barrett's, and early detection works.
+  </div>
+
+  <!-- SEGMENT 4 — WHAT DOCTORS DO -->
+  <div class="segment" id="seg-4">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 5 — Stepped approach</div>
+
+    GORD is usually diagnosed from the history — no test needed for a typical presentation. The approach is stepped.
+
+    Lifestyle first. Weight loss is the most evidence-based lifestyle step. Late meals, large portions, and lying flat are all associated with increased reflux. A raised bed head reduces night-time symptoms.
+
+    <div class="pause">— pause —</div>
+
+    For medication: start with antacids and alginates — Gaviscon, Rennies — for mild symptoms. If those aren't enough, H2 receptor antagonists like famotidine. If those aren't sufficient: a proton pump inhibitor — a PPI. Omeprazole or lansoprazole.
+
+    One important point about PPIs: <span class="stat">30 to 60 minutes before a meal</span> — not at bedtime. The proton pump activates with eating. Wrong timing means reduced effect.
+
+    <div class="pause">— pause —</div>
+
+    Alarm features — difficulty swallowing, unexplained weight loss, vomiting blood — are clinically recognised as time-sensitive. 111 or urgent GP access exists for this.
+  </div>
+
+  <!-- SEGMENT 5 — RESEARCH -->
+  <div class="segment" id="seg-5">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDES 6–7 — Research evidence cards</div>
+
+    The evidence is worth pulling out.
+
+    PPIs versus H2 receptor antagonists: a large Cochrane analysis — 134 trials, nearly 36,000 patients — confirmed PPIs produce significantly higher rates of healing and symptom control. They are the correct first-line pharmacological treatment for GORD.
+
+    <div class="pause">— pause —</div>
+
+    The LOTUS trial — over 500 patients followed for five years — found laparoscopic surgery and long-term PPI produced equivalent remission rates of around <span class="stat">85 to 90%</span>. Surgery works as well as medication in appropriately selected patients.
+
+    On weight loss: the Nurses' Health Study found even modest weight loss — around <span class="stat">3.5 kilograms</span> — produced significant symptom reduction. This is evidence-based first-line treatment, not soft advice.
+  </div>
+
+  <!-- SEGMENT 6 — CTA / CLOSE -->
+  <div class="segment" id="seg-6">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 8 — CTA</div>
+
+    A few things to take from this.
+
+    Frequent heartburn — more than twice a week, most weeks — is a conversation for you to have with your GP or healthcare professional. Indefinite over-the-counter management misses the assessment that opens up effective treatment.
+
+    <div class="pause">— pause —</div>
+
+    PPI timing matters. <span class="stat">30 to 60 minutes before the first meal</span>. Not at bedtime. That one change makes a meaningful difference to how well it works.
+
+    Alarm features — difficulty swallowing, unexplained weight loss, vomiting blood — are clinically recognised as time-sensitive. 111 or urgent GP access exists for this.
+
+    <div class="pause">— pause —</div>
+
+    The full article with references is at helf.school — Article 13 in the Digestive Health series. As always, anything personally relevant is a conversation for you to have with your GP or healthcare professional. I'm Dr Paul. Thanks for watching.
+
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW · SLIDE 9 — Closing card</div>
+  </div>
+
 </div>
-<div class="scroll-outer"><div class="reading-line"></div><div class="scroll-inner" id="scrollInner"></div></div>
-<div class="bottom-nav">
-  <button class="nav-btn" id="prevBtn" onclick="jumpSeg(-1)" disabled>← Back</button>
-  <div class="progress-dots" id="dots"></div>
-  <button class="nav-btn primary" id="nextBtn" onclick="jumpSeg(1)">Next →</button>
 </div>
+
+<div class="dots-bar" id="dots-bar">
+  <span class="dot-label">Seg</span>
+  <div class="dot active" data-seg="0" title="Intro"></div>
+  <div class="dot" data-seg="1" title="What is it"></div>
+  <div class="dot" data-seg="2" title="Risk factors"></div>
+  <div class="dot" data-seg="3" title="Why it matters"></div>
+  <div class="dot" data-seg="4" title="What doctors do"></div>
+  <div class="dot" data-seg="5" title="Research"></div>
+  <div class="dot" data-seg="6" title="Close"></div>
+</div>
+
 <script>
-const TOTAL=9;
-const segments=[
+  const SPEED_LEVELS = [0, 8, 14, 20, 28, 38, 50];
+  let speedLevel = 3, fontSize = 1.9, paused = false, pos = 0, lastTs = null;
+  const wrap  = document.getElementById('scroll-wrap');
+  const inner = document.getElementById('scroll-inner');
+  const spdDisp = document.getElementById('speed-display');
 
-  { type:'opening', label:'Intro · Dr Paul', title:'Introduction', time:'~15 sec',
-    lines:[`<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">▶ ADVANCE NOW — <span>Screen 1: 1 in 4 stat card</span> · advance now</div></div>`,`"I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019."`,`"Today I want to talk to you about <strong>acid reflux</strong> — what it is, what it does over time, and what the evidence says about how to treat it."`,`"Now, I do have to say upfront — what I'm giving you here is health education, not medical advice."`,`"Anything personally relevant is a conversation for you to have with your GP or healthcare professional."`,`"Right — let's get into it."`]},
-  { type:'opening', label:'Segment 1', title:'The Burning You Learn to Live With', time:'0:00–0:45',
-    lines:[`<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">▶ ADVANCE NOW — <span>Screen 2: LOS anatomy diagram</span> · advance now</div></div>`,`"Heartburn affects around <strong>one in four adults in the UK</strong>. Most people manage it with antacids from the chemist. Most people don't talk to their GP about it."`,`<span class="pause-marker">⏸ PAUSE</span>`,`"And yet acid reflux — when it's persistent — is one of the most undertreated conditions I encountered in general practice. Not because treatment doesn't work. But because people assume it's just something you put up with."`,`"It isn't. And for a small but important number of people, putting up with it for years carries real risks. So let's go through what's actually happening."`]},
-  { type:'section', label:'Segment 2', title:"What's Actually Happening", time:'0:45–1:35',
-    lines:[`<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">▶ ADVANCE NOW — <span>Screen 3: Risk factor cards</span> · advance now</div></div>`,`"Between your oesophagus — your gullet — and your stomach, there's a muscular valve called the <strong>lower oesophageal sphincter</strong>."`,`"In normal digestion, it opens to let food through, then closes tightly. In acid reflux, it doesn't close properly — and stomach acid travels back up into the oesophagus."`,`"The oesophageal lining isn't designed to handle acid. So it becomes inflamed. That inflammation is what you experience as <strong>heartburn</strong> — the burning sensation behind the breastbone."`,`"When this happens frequently enough to cause symptoms or damage, it becomes GORD — Gastro-Oesophageal Reflux Disease. G-O-R-D. That's the clinical term."`,`"Occasional heartburn — everyone gets that. GORD is when it becomes your normal."`]},
-  { type:'section', label:'Segment 3', title:'What Makes It More Likely', time:'1:35–2:20',
-    lines:[`<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">▶ ADVANCE NOW — <span>Screen 4: Barrett's pathway diagram</span> · advance now</div></div>`,`"Several things weaken that sphincter valve or increase pressure on the stomach — making reflux more likely."`,`"<strong>Excess weight</strong> is the biggest modifiable factor — abdominal pressure pushes contents upwards. <strong>A hiatus hernia</strong> — where part of the stomach slides up through the diaphragm — physically disrupts the valve mechanism."`,`"<strong>Smoking</strong> weakens the sphincter directly and reduces saliva, which normally neutralises acid. <strong>Pregnancy</strong> both relaxes the sphincter through hormones and adds abdominal pressure as the uterus grows."`,`"<strong>Certain medications</strong> can worsen reflux — NSAIDs like ibuprofen, calcium channel blockers, and some antidepressants. In UK practice, a medication review is a standard clinical conversation for anyone with persistent reflux."`,`"<strong>Meal timing and size</strong> matter too. Large meals, eating late at night, lying flat soon after eating — all give acid more opportunity to escape upwards."`]},
-  { type:'section', label:'Segment 4', title:"Why Persistent GORD Matters", time:'2:20–3:10',
-    lines:[`<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">▶ ADVANCE NOW — <span>Screen 5: Stepped care medication ladder</span> · advance now</div></div>`,`"For most people, GORD is a nuisance. But I want to be direct about why it matters more than that."`,`"Repeated acid exposure inflames the oesophagus. Over time, this can cause erosions, ulceration, and in some cases narrowing — making swallowing progressively difficult."`,`"More importantly: in around 10–15% of people with longstanding GORD, the normal oesophageal lining is replaced by a different cell type. This is called <strong>Barrett's oesophagus</strong>."`,`"Barrett's is a precancerous change. Each year, approximately <strong>0.33% of people with Barrett's develop oesophageal adenocarcinoma</strong> — around 1 in 300 per year. For short-segment Barrett's, the risk is lower still, at about 0.19% per year."`,`"To keep this in proportion: that risk is low for any individual in any given year. But it compounds. And it's the reason that persistent, longstanding reflux — particularly in middle-aged and older men — warrants investigation."`,`"The good news: Barrett's can be detected by endoscopy, monitored, and in many cases treated before cancer develops. The NHS has surveillance programmes for exactly this reason."`]},
-  { type:'section', label:'Segment 5', title:'What Your Doctor Will Discuss', time:'3:10–3:55',
-    lines:[`<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">▶ ADVANCE NOW — <span>Screen 6: Research evidence cards</span> · advance now</div></div>`,`"GORD is usually diagnosed from the history — there's no test needed for a typical presentation. A GP hears a clear description of heartburn and starts treatment."`,`"Lifestyle first: <strong>weight loss</strong> is the most evidence-based lifestyle intervention. Raising the head of the bed, avoiding late meals, stopping smoking — all part of NICE guideline CG184."`,`"For medication, the approach is stepped. Start with antacids and alginates — Gaviscon, for instance — for mild symptoms. If those aren't enough, H2 receptor antagonists. If those aren't enough: a <strong>proton pump inhibitor</strong> — a PPI."`,`"PPIs — omeprazole, lansoprazole — are the most effective acid-suppressing medicines we have. One important thing about how they're used: <strong>30 to 60 minutes before a meal</strong>. Not at bedtime. They work by blocking the proton pump — which is activated by eating. Wrong timing, reduced effect."`,`"Endoscopy — a camera test — isn't needed for most people. NICE describes it as warranted when there are alarm features, or symptoms that persist despite adequate treatment."`,`"And alarm features — difficulty swallowing, unexplained weight loss, vomiting blood — are clinically recognised as time-sensitive. 111 or urgent GP access exists for this. Not because they always mean something serious. But because they need to be ruled out."`]},
-  { type:'section', label:'Segment 6', title:'What the Research Shows', time:'3:55–4:35',
-    lines:[`<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">▶ ADVANCE NOW — <span>Screen 7: Three action cards</span> · advance now</div></div>`,`"Let me pull out the key evidence."`,`"PPIs versus older H2 receptor antagonists: a large Cochrane analysis confirmed PPIs are significantly more effective at healing oesophagitis and controlling symptoms. <strong>PPIs are the right first-line treatment for GORD.</strong>"`,`"The LOTUS trial — a randomised controlled trial across Europe — compared laparoscopic surgery with long-term PPI treatment in over 500 patients, followed for five years. Both produced similar remission rates — around 85–90%. Surgery works as well as long-term medication in appropriately selected patients."`,`"On weight loss: the Nurses' Health Study found that even modest weight loss — around 3–4 kilograms — produced significant symptom improvement. This is not soft advice. It's evidence-based first-line treatment."`,`"On long-term PPI safety: observational data shows small associations with kidney disease, certain gut infections, and nutrient deficiencies. The absolute risks are modest and these are observational findings — not proven causation. PPIs are safe for appropriate long-term use. The key word is appropriate: lowest effective dose, reviewed regularly."`]},
-  { type:'cta', label:'Segment 7', title:'What You Can Do', time:'4:35–5:05',
-    lines:[`<div class="visual-cue"><div class="visual-cue-icon">📺</div><div class="visual-cue-text">▶ ADVANCE NOW — <span>Screen 8: Closing card</span> · advance now</div></div>`,`"<strong>First: frequent heartburn — more than twice a week, most weeks — is a conversation for you to have with your GP or healthcare professional.</strong> Indefinite over-the-counter management misses effective treatments that a proper assessment can unlock."`,`"<strong>Second: PPI timing matters — 30 to 60 minutes before the first meal.</strong> Not at bedtime. This single change makes a meaningful difference to how well it works."`,`"<strong>Third: alarm features — difficulty swallowing, unexplained weight loss, vomiting blood — are clinically recognised as time-sensitive.</strong> 111 or urgent GP access exists for this. They need investigation to rule out serious underlying causes."`,`"The full article with references is at <strong>helf.school</strong> — Article 13 in the Digestive Health series."`]},
-  { type:'closing', label:'Segment 8', title:'Sign-off', time:'5:05–5:20',
-    lines:[`"Acid reflux is one of those conditions where the gap between how common it is and how seriously it's taken is much too wide."`,`"For most people, it's very treatable. For the few where it progresses — surveillance and early treatment work. None of that pathway opens up without that first clinical conversation."`,`<span class="pause-marker">⏸ PAUSE</span>`,`"Thanks for watching. helf.school — take care of yourself."`,]},
+  function applyFont() { inner.style.fontSize = fontSize + 'rem'; }
 
-];
-let playing=false,speed=1,fontSize=1.9,rafId=null,scrollY=0,lastTime=null,currentSeg=0;
-const PX_PER_SEC_BASE=20;
-function build(){const inner=document.getElementById('scrollInner');const bc={opening:'sb-opening',section:'sb-section',cta:'sb-cta',closing:'sb-closing'};const bl={opening:'Opening',section:'Section',cta:'Call to Action',closing:'Closing'};let html='';segments.forEach((s,i)=>{html+=`<div class="segment" id="seg${i}"><div class="seg-header"><span class="seg-badge ${bc[s.type]}">${bl[s.type]}</span><span class="seg-name">${s.label}</span><span class="seg-time">${s.time}</span></div><div class="seg-heading">${s.title}</div>`;s.lines.forEach(l=>{if(l.startsWith('<span class="pause-marker"')||l.startsWith('<div class="visual-cue"')){html+=`<div style="margin:.4rem 0;">${l}</div>`;}else{html+=`<div class="script-line">${l}</div>`;}}); html+=`</div>`;}); inner.innerHTML=html;const de=document.getElementById('dots');segments.forEach((s,i)=>{const d=document.createElement('div');d.className='dot'+(i===0?' active':'');d.title=s.title;d.onclick=()=>jumpToSeg(i);de.appendChild(d);});}
-function getOuter(){return document.querySelector('.scroll-outer');}
-function getInner(){return document.getElementById('scrollInner');}
-function togglePlay(){playing=!playing;const btn=document.getElementById('playBtn');if(playing){btn.textContent='⏸ Pause';btn.classList.add('active');lastTime=null;rafId=requestAnimationFrame(tick);}else{btn.textContent='▶ Play';btn.classList.remove('active');if(rafId)cancelAnimationFrame(rafId);}}
-function tick(ts){if(!lastTime)lastTime=ts;const dt=(ts-lastTime)/1000;lastTime=ts;scrollY+=PX_PER_SEC_BASE*speed*dt;applyScroll();updateSegIndicator();if(playing)rafId=requestAnimationFrame(tick);}
-function applyScroll(){const inner=getInner();const max=inner.scrollHeight-window.innerHeight;scrollY=Math.min(Math.max(scrollY,0),max);inner.style.transform=`translateY(${-scrollY}px)`;}
-function resetScroll(){if(playing)togglePlay();scrollY=0;applyScroll();currentSeg=0;updateDots();document.getElementById('segDisplay').textContent='1';document.getElementById('prevBtn').disabled=true;document.getElementById('nextBtn').textContent='Next →';}
-function changeSpeed(dir){speed=Math.min(Math.max(speed+dir,1),6);document.getElementById('speedVal').textContent=speed;}
-function changeFont(dir){fontSize=Math.min(Math.max(fontSize+dir*0.1,1.0),2.8);document.querySelectorAll('.script-line').forEach(el=>{el.style.fontSize=fontSize+'rem';});}
-function getSegTop(i){const el=document.getElementById('seg'+i);if(!el)return 0;const h=getOuter().clientHeight;return el.offsetTop-h*0.5+60;}
-function jumpToSeg(i){if(playing)togglePlay();currentSeg=Math.min(Math.max(i,0),segments.length-1);scrollY=Math.max(getSegTop(currentSeg),0);applyScroll();updateDots();updateSegIndicator();document.getElementById('prevBtn').disabled=currentSeg===0;document.getElementById('nextBtn').textContent=currentSeg===segments.length-1?'✓ Done':'Next →';}
-function jumpSeg(dir){jumpToSeg(currentSeg+dir);}
-function updateSegIndicator(){const midY=scrollY+getOuter().clientHeight*0.5;for(let i=segments.length-1;i>=0;i--){const el=document.getElementById('seg'+i);if(el&&el.offsetTop<=midY+40){if(currentSeg!==i){currentSeg=i;updateDots();document.getElementById('segDisplay').textContent=i+1;document.getElementById('prevBtn').disabled=i===0;document.getElementById('nextBtn').textContent=i===segments.length-1?'✓ Done':'Next →';}break;}}}
-function updateDots(){document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===currentSeg));document.getElementById('segDisplay').textContent=currentSeg+1;}
-let touchStartY=0,touchScrollY=0;
-document.querySelector('.scroll-outer').addEventListener('touchstart',e=>{if(playing)return;touchStartY=e.touches[0].clientY;touchScrollY=scrollY;},{passive:true});
-document.querySelector('.scroll-outer').addEventListener('touchmove',e=>{if(playing)return;scrollY=touchScrollY+(touchStartY-e.touches[0].clientY);applyScroll();updateSegIndicator();},{passive:true});
-build();applyScroll();
-</script></body></html>
+  function raf(ts) {
+    if (!paused) {
+      if (lastTs !== null) { pos += SPEED_LEVELS[speedLevel] * (ts - lastTs) / 1000; inner.style.transform = 'translateY(-' + pos + 'px)'; }
+      lastTs = ts;
+    } else { lastTs = null; }
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  const dots = document.querySelectorAll('.dot');
+  const segs = document.querySelectorAll('.segment');
+
+  function updateDots() {
+    let active = 0;
+    segs.forEach((seg, i) => { if (pos >= seg.offsetTop - 80) active = i; });
+    dots.forEach(d => d.classList.remove('active'));
+    if (dots[active]) dots[active].classList.add('active');
+  }
+  setInterval(updateDots, 400);
+
+  dots.forEach(d => d.addEventListener('click', () => {
+    const seg = segs[parseInt(d.dataset.seg)];
+    if (seg) { pos = Math.max(0, seg.offsetTop - 80); inner.style.transform = 'translateY(-' + pos + 'px)'; }
+  }));
+
+  document.getElementById('btn-faster').addEventListener('click', () => { speedLevel = Math.min(6, speedLevel + 1); spdDisp.textContent = speedLevel; });
+  document.getElementById('btn-slower').addEventListener('click', () => { speedLevel = Math.max(0, speedLevel - 1); spdDisp.textContent = speedLevel; });
+  document.getElementById('btn-bigger').addEventListener('click', () => { fontSize = Math.min(3.2, +(fontSize + 0.15).toFixed(2)); applyFont(); });
+  document.getElementById('btn-smaller').addEventListener('click', () => { fontSize = Math.max(1.2, +(fontSize - 0.15).toFixed(2)); applyFont(); });
+
+  const pauseBtn = document.getElementById('btn-pause');
+  pauseBtn.addEventListener('click', () => {
+    paused = !paused;
+    pauseBtn.textContent = paused ? '▶ Resume' : '⏸ Pause';
+    pauseBtn.classList.toggle('active', paused);
+  });
+  document.getElementById('btn-reset').addEventListener('click', () => { pos = 0; inner.style.transform = 'translateY(0)'; });
+
+  let ty = 0;
+  wrap.addEventListener('touchstart', e => { ty = e.touches[0].clientY; paused = true; pauseBtn.textContent = '▶ Resume'; pauseBtn.classList.add('active'); });
+  wrap.addEventListener('touchmove', e => { e.preventDefault(); const dy = e.touches[0].clientY - ty; pos = Math.max(0, pos - dy * 0.8); inner.style.transform = 'translateY(-' + pos + 'px)'; ty = e.touches[0].clientY; }, { passive: false });
+
+  applyFont();
+</script>
+</body>
+</html>

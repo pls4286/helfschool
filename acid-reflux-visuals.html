@@ -54,7 +54,8 @@
     .sphinct-badge.bad{color:var(--bad);background:rgba(232,122,90,.18);border:1px solid rgba(232,122,90,.5)}
     .sphinct-svg{width:100%;max-width:260px}
     .sphinct-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;flex-shrink:0}
-    .sp-card{background:rgba(255,255,255,.05);border:1px solid rgba(212,124,58,.25);border-radius:10px;padding:.55rem .85rem;display:flex;align-items:flex-start;gap:.55rem;opacity:0;transform:translateY(8px);transition:all .4s ease}
+    .sp-card{background:rgba(255,255,255,.05);border:1px solid rgba(212,124,58,.25);border-radius:10px;padding:.55rem .85rem;display:flex;align-items:flex-start;gap:.55rem;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .sp-card.animate-ready{opacity:0;transform:translateY(8px)}
     .sp-card.vis{opacity:1;transform:translateY(0)}
     .sp-icon{font-size:1.2rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
     .sp-title{font-size:.88rem;font-weight:700;color:#fff;margin-bottom:.12rem;line-height:1.15}
@@ -62,18 +63,20 @@
 
     /* ─── SLIDE 3: RISK FACTORS · HORIZONTAL ROWS · AMBER ─── */
     .risk-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
-    .risk-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .risk-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .risk-card.animate-ready{opacity:0;transform:translateY(14px)}
     .risk-card.vis{opacity:1;transform:translateY(0)}
-    .risk-icon{font-size:2.2rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .risk-icon{font-size:2.2rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
     .risk-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
     .risk-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.2rem;line-height:1.12;letter-spacing:-.01em}
-    .risk-body{font-size:.92rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400}
-    .risk-outcome{font-family:'Fraunces',serif;font-size:clamp(1rem,1.6vw,1.4rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
+    .risk-body{font-size:.92rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .risk-outcome{font-family:'Fraunces',serif;font-size:clamp(1rem,1.6vw,1.4rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem;padding-top:.1rem}
 
     /* ─── SLIDE 4: BARRETT'S PATHWAY ─── */
     .path-wrap{display:flex;flex-direction:column;flex:1;min-height:0;gap:1rem;justify-content:center}
     .path-row{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:stretch;gap:.35rem;width:100%}
-    .path-step{background:rgba(255,255,255,.05);border:1px solid;border-radius:12px;padding:.85rem .95rem;display:flex;flex-direction:column;align-items:center;gap:.35rem;text-align:center;opacity:0;transform:translateY(10px);transition:all .45s ease}
+    .path-step{background:rgba(255,255,255,.05);border:1px solid;border-radius:12px;padding:.85rem .95rem;display:flex;flex-direction:column;align-items:center;gap:.35rem;text-align:center;opacity:1;transform:translateY(0);transition:all .45s ease}
+    .path-step.animate-ready{opacity:0;transform:translateY(10px)}
     .path-step.vis{opacity:1;transform:translateY(0)}
     .path-step.s1{background:rgba(126,204,153,.1);border-color:rgba(126,204,153,.4)}
     .path-step.s2{background:rgba(232,168,74,.1);border-color:rgba(232,168,74,.4)}
@@ -94,47 +97,55 @@
 
     /* ─── SLIDE 5: DOCTOR · HORIZONTAL ROWS · ACTION · GREEN ─── */
     .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
-    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .doc-card.animate-ready{opacity:0;transform:translateY(14px)}
     .doc-card.vis{opacity:1;transform:translateY(0)}
-    .doc-icon{font-size:2.2rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .doc-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
-    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.2rem;line-height:1.12;letter-spacing:-.01em}
-    .doc-body{font-size:.92rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400}
+    .doc-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .doc-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
+    .doc-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
     .doc-body strong{color:#fff;font-weight:700}
-    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1rem,1.6vw,1.45rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
+    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1rem,1.6vw,1.45rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem;padding-top:.1rem}
 
-    /* ─── SLIDE 6: RESEARCH · EV-CARDS ─── */
-    .ev-stage{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(4,1fr);gap:.65rem;flex:1;min-height:0}
-    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,124,58,.32);border-radius:12px;padding:.85rem 1.2rem;display:grid;grid-template-columns:150px 1fr;gap:1.2rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(12px);transition:all .42s ease}
+    /* ─── SLIDES 6–7: RESEARCH · EV-CARDS — 2 cards per slide ─── */
+    .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
+    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,124,58,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .45s ease}
+    .ev-card.animate-ready{opacity:0;transform:translateY(14px)}
     .ev-card.vis{opacity:1;transform:translateY(0)}
-    .ev-stat-box{text-align:center;background:rgba(212,124,58,.12);border-radius:10px;padding:.7rem .5rem}
-    .ev-stat{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:700;line-height:1.1;color:var(--digest);letter-spacing:-.01em}
-    .ev-stat-lab{font-size:.75rem;color:rgba(255,255,255,.92);font-weight:700;margin-top:.3rem;line-height:1.3}
-    .ev-detail{min-width:0}
-    .ev-trial{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:.12rem;line-height:1.2;letter-spacing:-.01em}
-    .ev-journal{font-size:.82rem;color:rgba(255,255,255,.85);margin-bottom:.3rem;font-weight:500}
-    .ev-finding{font-size:.88rem;color:rgba(255,255,255,.92);line-height:1.45;font-weight:400}
-    .ev-finding strong{color:#fff;font-weight:700}
+    .ev-stat-box{background:rgba(212,124,58,.09);border-radius:14px;padding:1.25rem .85rem;text-align:center;overflow:hidden}
+    .ev-kf-label{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(212,124,58,.8);margin-bottom:.55rem}
+    .ev-stat-row{display:flex;align-items:baseline;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:.45rem}
+    .ev-num{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;line-height:1;letter-spacing:-.02em;flex-shrink:0}
+    .ev-num.good{color:var(--good)}
+    .ev-num.bad{color:var(--bad)}
+    .ev-num.warn{color:var(--warn)}
+    .ev-outcome{font-size:.95rem;font-weight:700;color:#fff;line-height:1.3;text-align:left}
+    .ev-conditions{font-size:.88rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.35}
+    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.4rem;margin-bottom:.25rem;line-height:1.15;letter-spacing:-.01em}
+    .ev-det .ev-journal{font-size:.92rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
+    .ev-det .ev-body{font-size:1rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400}
+    .ev-det .ev-body strong{color:#fff;font-weight:700}
 
-    /* ─── SLIDE 7: CTA · HIGH-IMPACT ─── */
+    /* ─── SLIDE 7: CTA · cta-wrap-v2 horizontal rows ─── */
     .cta-slide{position:relative}
-    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%, rgba(212,184,74,.18), rgba(212,184,74,.04) 45%, transparent 70%);pointer-events:none;z-index:0}
-    .cta-wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:.85rem;padding:.5rem}
-    .cta-badge{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.42rem 1.15rem;border-radius:100px;box-shadow:0 0 30px rgba(212,184,74,.14)}
-    .cta-icon{font-size:clamp(4.5rem,8vw,6rem);line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;filter:drop-shadow(0 0 30px rgba(212,184,74,.28));animation:pulseHalo 3.2s ease-in-out infinite}
-    @keyframes pulseHalo{0%,100%{filter:drop-shadow(0 0 28px rgba(212,184,74,.22))}50%{filter:drop-shadow(0 0 55px rgba(212,184,74,.55))}}
-    .cta-headline{font-family:'Fraunces',serif;font-size:clamp(3.2rem,5.8vw,4.9rem);font-weight:700;color:#fff;line-height:1.02;max-width:1000px;letter-spacing:-.028em}
-    .cta-headline span{color:var(--acc)}
-    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.4vw,1.85rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);max-width:780px;line-height:1.32}
-    .cta-body{font-size:1.05rem;color:rgba(255,255,255,.90);max-width:800px;line-height:1.52;font-weight:400}
-    .cta-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;max-width:920px;width:100%;margin-top:.25rem}
-    .cta-ac{background:linear-gradient(180deg,rgba(212,184,74,.16),rgba(212,184,74,.06));border:1.5px solid rgba(212,184,74,.45);border-radius:14px;padding:.95rem .55rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;text-align:center;transition:transform .25s ease}
-    .cta-ac:hover{transform:translateY(-2px)}
-    .cta-ac-icon{font-size:1.85rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .cta-ac-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.94rem;line-height:1.18}
-    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.8rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;margin-top:.6rem;max-width:920px}
+    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(212,184,74,.18),rgba(212,184,74,.04) 45%,transparent 70%);pointer-events:none;z-index:0}
+    .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem;gap:.45rem;min-height:0;overflow:hidden}
+    .cta-top{display:flex;flex-direction:column;align-items:center;gap:.3rem;text-align:center}
+    .cta-badge-v2{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.3rem .95rem;border-radius:100px}
+    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:700;color:#fff;line-height:1.02;letter-spacing:-.028em}
+    .cta-headline-v2 span{color:var(--acc)}
+    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(.95rem,1.5vw,1.2rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);line-height:1.3}
+    .cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.4rem;min-height:0;overflow:hidden}
+    .cta-row-v2{background:linear-gradient(90deg,rgba(212,184,74,.12),rgba(212,184,74,.04));border-left:4px solid var(--acc);border-radius:0 10px 10px 0;padding:.6rem .95rem;display:grid;grid-template-columns:52px 1fr auto;gap:.9rem;align-items:start;min-height:0;overflow:hidden}
+    .cta-row-icon{font-size:1.7rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .cta-row-mid{display:flex;flex-direction:column;gap:.12rem;min-width:0}
+    .cta-row-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.95rem;line-height:1.15}
+    .cta-row-body-v2{font-size:.82rem;color:rgba(255,255,255,.90);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .cta-row-word-v2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.2rem,2vw,1.7rem);color:var(--acc);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:.6rem}
+    .cta-bottom{display:flex;justify-content:center;flex-shrink:0}
+    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.75rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;max-width:900px;width:100%}
     .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.85);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left}
+    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.88);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left;font-weight:400}
     .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
 
     /* ─── SLIDE 8: CLOSING ─── */
@@ -170,7 +181,7 @@
     <span class="tb-sub">· Acid Reflux</span>
   </div>
   <div class="tb-right">
-    <span id="counter" class="slide-counter">1 / 8</span>
+    <span id="counter" class="slide-counter">1 / 9</span>
     <span class="kb-hint">← → navigate</span>
   </div>
 </div>
@@ -198,36 +209,34 @@
         <!-- NORMAL -->
         <div class="sphinct-col">
           <div class="sphinct-badge ok">✓ Normal</div>
-          <svg class="sphinct-svg" viewBox="0 0 135 175" xmlns="http://www.w3.org/2000/svg">
+          <svg class="sphinct-svg" viewBox="0 0 200 182" xmlns="http://www.w3.org/2000/svg">
             <text x="67" y="11" text-anchor="middle" font-size="9.5" fill="rgba(255,255,255,.80)" font-weight="600">Throat</text>
             <rect x="47" y="14" width="38" height="74" rx="8" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.80)" stroke-width="2.5"/>
-            <line x1="87" y1="32" x2="113" y2="26" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
-            <text x="115" y="24" font-size="8.5" fill="rgba(255,255,255,.92)" font-weight="600">Oesophagus</text>
+            <line x1="87" y1="32" x2="112" y2="26" stroke="rgba(255,255,255,.55)" stroke-width="1.2"/>
+            <text x="115" y="30" font-size="9" fill="rgba(255,255,255,.92)" font-weight="700">Oesophagus</text>
+            <text x="115" y="41" font-size="8" fill="rgba(255,255,255,.60)" font-style="italic">(the gullet)</text>
             <line x1="66" y1="22" x2="66" y2="55" stroke="#7ecc99" stroke-width="2" stroke-dasharray="4,3"/>
             <polygon points="66,63 59,50 73,50" fill="#7ecc99"/>
             <path d="M24 90 Q46 82 66 84 Q86 82 110 90" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.8" stroke-dasharray="5,3"/>
             <text x="66" y="100" text-anchor="middle" font-size="8.5" fill="rgba(255,255,255,.72)" font-style="italic">diaphragm</text>
             <rect x="41" y="86" width="50" height="13" rx="5" fill="#7ecc99"/>
             <text x="66" y="96.5" text-anchor="middle" font-size="9" fill="#fff" font-weight="800">LOS — CLOSED ✓</text>
-            <line x1="41" y1="92" x2="14" y2="104" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
-            <text x="11" y="100" text-anchor="end" font-size="8" fill="rgba(255,255,255,.92)" font-weight="700">Lower Oesophageal</text>
-            <text x="11" y="110" text-anchor="end" font-size="8" fill="rgba(255,255,255,.92)" font-weight="700">Sphincter (LOS)</text>
             <path d="M32 102 Q23 118 27 136 Q33 152 66 154 Q99 152 105 136 Q109 118 100 102 Z" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.72)" stroke-width="2.5"/>
             <text x="66" y="127" text-anchor="middle" font-size="9.5" fill="rgba(255,255,255,.82)" font-weight="600">STOMACH</text>
-            <text x="66" y="144" text-anchor="middle" font-size="13" fill="#7ecc99" font-weight="800">acid stays ✓</text>
+            <text x="66" y="175" text-anchor="middle" font-size="12" fill="#7ecc99" font-weight="800">acid stays ✓</text>
           </svg>
         </div>
 
         <!-- GORD -->
         <div class="sphinct-col">
           <div class="sphinct-badge bad">✗ GORD</div>
-          <svg class="sphinct-svg" viewBox="0 0 135 175" xmlns="http://www.w3.org/2000/svg">
+          <svg class="sphinct-svg" viewBox="0 0 200 182" xmlns="http://www.w3.org/2000/svg">
             <text x="67" y="11" text-anchor="middle" font-size="9.5" fill="rgba(255,255,255,.80)" font-weight="600">Throat</text>
             <rect x="47" y="14" width="38" height="74" rx="8" fill="rgba(232,122,90,.10)" stroke="rgba(255,255,255,.80)" stroke-width="2.5"/>
             <rect x="48" y="36" width="36" height="52" rx="7" fill="rgba(232,122,90,.30)"/>
-            <line x1="87" y1="32" x2="113" y2="26" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
-            <text x="115" y="24" font-size="8.5" fill="rgba(255,255,255,.92)" font-weight="600">Oesophagus</text>
-            <text x="115" y="34" font-size="8" fill="rgba(232,122,90,.95)">(inflamed)</text>
+            <line x1="87" y1="32" x2="112" y2="26" stroke="rgba(255,255,255,.55)" stroke-width="1.2"/>
+            <text x="115" y="30" font-size="9" fill="rgba(255,255,255,.92)" font-weight="700">Oesophagus</text>
+            <text x="115" y="41" font-size="8" fill="rgba(232,122,90,.85)" font-style="italic">(inflamed)</text>
             <circle cx="59" cy="87" r="4" fill="#e87a5a" opacity="0" style="animation:rise2 2s ease-in-out 0s infinite"/>
             <circle cx="67" cy="87" r="3" fill="#e8a84a" opacity="0" style="animation:rise2 2s ease-in-out .7s infinite"/>
             <circle cx="75" cy="87" r="4" fill="#e87a5a" opacity="0" style="animation:rise2 2s ease-in-out 1.4s infinite"/>
@@ -235,28 +244,25 @@
             <text x="66" y="100" text-anchor="middle" font-size="8.5" fill="rgba(255,255,255,.72)" font-style="italic">diaphragm</text>
             <path d="M41 90 Q54 83 66 90 Q78 97 91 90" fill="none" stroke="#e87a5a" stroke-width="4" stroke-linecap="round"/>
             <text x="66" y="83" text-anchor="middle" font-size="9" fill="#e87a5a" font-weight="800">LOS — OPEN ✗</text>
-            <line x1="41" y1="90" x2="14" y2="104" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
-            <text x="11" y="100" text-anchor="end" font-size="8" fill="rgba(255,255,255,.92)" font-weight="700">Lower Oesophageal</text>
-            <text x="11" y="110" text-anchor="end" font-size="8" fill="rgba(255,255,255,.92)" font-weight="700">Sphincter (LOS)</text>
             <path d="M32 102 Q23 118 27 136 Q33 152 66 154 Q99 152 105 136 Q109 118 100 102 Z" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.72)" stroke-width="2.5"/>
             <ellipse cx="66" cy="148" rx="24" ry="6" fill="rgba(232,122,90,.45)"/>
             <text x="66" y="123" text-anchor="middle" font-size="9.5" fill="rgba(255,255,255,.82)" font-weight="600">STOMACH</text>
-            <text x="66" y="141" text-anchor="middle" font-size="13" fill="#e87a5a" font-weight="800">acid escapes ✗</text>
+            <text x="66" y="175" text-anchor="middle" font-size="12" fill="#e87a5a" font-weight="800">acid escapes ✗</text>
           </svg>
         </div>
 
       </div>
 
       <div class="sphinct-cards">
-        <div class="sp-card" id="sp1">
+        <div class="sp-card animate-ready" id="sp1">
           <span class="sp-icon">🔒</span>
           <div><div class="sp-title">LOS — lower oesophageal sphincter</div><div class="sp-sub">Muscular valve at the base of the gullet. Opens for food, then closes tightly. In GORD it fails — letting acid back up.</div></div>
         </div>
-        <div class="sp-card" id="sp2">
+        <div class="sp-card animate-ready" id="sp2">
           <span class="sp-icon">🔥</span>
           <div><div class="sp-title">Heartburn</div><div class="sp-sub">Burning behind the breastbone — acid irritating the oesophageal lining. Nothing to do with the heart.</div></div>
         </div>
-        <div class="sp-card" id="sp3">
+        <div class="sp-card animate-ready" id="sp3">
           <span class="sp-icon">🏥</span>
           <div><div class="sp-title">GORD</div><div class="sp-sub">Gastro-Oesophageal Reflux Disease — when reflux is frequent enough to cause symptoms or damage.</div></div>
         </div>
@@ -269,7 +275,7 @@
     <div class="slide-title">What <span>pushes the LOS open</span> — six risk factors</div>
     <div class="risk-grid">
 
-      <div class="risk-card" id="r1">
+      <div class="risk-card animate-ready" id="r1">
         <div class="risk-icon">⚖️</div>
         <div class="risk-content">
           <div class="risk-title">Excess weight</div>
@@ -278,7 +284,7 @@
         <div class="risk-outcome">→ Pressure</div>
       </div>
 
-      <div class="risk-card" id="r2">
+      <div class="risk-card animate-ready" id="r2">
         <div class="risk-icon">🕳️</div>
         <div class="risk-content">
           <div class="risk-title">Hiatus hernia</div>
@@ -287,7 +293,7 @@
         <div class="risk-outcome">→ Anatomy</div>
       </div>
 
-      <div class="risk-card" id="r3">
+      <div class="risk-card animate-ready" id="r3">
         <div class="risk-icon">🚬</div>
         <div class="risk-content">
           <div class="risk-title">Smoking</div>
@@ -296,7 +302,7 @@
         <div class="risk-outcome">→ Weakens LOS</div>
       </div>
 
-      <div class="risk-card" id="r4">
+      <div class="risk-card animate-ready" id="r4">
         <div class="risk-icon">🤰</div>
         <div class="risk-content">
           <div class="risk-title">Pregnancy</div>
@@ -305,7 +311,7 @@
         <div class="risk-outcome">→ Hormones</div>
       </div>
 
-      <div class="risk-card" id="r5">
+      <div class="risk-card animate-ready" id="r5">
         <div class="risk-icon">💊</div>
         <div class="risk-content">
           <div class="risk-title">Medications</div>
@@ -314,11 +320,11 @@
         <div class="risk-outcome">→ Drug effect</div>
       </div>
 
-      <div class="risk-card" id="r6">
+      <div class="risk-card animate-ready" id="r6">
         <div class="risk-icon">🍽️</div>
         <div class="risk-content">
           <div class="risk-title">Meal timing &amp; size</div>
-          <div class="risk-body">Large meals, eating late, and lying flat soon after eating — all increase opportunity for acid escape.</div>
+          <div class="risk-body">Large meals, eating late, and lying flat soon after eating are all associated with increased acid escape.</div>
         </div>
         <div class="risk-outcome">→ Behaviour</div>
       </div>
@@ -332,25 +338,25 @@
     <div class="path-wrap">
 
       <div class="path-row">
-        <div class="path-step s1" id="p1">
+        <div class="path-step s1 animate-ready" id="p1">
           <div class="path-step-icon">N</div>
           <div class="path-step-title">Normal oesophagus</div>
           <div class="path-step-sub">Smooth squamous lining</div>
         </div>
         <div class="path-arrow">→</div>
-        <div class="path-step s2" id="p2">
+        <div class="path-step s2 animate-ready" id="p2">
           <div class="path-step-icon">1</div>
           <div class="path-step-title">GORD / oesophagitis</div>
           <div class="path-step-sub">Repeated acid damage, inflammation</div>
         </div>
         <div class="path-arrow">→</div>
-        <div class="path-step s3" id="p3">
+        <div class="path-step s3 animate-ready" id="p3">
           <div class="path-step-icon">2</div>
           <div class="path-step-title">Barrett's oesophagus</div>
           <div class="path-step-sub">Cell type change — precancerous</div>
         </div>
         <div class="path-arrow">→</div>
-        <div class="path-step s4" id="p4">
+        <div class="path-step s4 animate-ready" id="p4">
           <div class="path-step-icon">3</div>
           <div class="path-step-title">Dysplasia / cancer</div>
           <div class="path-step-sub">Abnormal cells — surveilled closely</div>
@@ -370,16 +376,16 @@
     <div class="slide-title">What your <span>doctor might do</span> — stepped approach</div>
     <div class="doc-grid">
 
-      <div class="doc-card" id="d1">
+      <div class="doc-card animate-ready" id="d1">
         <div class="doc-icon">⚖️</div>
         <div class="doc-content">
           <div class="doc-title">Lifestyle first — weight, meal timing, alcohol, smoking</div>
-          <div class="doc-body">Modest weight loss reduces symptoms. Avoid late, large meals. Raise head of bed for night-time symptoms.</div>
+          <div class="doc-body">Weight loss is the most evidence-based lifestyle step. Late meals, large portions, and lying flat are all associated with increased reflux. A raised bed head reduces night-time symptoms.</div>
         </div>
         <div class="doc-action">1st line</div>
       </div>
 
-      <div class="doc-card" id="d2">
+      <div class="doc-card animate-ready" id="d2">
         <div class="doc-icon">💊</div>
         <div class="doc-content">
           <div class="doc-title">Antacids &amp; alginates — Gaviscon, Rennies</div>
@@ -388,7 +394,7 @@
         <div class="doc-action">As needed</div>
       </div>
 
-      <div class="doc-card" id="d3">
+      <div class="doc-card animate-ready" id="d3">
         <div class="doc-icon">🟡</div>
         <div class="doc-content">
           <div class="doc-title">H2 receptor antagonists — famotidine</div>
@@ -397,25 +403,25 @@
         <div class="doc-action">Step up</div>
       </div>
 
-      <div class="doc-card" id="d4">
+      <div class="doc-card animate-ready" id="d4">
         <div class="doc-icon">🟠</div>
         <div class="doc-content">
           <div class="doc-title">Proton pump inhibitors (PPIs) — omeprazole, lansoprazole</div>
-          <div class="doc-body">Most potent acid suppression. <strong>Take 30–60 min before meals</strong> — the pump is activated by eating. Lowest effective dose long-term.</div>
+          <div class="doc-body">Most potent acid suppression. <strong>30–60 min before meals</strong> — the pump is activated by eating. Lowest effective dose long-term.</div>
         </div>
         <div class="doc-action">1st pharmac</div>
       </div>
 
-      <div class="doc-card" id="d5">
+      <div class="doc-card animate-ready" id="d5">
         <div class="doc-icon">🔬</div>
         <div class="doc-content">
           <div class="doc-title">Endoscopy if alarm features</div>
-          <div class="doc-body">Difficulty swallowing · unexplained weight loss · vomiting blood · persistent vomiting — clinically recognised as time-sensitive.</div>
+          <div class="doc-body">Difficulty swallowing · unexplained weight loss · vomiting blood · persistent vomiting — clinically recognised as time-sensitive. 111 or urgent GP access exists for this.</div>
         </div>
-        <div class="doc-action">111 / urgent GP</div>
+        <div class="doc-action">111 / urgent</div>
       </div>
 
-      <div class="doc-card" id="d6">
+      <div class="doc-card animate-ready" id="d6">
         <div class="doc-icon">🛡️</div>
         <div class="doc-content">
           <div class="doc-title">Barrett's surveillance · surgery in selected cases</div>
@@ -427,92 +433,134 @@
     </div>
   </div>
 
-  <!-- SLIDE 6: RESEARCH -->
+  <!-- SLIDE 6: RESEARCH — PPIs + LOTUS -->
   <div class="slide">
-    <div class="slide-title">What the <span>evidence</span> actually shows</div>
+    <div class="slide-title">What the <span>evidence</span> shows · treatment</div>
     <div class="ev-stage">
 
-      <div class="ev-card" id="e1">
+      <div class="ev-card animate-ready" id="e1">
         <div class="ev-stat-box">
-          <div class="ev-stat">↑ Healing</div>
-          <div class="ev-stat-lab">PPIs &gt; H2RAs across severity grades</div>
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good" style="font-size:2rem">Higher</div>
+            <div class="ev-outcome">healing &amp; symptom relief</div>
+          </div>
+          <div class="ev-conditions">PPIs vs H2RAs across all severity grades</div>
         </div>
-        <div class="ev-detail">
+        <div class="ev-det">
           <div class="ev-trial">Cochrane — PPIs vs H2-receptor antagonists</div>
           <div class="ev-journal">Cochrane Database · 134 trials · 35,978 participants</div>
-          <div class="ev-finding">PPIs produced <strong>significantly higher rates of oesophagitis healing and symptom relief</strong> across all severity grades. Confirms PPIs as correct first-line pharmacological treatment for GORD ⚑.</div>
+          <div class="ev-body">PPIs produced <strong>significantly higher rates of oesophagitis healing and symptom relief</strong> across all severity grades. Confirms PPIs as the correct first-line pharmacological treatment for GORD ⚑.</div>
         </div>
       </div>
 
-      <div class="ev-card" id="e2">
+      <div class="ev-card animate-ready" id="e2">
         <div class="ev-stat-box">
-          <div class="ev-stat">~85–90%</div>
-          <div class="ev-stat-lab">remission — surgery &amp; long-term PPI</div>
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good">~85–90%</div>
+            <div class="ev-outcome">remission rate</div>
+          </div>
+          <div class="ev-conditions">surgery &amp; PPI — equivalent outcomes at 5 years</div>
         </div>
-        <div class="ev-detail">
+        <div class="ev-det">
           <div class="ev-trial">LOTUS — anti-reflux surgery vs esomeprazole</div>
           <div class="ev-journal">Galmiche et al. · JAMA · 2011 · 554 patients · 5-year follow-up</div>
-          <div class="ev-finding">Both arms achieved <strong>around 85–90% remission at 5 years</strong>. Surgery works as well as long-term medication — the choice depends on the individual, side-effect profile, and preferences ⚑.</div>
-        </div>
-      </div>
-
-      <div class="ev-card" id="e3">
-        <div class="ev-stat-box">
-          <div class="ev-stat">↓ Symptoms</div>
-          <div class="ev-stat-lab">modest weight loss · large cohort</div>
-        </div>
-        <div class="ev-detail">
-          <div class="ev-trial">Jacobson et al. — weight &amp; GORD symptoms</div>
-          <div class="ev-journal">NEJM · 2006 · Nurses' Health Study · ~10,000 women</div>
-          <div class="ev-finding">Even <strong>modest weight loss (~3.5 kg)</strong> significantly reduced reflux symptom frequency. Weight is the most evidence-based lifestyle intervention for GORD ⚑.</div>
-        </div>
-      </div>
-
-      <div class="ev-card" id="e4">
-        <div class="ev-stat-box">
-          <div class="ev-stat">~0.33%/yr</div>
-          <div class="ev-stat-lab">Barrett's → adenocarcinoma · annual</div>
-        </div>
-        <div class="ev-detail">
-          <div class="ev-trial">Desai et al. — Barrett's cancer progression risk</div>
-          <div class="ev-journal">Gut · 2012 · meta-analysis · 57 studies · 58,000+ patients</div>
-          <div class="ev-finding">Annual adenocarcinoma risk in Barrett's is <strong>~0.33% per year</strong> — much lower than earlier estimates. Risk is real but low — supports proportionate surveillance, not alarm ⚑.</div>
+          <div class="ev-body">Both arms achieved <strong>around 85–90% remission at 5 years</strong>. Surgery works as well as long-term medication — the choice depends on the individual, side-effect profile, and preferences ⚑.</div>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- SLIDE 7: CTA · HIGH-IMPACT -->
-  <div class="slide cta-slide">
-    <div class="cta-glow"></div>
-    <div class="cta-wrap">
-      <div class="cta-badge">Where to start</div>
-      <div class="cta-icon">🔥</div>
-      <div class="cta-headline">Frequent heartburn<br/><span>isn't normal heartburn.</span></div>
-      <div class="cta-subline">More than twice a week? Time to look at it properly.</div>
-      <div class="cta-body">GORD is treatable — and a few specific actions make most of the difference. These four are the evidence-based starting points most adults with persistent reflux will benefit from.</div>
-      <div class="cta-actions">
-        <div class="cta-ac">
-          <div class="cta-ac-icon">⚖️</div>
-          <div class="cta-ac-label">Weight &amp; meal timing first</div>
+  <!-- SLIDE 7: RESEARCH — Weight loss + Barrett's risk -->
+  <div class="slide">
+    <div class="slide-title">What the <span>evidence</span> shows · lifestyle &amp; risk</div>
+    <div class="ev-stage">
+
+      <div class="ev-card animate-ready" id="e3">
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good">~3.5 kg</div>
+            <div class="ev-outcome">triggers symptom improvement</div>
+          </div>
+          <div class="ev-conditions">even modest weight loss — Nurses' Health Study</div>
         </div>
-        <div class="cta-ac">
-          <div class="cta-ac-icon">⏰</div>
-          <div class="cta-ac-label">PPI 30–60 min before meals, not bedtime</div>
-        </div>
-        <div class="cta-ac">
-          <div class="cta-ac-icon">🩺</div>
-          <div class="cta-ac-label">GP review if &gt; twice a week</div>
-        </div>
-        <div class="cta-ac">
-          <div class="cta-ac-icon">🚨</div>
-          <div class="cta-ac-label">Alarm features → 111 / urgent GP</div>
+        <div class="ev-det">
+          <div class="ev-trial">Jacobson et al. — weight &amp; GORD symptoms</div>
+          <div class="ev-journal">NEJM · 2006 · Nurses' Health Study · ~10,000 women</div>
+          <div class="ev-body">Even <strong>modest weight loss (~3.5 kg)</strong> significantly reduced reflux symptom frequency. Weight is the most evidence-based lifestyle intervention for GORD ⚑.</div>
         </div>
       </div>
-      <div class="med-disclaimer">
-        <div class="med-disc-icon">⚕️</div>
-        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Any changes you're considering are a conversation for you to have with your GP or healthcare professional.</div>
+
+      <div class="ev-card animate-ready" id="e4">
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num warn">0.33%</div>
+            <div class="ev-outcome">annual cancer risk from Barrett's</div>
+          </div>
+          <div class="ev-conditions">much lower than earlier estimates — risk is real but proportionate</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">Desai et al. — Barrett's cancer progression risk</div>
+          <div class="ev-journal">Gut · 2012 · meta-analysis · 57 studies · 58,000+ patients</div>
+          <div class="ev-body">Annual adenocarcinoma risk in Barrett's is <strong>~0.33% per year</strong> — much lower than earlier estimates. Risk is real but low — supports proportionate surveillance, not alarm ⚑.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SLIDE 7: CTA · cta-wrap-v2 HORIZONTAL ROWS -->
+  <div class="slide cta-slide">
+    <div class="cta-glow"></div>
+    <div class="cta-wrap-v2">
+      <div class="cta-top">
+        <div class="cta-badge-v2">What the evidence shows</div>
+        <div class="cta-headline-v2">Frequent heartburn<br/><span>is treatable.</span></div>
+        <div class="cta-subline">The evidence points to a small number of actions that make most of the difference.</div>
+      </div>
+      <div class="cta-rows-v2">
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">⚖️</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Weight &amp; meal timing</div>
+            <div class="cta-row-body-v2">Weight loss is the most evidence-based lifestyle step — even ~3.5 kg is linked to significant symptom reduction in large cohort data</div>
+          </div>
+          <div class="cta-row-word-v2">~3.5 kg</div>
+        </div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">💊</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">PPI before meals, not bedtime</div>
+            <div class="cta-row-body-v2">Taken 30–60 minutes before eating — the proton pump activates with food, so timing determines effectiveness</div>
+          </div>
+          <div class="cta-row-word-v2">30–60 min</div>
+        </div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">🩺</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Frequent reflux warrants assessment</div>
+            <div class="cta-row-body-v2">More than twice a week, most weeks — a conversation for you to have with your GP or healthcare professional</div>
+          </div>
+          <div class="cta-row-word-v2">×2/wk</div>
+        </div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">🚨</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Alarm features are time-sensitive</div>
+            <div class="cta-row-body-v2">Difficulty swallowing, unexplained weight loss, vomiting blood — clinically recognised as time-sensitive. 111 or urgent GP access exists for this</div>
+          </div>
+          <div class="cta-row-word-v2">111</div>
+        </div>
+      </div>
+      <div class="cta-bottom">
+        <div class="med-disclaimer">
+          <div class="med-disc-icon">⚕️</div>
+          <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -560,6 +608,7 @@
   <div class="dot" onclick="goTo(5)"></div>
   <div class="dot" onclick="goTo(6)"></div>
   <div class="dot" onclick="goTo(7)"></div>
+  <div class="dot" onclick="goTo(8)"></div>
 </div>
 
 <div class="disc">Health education — not medical advice. helf.school</div>
@@ -594,14 +643,15 @@
 
   function triggerSlide(n){
     if(n===1) animateGroup(['sp1','sp2','sp3'], 250);
-    if(n===2) animateGroup(['r1','r2','r3','r4','r5','r6'], 150);
+    if(n===2) animateGroup(['r1','r2','r3','r4','r5','r6'], 140);
     if(n===3) animateGroup(['p1','p2','p3','p4'], 300);
-    if(n===4) animateGroup(['d1','d2','d3','d4','d5','d6'], 150);
-    if(n===5) animateGroup(['e1','e2','e3','e4'], 220);
+    if(n===4) animateGroup(['d1','d2','d3','d4','d5','d6'], 140);
+    if(n===5) animateGroup(['e1','e2'], 260);
+    if(n===6) animateGroup(['e3','e4'], 260);
   }
   function animateGroup(ids, step){
     ids.forEach((id,i)=>{
-      setTimeout(()=>{ const el=document.getElementById(id); if(el) el.classList.add('vis'); }, 200 + i*step);
+      setTimeout(()=>{ const el=document.getElementById(id); if(el) el.classList.add('vis'); }, 180 + i*step);
     });
   }
 
