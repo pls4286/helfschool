@@ -1,5 +1,5 @@
 # helf.school — Project Knowledge Document
-*Last updated: April 2026 — Session: Articles 13–18 visuals + teleprompters built. All 6 Digestive Health files in outputs awaiting upload. Practical Health uploads (08, 10, 11, 12) still pending. Article 21 not built.*
+*Last updated: April 2026 — Session: All Practical Series uploads confirmed. Articles 13–18 retrofits confirmed complete. stress.html voice fix applied. Conditions page rebuild identified as outstanding. Article 21 ready to build.*
 
 ---
 
@@ -83,7 +83,7 @@ Open-book SVG with "HEALTH EDUCATION" tagline beneath helf.school wordmark.
 
 ### Public pages
 - `index.html` — homepage
-- `helf-school-conditions.html` — conditions library
+- `helf-school-conditions.html` — conditions library ⚠️ NEEDS REBUILD (see Section 15)
 - `helf-school-membership.html` — membership pricing
 
 ### Membership pricing (LIVE — confirmed correct)
@@ -99,8 +99,7 @@ Open-book SVG with "HEALTH EDUCATION" tagline beneath helf.school wordmark.
 
 ### Status key
 - ✅ = all three files correct and on GitHub
-- 🔄 = built/corrected — download from Outputs, upload to GitHub
-- ⚠️ = needs manual text fix before upload (see Section 15)
+- ⚠️ = needs attention (see note)
 - ❌ = files missing or not yet built
 
 ### Cardiovascular Series (Articles 01–07)
@@ -120,46 +119,34 @@ Articles 01–07 fully retrofitted. All three files per article on GitHub and co
 ### Practical Health Series (Articles 08–12)
 | # | Title | Slug | Article | Visuals | Teleprompter |
 |---|-------|------|---------|---------|--------------|
-| 08 | The Mediterranean Diet | mediterranean-diet | ✅ GitHub | 🔄 Upload | 🔄 Upload |
+| 08 | The Mediterranean Diet | mediterranean-diet | ✅ | ✅ | ✅ |
 | 09 | Sleep | sleep | ✅ | ✅ | ✅ |
-| 10 | Exercise | exercise | ✅ GitHub | 🔄 Upload | 🔄 Upload |
-| 11 | Stress | stress | ⚠️ Fix+Upload | 🔄 Upload | 🔄 Upload |
-| 12 | Alcohol | alcohol | ⚠️ Fix+Upload | 🔄 Upload | 🔄 Upload |
+| 10 | Exercise | exercise | ✅ | ✅ | ✅ |
+| 11 | Stress | stress | ✅ | ✅ | ✅ |
+| 12 | Alcohol | alcohol | ✅ | ✅ | ✅ |
 
-**⚠️ MANUAL FIX — Articles 11 AND 12 article HTMLs (stress.html and alcohol.html):**
-In the doctor callout section of BOTH files, find and replace (appears once in each):
-```
-write down your three main concerns before you go in, so nothing gets missed
-```
-Replace with:
-```
-noting main concerns in advance means nothing gets missed in the time available
-```
-
+All Practical Series files confirmed on GitHub. stress.html voice fix applied April 2026.
 **Article 12 Alcohol = canonical reference for visuals horizontal-row layout, colour narrative, and inline citations.**
 
 ### Digestive Health Series (Articles 13–21)
 | # | Title | Slug | Article | Visuals | Teleprompter |
 |---|-------|------|---------|---------|--------------|
-| 13 | Acid Reflux | acid-reflux | ✅ GitHub | 🔄 Upload | 🔄 Upload |
-| 14 | IBD | ibd | ✅ GitHub | 🔄 Upload | 🔄 Upload |
-| 15 | Bloating | bloating | ✅ GitHub | 🔄 Upload | 🔄 Upload |
-| 16 | IBS | ibs | ✅ GitHub | 🔄 Upload | 🔄 Upload |
-| 17 | Fatty Liver Disease (MASLD) | masld | ✅ GitHub | 🔄 Upload | 🔄 Upload |
-| 18 | Coeliac Disease | coeliac | ✅ GitHub | 🔄 Upload | 🔄 Upload |
+| 13 | Acid Reflux | acid-reflux | ✅ | ✅ | ✅ |
+| 14 | IBD | ibd | ✅ | ✅ | ✅ |
+| 15 | Bloating | bloating | ✅ | ✅ | ✅ |
+| 16 | IBS | ibs | ✅ | ✅ | ✅ |
+| 17 | Fatty Liver Disease (MASLD) | masld | ✅ | ✅ | ✅ |
+| 18 | Coeliac Disease | coeliac | ✅ | ✅ | ✅ |
 | 19 | Gallstones | gallstones | ✅ | ✅ | ✅ |
 | 20 | Diverticular Disease | diverticular-disease | ✅ | ✅ | ✅ |
 | 21 | Constipation | constipation | ❌ NOT BUILT | — | — |
 
-**Articles 13–18 visuals + teleprompters:** All 12 files built this session. Download from Outputs panel and upload to GitHub AND the Claude Project.
-
-**Article 13–18 article HTMLs:** On GitHub. Have NOT been voice-audited yet. Require retrofit: voice audit + inline citations + research card stat standard + disclaimer bar. Fetch via GitHub raw URL before bringing into Claude.
+Articles 13–18 article HTML retrofits confirmed complete (voice audit, inline citations, research card stat standard, disclaimer bar).
+Articles 13–20 all three files confirmed on GitHub.
 
 **Article 17 note:** ESSENCE trial ⚑ CLEARED — published NEJM April 2025, PubMed 40305708 ✓.
 
 **Screen files in project:** bloating-gut-screen.html ✅ · bloating-fodmap-screen.html ✅ · ibd-gut-screen.html ✅ · acid reflux screens (ar-sphincter-screen.html, ar-barretts-screen.html) on GitHub ✅.
-
-**Article 21 Constipation: DO NOT BUILD until Articles 13–18 article retrofits complete.**
 
 ---
 
@@ -596,76 +583,44 @@ BMJ · NICE guidelines · Cochrane Database · NEJM · The Lancet · JAMA · BMJ
 
 ## 15. OUTSTANDING TASKS (as of April 2026)
 
-### ✅ Completed this session
-- Articles 13–18 (Acid Reflux, IBD, Bloating, IBS, MASLD, Coeliac): all 12 visuals + teleprompter files built, QC'd, in Outputs
-- All built to canonical standard: animate-ready · ev-stat-row · cta-wrap-v2 · ⏸ Pause format · correct disclaimer · 2 ev-cards per research slide · full voice audit
+### ✅ FULLY COMPLETE — Articles 01–20
+All three files (article HTML, visuals, teleprompter) confirmed on GitHub for every article 01–20.
 
-### ✅ Completed previous sessions
-- Articles 01–07: FULLY RETROFITTED (all 3 files each)
-- Articles 08, 10–12: visuals + teleprompters rebuilt — awaiting upload
-- Article 09 Sleep: all 3 files complete on GitHub
-- Articles 19–20 (Gallstones, Diverticular Disease): COMPLETE new builds
-- All standards locked — see Sections 8–11
-- ESSENCE trial ⚑ CLEARED — NEJM April 2025, PubMed 40305708 ✓
-- Lancet Commission dementia ⚑ CLEARED — DOI 10.1016/S0140-6736(24)01296-0
-- Pricing confirmed correct (£0/£6/£60/£150) ✅
+| Series | Articles | Status |
+|--------|----------|--------|
+| Cardiovascular | 01–07 | ✅ All 3 files each |
+| Practical Health | 08–12 | ✅ All 3 files each |
+| Digestive Health | 13–20 | ✅ All 3 files each |
 
 ---
 
-### ⏳ UPLOAD QUEUE — do in this order
+### ⏳ OUTSTANDING — Priority order
 
-**Step 1 — Digestive Series (Articles 13–18) — 12 files from Outputs:**
-1. acid-reflux-visuals.html
-2. acid-reflux-teleprompter.html
-3. ibd-visuals.html
-4. ibd-teleprompter.html
-5. bloating-visuals.html
-6. bloating-teleprompter.html
-7. ibs-visuals.html
-8. ibs-teleprompter.html
-9. masld-visuals.html
-10. masld-teleprompter.html
-11. coeliac-visuals.html
-12. coeliac-teleprompter.html
+**1. Article 21 — Constipation** ❌ NOT BUILT
+- All 13–18 retrofits are confirmed complete — Article 21 is now cleared to build
+- Build all three files: constipation.html · constipation-visuals.html · constipation-teleprompter.html
+- Slug: `constipation` · Digestive Health Series · Article 21
 
-Upload each to: GitHub AND Claude Project.
+**2. helf-school-conditions.html — NEEDS FULL REBUILD** ⚠️
+The current conditions page was built to a planned structure that does not match the actual site. Issues:
+- Practical Health Series (Articles 08–12) missing entirely
+- Article 07 shows as "Coming soon" — it is live
+- Articles 13–20 show as "Coming soon" with wrong numbering and wrong titles
+- Series structure incorrect (shows Neurological, Fatigue, Medical Decision, Practical — none of which are built)
+- Copyright year: 2025 (needs updating to 2026)
+- Hero stat: "38 planned articles" (needs updating)
+This is a full rebuild, not a patch.
 
-**Step 2 — Practical Series (Articles 08, 10, 11, 12) — 8 files from Outputs:**
-⚠️ Apply manual voice fix to stress.html and alcohol.html BEFORE uploading those article files.
-13. mediterranean-diet-visuals.html
-14. mediterranean-diet-teleprompter.html
-15. exercise-visuals.html
-16. exercise-teleprompter.html
-17. stress.html (manual fix first)
-18. stress-visuals.html
-19. stress-teleprompter.html
-20. alcohol.html (manual fix first)
-21. alcohol-visuals.html
-22. alcohol-teleprompter.html
-
-**Step 3 — This document:**
-23. helf-school-project-knowledge.md → GitHub AND Claude Project
+**3. New series — ready to plan**
+- Neurological series
+- Cancer series
+- Series topics and article list to be confirmed
 
 ---
 
-### ⏳ NEXT BUILD PRIORITY — Articles 13–18 article HTML retrofits
-
-Article HTMLs for Articles 13–18 are on GitHub but have NOT been voice-audited or retrofitted. Each needs:
-- Full voice audit (educational voice standard)
-- Inline citations (superscript links to anchored references)
-- Research card stat standard (outcomes, not participant counts)
-- Disclaimer bar (yellow bar below hero)
-- Nav and readability check
-
-**Method:** Fetch from GitHub raw URL → paste into Claude → audit → rebuild → upload.
-**Do not attempt all 6 in one session** — one article at a time, confirm before proceeding.
-
----
-
-### ⏳ PENDING — other
+### ⏳ PENDING — minor outstanding flags
 
 - **hypertension.html refs 5 + 6** — Cochrane PubMed IDs still flagged ⚑ unverified
-- **Article 21 Constipation** — DO NOT BUILD until Articles 13–18 article retrofits complete
 
 ---
 
@@ -708,7 +663,7 @@ https://raw.githubusercontent.com/pls4286/helfschool/main/[filename].html
 ## 19. END-OF-SESSION UPDATE PROTOCOL
 
 At the end of each productive session:
-1. Update this document with completed work and revised upload queue
+1. Update this document with completed work and revised outstanding tasks
 2. Download with Artifact panel button (NEVER Ctrl+S)
 3. Upload to **both GitHub AND the Claude Project**
 
@@ -728,10 +683,12 @@ At the end of each productive session:
 | April 2026 | Canonical teleprompter format locked: ⏸ Pause button, no Google Fonts, bottom dots bar, speed levels [0,8,14,20,28,38,50] default index 3 |
 | April 2026 | CTA icon rule locked: OMIT large emoji from CTA slide by default |
 | April 2026 | Max 2 ev-cards per research slide — split to new slide if more |
-| April 2026 | Articles 01–12 all three files correct (Articles 11–12 need 1 manual voice fix before GitHub upload) |
-| April 2026 | Articles 13–18 visuals + teleprompters built this session — upload queue active |
-| April 2026 | Articles 13–18 article HTMLs on GitHub — voice retrofit still needed |
-| April 2026 | Article 21 Constipation: not built until all 13–18 article retrofits complete |
+| April 2026 | Articles 01–20 all three files confirmed complete on GitHub |
+| April 2026 | stress.html voice fix applied: "noting main concerns in advance means nothing gets missed in the time available" |
+| April 2026 | alcohol.html confirmed clean — no voice fix needed |
+| April 2026 | Articles 13–18 article HTML retrofits confirmed complete |
+| April 2026 | Article 21 Constipation: now cleared to build |
+| April 2026 | helf-school-conditions.html: full rebuild required (wrong series structure, missing Practical series, wrong article statuses) |
 | April 2026 | Membership lifetime price: £150 (confirmed) |
 | April 2026 | Copyright: 2026 across all new/retrofitted files |
 | April 2026 | hypertension.html refs 5 and 6 (Cochrane): flagged ⚑ unverified |
