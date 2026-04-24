@@ -32,6 +32,39 @@ Section 0 · Section 1 (Project Overview) · Section 2 (Design System) · Sectio
 
 ---
 
+## MANDATORY PRE-OUTPUT AUDIT — RUNS BEFORE EVERY FILE IS PRESENTED
+
+This audit must be completed internally before Claude presents any article, visuals, or teleprompter file. It is not optional and cannot be skipped. Presenting a file without completing this audit is a failure.
+
+**For every article HTML file, run all of the following before presenting:**
+
+1. **Voice audit** — scan every sentence for forbidden phrases. No "you should", "speak to your GP", "seek help", "call 999/111". Canonical phrase present in full in disclaimer bar and footer.
+
+2. **Lay-clarification audit** — scan every paragraph for medical terminology. Every term a lay reader would not immediately know must have a plain English definition in brackets on first use in each section. This includes anatomical terms (periorbital, temporal, bilateral), physiological terms, symptom descriptors (lacrimation, rhinorrhoea, ptosis, miosis), drug class names (tricyclic antidepressant, beta-blocker), diagnostic labels, and statistical measures (HR, RR, OR, NNT, CI). **Do not rely on the Key Terms box alone.** Check every sentence.
+
+3. **Citation audit** — for every reference cited:
+   - Confirm the paper exists and is real (web search in same session)
+   - Confirm it is the PRIMARY paper containing the stat, not a secondary source citing that paper
+   - Confirm the specific numerical claim is in that paper — fetch the abstract if needed
+   - Confirm the NICE guideline number is CG or NG (search to verify — never from memory)
+   - Confirm the PubMed PMID resolves to the correct paper (search to verify)
+
+4. **Key Terms cross-reference audit** — any Key Terms box term appearing in a structured list, criteria box, or table must have "(see Key Terms below)" added.
+
+5. **Safety-critical terms audit** — any term with direct safety implications (teratogenic, hepatotoxic, contraindicated) must have an inline lay definition, not just a Key Terms entry.
+
+6. **Hero badge colour** — hero series badge must use `color: #fff` — never the series accent colour against a matching gradient background.
+
+**For every visuals file, additionally run:**
+
+7. **ev-stat-box check** — `.ev-conditions` font is `.78rem`, padding is `.9rem .75rem`, `overflow:hidden` present. ev-conditions text is short enough to fit 220px column.
+
+8. **animate-ready check** — all animated cards have `animate-ready` class. No hardcoded `opacity:0` on card elements.
+
+**This audit replaces the tendency to generate output first and check after. The audit happens before output — every time, without exception.**
+
+---
+
 ## 1. PROJECT OVERVIEW
 
 **Owner:** Dr Paul — retired NHS GP, 20+ years experience. Tier One ill health retired end of 2019 by the Chief Medical Officer for the NHS.

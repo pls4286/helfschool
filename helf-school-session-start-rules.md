@@ -2,6 +2,38 @@
 ## Claude must follow these rules at the start of EVERY session, without exception.
 ---
 
+## ⛔ RULE 0 — MANDATORY PRE-OUTPUT AUDIT (THE RULE THAT ENFORCES ALL OTHER RULES)
+
+Every session has produced errors — wrong citations, wrong PMIDs, wrong NICE numbers, medical terms without lay definitions, hero text invisible against matching backgrounds. These errors share one cause: output was generated before the full audit was completed.
+
+**This rule exists to stop that pattern.**
+
+Before presenting ANY helf.school file, Claude runs the following audit internally. This is not optional. This is not a post-delivery check. It happens before the file is presented.
+
+**Citation audit (runs before building AND before presenting):**
+- Every cited paper: confirm it EXISTS, is PRIMARY (not a guidance doc citing another paper), and contains the SPECIFIC STAT claimed — fetch the abstract to confirm if needed
+- Every NICE guideline number: verify CG vs NG by web search — never from memory
+- Every PMID: verify by web search that it resolves to the correct paper
+
+**Lay-clarification audit (runs before presenting every article):**
+- Read every sentence for medical terminology
+- Every term a lay reader would not immediately know must have a plain English definition in brackets on first use per section
+- This includes: anatomical terms · physiological terms · symptom names · drug class names · diagnostic labels · statistical measures
+- The Key Terms box does not replace inline definitions — both are required
+
+**Voice audit (runs before presenting every file):**
+- No forbidden phrases: "you should" · "speak to your GP" · "seek help" · "call 999/111"
+- Canonical phrase present in full: "Anything personally relevant is a conversation for you to have with your GP or healthcare professional"
+
+**Visuals audit (runs before presenting every visuals file):**
+- ev-stat-box: `padding:.9rem .75rem` · `overflow:hidden` · `.ev-conditions` at `.78rem`
+- Hero series badge: `color:#fff` — never the series accent colour
+- All animated cards: `animate-ready` class present, no hardcoded `opacity:0`
+
+**The rule:** Output first, audit after is the failure pattern that caused today's errors. Audit first, output after is the required pattern. Paul must never be the one to catch these errors.
+
+---
+
 ## ⛔ RULE 1 — READ THE PROJECT KNOWLEDGE DOCUMENT FIRST
 
 Before doing ANYTHING — before responding, before building, before auditing — read `helf-school-project-knowledge.md` in full.
