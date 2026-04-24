@@ -127,7 +127,7 @@ Articles 23–26: not yet built.
 | # | Title | Slug | Status |
 |---|-------|------|--------|
 | 22 | Migraine | migraine | All 3 files built April 2026 ✅ — upload to GitHub |
-| 23 | Headaches — Types and Red Flags | headaches | Not yet built |
+| 23 | Headaches — Types and Red Flags | headaches | All 3 files built April 2026 ✅ — upload to GitHub |
 | 24 | Dizziness and Vertigo | dizziness-vertigo | Not yet built |
 | 25 | Memory, Cognition and Dementia | memory-dementia | Not yet built |
 | 26 | Epilepsy — What It Is and How It's Managed | epilepsy | Not yet built |
@@ -616,8 +616,9 @@ The session-start-rules.md file fell out of sync with the project knowledge mult
 ### Immediate
 - Upload Article 21 files to GitHub: `constipation.html` · `constipation-visuals.html` · `constipation-teleprompter.html`
 - Upload Article 22 files to GitHub: `migraine.html` · `migraine-visuals.html` · `migraine-teleprompter.html`
-- Update `helf-school-conditions.html` to show Articles 21 and 22 as live
-- Build Article 23 — `headaches.html` (Headaches — Types and Red Flags)
+- Upload Article 23 files to GitHub: `headaches.html` · `headaches-visuals.html` · `headaches-teleprompter.html`
+- Update `helf-school-conditions.html` to show Articles 21, 22, and 23 as live
+- Build Article 24 — `dizziness-vertigo.html` (Dizziness and Vertigo) — next
 
 ### Verification
 - `hypertension.html` references 5 & 6 — Cochrane PubMed IDs flagged ⚑ unverified — check before confirming article complete
@@ -662,9 +663,9 @@ The Claude project holds **visuals, teleprompter, and screen files only**. Artic
 | `hypertension-visuals.html` | Canonical CTA slide reference |
 
 ### Files confirmed in Claude project (April 2026)
-**Teleprompters (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine
+**Teleprompters (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine · headaches
 
-**Visuals (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd (screen) · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine
+**Visuals (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd (screen) · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine · headaches
 
 **Screen files:** Ar_barretts-screen · Ar_sphincter-screen · ibd-gut-screen · bloating-gut-screen · bloating-fodmap-screen
 
