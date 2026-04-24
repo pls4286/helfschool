@@ -9,8 +9,6 @@
     :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--calm:#70b8e8;--digest:#D47C3A}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
-
-    /* TOPBAR */
     #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:var(--navy);border-bottom:2px solid var(--digest);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
     .tb-logo{display:flex;align-items:center;gap:.5rem}
     .tb-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff}
@@ -19,24 +17,17 @@
     .tb-right{display:flex;align-items:center;gap:1.2rem}
     .slide-counter{font-size:.88rem;font-weight:700;color:rgba(255,255,255,.90)}
     .kb-hint{font-size:.75rem;color:rgba(255,255,255,.65)}
-
-    /* STAGE */
     #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:2.2vh 1.25rem 3.5vh;overflow:hidden}
-
-    /* SLIDES */
     .slide{display:none;width:100%;max-width:1140px;height:100%;animation:sIn .32s ease}
     .slide.active{display:flex;flex-direction:column;min-height:0}
     @keyframes sIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-
     .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.1vw,1.75rem);font-weight:700;color:#fff;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:2px solid rgba(212,124,58,.35);flex-shrink:0}
     .slide-title span{color:var(--digest)}
-
-    /* DOTS */
     #dots{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:200}
     .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .25s}
     .dot.active{background:var(--digest);transform:scale(1.3)}
 
-    /* ─── SLIDE 1: INTRO ─── */
+    /* SLIDE 1: INTRO */
     .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.3rem}
     .intro-badge{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--digest);background:rgba(212,124,58,.14);border:1px solid rgba(212,124,58,.35);padding:.3rem .9rem;border-radius:100px}
     .intro-icon{font-size:4rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
@@ -45,7 +36,7 @@
     .intro-sub{font-size:1.1rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;max-width:680px;line-height:1.5;font-weight:400}
     .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
 
-    /* ─── SLIDE 2: VILLI COMPARISON ─── */
+    /* SLIDE 2: VILLI COMPARISON */
     .villi-wrap{display:flex;flex-direction:column;flex:1;min-height:0;gap:1rem}
     .villi-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;flex:1;min-height:0;align-items:stretch}
     .villi-card{background:rgba(255,255,255,.05);border:1px solid;border-radius:14px;padding:1.1rem 1.3rem;display:flex;flex-direction:column;align-items:center;gap:.75rem;min-height:0;overflow:hidden}
@@ -60,7 +51,7 @@
     .absorption-note{background:rgba(212,124,58,.1);border:1px solid rgba(212,124,58,.4);border-radius:12px;padding:.8rem 1.2rem;font-size:1rem;color:rgba(255,255,255,.95);line-height:1.45;text-align:center;font-weight:400;flex-shrink:0}
     .absorption-note strong{color:var(--digest);font-weight:700}
 
-    /* ─── SLIDE 3: CLASSIC vs ATYPICAL ─── */
+    /* SLIDE 3: CLASSIC vs ATYPICAL */
     .pres-wrap{display:flex;flex-direction:column;flex:1;min-height:0;gap:.75rem}
     .pres-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;flex:1;min-height:0}
     .pres-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:1.1rem 1.3rem;border-top:4px solid;display:flex;flex-direction:column;min-height:0;overflow:hidden}
@@ -77,7 +68,7 @@
     .pres-footer{background:rgba(232,168,74,.12);border:1px solid rgba(232,168,74,.4);border-radius:10px;padding:.75rem 1rem;font-size:.95rem;color:rgba(255,255,255,.95);text-align:center;line-height:1.45;flex-shrink:0}
     .pres-footer strong{color:var(--warn);font-weight:700}
 
-    /* ─── SLIDE 4: DIAGNOSIS GAP · HARM · RED ─── */
+    /* SLIDE 4: DIAGNOSIS GAP */
     .gap-wrap{display:flex;flex-direction:column;flex:1;min-height:0;gap:1rem;justify-content:center;align-items:center}
     .gap-big{background:linear-gradient(135deg,rgba(232,99,74,.18),rgba(232,122,90,.08));border:2px solid rgba(232,99,74,.5);border-radius:18px;padding:2rem 2.5rem;display:flex;flex-direction:column;align-items:center;gap:.6rem;max-width:720px;width:100%;text-align:center}
     .gap-big-num{font-family:'Fraunces',serif;font-size:clamp(4rem,8vw,6rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.03em}
@@ -88,7 +79,7 @@
     .gap-sec-num{font-family:'Fraunces',serif;font-size:clamp(2rem,3.5vw,2.8rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.02em}
     .gap-sec-label{font-size:.95rem;color:rgba(255,255,255,.95);margin-top:.4rem;font-weight:600;line-height:1.4}
 
-    /* ─── SLIDE 5: TESTING TRAP · SAFETY WARNING ─── */
+    /* SLIDE 5: TESTING — HOW IT WORKS */
     .trap-wrap{display:flex;flex-direction:column;flex:1;min-height:0;justify-content:center;align-items:center;padding:1rem}
     .trap-warn{background:linear-gradient(135deg,rgba(232,168,74,.18),rgba(232,99,74,.10));border:2.5px solid var(--warn);border-radius:18px;padding:1.8rem 2.2rem;max-width:920px;width:100%;display:flex;flex-direction:column;gap:1rem;align-items:center;text-align:center}
     .trap-icon{font-size:3rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
@@ -100,21 +91,23 @@
     .trap-flow-step{background:rgba(232,99,74,.15);border:1px solid rgba(232,99,74,.45);color:#fff;font-size:.88rem;font-weight:600;padding:.45rem .9rem;border-radius:8px;line-height:1.3}
     .trap-flow-arrow{color:rgba(255,255,255,.7);font-size:1.2rem}
 
-    /* ─── SLIDE 6: DOCTOR · HORIZONTAL ROWS · ACTION · GREEN ─── */
-    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.6rem;flex:1;min-height:0}
-    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.9rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    /* SLIDE 6: DOCTOR · GREEN */
+    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.55rem;flex:1;min-height:0}
+    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .doc-card.animate-ready{opacity:0;transform:translateY(14px)}
     .doc-card.vis{opacity:1;transform:translateY(0)}
-    .doc-icon{font-size:2.3rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .doc-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
-    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.22rem;line-height:1.12;letter-spacing:-.01em}
-    .doc-body{font-size:.92rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400}
+    .doc-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .doc-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
+    .doc-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
     .doc-body strong{color:#fff;font-weight:700}
-    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1rem,1.6vw,1.45rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
+    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
 
-    /* ─── SLIDE 7: VILLOUS RECOVERY ─── */
+    /* SLIDE 7: VILLOUS RECOVERY */
     .rec-wrap{display:flex;flex-direction:column;flex:1;min-height:0;gap:1rem;justify-content:center}
     .rec-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
-    .rec-card{background:rgba(126,204,153,.1);border:1px solid rgba(126,204,153,.4);border-radius:16px;padding:1.5rem 1.2rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;text-align:center;opacity:0;transform:translateY(14px);transition:all .45s ease}
+    .rec-card{background:rgba(126,204,153,.1);border:1px solid rgba(126,204,153,.4);border-radius:16px;padding:1.5rem 1.2rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;text-align:center;opacity:1;transform:translateY(0);transition:all .45s ease}
+    .rec-card.animate-ready{opacity:0;transform:translateY(14px)}
     .rec-card.vis{opacity:1;transform:translateY(0)}
     .rec-card.highlight{background:linear-gradient(135deg,rgba(126,204,153,.22),rgba(126,204,153,.08));border-width:2px;border-color:rgba(126,204,153,.6)}
     .rec-num{font-family:'Fraunces',serif;font-size:clamp(2.6rem,4.5vw,3.6rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.02em}
@@ -123,41 +116,48 @@
     .rec-footer{background:rgba(212,124,58,.1);border:1px solid rgba(212,124,58,.35);border-radius:12px;padding:.85rem 1.2rem;font-size:1rem;color:rgba(255,255,255,.95);text-align:center;line-height:1.5;font-weight:400;flex-shrink:0}
     .rec-footer strong{color:var(--digest);font-weight:700}
 
-    /* ─── SLIDE 8: RESEARCH · EV-CARDS ─── */
-    .ev-stage{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(4,1fr);gap:.65rem;flex:1;min-height:0}
-    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,124,58,.32);border-radius:12px;padding:.9rem 1.2rem;display:grid;grid-template-columns:150px 1fr;gap:1.2rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(12px);transition:all .42s ease}
+    /* SLIDES 8–9: RESEARCH · EV-CARDS — 2 per slide */
+    .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
+    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,124,58,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .45s ease}
+    .ev-card.animate-ready{opacity:0;transform:translateY(14px)}
     .ev-card.vis{opacity:1;transform:translateY(0)}
-    .ev-stat-box{text-align:center;background:rgba(212,124,58,.12);border-radius:10px;padding:.75rem .5rem}
-    .ev-stat{font-family:'Fraunces',serif;font-size:1.75rem;font-weight:700;line-height:1;color:var(--digest);letter-spacing:-.02em}
-    .ev-stat-lab{font-size:.75rem;color:rgba(255,255,255,.92);font-weight:700;margin-top:.3rem;line-height:1.3}
-    .ev-detail{min-width:0}
-    .ev-trial{font-family:'Fraunces',serif;font-size:1.08rem;font-weight:700;color:#fff;margin-bottom:.15rem;line-height:1.2;letter-spacing:-.01em}
-    .ev-journal{font-size:.82rem;color:rgba(255,255,255,.85);margin-bottom:.3rem;font-weight:500}
-    .ev-finding{font-size:.88rem;color:rgba(255,255,255,.92);line-height:1.45;font-weight:400}
-    .ev-finding strong{color:#fff;font-weight:700}
+    .ev-stat-box{background:rgba(212,124,58,.09);border-radius:14px;padding:1.25rem .85rem;text-align:center;overflow:hidden}
+    .ev-kf-label{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(212,124,58,.8);margin-bottom:.55rem}
+    .ev-stat-row{display:flex;align-items:baseline;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:.45rem}
+    .ev-num{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;line-height:1;letter-spacing:-.02em;flex-shrink:0}
+    .ev-num.good{color:var(--good)}
+    .ev-num.bad{color:var(--bad)}
+    .ev-num.warn{color:var(--warn)}
+    .ev-outcome{font-size:.95rem;font-weight:700;color:#fff;line-height:1.3;text-align:left}
+    .ev-conditions{font-size:.88rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.35}
+    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.4rem;margin-bottom:.25rem;line-height:1.15;letter-spacing:-.01em}
+    .ev-det .ev-journal{font-size:.92rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
+    .ev-det .ev-body{font-size:1rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400}
+    .ev-det .ev-body strong{color:#fff;font-weight:700}
 
-    /* ─── SLIDE 9: CTA · HIGH-IMPACT ─── */
+    /* SLIDE 10: CTA */
     .cta-slide{position:relative}
-    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%, rgba(212,184,74,.18), rgba(212,184,74,.04) 45%, transparent 70%);pointer-events:none;z-index:0}
-    .cta-wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:.85rem;padding:.5rem}
-    .cta-badge{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.42rem 1.15rem;border-radius:100px;box-shadow:0 0 30px rgba(212,184,74,.14)}
-    .cta-icon{font-size:clamp(4.5rem,8vw,6rem);line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;filter:drop-shadow(0 0 30px rgba(212,184,74,.28));animation:pulseHalo 3.2s ease-in-out infinite}
-    @keyframes pulseHalo{0%,100%{filter:drop-shadow(0 0 28px rgba(212,184,74,.22))}50%{filter:drop-shadow(0 0 55px rgba(212,184,74,.55))}}
-    .cta-headline{font-family:'Fraunces',serif;font-size:clamp(3.2rem,5.8vw,4.9rem);font-weight:700;color:#fff;line-height:1.02;max-width:1000px;letter-spacing:-.028em}
-    .cta-headline span{color:var(--acc)}
-    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.4vw,1.85rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);max-width:780px;line-height:1.32}
-    .cta-body{font-size:1.05rem;color:rgba(255,255,255,.90);max-width:800px;line-height:1.52;font-weight:400}
-    .cta-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;max-width:920px;width:100%;margin-top:.25rem}
-    .cta-ac{background:linear-gradient(180deg,rgba(212,184,74,.16),rgba(212,184,74,.06));border:1.5px solid rgba(212,184,74,.45);border-radius:14px;padding:.95rem .55rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;text-align:center;transition:transform .25s ease}
-    .cta-ac:hover{transform:translateY(-2px)}
-    .cta-ac-icon{font-size:1.85rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .cta-ac-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.94rem;line-height:1.18}
-    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.8rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;margin-top:.6rem;max-width:920px}
+    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(212,184,74,.18),rgba(212,184,74,.04) 45%,transparent 70%);pointer-events:none;z-index:0}
+    .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem;gap:.45rem;min-height:0;overflow:hidden}
+    .cta-top{display:flex;flex-direction:column;align-items:center;gap:.3rem;text-align:center}
+    .cta-badge-v2{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.3rem .95rem;border-radius:100px}
+    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:700;color:#fff;line-height:1.02;letter-spacing:-.028em}
+    .cta-headline-v2 span{color:var(--acc)}
+    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(.95rem,1.5vw,1.2rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);line-height:1.3}
+    .cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.4rem;min-height:0;overflow:hidden}
+    .cta-row-v2{background:linear-gradient(90deg,rgba(212,184,74,.12),rgba(212,184,74,.04));border-left:4px solid var(--acc);border-radius:0 10px 10px 0;padding:.6rem .95rem;display:grid;grid-template-columns:52px 1fr auto;gap:.9rem;align-items:start;min-height:0;overflow:hidden}
+    .cta-row-icon{font-size:1.7rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .cta-row-mid{display:flex;flex-direction:column;gap:.12rem;min-width:0}
+    .cta-row-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.95rem;line-height:1.15}
+    .cta-row-body-v2{font-size:.82rem;color:rgba(255,255,255,.90);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .cta-row-word-v2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.2rem,2vw,1.7rem);color:var(--acc);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:.6rem}
+    .cta-bottom{display:flex;justify-content:center;flex-shrink:0}
+    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.75rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;max-width:900px;width:100%}
     .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.85);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left}
+    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.88);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left;font-weight:400}
     .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
 
-    /* ─── SLIDE 10: CLOSING ─── */
+    /* SLIDE 11: CLOSING */
     .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.6rem;padding:1.5rem}
     .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
     .close-logo .dot{color:var(--coral)}
@@ -170,7 +170,6 @@
     .cst-lab{font-size:.98rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.32}
     .cst-src{font-size:.78rem;color:rgba(255,255,255,.72);font-style:italic}
     .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.2rem}
-
     .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:.68rem;color:rgba(255,255,255,.22);z-index:90;white-space:nowrap}
   </style>
 </head>
@@ -187,12 +186,11 @@
     <span class="tb-sub">· Coeliac Disease</span>
   </div>
   <div class="tb-right">
-    <span id="counter" class="slide-counter">1 / 10</span>
+    <span id="counter" class="slide-counter">1 / 11</span>
     <span class="kb-hint">← → navigate</span>
   </div>
 </div>
 
-<!-- STAGE -->
 <div id="stage">
 
   <!-- SLIDE 1: INTRO -->
@@ -246,14 +244,10 @@
               <path d="M310 160 Q315 146 325 142 Q335 146 335 160"/>
             </g>
             <g fill="#ff6b6b" opacity="0.85">
-              <circle cx="48" cy="152" r="2.5"/>
-              <circle cx="82" cy="154" r="2.5"/>
-              <circle cx="118" cy="151" r="2.5"/>
-              <circle cx="152" cy="155" r="2.5"/>
-              <circle cx="188" cy="150" r="2.5"/>
-              <circle cx="222" cy="153" r="2.5"/>
-              <circle cx="258" cy="152" r="2.5"/>
-              <circle cx="292" cy="155" r="2.5"/>
+              <circle cx="48" cy="152" r="2.5"/><circle cx="82" cy="154" r="2.5"/>
+              <circle cx="118" cy="151" r="2.5"/><circle cx="152" cy="155" r="2.5"/>
+              <circle cx="188" cy="150" r="2.5"/><circle cx="222" cy="153" r="2.5"/>
+              <circle cx="258" cy="152" r="2.5"/><circle cx="292" cy="155" r="2.5"/>
               <circle cx="328" cy="152" r="2.5"/>
             </g>
           </svg>
@@ -264,7 +258,7 @@
     </div>
   </div>
 
-  <!-- SLIDE 3: CLASSIC vs ATYPICAL PRESENTATIONS -->
+  <!-- SLIDE 3: CLASSIC vs ATYPICAL -->
   <div class="slide">
     <div class="slide-title">Two very different <span>presentations</span></div>
     <div class="pres-wrap">
@@ -297,7 +291,7 @@
     </div>
   </div>
 
-  <!-- SLIDE 4: THE DIAGNOSIS GAP · HARM -->
+  <!-- SLIDE 4: DIAGNOSIS GAP -->
   <div class="slide">
     <div class="slide-title">The <span>diagnosis gap</span></div>
     <div class="gap-wrap">
@@ -319,15 +313,15 @@
     </div>
   </div>
 
-  <!-- SLIDE 5: TESTING TRAP · SAFETY -->
+  <!-- SLIDE 5: HOW THE TEST WORKS -->
   <div class="slide">
     <div class="trap-wrap">
       <div class="trap-warn">
         <div class="trap-icon">⚠️</div>
-        <div class="trap-heading">Do not stop gluten<br/><span>before the test.</span></div>
-        <div class="trap-body">The blood test and the biopsy only work <strong>while the immune reaction is active</strong>. Stop gluten first, and the tests come back negative — even when coeliac disease is there. Keep gluten in the diet, in more than one meal a day, for at least <strong>six weeks</strong> before testing.</div>
+        <div class="trap-heading">Coeliac testing requires<br/><span>gluten in the diet.</span></div>
+        <div class="trap-body">The blood test and the biopsy only work <strong>while the immune reaction is active</strong>. Removing gluten before testing means the reaction quietens — and the tests come back negative even when coeliac disease is present. Gluten needs to be in the diet, in more than one meal a day, for at least <strong>six weeks</strong> before testing.</div>
         <div class="trap-flow">
-          <div class="trap-flow-step">Stop gluten early</div>
+          <div class="trap-flow-step">Gluten removed early</div>
           <span class="trap-flow-arrow">→</span>
           <div class="trap-flow-step">Tests come back negative</div>
           <span class="trap-flow-arrow">→</span>
@@ -342,16 +336,16 @@
     <div class="slide-title">How the <span>diagnosis</span> is made</div>
     <div class="doc-grid">
 
-      <div class="doc-card" id="d1">
+      <div class="doc-card animate-ready" id="d1">
         <div class="doc-icon">🩸</div>
         <div class="doc-content">
           <div class="doc-title">Blood test — while still eating gluten</div>
-          <div class="doc-body">Total IgA plus <strong>IgA tTG</strong> (tissue transglutaminase antibody — the main coeliac marker). If IgA is low (IgA deficiency), an IgG-based test is used instead.</div>
+          <div class="doc-body">Total IgA plus <strong>IgA tTG</strong> (tissue transglutaminase antibody — the main coeliac marker). If IgA is low, an IgG-based test is used instead.</div>
         </div>
         <div class="doc-action">Step 1</div>
       </div>
 
-      <div class="doc-card" id="d2">
+      <div class="doc-card animate-ready" id="d2">
         <div class="doc-icon">🩺</div>
         <div class="doc-content">
           <div class="doc-title">Positive result → specialist referral</div>
@@ -360,7 +354,7 @@
         <div class="doc-action">Step 2</div>
       </div>
 
-      <div class="doc-card" id="d3">
+      <div class="doc-card animate-ready" id="d3">
         <div class="doc-icon">🔬</div>
         <div class="doc-content">
           <div class="doc-title">Endoscopy with duodenal biopsies</div>
@@ -369,7 +363,7 @@
         <div class="doc-action">Step 3</div>
       </div>
 
-      <div class="doc-card" id="d4">
+      <div class="doc-card animate-ready" id="d4">
         <div class="doc-icon">⚡</div>
         <div class="doc-content">
           <div class="doc-title">No-biopsy pathway — for selected adults</div>
@@ -378,7 +372,7 @@
         <div class="doc-action">BSG 2020</div>
       </div>
 
-      <div class="doc-card" id="d5">
+      <div class="doc-card animate-ready" id="d5">
         <div class="doc-icon">👨‍👩‍👧</div>
         <div class="doc-content">
           <div class="doc-title">First-degree relative testing</div>
@@ -395,17 +389,17 @@
     <div class="slide-title">What the gut does <span>when gluten is removed</span></div>
     <div class="rec-wrap">
       <div class="rec-grid">
-        <div class="rec-card" id="r1">
+        <div class="rec-card animate-ready" id="r1">
           <div class="rec-num">~34%</div>
           <div class="rec-time">Adults · 2 years</div>
           <div class="rec-desc">complete villous recovery on a strict gluten-free diet</div>
         </div>
-        <div class="rec-card" id="r2">
+        <div class="rec-card animate-ready" id="r2">
           <div class="rec-num">~66%</div>
           <div class="rec-time">Adults · 5 years</div>
           <div class="rec-desc">complete villous recovery on a strict gluten-free diet</div>
         </div>
-        <div class="rec-card highlight" id="r3">
+        <div class="rec-card highlight animate-ready" id="r3">
           <div class="rec-num">~95%</div>
           <div class="rec-time">Children · 2 years</div>
           <div class="rec-desc">children heal faster and more completely than adults</div>
@@ -415,97 +409,139 @@
     </div>
   </div>
 
-  <!-- SLIDE 8: RESEARCH · EV-CARDS -->
+  <!-- SLIDE 8: RESEARCH — global + UK diagnosis gap -->
   <div class="slide">
-    <div class="slide-title">What the <span>evidence</span> actually shows</div>
+    <div class="slide-title">What the <span>evidence</span> shows · global &amp; diagnosis gap</div>
     <div class="ev-stage">
 
-      <div class="ev-card" id="e1">
+      <div class="ev-card animate-ready" id="e1">
         <div class="ev-stat-box">
-          <div class="ev-stat">Global</div>
-          <div class="ev-stat-lab">coeliac now a worldwide disease</div>
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num warn" style="font-size:1.9rem">Global</div>
+            <div class="ev-outcome">coeliac now a worldwide disease</div>
+          </div>
+          <div class="ev-conditions">outcomes determined by strictness of gluten-free diet adherence</div>
         </div>
-        <div class="ev-detail">
+        <div class="ev-det">
           <div class="ev-trial">Catassi et al. — modern comprehensive review</div>
           <div class="ev-journal">The Lancet · 2022 · Seminar · 399:2413–2426</div>
-          <div class="ev-finding">Coeliac disease is now recognised as a <strong>global disease</strong>, not predominantly European, and prevalence continues to rise. Long-term outcomes are determined by <strong>strictness of gluten-free diet adherence</strong> ⚑.</div>
+          <div class="ev-body">Coeliac disease is now recognised as a <strong>global disease</strong>, not predominantly European, and prevalence continues to rise. Long-term outcomes are determined by <strong>strictness of gluten-free diet adherence</strong> ⚑.</div>
         </div>
       </div>
 
-      <div class="ev-card" id="e2">
+      <div class="ev-card animate-ready" id="e2">
         <div class="ev-stat-box">
-          <div class="ev-stat">0.36%</div>
-          <div class="ev-stat-lab">diagnosed UK prevalence · vs ~1% true</div>
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num bad">0.36%</div>
+            <div class="ev-outcome">diagnosed UK prevalence</div>
+          </div>
+          <div class="ev-conditions">vs ~1% true prevalence — two-thirds still unidentified</div>
         </div>
-        <div class="ev-detail">
+        <div class="ev-det">
           <div class="ev-trial">Shiha et al. — UK primary care diagnosis gap</div>
           <div class="ev-journal">Annals of Family Medicine · 2023 · CPRD · 38M records</div>
-          <div class="ev-finding">Diagnosed UK prevalence in 2020 was 0.36% — against a true prevalence of ~1%. Diagnosis has nearly doubled in 20 years, but <strong>two-thirds of cases still unidentified</strong> ⚑.</div>
+          <div class="ev-body">Diagnosed UK prevalence in 2020 was 0.36% — against a true prevalence of ~1%. Diagnosis has nearly doubled in 20 years, but <strong>two-thirds of cases still unidentified</strong> ⚑.</div>
         </div>
       </div>
 
-      <div class="ev-card" id="e3">
+    </div>
+  </div>
+
+  <!-- SLIDE 9: RESEARCH — no-biopsy pathway + NICE NG20 -->
+  <div class="slide">
+    <div class="slide-title">What the <span>evidence</span> shows · diagnosis standards</div>
+    <div class="ev-stage">
+
+      <div class="ev-card animate-ready" id="e3">
         <div class="ev-stat-box">
-          <div class="ev-stat">~95%</div>
-          <div class="ev-stat-lab">no-biopsy pathway confirmation</div>
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good">~95%</div>
+            <div class="ev-outcome">confirmation rate</div>
+          </div>
+          <div class="ev-conditions">no-biopsy pathway in selected adults — tTG ≥10× ULN + EMA</div>
         </div>
-        <div class="ev-detail">
+        <div class="ev-det">
           <div class="ev-trial">Penny et al. — BSG no-biopsy pathway</div>
           <div class="ev-journal">Gut · 2021 · 70:876–883 · UK cohorts</div>
-          <div class="ev-finding">In selected adults with tTG <strong>≥ 10× ULN</strong> plus positive EMA, histological confirmation achieved in <strong>~95%</strong> across UK cohorts — enabling diagnosis without biopsy in selected cases ⚑.</div>
+          <div class="ev-body">In selected adults with tTG <strong>≥ 10× ULN</strong> plus positive EMA, histological confirmation achieved in <strong>~95%</strong> across UK cohorts — enabling diagnosis without biopsy in selected cases ⚑.</div>
         </div>
       </div>
 
-      <div class="ev-card" id="e4">
+      <div class="ev-card animate-ready" id="e4">
         <div class="ev-stat-box">
-          <div class="ev-stat">UK standard</div>
-          <div class="ev-stat-lab">NICE NG20 · coeliac guideline</div>
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num warn" style="font-size:1.9rem">UK standard</div>
+            <div class="ev-outcome">NICE NG20 · coeliac guideline</div>
+          </div>
+          <div class="ev-conditions">first-line: total IgA + IgA tTG · test while eating gluten</div>
         </div>
-        <div class="ev-detail">
+        <div class="ev-det">
           <div class="ev-trial">NICE NG20 — coeliac disease guidance</div>
           <div class="ev-journal">NICE · last reviewed 2024</div>
-          <div class="ev-finding">First-line: total IgA + IgA tTG. Positive → specialist referral for biopsy. <strong>HLA testing not recommended in primary care.</strong> Test while still eating gluten ⚑.</div>
+          <div class="ev-body">First-line: total IgA + IgA tTG. Positive → specialist referral for biopsy. <strong>HLA testing not recommended in primary care.</strong> Gluten must be in the diet at the time of testing ⚑.</div>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- SLIDE 9: CTA · HIGH-IMPACT -->
+  <!-- SLIDE 10: CTA · cta-wrap-v2 HORIZONTAL ROWS -->
   <div class="slide cta-slide">
     <div class="cta-glow"></div>
-    <div class="cta-wrap">
-      <div class="cta-badge">Where to start</div>
-      <div class="cta-icon">🌾</div>
-      <div class="cta-headline">Ask the question.<br/><span>Eat the gluten.</span></div>
-      <div class="cta-subline">Test first. Diet second.</div>
-      <div class="cta-body">Most coeliac cases are still missed. A simple blood test — while still eating gluten — is the doorway to a diagnosis that can change a life. Four evidence-based starting points.</div>
-      <div class="cta-actions">
-        <div class="cta-ac">
-          <div class="cta-ac-icon">🩺</div>
-          <div class="cta-ac-label">Ask about testing if symptoms fit</div>
+    <div class="cta-wrap-v2">
+      <div class="cta-top">
+        <div class="cta-badge-v2">What the evidence shows</div>
+        <div class="cta-headline-v2">Common. Often missed.<br/><span>Fully treatable.</span></div>
+        <div class="cta-subline">A blood test while eating gluten — the single step that most often stands between diagnosis and years of uncertainty.</div>
+      </div>
+      <div class="cta-rows-v2">
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">🩺</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Testing available for classic and atypical symptoms</div>
+            <div class="cta-row-body-v2">The tTG blood test is available through a GP — the evidence-based first step for any of the recognised presentations, classic or atypical</div>
+          </div>
+          <div class="cta-row-word-v2">Step 1</div>
         </div>
-        <div class="cta-ac">
-          <div class="cta-ac-icon">🍞</div>
-          <div class="cta-ac-label">Keep eating gluten until tested</div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">🍞</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Gluten must stay in the diet for testing</div>
+            <div class="cta-row-body-v2">The tTG test detects the immune reaction to gluten — removing it before testing quietens the reaction and produces a false-negative result</div>
+          </div>
+          <div class="cta-row-word-v2">Test first</div>
         </div>
-        <div class="cta-ac">
-          <div class="cta-ac-icon">✅</div>
-          <div class="cta-ac-label">Strict gluten-free if diagnosed</div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">✅</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Strict GFD — the evidence-based treatment</div>
+            <div class="cta-row-body-v2">Lifelong strict gluten-free diet is the only treatment — dietitian guidance at diagnosis significantly improves adherence and long-term outcomes</div>
+          </div>
+          <div class="cta-row-word-v2">GFD for life</div>
         </div>
-        <div class="cta-ac">
-          <div class="cta-ac-icon">👥</div>
-          <div class="cta-ac-label">Dietitian &amp; Coeliac UK support</div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">👥</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Dietitian &amp; Coeliac UK — standard of care</div>
+            <div class="cta-row-body-v2">Dietitian referral recommended by NICE NG20 for all newly diagnosed. Coeliac UK provides accredited food lists, hidden sources of gluten, and ongoing support</div>
+          </div>
+          <div class="cta-row-word-v2">NICE NG20</div>
         </div>
       </div>
-      <div class="med-disclaimer">
-        <div class="med-disc-icon">⚕️</div>
-        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Any changes you're considering are a conversation for you to have with your GP or healthcare professional.</div>
+      <div class="cta-bottom">
+        <div class="med-disclaimer">
+          <div class="med-disc-icon">⚕️</div>
+          <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 10: CLOSING -->
+  <!-- SLIDE 11: CLOSING -->
   <div class="slide">
     <div class="close-wrap">
       <div class="close-logo">helf<span class="dot">.</span>school</div>
@@ -550,6 +586,7 @@
   <div class="dot" onclick="goTo(7)"></div>
   <div class="dot" onclick="goTo(8)"></div>
   <div class="dot" onclick="goTo(9)"></div>
+  <div class="dot" onclick="goTo(10)"></div>
 </div>
 
 <div class="disc">Health education — not medical advice. helf.school</div>
@@ -583,13 +620,14 @@
   });
 
   function triggerSlide(n){
-    if(n===5) animateGroup(['d1','d2','d3','d4','d5'], 170);
+    if(n===5) animateGroup(['d1','d2','d3','d4','d5'], 140);
     if(n===6) animateGroup(['r1','r2','r3'], 240);
-    if(n===7) animateGroup(['e1','e2','e3','e4'], 220);
+    if(n===7) animateGroup(['e1','e2'], 260);
+    if(n===8) animateGroup(['e3','e4'], 260);
   }
   function animateGroup(ids, step){
     ids.forEach((id,i)=>{
-      setTimeout(()=>{ const el=document.getElementById(id); if(el) el.classList.add('vis'); }, 200 + i*step);
+      setTimeout(()=>{ const el=document.getElementById(id); if(el) el.classList.add('vis'); }, 180 + i*step);
     });
   }
 
