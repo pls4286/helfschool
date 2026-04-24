@@ -438,6 +438,7 @@ Scale 0.62 · every 2nd frame · 120 colours · under 1.5MB total PPTX
 13. Body text weight — `font-weight:400` throughout (never 300 in body)
 14. No `opacity:0` animations on article body sections — content immediately visible
 15. **ev-stat-box — `.ev-conditions` font is `.78rem`, padding is `.9rem .75rem`, `overflow:hidden` present — check before delivery on every visuals file**
+16. **NICE guideline numbers — verify CG vs NG via web search in the same session. Never cite from memory. CG = pre-2014 format; NG = post-2014 format. Wrong series = wrong document.**
 
 ---
 
@@ -482,6 +483,8 @@ Before presenting any article, visuals, or teleprompter HTML — verify via web 
 4. URL/DOI resolves to the correct article
 
 Never include an unverified link. Never assume a study exists based on a plausible-sounding citation. Never cite NICE CG99 for adult constipation — it covers children and young people only. The correct adult reference is NICE CKS at `cks.nice.org.uk/constipation`.
+
+**NICE guideline number rule:** Always verify the exact NICE guideline number — including whether it is CG or NG — via web search before citing. CG and NG are different series and different documents. Citing the wrong one produces a link to the wrong guideline. Never cite a NICE guideline number from memory.
 
 ---
 
@@ -540,7 +543,17 @@ If `create_file` reports "file already exists", delete the existing placeholder 
 - Research card 2: fibre supplementation response rate 77% vs 44% (Christodoulides 2016)
 - Important distinction: fibre evidence is for fibre supplements (psyllium/ispaghula) not dietary fibre from whole foods — clearly stated in the article
 
-### ev-stat-box overflow fix — LOCKED APRIL 2026
+### NICE guideline number verification — CG vs NG — LOCKED APRIL 2026
+NICE uses two guideline series: **CG (Clinical Guidelines)** published before ~2014, and **NG (NICE Guidelines)** published from ~2014 onwards. These are entirely separate documents — citing the wrong series produces a link to the wrong guideline or a carers/unrelated document.
+
+**The error:** In April 2026, migraine.html was delivered citing NICE NG150 (incorrect) instead of NICE CG150 — "Headaches in over 12s: diagnosis and management" (correct). NG150 is a different document. The error was caught by Dr Paul when the reference link led to the wrong page.
+
+**The rule:** Before citing any NICE guideline, verify the exact guideline number — including whether it is CG or NG — via web search in the same session. Never cite a NICE guideline number from memory. This applies to every article build.
+
+**Known correct references (verify each session nonetheless):**
+- Headaches in over 12s: **CG150** — nice.org.uk/guidance/cg150
+- Adult constipation: **NICE CKS** — cks.nice.org.uk/constipation (not a numbered guideline)
+- NICE CG99: constipation in **children and young people only** — never cite for adults
 Text disappearing off the bottom of ev-cards on the research slide is a recurring error. The confirmed fix is:
 - `.ev-stat-box`: `padding:.9rem .75rem` + `overflow:hidden` — do NOT increase padding
 - `.ev-kf-label`: `margin-bottom:.35rem`
