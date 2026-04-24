@@ -24,7 +24,7 @@ Section 0 · Section 1 (Project Overview) · Section 2 (Design System) · Sectio
 
 ## SECTION 0 — SESSION START PROTOCOL (READ FIRST — NO EXCEPTIONS)
 
-**MANDATORY FIRST ACTION every session:** Read this file AND `/mnt/project/helf-school-session-start-rules.md` IN FULL before any output, checks, or assessments. This step is non-negotiable because these files contain critical rules — including file integrity rules and the article inventory which is the source of truth. Reading after producing output is too late.
+**MANDATORY FIRST ACTION every session:** Read this file AND `helf-school-session-start-rules.md` IN FULL before any output, checks, or assessments. This step is non-negotiable because these files contain critical rules — including file integrity rules and the article inventory which is the source of truth. Reading after producing output is too late.
 
 **Critical file integrity rule:** Files in the Claude project that are approximately 5,140 bytes and begin with "data-build-id" are Edge incognito loader stubs captured during upload — they are NOT the real file and are NOT corrupted. Never flag these as corrupted. Always verify real content via GitHub raw URL before any assessment. The article inventory in this document is the authoritative source of truth for what is built — not file sizes.
 
@@ -106,22 +106,22 @@ All three files confirmed complete and on GitHub for all 5 articles. Educational
 
 ### Series C — Digestive Health (Articles 13–21)
 Articles 13–20: all three files confirmed complete and on GitHub. Educational voice retrofit confirmed complete.
-Article 21: article HTML built April 2026 — visuals and teleprompter still to build.
+Article 21: article HTML built April 2026. Visuals built April 2026. Teleprompter still to build.
 
 | # | Title | Slug | Status |
 |---|-------|------|--------|
-| 13 | Acid Reflux and GORD | acid-reflux | All 3 files on GitHub |
-| 14 | IBD — Crohn's & Ulcerative Colitis | ibd | All 3 files on GitHub |
-| 15 | Bloating — Causes and Evidence | bloating | All 3 files on GitHub |
-| 16 | Irritable Bowel Syndrome (IBS) | ibs | All 3 files on GitHub |
-| 17 | Fatty Liver Disease (MASLD) | masld | All 3 files on GitHub |
-| 18 | Coeliac Disease | coeliac | All 3 files on GitHub |
-| 19 | Gallstones | gallstones | All 3 files on GitHub |
-| 20 | Diverticular Disease | diverticular-disease | All 3 files on GitHub |
-| 21 | Constipation | constipation | Article HTML built April 2026; visuals + teleprompter outstanding |
+| 13 | Acid Reflux and GORD | acid-reflux | All 3 files on GitHub ✅ |
+| 14 | IBD — Crohn's & Ulcerative Colitis | ibd | All 3 files on GitHub ✅ |
+| 15 | Bloating — Causes and Evidence | bloating | All 3 files on GitHub ✅ |
+| 16 | Irritable Bowel Syndrome (IBS) | ibs | All 3 files on GitHub ✅ |
+| 17 | Fatty Liver Disease (MASLD) | masld | All 3 files on GitHub ✅ |
+| 18 | Coeliac Disease | coeliac | All 3 files on GitHub ✅ |
+| 19 | Gallstones | gallstones | All 3 files on GitHub ✅ |
+| 20 | Diverticular Disease | diverticular-disease | All 3 files on GitHub ✅ |
+| 21 | Constipation | constipation | Article HTML ✅ · Visuals ✅ built April 2026 · Teleprompter ⏳ outstanding |
 
 **Total articles live on site:** 20
-**Article 21:** article HTML complete, 2 files outstanding
+**Article 21:** article HTML and visuals complete, teleprompter outstanding
 
 ---
 
@@ -201,8 +201,8 @@ Never reverse this order. Cross-check article ↔ presenter before finalising ei
 
 ### Canonical reference files (in Claude project)
 - **Article HTML:** `mediterranean-diet.html`
-- **Visuals HTML:** `alcohol-visuals.html` (canonical for horizontal-row layout)
-- **Teleprompter HTML:** `stress-teleprompter.html` (canonical for cue box standard)
+- **Visuals HTML:** `lifestyle-changes-visuals.html` (canonical for all layout patterns)
+- **Teleprompter HTML:** `lifestyle-changes-teleprompter.html` (canonical for cue box standard)
 - **CTA slide:** `hypertension-visuals.html`
 
 ### Large file crash risk
@@ -319,6 +319,21 @@ Required every time for medical terms AND statistical measures in all prose, res
 - `animate-ready` class on all animated cards — **never** hardcoded `opacity:0` in final delivered files
 - Cards animate in on keyboard advance, not on page load
 
+### ev-stat-box — EXACT SPECIFICATION (locked April 2026)
+The stat box sits in the left column (220px) of each ev-card. These values are required exactly — do not increase padding or font sizes or text will overflow the bottom of the box:
+
+```css
+.ev-stat-box { padding: .9rem .75rem; overflow: hidden; }
+.ev-kf-label { margin-bottom: .35rem; }
+.ev-stat-row { margin-bottom: .3rem; }
+.ev-conditions { font-size: .78rem; line-height: 1.32; }
+```
+
+- `.ev-conditions` text must be short enough to fit 220px — keep under ~8 words per line, ~2 lines maximum
+- Do NOT increase padding on `.ev-stat-box` — text will disappear off the bottom of the card
+- Do NOT use `.ev-conditions` font size above `.78rem` — it will overflow at any larger size
+- This was confirmed as the correct fix in April 2026 after repeated overflow errors
+
 ### CTA slide standard (all visuals files)
 - Full-screen with radial gold-glow background + pulsing icon halo (3.2s drop-shadow)
 - Fraunces headline: `clamp(3.2, 5.8vw, 4.9rem)`; Fraunces italic subline
@@ -326,7 +341,6 @@ Required every time for medical terms AND statistical measures in all prose, res
 - **Medical-advice disclaimer box required:** ⚕️ icon · dashed border · "Health education — not medical advice" + full educational-voice phrase
 - Closing slide: same disclaimer box as CTA slide
 - Reference: `hypertension-visuals.html`
-- Retrofit outstanding across Articles 01–11, 13–18
 
 ### Readability standards — visuals (all rgba thresholds)
 **Topbar:**
@@ -364,7 +378,7 @@ Required every time for medical terms AND statistical measures in all prose, res
 - No topbar
 - Segment IDs: `seg-N`
 
-### Cue box standard (reference file: `stress-teleprompter.html`)
+### Cue box standard (reference file: `lifestyle-changes-teleprompter.html`)
 Cue box always **precedes** the script lines for its segment — never after.
 Dr Paul advances slide FIRST, then reads — viewer sees slide before Dr Paul speaks.
 Label: `▶ ADVANCE NOW — then read`
@@ -423,6 +437,7 @@ Scale 0.62 · every 2nd frame · 120 colours · under 1.5MB total PPTX
 12. Copyright year — 2026
 13. Body text weight — `font-weight:400` throughout (never 300 in body)
 14. No `opacity:0` animations on article body sections — content immediately visible
+15. **ev-stat-box — `.ev-conditions` font is `.78rem`, padding is `.9rem .75rem`, `overflow:hidden` present — check before delivery on every visuals file**
 
 ---
 
@@ -474,16 +489,16 @@ Never include an unverified link. Never assume a study exists based on a plausib
 
 ### Confirmed complete
 - Educational voice: confirmed complete across Articles 01–21 (as built)
+- Article HTML retrofits (Articles 13–18): confirmed complete
+- Visuals and teleprompters (Articles 13–18): confirmed built
 
 ### Outstanding — to confirm and apply
-- Research card stat standard (outcomes only, not counts): outstanding across 01–11, 13–18
-- Inline citations (superscripts linking to refs): outstanding across 01–11, 13–18
-- CTA slide high-impact standard (disclaimer box, gold-glow, 4 action cards): outstanding across 01–11, 13–18
-- Visuals layout standard (horizontal rows, ev-stat-row): outstanding across 01–11, 13–18
-- Key terms / hero visibility standards: outstanding across 01–11, 13–18
+- Research card stat standard (outcomes only, not counts): outstanding across 01–11
+- Inline citations (superscripts linking to refs): outstanding across 01–11
+- CTA slide high-impact standard (disclaimer box, gold-glow, 4 action cards): outstanding across 01–11
+- Visuals layout standard (horizontal rows, ev-stat-row): outstanding across 01–11
+- Key terms / hero visibility standards: outstanding across 01–11
 - Teleprompter cue box standard: confirm per-file which were built before standard was set
-
-Confirm per-article retrofit status at start of each session before beginning new work.
 
 ---
 
@@ -525,13 +540,24 @@ If `create_file` reports "file already exists", delete the existing placeholder 
 - Research card 2: fibre supplementation response rate 77% vs 44% (Christodoulides 2016)
 - Important distinction: fibre evidence is for fibre supplements (psyllium/ispaghula) not dietary fibre from whole foods — clearly stated in the article
 
+### ev-stat-box overflow fix — LOCKED APRIL 2026
+Text disappearing off the bottom of ev-cards on the research slide is a recurring error. The confirmed fix is:
+- `.ev-stat-box`: `padding:.9rem .75rem` + `overflow:hidden` — do NOT increase padding
+- `.ev-kf-label`: `margin-bottom:.35rem`
+- `.ev-stat-row`: `margin-bottom:.3rem`
+- `.ev-conditions`: `font-size:.78rem; line-height:1.32` — do NOT increase font size
+- `.ev-conditions` text content: keep short — max ~8 words per line, ~2 lines
+- This spec is in Section 9 and QC checklist item 15. Check it on every visuals build before delivery.
+
+### session-start-rules.md status table conflict — April 2026
+The session-start-rules.md file fell out of sync with the project knowledge multiple times in April 2026, causing Claude to repeatedly tell Dr Paul that retrofits and builds were outstanding when they had already been done. The fix applied: Rule 6A added to session-start-rules.md stating that project knowledge always overrides this file on status. Both files must be updated and uploaded together at every session end.
+
 ---
 
 ## 19. OUTSTANDING TASKS (April 2026)
 
-### Immediate — Article 21 completion
-- `constipation-visuals.html` — visuals file for Article 21 (to build next)
-- `constipation-teleprompter.html` — teleprompter for Article 21 (to build after visuals)
+### Immediate
+- `constipation-teleprompter.html` — to build next
 
 ### Verification
 - `hypertension.html` references 5 & 6 — Cochrane PubMed IDs flagged ⚑ unverified — check before confirming article complete
@@ -539,7 +565,7 @@ If `create_file` reports "file already exists", delete the existing placeholder 
 ### Series planning
 - **Neurological series** — next series after Digestive Health. Article list not yet defined. Plan before building any Neurological content.
 
-### Retrofit backlog (confirm at session start before new work)
+### Retrofit backlog (Articles 01–11 only — 13–18 confirmed complete)
 - Research card stat standard
 - Inline citations (superscripts)
 - CTA slide standard
@@ -571,12 +597,12 @@ The Claude project holds **visuals, teleprompter, and screen files only**. Artic
 | File | Purpose |
 |------|---------|
 | `mediterranean-diet.html` | Canonical article HTML template |
-| `stress-teleprompter.html` | Canonical teleprompter (cue box standard) |
-| `alcohol-visuals.html` | Canonical visuals (ev-stat-row horizontal layout) |
+| `lifestyle-changes-teleprompter.html` | Canonical teleprompter (cue box standard) |
+| `lifestyle-changes-visuals.html` | Canonical visuals (ev-stat-row horizontal layout, all patterns) |
 | `hypertension-visuals.html` | Canonical CTA slide reference |
 
 ### Files confirmed in Claude project (April 2026)
-**Teleprompters (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd · ibs · bloating · coeliac · masld · acid-reflux (check)
+**Teleprompters (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd · ibs · bloating · coeliac · masld · acid-reflux
 
 **Visuals (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd (screen) · ibs · bloating · coeliac · masld · acid-reflux
 
@@ -586,41 +612,42 @@ The Claude project holds **visuals, teleprompter, and screen files only**. Artic
 
 ---
 
----
-
 ## 22. SESSION START RULES (content of helf-school-session-start-rules.md)
 
 These rules must be applied at the start of every session, before any output or assessment is produced.
 
 ### Rule 1 — Read before acting
-Read `/mnt/project/helf-school-project-knowledge.md` AND `/mnt/project/helf-school-session-start-rules.md` in full before any output, checks, or assessments. No exceptions. Reading after producing output is too late.
+Read `helf-school-project-knowledge.md` AND `helf-school-session-start-rules.md` in full before any output, checks, or assessments. No exceptions.
 
 ### Rule 2 — Article inventory is the source of truth
-The article inventory in Section 3 of this document is authoritative. Do not infer article status from file sizes, project file listings, or previous session summaries alone. If there is any doubt about whether a file is on GitHub, fetch it via raw URL to verify.
+The article inventory in Section 3 of this document is authoritative. Do not infer article status from file sizes, project file listings, or previous session summaries alone.
 
 ### Rule 3 — 5,140-byte files are NOT corrupted
-Files in the Claude project that are approximately 5,140 bytes (or similar small sizes like 6,170 bytes) and begin with "data-build-id" are Edge incognito loader stubs. They are captured during the upload process, not corrupted versions of the real file. Never flag these as corrupted or missing. The real file lives on GitHub. Fetch from raw URL to verify content.
+Files approximately 5,140 bytes beginning with "data-build-id" are Edge incognito loader stubs. Never flag as corrupted. Fetch from GitHub raw URL to verify content.
 
 ### Rule 4 — Never produce output before confirming understanding
-Before building or modifying any file, confirm: (1) which article/file is being worked on, (2) what the current status is per the inventory, (3) whether the canonical reference file has been checked. Do not start building based on an assumption.
+Before building or modifying any file, confirm: (1) which article/file, (2) current status per inventory, (3) canonical reference checked.
 
 ### Rule 5 — Educational voice check on every file
-Before delivering any file, audit it for forbidden phrases. The single most common error in older files is directive language. Always apply the full canonical phrase; never shorten it.
+Audit every file for forbidden phrases before delivery. Always apply the full canonical phrase; never shorten it.
 
 ### Rule 6 — Cross-check article ↔ teleprompter before delivery
-Any time both an article and a teleprompter/visuals file exist for the same article, verify that all key statistics, study names, years, and citation authors match exactly between both files. Discrepancies must be resolved before either file is delivered.
+All key statistics, study names, years, and citation authors must match exactly between both files.
+
+### Rule 6A — Project knowledge always overrides session-start-rules on status
+**If the file status table in session-start-rules.md conflicts with Section 3 of this document, this document (project knowledge) is correct.** Never flag work as outstanding based on session-start-rules.md alone. Both files must be updated together at every session end.
 
 ### Rule 7 — One large file per turn
-If building a very large HTML file (600+ lines), build it in one turn and wait for Dr Paul to confirm successful receipt before proceeding to the next file. Do not queue multiple large file builds in a single turn.
+Build very large HTML files one per turn. Wait for confirmation before proceeding to the next file.
 
 ### Rule 8 — Verify references before building
-Before building any article HTML, run web searches to verify all planned citations. Confirm each study (1) exists, (2) relates to the correct condition, (3) supports the specific claim, (4) DOI/URL resolves correctly. Never build an article with unverified citations.
+Run web searches to verify all planned citations before building any article HTML.
 
 ### Rule 9 — Update project knowledge at session end
-At the end of every session: (1) update this project knowledge document with anything new, (2) present it via Artifact panel for download, (3) Dr Paul uploads it to GitHub AND to the Claude Project — both are required. If only one is updated, the other will be out of sync next session.
+Update this document and session-start-rules.md together. Dr Paul uploads both to GitHub AND the Claude Project.
 
 ### Rule 10 — NICE CG99 is children only
-Never cite NICE CG99 in any adult article. It covers constipation in children and young people only. The correct adult constipation reference is NICE CKS at cks.nice.org.uk/constipation. This rule exists because the error is easy to make and is clinically significant.
+Never cite NICE CG99 in any adult article. Correct adult constipation reference: NICE CKS at cks.nice.org.uk/constipation.
 
 ---
 
@@ -630,13 +657,13 @@ Never cite NICE CG99 in any adult article. It covers constipation in children an
 References 5 and 6 — Cochrane PubMed IDs flagged ⚑ unverified. These need verification via web search before the article can be confirmed fully complete. All other references in this article are confirmed.
 
 ### statins.html
-This is a very large HTML file and has caused mid-build crashes in previous sessions. If this file needs to be rebuilt or significantly edited, handle it in one dedicated turn and do not attempt other work in the same turn.
+Very large HTML file — has caused mid-build crashes in previous sessions. If this file needs to be rebuilt or significantly edited, handle it in one dedicated turn.
 
 ### conditions page (helf-school-conditions.html)
-Rebuilt April 2026. If any further changes are needed, rebuild the whole file — do not attempt partial patches. The old version had too many cascading structural problems for safe patching.
+Rebuilt April 2026. If any further changes are needed, rebuild the whole file — do not attempt partial patches.
 
 ### index.html
-Rebuilt April 2026 with all 12 corrections listed in Section 4. The "About Dr Paul" section correctly reads "NHS GP · 20+ years". The credential item and the intro quote ("In over twenty years as an NHS GP...") are consistent and correct.
+Rebuilt April 2026 with all 12 corrections listed in Section 4. "About Dr Paul" section correctly reads "NHS GP · 20+ years". Consistent throughout.
 
 ---
 
