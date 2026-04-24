@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Migraine — helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #1B2A4A;
+      --coral: #E8634A;
+      --cream: #FAF7F2;
+      --sage: #7A9E87;
+      --amber: #E8A84A;
+      --acc: #6B5EA8;
+      --acc-dark: #4A4080;
+      --acc-pale: rgba(107,94,168,0.10);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--cream); color: #2C2C2C; font-family: 'DM Sans', sans-serif; font-size: 1.05rem; line-height: 1.7; font-weight: 400; }
+
+    /* NAV */
+    .nav { background: var(--navy); padding: .85rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: .5rem; text-decoration: none; }
+    .nav-logo-text { font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 700; color: #fff; }
+    .nav-logo-dot { color: var(--coral); }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: .88rem; font-weight: 500; }
+    .nav-links a:hover { color: #fff; }
+
+    /* HERO */
+    .hero { background: linear-gradient(135deg, var(--acc-dark) 0%, var(--acc) 60%, #8B7AC8 100%); padding: 3.5rem 1.5rem 3rem; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.08), transparent 60%); pointer-events: none; }
+    .hero-inner { max-width: 860px; margin: 0 auto; position: relative; }
+    .hero-breadcrumb { font-size: .78rem; color: rgba(255,255,255,0.78); margin-bottom: .6rem; font-weight: 500; }
+    .hero-breadcrumb a { color: rgba(255,255,255,0.78); text-decoration: none; }
+    .hero-breadcrumb a:hover { color: #fff; }
+    .hero-series { display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #fff; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35); padding: .28rem .75rem; border-radius: 100px; margin-bottom: .85rem; }
+    .hero h1 { font-family: 'Fraunces', serif; font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 700; color: #fff; line-height: 1.08; letter-spacing: -.02em; margin-bottom: .75rem; }
+    .hero-sub { font-size: 1.1rem; color: rgba(255,255,255,0.88); line-height: 1.55; max-width: 680px; font-weight: 400; margin-bottom: 1.25rem; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .hero-meta-item { font-size: .82rem; color: rgba(255,255,255,0.82); font-weight: 500; display: flex; align-items: center; gap: .35rem; }
+
+    /* DISCLAIMER BAR */
+    .disclaimer-bar { background: #FFFBEA; border-bottom: 2px solid #E8A84A; padding: .75rem 1.5rem; }
+    .disclaimer-bar p { max-width: 860px; margin: 0 auto; font-size: .85rem; color: #5A4A1A; font-weight: 500; line-height: 1.5; }
+
+    /* ARTICLE BODY */
+    .article-wrap { max-width: 860px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+
+    .section-block { margin-bottom: 2.8rem; }
+    .section-block h2 { font-family: 'Fraunces', serif; font-size: 1.55rem; font-weight: 700; color: var(--navy); margin-bottom: .9rem; padding-bottom: .5rem; border-bottom: 2px solid var(--acc-pale); }
+    .section-block h3 { font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 700; color: var(--navy); margin: 1.4rem 0 .5rem; }
+    .section-block p { margin-bottom: .85rem; color: #2C2C2C; font-weight: 400; }
+    .section-block ul { padding-left: 1.4rem; margin-bottom: .85rem; }
+    .section-block ul li { margin-bottom: .4rem; color: #2C2C2C; font-weight: 400; }
+
+    /* INLINE CITATION SUPERSCRIPTS */
+    sup a { color: var(--acc); font-size: .72em; font-weight: 700; text-decoration: none; }
+    sup a:hover { text-decoration: underline; }
+
+    /* ICHD CRITERIA BOX */
+    .criteria-box { background: #F0EEF7; border-left: 4px solid var(--acc); border-radius: 0 10px 10px 0; padding: 1.2rem 1.4rem; margin: 1.2rem 0; }
+    .criteria-box h4 { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: var(--acc-dark); margin-bottom: .6rem; }
+    .criteria-box ol { padding-left: 1.3rem; }
+    .criteria-box ol li { font-size: .95rem; color: #2C2C2C; margin-bottom: .3rem; font-weight: 400; }
+
+    /* KEY TERMS BOX */
+    .key-terms { background: var(--navy); border-radius: 14px; padding: 1.6rem 1.8rem; margin: 2rem 0; }
+    .key-terms h3 { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 1rem; }
+    .term-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem 2rem; }
+    @media (max-width: 600px) { .term-grid { grid-template-columns: 1fr; } }
+    .term-item { margin-bottom: .2rem; }
+    .term-label { font-size: .88rem; font-weight: 700; color: var(--amber); display: block; margin-bottom: .15rem; }
+    .term-def { font-size: .92rem; color: rgba(255,255,255,0.92); line-height: 1.45; font-weight: 400; }
+
+    /* IMPACT GRID */
+    .impact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.2rem 0; }
+    @media (max-width: 580px) { .impact-grid { grid-template-columns: 1fr; } }
+    .impact-card { background: var(--acc-pale); border-radius: 12px; padding: 1.1rem 1.2rem; border-left: 4px solid var(--acc); }
+    .impact-num { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 700; color: var(--acc); line-height: 1; margin-bottom: .25rem; letter-spacing: -.02em; }
+    .impact-label { font-size: .9rem; font-weight: 700; color: var(--navy); margin-bottom: .2rem; }
+    .impact-body { font-size: .85rem; color: #2C2C2C; line-height: 1.45; font-weight: 400; }
+
+    /* TREATMENT STEPS */
+    .step-list { list-style: none; padding: 0; margin: .8rem 0; }
+    .step-list li { display: flex; gap: .85rem; align-items: flex-start; padding: .7rem .9rem; border-radius: 8px; margin-bottom: .5rem; background: #fff; border: 1px solid rgba(107,94,168,0.15); }
+    .step-num { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--acc); color: #fff; font-size: .8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: .1rem; }
+    .step-text { font-size: .95rem; color: #2C2C2C; line-height: 1.5; font-weight: 400; }
+    .step-text strong { color: var(--navy); font-weight: 700; }
+
+    /* RED FLAG BOX */
+    .redflag-box { background: #FEF2F2; border: 1.5px solid #FECACA; border-radius: 12px; padding: 1.2rem 1.4rem; margin: 1.4rem 0; }
+    .redflag-box h4 { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: #B91C1C; margin-bottom: .6rem; }
+    .redflag-box ul { padding-left: 1.3rem; }
+    .redflag-box ul li { font-size: .93rem; color: #2C2C2C; margin-bottom: .35rem; font-weight: 400; }
+
+    /* RESEARCH CARDS */
+    .research-card { background: #fff; border: 1px solid rgba(107,94,168,0.2); border-radius: 16px; padding: 1.6rem; margin-bottom: 1.4rem; display: grid; grid-template-columns: 200px 1fr; gap: 1.6rem; align-items: start; }
+    @media (max-width: 640px) { .research-card { grid-template-columns: 1fr; } }
+    .rc-stat { background: var(--acc-pale); border-radius: 12px; padding: 1.1rem .9rem; text-align: center; }
+    .rc-kf { font-size: .62rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: rgba(107,94,168,0.7); margin-bottom: .4rem; }
+    .rc-stat-row { display: flex; align-items: baseline; gap: .4rem; justify-content: center; flex-wrap: wrap; margin-bottom: .3rem; }
+    .rc-num { font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 700; color: var(--acc); line-height: 1; letter-spacing: -.02em; flex-shrink: 0; }
+    .rc-outcome { font-size: .92rem; font-weight: 700; color: var(--navy); line-height: 1.3; text-align: left; }
+    .rc-conditions { font-size: .78rem; font-weight: 600; color: #2C2C2C; line-height: 1.32; overflow: hidden; }
+    .rc-title { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: .2rem; line-height: 1.2; }
+    .rc-journal { font-size: .88rem; color: #555; margin-bottom: .55rem; font-weight: 500; }
+    .rc-body { font-size: .97rem; color: #2C2C2C; line-height: 1.55; font-weight: 400; }
+
+    /* PUTTING IT ALL TOGETHER */
+    .putall { background: var(--navy); border-radius: 14px; padding: 1.8rem 2rem; margin: 2.5rem 0; }
+    .putall p { color: rgba(255,255,255,0.92); font-style: italic; line-height: 1.65; margin-bottom: .75rem; font-size: 1rem; font-weight: 400; }
+    .putall p:last-child { margin-bottom: 0; }
+    .putall strong { color: #fff; font-style: normal; font-weight: 700; }
+
+    /* REFERENCES */
+    .refs-section { margin-top: 3rem; padding-top: 1.8rem; border-top: 2px solid var(--acc-pale); }
+    .refs-section h2 { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: 1.2rem; }
+    .ref-block { margin-bottom: 1.1rem; padding-left: 1rem; border-left: 3px solid var(--acc); }
+    .ref-num { font-size: .78rem; font-weight: 700; color: var(--acc); margin-bottom: .15rem; }
+    .ref-full { font-size: .88rem; color: #2C2C2C; line-height: 1.55; font-weight: 400; }
+    .ref-links { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .35rem; }
+    .ref-pill { display: inline-block; font-size: .75rem; font-weight: 700; padding: .2rem .6rem; border-radius: 100px; text-decoration: none; background: var(--acc-pale); color: var(--acc-dark); border: 1px solid rgba(107,94,168,0.3); }
+    .ref-pill:hover { background: var(--acc); color: #fff; }
+
+    /* RESEARCH FLAGS */
+    .flags-section { margin-top: 2rem; background: #FFFBEA; border: 1.5px solid var(--amber); border-radius: 12px; padding: 1.2rem 1.4rem; }
+    .flags-section h3 { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: #78450A; margin-bottom: .7rem; }
+    .flags-section ul { padding-left: 1.2rem; }
+    .flags-section ul li { font-size: .88rem; color: #2C2C2C; margin-bottom: .4rem; line-height: 1.5; font-weight: 400; }
+
+    /* FOOTER */
+    .footer { background: var(--navy); color: rgba(255,255,255,0.7); text-align: center; padding: 2rem 1.5rem; font-size: .82rem; line-height: 1.6; }
+    .footer a { color: rgba(255,255,255,0.7); }
+    .footer-disc { font-size: .78rem; color: rgba(255,255,255,0.5); margin-top: .5rem; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <svg width="20" height="16" viewBox="0 0 22 18" fill="none">
+      <path d="M11 2C8 2 5.5 4 4 6.5 2.5 9 2.5 12 4 14.5c1 1.8 2.8 3 5 3.4V4.5" stroke="#E8634A" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M11 2C14 2 16.5 4 18 6.5 19.5 9 19.5 12 18 14.5c-1 1.8-2.8 3-5 3.4V4.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <span class="nav-logo-text">helf<span class="nav-logo-dot">.</span>school</span>
+  </a>
+  <div class="nav-links">
+    <a href="helf-school-conditions.html">All conditions</a>
+    <a href="helf-school-membership.html">Membership</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-breadcrumb"><a href="helf-school-conditions.html">All conditions</a> › Neurological Health</div>
+    <div class="hero-series">🧠 Neurological Health Series · Article 22</div>
+    <h1>Migraine</h1>
+    <p class="hero-sub">What it is, why it matters, and what the evidence shows about treating and preventing attacks.</p>
+    <div class="hero-meta">
+      <span class="hero-meta-item">👨‍⚕️ Dr Paul — Retired NHS GP · 20+ years</span>
+      <span class="hero-meta-item">📚 Evidence-based · NICE CG150 · Lancet · NEJM</span>
+      <span class="hero-meta-item">📅 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER BAR -->
+<div class="disclaimer-bar">
+  <p>⚕️ <strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+</div>
+
+<!-- ARTICLE BODY -->
+<main class="article-wrap">
+
+  <!-- SECTION 1: WHAT IS IT -->
+  <div class="section-block">
+    <h2>1. What is migraine?</h2>
+
+    <p>Migraine is a primary neurological disorder — one that arises from within the nervous system rather than being caused by another condition. It is characterised by recurrent attacks of moderate to severe headache, typically one-sided and throbbing or pulsating in quality, lasting 4–72 hours without treatment. Attacks are accompanied by at least one of: nausea or vomiting, sensitivity to light (photophobia), or sensitivity to sound (phonophobia). Routine physical activity typically worsens the pain.<sup><a href="#ref-1">1</a></sup></p>
+
+    <p>The clinical framework used for diagnosis worldwide is the <strong>ICHD-3</strong> — the International Classification of Headache Disorders, 3rd edition, published by the International Headache Society in 2018. Under ICHD-3, the formal diagnostic criteria for migraine without aura require at least five attacks meeting all of the following:<sup><a href="#ref-1">1</a></sup></p>
+
+    <div class="criteria-box">
+      <h4>ICHD-3 diagnostic criteria — migraine without aura</h4>
+      <ol>
+        <li>Headache lasting 4–72 hours (untreated or unsuccessfully treated)</li>
+        <li>At least two of: unilateral location · pulsating quality · moderate or severe pain intensity · aggravated by or causing avoidance of routine physical activity</li>
+        <li>At least one of: nausea and/or vomiting · photophobia (see Key Terms below) <em>and</em> phonophobia (see Key Terms below)</li>
+        <li>Not better accounted for by another diagnosis</li>
+      </ol>
+    </div>
+
+    <h3>Migraine with aura</h3>
+    <p>Approximately one in three people with migraine also experience <strong>aura</strong> — reversible neurological symptoms that typically develop over 5–20 minutes and last less than an hour, usually preceding the headache phase. Visual aura is most common: zigzag or shimmering lines (scintillating scotoma), blind spots (scotoma), or flashing lights. Sensory aura — tingling or numbness spreading across the face or arm — and, less commonly, speech disturbance, can also occur.<sup><a href="#ref-1">1</a></sup></p>
+
+    <h3>Episodic and chronic migraine</h3>
+    <p>Migraine is classified by frequency. <strong>Episodic migraine</strong> involves fewer than 15 headache days per month. <strong>Chronic migraine</strong> is defined as 15 or more headache days per month for more than three months, on at least 8 of which the headache fulfils migraine criteria.<sup><a href="#ref-1">1</a></sup> Around 2–3% of the general population live with chronic migraine.</p>
+
+    <h3>Attack phases</h3>
+    <p>A migraine attack typically progresses through phases: a <strong>prodrome</strong> (hours to days before the headache) with symptoms such as fatigue, mood change, food cravings, or neck stiffness; an <strong>aura</strong> phase if present; the <strong>headache</strong> phase; and a <strong>postdrome</strong> — a recovery phase of fatigue, difficulty concentrating, and general malaise lasting up to 24 hours after the headache resolves.</p>
+  </div>
+
+  <!-- KEY TERMS BOX -->
+  <div class="key-terms">
+    <h3>🔑 Key terms</h3>
+    <div class="term-grid">
+      <div class="term-item">
+        <span class="term-label">Aura</span>
+        <span class="term-def">Reversible neurological symptoms — most commonly visual — preceding or accompanying migraine headache, typically lasting 20–60 minutes.</span>
+      </div>
+      <div class="term-item">
+        <span class="term-label">ICHD-3</span>
+        <span class="term-def">International Classification of Headache Disorders, 3rd edition — the diagnostic framework used by neurologists and headache specialists worldwide.</span>
+      </div>
+      <div class="term-item">
+        <span class="term-label">Photophobia / Phonophobia</span>
+        <span class="term-def">Sensitivity to light / sensitivity to sound — both are characteristic features of migraine attacks and part of the ICHD-3 diagnostic criteria.</span>
+      </div>
+      <div class="term-item">
+        <span class="term-label">Prodrome</span>
+        <span class="term-def">Pre-headache phase beginning hours to days before an attack, characterised by fatigue, mood changes, food cravings, or neck stiffness.</span>
+      </div>
+      <div class="term-item">
+        <span class="term-label">Episodic vs Chronic migraine</span>
+        <span class="term-def">Episodic = fewer than 15 headache days per month. Chronic = 15 or more headache days per month, on at least 8 of which the headache fulfils migraine criteria.</span>
+      </div>
+      <div class="term-item">
+        <span class="term-label">CGRP</span>
+        <span class="term-def">Calcitonin gene-related peptide — a neuropeptide released during migraine attacks that plays a central role in pain signalling; the target of newer preventive treatments.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: WHY DOES IT MATTER -->
+  <div class="section-block">
+    <h2>2. Why does it matter?</h2>
+
+    <div class="impact-grid">
+      <div class="impact-card">
+        <div class="impact-num">18.3%</div>
+        <div class="impact-label">of women in England</div>
+        <div class="impact-body">affected in any given year — compared to 7.6% of men. Migraine disproportionately affects women of working age.<sup><a href="#ref-2">2</a></sup></div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num">3rd</div>
+        <div class="impact-label">highest cause of disability</div>
+        <div class="impact-body">worldwide in adults under 50 — ranked by the Global Burden of Disease Study, ahead of diabetes, stroke, and dementia in this age group.<sup><a href="#ref-1">1</a></sup></div>
+      </div>
+    </div>
+
+    <p>Migraine is one of the most prevalent neurological conditions in the UK. A large epidemiological study in England estimated a 1-year prevalence of 7.6% in males and 18.3% in females, with peak prevalence in the third and fourth decades of life.<sup><a href="#ref-2">2</a></sup> The condition is substantially more common in women — a pattern that is most pronounced during the reproductive years and closely linked to hormonal fluctuation.</p>
+
+    <p>The burden extends well beyond the individual attack. In most episodes, routine daily activities are disrupted; over half of people with migraine report being unable to function normally during an attack. The cumulative impact on work, relationships, and quality of life is substantial — studies show that migraine contributes significantly to reduced career progression and long-term financial security for those affected.<sup><a href="#ref-5">5</a></sup></p>
+
+    <p>Despite this, migraine is substantially under-diagnosed. Studies consistently show that over 40% of people meeting clinical criteria for migraine have never received a formal diagnosis — many attributing their attacks to "sinus headaches," "stress headaches," or tension — and remain without targeted treatment.<sup><a href="#ref-1">1</a></sup></p>
+
+    <p>Migraine also carries a recognised association with a small increased risk of ischaemic stroke — particularly migraine with aura in women who smoke or use combined oral contraceptives (COC). This is a clinically relevant consideration in the management of women of reproductive age.</p>
+  </div>
+
+  <!-- SECTION 3: WHAT YOUR DOCTOR MIGHT DISCUSS -->
+  <div class="section-block">
+    <h2>3. What your doctor might discuss</h2>
+
+    <h3>Diagnosis</h3>
+    <p>Migraine is a clinical diagnosis — made on history alone, using the ICHD-3 criteria described above. No blood tests, brain scans, or imaging are required to diagnose straightforward migraine. A <strong>headache diary</strong> — recording dates, duration, associated features, potential triggers, and medications used — is a valuable tool that helps establish attack frequency, identify patterns, and inform treatment decisions.</p>
+
+    <div class="redflag-box">
+      <h4>⚠️ Headache patterns clinically recognised as requiring prompt assessment</h4>
+      <ul>
+        <li><strong>Thunderclap headache</strong> — sudden severe onset, reaching maximum intensity within seconds to minutes: clinically recognised as requiring urgent assessment to exclude subarachnoid haemorrhage.</li>
+        <li><strong>New headache in someone over 50</strong> — particularly if progressive, or associated with scalp tenderness: warrants investigation to exclude giant cell arteritis or intracranial pathology.</li>
+        <li><strong>Headache with fever, neck stiffness, and rash</strong> — clinically recognised as time-sensitive; 111 and urgent GP services exist for this presentation.</li>
+        <li><strong>New focal neurological deficit with headache</strong> — weakness, speech difficulty, or visual loss not consistent with typical aura pattern.</li>
+        <li><strong>Headache in someone with known cancer or immunosuppression.</strong></li>
+      </ul>
+    </div>
+
+    <h3>Common triggers</h3>
+    <p>Trigger identification is a recognised part of migraine management, though triggers are highly individual and not universal. Commonly reported triggers include: hormonal fluctuation (particularly around menstruation), disrupted sleep (both insufficient and excessive), psychological stress and the "let-down" after stress, dehydration, skipped meals, alcohol (particularly red wine and beer), and bright or flickering light. Keeping a diary helps identify which, if any, are relevant for a given person — but over-restriction of potential triggers is not generally recommended.</p>
+
+    <h3>Acute (attack) treatment</h3>
+    <p>NICE CG150 recommends a stepwise approach to acute migraine treatment:<sup><a href="#ref-1">1</a></sup></p>
+    <ol class="step-list">
+      <li><span class="step-num">1</span><span class="step-text"><strong>Simple analgesia with antiemetic:</strong> aspirin 900mg, ibuprofen, or paracetamol, combined with a prokinetic antiemetic such as metoclopramide or domperidone (which also improves absorption of the analgesic during an attack). Best taken early in the attack.</span></li>
+      <li><span class="step-num">2</span><span class="step-text"><strong>Triptan ± NSAID or paracetamol:</strong> triptans are serotonin 5-HT1B/1D receptor agonists specifically developed for migraine. Sumatriptan (Imigran) is the NICE first-line choice. Combination of a triptan with an NSAID is superior to either alone. If one triptan fails, others may work — lack of response is not a class effect. Around 30% of people do not respond to any triptan.</span></li>
+      <li><span class="step-num">3</span><span class="step-text"><strong>CGRP receptor antagonist (gepant):</strong> rimegepant (Vydura) is licensed in the UK for acute treatment in those for whom at least two triptans were inadequately effective or not tolerated, or in whom triptans are contraindicated.</span></li>
+    </ol>
+
+    <h3>Medication overuse headache (MOH)</h3>
+    <p>A clinically important pattern: taking acute headache treatments — triptans or opioids on more than 10 days per month, or simple analgesics on more than 15 days per month — is associated with the development of <strong>medication overuse headache</strong> (MOH), also known as analgesic-rebound headache. In this pattern, increasing reliance on acute medication produces progressively more frequent headache. Recognising and withdrawing the overused medication, ideally with support, is a recognised treatment approach in UK practice.</p>
+
+    <h3>Preventive treatment</h3>
+    <p>Prevention is considered when attacks are frequent (typically four or more per month), prolonged, severely disabling, or inadequately controlled with acute treatment. The clinical aim is to reduce attack frequency by at least 50%.<sup><a href="#ref-1">1</a></sup></p>
+
+    <p>First-line oral preventives in UK practice (NICE CG150) include propranolol (Inderal — a beta-blocker), topiramate (Topamax — an antiepileptic), and amitriptyline (Tryptizol — a tricyclic antidepressant used at low dose). <strong>Topiramate is teratogenic (capable of causing harm to a developing foetus)</strong> and is not used in women who could become pregnant without highly effective contraception — this is a clinically significant prescribing constraint in UK practice.</p>
+
+    <p>For those who have failed two or more standard preventive treatments, <strong>CGRP monoclonal antibodies</strong> — erenumab (Aimovig), fremanezumab (Ajovy), and galcanezumab (Emgality) — are licensed and available on the NHS. These are monthly subcutaneous injections specifically developed for migraine prevention. Botulinum toxin A (Botox) is a further NICE-recommended option specifically for chronic migraine (≥15 days/month).</p>
+  </div>
+
+  <!-- SECTION 4: WHAT THE RESEARCH SHOWS -->
+  <div class="section-block">
+    <h2>4. What the research shows</h2>
+
+    <div class="research-card">
+      <div class="rc-stat">
+        <div class="rc-kf">Key Finding</div>
+        <div class="rc-stat-row">
+          <div class="rc-num">59%</div>
+          <div class="rc-outcome">2-hour headache response · sumatriptan 100mg</div>
+        </div>
+        <div class="rc-conditions">vs 29% pain-free at 2h · across 53 RCTs, 24,089 patients</div>
+      </div>
+      <div>
+        <div class="rc-title">Oral triptans in acute migraine — meta-analysis of 53 trials</div>
+        <div class="rc-journal">Ferrari MD, Roon KI, Lipton RB, Goadsby PJ · The Lancet · 2001;358:1668–1675</div>
+        <div class="rc-body">The landmark meta-analysis of 53 randomised controlled trials involving 24,089 patients established the efficacy profile of all seven oral triptans. For sumatriptan 100mg, the reference standard, <strong>59% of patients achieved headache response</strong> (reduction to mild or no pain) at 2 hours, and <strong>29% were completely pain-free at 2 hours</strong>. Consistency of response across multiple attacks was 67%. All triptans demonstrated superiority over placebo; rizatriptan 10mg and eletriptan 80mg showed the highest efficacy. This evidence base underpins the position of triptans as the primary migraine-specific acute treatment in clinical guidelines worldwide.<sup><a href="#ref-3">3</a></sup></div>
+      </div>
+    </div>
+
+    <div class="research-card">
+      <div class="rc-stat">
+        <div class="rc-kf">Key Finding</div>
+        <div class="rc-stat-row">
+          <div class="rc-num">50%</div>
+          <div class="rc-outcome">of patients · ≥50% reduction in monthly migraine days</div>
+        </div>
+        <div class="rc-conditions">erenumab 140mg vs placebo · mean 3.7-day reduction from 8.3 baseline days</div>
+      </div>
+      <div>
+        <div class="rc-title">Erenumab for episodic migraine — the STRIVE trial</div>
+        <div class="rc-journal">Goadsby PJ et al · N Engl J Med · 2017;377:2123–2132</div>
+        <div class="rc-body">The STRIVE trial randomised 955 adults with episodic migraine to monthly subcutaneous erenumab (70mg or 140mg) or placebo for 6 months. Erenumab targets the calcitonin gene-related peptide (CGRP) receptor — a key mediator of migraine pain signalling. At the 140mg dose, <strong>50% of patients achieved a ≥50% reduction in monthly migraine days</strong> (the standard responder threshold), compared with 27% on placebo. The mean reduction in monthly migraine days was 3.7 days from a baseline of 8.3 days. This trial established the CGRP monoclonal antibodies as a specifically developed, targeted preventive treatment for migraine with a clearly superior tolerability profile to older oral preventives.<sup><a href="#ref-4">4</a></sup></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: PUTTING IT ALL TOGETHER -->
+  <div class="section-block">
+    <h2>5. Putting it all together</h2>
+    <div class="putall">
+      <p>Migraine is one of the most common and burdensome neurological conditions in the UK, affecting approximately 1 in 8 adults and disproportionately women of working age. It is a neurological disorder with a well-characterised diagnostic framework (ICHD-3) and a substantial and growing evidence base for treatment. Despite this, it remains significantly under-diagnosed — with many people attributing disabling attacks to "just a bad headache" and never receiving targeted treatment.</p>
+      <p>The evidence supports a structured approach: accurate diagnosis, trigger identification where relevant, effective acute treatment with triptans where simple analgesics are insufficient, careful avoidance of medication overuse, and preventive treatment for those with frequent or disabling attacks. For people who do not respond to standard oral preventives, CGRP-targeting monoclonal antibodies represent a genuine advance in migraine-specific treatment — the first class of drugs developed specifically for migraine prevention.</p>
+      <p><strong>What the evidence shows is that migraine, though not curable, is treatable — and that most people currently living with it have not yet received optimal care.</strong></p>
+    </div>
+  </div>
+
+  <!-- REFERENCES -->
+  <div class="refs-section">
+    <h2>References</h2>
+
+    <div class="ref-block" id="ref-1">
+      <div class="ref-num">1</div>
+      <div class="ref-full">NICE. Headaches in over 12s: diagnosis and management. NICE guideline CG150. Published 2012, updated 2021. Available at: nice.org.uk/guidance/cg150</div>
+      <div class="ref-links"><a class="ref-pill" href="https://www.nice.org.uk/guidance/cg150" target="_blank">NICE CG150</a></div>
+    </div>
+
+    <div class="ref-block" id="ref-2">
+      <div class="ref-num">2</div>
+      <div class="ref-full">Steiner TJ, Scher AI, Stewart WF, Kolodner K, Liberman J, Lipton RB. The prevalence and disability burden of adult migraine in England and their relationships to age, gender and ethnicity. Cephalalgia. 2003;23(7):519–527. doi: 10.1046/j.1468-2982.2003.00568.x. PMID: 12950377.</div>
+      <div class="ref-links"><a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/12950377/" target="_blank">PubMed</a></div>
+    </div>
+
+    <div class="ref-block" id="ref-3">
+      <div class="ref-num">3</div>
+      <div class="ref-full">Ferrari MD, Roon KI, Lipton RB, Goadsby PJ. Oral triptans (serotonin 5-HT1B/1D agonists) in acute migraine treatment: a meta-analysis of 53 trials. Lancet. 2001 Nov 17;358(9294):1668–1675. doi: 10.1016/S0140-6736(01)06711-3. PMID: 11728541.</div>
+      <div class="ref-links"><a class="ref-pill" href="https://doi.org/10.1016/S0140-6736(01)06711-3" target="_blank">DOI</a><a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/11728541/" target="_blank">PubMed</a></div>
+    </div>
+
+    <div class="ref-block" id="ref-4">
+      <div class="ref-num">4</div>
+      <div class="ref-full">Goadsby PJ, Reuter U, Hallström Y, Broessner G, Bonner JH, Zhang F, Sapra S, Picard H, Mikol DD, Lenz RA. A controlled trial of erenumab for episodic migraine. N Engl J Med. 2017 Nov 30;377(22):2123–2132. doi: 10.1056/NEJMoa1705848. PMID: 29171821.</div>
+      <div class="ref-links"><a class="ref-pill" href="https://doi.org/10.1056/NEJMoa1705848" target="_blank">DOI</a><a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/29171821/" target="_blank">PubMed</a></div>
+    </div>
+
+    <div class="ref-block" id="ref-5">
+      <div class="ref-num">5</div>
+      <div class="ref-full">The Migraine Trust. The State of the Migraine Nation: impact rapid review. 2021. Available at: migrainetrust.org ⚑ See research flag below.</div>
+      <div class="ref-links"><a class="ref-pill" href="https://migrainetrust.org/wp-content/uploads/2021/08/State-of-the-Migraine-Nation-impact-rapid-review.pdf" target="_blank">Migraine Trust</a></div>
+    </div>
+  </div>
+
+  <!-- RESEARCH FLAGS -->
+  <div class="flags-section">
+    <h3>⚑ Research flags — for Dr Paul's review before upload</h3>
+    <ul>
+      <li><strong>Ref 5 — Migraine Trust State of the Migraine Nation report (2021):</strong> cited as source for career impact and financial burden data. This is a secondary source (advocacy organisation rapid review), not a peer-reviewed journal. The underlying data references UK survey and modelling work. Review whether this claim requires a primary peer-reviewed citation or if the secondary source is acceptable given the nature of the claim.</li>
+      <li><strong>Topiramate teratogenicity warning:</strong> based on established clinical knowledge and NICE CG150 / MHRA guidance. Accurate as stated — no additional flag needed, but confirm the current NICE/MHRA prescribing restriction wording remains current before publication.</li>
+      <li><strong>Rimegepant (Vydura) UK licensing status:</strong> confirmed licensed in UK for acute migraine treatment. Verify current NICE commissioning status before publication — recommendations in this area are evolving.</li>
+    </ul>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>helf<strong>.</strong>school — Health Education · Neurological Health Series</p>
+  <p class="footer-disc">Anything personally relevant is a conversation for you to have with your GP or healthcare professional. © 2026 helf.school</p>
+</footer>
+
+</body>
+</html>
