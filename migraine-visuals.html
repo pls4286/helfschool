@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Migraine — Visuals | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#6B5EA8;--acc2:#4A4080;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--calm:#70b8e8}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
+    #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:var(--navy);border-bottom:2px solid var(--acc2);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
+    .tb-logo{display:flex;align-items:center;gap:.5rem}
+    .tb-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff}
+    .tb-dot{color:var(--coral)}
+    .tb-sub{font-size:.75rem;color:rgba(255,255,255,.78);margin-left:.25rem;font-weight:500}
+    .tb-right{display:flex;align-items:center;gap:1.2rem}
+    .slide-counter{font-size:.85rem;font-weight:700;color:rgba(255,255,255,.90)}
+    .kb-hint{font-size:.75rem;color:rgba(255,255,255,.65)}
+    #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:2.2vh 1.25rem 3.5vh;overflow:hidden}
+    .slide{display:none;width:100%;max-width:1140px;height:100%;animation:sIn .32s ease}
+    .slide.active{display:flex;flex-direction:column;min-height:0}
+    @keyframes sIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.1vw,1.75rem);font-weight:700;color:#fff;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:2px solid rgba(107,94,168,.3);flex-shrink:0}
+    .slide-title span{color:var(--acc)}
+    #dots{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:200}
+    .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .25s}
+    .dot.active{background:var(--acc);transform:scale(1.3)}
+
+    /* INTRO */
+    .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.3rem}
+    .intro-badge{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:rgba(107,94,168,.22);border:1px solid rgba(107,94,168,.45);padding:.3rem .9rem;border-radius:100px}
+    .intro-icon{font-size:4rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .intro-title{font-family:'Fraunces',serif;font-size:clamp(2.6rem,5.5vw,4.4rem);font-weight:700;color:#fff;line-height:1.05;max-width:960px;letter-spacing:-.02em}
+    .intro-title span{color:var(--acc)}
+    .intro-sub{font-size:1.1rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;max-width:680px;line-height:1.5;font-weight:400}
+    .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+
+    /* BIG PICTURE */
+    .big-stage{display:flex;flex-direction:column;flex:1;gap:1.2rem;min-height:0;align-items:center;justify-content:center}
+    .big-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;width:100%;max-width:960px}
+    .big-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1.5px solid rgba(107,94,168,.45);border-radius:20px;padding:1.8rem 1.6rem;text-align:center;box-shadow:0 0 40px rgba(107,94,168,.08)}
+    .big-num{font-family:'Fraunces',serif;font-size:clamp(4rem,8.5vw,6.2rem);font-weight:700;color:var(--acc);line-height:.9;letter-spacing:-.03em;margin-bottom:.3rem}
+    .big-lbl{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:.45rem}
+    .big-body{font-size:.95rem;color:rgba(255,255,255,.88);line-height:1.45;font-weight:400}
+    .big-src{font-size:.78rem;color:rgba(255,255,255,.70);font-style:italic;margin-top:.55rem}
+    .big-strip{display:flex;align-items:center;justify-content:center;gap:.9rem;padding:.85rem 1.5rem;background:rgba(232,168,74,.12);border:1px solid rgba(232,168,74,.4);border-radius:12px;max-width:920px}
+    .big-strip-icon{font-size:1.4rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .big-strip-text{font-size:1rem;color:#fff;font-weight:500;font-family:'Fraunces',serif;line-height:1.4}
+    .big-strip-text strong{color:var(--warn)}
+
+    /* 6-ROW CARDS — TRIGGERS */
+    .sys-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
+    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .sys-card.animate-ready{opacity:0;transform:translateY(14px)}
+    .sys-card.vis{opacity:1;transform:translateY(0)}
+    .sys-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .sys-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+    .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
+    .sys-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .sys-stat{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
+
+    /* 6-ROW CARDS — WHAT HELPS */
+    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
+    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .doc-card.animate-ready{opacity:0;transform:translateY(14px)}
+    .doc-card.vis{opacity:1;transform:translateY(0)}
+    .doc-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .doc-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
+    .doc-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
+
+    /* EVIDENCE CARDS */
+    .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
+    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(107,94,168,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .45s ease}
+    .ev-card.animate-ready{opacity:0;transform:translateY(14px)}
+    .ev-card.vis{opacity:1;transform:translateY(0)}
+    .ev-stat-box{background:rgba(107,94,168,.09);border-radius:14px;padding:.9rem .75rem;text-align:center;overflow:hidden}
+    .ev-kf-label{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(107,94,168,.75);margin-bottom:.35rem}
+    .ev-stat-row{display:flex;align-items:baseline;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:.3rem}
+    .ev-num{font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:var(--acc);line-height:1;letter-spacing:-.02em;flex-shrink:0}
+    .ev-num.bad{color:var(--bad)}
+    .ev-num.good{color:var(--good)}
+    .ev-outcome{font-size:1rem;font-weight:700;color:#fff;line-height:1.3;text-align:left}
+    .ev-conditions{font-size:.78rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.32}
+    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;margin-bottom:.25rem;line-height:1.15;letter-spacing:-.01em}
+    .ev-det .ev-journal{font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
+    .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+    /* 6-ROW MECH CARDS */
+    .mech-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
+    .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(107,94,168,.32);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .mech-card.animate-ready{opacity:0;transform:translateY(14px)}
+    .mech-card.vis{opacity:1;transform:translateY(0)}
+    .mech-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .mech-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+    .mech-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
+    .mech-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.7vw,1.55rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
+
+    /* CTA SLIDE */
+    .cta-slide{position:relative}
+    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(107,94,168,.22),rgba(107,94,168,.05) 45%,transparent 70%);pointer-events:none;z-index:0}
+    .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem;gap:.45rem;min-height:0;overflow:hidden}
+    .cta-top{display:flex;flex-direction:column;align-items:center;gap:.3rem;text-align:center}
+    .cta-badge-v2{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(107,94,168,.18);border:1.5px solid rgba(107,94,168,.55);padding:.3rem .95rem;border-radius:100px}
+    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:700;color:#fff;line-height:1.02;letter-spacing:-.028em}
+    .cta-headline-v2 span{color:var(--acc)}
+    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(.95rem,1.5vw,1.2rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);line-height:1.3}
+    .cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.4rem;min-height:0;overflow:hidden}
+    .cta-row-v2{background:linear-gradient(90deg,rgba(107,94,168,.14),rgba(107,94,168,.04));border-left:4px solid var(--acc);border-radius:0 10px 10px 0;padding:.6rem .95rem;display:grid;grid-template-columns:52px 1fr auto;gap:.9rem;align-items:start;min-height:0;overflow:hidden}
+    .cta-row-icon{font-size:1.7rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .cta-row-mid{display:flex;flex-direction:column;gap:.12rem;min-width:0}
+    .cta-row-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.95rem;line-height:1.15}
+    .cta-row-body-v2{font-size:.82rem;color:rgba(255,255,255,.90);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .cta-row-word-v2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.2rem,2vw,1.7rem);color:var(--acc);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:.6rem}
+    .cta-bottom{display:flex;justify-content:center;flex-shrink:0}
+    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.75rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;max-width:900px;width:100%}
+    .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.88);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left;font-weight:400}
+    .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
+
+    /* CLOSING */
+    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.6rem;padding:1.5rem}
+    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
+    .close-logo .cdot{color:var(--coral)}
+    .close-sub{font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+    .close-headline{font-family:'Fraunces',serif;font-size:clamp(3rem,5.8vw,5.2rem);font-weight:700;color:#fff;max-width:1050px;line-height:1.08;letter-spacing:-.025em}
+    .close-headline span{color:var(--acc)}
+    .close-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1050px;width:100%}
+    .cst-card{background:rgba(107,94,168,.12);border:1px solid rgba(107,94,168,.38);border-radius:16px;padding:1.5rem 1.1rem;display:flex;flex-direction:column;align-items:center;gap:.55rem}
+    .cst-num{font-family:'Fraunces',serif;font-size:clamp(2.4rem,4.4vw,3.8rem);font-weight:700;color:var(--acc);line-height:.95;letter-spacing:-.02em}
+    .cst-lab{font-size:1.05rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.32}
+    .cst-src{font-size:.85rem;color:rgba(255,255,255,.72);font-style:italic}
+    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.3rem}
+    .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:.68rem;color:rgba(255,255,255,.18);z-index:90;white-space:nowrap}
+  </style>
+</head>
+<body>
+
+<div id="topbar">
+  <div class="tb-logo">
+    <svg width="20" height="16" viewBox="0 0 22 18" fill="none">
+      <path d="M11 2C8 2 5.5 4 4 6.5 2.5 9 2.5 12 4 14.5c1 1.8 2.8 3 5 3.4V4.5" stroke="#E8634A" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M11 2C14 2 16.5 4 18 6.5 19.5 9 19.5 12 18 14.5c-1 1.8-2.8 3-5 3.4V4.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <span class="tb-title">helf<span class="tb-dot">.</span>school</span>
+    <span class="tb-sub">· Migraine</span>
+  </div>
+  <div class="tb-right">
+    <span id="counter" class="slide-counter">1 / 8</span>
+    <span class="kb-hint">← → navigate</span>
+  </div>
+</div>
+
+<div id="stage">
+
+  <!-- SLIDE 1: INTRO -->
+  <div class="slide active">
+    <div class="intro-wrap">
+      <div class="intro-badge">🧠 Neurological Health Series · Article 22</div>
+      <div class="intro-icon">🧠</div>
+      <div class="intro-title"><span>Migraine</span></div>
+      <div class="intro-sub">What the evidence shows about triggers, acute treatment, prevention, and the science behind it.</div>
+      <div class="intro-tagline">Dr Paul · Retired NHS GP · helf.school</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: BIG PICTURE -->
+  <div class="slide">
+    <div class="slide-title">The big picture · <span>migraine in the UK</span></div>
+    <div class="big-stage">
+      <div class="big-row">
+        <div class="big-card">
+          <div class="big-num">18.3%</div>
+          <div class="big-lbl">of women in England</div>
+          <div class="big-body">affected in any given year — compared to <strong>7.6% of men</strong>. Peak prevalence is in the third and fourth decades of life.</div>
+          <div class="big-src">Steiner et al · Cephalalgia · 2003</div>
+        </div>
+        <div class="big-card">
+          <div class="big-num">3rd</div>
+          <div class="big-lbl">highest cause of disability</div>
+          <div class="big-body">worldwide in adults <strong>under 50</strong> — ranked by the Global Burden of Disease Study. Ahead of diabetes, stroke, and dementia in this age group.</div>
+          <div class="big-src">GBD 2015 · ICHD-3</div>
+        </div>
+      </div>
+      <div class="big-strip">
+        <div class="big-strip-icon">⚠️</div>
+        <div class="big-strip-text">Migraine is substantially <strong>under-diagnosed</strong> — over 40% of those meeting clinical criteria have never received a formal diagnosis.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: WHAT DRIVES ATTACKS -->
+  <div class="slide">
+    <div class="slide-title">What <span>drives and triggers attacks</span></div>
+    <div class="sys-grid">
+      <div class="sys-card animate-ready" id="s1">
+        <div class="sys-icon">🔄</div>
+        <div class="sys-content">
+          <div class="sys-title">Hormonal fluctuation</div>
+          <div class="sys-body">Oestrogen fluctuation — especially around menstruation — is the most common trigger in women. Migraine often improves after menopause.</div>
+        </div>
+        <div class="sys-stat">↑ Oestrogen ↓</div>
+      </div>
+      <div class="sys-card animate-ready" id="s2">
+        <div class="sys-icon">😴</div>
+        <div class="sys-content">
+          <div class="sys-title">Sleep disruption</div>
+          <div class="sys-body">Both too little and too much sleep are recognised triggers. Irregular sleep schedules are independently associated with higher attack frequency.</div>
+        </div>
+        <div class="sys-stat">↑ / ↓ Sleep</div>
+      </div>
+      <div class="sys-card animate-ready" id="s3">
+        <div class="sys-icon">😰</div>
+        <div class="sys-content">
+          <div class="sys-title">Stress and let-down</div>
+          <div class="sys-body">Acute psychological stress and the relaxation phase after a period of sustained stress (the "let-down" effect) are both commonly reported triggers.</div>
+        </div>
+        <div class="sys-stat">Stress axis</div>
+      </div>
+      <div class="sys-card animate-ready" id="s4">
+        <div class="sys-icon">🍽️</div>
+        <div class="sys-content">
+          <div class="sys-title">Dehydration and skipped meals</div>
+          <div class="sys-body">Even mild dehydration and missed meals can lower the threshold for an attack — consistent meal and fluid timing is a practical management strategy.</div>
+        </div>
+        <div class="sys-stat">Threshold ↓</div>
+      </div>
+      <div class="sys-card animate-ready" id="s5">
+        <div class="sys-icon">🍷</div>
+        <div class="sys-content">
+          <div class="sys-title">Alcohol (especially red wine)</div>
+          <div class="sys-body">Tyramine and histamine in red wine are among the most commonly reported dietary triggers. Beer and spirits are also cited, though effects are individual.</div>
+        </div>
+        <div class="sys-stat">Tyramine</div>
+      </div>
+      <div class="sys-card animate-ready" id="s6">
+        <div class="sys-icon">💊</div>
+        <div class="sys-content">
+          <div class="sys-title">Medication overuse</div>
+          <div class="sys-body">Using acute treatments more than 10 days per month (triptans/opioids) upregulates central pain pathways, progressively worsening attack frequency.</div>
+        </div>
+        <div class="sys-stat">&gt;10 days/mo</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: WHAT HELPS -->
+  <div class="slide">
+    <div class="slide-title">What <span>the evidence supports</span></div>
+    <div class="doc-grid">
+      <div class="doc-card animate-ready" id="d1">
+        <div class="doc-icon">⏱️</div>
+        <div class="doc-content">
+          <div class="doc-title">Early acute treatment</div>
+          <div class="doc-body">Triptans and analgesics work best when taken at attack onset — waiting until pain is severe significantly reduces efficacy.</div>
+        </div>
+        <div class="doc-action">Act early</div>
+      </div>
+      <div class="doc-card animate-ready" id="d2">
+        <div class="doc-icon">💊</div>
+        <div class="doc-content">
+          <div class="doc-title">Sumatriptan (Imigran) + NSAID</div>
+          <div class="doc-body">NICE first-line triptan; combination with an NSAID is clinically superior to either alone — better pain relief and lower recurrence.</div>
+        </div>
+        <div class="doc-action">1st line</div>
+      </div>
+      <div class="doc-card animate-ready" id="d3">
+        <div class="doc-icon">📔</div>
+        <div class="doc-content">
+          <div class="doc-title">Headache diary</div>
+          <div class="doc-body">Records attack dates, duration, triggers, and medication days — the clinical foundation for diagnosis, treatment planning, and monitoring.</div>
+        </div>
+        <div class="doc-action">Track it</div>
+      </div>
+      <div class="doc-card animate-ready" id="d4">
+        <div class="doc-icon">🛡️</div>
+        <div class="doc-content">
+          <div class="doc-title">Preventive treatment</div>
+          <div class="doc-body">Considered at ≥4 attacks per month. First-line oral options: propranolol (Inderal), topiramate (Topamax), amitriptyline (Tryptizol).</div>
+        </div>
+        <div class="doc-action">≥4/month</div>
+      </div>
+      <div class="doc-card animate-ready" id="d5">
+        <div class="doc-icon">💉</div>
+        <div class="doc-content">
+          <div class="doc-title">CGRP monoclonal antibodies</div>
+          <div class="doc-body">Erenumab (Aimovig), fremanezumab (Ajovy), galcanezumab (Emgality) — licensed on NHS for those who have failed ≥2 standard preventives.</div>
+        </div>
+        <div class="doc-action">Targeted</div>
+      </div>
+      <div class="doc-card animate-ready" id="d6">
+        <div class="doc-icon">⚠️</div>
+        <div class="doc-content">
+          <div class="doc-title">Avoid medication overuse</div>
+          <div class="doc-body">Triptans and opioids: limit to ≤10 days per month. Simple analgesics: ≤15 days per month. Overuse worsens long-term headache frequency.</div>
+        </div>
+        <div class="doc-action">≤10 days</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: RESEARCH -->
+  <div class="slide">
+    <div class="slide-title">Research · <span>triptans &amp; CGRP prevention</span> · Ferrari 2001 · Goadsby 2017</div>
+    <div class="ev-stage">
+      <div class="ev-card animate-ready" id="e1">
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good">59%</div>
+            <div class="ev-outcome">2h headache response · sumatriptan 100mg</div>
+          </div>
+          <div class="ev-conditions">vs 29% pain-free at 2h · all 7 triptans superior to placebo</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">Oral triptans — meta-analysis of 53 trials</div>
+          <div class="ev-journal">Ferrari MD et al · The Lancet · 2001;358:1668–1675</div>
+          <div class="ev-body">53 RCTs, 24,089 patients. Sumatriptan 100mg achieved <strong>59% headache response</strong> (pain reduced to mild or none) and <strong>29% complete pain freedom</strong> at 2 hours. All seven oral triptans demonstrated superiority over placebo. This meta-analysis established the evidence base for triptans as the primary migraine-specific acute treatment in clinical guidelines worldwide.</div>
+        </div>
+      </div>
+      <div class="ev-card animate-ready" id="e2">
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good">50%</div>
+            <div class="ev-outcome">patients ≥50% reduction in migraine days</div>
+          </div>
+          <div class="ev-conditions">erenumab 140mg vs 27% placebo · 3.7-day reduction from 8.3 baseline days</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">STRIVE trial — erenumab for episodic migraine</div>
+          <div class="ev-journal">Goadsby PJ et al · N Engl J Med · 2017;377:2123–2132</div>
+          <div class="ev-body">955 adults with episodic migraine randomised to monthly erenumab (70mg or 140mg) or placebo for 6 months. At 140mg, <strong>50% achieved ≥50% reduction in monthly migraine days</strong> vs 27% on placebo. Mean reduction: 3.7 days from 8.3 baseline. The first phase III trial of a CGRP-pathway antibody — establishing a specifically targeted class for migraine prevention.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: MECHANISMS -->
+  <div class="slide">
+    <div class="slide-title">How migraine <span>works — and how treatments target it</span></div>
+    <div class="mech-grid">
+      <div class="mech-card animate-ready" id="m1">
+        <div class="mech-icon">🌊</div>
+        <div class="mech-content">
+          <div class="mech-title">Cortical spreading depression</div>
+          <div class="mech-body">A wave of neuronal excitation followed by suppression spreads across the cortex — the likely driver of aura and an early trigger of the attack cascade.</div>
+        </div>
+        <div class="mech-outcome">→ Aura</div>
+      </div>
+      <div class="mech-card animate-ready" id="m2">
+        <div class="mech-icon">⚡</div>
+        <div class="mech-content">
+          <div class="mech-title">Trigeminal activation</div>
+          <div class="mech-body">The trigeminovascular system is activated, releasing inflammatory neuropeptides — including CGRP — that sensitise pain pathways around the brain.</div>
+        </div>
+        <div class="mech-outcome">→ Pain signals</div>
+      </div>
+      <div class="mech-card animate-ready" id="m3">
+        <div class="mech-icon">🔴</div>
+        <div class="mech-content">
+          <div class="mech-title">CGRP release</div>
+          <div class="mech-body">Calcitonin gene-related peptide causes vasodilation and amplifies pain signalling — levels are consistently elevated during attacks and normalise after resolution.</div>
+        </div>
+        <div class="mech-outcome">→ Vasodilation</div>
+      </div>
+      <div class="mech-card animate-ready" id="m4">
+        <div class="mech-icon">💊</div>
+        <div class="mech-content">
+          <div class="mech-title">How triptans work</div>
+          <div class="mech-body">Bind to 5-HT1B/1D receptors — blocking CGRP release, causing vasoconstriction of dilated vessels, and inhibiting pain signal transmission in the trigeminal pathway.</div>
+        </div>
+        <div class="mech-outcome">→ ↓ CGRP, pain</div>
+      </div>
+      <div class="mech-card animate-ready" id="m5">
+        <div class="mech-icon">💉</div>
+        <div class="mech-content">
+          <div class="mech-title">How CGRP antibodies work</div>
+          <div class="mech-body">Block the CGRP receptor or the peptide itself — preventing the cascade from initiating. Monthly dosing provides sustained receptor blockade between attacks.</div>
+        </div>
+        <div class="mech-outcome">→ Prevention</div>
+      </div>
+      <div class="mech-card animate-ready" id="m6">
+        <div class="mech-icon">🔄</div>
+        <div class="mech-content">
+          <div class="mech-title">Medication overuse mechanism</div>
+          <div class="mech-body">Repeated acute treatment upregulates central pain pathways and lowers the attack threshold — withdrawal of the overused drug reduces sensitisation over weeks.</div>
+        </div>
+        <div class="mech-outcome">→ Sensitisation</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: CTA -->
+  <div class="slide cta-slide">
+    <div class="cta-glow"></div>
+    <div class="cta-wrap-v2">
+      <div class="cta-top">
+        <div class="cta-badge-v2">What the evidence shows</div>
+        <div class="cta-headline-v2">Attacks understood.<br/><span>Treatment targeted.</span></div>
+        <div class="cta-subline">Migraine is treatable — most people with it have not yet received optimal care.</div>
+      </div>
+      <div class="cta-rows-v2">
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">⏱️</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Treat attacks early</div>
+            <div class="cta-row-body-v2">Triptans and analgesics work best at attack onset — 59% headache response with sumatriptan vs waiting until pain is severe</div>
+          </div>
+          <div class="cta-row-word-v2">Act early</div>
+        </div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">📔</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Keep a headache diary</div>
+            <div class="cta-row-body-v2">Attack frequency, triggers, and medication days — the foundation for diagnosis and treatment; clinicians use this to guide decisions</div>
+          </div>
+          <div class="cta-row-word-v2">Track it</div>
+        </div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">🛡️</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Prevention at ≥4 attacks per month</div>
+            <div class="cta-row-body-v2">Evidence-based oral preventives exist — propranolol, topiramate, amitriptyline — as does a newer targeted class of CGRP antibodies</div>
+          </div>
+          <div class="cta-row-word-v2">≥4/month</div>
+        </div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">⚠️</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Medication overuse worsens headache</div>
+            <div class="cta-row-body-v2">Triptans and opioids used more than 10 days per month can paradoxically increase headache frequency — a clinically important pattern</div>
+          </div>
+          <div class="cta-row-word-v2">≤10 days</div>
+        </div>
+      </div>
+      <div class="cta-bottom">
+        <div class="med-disclaimer">
+          <div class="med-disc-icon">⚕️</div>
+          <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: CLOSING -->
+  <div class="slide">
+    <div class="close-wrap">
+      <div class="close-logo">helf<span class="cdot">.</span>school</div>
+      <div class="close-sub">Health Education</div>
+      <div class="close-headline">Attacks understood. <span>Treatment targeted.</span></div>
+      <div class="close-stats">
+        <div class="cst-card">
+          <div class="cst-num">18.3%</div>
+          <div class="cst-lab">of women in England affected</div>
+          <div class="cst-src">Steiner et al · Cephalalgia 2003</div>
+        </div>
+        <div class="cst-card">
+          <div class="cst-num">59%</div>
+          <div class="cst-lab">2-hour headache response · triptans</div>
+          <div class="cst-src">Ferrari et al · Lancet 2001</div>
+        </div>
+        <div class="cst-card">
+          <div class="cst-num">50%</div>
+          <div class="cst-lab">patients ≥50% fewer migraine days</div>
+          <div class="cst-src">Goadsby et al · NEJM 2017</div>
+        </div>
+      </div>
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">⚕️</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+      </div>
+      <div class="close-series">Neurological Health Series · Article 22</div>
+    </div>
+  </div>
+
+</div>
+
+<div id="dots">
+  <div class="dot active" onclick="goTo(0)"></div>
+  <div class="dot" onclick="goTo(1)"></div>
+  <div class="dot" onclick="goTo(2)"></div>
+  <div class="dot" onclick="goTo(3)"></div>
+  <div class="dot" onclick="goTo(4)"></div>
+  <div class="dot" onclick="goTo(5)"></div>
+  <div class="dot" onclick="goTo(6)"></div>
+  <div class="dot" onclick="goTo(7)"></div>
+</div>
+
+<div class="disc">Health education — not medical advice. helf.school</div>
+
+<script>
+  const slides=document.querySelectorAll('.slide'),dots=document.querySelectorAll('.dot');
+  let cur=0;
+  function show(n){
+    slides[cur].classList.remove('active');dots[cur].classList.remove('active');
+    cur=(n+slides.length)%slides.length;
+    slides[cur].classList.add('active');dots[cur].classList.add('active');
+    document.getElementById('counter').textContent=(cur+1)+' / '+slides.length;
+    triggerSlide(cur);
+  }
+  function goTo(n){show(n)}
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowDown')show(cur+1);
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp')show(cur-1);
+  });
+  let tx=0;
+  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX});
+  document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40){dx<0?show(cur+1):show(cur-1)}});
+  function triggerSlide(n){
+    if(n===2)animateGroup(['s1','s2','s3','s4','s5','s6'],140);
+    if(n===3)animateGroup(['d1','d2','d3','d4','d5','d6'],140);
+    if(n===4)animateGroup(['e1','e2'],260);
+    if(n===5)animateGroup(['m1','m2','m3','m4','m5','m6'],140);
+  }
+  function animateGroup(ids,step){
+    ids.forEach((id,i)=>{setTimeout(()=>{const el=document.getElementById(id);if(el)el.classList.add('vis')},180+i*step)});
+  }
+  slides.forEach(s=>{
+    const obs=new MutationObserver(()=>{
+      if(!s.classList.contains('active')){s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'))}
+    });
+    obs.observe(s,{attributes:true});
+  });
+  triggerSlide(0);
+</script>
+</body>
+</html>
