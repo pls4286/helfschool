@@ -1,5 +1,5 @@
 # helf.school — Project Knowledge Document
-*Last updated: April 2026 — Session: Articles 04–12 retrofitted. Articles 11 (Stress) and 12 (Alcohol) visuals and teleprompters built. Canonical teleprompter format locked. animate-ready opacity standard locked. Articles 13–18 files still empty — recovery needed. Article 21 not built.*
+*Last updated: April 2026 — Session: Articles 13–18 visuals + teleprompters built. All 6 Digestive Health files in outputs awaiting upload. Practical Health uploads (08, 10, 11, 12) still pending. Article 21 not built.*
 
 ---
 
@@ -9,7 +9,7 @@
 
 ### The false-alarm problem
 When files are uploaded to this Claude Project via drag-and-drop from Microsoft Edge, the upload mechanism captures the **Claude.ai loader HTML page** rather than the actual file content. These artefacts look like this:
-- **File size:** ~5140 bytes
+- **File size:** ~5140 bytes (or ~6170 bytes for a newer loader variant)
 - **Content starts with:** `<!doctype html><html data-build-id="..." ...>`
 - Contains references to `assets-proxy.anthropic.com`
 
@@ -19,7 +19,7 @@ When files are uploaded to this Claude Project via drag-and-drop from Microsoft 
 - Can be viewed by clicking "Raw" on the GitHub file page
 
 ### The rule
-> **NEVER raise a false alarm about "corrupted" project files. The filename + article inventory in Section 6 are the source of truth. If a real file inspection is needed, ask Paul to paste from GitHub Raw view.**
+> **NEVER raise a false alarm about "corrupted" project files. The filename + article inventory in Section 6 are the source of truth. If a real file inspection is needed, fetch via GitHub raw URL or ask Paul to paste.**
 
 ---
 
@@ -93,19 +93,15 @@ Open-book SVG with "HEALTH EDUCATION" tagline beneath helf.school wordmark.
 | Member | £6/month or £60/year |
 | Lifetime | £150 one-off |
 
-### Community forum (planned, not yet built)
-Categories: Living with AF · Medications & Treatments · Lifestyle & Prevention · Research Discussion · Mental Health & Heart · Introductions
-Free = read-only. Paid members = full access.
-
 ---
 
 ## 6. ARTICLE INVENTORY
 
 ### Status key
 - ✅ = all three files correct and on GitHub
-- 🔄 = corrected/built this session — download from Outputs, upload to GitHub
+- 🔄 = built/corrected — download from Outputs, upload to GitHub
 - ⚠️ = needs manual text fix before upload (see Section 15)
-- ❌ = files missing/empty or not yet built
+- ❌ = files missing or not yet built
 
 ### Cardiovascular Series (Articles 01–07)
 | # | Title | Slug | Article | Visuals | Teleprompter |
@@ -125,13 +121,13 @@ Articles 01–07 fully retrofitted. All three files per article on GitHub and co
 | # | Title | Slug | Article | Visuals | Teleprompter |
 |---|-------|------|---------|---------|--------------|
 | 08 | The Mediterranean Diet | mediterranean-diet | ✅ GitHub | 🔄 Upload | 🔄 Upload |
-| 09 | Sleep | sleep | ✅ GitHub | ✅ GitHub | ✅ GitHub |
+| 09 | Sleep | sleep | ✅ | ✅ | ✅ |
 | 10 | Exercise | exercise | ✅ GitHub | 🔄 Upload | 🔄 Upload |
 | 11 | Stress | stress | ⚠️ Fix+Upload | 🔄 Upload | 🔄 Upload |
 | 12 | Alcohol | alcohol | ⚠️ Fix+Upload | 🔄 Upload | 🔄 Upload |
 
-**⚠️ MANUAL FIX — Articles 11 AND 12 article HTMLs:**
-In the doctor callout section of BOTH stress.html and alcohol.html, find and replace (appears once in each file):
+**⚠️ MANUAL FIX — Articles 11 AND 12 article HTMLs (stress.html and alcohol.html):**
+In the doctor callout section of BOTH files, find and replace (appears once in each):
 ```
 write down your three main concerns before you go in, so nothing gets missed
 ```
@@ -145,27 +141,25 @@ noting main concerns in advance means nothing gets missed in the time available
 ### Digestive Health Series (Articles 13–21)
 | # | Title | Slug | Article | Visuals | Teleprompter |
 |---|-------|------|---------|---------|--------------|
-| 13 | Acid Reflux | acid-reflux | ❌ Empty | ❌ Empty | ❌ Empty |
-| 14 | IBD | ibd | ❌ Empty | ❌ Empty | ❌ Empty |
-| 15 | Bloating | bloating | ❌ Empty | ❌ Empty | ❌ Empty |
-| 16 | IBS | ibs | ❌ Empty | ❌ Empty | ❌ Empty |
-| 17 | Fatty Liver Disease (MASLD) | masld | ❌ Empty | ❌ Empty | ❌ Empty |
-| 18 | Coeliac Disease | coeliac | ❌ Empty | ❌ Empty | ❌ Empty |
+| 13 | Acid Reflux | acid-reflux | ✅ GitHub | 🔄 Upload | 🔄 Upload |
+| 14 | IBD | ibd | ✅ GitHub | 🔄 Upload | 🔄 Upload |
+| 15 | Bloating | bloating | ✅ GitHub | 🔄 Upload | 🔄 Upload |
+| 16 | IBS | ibs | ✅ GitHub | 🔄 Upload | 🔄 Upload |
+| 17 | Fatty Liver Disease (MASLD) | masld | ✅ GitHub | 🔄 Upload | 🔄 Upload |
+| 18 | Coeliac Disease | coeliac | ✅ GitHub | 🔄 Upload | 🔄 Upload |
 | 19 | Gallstones | gallstones | ✅ | ✅ | ✅ |
 | 20 | Diverticular Disease | diverticular-disease | ✅ | ✅ | ✅ |
 | 21 | Constipation | constipation | ❌ NOT BUILT | — | — |
 
-**Articles 13–18:** Upload attempts returned empty files. To recover:
-```
-https://raw.githubusercontent.com/pls4286/helfschool/main/[filename].html
-```
-Or re-upload from Paul's local copy.
+**Articles 13–18 visuals + teleprompters:** All 12 files built this session. Download from Outputs panel and upload to GitHub AND the Claude Project.
 
-Screen files exist for: acid-reflux (ar-sphincter-screen.html, ar-barretts-screen.html), ibd (ibd-gut-screen.html), bloating (bloating-gut-screen.html, bloating-fodmap-screen.html), coeliac (coeliac-villi-screen.html).
+**Article 13–18 article HTMLs:** On GitHub. Have NOT been voice-audited yet. Require retrofit: voice audit + inline citations + research card stat standard + disclaimer bar. Fetch via GitHub raw URL before bringing into Claude.
 
-Article 17 note: ESSENCE trial ⚑ CLEARED — published NEJM April 2025, PubMed 40305708 ✓.
+**Article 17 note:** ESSENCE trial ⚑ CLEARED — published NEJM April 2025, PubMed 40305708 ✓.
 
-**Article 21 Constipation: DO NOT BUILD until Articles 13–18 are resolved.**
+**Screen files in project:** bloating-gut-screen.html ✅ · bloating-fodmap-screen.html ✅ · ibd-gut-screen.html ✅ · acid reflux screens (ar-sphincter-screen.html, ar-barretts-screen.html) on GitHub ✅.
+
+**Article 21 Constipation: DO NOT BUILD until Articles 13–18 article retrofits complete.**
 
 ---
 
@@ -265,12 +259,9 @@ NEVER use old white research item cards. USE navy research cards, stat FIRST.
 ### Navy research card three-layer hierarchy (LOCKED — confirmed lifestyle-changes.html)
 
 ```css
-/* Layer 1 — Stat + finding: reads as ONE bold unit */
 .rc-stat { font-family:'Fraunces',serif; font-size:2.4rem; font-weight:700; color:var(--coral); line-height:1; flex-shrink:0; }
 .rc-stat-label { font-size:1.1rem; color:#fff; line-height:1.4; font-weight:700; flex:1; min-width:180px; }
-/* Layer 2 — Summary: key takeaway */
 .rc-title { font-family:'Fraunces',serif; font-size:1.3rem; font-weight:700; color:var(--coral); margin-bottom:.7rem; line-height:1.25; }
-/* Layer 3 — Explanation */
 .rc-body { font-size:1.05rem; line-height:1.75; color:rgba(255,255,255,.92); font-weight:400; }
 ```
 
@@ -416,15 +407,17 @@ Full disclaimer phrase at close always.
 
 ## 11. VISUALS FILE STANDARDS
 
-### Slide structure (10 slides standard)
+### Slide structure (standard — varies by article)
 1. Title / intro card
-2. Concept diagram
+2. Concept diagram or hero stat
 3. Why it matters — horizontal harm rows (RED)
 4. What doctor might do — horizontal action rows (GREEN)
-5–7. Research evidence — 3 slides × 2 ev-cards
-8. Mechanisms — horizontal amber rows
-9. CTA / takeaway slide
-10. Closing card
+5–8. Research evidence — 2 ev-cards per slide (max 4 slides)
+9. Mechanisms — horizontal amber rows (where relevant)
+10. CTA / takeaway slide
+11. Closing card
+
+*Note: Slide count varies by article — research slides split at 2 ev-cards per slide.*
 
 ---
 
@@ -433,7 +426,6 @@ Full disclaimer phrase at close always.
 **Default must be `opacity:1; transform:translateY(0)`**. Use `.animate-ready` class to set initial hidden state. Never `opacity:0` as the default CSS value on any animated card type.
 
 ```css
-/* Applies to: ev-card, sys-card, doc-card, mech-card, ben-card, uv-card, food-row, plate-stat, tier-row, and all animated card types */
 .ev-card { opacity:1; transform:translateY(0); transition:all .42s ease }
 .ev-card.animate-ready { opacity:0; transform:translateY(14px) }
 .ev-card.vis { opacity:1; transform:translateY(0) }
@@ -445,7 +437,7 @@ All animated card elements in HTML must have `class="[card-type] animate-ready"`
 
 ### Evidence card stat block pattern (MANDATORY — locked April 2026)
 
-Every evidence card (slides 5–7):
+Every evidence card (research slides):
 
 ```html
 <div class="ev-stat-box">
@@ -467,14 +459,15 @@ Every evidence card (slides 5–7):
 .ev-conditions { font-size:.8rem; font-weight:600; color:rgba(255,255,255,.85) }
 ```
 
-Colour classes on `.ev-num`: `.good` (#7ecc99) · `.bad` (#e87a5a) · `.warn` (#e8a84a) · `.coral` (#f08a70)
+Colour classes on `.ev-num`: `.good` (#7ecc99) · `.bad` (#e87a5a) · `.warn` (#e8a84a)
 
 **ev-num word labels — HARD RULE:**
-- Short word (e.g. "Switch") → `font-size: 2rem`
+- Short word → `font-size: 2rem`
 - Two-word / two-line → `font-size: 1.7rem; line-height: 1.2`
 - Numeric stats → standard `font-size: 2.4rem`
-- Long numbers (e.g. "+1.8/+4.5y") → `font-size: 1.4rem`
-- Always add `overflow: hidden` to stat box
+- Long numbers → `font-size: 1.4rem`
+
+**Research card stat standard:** Stat boxes show OUTCOMES — effect sizes, risk changes — NEVER participant counts or study counts.
 
 **Canonical reference:** diverticular-disease-visuals.html slide 6.
 
@@ -495,7 +488,7 @@ For slides with 4–6 parallel items: **HORIZONTAL stacked rows**, not columns.
 
 **Row card standards:**
 - `align-items: start` — **NEVER center**
-- `.doc-body` / `.mech-body` / `.sys-body`: `-webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden`
+- Body text: `-webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden`
 - Icons: `padding-top: 0.1rem`
 - Emoji font stack: `"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif`
 
@@ -510,9 +503,7 @@ For slides with 4–6 parallel items: **HORIZONTAL stacked rows**, not columns.
 
 ### CTA/Takeaway slide standard (MANDATORY — locked April 2026)
 
-Slide 9: **full-width horizontal rows** — NOT chips or small cards.
-
-**Canonical CSS (cta-wrap-v2):**
+**cta-wrap-v2 — canonical CSS:**
 ```css
 .cta-wrap-v2 { display: grid; grid-template-rows: auto 1fr auto; height: 100%; padding: .4rem; gap: .45rem; min-height: 0; overflow: hidden; }
 .cta-rows-v2 { display: grid; grid-template-rows: 1fr 1fr 1fr 1fr; gap: .4rem; min-height: 0; overflow: hidden; }
@@ -520,8 +511,6 @@ Slide 9: **full-width horizontal rows** — NOT chips or small cards.
 .cta-row-body-v2 { font-size: .82rem; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .cta-row-word-v2 { font-family:'Fraunces',serif; font-weight:900; font-size:clamp(1.2rem,2vw,1.7rem); color:var(--acc); }
 ```
-
-*Note: Files built April 2026 (Articles 08–12) use a simplified `.cta-rows` / `.cta-row` flex variant — functionally equivalent. cta-wrap-v2 is canonical for new builds.*
 
 **Top section size limits (prevent bottom overflow):**
 - Icon: `clamp(2.2rem,3.8vw,3.2rem)` — NEVER larger
@@ -533,7 +522,7 @@ Slide 9: **full-width horizontal rows** — NOT chips or small cards.
 
 **OVERFLOW RULE:** `.cta-wrap-v2` and `.cta-rows-v2` MUST both have `min-height:0; overflow:hidden`.
 
-**CTA ICON RULE:** Large emoji icon on slide 9 is **OMITTED by default**. Only include if fewer than 4 rows and space confirmed.
+**CTA ICON RULE:** Large emoji icon on CTA slide is **OMITTED by default**. Only include if fewer than 4 rows and space confirmed.
 
 **CTA VOICE RULE:** Describe evidence-based patterns — never instruct. "The evidence links X to Y" not "Do X."
 
@@ -542,9 +531,8 @@ Slide 9: **full-width horizontal rows** — NOT chips or small cards.
 ---
 
 ### Slide content limits
-- Max: (a) 3 stat + 1 research card, (b) 3 research cards, (c) 1 diagram + 2 info cards
+- Max 2 ev-cards per research slide
 - Never shrink text to fit — split to new slide
-- Source attributions go in slide title as subtitle
 
 ### Slide layout hygiene rules
 1. Multi-row grids MUST have explicit `grid-template-rows`
@@ -552,8 +540,6 @@ Slide 9: **full-width horizontal rows** — NOT chips or small cards.
 3. Emoji font-family stack on icons
 4. Maximum 3 vertical blocks per card
 5. Sub-text ≤ 12 words
-6. Comparison stats: context AT TOP
-7. No redundant hero banners
 
 ### Font sizes (minimum — HARD FLOORS)
 | Text type | Minimum |
@@ -587,6 +573,8 @@ Slide 9: **full-width horizontal rows** — NOT chips or small cards.
 10. **Educational voice** — full internal audit before outputting. Zero tolerance.
 11. **Teleprompter format** — button reads ⏸ Pause (not ▶ PLAY)
 12. **Disclaimer phrase** — full phrase only, never shortened
+13. **animate-ready** — all animated cards carry `.animate-ready` class; no hardcoded `opacity:0`
+14. **Research cards** — stat boxes show outcomes (not participant counts)
 
 ---
 
@@ -608,47 +596,76 @@ BMJ · NICE guidelines · Cochrane Database · NEJM · The Lancet · JAMA · BMJ
 
 ## 15. OUTSTANDING TASKS (as of April 2026)
 
-### ✅ Completed this session (April 2026)
-- Articles 04–07 cardiovascular: all three files — FULLY RETROFITTED
-- Articles 08, 10 practical: article HTMLs on GitHub ✅; visuals + teleprompters corrected this session 🔄
-- Article 09 Sleep: all three files done previous session ✅
-- Articles 11–12 (Stress, Alcohol): article HTMLs need 1 manual fix ⚠️; visuals built from scratch with all corrections 🔄; teleprompters rebuilt to canonical ⏸ Pause format 🔄
-- animate-ready opacity standard locked and applied to Articles 08–12 visuals
-- Canonical teleprompter format locked
-- ev-stat-row pattern applied to Articles 08–12 visuals
+### ✅ Completed this session
+- Articles 13–18 (Acid Reflux, IBD, Bloating, IBS, MASLD, Coeliac): all 12 visuals + teleprompter files built, QC'd, in Outputs
+- All built to canonical standard: animate-ready · ev-stat-row · cta-wrap-v2 · ⏸ Pause format · correct disclaimer · 2 ev-cards per research slide · full voice audit
 
-### ✅ Completed previous sessions (April 2026)
-- Articles 01–03: FULLY RETROFITTED
-- Articles 19–20: COMPLETE new builds
-- All standards locked: Section 2 stat grid · Section 4 navy cards · ev-stat-row · CTA horizontal rows · mandatory voice audit · disclaimer bar · horizontal-row visuals layout · colour narrative · inline citations · hero first-screen · emoji font stack
+### ✅ Completed previous sessions
+- Articles 01–07: FULLY RETROFITTED (all 3 files each)
+- Articles 08, 10–12: visuals + teleprompters rebuilt — awaiting upload
+- Article 09 Sleep: all 3 files complete on GitHub
+- Articles 19–20 (Gallstones, Diverticular Disease): COMPLETE new builds
+- All standards locked — see Sections 8–11
 - ESSENCE trial ⚑ CLEARED — NEJM April 2025, PubMed 40305708 ✓
 - Lancet Commission dementia ⚑ CLEARED — DOI 10.1016/S0140-6736(24)01296-0
 - Pricing confirmed correct (£0/£6/£60/£150) ✅
 
-### ⏳ PRIORITY — Upload this session's outputs to GitHub
-All via Artifact panel download button — NEVER Ctrl+S:
-1. `mediterranean-diet-visuals.html`
-2. `mediterranean-diet-teleprompter.html`
-3. `exercise-visuals.html`
-4. `exercise-teleprompter.html`
-5. `stress.html` (manual voice fix first — see Section 6)
-6. `stress-visuals.html`
-7. `stress-teleprompter.html`
-8. `alcohol.html` (manual voice fix first — see Section 6)
-9. `alcohol-visuals.html`
-10. `alcohol-teleprompter.html`
-11. `helf-school-project-knowledge.md` (this document — to GitHub AND Claude Project)
+---
 
-### ⏳ PRIORITY — Recover Articles 13–18
-Files empty. Recover via GitHub raw URL or local copy. Then bring to Claude for full retrofit: voice audit + ev-stat-row + animate-ready + CTA rebuild + teleprompter rebuild.
+### ⏳ UPLOAD QUEUE — do in this order
 
-### ⏳ New builds — after 13–18 recovered
-- Article 21 Constipation — **DO NOT BUILD until Articles 13–18 complete**
-- Community forum
+**Step 1 — Digestive Series (Articles 13–18) — 12 files from Outputs:**
+1. acid-reflux-visuals.html
+2. acid-reflux-teleprompter.html
+3. ibd-visuals.html
+4. ibd-teleprompter.html
+5. bloating-visuals.html
+6. bloating-teleprompter.html
+7. ibs-visuals.html
+8. ibs-teleprompter.html
+9. masld-visuals.html
+10. masld-teleprompter.html
+11. coeliac-visuals.html
+12. coeliac-teleprompter.html
 
-### ⚑ Citation verification needed before publishing
-- **hypertension.html** ref 5 — Cochrane, BP lowering in over-60s (PubMed ID unverified)
-- **hypertension.html** ref 6 — Cochrane 2025, mild hypertension (PubMed ID unverified)
+Upload each to: GitHub AND Claude Project.
+
+**Step 2 — Practical Series (Articles 08, 10, 11, 12) — 8 files from Outputs:**
+⚠️ Apply manual voice fix to stress.html and alcohol.html BEFORE uploading those article files.
+13. mediterranean-diet-visuals.html
+14. mediterranean-diet-teleprompter.html
+15. exercise-visuals.html
+16. exercise-teleprompter.html
+17. stress.html (manual fix first)
+18. stress-visuals.html
+19. stress-teleprompter.html
+20. alcohol.html (manual fix first)
+21. alcohol-visuals.html
+22. alcohol-teleprompter.html
+
+**Step 3 — This document:**
+23. helf-school-project-knowledge.md → GitHub AND Claude Project
+
+---
+
+### ⏳ NEXT BUILD PRIORITY — Articles 13–18 article HTML retrofits
+
+Article HTMLs for Articles 13–18 are on GitHub but have NOT been voice-audited or retrofitted. Each needs:
+- Full voice audit (educational voice standard)
+- Inline citations (superscript links to anchored references)
+- Research card stat standard (outcomes, not participant counts)
+- Disclaimer bar (yellow bar below hero)
+- Nav and readability check
+
+**Method:** Fetch from GitHub raw URL → paste into Claude → audit → rebuild → upload.
+**Do not attempt all 6 in one session** — one article at a time, confirm before proceeding.
+
+---
+
+### ⏳ PENDING — other
+
+- **hypertension.html refs 5 + 6** — Cochrane PubMed IDs still flagged ⚑ unverified
+- **Article 21 Constipation** — DO NOT BUILD until Articles 13–18 article retrofits complete
 
 ---
 
@@ -675,25 +692,23 @@ Files empty. Recover via GitHub raw URL or local copy. Then bring to Claude for 
 
 ## 18. FILE UPLOAD METHOD
 
-### Uploading TO GitHub
-- **From local file:** Open in Notepad → Ctrl+A → Ctrl+C → paste into chat
-- **From GitHub:** Find file → click Raw → Ctrl+A → Ctrl+C → paste into chat
-- **Download from Claude outputs:** Artifact panel download button — **NEVER Ctrl+S or File → Save**
+### Downloading from Claude Outputs
+Use the Artifact panel download button — **NEVER Ctrl+S or File → Save**.
 
-### Fetching files into Claude
+### Fetching files from GitHub into Claude
 ```
 https://raw.githubusercontent.com/pls4286/helfschool/main/[filename].html
 ```
 
 ### Uploading TO Claude Project
-⚠️ Drag-and-drop from Edge incognito captures the browser page (loader stub) — see Section 1.
+⚠️ Drag-and-drop from Edge incognito captures the browser page (loader stub) — see Section 1. This is a known limitation. The file still uploads correctly to GitHub. The Claude Project copy may show as loader stub but the GitHub version is authoritative.
 
 ---
 
 ## 19. END-OF-SESSION UPDATE PROTOCOL
 
 At the end of each productive session:
-1. Update this document
+1. Update this document with completed work and revised upload queue
 2. Download with Artifact panel button (NEVER Ctrl+S)
 3. Upload to **both GitHub AND the Claude Project**
 
@@ -712,9 +727,11 @@ At the end of each productive session:
 | April 2026 | animate-ready opacity standard locked: all animated cards default opacity:1; animate-ready sets hidden state |
 | April 2026 | Canonical teleprompter format locked: ⏸ Pause button, no Google Fonts, bottom dots bar, speed levels [0,8,14,20,28,38,50] default index 3 |
 | April 2026 | CTA icon rule locked: OMIT large emoji from CTA slide by default |
-| April 2026 | Retrofit complete: Articles 01–12 all three files correct (Articles 11–12 need 1 manual voice fix before GitHub upload) |
-| April 2026 | Articles 13–18 files empty — recovery needed before retrofit |
-| April 2026 | Article 21 Constipation: not built until all retrofits complete |
+| April 2026 | Max 2 ev-cards per research slide — split to new slide if more |
+| April 2026 | Articles 01–12 all three files correct (Articles 11–12 need 1 manual voice fix before GitHub upload) |
+| April 2026 | Articles 13–18 visuals + teleprompters built this session — upload queue active |
+| April 2026 | Articles 13–18 article HTMLs on GitHub — voice retrofit still needed |
+| April 2026 | Article 21 Constipation: not built until all 13–18 article retrofits complete |
 | April 2026 | Membership lifetime price: £150 (confirmed) |
 | April 2026 | Copyright: 2026 across all new/retrofitted files |
 | April 2026 | hypertension.html refs 5 and 6 (Cochrane): flagged ⚑ unverified |

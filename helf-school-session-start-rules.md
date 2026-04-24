@@ -6,7 +6,7 @@
 
 Before doing ANYTHING — before responding, before building, before auditing — read `helf-school-project-knowledge.md` in full.
 
-**Why this rule exists:** In April 2026, Claude wrote a new project knowledge document from scratch without reading the existing one. It lost 200 lines of critical information, got the lifetime membership price wrong (£120 instead of £150), and caused Dr Paul approximately 8 hours of duplicated work. This must never happen again.
+**Why this rule exists:** In April 2026, Claude wrote a new project knowledge document from scratch without reading the existing one. It lost 200 lines of critical information, got the lifetime membership price wrong (£120 instead of £150), and caused Dr Paul approximately 8 hours of duplicated work. In a second April 2026 session, Claude ran a file audit and raised false alarms about "corrupted" files without reading Section 1 of the project knowledge first, causing further wasted time. This must never happen again.
 
 **The rule:** If a project knowledge document exists in this Project, Claude reads it before the first response. Claude does not summarise it back, does not comment on it, just reads it silently and uses it.
 
@@ -81,53 +81,83 @@ At the end of every session involving new builds or decisions:
 1. Update `helf-school-project-knowledge.md`
 2. Paul downloads it via Artifact panel
 3. Paul uploads it to BOTH GitHub AND the Claude Project
+4. Paul uploads this session-start-rules file if it has been updated
 
 **The rule:** Claude prompts Paul to do this at the end of every productive session. Claude does not assume this has happened.
 
 ---
 
-## WHAT WAS CONFIRMED CORRECT IN THE APRIL 2026 SESSION
+## CONFIRMED FILE STATUS AS OF END OF APRIL 2026 SESSIONS
 
-The following files were built or corrected in the April 2026 session and are confirmed correct in Claude Outputs. Paul needs to upload them to GitHub.
-
+### Cardiovascular Series (01–07) — ALL COMPLETE ON GITHUB
 | File | Status |
 |------|--------|
-| hypertension-visuals.html | ✅ Confirmed correct |
-| hypertension-teleprompter.html | ✅ Confirmed correct |
-| cholesterol-visuals.html | ✅ Confirmed correct |
-| cholesterol-teleprompter.html | ✅ Confirmed correct |
-| heart-attack-risk-visuals.html | ✅ Confirmed correct |
-| heart-attack-risk-teleprompter.html | ✅ Confirmed correct |
-| statins.html | ✅ Confirmed correct |
-| statins-visuals.html | ✅ Confirmed correct |
-| statins-teleprompter.html | ✅ Confirmed correct |
-| lifestyle-changes-visuals.html | ✅ Confirmed correct |
-| lifestyle-changes-teleprompter.html | ✅ Confirmed correct |
-| salt-visuals.html | ✅ Confirmed correct |
-| salt-teleprompter.html | ✅ Confirmed correct |
-| supplements-visuals.html | ✅ Confirmed correct |
-| supplements-teleprompter.html | ✅ Confirmed correct |
-| sleep-visuals.html | ✅ Confirmed correct |
-| sleep-teleprompter.html | ✅ Confirmed correct |
-| mediterranean-diet-visuals.html | ✅ Built/corrected April 2026 |
-| mediterranean-diet-teleprompter.html | ✅ Built/corrected April 2026 |
-| exercise-visuals.html | ✅ Built/corrected April 2026 |
-| exercise-teleprompter.html | ✅ Built/corrected April 2026 |
-| stress.html | ⚠️ Needs 1 manual voice fix — see project knowledge doc Section 6 |
-| stress-visuals.html | ✅ Built April 2026 |
-| stress-teleprompter.html | ✅ Built April 2026 |
-| alcohol.html | ⚠️ Needs 1 manual voice fix — see project knowledge doc Section 6 |
-| alcohol-visuals.html | ✅ Built April 2026 |
-| alcohol-teleprompter.html | ✅ Built April 2026 |
-| gallstones.html + visuals + teleprompter | ✅ Confirmed correct (previous session) |
-| diverticular-disease.html + visuals + teleprompter | ✅ Confirmed correct (previous session) |
+| hypertension.html + visuals + teleprompter | ✅ Confirmed correct |
+| cholesterol.html + visuals + teleprompter | ✅ Confirmed correct |
+| heart-attack-risk.html + visuals + teleprompter | ✅ Confirmed correct |
+| statins.html + visuals + teleprompter | ✅ Confirmed correct |
+| lifestyle-changes.html + visuals + teleprompter | ✅ Confirmed correct — CANONICAL REFERENCE |
+| salt-blood-pressure.html + visuals + teleprompter | ✅ Confirmed correct |
+| supplements-cholesterol.html + visuals + teleprompter | ✅ Confirmed correct |
 
-**NOT yet resolved:** Articles 13–18 (acid-reflux, ibd, bloating, ibs, masld, coeliac) — files came through empty. Must be recovered from GitHub or local copy before retrofit can proceed.
+### Practical Health Series (08–12) — VISUALS + TELEPROMPTERS BUILT, UPLOADS PENDING
+| File | Status |
+|------|--------|
+| mediterranean-diet.html | ✅ On GitHub |
+| mediterranean-diet-visuals.html | 🔄 Built — upload to GitHub |
+| mediterranean-diet-teleprompter.html | 🔄 Built — upload to GitHub |
+| sleep.html + visuals + teleprompter | ✅ All on GitHub |
+| exercise.html | ✅ On GitHub |
+| exercise-visuals.html | 🔄 Built — upload to GitHub |
+| exercise-teleprompter.html | 🔄 Built — upload to GitHub |
+| stress.html | ⚠️ On GitHub — needs 1 manual voice fix before use (see project knowledge Section 6) |
+| stress-visuals.html | 🔄 Built — upload to GitHub |
+| stress-teleprompter.html | 🔄 Built — upload to GitHub |
+| alcohol.html | ⚠️ On GitHub — needs 1 manual voice fix before use (see project knowledge Section 6) |
+| alcohol-visuals.html | 🔄 Built — upload to GitHub |
+| alcohol-teleprompter.html | 🔄 Built — upload to GitHub |
 
-**NOT yet built:** Article 21 (Constipation) — do not build until Articles 13–18 complete.
+### Digestive Health Series (13–20) — VISUALS + TELEPROMPTERS BUILT, UPLOADS PENDING
+| File | Status |
+|------|--------|
+| acid-reflux.html | ✅ On GitHub — article HTML retrofit still needed |
+| acid-reflux-visuals.html | 🔄 Built this session — upload to GitHub + Claude Project |
+| acid-reflux-teleprompter.html | 🔄 Built this session — upload to GitHub + Claude Project |
+| ibd.html | ✅ On GitHub — article HTML retrofit still needed |
+| ibd-visuals.html | 🔄 Built this session — upload to GitHub + Claude Project |
+| ibd-teleprompter.html | 🔄 Built this session — upload to GitHub + Claude Project |
+| bloating.html | ✅ On GitHub — article HTML retrofit still needed |
+| bloating-visuals.html | 🔄 Built this session — upload to GitHub + Claude Project |
+| bloating-teleprompter.html | 🔄 Built this session — upload to GitHub + Claude Project |
+| ibs.html | ✅ On GitHub — article HTML retrofit still needed |
+| ibs-visuals.html | 🔄 Built this session — upload to GitHub + Claude Project |
+| ibs-teleprompter.html | 🔄 Built this session — upload to GitHub + Claude Project |
+| masld.html | ✅ On GitHub — article HTML retrofit still needed |
+| masld-visuals.html | 🔄 Built this session — upload to GitHub + Claude Project |
+| masld-teleprompter.html | 🔄 Built this session — upload to GitHub + Claude Project |
+| coeliac.html | ✅ On GitHub — article HTML retrofit still needed |
+| coeliac-visuals.html | 🔄 Built this session — upload to GitHub + Claude Project |
+| coeliac-teleprompter.html | 🔄 Built this session — upload to GitHub + Claude Project |
+| gallstones.html + visuals + teleprompter | ✅ All confirmed correct |
+| diverticular-disease.html + visuals + teleprompter | ✅ All confirmed correct |
+
+### NOT YET BUILT
+- Article 21 (Constipation) — **DO NOT BUILD** until Articles 13–18 article HTML retrofits are complete
+
+### NEXT PRIORITY — Articles 13–18 article HTML retrofits
+Each article HTML (acid-reflux.html, ibd.html, bloating.html, ibs.html, masld.html, coeliac.html) needs:
+- Full voice audit
+- Inline citations
+- Research card stat standard (outcomes, not participant counts)
+- Disclaimer bar (yellow, below hero)
+
+Method: fetch from GitHub raw URL → paste into Claude → audit and rebuild → upload. One article per session.
+
+### OUTSTANDING CITATION FLAGS
+- hypertension.html refs 5 + 6 — Cochrane PubMed IDs flagged ⚑ unverified
 
 ---
 
-## THE ONE THING THAT MUST HAPPEN BEFORE TOMORROW
+## THE ONE THING THAT MUST HAPPEN AT THE END OF EVERY SESSION
 
-Upload `helf-school-project-knowledge.md` to the Claude Project. Without this, tomorrow's Claude starts without context and the problems from today repeat.
+Upload both `helf-school-project-knowledge.md` and `helf-school-session-start-rules.md` to the Claude Project. Without this, the next session's Claude starts without context and the same problems repeat.
