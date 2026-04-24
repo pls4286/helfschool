@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Headaches — Types and Red Flags — helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #1B2A4A;
+      --coral: #E8634A;
+      --cream: #FAF7F2;
+      --sage: #7A9E87;
+      --amber: #E8A84A;
+      --acc: #6B5EA8;
+      --acc-dark: #4A4080;
+      --acc-pale: rgba(107,94,168,0.10);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--cream); color: #2C2C2C; font-family: 'DM Sans', sans-serif; font-size: 1.05rem; line-height: 1.7; font-weight: 400; }
+
+    /* NAV */
+    .nav { background: var(--navy); padding: .85rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: .5rem; text-decoration: none; }
+    .nav-logo-text { font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 700; color: #fff; }
+    .nav-logo-dot { color: var(--coral); }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: .88rem; font-weight: 500; }
+    .nav-links a:hover { color: #fff; }
+
+    /* HERO */
+    .hero { background: linear-gradient(135deg, var(--acc-dark) 0%, var(--acc) 60%, #8B7AC8 100%); padding: 3.5rem 1.5rem 3rem; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.08), transparent 60%); pointer-events: none; }
+    .hero-inner { max-width: 860px; margin: 0 auto; position: relative; }
+    .hero-breadcrumb { font-size: .78rem; color: rgba(255,255,255,0.78); margin-bottom: .6rem; font-weight: 500; }
+    .hero-breadcrumb a { color: rgba(255,255,255,0.78); text-decoration: none; }
+    .hero-breadcrumb a:hover { color: #fff; }
+    .hero-series { display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #fff; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35); padding: .28rem .75rem; border-radius: 100px; margin-bottom: .85rem; }
+    .hero h1 { font-family: 'Fraunces', serif; font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 700; color: #fff; line-height: 1.08; letter-spacing: -.02em; margin-bottom: .75rem; }
+    .hero-sub { font-size: 1.1rem; color: rgba(255,255,255,0.88); line-height: 1.55; max-width: 680px; font-weight: 400; margin-bottom: 1.25rem; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .hero-meta-item { font-size: .82rem; color: rgba(255,255,255,0.82); font-weight: 500; display: flex; align-items: center; gap: .35rem; }
+
+    /* DISCLAIMER BAR */
+    .disclaimer-bar { background: #FFFBEA; border-bottom: 2px solid #E8A84A; padding: .75rem 1.5rem; }
+    .disclaimer-bar p { max-width: 860px; margin: 0 auto; font-size: .85rem; color: #5A4A1A; font-weight: 500; line-height: 1.5; }
+
+    /* ARTICLE BODY */
+    .article-wrap { max-width: 860px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+    .section-block { margin-bottom: 2.8rem; }
+    .section-block h2 { font-family: 'Fraunces', serif; font-size: 1.55rem; font-weight: 700; color: var(--navy); margin-bottom: .9rem; padding-bottom: .5rem; border-bottom: 2px solid var(--acc-pale); }
+    .section-block h3 { font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 700; color: var(--navy); margin: 1.4rem 0 .5rem; }
+    .section-block p { margin-bottom: .85rem; color: #2C2C2C; font-weight: 400; }
+
+    /* CITATIONS */
+    sup a { color: var(--acc); font-size: .72em; font-weight: 700; text-decoration: none; }
+    sup a:hover { text-decoration: underline; }
+
+    /* KEY TERMS BOX */
+    .key-terms { background: var(--navy); border-radius: 14px; padding: 1.6rem 1.8rem; margin: 2rem 0; }
+    .key-terms h3 { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 1rem; }
+    .term-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem 2rem; }
+    @media (max-width: 600px) { .term-grid { grid-template-columns: 1fr; } }
+    .term-item { margin-bottom: .2rem; }
+    .term-label { font-size: .88rem; font-weight: 700; color: var(--amber); display: block; margin-bottom: .15rem; }
+    .term-def { font-size: .92rem; color: rgba(255,255,255,0.92); line-height: 1.45; font-weight: 400; }
+
+    /* IMPACT GRID */
+    .impact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.2rem 0; }
+    @media (max-width: 580px) { .impact-grid { grid-template-columns: 1fr; } }
+    .impact-card { background: var(--acc-pale); border-radius: 12px; padding: 1.1rem 1.2rem; border-left: 4px solid var(--acc); }
+    .impact-num { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 700; color: var(--acc); line-height: 1; margin-bottom: .25rem; letter-spacing: -.02em; }
+    .impact-label { font-size: .9rem; font-weight: 700; color: var(--navy); margin-bottom: .2rem; }
+    .impact-body { font-size: .85rem; color: #2C2C2C; line-height: 1.45; font-weight: 400; }
+
+    /* COMPARISON TABLE */
+    .compare-table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-size: .92rem; }
+    .compare-table th { background: var(--navy); color: #fff; font-family: 'Fraunces', serif; font-weight: 700; padding: .6rem .85rem; text-align: left; font-size: .88rem; }
+    .compare-table th:first-child { border-radius: 8px 0 0 0; }
+    .compare-table th:last-child { border-radius: 0 8px 0 0; }
+    .compare-table td { padding: .55rem .85rem; border-bottom: 1px solid rgba(107,94,168,0.12); color: #2C2C2C; font-weight: 400; vertical-align: top; }
+    .compare-table tr:nth-child(even) td { background: var(--acc-pale); }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .row-label { font-weight: 700; color: var(--navy); }
+
+    /* TREATMENT STEPS */
+    .step-list { list-style: none; padding: 0; margin: .8rem 0; }
+    .step-list li { display: flex; gap: .85rem; align-items: flex-start; padding: .7rem .9rem; border-radius: 8px; margin-bottom: .5rem; background: #fff; border: 1px solid rgba(107,94,168,0.15); }
+    .step-num { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--acc); color: #fff; font-size: .8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: .1rem; }
+    .step-text { font-size: .95rem; color: #2C2C2C; line-height: 1.5; font-weight: 400; }
+    .step-text strong { color: var(--navy); font-weight: 700; }
+
+    /* RED FLAG BOX */
+    .redflag-box { background: #FEF2F2; border: 1.5px solid #FECACA; border-radius: 12px; padding: 1.2rem 1.4rem; margin: 1.4rem 0; }
+    .redflag-box h4 { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: #B91C1C; margin-bottom: .6rem; }
+    .redflag-box ul { padding-left: 1.3rem; }
+    .redflag-box ul li { font-size: .93rem; color: #2C2C2C; margin-bottom: .4rem; font-weight: 400; line-height: 1.5; }
+
+    /* REASSURANCE BOX */
+    .reassure-box { background: #F0FDF4; border: 1.5px solid #86EFAC; border-radius: 12px; padding: 1.1rem 1.4rem; margin: 1.2rem 0; }
+    .reassure-box p { font-size: .93rem; color: #2C2C2C; margin-bottom: 0; line-height: 1.55; }
+
+    /* RESEARCH CARDS */
+    .research-card { background: #fff; border: 1px solid rgba(107,94,168,0.2); border-radius: 16px; padding: 1.6rem; margin-bottom: 1.4rem; display: grid; grid-template-columns: 200px 1fr; gap: 1.6rem; align-items: start; }
+    @media (max-width: 640px) { .research-card { grid-template-columns: 1fr; } }
+    .rc-stat { background: var(--acc-pale); border-radius: 12px; padding: .9rem .75rem; text-align: center; overflow: hidden; }
+    .rc-kf { font-size: .62rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: rgba(107,94,168,0.7); margin-bottom: .35rem; }
+    .rc-stat-row { display: flex; align-items: baseline; gap: .4rem; justify-content: center; flex-wrap: wrap; margin-bottom: .3rem; }
+    .rc-num { font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 700; color: var(--acc); line-height: 1; letter-spacing: -.02em; flex-shrink: 0; }
+    .rc-outcome { font-size: .92rem; font-weight: 700; color: var(--navy); line-height: 1.3; text-align: left; }
+    .rc-conditions { font-size: .78rem; font-weight: 600; color: #2C2C2C; line-height: 1.32; overflow: hidden; }
+    .rc-title { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: .2rem; line-height: 1.2; }
+    .rc-journal { font-size: .88rem; color: #555; margin-bottom: .55rem; font-weight: 500; }
+    .rc-body { font-size: .97rem; color: #2C2C2C; line-height: 1.55; font-weight: 400; }
+
+    /* PUTTING IT ALL TOGETHER */
+    .putall { background: var(--navy); border-radius: 14px; padding: 1.8rem 2rem; margin: 2.5rem 0; }
+    .putall p { color: rgba(255,255,255,0.92); font-style: italic; line-height: 1.65; margin-bottom: .75rem; font-size: 1rem; font-weight: 400; }
+    .putall p:last-child { margin-bottom: 0; }
+    .putall strong { color: #fff; font-style: normal; font-weight: 700; }
+
+    /* REFERENCES */
+    .refs-section { margin-top: 3rem; padding-top: 1.8rem; border-top: 2px solid var(--acc-pale); }
+    .refs-section h2 { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: 1.2rem; }
+    .ref-block { margin-bottom: 1.1rem; padding-left: 1rem; border-left: 3px solid var(--acc); }
+    .ref-num { font-size: .78rem; font-weight: 700; color: var(--acc); margin-bottom: .15rem; }
+    .ref-full { font-size: .88rem; color: #2C2C2C; line-height: 1.55; font-weight: 400; }
+    .ref-links { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .35rem; }
+    .ref-pill { display: inline-block; font-size: .75rem; font-weight: 700; padding: .2rem .6rem; border-radius: 100px; text-decoration: none; background: var(--acc-pale); color: var(--acc-dark); border: 1px solid rgba(107,94,168,0.3); }
+    .ref-pill:hover { background: var(--acc); color: #fff; }
+
+    /* RESEARCH FLAGS */
+    .flags-section { margin-top: 2rem; background: #FFFBEA; border: 1.5px solid var(--amber); border-radius: 12px; padding: 1.2rem 1.4rem; }
+    .flags-section h3 { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: #78450A; margin-bottom: .7rem; }
+    .flags-section ul { padding-left: 1.2rem; }
+    .flags-section ul li { font-size: .88rem; color: #2C2C2C; margin-bottom: .4rem; line-height: 1.5; font-weight: 400; }
+
+    /* FOOTER */
+    .footer { background: var(--navy); color: rgba(255,255,255,0.7); text-align: center; padding: 2rem 1.5rem; font-size: .82rem; line-height: 1.6; }
+    .footer-disc { font-size: .78rem; color: rgba(255,255,255,0.5); margin-top: .5rem; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <svg width="20" height="16" viewBox="0 0 22 18" fill="none">
+      <path d="M11 2C8 2 5.5 4 4 6.5 2.5 9 2.5 12 4 14.5c1 1.8 2.8 3 5 3.4V4.5" stroke="#E8634A" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M11 2C14 2 16.5 4 18 6.5 19.5 9 19.5 12 18 14.5c-1 1.8-2.8 3-5 3.4V4.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <span class="nav-logo-text">helf<span class="nav-logo-dot">.</span>school</span>
+  </a>
+  <div class="nav-links">
+    <a href="helf-school-conditions.html">All conditions</a>
+    <a href="helf-school-membership.html">Membership</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-breadcrumb"><a href="helf-school-conditions.html">All conditions</a> › Neurological Health</div>
+    <div class="hero-series">🧠 Neurological Health Series · Article 23</div>
+    <h1>Headaches — Types and Red Flags</h1>
+    <p class="hero-sub">How different headache types are identified, what distinguishes them, and which patterns clinically warrant prompt assessment.</p>
+    <div class="hero-meta">
+      <span class="hero-meta-item">👨‍⚕️ Dr Paul — Retired NHS GP · 20+ years</span>
+      <span class="hero-meta-item">📚 Evidence-based · NICE CG150 · NEJM · EAN Guidelines</span>
+      <span class="hero-meta-item">📅 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER BAR -->
+<div class="disclaimer-bar">
+  <p>⚕️ <strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+</div>
+
+<!-- ARTICLE BODY -->
+<main class="article-wrap">
+
+  <!-- SECTION 1: WHAT IS IT -->
+  <div class="section-block">
+    <h2>1. What are the main types of headache?</h2>
+
+    <p>Headache disorders are divided into two broad categories: <strong>primary headaches</strong> (see Key Terms below) — where the headache is the condition itself, with no underlying structural cause — and <strong>secondary headaches</strong> (see Key Terms below) — where the headache is a symptom of another condition. The vast majority of headaches encountered in primary care are primary.<sup><a href="#ref-1">1</a></sup></p>
+
+    <p>NICE CG150 — the UK clinical guideline for headache in people over 12 — identifies three principal primary headache disorders, plus a clinically important secondary pattern that frequently complicates them:<sup><a href="#ref-1">1</a></sup></p>
+
+    <h3>Tension-type headache (TTH)</h3>
+    <p>The most common headache disorder globally, affecting around <strong>26% of the adult population</strong> at any given time.<sup><a href="#ref-2">2</a></sup> TTH is characterised by bilateral (both sides of the head), pressing or tightening pain — often described as a tight band around the head. It is mild to moderate in severity, is not aggravated by routine physical activity, and does not cause nausea or vomiting. Photophobia (see Key Terms below) or phonophobia (see Key Terms below) may be present, but not both together. Episodes last from 30 minutes to 7 days.<sup><a href="#ref-1">1</a></sup></p>
+
+    <p>TTH is classified as episodic (fewer than 15 headache days per month) or chronic (15 or more days per month). Simple analgesics — aspirin, ibuprofen, or paracetamol — are the recommended acute treatment. Triptans are not effective for TTH.<sup><a href="#ref-1">1</a></sup></p>
+
+    <h3>Migraine</h3>
+    <p>Covered in full in Article 22 of this series. In summary: migraine is unilateral (one side), pulsating, moderate to severe, aggravated by activity, and associated with nausea, photophobia, or phonophobia. It is the second most common primary headache type and the third highest cause of disability globally in adults under 50. Triptans are the primary migraine-specific acute treatment.<sup><a href="#ref-1">1</a></sup></p>
+
+    <h3>Cluster headache</h3>
+    <p>A rare but distinctively severe primary headache disorder, affecting approximately <strong>0.1% of the population</strong>.<sup><a href="#ref-1">1</a></sup> Cluster headache belongs to a group called the trigeminal autonomic cephalalgias (TAC) (see Key Terms below). Attacks are characterised by severe to very severe unilateral periorbital (around the eye) or temporal (at the temple — the side of the head above the ear) pain — typically described as boring, stabbing, or burning — lasting 15 minutes to 3 hours and occurring up to 8 times daily. The defining clinical feature is the presence of ipsilateral (same-side) cranial autonomic symptoms: lacrimation (tearing), nasal congestion, rhinorrhoea (runny nose), ptosis (drooping eyelid), miosis (pupil constriction), or conjunctival redness (redness of the white of the eye). Restlessness or agitation during attacks is characteristic — unlike migraine, where patients typically lie still.<sup><a href="#ref-1">1</a></sup></p>
+
+    <p>Attacks occur in clusters — a period of frequent attacks lasting weeks to months — followed by a remission period that may last months or years. Some people develop chronic cluster headache without sustained remission.</p>
+
+    <h3>Medication overuse headache (MOH)</h3>
+    <p>A secondary headache pattern that develops when acute headache treatments are used too frequently. NICE CG150 estimates MOH affects <strong>1–2% of the general population</strong> — making it among the most common causes of chronic daily headache.<sup><a href="#ref-1">1</a></sup> Using triptans, opioids, or ergotamine on 10 or more days per month, or simple analgesics on 15 or more days per month, is associated with MOH developing. The headache is typically daily or near-daily, often worse in the morning, and paradoxically worsens as more medication is taken. The recognised treatment is withdrawal of the overused drug — with an expectation that headache will initially worsen before improving.</p>
+  </div>
+
+  <!-- KEY TERMS BOX -->
+  <div class="key-terms">
+    <h3>🔑 Key terms</h3>
+    <div class="term-grid">
+      <div class="term-item">
+        <span class="term-label">Primary headache</span>
+        <span class="term-def">A headache that is the condition itself — not caused by an underlying structural disorder. Includes tension-type headache, migraine, and cluster headache.</span>
+      </div>
+      <div class="term-item">
+        <span class="term-label">Secondary headache</span>
+        <span class="term-def">A headache that is a symptom of another condition — such as infection, raised intracranial pressure, or vascular pathology.</span>
+      </div>
+      <div class="term-item">
+        <span class="term-label">Tension-type headache (TTH)</span>
+        <span class="term-def">The most common headache type — bilateral, pressing or band-like, mild to moderate, not aggravated by activity, without nausea.</span>
+      </div>
+      <div class="term-item">
+        <span class="term-label">Cluster headache</span>
+        <span class="term-def">A rare, very severe unilateral periorbital headache lasting 15 minutes to 3 hours, with ipsilateral autonomic features (tearing, nasal congestion) and restlessness.</span>
+      </div>
+      <div class="term-item">
+        <span class="term-label">Medication overuse headache (MOH)</span>
+        <span class="term-def">A secondary headache pattern caused by chronic overuse of acute pain treatments — triptans or opioids on ≥10 days/month, or analgesics on ≥15 days/month.</span>
+      </div>
+      <div class="term-item">
+        <span class="term-label">Thunderclap headache</span>
+        <span class="term-def">A severe headache reaching maximum intensity within seconds to minutes — clinically recognised as requiring urgent assessment to exclude serious vascular causes.</span>
+      </div>
+      <div class="term-item">
+        <span class="term-label">Trigeminal autonomic cephalgia (TAC)</span>
+        <span class="term-def">A group of rare primary headaches — including cluster headache — characterised by severe unilateral pain with cranial autonomic features on the same side.</span>
+      </div>
+      <div class="term-item">
+        <span class="term-label">Photophobia / Phonophobia</span>
+        <span class="term-def">Sensitivity to light / sensitivity to sound — present in migraine attacks; mild photophobia may occur in tension-type headache, but not both together.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: WHY DOES IT MATTER -->
+  <div class="section-block">
+    <h2>2. Why does it matter?</h2>
+
+    <div class="impact-grid">
+      <div class="impact-card">
+        <div class="impact-num">~26%</div>
+        <div class="impact-label">global adult prevalence</div>
+        <div class="impact-body">of tension-type headache — making it the most prevalent neurological condition worldwide.<sup><a href="#ref-2">2</a></sup></div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num">1–2%</div>
+        <div class="impact-label">of the population</div>
+        <div class="impact-body">affected by medication overuse headache — often unrecognised, and caused by the very treatments people are using to manage it.<sup><a href="#ref-1">1</a></sup></div>
+      </div>
+    </div>
+
+    <p>Headache is one of the most common reasons for GP consultations and neurological referral in the UK. The majority of headaches are primary — benign in the sense that they do not signal structural pathology — but they can cause significant disability, missed work, and reduced quality of life, particularly in people with frequent migraine or chronic TTH.</p>
+
+    <p>An important clinical and educational point is that the three main primary headache types require quite different management approaches. TTH does not respond to triptans; cluster headache requires acute treatment with oxygen or subcutaneous sumatriptan (Imigran), not oral analgesics; and migraine has its own evidence-based treatment pathway. Distinguishing the type accurately is therefore not academic — it has direct implications for what treatment is appropriate.</p>
+
+    <p>A further important point is that the vast majority of headaches, even in those presenting to their GP, are primary and do not signal serious underlying pathology. Brain tumour as a cause of isolated headache is substantially less common than many people fear.</p>
+
+    <div class="reassure-box">
+      <p>📋 <strong>Clinical context:</strong> Fewer than 1 in 1,000 people under 50 presenting with an isolated headache will have a brain tumour — the presence of red flags (see below) is what appropriately drives investigation, not headache frequency or severity alone.<sup><a href="#ref-5">5</a></sup></p>
+    </div>
+  </div>
+
+  <!-- SECTION 3: WHAT YOUR DOCTOR MIGHT DISCUSS -->
+  <div class="section-block">
+    <h2>3. What your doctor might discuss</h2>
+
+    <h3>Distinguishing the headache type</h3>
+    <p>Diagnosis is clinical — based on history, using ICHD-3 criteria. The following features are the key distinguishing characteristics between the three main primary types:<sup><a href="#ref-1">1</a></sup></p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Tension-type</th>
+          <th>Migraine</th>
+          <th>Cluster</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="row-label">Location</td>
+          <td>Bilateral (both sides)</td>
+          <td>Often unilateral</td>
+          <td>Unilateral periorbital (around the eye)</td>
+        </tr>
+        <tr>
+          <td class="row-label">Character</td>
+          <td>Pressing, band-like</td>
+          <td>Pulsating, throbbing</td>
+          <td>Severe, boring or stabbing</td>
+        </tr>
+        <tr>
+          <td class="row-label">Severity</td>
+          <td>Mild to moderate</td>
+          <td>Moderate to severe</td>
+          <td>Severe to very severe</td>
+        </tr>
+        <tr>
+          <td class="row-label">Duration</td>
+          <td>30 min – 7 days</td>
+          <td>4 – 72 hours</td>
+          <td>15 min – 3 hours</td>
+        </tr>
+        <tr>
+          <td class="row-label">Nausea/vomiting</td>
+          <td>No</td>
+          <td>Yes</td>
+          <td>Variable</td>
+        </tr>
+        <tr>
+          <td class="row-label">Autonomic features</td>
+          <td>No</td>
+          <td>No</td>
+          <td>Yes — same-side tearing, nasal congestion, ptosis</td>
+        </tr>
+        <tr>
+          <td class="row-label">Activity effect</td>
+          <td>Not aggravated</td>
+          <td>Worsened</td>
+          <td>Agitated, pacing</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Treatment by type</h3>
+    <ol class="step-list">
+      <li><span class="step-num">1</span><span class="step-text"><strong>Tension-type headache (acute):</strong> aspirin, ibuprofen, or paracetamol. Triptans are not effective for TTH and should not be used. Frequent use of any analgesic risks progressing to medication overuse headache. For chronic TTH or frequent episodic TTH, preventive treatment with amitriptyline (Tryptizol) is considered.</span></li>
+      <li><span class="step-num">2</span><span class="step-text"><strong>Migraine (acute):</strong> triptan + NSAID combination as first-line per NICE CG150, or simple analgesia with antiemetic at step one. See Article 22 of this series for full migraine management.</span></li>
+      <li><span class="step-num">3</span><span class="step-text"><strong>Cluster headache (acute):</strong> <strong>100% oxygen</strong> — 12–15 litres per minute for 15–20 minutes via non-rebreathable mask — or <strong>subcutaneous sumatriptan (Imigran) 6mg</strong>. Both carry strong evidence from randomised trials. Oral analgesics are not effective because cluster attacks are too brief for oral medications to be absorbed in time. Prevention: verapamil (Cordilox) is first-line.</span></li>
+      <li><span class="step-num">4</span><span class="step-text"><strong>Medication overuse headache (MOH):</strong> withdrawal of the overused medication. Headache typically worsens in the first week before improving. Around half of those who withdraw successfully achieve a meaningful reduction in headache frequency at 2 months. NICE CG150 recommends abrupt withdrawal over gradual tapering for most cases.</span></li>
+    </ol>
+
+    <h3>Neuroimaging</h3>
+    <p>NICE CG150 specifically advises <strong>not</strong> to refer people diagnosed with tension-type headache, migraine, cluster headache, or medication overuse headache for neuroimaging solely for reassurance. Neuroimaging in primary headache has a very low yield for structural pathology and may reinforce health anxiety without clinical benefit. Investigation is driven by red flags, not by headache frequency or severity alone.<sup><a href="#ref-1">1</a></sup></p>
+
+    <div class="redflag-box">
+      <h4>⚠️ Headache patterns clinically recognised as requiring prompt assessment</h4>
+      <ul>
+        <li><strong>Thunderclap headache (see Key Terms below)</strong> — severe onset reaching maximum intensity within seconds to minutes: clinically recognised as requiring urgent assessment to exclude subarachnoid haemorrhage (bleeding into the space around the brain), cervical artery dissection, and other acute vascular causes.</li>
+        <li><strong>New headache in someone over 50</strong> — particularly progressive, associated with scalp tenderness, or jaw pain on chewing: warrants investigation to exclude giant cell arteritis (GCA — a vasculitic condition affecting arteries in older adults) and intracranial pathology.</li>
+        <li><strong>Headache with fever, neck stiffness, rash, or altered consciousness</strong> — clinically recognised as time-sensitive; 111 and urgent GP services exist for this presentation.</li>
+        <li><strong>New focal neurological deficit</strong> — weakness, speech difficulty, or visual loss not consistent with typical aura.</li>
+        <li><strong>Headache worsened by exertion, coughing, or straining (Valsalva)</strong> — may indicate raised intracranial pressure.</li>
+        <li><strong>Waking from sleep with headache that is progressive</strong> — a pattern requiring investigation.</li>
+        <li><strong>New headache in someone with known cancer, immunosuppression, or HIV</strong>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 4: RESEARCH -->
+  <div class="section-block">
+    <h2>4. What the research shows</h2>
+
+    <div class="research-card">
+      <div class="rc-stat">
+        <div class="rc-kf">Key Finding</div>
+        <div class="rc-stat-row">
+          <div class="rc-num">74%</div>
+          <div class="rc-outcome">headache response · sumatriptan 6mg SC</div>
+        </div>
+        <div class="rc-conditions">vs 26% placebo · cluster headache attack resolution within 15 minutes</div>
+      </div>
+      <div>
+        <div class="rc-title">Subcutaneous sumatriptan for acute cluster headache</div>
+        <div class="rc-journal">The Sumatriptan Cluster Headache Study Group · N Engl J Med · 1991;325:322–326</div>
+        <div class="rc-body">The landmark randomised controlled trial establishing subcutaneous sumatriptan (Imigran) as a primary acute treatment for cluster headache. Sumatriptan 6mg subcutaneously reduced headache severity in <strong>74% of attacks within 15 minutes</strong>, compared with 26% on placebo. By 15 minutes, 46% were pain-free versus 10% on placebo. This evidence underpins the strong recommendation for subcutaneous sumatriptan in EAN and NICE guidelines — alongside 100% oxygen — as first-line acute treatment for cluster headache.<sup><a href="#ref-3">3</a></sup></div>
+      </div>
+    </div>
+
+    <div class="research-card">
+      <div class="rc-stat">
+        <div class="rc-kf">Key Finding</div>
+        <div class="rc-stat-row">
+          <div class="rc-num">~26%</div>
+          <div class="rc-outcome">global adult prevalence · tension-type headache</div>
+        </div>
+        <div class="rc-conditions">most prevalent neurological condition globally · GBD headache analysis · Lancet Neurol 2018</div>
+      </div>
+      <div>
+        <div class="rc-title">Global burden of tension-type headache — GBD 2016</div>
+        <div class="rc-journal">GBD 2016 Headache Collaborators · Lancet Neurol · 2018;17(11):954–976</div>
+        <div class="rc-body">The Global Burden of Disease Study 2016 headache analysis estimated approximately 1.89 billion people worldwide with TTH — representing approximately of tension-type headache at approximately <strong>26%</strong> of the adult population — making it the most prevalent neurological condition worldwide. Despite this, TTH generates proportionally fewer disability-adjusted life years (DALYs — years of healthy life lost to disability) than migraine, because individual attacks are typically less severe. The GBD data highlight that headache disorders collectively affect more than half the global adult population at any one time, with most cases representing primary, benign conditions.<sup><a href="#ref-2">2</a></sup></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: PUTTING IT ALL TOGETHER -->
+  <div class="section-block">
+    <h2>5. Putting it all together</h2>
+    <div class="putall">
+      <p>Headache is one of the most common presentations in medicine, and the great majority are primary — benign in origin, with no structural underlying pathology. The clinically important skill is accurate type identification, because tension-type headache, migraine, and cluster headache each require fundamentally different acute treatment approaches. Using triptans for tension-type headache is ineffective; using oral analgesics for cluster headache is too slow; misidentifying migraine as tension headache leaves a treatable condition undertreated.</p>
+      <p>Medication overuse headache is a common and often unrecognised complication of all three types — affecting an estimated 1–2% of the general population — and responds to withdrawal of the overused drug, though with an initial period of worsening. Red flag features — particularly thunderclap onset, new headache over 50, systemic features, and focal neurology — are the appropriate triggers for investigation, not headache frequency or severity alone.</p>
+      <p><strong>Most headaches are primary, most are treatable, and most do not signal serious pathology — but accurate identification of the type is what makes effective treatment possible.</strong></p>
+    </div>
+  </div>
+
+  <!-- REFERENCES -->
+  <div class="refs-section">
+    <h2>References</h2>
+
+    <div class="ref-block" id="ref-1">
+      <div class="ref-num">1</div>
+      <div class="ref-full">NICE. Headaches in over 12s: diagnosis and management. NICE guideline CG150. Published September 2012, updated December 2021. Available at: nice.org.uk/guidance/cg150</div>
+      <div class="ref-links"><a class="ref-pill" href="https://www.nice.org.uk/guidance/cg150" target="_blank">NICE CG150</a></div>
+    </div>
+
+    <div class="ref-block" id="ref-2">
+      <div class="ref-num">2</div>
+      <div class="ref-full">Stovner LJ, Nichols E, Steiner TJ, et al. Global, regional, and national burden of migraine and tension-type headache, 1990–2016: a systematic analysis for the Global Burden of Disease Study 2016. Lancet Neurol. 2018;17(11):954–976. doi: 10.1016/S1474-4422(18)30322-3. PMID: 30353868.</div>
+      <div class="ref-links"><a class="ref-pill" href="https://doi.org/10.1016/S1474-4422(18)30322-3" target="_blank">DOI</a><a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/30353868/" target="_blank">PubMed</a></div>
+    </div>
+
+    <div class="ref-block" id="ref-3">
+      <div class="ref-num">3</div>
+      <div class="ref-full">The Sumatriptan Cluster Headache Study Group. Treatment of acute cluster headache with sumatriptan. N Engl J Med. 1991 Aug 1;325(5):322–326. doi: 10.1056/NEJM199108013250505. PMID: 1647496.</div>
+      <div class="ref-links"><a class="ref-pill" href="https://doi.org/10.1056/NEJM199108013250505" target="_blank">DOI</a><a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/1647496/" target="_blank">PubMed</a></div>
+    </div>
+
+    <div class="ref-block" id="ref-4">
+      <div class="ref-num">4</div>
+      <div class="ref-full">May A, Snoer AH, Tronvik E, et al. European Academy of Neurology guidelines on the treatment of cluster headache. Eur J Neurol. 2023;30(10):2955–2979. doi: 10.1111/ene.15956. PMID: 37515405.</div>
+      <div class="ref-links"><a class="ref-pill" href="https://doi.org/10.1111/ene.15956" target="_blank">DOI</a><a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/37515405/" target="_blank">PubMed</a></div>
+    </div>
+
+    <div class="ref-block" id="ref-5">
+      <div class="ref-num">5</div>
+      <div class="ref-full">Kernick D, Stapley S, Hamilton W, Campbell J. Clinical features of primary brain tumours: a case–control study using electronic primary care records. Br J Gen Pract. 2007;57(542):695–699. PMID: 17761056.</div>
+      <div class="ref-links"><a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/17761056/" target="_blank">PubMed</a></div>
+    </div>
+  </div>
+
+
+
+
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>helf<strong>.</strong>school — Health Education · Neurological Health Series</p>
+  <p class="footer-disc">Anything personally relevant is a conversation for you to have with your GP or healthcare professional. © 2026 helf.school</p>
+</footer>
+
+</body>
+</html>
