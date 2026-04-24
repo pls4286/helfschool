@@ -61,87 +61,95 @@
     .vs-inner{background:var(--navy);border:2px solid var(--digest);border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:var(--digest)}
     .compare-note{font-size:.78rem;color:rgba(255,255,255,.75);margin-top:.6rem;text-align:center;font-style:italic;flex-shrink:0}
 
-    /* ─── SLIDE 3: WHY IT MATTERS · HORIZONTAL ROWS · HARM · RED ─── */
-    .harm-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.65rem;flex:1;min-height:0}
-    .harm-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:14px;padding:1rem 1.5rem;display:grid;grid-template-columns:72px 1fr auto;gap:1.5rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    /* ─── SLIDE 3: WHY IT MATTERS · HORIZONTAL ROWS · RED ─── */
+    .harm-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.55rem;flex:1;min-height:0}
+    .harm-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:14px;padding:.7rem 1.3rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .harm-card.animate-ready{opacity:0;transform:translateY(14px)}
     .harm-card.vis{opacity:1;transform:translateY(0)}
-    .harm-icon{font-size:2.8rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .harm-content{display:flex;flex-direction:column;gap:.25rem;min-width:0}
-    .harm-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.4rem;line-height:1.12;letter-spacing:-.01em}
-    .harm-body{font-size:.98rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400}
-    .harm-stat{display:flex;flex-direction:column;align-items:flex-end;gap:.2rem;text-align:right;white-space:nowrap;padding-left:1rem}
-    .harm-stat-lbl{font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(232,122,90,.95);line-height:1}
-    .harm-stat-val{font-family:'Fraunces',serif;font-size:clamp(1.6rem,2.6vw,2.4rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.02em}
+    .harm-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .harm-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+    .harm-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
+    .harm-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .harm-stat{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
 
-    /* ─── SLIDE 4: DOCTOR · HORIZONTAL ROWS · ACTION · GREEN ─── */
-    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.6rem;flex:1;min-height:0}
-    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.9rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    /* ─── SLIDE 4: DOCTOR · HORIZONTAL ROWS · GREEN ─── */
+    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.55rem;flex:1;min-height:0}
+    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .doc-card.animate-ready{opacity:0;transform:translateY(14px)}
     .doc-card.vis{opacity:1;transform:translateY(0)}
-    .doc-icon{font-size:2.3rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .doc-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
-    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.25rem;line-height:1.12;letter-spacing:-.01em}
-    .doc-body{font-size:.92rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400}
+    .doc-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .doc-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
+    .doc-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
     .doc-body strong{color:#fff;font-weight:700}
-    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1rem,1.6vw,1.45rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
+    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
 
-    /* ─── SLIDE 5: TREATMENT · STEPPED LADDER ─── */
-    .ladder-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(4,1fr);gap:.65rem;flex:1;min-height:0}
-    .ladder-card{border:1px solid;border-radius:14px;padding:1rem 1.4rem;display:grid;grid-template-columns:56px 1fr auto;gap:1.25rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    /* ─── SLIDE 5: TREATMENT LADDER · AMBER ─── */
+    .ladder-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(4,1fr);gap:.55rem;flex:1;min-height:0}
+    .ladder-card{border:1px solid;border-radius:14px;padding:.65rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .ladder-card.animate-ready{opacity:0;transform:translateY(14px)}
     .ladder-card.vis{opacity:1;transform:translateY(0)}
     .ladder-card.t1{background:linear-gradient(90deg,rgba(126,204,153,.15),rgba(126,204,153,.05));border-color:rgba(126,204,153,.4)}
     .ladder-card.t2{background:linear-gradient(90deg,rgba(232,168,74,.15),rgba(232,168,74,.05));border-color:rgba(232,168,74,.4)}
     .ladder-card.t3{background:linear-gradient(90deg,rgba(212,124,58,.18),rgba(212,124,58,.05));border-color:rgba(212,124,58,.45)}
     .ladder-card.t4{background:linear-gradient(90deg,rgba(232,99,74,.18),rgba(232,99,74,.05));border-color:rgba(232,99,74,.45)}
-    .ladder-num{font-family:'Fraunces',serif;font-size:2rem;font-weight:700;text-align:center;line-height:1;letter-spacing:-.02em}
+    .ladder-num{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:700;text-align:center;line-height:1;letter-spacing:-.02em;padding-top:.1rem}
     .ladder-card.t1 .ladder-num{color:var(--good)}
     .ladder-card.t2 .ladder-num{color:var(--warn)}
     .ladder-card.t3 .ladder-num{color:var(--digest)}
     .ladder-card.t4 .ladder-num{color:var(--coral)}
-    .ladder-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
-    .ladder-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.2rem;line-height:1.15;letter-spacing:-.01em}
-    .ladder-body{font-size:.9rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400}
+    .ladder-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+    .ladder-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
+    .ladder-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
     .ladder-body strong{color:#fff;font-weight:700}
-    .ladder-tag{font-family:'Fraunces',serif;font-size:.95rem;font-weight:700;line-height:1;letter-spacing:.01em;text-align:right;white-space:nowrap;padding-left:.6rem;text-transform:uppercase}
+    .ladder-tag{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
     .ladder-card.t1 .ladder-tag{color:var(--good)}
     .ladder-card.t2 .ladder-tag{color:var(--warn)}
     .ladder-card.t3 .ladder-tag{color:var(--digest)}
     .ladder-card.t4 .ladder-tag{color:var(--coral)}
 
-    /* ─── SLIDE 6: RESEARCH · EV-CARDS ─── */
-    .ev-stage{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(4,1fr);gap:.65rem;flex:1;min-height:0}
-    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,124,58,.32);border-radius:12px;padding:.9rem 1.2rem;display:grid;grid-template-columns:160px 1fr;gap:1.2rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(12px);transition:all .42s ease}
+    /* ─── SLIDES 6–7: RESEARCH · EV-CARDS — 2 per slide ─── */
+    .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
+    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,124,58,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .45s ease}
+    .ev-card.animate-ready{opacity:0;transform:translateY(14px)}
     .ev-card.vis{opacity:1;transform:translateY(0)}
-    .ev-stat-box{text-align:center;background:rgba(212,124,58,.12);border-radius:10px;padding:.75rem .5rem}
-    .ev-stat{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:700;line-height:1;color:var(--digest);letter-spacing:-.02em}
-    .ev-stat-lab{font-size:.78rem;color:rgba(255,255,255,.92);font-weight:700;margin-top:.3rem;line-height:1.3}
-    .ev-detail{min-width:0}
-    .ev-trial{font-family:'Fraunces',serif;font-size:1.08rem;font-weight:700;color:#fff;margin-bottom:.15rem;line-height:1.2;letter-spacing:-.01em}
-    .ev-journal{font-size:.82rem;color:rgba(255,255,255,.85);margin-bottom:.3rem;font-weight:500}
-    .ev-finding{font-size:.88rem;color:rgba(255,255,255,.92);line-height:1.45;font-weight:400}
-    .ev-finding strong{color:#fff;font-weight:700}
+    .ev-stat-box{background:rgba(212,124,58,.09);border-radius:14px;padding:1.25rem .85rem;text-align:center;overflow:hidden}
+    .ev-kf-label{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(212,124,58,.8);margin-bottom:.55rem}
+    .ev-stat-row{display:flex;align-items:baseline;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:.45rem}
+    .ev-num{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;line-height:1;letter-spacing:-.02em;flex-shrink:0}
+    .ev-num.good{color:var(--good)}
+    .ev-num.bad{color:var(--bad)}
+    .ev-num.warn{color:var(--warn)}
+    .ev-outcome{font-size:.95rem;font-weight:700;color:#fff;line-height:1.3;text-align:left}
+    .ev-conditions{font-size:.88rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.35}
+    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.4rem;margin-bottom:.25rem;line-height:1.15;letter-spacing:-.01em}
+    .ev-det .ev-journal{font-size:.92rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
+    .ev-det .ev-body{font-size:1rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400}
+    .ev-det .ev-body strong{color:#fff;font-weight:700}
 
-    /* ─── SLIDE 7: CTA · HIGH-IMPACT ─── */
+    /* ─── SLIDE 8: CTA · cta-wrap-v2 ─── */
     .cta-slide{position:relative}
-    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%, rgba(212,184,74,.18), rgba(212,184,74,.04) 45%, transparent 70%);pointer-events:none;z-index:0}
-    .cta-wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:.85rem;padding:.5rem}
-    .cta-badge{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.42rem 1.15rem;border-radius:100px;box-shadow:0 0 30px rgba(212,184,74,.14)}
-    .cta-icon{font-size:clamp(4.5rem,8vw,6rem);line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;filter:drop-shadow(0 0 30px rgba(212,184,74,.28));animation:pulseHalo 3.2s ease-in-out infinite}
-    @keyframes pulseHalo{0%,100%{filter:drop-shadow(0 0 28px rgba(212,184,74,.22))}50%{filter:drop-shadow(0 0 55px rgba(212,184,74,.55))}}
-    .cta-headline{font-family:'Fraunces',serif;font-size:clamp(3.2rem,5.8vw,4.9rem);font-weight:700;color:#fff;line-height:1.02;max-width:1000px;letter-spacing:-.028em}
-    .cta-headline span{color:var(--acc)}
-    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.4vw,1.85rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);max-width:780px;line-height:1.32}
-    .cta-body{font-size:1.05rem;color:rgba(255,255,255,.90);max-width:800px;line-height:1.52;font-weight:400}
-    .cta-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;max-width:920px;width:100%;margin-top:.25rem}
-    .cta-ac{background:linear-gradient(180deg,rgba(212,184,74,.16),rgba(212,184,74,.06));border:1.5px solid rgba(212,184,74,.45);border-radius:14px;padding:.95rem .55rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;text-align:center;transition:transform .25s ease}
-    .cta-ac:hover{transform:translateY(-2px)}
-    .cta-ac-icon{font-size:1.85rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .cta-ac-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.94rem;line-height:1.18}
-    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.8rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;margin-top:.6rem;max-width:920px}
+    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(212,184,74,.18),rgba(212,184,74,.04) 45%,transparent 70%);pointer-events:none;z-index:0}
+    .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem;gap:.45rem;min-height:0;overflow:hidden}
+    .cta-top{display:flex;flex-direction:column;align-items:center;gap:.3rem;text-align:center}
+    .cta-badge-v2{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.3rem .95rem;border-radius:100px}
+    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:700;color:#fff;line-height:1.02;letter-spacing:-.028em}
+    .cta-headline-v2 span{color:var(--acc)}
+    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(.95rem,1.5vw,1.2rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);line-height:1.3}
+    .cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.4rem;min-height:0;overflow:hidden}
+    .cta-row-v2{background:linear-gradient(90deg,rgba(212,184,74,.12),rgba(212,184,74,.04));border-left:4px solid var(--acc);border-radius:0 10px 10px 0;padding:.6rem .95rem;display:grid;grid-template-columns:52px 1fr auto;gap:.9rem;align-items:start;min-height:0;overflow:hidden}
+    .cta-row-icon{font-size:1.7rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .cta-row-mid{display:flex;flex-direction:column;gap:.12rem;min-width:0}
+    .cta-row-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.95rem;line-height:1.15}
+    .cta-row-body-v2{font-size:.82rem;color:rgba(255,255,255,.90);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .cta-row-word-v2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.2rem,2vw,1.7rem);color:var(--acc);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:.6rem}
+    .cta-bottom{display:flex;justify-content:center;flex-shrink:0}
+    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.75rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;max-width:900px;width:100%}
     .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.85);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left}
+    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.88);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left;font-weight:400}
     .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
 
-    /* ─── SLIDE 8: CLOSING ─── */
+    /* ─── SLIDE 9: CLOSING ─── */
     .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.6rem;padding:1.5rem}
     .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
     .close-logo .dot{color:var(--coral)}
@@ -171,7 +179,7 @@
     <span class="tb-sub">· IBD</span>
   </div>
   <div class="tb-right">
-    <span id="counter" class="slide-counter">1 / 8</span>
+    <span id="counter" class="slide-counter">1 / 9</span>
     <span class="kb-hint">← → navigate</span>
   </div>
 </div>
@@ -182,7 +190,7 @@
   <!-- SLIDE 1: INTRO -->
   <div class="slide active">
     <div class="intro-wrap">
-      <div class="intro-badge">📋 Digestive Health Series · Article 15</div>
+      <div class="intro-badge">📋 Digestive Health Series · Article 14</div>
       <div class="intro-icon">🫁</div>
       <div class="intro-title">Inflammatory Bowel Disease —<br/>Crohn's &amp; <span>Ulcerative Colitis</span></div>
       <div class="intro-sub">Two related but distinct conditions — what IBD actually is, how they differ, and what the evidence shows works.</div>
@@ -219,89 +227,74 @@
     <div class="compare-note">* Smoking is never recommended — overall harms far outweigh any gut benefit.</div>
   </div>
 
-  <!-- SLIDE 3: WHY IT MATTERS · HORIZONTAL ROWS · HARM · RED -->
+  <!-- SLIDE 3: WHY IT MATTERS · HORIZONTAL ROWS · RED -->
   <div class="slide">
-    <div class="slide-title">Why IBD <span>matters</span> — what it does to your life</div>
+    <div class="slide-title">Why IBD <span>matters</span> — what it does to daily life</div>
     <div class="harm-grid">
 
-      <div class="harm-card" id="h1">
+      <div class="harm-card animate-ready" id="h1">
         <div class="harm-icon">🚽</div>
         <div class="harm-content">
           <div class="harm-title">Urgency &amp; diarrhoea</div>
           <div class="harm-body">Bloody diarrhoea in UC, chronic loose stools in Crohn's. Urgency can dictate daily routines — where people go, what they eat, when they sleep.</div>
         </div>
-        <div class="harm-stat">
-          <span class="harm-stat-lbl">Daily impact</span>
-          <span class="harm-stat-val">↑ Urgency</span>
-        </div>
+        <div class="harm-stat">↑ Urgency</div>
       </div>
 
-      <div class="harm-card" id="h2">
+      <div class="harm-card animate-ready" id="h2">
         <div class="harm-icon">⚖️</div>
         <div class="harm-content">
           <div class="harm-title">Weight loss &amp; malnutrition</div>
           <div class="harm-body">Ongoing inflammation impairs absorption of nutrients. Children with Crohn's can fall off growth charts — a key reason for early specialist referral.</div>
         </div>
-        <div class="harm-stat">
-          <span class="harm-stat-lbl">Nutrition</span>
-          <span class="harm-stat-val">↓ Absorption</span>
-        </div>
+        <div class="harm-stat">↓ Absorption</div>
       </div>
 
-      <div class="harm-card" id="h3">
+      <div class="harm-card animate-ready" id="h3">
         <div class="harm-icon">😔</div>
         <div class="harm-content">
           <div class="harm-title">Fatigue &amp; mental health</div>
           <div class="harm-body">Persistent fatigue is one of the most commonly reported symptoms. Anxiety and depression are much more prevalent in IBD — part of why UK guidelines emphasise psychological care alongside medication.</div>
         </div>
-        <div class="harm-stat">
-          <span class="harm-stat-lbl">Quality of life</span>
-          <span class="harm-stat-val">↑ Fatigue</span>
-        </div>
+        <div class="harm-stat">↑ Fatigue</div>
       </div>
 
-      <div class="harm-card" id="h4">
+      <div class="harm-card animate-ready" id="h4">
         <div class="harm-icon">🧬</div>
         <div class="harm-content">
-          <div class="harm-title">Colorectal cancer risk — in UC</div>
+          <div class="harm-title">Colorectal cancer risk — UC</div>
           <div class="harm-body">Ulcerative colitis raises colorectal cancer risk around 2.4× vs the general population, rising to ~4× in extensive colitis. Basis for the NHS surveillance colonoscopy programme.</div>
         </div>
-        <div class="harm-stat">
-          <span class="harm-stat-lbl">CRC risk</span>
-          <span class="harm-stat-val">2.4×</span>
-        </div>
+        <div class="harm-stat">2.4×</div>
       </div>
 
-      <div class="harm-card" id="h5">
+      <div class="harm-card animate-ready" id="h5">
         <div class="harm-icon">🏥</div>
         <div class="harm-content">
           <div class="harm-title">Flares &amp; surgery</div>
           <div class="harm-body">Most people with IBD will need a hospital admission at some point. Around half of people with Crohn's have surgery within ten years — for strictures, abscesses or perianal disease.</div>
         </div>
-        <div class="harm-stat">
-          <span class="harm-stat-lbl">Crohn's</span>
-          <span class="harm-stat-val">~50% surgery</span>
-        </div>
+        <div class="harm-stat">~50% surgery</div>
       </div>
 
     </div>
   </div>
 
-  <!-- SLIDE 4: DOCTOR · HORIZONTAL ROWS · ACTION · GREEN -->
+  <!-- SLIDE 4: WHAT DOCTOR MIGHT DO · HORIZONTAL ROWS · GREEN -->
   <div class="slide">
     <div class="slide-title">What your <span>doctor might do</span> — diagnosis &amp; ongoing care</div>
     <div class="doc-grid">
 
-      <div class="doc-card" id="d1">
+      <div class="doc-card animate-ready" id="d1">
         <div class="doc-icon">🧪</div>
         <div class="doc-content">
           <div class="doc-title">Faecal calprotectin — the key first test</div>
-          <div class="doc-body">Stool test measuring inflammation in the gut. <strong>Reliably distinguishes IBD from IBS</strong> and determines who needs colonoscopy. A normal result strongly argues against active IBD.</div>
+          <div class="doc-body">Stool test measuring gut inflammation. <strong>Reliably distinguishes IBD from IBS</strong> and determines who needs colonoscopy. A normal result strongly argues against active IBD.</div>
         </div>
         <div class="doc-action">1st-line</div>
       </div>
 
-      <div class="doc-card" id="d2">
+      <div class="doc-card animate-ready" id="d2">
         <div class="doc-icon">🔬</div>
         <div class="doc-content">
           <div class="doc-title">Colonoscopy with biopsies</div>
@@ -310,7 +303,7 @@
         <div class="doc-action">Confirm</div>
       </div>
 
-      <div class="doc-card" id="d3">
+      <div class="doc-card animate-ready" id="d3">
         <div class="doc-icon">🩺</div>
         <div class="doc-content">
           <div class="doc-title">IBD multidisciplinary team (MDT)</div>
@@ -319,16 +312,16 @@
         <div class="doc-action">NHS MDT</div>
       </div>
 
-      <div class="doc-card" id="d4">
+      <div class="doc-card animate-ready" id="d4">
         <div class="doc-icon">📞</div>
         <div class="doc-content">
           <div class="doc-title">IBD specialist nurse — direct access</div>
-          <div class="doc-body">Most UK IBD services offer a direct helpline or email. Use it early at the first sign of a flare — waiting for a routine appointment can delay effective treatment.</div>
+          <div class="doc-body">Most UK IBD services offer a direct helpline or email. Direct access at the first sign of a flare means treatment can start earlier rather than waiting for a routine appointment.</div>
         </div>
         <div class="doc-action">Flare line</div>
       </div>
 
-      <div class="doc-card" id="d5">
+      <div class="doc-card animate-ready" id="d5">
         <div class="doc-icon">🧠</div>
         <div class="doc-content">
           <div class="doc-title">Psychological care alongside medication</div>
@@ -345,7 +338,7 @@
     <div class="slide-title">Treatment — <span>a stepped approach</span></div>
     <div class="ladder-grid">
 
-      <div class="ladder-card t1" id="l1">
+      <div class="ladder-card t1 animate-ready" id="l1">
         <div class="ladder-num">1</div>
         <div class="ladder-content">
           <div class="ladder-title">Aminosalicylates (5-ASA) — for UC</div>
@@ -354,29 +347,29 @@
         <div class="ladder-tag">Mild UC</div>
       </div>
 
-      <div class="ladder-card t2" id="l2">
+      <div class="ladder-card t2 animate-ready" id="l2">
         <div class="ladder-num">2</div>
         <div class="ladder-content">
           <div class="ladder-title">Corticosteroids — to induce remission</div>
-          <div class="ladder-body">Prednisolone or budesonide (Entocort). Effective for active flares but <strong>not for long-term maintenance</strong>. The goal is always to taper and stop — prolonged steroid use causes significant side effects.</div>
+          <div class="ladder-body">Prednisolone or budesonide (Entocort). Effective for active flares but <strong>not for long-term maintenance</strong>. The aim is always to taper and stop — prolonged steroid use causes significant side effects.</div>
         </div>
         <div class="ladder-tag">Flare only</div>
       </div>
 
-      <div class="ladder-card t3" id="l3">
+      <div class="ladder-card t3 animate-ready" id="l3">
         <div class="ladder-num">3</div>
         <div class="ladder-content">
           <div class="ladder-title">Immunomodulators — maintenance</div>
-          <div class="ladder-body">Azathioprine (Imuran), mercaptopurine, methotrexate. Dampen the immune response to maintain remission. Take months to reach full effect — and need regular blood monitoring throughout.</div>
+          <div class="ladder-body">Azathioprine (Imuran), mercaptopurine, methotrexate. Dampen the immune response to maintain remission. Take months to reach full effect — regular blood monitoring throughout.</div>
         </div>
         <div class="ladder-tag">Maintenance</div>
       </div>
 
-      <div class="ladder-card t4" id="l4">
+      <div class="ladder-card t4 animate-ready" id="l4">
         <div class="ladder-num">4</div>
         <div class="ladder-content">
           <div class="ladder-title">Biologics &amp; small molecules — moderate–severe</div>
-          <div class="ladder-body">Anti-TNF: infliximab (Remicade), adalimumab (Humira) · vedolizumab (Entyvio) · ustekinumab (Stelara) · JAK inhibitors: tofacitinib (Xeljanz), upadacitinib (Rinvoq). Have transformed IBD management over 20 years.</div>
+          <div class="ladder-body">Anti-TNF: infliximab (Remicade), adalimumab (Humira) · vedolizumab (Entyvio) · ustekinumab (Stelara) · JAK inhibitors: tofacitinib (Xeljanz), upadacitinib (Rinvoq). Transformed IBD management over 20 years.</div>
         </div>
         <div class="ladder-tag">Biologics</div>
       </div>
@@ -384,97 +377,139 @@
     </div>
   </div>
 
-  <!-- SLIDE 6: RESEARCH · EV-CARDS -->
+  <!-- SLIDE 6: RESEARCH — prevalence + global rise -->
   <div class="slide">
-    <div class="slide-title">What the <span>evidence</span> actually shows</div>
+    <div class="slide-title">What the <span>evidence</span> shows · prevalence</div>
     <div class="ev-stage">
 
-      <div class="ev-card" id="e1">
+      <div class="ev-card animate-ready" id="e1">
         <div class="ev-stat-box">
-          <div class="ev-stat">1 in 123</div>
-          <div class="ev-stat-lab">UK adults living with IBD</div>
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num warn" style="font-size:1.8rem">1 in 123</div>
+            <div class="ev-outcome">UK adults living with IBD</div>
+          </div>
+          <div class="ev-conditions">nearly double the previous estimate — 38.3M GP records</div>
         </div>
-        <div class="ev-detail">
-          <div class="ev-trial">Crohn's &amp; Colitis UK — UK prevalence analysis</div>
+        <div class="ev-det">
+          <div class="ev-trial">Crohn's &amp; Colitis UK — UK prevalence</div>
           <div class="ev-journal">CCUK / University of Nottingham · 2022 · 38.3M GP records</div>
-          <div class="ev-finding"><strong>Over 500,000 people in the UK</strong> (1 in 123) living with IBD — nearly double the previous estimate of 300,000. Adolescent incidence rising around 3% per year ⚑.</div>
+          <div class="ev-body"><strong>Over 500,000 people in the UK</strong> (1 in 123) are living with IBD — nearly double the previous estimate of 300,000. Adolescent incidence rising around 3% per year ⚑.</div>
         </div>
       </div>
 
-      <div class="ev-card" id="e2">
+      <div class="ev-card animate-ready" id="e2">
         <div class="ev-stat-box">
-          <div class="ev-stat">Global rise</div>
-          <div class="ev-stat-lab">IBD in newly industrialised countries</div>
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num bad" style="font-size:1.9rem">Global</div>
+            <div class="ev-outcome">rise in newly industrialised countries</div>
+          </div>
+          <div class="ev-conditions">incidence accelerating across Asia, South America and Africa</div>
         </div>
-        <div class="ev-detail">
+        <div class="ev-det">
           <div class="ev-trial">Ng et al. — global epidemiology of IBD</div>
           <div class="ev-journal">The Lancet · 2017 · systematic review · 43 countries</div>
-          <div class="ev-finding">IBD has become a global disease. UK has among the highest rates worldwide. <strong>Incidence accelerating in newly industrialised countries</strong> across Asia, South America and Africa ⚑.</div>
+          <div class="ev-body">IBD has become a global disease. The UK has among the highest rates worldwide. <strong>Incidence accelerating in newly industrialised countries</strong> — pointing to environmental and dietary drivers ⚑.</div>
         </div>
       </div>
 
-      <div class="ev-card" id="e3">
+    </div>
+  </div>
+
+  <!-- SLIDE 7: RESEARCH — cancer risk + guidelines -->
+  <div class="slide">
+    <div class="slide-title">What the <span>evidence</span> shows · risk &amp; guidelines</div>
+    <div class="ev-stage">
+
+      <div class="ev-card animate-ready" id="e3">
         <div class="ev-stat-box">
-          <div class="ev-stat">2.4×</div>
-          <div class="ev-stat-lab">colorectal cancer risk · UC vs general population</div>
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num bad">2.4×</div>
+            <div class="ev-outcome">colorectal cancer risk</div>
+          </div>
+          <div class="ev-conditions">UC vs general population — rising to ~4× in extensive colitis</div>
         </div>
-        <div class="ev-detail">
+        <div class="ev-det">
           <div class="ev-trial">Jess et al. — CRC risk in ulcerative colitis</div>
           <div class="ev-journal">Clinical Gastroenterology and Hepatology · 2012 · meta-analysis</div>
-          <div class="ev-finding">UC raises CRC risk <strong>2.4× vs general population</strong>; extensive colitis raises it to around <strong>4×</strong>. Evidence base for the NHS surveillance colonoscopy programme ⚑.</div>
+          <div class="ev-body">UC raises colorectal cancer risk <strong>2.4× vs general population</strong>; extensive colitis raises it to around <strong>4×</strong>. This is the evidence base for the NHS surveillance colonoscopy programme ⚑.</div>
         </div>
       </div>
 
-      <div class="ev-card" id="e4">
+      <div class="ev-card animate-ready" id="e4">
         <div class="ev-stat-box">
-          <div class="ev-stat">UK standard</div>
-          <div class="ev-stat-lab">NICE + BSG guidelines · 168 recommendations</div>
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">
+            <div class="ev-num good" style="font-size:1.8rem">168</div>
+            <div class="ev-outcome">UK clinical recommendations</div>
+          </div>
+          <div class="ev-conditions">NICE NG129/NG130 + BSG — 88,247 publications reviewed</div>
         </div>
-        <div class="ev-detail">
+        <div class="ev-det">
           <div class="ev-trial">NICE NG129 &amp; NG130 · BSG IBD guidelines</div>
           <div class="ev-journal">NICE 2019 · Lamb et al. Gut 2019 · 88,247 publications reviewed</div>
-          <div class="ev-finding">UK standard for Crohn's and UC management. Both emphasise the IBD MDT and active treatment of psychological comorbidity — <strong>anxiety and depression are highly prevalent</strong> and worsen outcomes if untreated ⚑.</div>
+          <div class="ev-body">UK standard for Crohn's and UC management. Both emphasise the IBD MDT and active treatment of psychological comorbidity — <strong>anxiety and depression are highly prevalent</strong> and worsen outcomes if untreated ⚑.</div>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- SLIDE 7: CTA · HIGH-IMPACT -->
+  <!-- SLIDE 8: CTA · cta-wrap-v2 HORIZONTAL ROWS -->
   <div class="slide cta-slide">
     <div class="cta-glow"></div>
-    <div class="cta-wrap">
-      <div class="cta-badge">Where to start</div>
-      <div class="cta-icon">🩺</div>
-      <div class="cta-headline">IBD is not IBS.<br/><span>The diagnosis matters.</span></div>
-      <div class="cta-subline">Calprotectin first. Then the right team.</div>
-      <div class="cta-body">IBD is treatable, and the earlier the right diagnosis, the better the long-term picture. These four steps cover the evidence-based starting points for most adults with chronic gut symptoms.</div>
-      <div class="cta-actions">
-        <div class="cta-ac">
-          <div class="cta-ac-icon">🧪</div>
-          <div class="cta-ac-label">Calprotectin — the first test</div>
+    <div class="cta-wrap-v2">
+      <div class="cta-top">
+        <div class="cta-badge-v2">What the evidence shows</div>
+        <div class="cta-headline-v2">IBD is not IBS.<br/><span>The diagnosis matters.</span></div>
+        <div class="cta-subline">Earlier accurate diagnosis means better long-term outcomes — the evidence is consistent on this.</div>
+      </div>
+      <div class="cta-rows-v2">
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">🧪</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Calprotectin — key first investigation</div>
+            <div class="cta-row-body-v2">Stool test for gut inflammation — reliably distinguishes IBD from IBS and determines who needs colonoscopy</div>
+          </div>
+          <div class="cta-row-word-v2">1st test</div>
         </div>
-        <div class="cta-ac">
-          <div class="cta-ac-icon">👥</div>
-          <div class="cta-ac-label">Work with the IBD MDT</div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">👥</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">The IBD MDT — standard of care</div>
+            <div class="cta-row-body-v2">Gastroenterologist, IBD nurse, dietitian, psychologist — NICE guidelines recommend this team model for all IBD patients</div>
+          </div>
+          <div class="cta-row-word-v2">Team</div>
         </div>
-        <div class="cta-ac">
-          <div class="cta-ac-icon">📞</div>
-          <div class="cta-ac-label">Use the IBD nurse helpline early</div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">📞</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">IBD nurse helpline — direct access</div>
+            <div class="cta-row-body-v2">Most UK IBD services offer direct contact — earlier contact at the first sign of a flare means faster treatment</div>
+          </div>
+          <div class="cta-row-word-v2">Early</div>
         </div>
-        <div class="cta-ac">
-          <div class="cta-ac-icon">🧠</div>
-          <div class="cta-ac-label">Treat mental health alongside</div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">🧠</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Mental health — treated alongside</div>
+            <div class="cta-row-body-v2">Anxiety and depression are common in IBD and worsen outcomes — UK guidelines recommend active treatment as part of standard care</div>
+          </div>
+          <div class="cta-row-word-v2">Active Rx</div>
         </div>
       </div>
-      <div class="med-disclaimer">
-        <div class="med-disc-icon">⚕️</div>
-        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Any changes you're considering are a conversation for you to have with your GP or healthcare professional.</div>
+      <div class="cta-bottom">
+        <div class="med-disclaimer">
+          <div class="med-disc-icon">⚕️</div>
+          <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 8: CLOSING -->
+  <!-- SLIDE 9: CLOSING -->
   <div class="slide">
     <div class="close-wrap">
       <div class="close-logo">helf<span class="dot">.</span>school</div>
@@ -501,7 +536,7 @@
         <div class="med-disc-icon">⚕️</div>
         <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
       </div>
-      <div class="close-series">Digestive Health Series · Article 15 · Inflammatory Bowel Disease</div>
+      <div class="close-series">Digestive Health Series · Article 14 · IBD</div>
     </div>
   </div>
 
@@ -517,6 +552,7 @@
   <div class="dot" onclick="goTo(5)"></div>
   <div class="dot" onclick="goTo(6)"></div>
   <div class="dot" onclick="goTo(7)"></div>
+  <div class="dot" onclick="goTo(8)"></div>
 </div>
 
 <div class="disc">Health education — not medical advice. helf.school</div>
@@ -550,14 +586,15 @@
   });
 
   function triggerSlide(n){
-    if(n===2) animateGroup(['h1','h2','h3','h4','h5'], 180);
-    if(n===3) animateGroup(['d1','d2','d3','d4','d5'], 170);
-    if(n===4) animateGroup(['l1','l2','l3','l4'], 240);
-    if(n===5) animateGroup(['e1','e2','e3','e4'], 220);
+    if(n===2) animateGroup(['h1','h2','h3','h4','h5'], 140);
+    if(n===3) animateGroup(['d1','d2','d3','d4','d5'], 140);
+    if(n===4) animateGroup(['l1','l2','l3','l4'], 200);
+    if(n===5) animateGroup(['e1','e2'], 260);
+    if(n===6) animateGroup(['e3','e4'], 260);
   }
   function animateGroup(ids, step){
     ids.forEach((id,i)=>{
-      setTimeout(()=>{ const el=document.getElementById(id); if(el) el.classList.add('vis'); }, 200 + i*step);
+      setTimeout(()=>{ const el=document.getElementById(id); if(el) el.classList.add('vis'); }, 180 + i*step);
     });
   }
 
