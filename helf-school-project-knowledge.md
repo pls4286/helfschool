@@ -564,7 +564,7 @@ The session-start-rules.md file fell out of sync with the project knowledge mult
 - `hypertension.html` references 5 & 6 — Cochrane PubMed IDs flagged ⚑ unverified — check before confirming article complete
 
 ### Series planning
-- **Neurological series** — next series after Digestive Health. Article list not yet defined. Plan before building any Neurological content.
+- **Neurological series (Articles 22–26)** — article list confirmed April 2026. See Section 24. Build Article 22 (Migraine) first. Update conditions page before first Neurological article goes live.
 
 ### Retrofit backlog (Articles 01–11 only — 13–20 confirmed complete)
 - Research card stat standard
@@ -670,15 +670,32 @@ Rebuilt April 2026 with all 12 corrections listed in Section 4. "About Dr Paul" 
 
 ## 24. PLANNING NOTES — NEXT SERIES
 
-### Neurological Series
-Not yet started. Article list not defined. Before building any Neurological article, define the series structure with Dr Paul — article titles, slugs, and sequence — and update this project knowledge document before the first build.
+### Neurological Series (Articles 22–26) — CONFIRMED APRIL 2026
+Series colour: `#6B5EA8` (purple)
 
-Suggested starting topics (to confirm with Dr Paul):
-- Migraine and headache types
-- When headaches need investigating
-- Dizziness and vertigo
-- Fainting (syncope)
-- Memory and cognitive decline
+| # | Title | Slug |
+|---|-------|------|
+| 22 | Migraine | migraine |
+| 23 | Headaches — Types and Red Flags | headaches |
+| 24 | Dizziness and Vertigo | dizziness-vertigo |
+| 25 | Memory, Cognition and Dementia | memory-dementia |
+| 26 | Epilepsy — What It Is and How It's Managed | epilepsy |
+
+**Rationale:**
+- Migraine: ~23% UK working-age adults, #3 global DALY burden, massively under-diagnosed
+- Headaches: most common neurological GP presentation; "when to worry" is heavily searched
+- Dizziness and Vertigo: BPPV very common and treatable; patients anxious and poorly informed
+- Memory and Dementia: highest public anxiety; most costly neurological condition in UK
+- Epilepsy: ~600,000 UK patients; significant stigma; strong educational need
+
+**Possible extensions (Articles 27–28, to confirm later):**
+- Stroke and TIA (could bridge with cardiovascular series)
+- Parkinson's Disease (rising incidence, ageing population)
+
+**Before building any Neurological article:**
+- Confirm slugs are not already in use on GitHub
+- Update helf-school-conditions.html to include the Neurological series section
+- Establish series colour `#6B5EA8` is consistently applied across all three files per article
 
 ### Cancer Series (further horizon)
 Discussed as a future series but not yet planned. No article list defined.
