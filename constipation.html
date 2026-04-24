@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Constipation — helf.school</title>
+  <meta name="description" content="What is constipation, why does it matter, and what does the evidence say about treatment? A clear, evidence-based guide from Dr Paul, retired NHS GP."/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --navy:#1B2A4A;
+      --coral:#E8634A;
+      --cream:#FAF7F2;
+      --sage:#7A9E87;
+      --amber:#E8A84A;
+      --digest:#D47C3A;
+      --digest-dark:#b86228;
+      --text:#2C2C2C;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'DM Sans',sans-serif;font-weight:400;color:var(--text);background:var(--cream);line-height:1.7}
+
+    /* NAV */
+    .site-nav{background:var(--navy);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+    .nav-logo{display:flex;align-items:center;gap:.5rem;text-decoration:none}
+    .logo-text{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;color:#fff}
+    .logo-dot{color:var(--coral)}
+    .logo-tag{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+    .nav-back{font-size:.82rem;color:rgba(255,255,255,.75);text-decoration:none;display:flex;align-items:center;gap:.35rem}
+    .nav-back:hover{color:#fff}
+
+    /* HERO */
+    .hero{background:linear-gradient(135deg,var(--navy) 0%,#2a1f12 60%,#221808 100%);padding:4rem 2rem 3rem;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:-40%;right:-8%;width:600px;height:600px;background:radial-gradient(circle,rgba(212,124,58,.18) 0%,transparent 70%);pointer-events:none}
+    .hero-inner{max-width:860px;margin:0 auto;position:relative}
+    .breadcrumb{display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;font-size:.78rem;color:rgba(255,255,255,.75)}
+    .breadcrumb a{color:rgba(255,255,255,.75);text-decoration:none}
+    .breadcrumb a:hover{color:#fff}
+    .breadcrumb-sep{color:rgba(255,255,255,.4)}
+    .series-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(212,124,58,.2);border:1px solid rgba(212,124,58,.5);color:#e8a870;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .8rem;border-radius:100px;margin-bottom:1rem}
+    .hero h1{font-family:'Fraunces',serif;font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;color:#fff;line-height:1.12;margin-bottom:.85rem}
+    .hero-subtitle{font-size:1.05rem;color:rgba(255,255,255,.88);line-height:1.6;max-width:640px;margin-bottom:1.75rem}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:1.25rem;font-size:.8rem;color:rgba(255,255,255,.82)}
+    .meta-item{display:flex;align-items:center;gap:.35rem}
+
+    /* ARTICLE BODY */
+    .article-body{max-width:860px;margin:0 auto;padding:0 2rem 4rem}
+    .article-section{padding:3rem 0;border-bottom:1px solid rgba(27,42,74,.08);scroll-margin-top:150px}
+    .article-section:last-child{border-bottom:none}
+    .section-label{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--digest);margin-bottom:.5rem}
+    .section-title{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.5vw,1.85rem);font-weight:700;color:var(--navy);margin-bottom:1.25rem;line-height:1.2}
+    .article-section p{font-size:1rem;color:var(--text);font-weight:400;line-height:1.78;margin-bottom:1rem}
+    .article-section p:last-child{margin-bottom:0}
+
+    /* KEY TERMS */
+    .key-terms-box{background:var(--navy);border-radius:16px;padding:2rem 2.25rem;margin:2.5rem 0}
+    .key-terms-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem}
+    .key-terms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:.9rem}
+    .term-item{padding:.65rem 0;border-bottom:1px solid rgba(255,255,255,.07)}
+    .term-item:last-child{border-bottom:none}
+    .term-name{font-size:.88rem;font-weight:700;color:var(--amber);margin-bottom:.25rem}
+    .term-def{font-size:.92rem;color:rgba(255,255,255,.90);line-height:1.52}
+
+    /* WHY MATTERS LIST */
+    .matters-list{list-style:none;margin:1.25rem 0;display:flex;flex-direction:column;gap:.85rem}
+    .matters-list li{display:flex;align-items:flex-start;gap:.9rem;padding:1rem 1.25rem;background:#fff;border-radius:12px;border-left:4px solid var(--digest);box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    .matters-icon{font-size:1.2rem;flex-shrink:0;margin-top:.1rem}
+    .matters-text{flex:1;font-size:.95rem;color:var(--text);line-height:1.58}
+    .matters-text strong{color:var(--navy);font-weight:600}
+
+    /* CAUSES GRID */
+    .causes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1rem;margin:1.25rem 0}
+    .cause-card{background:#fff;border:1px solid rgba(27,42,74,.1);border-radius:12px;padding:1.1rem 1.25rem}
+    .cause-icon{font-size:1.3rem;margin-bottom:.5rem}
+    .cause-title{font-weight:700;color:var(--navy);font-size:.93rem;margin-bottom:.3rem}
+    .cause-body{font-size:.88rem;color:#3a3a3a;line-height:1.58}
+    .cause-body span{background:rgba(212,124,58,.1);color:var(--digest-dark);font-size:.82rem;font-weight:600;padding:.1rem .45rem;border-radius:4px;margin-right:.25rem;display:inline-block;margin-top:.2rem}
+
+    /* DOCTOR CALLOUT */
+    .doctor-callout{background:#fff;border:1px solid rgba(27,42,74,.1);border-radius:14px;padding:1.3rem 1.5rem;margin:1.25rem 0;display:flex;gap:1rem;align-items:flex-start}
+    .doctor-icon{font-size:1.4rem;flex-shrink:0;margin-top:.1rem}
+    .doctor-callout-text{flex:1}
+    .doctor-callout-title{font-weight:700;color:var(--navy);font-size:.93rem;margin-bottom:.3rem}
+    .doctor-callout-body{font-size:.9rem;color:#3a3a3a;line-height:1.62}
+
+    /* RED FLAGS */
+    .red-flag-box{background:#fff5f5;border:1.5px solid rgba(200,50,40,.2);border-radius:12px;padding:1.25rem 1.5rem;margin:1.25rem 0}
+    .red-flag-title{font-weight:700;color:#b82020;font-size:.9rem;margin-bottom:.75rem;display:flex;align-items:center;gap:.4rem}
+    .red-flag-list{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+    .red-flag-list li{font-size:.9rem;color:#3a1010;display:flex;gap:.5rem;line-height:1.5}
+    .red-flag-list li::before{content:'▶';color:#b82020;font-size:.65rem;flex-shrink:0;margin-top:.3rem}
+
+    /* LAXATIVE STEPS */
+    .laxative-steps{display:flex;flex-direction:column;gap:.85rem;margin:1.25rem 0}
+    .lax-step{display:flex;gap:1rem;align-items:flex-start;background:#fff;border-radius:12px;padding:1rem 1.25rem;border:1px solid rgba(27,42,74,.08)}
+    .lax-step-num{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:700;color:var(--digest);flex-shrink:0;line-height:1;margin-top:.05rem;opacity:.5}
+    .lax-step-body{flex:1}
+    .lax-step-title{font-weight:700;color:var(--navy);font-size:.97rem;margin-bottom:.25rem}
+    .lax-step-detail{font-size:.9rem;color:#3a3a3a;line-height:1.56}
+    .lax-step-detail em{color:var(--digest-dark);font-style:normal;font-weight:600}
+
+    /* RESEARCH CARDS */
+    .research-grid{display:flex;flex-direction:column;gap:1.5rem;margin:1.5rem 0}
+    .research-card{background:var(--navy);border-radius:16px;overflow:hidden}
+    .rc-header{padding:1.1rem 1.5rem .9rem;border-bottom:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+    .rc-trial-name{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;color:#fff}
+    .rc-journal{font-size:.75rem;color:rgba(255,255,255,.65);margin-top:.15rem}
+    .rc-type-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:100px;font-size:.67rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72);padding:.2rem .65rem;white-space:nowrap;flex-shrink:0}
+    .rc-body{padding:1.25rem 1.5rem;display:flex;gap:1.5rem;align-items:flex-start}
+    .rc-stat{flex-shrink:0;text-align:center;background:rgba(255,255,255,.06);border-radius:12px;padding:1rem 1.25rem;min-width:170px;max-width:210px}
+    .rc-stat-num{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;line-height:1}
+    .rc-stat-label{font-size:.9rem;color:#fff;font-weight:700;margin-top:.5rem;line-height:1.4}
+    .rc-stat-label .flag{color:var(--amber);font-weight:700}
+    .rc-detail{flex:1}
+    .rc-detail p{font-size:.9rem;color:rgba(255,255,255,.87);line-height:1.64;margin-bottom:.65rem;font-weight:400}
+    .rc-detail p:last-child{margin-bottom:0}
+    .rc-detail strong{color:#fff;font-weight:600}
+    .rc-note{padding:.85rem 1.5rem;background:rgba(0,0,0,.15);border-top:1px solid rgba(255,255,255,.08);font-size:.8rem;color:rgba(255,255,255,.58);font-style:italic}
+
+    /* CONCLUSION BOX */
+    .conclusion-box{background:var(--navy);border-radius:16px;padding:2rem 2.25rem;margin:1.5rem 0}
+    .conclusion-box p{color:rgba(255,255,255,.9);font-size:1rem;line-height:1.78;margin-bottom:1rem;font-weight:400}
+    .conclusion-box p:last-child{margin-bottom:0;font-style:italic;color:rgba(255,255,255,.96);font-weight:400}
+    .conclusion-box strong{color:#fff;font-weight:700}
+
+    /* DISCLAIMER */
+    .disclaimer{background:#fffbec;border:1px solid #e8c84a;border-radius:12px;padding:1rem 1.25rem;margin:1.5rem 0;font-size:.85rem;color:#5c4800;line-height:1.58}
+
+    /* SUPERSCRIPT CITATIONS */
+    sup a{color:var(--digest);font-weight:700;text-decoration:none;font-size:.72rem;vertical-align:super;line-height:0}
+    sup a:hover{color:var(--digest-dark)}
+
+    /* REFERENCES */
+    .references-section{margin-top:3rem;padding-top:2rem;border-top:2px solid rgba(27,42,74,.1)}
+    .references-title{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:1.25rem}
+    .ref-block{margin-bottom:1.25rem;padding:1rem 1.25rem;background:#fff;border-radius:10px;border-left:3px solid var(--digest)}
+    .ref-num{font-size:.72rem;font-weight:700;color:var(--digest);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
+    .ref-full{font-size:.88rem;color:var(--text);line-height:1.58;margin-bottom:.5rem}
+    .ref-links{display:flex;flex-wrap:wrap;gap:.5rem}
+    .ref-pill{display:inline-block;cursor:pointer;background:var(--navy);color:#fff;text-decoration:none;font-size:.72rem;font-weight:600;padding:.28rem .75rem;border-radius:100px;transition:background .15s}
+    .ref-pill:hover{background:var(--digest)}
+
+    /* RESEARCH FLAGS */
+    .flag-section{margin-top:2.5rem;padding-top:2rem;border-top:2px solid rgba(27,42,74,.08)}
+    .flag-title{font-size:.78rem;font-weight:700;color:var(--text);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem}
+    .flag-item{font-size:.83rem;color:#555;margin-bottom:.4rem;padding-left:1.25rem;position:relative;line-height:1.5}
+    .flag-item::before{content:'⚑';position:absolute;left:0;color:var(--amber)}
+
+    /* FOOTER */
+    .site-footer{background:var(--navy);color:rgba(255,255,255,.62);text-align:center;padding:2rem;font-size:.8rem}
+    .site-footer a{color:rgba(255,255,255,.75);text-decoration:none}
+
+    @media(max-width:640px){
+      .hero{padding:2.5rem 1.25rem 2rem}
+      .article-body{padding:0 1.25rem 3rem}
+      .rc-body{flex-direction:column}
+      .key-terms-grid{grid-template-columns:1fr}
+      .causes-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a class="nav-logo" href="index.html">
+    <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
+      <path d="M11 2C8 2 5.5 4 4 6.5 2.5 9 2.5 12 4 14.5c1 1.8 2.8 3 5 3.4V4.5" stroke="#E8634A" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M11 2C14 2 16.5 4 18 6.5 19.5 9 19.5 12 18 14.5c-1 1.8-2.8 3-5 3.4V4.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <div class="logo-text">helf<span class="logo-dot">.</span>school</div>
+      <div class="logo-tag">Health Education</div>
+    </div>
+  </a>
+  <a class="nav-back" href="helf-school-conditions.html">← All conditions</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">›</span>
+      <a href="helf-school-conditions.html">Conditions</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Constipation</span>
+    </div>
+    <div class="series-pill">🫁 Digestive Health Series · Article 21</div>
+    <h1>Constipation</h1>
+    <p class="hero-subtitle">Constipation affects around 1 in 7 adults in the UK at any given time. It is often dismissed as trivial — but it can have a real impact on daily life, and the evidence supports clear, effective treatment. Here is what the research actually shows.</p>
+    <div class="hero-meta">
+      <span class="meta-item">📖 8 min read</span>
+      <span class="meta-item">👨‍⚕️ Dr Paul · Retired NHS GP</span>
+      <span class="meta-item">📅 April 2026</span>
+      <span class="meta-item">🔬 Evidence-based</span>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE BODY -->
+<div class="article-body">
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer" style="margin-top:1.75rem">
+    <strong>Health education — not medical advice.</strong> This article is for general information. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+  </div>
+
+  <!-- SECTION 1: WHAT IS IT -->
+  <div class="article-section" id="what-is-it">
+    <div class="section-label">Section 1</div>
+    <h2 class="section-title">What is constipation?</h2>
+
+    <p>Constipation is not simply about going less often. Clinically, it is defined as a pattern of difficult, infrequent, or incomplete bowel movements — and it is more nuanced than most people realise. The widely used <strong>Rome IV criteria</strong> (the international diagnostic framework for functional gut disorders) describe constipation as having two or more of the following in at least a quarter of bowel movements: straining, passage of lumpy or hard stools, a sensation of incomplete emptying, a sensation of blockage, needing to use manual manoeuvres to help pass stool, or fewer than three spontaneous complete bowel movements per week.<sup><a href="#ref-1">1</a></sup></p>
+
+    <p>It is worth knowing what the normal range actually is. Normal bowel frequency in adults spans from three times a day to three times a week — a wide range. Constipation is not simply having fewer stools than average; it is when the difficulty, discomfort, or infrequency begins to cause problems for that person.</p>
+
+    <p>Constipation is divided into <strong>primary</strong> and <strong>secondary</strong> types. Primary (also called functional or idiopathic) constipation has no identifiable underlying cause — it includes <strong>slow-transit constipation</strong> (where the bowel moves contents more slowly than usual), <strong>pelvic floor dysfunction</strong> (also called outlet obstruction or dyssynergia, where the muscles involved in defecation do not coordinate properly), and <strong>IBS-C</strong> (irritable bowel syndrome with constipation predominance, where pain and bloating accompany constipation). Secondary constipation has an identifiable cause — most commonly medication, but also conditions such as hypothyroidism (an underactive thyroid gland), diabetes, and neurological conditions such as Parkinson's disease.</p>
+
+    <p>Common contributing factors include low dietary fibre intake, insufficient fluid intake, a sedentary lifestyle, and medications. Drug-induced constipation is particularly common and often overlooked. Opioids (strong painkillers such as morphine or codeine) are the most potent cause. Other significant culprits include iron supplements, tricyclic antidepressants, calcium channel blockers (a class of blood pressure medication), some antacids (those containing calcium or aluminium), and certain antihistamines.</p>
+
+  </div>
+
+  <!-- KEY TERMS -->
+  <div class="key-terms-box">
+    <div class="key-terms-title">📖 Key Terms</div>
+    <div class="key-terms-grid">
+      <div class="term-item">
+        <div class="term-name">Macrogol (Polyethylene Glycol / PEG)</div>
+        <div class="term-def">An osmotic laxative — it draws water into the bowel, softening stools and making them easier to pass. Available under brand names Movicol and Laxido. Currently the first-choice osmotic laxative per NICE guidance for adults.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Ispaghula Husk</div>
+        <div class="term-def">A bulk-forming laxative (brand name: Fybogel) made from the seed husks of the psyllium plant. It absorbs water in the gut, increasing stool bulk and stimulating the bowel to move. Requires adequate fluid intake to be effective.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Stimulant Laxatives</div>
+        <div class="term-def">Laxatives such as senna (Senokot) and bisacodyl (Dulcolax) that work by stimulating the muscles of the bowel wall to contract, speeding up movement of contents. Usually used when other laxatives have been insufficient.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Slow-Transit Constipation</div>
+        <div class="term-def">A subtype of functional constipation where the bowel moves its contents more slowly than usual — not due to a blockage or outlet problem, but reduced motility of the gut itself. More common in women and often responds to specific treatments such as prucalopride (Resolor).</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Faecal Impaction</div>
+        <div class="term-def">A severe form of constipation where a large mass of hard, dry stool becomes stuck — usually in the rectum. It can cause pain, overflow diarrhoea (where liquid stool leaks around the blockage), and may require treatment with high-dose macrogol or rectal preparations to clear.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-name">Rome IV Criteria</div>
+        <div class="term-def">The internationally used diagnostic framework for functional gut disorders, updated in 2016. For constipation, it defines the condition based on symptoms such as straining, hard stools, incomplete evacuation, and stool frequency — rather than solely on how often someone goes.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: WHY DOES IT MATTER -->
+  <div class="article-section" id="why-it-matters">
+    <div class="section-label">Section 2</div>
+    <h2 class="section-title">Why does it matter?</h2>
+
+    <p>Constipation is genuinely common. Around <strong>1 in 7 adults</strong> in the UK has constipation at any given time, and it affects <strong>women twice as often as men</strong>.<sup><a href="#ref-1">1</a></sup> It is more prevalent in older adults, during pregnancy, and in people taking multiple medications. For many, it is an intermittent nuisance; for others, it becomes a chronic condition that significantly affects daily life and wellbeing.</p>
+
+    <ul class="matters-list">
+      <li>
+        <span class="matters-icon">💊</span>
+        <div class="matters-text"><strong>NHS burden is substantial.</strong> In England, constipation generates around 18.6 million laxative prescriptions per year and accounts for approximately 83,000 hospital admissions annually — a significant and often preventable drain on NHS resources.<sup><a href="#ref-2">2</a></sup></div>
+      </li>
+      <li>
+        <span class="matters-icon">😔</span>
+        <div class="matters-text"><strong>Impact on quality of life is frequently underestimated.</strong> Persistent constipation causes discomfort, bloating, and pain. It can affect mood, sleep, productivity, and social confidence. Studies consistently show it reduces quality of life to a degree that surprises those who have not experienced it chronically.</div>
+      </li>
+      <li>
+        <span class="matters-icon">⚠️</span>
+        <div class="matters-text"><strong>Complications can develop.</strong> Prolonged straining contributes to haemorrhoids (swollen blood vessels in and around the rectum and anus) and anal fissures (small tears in the anal lining). In severe cases, faecal impaction — where a mass of hard stool becomes lodged — can cause overflow diarrhoea, urinary problems, and occasionally bowel obstruction.</div>
+      </li>
+      <li>
+        <span class="matters-icon">💊</span>
+        <div class="matters-text"><strong>Medication is a frequently missed cause.</strong> Drug-induced constipation is common in people taking opioid painkillers, iron supplements, or certain blood pressure and antidepressant medications — and is often correctable once identified.</div>
+      </li>
+      <li>
+        <span class="matters-icon">🔎</span>
+        <div class="matters-text"><strong>In some cases it is the presenting symptom of something else.</strong> A new change in bowel habit — particularly in older adults — warrants attention, because constipation can occasionally be the first sign of a bowel condition that requires investigation.</div>
+      </li>
+    </ul>
+
+  </div>
+
+  <!-- SECTION 3: WHAT YOUR DOCTOR MIGHT DO -->
+  <div class="article-section" id="what-doctors-do">
+    <div class="section-label">Section 3</div>
+    <h2 class="section-title">What your doctor might discuss</h2>
+
+    <p>When constipation prompts a GP visit, the assessment usually starts with a detailed history. A doctor will typically want to understand the duration of the problem, stool frequency and consistency (the <strong>Bristol Stool Chart</strong> — a visual scale from type 1, very hard lumpy stools, to type 7, entirely liquid — is often used), any recent change in bowel habit, associated symptoms such as bloating, pain, or rectal bleeding, and a full review of current medications.</p>
+
+    <div class="red-flag-box">
+      <div class="red-flag-title">🚩 Red flag symptoms requiring prompt attention</div>
+      <ul class="red-flag-list">
+        <li>Rectal bleeding, particularly in adults over 50 or with no obvious cause</li>
+        <li>Unexplained weight loss alongside a change in bowel habit</li>
+        <li>A new change in bowel habit lasting more than six weeks in adults over 50</li>
+        <li>Iron deficiency anaemia (low blood iron without an obvious explanation)</li>
+        <li>A palpable abdominal or rectal mass</li>
+        <li>A family history of bowel cancer or inflammatory bowel disease</li>
+        <li>Nocturnal symptoms — symptoms that consistently wake someone from sleep</li>
+      </ul>
+    </div>
+
+    <p>Physical examination includes abdominal palpation (feeling the abdomen for bloating, tenderness, or a palpable mass of stool). A digital rectal examination — where the doctor gently examines the rectum internally — may be performed to assess for faecal loading, anal tone, and pelvic floor function. This is a normal and important part of the assessment, not something to be concerned about.</p>
+
+    <p>In uncomplicated cases without red flags, investigation is not usually required. Blood tests may be arranged to rule out secondary causes — thyroid function, calcium levels, and blood glucose are common checks. Referral to gastroenterology or colorectal surgery is considered if the presentation is atypical, if red flags are present, or if constipation has not responded to standard treatment after several months.</p>
+
+    <p><strong>First-line advice</strong> is always dietary and lifestyle: increasing dietary fibre (aiming for 30g per day from fruits, vegetables, legumes, and wholegrains), adequate fluid intake (approximately 1.5–2 litres per day), regular physical activity, and good toileting habits — responding promptly to the urge to defecate, not suppressing it, and where practical using a small footstool to raise the feet slightly while on the toilet (which straightens the anorectal angle and can make defecation easier).</p>
+
+    <p>When lifestyle measures are insufficient, NICE guidance recommends a <strong>stepwise approach to laxatives</strong>:<sup><a href="#ref-1">1</a></sup></p>
+
+    <div class="laxative-steps">
+      <div class="lax-step">
+        <div class="lax-step-num">1</div>
+        <div class="lax-step-body">
+          <div class="lax-step-title">Bulk-forming laxatives — first choice if adequate fluid intake is possible</div>
+          <div class="lax-step-detail"><em>Ispaghula husk (Fybogel)</em> — adds bulk and water to the stool, stimulating normal bowel movement. Takes 2–3 days to work. Requires at least 8 glasses of water per day to be effective and to avoid worsening the problem.</div>
+        </div>
+      </div>
+      <div class="lax-step">
+        <div class="lax-step-num">2</div>
+        <div class="lax-step-body">
+          <div class="lax-step-title">Osmotic laxatives — add or switch if stools remain hard or fluid intake is insufficient</div>
+          <div class="lax-step-detail"><em>Macrogol (Movicol, Laxido)</em> is the preferred osmotic agent per current evidence — it draws water into the bowel to soften stools. Lactulose is an alternative but produces more gas and bloating. Macrogol is generally better tolerated and more effective (see Research section below).</div>
+        </div>
+      </div>
+      <div class="lax-step">
+        <div class="lax-step-num">3</div>
+        <div class="lax-step-body">
+          <div class="lax-step-title">Stimulant laxatives — add if stools are soft but difficult to pass</div>
+          <div class="lax-step-detail"><em>Senna (Senokot)</em> or <em>bisacodyl (Dulcolax)</em> — stimulate the muscle in the bowel wall to contract, speeding transit. Also available as rectal preparations (suppositories, enemas) when oral treatment is insufficient or when rapid action is needed.</div>
+        </div>
+      </div>
+      <div class="lax-step">
+        <div class="lax-step-num">4</div>
+        <div class="lax-step-body">
+          <div class="lax-step-title">Specialist treatments — when standard laxatives have failed</div>
+          <div class="lax-step-detail">For <em>IBS-C</em>: linaclotide (Constella) is NICE-approved. For <em>slow-transit constipation</em>: prucalopride (Resolor) is approved for use in women specifically. For <em>opioid-induced constipation</em>: naloxegol or naldemedine may be used. These are all a conversation for you to have with your GP or a specialist.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="doctor-callout">
+      <div class="doctor-icon">💊</div>
+      <div class="doctor-callout-text">
+        <div class="doctor-callout-title">A note on long-term laxative use</div>
+        <div class="doctor-callout-body">Laxatives do not cause the bowel to become dependent or permanently lazy when used appropriately. The concern about laxative addiction is largely outdated with modern agents. That said, stimulant laxatives taken long-term at high doses should be reviewed regularly. For many people with chronic constipation, long-term osmotic laxative use is both appropriate and evidence-based.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION 4: RESEARCH -->
+  <div class="article-section" id="research">
+    <div class="section-label">Section 4</div>
+    <h2 class="section-title">What the research shows</h2>
+
+    <p>Two questions drive most of the research in constipation management: which laxatives work best, and how effective are dietary and lifestyle interventions? The evidence on both is reasonably solid — with one clear message on laxatives, and a more nuanced picture on fibre.</p>
+
+    <div class="research-grid">
+
+      <!-- RESEARCH CARD 1: Cochrane macrogol vs lactulose -->
+      <div class="research-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-trial-name">Macrogol vs Lactulose — Cochrane Systematic Review</div>
+            <div class="rc-journal">Lee-Robichaud H et al. · Cochrane Database Syst Rev 2010 · CD007570</div>
+          </div>
+          <div class="rc-type-pill">Cochrane Review · 10 RCTs</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-stat">
+            <div class="rc-stat-num" style="color:var(--sage)">PEG<br><span style="font-size:1.3rem">superior</span></div>
+            <div class="rc-stat-label">across all <span class="flag">4 outcomes</span> vs lactulose</div>
+          </div>
+          <div class="rc-detail">
+            <p>This Cochrane review pooled all available randomised controlled trials (RCTs — where participants are randomly assigned to treatment or control, the gold standard of trial design) comparing macrogol (polyethylene glycol / PEG) with lactulose for chronic constipation. Ten RCTs with a combined 868 participants were included.</p>
+            <p><strong>The finding was clear:</strong> macrogol was superior to lactulose on every outcome measured — stool frequency per week, stool consistency (as assessed by the Bristol Stool Chart), relief of abdominal pain, and the need for additional laxative products. Macrogol also produced less gas and bloating, because — unlike lactulose — it is not fermented by gut bacteria.</p>
+            <p>The authors' conclusion: <strong>polyethylene glycol should be used in preference to lactulose in the treatment of chronic constipation.</strong> This recommendation is now reflected in NICE guidance for adults.</p>
+          </div>
+        </div>
+        <div class="rc-note">⚑ Cochrane Database of Systematic Reviews 2010, Issue 7. DOI: 10.1002/14651858.CD007570.pub2 · PubMed PMID: 20614462</div>
+      </div>
+
+      <!-- RESEARCH CARD 2: Fibre supplementation meta-analysis -->
+      <div class="research-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-trial-name">Fibre Supplementation in Chronic Constipation — Meta-Analysis</div>
+            <div class="rc-journal">Christodoulides S et al. · Aliment Pharmacol Ther 2016 · DOI: 10.1111/apt.13662</div>
+          </div>
+          <div class="rc-type-pill">Systematic Review · Meta-Analysis</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-stat">
+            <div class="rc-stat-num" style="color:var(--amber)">77<span style="font-size:1.6rem">%</span></div>
+            <div class="rc-stat-label">response rate with fibre vs <span class="flag">44%</span> placebo</div>
+          </div>
+          <div class="rc-detail">
+            <p>This systematic review and meta-analysis examined the effect of fibre supplementation (including psyllium / ispaghula husk and other prebiotic fibres) on chronic constipation in adults. The finding showed a clear benefit: 77% of people on fibre supplementation responded to treatment, compared with 44% on placebo — a relative risk (RR — how much more likely an outcome is in one group vs another) of 1.71 (95% CI 1.20–2.42, P=0.003).<sup><a href="#ref-3">3</a></sup></p>
+            <p><strong>Fibre also significantly increased stool frequency</strong> (standardised mean difference 0.39, P=0.03) and softened stool consistency. Psyllium (the fibre in ispaghula husk / Fybogel) showed the most consistent benefits across outcomes.</p>
+            <p>Importantly, the evidence is for <strong>fibre supplements</strong> (such as ispaghula husk) rather than simply increasing whole foods in the diet — though dietary fibre is still strongly recommended by NICE as part of first-line management. The trial data for dietary change alone is less robust, largely because it is harder to study rigorously.</p>
+          </div>
+        </div>
+        <div class="rc-note">⚑ Aliment Pharmacol Ther. 2016 Jul;44(2):103–116 · DOI: 10.1111/apt.13662 · PubMed PMID: 27170558</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SECTION 5: PUTTING IT ALL TOGETHER -->
+  <div class="article-section" id="conclusion">
+    <div class="section-label">Section 5</div>
+    <h2 class="section-title">Putting it all together</h2>
+
+    <div class="conclusion-box">
+      <p>Constipation is one of the most common conditions managed in primary care — and one of the most commonly dismissed. It affects around <strong>1 in 7 UK adults</strong> at any given time, causes real distress and discomfort, and generates enormous NHS expenditure that is, in many cases, preventable.</p>
+      <p>The evidence base for treatment is actually quite reassuring. <strong>Dietary and lifestyle changes — particularly adequate fibre, fluid, and activity — are effective first-line interventions</strong> with solid supporting data. Where these are insufficient, the research is clear that macrogol (Movicol, Laxido) is the preferred osmotic laxative, outperforming lactulose across every measured outcome. Stimulant laxatives such as senna and bisacodyl provide an effective next step, and more targeted treatments exist for specific subtypes.</p>
+      <p>One practical point that is often overlooked: <strong>toileting habits and position matter</strong>. Responding promptly to the urge to defecate, not delaying or suppressing it, and using a small footstool to raise the feet while sitting can make a genuine difference to how easy it is to go. The body's defecation reflex is a physiological process — working with it rather than against it is a simple and cost-free first step.</p>
+      <p><em>Constipation can be treated effectively in most cases. If it is persistent, significantly affecting daily life, accompanied by any of the red flag symptoms listed above, or if over-the-counter measures are not helping — anything personally relevant is a conversation for you to have with your GP or healthcare professional.</em></p>
+    </div>
+  </div>
+
+  <!-- REFERENCES -->
+  <div class="references-section">
+    <div class="references-title">References</div>
+
+    <div class="ref-block" id="ref-1">
+      <div class="ref-num">Reference 1</div>
+      <div class="ref-full">National Institute for Health and Care Excellence. <em>Constipation — Clinical Knowledge Summary.</em> NICE CKS. Last revised 2023. Available at: cks.nice.org.uk/constipation. [Covers adult constipation definition, red flags, and stepwise laxative management.]</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://cks.nice.org.uk/constipation" target="_blank">NICE CKS ↗</a>
+      </div>
+    </div>
+
+    <div class="ref-block" id="ref-2">
+      <div class="ref-num">Reference 2</div>
+      <div class="ref-full">Dowden A. <em>The impact of chronic constipation in adults.</em> Prescriber, Wiley. November 2021. [Reports NHS England burden data: 76,929 hospital admissions 2020, £168m annual NHS cost including prescription spend.] · Updated figures (82,925 admissions 2024, 18.6 million prescriptions, £113m prescription costs) from: British Journal of Healthcare Assistants. Constipation: assessment and management. 2025;19(6).</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://wchh.onlinelibrary.wiley.com/doi/10.1002/psb.1954" target="_blank">Prescriber 2021 ↗</a>
+      </div>
+    </div>
+
+    <div class="ref-block" id="ref-3">
+      <div class="ref-num">Reference 3</div>
+      <div class="ref-full">Lee-Robichaud H, Thomas K, Morgan J, Nelson RL. Lactulose versus Polyethylene Glycol for Chronic Constipation. <em>Cochrane Database of Systematic Reviews</em> 2010, Issue 7. Art. No.: CD007570. DOI: 10.1002/14651858.CD007570.pub2. PubMed PMID: 20614462. [Meta-analysis of 10 RCTs, 868 participants. PEG/macrogol superior to lactulose across all outcomes. Conclusion: PEG should be used in preference to lactulose.]</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1002/14651858.CD007570.pub2" target="_blank">DOI ↗</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/20614462/" target="_blank">PubMed ↗</a>
+        <a class="ref-pill" href="https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007570.pub2/abstract" target="_blank">Cochrane Library ↗</a>
+      </div>
+    </div>
+
+    <div class="ref-block" id="ref-4">
+      <div class="ref-num">Reference 4</div>
+      <div class="ref-full">Christodoulides S, Dimidi E, Fragkos KC, Farmer AD, Whelan K, Scott SM. Systematic review with meta-analysis: effect of fibre supplementation on chronic idiopathic constipation in adults. <em>Alimentary Pharmacology &amp; Therapeutics</em> 2016;44(2):103–116. DOI: 10.1111/apt.13662. PubMed PMID: 27170558. [16 RCTs included; fibre vs placebo. 77% vs 44% treatment response. RR 1.71 (95% CI 1.20–2.42). Psyllium most consistently effective fibre type.]</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1111/apt.13662" target="_blank">DOI ↗</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/27170558/" target="_blank">PubMed ↗</a>
+      </div>
+    </div>
+
+    <div class="ref-block" id="ref-5">
+      <div class="ref-num">Reference 5</div>
+      <div class="ref-full">NHS Inform (Scotland). <em>Constipation.</em> NHS Inform. [Prevalence: approximately 1 in 7 adults and 1 in 3 children in the UK has constipation at any one time. Twice as common in women as men.]</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.nhsinform.scot/illnesses-and-conditions/stomach-liver-and-gastrointestinal-tract/constipation/" target="_blank">NHS Inform ↗</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RESEARCH FLAGS -->
+  <div class="flag-section">
+    <div class="flag-title">Research flags — for Dr Paul's review</div>
+    <div class="flag-item">The 77% vs 44% response rate figures (Christodoulides et al., 2016) are for fibre <em>supplements</em> specifically — not for increasing dietary fibre from whole foods, for which the RCT evidence is less robust. This distinction is made in the article but worth confirming the framing is appropriately clear.</div>
+    <div class="flag-item">NHS burden figures (83,000 admissions, 18.6m prescriptions, £113m) are cited from two sources published in different years (2021 and 2025); figures have been updated and described as such. Confirm figures are acceptable as cited.</div>
+    <div class="flag-item">Rome IV criteria reference: used as the clinical framework but not directly cited from the primary Drossman 2016 Gastroenterology paper — sourced via NICE CKS. If preferred, the primary reference is: Drossman DA. Gastroenterology 2016;150(6):1257–1261.</div>
+  </div>
+
+</div><!-- end article-body -->
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p>© 2026 helf.school · Health education, not medical advice · <a href="helf-school-conditions.html">All conditions</a> · <a href="index.html">Home</a></p>
+</footer>
+
+</body>
+</html>
