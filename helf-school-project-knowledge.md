@@ -1,694 +1,657 @@
-# helf.school — Project Knowledge Document
-*Last updated: April 2026 — Session: All Practical Series uploads confirmed. Articles 13–18 retrofits confirmed complete. stress.html voice fix applied. Conditions page rebuild identified as outstanding. Article 21 ready to build.*
+# helf.school — Project Knowledge
+**Last updated: April 2026**
 
 ---
 
-## 🚨 1. READ THIS FIRST — UPLOADED FILES ARE NOT CORRUPTED
+## SECTION 0 — SESSION START PROTOCOL (READ FIRST — NO EXCEPTIONS)
 
-**Claude must read this section at the start of every session before commenting on project file state.**
+**MANDATORY FIRST ACTION every session:** Read this file AND `/mnt/project/helf-school-session-start-rules.md` IN FULL before any output, checks, or assessments. This step is non-negotiable because these files contain critical rules — including file integrity rules and the article inventory which is the source of truth. Reading after producing output is too late.
 
-### The false-alarm problem
-When files are uploaded to this Claude Project via drag-and-drop from Microsoft Edge, the upload mechanism captures the **Claude.ai loader HTML page** rather than the actual file content. These artefacts look like this:
-- **File size:** ~5140 bytes (or ~6170 bytes for a newer loader variant)
-- **Content starts with:** `<!doctype html><html data-build-id="..." ...>`
-- Contains references to `assets-proxy.anthropic.com`
+**Critical file integrity rule:** Files in the Claude project that are approximately 5,140 bytes and begin with "data-build-id" are Edge incognito loader stubs captured during upload — they are NOT the real file and are NOT corrupted. Never flag these as corrupted. Always verify real content via GitHub raw URL before any assessment. The article inventory in this document is the authoritative source of truth for what is built — not file sizes.
 
-### These files are NOT corrupted. The real files:
-- Live on GitHub at `github.com/pls4286/helfschool`
-- Are intact at `pls4286.github.io/helfschool`
-- Can be viewed by clicking "Raw" on the GitHub file page
-
-### The rule
-> **NEVER raise a false alarm about "corrupted" project files. The filename + article inventory in Section 6 are the source of truth. If a real file inspection is needed, fetch via GitHub raw URL or ask Paul to paste.**
+**GitHub raw URL format:** `https://raw.githubusercontent.com/pls4286/helfschool/main/[filename].html`
 
 ---
 
-## 2. PROJECT OVERVIEW
+## 1. PROJECT OVERVIEW
 
-**Site:** helf.school
-**GitHub:** pls4286/helfschool — live at pls4286.github.io/helfschool
-**Upload method (to GitHub):** Drag-and-drop at github.com/pls4286/helfschool/upload/main
-**Browser:** Microsoft Edge (incognito — extension conflict)
-**Owner:** Dr Paul — retired NHS GP, over 20 years experience, ill-health retired end of 2019
+**Owner:** Dr Paul — retired NHS GP, 20+ years experience. Tier One ill health retired end of 2019 by the Chief Medical Officer for the NHS.
+
+**Platform:** helf.school — health education membership website.
 
 **Mission:** "To give every person access to clear, honest, evidence-based health education — helping them become a more informed, empowered participant in their own care."
 
-**Tone:** Informative, empowering, non-dictatorial, evidence-led, never prescriptive. Never use the word "eliminated". Content is explicitly health education — NOT medical advice.
+**Core philosophy:** Health education — not medical advice. helf.school describes what medicine knows and what services exist. It never instructs the reader what to do. Good medicine begins with truly listening — that philosophy underpins everything on the site.
+
+**GitHub repo:** pls4286/helfschool
+**Live site:** https://pls4286.github.io/helfschool/index.html
+**Upload path:** github.com/pls4286/helfschool/upload/main
+**Browser:** Microsoft Edge (Dr Paul uses incognito tab due to extension conflict with standard window)
 
 ---
 
-## 3. DR PAUL
-
-- Retired NHS GP, over 20 years experience
-- Tier One ill-health retired by Chief Medical Officer for NHS at end of 2019 (stress)
-- Happily married 38 years, four adult children
-- Core philosophy: good medicine begins with truly listening
-- Presents on video as "Dr Paul" (surname not used publicly)
-- Communicates in UPPERCASE, prefers brief direct responses
-
----
-
-## 4. DESIGN SYSTEM
+## 2. DESIGN SYSTEM
 
 ### Colours
-| Token | Hex |
-|-------|-----|
-| Navy | #1B2A4A |
-| Coral | #E8634A |
-| Cream | #FAF7F2 |
-| Sage | #7A9E87 |
-| Amber | #E8A84A |
+- Navy: `#1B2A4A`
+- Coral: `#E8634A`
+- Cream: `#FAF7F2`
+- Sage: `#7A9E87`
+- Amber: `#E8A84A`
 
 ### Category colours
-| Series | Hex |
-|--------|-----|
-| Cardiovascular | #C8423A |
-| Neurological | #6B5EA8 |
-| Digestive | #D47C3A |
-| Fatigue | #3A8A7A |
-| Medical | #2E6BA8 |
-| Practical | #7A6A2E (deep) / #d4b84a (gold) |
+- Cardiovascular: `#C8423A`
+- Neurological: `#6B5EA8`
+- Digestive: `#D47C3A`
+- Fatigue: `#3A8A7A`
+- Medical Decision: `#2E6BA8`
+- Practical Health (series): `#7A6A2E`
 
 ### Fonts
-- **Fraunces** — serif headings
-- **DM Sans** — body text. Minimum load: `wght@400;500;600;700`. **Never weight 300.**
-- Always set `font-weight: 400` explicitly on body element
+- Headings: Fraunces (serif)
+- Body: DM Sans — minimum weights required: `wght@400;500;600;700`
+- **Never use weight 300 anywhere in body text** — not permitted in articles, visuals, or teleprompters
 
 ### Logo
-Open-book SVG with "HEALTH EDUCATION" tagline beneath helf.school wordmark.
+Open-book SVG + "HEALTH EDUCATION" tagline. Used in all site pages.
 
 ---
 
-## 5. SITE ARCHITECTURE
+## 3. ARTICLE INVENTORY — COMPLETE AND CURRENT (source of truth)
 
-### Public pages
-- `index.html` — homepage
-- `helf-school-conditions.html` — conditions library ⚠️ NEEDS REBUILD (see Section 15)
-- `helf-school-membership.html` — membership pricing
+Three files required per article: **Article HTML · Visuals HTML · Teleprompter HTML**
 
-### Membership pricing (LIVE — confirmed correct)
-| Tier | Price |
-|------|-------|
-| Explorer (free) | £0 |
-| Member | £6/month or £60/year |
-| Lifetime | £150 one-off |
+### Series A — Cardiovascular Health (Articles 01–07)
+All three files confirmed complete and on GitHub for all 7 articles. Educational voice retrofit confirmed complete.
 
----
+| # | Title | Slug |
+|---|-------|------|
+| 01 | Hypertension (High Blood Pressure) | hypertension |
+| 02 | Cholesterol Explained | cholesterol |
+| 03 | How Doctors Estimate Heart Attack Risk | heart-attack-risk |
+| 04 | Statins — Benefits & Risks | statins |
+| 05 | How to Reduce Cardiovascular Risk with Lifestyle Changes | lifestyle-changes |
+| 06 | Salt and Blood Pressure | salt-blood-pressure |
+| 07 | Do Supplements Lower Cholesterol? | supplements-cholesterol |
 
-## 6. ARTICLE INVENTORY
+### Series B — Practical Health (Articles 08–12)
+All three files confirmed complete and on GitHub for all 5 articles. Educational voice retrofit confirmed complete.
 
-### Status key
-- ✅ = all three files correct and on GitHub
-- ⚠️ = needs attention (see note)
-- ❌ = files missing or not yet built
+| # | Title | Slug |
+|---|-------|------|
+| 08 | The Mediterranean Diet | mediterranean-diet |
+| 09 | Sleep and Your Health | sleep |
+| 10 | Exercise — the Evidence Base | exercise |
+| 11 | Stress and the Body | stress |
+| 12 | Alcohol — What the Evidence Shows | alcohol |
 
-### Cardiovascular Series (Articles 01–07)
-| # | Title | Slug | Article | Visuals | Teleprompter |
-|---|-------|------|---------|---------|--------------|
-| 01 | Hypertension | hypertension | ✅ | ✅ | ✅ |
-| 02 | Cholesterol Explained | cholesterol | ✅ | ✅ | ✅ |
-| 03 | How Doctors Estimate Heart Attack Risk | heart-attack-risk | ✅ | ✅ | ✅ |
-| 04 | Statins | statins | ✅ | ✅ | ✅ |
-| 05 | Lifestyle Changes | lifestyle-changes | ✅ | ✅ | ✅ |
-| 06 | Salt and Blood Pressure | salt-blood-pressure | ✅ | ✅ | ✅ |
-| 07 | Do Supplements Lower Cholesterol? | supplements-cholesterol | ✅ | ✅ | ✅ |
+### Series C — Digestive Health (Articles 13–21)
+Articles 13–20: all three files confirmed complete and on GitHub. Educational voice retrofit confirmed complete.
+Article 21: article HTML built April 2026 — visuals and teleprompter still to build.
 
-Articles 01–07 fully retrofitted. All three files per article on GitHub and correct.
-**Article 05 (Lifestyle Changes) = CANONICAL REFERENCE for all three file types.**
+| # | Title | Slug | Status |
+|---|-------|------|--------|
+| 13 | Acid Reflux and GORD | acid-reflux | All 3 files on GitHub |
+| 14 | IBD — Crohn's & Ulcerative Colitis | ibd | All 3 files on GitHub |
+| 15 | Bloating — Causes and Evidence | bloating | All 3 files on GitHub |
+| 16 | Irritable Bowel Syndrome (IBS) | ibs | All 3 files on GitHub |
+| 17 | Fatty Liver Disease (MASLD) | masld | All 3 files on GitHub |
+| 18 | Coeliac Disease | coeliac | All 3 files on GitHub |
+| 19 | Gallstones | gallstones | All 3 files on GitHub |
+| 20 | Diverticular Disease | diverticular-disease | All 3 files on GitHub |
+| 21 | Constipation | constipation | Article HTML built April 2026; visuals + teleprompter outstanding |
 
-### Practical Health Series (Articles 08–12)
-| # | Title | Slug | Article | Visuals | Teleprompter |
-|---|-------|------|---------|---------|--------------|
-| 08 | The Mediterranean Diet | mediterranean-diet | ✅ | ✅ | ✅ |
-| 09 | Sleep | sleep | ✅ | ✅ | ✅ |
-| 10 | Exercise | exercise | ✅ | ✅ | ✅ |
-| 11 | Stress | stress | ✅ | ✅ | ✅ |
-| 12 | Alcohol | alcohol | ✅ | ✅ | ✅ |
-
-All Practical Series files confirmed on GitHub. stress.html voice fix applied April 2026.
-**Article 12 Alcohol = canonical reference for visuals horizontal-row layout, colour narrative, and inline citations.**
-
-### Digestive Health Series (Articles 13–21)
-| # | Title | Slug | Article | Visuals | Teleprompter |
-|---|-------|------|---------|---------|--------------|
-| 13 | Acid Reflux | acid-reflux | ✅ | ✅ | ✅ |
-| 14 | IBD | ibd | ✅ | ✅ | ✅ |
-| 15 | Bloating | bloating | ✅ | ✅ | ✅ |
-| 16 | IBS | ibs | ✅ | ✅ | ✅ |
-| 17 | Fatty Liver Disease (MASLD) | masld | ✅ | ✅ | ✅ |
-| 18 | Coeliac Disease | coeliac | ✅ | ✅ | ✅ |
-| 19 | Gallstones | gallstones | ✅ | ✅ | ✅ |
-| 20 | Diverticular Disease | diverticular-disease | ✅ | ✅ | ✅ |
-| 21 | Constipation | constipation | ❌ NOT BUILT | — | — |
-
-Articles 13–18 article HTML retrofits confirmed complete (voice audit, inline citations, research card stat standard, disclaimer bar).
-Articles 13–20 all three files confirmed on GitHub.
-
-**Article 17 note:** ESSENCE trial ⚑ CLEARED — published NEJM April 2025, PubMed 40305708 ✓.
-
-**Screen files in project:** bloating-gut-screen.html ✅ · bloating-fodmap-screen.html ✅ · ibd-gut-screen.html ✅ · acid reflux screens (ar-sphincter-screen.html, ar-barretts-screen.html) on GitHub ✅.
+**Total articles live on site:** 20
+**Article 21:** article HTML complete, 2 files outstanding
 
 ---
 
-## 7. WORKFLOW — NEW ARTICLE
+## 4. SITE FILES — CURRENT STATUS
 
-Build in this order:
-1. **Pre-draft verification** — web search every key claim, statistic, and study before writing
-2. **Article HTML** — four sections, key terms box, references
-3. **Visuals HTML** — `[article]-visuals.html`
-4. **Teleprompter HTML** — `[article]-teleprompter.html`
-5. **Screen HTMLs** — standalone full-screen diagrams where needed
+| File | Status | Notes |
+|------|--------|-------|
+| index.html | Rebuilt April 2026 | 20+ years corrected; voice fixed; 2026 |
+| helf-school-conditions.html | Rebuilt April 2026 | 20 live articles; 3 series; correct slugs |
+| helf-school-membership.html | On GitHub | Pricing: £0 / £6pm or £60pa / £150 lifetime |
+
+### helf-school-conditions.html — April 2026 rebuild (full rebuild, not patch)
+- 3 series shown: Cardiovascular (7) · Practical Health (5) · Digestive Health (8 live + 1 coming soon)
+- Filter chips: All topics · ❤️ Cardiovascular · 🌿 Practical Health · 🫁 Digestive Health
+- Hero stats: 3 series published · 20 articles live now · ∞ growing over time
+- Article 21 Constipation shown as "Coming soon" with modal
+- Copyright © 2026
+- Nav links: `index.html` throughout (old file wrongly used `helf-school.html`)
+- Full canonical educational voice phrase in inline disclaimer and footer
+- Unbuilt series (Neurological, Fatigue, Medical Decision, old Practical Articles) completely removed
+- Article 07 now correctly shows as live with link (was wrongly "Coming soon")
+- Practical Health Series (08–12) added — was entirely absent from old file
+
+### index.html — April 2026 corrections applied
+1. Hero h1: "Understanding your heart" → "Understanding your health" (broader scope)
+2. Hero subtitle: "cardiovascular health" → "your health"
+3. Hero trust item: "Always seek advice from your doctor" → full canonical phrase
+4. Disclaimer banner: "Always speak to a qualified medical professional" → full canonical phrase
+5. Why helf.school pillar: **30+ years → 20+ years** (primary fix)
+6. Footer disclaimer: "Always consult your doctor" → full canonical phrase
+7. Copyright © 2025 → © 2026
+8. Disclaimer doc date: March 2025 → April 2026 · Version 1.0 → 1.1
+9. Article template voice: "Your doctor will weigh these options with you" → full canonical phrase
+10. Cloudflare email obfuscation removed → plain text contact reference
+11. "About Dr [Name]" → "About Dr Paul" throughout
+12. "Heart Conditions A–Z" footer link → `helf-school-conditions.html`
 
 ---
 
-## 8. ARTICLE STANDARDS
+## 5. THE MOST IMPORTANT RULE — EDUCATIONAL VOICE
 
-### Structure
-1. What is it?
-2. Why does it matter?
-3. What your doctor might do
-4. What the research shows
+helf.school **describes** what medicine knows and what services exist. It **never instructs** the reader.
 
-Key Terms box between sections 1 and 2 — navy background, 2-column grid, series colour on left border.
+### FORBIDDEN phrases — banned everywhere on the site, in every file:
+- "please speak to your GP"
+- "always tell your doctor"
+- "you should..."
+- "stop and seek urgent advice"
+- "decision made in partnership"
+- "if you have concerns"
+- "always consult your doctor"
+- "always seek advice from your doctor"
+- "speak to a qualified medical professional"
+- "Anything personally relevant is a conversation for your GP" — shortened version, not allowed
 
-"Putting it all together" — navy box at end of Section 4. Coral title. Italic paragraphs. Final paragraph: bold white non-italic takeaway.
-
----
-
-### ⚠️ LEGAL NOTICE — Educational Voice — TOP STANDARD (NON-NEGOTIABLE)
-
-helf.school presents health education, NOT medical advice. If any content directs a reader to take a specific clinical action, it creates potential legal liability for Dr Paul personally.
-
-**Claude MUST run a full internal voice audit on every article, visuals deck, and teleprompter BEFORE outputting any file. Dr Paul must never need to ask.**
-
-**DESCRIBES, never INSTRUCTS.**
-
-**AVOID (directive):**
-- "you should / you must / you need to"
-- "speak to / see / call your GP"
-- "seek advice / seek help / seek urgent care"
-- "avoid / don't / do not" directed at reader
-- "are to be avoided" / "should be avoided"
-- "report to your GP" / "worth reporting"
-- "that's urgent" / "needs assessment"
-- "act on it early" / "make sure"
-- "always tell / always discuss / always speak to"
-- "stop and seek urgent"
-- Any shortened version of the disclaimer phrase
-
-**USE (descriptive):**
-- **"conversation for you to have with your GP or healthcare professional"** — ALWAYS the full phrase. Never shortened.
-- "in UK practice..."
-- "clinically recognised as..."
-- "clinically recognised as time-sensitive — 111 and urgent GP services exist for this" / "999 exists for this"
-- "NICE describes / recommends / identifies..."
-- Describe what happens rather than instruct
-
-**Disclaimer (article, footer, Segment 0 of every video):**
+### REQUIRED standard phrase — always written in full, never shortened:
 > "Anything personally relevant is a conversation for you to have with your GP or healthcare professional."
 
----
-
-### Section 2 — 2×2 Stat Grid (MANDATORY — locked April 2026)
-
-NEVER use bullet-point cards. USE a 2×2 grid:
-- Large Fraunces number → bold label → 1-line prose body
-- Series colour on `border-top: 3px solid`
-- Inline superscript citations on every stat
-- 2–3 prose paragraphs below grid
-
-```css
-.why-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; margin: 1.6rem 0 2rem; }
-.why-stat-card { background: #fff; border-radius: 10px; border: 1px solid var(--border); padding: 1.2rem 1.3rem; border-top: 3px solid [series-colour]; }
-.why-stat-n { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(2.4rem,4.5vw,3.2rem); color: [series-colour]; line-height: 1; }
-.why-stat-label { font-size: 1.00rem; font-weight: 700; color: var(--navy); }
-.why-stat-body { font-size: 0.93rem; color: var(--text); font-weight: 400; }
-```
+Applies to: every article, every visuals file, every teleprompter, every CTA, every disclaimer, every site page — new and retrospective.
 
 ---
 
-### Section 4 — Navy Research Cards with Stat-First Layout (MANDATORY — locked April 2026)
+## 6. VIDEO INTRO STANDARD (Segment 1, ~15–18 seconds)
 
-NEVER use old white research item cards. USE navy research cards, stat FIRST.
+Every video opens with this exact intro:
 
-**Card order:** header → meta → stat block → body → source. Number is the visual anchor.
-
-```css
-.research-card { background: var(--navy); border-radius: 12px; padding: 1.5rem 1.7rem; color: #fff; }
-.research-card-stat-block { background: rgba(255,255,255,0.08); border-radius: 8px; padding: 0.8rem 1rem; margin-bottom: 0.9rem; }
-.research-card-stat-context { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(255,255,255,0.60); }
-.research-card-stat-row { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; }
-.research-card-stat-number { font-family: 'Fraunces', serif; font-weight: 900; font-size: 2.8rem; color: var(--coral); line-height: 1; }
-.research-card-stat-what { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.25rem; color: #fff; }
-.research-card-stat-label { font-size: 0.95rem; font-weight: 600; color: rgba(255,255,255,0.85); }
-```
-
-### Navy research card three-layer hierarchy (LOCKED — confirmed lifestyle-changes.html)
-
-```css
-.rc-stat { font-family:'Fraunces',serif; font-size:2.4rem; font-weight:700; color:var(--coral); line-height:1; flex-shrink:0; }
-.rc-stat-label { font-size:1.1rem; color:#fff; line-height:1.4; font-weight:700; flex:1; min-width:180px; }
-.rc-title { font-family:'Fraunces',serif; font-size:1.3rem; font-weight:700; color:var(--coral); margin-bottom:.7rem; line-height:1.25; }
-.rc-body { font-size:1.05rem; line-height:1.75; color:rgba(255,255,255,.92); font-weight:400; }
-```
-
-Reading order: rc-stat (large coral number) + rc-stat-label (bold white) → rc-title (coral headline) → rc-body (white prose).
-**rc-stat-label MUST be bold white.** **rc-title MUST be coral.**
-
----
-
-### Disclaimer bar (MANDATORY — locked April 2026)
-
-Yellow bar immediately below hero, above jump nav:
-
-```html
-<div class="disclaimer-bar" role="note">
-  <div class="disclaimer-bar-inner">
-    <span class="disclaimer-bar-icon">⚕️</span>
-    <p><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
-  </div>
-</div>
-```
-
-```css
-.disclaimer-bar { background: #FFF8E7; border-top: 3px solid var(--amber); padding: 0.95rem 2rem; }
-```
-
----
-
-### Inline citation standard (CANONICAL)
-Every stat or research claim in prose must carry a superscript reference:
-```html
-<sup class="ref-sup"><a href="#ref-N">N</a></sup>
-```
-CSS: amber pill styling, `rgba(122,106,46,.1)` background.
-
-### References section standard
-Every reference: full citation (authors, title, journal, year, DOI) + pill links. DOI required. PubMed only if verified by web search in same session.
-
-⚠️ **PubMed IDs are UNRELIABLE from training data.** Never add without web search verification. Flag ⚑ if unverified.
-
-### First-screen standard (CANONICAL)
-Hero + disclaimer bar fill the first screen. Section 1 begins below fold.
-```css
-.article-hero { min-height: calc(100vh - 56px - 8.5rem); display: flex; align-items: center; }
-```
-
-### Medical term lay-clarification
-Plain-English bracket after every medical term — every time it appears, not just first mention.
-
-### Statistical term lay-clarification
-Plain-English brackets every time: HR (hazard ratio) · PAR (population-attributable risk) · OR (odds ratio) · RR (relative risk) · NNT (number needed to treat) · CI (confidence interval).
-
-### Drug naming
-Generic + brand in brackets: atorvastatin (Lipitor), semaglutide (Ozempic, Wegovy).
-
-### Readability
-- Body text: `#2C2C2C`, explicit `font-weight: 400`
-- Pale colours NOT permitted: `#374151`, `#4B5563`, `#555`, `#6B7280`
-- No `fadeUp` animations on body sections
-- `scroll-margin-top: 150px` on every `.article-section`
-
----
-
-## 9. VIDEO STANDARDS
-
-### Three-file architecture (current standard)
-**(1) Article HTML** · **(2) Visuals HTML** · **(3) Teleprompter HTML**
-
-### Standard video intro (Segment 0 of every video)
 > "I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about [TOPIC]. Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — let's get into it."
 
-~15–18 seconds. Full phrase always. Never shortened.
+---
 
-### Video length: 4–5 minutes maximum
-Teleprompter word count: **600–750 words total**. Cut ruthlessly.
+## 7. PRODUCTION WORKFLOW
 
-### Teleprompter core standard
-Every teleprompter delivers: (1) fundamental MESSAGES · (2) key STATISTICS · (3) specific practical POINTERS.
+### Per-article order
+**Article HTML first → Visuals HTML second → Teleprompter HTML third.**
 
-### GIF capture settings
-Scale 0.62 · Every 2nd frame · 120 colours · Under 1.5MB PPTX.
+Never reverse this order. Cross-check article ↔ presenter before finalising either file. Every key stat, study name, year, and citation must match exactly between article and teleprompter. Resolve discrepancies before upload — always correct to the verified academic source.
+
+### Canonical reference files (in Claude project)
+- **Article HTML:** `mediterranean-diet.html`
+- **Visuals HTML:** `alcohol-visuals.html` (canonical for horizontal-row layout)
+- **Teleprompter HTML:** `stress-teleprompter.html` (canonical for cue box standard)
+- **CTA slide:** `hypertension-visuals.html`
+
+### Large file crash risk
+Very large HTML files (e.g. `statins.html`) can crash mid-build if too much is attempted in one turn. Strategy: build one file per turn, confirm successful delivery before proceeding to the next file.
+
+### File fetch method (preferred)
+GitHub raw URLs via `web_fetch` at session start:
+`https://raw.githubusercontent.com/pls4286/helfschool/main/[filename].html`
+
+Note: Claude cannot self-initiate `web_fetch` to GitHub raw URLs — the URL must be provided by Dr Paul or constructed from a confirmed slug. Do not rely on project uploads for article HTML files — they live on GitHub only by design and are intentionally absent from the Claude project.
+
+### Dr Paul's preference
+Dr Paul does not want to make manual edits to files. When corrections are needed to existing site files, Claude fetches the current file, applies all changes, and delivers the corrected file for download. Never ask Dr Paul to edit manually via the GitHub editor.
 
 ---
 
-## 10. TELEPROMPTER STANDARDS
+## 8. ARTICLE HTML STANDARDS
 
-### How to verify you have the correct version
-Open the file in a browser. The button reads **⏸ Pause** — NOT **▶ PLAY**. Any file with ▶ PLAY is the old format and needs rebuilding.
+### Section structure (all condition articles)
+1. What is it?
+2. Key Terms box — navy background, sits between sections 1 and 2
+3. Why does it matter? — max 5 bullet points
+4. What your doctor might discuss
+5. What the research shows
+6. "Putting it all together" — navy box, italic text, bold closing line
+7. References
+8. Research flags ⚑ — for Dr Paul's review before upload
 
-### Canonical format (locked April 2026)
-```css
-:root {
-  --bg: #0A0F1A; --text: #F0EDE8; --accent: [SERIES COLOUR];
-  --cue-bg: rgba([series],0.18); --cue-border: [series];
-  --pause-bg: rgba(200,66,58,0.18); --pause-border: #C8423A;
-}
-```
+### Readability standards
+- Body text: colour `#2C2C2C`, explicit `font-weight:400`
+- Pale colours `#374151`, `#4B5563`, `#555` not permitted anywhere in articles
+- No `fadeUp` or `opacity:0` animations on article body sections — content must be immediately visible on load
+- Hero subtitle: minimum `rgba(255,255,255,0.85)`; below this not permitted
+- Hero meta items: minimum `rgba(255,255,255,0.80)`
+- Hero breadcrumb: minimum `rgba(255,255,255,0.75)`
+- Values of 0.60 or below not permitted for hero/breadcrumb text
 
-**Required:**
-- No Google Fonts import
-- No topbar element
-- No focus-line or focus-overlay elements
-- Dots bar at **bottom** of screen (not right side)
-- Segments use `id="seg-N"` with `.segment` class
-- Controls: Speed − [N] + | Font A− A+ | ⏸ Pause | ↑ Top | word count right-aligned
+### Key Terms box standards
+- Navy background `#1B2A4A`
+- Title: Fraunces serif, minimum 1.05rem, `#fff`
+- Term labels: minimum 0.88rem, `font-weight:700`, accent colour (amber `#E8A84A`)
+- Definitions: minimum 0.92rem, `rgba(255,255,255,0.90)` — opacity 0.75 or 0.80 not permitted for definition text
+- 1–2 boxes; alphabetical order within each box
 
-### Speed levels and default
-```javascript
-const SPEED_LEVELS = [0, 8, 14, 20, 28, 38, 50];
-let speedLevel = 3;  // default = level 3 (20px/sec)
-```
+### Inline citations
+- Every stat or claim in prose carries a superscript number linking to anchored reference `id="ref-N"`
+- Format: `<sup><a href="#ref-1">1</a></sup>`
+- Superscript link colour matches the series accent colour
 
-### Series accent colours in teleprompters
-| Series | Accent |
-|--------|--------|
-| Cardiovascular | `#C8423A` |
-| Practical Health | `#d4b84a` |
-| Digestive Health | `#D47C3A` |
-| Neurological | `#6B5EA8` |
-| Fatigue | `#3A8A7A` |
-| Medical Conditions | `#2E6BA8` |
+### Research card stat standard
+- Stat boxes show **outcomes only** — effect sizes, risk changes, response rates
+- **NEVER:** participant counts ("868 participants"), study counts ("10 RCTs"), cost figures ("£113m"), NHS admission numbers
+- **Good examples:** "77% response rate vs 44% placebo" · "PEG superior across 4 outcomes" · "~30% CV event reduction" · "+12% / +30% mortality risk"
+- **Bad examples:** "1.38M participants" · "87 RCTs" · "£168m NHS cost"
+- Participant and study counts belong in the prose body text of the card, never the headline stat
 
-### Cue box format (MANDATORY)
-```
-▶ ADVANCE NOW — then read · SLIDE [N] — [description]
-```
-Cue box PRECEDES the script lines for its segment. Advance visual first, then read.
+### Full references standard
+- Full citation block: authors · title · journal · year · vol · pages · DOI
+- CSS classes: `.ref-block` / `.ref-full` / `.ref-links`
+- Pill links: journal DOI and PubMed — verified by web search in same session only
+- PMC/PubMed links treated as unreliable unless verified in same session
+- Reference block `border-left` colour matches series accent
+- Inline citations (superscripts) must link to corresponding `id="ref-N"` anchor
 
-### Segment structure (standard)
-- Seg 0: Introduction + disclaimer
-- Seg 1: What is it
-- Seg 2: Why it matters
-- Seg 3: What doctors do
-- Seg 4: The evidence
-- Seg 5: CTA / Close (ends with closing card cue)
+### Research flags ⚑
+- Unverified claims flagged ⚑ for Dr Paul's review
+- Pre-draft rule: before building any article HTML, verify every cited study — (1) exists, (2) correct condition, (3) supports the specific claim, (4) URL/DOI resolves to correct article
+- Never include an unverified link in a delivered file
 
-### Voice rules specific to teleprompters
-CTA segments: describe evidence-based patterns, never instruct. "The evidence points toward X" not "Do X."
-Full disclaimer phrase at close always.
+### Drug naming standard
+Apply everywhere, on first mention per section:
+- macrogol (Movicol, Laxido)
+- ispaghula husk (Fybogel)
+- senna (Senokot)
+- bisacodyl (Dulcolax)
+- linaclotide (Constella)
+- prucalopride (Resolor)
+- atorvastatin (Lipitor)
+- semaglutide (Ozempic)
+- infliximab (Remicade)
+- adalimumab (Humira)
 
-**Canonical reference:** lifestyle-teleprompter.html (Article 05).
+### Lay-clarification brackets
+Required every time for medical terms AND statistical measures in all prose, research cards, tables, and callouts:
+- HR (hazard ratio — HR 1.23 = 23% higher risk)
+- RR (relative risk)
+- OR (odds ratio)
+- SMD (standardised mean difference — effect size)
+- NNT (number needed to treat)
+- CI (confidence interval)
+- PAR (population-attributable risk)
 
----
-
-## 11. VISUALS FILE STANDARDS
-
-### Slide structure (standard — varies by article)
-1. Title / intro card
-2. Concept diagram or hero stat
-3. Why it matters — horizontal harm rows (RED)
-4. What doctor might do — horizontal action rows (GREEN)
-5–8. Research evidence — 2 ev-cards per slide (max 4 slides)
-9. Mechanisms — horizontal amber rows (where relevant)
-10. CTA / takeaway slide
-11. Closing card
-
-*Note: Slide count varies by article — research slides split at 2 ev-cards per slide.*
-
----
-
-### EV-CARD OPACITY RULE (locked April 2026)
-
-**Default must be `opacity:1; transform:translateY(0)`**. Use `.animate-ready` class to set initial hidden state. Never `opacity:0` as the default CSS value on any animated card type.
-
-```css
-.ev-card { opacity:1; transform:translateY(0); transition:all .42s ease }
-.ev-card.animate-ready { opacity:0; transform:translateY(14px) }
-.ev-card.vis { opacity:1; transform:translateY(0) }
-```
-
-All animated card elements in HTML must have `class="[card-type] animate-ready"`.
+### People-centred content structure
+- Frame everything around how the condition affects the reader and their life
+- Research used two ways: (1) confirm what the condition does to them, (2) show what works so they can act
+- CTAs = "what can I do NOW/LATER for MY condition, backed by research" — never generic
+- Standard sections: What is it? / Why does it matter? / What your doctor might discuss / Research / Key Terms (navy, 1–2 boxes) / "Putting it all together" (navy italic close) / ⚑ flags
+- Avoid the word "eliminated" — use clear plain English alternatives
 
 ---
 
-### Evidence card stat block pattern (MANDATORY — locked April 2026)
+## 9. VISUALS HTML STANDARDS
 
-Every evidence card (research slides):
+### Layout
+- 4–6 item slides: **horizontal rows** using the `ev-stat-row` pattern — `72px icon | content | stat` — NOT vertical stacking
+- Stats: 2.5–3.6rem font size
+- Colour narrative: red = harm · amber = mechanism · green = action
+- Cards: `min-height:0` + `overflow:hidden`
+- Max 2 `ev-cards` per research slide
+- CTA section: `cta-wrap-v2` class — horizontal row layout
+- Uneven row heights: use uneven `fr` ratios (e.g. `grid-template-rows: 1fr 1fr 1.5fr`) or `grid-row:span 2` for a key card in 5–6 card grids — prevents bottom-card clipping
 
-```html
-<div class="ev-stat-box">
-  <div class="ev-kf-label">Key Finding</div>
-  <div class="ev-stat-row">
-    <div class="ev-num good">−47%</div>
-    <div class="ev-outcome">lower mortality</div>
-  </div>
-  <div class="ev-conditions">at 7,000 steps vs 2,000 steps/day</div>
-</div>
-```
+### Animation
+- `animate-ready` class on all animated cards — **never** hardcoded `opacity:0` in final delivered files
+- Cards animate in on keyboard advance, not on page load
 
-```css
-.ev-stat-box { text-align:center; background:rgba(212,184,74,.09); border-radius:10-14px; padding:.75-1.25rem }
-.ev-kf-label { font-size:.6rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:rgba(212,184,74,.7) }
-.ev-stat-row { display:flex; align-items:baseline; gap:.4rem; justify-content:center; flex-wrap:wrap; margin-bottom:.3rem }
-.ev-num { font-family:'Fraunces',serif; font-size:2.4rem; font-weight:700; flex-shrink:0 }
-.ev-outcome { font-size:.88rem; font-weight:700; color:#fff; text-align:left }
-.ev-conditions { font-size:.8rem; font-weight:600; color:rgba(255,255,255,.85) }
-```
+### CTA slide standard (all visuals files)
+- Full-screen with radial gold-glow background + pulsing icon halo (3.2s drop-shadow)
+- Fraunces headline: `clamp(3.2, 5.8vw, 4.9rem)`; Fraunces italic subline
+- 4 action cards (NOT chips) — emoji + Fraunces bold label, gradient + gold border
+- **Medical-advice disclaimer box required:** ⚕️ icon · dashed border · "Health education — not medical advice" + full educational-voice phrase
+- Closing slide: same disclaimer box as CTA slide
+- Reference: `hypertension-visuals.html`
+- Retrofit outstanding across Articles 01–11, 13–18
 
-Colour classes on `.ev-num`: `.good` (#7ecc99) · `.bad` (#e87a5a) · `.warn` (#e8a84a)
+### Readability standards — visuals (all rgba thresholds)
+**Topbar:**
+- Subtitle: minimum 0.75rem, `rgba(255,255,255,0.75)`
+- Slide counter: minimum 0.85rem, `rgba(255,255,255,0.90)`
+- Keyboard hint: minimum `rgba(255,255,255,0.60)` — values 0.35 or below not permitted
 
-**ev-num word labels — HARD RULE:**
-- Short word → `font-size: 2rem`
-- Two-word / two-line → `font-size: 1.7rem; line-height: 1.2`
-- Numeric stats → standard `font-size: 2.4rem`
-- Long numbers → `font-size: 1.4rem`
+**Animation/diagram text:**
+- Labels: minimum 13px, `rgba(255,255,255,0.80)`
+- SVG annotations: minimum 10px, `rgba(255,255,255,0.60)` — opacity 0.50 or below not permitted
 
-**Research card stat standard:** Stat boxes show OUTCOMES — effect sizes, risk changes — NEVER participant counts or study counts.
+**Source attributions:**
+- Minimum 0.75rem, `rgba(255,255,255,0.55)` on dark backgrounds
+- Minimum 0.75rem, `#2C2C2C` on light backgrounds
+- `.source-tag` style at `rgba(255,255,255,0.25)` not permitted
 
-**Canonical reference:** diverticular-disease-visuals.html slide 6.
-
----
-
-### High-impact layout standard (CANONICAL — Article 12 Alcohol)
-
-For slides with 4–6 parallel items: **HORIZONTAL stacked rows**, not columns.
-
-**Card grid:** `icon (72px) | content (title + body) | hero-stat (right)`
-
-**Deck-wide colour narrative:**
-| Colour | Variable | Use |
-|--------|----------|-----|
-| 🔴 Red | `var(--bad)` | Harm / risk slides |
-| 🟠 Amber | `var(--warn)` | Mechanism slides |
-| 🟢 Green | `var(--good)` | Action / doctor slides |
-
-**Row card standards:**
-- `align-items: start` — **NEVER center**
-- Body text: `-webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden`
-- Icons: `padding-top: 0.1rem`
-- Emoji font stack: `"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif`
-
-**Row count → sizing guide (confirmed):**
-| Rows | Gap | Padding | Icon | Title | Body |
-|------|-----|---------|------|-------|------|
-| 4 | .65rem | 1rem 1.5rem | 2.8rem | 1.4rem | .98rem |
-| 5 | .45rem | .70rem 1.2rem | 2.2rem | 1.2rem | .93rem |
-| 6 | .35rem | .60rem 1.1rem | 1.9rem | 1.1rem | .88rem |
+**Presenter intro and closing slides:**
+- Taglines + series label: minimum `rgba(255,255,255,0.70)`
+- Logo dot: minimum `rgba(255,255,255,0.60)`
+- Stat card label: `rgba(255,255,255,0.90)`
+- Stat source: 0.75rem, `rgba(255,255,255,0.65)`
 
 ---
 
-### CTA/Takeaway slide standard (MANDATORY — locked April 2026)
+## 10. TELEPROMPTER HTML STANDARDS
 
-**cta-wrap-v2 — canonical CSS:**
-```css
-.cta-wrap-v2 { display: grid; grid-template-rows: auto 1fr auto; height: 100%; padding: .4rem; gap: .45rem; min-height: 0; overflow: hidden; }
-.cta-rows-v2 { display: grid; grid-template-rows: 1fr 1fr 1fr 1fr; gap: .4rem; min-height: 0; overflow: hidden; }
-.cta-row-v2 { display: grid; grid-template-columns: 52px 1fr auto; align-items: start; border-left: 4px solid var(--acc); border-radius: 0 10px 10px 0; padding: .6rem .95rem; min-height: 0; overflow: hidden; }
-.cta-row-body-v2 { font-size: .82rem; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.cta-row-word-v2 { font-family:'Fraunces',serif; font-weight:900; font-size:clamp(1.2rem,2vw,1.7rem); color:var(--acc); }
-```
+### Core technical spec
+- RAF (requestAnimationFrame) auto-scroll
+- Body font: 1.9rem
+- Speed levels: `[0, 8, 14, 20, 28, 38, 50]`, default index 3 (speed 20)
+- Controls: speed 1–6 · A+/A− font size · touch swipe
+- Segment dots: bottom of screen
+- Pause button: ⏸ — **NOT ▶ PLAY button** (a common error)
+- No Google Fonts — fully self-contained (no external dependencies)
+- No topbar
+- Segment IDs: `seg-N`
 
-**Top section size limits (prevent bottom overflow):**
-- Icon: `clamp(2.2rem,3.8vw,3.2rem)` — NEVER larger
-- Headline: `clamp(2rem,3.8vw,3.2rem)` — NEVER larger
-- Subline: `clamp(.95rem,1.5vw,1.2rem)` — NEVER larger
-- `.cta-top` gap: `.3rem` · outer wrap gap: `.45rem`
+### Cue box standard (reference file: `stress-teleprompter.html`)
+Cue box always **precedes** the script lines for its segment — never after.
+Dr Paul advances slide FIRST, then reads — viewer sees slide before Dr Paul speaks.
+Label: `▶ ADVANCE NOW — then read`
+Prior teleprompter files built before this standard was confirmed may require retrofitting — confirm per file.
 
-**Required elements:** radial glow background · badge "What the evidence shows" · 4 horizontal rows with stat/word right · full disclaimer phrase in `.cta-bottom`
+### Video length standard
+- Maximum 4–5 minutes
+- Word count: approximately 600–750 words at ~150 words per minute
+- Cut ruthlessly — no redundant examples, tight preamble, merge segments where possible
+- The teleprompter is the tight, high-impact doorway to the full article
 
-**OVERFLOW RULE:** `.cta-wrap-v2` and `.cta-rows-v2` MUST both have `min-height:0; overflow:hidden`.
+### Teleprompter content standard
+Each teleprompter must deliver:
+1. Fundamental messages stated clearly
+2. Key statistics with exact numbers — no rounding drift from the article figures
+3. Specific practical pointers — "add 1,000 steps/day" not "move more"; "30g fibre daily" not "eat more fibre"
 
-**CTA ICON RULE:** Large emoji icon on CTA slide is **OMITTED by default**. Only include if fewer than 4 rows and space confirmed.
-
-**CTA VOICE RULE:** Describe evidence-based patterns — never instruct. "The evidence links X to Y" not "Do X."
-
-**Canonical reference:** gallstones-visuals.html slide 8.
-
----
-
-### Slide content limits
-- Max 2 ev-cards per research slide
-- Never shrink text to fit — split to new slide
-
-### Slide layout hygiene rules
-1. Multi-row grids MUST have explicit `grid-template-rows`
-2. Cards MUST have `min-height: 0` + `overflow: hidden`
-3. Emoji font-family stack on icons
-4. Maximum 3 vertical blocks per card
-5. Sub-text ≤ 12 words
-
-### Font sizes (minimum — HARD FLOORS)
-| Text type | Minimum |
-|-----------|---------|
-| Source / reference | `0.80rem` |
-| Description / body | `0.93rem` |
-| Supporting / label | `1.00rem` |
-| Heading | `1.05rem` |
-
-### Opacity minimums (HARD FLOORS)
-| Element | Minimum |
-|---------|---------|
-| Journal / source | `rgba(255,255,255,0.80)` |
-| Body / finding text | `rgba(255,255,255,0.88)` |
-| Supporting labels | `rgba(255,255,255,0.80)` |
-| Disclaimer footer (exception) | `0.18` |
+Every segment serves message, statistic, or action — cut what doesn't earn its place. Article = full-depth reference; teleprompter = tight doorway in.
 
 ---
 
-## 12. QC PASS — REQUIRED BEFORE EVERY UPLOAD
+## 11. GRAPHICS AND ANIMATION STANDARDS
 
-1. **Readability** — no pale text, explicit font-weight:400 on body
-2. **References** — full citation blocks with DOI (verified)
-3. **Research flags** — all ⚑ claims verified before finalising
-4. **Graphics** — standalone animation file exists + presenter inline match
-5. **Article ↔ presenter consistency** — all facts, names, years match
-6. **Scroll offset** — `scroll-margin-top: 150px` on `.article-section`
-7. **Visuals visibility** — font sizes and opacity within spec
-8. **Slide layout** — explicit rows, min-height:0, overflow:hidden
-9. **Video length** — 600–750 words (4–5 min)
-10. **Educational voice** — full internal audit before outputting. Zero tolerance.
-11. **Teleprompter format** — button reads ⏸ Pause (not ▶ PLAY)
-12. **Disclaimer phrase** — full phrase only, never shortened
-13. **animate-ready** — all animated cards carry `.animate-ready` class; no hardcoded `opacity:0`
-14. **Research cards** — stat boxes show outcomes (not participant counts)
+### Standalone animation files
+- Standalone animation HTML files (e.g. `salt-sources.html`) are GIF capture sources only
+- Never embedded directly in articles or presenter files
+- Each presenter contains its own inline recreation of the visual in the `visuals{}` object
 
----
+### New video — three files always required
+For any visual used in a video: standalone animation HTML (GIF source) + screen file + presenter cue box must all exist before filming.
 
-## 13. APPROVED RESEARCH SOURCES
+### GIF settings
+Scale 0.62 · every 2nd frame · 120 colours · under 1.5MB total PPTX
 
-BMJ · NICE guidelines · Cochrane Database · NEJM · The Lancet · JAMA · BMJ Best Practice · PubMed · NHS/NHS Digital · ONS · CDC · WHO · Global Burden of Disease Study · ESC/EAS guidelines
+### Video screen workflow
+- Camera-ready HTML files (e.g. `ar-sphincter-screen.html`): full-screen, responsive, auto-animate on load, bold for filming
+- Presenter HTML: bold red `.diagram-cue` callout box shows filename to open on second screen facing camera
+- Dr Paul reads from presenter; diagram HTML full-screened on second screen
+- Layout: `flex-start`, `6vh` top padding (prevents title clipping)
 
 ---
 
-## 14. PRODUCTION SETUP — VIDEO RECORDING
+## 12. QC CHECKLIST (run before every upload)
 
-**Method:** OBS Studio compositing camera + visuals HTML.
-- Visuals file full-screen on laptop, composited by OBS
-- Teleprompter on phone/tablet beside camera lens
-- Arrow keys advance visuals in sync with cues
-- Cue boxes at TOP of each segment — advance visual FIRST, then read
-
----
-
-## 15. OUTSTANDING TASKS (as of April 2026)
-
-### ✅ FULLY COMPLETE — Articles 01–20
-All three files (article HTML, visuals, teleprompter) confirmed on GitHub for every article 01–20.
-
-| Series | Articles | Status |
-|--------|----------|--------|
-| Cardiovascular | 01–07 | ✅ All 3 files each |
-| Practical Health | 08–12 | ✅ All 3 files each |
-| Digestive Health | 13–20 | ✅ All 3 files each |
+1. Readability — no pale text below colour minimums specified above
+2. References — full citation blocks with DOI; pill links verified in same session
+3. Research flags ⚑ — all claims verified against source; no unverified links
+4. Graphics — standalone animation file exists; presenter has matching inline visual
+5. Article ↔ presenter consistency — all facts, study names, years, citations match exactly
+6. Educational voice — no forbidden phrases; canonical phrase correct and in full throughout
+7. Drug names — brand names in brackets after all generics
+8. Lay-clarification — statistical terms bracketed on first use in each section
+9. Research card stats — outcomes only; never participant/study counts or cost figures
+10. CTA slide — disclaimer box present with full canonical phrase
+11. Closing slide — same disclaimer box present
+12. Copyright year — 2026
+13. Body text weight — `font-weight:400` throughout (never 300 in body)
+14. No `opacity:0` animations on article body sections — content immediately visible
 
 ---
 
-### ⏳ OUTSTANDING — Priority order
+## 13. FILE DELIVERY AND UPLOAD
 
-**1. Article 21 — Constipation** ❌ NOT BUILT
-- All 13–18 retrofits are confirmed complete — Article 21 is now cleared to build
-- Build all three files: constipation.html · constipation-visuals.html · constipation-teleprompter.html
-- Slug: `constipation` · Digestive Health Series · Article 21
+### Downloading from Claude
+**Primary route:** Artifact panel download button.
+**Backup route:** Open in Notepad → File → Save As → Downloads → `[filename].html` → file type "All Files".
+**Never Ctrl+S** — saves the webpage wrapper, not the source HTML.
 
-**2. helf-school-conditions.html — NEEDS FULL REBUILD** ⚠️
-The current conditions page was built to a planned structure that does not match the actual site. Issues:
-- Practical Health Series (Articles 08–12) missing entirely
-- Article 07 shows as "Coming soon" — it is live
-- Articles 13–20 show as "Coming soon" with wrong numbering and wrong titles
-- Series structure incorrect (shows Neurological, Fatigue, Medical Decision, Practical — none of which are built)
-- Copyright year: 2025 (needs updating to 2026)
-- Hero stat: "38 planned articles" (needs updating)
-This is a full rebuild, not a patch.
+### Uploading to GitHub
+github.com/pls4286/helfschool/upload/main
+Sign in with Google if session has expired. Upload individual HTML files (not zipped). Commit with a brief description.
 
-**3. New series — ready to plan**
-- Neurological series
-- Cancer series
-- Series topics and article list to be confirmed
+### File corruption pattern — know and ignore
+Edge incognito uploads occasionally capture the Claude.ai loader HTML (~5,140 bytes, begins with "data-build-id") instead of the actual file. Never false-alarm on byte size alone. Verify content via GitHub raw URL before any assessment. This is an upload capture issue, not a file corruption issue.
 
 ---
 
-### ⏳ PENDING — minor outstanding flags
+## 14. APPROVED RESEARCH SOURCES
 
-- **hypertension.html refs 5 + 6** — Cochrane PubMed IDs still flagged ⚑ unverified
+BMJ · NICE guidelines · Cochrane Database · NEJM · The Lancet · JAMA · BMJ Best Practice · PubMed · NHS/NHS Digital · ONS · CDC · WHO · Global Burden of Disease Study · ESC/EAS guidelines · Alimentary Pharmacology & Therapeutics · European Heart Journal
 
----
-
-## 16. FILE NAMING CONVENTION
-
-| File type | Pattern | Example |
-|-----------|---------|---------|
-| Article | `[slug].html` | `hypertension.html` |
-| Visuals | `[slug]-visuals.html` | `hypertension-visuals.html` |
-| Teleprompter | `[slug]-teleprompter.html` | `hypertension-teleprompter.html` |
-| Screen file | `[slug-abbrev]-[name]-screen.html` | `ar-sphincter-screen.html` |
-| GIF source | `[slug]-[name]-gif.html` | `bloating-gut-gif.html` |
+No non-peer-reviewed sources, commercial health sites, or forum content permitted.
 
 ---
 
-## 17. COMMUNICATION STYLE
+## 15. MEMBERSHIP PRICING
 
-- Dr Paul communicates in UPPERCASE
-- Prefers brief, direct responses
-- Always confirm article numbers and file names before building
-- Flag any inconsistencies found during QC immediately
-
----
-
-## 18. FILE UPLOAD METHOD
-
-### Downloading from Claude Outputs
-Use the Artifact panel download button — **NEVER Ctrl+S or File → Save**.
-
-### Fetching files from GitHub into Claude
-```
-https://raw.githubusercontent.com/pls4286/helfschool/main/[filename].html
-```
-
-### Uploading TO Claude Project
-⚠️ Drag-and-drop from Edge incognito captures the browser page (loader stub) — see Section 1. This is a known limitation. The file still uploads correctly to GitHub. The Claude Project copy may show as loader stub but the GitHub version is authoritative.
+- Free (Explorer): £0 — no credit card required
+- Member: £6/month or £60/year — cancel anytime
+- Lifetime: £150 one-off payment
 
 ---
 
-## 19. END-OF-SESSION UPDATE PROTOCOL
+## 16. PRE-DRAFT VERIFICATION RULE
 
-At the end of each productive session:
-1. Update this document with completed work and revised outstanding tasks
-2. Download with Artifact panel button (NEVER Ctrl+S)
-3. Upload to **both GitHub AND the Claude Project**
+Before presenting any article, visuals, or teleprompter HTML — verify via web search that every cited study, trial, or statistic:
+1. Exists as a real published paper
+2. Relates to the correct condition
+3. Supports the specific claim made in the article
+4. URL/DOI resolves to the correct article
+
+Never include an unverified link. Never assume a study exists based on a plausible-sounding citation. Never cite NICE CG99 for adult constipation — it covers children and young people only. The correct adult reference is NICE CKS at `cks.nice.org.uk/constipation`.
 
 ---
 
-## 20. KEY DECISIONS LOG
+## 17. RETROFIT STATUS (retroactive standards across existing articles)
 
-| Date | Decision |
-|------|----------|
-| April 2026 | Section 2 standard locked: 2×2 stat grid (no bullet cards) |
-| April 2026 | Section 4 standard locked: navy research cards, stat-first layout |
-| April 2026 | CTA slide standard locked: full-width horizontal rows (no chips) |
-| April 2026 | Evidence card stat block locked: ev-stat-row pattern |
-| April 2026 | Educational voice: MANDATORY pre-output audit — legal protection |
-| April 2026 | Disclaimer bar standard: amber bar below hero, above jump nav |
-| April 2026 | animate-ready opacity standard locked: all animated cards default opacity:1; animate-ready sets hidden state |
-| April 2026 | Canonical teleprompter format locked: ⏸ Pause button, no Google Fonts, bottom dots bar, speed levels [0,8,14,20,28,38,50] default index 3 |
-| April 2026 | CTA icon rule locked: OMIT large emoji from CTA slide by default |
-| April 2026 | Max 2 ev-cards per research slide — split to new slide if more |
-| April 2026 | Articles 01–20 all three files confirmed complete on GitHub |
-| April 2026 | stress.html voice fix applied: "noting main concerns in advance means nothing gets missed in the time available" |
-| April 2026 | alcohol.html confirmed clean — no voice fix needed |
-| April 2026 | Articles 13–18 article HTML retrofits confirmed complete |
-| April 2026 | Article 21 Constipation: now cleared to build |
-| April 2026 | helf-school-conditions.html: full rebuild required (wrong series structure, missing Practical series, wrong article statuses) |
-| April 2026 | Membership lifetime price: £150 (confirmed) |
-| April 2026 | Copyright: 2026 across all new/retrofitted files |
-| April 2026 | hypertension.html refs 5 and 6 (Cochrane): flagged ⚑ unverified |
+### Confirmed complete
+- Educational voice: confirmed complete across Articles 01–21 (as built)
+
+### Outstanding — to confirm and apply
+- Research card stat standard (outcomes only, not counts): outstanding across 01–11, 13–18
+- Inline citations (superscripts linking to refs): outstanding across 01–11, 13–18
+- CTA slide high-impact standard (disclaimer box, gold-glow, 4 action cards): outstanding across 01–11, 13–18
+- Visuals layout standard (horizontal rows, ev-stat-row): outstanding across 01–11, 13–18
+- Key terms / hero visibility standards: outstanding across 01–11, 13–18
+- Teleprompter cue box standard: confirm per-file which were built before standard was set
+
+Confirm per-article retrofit status at start of each session before beginning new work.
+
+---
+
+## 18. KEY LEARNING POINTS (accumulated)
+
+### NICE CG99 is for children only — never cite for adults
+NICE CG99 covers constipation in **children and young people only**. For adult constipation the correct reference is **NICE CKS** at `cks.nice.org.uk/constipation`. Citing CG99 for an adult article is a meaningful clinical error.
+
+### Dr Paul's experience is 20+ years, not 30+
+All references to clinical experience must read "20+ years" or "over twenty years as an NHS GP". The incorrect "30+" was on the live index.html and was corrected April 2026. Check all new content for this before delivery.
+
+### Local link testing — expected not to work
+When Dr Paul opens a downloaded HTML file locally and clicks article links, they appear broken. This is expected and correct — the linked article files don't exist in the Downloads folder. Links are correctly coded as relative (`href="salt-blood-pressure.html"`) and work on the live GitHub site where all article files share the same directory. Do not recode links to absolute URLs to fix this apparent issue.
+
+### Dr Paul prefers Claude to handle all file edits
+Never ask Dr Paul to make manual edits to files via the GitHub editor. When corrections are needed, Claude fetches the file, applies all changes, and delivers the corrected file for download and re-upload.
+
+### Conditions page — always rebuild, never patch
+When helf-school-conditions.html needs significant changes, rebuild from scratch. The old version had deeply structural problems (entire Practical Health series missing, wrong article statuses, 4 unbuilt series shown, fake digestive articles). Partial patching would miss cascading issues.
+
+### Educational voice — systemic issue in older files
+index.html had directive language in three locations. When fetching any older file for any purpose, audit for forbidden phrases and correct them as part of the work.
+
+### Teleprompter cue box — advance THEN read
+The cue box precedes the script for its segment. Dr Paul advances the slide first, then reads the script — the viewer sees the slide before Dr Paul speaks. Cue box label: `▶ ADVANCE NOW — then read`. Do not place cue boxes after script lines.
+
+### Large file writing — use create_file not bash
+For HTML files over ~400 lines, `create_file` is the correct tool. Bash heredocs fail on large HTML because of shell character escaping (backticks, dollar signs, special characters in SVG and CSS). Always use `create_file` for full HTML files, and never attempt workarounds via bash for large content.
+
+### File already exists — delete and retry
+If `create_file` reports "file already exists", delete the existing placeholder (`rm /home/claude/filename.html`) and retry. The error is always a leftover placeholder — not a meaningful conflict.
+
+### Constipation article — April 2026 research decisions
+- NICE CG99 explicitly excluded (children only)
+- Rome IV criteria used as the clinical framework — explained in lay terms in text
+- Laxative stepwise shown as 4 numbered steps with all brand names included
+- Toileting position (footstool) included — evidence-based, often overlooked practical point
+- Research card 1: macrogol vs lactulose (Cochrane 2010, CD007570)
+- Research card 2: fibre supplementation response rate 77% vs 44% (Christodoulides 2016)
+- Important distinction: fibre evidence is for fibre supplements (psyllium/ispaghula) not dietary fibre from whole foods — clearly stated in the article
+
+---
+
+## 19. OUTSTANDING TASKS (April 2026)
+
+### Immediate — Article 21 completion
+- `constipation-visuals.html` — visuals file for Article 21 (to build next)
+- `constipation-teleprompter.html` — teleprompter for Article 21 (to build after visuals)
+
+### Verification
+- `hypertension.html` references 5 & 6 — Cochrane PubMed IDs flagged ⚑ unverified — check before confirming article complete
+
+### Series planning
+- **Neurological series** — next series after Digestive Health. Article list not yet defined. Plan before building any Neurological content.
+
+### Retrofit backlog (confirm at session start before new work)
+- Research card stat standard
+- Inline citations (superscripts)
+- CTA slide standard
+- Visuals layout standard (ev-stat-row, horizontal rows)
+- Key terms / hero visibility standards
+- Teleprompter cue box — confirm which files pre-date standard
+
+---
+
+## 20. CONSTIPATION ARTICLE — VERIFIED REFERENCES (April 2026)
+
+All five sources verified by web search in April 2026 session.
+
+| Ref | Citation | DOI / URL | Used for |
+|-----|----------|-----------|----------|
+| 1 | NICE CKS Constipation (adults). Last revised 2023 | cks.nice.org.uk/constipation | Definition (Rome IV), red flags, laxative stepwise approach |
+| 2 | Dowden A. Prescriber 2021 + BJHA 2025 | wchh.onlinelibrary.wiley.com/doi/10.1002/psb.1954 | NHS burden: ~83,000 admissions/yr; 18.6m prescriptions; ~£113m cost |
+| 3 | Lee-Robichaud H et al. Cochrane Database Syst Rev 2010;(7):CD007570. PMID 20614462 | doi.org/10.1002/14651858.CD007570.pub2 | Macrogol superior to lactulose across all outcomes (10 RCTs, 868 participants) |
+| 4 | Christodoulides S et al. Aliment Pharmacol Ther 2016;44(2):103–116. PMID 27170558 | doi.org/10.1111/apt.13662 | Fibre: 77% response vs 44% placebo; RR 1.71 (95% CI 1.20–2.42) |
+| 5 | NHS Inform. Constipation | nhsinform.scot/illnesses-and-conditions/stomach-liver-and-gastrointestinal-tract/constipation | Prevalence: 1 in 7 adults UK at any time; women twice as often as men |
+
+---
+
+## 21. CLAUDE PROJECT FILE NOTES
+
+The Claude project holds **visuals, teleprompter, and screen files only**. Article HTML files live on GitHub only — intentionally absent from the Claude project. Exception: `mediterranean-diet.html` kept as canonical article template.
+
+### Canonical reference files
+| File | Purpose |
+|------|---------|
+| `mediterranean-diet.html` | Canonical article HTML template |
+| `stress-teleprompter.html` | Canonical teleprompter (cue box standard) |
+| `alcohol-visuals.html` | Canonical visuals (ev-stat-row horizontal layout) |
+| `hypertension-visuals.html` | Canonical CTA slide reference |
+
+### Files confirmed in Claude project (April 2026)
+**Teleprompters (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd · ibs · bloating · coeliac · masld · acid-reflux (check)
+
+**Visuals (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd (screen) · ibs · bloating · coeliac · masld · acid-reflux
+
+**Screen files:** Ar_barretts-screen · Ar_sphincter-screen · ibd-gut-screen · bloating-gut-screen · bloating-fodmap-screen
+
+**Scripts (older format):** acid-reflux-script · bloating-script · cholesterol-script · heart-attack-risk-script · hypertension-script · ibd-script · ibs-script
+
+---
+
+---
+
+## 22. SESSION START RULES (content of helf-school-session-start-rules.md)
+
+These rules must be applied at the start of every session, before any output or assessment is produced.
+
+### Rule 1 — Read before acting
+Read `/mnt/project/helf-school-project-knowledge.md` AND `/mnt/project/helf-school-session-start-rules.md` in full before any output, checks, or assessments. No exceptions. Reading after producing output is too late.
+
+### Rule 2 — Article inventory is the source of truth
+The article inventory in Section 3 of this document is authoritative. Do not infer article status from file sizes, project file listings, or previous session summaries alone. If there is any doubt about whether a file is on GitHub, fetch it via raw URL to verify.
+
+### Rule 3 — 5,140-byte files are NOT corrupted
+Files in the Claude project that are approximately 5,140 bytes (or similar small sizes like 6,170 bytes) and begin with "data-build-id" are Edge incognito loader stubs. They are captured during the upload process, not corrupted versions of the real file. Never flag these as corrupted or missing. The real file lives on GitHub. Fetch from raw URL to verify content.
+
+### Rule 4 — Never produce output before confirming understanding
+Before building or modifying any file, confirm: (1) which article/file is being worked on, (2) what the current status is per the inventory, (3) whether the canonical reference file has been checked. Do not start building based on an assumption.
+
+### Rule 5 — Educational voice check on every file
+Before delivering any file, audit it for forbidden phrases. The single most common error in older files is directive language. Always apply the full canonical phrase; never shorten it.
+
+### Rule 6 — Cross-check article ↔ teleprompter before delivery
+Any time both an article and a teleprompter/visuals file exist for the same article, verify that all key statistics, study names, years, and citation authors match exactly between both files. Discrepancies must be resolved before either file is delivered.
+
+### Rule 7 — One large file per turn
+If building a very large HTML file (600+ lines), build it in one turn and wait for Dr Paul to confirm successful receipt before proceeding to the next file. Do not queue multiple large file builds in a single turn.
+
+### Rule 8 — Verify references before building
+Before building any article HTML, run web searches to verify all planned citations. Confirm each study (1) exists, (2) relates to the correct condition, (3) supports the specific claim, (4) DOI/URL resolves correctly. Never build an article with unverified citations.
+
+### Rule 9 — Update project knowledge at session end
+At the end of every session: (1) update this project knowledge document with anything new, (2) present it via Artifact panel for download, (3) Dr Paul uploads it to GitHub AND to the Claude Project — both are required. If only one is updated, the other will be out of sync next session.
+
+### Rule 10 — NICE CG99 is children only
+Never cite NICE CG99 in any adult article. It covers constipation in children and young people only. The correct adult constipation reference is NICE CKS at cks.nice.org.uk/constipation. This rule exists because the error is easy to make and is clinically significant.
+
+---
+
+## 23. ARTICLE-SPECIFIC NOTES — KNOWN ISSUES
+
+### hypertension.html
+References 5 and 6 — Cochrane PubMed IDs flagged ⚑ unverified. These need verification via web search before the article can be confirmed fully complete. All other references in this article are confirmed.
+
+### statins.html
+This is a very large HTML file and has caused mid-build crashes in previous sessions. If this file needs to be rebuilt or significantly edited, handle it in one dedicated turn and do not attempt other work in the same turn.
+
+### conditions page (helf-school-conditions.html)
+Rebuilt April 2026. If any further changes are needed, rebuild the whole file — do not attempt partial patches. The old version had too many cascading structural problems for safe patching.
+
+### index.html
+Rebuilt April 2026 with all 12 corrections listed in Section 4. The "About Dr Paul" section correctly reads "NHS GP · 20+ years". The credential item and the intro quote ("In over twenty years as an NHS GP...") are consistent and correct.
+
+---
+
+## 24. PLANNING NOTES — NEXT SERIES
+
+### Neurological Series
+Not yet started. Article list not defined. Before building any Neurological article, define the series structure with Dr Paul — article titles, slugs, and sequence — and update this project knowledge document before the first build.
+
+Suggested starting topics (to confirm with Dr Paul):
+- Migraine and headache types
+- When headaches need investigating
+- Dizziness and vertigo
+- Fainting (syncope)
+- Memory and cognitive decline
+
+### Cancer Series (further horizon)
+Discussed as a future series but not yet planned. No article list defined.
+
+---
+
+## 25. PROCESS NOTES — FILE CREATION IN CLAUDE
+
+### Writing large HTML files
+Use `create_file` for all HTML files. Bash heredocs fail on large HTML content because shell escaping breaks SVG paths, CSS values, and JavaScript (backticks, `$`, `&`, `>`, `<`). `create_file` handles all of these correctly.
+
+### File already exists error
+If `create_file` reports "file already exists", the cause is always a placeholder or earlier version from the same session. Run `rm /home/claude/filename.html` then retry `create_file`.
+
+### Outputs directory
+All files for Dr Paul must be copied to `/mnt/user-data/outputs/` and presented via `present_files`. Files in `/home/claude/` are not visible to Dr Paul until this step is completed.
+
+### QC before presenting
+Always run bash QC checks (grep for key phrases, count required elements, verify word counts) before copying to outputs. Deliver only after QC passes.
+
+---
+
+*End of document. Update at the end of every session. Download via Artifact panel. Upload to both GitHub (pls4286/helfschool/main) and the Claude Project to take effect in future sessions.*
