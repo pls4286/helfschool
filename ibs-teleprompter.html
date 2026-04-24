@@ -1,176 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-  <title>IBS — Teleprompter | helf.school</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IBS — Teleprompter · helf.school</title>
   <style>
-    :root{--bg:#000;--text:#fff;--highlight:#D47C3A;}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html,body{width:100%;height:100%;background:var(--bg);font-family:'DM Sans',sans-serif;overflow:hidden;touch-action:none}
-    .controls{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.90);border-bottom:1px solid rgba(255,255,255,.10);height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 1rem;gap:.5rem}
-    .ctrl-left{display:flex;align-items:center;gap:.75rem}.ctrl-right{display:flex;align-items:center;gap:.5rem}
-    .ctrl-btn{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.20);color:#fff;font-size:.8rem;font-weight:600;padding:.35rem .85rem;border-radius:7px;cursor:pointer;transition:background .15s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
-    .ctrl-btn:hover,.ctrl-btn:active{background:rgba(255,255,255,.22)}.ctrl-btn.active{background:var(--highlight);border-color:var(--highlight)}
-    .speed-wrap,.font-wrap{display:flex;align-items:center;gap:.4rem}
-    .speed-label,.font-label{font-size:.72rem;color:rgba(255,255,255,.55);white-space:nowrap}
-    .speed-btn,.font-btn{width:28px;height:28px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:.9rem;font-weight:700;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
-    .speed-btn:active,.font-btn:active{background:rgba(255,255,255,.25)}
-    .speed-val{font-size:.8rem;font-weight:600;color:var(--highlight);min-width:18px;text-align:center}
-    .seg-indicator{font-size:.72rem;color:rgba(255,255,255,.45);white-space:nowrap}.seg-indicator span{color:var(--highlight);font-weight:600}
-    .scroll-outer{position:fixed;top:52px;bottom:56px;left:0;right:0;overflow:hidden}
-    .scroll-outer::before,.scroll-outer::after{content:'';position:absolute;left:0;right:0;z-index:10;pointer-events:none}
-    .scroll-outer::before{top:0;height:80px;background:linear-gradient(to bottom,#000 0%,transparent 100%)}
-    .scroll-outer::after{bottom:0;height:80px;background:linear-gradient(to top,#000 0%,transparent 100%)}
-    .reading-line{position:absolute;top:50%;left:0;right:0;height:2px;background:rgba(212,124,58,.35);z-index:9;pointer-events:none}
-    .scroll-inner{padding:50vh 2rem 50vh;will-change:transform}
-    .segment{margin-bottom:3.5rem}
-    .seg-header{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid rgba(255,255,255,.10)}
-    .seg-badge{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .55rem;border-radius:100px}
-    .sb-opening{background:rgba(212,124,58,.25);color:var(--highlight)}.sb-section{background:rgba(255,255,255,.10);color:rgba(255,255,255,.70)}
-    .sb-cta{background:rgba(122,158,135,.25);color:#7A9E87}.sb-closing{background:rgba(232,168,74,.25);color:#E8A84A}
-    .seg-name{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.45)}.seg-time{font-size:.68rem;color:rgba(255,255,255,.30);margin-left:auto}
-    .seg-heading{font-size:1rem;font-weight:600;color:rgba(255,255,255,.40);margin-bottom:.85rem;letter-spacing:.02em}
-    .script-line{font-size:1.9rem;line-height:1.75;color:#fff;font-weight:400;margin-bottom:.9rem;padding:.25rem 0}
-    .script-line strong{color:var(--highlight);font-weight:600}.script-line em{font-style:italic;color:rgba(255,255,255,.80)}
-    .pause-marker{display:inline-flex;align-items:center;gap:.4rem;background:rgba(212,124,58,.15);border:1px solid rgba(212,124,58,.35);color:var(--highlight);font-size:.85rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .9rem;border-radius:100px;margin:.3rem 0}
-    .visual-cue{display:flex;align-items:center;gap:.6rem;background:rgba(212,124,58,.18);border:2px solid rgba(212,124,58,.70);border-radius:10px;padding:.7rem 1.1rem;margin:.5rem 0 1.2rem}
-    .visual-cue-icon{font-size:1.2rem;flex-shrink:0}.visual-cue-text{font-size:1rem;font-weight:700;color:#fff;line-height:1.4}.visual-cue-text span{color:#D47C3A}
-    .bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.90);border-top:1px solid rgba(255,255,255,.10);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 1rem;gap:.5rem}
-    .nav-btn{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:.82rem;font-weight:600;padding:.4rem 1rem;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s}
-    .nav-btn:active{background:rgba(255,255,255,.25)}.nav-btn.primary{background:var(--highlight);border-color:var(--highlight)}.nav-btn.primary:active{background:#B06020}
-    .progress-dots{display:flex;gap:.35rem}
-    .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18);cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent}.dot.active{background:var(--highlight);transform:scale(1.4)}
+    :root {
+      --bg: #0A0F1A; --text: #F0EDE8; --accent: #D47C3A;
+      --cue-bg: rgba(212,124,58,0.18); --cue-border: #D47C3A;
+      --pause-bg: rgba(200,66,58,0.18); --pause-border: #C8423A;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Georgia', serif; font-size: 1.9rem; line-height: 1.65; overflow: hidden; height: 100vh; user-select: none; }
+
+    .controls { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(10,15,26,0.95); border-bottom: 1px solid rgba(212,124,58,0.35); display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.8rem; flex-wrap: wrap; }
+    .ctrl-label { font-family: sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(240,237,232,0.55); }
+    .ctrl-btn { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: var(--text); border-radius: 5px; padding: 0.28rem 0.65rem; cursor: pointer; }
+    .ctrl-btn:hover { background: rgba(255,255,255,0.15); }
+    .ctrl-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .ctrl-sep { width: 1px; height: 24px; background: rgba(255,255,255,0.15); }
+    .ctrl-speed-display { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; color: var(--accent); min-width: 28px; text-align: center; }
+    .word-count { font-family: sans-serif; font-size: 0.68rem; color: rgba(240,237,232,0.45); margin-left: auto; }
+
+    .scroll-wrap { position: absolute; top: 56px; left: 0; right: 0; bottom: 48px; overflow: hidden; }
+    .scroll-inner { padding: 3rem 2.2rem 40vh; will-change: transform; }
+
+    .segment { margin-bottom: 2.8rem; }
+
+    .cue-box { background: var(--cue-bg); border: 2px solid var(--cue-border); border-radius: 8px; padding: 0.55rem 1rem; margin-bottom: 1.1rem; font-family: sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); display: flex; align-items: center; gap: 0.5rem; }
+    .cue-arrow { font-size: 1rem; flex-shrink: 0; }
+
+    .pause { background: var(--pause-bg); border-left: 3px solid var(--pause-border); border-radius: 0 6px 6px 0; padding: 0.4rem 0.9rem; margin: 1rem 0; font-family: sans-serif; font-size: 0.80rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #C8423A; }
+
+    .stat { color: var(--accent); font-weight: 700; }
+
+    .dots-bar { position: fixed; bottom: 0; left: 0; right: 0; height: 48px; background: rgba(10,15,26,0.95); border-top: 1px solid rgba(212,124,58,0.25); display: flex; align-items: center; justify-content: center; gap: 0.5rem; z-index: 50; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.22); cursor: pointer; transition: background 0.2s, transform 0.2s; }
+    .dot.active { background: var(--accent); transform: scale(1.3); }
+    .dot-label { font-family: sans-serif; font-size: 0.62rem; color: rgba(240,237,232,0.45); margin: 0 0.3rem; }
   </style>
 </head>
 <body>
+
 <div class="controls">
-  <div class="ctrl-left">
-    <button class="ctrl-btn" id="playBtn" onclick="togglePlay()">▶ Play</button>
-    <button class="ctrl-btn" onclick="resetScroll()">↺ Reset</button>
-    <div class="speed-wrap"><div class="speed-label">Speed</div><div class="speed-btn" onclick="changeSpeed(-1)">−</div><div class="speed-val" id="speedVal">1</div><div class="speed-btn" onclick="changeSpeed(1)">+</div></div>
-    <div class="font-wrap"><div class="font-label">Size</div><div class="font-btn" onclick="changeFont(-2)">A−</div><div class="font-btn" onclick="changeFont(2)">A+</div></div>
+  <span class="ctrl-label">Speed</span>
+  <button class="ctrl-btn" id="btn-slower">−</button>
+  <span class="ctrl-speed-display" id="speed-display">3</span>
+  <button class="ctrl-btn" id="btn-faster">+</button>
+  <div class="ctrl-sep"></div>
+  <span class="ctrl-label">Font</span>
+  <button class="ctrl-btn" id="btn-smaller">A−</button>
+  <button class="ctrl-btn" id="btn-bigger">A+</button>
+  <div class="ctrl-sep"></div>
+  <button class="ctrl-btn" id="btn-pause">⏸ Pause</button>
+  <button class="ctrl-btn" id="btn-reset">↑ Top</button>
+  <span class="word-count">~700 words · ~4.5 min</span>
+</div>
+
+<div class="scroll-wrap" id="scroll-wrap">
+<div class="scroll-inner" id="scroll-inner">
+
+  <!-- SEGMENT 0 — INTRO -->
+  <div class="segment" id="seg-0">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 1 — Title card</div>
+
+    I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about irritable bowel syndrome — what it actually is, what drives it, and what the evidence says about managing it.
+
+    <div class="pause">— brief pause —</div>
+
+    Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — let's get into it.
   </div>
-  <div class="ctrl-right"><div class="seg-indicator">Segment <span id="segDisplay">1</span> of 9</div></div>
+
+  <!-- SEGMENT 1 — WHAT IBS IS -->
+  <div class="segment" id="seg-1">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 2 — Scale and subtypes</div>
+
+    IBS affects around <span class="stat">one in ten people in the UK</span>. It is one of the most common reasons people see their GP — and one of the most consistently undertreated.
+
+    <div class="pause">— pause —</div>
+
+    IBS is characterised by recurrent abdominal pain and changes in bowel habit — diarrhoea, constipation, or both — without any structural abnormality to explain them. Blood tests come back normal. Scans look normal. That is sometimes taken to mean nothing is wrong. It doesn't mean that. It means the problem lies somewhere we can't easily image.
+
+    IBS is now formally classified as a <span class="stat">disorder of gut-brain interaction</span>. The symptoms are driven by abnormal communication between the gut and the brain — not damage, not inflammation, but a system that isn't working as it should. Normal investigations do not mean the person is fine.
+  </div>
+
+  <!-- SEGMENT 2 — GUT-BRAIN MECHANISMS -->
+  <div class="segment" id="seg-2">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 9 — Gut-brain mechanisms</div>
+
+    IBS isn't a single disease with a single cause. It's a syndrome arising from several overlapping mechanisms.
+
+    <div class="pause">— pause —</div>
+
+    Altered gut motility — the gut moves too fast, causing urgency and diarrhoea, or too slowly, causing constipation and bloating. Visceral hypersensitivity — the nerves of the gut are oversensitive. Normal gut activity that most people wouldn't notice is experienced as pain.
+
+    Altered gut microbiome — the composition of gut bacteria differs in many people with IBS, particularly after a gut infection. Around <span class="stat">10% of IBS cases follow a documented gut infection</span> — the infection resolves but the gut doesn't return to normal.
+
+    <div class="pause">— pause —</div>
+
+    And the gut-brain connection — this is bidirectional. Anxiety and low mood worsen gut symptoms. Gut symptoms worsen mental health. This is not psychosomatic — it's real two-way communication along the vagus nerve. It's why psychological therapies produce genuine physical gut improvement.
+  </div>
+
+  <!-- SEGMENT 3 — WHAT DOCTORS DO -->
+  <div class="segment" id="seg-3">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 4 — Stepped approach</div>
+
+    IBS is a clinical diagnosis — made from the history, not from tests. Before confirming the diagnosis, a GP will usually do a limited set of investigations to rule out conditions that can mimic it.
+
+    A full blood count, CRP, and coeliac serology — coeliac disease looks exactly like IBS-D and is missed surprisingly often. And <span class="stat">faecal calprotectin</span> — a stool test that reliably distinguishes IBS from inflammatory bowel disease.
+
+    <div class="pause">— pause —</div>
+
+    Management is stepped. Lifestyle and dietary advice first — regular meals, soluble fibre, reducing caffeine and alcohol. Then a dietitian-led low-FODMAP diet — the strongest dietary evidence for IBS, effective in around 50 to 70% of people. Then symptom-specific medications — antispasmodics, loperamide for IBS-D, laxatives for IBS-C.
+
+    And one specific point about coeliac testing: it requires gluten in the diet at the time of testing. Starting a gluten-free diet beforehand gives a false-negative result — and the diagnosis can be missed entirely.
+  </div>
+
+  <!-- SEGMENT 4 — RESEARCH -->
+  <div class="segment" id="seg-4">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDES 5–8 — Research evidence cards</div>
+
+    The evidence base for IBS has strengthened considerably over the last decade.
+
+    The ATLANTIS trial — published in The Lancet in 2023, 463 patients, 55 GP practices in England — found that low-dose amitriptyline was significantly superior to placebo for IBS over six months. <span class="stat">Number needed to treat: 6</span>. No specialist referral required. This is a treatment GPs can prescribe. It's a clear signal from primary care evidence that hasn't yet fully translated into practice.
+
+    <div class="pause">— pause —</div>
+
+    On diet: the low-FODMAP approach produces symptom improvement in around 50 to 70% of people. A Monash University trial comparing gut-directed hypnotherapy, low-FODMAP, and the combination found all three produced comparable, durable improvements at six months — with hypnotherapy additionally improving anxiety and quality of life.
+
+    The gut-brain axis research is consistent: treatments that address anxiety and gut-brain communication — hypnotherapy, CBT, low-dose amitriptyline — produce real gut improvement. The mechanisms are biological, not placebo.
+  </div>
+
+  <!-- SEGMENT 5 — CTA / CLOSE -->
+  <div class="segment" id="seg-5">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 10 — CTA</div>
+
+    A few things to take from this.
+
+    IBS is a genuine, recognised disorder with a real biological basis. A proper explanation of what it is, a structured management plan, and access to the treatments that work — that is the standard of care. A consultation ending with "everything looks normal" is not sufficient on its own.
+
+    <div class="pause">— pause —</div>
+
+    Faecal calprotectin distinguishes IBS from IBD and should be part of the initial workup. The low-FODMAP pathway needs dietitian input to work properly — unguided restriction can cause nutritional harm. Gut-directed hypnotherapy and CBT have strong trial evidence and are available on the NHS. And if first-line approaches haven't worked, the ATLANTIS trial data supports low-dose amitriptyline — a conversation for you to have with your GP or healthcare professional.
+
+    <div class="pause">— pause —</div>
+
+    Alarm features — blood in the stool, unexplained weight loss, nocturnal symptoms, new symptoms after 60, family history of bowel cancer — are clinically recognised as time-sensitive. 111 or urgent GP access exists for this.
+
+    The full article with all references is at helf.school — Article 16 in the Digestive Health series. As always, anything personally relevant is a conversation for you to have with your GP or healthcare professional. I'm Dr Paul. Thanks for watching.
+
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW · SLIDE 11 — Closing card</div>
+  </div>
+
 </div>
-<div class="scroll-outer"><div class="reading-line"></div><div class="scroll-inner" id="scrollInner"></div></div>
-<div class="bottom-nav">
-  <button class="nav-btn" id="prevBtn" onclick="jumpSeg(-1)" disabled>← Back</button>
-  <div class="progress-dots" id="dots"></div>
-  <button class="nav-btn primary" id="nextBtn" onclick="jumpSeg(1)">Next →</button>
 </div>
+
+<div class="dots-bar" id="dots-bar">
+  <span class="dot-label">Seg</span>
+  <div class="dot active" data-seg="0" title="Intro"></div>
+  <div class="dot" data-seg="1" title="What IBS is"></div>
+  <div class="dot" data-seg="2" title="Gut-brain mechanisms"></div>
+  <div class="dot" data-seg="3" title="What doctors do"></div>
+  <div class="dot" data-seg="4" title="Research"></div>
+  <div class="dot" data-seg="5" title="Close"></div>
+</div>
+
 <script>
-const TOTAL=9;
-const CUE=(icon,text)=>`<div class="visual-cue"><div class="visual-cue-icon">${icon}</div><div class="visual-cue-text">${text}</div></div>`;
-const segments=[
-  { type:'opening', label:'Intro · Dr Paul', title:'Introduction', time:'~15 sec',
-    lines:[
-      CUE('▶','ADVANCE NOW — <span>IBS intro slide · Article 16</span> · then read'),
-      `"I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019."`,
-      `"Today I want to talk to you about <strong>irritable bowel syndrome</strong> — what it actually is, what drives it, and what the evidence says about managing it."`,
-      `"Now, I do have to say upfront — what I'm giving you here is health education, not medical advice."`,
-      `"Anything personally relevant is a conversation for you to have with your GP or healthcare professional."`,
-      `"Right — let's get into it."`,
-    ]
-  },
-  { type:'opening', label:'Segment 1', title:'The Condition That Gets Dismissed', time:'0:00–0:45',
-    lines:[
-      CUE('▶','ADVANCE NOW — <span>Screen 1: 1 in 10 stat card</span> · then read'),
-      `"Irritable bowel syndrome affects around <strong>one in ten people in the UK</strong>. It is one of the most common reasons people see their GP. And it is one of the most consistently mismanaged."`,
-      `<span class="pause-marker">⏸ PAUSE</span>`,
-      `"Not because GPs don't care. But because IBS doesn't show up on a scan or a blood test — and that can lead to a consultation that ends with 'everything looks normal' and very little else."`,
-      `"What I want to do in this video is give you a proper understanding of what IBS actually is, why 'everything looks normal' doesn't mean you're fine, and — importantly — what the evidence says actually works."`,
-    ]
-  },
-  { type:'section', label:'Segment 2', title:'What IBS Actually Is', time:'0:45–1:40',
-    lines:[
-      CUE('▶','ADVANCE NOW — <span>Screen 2: What IBS actually is</span> · then read'),
-      `"IBS is a long-term condition characterised by recurrent abdominal pain and changes in bowel habit — diarrhoea, constipation, or alternating between both — <strong>without any structural abnormality to explain them</strong>."`,
-      `"Blood tests come back normal. Scans look normal. Colonoscopies look normal. That is sometimes taken to mean the patient is fine. It doesn't mean that. It means the problem lies somewhere we can't easily image."`,
-      `"IBS is now formally classified as a <strong>disorder of gut-brain interaction</strong>. That's the modern term — and it's a meaningful one. The symptoms are driven by abnormal communication between the gut and the brain. Not by damage. Not by inflammation. By a system that isn't working the way it should."`,
-      `"IBS is divided into four subtypes based on the predominant bowel pattern — and this matters, because management differs between them. IBS-D, IBS-C, IBS-M for mixed, and IBS-U for unclassified."`,
-    ]
-  },
-  { type:'section', label:'Segment 3', title:'The Gut-Brain Axis — What Drives IBS', time:'1:40–2:30',
-    lines:[
-      CUE('▶','ADVANCE NOW — <span>Screen 3: Gut-brain axis mechanisms</span> · then read'),
-      `"IBS isn't a single disease with a single cause. It's a syndrome — a cluster of symptoms arising from several overlapping mechanisms."`,
-      `"<strong>Altered gut motility</strong> — the gut moves too fast, causing diarrhoea and urgency, or too slowly, causing constipation and bloating. <strong>Visceral hypersensitivity</strong> — the nerves of the gut are oversensitive. Normal gut activity that most people wouldn't notice is experienced as pain."`,
-      `"<strong>Altered gut microbiome</strong> — the composition of gut bacteria differs in many people with IBS. Whether cause or consequence is still being established. <strong>Post-infectious IBS</strong> — around 10% of cases follow a documented gut infection. The infection resolves but the gut doesn't return to normal."`,
-      `"And the <strong>gut-brain connection</strong> — this is bidirectional. Anxiety and low mood worsen gut symptoms. Gut symptoms worsen mental health. This is not psychosomatic — it's real two-way communication along the vagus nerve and enteric nervous system."`,
-      `"One important distinction: IBS is <strong>not inflammatory bowel disease</strong> — IBD. Crohn's disease and ulcerative colitis involve chronic inflammation and structural damage. IBS does not. They are completely different conditions."`,
-    ]
-  },
-  { type:'section', label:'Segment 4', title:'What Your Doctor Will Do', time:'2:30–3:20',
-    lines:[
-      CUE('▶','ADVANCE NOW — <span>Screen 4: Diagnostic tests and treatment ladder</span> · then read'),
-      `"IBS is a clinical diagnosis — made from the history, not from tests. But before diagnosing IBS, a GP will usually do a limited set of investigations to rule out conditions that can mimic it."`,
-      `"A <strong>full blood count and CRP</strong> — looking for anaemia and inflammation, which can indicate inflammatory bowel disease or cancer. <strong>Coeliac serology</strong> — coeliac disease looks exactly like IBS-D and is missed surprisingly often. <strong>Faecal calprotectin</strong> — a stool test that distinguishes gut inflammation from functional symptoms."`,
-      `"Management is stepped — start with the least intensive, best-evidenced approach and escalate if needed. <strong>Step one</strong>: lifestyle and dietary advice — regular meals, adequate soluble fibre, reducing caffeine and alcohol. <strong>Step two</strong>: a dietitian-led low-FODMAP diet trial — the strongest dietary evidence for IBS, effective in around 50–70% of people."`,
-      `"<strong>Step three</strong>: symptom-specific medications — antispasmodics for cramps, loperamide for IBS-D, laxatives for IBS-C. <strong>Step four</strong>: second-line — low-dose amitriptyline and psychological therapies."`,
-      `"One important note: <strong>don't start a gluten-free diet before coeliac testing.</strong> If coeliac disease is being investigated, removing gluten before the blood test will produce a false-negative result. Always test first."`,
-    ]
-  },
-  { type:'section', label:'Segment 5', title:'What the Research Shows', time:'3:20–4:10',
-    lines:[
-      CUE('▶','ADVANCE NOW — <span>Screen 5: Research evidence cards</span> · then read'),
-      `"Let me pull out the key evidence."`,
-      `"On <strong>prevalence</strong>: a 2020 Lancet systematic review by Oka and colleagues pooled data worldwide. Using Rome III criteria, global prevalence was 9.2%. Using the more restrictive Rome IV criteria, 3.8%. In the UK, around 1 in 10 people are affected."`,
-      `"On <strong>treatment</strong>: Peters and colleagues at Monash University compared gut-directed hypnotherapy, low-FODMAP diet, and the combination in 74 IBS patients. At six weeks and six months, all three produced comparable, durable improvements. Hypnotherapy additionally improved anxiety and quality of life more than diet alone."`,
-      `"On <strong>amitriptyline</strong>: the ATLANTIS trial, published in The Lancet in 2023, is the largest trial of a tricyclic antidepressant in IBS ever conducted. 463 patients, 55 GP practices in England, six months. Low-dose amitriptyline was significantly superior to placebo — IBS symptom score difference of 27 points. Number needed to treat: <strong>6</strong>."`,
-      `"This is a drug GPs can prescribe. It doesn't need a specialist referral. The ATLANTIS trial has given primary care a clear signal — and it's one that hasn't yet fully translated into practice."`,
-    ]
-  },
-  { type:'section', label:'Segment 6', title:'Why IBS Gets Undertreated', time:'4:10–4:45',
-    lines:[
-      CUE('▶','ADVANCE NOW — <span>Screen 6: Why IBS gets undertreated</span> · then read'),
-      `"IBS significantly impairs quality of life. It affects work, social life, relationships, travel, and diet in ways that people without the condition rarely appreciate."`,
-      `"And yet the 2021 Rome Foundation Global Study — 73,000 adults across 33 countries — confirmed that IBS is significantly underdiagnosed and undertreated worldwide."`,
-      `"Part of the problem is the consultation dynamic. Being told 'everything looks normal' — without an explanation of what IBS is, why symptoms are real, and what can be done — leaves people without a path forward."`,
-      `"I want to be clear about alarm features, because these are important. <strong>Blood in the stool, unexplained weight loss, nocturnal symptoms that wake you from sleep, symptoms starting after 60, a family history of bowel cancer or IBD, or any symptom that is new or worsening</strong> — these are not typical of IBS. They are clinically recognised as time-sensitive — 111 or urgent GP is there for this."`,
-    ]
-  },
-  { type:'cta', label:'Segment 7', title:'What You Can Do', time:'4:45–5:10',
-    lines:[
-      CUE('▶','ADVANCE NOW — <span>Screen 7: Three action cards</span> · then read'),
-      `"<strong>First: a structured management plan.</strong> Not just reassurance that tests are normal. A diagnosis, an explanation, and a plan — starting with lifestyle and diet, with clear next steps if that doesn't help."`,
-      `"<strong>Second: a low-FODMAP diet with dietitian support, and gut-directed hypnotherapy.</strong> Both have strong trial evidence. Both are available on the NHS, though access varies. Worth asking about specifically."`,
-      `"<strong>Third: if first-line treatment hasn't worked, low-dose amitriptyline.</strong> The 2023 ATLANTIS trial gives your GP a clear basis to prescribe it. It doesn't need a gastroenterology referral. It's a conversation for you to have with your GP or healthcare professional at your next appointment."`,
-      `"The full article with all references is at <strong>helf.school</strong> — Article 16 in the Digestive Health series."`,
-    ]
-  },
-  { type:'closing', label:'Segment 8', title:'Sign-off', time:'5:10–5:25',
-    lines:[
-      CUE('▶','ADVANCE NOW — <span>Screen 8: Closing card</span> · then read'),
-      `"IBS is one of the conditions most poorly served by the traditional model of medicine — where a scan or blood test tells you what's wrong. With IBS, the investigations are normal. That doesn't mean the patient is fine."`,
-      `"The good news is that the evidence base has never been stronger. Dietary therapy, psychological therapy, and medication all have solid trial evidence."`,
-      `<span class="pause-marker">⏸ PAUSE</span>`,
-      `"If you have IBS — you deserve a proper explanation of what it is, a structured management plan, and access to the treatments that work. Don't accept 'everything's normal, it's probably stress' without more."`,
-      `"Thanks for watching. helf.school — take care of yourself."`,
-    ]
-  },
-];
-let playing=false,speed=1,fontSize=1.9,rafId=null,scrollY=0,lastTime=null,currentSeg=0;
-const PX_PER_SEC_BASE=20;
-function build(){const inner=document.getElementById('scrollInner');const bc={opening:'sb-opening',section:'sb-section',cta:'sb-cta',closing:'sb-closing'};const bl={opening:'Opening',section:'Section',cta:'Call to Action',closing:'Closing'};let html='';segments.forEach((s,i)=>{html+=`<div class="segment" id="seg${i}"><div class="seg-header"><span class="seg-badge ${bc[s.type]}">${bl[s.type]}</span><span class="seg-name">${s.label}</span><span class="seg-time">${s.time}</span></div><div class="seg-heading">${s.title}</div>`;s.lines.forEach(l=>{if(l.startsWith('<span class="pause-marker"')||l.startsWith('<div class="visual-cue"')){html+=`<div style="margin:.4rem 0;">${l}</div>`;}else{html+=`<div class="script-line">${l}</div>`;}});html+=`</div>`;});inner.innerHTML=html;const de=document.getElementById('dots');segments.forEach((s,i)=>{const d=document.createElement('div');d.className='dot'+(i===0?' active':'');d.title=s.title;d.onclick=()=>jumpToSeg(i);de.appendChild(d);});}
-function getOuter(){return document.querySelector('.scroll-outer');}
-function getInner(){return document.getElementById('scrollInner');}
-function togglePlay(){playing=!playing;const btn=document.getElementById('playBtn');if(playing){btn.textContent='⏸ Pause';btn.classList.add('active');lastTime=null;rafId=requestAnimationFrame(tick);}else{btn.textContent='▶ Play';btn.classList.remove('active');if(rafId)cancelAnimationFrame(rafId);}}
-function tick(ts){if(!lastTime)lastTime=ts;const dt=(ts-lastTime)/1000;lastTime=ts;scrollY+=PX_PER_SEC_BASE*speed*dt;applyScroll();updateSegIndicator();if(playing)rafId=requestAnimationFrame(tick);}
-function applyScroll(){const inner=getInner();const max=inner.scrollHeight-window.innerHeight;scrollY=Math.min(Math.max(scrollY,0),max);inner.style.transform=`translateY(${-scrollY}px)`;}
-function resetScroll(){if(playing)togglePlay();scrollY=0;applyScroll();currentSeg=0;updateDots();document.getElementById('segDisplay').textContent='1';document.getElementById('prevBtn').disabled=true;document.getElementById('nextBtn').textContent='Next →';}
-function changeSpeed(dir){speed=Math.min(Math.max(speed+dir,1),6);document.getElementById('speedVal').textContent=speed;}
-function changeFont(dir){fontSize=Math.min(Math.max(fontSize+dir*0.1,1.0),2.8);document.querySelectorAll('.script-line').forEach(el=>{el.style.fontSize=fontSize+'rem';});}
-function getSegTop(i){const el=document.getElementById('seg'+i);if(!el)return 0;const h=getOuter().clientHeight;return el.offsetTop-h*0.5+60;}
-function jumpToSeg(i){if(playing)togglePlay();currentSeg=Math.min(Math.max(i,0),segments.length-1);scrollY=Math.max(getSegTop(currentSeg),0);applyScroll();updateDots();updateSegIndicator();document.getElementById('prevBtn').disabled=currentSeg===0;document.getElementById('nextBtn').textContent=currentSeg===segments.length-1?'✓ Done':'Next →';}
-function jumpSeg(dir){jumpToSeg(currentSeg+dir);}
-function updateSegIndicator(){const midY=scrollY+getOuter().clientHeight*0.5;for(let i=segments.length-1;i>=0;i--){const el=document.getElementById('seg'+i);if(el&&el.offsetTop<=midY+40){if(currentSeg!==i){currentSeg=i;updateDots();document.getElementById('segDisplay').textContent=i+1;document.getElementById('prevBtn').disabled=i===0;document.getElementById('nextBtn').textContent=i===segments.length-1?'✓ Done':'Next →';}break;}}}
-function updateDots(){document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===currentSeg));document.getElementById('segDisplay').textContent=currentSeg+1;}
-let touchStartY=0,touchScrollY=0;
-document.querySelector('.scroll-outer').addEventListener('touchstart',e=>{if(playing)return;touchStartY=e.touches[0].clientY;touchScrollY=scrollY;},{passive:true});
-document.querySelector('.scroll-outer').addEventListener('touchmove',e=>{if(playing)return;scrollY=touchScrollY+(touchStartY-e.touches[0].clientY);applyScroll();updateSegIndicator();},{passive:true});
-build();applyScroll();
+  const SPEED_LEVELS = [0, 8, 14, 20, 28, 38, 50];
+  let speedLevel = 3, fontSize = 1.9, paused = false, pos = 0, lastTs = null;
+  const wrap  = document.getElementById('scroll-wrap');
+  const inner = document.getElementById('scroll-inner');
+  const spdDisp = document.getElementById('speed-display');
+
+  function applyFont() { inner.style.fontSize = fontSize + 'rem'; }
+
+  function raf(ts) {
+    if (!paused) {
+      if (lastTs !== null) { pos += SPEED_LEVELS[speedLevel] * (ts - lastTs) / 1000; inner.style.transform = 'translateY(-' + pos + 'px)'; }
+      lastTs = ts;
+    } else { lastTs = null; }
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  const dots = document.querySelectorAll('.dot');
+  const segs = document.querySelectorAll('.segment');
+
+  function updateDots() {
+    let active = 0;
+    segs.forEach((seg, i) => { if (pos >= seg.offsetTop - 80) active = i; });
+    dots.forEach(d => d.classList.remove('active'));
+    if (dots[active]) dots[active].classList.add('active');
+  }
+  setInterval(updateDots, 400);
+
+  dots.forEach(d => d.addEventListener('click', () => {
+    const seg = segs[parseInt(d.dataset.seg)];
+    if (seg) { pos = Math.max(0, seg.offsetTop - 80); inner.style.transform = 'translateY(-' + pos + 'px)'; }
+  }));
+
+  document.getElementById('btn-faster').addEventListener('click', () => { speedLevel = Math.min(6, speedLevel + 1); spdDisp.textContent = speedLevel; });
+  document.getElementById('btn-slower').addEventListener('click', () => { speedLevel = Math.max(0, speedLevel - 1); spdDisp.textContent = speedLevel; });
+  document.getElementById('btn-bigger').addEventListener('click', () => { fontSize = Math.min(3.2, +(fontSize + 0.15).toFixed(2)); applyFont(); });
+  document.getElementById('btn-smaller').addEventListener('click', () => { fontSize = Math.max(1.2, +(fontSize - 0.15).toFixed(2)); applyFont(); });
+
+  const pauseBtn = document.getElementById('btn-pause');
+  pauseBtn.addEventListener('click', () => {
+    paused = !paused;
+    pauseBtn.textContent = paused ? '▶ Resume' : '⏸ Pause';
+    pauseBtn.classList.toggle('active', paused);
+  });
+  document.getElementById('btn-reset').addEventListener('click', () => { pos = 0; inner.style.transform = 'translateY(0)'; });
+
+  let ty = 0;
+  wrap.addEventListener('touchstart', e => { ty = e.touches[0].clientY; paused = true; pauseBtn.textContent = '▶ Resume'; pauseBtn.classList.add('active'); });
+  wrap.addEventListener('touchmove', e => { e.preventDefault(); const dy = e.touches[0].clientY - ty; pos = Math.max(0, pos - dy * 0.8); inner.style.transform = 'translateY(-' + pos + 'px)'; ty = e.touches[0].clientY; }, { passive: false });
+
+  applyFont();
 </script>
 </body>
 </html>
