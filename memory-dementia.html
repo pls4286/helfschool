@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory, Cognition and Dementia — helf.school</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --coral: #E8634A;
+    --cream: #FAF7F2;
+    --sage: #7A9E87;
+    --amber: #E8A84A;
+    --neuro: #6B5EA8;
+    --neuro-dark: #4A4080;
+    --neuro-light: #8E82CC;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; font-weight: 400; background: var(--cream); color: #2C2C2C; line-height: 1.7; }
+
+  /* NAV */
+  .site-nav { background: var(--navy); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .nav-logo { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
+  .nav-logo svg { width: 36px; height: 28px; }
+  .nav-brand { font-family: 'Fraunces', serif; font-size: 1.25rem; color: #fff; font-weight: 700; }
+  .nav-tagline { font-size: .72rem; color: rgba(255,255,255,0.65); letter-spacing: .08em; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.80); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta { background: var(--neuro); color: #fff; padding: .45rem 1.1rem; border-radius: 6px; font-weight: 600; font-size: .88rem; text-decoration: none; white-space: nowrap; }
+
+  /* DISCLAIMER BAR */
+  .disclaimer-bar { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.10); padding: .55rem 2rem; text-align: center; font-size: .78rem; color: rgba(255,255,255,0.75); }
+  .disclaimer-bar strong { color: rgba(255,255,255,0.92); }
+
+  /* HERO */
+  .hero { background: linear-gradient(135deg, var(--neuro-dark) 0%, var(--neuro) 55%, var(--neuro-light) 100%); padding: 4rem 2rem 3.5rem; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 30%, rgba(255,255,255,0.08) 0%, transparent 60%); pointer-events: none; }
+  .hero-inner { max-width: 860px; margin: 0 auto; position: relative; }
+  .hero-breadcrumb { font-size: .82rem; color: rgba(255,255,255,0.80); margin-bottom: 1rem; }
+  .hero-breadcrumb a { color: rgba(255,255,255,0.80); text-decoration: none; }
+  .hero-breadcrumb a:hover { color: #fff; }
+  .hero-series-badge { display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.30); color: #fff; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .28rem .75rem; border-radius: 20px; margin-bottom: 1.1rem; }
+  .hero h1 { font-family: 'Fraunces', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; color: #fff; line-height: 1.15; margin-bottom: .9rem; }
+  .hero-subtitle { font-size: 1.05rem; color: rgba(255,255,255,0.90); max-width: 620px; margin-bottom: 1.8rem; line-height: 1.6; }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 1.2rem; font-size: .83rem; color: rgba(255,255,255,0.82); }
+  .hero-meta span { display: flex; align-items: center; gap: .35rem; }
+
+  /* LAYOUT */
+  .article-wrap { max-width: 860px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+
+  /* SECTION HEADINGS */
+  .section-label { display: flex; align-items: center; gap: .7rem; margin-bottom: 1.2rem; margin-top: 2.8rem; }
+  .section-label:first-of-type { margin-top: 0; }
+  .section-number { width: 32px; height: 32px; background: var(--neuro); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .82rem; font-weight: 700; flex-shrink: 0; }
+  .section-title { font-family: 'Fraunces', serif; font-size: 1.45rem; font-weight: 700; color: var(--navy); }
+
+  /* BODY TEXT */
+  .article-wrap p { color: #2C2C2C; font-weight: 400; margin-bottom: 1rem; font-size: 1rem; }
+  .article-wrap p:last-child { margin-bottom: 0; }
+  .article-wrap ul, .article-wrap ol { color: #2C2C2C; font-weight: 400; margin: .6rem 0 1rem 1.4rem; font-size: 1rem; }
+  .article-wrap li { margin-bottom: .45rem; }
+
+  /* STAT GRID */
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(107,94,168,0.15); border-radius: 10px; overflow: hidden; margin: 1.6rem 0 2rem; border: 1px solid rgba(107,94,168,0.20); }
+  .stat-cell { background: #fff; padding: 1.4rem 1.2rem; }
+  .stat-number { font-family: 'Fraunces', serif; font-size: 2.6rem; font-weight: 900; color: var(--neuro); line-height: 1; margin-bottom: .3rem; }
+  .stat-label { font-weight: 700; font-size: .9rem; color: var(--navy); margin-bottom: .3rem; }
+  .stat-prose { font-size: .88rem; color: #2C2C2C; font-weight: 400; }
+
+  /* KEY TERMS */
+  .key-terms { background: var(--navy); border-radius: 10px; padding: 1.6rem 1.8rem; margin: 2rem 0; }
+  .key-terms-title { font-family: 'Fraunces', serif; font-size: 1.08rem; font-weight: 700; color: #fff; margin-bottom: 1.1rem; }
+  .key-terms-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem .8rem; }
+  .kt-item { display: flex; flex-direction: column; gap: .1rem; }
+  .kt-term { font-size: .88rem; font-weight: 700; color: var(--amber); }
+  .kt-def { font-size: .92rem; color: rgba(255,255,255,0.90); font-weight: 400; line-height: 1.4; }
+
+  /* HIGHLIGHT BOX */
+  .highlight-box { background: rgba(107,94,168,0.08); border-left: 4px solid var(--neuro); border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: .96rem; color: #2C2C2C; font-weight: 400; }
+
+  /* HOPE BOX */
+  .hope-box { background: rgba(122,158,135,0.10); border: 1.5px solid rgba(122,158,135,0.35); border-radius: 8px; padding: 1.1rem 1.2rem; margin: 1.4rem 0; }
+  .hope-box .hb-title { font-weight: 700; color: #2D6A4F; font-size: .95rem; margin-bottom: .5rem; }
+  .hope-box p { font-size: .93rem; color: #2C2C2C; margin-bottom: 0; }
+
+  /* RESEARCH CARDS */
+  .research-section { margin-top: 1.8rem; }
+  .research-card { display: grid; grid-template-columns: 220px 1fr; gap: 0; border-radius: 10px; overflow: hidden; margin-bottom: 1.2rem; border: 1px solid rgba(107,94,168,0.18); }
+  .ev-stat-box { background: var(--navy); padding: .9rem .75rem; display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden; }
+  .ev-kf-label { font-size: .72rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--amber); margin-bottom: .35rem; }
+  .ev-stat-row { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: .3rem; }
+  .ev-outcome { font-size: .92rem; font-weight: 700; color: rgba(255,255,255,0.92); margin-bottom: .3rem; line-height: 1.3; }
+  .ev-conditions { font-size: .78rem; line-height: 1.32; color: rgba(255,255,255,0.70); }
+  .ev-body { background: #fff; padding: 1rem 1.1rem; display: flex; flex-direction: column; justify-content: space-between; gap: .5rem; }
+  .ev-body p { font-size: .92rem; color: #2C2C2C; font-weight: 400; margin-bottom: 0; }
+  .ev-source { font-size: .78rem; color: rgba(44,44,44,0.55); font-style: italic; }
+
+  /* PUTTING IT TOGETHER */
+  .putting-together { background: var(--navy); border-radius: 10px; padding: 1.8rem 2rem; margin: 2.5rem 0; }
+  .putting-together p { font-style: italic; color: rgba(255,255,255,0.90); font-size: 1rem; font-weight: 400; margin-bottom: .8rem; }
+  .putting-together p:last-child { font-style: normal; font-weight: 700; color: #fff; margin-bottom: 0; }
+
+  /* REFERENCES */
+  .references-section { margin-top: 3rem; border-top: 1px solid rgba(107,94,168,0.20); padding-top: 1.5rem; }
+  .references-title { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 1rem; }
+  .ref-block { border-left: 3px solid var(--neuro); padding-left: .9rem; margin-bottom: 1rem; }
+  .ref-full { font-size: .85rem; color: #2C2C2C; font-weight: 400; line-height: 1.5; }
+  .ref-links { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .4rem; }
+  .ref-pill { display: inline-block; background: var(--neuro); color: #fff; font-size: .74rem; font-weight: 700; padding: .18rem .6rem; border-radius: 12px; text-decoration: none; }
+  .ref-pill:hover { background: var(--neuro-dark); }
+
+  /* SUPERSCRIPTS */
+  sup a { color: var(--neuro); text-decoration: none; font-size: .72rem; font-weight: 700; }
+  sup a:hover { text-decoration: underline; }
+
+  /* FOOTER */
+  .site-footer { background: var(--navy); color: rgba(255,255,255,0.70); padding: 2.5rem 2rem 1.5rem; font-size: .85rem; margin-top: 3rem; }
+  .footer-inner { max-width: 860px; margin: 0 auto; }
+  .footer-logo { font-family: 'Fraunces', serif; font-weight: 700; color: #fff; font-size: 1.1rem; margin-bottom: .4rem; }
+  .footer-disclaimer { font-size: .78rem; color: rgba(255,255,255,0.65); margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.12); line-height: 1.6; }
+  .footer-copy { margin-top: .8rem; font-size: .75rem; color: rgba(255,255,255,0.45); }
+
+  @media (max-width: 640px) {
+    .key-terms-grid { grid-template-columns: 1fr; }
+    .stat-grid { grid-template-columns: 1fr; }
+    .research-card { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero { padding: 2.5rem 1.2rem 2rem; }
+    .article-wrap { padding: 1.5rem 1.2rem 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="0" y="4" width="16" height="20" rx="2" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+      <rect x="20" y="4" width="16" height="20" rx="2" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+      <line x1="18" y1="5" x2="18" y2="23" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+      <path d="M3 9 Q8 8 13 9M3 12 Q8 11 13 12M3 15 Q8 14 13 15" stroke="rgba(255,255,255,0.45)" stroke-width="1" fill="none"/>
+      <path d="M23 9 Q28 8 33 9M23 12 Q28 11 33 12M23 15 Q28 14 33 15" stroke="rgba(255,255,255,0.45)" stroke-width="1" fill="none"/>
+    </svg>
+    <div>
+      <div class="nav-brand">helf.school</div>
+      <div class="nav-tagline">Health Education</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="helf-school-conditions.html">Conditions</a></li>
+    <li><a href="helf-school-membership.html">Membership</a></li>
+  </ul>
+  <a href="helf-school-membership.html" class="nav-cta">Join free</a>
+</nav>
+
+<!-- DISCLAIMER BAR -->
+<div class="disclaimer-bar">
+  <strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-breadcrumb">
+      <a href="index.html">Home</a> &rsaquo;
+      <a href="helf-school-conditions.html">Conditions</a> &rsaquo;
+      Neurological Health &rsaquo; Memory, Cognition and Dementia
+    </p>
+    <div class="hero-series-badge">Neurological Health · Article 25</div>
+    <h1>Memory, Cognition<br>and Dementia</h1>
+    <p class="hero-subtitle">
+      Dementia is the UK's biggest killer — and yet nearly half of all cases are potentially preventable. Understanding what dementia is, what the evidence shows about risk, and what medicine can do has never been more important.
+    </p>
+    <div class="hero-meta">
+      <span>🧠 Neurological series</span>
+      <span>📖 10 min read</span>
+      <span>🔬 3 research sources</span>
+      <span>👨‍⚕️ Dr Paul · NHS GP 20+ years</span>
+    </div>
+  </div>
+</header>
+
+<!-- ARTICLE -->
+<main class="article-wrap">
+
+  <!-- SECTION 1 -->
+  <div class="section-label">
+    <div class="section-number">1</div>
+    <h2 class="section-title">What is it?</h2>
+  </div>
+
+  <p>
+    Dementia is not a single disease. It is an umbrella term for a group of conditions characterised by a progressive decline in cognitive function (the brain's ability to think, remember, reason, plan and communicate) that is severe enough to interfere with daily life. It is caused by physical damage to brain cells — the nature of that damage determines which type of dementia a person has.
+  </p>
+
+  <p>
+    It is important to be clear from the outset about what dementia is not. Occasional memory lapses — forgetting a name, losing keys, struggling to recall a word — are a normal part of ageing. The brain changes with age just as the rest of the body does. Dementia involves something qualitatively different: a sustained, progressive decline across multiple cognitive domains that goes well beyond the ordinary variation of everyday memory and concentration.
+  </p>
+
+  <p>
+    The most common types of dementia are:
+  </p>
+
+  <ul>
+    <li><strong>Alzheimer's disease</strong> — the most common form, accounting for around 60–70% of cases. Caused by the accumulation of amyloid protein plaques and tau protein tangles within brain tissue, leading to progressive nerve cell loss. Memory for recent events is usually the earliest symptom.</li>
+    <li><strong>Vascular dementia</strong> — the second most common type, caused by reduced blood supply to the brain. Often follows a stroke (a sudden interruption of blood supply) or a TIA (transient ischaemic attack — a temporary disruption lasting less than 24 hours), though it can also develop gradually from the cumulative effect of small vessel disease. Symptoms may be stepped — worsening suddenly after each vascular event — rather than steadily progressive.</li>
+    <li><strong>Dementia with Lewy bodies</strong> — caused by abnormal deposits of a protein called alpha-synuclein (known as Lewy bodies) forming inside nerve cells. Often characterised by vivid visual hallucinations (seeing things that are not there), Parkinsonism (stiffness and tremor resembling Parkinson's disease), and fluctuations in alertness and attention.</li>
+    <li><strong>Frontotemporal dementia</strong> — affects the frontal and temporal lobes (the areas of the brain involved in personality, behaviour and language) more prominently than memory in the early stages. Often presents with changes in personality, impulsive or disinhibited behaviour, or difficulty with language. More common in people under 65 than other types.</li>
+    <li><strong>Mixed dementia</strong> — a combination of two or more types, most commonly Alzheimer's disease alongside vascular dementia, occurring in the same individual. More common than was previously recognised.</li>
+  </ul>
+
+  <p>
+    Between full dementia and normal ageing lies a clinically recognised intermediate state: Mild Cognitive Impairment (MCI — a measurable decline in one or more cognitive domains beyond what is expected for age and education, but one that does not significantly impair daily functioning). MCI is important because it carries a higher risk of progressing to dementia than normal ageing — though it is not inevitable, and a proportion of people with MCI remain stable or even improve.
+  </p>
+
+  <!-- KEY TERMS -->
+  <div class="key-terms">
+    <div class="key-terms-title">📖 Key Terms</div>
+    <div class="key-terms-grid">
+      <div class="kt-item">
+        <span class="kt-term">Dementia</span>
+        <span class="kt-def">An umbrella term for a group of conditions causing progressive decline in memory, thinking, behaviour and ability to carry out daily activities, resulting from physical damage to brain cells.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Alzheimer's disease</span>
+        <span class="kt-def">The most common form of dementia (~60–70% of cases), caused by accumulation of amyloid plaques and tau tangles in the brain leading to progressive nerve cell loss.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Vascular dementia</span>
+        <span class="kt-def">Dementia caused by reduced blood supply to the brain — often following stroke, TIA (transient ischaemic attack — a brief temporary disruption of blood flow), or gradual small vessel disease.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Dementia with Lewy bodies</span>
+        <span class="kt-def">Caused by abnormal protein deposits in nerve cells; characterised by visual hallucinations (seeing things that are not there), Parkinsonism (tremor and stiffness), and fluctuating alertness.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Frontotemporal dementia</span>
+        <span class="kt-def">Affects personality, behaviour and language more than memory in early stages; the most common form of dementia in people under 65.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Mild Cognitive Impairment (MCI)</span>
+        <span class="kt-def">A measurable decline in thinking or memory beyond normal ageing that does not yet significantly impair daily life; not all MCI progresses to dementia.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Amyloid</span>
+        <span class="kt-def">A protein that accumulates abnormally in Alzheimer's disease, forming plaques in brain tissue that damage nerve cells; now detectable in blood in research settings.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Cognitive reserve</span>
+        <span class="kt-def">The brain's resilience to damage, built over a lifetime through education, intellectual challenge, learning new skills and social engagement — acting as a buffer against the clinical expression of dementia.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">MoCA</span>
+        <span class="kt-def">Montreal Cognitive Assessment — a brief standardised test assessing memory, attention, language, visuospatial skills and executive function, used to screen for cognitive impairment in clinical practice.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Cholinesterase inhibitor</span>
+        <span class="kt-def">A class of medication (including donepezil, rivastigmine and galantamine) that slows the breakdown of acetylcholine — a chemical messenger important for memory — in the brain; used in Alzheimer's disease to modestly slow symptom progression.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Population-attributable fraction</span>
+        <span class="kt-def">A statistical estimate of the proportion of disease cases in a population that could theoretically be prevented if a given risk factor were eliminated — used by the Lancet Commission to quantify how much dementia each modifiable risk factor contributes.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section-label">
+    <div class="section-number">2</div>
+    <h2 class="section-title">Why does it matter?</h2>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <div class="stat-number">982,000</div>
+      <div class="stat-label">People in the UK living with dementia</div>
+      <div class="stat-prose">Estimated figure for 2024, projected to rise to 1.4 million by 2040 as the population ages.<sup><a href="#ref-3">3</a></sup></div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">45%</div>
+      <div class="stat-label">Of cases potentially preventable</div>
+      <div class="stat-prose">By addressing 14 modifiable risk factors across the life course — from childhood education to late-life social engagement.<sup><a href="#ref-2">2</a></sup></div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">#1</div>
+      <div class="stat-label">UK's leading cause of death</div>
+      <div class="stat-prose">Dementia claimed 76,894 UK lives in 2024 — 1 in 8 of all deaths. The leading cause of death for UK women since 2011.<sup><a href="#ref-4">4</a></sup></div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">£42bn</div>
+      <div class="stat-label">Annual cost to the UK</div>
+      <div class="stat-prose">The economic cost of dementia in 2024 — projected to rise to £90 billion by 2040. Families bear 63% of the total cost.<sup><a href="#ref-3">3</a></sup></div>
+    </div>
+  </div>
+
+  <p>
+    The numbers alone convey the scale. But dementia also matters in a more intimate way — it affects not just the person with the diagnosis but everyone around them. It changes relationships, creates the heaviest caring burdens in all of medicine, and has a profound effect on families that often extends over years or even decades.
+  </p>
+
+  <div class="hope-box">
+    <div class="hb-title">🌱 A genuinely hopeful message from the evidence</div>
+    <p>Despite being the UK's biggest killer, nearly half of all dementia cases are potentially preventable. Age-specific dementia incidence — the rate of new cases per 1,000 people of a given age — is already declining in high-income countries, providing early evidence that prevention approaches are having a real-world impact. The research on modifiable risk factors represents one of the most important public health opportunities in a generation.</p>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section-label">
+    <div class="section-number">3</div>
+    <h2 class="section-title">What your doctor might discuss</h2>
+  </div>
+
+  <p>
+    <strong>Assessing cognitive concerns in primary care.</strong> When someone presents with concerns about their memory or thinking — whether their own concerns or those of a family member — UK practice involves taking a careful history covering the nature, onset and progression of symptoms, their impact on daily life, and relevant medical and family history. A collateral history (information from someone who knows the person well) is often invaluable, as individuals with early cognitive decline may not be fully aware of their difficulties.
+  </p>
+
+  <p>
+    Standardised cognitive assessments are commonly used in UK primary care — including the MoCA (Montreal Cognitive Assessment — see Key Terms above), the 6-CIT (Six-Item Cognitive Impairment Test), or the MMSE (Mini-Mental State Examination). These brief tests assess memory, attention, language, visuospatial ability (the ability to interpret and mentally manipulate visual information about space and objects) and planning — providing a structured, reproducible snapshot that can be repeated over time to track change.
+  </p>
+
+  <p>
+    <strong>Blood tests and brain imaging.</strong> An important step in any assessment of cognitive decline is excluding treatable, reversible causes. Blood tests routinely check for thyroid dysfunction (an underactive thyroid — hypothyroidism — can cause significant cognitive slowing), vitamin B12 and folate deficiency, anaemia (low red blood cell count), and abnormalities in calcium and glucose levels. Structural brain imaging — typically MRI (magnetic resonance imaging, a detailed scan using magnetic fields rather than X-rays) or CT (computed tomography, an X-ray based cross-sectional scan) — may be recommended, particularly to exclude other treatable causes of cognitive change (such as a subdural haematoma — a collection of blood between the brain and its outer covering), and to help identify the subtype of dementia.<sup><a href="#ref-1">1</a></sup>
+  </p>
+
+  <p>
+    <strong>Referral to memory services.</strong> In UK practice, a GP presenting with cognitive concerns will typically refer to a memory clinic (a specialist service staffed by old age psychiatrists, neurologists, neuropsychologists and specialist nurses) for formal neuropsychological assessment (detailed standardised cognitive testing), diagnostic clarification, and post-diagnostic support. NICE NG97 recommends that people with suspected dementia are referred to memory assessment services without requiring a confirmed diagnosis first.<sup><a href="#ref-1">1</a></sup>
+  </p>
+
+  <p>
+    <strong>Medications for Alzheimer's disease.</strong> The principal drug treatments currently available for Alzheimer's disease in the UK are cholinesterase inhibitors (see Key Terms above): donepezil (Aricept), rivastigmine (Exelon), and galantamine (Reminyl). These medications modestly slow the progression of cognitive and functional symptoms and are appropriate for people with mild to moderate Alzheimer's disease. For people with moderate to severe Alzheimer's disease, memantine (Ebixa) — an NMDA receptor antagonist (a medication that modulates a different chemical signalling pathway in the brain) — may be added. These medications do not stop or reverse the underlying disease process — they represent symptomatic management. No disease-modifying treatment is currently available on the NHS, though new drugs including lecanemab and donanemab have shown the ability to slow disease progression in early-stage Alzheimer's in clinical trials and have received regulatory approvals; their NHS availability is subject to ongoing assessment.</p>
+
+  <p>
+    <strong>Post-diagnosis planning and support.</strong> A dementia diagnosis has significant practical implications. In UK clinical practice, these include: early discussion of lasting power of attorney (LPA — a legal document allowing a trusted person to make decisions on someone's behalf if they lose the capacity to do so themselves); notification to the DVLA (Driver and Vehicle Licensing Agency) as required by law; and connecting with support services including the Alzheimer's Society and Dementia UK's Admiral Nurse service (specialist nursing support for families affected by dementia). Care planning discussions addressed to the person's wishes, values and priorities form part of good practice from the point of diagnosis.<sup><a href="#ref-1">1</a></sup>
+  </p>
+
+  <p>
+    <strong>The 14 modifiable risk factors — a framework for prevention.</strong> Increasingly, a conversation about dementia includes a conversation about what can be done to reduce risk. The Lancet Commission on Dementia Prevention, Intervention and Care — the most authoritative systematic review in this field — identifies 14 modifiable risk factors grouped across the life course:<sup><a href="#ref-2">2</a></sup>
+  </p>
+
+  <ul>
+    <li><em>Early life:</em> Less education.</li>
+    <li><em>Midlife:</em> Hearing loss, hypertension (high blood pressure), obesity, excessive alcohol consumption, traumatic brain injury (a head injury causing disruption to brain function), and now also high LDL cholesterol (low-density lipoprotein — the form of cholesterol most associated with cardiovascular risk).</li>
+    <li><em>Later life:</em> Smoking, depression, social isolation, physical inactivity, diabetes, air pollution, and untreated vision loss.</li>
+  </ul>
+
+  <p>
+    These risk factors do not act in isolation — they interact and compound over decades. Addressing several of them simultaneously, particularly in midlife, produces the greatest cumulative benefit.
+  </p>
+
+  <!-- ORIGINAL HELF.SCHOOL LIFE-COURSE VISUAL -->
+  <div style="background:#fff;border:1px solid rgba(107,94,168,0.18);border-radius:12px;overflow:hidden;margin:1.8rem 0;">
+    <div style="background:var(--neuro);padding:.8rem 1.2rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap;">
+      <div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff;">14 modifiable risk factors across the life course</div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,0.70);">Source: Livingston et al, Lancet 2024</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;">
+
+      <!-- Early life -->
+      <div style="padding:1rem 1rem 1.2rem;border-right:1px solid rgba(107,94,168,0.12);">
+        <div style="display:flex;align-items:center;gap:.45rem;margin-bottom:.75rem;">
+          <div style="width:10px;height:10px;border-radius:50%;background:#7A9E87;flex-shrink:0;"></div>
+          <div style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7A9E87;">Early life</div>
+        </div>
+        <div style="font-size:.8rem;color:#2C2C2C;background:rgba(122,158,135,0.08);border:1px solid rgba(122,158,135,0.25);border-radius:7px;padding:.55rem .7rem;margin-bottom:.4rem;font-weight:500;">📚 Less education</div>
+        <div style="font-size:.78rem;color:rgba(44,44,44,0.60);padding:0 .2rem;line-height:1.4;">Education in childhood and early adulthood builds cognitive reserve — the brain's resilience to later damage.</div>
+      </div>
+
+      <!-- Midlife -->
+      <div style="padding:1rem 1rem 1.2rem;border-right:1px solid rgba(107,94,168,0.12);">
+        <div style="display:flex;align-items:center;gap:.45rem;margin-bottom:.75rem;">
+          <div style="width:10px;height:10px;border-radius:50%;background:var(--amber);flex-shrink:0;"></div>
+          <div style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#B8832A;">Midlife</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.35rem;">
+          <div style="font-size:.8rem;color:#2C2C2C;background:rgba(232,168,74,0.10);border:1px solid rgba(232,168,74,0.30);border-radius:7px;padding:.5rem .65rem;font-weight:500;">👂 Hearing loss</div>
+          <div style="font-size:.8rem;color:#2C2C2C;background:rgba(232,168,74,0.10);border:1px solid rgba(232,168,74,0.30);border-radius:7px;padding:.5rem .65rem;font-weight:500;">🩺 High blood pressure</div>
+          <div style="font-size:.8rem;color:#2C2C2C;background:rgba(232,168,74,0.10);border:1px solid rgba(232,168,74,0.30);border-radius:7px;padding:.5rem .65rem;font-weight:500;">⚖️ Obesity</div>
+          <div style="font-size:.8rem;color:#2C2C2C;background:rgba(232,168,74,0.10);border:1px solid rgba(232,168,74,0.30);border-radius:7px;padding:.5rem .65rem;font-weight:500;">🍷 Excess alcohol</div>
+          <div style="font-size:.8rem;color:#2C2C2C;background:rgba(232,168,74,0.10);border:1px solid rgba(232,168,74,0.30);border-radius:7px;padding:.5rem .65rem;font-weight:500;">🤕 Head injury</div>
+          <div style="font-size:.8rem;color:#2C2C2C;background:rgba(232,168,74,0.10);border:1px solid rgba(232,168,74,0.30);border-radius:7px;padding:.5rem .65rem;font-weight:500;">🫀 High LDL cholesterol</div>
+        </div>
+      </div>
+
+      <!-- Later life -->
+      <div style="padding:1rem 1rem 1.2rem;">
+        <div style="display:flex;align-items:center;gap:.45rem;margin-bottom:.75rem;">
+          <div style="width:10px;height:10px;border-radius:50%;background:var(--neuro-light);flex-shrink:0;"></div>
+          <div style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--neuro);">Later life</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.35rem;">
+          <div style="font-size:.8rem;color:#2C2C2C;background:rgba(107,94,168,0.08);border:1px solid rgba(107,94,168,0.20);border-radius:7px;padding:.5rem .65rem;font-weight:500;">🚬 Smoking</div>
+          <div style="font-size:.8rem;color:#2C2C2C;background:rgba(107,94,168,0.08);border:1px solid rgba(107,94,168,0.20);border-radius:7px;padding:.5rem .65rem;font-weight:500;">😔 Depression</div>
+          <div style="font-size:.8rem;color:#2C2C2C;background:rgba(107,94,168,0.08);border:1px solid rgba(107,94,168,0.20);border-radius:7px;padding:.5rem .65rem;font-weight:500;">🧍 Social isolation</div>
+          <div style="font-size:.8rem;color:#2C2C2C;background:rgba(107,94,168,0.08);border:1px solid rgba(107,94,168,0.20);border-radius:7px;padding:.5rem .65rem;font-weight:500;">🛋️ Physical inactivity</div>
+          <div style="font-size:.8rem;color:#2C2C2C;background:rgba(107,94,168,0.08);border:1px solid rgba(107,94,168,0.20);border-radius:7px;padding:.5rem .65rem;font-weight:500;">🩸 Diabetes</div>
+          <div style="font-size:.8rem;color:#2C2C2C;background:rgba(107,94,168,0.08);border:1px solid rgba(107,94,168,0.20);border-radius:7px;padding:.5rem .65rem;font-weight:500;">🌫️ Air pollution</div>
+          <div style="font-size:.8rem;color:#2C2C2C;background:rgba(107,94,168,0.08);border:1px solid rgba(107,94,168,0.20);border-radius:7px;padding:.5rem .65rem;font-weight:500;">👁️ Untreated vision loss</div>
+        </div>
+      </div>
+
+    </div>
+    <div style="background:rgba(107,94,168,0.06);border-top:1px solid rgba(107,94,168,0.12);padding:.65rem 1.2rem;font-size:.78rem;color:rgba(44,44,44,0.65);line-height:1.5;">
+      Together these 14 factors account for around 45% of global dementia cases — meaning action at any life stage can meaningfully reduce risk. It is never too early, and never too late, to start.
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section-label">
+    <div class="section-number">4</div>
+    <h2 class="section-title">What the research shows</h2>
+  </div>
+
+  <div class="research-section">
+
+    <!-- Research Card 1 — Lancet 2024: 45% preventable -->
+    <div class="research-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">Lancet Commission 2024</div>
+        <div class="ev-stat-row">45%</div>
+        <div class="ev-outcome">of dementia cases are potentially preventable</div>
+        <div class="ev-conditions">14 modifiable risk factors identified · acts across the full life course</div>
+      </div>
+      <div class="ev-body">
+        <p>The 2024 report of the Lancet standing Commission on Dementia Prevention, Intervention and Care — the most comprehensive review of dementia risk in the world — concludes that 45% of future dementia cases could potentially be prevented or delayed by addressing 14 modifiable risk factors. This represents a rise from the 40% figure in the 2020 report, driven by two new risk factors added in 2024: high LDL cholesterol in midlife (contributing 7% of attributable risk) and untreated vision loss in later life (contributing 2%). The life-course framework is central to this evidence: risk reduction starts in childhood through education and continues through midlife and late life. Addressing most risk factors during midlife has the greatest overall impact.</p>
+        <p class="ev-source">Livingston G et al. Dementia prevention, intervention, and care: 2024 report of the Lancet standing Commission. The Lancet. 2024. doi:10.1016/S0140-6736(24)01296-0.<sup><a href="#ref-2">2</a></sup></p>
+      </div>
+    </div>
+
+    <!-- Research Card 2 — Lancet 2024: Hearing loss -->
+    <div class="research-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">Lancet Commission 2024</div>
+        <div class="ev-stat-row">9%</div>
+        <div class="ev-outcome">of dementia cases linked to untreated hearing loss</div>
+        <div class="ev-conditions">The largest single modifiable risk factor · treating hearing loss reduces the risk</div>
+      </div>
+      <div class="ev-body">
+        <p>Hearing loss in midlife is the largest individual modifiable risk factor for dementia, with a population-attributable fraction (see Key Terms above) of 9% — meaning that up to 9% of dementia cases globally could theoretically be prevented if hearing loss were eliminated. The mechanism is not fully established, but proposed pathways include: the increased cognitive load (mental effort) required to process degraded sound competing with other brain functions; changes in brain structure from reduced auditory input; and the role of hearing loss in driving social withdrawal and isolation (itself an independent risk factor). The 2024 Commission states that evidence for hearing aids reducing dementia risk is now stronger than in 2020: studies show people who use hearing aids have significantly lower rates of dementia than those who do not, and the effect appears most marked in those with additional risk factors.</p>
+        <p class="ev-source">Livingston G et al. Dementia prevention, intervention, and care: 2024 report of the Lancet standing Commission. The Lancet. 2024. doi:10.1016/S0140-6736(24)01296-0.<sup><a href="#ref-2">2</a></sup></p>
+      </div>
+    </div>
+
+    <!-- Research Card 3 — ARUK 2024 UK burden -->
+    <div class="research-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">UK burden 2024</div>
+        <div class="ev-stat-row" style="font-size:1.5rem;line-height:1.2;">UK's biggest killer</div>
+        <div class="ev-outcome">Dementia is the leading cause of death in the UK</div>
+        <div class="ev-conditions">76,894 deaths in 2024 · 1 in 8 of all UK deaths · women most affected</div>
+      </div>
+      <div class="ev-body">
+        <p>Analysis of official death registration data across the four UK nations confirms that dementia remained the UK's leading cause of death in 2024, claiming 76,894 lives — 11.8% of all deaths registered that year. Dementia has been the leading cause of death for UK women since 2011. Heart disease remains the leading cause of death for men. Dementia disproportionately affects women both in prevalence and mortality. The economic cost was £42 billion in 2024, projected to rise to £90 billion by 2040 as the UK population ages — with families bearing approximately 63% of the total cost through unpaid caring. These figures explain why dementia prevention has become one of the highest priorities in UK public health policy.</p>
+        <p class="ev-source">Alzheimer's Research UK analysis of ONS, NRS and NISRA death registration data, 2025.<sup><a href="#ref-4">4</a></sup></p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PUTTING IT TOGETHER -->
+  <div class="putting-together">
+    <p>
+      Dementia is the condition that provokes more fear than almost any other — and understandably so. It touches identity, independence, relationships and memory itself. But the evidence now tells a more hopeful story than it did a decade ago. Nearly half of all cases are potentially preventable through factors that act across a full lifetime: education, cardiovascular health, treating hearing loss, staying physically and socially active, managing depression. Age-specific incidence is already falling in high-income countries — evidence that prevention is not theoretical but real.
+    </p>
+    <p>
+      For those already living with dementia, the landscape is also changing. New disease-modifying treatments are in development, cognitive support services have improved, and there is growing understanding of how to maintain quality of life well beyond diagnosis.
+    </p>
+    <p>
+      Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+    </p>
+  </div>
+
+  <!-- REFERENCES -->
+  <div class="references-section">
+    <h2 class="references-title">References</h2>
+
+    <div id="ref-1" class="ref-block">
+      <p class="ref-full">1. National Institute for Health and Care Excellence. <em>Dementia: assessment, management and support for people living with dementia and their carers.</em> NICE guideline NG97. Published June 2018. Last reviewed October 2025. Available at: nice.org.uk/guidance/ng97</p>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.nice.org.uk/guidance/ng97" target="_blank" rel="noopener">NICE NG97</a>
+      </div>
+    </div>
+
+    <div id="ref-2" class="ref-block">
+      <p class="ref-full">2. Livingston G, Huntley J, Liu KY, et al. Dementia prevention, intervention, and care: 2024 report of the Lancet standing Commission. <em>The Lancet.</em> 2024 Aug 10;404(10452):572–628. doi: 10.1016/S0140-6736(24)01296-0. PMID: 39096926.</p>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1016/S0140-6736(24)01296-0" target="_blank" rel="noopener">Lancet DOI</a>
+        <a class="ref-pill" href="https://www.thelancet.com/infographics-do/dementia-risk" target="_blank" rel="noopener">Free infographic</a>
+      </div>
+    </div>
+
+    <div id="ref-3" class="ref-block">
+      <p class="ref-full">3. Carnall Farrar. <em>The Economic Impact of Dementia.</em> Report commissioned by Alzheimer's Society. 2024. Available at: alzheimers.org.uk</p>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.alzheimers.org.uk/blog/how-many-people-have-dementia-uk" target="_blank" rel="noopener">Alzheimer's Society</a>
+      </div>
+    </div>
+
+    <div id="ref-4" class="ref-block">
+      <p class="ref-full">4. Alzheimer's Research UK. <em>Dementia is still UK's biggest killer.</em> Analysis of ONS, NRS and NISRA death registration data. Published December 2025. Available at: alzheimersresearchuk.org</p>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.alzheimersresearchuk.org/news/dementia-is-still-uks-biggest-killer-where-do-we-go-from-here/" target="_blank" rel="noopener">ARUK</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RESEARCH FLAGS -->
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-logo">helf.school</div>
+    <p style="font-size:.83rem;color:rgba(255,255,255,0.65);margin-top:.3rem;">Health education for everyone.</p>
+    <div class="footer-disclaimer">
+      <strong style="color:rgba(255,255,255,0.85);">Important:</strong> The content on helf.school is health education — not medical advice. It describes what medicine knows and what services exist. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+    </div>
+    <div class="footer-copy">&copy; 2026 helf.school &middot; Version 1.0 &middot; April 2026</div>
+  </div>
+</footer>
+
+</body>
+</html>
