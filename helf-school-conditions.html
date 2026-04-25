@@ -3,346 +3,416 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Health Topics — helf.school</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<title>Health Conditions — helf.school</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;0,900;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream:#FAF7F2;--warm-white:#FFFDF9;--heart-red:#C8423A;--heart-deep:#8B1F1A;
-    --coral:#E8705A;--sage:#5A7A6A;--sage-light:#EBF2EE;--navy:#1C2B3A;--navy-mid:#2E4155;
-    --sand:#D4C4A8;--sand-light:#F0E8D8;--text-body:#2C2C2C;--text-muted:#7A7265;--border:#E2D9C8;
-    --cat-cardio:#C8423A;--cat-cardio-light:#FEE8E7;
-    --cat-neuro:#6B5EA8;--cat-neuro-light:#EFECF8;
-    --cat-digestive:#D47C3A;--cat-digestive-light:#FEF3E7;
-    --cat-practical:#7A6A2E;--cat-practical-light:#F5F0E7;
+    --navy: #1B2A4A;
+    --coral: #E8634A;
+    --cream: #FAF7F2;
+    --sage: #7A9E87;
+    --amber: #E8A84A;
+    --cardio: #C8423A;
+    --practical: #7A6A2E;
+    --digestive: #D47C3A;
+    --neuro: #6B5EA8;
   }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth;scroll-padding-top:72px}
-  body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-body);font-size:16px;line-height:1.7;overflow-x:hidden}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; font-weight: 400; background: var(--cream); color: #2C2C2C; line-height: 1.6; }
 
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,247,242,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between}
-  .nav-logo{text-decoration:none;display:flex;align-items:center}
-  .nav-logo svg{height:44px;width:auto}
-  .nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center;margin-left:2rem}
-  .nav-links a{font-size:0.88rem;font-weight:400;color:var(--navy-mid);text-decoration:none;transition:color 0.2s}
-  .nav-links a:hover,.nav-links a.active{color:var(--heart-red)}
-  .nav-cta{background:var(--heart-red)!important;color:white!important;padding:0.5rem 1.25rem;border-radius:100px;font-weight:500!important}
+  /* NAV */
+  .site-nav { background: var(--navy); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .nav-logo { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
+  .nav-logo svg { width: 36px; height: 28px; }
+  .nav-brand { font-family: 'Fraunces', serif; font-size: 1.25rem; color: #fff; font-weight: 700; }
+  .nav-tagline { font-size: .72rem; color: rgba(255,255,255,0.65); letter-spacing: .08em; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.80); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta { background: var(--coral); color: #fff; padding: .45rem 1.1rem; border-radius: 6px; font-weight: 600; font-size: .88rem; text-decoration: none; white-space: nowrap; }
 
-  .page-hero{padding:100px 5rem 4rem;background:var(--navy);position:relative;overflow:hidden}
-  .page-hero::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(200,66,58,0.12) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none}
-  .hero-inner{max-width:700px;position:relative;z-index:1}
-  .hero-tag{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.75rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--coral);background:rgba(232,112,90,0.12);border:1px solid rgba(232,112,90,0.2);padding:0.35rem 0.9rem;border-radius:100px;margin-bottom:1.25rem}
-  .page-hero h1{font-family:'Fraunces',serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:700;color:white;line-height:1.1;letter-spacing:-0.03em;margin-bottom:1rem}
-  .page-hero h1 em{font-style:italic;color:var(--coral)}
-  .page-hero p{font-size:1rem;color:rgba(255,255,255,0.75);font-weight:400;line-height:1.75;margin-bottom:2rem;max-width:580px}
-  .hero-stats{display:flex;gap:2.5rem;flex-wrap:wrap;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1)}
-  .hero-stat-num{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:700;color:white;line-height:1}
-  .hero-stat-num span{color:var(--coral)}
-  .hero-stat-label{font-size:0.78rem;color:rgba(255,255,255,0.55);font-weight:400;margin-top:0.2rem}
+  /* DISCLAIMER BAR */
+  .disclaimer-bar { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.10); padding: .55rem 2rem; text-align: center; font-size: .78rem; color: rgba(255,255,255,0.75); }
+  .disclaimer-bar strong { color: rgba(255,255,255,0.92); }
 
-  .filter-bar{background:white;border-bottom:1px solid var(--border);padding:1rem 5rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;position:sticky;top:64px;z-index:90;box-shadow:0 2px 12px rgba(0,0,0,0.04)}
-  .search-box{display:flex;align-items:center;gap:0.5rem;background:var(--cream);border:1px solid var(--border);border-radius:100px;padding:0.5rem 1rem;flex:1;max-width:320px}
-  .search-box input{border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:0.87rem;color:var(--text-body);outline:none;width:100%}
-  .search-box input::placeholder{color:var(--text-muted)}
-  .filter-chips{display:flex;gap:0.5rem;flex-wrap:wrap}
-  .chip{font-size:0.78rem;font-weight:500;padding:0.35rem 0.9rem;border-radius:100px;border:1.5px solid var(--border);background:transparent;color:var(--text-muted);cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif}
-  .chip:hover{border-color:var(--navy);color:var(--navy)}
-  .chip.active{border-color:transparent;color:white}
-  .chip[data-cat="all"].active{background:var(--navy)}
-  .chip[data-cat="cardio"].active{background:var(--cat-cardio)}
-  .chip[data-cat="practical"].active{background:var(--cat-practical)}
-  .chip[data-cat="digestive"].active{background:var(--cat-digestive)}
-  .chip[data-cat="neuro"].active{background:var(--cat-neuro)}
+  /* HERO */
+  .hero { background: linear-gradient(135deg, #0f1e38 0%, var(--navy) 60%, #2a3f6a 100%); padding: 3.5rem 2rem 3rem; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 20%, rgba(232,99,74,0.10) 0%, transparent 55%); pointer-events: none; }
+  .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+  .hero h1 { font-family: 'Fraunces', serif; font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 900; color: #fff; line-height: 1.15; margin-bottom: .7rem; }
+  .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.85); max-width: 560px; margin-bottom: 2rem; }
+  .hero-stats { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .hero-stat { text-align: center; }
+  .hero-stat-num { font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 900; color: #fff; line-height: 1; }
+  .hero-stat-label { font-size: .82rem; color: rgba(255,255,255,0.72); margin-top: .2rem; }
 
-  .disclaimer-inline{background:var(--sand-light);border-bottom:2px solid var(--sand);padding:0.9rem 5rem;font-size:0.82rem;color:var(--navy-mid);font-weight:400;line-height:1.5}
-  .disclaimer-inline strong{font-weight:600}
+  /* MAIN */
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 2.5rem 2rem 5rem; }
 
-  .content-area{padding:3rem 5rem;max-width:1300px;margin:0 auto}
-  .category-section{margin-bottom:4rem}
-  .category-header{display:flex;align-items:center;gap:1.25rem;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:2px solid var(--border)}
-  .category-icon-wrap{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
-  .category-title-group{flex:1}
-  .category-title{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;color:var(--navy);letter-spacing:-0.02em;line-height:1.15}
-  .category-subtitle{font-size:0.83rem;color:var(--text-muted);font-weight:400;margin-top:0.2rem}
-  .category-count{font-size:0.75rem;font-weight:600;padding:0.3rem 0.8rem;border-radius:100px;letter-spacing:0.05em}
+  /* FILTER CHIPS */
+  .filters { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .filter-chip { display: inline-flex; align-items: center; gap: .35rem; padding: .45rem 1rem; border-radius: 20px; border: 1.5px solid rgba(27,42,74,0.20); background: #fff; font-size: .88rem; font-weight: 600; color: #2C2C2C; cursor: pointer; transition: all .18s; user-select: none; }
+  .filter-chip:hover { border-color: var(--navy); color: var(--navy); }
+  .filter-chip.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .filter-chip[data-filter="cardio"].active { background: var(--cardio); border-color: var(--cardio); }
+  .filter-chip[data-filter="practical"].active { background: var(--practical); border-color: var(--practical); }
+  .filter-chip[data-filter="digestive"].active { background: var(--digestive); border-color: var(--digestive); }
+  .filter-chip[data-filter="neuro"].active { background: var(--neuro); border-color: var(--neuro); }
 
-  .articles-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
-  .article-tile{background:white;border-radius:16px;border:1px solid var(--border);padding:1.4rem;cursor:pointer;transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:0.75rem;text-decoration:none;color:inherit}
-  .article-tile::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;opacity:0;transition:opacity 0.25s}
-  .article-tile:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,0.08)}
-  .article-tile:hover::before{opacity:1}
-  .article-num{font-family:'Fraunces',serif;font-size:0.75rem;font-weight:700;color:var(--text-muted);opacity:0.6}
-  .article-tile-title{font-family:'Fraunces',serif;font-size:0.97rem;font-weight:500;color:var(--navy);line-height:1.35;flex:1}
-  .article-tile-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
-  .article-status{font-size:0.7rem;font-weight:600;padding:0.2rem 0.6rem;border-radius:100px;letter-spacing:0.05em;text-transform:uppercase}
-  .status-coming{background:var(--sand-light);color:var(--text-muted)}
-  .status-available{background:var(--sage-light);color:var(--sage)}
-  .article-arrow{font-size:0.8rem;color:var(--text-muted);opacity:0;transition:opacity 0.2s,transform 0.2s}
-  .article-tile:hover .article-arrow{opacity:1;transform:translateX(3px)}
+  /* SERIES BLOCKS */
+  .series-block { margin-bottom: 3rem; }
+  .series-header { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.2rem; padding-bottom: .8rem; border-bottom: 2px solid; }
+  .series-header.cardio { border-color: var(--cardio); }
+  .series-header.practical { border-color: var(--practical); }
+  .series-header.digestive { border-color: var(--digestive); }
+  .series-header.neuro { border-color: var(--neuro); }
+  .series-icon { font-size: 1.5rem; }
+  .series-title { font-family: 'Fraunces', serif; font-size: 1.35rem; font-weight: 700; color: var(--navy); }
+  .series-count { font-size: .82rem; font-weight: 600; color: rgba(27,42,74,0.50); margin-left: auto; }
 
-  .cat-cardio .article-tile::before{background:var(--cat-cardio)}
-  .cat-cardio .article-tile:hover{border-color:rgba(200,66,58,0.2)}
-  .cat-cardio .article-num{color:var(--cat-cardio);opacity:0.7}
-  .cat-practical .article-tile::before{background:var(--cat-practical)}
-  .cat-practical .article-tile:hover{border-color:rgba(122,106,46,0.2)}
-  .cat-practical .article-num{color:var(--cat-practical);opacity:0.7}
-  .cat-digestive .article-tile::before{background:var(--cat-digestive)}
-  .cat-digestive .article-tile:hover{border-color:rgba(212,124,58,0.2)}
-  .cat-digestive .article-num{color:var(--cat-digestive);opacity:0.7}
-  .cat-neuro .article-tile::before{background:var(--cat-neuro)}
-  .cat-neuro .article-tile:hover{border-color:rgba(107,94,168,0.2)}
-  .cat-neuro .article-num{color:var(--cat-neuro);opacity:0.7}
+  /* ARTICLE GRID */
+  .article-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+  .article-card { background: #fff; border-radius: 10px; border: 1px solid rgba(27,42,74,0.10); padding: 1.2rem 1.3rem; text-decoration: none; display: flex; flex-direction: column; gap: .5rem; transition: box-shadow .18s, transform .18s; position: relative; overflow: hidden; }
+  .article-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .article-card.cardio::before { background: var(--cardio); }
+  .article-card.practical::before { background: var(--practical); }
+  .article-card.digestive::before { background: var(--digestive); }
+  .article-card.neuro::before { background: var(--neuro); }
+  .article-card:hover { box-shadow: 0 4px 18px rgba(27,42,74,0.12); transform: translateY(-2px); }
+  .card-num { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(27,42,74,0.40); }
+  .card-title { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 700; color: var(--navy); line-height: 1.3; }
+  .card-arrow { margin-top: auto; font-size: .82rem; font-weight: 600; display: flex; align-items: center; gap: .3rem; }
+  .card-arrow.cardio { color: var(--cardio); }
+  .card-arrow.practical { color: var(--practical); }
+  .card-arrow.digestive { color: var(--digestive); }
+  .card-arrow.neuro { color: var(--neuro); }
 
-  .modal-overlay{position:fixed;inset:0;background:rgba(28,43,58,0.6);backdrop-filter:blur(4px);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s}
-  .modal-overlay.open{opacity:1;pointer-events:all}
-  .modal{background:white;border-radius:24px;padding:2.5rem;max-width:440px;width:90%;text-align:center;transform:translateY(20px);transition:transform 0.3s;box-shadow:0 32px 80px rgba(0,0,0,0.2)}
-  .modal-overlay.open .modal{transform:translateY(0)}
-  .modal-icon{font-size:2.5rem;margin-bottom:1rem}
-  .modal-title{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:0.5rem;line-height:1.25}
-  .modal-article-name{font-family:'Fraunces',serif;font-style:italic;color:var(--heart-red);font-size:1rem;margin-bottom:1rem}
-  .modal-body{font-size:0.88rem;color:var(--text-muted);line-height:1.7;font-weight:400;margin-bottom:1.75rem}
-  .modal-actions{display:flex;gap:0.75rem;justify-content:center}
-  .modal-btn-primary{background:var(--heart-red);color:white;padding:0.7rem 1.5rem;border-radius:100px;font-size:0.88rem;font-weight:500;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s}
-  .modal-btn-primary:hover{background:var(--heart-deep)}
-  .modal-btn-secondary{background:transparent;color:var(--text-muted);padding:0.7rem 1.5rem;border-radius:100px;font-size:0.88rem;font-weight:400;border:1.5px solid var(--border);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s}
-  .modal-btn-secondary:hover{border-color:var(--navy);color:var(--navy)}
+  /* FOOTER */
+  .site-footer { background: var(--navy); color: rgba(255,255,255,0.70); padding: 2.5rem 2rem 1.5rem; font-size: .85rem; margin-top: 3rem; }
+  .footer-inner { max-width: 1100px; margin: 0 auto; }
+  .footer-logo { font-family: 'Fraunces', serif; font-weight: 700; color: #fff; font-size: 1.1rem; margin-bottom: .4rem; }
+  .footer-links { display: flex; gap: 1.5rem; margin: .8rem 0; flex-wrap: wrap; }
+  .footer-links a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: .83rem; transition: color .2s; }
+  .footer-links a:hover { color: #fff; }
+  .footer-disclaimer { font-size: .78rem; color: rgba(255,255,255,0.60); margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.12); line-height: 1.6; max-width: 700px; }
+  .footer-copy { margin-top: .8rem; font-size: .75rem; color: rgba(255,255,255,0.40); }
 
-  footer{background:var(--navy);padding:2rem 5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-top:4rem}
-  .footer-logo{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:white;text-decoration:none}
-  .footer-logo span{color:var(--coral)}
-  footer p{font-size:0.82rem;color:rgba(255,255,255,0.4);font-weight:400}
-  .footer-disclaimer{background:rgba(200,66,58,0.12);border-top:1px solid rgba(200,66,58,0.2);padding:1rem 5rem;font-size:0.79rem;color:rgba(255,200,198,0.80);font-weight:400;line-height:1.6}
-
-  @media(max-width:1100px){.articles-grid{grid-template-columns:repeat(3,1fr)}}
-  @media(max-width:800px){.page-hero,.content-area,footer,.footer-disclaimer,.disclaimer-inline{padding-left:1.5rem;padding-right:1.5rem}.filter-bar{padding:1rem 1.5rem}.articles-grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:500px){.articles-grid{grid-template-columns:1fr}}
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .hero { padding: 2.5rem 1.2rem 2rem; }
+    .page-wrap { padding: 1.5rem 1.2rem 3rem; }
+    .hero-stats { gap: 1.2rem; }
+    .article-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 
-<nav>
+<!-- NAV -->
+<nav class="site-nav">
   <a href="index.html" class="nav-logo">
-    <svg viewBox="0 0 260 56" xmlns="http://www.w3.org/2000/svg" style="height:44px;width:auto;">
-      <path d="M4 8 Q4 4 8 4 L28 4 L28 50 L8 50 Q4 50 4 46 Z" fill="none" stroke="#1C2B3A" stroke-width="2" stroke-linejoin="round"/>
-      <path d="M28 4 L48 4 Q52 4 52 8 L52 46 Q52 50 48 50 L28 50 Z" fill="none" stroke="#1C2B3A" stroke-width="2" stroke-linejoin="round"/>
-      <line x1="28" y1="4" x2="28" y2="50" stroke="#1C2B3A" stroke-width="2"/>
-      <line x1="8" y1="14" x2="25" y2="14" stroke="#1C2B3A" stroke-width="1" opacity="0.3"/>
-      <line x1="8" y1="20" x2="25" y2="20" stroke="#1C2B3A" stroke-width="1" opacity="0.3"/>
-      <line x1="8" y1="26" x2="25" y2="26" stroke="#1C2B3A" stroke-width="1" opacity="0.3"/>
-      <line x1="8" y1="32" x2="25" y2="32" stroke="#1C2B3A" stroke-width="1" opacity="0.3"/>
-      <line x1="8" y1="38" x2="25" y2="38" stroke="#1C2B3A" stroke-width="1" opacity="0.3"/>
-      <line x1="31" y1="14" x2="48" y2="14" stroke="#1C2B3A" stroke-width="1" opacity="0.3"/>
-      <line x1="31" y1="20" x2="48" y2="20" stroke="#1C2B3A" stroke-width="1" opacity="0.3"/>
-      <line x1="31" y1="26" x2="48" y2="26" stroke="#1C2B3A" stroke-width="1" opacity="0.3"/>
-      <line x1="31" y1="32" x2="48" y2="32" stroke="#1C2B3A" stroke-width="1" opacity="0.3"/>
-      <line x1="31" y1="38" x2="48" y2="38" stroke="#1C2B3A" stroke-width="1" opacity="0.3"/>
-      <path d="M42 41 C42 39.5 40.5 38.5 39.5 39.5 C38.5 38.5 37 39.5 37 41 C37 42.5 39.5 44.5 39.5 44.5 C39.5 44.5 42 42.5 42 41Z" fill="#C8423A" opacity="0.7"/>
-      <text x="62" y="25" font-family="'Fraunces', Georgia, serif" font-size="20" font-weight="700" fill="#1C2B3A" letter-spacing="-0.5">helf<tspan fill="#C8423A">.</tspan>school</text>
-      <text x="62" y="40" font-family="'DM Sans', Arial, sans-serif" font-size="7.5" fill="#7A7265" letter-spacing="1.4" font-weight="500">HEALTH EDUCATION</text>
+    <svg viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="0" y="4" width="16" height="20" rx="2" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+      <rect x="20" y="4" width="16" height="20" rx="2" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+      <line x1="18" y1="5" x2="18" y2="23" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+      <path d="M3 9 Q8 8 13 9M3 12 Q8 11 13 12M3 15 Q8 14 13 15" stroke="rgba(255,255,255,0.45)" stroke-width="1" fill="none"/>
+      <path d="M23 9 Q28 8 33 9M23 12 Q28 11 33 12M23 15 Q28 14 33 15" stroke="rgba(255,255,255,0.45)" stroke-width="1" fill="none"/>
     </svg>
+    <div>
+      <div class="nav-brand">helf.school</div>
+      <div class="nav-tagline">Health Education</div>
+    </div>
   </a>
   <ul class="nav-links">
-    <li><a href="index.html#about-dr-paul">Dr Paul</a></li>
-    <li><a href="index.html#why">Why helf.school</a></li>
-    <li><a href="#" class="active">Conditions</a></li>
-    <li><a href="index.html#community">Community</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="helf-school-conditions.html" aria-current="page">Conditions</a></li>
     <li><a href="helf-school-membership.html">Membership</a></li>
-    <li><a href="helf-school-membership.html" class="nav-cta">Join Free</a></li>
   </ul>
+  <a href="helf-school-membership.html" class="nav-cta">Join free</a>
 </nav>
 
-<div class="page-hero">
+<!-- DISCLAIMER BAR -->
+<div class="disclaimer-bar">
+  <strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+</div>
+
+<!-- HERO -->
+<header class="hero">
   <div class="hero-inner">
-    <div class="hero-tag">Health Topics Library</div>
-    <h1>Everything explained,<br><em>in plain English</em></h1>
-    <p>Browse our growing library of health topics — each written by Dr Paul, grounded in evidence, and explained clearly without jargon. New articles added regularly.</p>
+    <h1>Evidence-based health education,<br>plainly explained.</h1>
+    <p class="hero-sub">Every article written by Dr Paul — retired NHS GP with over 20 years of experience — drawing only on peer-reviewed research and NHS clinical guidance.</p>
     <div class="hero-stats">
-      <div><div class="hero-stat-num">4</div><div class="hero-stat-label">series published</div></div>
-      <div><div class="hero-stat-num">23</div><div class="hero-stat-label">articles live now</div></div>
-      <div><div class="hero-stat-num">∞</div><div class="hero-stat-label">growing over time</div></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">4</div>
+        <div class="hero-stat-label">series published</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">26</div>
+        <div class="hero-stat-label">articles live now</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">∞</div>
+        <div class="hero-stat-label">growing over time</div>
+      </div>
     </div>
   </div>
-</div>
+</header>
 
-<div class="filter-bar">
-  <div class="search-box">
-    <span class="search-icon" style="color:var(--text-muted);font-size:0.9rem">🔍</span>
-    <input type="text" id="search-input" placeholder="Search topics…" oninput="filterArticles()">
-  </div>
-  <div class="filter-chips">
-    <button class="chip active" data-cat="all" onclick="setFilter('all',this)">All topics</button>
-    <button class="chip" data-cat="cardio" onclick="setFilter('cardio',this)">❤️ Cardiovascular</button>
-    <button class="chip" data-cat="practical" onclick="setFilter('practical',this)">🌿 Practical Health</button>
-    <button class="chip" data-cat="digestive" onclick="setFilter('digestive',this)">🫁 Digestive Health</button>
-    <button class="chip" data-cat="neuro" onclick="setFilter('neuro',this)">🧠 Neurological Health</button>
-  </div>
-</div>
+<!-- MAIN -->
+<main class="page-wrap">
 
-<div class="disclaimer-inline">
-  ⚕️ <strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
-</div>
-
-<div class="content-area">
-
-  <!-- CARDIOVASCULAR -->
-  <div class="category-section cat-cardio" data-category="cardio">
-    <div class="category-header">
-      <div class="category-icon-wrap" style="background:var(--cat-cardio-light);width:72px;height:72px;padding:6px;">
-        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-          <path d="M30 52 Q10 38 8 24 Q6 12 16 10 Q24 8 30 18 Q36 8 44 10 Q54 12 52 24 Q50 38 30 52Z" fill="none" stroke="#C8423A" stroke-width="2.2" stroke-linejoin="round"/>
-          <path d="M8 32 L14 32 L17 26 L20 38 L24 22 L27 36 L30 32 L46 32" fill="none" stroke="#C8423A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
-        </svg>
-      </div>
-      <div class="category-title-group">
-        <div class="category-title">Cardiovascular Health</div>
-        <div class="category-subtitle">Understanding your heart, blood pressure, cholesterol, and risk</div>
-      </div>
-      <div class="category-count" style="background:var(--cat-cardio-light);color:var(--cat-cardio)">7 articles</div>
-    </div>
-    <div class="articles-grid">
-      <a class="article-tile" href="hypertension.html"><div class="article-num">01</div><div class="article-tile-title">Hypertension (High Blood Pressure)</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-      <a class="article-tile" href="cholesterol.html"><div class="article-num">02</div><div class="article-tile-title">Cholesterol Explained</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-      <a class="article-tile" href="heart-attack-risk.html"><div class="article-num">03</div><div class="article-tile-title">How Doctors Estimate Heart Attack Risk</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-      <a class="article-tile" href="statins.html"><div class="article-num">04</div><div class="article-tile-title">Statins — Benefits &amp; Risks</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-      <a class="article-tile" href="lifestyle-changes.html"><div class="article-num">05</div><div class="article-tile-title">How to Reduce Cardiovascular Risk with Lifestyle Changes</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-      <a class="article-tile" href="salt-blood-pressure.html"><div class="article-num">06</div><div class="article-tile-title">Salt and Blood Pressure</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-      <a class="article-tile" href="supplements-cholesterol.html"><div class="article-num">07</div><div class="article-tile-title">Do Supplements Lower Cholesterol?</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-    </div>
+  <!-- FILTERS -->
+  <div class="filters" role="group" aria-label="Filter by series">
+    <button class="filter-chip active" data-filter="all">All topics</button>
+    <button class="filter-chip" data-filter="cardio">❤️ Cardiovascular</button>
+    <button class="filter-chip" data-filter="practical">🌿 Practical Health</button>
+    <button class="filter-chip" data-filter="digestive">🫁 Digestive Health</button>
+    <button class="filter-chip" data-filter="neuro">🧠 Neurological</button>
   </div>
 
-  <!-- PRACTICAL HEALTH -->
-  <div class="category-section cat-practical" data-category="practical">
-    <div class="category-header">
-      <div class="category-icon-wrap" style="background:var(--cat-practical-light);width:72px;height:72px;padding:6px;">
-        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-          <circle cx="30" cy="20" r="7" fill="none" stroke="#7A6A2E" stroke-width="2"/>
-          <line x1="30" y1="8" x2="30" y2="5" stroke="#7A6A2E" stroke-width="2" stroke-linecap="round"/>
-          <line x1="30" y1="35" x2="30" y2="32" stroke="#7A6A2E" stroke-width="2" stroke-linecap="round"/>
-          <line x1="18" y1="20" x2="15" y2="20" stroke="#7A6A2E" stroke-width="2" stroke-linecap="round"/>
-          <line x1="45" y1="20" x2="42" y2="20" stroke="#7A6A2E" stroke-width="2" stroke-linecap="round"/>
-          <path d="M20 52 Q20 42 28 38 Q22 42 30 45 Q24 48 30 52" fill="none" stroke="#7A6A2E" stroke-width="2" stroke-linecap="round"/>
-          <line x1="30" y1="52" x2="30" y2="40" stroke="#7A6A2E" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div class="category-title-group">
-        <div class="category-title">Practical Health</div>
-        <div class="category-subtitle">Diet, sleep, exercise, stress and alcohol — the lifestyle foundations of health</div>
-      </div>
-      <div class="category-count" style="background:var(--cat-practical-light);color:var(--cat-practical)">5 articles</div>
+  <!-- SERIES A — CARDIOVASCULAR -->
+  <div class="series-block" data-series="cardio">
+    <div class="series-header cardio">
+      <span class="series-icon">❤️</span>
+      <span class="series-title">Cardiovascular Health</span>
+      <span class="series-count">7 articles</span>
     </div>
-    <div class="articles-grid">
-      <a class="article-tile" href="mediterranean-diet.html"><div class="article-num">08</div><div class="article-tile-title">The Mediterranean Diet</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-      <a class="article-tile" href="sleep.html"><div class="article-num">09</div><div class="article-tile-title">Sleep and Your Health</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-      <a class="article-tile" href="exercise.html"><div class="article-num">10</div><div class="article-tile-title">Exercise — the Evidence Base</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-      <a class="article-tile" href="stress.html"><div class="article-num">11</div><div class="article-tile-title">Stress and the Body</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-      <a class="article-tile" href="alcohol.html"><div class="article-num">12</div><div class="article-tile-title">Alcohol — What the Evidence Shows</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-    </div>
-  </div>
+    <div class="article-grid">
 
-  <!-- DIGESTIVE HEALTH -->
-  <div class="category-section cat-digestive" data-category="digestive">
-    <div class="category-header">
-      <div class="category-icon-wrap" style="background:var(--cat-digestive-light);width:72px;height:72px;padding:6px;">
-        <svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-          <path d="M30 2 L30 14" stroke="#D47C3A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <path d="M30 14 Q20 14 18 20 Q15 28 20 34 Q24 38 30 36 Q36 34 36 28 Q37 20 30 14Z" fill="none" stroke="#D47C3A" stroke-width="2" stroke-linejoin="round"/>
-          <path d="M14 36 Q22 32 30 32 Q38 32 42 36" fill="none" stroke="#D47C3A" stroke-width="2.2" stroke-linecap="round" opacity="0.7"/>
-          <path d="M42 36 Q46 42 46 50 Q46 56 42 60 Q38 64 36 62" fill="none" stroke="#D47C3A" stroke-width="2.2" stroke-linecap="round" opacity="0.7"/>
-        </svg>
-      </div>
-      <div class="category-title-group">
-        <div class="category-title">Digestive Health</div>
-        <div class="category-subtitle">Reflux, IBS, IBD, liver disease, coeliac and the evidence behind treatments</div>
-      </div>
-      <div class="category-count" style="background:var(--cat-digestive-light);color:var(--cat-digestive)">9 articles</div>
-    </div>
-    <div class="articles-grid">
-      <a class="article-tile" href="acid-reflux.html"><div class="article-num">13</div><div class="article-tile-title">Acid Reflux and GORD</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-      <a class="article-tile" href="ibd.html"><div class="article-num">14</div><div class="article-tile-title">IBD — Crohn's &amp; Ulcerative Colitis</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-      <a class="article-tile" href="bloating.html"><div class="article-num">15</div><div class="article-tile-title">Bloating — Causes and Evidence</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-      <a class="article-tile" href="ibs.html"><div class="article-num">16</div><div class="article-tile-title">Irritable Bowel Syndrome (IBS)</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-      <a class="article-tile" href="masld.html"><div class="article-num">17</div><div class="article-tile-title">Fatty Liver Disease (MASLD)</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-      <a class="article-tile" href="coeliac.html"><div class="article-num">18</div><div class="article-tile-title">Coeliac Disease</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-      <a class="article-tile" href="gallstones.html"><div class="article-num">19</div><div class="article-tile-title">Gallstones</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-      <a class="article-tile" href="diverticular-disease.html"><div class="article-num">20</div><div class="article-tile-title">Diverticular Disease</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-      <a class="article-tile" href="constipation.html"><div class="article-num">21</div><div class="article-tile-title">Constipation</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a href="hypertension.html" class="article-card cardio">
+        <span class="card-num">Article 01</span>
+        <span class="card-title">Hypertension (High Blood Pressure)</span>
+        <span class="card-arrow cardio">Read article →</span>
+      </a>
+
+      <a href="cholesterol.html" class="article-card cardio">
+        <span class="card-num">Article 02</span>
+        <span class="card-title">Cholesterol Explained</span>
+        <span class="card-arrow cardio">Read article →</span>
+      </a>
+
+      <a href="heart-attack-risk.html" class="article-card cardio">
+        <span class="card-num">Article 03</span>
+        <span class="card-title">How Doctors Estimate Heart Attack Risk</span>
+        <span class="card-arrow cardio">Read article →</span>
+      </a>
+
+      <a href="statins.html" class="article-card cardio">
+        <span class="card-num">Article 04</span>
+        <span class="card-title">Statins — Benefits &amp; Risks</span>
+        <span class="card-arrow cardio">Read article →</span>
+      </a>
+
+      <a href="lifestyle-changes.html" class="article-card cardio">
+        <span class="card-num">Article 05</span>
+        <span class="card-title">How to Reduce Cardiovascular Risk with Lifestyle Changes</span>
+        <span class="card-arrow cardio">Read article →</span>
+      </a>
+
+      <a href="salt-blood-pressure.html" class="article-card cardio">
+        <span class="card-num">Article 06</span>
+        <span class="card-title">Salt and Blood Pressure</span>
+        <span class="card-arrow cardio">Read article →</span>
+      </a>
+
+      <a href="supplements-cholesterol.html" class="article-card cardio">
+        <span class="card-num">Article 07</span>
+        <span class="card-title">Do Supplements Lower Cholesterol?</span>
+        <span class="card-arrow cardio">Read article →</span>
+      </a>
+
     </div>
   </div>
 
-  <!-- NEUROLOGICAL HEALTH -->
-  <div class="category-section cat-neuro" data-category="neuro">
-    <div class="category-header">
-      <div class="category-icon-wrap" style="background:var(--cat-neuro-light);width:72px;height:72px;padding:6px;">
-        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-          <path d="M30 8 Q20 6 16 14 Q12 20 14 28 Q10 30 10 36 Q10 44 18 46 Q20 52 26 52 L34 52 Q40 52 42 46 Q50 44 50 36 Q50 30 46 28 Q48 20 44 14 Q40 6 30 8Z" fill="none" stroke="#6B5EA8" stroke-width="2" stroke-linejoin="round"/>
-          <line x1="30" y1="8" x2="30" y2="52" stroke="#6B5EA8" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.4"/>
-          <path d="M16 22 Q20 26 18 32" fill="none" stroke="#6B5EA8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-          <path d="M44 22 Q40 26 42 32" fill="none" stroke="#6B5EA8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-          <circle cx="20" cy="20" r="2" fill="#6B5EA8" opacity="0.5"/>
-          <circle cx="40" cy="20" r="2" fill="#6B5EA8" opacity="0.5"/>
-          <circle cx="16" cy="34" r="2" fill="#6B5EA8" opacity="0.5"/>
-          <circle cx="44" cy="34" r="2" fill="#6B5EA8" opacity="0.5"/>
-        </svg>
-      </div>
-      <div class="category-title-group">
-        <div class="category-title">Neurological Health</div>
-        <div class="category-subtitle">Migraine, headaches, dizziness, memory and the evidence behind neurological care</div>
-      </div>
-      <div class="category-count" style="background:var(--cat-neuro-light);color:var(--cat-neuro)">2 live · 3 coming</div>
+  <!-- SERIES B — PRACTICAL HEALTH -->
+  <div class="series-block" data-series="practical">
+    <div class="series-header practical">
+      <span class="series-icon">🌿</span>
+      <span class="series-title">Practical Health</span>
+      <span class="series-count">5 articles</span>
     </div>
-    <div class="articles-grid">
-      <a class="article-tile" href="migraine.html"><div class="article-num">22</div><div class="article-tile-title">Migraine</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-      <a class="article-tile" href="headaches.html"><div class="article-num">23</div><div class="article-tile-title">Headaches — Types and Red Flags</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
-      <div class="article-tile" onclick="openModal('Dizziness and Vertigo')"><div class="article-num">24</div><div class="article-tile-title">Dizziness and Vertigo</div><div class="article-tile-footer"><span class="article-status status-coming">Coming soon</span><span class="article-arrow">→</span></div></div>
-      <div class="article-tile" onclick="openModal('Memory, Cognition and Dementia')"><div class="article-num">25</div><div class="article-tile-title">Memory, Cognition and Dementia</div><div class="article-tile-footer"><span class="article-status status-coming">Coming soon</span><span class="article-arrow">→</span></div></div>
-      <div class="article-tile" onclick="openModal('Epilepsy')"><div class="article-num">26</div><div class="article-tile-title">Epilepsy — What It Is and How It's Managed</div><div class="article-tile-footer"><span class="article-status status-coming">Coming soon</span><span class="article-arrow">→</span></div></div>
+    <div class="article-grid">
+
+      <a href="mediterranean-diet.html" class="article-card practical">
+        <span class="card-num">Article 08</span>
+        <span class="card-title">The Mediterranean Diet</span>
+        <span class="card-arrow practical">Read article →</span>
+      </a>
+
+      <a href="sleep.html" class="article-card practical">
+        <span class="card-num">Article 09</span>
+        <span class="card-title">Sleep and Your Health</span>
+        <span class="card-arrow practical">Read article →</span>
+      </a>
+
+      <a href="exercise.html" class="article-card practical">
+        <span class="card-num">Article 10</span>
+        <span class="card-title">Exercise — the Evidence Base</span>
+        <span class="card-arrow practical">Read article →</span>
+      </a>
+
+      <a href="stress.html" class="article-card practical">
+        <span class="card-num">Article 11</span>
+        <span class="card-title">Stress and the Body</span>
+        <span class="card-arrow practical">Read article →</span>
+      </a>
+
+      <a href="alcohol.html" class="article-card practical">
+        <span class="card-num">Article 12</span>
+        <span class="card-title">Alcohol — What the Evidence Shows</span>
+        <span class="card-arrow practical">Read article →</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- SERIES C — DIGESTIVE HEALTH -->
+  <div class="series-block" data-series="digestive">
+    <div class="series-header digestive">
+      <span class="series-icon">🫁</span>
+      <span class="series-title">Digestive Health</span>
+      <span class="series-count">9 articles</span>
+    </div>
+    <div class="article-grid">
+
+      <a href="acid-reflux.html" class="article-card digestive">
+        <span class="card-num">Article 13</span>
+        <span class="card-title">Acid Reflux and GORD</span>
+        <span class="card-arrow digestive">Read article →</span>
+      </a>
+
+      <a href="ibd.html" class="article-card digestive">
+        <span class="card-num">Article 14</span>
+        <span class="card-title">IBD — Crohn's &amp; Ulcerative Colitis</span>
+        <span class="card-arrow digestive">Read article →</span>
+      </a>
+
+      <a href="bloating.html" class="article-card digestive">
+        <span class="card-num">Article 15</span>
+        <span class="card-title">Bloating — Causes and Evidence</span>
+        <span class="card-arrow digestive">Read article →</span>
+      </a>
+
+      <a href="ibs.html" class="article-card digestive">
+        <span class="card-num">Article 16</span>
+        <span class="card-title">Irritable Bowel Syndrome (IBS)</span>
+        <span class="card-arrow digestive">Read article →</span>
+      </a>
+
+      <a href="masld.html" class="article-card digestive">
+        <span class="card-num">Article 17</span>
+        <span class="card-title">Fatty Liver Disease (MASLD)</span>
+        <span class="card-arrow digestive">Read article →</span>
+      </a>
+
+      <a href="coeliac.html" class="article-card digestive">
+        <span class="card-num">Article 18</span>
+        <span class="card-title">Coeliac Disease</span>
+        <span class="card-arrow digestive">Read article →</span>
+      </a>
+
+      <a href="gallstones.html" class="article-card digestive">
+        <span class="card-num">Article 19</span>
+        <span class="card-title">Gallstones</span>
+        <span class="card-arrow digestive">Read article →</span>
+      </a>
+
+      <a href="diverticular-disease.html" class="article-card digestive">
+        <span class="card-num">Article 20</span>
+        <span class="card-title">Diverticular Disease</span>
+        <span class="card-arrow digestive">Read article →</span>
+      </a>
+
+      <a href="constipation.html" class="article-card digestive">
+        <span class="card-num">Article 21</span>
+        <span class="card-title">Constipation</span>
+        <span class="card-arrow digestive">Read article →</span>
+      </a>
+
     </div>
   </div>
 
-</div>
+  <!-- SERIES D — NEUROLOGICAL HEALTH -->
+  <div class="series-block" data-series="neuro">
+    <div class="series-header neuro">
+      <span class="series-icon">🧠</span>
+      <span class="series-title">Neurological Health</span>
+      <span class="series-count">5 articles</span>
+    </div>
+    <div class="article-grid">
 
-<!-- MODAL -->
-<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
-  <div class="modal">
-    <div class="modal-icon">📖</div>
-    <div class="modal-title">This article is coming soon</div>
-    <div class="modal-article-name" id="modal-article-name"></div>
-    <p class="modal-body">Dr Paul is working on this article. Become a member to be notified the moment it's published — and get full access to every article as soon as it goes live.</p>
-    <div class="modal-actions">
-      <button class="modal-btn-primary" onclick="window.location.href='helf-school-membership.html'">Become a Member</button>
-      <button class="modal-btn-secondary" onclick="closeModal()">Close</button>
+      <a href="migraine.html" class="article-card neuro">
+        <span class="card-num">Article 22</span>
+        <span class="card-title">Migraine</span>
+        <span class="card-arrow neuro">Read article →</span>
+      </a>
+
+      <a href="headaches.html" class="article-card neuro">
+        <span class="card-num">Article 23</span>
+        <span class="card-title">Headaches — Types and Red Flags</span>
+        <span class="card-arrow neuro">Read article →</span>
+      </a>
+
+      <a href="dizziness-vertigo.html" class="article-card neuro">
+        <span class="card-num">Article 24</span>
+        <span class="card-title">Dizziness and Vertigo</span>
+        <span class="card-arrow neuro">Read article →</span>
+      </a>
+
+      <a href="memory-dementia.html" class="article-card neuro">
+        <span class="card-num">Article 25</span>
+        <span class="card-title">Memory, Cognition and Dementia</span>
+        <span class="card-arrow neuro">Read article →</span>
+      </a>
+
+      <a href="epilepsy.html" class="article-card neuro">
+        <span class="card-num">Article 26</span>
+        <span class="card-title">Epilepsy — What It Is and How It's Managed</span>
+        <span class="card-arrow neuro">Read article →</span>
+      </a>
+
     </div>
   </div>
-</div>
 
-<footer>
-  <a href="index.html" class="footer-logo">helf<span>.</span>school</a>
-  <p>© 2026 helf.school · Health education, not medical advice · <a href="#" style="color:rgba(255,255,255,0.4);text-decoration:none">Privacy</a> · <a href="#" style="color:rgba(255,255,255,0.4);text-decoration:none">Terms</a></p>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-logo">helf.school</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="helf-school-conditions.html">Conditions</a>
+      <a href="helf-school-membership.html">Membership</a>
+    </div>
+    <div class="footer-disclaimer">
+      <strong style="color:rgba(255,255,255,0.85);">Important:</strong> The content on helf.school is health education — not medical advice. It describes what medicine knows and what services exist. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+    </div>
+    <div class="footer-copy">&copy; 2026 helf.school &middot; Version 1.1 &middot; April 2026</div>
+  </div>
 </footer>
-<div class="footer-disclaimer">
-  ⚕️ Everything on helf.school is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. For life-threatening emergencies in the UK, the emergency number is 999.
-</div>
 
 <script>
-  function openModal(title){document.getElementById('modal-article-name').textContent=title;document.getElementById('modal-overlay').classList.add('open')}
-  function closeModal(){document.getElementById('modal-overlay').classList.remove('open')}
-  function closeModalOutside(e){if(e.target===document.getElementById('modal-overlay'))closeModal()}
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
-  function setFilter(cat,btn){
-    document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('active')});
-    btn.classList.add('active');
-    document.querySelectorAll('.category-section').forEach(function(sec){
-      sec.style.display=(cat==='all'||sec.dataset.category===cat)?'':'none'
+  const chips = document.querySelectorAll('.filter-chip');
+  const blocks = document.querySelectorAll('.series-block');
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const filter = chip.dataset.filter;
+      blocks.forEach(block => {
+        if (filter === 'all' || block.dataset.series === filter) {
+          block.style.display = '';
+        } else {
+          block.style.display = 'none';
+        }
+      });
     });
-  }
-  function filterArticles(){
-    var query=document.getElementById('search-input').value.toLowerCase();
-    document.querySelectorAll('.article-tile').forEach(function(tile){
-      var title=tile.querySelector('.article-tile-title').textContent.toLowerCase();
-      tile.style.display=title.includes(query)?'':'none'
-    });
-    document.querySelectorAll('.category-section').forEach(function(sec){sec.style.display=''});
-    if(query.length>0){document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('active')});document.querySelector('[data-cat="all"]').classList.add('active')}
-  }
+  });
 </script>
+
 </body>
 </html>
