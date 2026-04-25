@@ -47,7 +47,7 @@ This audit must be completed internally before Claude presents any article, visu
    - Confirm it is the PRIMARY paper containing the stat, not a secondary source citing that paper
    - Confirm the specific numerical claim is in that paper — fetch the abstract if needed
    - Confirm the NICE guideline number is CG or NG (search to verify — never from memory)
-   - Confirm the PubMed PMID resolves to the correct paper (search to verify)
+   - Confirm the PubMed PMID resolves to the correct paper (search to verify — every PMID, every time)
 
 4. **Key Terms cross-reference audit** — any Key Terms box term appearing in a structured list, criteria box, or table must have "(see Key Terms below)" added.
 
@@ -141,7 +141,7 @@ All three files confirmed complete and on GitHub for all 5 articles. Educational
 
 ### Series C — Digestive Health (Articles 13–21)
 Articles 13–20: all three files confirmed complete and on GitHub. Educational voice retrofit confirmed complete.
-Article 21: article HTML built April 2026. Visuals built April 2026. Teleprompter still to build.
+Article 21: all three files built April 2026 — upload to GitHub pending.
 
 | # | Title | Slug | Status |
 |---|-------|------|--------|
@@ -156,20 +156,17 @@ Article 21: article HTML built April 2026. Visuals built April 2026. Teleprompte
 | 21 | Constipation | constipation | All 3 files built April 2026 ✅ — upload to GitHub |
 
 ### Series D — Neurological Health (Articles 22–26)
-Article 22: all three files built April 2026 — upload to GitHub pending.
-Article 23: all three files built April 2026 — upload to GitHub pending.
-Article 24: article HTML built April 2026 — visuals and teleprompter still to build.
-Articles 25–26: not yet built.
+Articles 22–26: all three files built April 2026 — upload to GitHub pending.
 
 | # | Title | Slug | Status |
 |---|-------|------|--------|
 | 22 | Migraine | migraine | All 3 files built April 2026 ✅ — upload to GitHub |
 | 23 | Headaches — Types and Red Flags | headaches | All 3 files built April 2026 ✅ — upload to GitHub |
-| 24 | Dizziness and Vertigo | dizziness-vertigo | Article HTML built April 2026 ✅ — visuals and teleprompter to build |
-| 25 | Memory, Cognition and Dementia | memory-dementia | Not yet built |
-| 26 | Epilepsy — What It Is and How It's Managed | epilepsy | Not yet built |
+| 24 | Dizziness and Vertigo | dizziness-vertigo | All 3 files built April 2026 ✅ — upload to GitHub |
+| 25 | Memory, Cognition and Dementia | memory-dementia | All 3 files built April 2026 ✅ — upload to GitHub |
+| 26 | Epilepsy — What It Is and How It's Managed | epilepsy | All 3 files built April 2026 ✅ — upload to GitHub |
 
-**Total articles live on site:** 20 (Articles 21–24 pending upload)
+**Total articles built: 26. Articles 21–26 pending upload to GitHub.**
 
 ---
 
@@ -181,20 +178,11 @@ Articles 25–26: not yet built.
 | helf-school-conditions.html | Rebuilt April 2026 | 20 live articles; 3 series; correct slugs |
 | helf-school-membership.html | On GitHub | Pricing: £0 / £6pm or £60pa / £150 lifetime |
 
-### helf-school-conditions.html — April 2026 rebuild (full rebuild, not patch)
-- 3 series shown: Cardiovascular (7) · Practical Health (5) · Digestive Health (8 live + 1 coming soon)
-- Filter chips: All topics · ❤️ Cardiovascular · 🌿 Practical Health · 🫁 Digestive Health
-- Hero stats: 3 series published · 20 articles live now · ∞ growing over time
-- Article 21 Constipation shown as "Coming soon" with modal
-- Copyright © 2026
-- Nav links: `index.html` throughout (old file wrongly used `helf-school.html`)
-- Full canonical educational voice phrase in inline disclaimer and footer
-- Unbuilt series (Neurological, Fatigue, Medical Decision, old Practical Articles) completely removed
-- Article 07 now correctly shows as live with link (was wrongly "Coming soon")
-- Practical Health Series (08–12) added — was entirely absent from old file
+### helf-school-conditions.html — needs updating
+Currently shows 20 live articles. Needs updating to reflect Articles 21–26 once uploaded to GitHub. When updating, rebuild from scratch — do not patch.
 
 ### index.html — April 2026 corrections applied
-1. Hero h1: "Understanding your heart" → "Understanding your health" (broader scope)
+1. Hero h1: "Understanding your heart" → "Understanding your health"
 2. Hero subtitle: "cardiovascular health" → "your health"
 3. Hero trust item: "Always seek advice from your doctor" → full canonical phrase
 4. Disclaimer banner: "Always speak to a qualified medical professional" → full canonical phrase
@@ -321,27 +309,20 @@ Every research card stat box must state the complete clinical finding in terms t
 - "77% response rate / vs 44% placebo" (complete comparison — reader understands what works)
 - "PEG superior / across all 4 outcomes" (clear clinical comparison)
 - "Macrogol superior / to lactulose across all outcomes"
+- "~50% / become seizure-free on their first anti-seizure medication"
+- ">30% / develop drug-resistant epilepsy despite adequate treatment"
 
 **Incorrect examples — statistical machinery or incomplete findings:**
-- "11" with label "RCTs — Epley effective" — the number of trials is irrelevant to the patient; the finding (Epley works) is what matters
-- "OR 2.67" — an odds ratio conveys nothing meaningful to a lay reader; the clinical finding must be stated
+- "11" with label "RCTs — Epley effective" — the number of trials is irrelevant to the patient
+- "OR 2.67" — an odds ratio conveys nothing meaningful to a lay reader
 - "Safe & effective" without stating WHAT is safe and effective — incomplete
-- "Moderate to strong evidence" without stating WHAT has that evidence level — incomplete
 - Participant counts, study counts, or cost figures as the headline stat — never permitted
-
-**Why this rule exists:** helf.school's purpose is health education. The research section is not a statistical appendix — it is the place where readers learn what medicine has found about their condition. Statistical detail belongs in the body text of the card, where it provides supporting context. The stat box is the headline. It must lead with the clinically important point.
 
 **Stat boxes show outcomes only — effect sizes, risk changes, response rates, or complete qualitative clinical conclusions when no single number captures the finding. NEVER:**
 - Participant counts ("868 participants", "2,441 participants")
 - Study counts ("10 RCTs", "39 studies")
 - Cost figures ("£113m", "£2.3bn")
 - Incomplete qualifiers ("safe & effective" without the subject; "OR 2.67" without explanation)
-
-**Good stat box examples:**
-- `~30% CV event reduction` · `77% response vs 44% placebo` · `PEG superior across 4 outcomes` · `+12% / +30% mortality risk` · `The Epley manoeuvre / is safe & effective for BPPV` · `Vestibular rehabilitation / has moderate to strong evidence`
-
-**Bad stat box examples:**
-- `1.38M participants` · `87 RCTs` · `£168m NHS cost` · `11 RCTs` · `OR 2.67` · `Safe & effective` (without subject) · `Moderate to strong evidence` (without subject)
 
 ### Full references standard
 - Full citation block: authors · title · journal · year · vol · pages · DOI
@@ -371,6 +352,16 @@ Apply everywhere, on first mention per section:
 - prochlorperazine (Stemetil)
 - betahistine (Serc)
 - cinnarizine (Stugeron)
+- lamotrigine (Lamictal)
+- levetiracetam (Keppra)
+- sodium valproate (Epilim)
+- carbamazepine (Tegretol)
+- lacosamide (Vimpat)
+- topiramate (Topamax)
+- donepezil (Aricept)
+- rivastigmine (Exelon)
+- galantamine (Reminyl)
+- memantine (Ebixa)
 
 ### Lay-clarification brackets — ALL medical terminology
 **The general rule:** Every medical or clinical term that a lay reader would not immediately understand must have a plain English definition in brackets on first use in each section. This applies to anatomical terms, physiological terms, symptom descriptors, drug class names, procedural terms, and diagnostic labels — not just statistical measures.
@@ -380,8 +371,7 @@ Examples of terms requiring lay clarification:
 - Symptoms: lacrimation (tearing) · rhinorrhoea (runny nose) · ptosis (drooping eyelid) · miosis (pupil constriction) · conjunctival redness (redness of the white of the eye)
 - Clinical: teratogenic (capable of causing harm to a developing foetus) · hepatotoxic (toxic to the liver) · tachycardia (fast heart rate)
 - Drug classes: tricyclic antidepressant · beta-blocker · prokinetic antiemetic
-
-**Why this keeps failing:** Earlier versions of this rule listed only statistical terms. Any term not on the explicit list was not caught at QC. The rule is now general: if a lay reader might not know it, it needs a definition in brackets on first use.
+- Neurological: EEG (electroencephalogram — brain activity recording) · MRI (magnetic resonance imaging) · postictal (recovery period after a seizure) · tonic-clonic (stiffening then rhythmic jerking)
 
 **Statistical measures** (also require lay clarification on first use per section):
 - HR (hazard ratio — HR 1.23 = 23% higher risk)
@@ -398,6 +388,9 @@ Two rules apply to all article HTML files:
 **Rule 1 — Safety-critical terms:** Any clinical term that carries significant implications for the reader — especially safety-critical ones such as teratogenicity, hepatotoxicity, nephrotoxicity, arrhythmia, or similar — must always have an **inline lay definition** in the same sentence where the term first appears. A Key Terms box entry alone is not sufficient.
 
 **Rule 2 — Structured lists and criteria boxes:** When a medical term that appears in the Key Terms box also appears in a structured list, numbered criteria, or diagnostic criteria box — where prose inline explanation is not practical — add **(see Key Terms below)** immediately after the term.
+
+### Cite the paper's exact numerical expression — never convert or paraphrase — LOCKED APRIL 2026
+When a paper reports a statistic, use its exact wording and numerical form in every location it appears. Never convert between forms — do not turn ">30%" into "1 in 3", "33%", or "around a third"; do not turn "1 in 1,000" into "0.1%". The conversion introduces inaccuracy and misrepresents the source. This rule applies to the stat grid, research cards, Key Terms definitions, body prose, Putting It Together box, and the teleprompter. Before delivering any file, cross-check every instance of every figure for consistency against the source paper's exact wording.
 
 ---
 
@@ -432,8 +425,6 @@ The fixed viewport is `100vw × 100vh` minus the 52px topbar and 32px dots bar =
 
 **The test before delivering any visuals file:** Open every slide in a browser. Is the content filling at least 85% of the visible area? If large white/dark expanses of empty space are visible below the content, the sizing is wrong. Increase font sizes and reduce gaps until the slide feels full.
 
-**Why this rule exists:** Multiple visuals files were delivered in April 2026 with text too small and gaps too large, leaving slides that looked sparse and underused the screen. Dr Paul explicitly noted the content was too small and the space was not being used well. This is a fundamental presentation quality issue — visuals are for filming and presenting, and undersized content reads poorly on camera.
-
 ### Layout
 - 4–6 item slides: **horizontal rows** using the `ev-stat-row` pattern — `72px icon | content | stat` — NOT vertical stacking
 - Stats: 2.5–3.6rem font size
@@ -461,24 +452,24 @@ The stat box sits in the left column (220px) of each ev-card. These values are r
 - Do NOT increase padding on `.ev-stat-box` — text will disappear off the bottom of the card
 - Do NOT use `.ev-conditions` font size above `.78rem` — it will overflow at any larger size
 
-**The complete clinical conclusion rule applies equally to visuals ev-stat-boxes.** The stat box in every research card in every visuals file must state the complete clinical finding — not ORs, RCT counts, or incomplete qualifiers. The same test applies: can a lay reader understand the clinical finding from the stat box alone?
+**The complete clinical conclusion rule applies equally to visuals ev-stat-boxes.**
 
 ### CTA slide standard (all visuals files)
 - Full-screen with radial gold-glow background + pulsing icon halo (3.2s drop-shadow)
-- **Central icon: minimum `5.5rem`** — the icon must dominate the slide visually. Never `3.2rem` or smaller — it disappears on screen.
-- **Fraunces headline: minimum `clamp(2.8rem, 5.5vw, 4.2rem)`** — this is the most important text on the slide. Never `clamp(2.2rem, 4.5vw, 3.2rem)` — too small.
-- **Fraunces italic subline: minimum `1.2rem`** — never `1rem`
+- **Central icon: minimum `5.5rem`** — the icon must dominate the slide visually
+- **Fraunces headline: minimum `clamp(2.8rem, 5.5vw, 4.2rem)`**
+- **Fraunces italic subline: minimum `1.2rem`**
 - 4 action cards (NOT chips) — emoji + Fraunces bold label, gradient + gold border
-- **Card emoji icons: minimum `2.2rem`** — never `1.4rem`
-- **Card title text: minimum `.96rem`** — never `.84rem`
+- **Card emoji icons: minimum `2.2rem`**
+- **Card title text: minimum `.96rem`**
 - **Medical-advice disclaimer box required:** ⚕️ icon · dashed border · "Health education — not medical advice" + full educational-voice phrase
 - Closing slide: same disclaimer box as CTA slide
 - Reference: `hypertension-visuals.html`
 
 ### Closing slide standard (all visuals files)
-- **Logo text: minimum `2.8rem`** — never `2rem`. This is the final brand impression.
-- **Tagline: minimum `1.05rem`** — never `.9rem`
-- **Link/series label: minimum `1rem`** — never `.85rem`
+- **Logo text: minimum `2.8rem`**
+- **Tagline: minimum `1.05rem`**
+- **Link/series label: minimum `1rem`**
 - Same disclaimer box as CTA slide, centred
 - Background: gradient from series dark colour to `#0d0d1a`
 
@@ -486,16 +477,15 @@ The stat box sits in the left column (220px) of each ev-card. These values are r
 **Topbar:**
 - Subtitle: minimum 0.75rem, `rgba(255,255,255,0.75)`
 - Slide counter: minimum 0.85rem, `rgba(255,255,255,0.90)`
-- Keyboard hint: minimum `rgba(255,255,255,0.60)` — values 0.35 or below not permitted
+- Keyboard hint: minimum `rgba(255,255,255,0.60)`
 
 **Animation/diagram text:**
 - Labels: minimum 13px, `rgba(255,255,255,0.80)`
-- SVG annotations: minimum 10px, `rgba(255,255,255,0.60)` — opacity 0.50 or below not permitted
+- SVG annotations: minimum 10px, `rgba(255,255,255,0.60)`
 
 **Source attributions:**
 - Minimum 0.75rem, `rgba(255,255,255,0.55)` on dark backgrounds
 - Minimum 0.75rem, `#2C2C2C` on light backgrounds
-- `.source-tag` style at `rgba(255,255,255,0.25)` not permitted
 
 **Presenter intro and closing slides:**
 - Taglines + series label: minimum `rgba(255,255,255,0.70)`
@@ -522,13 +512,11 @@ The stat box sits in the left column (220px) of each ev-card. These values are r
 Cue box always **precedes** the script lines for its segment — never after.
 Dr Paul advances slide FIRST, then reads — viewer sees slide before Dr Paul speaks.
 Label: `▶ ADVANCE NOW — then read`
-Prior teleprompter files built before this standard was confirmed may require retrofitting — confirm per file.
 
 ### Video length standard
 - Maximum 4–5 minutes
 - Word count: approximately 600–750 words at ~150 words per minute
 - Cut ruthlessly — no redundant examples, tight preamble, merge segments where possible
-- The teleprompter is the tight, high-impact doorway to the full article
 
 ### Teleprompter content standard
 Each teleprompter must deliver:
@@ -554,8 +542,8 @@ For any visual used in a video: standalone animation HTML (GIF source) + screen 
 Scale 0.62 · every 2nd frame · 120 colours · under 1.5MB total PPTX
 
 ### Video screen workflow
-- Camera-ready HTML files (e.g. `ar-sphincter-screen.html`): full-screen, responsive, auto-animate on load, bold for filming
-- Presenter HTML: bold red `.diagram-cue` callout box shows filename to open on second screen facing camera
+- Camera-ready HTML files: full-screen, responsive, auto-animate on load, bold for filming
+- Presenter HTML: bold red `.diagram-cue` callout box shows filename to open on second screen
 - Dr Paul reads from presenter; diagram HTML full-screened on second screen
 - Layout: `flex-start`, `6vh` top padding (prevents title clipping)
 
@@ -570,19 +558,22 @@ Scale 0.62 · every 2nd frame · 120 colours · under 1.5MB total PPTX
 5. Article ↔ presenter consistency — all facts, study names, years, citations match exactly
 6. Educational voice — no forbidden phrases; canonical phrase correct and in full throughout
 7. Drug names — brand names in brackets after all generics
-8. **Lay-clarification — ALL medical terminology in brackets on first use per section, not just statistical terms. Anatomical, physiological, symptom, drug class, and diagnostic terms all require plain English definitions. Statistical terms (HR, RR, OR, SMD, NNT, CI, PAR) are included in this rule.**
-9. **Research card clinical conclusions — complete clinical conclusion test (LOCKED APRIL 2026):** Every research card stat box must state the complete clinical finding in patient-relevant terms. The stat box (label + stat row + outcome + conditions together) must answer: WHAT was studied, WHAT was found, and WHY it matters to someone with that condition. The test: can a lay reader understand the clinical finding from the stat box alone? Statistical machinery (OR values, RCT counts, confidence intervals) must never appear as the headline finding. Incomplete qualifiers ("Safe & effective" without subject; "Moderate to strong evidence" without subject) are not permitted.
+8. **Lay-clarification — ALL medical terminology in brackets on first use per section**
+9. **Research card clinical conclusions — complete clinical conclusion test (LOCKED APRIL 2026)**
 10. Research card stats — outcomes only; never participant/study counts or cost figures as headline stat
 11. CTA slide — disclaimer box present with full canonical phrase
 12. Closing slide — same disclaimer box present
 13. Copyright year — 2026
 14. Body text weight — `font-weight:400` throughout (never 300 in body)
 15. No `opacity:0` animations on article body sections — content immediately visible
-16. **ev-stat-box — `.ev-conditions` font is `.78rem`, padding is `.9rem .75rem`, `overflow:hidden` present — check before delivery on every visuals file**
+16. **ev-stat-box — `.ev-conditions` font is `.78rem`, padding is `.9rem .75rem`, `overflow:hidden` present**
 17. **NICE guideline numbers — verify CG vs NG via web search in the same session. Never cite from memory.**
-18. **Safety-critical terms — any term like teratogenic, hepatotoxic, nephrotoxic must have an inline lay definition in the same sentence, not just a Key Terms entry**
-19. **Structured lists and criteria boxes — any Key Terms box term appearing in a list or criteria box must have "(see Key Terms below)" added immediately after it**
-20. **VIEWPORT MAXIMISATION — open every slide in a browser before delivering. Content must fill at least 85% of the visible area. Slide padding maximum `1rem 1.5rem 0.8rem`. Body text minimum `.90rem`. Card/row gaps maximum `.5rem`. Slide title minimum `1.55rem`. If slides look sparse or content is small, increase font sizes and reduce gaps before delivering.**
+18. **Safety-critical terms — any term like teratogenic, hepatotoxic, nephrotoxic must have an inline lay definition**
+19. **Structured lists and criteria boxes — any Key Terms box term appearing in a list or criteria box must have "(see Key Terms below)" added**
+20. **VIEWPORT MAXIMISATION — open every slide in a browser before delivering. Content must fill at least 85% of the visible area.**
+21. **PMID VERIFICATION — every PMID must be verified by web search in the same session. A PubMed URL must be found in search results confirming the PMID resolves to the correct paper. Never include a PMID from memory or inference.**
+22. **STRICT SOURCE RULE — every stat, claim, and causal attribution must be traceable to an approved source. Charity and advocacy websites (Epilepsy Action, Alzheimer's Society, etc.) are not approved. Derived figures (calculating deaths from a prevalence rate) are not acceptable — only cite figures explicitly stated in the approved source. If a stat cannot be traced, omit it.**
+23. **EXACT FIGURE RULE — use the paper's exact numerical expression everywhere. Never convert between forms (">30%" must not become "1 in 3" or "33%"; "1 in 1,000" must not become "0.1%"). Cross-check stat grid, research cards, Key Terms, body prose, Putting It Together, and teleprompter for consistency before delivering any file.**
 
 ---
 
@@ -598,15 +589,15 @@ github.com/pls4286/helfschool/upload/main
 Sign in with Google if session has expired. Upload individual HTML files (not zipped). Commit with a brief description.
 
 ### File corruption pattern — know and ignore
-Edge incognito uploads occasionally capture the Claude.ai loader HTML (~5,140 bytes, begins with "data-build-id") instead of the actual file. Never false-alarm on byte size alone. Verify content via GitHub raw URL before any assessment. This is an upload capture issue, not a file corruption issue.
+Edge incognito uploads occasionally capture the Claude.ai loader HTML (~5,140 bytes, begins with "data-build-id") instead of the actual file. Never false-alarm on byte size alone. Verify content via GitHub raw URL before any assessment.
 
 ---
 
 ## 14. APPROVED RESEARCH SOURCES
 
-BMJ · NICE guidelines · Cochrane Database · NEJM · The Lancet · JAMA · BMJ Best Practice · PubMed · NHS/NHS Digital · ONS · CDC · WHO · Global Burden of Disease Study · ESC/EAS guidelines · Alimentary Pharmacology & Therapeutics · European Heart Journal
+BMJ · NICE guidelines · Cochrane Database · NEJM · The Lancet · JAMA · BMJ Best Practice · PubMed · NHS/NHS Digital · ONS · CDC · WHO · Global Burden of Disease Study · ESC/EAS guidelines · Alimentary Pharmacology & Therapeutics · European Heart Journal · QJM · Epilepsia · Seizure: European Journal of Epilepsy · JAMA Neurology
 
-No non-peer-reviewed sources, commercial health sites, or forum content permitted.
+**NOT approved:** Epilepsy Action · Alzheimer's Society · Alzheimer's Research UK · any charity or advocacy website · commercial health sites · forum content · any secondary source that cites a primary paper without being that primary paper.
 
 ---
 
@@ -625,25 +616,30 @@ Before presenting any article, visuals, or teleprompter HTML — verify via web 
 2. Relates to the correct condition
 3. **Contains the specific stat or finding claimed — not just plausibly could contain it**
 4. URL/DOI resolves to the correct article — fetch the abstract or full text if needed to confirm
+5. **PMID resolves to the correct paper — a PubMed URL must be found in search results**
 
-**Step 3 is the step that fails most often.** Finding a paper by the same author on the same topic is not sufficient. The specific numerical claim must be traceable to that specific paper. If the stat appears in a secondary source (a review, a guidance document, an editorial) that itself cites a primary paper, cite the primary paper — not the secondary source.
+**Step 3 is the step that fails most often.** Finding a paper by the same author on the same topic is not sufficient. The specific numerical claim must be traceable to that specific paper.
 
-Never include an unverified link. Never assume a study exists based on a plausible-sounding citation. Never cite NICE CG99 for adult constipation — it covers children and young people only. The correct adult reference is NICE CKS at `cks.nice.org.uk/constipation`.
+**Step 5 is a new rule confirmed April 2026.** Claude has repeatedly generated plausible-sounding but incorrect PMIDs. Every PMID must be verified by web search. A search result showing the PMID in a PubMed URL is required. This is non-negotiable.
 
-**NICE guideline number rule:** Always verify the exact NICE guideline number — including whether it is CG or NG — via web search before citing. CG and NG are different series and different documents. Never cite a NICE guideline number from memory.
+**Derived statistics are not acceptable.** If a source provides a prevalence rate (e.g. 1 in 1,000 per year) but not the absolute UK death count, Claude must not calculate and cite an absolute figure. Only figures explicitly stated in the approved source may be used.
+
+**Never include an unverified link. Never assume a study exists based on a plausible-sounding citation.**
+
+**NICE guideline number rule:** Always verify the exact NICE guideline number — including whether it is CG or NG — via web search before citing. Never from memory.
 
 ---
 
 ## 17. RETROFIT STATUS (retroactive standards across existing articles)
 
 ### Confirmed complete
-- Educational voice: confirmed complete across Articles 01–21 (as built)
+- Educational voice: confirmed complete across Articles 01–26 (as built)
 - Article HTML retrofits (Articles 13–18): confirmed complete
 - Visuals and teleprompters (Articles 13–18): confirmed built
 
 ### Outstanding — to confirm and apply
 - Research card stat standard (outcomes only, not counts): outstanding across 01–11
-- **Research card complete clinical conclusion standard: outstanding across 01–23** — all previously built articles should have research card stat boxes audited against the complete clinical conclusion rule when they are next opened for any edit
+- **Research card complete clinical conclusion standard: outstanding across 01–23**
 - Inline citations (superscripts linking to refs): outstanding across 01–11
 - CTA slide high-impact standard (disclaimer box, gold-glow, 4 action cards): outstanding across 01–11
 - Visuals layout standard (horizontal rows, ev-stat-row): outstanding across 01–11
@@ -655,28 +651,28 @@ Never include an unverified link. Never assume a study exists based on a plausib
 ## 18. KEY LEARNING POINTS (accumulated)
 
 ### NICE CG99 is for children only — never cite for adults
-NICE CG99 covers constipation in **children and young people only**. For adult constipation the correct reference is **NICE CKS** at `cks.nice.org.uk/constipation`. Citing CG99 for an adult article is a meaningful clinical error.
+NICE CG99 covers constipation in **children and young people only**. For adult constipation the correct reference is **NICE CKS** at `cks.nice.org.uk/constipation`.
 
 ### Dr Paul's experience is 20+ years, not 30+
-All references to clinical experience must read "20+ years" or "over twenty years as an NHS GP". The incorrect "30+" was on the live index.html and was corrected April 2026.
+All references to clinical experience must read "20+ years" or "over twenty years as an NHS GP".
 
 ### Local link testing — expected not to work
-When Dr Paul opens a downloaded HTML file locally and clicks article links, they appear broken. This is expected and correct — links are correctly coded as relative (`href="salt-blood-pressure.html"`) and work on the live GitHub site.
+When Dr Paul opens a downloaded HTML file locally and clicks article links, they appear broken. This is expected and correct — links are correctly coded as relative and work on the live GitHub site.
 
 ### Dr Paul prefers Claude to handle all file edits
-Never ask Dr Paul to make manual edits to files via the GitHub editor. When corrections are needed, Claude fetches the file, applies all changes, and delivers the corrected file for download and re-upload.
+Never ask Dr Paul to make manual edits to files via the GitHub editor.
 
 ### Conditions page — always rebuild, never patch
-When helf-school-conditions.html needs significant changes, rebuild from scratch. The old version had deeply structural problems. Partial patching would miss cascading issues.
+When helf-school-conditions.html needs significant changes, rebuild from scratch.
 
 ### Educational voice — systemic issue in older files
-index.html had directive language in three locations. When fetching any older file for any purpose, audit for forbidden phrases and correct them as part of the work.
+When fetching any older file for any purpose, audit for forbidden phrases and correct them as part of the work.
 
 ### Teleprompter cue box — advance THEN read
-The cue box precedes the script for its segment. Dr Paul advances the slide first, then reads the script — the viewer sees the slide before Dr Paul speaks. Cue box label: `▶ ADVANCE NOW — then read`.
+The cue box precedes the script for its segment. Dr Paul advances the slide first, then reads. Cue box label: `▶ ADVANCE NOW — then read`.
 
 ### Large file writing — use create_file not bash
-For HTML files over ~400 lines, `create_file` is the correct tool. Bash heredocs fail on large HTML because of shell character escaping.
+For HTML files over ~400 lines, `create_file` is the correct tool. Bash heredocs fail on large HTML.
 
 ### File already exists — delete and retry
 If `create_file` reports "file already exists", delete the existing placeholder (`rm /home/claude/filename.html`) and retry.
@@ -685,63 +681,68 @@ If `create_file` reports "file already exists", delete the existing placeholder 
 - NICE CG99 explicitly excluded (children only)
 - Rome IV criteria used as the clinical framework
 - Laxative stepwise shown as 4 numbered steps with all brand names included
-- Toileting position (footstool) included — evidence-based, often overlooked practical point
 - Research card 1: macrogol vs lactulose (Cochrane 2010, CD007570)
 - Research card 2: fibre supplementation response rate 77% vs 44% (Christodoulides 2016)
-- Important distinction: fibre evidence is for fibre supplements not dietary fibre from whole foods
 
-### Secondary source cited instead of primary research paper — April 2026
-In the headaches article (Article 23), Reference 5 was incorrectly cited as Kernick et al BJGP 2008;58(557):880 — a consensus imaging guidance document. The correct paper was Kernick et al BJGP 2007;57(542):695 — the actual case-control study. The error occurred because the pre-draft check confirmed the 2008 paper existed and was by the same author on the same topic — but did not verify that the specific stat was in that paper. **The rule strengthened as a result:** Step 3 of the pre-draft verification rule now explicitly requires confirming the specific stat is in the specific paper.
+### Secondary source cited instead of primary — April 2026
+In the headaches article, Reference 5 was incorrectly cited. The rule strengthened: Step 3 of the pre-draft verification rule now explicitly requires confirming the specific stat is in the specific paper.
 
 ### Lay-clarification rule broadened — April 2026
-The original lay-clarification rule listed only statistical terms. This caused anatomical and clinical terms to slip through QC in the headaches article. The rule has been broadened: **every medical or clinical term a lay reader would not immediately understand requires a plain English definition in brackets on first use in each section.** This is now a general rule, not a list of specific terms.
+Every medical or clinical term a lay reader would not immediately understand requires a plain English definition in brackets on first use in each section. General rule, not a list of specific terms.
 
 ### Safety-critical terms need inline lay definitions — April 2026
-Any clinical term that carries significant implications for the reader must have an inline lay definition in the same sentence, not just a Key Terms box entry. Confirmed when "teratogenic" appeared in the migraine article without a lay explanation.
+Any clinical term that carries significant implications for the reader must have an inline lay definition in the same sentence, not just a Key Terms box entry.
 
 ### Structured lists — Key Terms terms need "(see Key Terms below)" — LOCKED APRIL 2026
 When a medical term from the Key Terms box appears in a structured list or criteria box, add "(see Key Terms below)" immediately after the term.
 
 ### NICE guideline number verification — CG vs NG — LOCKED APRIL 2026
-NICE uses two guideline series: **CG** (pre-~2014) and **NG** (from ~2014 onwards). These are entirely separate documents. In April 2026, migraine.html was delivered citing NICE NG150 (incorrect) instead of NICE CG150 (correct). Always verify via web search in the same session.
+NICE uses two guideline series: **CG** (pre-~2014) and **NG** (from ~2014 onwards). Always verify via web search in the same session.
 
 ### Visuals must maximise viewport space — LOCKED APRIL 2026
-
-Multiple visuals files were delivered with text too small and gaps too large, leaving slides that looked sparse and failed to use the available screen. Dr Paul explicitly identified this as a problem. The fix applied: slide padding reduced to maximum `1rem 1.5rem 0.8rem`; all body text raised to minimum `.90rem`; all gaps reduced to maximum `.5rem`; line clamp on row bodies raised to minimum 3 lines; slide title raised to minimum `1.55rem`.
-
-**The test:** Open every slide in a browser before delivering. Content must fill at least 85% of the visible area. Visuals are filmed — undersized content reads poorly on camera. If it looks sparse in the browser, it will look wrong on film. See Section 9 and QC item 20 for the full specification.
+Slide padding reduced to maximum `1rem 1.5rem 0.8rem`; all body text raised to minimum `.90rem`; all gaps reduced to maximum `.5rem`; line clamp raised to minimum 3 lines; slide title raised to minimum `1.55rem`.
 
 ### ev-stat-box text overflow — confirmed fix April 2026
-The confirmed fix: `.ev-stat-box` `padding:.9rem .75rem` + `overflow:hidden`; `.ev-conditions` `font-size:.78rem; line-height:1.32`. Do not increase either value.
-
-### session-start-rules.md status table conflict — April 2026
-The session-start-rules.md file fell out of sync with project knowledge multiple times in April 2026. Fix applied: Rule 6A added — project knowledge always overrides session-start-rules on status.
+`.ev-stat-box` `padding:.9rem .75rem` + `overflow:hidden`; `.ev-conditions` `font-size:.78rem; line-height:1.32`. Do not increase either value.
 
 ### Research card stat boxes must state complete clinical conclusions — LOCKED APRIL 2026
-**This is a health education site, not a statistics journal.** The research section exists to tell readers what medicine has found about their condition — in terms they can understand and use. Every research card stat box must state the complete clinical finding as it is relevant to the patient.
+Every research card stat box must state the complete clinical finding as it is relevant to the patient. Statistical machinery (ORs, RCT counts, CIs) must never be the headline finding.
 
-The failure mode that prompted this rule: stat boxes were showing the number of RCTs ("11") and odds ratios ("OR 2.67") as the headline finding. These numbers are statistical machinery — they tell the reader nothing meaningful about their condition. The patient-relevant finding ("The Epley manoeuvre is a safe and effective treatment for BPPV"; "Vestibular rehabilitation has moderate to strong evidence for its efficacy") must be the headline.
+### PMIDs must be verified by web search every time — LOCKED APRIL 2026
+Claude has repeatedly generated plausible-sounding but incorrect PMIDs. This has happened across multiple sessions. The fix: every PMID must be found in a web search result showing the PubMed URL before it is included in any file. No exceptions. A PMID from memory or inference is not acceptable.
 
-**The test:** read the stat box alone, without the body text. Does a lay reader understand what the research found about their condition? If not, rewrite. This test must be applied to every research card in every article and visuals file before delivery. See Section 8 and QC item 9 for the full rule.
+### Charity and advocacy websites are not approved sources — LOCKED APRIL 2026
+Epilepsy Action, Alzheimer's Society, Alzheimer's Research UK, and similar organisations produce valuable work but are not in the approved source list for helf.school. Stats and claims derived from charity websites must not be included even when they appear credible. Derived statistics (e.g. calculating UK annual deaths from a per-1,000 incidence rate) are also not acceptable — only figures explicitly stated in an approved source may be cited. If a stat cannot be traced to an approved source, omit it.
+
+### Causal attributions require primary citations — April 2026
+Causal claims (e.g. "driven partly by disability discrimination") require a specific primary citation confirming that causal relationship. Inference from context is not sufficient. If the causal attribution cannot be cited, it must be removed.
+
+### NEAD — use neutral language — April 2026
+Non-epileptic attack disorder (NEAD) should not be described as "typically a manifestation of psychological distress." This is an oversimplification that does not reflect current understanding of functional neurological disorder and may cause offence. Use neutral language: "episodes that resemble seizures but are not caused by abnormal electrical activity in the brain."
+
+### Drug-resistant epilepsy — cite the paper's exact figure — April 2026
+Kwan & Brodie NEJM 2000 reports "more than 30 percent" — not "1 in 3" or "33%". Always cite the paper's exact language. Cross-check article prose, stat grid, Key Terms, research cards, and Putting It Together section for consistency.
+
+### session-start-rules.md status table conflict — April 2026
+The session-start-rules.md file fell out of sync with project knowledge multiple times. Fix applied: Rule 6A added — project knowledge always overrides session-start-rules on status.
 
 ---
 
 ## 19. OUTSTANDING TASKS (April 2026)
 
-### Immediate
-- Upload Articles 21, 22, 23 files to GitHub
-- Update `helf-school-conditions.html` to show Articles 21, 22, 23 as live
-- Build `dizziness-vertigo-visuals.html` — next
-- Build `dizziness-vertigo-teleprompter.html`
+### Immediate — GitHub uploads required
+- Upload Articles 21, 22, 23, 24, 25, 26 files to GitHub (6 articles × 3 files = 18 files)
+- Update `helf-school-conditions.html` to show Articles 21–26 as live once uploaded
 
 ### Verification
 - `hypertension.html` references 5 & 6 — Cochrane PubMed IDs flagged ⚑ unverified
 
 ### Series planning
-- **Neurological series (Articles 22–26)** — article list confirmed April 2026. Build Articles 25 and 26 next after Article 24 complete.
+- **Neurological series (Articles 22–26)** — all complete April 2026
+- **Next series TBD** — possible extensions: Stroke and TIA (bridges cardiovascular) · Parkinson's Disease
 
-### Retrofit backlog (Articles 01–11 only — 13–20 confirmed complete)
-- Research card clinical conclusion standard — apply across all rebuilt articles
+### Retrofit backlog (Articles 01–11 only — 13–26 confirmed complete)
+- Research card clinical conclusion standard
 - Research card stat standard (outcomes only, not counts)
 - Inline citations (superscripts)
 - CTA slide standard
@@ -759,9 +760,9 @@ All five sources verified by web search in April 2026 session.
 |-----|----------|-----------|----------|
 | 1 | NICE CKS Constipation (adults). Last revised 2023 | cks.nice.org.uk/constipation | Definition (Rome IV), red flags, laxative stepwise approach |
 | 2 | Dowden A. Prescriber 2021 + BJHA 2025 | wchh.onlinelibrary.wiley.com/doi/10.1002/psb.1954 | NHS burden: ~83,000 admissions/yr; 18.6m prescriptions; ~£113m cost |
-| 3 | Lee-Robichaud H et al. Cochrane Database Syst Rev 2010;(7):CD007570. PMID 20614462 | doi.org/10.1002/14651858.CD007570.pub2 | Macrogol superior to lactulose across all outcomes (10 RCTs, 868 participants) |
-| 4 | Christodoulides S et al. Aliment Pharmacol Ther 2016;44(2):103–116. PMID 27170558 | doi.org/10.1111/apt.13662 | Fibre: 77% response vs 44% placebo; RR 1.71 (95% CI 1.20–2.42) |
-| 5 | NHS Inform. Constipation | nhsinform.scot/illnesses-and-conditions/stomach-liver-and-gastrointestinal-tract/constipation | Prevalence: 1 in 7 adults UK at any time; women twice as often as men |
+| 3 | Lee-Robichaud H et al. Cochrane Database Syst Rev 2010;(7):CD007570. PMID 20614462 | doi.org/10.1002/14651858.CD007570.pub2 | Macrogol superior to lactulose across all outcomes |
+| 4 | Christodoulides S et al. Aliment Pharmacol Ther 2016;44(2):103–116. PMID 27170558 | doi.org/10.1111/apt.13662 | Fibre: 77% response vs 44% placebo |
+| 5 | NHS Inform. Constipation | nhsinform.scot/illnesses-and-conditions/stomach-liver-and-gastrointestinal-tract/constipation | Prevalence: 1 in 7 adults UK at any time |
 
 ---
 
@@ -778,127 +779,131 @@ The Claude project holds **visuals, teleprompter, and screen files only**. Artic
 | `hypertension-visuals.html` | Canonical CTA slide reference |
 
 ### Files confirmed in Claude project (April 2026)
-**Teleprompters (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine · headaches
+**Teleprompters (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine · headaches · dizziness-vertigo · memory-dementia · epilepsy
 
-**Visuals (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd (screen) · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine · headaches
+**Visuals (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd (screen) · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine · headaches · dizziness-vertigo · memory-dementia · epilepsy
 
 **Screen files:** Ar_barretts-screen · Ar_sphincter-screen · ibd-gut-screen · bloating-gut-screen · bloating-fodmap-screen
-
-**Scripts (older format):** acid-reflux-script · bloating-script · cholesterol-script · heart-attack-risk-script · hypertension-script · ibd-script · ibs-script
 
 ---
 
 ## 22. SESSION START RULES (content of helf-school-session-start-rules.md)
 
-These rules must be applied at the start of every session, before any output or assessment is produced.
-
 ### Rule 1 — Read before acting
 Read `helf-school-project-knowledge.md` AND `helf-school-session-start-rules.md` in full before any output, checks, or assessments. No exceptions.
 
 ### Rule 2 — Article inventory is the source of truth
-The article inventory in Section 3 of this document is authoritative. Do not infer article status from file sizes, project file listings, or previous session summaries alone.
+The article inventory in Section 3 of this document is authoritative.
 
 ### Rule 3 — 5,140-byte files are NOT corrupted
-Files approximately 5,140 bytes beginning with "data-build-id" are Edge incognito loader stubs. Never flag as corrupted. Fetch from GitHub raw URL to verify content.
+Files approximately 5,140 bytes beginning with "data-build-id" are Edge incognito loader stubs. Never flag as corrupted.
 
 ### Rule 4 — Never produce output before confirming understanding
 Before building or modifying any file, confirm: (1) which article/file, (2) current status per inventory, (3) canonical reference checked.
 
 ### Rule 5 — Educational voice check on every file
-Audit every file for forbidden phrases before delivery. Always apply the full canonical phrase; never shorten it.
+Audit every file for forbidden phrases before delivery.
 
 ### Rule 6 — Cross-check article ↔ teleprompter before delivery
-All key statistics, study names, years, and citation authors must match exactly between both files.
+All key statistics, study names, years, and citation authors must match exactly.
 
 ### Rule 6A — Project knowledge always overrides session-start-rules on status
-**If the file status table in session-start-rules.md conflicts with Section 3 of this document, this document (project knowledge) is correct.** Never flag work as outstanding based on session-start-rules.md alone.
+If the file status table in session-start-rules.md conflicts with Section 3, this document is correct.
 
 ### Rule 7 — One large file per turn
-Build very large HTML files one per turn. Wait for confirmation before proceeding to the next file.
+Build very large HTML files one per turn. Wait for confirmation before proceeding.
 
 ### Rule 8 — Verify references before building
 Run web searches to verify all planned citations before building any article HTML.
 
 ### Rule 9 — Update project knowledge at session end
-Update this document and session-start-rules.md together. Dr Paul uploads both to GitHub AND the Claude Project.
+Update this document and session-start-rules.md together at the end of every session.
 
 ### Rule 10 — NICE CG99 is children only
-Never cite NICE CG99 in any adult article. Correct adult constipation reference: NICE CKS at cks.nice.org.uk/constipation.
+Never cite NICE CG99 in any adult article.
 
 ### Rule 11 — Research card complete clinical conclusion
-Before presenting any article or visuals file, audit every research card stat box against the complete clinical conclusion rule (Section 8, QC item 9). The stat box must state WHAT was studied and WHAT was found in patient-relevant terms. Statistical machinery (ORs, RCT counts, CIs) must never be the headline finding. The test: can a lay reader understand the clinical finding from the stat box alone?
+Before presenting any article or visuals file, audit every research card stat box against the complete clinical conclusion rule.
+
+### Rule 12 — Visuals must maximise viewport space
+Every visuals slide must fill the available viewport. See Section 9 for full specification.
+
+### Rule 13 — PMIDs must be verified by web search every time
+Every PMID must be found in a web search result before inclusion. No PMID from memory or inference. No exceptions.
+
+### Rule 14 — Strict source rule
+Only approved sources (Section 14) may be cited. Charity/advocacy websites are not approved. Derived statistics are not acceptable. If a stat cannot be traced to an approved source, omit it.
 
 ---
 
 ## 23. ARTICLE-SPECIFIC NOTES — KNOWN ISSUES
 
 ### hypertension.html
-References 5 and 6 — Cochrane PubMed IDs flagged ⚑ unverified. These need verification via web search before the article can be confirmed fully complete.
+References 5 and 6 — Cochrane PubMed IDs flagged ⚑ unverified.
 
 ### statins.html
-Very large HTML file — has caused mid-build crashes in previous sessions. If this file needs to be rebuilt or significantly edited, handle it in one dedicated turn.
+Very large HTML file — has caused mid-build crashes. Handle in one dedicated turn.
 
 ### conditions page (helf-school-conditions.html)
-Rebuilt April 2026. If any further changes are needed, rebuild the whole file — do not attempt partial patches.
+Rebuilt April 2026. If further changes are needed, rebuild the whole file. Currently shows 20 live articles — needs updating to 26 once all pending uploads complete.
 
 ### index.html
-Rebuilt April 2026 with all 12 corrections listed in Section 4. "About Dr Paul" section correctly reads "NHS GP · 20+ years".
+Rebuilt April 2026 with all 12 corrections. "About Dr Paul" correctly reads "NHS GP · 20+ years".
 
 ### dizziness-vertigo.html
-Article HTML built April 2026. Research flags noted: NICE CKS Vertigo (last revised 2022 — check for updates); betahistine/Ménière's evidence contested (BEMED 2016 trial); 92-week UK delay figure cited via von Brevern 2007 rather than primary UK source.
+Research flags noted: NICE CKS Vertigo (last revised 2022 — check for updates); betahistine/Ménière's evidence contested (BEMED 2016 trial); 92-week UK delay figure cited via von Brevern 2007 rather than primary UK source.
+
+### epilepsy.html — April 2026 decisions
+- NICE NG217 (April 2022, updated January 2025) used as primary clinical reference
+- Kwan & Brodie NEJM 2000: figure is "more than 30%" not "1 in 3" — all instances corrected
+- SUDEP stat: ~1 in 1,000 per year (Thurman et al Epilepsia 2014, PMID 24903551) — no derived UK death count included
+- Misdiagnosis rate: 26.1% from Smith, Defalla & Chadwick QJM 1999 (PMID 10209668) — specific primary UK paper, not a range
+- NEAD described neutrally: "episodes that resemble seizures but are not caused by abnormal electrical activity in the brain" — not attributed to psychological distress
+- Disability/unemployment paragraph removed — Epilepsy Action statistic not an approved source; no causal citation for discrimination claim
+- Valproate teratogenicity: inline lay definition present in same sentence; MHRA Valproate Pregnancy Prevention Programme referenced
+- 6 references total; all PMIDs verified by web search in session
 
 ---
 
 ## 24. PLANNING NOTES — NEXT SERIES
 
-### Neurological Series (Articles 22–26) — CONFIRMED APRIL 2026
-Series colour: `#6B5EA8` (purple)
+### Neurological Series (Articles 22–26) — COMPLETE APRIL 2026
+All five articles built. All 15 files (article + visuals + teleprompter × 5) completed April 2026. Upload to GitHub pending.
 
-| # | Title | Slug |
-|---|-------|------|
-| 22 | Migraine | migraine |
-| 23 | Headaches — Types and Red Flags | headaches |
-| 24 | Dizziness and Vertigo | dizziness-vertigo |
-| 25 | Memory, Cognition and Dementia | memory-dementia |
-| 26 | Epilepsy — What It Is and How It's Managed | epilepsy |
-
-**Rationale:**
-- Migraine: ~23% UK working-age adults, #3 global DALY burden, massively under-diagnosed
-- Headaches: most common neurological GP presentation; "when to worry" is heavily searched
-- Dizziness and Vertigo: BPPV very common and treatable; patients anxious and poorly informed
-- Memory and Dementia: highest public anxiety; most costly neurological condition in UK
-- Epilepsy: ~600,000 UK patients; significant stigma; strong educational need
-
-**Possible extensions (Articles 27–28, to confirm later):**
-- Stroke and TIA (could bridge with cardiovascular series)
-- Parkinson's Disease (rising incidence, ageing population)
-
-### Cancer Series (further horizon)
-Discussed as a future series but not yet planned. No article list defined.
+### Possible next series (to confirm with Dr Paul)
+- **Stroke and TIA** — bridges well with cardiovascular series; high public interest
+- **Parkinson's Disease** — rising incidence, ageing population, strong educational need
+- **Cancer Series** — discussed as a future series; no article list defined yet
 
 ---
 
 ## 25. PROCESS NOTES — FILE CREATION IN CLAUDE
 
 ### Writing large HTML files
-Use `create_file` for all HTML files. Bash heredocs fail on large HTML content because shell escaping breaks SVG paths, CSS values, and JavaScript (backticks, `$`, `&`, `>`, `<`). `create_file` handles all of these correctly.
+Use `create_file` for all HTML files. Bash heredocs fail on large HTML content.
 
 ### File already exists error
-If `create_file` reports "file already exists", the cause is always a placeholder or earlier version from the same session. Run `rm /home/claude/filename.html` then retry `create_file`.
+If `create_file` reports "file already exists", run `rm /home/claude/filename.html` then retry.
 
 ### Outputs directory
-All files for Dr Paul must be copied to `/mnt/user-data/outputs/` and presented via `present_files`. Files in `/home/claude/` are not visible to Dr Paul until this step is completed.
+All files for Dr Paul must be copied to `/mnt/user-data/outputs/` and presented via `present_files`.
 
 ### QC before presenting
-Always run bash QC checks (grep for key phrases, count required elements, verify word counts) before copying to outputs. Deliver only after QC passes.
+Always run bash QC checks (grep for key phrases, count required elements) before copying to outputs.
 
 ### Research card stat box — writing guidance
-When writing research card stat boxes, follow this sequence:
-1. Identify the clinically important finding — what does this research tell someone with this condition?
-2. State it as a complete subject + finding: "The Epley manoeuvre / is safe & effective for BPPV"
+1. Identify the clinically important finding
+2. State it as a complete subject + finding
 3. Check: can a lay reader understand this from the stat box alone?
-4. Put supporting detail (effect sizes, study scale, comparator) in the body text and `.ev-conditions` line
+4. Put supporting detail in the body text and `.ev-conditions` line
 5. Never lead with ORs, RCT counts, confidence intervals, or participant counts
+
+### PMID verification — mandatory process
+1. Search for the paper by author, title, journal, year
+2. Find a PubMed URL in the search results
+3. The PMID is the number in that URL
+4. Only then include the PMID in the file
+5. Never include a PMID from memory — it will be wrong
 
 ---
 
