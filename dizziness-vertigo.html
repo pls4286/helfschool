@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dizziness and Vertigo — helf.school</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --coral: #E8634A;
+    --cream: #FAF7F2;
+    --sage: #7A9E87;
+    --amber: #E8A84A;
+    --neuro: #6B5EA8;
+    --neuro-dark: #4A4080;
+    --neuro-light: #8E82CC;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    background: var(--cream);
+    color: #2C2C2C;
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  .site-nav {
+    background: var(--navy);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    text-decoration: none;
+  }
+  .nav-logo svg { width: 36px; height: 28px; }
+  .nav-brand { font-family: 'Fraunces', serif; font-size: 1.25rem; color: #fff; font-weight: 700; }
+  .nav-tagline { font-size: .72rem; color: rgba(255,255,255,0.65); letter-spacing: .08em; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.80); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta { background: var(--neuro); color: #fff; padding: .45rem 1.1rem; border-radius: 6px; font-weight: 600; font-size: .88rem; text-decoration: none; white-space: nowrap; }
+
+  /* ── DISCLAIMER BAR ── */
+  .disclaimer-bar {
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.10);
+    padding: .55rem 2rem;
+    text-align: center;
+    font-size: .78rem;
+    color: rgba(255,255,255,0.75);
+  }
+  .disclaimer-bar strong { color: rgba(255,255,255,0.92); }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--neuro-dark) 0%, var(--neuro) 55%, var(--neuro-light) 100%);
+    padding: 4rem 2rem 3.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 30%, rgba(255,255,255,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 860px; margin: 0 auto; position: relative; }
+  .hero-breadcrumb { font-size: .82rem; color: rgba(255,255,255,0.80); margin-bottom: 1rem; }
+  .hero-breadcrumb a { color: rgba(255,255,255,0.80); text-decoration: none; }
+  .hero-breadcrumb a:hover { color: #fff; }
+  .hero-series-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.30);
+    color: #fff;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: .28rem .75rem;
+    border-radius: 20px;
+    margin-bottom: 1.1rem;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: .9rem;
+  }
+  .hero-subtitle {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.90);
+    max-width: 620px;
+    margin-bottom: 1.8rem;
+    line-height: 1.6;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    font-size: .83rem;
+    color: rgba(255,255,255,0.82);
+  }
+  .hero-meta span { display: flex; align-items: center; gap: .35rem; }
+
+  /* ── LAYOUT ── */
+  .article-wrap { max-width: 860px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+
+  /* ── SECTION HEADINGS ── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    margin-bottom: 1.2rem;
+    margin-top: 2.8rem;
+  }
+  .section-label:first-of-type { margin-top: 0; }
+  .section-number {
+    width: 32px; height: 32px;
+    background: var(--neuro);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .82rem; font-weight: 700; flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  /* ── BODY TEXT ── */
+  .article-wrap p {
+    color: #2C2C2C;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+  .article-wrap p:last-child { margin-bottom: 0; }
+  .article-wrap ul, .article-wrap ol {
+    color: #2C2C2C;
+    font-weight: 400;
+    margin: .6rem 0 1rem 1.4rem;
+    font-size: 1rem;
+  }
+  .article-wrap li { margin-bottom: .45rem; }
+
+  /* ── STAT GRID ── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(107,94,168,0.15);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 1.6rem 0 2rem;
+    border: 1px solid rgba(107,94,168,0.20);
+  }
+  .stat-cell {
+    background: #fff;
+    padding: 1.4rem 1.2rem;
+  }
+  .stat-number {
+    font-family: 'Fraunces', serif;
+    font-size: 2.6rem;
+    font-weight: 900;
+    color: var(--neuro);
+    line-height: 1;
+    margin-bottom: .3rem;
+  }
+  .stat-label {
+    font-weight: 700;
+    font-size: .9rem;
+    color: var(--navy);
+    margin-bottom: .3rem;
+  }
+  .stat-prose { font-size: .88rem; color: #2C2C2C; font-weight: 400; }
+
+  /* ── KEY TERMS BOX ── */
+  .key-terms {
+    background: var(--navy);
+    border-radius: 10px;
+    padding: 1.6rem 1.8rem;
+    margin: 2rem 0;
+  }
+  .key-terms-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+  .key-terms-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .7rem .8rem;
+  }
+  .kt-item { display: flex; flex-direction: column; gap: .1rem; }
+  .kt-term { font-size: .88rem; font-weight: 700; color: var(--amber); }
+  .kt-def { font-size: .92rem; color: rgba(255,255,255,0.90); font-weight: 400; line-height: 1.4; }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box {
+    background: rgba(107,94,168,0.08);
+    border-left: 4px solid var(--neuro);
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.2rem;
+    margin: 1.2rem 0;
+    font-size: .96rem;
+    color: #2C2C2C;
+    font-weight: 400;
+  }
+
+  /* ── RED FLAG BOX ── */
+  .red-flag-box {
+    background: #FEF2F2;
+    border: 1.5px solid #FCA5A5;
+    border-radius: 8px;
+    padding: 1.1rem 1.2rem;
+    margin: 1.4rem 0;
+  }
+  .red-flag-box .rf-title {
+    font-weight: 700;
+    color: #B91C1C;
+    font-size: .95rem;
+    margin-bottom: .6rem;
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+  }
+  .red-flag-box ul {
+    margin: 0 0 0 1.2rem;
+    color: #2C2C2C;
+    font-size: .93rem;
+  }
+  .red-flag-box .rf-note {
+    margin-top: .7rem;
+    font-size: .88rem;
+    color: #6B2C2C;
+    font-weight: 400;
+    margin-bottom: 0;
+  }
+
+  /* ── RESEARCH CARDS ── */
+  .research-section { margin-top: 1.8rem; }
+  .research-card {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.2rem;
+    border: 1px solid rgba(107,94,168,0.18);
+  }
+  .ev-stat-box {
+    background: var(--navy);
+    padding: .9rem .75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+  .ev-kf-label {
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: .35rem;
+  }
+  .ev-stat-row {
+    font-family: 'Fraunces', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: .3rem;
+    display: flex;
+    align-items: baseline;
+    gap: .2rem;
+  }
+  .ev-outcome {
+    font-size: .92rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.92);
+    margin-bottom: .3rem;
+  }
+  .ev-conditions {
+    font-size: .78rem;
+    line-height: 1.32;
+    color: rgba(255,255,255,0.70);
+  }
+  .ev-body {
+    background: #fff;
+    padding: 1rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: .5rem;
+  }
+  .ev-body p {
+    font-size: .92rem;
+    color: #2C2C2C;
+    font-weight: 400;
+    margin-bottom: 0;
+  }
+  .ev-source {
+    font-size: .78rem;
+    color: rgba(44,44,44,0.55);
+    font-style: italic;
+  }
+
+  /* ── PUTTING IT TOGETHER ── */
+  .putting-together {
+    background: var(--navy);
+    border-radius: 10px;
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+  }
+  .putting-together p {
+    font-style: italic;
+    color: rgba(255,255,255,0.90);
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: .8rem;
+  }
+  .putting-together p:last-child {
+    font-style: normal;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0;
+  }
+
+  /* ── REFERENCES ── */
+  .references-section { margin-top: 3rem; border-top: 1px solid rgba(107,94,168,0.20); padding-top: 1.5rem; }
+  .references-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+  .ref-block {
+    border-left: 3px solid var(--neuro);
+    padding-left: .9rem;
+    margin-bottom: 1rem;
+  }
+  .ref-full { font-size: .85rem; color: #2C2C2C; font-weight: 400; line-height: 1.5; }
+  .ref-links { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .4rem; }
+  .ref-pill {
+    display: inline-block;
+    background: var(--neuro);
+    color: #fff;
+    font-size: .74rem;
+    font-weight: 700;
+    padding: .18rem .6rem;
+    border-radius: 12px;
+    text-decoration: none;
+  }
+  .ref-pill:hover { background: var(--neuro-dark); }
+
+  /* ── RESEARCH FLAGS ── */
+
+
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.70);
+    padding: 2.5rem 2rem 1.5rem;
+    font-size: .85rem;
+    margin-top: 3rem;
+  }
+  .footer-inner { max-width: 860px; margin: 0 auto; }
+  .footer-logo { font-family: 'Fraunces', serif; font-weight: 700; color: #fff; font-size: 1.1rem; margin-bottom: .4rem; }
+  .footer-disclaimer {
+    font-size: .78rem;
+    color: rgba(255,255,255,0.65);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    line-height: 1.6;
+  }
+  .footer-copy { margin-top: .8rem; font-size: .75rem; color: rgba(255,255,255,0.45); }
+
+  /* ── SUPERSCRIPTS ── */
+  sup a {
+    color: var(--neuro);
+    text-decoration: none;
+    font-size: .72rem;
+    font-weight: 700;
+  }
+  sup a:hover { text-decoration: underline; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .key-terms-grid { grid-template-columns: 1fr; }
+    .stat-grid { grid-template-columns: 1fr; }
+    .research-card { grid-template-columns: 1fr; }
+    .ev-stat-box { padding: .9rem .75rem; }
+    .nav-links { display: none; }
+    .hero { padding: 2.5rem 1.2rem 2rem; }
+    .article-wrap { padding: 1.5rem 1.2rem 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="0" y="4" width="16" height="20" rx="2" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+      <rect x="20" y="4" width="16" height="20" rx="2" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+      <line x1="18" y1="5" x2="18" y2="23" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+      <path d="M3 9 Q8 8 13 9M3 12 Q8 11 13 12M3 15 Q8 14 13 15" stroke="rgba(255,255,255,0.45)" stroke-width="1" fill="none"/>
+      <path d="M23 9 Q28 8 33 9M23 12 Q28 11 33 12M23 15 Q28 14 33 15" stroke="rgba(255,255,255,0.45)" stroke-width="1" fill="none"/>
+    </svg>
+    <div>
+      <div class="nav-brand">helf.school</div>
+      <div class="nav-tagline">Health Education</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="helf-school-conditions.html">Conditions</a></li>
+    <li><a href="helf-school-membership.html">Membership</a></li>
+  </ul>
+  <a href="helf-school-membership.html" class="nav-cta">Join free</a>
+</nav>
+
+<!-- ── DISCLAIMER BAR ── -->
+<div class="disclaimer-bar">
+  <strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+</div>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-breadcrumb">
+      <a href="index.html">Home</a> &rsaquo;
+      <a href="helf-school-conditions.html">Conditions</a> &rsaquo;
+      Neurological Health &rsaquo; Dizziness and Vertigo
+    </p>
+    <div class="hero-series-badge">Neurological Health · Article 24</div>
+    <h1>Dizziness and Vertigo</h1>
+    <p class="hero-subtitle">
+      Vertigo is one of the most common and treatable conditions seen in primary care — yet most people who have it never receive effective treatment. Understanding what causes it and what the evidence shows can make an enormous difference.
+    </p>
+    <div class="hero-meta">
+      <span>🧠 Neurological series</span>
+      <span>📖 8 min read</span>
+      <span>🔬 3 research sources</span>
+      <span>👨‍⚕️ Dr Paul · NHS GP 20+ years</span>
+    </div>
+  </div>
+</header>
+
+<!-- ── ARTICLE ── -->
+<main class="article-wrap">
+
+  <!-- SECTION 1 -->
+  <div class="section-label">
+    <div class="section-number">1</div>
+    <h2 class="section-title">What is it?</h2>
+  </div>
+
+  <p>
+    "Dizziness" is one of the most common complaints brought to a GP, but the word covers several quite different experiences. Distinguishing between them matters, because the causes — and the treatments — are different.
+  </p>
+
+  <p>
+    <strong>Dizziness</strong> is a broad umbrella term. It includes lightheadedness (the feeling that you might faint, often with a sensation of the world going grey at the edges), a sense of unsteadiness or imbalance, and the more specific experience of <strong>vertigo</strong>.
+  </p>
+
+  <p>
+    <strong>Vertigo</strong> is not just feeling dizzy — it is the distinct sensation that either you or the world around you is spinning, rotating, or moving, when no actual movement is occurring. People often describe it as feeling as if the room is turning, or as if they are on a boat. It may be accompanied by nausea and, in some cases, by nystagmus (involuntary, rhythmic flickering movements of the eyes) — an important sign that clinicians look for.<sup><a href="#ref-1">1</a></sup>
+  </p>
+
+  <p>
+    Vertigo has two main origins in medicine:
+  </p>
+
+  <ul>
+    <li><strong>Peripheral vertigo</strong> — arising from a problem in the vestibular system (the balance system housed within the inner ear and its connecting nerve). This is by far the more common type, and most causes are benign and highly treatable.</li>
+    <li><strong>Central vertigo</strong> — arising from a problem in the brain itself, particularly the brainstem or cerebellum (the part of the brain at the back of the skull that co-ordinates balance and movement). Central causes are less common but more serious, and include stroke or tumour affecting the posterior circulation (the blood supply to the brainstem and cerebellum).</li>
+  </ul>
+
+  <p>
+    The most common causes of peripheral vertigo seen in UK primary care are:
+  </p>
+
+  <ul>
+    <li><strong>BPPV</strong> (Benign Paroxysmal Positional Vertigo) — the single most frequent cause of vertigo. Brief, intense spinning episodes triggered by specific head movements, caused by displaced calcium crystals within the semicircular canals (three fluid-filled tubes in the inner ear that detect rotational head movement).</li>
+    <li><strong>Vestibular neuritis</strong> — inflammation of the vestibular nerve (the nerve carrying balance signals from the inner ear to the brain), typically following a viral illness, causing a single prolonged episode of severe vertigo lasting hours to days.</li>
+    <li><strong>Labyrinthitis</strong> — inflammation of the labyrinth (the inner ear structure as a whole, which includes both the hearing and balance organs), causing vertigo alongside changes in hearing.</li>
+    <li><strong>Ménière's disease</strong> — a condition of the inner ear causing recurring episodes of vertigo, fluctuating hearing loss, tinnitus (ringing in the ears), and a feeling of pressure or fullness in the affected ear.</li>
+  </ul>
+
+  <!-- KEY TERMS -->
+  <div class="key-terms">
+    <div class="key-terms-title">📖 Key Terms</div>
+    <div class="key-terms-grid">
+      <div class="kt-item">
+        <span class="kt-term">Vertigo</span>
+        <span class="kt-def">The sensation that you or your surroundings are spinning or moving when no actual movement is occurring.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">BPPV</span>
+        <span class="kt-def">Benign Paroxysmal Positional Vertigo — brief, intense vertigo triggered by head position changes, caused by displaced calcium crystals in the inner ear.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Otoconia</span>
+        <span class="kt-def">Tiny calcium carbonate crystals ("ear stones") that normally sit in the utricle of the inner ear; when dislodged, they enter the semicircular canals and trigger BPPV.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Semicircular canals</span>
+        <span class="kt-def">Three curved, fluid-filled tubes in the inner ear that detect rotational head movement and contribute to balance.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Vestibular neuritis</span>
+        <span class="kt-def">Inflammation of the vestibular nerve, typically after a viral infection, causing sudden prolonged vertigo without hearing loss.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Labyrinthitis</span>
+        <span class="kt-def">Inflammation of the entire inner ear structure, causing both vertigo and changes in hearing.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Ménière's disease</span>
+        <span class="kt-def">An inner ear condition causing recurring episodes of vertigo, fluctuating hearing loss, tinnitus, and ear fullness.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Nystagmus</span>
+        <span class="kt-def">Involuntary, rhythmic flickering movements of the eyes — an important clinical sign examined by doctors assessing vertigo.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Dix-Hallpike test</span>
+        <span class="kt-def">A clinical positional test: the patient is moved from sitting to lying with the head turned to one side; a positive test (triggering vertigo and nystagmus) indicates BPPV.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Epley manoeuvre</span>
+        <span class="kt-def">A canalith repositioning procedure — a sequence of guided head and body movements designed to move displaced ear crystals back to where they cause no symptoms.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">HINTS examination</span>
+        <span class="kt-def">Head Impulse–Nystagmus–Test of Skew — a bedside oculomotor (eye movement) examination used to distinguish peripheral vertigo from a possible central cause such as stroke.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Vestibular rehabilitation</span>
+        <span class="kt-def">A physiotherapy-based programme of graded exercises designed to help the brain adapt to and compensate for abnormal or reduced inner ear signals.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section-label">
+    <div class="section-number">2</div>
+    <h2 class="section-title">Why does it matter?</h2>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <div class="stat-number">2.4%</div>
+      <div class="stat-label">Lifetime prevalence of BPPV</div>
+      <div class="stat-prose">Around 1 in 40 adults will experience BPPV at some point in their lives.<sup><a href="#ref-2">2</a></sup></div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">86%</div>
+      <div class="stat-label">Experienced significant disruption</div>
+      <div class="stat-prose">Of people with BPPV, 86% had medical consultations, interrupted daily activities, or took sick leave.<sup><a href="#ref-2">2</a></sup></div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">8%</div>
+      <div class="stat-label">Received effective treatment</div>
+      <div class="stat-prose">Despite the condition being highly treatable, only 8% of affected people in a population study received effective management.<sup><a href="#ref-2">2</a></sup></div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">36%</div>
+      <div class="stat-label">Recurrence rate at 4 years</div>
+      <div class="stat-prose">BPPV can recur: around 36% of people treated with the Epley manoeuvre experience a return of symptoms within 4 years.<sup><a href="#ref-3">3</a></sup></div>
+    </div>
+  </div>
+
+  <p>
+    Dizziness and vertigo are among the most frequent presentations in UK primary care, and BPPV alone has a 1-year prevalence (the proportion of the population affected in any given year) of around 1.6%.<sup><a href="#ref-2">2</a></sup> For women the condition is approximately twice as common as for men, and prevalence rises with age.
+  </p>
+
+  <p>
+    The impact is significant. Vertigo causes falls — a particular concern in older adults, where BPPV has been identified in over half of patients admitted to hospital following a fall. The psychological burden is also substantial: sustained dizziness leads to anxiety, avoidance of activity, reduced quality of life, and often lengthy periods of unnecessary medical investigation.
+  </p>
+
+  <p>
+    What makes the 8% figure particularly striking is what it tells us about the gap between what medicine can achieve and what is routinely happening. The Epley manoeuvre (see Key Terms above) — a simple, non-invasive procedure that takes a few minutes — is one of the most effective treatments in all of medicine for BPPV. Yet in a large population study, the vast majority of affected people never received it.<sup><a href="#ref-2">2</a></sup> A UK-based audit of 20 patients traced from primary care to eventual treatment found an average wait of 93 weeks from first referral to effective treatment — 58 weeks within primary care alone.<sup><a href="#ref-6">6</a></sup>
+  </p>
+
+  <!-- SECTION 3 -->
+  <div class="section-label">
+    <div class="section-number">3</div>
+    <h2 class="section-title">What your doctor might discuss</h2>
+  </div>
+
+  <p>
+    When a person presents with dizziness or vertigo, the clinical history is the most important diagnostic tool. Specific questions help distinguish between the different causes.
+  </p>
+
+  <p>
+    <strong>Duration of individual episodes</strong> is highly informative. Episodes lasting seconds to a minute or two, triggered by head position changes (rolling over in bed, looking up, bending forward), point strongly towards BPPV (see Key Terms above). Episodes lasting hours, accompanied by tinnitus (ringing in the ears), hearing changes, and ear fullness, suggest Ménière's disease. A single prolonged episode lasting hours to days — particularly following a recent viral upper respiratory tract infection — is characteristic of vestibular neuritis or labyrinthitis.
+  </p>
+
+  <p>
+    <strong>Associated symptoms</strong> are equally important. Hearing loss, ear fullness, or tinnitus (see Key Terms above) suggest an inner ear origin. Headache, new visual disturbance (such as diplopia — double vision), facial numbness, difficulty speaking or swallowing, or sudden severe unsteadiness point towards a possible central cause that warrants urgent assessment.
+  </p>
+
+  <p>
+    <strong>Physical examination</strong> typically includes otoscopy (examination of the ear canal and eardrum), neurological assessment, and in cases where BPPV is suspected, the Dix-Hallpike test (see Key Terms above). A positive Dix-Hallpike test — in which the manoeuvre reproduces vertigo and triggers characteristic nystagmus (see Key Terms above) — confirms BPPV and guides treatment.
+  </p>
+
+  <p>
+    <strong>The Epley manoeuvre</strong> (see Key Terms above) is the first-line treatment for BPPV confirmed by Dix-Hallpike testing. It is safe, effective, and can be performed in the GP surgery or by a physiotherapist. NICE guidance supports its use in primary care when the clinician has the appropriate training and the patient does not have an unstable cervical spine (neck spine) condition that would make head movement unsafe.<sup><a href="#ref-1">1</a></sup>
+  </p>
+
+  <p>
+    <strong>Vestibular neuritis and labyrinthitis</strong> are managed differently. In the acute phase — the first one to three days of severe spinning — short-term use of prochlorperazine (Stemetil; a medication that reduces nausea and suppresses vestibular signals) or antihistamines such as cinnarizine (Stugeron) is clinically recognised and appropriate practice to relieve distressing symptoms. However, continuing these medications beyond the acute phase is not supported by evidence and is actively counterproductive: the brain needs to receive the altered signals from the damaged vestibular system in order to compensate and recover — a process called vestibular compensation. Prolonging suppression delays that process. Early mobilisation and, where recovery is slow, referral to vestibular rehabilitation (see Key Terms above) are evidence-based approaches.
+  </p>
+
+  <p>
+    <strong>Ménière's disease</strong> is managed in UK practice with lifestyle adjustments including a low-salt diet (reducing dietary sodium is thought to reduce fluid pressure within the inner ear) and avoidance of caffeine and alcohol. Betahistine (Serc; an oral medication thought to increase blood flow within the inner ear's small blood vessels) is widely prescribed to reduce the frequency of attacks, and many patients report benefit from it. However, the evidence base for betahistine is contested: the BEMED trial — a large, multicentre, double-blind randomised controlled trial published in the BMJ in 2016 — found no significant difference in vertigo attack frequency between betahistine (at both low and high doses) and placebo over nine months.<sup><a href="#ref-7">7</a></sup> All three groups showed a decline in attacks over the trial period, suggesting a strong placebo effect and possibly the natural history of the condition. Betahistine continues to be used in UK practice — it is well tolerated with a low side-effect profile — but this is an area where the evidence does not clearly confirm the benefit that clinical experience sometimes suggests. Referral to audiology (hearing and balance specialists) is the usual pathway when more than one episode has occurred.
+  </p>
+
+  <div class="red-flag-box">
+    <div class="rf-title">⚠️ When vertigo is a time-sensitive presentation</div>
+    <p style="font-size:.92rem;color:#2C2C2C;font-weight:400;margin-bottom:.6rem;">Certain patterns of vertigo are clinically recognised as potentially indicating a posterior circulation stroke (a stroke affecting the brainstem or cerebellum) and are time-sensitive. These include:</p>
+    <ul>
+      <li>Sudden onset of severe vertigo with new, severe headache or neck stiffness</li>
+      <li>Vertigo accompanied by diplopia (double vision), dysarthria (slurred or unclear speech), dysphagia (difficulty swallowing), or weakness of the face or limbs</li>
+      <li>Sudden complete inability to stand or walk, not explained by positional vertigo</li>
+      <li>Spontaneous vertical nystagmus (upward or downward flickering eye movements at rest, not triggered by a positional manoeuvre)</li>
+    </ul>
+    <p class="rf-note">These patterns are clinically recognised as time-sensitive — 111 and urgent GP services exist for this presentation. The HINTS examination (see Key Terms above) is a bedside oculomotor (eye movement) examination that trained clinicians use to help assess whether acute vestibular syndrome has a peripheral or central origin.<sup><a href="#ref-5">5</a></sup> It requires specific training and is not universally available in every GP surgery — NICE guidance recommends its use where a trained clinician is present, and immediate referral via local stroke pathways where one is not.</p>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section-label">
+    <div class="section-number">4</div>
+    <h2 class="section-title">What the research shows</h2>
+  </div>
+
+  <div class="research-section">
+
+    <!-- Research Card 1 — Epley Cochrane -->
+    <div class="research-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">Cochrane review</div>
+        <div class="ev-stat-row" style="font-size:1.1rem;line-height:1.25;">The Epley manoeuvre</div>
+        <div class="ev-outcome">is a safe &amp; effective treatment for BPPV</div>
+        <div class="ev-conditions">Non-invasive · can be performed in the GP surgery · 36% recur within 4 years but re-treatment works</div>
+      </div>
+      <div class="ev-body">
+        <p>
+          The Cochrane systematic review of the Epley manoeuvre (a canalith repositioning procedure — see Key Terms above) for posterior canal BPPV included 11 randomised controlled trials covering 745 participants. The review concluded that the Epley manoeuvre is a safe and effective treatment for BPPV, with outcomes superior to sham (false) manoeuvres, Brandt-Daroff exercises alone, and no treatment. Outcomes were comparable to alternative repositioning manoeuvres such as the Semont and Gans manoeuvres. The recurrence rate of BPPV after treatment was 36% at 48 months — reinforcing that BPPV can return and that patients benefit from understanding this possibility.
+        </p>
+        <p class="ev-source">Hilton MP, Pinder DK. Cochrane Database Syst Rev. 2014;(12):CD003162.<sup><a href="#ref-3">3</a></sup></p>
+      </div>
+    </div>
+
+    <!-- Research Card 2 — Vestibular Rehabilitation Cochrane -->
+    <div class="research-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">Cochrane review</div>
+        <div class="ev-stat-row" style="font-size:1.1rem;line-height:1.25;">Vestibular rehabilitation</div>
+        <div class="ev-outcome">has moderate to strong evidence for its efficacy</div>
+        <div class="ev-conditions">Dizziness frequency, activity limits &amp; daily life all improved vs no treatment</div>
+      </div>
+      <div class="ev-body">
+        <p>
+          The Cochrane review of vestibular rehabilitation (a physiotherapy-based programme of graded exercises — see Key Terms above) for unilateral peripheral vestibular dysfunction (one-sided inner ear impairment) found moderate to strong evidence in favour of vestibular rehabilitation over control or no treatment. The primary outcome — frequency of dizziness — showed an odds ratio (OR; a measure of how much more likely improvement is in the treated group compared to control) of 2.67 (95% CI 1.85 to 3.86) across four studies including 565 participants. Secondary outcomes including activity limitation and disability also favoured rehabilitation. The review supports vestibular rehabilitation as a safe, effective management approach — particularly for vestibular neuritis recovery where central compensation (the brain adapting to altered inner ear signals) is incomplete.
+        </p>
+        <p class="ev-source">McDonnell MN, Hillier SL. Cochrane Database Syst Rev. 2015;(1):CD005397.<sup><a href="#ref-4">4</a></sup></p>
+      </div>
+    </div>
+
+    <!-- Research Card 3 — Treatment Gap, von Brevern -->
+    <div class="research-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">Treatment gap</div>
+        <div class="ev-stat-row">8%</div>
+        <div class="ev-outcome">of people with BPPV received effective treatment</div>
+        <div class="ev-conditions">Despite 86% seeking medical help — most never receive the Epley manoeuvre</div>
+      </div>
+      <div class="ev-body">
+        <p>
+          A large, nationally representative population-based study of BPPV in Germany found that, despite 86% of affected individuals seeking medical help or experiencing disruption to daily activities, only 8% received effective treatment. The study also found that most participants underwent costly diagnostic investigations rather than the simple positional tests and repositioning manoeuvres that would have confirmed and resolved the diagnosis. A separately published UK audit of 20 patients traced from primary care through to eventual treatment found an average wait of 93 weeks — with 58 weeks of that delay occurring within primary care alone.<sup><a href="#ref-6">6</a></sup> The condition affects twice as many women as men and prevalence increases with age, with migraine, hypertension (high blood pressure), and a history of stroke as independently associated factors.
+        </p>
+        <p class="ev-source">von Brevern M et al. J Neurol Neurosurg Psychiatry. 2007;78(7):710–715.<sup><a href="#ref-2">2</a></sup></p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PUTTING IT TOGETHER -->
+  <div class="putting-together">
+    <p>
+      Vertigo — and BPPV in particular — is one of the most striking examples in medicine of a large gap between what is known and what is routinely done. The condition is common, well understood, and in the case of BPPV, responds to a simple physical procedure that takes a matter of minutes. Yet population studies consistently show that most people with BPPV never receive effective treatment, spending months or years with an avoidable and often disabling condition.
+    </p>
+    <p>
+      Understanding the difference between the brief positional vertigo of BPPV, the prolonged vertigo of vestibular neuritis, the episodic pattern of Ménière's disease, and the red-flag patterns that suggest a central cause — is valuable context for anyone experiencing these symptoms.
+    </p>
+    <p>
+      Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+    </p>
+  </div>
+
+  <!-- REFERENCES -->
+  <div class="references-section">
+    <h2 class="references-title">References</h2>
+
+    <div id="ref-1" class="ref-block">
+      <p class="ref-full">1. National Institute for Health and Care Excellence. <em>Vertigo — Clinical Knowledge Summaries.</em> NICE CKS. Last revised 2022. Available at: cks.nice.org.uk/topics/vertigo</p>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://cks.nice.org.uk/topics/vertigo" target="_blank" rel="noopener">NICE CKS</a>
+      </div>
+    </div>
+
+    <div id="ref-2" class="ref-block">
+      <p class="ref-full">2. von Brevern M, Radtke A, Lezius F, Feldmann M, Ziese T, Lempert T, Neuhauser H. Epidemiology of benign paroxysmal positional vertigo: a population based study. <em>J Neurol Neurosurg Psychiatry.</em> 2007 Jul;78(7):710–715. doi: 10.1136/jnnp.2006.100420. PMID: 17135456.</p>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1136/jnnp.2006.100420" target="_blank" rel="noopener">DOI</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/17135456/" target="_blank" rel="noopener">PubMed</a>
+      </div>
+    </div>
+
+    <div id="ref-3" class="ref-block">
+      <p class="ref-full">3. Hilton MP, Pinder DK. The Epley (canalith repositioning) manoeuvre for benign paroxysmal positional vertigo. <em>Cochrane Database Syst Rev.</em> 2014 Dec 8;2014(12):CD003162. doi: 10.1002/14651858.CD003162.pub3. PMID: 25485940.</p>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1002/14651858.CD003162.pub3" target="_blank" rel="noopener">Cochrane DOI</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/25485940/" target="_blank" rel="noopener">PubMed</a>
+      </div>
+    </div>
+
+    <div id="ref-4" class="ref-block">
+      <p class="ref-full">4. McDonnell MN, Hillier SL. Vestibular rehabilitation for unilateral peripheral vestibular dysfunction. <em>Cochrane Database Syst Rev.</em> 2015 Jan 13;2015(1):CD005397. doi: 10.1002/14651858.CD005397.pub4. PMID: 25581507.</p>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1002/14651858.CD005397.pub4" target="_blank" rel="noopener">Cochrane DOI</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/25581507/" target="_blank" rel="noopener">PubMed</a>
+      </div>
+    </div>
+
+    <div id="ref-5" class="ref-block">
+      <p class="ref-full">5. National Institute for Health and Care Excellence. <em>Suspected neurological conditions: recognition and referral — NG127.</em> NICE, 2019 (updated 2023). Available at: nice.org.uk/guidance/ng127</p>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.nice.org.uk/guidance/ng127" target="_blank" rel="noopener">NICE NG127</a>
+      </div>
+    </div>
+
+    <div id="ref-6" class="ref-block">
+      <p class="ref-full">6. Fife D, FitzGerald JE. Do patients with benign paroxysmal positional vertigo receive prompt treatment? Analysis of waiting times and human and financial costs associated with current practice. <em>Int J Audiol.</em> 2005 Jan;44(1):50–57. doi: 10.1080/14992020400022629. PMID: 15796102.</p>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1080/14992020400022629" target="_blank" rel="noopener">DOI</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/15796102/" target="_blank" rel="noopener">PubMed</a>
+      </div>
+    </div>
+
+    <div id="ref-7" class="ref-block">
+      <p class="ref-full">7. Adrion C, Fischer CS, Wagner J, Gürkov R, Mansmann U, Strupp M; BEMED Study Group. Efficacy and safety of betahistine treatment in patients with Meniere's disease: primary results of a long term, multicentre, double blind, randomised, placebo controlled, dose defining trial (BEMED trial). <em>BMJ.</em> 2016;352:h6816. doi: 10.1136/bmj.h6816.</p>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1136/bmj.h6816" target="_blank" rel="noopener">BMJ DOI</a>
+        <a class="ref-pill" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4721211/" target="_blank" rel="noopener">PMC</a>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-logo">helf.school</div>
+    <p style="font-size:.83rem;color:rgba(255,255,255,0.65);margin-top:.3rem;">Health education for everyone.</p>
+    <div class="footer-disclaimer">
+      <strong style="color:rgba(255,255,255,0.85);">Important:</strong> The content on helf.school is health education — not medical advice. It describes what medicine knows and what services exist. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+    </div>
+    <div class="footer-copy">&copy; 2026 helf.school &middot; Version 1.0 &middot; April 2026</div>
+  </div>
+</footer>
+
+</body>
+</html>
