@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epilepsy — What It Is and How It's Managed · helf.school</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --coral: #E8634A;
+    --cream: #FAF7F2;
+    --sage: #7A9E87;
+    --amber: #E8A84A;
+    --neuro: #6B5EA8;
+    --neuro-dark: #4A4080;
+    --neuro-light: #8E82CC;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; font-weight: 400; background: var(--cream); color: #2C2C2C; line-height: 1.7; }
+
+  /* NAV */
+  .site-nav { background: var(--navy); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .nav-logo { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
+  .nav-logo svg { width: 36px; height: 28px; }
+  .nav-brand { font-family: 'Fraunces', serif; font-size: 1.25rem; color: #fff; font-weight: 700; }
+  .nav-tagline { font-size: .72rem; color: rgba(255,255,255,0.65); letter-spacing: .08em; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.80); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta { background: var(--neuro); color: #fff; padding: .45rem 1.1rem; border-radius: 6px; font-weight: 600; font-size: .88rem; text-decoration: none; white-space: nowrap; }
+
+  /* DISCLAIMER BAR */
+  .disclaimer-bar { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.10); padding: .55rem 2rem; text-align: center; font-size: .78rem; color: rgba(255,255,255,0.75); }
+  .disclaimer-bar strong { color: rgba(255,255,255,0.92); }
+
+  /* HERO */
+  .hero { background: linear-gradient(135deg, var(--neuro-dark) 0%, var(--neuro) 55%, var(--neuro-light) 100%); padding: 4rem 2rem 3.5rem; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 30%, rgba(255,255,255,0.08) 0%, transparent 60%); pointer-events: none; }
+  .hero-inner { max-width: 860px; margin: 0 auto; position: relative; }
+  .hero-breadcrumb { font-size: .82rem; color: rgba(255,255,255,0.80); margin-bottom: 1rem; }
+  .hero-breadcrumb a { color: rgba(255,255,255,0.80); text-decoration: none; }
+  .hero-breadcrumb a:hover { color: #fff; }
+  .hero-series-badge { display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.30); color: #fff; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .28rem .75rem; border-radius: 20px; margin-bottom: 1.1rem; }
+  .hero h1 { font-family: 'Fraunces', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; color: #fff; line-height: 1.15; margin-bottom: .9rem; }
+  .hero-subtitle { font-size: 1.05rem; color: rgba(255,255,255,0.90); max-width: 620px; margin-bottom: 1.8rem; line-height: 1.6; }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 1.2rem; font-size: .83rem; color: rgba(255,255,255,0.82); }
+  .hero-meta span { display: flex; align-items: center; gap: .35rem; }
+
+  /* LAYOUT */
+  .article-wrap { max-width: 860px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+
+  /* SECTION HEADINGS */
+  .section-label { display: flex; align-items: center; gap: .7rem; margin-bottom: 1.2rem; margin-top: 2.8rem; }
+  .section-label:first-of-type { margin-top: 0; }
+  .section-number { width: 32px; height: 32px; background: var(--neuro); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .82rem; font-weight: 700; flex-shrink: 0; }
+  .section-title { font-family: 'Fraunces', serif; font-size: 1.45rem; font-weight: 700; color: var(--navy); }
+
+  /* BODY TEXT */
+  .article-wrap p { color: #2C2C2C; font-weight: 400; margin-bottom: 1rem; font-size: 1rem; }
+  .article-wrap p:last-child { margin-bottom: 0; }
+  .article-wrap ul, .article-wrap ol { color: #2C2C2C; font-weight: 400; margin: .6rem 0 1rem 1.4rem; font-size: 1rem; }
+  .article-wrap li { margin-bottom: .45rem; }
+
+  /* STAT GRID */
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(107,94,168,0.15); border-radius: 10px; overflow: hidden; margin: 1.6rem 0 2rem; border: 1px solid rgba(107,94,168,0.20); }
+  .stat-cell { background: #fff; padding: 1.4rem 1.2rem; }
+  .stat-number { font-family: 'Fraunces', serif; font-size: 2.6rem; font-weight: 900; color: var(--neuro); line-height: 1; margin-bottom: .3rem; }
+  .stat-label { font-weight: 700; font-size: .9rem; color: var(--navy); margin-bottom: .3rem; }
+  .stat-prose { font-size: .88rem; color: #2C2C2C; font-weight: 400; }
+
+  /* KEY TERMS */
+  .key-terms { background: var(--navy); border-radius: 10px; padding: 1.6rem 1.8rem; margin: 2rem 0; }
+  .key-terms-title { font-family: 'Fraunces', serif; font-size: 1.08rem; font-weight: 700; color: #fff; margin-bottom: 1.1rem; }
+  .key-terms-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem .8rem; }
+  .kt-item { display: flex; flex-direction: column; gap: .1rem; }
+  .kt-term { font-size: .88rem; font-weight: 700; color: var(--amber); }
+  .kt-def { font-size: .92rem; color: rgba(255,255,255,0.90); font-weight: 400; line-height: 1.4; }
+
+  /* HIGHLIGHT BOX */
+  .highlight-box { background: rgba(107,94,168,0.08); border-left: 4px solid var(--neuro); border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: .96rem; color: #2C2C2C; font-weight: 400; }
+
+  /* WARNING BOX */
+  .warning-box { background: rgba(232,99,74,0.07); border: 1.5px solid rgba(232,99,74,0.35); border-radius: 8px; padding: 1.1rem 1.2rem; margin: 1.4rem 0; }
+  .warning-box .wb-title { font-weight: 700; color: #C0392B; font-size: .95rem; margin-bottom: .5rem; }
+  .warning-box p { font-size: .93rem; color: #2C2C2C; margin-bottom: 0; }
+
+  /* RESEARCH CARDS */
+  .research-section { margin-top: 1.8rem; }
+  .research-card { display: grid; grid-template-columns: 220px 1fr; gap: 0; border-radius: 10px; overflow: hidden; margin-bottom: 1.2rem; border: 1px solid rgba(107,94,168,0.18); }
+  .ev-stat-box { background: var(--navy); padding: .9rem .75rem; display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden; }
+  .ev-kf-label { font-size: .72rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--amber); margin-bottom: .35rem; }
+  .ev-stat-row { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: .3rem; }
+  .ev-outcome { font-size: .92rem; font-weight: 700; color: rgba(255,255,255,0.92); margin-bottom: .3rem; line-height: 1.3; }
+  .ev-conditions { font-size: .78rem; line-height: 1.32; color: rgba(255,255,255,0.70); }
+  .ev-body { background: #fff; padding: 1rem 1.1rem; display: flex; flex-direction: column; justify-content: space-between; gap: .5rem; }
+  .ev-body p { font-size: .92rem; color: #2C2C2C; font-weight: 400; margin-bottom: 0; }
+  .ev-source { font-size: .78rem; color: rgba(44,44,44,0.55); font-style: italic; }
+
+  /* PUTTING IT TOGETHER */
+  .putting-together { background: var(--navy); border-radius: 10px; padding: 1.8rem 2rem; margin: 2.5rem 0; }
+  .putting-together p { font-style: italic; color: rgba(255,255,255,0.90); font-size: 1rem; font-weight: 400; margin-bottom: .8rem; }
+  .putting-together p:last-child { font-style: normal; font-weight: 700; color: #fff; margin-bottom: 0; }
+
+  /* REFERENCES */
+  .references-section { margin-top: 3rem; border-top: 1px solid rgba(107,94,168,0.20); padding-top: 1.5rem; }
+  .references-title { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 1rem; }
+  .ref-block { border-left: 3px solid var(--neuro); padding-left: .9rem; margin-bottom: 1rem; }
+  .ref-full { font-size: .85rem; color: #2C2C2C; font-weight: 400; line-height: 1.5; }
+  .ref-links { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .4rem; }
+  .ref-pill { display: inline-block; background: var(--neuro); color: #fff; font-size: .74rem; font-weight: 700; padding: .18rem .6rem; border-radius: 12px; text-decoration: none; }
+  .ref-pill:hover { background: var(--neuro-dark); }
+
+  /* SUPERSCRIPTS */
+  sup a { color: var(--neuro); text-decoration: none; font-size: .72rem; font-weight: 700; }
+  sup a:hover { text-decoration: underline; }
+
+  /* RESEARCH FLAGS */
+  .research-flags { margin-top: 2rem; border-top: 1px solid rgba(232,168,74,0.30); padding-top: 1.2rem; }
+  .research-flags-title { font-size: .88rem; font-weight: 700; color: var(--amber); margin-bottom: .6rem; }
+  .flag-item { font-size: .83rem; color: #2C2C2C; margin-bottom: .4rem; }
+
+  /* FOOTER */
+  .site-footer { background: var(--navy); color: rgba(255,255,255,0.70); padding: 2.5rem 2rem 1.5rem; font-size: .85rem; margin-top: 3rem; }
+  .footer-inner { max-width: 860px; margin: 0 auto; }
+  .footer-logo { font-family: 'Fraunces', serif; font-weight: 700; color: #fff; font-size: 1.1rem; margin-bottom: .4rem; }
+  .footer-disclaimer { font-size: .78rem; color: rgba(255,255,255,0.65); margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.12); line-height: 1.6; }
+  .footer-copy { margin-top: .8rem; font-size: .75rem; color: rgba(255,255,255,0.45); }
+
+  @media (max-width: 640px) {
+    .key-terms-grid { grid-template-columns: 1fr; }
+    .stat-grid { grid-template-columns: 1fr; }
+    .research-card { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero { padding: 2.5rem 1.2rem 2rem; }
+    .article-wrap { padding: 1.5rem 1.2rem 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="0" y="4" width="16" height="20" rx="2" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+      <rect x="20" y="4" width="16" height="20" rx="2" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+      <line x1="18" y1="5" x2="18" y2="23" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+      <path d="M3 9 Q8 8 13 9M3 12 Q8 11 13 12M3 15 Q8 14 13 15" stroke="rgba(255,255,255,0.45)" stroke-width="1" fill="none"/>
+      <path d="M23 9 Q28 8 33 9M23 12 Q28 11 33 12M23 15 Q28 14 33 15" stroke="rgba(255,255,255,0.45)" stroke-width="1" fill="none"/>
+    </svg>
+    <div>
+      <div class="nav-brand">helf.school</div>
+      <div class="nav-tagline">Health Education</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="helf-school-conditions.html">Conditions</a></li>
+    <li><a href="helf-school-membership.html">Membership</a></li>
+  </ul>
+  <a href="helf-school-membership.html" class="nav-cta">Join free</a>
+</nav>
+
+<!-- DISCLAIMER BAR -->
+<div class="disclaimer-bar">
+  <strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-breadcrumb">
+      <a href="index.html">Home</a> &rsaquo;
+      <a href="helf-school-conditions.html">Conditions</a> &rsaquo;
+      Neurological Health &rsaquo; Epilepsy
+    </p>
+    <div class="hero-series-badge">Neurological Health · Article 26</div>
+    <h1>Epilepsy — What It Is<br>and How It's Managed</h1>
+    <p class="hero-subtitle">
+      Around 630,000 people in the UK live with epilepsy. For the majority, medication controls seizures well — but a significant minority face ongoing challenges. Understanding what epilepsy is and how it is approached clinically helps make sense of the journey from diagnosis to management.
+    </p>
+    <div class="hero-meta">
+      <span>🧠 Neurological series</span>
+      <span>📖 10 min read</span>
+      <span>🔬 4 research sources</span>
+      <span>👨‍⚕️ Dr Paul · NHS GP 20+ years</span>
+    </div>
+  </div>
+</header>
+
+<!-- ARTICLE -->
+<main class="article-wrap">
+
+  <!-- SECTION 1 -->
+  <div class="section-label">
+    <div class="section-number">1</div>
+    <h2 class="section-title">What is it?</h2>
+  </div>
+
+  <p>
+    Epilepsy is a neurological condition (a condition affecting the brain and nervous system) characterised by a tendency to have recurrent unprovoked seizures (episodes of abnormal electrical activity in the brain that disrupt normal brain function temporarily). A single seizure does not constitute epilepsy — the defining feature is recurrence without a clear provoking cause, such as a fever, low blood sugar, or acute illness.
+  </p>
+
+  <p>
+    A seizure occurs when there is a sudden, excessive, and disordered burst of electrical activity in the brain. The way a seizure presents depends entirely on where in the brain it starts and how far it spreads. Seizures are broadly classified into two main types:
+  </p>
+
+  <ul>
+    <li><strong>Focal seizures</strong> (previously called partial seizures) — begin in a specific, localised area of one hemisphere (half) of the brain. The person may remain aware throughout, or awareness may be impaired. Symptoms depend on the function of the brain area involved: a seizure starting in the motor cortex (the area controlling movement) might cause rhythmic jerking of one limb; one starting in the temporal lobe (the area involved in memory and emotion) might produce a strong sense of déjà vu (an overwhelming feeling that a situation has been experienced before), a rising sensation in the stomach, or altered awareness. A focal seizure may remain localised or may spread to both hemispheres and evolve into a generalised seizure.</li>
+    <li><strong>Generalised seizures</strong> — involve both hemispheres of the brain from the outset. Loss of consciousness occurs with most types. The most widely recognised type is the tonic-clonic seizure (previously known as a grand mal seizure — characterised by a tonic phase in which the body stiffens, followed by a clonic phase of rhythmic jerking movements). Other types include absence seizures (brief episodes, lasting only seconds, in which the person appears to stare blankly — the eyes may flutter and there is no response to speech; most common in children), myoclonic seizures (sudden, brief muscle jerks), and atonic seizures (sudden loss of muscle tone causing the person to fall).</li>
+  </ul>
+
+  <p>
+    Many people with epilepsy experience an <strong>aura</strong> immediately before certain seizures — a warning symptom that is itself a type of focal seizure. Auras vary between individuals but are typically consistent for the same person and may include unusual smells or tastes, visual disturbances (flashing lights, blurring), a rising epigastric (stomach area) sensation, a feeling of unreality, or emotional changes such as sudden fear.
+  </p>
+
+  <p>
+    After a seizure, many people enter a <strong>postictal state</strong> (the recovery period immediately following a seizure) — a period of confusion, fatigue, headache, or low mood lasting minutes to hours. This postictal phase can be as disruptive to daily life as the seizure itself.
+  </p>
+
+  <p>
+    The causes of epilepsy are diverse. In around 50% of cases, no structural or metabolic cause is identified — these are classified as epilepsies with a likely genetic basis. Identified structural causes include hippocampal sclerosis (scarring of the hippocampus — the brain structure central to memory formation, commonly associated with a history of prolonged febrile convulsions in childhood), brain tumours, previous stroke, traumatic brain injury (a head injury causing disruption to brain function), cortical dysplasia (abnormal development of the brain's outer layer), and others. Immune-mediated causes — where the body's immune system attacks brain tissue — are an increasingly recognised category.
+  </p>
+
+  <!-- KEY TERMS -->
+  <div class="key-terms">
+    <div class="key-terms-title">📖 Key Terms</div>
+    <div class="key-terms-grid">
+      <div class="kt-item">
+        <span class="kt-term">Epilepsy</span>
+        <span class="kt-def">A neurological condition defined by a tendency to have recurrent, unprovoked seizures — episodes of abnormal electrical activity in the brain causing temporary disruption to brain function.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Focal seizure</span>
+        <span class="kt-def">A seizure that begins in a localised area of one hemisphere of the brain; symptoms depend on the function of the affected area. Previously called a partial seizure.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Generalised seizure</span>
+        <span class="kt-def">A seizure that involves both hemispheres of the brain from the outset; loss of consciousness occurs with most types. Includes tonic-clonic, absence, myoclonic and atonic seizures.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Tonic-clonic seizure</span>
+        <span class="kt-def">The most recognisable seizure type: a tonic phase (body stiffens and the person falls) followed by a clonic phase (rhythmic jerking movements). Previously called a grand mal seizure.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Aura</span>
+        <span class="kt-def">A warning symptom — itself a type of focal seizure — that some people experience immediately before a larger seizure. Auras are consistent for each person and may include unusual sensations, smells, or feelings.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Postictal state</span>
+        <span class="kt-def">The recovery period immediately following a seizure, characterised by confusion, fatigue, headache or low mood — lasting minutes to hours.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">EEG (electroencephalogram)</span>
+        <span class="kt-def">A recording of the brain's electrical activity using sensors placed on the scalp — used in epilepsy to look for abnormal patterns between or during seizures that help confirm diagnosis and classify seizure type.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Anti-seizure medication (ASM)</span>
+        <span class="kt-def">The term now preferred over 'antiepileptic drug' — medications that reduce seizure frequency by modifying abnormal electrical activity in the brain. They do not cure epilepsy; they reduce or prevent seizures.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Drug-resistant epilepsy</span>
+        <span class="kt-def">Epilepsy in which seizures persist despite adequate trials of two or more appropriate anti-seizure medications — affecting more than 30% of people with epilepsy.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Status epilepticus</span>
+        <span class="kt-def">A prolonged seizure lasting more than 5 minutes, or seizures occurring in succession without the person regaining consciousness between them — a medical emergency requiring urgent treatment to stop the seizure.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">SUDEP</span>
+        <span class="kt-def">Sudden Unexpected Death in Epilepsy — the sudden, unexplained death of a person with epilepsy who was otherwise in reasonable health. The risk is substantially higher in people with poorly controlled seizures, particularly tonic-clonic seizures.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Hippocampal sclerosis</span>
+        <span class="kt-def">Scarring of the hippocampus — the brain structure central to memory — commonly associated with prolonged febrile convulsions (fever-triggered seizures) in childhood, and a frequent structural cause of focal epilepsy.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section-label">
+    <div class="section-number">2</div>
+    <h2 class="section-title">Why does it matter?</h2>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <div class="stat-number">630,000</div>
+      <div class="stat-label">People in the UK living with epilepsy</div>
+      <div class="stat-prose">Approximately 1 in every 100 people — with around 80 new diagnoses recorded every day.<sup><a href="#ref-2">2</a></sup></div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">~50%</div>
+      <div class="stat-label">Achieve seizure freedom on their first medication</div>
+      <div class="stat-prose">Roughly two in three people with epilepsy ultimately become seizure-free with medication — but for many it takes more than one drug trial.<sup><a href="#ref-3">3</a></sup></div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">&gt;30%</div>
+      <div class="stat-label">Develop drug-resistant epilepsy</div>
+      <div class="stat-prose">Seizures that do not respond to adequate trials of two or more anti-seizure medications — a significant and clinically challenging minority.<sup><a href="#ref-4">4</a></sup></div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">~1 in 1,000</div>
+      <div class="stat-label">Annual SUDEP risk for people with epilepsy</div>
+      <div class="stat-prose">A risk substantially higher in those with frequent uncontrolled tonic-clonic seizures — and substantially reduced by good seizure control.<sup><a href="#ref-5">5</a></sup></div>
+    </div>
+  </div>
+
+  <p>
+    Beyond the clinical statistics, epilepsy has profound practical consequences. Driving is restricted for anyone with epilepsy — in the UK, a person must be seizure-free for at least 12 months before applying to drive a standard vehicle. Employment, swimming alone, bathing, cooking, and working at heights are among the everyday activities that require careful consideration. The psychological impact — including anxiety about the unpredictability of seizures, stigma, and the effect on relationships — is substantial and clinically recognised.
+  </p>
+
+  <!-- SECTION 3 -->
+  <div class="section-label">
+    <div class="section-number">3</div>
+    <h2 class="section-title">What your doctor might discuss</h2>
+  </div>
+
+  <p>
+    <strong>Diagnosis — the role of history, EEG, and imaging.</strong> Diagnosing epilepsy is primarily a clinical task — it depends heavily on a detailed account of events, including from a witness if one was present. An EEG (electroencephalogram — a recording of the brain's electrical activity using sensors placed on the scalp) is a key investigation: it looks for abnormal patterns of electrical activity that can support the diagnosis and help classify seizure type. However, an EEG can be normal between seizures even in people with epilepsy, and a normal EEG does not exclude the diagnosis. Specialist neuroimaging — typically MRI (magnetic resonance imaging, a detailed scan using magnetic fields rather than X-rays) — is recommended by NICE NG217 for most people with a new diagnosis of epilepsy, to identify structural causes and guide treatment.<sup><a href="#ref-1">1</a></sup>
+  </p>
+
+  <p>
+    <strong>NICE NG217 and specialist referral.</strong> NICE guideline NG217 (Epilepsies in children, young people and adults — published April 2022, updated January 2025) recommends that anyone with a suspected first seizure or new diagnosis of epilepsy is referred promptly to a neurologist or epilepsy specialist. Diagnosis should be made by an epilepsy specialist — not in primary care — because accurate classification is essential to treatment choice. An incorrect diagnosis of epilepsy is clinically significant: a UK specialist clinic study found that 26.1% of patients referred with treated epilepsy were subsequently found to have a different condition, most commonly due to incomplete history-taking or misinterpretation of the EEG (brain activity recording). The most common alternative diagnosis is NEAD (non-epileptic attack disorder — episodes that resemble seizures but are not caused by abnormal electrical activity in the brain).<sup><a href="#ref-6">6</a></sup>
+  </p>
+
+  <p>
+    <strong>Anti-seizure medications (ASMs).</strong> The mainstay of epilepsy management in the UK is anti-seizure medication (ASM) — the term now preferred over 'antiepileptic drug'. First-line treatment choices depend on seizure type and epilepsy syndrome, and are guided by NICE NG217. For focal epilepsy, lamotrigine (Lamictal) and levetiracetam (Keppra) are typically first-line options. For generalised epilepsy, sodium valproate (Epilim) has long been considered the most effective option for many syndromes — but its use has been significantly restricted due to safety concerns (see below). Carbamazepine (Tegretol) is effective for focal seizures but inappropriate for generalised epilepsies where it can worsen certain seizure types. Newer ASMs including lacosamide (Vimpat) and topiramate (Topamax) are used as adjunctive therapy (additional treatment added to an existing regimen) when initial drugs are unsuccessful.
+  </p>
+
+  <p>
+    <strong>Sodium valproate and pregnancy — a critical safety issue.</strong> Sodium valproate is teratogenic (capable of causing serious harm to a developing foetus) — this is among the most important medication safety concerns in UK neurology. In utero exposure to valproate is associated with a significantly increased risk of major congenital malformations (structural birth defects) and of neurodevelopmental disorders including autism and reduced IQ in the child. The MHRA (Medicines and Healthcare products Regulatory Agency — the UK's medicines regulator) has introduced the Valproate Pregnancy Prevention Programme: valproate must not be used in girls or women of childbearing potential unless two conditions are met — the pregnancy prevention programme requirements are fulfilled, and there is no effective alternative treatment available. This represents a major clinical constraint on valproate use and has substantially changed prescribing patterns for epilepsy in women of reproductive age.
+  </p>
+
+  <p>
+    <strong>Drug-resistant epilepsy and further options.</strong> Drug-resistant epilepsy (see Key Terms above) — defined as failure of two or more adequate and appropriate ASM trials — affects more than 30% of people with epilepsy. For people who fall into this category, the clinical approach involves careful review to confirm the diagnosis, optimisation of existing treatment, and consideration of specialist options. These include epilepsy surgery (resection — surgical removal — or disconnection of the brain tissue responsible for generating seizures, where this can be identified and safely removed); vagus nerve stimulation (VNS — a device implanted under the skin that delivers regular electrical pulses to the vagus nerve in the neck to reduce seizure frequency); and ketogenic diet therapy (a medically supervised diet very high in fat and very low in carbohydrate that alters brain metabolism in ways that can reduce seizure frequency, particularly in children).<sup><a href="#ref-1">1</a></sup>
+  </p>
+
+  <p>
+    <strong>SUDEP — a conversation clinicians are now expected to have.</strong> NICE NG217 states that all people with epilepsy should be informed about SUDEP (Sudden Unexpected Death in Epilepsy — see Key Terms above). This was not standard clinical practice a decade ago; the shift reflects recognition that people with epilepsy deserve accurate information about risk and about the steps that reduce it. SUDEP affects approximately 1 in 1,000 people with epilepsy per year, but the risk is not evenly distributed — it is substantially higher in people with frequent, uncontrolled tonic-clonic seizures, and lowest in those who are seizure-free. Good seizure control — through medication adherence, avoiding known triggers, and appropriate clinical follow-up — is the most effective way to reduce SUDEP risk.<sup><a href="#ref-5">5</a></sup>
+  </p>
+
+  <p>
+    <strong>Driving and daily life.</strong> In the UK, anyone with epilepsy must notify the DVLA (Driver and Vehicle Licensing Agency). The standard requirement for driving a car is a period of at least 12 months without any seizure (including nocturnal seizures). Different rules apply to certain seizure patterns and to large goods vehicle (HGV) and bus licences, which have significantly stricter requirements. An epilepsy specialist nurse — where available through local epilepsy services — plays an important role in supporting people through the practical, employment, and psychosocial implications of a diagnosis.
+  </p>
+
+  <!-- SECTION 4 -->
+  <div class="section-label">
+    <div class="section-number">4</div>
+    <h2 class="section-title">What the research shows</h2>
+  </div>
+
+  <div class="research-section">
+
+    <!-- Research Card 1 — Chen et al JAMA Neurol 2018 -->
+    <div class="research-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">JAMA Neurology 2018</div>
+        <div class="ev-stat-row">~50%</div>
+        <div class="ev-outcome">become seizure-free on their first anti-seizure medication</div>
+        <div class="ev-conditions">63.7% ultimately achieve seizure freedom · 30-year cohort · 1,795 patients</div>
+      </div>
+      <div class="ev-body">
+        <p>A 30-year longitudinal cohort study from Glasgow — the most comprehensive long-term outcome study of newly diagnosed epilepsy in the literature — followed 1,795 patients treated with anti-seizure medications between 1982 and 2012. It found that 50.5% of patients achieved seizure freedom lasting at least 12 months on their first ASM regimen. When a second or third drug was tried after initial failure, a further 11.6% and 4.4% respectively achieved seizure freedom. Overall, 63.7% of patients were seizure-free at the end of the study period. The pattern confirms that the first drug is the most likely to work and that the probability of achieving seizure control falls meaningfully with each subsequent drug failure — establishing the clinical importance of early accurate diagnosis and appropriate first-line drug choice.</p>
+        <p class="ev-source">Chen Z, Brodie MJ, Liew D, Kwan P. Treatment Outcomes in Patients With Newly Diagnosed Epilepsy Treated With Established and New Antiepileptic Drugs: A 30-Year Longitudinal Cohort Study. JAMA Neurol. 2018;75(3):279–286. doi:10.1001/jamaneurol.2017.3949. PMID: 29279892.<sup><a href="#ref-3">3</a></sup></p>
+      </div>
+    </div>
+
+    <!-- Research Card 2 — Kwan & Brodie NEJM 2000 -->
+    <div class="research-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">NEJM 2000</div>
+        <div class="ev-stat-row">&gt;30%</div>
+        <div class="ev-outcome">develop drug-resistant epilepsy despite adequate treatment</div>
+        <div class="ev-conditions">After 2+ drug failures — further medication is unlikely to achieve seizure freedom</div>
+      </div>
+      <div class="ev-body">
+        <p>The landmark Glasgow cohort study by Kwan and Brodie, published in the New England Journal of Medicine in 2000, prospectively followed 525 patients newly diagnosed with epilepsy and treated with anti-seizure medications. It established that more than 30% of patients fail to achieve adequate seizure control with drug therapy. The study demonstrated that if a first drug failed due to lack of efficacy (rather than side effects), the probability of a subsequent drug achieving seizure freedom was only 11% — establishing the concept and clinical reality of drug-resistant epilepsy. People with symptomatic or cryptogenic epilepsy (seizures with a known or presumed structural cause) and those who had had many seizures before treatment were substantially more likely to develop drug resistance. This paper remains foundational to epilepsy management and directly informs the pathway to surgical and other specialist options.</p>
+        <p class="ev-source">Kwan P, Brodie MJ. Early identification of refractory epilepsy. N Engl J Med. 2000;342(5):314–319. doi:10.1056/NEJM200002033420503. PMID: 10660394.<sup><a href="#ref-4">4</a></sup></p>
+      </div>
+    </div>
+
+    <!-- Research Card 3 — SUDEP / Seizure control and risk -->
+    <div class="research-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">SUDEP risk evidence</div>
+        <div class="ev-stat-row" style="font-size:1.5rem;line-height:1.2;">Seizure control is the key protective factor</div>
+        <div class="ev-outcome">Good control substantially reduces SUDEP risk</div>
+        <div class="ev-conditions">1 in 1,000/yr overall · up to 1 in 150 with uncontrolled tonic-clonic seizures</div>
+      </div>
+      <div class="ev-body">
+        <p>Population-based studies consistently report a SUDEP (Sudden Unexpected Death in Epilepsy) incidence of approximately 1 per 1,000 people with epilepsy per year in the general epilepsy population. However, this figure masks significant variation by seizure control. In people with frequent uncontrolled tonic-clonic seizures, the risk rises to approximately 1 in 150 per year. The most important modifiable risk factor for SUDEP is seizure frequency — particularly frequency of generalised tonic-clonic seizures. Nocturnal seizures (seizures occurring during sleep) carry additional risk, likely due to the absence of an observer and the effect of sleep on cardiorespiratory regulation. Mechanisms are believed to involve seizure-induced disruption to heart rhythm (cardiac arrhythmia — an abnormal heart rhythm) and breathing. NICE NG217 now mandates that all people with epilepsy are informed about SUDEP as part of routine care — a recognition that knowledge empowers people to take steps that reduce risk, particularly around medication adherence and seizure monitoring at night.</p>
+        <p class="ev-source">Epilepsy Society. Sudden Unexpected Death in Epilepsy (SUDEP). Available at: epilepsysociety.org.uk. Data also from: Thurman DJ et al. Standards for epidemiologic studies and surveillance of epilepsy. Epilepsia. 2011;52(Suppl 7):2–26.<sup><a href="#ref-5">5</a></sup></p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PUTTING IT TOGETHER -->
+  <div class="putting-together">
+    <p>
+      Epilepsy is one of the most common serious neurological conditions, affecting around 630,000 people in the UK — yet it remains widely misunderstood and significantly stigmatised. For most people, the journey from diagnosis to good seizure control is achievable: around two in three people ultimately become seizure-free with medication, and for many, epilepsy has little ongoing impact on daily life.
+    </p>
+    <p>
+      For the more than 30% who develop drug-resistant epilepsy, the picture is more challenging — but specialist options including surgery, VNS, and ketogenic diet offer meaningful benefit for carefully selected patients. The valproate pregnancy safety issue represents one of the most important prescribing constraints in UK neurology and is a clinically active area.
+    </p>
+    <p>
+      SUDEP is a reality — but it is not an inevitability. The evidence is clear that good seizure control is protective, and that medication adherence, regular clinical review, and awareness of nocturnal seizure risks all contribute to reducing it.
+    </p>
+    <p>
+      Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+    </p>
+  </div>
+
+  <!-- REFERENCES -->
+  <div class="references-section">
+    <h2 class="references-title">References</h2>
+
+    <div id="ref-1" class="ref-block">
+      <p class="ref-full">1. National Institute for Health and Care Excellence. <em>Epilepsies in children, young people and adults.</em> NICE guideline NG217. Published 27 April 2022. Last updated 30 January 2025. Available at: nice.org.uk/guidance/ng217</p>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.nice.org.uk/guidance/ng217" target="_blank" rel="noopener">NICE NG217</a>
+      </div>
+    </div>
+
+    <div id="ref-2" class="ref-block">
+      <p class="ref-full">2. Wigglesworth S, Neligan A, Dickson JM, et al. The incidence and prevalence of epilepsy in the United Kingdom 2013–2018: A retrospective cohort study of UK primary care data. <em>Seizure: European Journal of Epilepsy.</em> 2023;105:37–42. doi:10.1016/j.seizure.2023.01.003. PMID: 36702018.</p>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1016/j.seizure.2023.01.003" target="_blank" rel="noopener">Seizure DOI</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/36702018/" target="_blank" rel="noopener">PubMed</a>
+      </div>
+    </div>
+
+    <div id="ref-3" class="ref-block">
+      <p class="ref-full">3. Chen Z, Brodie MJ, Liew D, Kwan P. Treatment Outcomes in Patients With Newly Diagnosed Epilepsy Treated With Established and New Antiepileptic Drugs: A 30-Year Longitudinal Cohort Study. <em>JAMA Neurology.</em> 2018;75(3):279–286. doi:10.1001/jamaneurol.2017.3949. PMID: 29279892.</p>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1001/jamaneurol.2017.3949" target="_blank" rel="noopener">JAMA Neurol DOI</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/29279892/" target="_blank" rel="noopener">PubMed</a>
+      </div>
+    </div>
+
+    <div id="ref-4" class="ref-block">
+      <p class="ref-full">4. Kwan P, Brodie MJ. Early identification of refractory epilepsy. <em>New England Journal of Medicine.</em> 2000;342(5):314–319. doi:10.1056/NEJM200002033420503. PMID: 10660394.</p>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1056/NEJM200002033420503" target="_blank" rel="noopener">NEJM DOI</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/10660394/" target="_blank" rel="noopener">PubMed</a>
+      </div>
+    </div>
+
+    <div id="ref-5" class="ref-block">
+      <p class="ref-full">5. Thurman DJ, Hesdorffer DC, French JA. Sudden unexpected death in epilepsy: assessing the public health burden. <em>Epilepsia.</em> 2014;55(10):1479–1485. doi:10.1111/epi.12666. PMID: 24903551.</p>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1111/epi.12666" target="_blank" rel="noopener">Epilepsia DOI</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/24903551/" target="_blank" rel="noopener">PubMed</a>
+      </div>
+    </div>
+
+    <div id="ref-6" class="ref-block">
+      <p class="ref-full">6. Smith D, Defalla BA, Chadwick DW. The misdiagnosis of epilepsy and the management of refractory epilepsy in a specialist clinic. <em>QJM: An International Journal of Medicine.</em> 1999;92(1):15–23. doi:10.1093/qjmed/92.1.15. PMID: 10209668.</p>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1093/qjmed/92.1.15" target="_blank" rel="noopener">QJM DOI</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/10209668/" target="_blank" rel="noopener">PubMed</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RESEARCH FLAGS -->
+  <div class="research-flags">
+    <div class="research-flags-title">⚑ Research flags — for Dr Paul's review before upload</div>
+    <p class="flag-item">⚑ Ref 5 (Thurman et al 2014) — PMID 24903551 and DOI verified by web search in this session. The SUDEP incidence figure of ~1 in 1,000/year is well-established in the literature and cited consistently by Epilepsy Society and Epilepsy Action. The 1 in 150 figure for uncontrolled seizures also appears in clinical literature but should be confirmed against this reference before finalising.</p>
+    <p class="flag-item">⚑ Valproate section — the teratogenicity description and MHRA Valproate Pregnancy Prevention Programme reference are accurate as of early 2025. If any MHRA guidance updates have been issued since, check before uploading.</p>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-logo">helf.school</div>
+    <p style="font-size:.83rem;color:rgba(255,255,255,0.65);margin-top:.3rem;">Health education for everyone.</p>
+    <div class="footer-disclaimer">
+      <strong style="color:rgba(255,255,255,0.85);">Important:</strong> The content on helf.school is health education — not medical advice. It describes what medicine knows and what services exist. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+    </div>
+    <div class="footer-copy">&copy; 2026 helf.school &middot; Version 1.0 &middot; April 2026</div>
+  </div>
+</footer>
+
+</body>
+</html>
