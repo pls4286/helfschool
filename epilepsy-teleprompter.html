@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epilepsy — Teleprompter · helf.school</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--neuro:#6B5EA8;--amber:#E8A84A;--navy:#1B2A4A;}
+html,body{width:100vw;height:100vh;overflow:hidden;background:#0a0a0a;color:#f0f0f0;font-family:Georgia,serif;}
+
+.controls{position:fixed;top:0;left:0;right:0;height:48px;background:#111;border-bottom:1px solid #222;display:flex;align-items:center;gap:.6rem;padding:0 1rem;z-index:100;}
+.ctrl-btn{background:#222;border:1px solid #333;color:#ccc;font-size:.78rem;padding:.3rem .7rem;border-radius:5px;cursor:pointer;font-family:sans-serif;}
+.ctrl-btn:hover{background:#333;color:#fff;}
+.ctrl-label{font-family:sans-serif;font-size:.75rem;color:#666;margin-left:.4rem;}
+.speed-display{font-family:sans-serif;font-size:.75rem;color:var(--amber);min-width:60px;}
+.seg-label{font-family:sans-serif;font-size:.75rem;color:var(--neuro);margin-left:auto;}
+#pause-btn{background:var(--neuro);color:#fff;border-color:var(--neuro);font-weight:700;}
+
+.scroll-wrap{position:fixed;top:48px;left:0;right:0;bottom:32px;overflow-y:scroll;scrollbar-width:none;}
+.scroll-wrap::-webkit-scrollbar{display:none;}
+.scroll-content{padding:4vh 10vw 50vh;}
+
+.script-text{font-size:1.9rem;line-height:1.75;color:#f0f0f0;}
+.script-text p{margin-bottom:1.4em;}
+
+.cue{background:#1a1a0a;border:2px solid var(--amber);border-radius:8px;padding:.7rem 1.1rem;margin:1.8rem 0 1rem;display:flex;align-items:center;gap:.75rem;}
+.cue-arrow{font-size:1.4rem;color:var(--amber);flex-shrink:0;}
+.cue-text{font-family:sans-serif;font-size:1rem;font-weight:700;color:var(--amber);line-height:1.3;}
+
+.seg{border-top:2px dashed #2a2a2a;margin:2.5rem 0 0;padding-top:1rem;}
+.seg-title{font-family:sans-serif;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:#444;margin-bottom:1rem;}
+
+.dots{position:fixed;bottom:0;left:0;right:0;height:32px;background:#111;border-top:1px solid #1a1a1a;display:flex;align-items:center;justify-content:center;gap:.5rem;}
+.dot{width:8px;height:8px;border-radius:50%;background:#333;cursor:pointer;transition:background .2s;}
+.dot.active{background:var(--neuro);}
+</style>
+</head>
+<body>
+
+<div class="controls">
+  <button class="ctrl-btn" id="pause-btn">⏸ Pause</button>
+  <span class="ctrl-label">Speed:</span>
+  <button class="ctrl-btn" onclick="changeSpeed(-1)">−</button>
+  <span class="speed-display" id="speed-disp">Speed 4</span>
+  <button class="ctrl-btn" onclick="changeSpeed(1)">+</button>
+  <span class="ctrl-label">Font:</span>
+  <button class="ctrl-btn" onclick="changeFont(-2)">A−</button>
+  <button class="ctrl-btn" onclick="changeFont(2)">A+</button>
+  <span class="seg-label" id="seg-label">Segment 1</span>
+</div>
+
+<div class="scroll-wrap" id="scroll-wrap">
+<div class="scroll-content">
+<div class="script-text" id="script">
+
+<!-- SEGMENT 1 — INTRO -->
+<div class="seg" id="seg-1">
+<div class="seg-title">Segment 1 — Intro (~18 seconds)</div>
+
+<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 1: Title card</span></div>
+
+<p>I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about epilepsy — what it is, how it's diagnosed, and how it's managed.</p>
+
+<p>Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — let's get into it.</p>
+</div>
+
+<!-- SEGMENT 2 — WHAT IS EPILEPSY -->
+<div class="seg" id="seg-2">
+<div class="seg-title">Segment 2 — What is epilepsy? (~45 seconds)</div>
+
+<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 2: Seizure types</span></div>
+
+<p>Epilepsy is a neurological condition — a condition of the brain and nervous system — defined by a tendency to have recurrent, unprovoked seizures. A single seizure doesn't make a diagnosis. It's the pattern of recurrence, without a clear provoking cause, that defines it.</p>
+
+<p>Seizures happen when there's a sudden burst of disordered electrical activity in the brain. And how a seizure looks depends entirely on where in the brain it starts.</p>
+
+<p>Focal seizures begin in one specific area. Depending on which part of the brain is involved, a person might experience rhythmic jerking of one limb, a strong sense of déjà vu, a rising sensation in the stomach, or altered awareness. Focal seizures can stay localised — or they can spread and become generalised.</p>
+
+<p>Generalised seizures involve both sides of the brain from the outset. The most well-known type is the tonic-clonic seizure — previously called a grand mal — where the body stiffens, then goes into rhythmic jerking. But there are other types too: absence seizures, which are brief blank staring episodes most common in children; myoclonic jerks; and atonic seizures, where the person suddenly drops due to loss of muscle tone.</p>
+
+<p>And one important point — many people with epilepsy experience an aura before certain seizures. That's a warning symptom, which is itself a type of focal seizure. Auras are usually consistent for the same person, and give a brief window before the larger seizure begins.</p>
+</div>
+
+<!-- SEGMENT 3 — ASSESSMENT -->
+<div class="seg" id="seg-3">
+<div class="seg-title">Segment 3 — Assessment and diagnosis (~40 seconds)</div>
+
+<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 3: Assessment and diagnosis</span></div>
+
+<p>How is epilepsy diagnosed? The single most important tool is the clinical history — a detailed account of what happened, ideally including from someone who witnessed it. NICE guidance is clear: anyone with a suspected first seizure should be referred promptly to a neurologist or epilepsy specialist. Diagnosis should not be made in primary care.</p>
+
+<p>An EEG — an electroencephalogram, which records the brain's electrical activity through sensors on the scalp — is a key investigation. But it can be normal between seizures even in confirmed epilepsy, so a normal result doesn't rule it out.</p>
+
+<p>MRI brain imaging is recommended for most people newly diagnosed with epilepsy, to look for structural causes and help guide treatment.</p>
+
+<p>And here's something that might surprise you — a UK specialist clinic study found that more than one in four patients referred with a diagnosis of treated epilepsy didn't actually have it. The most common errors were incomplete history-taking and misinterpretation of the EEG. Getting the diagnosis right matters enormously — because the treatment choices that follow depend on it entirely.</p>
+</div>
+
+<!-- SEGMENT 4 — MEDICATIONS -->
+<div class="seg" id="seg-4">
+<div class="seg-title">Segment 4 — Medications (~40 seconds)</div>
+
+<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 4: Medications</span></div>
+
+<p>The mainstay of epilepsy management is anti-seizure medication — or ASM. For focal epilepsy, lamotrigine and levetiracetam are typically first-line. For generalised epilepsy the choices are broader, though sodium valproate — which has historically been very effective — is now significantly restricted.</p>
+
+<p>I want to be clear about valproate and pregnancy, because this is genuinely important. Valproate is teratogenic — it's capable of causing serious harm to a developing foetus, including structural birth defects and neurodevelopmental problems. The MHRA — the medicines regulator — has a specific Valproate Pregnancy Prevention Programme. Valproate must not be used in girls and women of childbearing potential unless there is no effective alternative and all the programme requirements are met.</p>
+
+<p>This is not a theoretical risk. It's among the most important prescribing safety issues in UK neurology, and it's a conversation that needs to happen with a specialist.</p>
+</div>
+
+<!-- SEGMENT 5 — DRUG-RESISTANT -->
+<div class="seg" id="seg-5">
+<div class="seg-title">Segment 5 — Drug-resistant epilepsy (~40 seconds)</div>
+
+<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 5: Drug-resistant epilepsy</span></div>
+
+<p>For most people, medication controls seizures well. But more than 30% of people with epilepsy develop what's called drug-resistant epilepsy — where seizures continue despite adequate trials of two or more medications. And the research tells us something important: if the first drug fails because it simply doesn't work — not because of side effects — the probability of the next drug achieving seizure freedom is only about 11%.</p>
+
+<p>For those people, there are other options. Epilepsy surgery — removing or disconnecting the brain tissue responsible for generating seizures — offers the best chance of long-term seizure freedom where a structural cause can be identified. Vagus nerve stimulation uses an implanted device to reduce seizure frequency. And ketogenic diet therapy — a medically supervised high-fat, very low carbohydrate diet — has evidence particularly in children with certain epilepsy syndromes.</p>
+
+<p>None of these are simple interventions, and they all require specialist assessment. But they represent real options for people who haven't responded to medication.</p>
+</div>
+
+<!-- SEGMENT 6 — RESEARCH AND CLOSE -->
+<div class="seg" id="seg-6">
+<div class="seg-title">Segment 6 — Research and close (~50 seconds)</div>
+
+<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 6: Research — treatment outcomes</span></div>
+
+<p>The research picture on treatment outcomes is clear and important. A 30-year Glasgow cohort study of nearly 1,800 patients found that around 50% became seizure-free on their first anti-seizure medication. A further 12% responded to the second, and around 4% to the third. Overall, nearly 64% achieved seizure freedom. But the message is stark — the first drug is by far the most likely to work. After two drug failures, the probability of the next one succeeding is only around 11%.</p>
+
+<p>That's why getting the diagnosis right, and choosing the right first medication, is so clinically important.</p>
+
+<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 7: Research — misdiagnosis and SUDEP</span></div>
+
+<p>On misdiagnosis — the Smith and Chadwick study from the Walton Centre found a rate of 26.1% among patients referred with epilepsy to a specialist clinic. That's a striking figure, and it confirms why specialist review is so important before committing someone to long-term anti-seizure medication.</p>
+
+<p>And on SUDEP — Sudden Unexpected Death in Epilepsy. The annual risk for people with epilepsy overall is approximately 1 in 1,000. But that risk is substantially higher in those with frequent uncontrolled tonic-clonic seizures, and substantially lower in those with good seizure control. NICE guidance now requires that all people with epilepsy are told about SUDEP — because understanding it supports the steps that reduce it.</p>
+
+<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 8: CTA</span></div>
+
+<p>If I could leave you with four things. First — the first medication is most likely to work, so accurate early diagnosis matters. Second — drug-resistant epilepsy has real specialist options, including surgery and VNS. Third — SUDEP risk is substantially reduced by good seizure control, so medication adherence and regular clinical review are genuinely protective. And fourth — if you're a woman of childbearing age taking valproate, that's a conversation that needs to happen with a specialist.</p>
+
+<p>The full article on helf.school covers all of this in much more depth. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+</div>
+
+</div>
+</div>
+</div>
+
+<div class="dots" id="dots"></div>
+
+<script>
+const SEGS=6;
+const SPEEDS=[0,8,14,20,28,38,50];
+let speedIdx=3;let paused=false;let fontSize=1.9;
+const wrap=document.getElementById('scroll-wrap');
+const scriptEl=document.getElementById('script');
+const pauseBtn=document.getElementById('pause-btn');
+const speedDisp=document.getElementById('speed-disp');
+const segLabel=document.getElementById('seg-label');
+
+function scroll(){
+  if(!paused&&SPEEDS[speedIdx]>0)wrap.scrollTop+=SPEEDS[speedIdx]/60;
+  requestAnimationFrame(scroll);
+}
+requestAnimationFrame(scroll);
+
+pauseBtn.addEventListener('click',()=>{
+  paused=!paused;
+  pauseBtn.textContent=paused?'▶ Resume':'⏸ Pause';
+});
+function changeSpeed(dir){
+  speedIdx=Math.max(0,Math.min(SPEEDS.length-1,speedIdx+dir));
+  speedDisp.textContent='Speed '+speedIdx;
+}
+function changeFont(dir){
+  fontSize=Math.max(1.2,Math.min(3.0,fontSize+dir*0.1));
+  scriptEl.style.fontSize=fontSize+'rem';
+}
+
+const segEls=Array.from({length:SEGS},(_,i)=>document.getElementById('seg-'+(i+1)));
+const dotsEl=document.getElementById('dots');
+for(let i=0;i<SEGS;i++){
+  const d=document.createElement('div');
+  d.className='dot'+(i===0?' active':'');
+  d.onclick=()=>segEls[i].scrollIntoView({behavior:'smooth'});
+  dotsEl.appendChild(d);
+}
+const dotEls=dotsEl.querySelectorAll('.dot');
+wrap.addEventListener('scroll',()=>{
+  const top=wrap.scrollTop+100;
+  let active=0;
+  segEls.forEach((el,i)=>{if(el.offsetTop<=top)active=i;});
+  dotEls.forEach((d,i)=>d.classList.toggle('active',i===active));
+  segLabel.textContent='Segment '+(active+1);
+});
+wrap.addEventListener('touchstart',()=>{paused=true;pauseBtn.textContent='▶ Resume';});
+</script>
+</body>
+</html>
