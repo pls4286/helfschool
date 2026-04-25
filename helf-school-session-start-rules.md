@@ -246,7 +246,7 @@ Every research card stat box must state the complete clinical finding as it is r
 
 The fixed viewport is `100vw × 100vh` minus the 52px topbar and 32px dots bar. Every slide must use this space aggressively.
 
-**Required minimums/maximums:**
+**Required minimums/maximums — every slide:**
 - Slide padding: maximum `1rem 1.5rem 0.8rem` — never `1.8rem` top padding
 - Slide title: minimum `1.55rem`
 - Slide subtitle margin-bottom: maximum `.6rem`
@@ -254,9 +254,14 @@ The fixed viewport is `100vw × 100vh` minus the 52px topbar and 32px dots bar. 
 - Card/row gaps: maximum `.5rem` — never `.7rem` or above
 - Info/step row body line clamp: minimum 3 lines — never 2
 
-**The test:** Open every slide in a browser before delivering. Content must fill at least 85% of the visible area. If slides look sparse, increase font sizes and reduce gaps until they are full.
+**CTA slide — confirmed working sizes (April 2026):**
+- Central icon: `5.5rem` · Headline: `clamp(2.8rem, 5.5vw, 4.2rem)` · Subline: `1.2rem`
+- Card emoji icons: `2.2rem` · Card title text: `.96rem`
 
-**Why this rule exists:** Multiple visuals files built in April 2026 were delivered with text too small and gaps too large. Dr Paul explicitly identified the problem: content was not using the screen space available. Visuals are filmed — undersized content reads poorly on camera and wastes what is a fixed, valuable presentation area.
+**Closing slide — confirmed working sizes (April 2026):**
+- Logo: `2.8rem` · Tagline: `1.05rem` · Link/series label: `1rem`
+
+**The test:** Open every slide in a browser before delivering. Content must fill at least 85% of the visible area. If slides look sparse, increase font sizes and reduce gaps until they are full. Visuals are filmed — undersized content reads poorly on camera.
 
 ---
 

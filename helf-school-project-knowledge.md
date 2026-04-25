@@ -409,14 +409,26 @@ Two rules apply to all article HTML files:
 
 The fixed viewport is `100vw × 100vh` minus the 52px topbar and 32px dots bar = approximately `calc(100vh - 84px)` of usable vertical space. Every slide must use this space aggressively. Content that occupies only 60–70% of the screen with large empty areas is a failure.
 
-**Required approach:**
+**Required minimums/maximums — apply to every slide:**
 - Slide padding: maximum `1rem 1.5rem 0.8rem` — never `1.8rem` or more top padding
-- All body text in cards and rows: minimum `.90rem` — never `.75rem` or `.80rem`
-- Card/row gaps: maximum `.5rem` — never `.7rem` or `.9rem` between items
-- Line clamp on row bodies: minimum 3 lines — never 2 lines (wastes space)
 - Slide title: minimum `1.55rem` — never `1.35rem`
 - Slide subtitle margin-bottom: maximum `.6rem` — never `1rem`
+- All body text in cards and rows: minimum `.90rem` — never `.75rem` or `.80rem`
+- Card/row gaps: maximum `.5rem` — never `.7rem` or `.9rem` between items
+- Info/step row body line clamp: minimum 3 lines — never 2 lines (wastes space)
 - Intro stat numbers: minimum `2.3rem` — never `1.8rem`
+
+**CTA slide — confirmed working sizes (April 2026):**
+- Central icon: `5.5rem` — must dominate the slide
+- Headline: `clamp(2.8rem, 5.5vw, 4.2rem)`
+- Italic subline: `1.2rem`
+- Card emoji icons: `2.2rem`
+- Card title text: `.96rem`
+
+**Closing slide — confirmed working sizes (April 2026):**
+- Logo: `2.8rem`
+- Tagline: `1.05rem`
+- Link/series label: `1rem`
 
 **The test before delivering any visuals file:** Open every slide in a browser. Is the content filling at least 85% of the visible area? If large white/dark expanses of empty space are visible below the content, the sizing is wrong. Increase font sizes and reduce gaps until the slide feels full.
 
@@ -453,11 +465,22 @@ The stat box sits in the left column (220px) of each ev-card. These values are r
 
 ### CTA slide standard (all visuals files)
 - Full-screen with radial gold-glow background + pulsing icon halo (3.2s drop-shadow)
-- Fraunces headline: `clamp(3.2, 5.8vw, 4.9rem)`; Fraunces italic subline
+- **Central icon: minimum `5.5rem`** — the icon must dominate the slide visually. Never `3.2rem` or smaller — it disappears on screen.
+- **Fraunces headline: minimum `clamp(2.8rem, 5.5vw, 4.2rem)`** — this is the most important text on the slide. Never `clamp(2.2rem, 4.5vw, 3.2rem)` — too small.
+- **Fraunces italic subline: minimum `1.2rem`** — never `1rem`
 - 4 action cards (NOT chips) — emoji + Fraunces bold label, gradient + gold border
+- **Card emoji icons: minimum `2.2rem`** — never `1.4rem`
+- **Card title text: minimum `.96rem`** — never `.84rem`
 - **Medical-advice disclaimer box required:** ⚕️ icon · dashed border · "Health education — not medical advice" + full educational-voice phrase
 - Closing slide: same disclaimer box as CTA slide
 - Reference: `hypertension-visuals.html`
+
+### Closing slide standard (all visuals files)
+- **Logo text: minimum `2.8rem`** — never `2rem`. This is the final brand impression.
+- **Tagline: minimum `1.05rem`** — never `.9rem`
+- **Link/series label: minimum `1rem`** — never `.85rem`
+- Same disclaimer box as CTA slide, centred
+- Background: gradient from series dark colour to `#0d0d1a`
 
 ### Readability standards — visuals (all rgba thresholds)
 **Topbar:**
