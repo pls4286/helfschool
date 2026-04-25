@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory, Cognition and Dementia — Teleprompter · helf.school</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--neuro:#6B5EA8;--amber:#E8A84A;--navy:#1B2A4A;}
+html,body{width:100vw;height:100vh;overflow:hidden;background:#0a0a0a;color:#f0f0f0;font-family:Georgia,serif;}
+
+.controls{position:fixed;top:0;left:0;right:0;height:48px;background:#111;border-bottom:1px solid #222;display:flex;align-items:center;gap:.6rem;padding:0 1rem;z-index:100;}
+.ctrl-btn{background:#222;border:1px solid #333;color:#ccc;font-size:.78rem;padding:.3rem .7rem;border-radius:5px;cursor:pointer;font-family:sans-serif;}
+.ctrl-btn:hover{background:#333;color:#fff;}
+.ctrl-label{font-family:sans-serif;font-size:.75rem;color:#666;margin-left:.4rem;}
+.speed-display{font-family:sans-serif;font-size:.75rem;color:var(--amber);min-width:60px;}
+.seg-label{font-family:sans-serif;font-size:.75rem;color:var(--neuro);margin-left:auto;}
+#pause-btn{background:var(--neuro);color:#fff;border-color:var(--neuro);font-weight:700;}
+
+.scroll-wrap{position:fixed;top:48px;left:0;right:0;bottom:32px;overflow-y:scroll;scrollbar-width:none;}
+.scroll-wrap::-webkit-scrollbar{display:none;}
+.scroll-content{padding:4vh 10vw 50vh;}
+
+.script-text{font-size:1.9rem;line-height:1.75;color:#f0f0f0;}
+.script-text p{margin-bottom:1.4em;}
+
+.cue{background:#1a1a0a;border:2px solid var(--amber);border-radius:8px;padding:.7rem 1.1rem;margin:1.8rem 0 1rem;display:flex;align-items:center;gap:.75rem;}
+.cue-arrow{font-size:1.4rem;color:var(--amber);flex-shrink:0;}
+.cue-text{font-family:sans-serif;font-size:1rem;font-weight:700;color:var(--amber);line-height:1.3;}
+
+.seg{border-top:2px dashed #2a2a2a;margin:2.5rem 0 0;padding-top:1rem;}
+.seg-title{font-family:sans-serif;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:#444;margin-bottom:1rem;}
+
+.dots{position:fixed;bottom:0;left:0;right:0;height:32px;background:#111;border-top:1px solid #1a1a1a;display:flex;align-items:center;justify-content:center;gap:.5rem;}
+.dot{width:8px;height:8px;border-radius:50%;background:#333;cursor:pointer;transition:background .2s;}
+.dot.active{background:var(--neuro);}
+</style>
+</head>
+<body>
+
+<div class="controls">
+  <button class="ctrl-btn" id="pause-btn">⏸ Pause</button>
+  <span class="ctrl-label">Speed:</span>
+  <button class="ctrl-btn" onclick="changeSpeed(-1)">−</button>
+  <span class="speed-display" id="speed-disp">Speed 4</span>
+  <button class="ctrl-btn" onclick="changeSpeed(1)">+</button>
+  <span class="ctrl-label">Font:</span>
+  <button class="ctrl-btn" onclick="changeFont(-2)">A−</button>
+  <button class="ctrl-btn" onclick="changeFont(2)">A+</button>
+  <span class="seg-label" id="seg-label">Segment 1</span>
+</div>
+
+<div class="scroll-wrap" id="scroll-wrap">
+<div class="scroll-content">
+<div class="script-text" id="script">
+
+<!-- SEGMENT 1 — INTRO -->
+<div class="seg" id="seg-1">
+<div class="seg-title">Segment 1 — Intro (~18 seconds)</div>
+
+<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 1: Title card</span></div>
+
+<p>I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about memory, cognition, and dementia.</p>
+
+<p>Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — let's get into it.</p>
+</div>
+
+<!-- SEGMENT 2 — WHAT IS DEMENTIA -->
+<div class="seg" id="seg-2">
+<div class="seg-title">Segment 2 — What is dementia? (~50 seconds)</div>
+
+<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 2: Types of dementia</span></div>
+
+<p>Let me start with something really important: dementia is not a single disease. It's an umbrella term — a group of conditions that all cause progressive decline in brain function. And the type matters because the causes and patterns are different.</p>
+
+<p>Alzheimer's disease accounts for around 65% of cases — it's caused by abnormal protein deposits in the brain that damage nerve cells over time. Memory for recent events is usually the first thing to go.</p>
+
+<p>Vascular dementia — around 20% of cases — happens when the brain's blood supply is disrupted. Often after a stroke or a series of small vessel changes. It can worsen in steps rather than steadily.</p>
+
+<p>Dementia with Lewy bodies involves protein deposits that cause a very characteristic pattern — visual hallucinations, tremor and stiffness similar to Parkinson's, and fluctuating alertness. It's frequently misdiagnosed.</p>
+
+<p>Frontotemporal dementia tends to affect personality and language before memory — and it's the most common form in people under 65. Changes are often subtle and mistaken for stress or mental health difficulties.</p>
+
+<p>And finally, mixed dementia — two types together, most often Alzheimer's with vascular — is more common than we used to think.</p>
+</div>
+
+<!-- SEGMENT 3 — 14 RISK FACTORS -->
+<div class="seg" id="seg-3">
+<div class="seg-title">Segment 3 — 14 risk factors (~55 seconds)</div>
+
+<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 3: 14 risk factors</span></div>
+
+<p>Now here's the genuinely hopeful part. The 2024 Lancet Commission on Dementia — the world's most comprehensive review of this evidence — concluded that 45% of all dementia cases are potentially preventable. Nearly half. By addressing 14 modifiable risk factors across the life course.</p>
+
+<p>In early life, the biggest factor is education — it builds what researchers call cognitive reserve, the brain's resilience to future damage.</p>
+
+<p>In midlife, the key factors include hearing loss — at 9% the single biggest individual risk factor — high blood pressure, obesity, excess alcohol, head injury, and now high LDL cholesterol, which was added as a new risk factor in 2024.</p>
+
+<p>In later life, the factors include smoking, depression, social isolation, physical inactivity, diabetes, air pollution, and untreated vision loss.</p>
+
+<p>The message from this evidence is clear: it's never too early to start reducing risk — and it's never too late either. Addressing risk factors in your 60s and 70s still makes a real difference.</p>
+</div>
+
+<!-- SEGMENT 4 — HEARING LOSS -->
+<div class="seg" id="seg-4">
+<div class="seg-title">Segment 4 — Hearing loss (~40 seconds)</div>
+
+<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 4: Hearing loss</span></div>
+
+<p>I want to spend a moment on hearing loss specifically — because it's probably the most surprising finding in this whole field, and the most immediately actionable.</p>
+
+<p>Untreated hearing loss accounts for 9% of all dementia cases globally — more than any other single modifiable factor. The evidence for why is compelling. When you struggle to hear, your brain has to work much harder to process sound — resources that would otherwise support memory and reasoning. Over time, reduced auditory input is also associated with changes in brain structure. And hearing loss drives social withdrawal, which is itself an independent risk factor.</p>
+
+<p>The 2024 Lancet Commission states that the evidence for hearing aids reducing dementia risk is now stronger than it was four years ago. People who use hearing aids have significantly lower rates of dementia — particularly those with additional risk factors.</p>
+
+<p>If you have hearing loss, getting it assessed and treated isn't just about hearing better. It may be one of the most powerful things you can do for your long-term brain health.</p>
+</div>
+
+<!-- SEGMENT 5 — ASSESSMENT AND MANAGEMENT -->
+<div class="seg" id="seg-5">
+<div class="seg-title">Segment 5 — Assessment and management (~45 seconds)</div>
+
+<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 5: Assessment and management</span></div>
+
+<p>So what happens in UK practice when someone presents with concerns about their memory?</p>
+
+<p>A GP will take a careful history — including talking to someone who knows the person well, because early cognitive change is often more apparent to others than to the person themselves. Standardised cognitive tests — including the MoCA and others — provide a structured, repeatable baseline.</p>
+
+<p>Blood tests check for fully reversible causes of cognitive slowing: an underactive thyroid, B12 deficiency, anaemia. These are important to exclude because they're treatable. Brain imaging — MRI or CT — may follow, and referral to a memory clinic for formal assessment.</p>
+
+<p>If Alzheimer's disease is confirmed, medications called cholinesterase inhibitors — donepezil, rivastigmine, galantamine — can modestly slow symptom progression. They don't stop the disease, but they can make a meaningful difference to daily functioning.</p>
+
+<p>Post-diagnosis planning is just as important: lasting power of attorney, DVLA notification, connecting with the Alzheimer's Society and specialist support services.</p>
+</div>
+
+<!-- SEGMENT 6 — RESEARCH AND CLOSE -->
+<div class="seg" id="seg-6">
+<div class="seg-title">Segment 6 — Research and close (~50 seconds)</div>
+
+<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 6: Research — prevention</span></div>
+
+<p>The research picture for dementia has shifted considerably in the last decade. The headline finding — 45% of cases potentially preventable through modifiable risk factors — represents one of the most significant public health messages of our time.</p>
+
+<p>And there's an important signal that it's already working. Age-specific dementia incidence — the rate of new cases per 1,000 people of a given age — is declining in high-income countries. That's evidence that the cumulative effect of better cardiovascular risk management, reduced smoking, and improved education is already making a real-world difference.</p>
+
+<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 7: UK scale</span></div>
+
+<p>The scale in the UK is stark. Dementia is the country's leading cause of death — claiming nearly 77,000 lives in 2024 alone, 1 in every 8 deaths. It's been the leading cause of death for women in the UK since 2011. With an ageing population and no disease-modifying treatment currently available on the NHS, prevention is the most powerful tool we have.</p>
+
+<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 8: CTA</span></div>
+
+<p>If I could leave you with four things: treat hearing loss — it's the single biggest modifiable risk factor and there's now strong evidence that hearing aids reduce dementia risk. Protect your cardiovascular health — blood pressure, cholesterol, weight and diabetes all directly affect your brain. Stay socially and mentally engaged. And remember — it's never too late. Action at any life stage reduces risk.</p>
+
+<p>The full article on helf.school covers all of this in much more depth — the types, the evidence, the management, and what to expect from the NHS. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+</div>
+
+</div>
+</div>
+</div>
+
+<div class="dots" id="dots"></div>
+
+<script>
+const SEGS=6;
+const SPEEDS=[0,8,14,20,28,38,50];
+let speedIdx=3;let paused=false;let fontSize=1.9;
+const wrap=document.getElementById('scroll-wrap');
+const scriptEl=document.getElementById('script');
+const pauseBtn=document.getElementById('pause-btn');
+const speedDisp=document.getElementById('speed-disp');
+const segLabel=document.getElementById('seg-label');
+
+function scroll(){
+  if(!paused&&SPEEDS[speedIdx]>0)wrap.scrollTop+=SPEEDS[speedIdx]/60;
+  requestAnimationFrame(scroll);
+}
+requestAnimationFrame(scroll);
+
+pauseBtn.addEventListener('click',()=>{
+  paused=!paused;
+  pauseBtn.textContent=paused?'▶ Resume':'⏸ Pause';
+});
+function changeSpeed(dir){
+  speedIdx=Math.max(0,Math.min(SPEEDS.length-1,speedIdx+dir));
+  speedDisp.textContent='Speed '+speedIdx;
+}
+function changeFont(dir){
+  fontSize=Math.max(1.2,Math.min(3.0,fontSize+dir*0.1));
+  scriptEl.style.fontSize=fontSize+'rem';
+}
+
+const segEls=Array.from({length:SEGS},(_,i)=>document.getElementById('seg-'+(i+1)));
+const dotsEl=document.getElementById('dots');
+for(let i=0;i<SEGS;i++){
+  const d=document.createElement('div');
+  d.className='dot'+(i===0?' active':'');
+  d.onclick=()=>segEls[i].scrollIntoView({behavior:'smooth'});
+  dotsEl.appendChild(d);
+}
+const dotEls=dotsEl.querySelectorAll('.dot');
+wrap.addEventListener('scroll',()=>{
+  const top=wrap.scrollTop+100;
+  let active=0;
+  segEls.forEach((el,i)=>{if(el.offsetTop<=top)active=i;});
+  dotEls.forEach((d,i)=>d.classList.toggle('active',i===active));
+  segLabel.textContent='Segment '+(active+1);
+});
+wrap.addEventListener('touchstart',e=>{paused=true;pauseBtn.textContent='▶ Resume';});
+</script>
+</body>
+</html>

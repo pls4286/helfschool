@@ -4,7 +4,7 @@
 
 ## ⛔ RULE 0 — MANDATORY PRE-OUTPUT AUDIT (THE RULE THAT ENFORCES ALL OTHER RULES)
 
-Every session has produced errors — wrong citations, wrong PMIDs, wrong NICE numbers, medical terms without lay definitions, hero text invisible against matching backgrounds. These errors share one cause: output was generated before the full audit was completed.
+Every session has produced errors — wrong citations, wrong PMIDs, wrong NICE numbers, medical terms without lay definitions, hero text invisible against matching backgrounds, and research card stat boxes showing statistical machinery instead of clinical conclusions. These errors share one cause: output was generated before the full audit was completed.
 
 **This rule exists to stop that pattern.**
 
@@ -25,12 +25,21 @@ Before presenting ANY helf.school file, Claude runs the following audit internal
 - No forbidden phrases: "you should" · "speak to your GP" · "seek help" · "call 999/111"
 - Canonical phrase present in full: "Anything personally relevant is a conversation for you to have with your GP or healthcare professional"
 
+**Research card clinical conclusion audit (runs before presenting every article and visuals file):**
+- Every research card stat box must state the complete clinical finding in patient-relevant terms
+- The test: can a lay reader understand WHAT was studied and WHAT was found from the stat box alone, without reading the body text?
+- Statistical machinery must never appear as the headline: no ORs, no RCT counts, no confidence intervals, no participant counts as the primary stat
+- Incomplete qualifiers are not permitted: "Safe & effective" without stating WHAT is safe and effective; "Moderate to strong evidence" without stating WHAT has that evidence level
+- Correct examples: "The Epley manoeuvre / is safe & effective for BPPV" · "Vestibular rehabilitation / has moderate to strong evidence for its efficacy" · "77% response rate / vs 44% placebo"
+- Incorrect examples: "11" (RCT count) · "OR 2.67" (odds ratio) · "Safe & effective" (no subject) · "Moderate to strong evidence" (no subject)
+
 **Visuals audit (runs before presenting every visuals file):**
 - ev-stat-box: `padding:.9rem .75rem` · `overflow:hidden` · `.ev-conditions` at `.78rem`
 - Hero series badge: `color:#fff` — never the series accent colour
 - All animated cards: `animate-ready` class present, no hardcoded `opacity:0`
+- **VIEWPORT MAXIMISATION:** Every slide must fill at least 85% of the visible area. Slide padding maximum `1rem 1.5rem 0.8rem`. Body text minimum `.90rem`. Gaps maximum `.5rem`. Slide title minimum `1.55rem`. If content looks small or sparse — fix it before presenting. Visuals are filmed. Undersized content is a delivery failure.
 
-**The rule:** Output first, audit after is the failure pattern that caused today's errors. Audit first, output after is the required pattern. Paul must never be the one to catch these errors.
+**The rule:** Output first, audit after is the failure pattern. Audit first, output after is the required pattern. Paul must never be the one to catch these errors.
 
 ---
 
@@ -38,7 +47,7 @@ Before presenting ANY helf.school file, Claude runs the following audit internal
 
 Before doing ANYTHING — before responding, before building, before auditing — read `helf-school-project-knowledge.md` in full.
 
-**Why this rule exists:** In April 2026, Claude wrote a new project knowledge document from scratch without reading the existing one. It lost 200 lines of critical information, got the lifetime membership price wrong (£120 instead of £150), and caused Dr Paul approximately 8 hours of duplicated work. In a second April 2026 session, Claude ran a file audit and raised false alarms about "corrupted" files without reading Section 1 of the project knowledge first, causing further wasted time. This must never happen again.
+**Why this rule exists:** In April 2026, Claude wrote a new project knowledge document from scratch without reading the existing one. It lost 200 lines of critical information, got the lifetime membership price wrong (£120 instead of £150), and caused Dr Paul approximately 8 hours of duplicated work. In a second April 2026 session, Claude ran a file audit and raised false alarms about "corrupted" files without reading Section 1 of the project knowledge first, causing further wasted time.
 
 **The rule:** If a project knowledge document exists in this Project, Claude reads it before the first response. Claude does not summarise it back, does not comment on it, just reads it silently and uses it.
 
@@ -60,7 +69,7 @@ If Paul asks for an updated project knowledge document, Claude must:
 
 Before building or rebuilding any file, Claude must check the article inventory in the project knowledge document and confirm whether a correct version already exists.
 
-**The rule:** If the project knowledge document shows ✅ for a file, Claude does not rebuild it unless Paul explicitly asks. Building files that already exist correctly wastes Paul's time.
+**The rule:** If the project knowledge document shows ✅ for a file, Claude does not rebuild it unless Paul explicitly asks.
 
 ---
 
@@ -96,18 +105,18 @@ If the file status table in THIS document (session-start-rules.md) contradicts t
 
 **Why this rule exists:** The status table in this file has repeatedly fallen out of sync with the project knowledge document because both files were not updated together at session end. Every time this happened, Claude defaulted to the wrong (outdated) information in this file and told Dr Paul that work had not been done when it had — causing repeated arguments and wasted time across multiple sessions in April 2026.
 
-**The rule:** In any conflict between the two documents, project knowledge wins. Claude never flags outstanding work based on this file alone. Claude never says retrofits are undone if project knowledge says they are done.
+**The rule:** In any conflict between the two documents, project knowledge wins. Claude never flags outstanding work based on this file alone.
 
 ---
 
 ## ⛔ RULE 7 — VOICE AUDIT AND LAY-CLARIFICATION BEFORE EVERY OUTPUT
 
-Before presenting any helf.school file (article, visuals, teleprompter), Claude runs a full internal voice audit AND a lay-clarification audit. The site must describe clinical reality — never instruct the reader. This is a legal protection for Dr Paul.
+Before presenting any helf.school file (article, visuals, teleprompter), Claude runs a full internal voice audit AND a lay-clarification audit.
 
 Forbidden: "you should", "speak to your GP", "seek help", "call 999/111", "avoid", "don't".
 Required full phrase: "Anything personally relevant is a conversation for you to have with your GP or healthcare professional."
 
-**Lay-clarification audit:** Every medical or clinical term that a lay reader would not immediately understand must have a plain English definition in brackets on first use in each section. This applies to ALL medical terminology — anatomical terms, physiological terms, symptom descriptors, drug class names — not just the statistical terms listed in the project knowledge. If Claude is unsure whether a lay reader would know a term, the answer is to define it.
+**Lay-clarification audit:** Every medical or clinical term that a lay reader would not immediately understand must have a plain English definition in brackets on first use in each section. This applies to ALL medical terminology — anatomical terms, physiological terms, symptom descriptors, drug class names — not just the statistical terms listed in the project knowledge.
 
 **The rule:** Both audits happen before output. Paul must never need to ask for either.
 
@@ -129,13 +138,39 @@ At the end of every session involving new builds or decisions:
 3. Paul downloads both via Artifact panel
 4. Paul uploads BOTH to GitHub AND the Claude Project
 
-**The rule:** Both files must be updated and uploaded together. If only one is updated, they fall out of sync and Rule 6A conflict will repeat. Claude prompts Paul to do this at the end of every productive session.
+**The rule:** Both files must be updated and uploaded together. If only one is updated, they fall out of sync and Rule 6A conflict will repeat.
 
 ---
 
 ## ⛔ RULE 10 — NICE CG99 IS CHILDREN ONLY
 
-Never cite NICE CG99 in any adult article. It covers constipation in children and young people only. The correct adult constipation reference is NICE CKS at cks.nice.org.uk/constipation. This rule exists because the error is easy to make and is clinically significant.
+Never cite NICE CG99 in any adult article. It covers constipation in children and young people only. The correct adult constipation reference is NICE CKS at cks.nice.org.uk/constipation.
+
+---
+
+## ⛔ RULE 11 — RESEARCH CARD STAT BOXES MUST STATE COMPLETE CLINICAL CONCLUSIONS
+
+**This is a health education site. The research section exists to tell readers what medicine has found about their condition — in terms they can understand.**
+
+Every research card stat box must state the complete clinical finding as it is relevant to the patient. This means the stat box (label + stat row + outcome + conditions together) must answer:
+1. **WHAT** was studied or found
+2. **WHAT** the finding means for someone with that condition
+
+**The test:** Can a lay reader understand the clinical finding from the stat box alone, without reading the body text? If not, rewrite before presenting.
+
+**Never permitted as a headline stat:**
+- Number of RCTs or studies ("11", "39 studies")
+- Odds ratios or confidence intervals ("OR 2.67", "95% CI")
+- Participant counts ("2,441 participants")
+- Incomplete qualifiers without their subject ("Safe & effective" · "Moderate to strong evidence")
+
+**Correct approach:**
+- "The Epley manoeuvre / is safe & effective for BPPV"
+- "Vestibular rehabilitation / has moderate to strong evidence for its efficacy"
+- "77% response rate / vs 44% placebo"
+- "Macrogol superior / to lactulose across all outcomes"
+
+**Why this rule exists:** In April 2026, research card stat boxes for the dizziness and vertigo article showed "11" (number of RCTs) and "OR 2.67" (odds ratio) as headline findings. These numbers are statistical machinery — they tell the reader nothing about their condition. Dr Paul correctly identified this as a failure of health education. The clinically important point — that the Epley manoeuvre is safe and effective for BPPV, that vestibular rehabilitation has moderate to strong evidence — must be the headline. See Section 8 and QC item 9 of the project knowledge for the full rule.
 
 ---
 
@@ -144,11 +179,10 @@ Never cite NICE CG99 in any adult article. It covers constipation in children an
 **AUTHORITY NOTE: If any entry below conflicts with the article inventory in `helf-school-project-knowledge.md`, the project knowledge document is correct. Update this table accordingly.**
 
 ### Cardiovascular Series (01–07) — ALL COMPLETE ON GITHUB ✅
-All article HTML, visuals, and teleprompter files confirmed correct.
 
 | File | Status |
 |------|--------|
-| hypertension.html + visuals + teleprompter | ✅ Confirmed correct |
+| hypertension.html + visuals + teleprompter | ✅ Confirmed correct (refs 5+6 ⚑ pending verification) |
 | cholesterol.html + visuals + teleprompter | ✅ Confirmed correct |
 | heart-attack-risk.html + visuals + teleprompter | ✅ Confirmed correct |
 | statins.html + visuals + teleprompter | ✅ Confirmed correct |
@@ -157,7 +191,6 @@ All article HTML, visuals, and teleprompter files confirmed correct.
 | supplements-cholesterol.html + visuals + teleprompter | ✅ Confirmed correct |
 
 ### Practical Health Series (08–12) — ALL COMPLETE ✅
-Educational voice retrofit confirmed complete.
 
 | File | Status |
 |------|--------|
@@ -170,7 +203,6 @@ Educational voice retrofit confirmed complete.
 ### Digestive Health Series (13–21)
 
 **Articles 13–20: ALL COMPLETE ON GITHUB ✅**
-Article HTML retrofits confirmed complete. Visuals and teleprompters confirmed built. Educational voice retrofit confirmed complete.
 
 | File | Status |
 |------|--------|
@@ -183,7 +215,7 @@ Article HTML retrofits confirmed complete. Visuals and teleprompters confirmed b
 | gallstones.html + visuals + teleprompter | ✅ All confirmed correct |
 | diverticular-disease.html + visuals + teleprompter | ✅ All confirmed correct |
 
-**Article 21 — Constipation — IN PROGRESS**
+**Article 21 — Constipation**
 
 | File | Status |
 |------|--------|
@@ -191,13 +223,40 @@ Article HTML retrofits confirmed complete. Visuals and teleprompters confirmed b
 | constipation-visuals.html | ✅ Built April 2026 — upload to GitHub |
 | constipation-teleprompter.html | ✅ Built April 2026 — upload to GitHub |
 
+### Neurological Series (22–26)
+
+| File | Status |
+|------|--------|
+| migraine.html + visuals + teleprompter | ✅ Built April 2026 — upload to GitHub |
+| headaches.html + visuals + teleprompter | ✅ Built April 2026 — upload to GitHub |
+| dizziness-vertigo.html | ✅ Article HTML built April 2026 — upload to GitHub |
+| dizziness-vertigo-visuals.html | ⏳ To build |
+| dizziness-vertigo-teleprompter.html | ⏳ To build |
+| memory-dementia.html + visuals + teleprompter | ⏳ Not yet built |
+| epilepsy.html + visuals + teleprompter | ⏳ Not yet built |
+
 ### OUTSTANDING CITATION FLAGS
 - hypertension.html refs 5 + 6 — Cochrane PubMed IDs flagged ⚑ unverified
 
-### NEXT WORK
-1. constipation-teleprompter.html — build after visuals confirmed
-2. Neurological Series planning — define article list before any builds
-3. hypertension.html refs 5 & 6 — verify when convenient
+---
+
+## ⛔ RULE 12 — VISUALS MUST MAXIMISE VIEWPORT SPACE
+
+**Every visuals slide must fill the available viewport. Slides that leave large areas of empty space are a delivery failure.**
+
+The fixed viewport is `100vw × 100vh` minus the 52px topbar and 32px dots bar. Every slide must use this space aggressively.
+
+**Required minimums/maximums:**
+- Slide padding: maximum `1rem 1.5rem 0.8rem` — never `1.8rem` top padding
+- Slide title: minimum `1.55rem`
+- Slide subtitle margin-bottom: maximum `.6rem`
+- All card/row body text: minimum `.90rem` — never `.75rem` or `.80rem`
+- Card/row gaps: maximum `.5rem` — never `.7rem` or above
+- Info/step row body line clamp: minimum 3 lines — never 2
+
+**The test:** Open every slide in a browser before delivering. Content must fill at least 85% of the visible area. If slides look sparse, increase font sizes and reduce gaps until they are full.
+
+**Why this rule exists:** Multiple visuals files built in April 2026 were delivered with text too small and gaps too large. Dr Paul explicitly identified the problem: content was not using the screen space available. Visuals are filmed — undersized content reads poorly on camera and wastes what is a fixed, valuable presentation area.
 
 ---
 
