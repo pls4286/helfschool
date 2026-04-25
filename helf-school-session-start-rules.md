@@ -4,7 +4,7 @@
 
 ## ⛔ RULE 0 — MANDATORY PRE-OUTPUT AUDIT (THE RULE THAT ENFORCES ALL OTHER RULES)
 
-Every session has produced errors — wrong citations, wrong PMIDs, wrong NICE numbers, medical terms without lay definitions, hero text invisible against matching backgrounds, and research card stat boxes showing statistical machinery instead of clinical conclusions. These errors share one cause: output was generated before the full audit was completed.
+Every session has produced errors — wrong citations, wrong PMIDs, wrong NICE numbers, medical terms without lay definitions, hero text invisible against matching backgrounds, research card stat boxes showing statistical machinery instead of clinical conclusions, and figures paraphrased into different numerical forms. These errors share one cause: output was generated before the full audit was completed.
 
 **This rule exists to stop that pattern.**
 
@@ -13,7 +13,7 @@ Before presenting ANY helf.school file, Claude runs the following audit internal
 **Citation audit (runs before building AND before presenting):**
 - Every cited paper: confirm it EXISTS, is PRIMARY (not a guidance doc citing another paper), and contains the SPECIFIC STAT claimed — fetch the abstract to confirm if needed
 - Every NICE guideline number: verify CG vs NG by web search — never from memory
-- Every PMID: verify by web search that it resolves to the correct paper
+- Every PMID: verify by web search that it resolves to the correct paper — a PubMed URL must appear in search results. Never include a PMID from memory or inference
 
 **Lay-clarification audit (runs before presenting every article):**
 - Read every sentence for medical terminology
@@ -32,6 +32,17 @@ Before presenting ANY helf.school file, Claude runs the following audit internal
 - Incomplete qualifiers are not permitted: "Safe & effective" without stating WHAT is safe and effective; "Moderate to strong evidence" without stating WHAT has that evidence level
 - Correct examples: "The Epley manoeuvre / is safe & effective for BPPV" · "Vestibular rehabilitation / has moderate to strong evidence for its efficacy" · "77% response rate / vs 44% placebo"
 - Incorrect examples: "11" (RCT count) · "OR 2.67" (odds ratio) · "Safe & effective" (no subject) · "Moderate to strong evidence" (no subject)
+
+**Exact figure audit (runs before presenting every file):**
+- Every statistic must use the paper's exact numerical expression
+- Never convert between forms: ">30%" must not become "1 in 3" or "33%"; "1 in 1,000" must not become "0.1%"
+- Cross-check stat grid, research cards, Key Terms, body prose, Putting It Together, and teleprompter for consistency
+
+**Source audit (runs before presenting every file):**
+- Every stat, claim, and causal attribution must be traceable to an approved source
+- Charity and advocacy websites are NOT approved (Epilepsy Action, Alzheimer's Society, etc.)
+- Derived figures are not acceptable — only cite figures explicitly stated in the approved source
+- Causal attributions require a specific primary citation — never inferred from context
 
 **Visuals audit (runs before presenting every visuals file):**
 - ev-stat-box: `padding:.9rem .75rem` · `overflow:hidden` · `.ev-conditions` at `.78rem`
@@ -200,40 +211,29 @@ Every research card stat box must state the complete clinical finding as it is r
 | stress.html + visuals + teleprompter | ✅ All confirmed correct |
 | alcohol.html + visuals + teleprompter | ✅ All confirmed correct |
 
-### Digestive Health Series (13–21)
-
-**Articles 13–20: ALL COMPLETE ON GITHUB ✅**
+### Digestive Health Series (13–21) — ALL BUILT ✅
 
 | File | Status |
 |------|--------|
-| acid-reflux.html + visuals + teleprompter | ✅ All confirmed correct |
-| ibd.html + visuals + teleprompter | ✅ All confirmed correct |
-| bloating.html + visuals + teleprompter | ✅ All confirmed correct |
-| ibs.html + visuals + teleprompter | ✅ All confirmed correct |
-| masld.html + visuals + teleprompter | ✅ All confirmed correct |
-| coeliac.html + visuals + teleprompter | ✅ All confirmed correct |
-| gallstones.html + visuals + teleprompter | ✅ All confirmed correct |
-| diverticular-disease.html + visuals + teleprompter | ✅ All confirmed correct |
+| acid-reflux.html + visuals + teleprompter | ✅ On GitHub |
+| ibd.html + visuals + teleprompter | ✅ On GitHub |
+| bloating.html + visuals + teleprompter | ✅ On GitHub |
+| ibs.html + visuals + teleprompter | ✅ On GitHub |
+| masld.html + visuals + teleprompter | ✅ On GitHub |
+| coeliac.html + visuals + teleprompter | ✅ On GitHub |
+| gallstones.html + visuals + teleprompter | ✅ On GitHub |
+| diverticular-disease.html + visuals + teleprompter | ✅ On GitHub |
+| constipation.html + visuals + teleprompter | ✅ Built April 2026 — upload to GitHub |
 
-**Article 21 — Constipation**
-
-| File | Status |
-|------|--------|
-| constipation.html | ✅ Built April 2026 — upload to GitHub |
-| constipation-visuals.html | ✅ Built April 2026 — upload to GitHub |
-| constipation-teleprompter.html | ✅ Built April 2026 — upload to GitHub |
-
-### Neurological Series (22–26)
+### Neurological Series (22–26) — ALL BUILT ✅
 
 | File | Status |
 |------|--------|
 | migraine.html + visuals + teleprompter | ✅ Built April 2026 — upload to GitHub |
 | headaches.html + visuals + teleprompter | ✅ Built April 2026 — upload to GitHub |
-| dizziness-vertigo.html | ✅ Article HTML built April 2026 — upload to GitHub |
-| dizziness-vertigo-visuals.html | ⏳ To build |
-| dizziness-vertigo-teleprompter.html | ⏳ To build |
-| memory-dementia.html + visuals + teleprompter | ⏳ Not yet built |
-| epilepsy.html + visuals + teleprompter | ⏳ Not yet built |
+| dizziness-vertigo.html + visuals + teleprompter | ✅ Built April 2026 — upload to GitHub |
+| memory-dementia.html + visuals + teleprompter | ✅ Built April 2026 — upload to GitHub |
+| epilepsy.html + visuals + teleprompter | ✅ Built April 2026 — upload to GitHub |
 
 ### OUTSTANDING CITATION FLAGS
 - hypertension.html refs 5 + 6 — Cochrane PubMed IDs flagged ⚑ unverified
@@ -262,6 +262,43 @@ The fixed viewport is `100vw × 100vh` minus the 52px topbar and 32px dots bar. 
 - Logo: `2.8rem` · Tagline: `1.05rem` · Link/series label: `1rem`
 
 **The test:** Open every slide in a browser before delivering. Content must fill at least 85% of the visible area. If slides look sparse, increase font sizes and reduce gaps until they are full. Visuals are filmed — undersized content reads poorly on camera.
+
+---
+
+## ⛔ RULE 13 — PMIDs MUST BE VERIFIED BY WEB SEARCH EVERY TIME
+
+Claude has repeatedly generated plausible-sounding but incorrect PMIDs across multiple sessions. This is a known, recurring failure.
+
+**The mandatory process:**
+1. Search for the paper by author, title, journal, year
+2. Find a PubMed URL in the search results
+3. The PMID is the number in that URL
+4. Only then include the PMID in the file
+
+**Never include a PMID from memory. No exceptions.**
+
+**Why this rule exists:** In April 2026, PMID 25088348 was included for Thurman et al Epilepsia 2014 — the correct PMID is 24903551. The error was only caught because Dr Paul challenged the reference.
+
+---
+
+## ⛔ RULE 14 — STRICT SOURCE RULE
+
+Only approved sources may be cited (see Section 14 of project knowledge). Charity and advocacy websites are not approved regardless of how credible they appear. Derived statistics (calculating a UK death count from a per-1,000 incidence rate) are not acceptable — only figures explicitly stated in the approved source may be used. Causal attributions require a specific primary citation. If a stat cannot be traced to an approved source, omit it.
+
+**Why this rule exists:** In April 2026, an Epilepsy Action statistic about unemployment was included alongside a causal attribution ("driven partly by disability discrimination") with no primary citation. Both were removed when challenged.
+
+---
+
+## ⛔ RULE 15 — EXACT FIGURE RULE — LOCKED APRIL 2026
+
+Use the paper's exact numerical expression in every location a figure appears. Never convert between forms:
+- ">30%" must not become "1 in 3", "33%", or "around a third"
+- "1 in 1,000" must not become "0.1%"
+- "26.1%" must not become "around a quarter" or "roughly one in four"
+
+Before delivering any file, cross-check every instance of every statistic — stat grid, research cards, Key Terms definitions, body prose, Putting It Together, and teleprompter — for consistency with the source paper's exact wording.
+
+**Why this rule exists:** In April 2026, Kwan & Brodie NEJM 2000 reports "more than 30 percent" but the epilepsy article stat grid showed "1 in 3" and the research card showed "1 in 3" — a conversion that misrepresents the source. Every instance across all file locations had to be corrected.
 
 ---
 
