@@ -223,17 +223,17 @@ Every research card stat box must state the complete clinical finding as it is r
 | coeliac.html + visuals + teleprompter | ✅ On GitHub |
 | gallstones.html + visuals + teleprompter | ✅ On GitHub |
 | diverticular-disease.html + visuals + teleprompter | ✅ On GitHub |
-| constipation.html + visuals + teleprompter | ✅ Built April 2026 — upload to GitHub |
+| constipation.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
 
 ### Neurological Series (22–26) — ALL BUILT ✅
 
 | File | Status |
 |------|--------|
-| migraine.html + visuals + teleprompter | ✅ Built April 2026 — upload to GitHub |
-| headaches.html + visuals + teleprompter | ✅ Built April 2026 — upload to GitHub |
-| dizziness-vertigo.html + visuals + teleprompter | ✅ Built April 2026 — upload to GitHub |
-| memory-dementia.html + visuals + teleprompter | ✅ Built April 2026 — upload to GitHub |
-| epilepsy.html + visuals + teleprompter | ✅ Built April 2026 — upload to GitHub |
+| migraine.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| headaches.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| dizziness-vertigo.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| memory-dementia.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| epilepsy.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
 
 ### OUTSTANDING CITATION FLAGS
 - hypertension.html refs 5 + 6 — Cochrane PubMed IDs flagged ⚑ unverified

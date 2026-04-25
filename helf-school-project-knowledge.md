@@ -141,7 +141,7 @@ All three files confirmed complete and on GitHub for all 5 articles. Educational
 
 ### Series C — Digestive Health (Articles 13–21)
 Articles 13–20: all three files confirmed complete and on GitHub. Educational voice retrofit confirmed complete.
-Article 21: all three files built April 2026 — upload to GitHub pending.
+Article 21: all three files confirmed on GitHub ✅
 
 | # | Title | Slug | Status |
 |---|-------|------|--------|
@@ -153,20 +153,20 @@ Article 21: all three files built April 2026 — upload to GitHub pending.
 | 18 | Coeliac Disease | coeliac | All 3 files on GitHub ✅ |
 | 19 | Gallstones | gallstones | All 3 files on GitHub ✅ |
 | 20 | Diverticular Disease | diverticular-disease | All 3 files on GitHub ✅ |
-| 21 | Constipation | constipation | All 3 files built April 2026 ✅ — upload to GitHub |
+| 21 | Constipation | constipation | All 3 files built April 2026 ✅ — on GitHub |
 
 ### Series D — Neurological Health (Articles 22–26)
-All five articles: all three files built April 2026 — upload to GitHub pending.
+All five articles: all three files confirmed on GitHub ✅
 
 | # | Title | Slug | Status |
 |---|-------|------|--------|
-| 22 | Migraine | migraine | All 3 files built April 2026 ✅ — upload to GitHub |
-| 23 | Headaches — Types and Red Flags | headaches | All 3 files built April 2026 ✅ — upload to GitHub |
-| 24 | Dizziness and Vertigo | dizziness-vertigo | All 3 files built April 2026 ✅ — upload to GitHub |
-| 25 | Memory, Cognition and Dementia | memory-dementia | All 3 files built April 2026 ✅ — upload to GitHub |
-| 26 | Epilepsy — What It Is and How It's Managed | epilepsy | All 3 files built April 2026 ✅ — upload to GitHub |
+| 22 | Migraine | migraine | All 3 files built April 2026 ✅ — on GitHub |
+| 23 | Headaches — Types and Red Flags | headaches | All 3 files built April 2026 ✅ — on GitHub |
+| 24 | Dizziness and Vertigo | dizziness-vertigo | All 3 files built April 2026 ✅ — on GitHub |
+| 25 | Memory, Cognition and Dementia | memory-dementia | All 3 files built April 2026 ✅ — on GitHub |
+| 26 | Epilepsy — What It Is and How It's Managed | epilepsy | All 3 files built April 2026 ✅ — on GitHub |
 
-**Total articles built: 26. Articles 21–26 pending upload to GitHub.**
+**Total articles on GitHub: 26. All series complete.**
 
 ---
 
@@ -189,7 +189,7 @@ All five articles: all three files built April 2026 — upload to GitHub pending
 - Unbuilt series (Neurological, Fatigue, Medical Decision, old Practical Articles) completely removed
 - Article 07 now correctly shows as live with link (was wrongly "Coming soon")
 - Practical Health Series (08–12) added — was entirely absent from old file
-- **Needs rebuilding** once Articles 21–26 are uploaded to GitHub, to show all 26 articles live.
+- **Needs rebuilding** to show all 26 articles live — Articles 21–26 are now on GitHub.
 
 ### index.html — April 2026 corrections applied
 1. Hero h1: "Understanding your heart" → "Understanding your health" (broader scope)
@@ -766,9 +766,8 @@ When a paper reports a statistic, use its exact numerical expression everywhere 
 
 ## 19. OUTSTANDING TASKS (April 2026)
 
-### Immediate — GitHub uploads required
-- Upload Articles 21, 22, 23, 24, 25, 26 files to GitHub (6 articles × 3 files = 18 files)
-- Update `helf-school-conditions.html` to show all articles as live once uploaded (full rebuild)
+### Immediate
+- Rebuild `helf-school-conditions.html` to show all 26 articles live (Articles 21–26 now on GitHub)
 
 ### Verification
 - `hypertension.html` references 5 & 6 — Cochrane PubMed IDs flagged ⚑ unverified
