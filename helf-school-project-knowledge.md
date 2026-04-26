@@ -906,6 +906,7 @@ When updating the project knowledge document, always use the existing document a
 
 ### Immediate
 - Upload `breast-cancer.html`, `breast-cancer-visuals.html` and `breast-cancer-teleprompter.html` to GitHub
+- Rebuild `helf-school-conditions.html` to show all 26 articles live + Cancer series coming soon
 
 ### Cancer Series — next articles to build
 - Article 28: Prostate Cancer
