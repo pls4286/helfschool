@@ -35,6 +35,8 @@
     --cat-medical-light: #E7F0FA;
     --cat-practical: #7A6A2E;
     --cat-practical-light: #F5F0E7;
+    --cat-cancer: #2A5A3A;
+    --cat-cancer-light: #E8F2EC;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -142,7 +144,6 @@
     max-width: 580px;
   }
 
-  /* Stats bar */
   .hero-stats {
     display: flex;
     gap: 2.5rem;
@@ -166,7 +167,7 @@
     margin-top: 0.2rem;
   }
 
-  /* ─── SEARCH & FILTER BAR ─── */
+  /* ─── FILTER BAR ─── */
   .filter-bar {
     background: white;
     border-bottom: 1px solid var(--border);
@@ -230,6 +231,7 @@
   .chip[data-cat="practical"].active { background: var(--cat-practical); }
   .chip[data-cat="digestive"].active { background: var(--cat-digestive); }
   .chip[data-cat="neuro"].active { background: var(--cat-neuro); }
+  .chip[data-cat="cancer"].active { background: var(--cat-cancer); }
 
   /* ─── DISCLAIMER ─── */
   .disclaimer-inline {
@@ -251,9 +253,7 @@
   }
 
   /* ─── CATEGORY SECTION ─── */
-  .category-section {
-    margin-bottom: 4rem;
-  }
+  .category-section { margin-bottom: 4rem; }
 
   .category-header {
     display: flex;
@@ -372,15 +372,8 @@
     text-transform: uppercase;
   }
 
-  .status-available {
-    background: var(--sage-light);
-    color: var(--sage);
-  }
-
-  .status-coming {
-    background: var(--sand-light);
-    color: var(--text-muted);
-  }
+  .status-available { background: var(--sage-light); color: var(--sage); }
+  .status-coming { background: var(--sand-light); color: var(--text-muted); }
 
   .article-arrow {
     font-size: 0.8rem;
@@ -388,10 +381,7 @@
     opacity: 0;
     transition: opacity 0.2s, transform 0.2s;
   }
-  .article-tile:hover .article-arrow {
-    opacity: 1;
-    transform: translateX(3px);
-  }
+  .article-tile:hover .article-arrow { opacity: 1; transform: translateX(3px); }
 
   /* Category colour theming */
   .cat-cardio .article-tile::before { background: var(--cat-cardio); }
@@ -410,24 +400,21 @@
   .cat-neuro .article-tile:hover { border-color: rgba(107,94,168,0.2); }
   .cat-neuro .article-num { color: var(--cat-neuro); opacity: 0.7; }
 
+  .cat-cancer .article-tile::before { background: var(--cat-cancer); }
+  .cat-cancer .article-tile:hover { border-color: rgba(42,90,58,0.2); }
+  .cat-cancer .article-num { color: var(--cat-cancer); opacity: 0.7; }
+
   /* ─── COMING SOON MODAL ─── */
   .modal-overlay {
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background: rgba(28,43,58,0.6);
     backdrop-filter: blur(4px);
     z-index: 200;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
     transition: opacity 0.3s;
   }
-  .modal-overlay.open {
-    opacity: 1;
-    pointer-events: all;
-  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
 
   .modal {
     background: white;
@@ -443,59 +430,34 @@
   .modal-overlay.open .modal { transform: translateY(0); }
 
   .modal-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-
   .modal-title {
     font-family: 'Fraunces', serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 0.5rem;
-    line-height: 1.25;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--navy); margin-bottom: 0.5rem; line-height: 1.25;
   }
-
   .modal-article-name {
     font-family: 'Fraunces', serif;
-    font-style: italic;
-    color: var(--heart-red);
-    font-size: 1rem;
-    margin-bottom: 1rem;
+    font-style: italic; color: var(--heart-red);
+    font-size: 1rem; margin-bottom: 1rem;
   }
-
   .modal-body {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-    font-weight: 400;
-    margin-bottom: 1.75rem;
+    font-size: 0.88rem; color: var(--text-muted);
+    line-height: 1.7; font-weight: 400; margin-bottom: 1.75rem;
   }
-
   .modal-actions { display: flex; gap: 0.75rem; justify-content: center; }
-
   .modal-btn-primary {
-    background: var(--heart-red);
-    color: white;
-    padding: 0.7rem 1.5rem;
-    border-radius: 100px;
-    font-size: 0.88rem;
-    font-weight: 500;
-    border: none;
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    transition: background 0.2s;
+    background: var(--heart-red); color: white;
+    padding: 0.7rem 1.5rem; border-radius: 100px;
+    font-size: 0.88rem; font-weight: 500; border: none;
+    cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s;
   }
   .modal-btn-primary:hover { background: var(--heart-deep); }
-
   .modal-btn-secondary {
-    background: transparent;
-    color: var(--text-muted);
-    padding: 0.7rem 1.5rem;
-    border-radius: 100px;
-    font-size: 0.88rem;
-    font-weight: 400;
-    border: 1.5px solid var(--border);
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    transition: all 0.2s;
+    background: transparent; color: var(--text-muted);
+    padding: 0.7rem 1.5rem; border-radius: 100px;
+    font-size: 0.88rem; font-weight: 400;
+    border: 1.5px solid var(--border); cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: all 0.2s;
   }
   .modal-btn-secondary:hover { border-color: var(--navy); color: var(--navy); }
 
@@ -503,51 +465,31 @@
   footer {
     background: var(--navy);
     padding: 2rem 5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem; margin-top: 4rem;
   }
-
   .footer-logo {
     font-family: 'Fraunces', serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: white;
-    text-decoration: none;
+    font-size: 1.3rem; font-weight: 700; color: white; text-decoration: none;
   }
   .footer-logo span { color: var(--coral); }
-
-  footer p {
-    font-size: 0.82rem;
-    color: rgba(255,255,255,0.4);
-    font-weight: 400;
-  }
-
+  footer p { font-size: 0.82rem; color: rgba(255,255,255,0.4); font-weight: 400; }
   .footer-disclaimer {
     background: rgba(200,66,58,0.12);
     border-top: 1px solid rgba(200,66,58,0.2);
     padding: 1rem 5rem;
-    font-size: 0.79rem;
-    color: rgba(255,200,198,0.80);
-    font-weight: 400;
-    line-height: 1.6;
+    font-size: 0.79rem; color: rgba(255,200,198,0.80);
+    font-weight: 400; line-height: 1.6;
   }
 
   /* ─── RESPONSIVE ─── */
-  @media (max-width: 1100px) {
-    .articles-grid { grid-template-columns: repeat(3, 1fr); }
-  }
+  @media (max-width: 1100px) { .articles-grid { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 800px) {
     .page-hero, .content-area, footer, .footer-disclaimer, .disclaimer-inline { padding-left: 1.5rem; padding-right: 1.5rem; }
     .filter-bar { padding: 1rem 1.5rem; }
     .articles-grid { grid-template-columns: repeat(2, 1fr); }
   }
-  @media (max-width: 500px) {
-    .articles-grid { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 500px) { .articles-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -592,11 +534,11 @@
     <p>Browse our growing library of health topics — each written by Dr Paul, grounded in evidence, and explained clearly without jargon. New articles added regularly.</p>
     <div class="hero-stats">
       <div>
-        <div class="hero-stat-num">4</div>
+        <div class="hero-stat-num">5</div>
         <div class="hero-stat-label">series published</div>
       </div>
       <div>
-        <div class="hero-stat-num">26</div>
+        <div class="hero-stat-num">27</div>
         <div class="hero-stat-label">articles live now</div>
       </div>
       <div>
@@ -619,6 +561,7 @@
     <button class="chip" data-cat="practical" onclick="setFilter('practical', this)">🌿 Practical Health</button>
     <button class="chip" data-cat="digestive" onclick="setFilter('digestive', this)">🫁 Digestive Health</button>
     <button class="chip" data-cat="neuro" onclick="setFilter('neuro', this)">🧠 Neurological</button>
+    <button class="chip" data-cat="cancer" onclick="setFilter('cancer', this)">🎗️ Cancer</button>
   </div>
 </div>
 
@@ -635,20 +578,12 @@
     <div class="category-header">
       <div class="category-icon-wrap" style="background:var(--cat-cardio-light); width:72px; height:72px; padding:6px;">
         <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-          <path d="M30 52 Q10 38 8 24 Q6 12 16 10 Q24 8 30 18 Q36 8 44 10 Q54 12 52 24 Q50 38 30 52Z"
-            fill="none" stroke="#C8423A" stroke-width="2.2" stroke-linejoin="round"/>
-          <path d="M24 12 Q22 6 26 3 Q30 1 33 4 Q36 7 34 12"
-            fill="none" stroke="#C8423A" stroke-width="2" stroke-linecap="round"/>
-          <path d="M26 10 Q20 6 14 8 Q10 10 10 14"
-            fill="none" stroke="#C8423A" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
-          <path d="M33 6 Q40 2 46 6 Q50 10 48 16"
-            fill="none" stroke="#C8423A" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
-          <path d="M22 28 Q24 36 30 44"
-            fill="none" stroke="#C8423A" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-          <path d="M30 18 Q29 32 30 44"
-            fill="none" stroke="#C8423A" stroke-width="1.2" stroke-linecap="round" opacity="0.35" stroke-dasharray="2,2"/>
-          <path d="M8 32 L14 32 L17 26 L20 38 L24 22 L27 36 L30 32 L46 32"
-            fill="none" stroke="#C8423A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+          <path d="M30 52 Q10 38 8 24 Q6 12 16 10 Q24 8 30 18 Q36 8 44 10 Q54 12 52 24 Q50 38 30 52Z" fill="none" stroke="#C8423A" stroke-width="2.2" stroke-linejoin="round"/>
+          <path d="M24 12 Q22 6 26 3 Q30 1 33 4 Q36 7 34 12" fill="none" stroke="#C8423A" stroke-width="2" stroke-linecap="round"/>
+          <path d="M26 10 Q20 6 14 8 Q10 10 10 14" fill="none" stroke="#C8423A" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
+          <path d="M33 6 Q40 2 46 6 Q50 10 48 16" fill="none" stroke="#C8423A" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
+          <path d="M22 28 Q24 36 30 44" fill="none" stroke="#C8423A" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+          <path d="M8 32 L14 32 L17 26 L20 38 L24 22 L27 36 L30 32 L46 32" fill="none" stroke="#C8423A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
         </svg>
       </div>
       <div class="category-title-group">
@@ -658,62 +593,13 @@
       <div class="category-count" style="background:var(--cat-cardio-light);color:var(--cat-cardio)">7 articles</div>
     </div>
     <div class="articles-grid">
-      <a class="article-tile" href="hypertension.html">
-        <div class="article-num">01</div>
-        <div class="article-tile-title">Hypertension (High Blood Pressure)</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
-      <a class="article-tile" href="cholesterol.html">
-        <div class="article-num">02</div>
-        <div class="article-tile-title">Cholesterol Explained</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
-      <a class="article-tile" href="heart-attack-risk.html">
-        <div class="article-num">03</div>
-        <div class="article-tile-title">How Doctors Estimate Heart Attack Risk</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
-      <a class="article-tile" href="statins.html">
-        <div class="article-num">04</div>
-        <div class="article-tile-title">Statins — Benefits &amp; Risks</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
-      <a class="article-tile" href="lifestyle-changes.html">
-        <div class="article-num">05</div>
-        <div class="article-tile-title">How to Reduce Cardiovascular Risk with Lifestyle Changes</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
-      <a class="article-tile" href="salt-blood-pressure.html">
-        <div class="article-num">06</div>
-        <div class="article-tile-title">Salt and Blood Pressure</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
-      <a class="article-tile" href="supplements-cholesterol.html">
-        <div class="article-num">07</div>
-        <div class="article-tile-title">Do Supplements Lower Cholesterol?</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
+      <a class="article-tile" href="hypertension.html"><div class="article-num">01</div><div class="article-tile-title">Hypertension (High Blood Pressure)</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="cholesterol.html"><div class="article-num">02</div><div class="article-tile-title">Cholesterol Explained</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="heart-attack-risk.html"><div class="article-num">03</div><div class="article-tile-title">How Doctors Estimate Heart Attack Risk</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="statins.html"><div class="article-num">04</div><div class="article-tile-title">Statins — Benefits &amp; Risks</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="lifestyle-changes.html"><div class="article-num">05</div><div class="article-tile-title">How to Reduce Cardiovascular Risk with Lifestyle Changes</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="salt-blood-pressure.html"><div class="article-num">06</div><div class="article-tile-title">Salt and Blood Pressure</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="supplements-cholesterol.html"><div class="article-num">07</div><div class="article-tile-title">Do Supplements Lower Cholesterol?</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
     </div>
   </div>
 
@@ -731,11 +617,9 @@
           <line x1="40.6" y1="30.6" x2="38.5" y2="28.5" stroke="#7A6A2E" stroke-width="1.8" stroke-linecap="round"/>
           <line x1="38.5" y1="11.5" x2="40.6" y2="9.4" stroke="#7A6A2E" stroke-width="1.8" stroke-linecap="round"/>
           <line x1="19.4" y1="30.6" x2="21.5" y2="28.5" stroke="#7A6A2E" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M20 52 Q20 42 28 38 Q22 42 30 45 Q24 48 30 52"
-            fill="none" stroke="#7A6A2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20 52 Q20 42 28 38 Q22 42 30 45 Q24 48 30 52" fill="none" stroke="#7A6A2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           <line x1="30" y1="52" x2="30" y2="40" stroke="#7A6A2E" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M40 50 Q40 42 32 39 Q38 42 30 45 Q36 47 30 52"
-            fill="none" stroke="#7A6A2E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.65"/>
+          <path d="M40 50 Q40 42 32 39 Q38 42 30 45 Q36 47 30 52" fill="none" stroke="#7A6A2E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.65"/>
         </svg>
       </div>
       <div class="category-title-group">
@@ -745,46 +629,11 @@
       <div class="category-count" style="background:var(--cat-practical-light);color:var(--cat-practical)">5 articles</div>
     </div>
     <div class="articles-grid">
-      <a class="article-tile" href="mediterranean-diet.html">
-        <div class="article-num">08</div>
-        <div class="article-tile-title">The Mediterranean Diet</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
-      <a class="article-tile" href="sleep.html">
-        <div class="article-num">09</div>
-        <div class="article-tile-title">Sleep and Your Health</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
-      <a class="article-tile" href="exercise.html">
-        <div class="article-num">10</div>
-        <div class="article-tile-title">Exercise — the Evidence Base</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
-      <a class="article-tile" href="stress.html">
-        <div class="article-num">11</div>
-        <div class="article-tile-title">Stress and the Body</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
-      <a class="article-tile" href="alcohol.html">
-        <div class="article-num">12</div>
-        <div class="article-tile-title">Alcohol — What the Evidence Shows</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
+      <a class="article-tile" href="mediterranean-diet.html"><div class="article-num">08</div><div class="article-tile-title">The Mediterranean Diet</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="sleep.html"><div class="article-num">09</div><div class="article-tile-title">Sleep and Your Health</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="exercise.html"><div class="article-num">10</div><div class="article-tile-title">Exercise — the Evidence Base</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="stress.html"><div class="article-num">11</div><div class="article-tile-title">Stress and the Body</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="alcohol.html"><div class="article-num">12</div><div class="article-tile-title">Alcohol — What the Evidence Shows</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
     </div>
   </div>
 
@@ -794,18 +643,12 @@
       <div class="category-icon-wrap" style="background:var(--cat-digestive-light); width:72px; height:72px; padding:6px;">
         <svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
           <path d="M30 2 L30 14" stroke="#D47C3A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <path d="M30 14 Q20 14 18 20 Q15 28 20 34 Q24 38 30 36 Q36 34 36 28 Q37 20 30 14Z"
-            fill="none" stroke="#D47C3A" stroke-width="2" stroke-linejoin="round"/>
-          <path d="M24 38 Q14 40 14 46 Q14 52 22 53 Q30 54 30 48 Q30 42 22 42 Q16 42 16 48 Q16 54 24 55 Q32 56 32 50"
-            fill="none" stroke="#D47C3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M32 50 Q34 58 34 62 Q34 68 28 70 Q22 72 18 68 Q14 64 14 58 Q14 54 16 54"
-            fill="none" stroke="#D47C3A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
-          <path d="M14 54 Q10 50 10 42 Q10 36 14 36 Q18 36 20 38"
-            fill="none" stroke="#D47C3A" stroke-width="2.2" stroke-linecap="round" opacity="0.7"/>
-          <path d="M14 36 Q22 32 30 32 Q38 32 42 36"
-            fill="none" stroke="#D47C3A" stroke-width="2.2" stroke-linecap="round" opacity="0.7"/>
-          <path d="M42 36 Q46 42 46 50 Q46 56 42 60 Q38 64 36 62"
-            fill="none" stroke="#D47C3A" stroke-width="2.2" stroke-linecap="round" opacity="0.7"/>
+          <path d="M30 14 Q20 14 18 20 Q15 28 20 34 Q24 38 30 36 Q36 34 36 28 Q37 20 30 14Z" fill="none" stroke="#D47C3A" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M24 38 Q14 40 14 46 Q14 52 22 53 Q30 54 30 48 Q30 42 22 42 Q16 42 16 48 Q16 54 24 55 Q32 56 32 50" fill="none" stroke="#D47C3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M32 50 Q34 58 34 62 Q34 68 28 70 Q22 72 18 68 Q14 64 14 58 Q14 54 16 54" fill="none" stroke="#D47C3A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+          <path d="M14 54 Q10 50 10 42 Q10 36 14 36 Q18 36 20 38" fill="none" stroke="#D47C3A" stroke-width="2.2" stroke-linecap="round" opacity="0.7"/>
+          <path d="M14 36 Q22 32 30 32 Q38 32 42 36" fill="none" stroke="#D47C3A" stroke-width="2.2" stroke-linecap="round" opacity="0.7"/>
+          <path d="M42 36 Q46 42 46 50 Q46 56 42 60 Q38 64 36 62" fill="none" stroke="#D47C3A" stroke-width="2.2" stroke-linecap="round" opacity="0.7"/>
           <path d="M28 70 Q28 75 30 78" stroke="#D47C3A" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
         </svg>
       </div>
@@ -816,78 +659,15 @@
       <div class="category-count" style="background:var(--cat-digestive-light);color:var(--cat-digestive)">9 articles</div>
     </div>
     <div class="articles-grid">
-      <a class="article-tile" href="acid-reflux.html">
-        <div class="article-num">13</div>
-        <div class="article-tile-title">Acid Reflux and GORD</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
-      <a class="article-tile" href="ibd.html">
-        <div class="article-num">14</div>
-        <div class="article-tile-title">IBD — Crohn's &amp; Ulcerative Colitis</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
-      <a class="article-tile" href="bloating.html">
-        <div class="article-num">15</div>
-        <div class="article-tile-title">Bloating — Causes and Evidence</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
-      <a class="article-tile" href="ibs.html">
-        <div class="article-num">16</div>
-        <div class="article-tile-title">Irritable Bowel Syndrome (IBS)</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
-      <a class="article-tile" href="masld.html">
-        <div class="article-num">17</div>
-        <div class="article-tile-title">Fatty Liver Disease (MASLD)</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
-      <a class="article-tile" href="coeliac.html">
-        <div class="article-num">18</div>
-        <div class="article-tile-title">Coeliac Disease</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
-      <a class="article-tile" href="gallstones.html">
-        <div class="article-num">19</div>
-        <div class="article-tile-title">Gallstones</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
-      <a class="article-tile" href="diverticular-disease.html">
-        <div class="article-num">20</div>
-        <div class="article-tile-title">Diverticular Disease</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
-      <a class="article-tile" href="constipation.html">
-        <div class="article-num">21</div>
-        <div class="article-tile-title">Constipation</div>
-        <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
-        </div>
-      </a>
+      <a class="article-tile" href="acid-reflux.html"><div class="article-num">13</div><div class="article-tile-title">Acid Reflux and GORD</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="ibd.html"><div class="article-num">14</div><div class="article-tile-title">IBD — Crohn's &amp; Ulcerative Colitis</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="bloating.html"><div class="article-num">15</div><div class="article-tile-title">Bloating — Causes and Evidence</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="ibs.html"><div class="article-num">16</div><div class="article-tile-title">Irritable Bowel Syndrome (IBS)</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="masld.html"><div class="article-num">17</div><div class="article-tile-title">Fatty Liver Disease (MASLD)</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="coeliac.html"><div class="article-num">18</div><div class="article-tile-title">Coeliac Disease</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="gallstones.html"><div class="article-num">19</div><div class="article-tile-title">Gallstones</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="diverticular-disease.html"><div class="article-num">20</div><div class="article-tile-title">Diverticular Disease</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="constipation.html"><div class="article-num">21</div><div class="article-tile-title">Constipation</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
     </div>
   </div>
 
@@ -896,25 +676,17 @@
     <div class="category-header">
       <div class="category-icon-wrap" style="background:var(--cat-neuro-light); width:72px; height:72px; padding:6px;">
         <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-          <!-- Brain outline left hemisphere -->
-          <path d="M30 10 Q18 8 14 16 Q10 22 12 30 Q14 38 20 42 Q24 44 28 43 L28 18"
-            fill="none" stroke="#6B5EA8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          <!-- Brain outline right hemisphere -->
-          <path d="M30 10 Q42 8 46 16 Q50 22 48 30 Q46 38 40 42 Q36 44 32 43 L32 18"
-            fill="none" stroke="#6B5EA8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          <!-- Central divide -->
+          <path d="M30 10 Q18 8 14 16 Q10 22 12 30 Q14 38 20 42 Q24 44 28 43 L28 18" fill="none" stroke="#6B5EA8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M30 10 Q42 8 46 16 Q50 22 48 30 Q46 38 40 42 Q36 44 32 43 L32 18" fill="none" stroke="#6B5EA8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
           <line x1="30" y1="10" x2="30" y2="44" stroke="#6B5EA8" stroke-width="1.5" stroke-dasharray="2,2" opacity="0.5"/>
-          <!-- Neural connections left -->
           <path d="M18 22 Q22 20 26 24" fill="none" stroke="#6B5EA8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
           <path d="M16 30 Q20 28 25 32" fill="none" stroke="#6B5EA8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
           <circle cx="18" cy="22" r="1.5" fill="#6B5EA8" opacity="0.7"/>
           <circle cx="16" cy="30" r="1.5" fill="#6B5EA8" opacity="0.7"/>
-          <!-- Neural connections right -->
           <path d="M42 22 Q38 20 34 24" fill="none" stroke="#6B5EA8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
           <path d="M44 30 Q40 28 35 32" fill="none" stroke="#6B5EA8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
           <circle cx="42" cy="22" r="1.5" fill="#6B5EA8" opacity="0.7"/>
           <circle cx="44" cy="30" r="1.5" fill="#6B5EA8" opacity="0.7"/>
-          <!-- Stem -->
           <path d="M28 43 Q28 50 30 52 Q32 50 32 43" fill="none" stroke="#6B5EA8" stroke-width="2" stroke-linecap="round"/>
         </svg>
       </div>
@@ -925,46 +697,75 @@
       <div class="category-count" style="background:var(--cat-neuro-light);color:var(--cat-neuro)">5 articles</div>
     </div>
     <div class="articles-grid">
-      <a class="article-tile" href="migraine.html">
-        <div class="article-num">22</div>
-        <div class="article-tile-title">Migraine</div>
+      <a class="article-tile" href="migraine.html"><div class="article-num">22</div><div class="article-tile-title">Migraine</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="headaches.html"><div class="article-num">23</div><div class="article-tile-title">Headaches — Types and Red Flags</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="dizziness-vertigo.html"><div class="article-num">24</div><div class="article-tile-title">Dizziness and Vertigo</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="memory-dementia.html"><div class="article-num">25</div><div class="article-tile-title">Memory, Cognition and Dementia</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+      <a class="article-tile" href="epilepsy.html"><div class="article-num">26</div><div class="article-tile-title">Epilepsy — What It Is and How It's Managed</div><div class="article-tile-footer"><span class="article-status status-available">● Read now</span><span class="article-arrow">→</span></div></a>
+    </div>
+  </div>
+
+  <!-- 5. CANCER SERIES -->
+  <div class="category-section cat-cancer" data-category="cancer">
+    <div class="category-header">
+      <div class="category-icon-wrap" style="background:var(--cat-cancer-light); width:72px; height:72px; padding:6px;">
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <!-- Ribbon shape -->
+          <path d="M30 8 Q22 14 22 22 Q22 30 30 34 Q38 30 38 22 Q38 14 30 8Z" fill="none" stroke="#2A5A3A" stroke-width="2.2" stroke-linejoin="round"/>
+          <!-- Left ribbon tail -->
+          <path d="M22 22 Q14 28 16 38 Q18 46 24 48 Q28 46 30 34" fill="none" stroke="#2A5A3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Right ribbon tail -->
+          <path d="M38 22 Q46 28 44 38 Q42 46 36 48 Q32 46 30 34" fill="none" stroke="#2A5A3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Loop highlights -->
+          <path d="M26 14 Q24 18 25 22" fill="none" stroke="#2A5A3A" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+          <path d="M34 14 Q36 18 35 22" fill="none" stroke="#2A5A3A" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+          <!-- Centre knot -->
+          <circle cx="30" cy="34" r="3" fill="#2A5A3A" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="category-title-group">
+        <div class="category-title">Cancer</div>
+        <div class="category-subtitle">Understanding common cancers — diagnosis, treatment, screening and the evidence</div>
+      </div>
+      <div class="category-count" style="background:var(--cat-cancer-light);color:var(--cat-cancer)">5 articles</div>
+    </div>
+    <div class="articles-grid">
+      <a class="article-tile" href="breast-cancer.html">
+        <div class="article-num">27</div>
+        <div class="article-tile-title">Breast Cancer</div>
         <div class="article-tile-footer">
           <span class="article-status status-available">● Read now</span>
           <span class="article-arrow">→</span>
         </div>
       </a>
-      <a class="article-tile" href="headaches.html">
-        <div class="article-num">23</div>
-        <div class="article-tile-title">Headaches — Types and Red Flags</div>
+      <div class="article-tile" onclick="openModal('Prostate Cancer')">
+        <div class="article-num">28</div>
+        <div class="article-tile-title">Prostate Cancer</div>
         <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
+          <span class="article-status status-coming">Coming soon</span>
         </div>
-      </a>
-      <a class="article-tile" href="dizziness-vertigo.html">
-        <div class="article-num">24</div>
-        <div class="article-tile-title">Dizziness and Vertigo</div>
+      </div>
+      <div class="article-tile" onclick="openModal('Lung Cancer')">
+        <div class="article-num">29</div>
+        <div class="article-tile-title">Lung Cancer</div>
         <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
+          <span class="article-status status-coming">Coming soon</span>
         </div>
-      </a>
-      <a class="article-tile" href="memory-dementia.html">
-        <div class="article-num">25</div>
-        <div class="article-tile-title">Memory, Cognition and Dementia</div>
+      </div>
+      <div class="article-tile" onclick="openModal('Bowel Cancer')">
+        <div class="article-num">30</div>
+        <div class="article-tile-title">Bowel Cancer</div>
         <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
+          <span class="article-status status-coming">Coming soon</span>
         </div>
-      </a>
-      <a class="article-tile" href="epilepsy.html">
-        <div class="article-num">26</div>
-        <div class="article-tile-title">Epilepsy — What It Is and How It's Managed</div>
+      </div>
+      <div class="article-tile" onclick="openModal('Melanoma and Skin Cancer')">
+        <div class="article-num">31</div>
+        <div class="article-tile-title">Melanoma and Skin Cancer</div>
         <div class="article-tile-footer">
-          <span class="article-status status-available">● Read now</span>
-          <span class="article-arrow">→</span>
+          <span class="article-status status-coming">Coming soon</span>
         </div>
-      </a>
+      </div>
     </div>
   </div>
 
@@ -994,7 +795,6 @@
 </div>
 
 <script>
-  // Modal
   function openModal(title) {
     document.getElementById('modal-article-name').textContent = title;
     document.getElementById('modal-overlay').classList.add('open');
@@ -1009,7 +809,6 @@
     if (e.key === 'Escape') closeModal();
   });
 
-  // Category filter
   function setFilter(cat, btn) {
     document.querySelectorAll('.chip').forEach(function(c) { c.classList.remove('active'); });
     btn.classList.add('active');
@@ -1022,7 +821,6 @@
     });
   }
 
-  // Search
   function filterArticles() {
     var query = document.getElementById('search-input').value.toLowerCase();
     document.querySelectorAll('.article-tile').forEach(function(tile) {
