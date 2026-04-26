@@ -5,7 +5,7 @@
 
 ## ⚠️ DOCUMENT INTEGRITY — CLAUDE MUST READ THIS BEFORE ANY SESSION WORK
 
-**This document has 25 numbered sections. Minimum expected line count: ~700 lines.**
+**This document has 25 numbered sections. Minimum expected line count: ~800 lines.**
 
 When updating this document at the end of any session, Claude MUST:
 1. Run `wc -l` on the new file before presenting it to Dr Paul
@@ -57,11 +57,13 @@ This audit must be completed internally before Claude presents any article, visu
 
 7. **Research card clinical conclusion audit** — every research card stat box must state the complete clinical finding as it is relevant to the patient. Run the test: can a lay reader understand WHAT was studied and WHAT was found from the stat box alone, without reading the body text? If not, rewrite before presenting. Statistical machinery (OR values, RCT counts, confidence intervals) must never appear in the stat box as the headline finding.
 
+8. **Stat grid citation audit — LOCKED APRIL 2026** — run `grep -A 3 "stat-prose"` before presenting any article and confirm every `.stat-prose` instance has a `ref-` link. Every stat grid card must carry a superscript inline citation. No exceptions.
+
 **For every visuals file, additionally run:**
 
-8. **ev-stat-box check** — `.ev-conditions` font is `.78rem`, padding is `.9rem .75rem`, `overflow:hidden` present. ev-conditions text is short enough to fit 220px column.
+9. **ev-stat-box check** — `.ev-conditions` font is `.78rem`, padding is `.9rem .75rem`, `overflow:hidden` present. ev-conditions text is short enough to fit 220px column.
 
-9. **animate-ready check** — all animated cards have `animate-ready` class. No hardcoded `opacity:0` on card elements.
+10. **animate-ready check** — all animated cards have `animate-ready` class. No hardcoded `opacity:0` on card elements.
 
 **This audit replaces the tendency to generate output first and check after. The audit happens before output — every time, without exception.**
 
@@ -100,6 +102,7 @@ This audit must be completed internally before Claude presents any article, visu
 - Fatigue: `#3A8A7A`
 - Medical Decision: `#2E6BA8`
 - Practical Health (series): `#7A6A2E`
+- **Cancer (series): `#8A3A5A` (deep rose) — established April 2026**
 
 ### Fonts
 - Headings: Fraunces (serif)
@@ -166,7 +169,18 @@ All five articles: all three files confirmed on GitHub ✅
 | 25 | Memory, Cognition and Dementia | memory-dementia | All 3 files built April 2026 ✅ — on GitHub |
 | 26 | Epilepsy — What It Is and How It's Managed | epilepsy | All 3 files built April 2026 ✅ — on GitHub |
 
-**Total articles on GitHub: 26. All series complete.**
+### Series E — Cancer (Articles 27–31) — ESTABLISHED APRIL 2026
+Series colour: `#8A3A5A` (deep rose).
+
+| # | Title | Slug | Status |
+|---|-------|------|--------|
+| 27 | Breast Cancer | breast-cancer | Article HTML built April 2026 ✅ — visuals + teleprompter outstanding |
+| 28 | Prostate Cancer | prostate-cancer | Not yet built |
+| 29 | Lung Cancer | lung-cancer | Not yet built |
+| 30 | Bowel (Colorectal) Cancer | bowel-cancer | Not yet built |
+| 31 | Melanoma and Skin Cancer | melanoma | Not yet built |
+
+**Total articles with all 3 files on GitHub: 26. Article 27 article HTML built — upload to GitHub outstanding.**
 
 ---
 
@@ -175,32 +189,26 @@ All five articles: all three files confirmed on GitHub ✅
 | File | Status | Notes |
 |------|--------|-------|
 | index.html | Rebuilt April 2026 | 20+ years corrected; voice fixed; 2026 |
-| helf-school-conditions.html | Rebuilt April 2026 | 20 live articles; 3 series; correct slugs |
+| helf-school-conditions.html | Rebuilt April 2026 | Needs rebuilding — now 26 articles + Cancer series |
 | helf-school-membership.html | On GitHub | Pricing: £0 / £6pm or £60pa / £150 lifetime |
 
-### helf-school-conditions.html — April 2026 rebuild (full rebuild, not patch)
-- 3 series shown: Cardiovascular (7) · Practical Health (5) · Digestive Health (8 live + 1 coming soon)
-- Filter chips: All topics · ❤️ Cardiovascular · 🌿 Practical Health · 🫁 Digestive Health
-- Hero stats: 3 series published · 20 articles live now · ∞ growing over time
-- Article 21 Constipation shown as "Coming soon" with modal
-- Copyright © 2026
-- Nav links: `index.html` throughout (old file wrongly used `helf-school.html`)
-- Full canonical educational voice phrase in inline disclaimer and footer
-- Unbuilt series (Neurological, Fatigue, Medical Decision, old Practical Articles) completely removed
-- Article 07 now correctly shows as live with link (was wrongly "Coming soon")
-- Practical Health Series (08–12) added — was entirely absent from old file
-- **Needs rebuilding** to show all 26 articles live — Articles 21–26 are now on GitHub.
+### helf-school-conditions.html — needs full rebuild (April 2026)
+Currently shows 20 live articles across 3 series. Needs full rebuild to show:
+- All 26 articles live across 4 series (Cardiovascular, Practical Health, Digestive, Neurological)
+- Cancer series shown as coming soon
+- Filter chips updated to include all 4 live series
+- Hero stats updated: 4 series · 26 articles live
 
 ### index.html — April 2026 corrections applied
-1. Hero h1: "Understanding your heart" → "Understanding your health" (broader scope)
+1. Hero h1: "Understanding your heart" → "Understanding your health"
 2. Hero subtitle: "cardiovascular health" → "your health"
-3. Hero trust item: "Always seek advice from your doctor" → full canonical phrase
-4. Disclaimer banner: "Always speak to a qualified medical professional" → full canonical phrase
+3. Hero trust item: full canonical phrase
+4. Disclaimer banner: full canonical phrase
 5. Why helf.school pillar: **30+ years → 20+ years** (primary fix)
-6. Footer disclaimer: "Always consult your doctor" → full canonical phrase
+6. Footer disclaimer: full canonical phrase
 7. Copyright © 2025 → © 2026
 8. Disclaimer doc date: March 2025 → April 2026 · Version 1.0 → 1.1
-9. Article template voice: "Your doctor will weigh these options with you" → full canonical phrase
+9. Article template voice: full canonical phrase
 10. Cloudflare email obfuscation removed → plain text contact reference
 11. "About Dr [Name]" → "About Dr Paul" throughout
 12. "Heart Conditions A–Z" footer link → `helf-school-conditions.html`
@@ -270,7 +278,7 @@ Dr Paul does not want to make manual edits to files. When corrections are needed
 ### Section structure (all condition articles)
 1. What is it?
 2. Key Terms box — navy background, sits between sections 1 and 2
-3. Why does it matter? — max 5 bullet points
+3. Why does it matter? — stat grid + prose paragraphs
 4. What your doctor might discuss
 5. What the research shows
 6. "Putting it all together" — navy box, italic text, bold closing line
@@ -289,7 +297,7 @@ Dr Paul does not want to make manual edits to files. When corrections are needed
 ### Key Terms box standards
 - Navy background `#1B2A4A`
 - Title: Fraunces serif, minimum 1.05rem, `#fff`
-- Term labels: minimum 0.88rem, `font-weight:700`, accent colour (amber `#E8A84A`)
+- Term labels: minimum 0.88rem, `font-weight:700`, accent colour (series accent)
 - Definitions: minimum 0.92rem, `rgba(255,255,255,0.90)` — opacity 0.75 or 0.80 not permitted for definition text
 - 1–2 boxes; alphabetical order within each box
 
@@ -297,6 +305,12 @@ Dr Paul does not want to make manual edits to files. When corrections are needed
 - Every stat or claim in prose carries a superscript number linking to anchored reference `id="ref-N"`
 - Format: `<sup><a href="#ref-1">1</a></sup>`
 - Superscript link colour matches the series accent colour
+- **This rule applies to stat grid `.stat-prose` text as well as body prose — every stat in every stat grid card must carry a superscript citation. No exceptions. Confirmed and locked April 2026.**
+
+### Stat grid citation rule — LOCKED APRIL 2026
+Every `.stat-prose` line in the Why does it matter? stat grid must carry a superscript inline citation. Run `grep -A 3 "stat-prose"` before presenting any article and confirm every instance has a `ref-` link. Not optional, not limited to "the obvious stats." Every card, every time.
+
+**Why this rule was added:** In the breast cancer article (Article 27, April 2026), three of four stat grid cards were delivered without citations. Caught by Dr Paul during review — not by the pre-output audit. Now explicit in the QC checklist.
 
 ### Research card stat standard
 
@@ -319,21 +333,21 @@ Every research card stat box must state the complete clinical finding in terms t
 - "77% response rate / vs 44% placebo" (complete comparison — reader understands what works)
 - "PEG superior / across all 4 outcomes" (clear clinical comparison)
 - "Macrogol superior / to lactulose across all outcomes"
+- "20% reduction in breast cancer mortality / in women invited to screening"
+- "~⅓ reduction in breast cancer mortality / throughout first 15 years in ER-positive disease"
 
 **Incorrect examples — statistical machinery or incomplete findings:**
-- "11" with label "RCTs — Epley effective" — the number of trials is irrelevant to the patient; the finding (Epley works) is what matters
-- "OR 2.67" — an odds ratio conveys nothing meaningful to a lay reader; the clinical finding must be stated
-- "Safe & effective" without stating WHAT is safe and effective — incomplete
-- "Moderate to strong evidence" without stating WHAT has that evidence level — incomplete
-- Participant counts, study counts, or cost figures as the headline stat — never permitted
+- "11" with label "RCTs — Epley effective"
+- "OR 2.67"
+- "Safe & effective" without stating WHAT is safe and effective
+- "Moderate to strong evidence" without stating WHAT has that evidence level
+- Participant counts, study counts, or cost figures as the headline stat
 
-**Why this rule exists:** helf.school's purpose is health education. The research section is not a statistical appendix — it is the place where readers learn what medicine has found about their condition. Statistical detail belongs in the body text of the card, where it provides supporting context. The stat box is the headline. It must lead with the clinically important point.
-
-**Stat boxes show outcomes only — effect sizes, risk changes, response rates, or complete qualitative clinical conclusions when no single number captures the finding. NEVER:**
+**Stat boxes show outcomes only — effect sizes, risk changes, response rates, or complete qualitative clinical conclusions. NEVER:**
 - Participant counts ("868 participants", "2,441 participants")
 - Study counts ("10 RCTs", "39 studies")
 - Cost figures ("£113m", "£2.3bn")
-- Incomplete qualifiers ("safe & effective" without the subject; "OR 2.67" without explanation)
+- Incomplete qualifiers
 
 **Good stat box examples:**
 - `~30% CV event reduction` · `77% response vs 44% placebo` · `PEG superior across 4 outcomes` · `+12% / +30% mortality risk` · `The Epley manoeuvre / is safe & effective for BPPV` · `Vestibular rehabilitation / has moderate to strong evidence`
@@ -379,6 +393,10 @@ Apply everywhere, on first mention per section:
 - rivastigmine (Exelon)
 - galantamine (Reminyl)
 - memantine (Ebixa)
+- trastuzumab (Herceptin)
+- letrozole (Femara)
+- anastrozole (Arimidex)
+- exemestane (Aromasin)
 
 ### Lay-clarification brackets — ALL medical terminology
 **The general rule:** Every medical or clinical term that a lay reader would not immediately understand must have a plain English definition in brackets on first use in each section. This applies to anatomical terms, physiological terms, symptom descriptors, drug class names, procedural terms, and diagnostic labels — not just statistical measures.
@@ -387,7 +405,7 @@ Examples of terms requiring lay clarification:
 - Anatomical: periorbital (around the eye) · temporal (at the temple) · ipsilateral (same side) · bilateral (both sides)
 - Symptoms: lacrimation (tearing) · rhinorrhoea (runny nose) · ptosis (drooping eyelid) · miosis (pupil constriction) · conjunctival redness (redness of the white of the eye)
 - Clinical: teratogenic (capable of causing harm to a developing foetus) · hepatotoxic (toxic to the liver) · tachycardia (fast heart rate)
-- Drug classes: tricyclic antidepressant · beta-blocker · prokinetic antiemetic
+- Drug classes: tricyclic antidepressant · beta-blocker · prokinetic antiemetic · aromatase inhibitor · selective oestrogen receptor modulator
 
 **Why this keeps failing:** Earlier versions of this rule listed only statistical terms. Any term not on the explicit list was not caught at QC. The rule is now general: if a lay reader might not know it, it needs a definition in brackets on first use.
 
@@ -595,8 +613,10 @@ Scale 0.62 · every 2nd frame · 120 colours · under 1.5MB total PPTX
 19. **Structured lists and criteria boxes — any Key Terms box term appearing in a list or criteria box must have "(see Key Terms below)" added immediately after it**
 20. **VIEWPORT MAXIMISATION — open every slide in a browser before delivering. Content must fill at least 85% of the visible area. Slide padding maximum `1rem 1.5rem 0.8rem`. Body text minimum `.90rem`. Card/row gaps maximum `.5rem`. Slide title minimum `1.55rem`. If slides look sparse or content is small, increase font sizes and reduce gaps before delivering.**
 21. **PMID VERIFICATION — every PMID must be verified by web search in the same session. A PubMed URL must be found in search results confirming the PMID resolves to the correct paper. Never include a PMID from memory or inference.**
-22. **STRICT SOURCE RULE — every stat, claim, and causal attribution must be traceable to an approved source. Charity and advocacy websites (Epilepsy Action, Alzheimer's Society, etc.) are not approved. Derived figures (calculating deaths from a prevalence rate) are not acceptable — only cite figures explicitly stated in the approved source. If a stat cannot be traced, omit it.**
+22. **STRICT SOURCE RULE — every stat, claim, and causal attribution must be traceable to an approved source. Charity and advocacy websites (Epilepsy Action, Alzheimer's Society, WCRF, etc.) are not approved. Derived figures (calculating deaths from a prevalence rate) are not acceptable — only cite figures explicitly stated in the approved source. If a stat cannot be traced, omit it.**
 23. **EXACT FIGURE RULE — use the paper's exact numerical expression everywhere. Never convert between forms (">30%" must not become "1 in 3" or "33%"; "1 in 1,000" must not become "0.1%"). Cross-check stat grid, research cards, Key Terms, body prose, Putting It Together, and teleprompter for consistency before delivering any file.**
+24. **STAT GRID CITATION RULE — LOCKED APRIL 2026:** Run `grep -A 3 "stat-prose"` before presenting any article. Every `.stat-prose` line must have a `ref-` superscript link. All stat grid cards. No exceptions. A stat grid card with no citation is a QC failure regardless of how obvious the stat appears.
+25. **APPROVED SOURCE RETRIEVAL RULE — LOCKED APRIL 2026:** Every figure must be retrieved directly from the approved source page, not from a secondary or aggregator page that attributes the figure to an approved source. If a stat is found on an unapproved page (e.g. WCRF) that cites Cancer Research UK, fetch the Cancer Research UK page directly and use the figure stated there. Example of failure: breast cancer article (April 2026) used 60,763 (WCRF) instead of "around 59,000" (Cancer Research UK directly).
 
 ---
 
@@ -620,9 +640,13 @@ Edge incognito uploads occasionally capture the Claude.ai loader HTML (~5,140 by
 
 BMJ · NICE guidelines · Cochrane Database · NEJM · The Lancet · JAMA · BMJ Best Practice · PubMed · NHS/NHS Digital · ONS · CDC · WHO · Global Burden of Disease Study · ESC/EAS guidelines · Alimentary Pharmacology & Therapeutics · European Heart Journal · QJM · Epilepsia · Seizure: European Journal of Epilepsy · JAMA Neurology
 
+**Cancer Research UK — approved April 2026** for UK cancer incidence, mortality, survival, and risk statistics. Where Cancer Research UK cites a primary source (e.g. ONS data or a specific trial), cite the primary where practical. For Cancer Research UK's own published statistics, cite Cancer Research UK directly and fetch their statistics pages directly — never rely on a secondary page that attributes data to them.
+
 No non-peer-reviewed sources, commercial health sites, or forum content permitted.
 
-**NOT approved (explicit list):** Epilepsy Action · Alzheimer's Society · Alzheimer's Research UK · any charity or advocacy website · any secondary source that cites a primary paper without being that primary paper.
+**NOT approved (explicit list):** Epilepsy Action · Alzheimer's Society · Alzheimer's Research UK · World Cancer Research Fund (WCRF) · Breast Cancer Now · any charity or advocacy website · any secondary source that cites a primary paper without being that primary paper.
+
+**WCRF specifically:** The WCRF website publishes cancer statistics attributed to Cancer Research UK and NHS Digital. These must NOT be cited as Cancer Research UK figures. Always fetch the Cancer Research UK statistics page directly. Example of failure: breast cancer article (April 2026) used WCRF's 60,763 instead of Cancer Research UK's "around 59,000."
 
 ---
 
@@ -642,10 +666,13 @@ Before presenting any article, visuals, or teleprompter HTML — verify via web 
 3. **Contains the specific stat or finding claimed — not just plausibly could contain it**
 4. URL/DOI resolves to the correct article — fetch the abstract or full text if needed to confirm
 5. **PMID resolves to the correct paper — a PubMed URL must be found in search results confirming the PMID. Never include a PMID from memory or inference.**
+6. **The figure comes directly from the approved source page, not from a secondary page attributing it to an approved source — LOCKED APRIL 2026**
 
 **Step 3 is the step that fails most often.** Finding a paper by the same author on the same topic is not sufficient. The specific numerical claim must be traceable to that specific paper. If the stat appears in a secondary source (a review, a guidance document, an editorial) that itself cites a primary paper, cite the primary paper — not the secondary source.
 
 **Step 5 is a new rule confirmed April 2026.** Claude has repeatedly generated plausible-sounding but incorrect PMIDs. Every PMID must be verified by web search before inclusion.
+
+**Step 6 was added April 2026** after 60,763 (from WCRF) was used instead of "around 59,000" (from Cancer Research UK directly). Always search for and fetch the approved source page itself.
 
 **Derived statistics are not acceptable.** If a source provides a prevalence rate but not an absolute count, do not calculate and cite an absolute figure. Only cite figures explicitly stated in the approved source.
 
@@ -666,6 +693,7 @@ Never include an unverified link. Never assume a study exists based on a plausib
 - Research card stat standard (outcomes only, not counts): outstanding across 01–11
 - **Research card complete clinical conclusion standard: outstanding across 01–23** — all previously built articles should have research card stat boxes audited against the complete clinical conclusion rule when they are next opened for any edit
 - Inline citations (superscripts linking to refs): outstanding across 01–11
+- **Stat grid citations: outstanding across all articles built before April 2026** — apply when next opened
 - CTA slide high-impact standard (disclaimer box, gold-glow, 4 action cards): outstanding across 01–11
 - Visuals layout standard (horizontal rows, ev-stat-row): outstanding across 01–11
 - Key terms / hero visibility standards: outstanding across 01–11
@@ -682,7 +710,7 @@ NICE CG99 covers constipation in **children and young people only**. For adult c
 All references to clinical experience must read "20+ years" or "over twenty years as an NHS GP". The incorrect "30+" was on the live index.html and was corrected April 2026.
 
 ### Local link testing — expected not to work
-When Dr Paul opens a downloaded HTML file locally and clicks article links, they appear broken. This is expected and correct — links are correctly coded as relative (`href="salt-blood-pressure.html"`) and work on the live GitHub site.
+When Dr Paul opens a downloaded HTML file locally and clicks article links, they appear broken. This is expected and correct — links are correctly coded as relative and work on the live GitHub site.
 
 ### Dr Paul prefers Claude to handle all file edits
 Never ask Dr Paul to make manual edits to files via the GitHub editor. When corrections are needed, Claude fetches the file, applies all changes, and delivers the corrected file for download and re-upload.
@@ -727,9 +755,7 @@ When a medical term from the Key Terms box appears in a structured list or crite
 NICE uses two guideline series: **CG** (pre-~2014) and **NG** (from ~2014 onwards). These are entirely separate documents. In April 2026, migraine.html was delivered citing NICE NG150 (incorrect) instead of NICE CG150 (correct). Always verify via web search in the same session.
 
 ### Visuals must maximise viewport space — LOCKED APRIL 2026
-Multiple visuals files were delivered with text too small and gaps too large, leaving slides that looked sparse and failed to use the available screen. Dr Paul explicitly identified this as a problem. The fix applied: slide padding reduced to maximum `1rem 1.5rem 0.8rem`; all body text raised to minimum `.90rem`; all gaps reduced to maximum `.5rem`; line clamp on row bodies raised to minimum 3 lines; slide title raised to minimum `1.55rem`.
-
-**The test:** Open every slide in a browser before delivering. Content must fill at least 85% of the visible area. Visuals are filmed — undersized content reads poorly on camera. If it looks sparse in the browser, it will look wrong on film. See Section 9 and QC item 20 for the full specification.
+Multiple visuals files were delivered with text too small and gaps too large. Dr Paul explicitly identified this as a problem. Fix: slide padding maximum `1rem 1.5rem 0.8rem`; body text minimum `.90rem`; gaps maximum `.5rem`; line clamp minimum 3 lines; slide title minimum `1.55rem`. Test: open every slide in a browser — content must fill at least 85%. See Section 9 and QC item 20.
 
 ### ev-stat-box text overflow — confirmed fix April 2026
 The confirmed fix: `.ev-stat-box` `padding:.9rem .75rem` + `overflow:hidden`; `.ev-conditions` `font-size:.78rem; line-height:1.32`. Do not increase either value.
@@ -738,47 +764,63 @@ The confirmed fix: `.ev-stat-box` `padding:.9rem .75rem` + `overflow:hidden`; `.
 The session-start-rules.md file fell out of sync with project knowledge multiple times in April 2026. Fix applied: Rule 6A added — project knowledge always overrides session-start-rules on status.
 
 ### Research card stat boxes must state complete clinical conclusions — LOCKED APRIL 2026
-**This is a health education site, not a statistics journal.** The research section exists to tell readers what medicine has found about their condition — in terms they can understand and use. Every research card stat box must state the complete clinical finding as it is relevant to the patient.
-
-The failure mode that prompted this rule: stat boxes were showing the number of RCTs ("11") and odds ratios ("OR 2.67") as the headline finding. These numbers are statistical machinery — they tell the reader nothing meaningful about their condition. The patient-relevant finding ("The Epley manoeuvre is a safe and effective treatment for BPPV"; "Vestibular rehabilitation has moderate to strong evidence for its efficacy") must be the headline.
-
-**The test:** read the stat box alone, without the body text. Does a lay reader understand what the research found about their condition? If not, rewrite. This test must be applied to every research card in every article and visuals file before delivery. See Section 8 and QC item 9 for the full rule.
+**This is a health education site, not a statistics journal.** The research section exists to tell readers what medicine has found about their condition — in terms they can understand and use. Every research card stat box must state the complete clinical finding as it is relevant to the patient. The failure mode: stat boxes showing "11" (RCTs) and "OR 2.67" as the headline finding. These are statistical machinery — they tell the reader nothing. The test: read the stat box alone. Does a lay reader understand what the research found about their condition? If not, rewrite. See Section 8 and QC item 9.
 
 ### PMIDs must be verified by web search every time — LOCKED APRIL 2026
-Claude has repeatedly generated plausible-sounding but incorrect PMIDs across multiple sessions. In April 2026, PMID 25088348 was included for Thurman et al Epilepsia 2014 — the correct PMID is 24903551. The mandatory process: (1) search for the paper by author, title, journal, year; (2) find a PubMed URL in the search results; (3) the PMID is the number in that URL; (4) only then include the PMID in the file. Never include a PMID from memory. No exceptions.
+Claude has repeatedly generated plausible-sounding but incorrect PMIDs. In April 2026, PMID 25088348 was included for Thurman et al Epilepsia 2014 — the correct PMID is 24903551. Mandatory process: (1) search for the paper by author, title, journal, year; (2) find a PubMed URL in the search results; (3) the PMID is the number in that URL; (4) only then include the PMID in the file. Never include a PMID from memory. No exceptions.
 
 ### Charity and advocacy websites are not approved sources — LOCKED APRIL 2026
-Epilepsy Action, Alzheimer's Society, Alzheimer's Research UK, and similar organisations produce valuable work but are not in the approved source list. Stats and claims derived from charity websites must not be included. Derived statistics (e.g. calculating UK annual deaths from a per-1,000 incidence rate) are also not acceptable — only figures explicitly stated in an approved source may be cited. If a stat cannot be traced to an approved source, omit it.
+Epilepsy Action, Alzheimer's Society, Alzheimer's Research UK, WCRF, Breast Cancer Now, and similar organisations are not in the approved source list. Stats and claims derived from charity websites must not be included. Derived statistics are also not acceptable — only figures explicitly stated in an approved source may be cited. If a stat cannot be traced to an approved source, omit it.
 
 ### Causal attributions require primary citations — April 2026
 Causal claims (e.g. "driven partly by disability discrimination") require a specific primary citation confirming that causal relationship. Inference from context is not sufficient. If the causal attribution cannot be cited, it must be removed.
 
 ### NEAD — use neutral language — April 2026
-Non-epileptic attack disorder (NEAD) should not be described as "typically a manifestation of psychological distress." This is an oversimplification that does not reflect current understanding of functional neurological disorder and may cause offence. Use neutral language: "episodes that resemble seizures but are not caused by abnormal electrical activity in the brain."
+Non-epileptic attack disorder (NEAD) should not be described as "typically a manifestation of psychological distress." Use neutral language: "episodes that resemble seizures but are not caused by abnormal electrical activity in the brain."
 
 ### Drug-resistant epilepsy — cite the paper's exact figure — April 2026
-Kwan & Brodie NEJM 2000 reports "more than 30 percent" — not "1 in 3" or "33%". Always cite the paper's exact language. Cross-check article prose, stat grid, Key Terms, research cards, and Putting It Together section for consistency.
+Kwan & Brodie NEJM 2000 reports "more than 30 percent" — not "1 in 3" or "33%". Always cite the paper's exact language.
 
 ### Exact figure rule — never convert between numerical forms — LOCKED APRIL 2026
-When a paper reports a statistic, use its exact numerical expression everywhere — stat grid, research cards, Key Terms, body prose, Putting It Together, and teleprompter. Never convert between forms (">30%" must not become "1 in 3"; "1 in 1,000" must not become "0.1%"). The conversion introduces inaccuracy and misrepresents the source. Cross-check all instances before delivering any file.
+When a paper reports a statistic, use its exact numerical expression everywhere. Never convert between forms. Cross-check all instances before delivering any file.
+
+### Stat grid cards require inline citations — LOCKED APRIL 2026
+Every `.stat-prose` line in the Why does it matter? stat grid must carry a superscript inline citation. In the breast cancer article (Article 27, April 2026), three of four stat grid cards were presented without citations. Caught by Dr Paul during review — not by the pre-output audit. The QC checklist now includes an explicit grep check (item 24). Every card, every time, no exceptions.
+
+### Approved source retrieval — fetch from the approved source page directly — LOCKED APRIL 2026
+A figure found on an unapproved page (e.g. WCRF) that attributes its data to an approved source (e.g. Cancer Research UK) must NOT be used. Fetch the approved source page directly and use the figure stated there. In the breast cancer article (Article 27), 60,763 was taken from the WCRF page and incorrectly attributed to Cancer Research UK. The Cancer Research UK page directly states "around 59,000." Caught by Dr Paul. The correct process: search → find the approved source page → retrieve the figure from that page → use only that figure.
+
+### Cancer Research UK added to approved sources — April 2026
+Cancer Research UK is approved for UK cancer incidence, mortality, survival, and risk statistics. Always fetch their statistics pages directly.
+
+### Cancer Series established — April 2026
+Series E. Articles 27–31. Colour `#8A3A5A` (deep rose). Article 27 (Breast Cancer) article HTML built April 2026.
+
+### Never rebuild a project knowledge document from scratch — LOCKED APRIL 2026
+When updating the project knowledge document, always use the existing document as the base and merge new content into it. Never rebuild from memory. The existing document is always larger and more complete than what Claude can reconstruct from memory in a session. Rebuilding from memory loses content and introduces errors. The correct process: read the existing document → identify what is new → add new content to the existing document → verify the new version is equal to or larger than the old one.
 
 ---
 
 ## 19. OUTSTANDING TASKS (April 2026)
 
 ### Immediate
-- Rebuild `helf-school-conditions.html` to show all 26 articles live (Articles 21–26 now on GitHub)
+- Upload `breast-cancer.html` to GitHub
+- Rebuild `helf-school-conditions.html` to show all 26 articles live + Cancer series coming soon
+- Build `breast-cancer-visuals.html` and `breast-cancer-teleprompter.html`
+
+### Cancer Series — next articles to build
+- Article 28: Prostate Cancer
+- Article 29: Lung Cancer
+- Article 30: Bowel (Colorectal) Cancer
+- Article 31: Melanoma and Skin Cancer
 
 ### Verification
 - `hypertension.html` references 5 & 6 — Cochrane PubMed IDs flagged ⚑ unverified
 
-### Series planning
-- **Neurological series (Articles 22–26)** — all complete April 2026
-- **Next series TBD** — possible extensions: Stroke and TIA (bridges cardiovascular) · Parkinson's Disease
-
 ### Retrofit backlog (Articles 01–11 only — 13–26 confirmed complete)
 - Research card clinical conclusion standard — apply across all rebuilt articles
 - Research card stat standard (outcomes only, not counts)
+- Stat grid citations — all pre-April 2026 articles
 - Inline citations (superscripts)
 - CTA slide standard
 - Visuals layout standard (ev-stat-row, horizontal rows)
@@ -853,7 +895,7 @@ All key statistics, study names, years, and citation authors must match exactly 
 Build very large HTML files one per turn. Wait for confirmation before proceeding to the next file.
 
 ### Rule 8 — Verify references before building
-Run web searches to verify all planned citations before building any article HTML.
+Run web searches to verify all planned citations before building any article HTML. Fetch figures directly from the approved source page — not from a secondary page that attributes the figure to an approved source.
 
 ### Rule 9 — Update project knowledge at session end
 Update this document and session-start-rules.md together. Dr Paul uploads both to GitHub AND the Claude Project.
@@ -871,10 +913,19 @@ Every visuals slide must fill the available viewport. Slide padding maximum `1re
 Every PMID must be found in a web search result before inclusion. Mandatory process: (1) search for paper by author/title/journal/year; (2) find PubMed URL in results; (3) PMID is the number in that URL; (4) only then include it. Never from memory. No exceptions.
 
 ### Rule 14 — Strict source rule
-Only approved sources (Section 14) may be cited. Charity/advocacy websites are not approved. Derived statistics are not acceptable. Causal attributions require a primary citation. If a stat cannot be traced to an approved source, omit it.
+Only approved sources (Section 14) may be cited. Charity/advocacy websites are not approved. WCRF is not approved even when it cites Cancer Research UK. Derived statistics are not acceptable. Causal attributions require a primary citation. If a stat cannot be traced to an approved source, omit it.
 
 ### Rule 15 — Exact figure rule — LOCKED APRIL 2026
 Use the paper's exact numerical expression everywhere. Never convert between forms. Cross-check stat grid, research cards, Key Terms, body prose, Putting It Together, and teleprompter before delivering any file.
+
+### Rule 16 — Stat grid citation rule — LOCKED APRIL 2026
+Every `.stat-prose` line in the Why does it matter? stat grid must carry a superscript inline citation. Run `grep -A 3 "stat-prose"` before presenting any article and confirm every instance has a `ref-` link. All stat grid cards. No exceptions.
+
+### Rule 17 — Approved source retrieval rule — LOCKED APRIL 2026
+Every figure must be retrieved directly from the approved source page, not from a secondary or aggregator page. If a figure appears on WCRF or any other unapproved page attributed to Cancer Research UK, fetch the Cancer Research UK page and use the figure stated there.
+
+### Rule 18 — Never rebuild the project knowledge document from scratch — LOCKED APRIL 2026
+When updating the project knowledge document, always use the existing document as the base. Read it fully, identify what is new from the current session, and merge new content into it. Never rebuild from memory. A rebuilt-from-memory version will always be shorter and less complete than the existing document.
 
 ---
 
@@ -887,7 +938,7 @@ References 5 and 6 — Cochrane PubMed IDs flagged ⚑ unverified. These need ve
 Very large HTML file — has caused mid-build crashes in previous sessions. If this file needs to be rebuilt or significantly edited, handle it in one dedicated turn.
 
 ### conditions page (helf-school-conditions.html)
-Rebuilt April 2026. If any further changes are needed, rebuild the whole file — do not attempt partial patches.
+Needs full rebuild to show all 26 articles live plus Cancer series coming soon. Rebuild — do not patch.
 
 ### index.html
 Rebuilt April 2026 with all 12 corrections listed in Section 4. "About Dr Paul" section correctly reads "NHS GP · 20+ years".
@@ -905,6 +956,16 @@ Article HTML built April 2026. Research flags noted: NICE CKS Vertigo (last revi
 - Valproate: teratogenicity inline lay definition present; MHRA Valproate Pregnancy Prevention Programme referenced
 - 6 references total; all PMIDs verified by web search in session
 
+### breast-cancer.html — April 2026 decisions
+- Cancer Series Article 27. Colour `#8A3A5A` (deep rose).
+- Incidence: "around 59,000" — Cancer Research UK directly (NOT WCRF's 60,763)
+- Male incidence: "around 420" — Cancer Research UK directly
+- NICE NG101 (updated February 2025) and CG81
+- 3 research cards: Marmot 2012 (PMID 23117178); EBCTCG tamoxifen 2011 (PMID 21802721); EBCTCG aromatase inhibitors 2015 (PMID 26211827)
+- All 4 stat grid cards carry inline citations ✅
+- Research flags outstanding: triple-negative ~15%, HER2-positive ~15–20%, DCIS overdiagnosis phrasing, EBCTCG 2015 ~40% derivation presentation
+- Article HTML built and delivered; not yet uploaded to GitHub; visuals and teleprompter outstanding
+
 ---
 
 ## 24. PLANNING NOTES — NEXT SERIES
@@ -912,20 +973,20 @@ Article HTML built April 2026. Research flags noted: NICE CKS Vertigo (last revi
 ### Neurological Series (Articles 22–26) — COMPLETE APRIL 2026
 Series colour: `#6B5EA8` (purple)
 
-| # | Title | Slug |
-|---|-------|------|
-| 22 | Migraine | migraine |
-| 23 | Headaches — Types and Red Flags | headaches |
-| 24 | Dizziness and Vertigo | dizziness-vertigo |
-| 25 | Memory, Cognition and Dementia | memory-dementia |
-| 26 | Epilepsy — What It Is and How It's Managed | epilepsy |
+### Cancer Series (Articles 27–31) — IN PROGRESS
+Series colour: `#8A3A5A` (deep rose). Established April 2026.
 
-**Possible extensions (Articles 27–28, to confirm later):**
-- Stroke and TIA (could bridge with cardiovascular series)
+| # | Title | Slug | Status |
+|---|-------|------|--------|
+| 27 | Breast Cancer | breast-cancer | Article HTML built ✅ — visuals + teleprompter outstanding |
+| 28 | Prostate Cancer | prostate-cancer | Not yet built |
+| 29 | Lung Cancer | lung-cancer | Not yet built |
+| 30 | Bowel (Colorectal) Cancer | bowel-cancer | Not yet built |
+| 31 | Melanoma and Skin Cancer | melanoma | Not yet built |
+
+**Possible future series:**
+- Stroke and TIA (bridges cardiovascular)
 - Parkinson's Disease (rising incidence, ageing population)
-
-### Cancer Series (further horizon)
-Discussed as a future series but not yet planned. No article list defined.
 
 ---
 
@@ -957,6 +1018,22 @@ When writing research card stat boxes, follow this sequence:
 3. The PMID is the number in that URL
 4. Only then include the PMID in the file
 5. Never include a PMID from memory — it will be wrong
+
+### Approved source figure retrieval — mandatory process — LOCKED APRIL 2026
+1. Identify which approved source should hold the figure
+2. Search for that approved source page specifically
+3. Retrieve the figure from that page
+4. Use only the figure stated on the approved source page
+5. If an unapproved page (WCRF, charity site) quotes a figure and attributes it to an approved source, do not use the unapproved page's figure — fetch the approved source directly
+6. If the approved source page gives a different figure (e.g. "around 59,000" vs WCRF's "60,763"), always use the approved source's figure
+
+### Project knowledge update — mandatory process — LOCKED APRIL 2026
+1. Read the existing project knowledge document in full before writing a single word of the update
+2. Identify what is new from the current session only
+3. Add new content to the existing document — do not rewrite or abbreviate existing sections
+4. Run `wc -l` on the new file and confirm it is equal to or greater than the previous version
+5. Verify all 25 sections are present
+6. Never deliver a shorter version without explicit explanation and Dr Paul's confirmation
 
 ---
 
