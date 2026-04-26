@@ -102,7 +102,22 @@ This audit must be completed internally before Claude presents any article, visu
 - Fatigue: `#3A8A7A`
 - Medical Decision: `#2E6BA8`
 - Practical Health (series): `#7A6A2E`
-- **Cancer (series): `#8A3A5A` (deep rose) — established April 2026**
+- **Cancer (series): `#2A5A3A` (forest green) — confirmed April 2026. Dark variant: `#1A3A25`.**
+
+### Series dark variants — for research card stat box gradients
+Each series uses its own colour on research card stat box backgrounds (gradient from series-dark to series). Dark variants must be agreed before retrofitting existing articles. Currently confirmed:
+
+| Series | Primary | Dark variant | Status |
+|--------|---------|-------------|--------|
+| Cardiovascular | `#C8423A` | `#8A2020` | Proposed — to confirm |
+| Neurological | `#6B5EA8` | `#4A4080` | Proposed — to confirm |
+| Digestive | `#D47C3A` | `#8A4A1A` | Proposed — to confirm |
+| Fatigue | `#3A8A7A` | `#1A5A4A` | Proposed — to confirm |
+| Medical Decision | `#2E6BA8` | `#1A3A6A` | Proposed — to confirm |
+| Practical Health | `#7A6A2E` | `#4A3A1A` | Proposed — to confirm |
+| Cancer | `#2A5A3A` | `#1A3A25` | ✅ Confirmed April 2026 |
+
+**Outstanding: Dr Paul to confirm dark variants for all series before retrofit begins.**
 
 ### Fonts
 - Headings: Fraunces (serif)
@@ -174,7 +189,7 @@ Series colour: `#8A3A5A` (deep rose).
 
 | # | Title | Slug | Status |
 |---|-------|------|--------|
-| 27 | Breast Cancer | breast-cancer | Article HTML built April 2026 ✅ — visuals + teleprompter outstanding |
+| 27 | Breast Cancer | breast-cancer | All 3 files built April 2026 ✅ — upload to GitHub outstanding |
 | 28 | Prostate Cancer | prostate-cancer | Not yet built |
 | 29 | Lung Cancer | lung-cancer | Not yet built |
 | 30 | Bowel (Colorectal) Cancer | bowel-cancer | Not yet built |
@@ -307,7 +322,42 @@ Dr Paul does not want to make manual edits to files. When corrections are needed
 - Superscript link colour matches the series accent colour
 - **This rule applies to stat grid `.stat-prose` text as well as body prose — every stat in every stat grid card must carry a superscript citation. No exceptions. Confirmed and locked April 2026.**
 
-### Stat grid citation rule — LOCKED APRIL 2026
+### Article research card display standard — LOCKED APRIL 2026
+
+**Canonical reference: `memory-dementia.html` (layout) + `breast-cancer.html` (colour principle)**
+
+These values apply to article HTML files only. The visuals ev-stat-box has a separate locked specification in Section 9.
+
+```css
+/* Research card layout */
+.research-card { grid-template-columns: 220px 1fr; border-radius: 10px; border: 1px solid rgba(series,0.18); }
+
+/* Stat box — series colour gradient, NOT navy */
+.ev-stat-box {
+  background: linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%);
+  padding: 1.1rem .9rem;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+.ev-kf-label { font-size: .72rem; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: .07em; }
+.ev-stat-row { font-size: 3.2rem; font-weight: 900; color: #fff; line-height: 1.0; }
+.ev-outcome { font-size: .95rem; font-weight: 700; color: rgba(255,255,255,0.95); line-height: 1.3; }
+.ev-conditions { font-size: .80rem; line-height: 1.35; color: rgba(255,255,255,0.72); }
+
+/* Body */
+.ev-body { background: #fff; padding: 1.1rem 1.2rem; }
+.ev-body p { font-size: .93rem; line-height: 1.72; }
+.ev-source { font-size: .78rem; color: rgba(44,44,44,0.55); font-style: italic; }
+```
+
+**Key rules:**
+- **Stat box background: series-colour gradient** — each series uses its own dark-to-mid gradient, never plain navy. The amber kf-label pops beautifully against any series colour.
+- **ev-stat-row: 3.2rem weight 900** — the headline stat must dominate the stat box. This is health education — the finding must be unmissable.
+- **ev-kf-label: always amber `#E8A84A`** — consistent accent across all series, regardless of series colour.
+- **Column: 220px** — confirmed from memory-dementia canonical.
+- These values apply to articles only. For visuals, see Section 9 locked spec.
+
+**Why the stat number must be large:** The research section is where readers learn what medicine has found. The stat box is the headline — it must lead with the clinically important finding in a size and weight that commands attention. A 2.2rem number at 220px reads as a supporting detail, not a headline. 3.2rem reads as news.
 Every `.stat-prose` line in the Why does it matter? stat grid must carry a superscript inline citation. Run `grep -A 3 "stat-prose"` before presenting any article and confirm every instance has a `ref-` link. Not optional, not limited to "the obvious stats." Every card, every time.
 
 **Why this rule was added:** In the breast cancer article (Article 27, April 2026), three of four stat grid cards were delivered without citations. Caught by Dr Paul during review — not by the pre-output audit. Now explicit in the QC checklist.
@@ -496,19 +546,28 @@ The stat box sits in the left column (220px) of each ev-card. These values are r
 - Full-screen with radial gold-glow background + pulsing icon halo (3.2s drop-shadow)
 - **Central icon: minimum `5.5rem`** — the icon must dominate the slide visually. Never `3.2rem` or smaller — it disappears on screen.
 - **Fraunces headline: minimum `clamp(2.8rem, 5.5vw, 4.2rem)`** — this is the most important text on the slide. Never `clamp(2.2rem, 4.5vw, 3.2rem)` — too small.
-- **Fraunces italic subline: minimum `1.2rem`** — never `1rem`
+- **No subline mentioning "free at helf.school"** — helf.school is a subscription service. The subline must not reference being free. Remove `.cta-sub` text entirely or use a non-pricing line. **LOCKED APRIL 2026.**
 - 4 action cards (NOT chips) — emoji + Fraunces bold label, gradient + gold border
 - **Card emoji icons: minimum `2.2rem`** — never `1.4rem`
 - **Card title text: minimum `.96rem`** — never `.84rem`
-- **Medical-advice disclaimer box required:** ⚕️ icon · dashed border · "Health education — not medical advice" + full educational-voice phrase
-- Closing slide: same disclaimer box as CTA slide
-- Reference: `hypertension-visuals.html`
+- **"Start for free" card is permitted** — there is a genuine £0 Explorer tier. "Free to read — always" is NOT permitted — it implies all content is permanently free.
+- **CTA disclaimer box — LOCKED APRIL 2026:**
+  - `.cta-disclaimer`: `max-width:720px` · `border:1.5px solid rgba(255,255,255,0.35)` · `padding:1rem 1.3rem` · `background:rgba(255,255,255,0.05)`
+  - Icon: `font-size:1.3rem`
+  - Text: `font-size:1rem` · `color:rgba(255,255,255,0.90)` · `line-height:1.6`
+  - Never `.80rem` for CTA disclaimer text — too small to read on screen
+- Reference: `hypertension-visuals.html` · `breast-cancer-visuals.html` (Cancer Series canonical)
 
 ### Closing slide standard (all visuals files)
 - **Logo text: minimum `2.8rem`** — never `2rem`. This is the final brand impression.
 - **Tagline: minimum `1.05rem`** — never `.9rem`
 - **Link/series label: minimum `1rem`** — never `.85rem`
-- Same disclaimer box as CTA slide, centred
+- **Closing slide disclaimer — LOCKED APRIL 2026 — use `.closing-disclaimer` class, NOT `.cta-disclaimer`:**
+  - `.closing-disclaimer`: `max-width:680px` · `border:1.5px solid rgba(255,255,255,0.40)` · `border-radius:10px` · `padding:1rem 1.3rem` · `background:rgba(255,255,255,0.05)`
+  - Icon: `.closing-disclaimer-icon` at `font-size:1.4rem`
+  - Text: `.closing-disclaimer-text` at `font-size:1rem` · `color:rgba(255,255,255,0.90)` · `line-height:1.6` · `font-weight:400`
+  - Never use `.cta-disclaimer` class on closing slide — it uses `.80rem` text, which is too small
+  - **Why this rule exists:** The closing slide disclaimer is the last thing the audience sees. It must be readable. Multiple files were delivered with `.80rem` disclaimer text on the closing slide — confirmed too small in April 2026.
 - Background: gradient from series dark colour to `#0d0d1a`
 
 ### Readability standards — visuals (all rgba thresholds)
@@ -617,6 +676,9 @@ Scale 0.62 · every 2nd frame · 120 colours · under 1.5MB total PPTX
 23. **EXACT FIGURE RULE — use the paper's exact numerical expression everywhere. Never convert between forms (">30%" must not become "1 in 3" or "33%"; "1 in 1,000" must not become "0.1%"). Cross-check stat grid, research cards, Key Terms, body prose, Putting It Together, and teleprompter for consistency before delivering any file.**
 24. **STAT GRID CITATION RULE — LOCKED APRIL 2026:** Run `grep -A 3 "stat-prose"` before presenting any article. Every `.stat-prose` line must have a `ref-` superscript link. All stat grid cards. No exceptions. A stat grid card with no citation is a QC failure regardless of how obvious the stat appears.
 25. **APPROVED SOURCE RETRIEVAL RULE — LOCKED APRIL 2026:** Every figure must be retrieved directly from the approved source page, not from a secondary or aggregator page that attributes the figure to an approved source. If a stat is found on an unapproved page (e.g. WCRF) that cites Cancer Research UK, fetch the Cancer Research UK page directly and use the figure stated there. Example of failure: breast cancer article (April 2026) used 60,763 (WCRF) instead of "around 59,000" (Cancer Research UK directly).
+26. **CLOSING SLIDE DISCLAIMER SIZE — LOCKED APRIL 2026:** The closing slide must use the `.closing-disclaimer` class with `.closing-disclaimer-text` at `font-size:1rem`. Never use the `.cta-disclaimer` class on the closing slide — it uses `.80rem` text, which is too small. The disclaimer is the last thing the audience sees and must be clearly readable.
+27. **CTA SLIDE DISCLAIMER SIZE — LOCKED APRIL 2026:** CTA disclaimer text must be `font-size:1rem`, `color:rgba(255,255,255,0.90)`. Never `.80rem`. Run a grep check on both disclaimer classes before presenting any visuals file.
+28. **NO "FREE AT HELF.SCHOOL" ON VISUALS — LOCKED APRIL 2026:** The subline on the CTA slide must not reference being "free at helf.school" — helf.school is a subscription service and this is inaccurate. "Start for free" (the £0 Explorer tier) is permitted as a card label. "Free to read — always" is not permitted. "Evidence-based health education — free at helf.school" is not permitted. Check the CTA slide subline before presenting any visuals file.
 
 ---
 
@@ -790,11 +852,30 @@ Every `.stat-prose` line in the Why does it matter? stat grid must carry a super
 ### Approved source retrieval — fetch from the approved source page directly — LOCKED APRIL 2026
 A figure found on an unapproved page (e.g. WCRF) that attributes its data to an approved source (e.g. Cancer Research UK) must NOT be used. Fetch the approved source page directly and use the figure stated there. In the breast cancer article (Article 27), 60,763 was taken from the WCRF page and incorrectly attributed to Cancer Research UK. The Cancer Research UK page directly states "around 59,000." Caught by Dr Paul. The correct process: search → find the approved source page → retrieve the figure from that page → use only that figure.
 
-### Cancer Research UK added to approved sources — April 2026
+### Cancer Series colour changed from rose to forest green — April 2026
+Initial colour `#8A3A5A` (deep rose) was proposed and approved but rendered poorly — the monochromatic dark rose/pink scheme gave insufficient contrast between card backgrounds and text. Changed to `#2A5A3A` (forest green) with dark variant `#1A3A25`. Forest green is distinct from existing teal `#3A8A7A` and olive `#7A6A2E`.
+
+### Research card stat boxes use series colour, not navy — LOCKED APRIL 2026
+The ev-stat-box background in article research cards must use the series colour gradient (series-dark to series), not plain navy. Established when building breast-cancer.html for the Cancer Series. The amber kf-label contrasts effectively against any series colour. This principle makes each series visually distinctive and reinforces series identity throughout the article. Each series needs a confirmed dark variant colour before this standard can be retrofitted. See Section 2 for the dark variant table.
+
+### Article research card display standard confirmed — April 2026
+The research card stat box in articles must be visually commanding. ev-stat-row: 3.2rem weight 900. The stat box is the headline — it must lead with the clinically important finding in a size that commands attention. Canonical reference: `breast-cancer.html`. See Section 8 for the full CSS specification.
+
+### Series dark variants must be confirmed before retrofit — April 2026
+The series-coloured stat box gradient requires a dark variant for each series. Proposed variants are in Section 2. Dr Paul must confirm each dark variant before the research card colour retrofit is applied to existing articles.
 Cancer Research UK is approved for UK cancer incidence, mortality, survival, and risk statistics. Always fetch their statistics pages directly.
 
+### Closing slide disclaimer must use .closing-disclaimer class at 1rem — LOCKED APRIL 2026
+The closing slide disclaimer must use the `.closing-disclaimer` / `.closing-disclaimer-text` classes at `font-size:1rem`, not the `.cta-disclaimer` class at `.80rem`. The closing slide is the final thing the audience sees — it must be clearly readable on camera. Multiple files were delivered with the wrong class reused from the CTA slide. QC item 26 now checks this.
+
+### CTA slide must not reference "free at helf.school" — LOCKED APRIL 2026
+The subline on the CTA slide must not say "Evidence-based health education — free at helf.school" or any variation. helf.school is a subscription service. "Start for free" is permitted as a card label — there is a genuine £0 Explorer tier. "Free to read — always" is not permitted. This was caught by Dr Paul reviewing breast-cancer-visuals.html in April 2026. QC item 28 now checks this.
+
+### CTA disclaimer text size locked at 1rem — LOCKED APRIL 2026
+CTA slide disclaimer text must be `font-size:1rem`, `color:rgba(255,255,255,0.90)`. Never `.80rem` — too small to read on screen. QC item 27 enforces this.
+
 ### Cancer Series established — April 2026
-Series E. Articles 27–31. Colour `#8A3A5A` (deep rose). Article 27 (Breast Cancer) article HTML built April 2026.
+Series E. Articles 27–31. Colour `#2A5A3A` (forest green, confirmed April 2026 — initial rose colour `#8A3A5A` rejected due to contrast issues). Dark variant `#1A3A25`.
 
 ### Never rebuild a project knowledge document from scratch — LOCKED APRIL 2026
 When updating the project knowledge document, always use the existing document as the base and merge new content into it. Never rebuild from memory. The existing document is always larger and more complete than what Claude can reconstruct from memory in a session. Rebuilding from memory loses content and introduces errors. The correct process: read the existing document → identify what is new → add new content to the existing document → verify the new version is equal to or larger than the old one.
@@ -804,9 +885,9 @@ When updating the project knowledge document, always use the existing document a
 ## 19. OUTSTANDING TASKS (April 2026)
 
 ### Immediate
-- Upload `breast-cancer.html` to GitHub
+- Upload `breast-cancer.html` and `breast-cancer-visuals.html` to GitHub
 - Rebuild `helf-school-conditions.html` to show all 26 articles live + Cancer series coming soon
-- Build `breast-cancer-visuals.html` and `breast-cancer-teleprompter.html`
+- **Agree dark variant colours for all 6 existing series** — required before research card colour retrofit. See Section 2 table for proposed values. Dr Paul to confirm each.
 
 ### Cancer Series — next articles to build
 - Article 28: Prostate Cancer
@@ -817,14 +898,16 @@ When updating the project knowledge document, always use the existing document a
 ### Verification
 - `hypertension.html` references 5 & 6 — Cochrane PubMed IDs flagged ⚑ unverified
 
-### Retrofit backlog (Articles 01–11 only — 13–26 confirmed complete)
-- Research card clinical conclusion standard — apply across all rebuilt articles
-- Research card stat standard (outcomes only, not counts)
+### Retrofit backlog (Articles 01–26 — apply when files next opened)
+- **Research card colour retrofit** — ev-stat-box background to change from navy to series-colour gradient across all 26 articles. Requires dark variant confirmation first.
+- **Research card display standard** — ev-stat-row to 3.2rem weight 900 across all articles.
+- Research card clinical conclusion standard — apply across 01–23
+- Research card stat standard (outcomes only, not counts) — 01–11
 - Stat grid citations — all pre-April 2026 articles
-- Inline citations (superscripts)
-- CTA slide standard
-- Visuals layout standard (ev-stat-row, horizontal rows)
-- Key terms / hero visibility standards
+- Inline citations (superscripts) — 01–11
+- CTA slide standard — 01–11
+- Visuals layout standard — 01–11
+- Key terms / hero visibility standards — 01–11
 - Teleprompter cue box — confirm which files pre-date standard
 
 ---
@@ -854,6 +937,8 @@ The Claude project holds **visuals, teleprompter, and screen files only**. Artic
 | `lifestyle-changes-teleprompter.html` | Canonical teleprompter (cue box standard) |
 | `lifestyle-changes-visuals.html` | Canonical visuals (ev-stat-row horizontal layout, all patterns) |
 | `hypertension-visuals.html` | Canonical CTA slide reference |
+| `memory-dementia.html` | Canonical article research card layout (220px column, flex-start) |
+| `breast-cancer.html` | Canonical article research card display (3.2rem stat, series gradient background) |
 
 ### Files confirmed in Claude project (April 2026)
 **Teleprompters (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine · headaches · dizziness-vertigo · memory-dementia · epilepsy
@@ -957,14 +1042,17 @@ Article HTML built April 2026. Research flags noted: NICE CKS Vertigo (last revi
 - 6 references total; all PMIDs verified by web search in session
 
 ### breast-cancer.html — April 2026 decisions
-- Cancer Series Article 27. Colour `#8A3A5A` (deep rose).
+- Cancer Series Article 27. Colour `#2A5A3A` (forest green, dark variant `#1A3A25`). Initial rose colour `#8A3A5A` rejected — contrast issues.
 - Incidence: "around 59,000" — Cancer Research UK directly (NOT WCRF's 60,763)
 - Male incidence: "around 420" — Cancer Research UK directly
+- Screening age: 50 to 70 (Cancer Research UK) — not 50 to 71
 - NICE NG101 (updated February 2025) and CG81
 - 3 research cards: Marmot 2012 (PMID 23117178); EBCTCG tamoxifen 2011 (PMID 21802721); EBCTCG aromatase inhibitors 2015 (PMID 26211827)
 - All 4 stat grid cards carry inline citations ✅
-- Research flags outstanding: triple-negative ~15%, HER2-positive ~15–20%, DCIS overdiagnosis phrasing, EBCTCG 2015 ~40% derivation presentation
-- Article HTML built and delivered; not yet uploaded to GitHub; visuals and teleprompter outstanding
+- Overdiagnosis: uses Marmot paper's per-10,000 framing (129 per 10,000) — not the derived 4,000 annual figure
+- Research card stat box: forest green gradient, 3.2rem stat number — new canonical standard
+- All 3 files built April 2026 ✅ — upload to GitHub outstanding
+- Remaining research flags: triple-negative ~15%, HER2-positive ~15–20%, EBCTCG 2015 ~40% derivation
 
 ---
 
@@ -974,11 +1062,11 @@ Article HTML built April 2026. Research flags noted: NICE CKS Vertigo (last revi
 Series colour: `#6B5EA8` (purple)
 
 ### Cancer Series (Articles 27–31) — IN PROGRESS
-Series colour: `#8A3A5A` (deep rose). Established April 2026.
+Series colour: `#2A5A3A` (forest green). Dark variant: `#1A3A25`. Confirmed April 2026.
 
 | # | Title | Slug | Status |
 |---|-------|------|--------|
-| 27 | Breast Cancer | breast-cancer | Article HTML built ✅ — visuals + teleprompter outstanding |
+| 27 | Breast Cancer | breast-cancer | All 3 files built April 2026 ✅ — upload to GitHub outstanding |
 | 28 | Prostate Cancer | prostate-cancer | Not yet built |
 | 29 | Lung Cancer | lung-cancer | Not yet built |
 | 30 | Bowel (Colorectal) Cancer | bowel-cancer | Not yet built |
