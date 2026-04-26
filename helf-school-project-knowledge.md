@@ -109,15 +109,15 @@ Each series uses its own colour on research card stat box backgrounds (gradient 
 
 | Series | Primary | Dark variant | Status |
 |--------|---------|-------------|--------|
-| Cardiovascular | `#C8423A` | `#8A2020` | Proposed — to confirm |
-| Neurological | `#6B5EA8` | `#4A4080` | Proposed — to confirm |
-| Digestive | `#D47C3A` | `#8A4A1A` | Proposed — to confirm |
-| Fatigue | `#3A8A7A` | `#1A5A4A` | Proposed — to confirm |
-| Medical Decision | `#2E6BA8` | `#1A3A6A` | Proposed — to confirm |
-| Practical Health | `#7A6A2E` | `#4A3A1A` | Proposed — to confirm |
+| Cardiovascular | `#C8423A` | `#8A2020` | ✅ Confirmed April 2026 |
+| Neurological | `#6B5EA8` | `#4A4080` | ✅ Confirmed April 2026 |
+| Digestive | `#D47C3A` | `#8A4A1A` | ✅ Confirmed April 2026 |
+| Fatigue | `#3A8A7A` | `#1A5A4A` | ✅ Confirmed April 2026 |
+| Medical Decision | `#2E6BA8` | `#1A3A6A` | ✅ Confirmed April 2026 |
+| Practical Health | `#7A6A2E` | `#4A3A1A` | ✅ Confirmed April 2026 |
 | Cancer | `#2A5A3A` | `#1A3A25` | ✅ Confirmed April 2026 |
 
-**Outstanding: Dr Paul to confirm dark variants for all series before retrofit begins.**
+**All dark variants confirmed April 2026. Research card colour retrofit is now unblocked across all 26 articles.**
 
 ### Fonts
 - Headings: Fraunces (serif)
@@ -905,9 +905,7 @@ When updating the project knowledge document, always use the existing document a
 ## 19. OUTSTANDING TASKS (April 2026)
 
 ### Immediate
-- Upload `breast-cancer.html` and `breast-cancer-visuals.html` to GitHub
-- Rebuild `helf-school-conditions.html` to show all 26 articles live + Cancer series coming soon
-- **Agree dark variant colours for all 6 existing series** — required before research card colour retrofit. See Section 2 table for proposed values. Dr Paul to confirm each.
+- Upload `breast-cancer.html`, `breast-cancer-visuals.html` and `breast-cancer-teleprompter.html` to GitHub
 
 ### Cancer Series — next articles to build
 - Article 28: Prostate Cancer
@@ -923,16 +921,18 @@ When updating the project knowledge document, always use the existing document a
 - `hypertension.html` references 5 & 6 — Cochrane PubMed IDs flagged ⚑ unverified
 
 ### Retrofit backlog (Articles 01–26 — apply when files next opened)
-- **Research card colour retrofit** — ev-stat-box background to change from navy to series-colour gradient across all 26 articles. Requires dark variant confirmation first.
-- **Research card display standard** — ev-stat-row to 3.2rem weight 900 across all articles.
-- Research card clinical conclusion standard — apply across 01–23
-- Research card stat standard (outcomes only, not counts) — 01–11
-- Stat grid citations — all pre-April 2026 articles
-- Inline citations (superscripts) — 01–11
-- CTA slide standard — 01–11
-- Visuals layout standard — 01–11
-- Key terms / hero visibility standards — 01–11
-- Teleprompter cue box — confirm which files pre-date standard
+All dark variants confirmed April 2026 — retrofit is fully unblocked. Apply per series as files are next opened. Priority order:
+
+1. **Research card colour retrofit** ← highest priority, highest visual impact — ev-stat-box background: navy → series-colour gradient. Spec: `linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%)`. Dark variants confirmed for all series (see Section 2). Apply across all 26 articles.
+2. **Key Terms + Putting it all together** — navy → series-colour gradient. Cancer Series standard confirmed. Decision outstanding: extend to all series or Cancer-only? If extending, same gradient spec applies.
+3. **Research card display standard** — ev-stat-row to 3.2rem weight 900 across all articles.
+4. **Closing/CTA disclaimer sizes** — closing: `.closing-disclaimer` 1rem; CTA: 1rem. Quick grep check per file.
+5. **No "free at helf.school"** — grep CTA subline per visuals file.
+6. **Research card clinical conclusion standard** — 01–23.
+7. **Stat grid citations** — 01–11 only.
+8. **Inline citations** — 01–11 only.
+9. **CTA slide standard** — 01–11 only.
+10. **Visuals layout standard** — 01–11 only.
 
 ---
 

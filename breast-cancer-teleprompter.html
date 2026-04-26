@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Breast Cancer — Teleprompter · helf.school</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a12;
+    --text: #f0f0f0;
+    --series: #2A5A3A;
+    --series-light: #A8D5B5;
+    --amber: #E8A84A;
+    --cue-bg: rgba(42,90,58,0.25);
+    --cue-border: #2A5A3A;
+    --speed-btn: rgba(255,255,255,0.10);
+    --font-size: 1.9rem;
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', serif;
+    overflow: hidden;
+  }
+
+  /* ── CONTROLS BAR ── */
+  .controls {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 52px;
+    background: rgba(10,10,18,0.95);
+    border-bottom: 1px solid rgba(42,90,58,0.40);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 1.2rem; z-index: 100; gap: 1rem;
+  }
+  .ctrl-left { display: flex; align-items: center; gap: .6rem; flex-shrink: 0; }
+  .ctrl-title { font-family: Georgia, serif; font-size: .9rem; color: rgba(255,255,255,0.75); font-style: italic; }
+  .ctrl-right { display: flex; align-items: center; gap: .5rem; }
+
+  .btn {
+    background: var(--speed-btn);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85);
+    border-radius: 6px;
+    padding: .3rem .7rem;
+    font-size: .82rem;
+    font-family: Georgia, serif;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn:hover { background: rgba(255,255,255,0.18); }
+  .btn:active { transform: scale(0.97); }
+
+  #pause-btn {
+    background: rgba(42,90,58,0.35);
+    border-color: rgba(42,90,58,0.60);
+    color: #fff;
+    font-size: .9rem;
+    padding: .3rem 1rem;
+    font-weight: 600;
+    min-width: 90px;
+  }
+  #pause-btn:hover { background: rgba(42,90,58,0.55); }
+
+  .speed-label { font-size: .75rem; color: rgba(255,255,255,0.50); }
+  #speed-val { font-size: .82rem; color: var(--series-light); font-weight: 600; min-width: 18px; text-align: center; }
+
+  /* ── DOTS ── */
+  .dots-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    height: 30px;
+    background: rgba(10,10,18,0.95);
+    border-top: 1px solid rgba(42,90,58,0.30);
+    display: flex; align-items: center; justify-content: center;
+    gap: .5rem; z-index: 100;
+  }
+  .seg-dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: rgba(255,255,255,0.20);
+    cursor: pointer; transition: background .2s, transform .2s;
+  }
+  .seg-dot.active { background: var(--series-light); transform: scale(1.35); }
+
+  /* ── SCROLL AREA ── */
+  .scroll-wrap {
+    position: fixed;
+    top: 52px; bottom: 30px; left: 0; right: 0;
+    overflow: hidden;
+  }
+  .scroll-content {
+    padding: 6vh 8vw 30vh;
+    will-change: transform;
+  }
+
+  /* ── SEGMENTS ── */
+  .segment { margin-bottom: 4rem; }
+
+  /* ── CUE BOX ── */
+  .cue-box {
+    background: var(--cue-bg);
+    border: 2px solid var(--cue-border);
+    border-radius: 8px;
+    padding: .65rem 1.1rem;
+    margin-bottom: 1.4rem;
+    display: flex; align-items: center; gap: .7rem;
+  }
+  .cue-arrow { font-size: 1.1rem; color: var(--series-light); flex-shrink: 0; }
+  .cue-text {
+    font-family: Georgia, serif;
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--series-light);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+
+  /* ── SCRIPT TEXT ── */
+  .script-line {
+    font-size: var(--font-size);
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: .6rem;
+  }
+  .script-line .pause { color: rgba(255,255,255,0.35); font-size: 1.2rem; }
+  .script-line .emph { color: var(--series-light); font-weight: 600; }
+  .script-line .stat { color: var(--amber); font-weight: 600; }
+
+  /* ── SEGMENT DIVIDER ── */
+  .seg-divider {
+    border: none;
+    border-top: 1px solid rgba(42,90,58,0.30);
+    margin: 3rem 0;
+  }
+
+  /* ── PROGRESS INDICATOR ── */
+  .progress-bar {
+    position: fixed; top: 52px; left: 0; right: 0; height: 2px;
+    background: rgba(255,255,255,0.06); z-index: 99;
+  }
+  .progress-fill {
+    height: 100%; background: var(--series);
+    width: 0%; transition: width .2s;
+  }
+</style>
+</head>
+<body>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <div class="ctrl-left">
+    <div class="ctrl-title">Breast Cancer · Cancer Series 27</div>
+  </div>
+  <div class="ctrl-right">
+    <button class="btn" id="font-down">A−</button>
+    <button class="btn" id="font-up">A+</button>
+    <span class="speed-label">Speed</span>
+    <button class="btn" id="speed-down">−</button>
+    <span id="speed-val">3</span>
+    <button class="btn" id="speed-up">+</button>
+    <button class="btn" id="pause-btn">⏸ Pause</button>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+<!-- DOTS -->
+<div class="dots-bar" id="dots-bar"></div>
+
+<!-- SCROLL AREA -->
+<div class="scroll-wrap" id="scroll-wrap">
+  <div class="scroll-content" id="scroll-content">
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- SEGMENT 1 — INTRO -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="segment" id="seg-1">
+      <div class="cue-box">
+        <span class="cue-arrow">▶</span>
+        <span class="cue-text">ADVANCE NOW — then read</span>
+      </div>
+      <p class="script-line">I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019.</p>
+      <p class="script-line">Today I want to talk to you about <span class="emph">breast cancer.</span></p>
+      <p class="script-line">Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+      <p class="script-line">Right — let's get into it.</p>
+    </div>
+
+    <hr class="seg-divider">
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- SEGMENT 2 — WHAT IS IT / TYPES -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="segment" id="seg-2">
+      <div class="cue-box">
+        <span class="cue-arrow">▶</span>
+        <span class="cue-text">ADVANCE NOW — then read</span>
+      </div>
+      <p class="script-line">Breast cancer is the <span class="emph">most commonly diagnosed cancer in UK women.</span> Around <span class="stat">59,000</span> new cases every year — and about <span class="stat">1 in 7</span> women in the UK will receive a diagnosis at some point in their lifetime.</p>
+      <p class="script-line">The first thing to understand is that breast cancer is <span class="emph">not one disease.</span> It falls into distinct types based on receptor status — which proteins the cancer cells carry.</p>
+      <p class="script-line"><span class="emph">ER-positive disease</span> — the most common, around 80% of cases — uses oestrogen to fuel growth, and responds well to hormone-blocking treatments.</p>
+      <p class="script-line"><span class="emph">HER2-positive disease</span> — in approximately 15 to 20% of cases — overproduces a growth protein and responds to targeted therapies including trastuzumab, known as Herceptin.</p>
+      <p class="script-line">And <span class="emph">triple-negative breast cancer</span> — in 10 to 15% of cases — lacks all three receptors, making it the most challenging to treat.</p>
+      <p class="script-line">Receptor status determines everything — which treatment is offered, how long it runs, and what the likely response will be.</p>
+    </div>
+
+    <hr class="seg-divider">
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- SEGMENT 3 — SCALE AND SURVIVAL -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="segment" id="seg-3">
+      <div class="cue-box">
+        <span class="cue-arrow">▶</span>
+        <span class="cue-text">ADVANCE NOW — then read</span>
+      </div>
+      <p class="script-line">These figures tell an important story — not just about scale, but about <span class="emph">progress.</span></p>
+      <p class="script-line">Mortality has fallen by <span class="stat">46%</span> since the early 1970s. And <span class="stat">85%</span> of breast cancers in England are now diagnosed at Stage I or II — the stages where five-year survival is 90% or above.</p>
+      <p class="script-line">Stage at diagnosis is the single most powerful driver of outcome. Stage I — almost 100% five-year survival. Stage IV — the picture is very different. <span class="emph">Early detection genuinely saves lives.</span></p>
+    </div>
+
+    <hr class="seg-divider">
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- SEGMENT 4 — DIAGNOSIS AND SCREENING -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="segment" id="seg-4">
+      <div class="cue-box">
+        <span class="cue-arrow">▶</span>
+        <span class="cue-text">ADVANCE NOW — then read</span>
+      </div>
+      <p class="script-line">So how is breast cancer diagnosed? The standard UK pathway is called the <span class="emph">triple assessment</span> — three components that together give a complete picture.</p>
+      <p class="script-line">First, <span class="emph">clinical examination</span> — the breast and nearby lymph nodes assessed by a trained clinician.</p>
+      <p class="script-line">Second, <span class="emph">imaging</span> — mammography for women aged 40 and over; ultrasound for younger women where denser breast tissue is harder to read on X-ray.</p>
+      <p class="script-line">Third, <span class="emph">biopsy</span> — a tissue sample that confirms the diagnosis and determines receptor status. Biopsy is the only way to know for certain whether cancer is present — and which type.</p>
+      <p class="script-line">The <span class="emph">NHS Breast Screening Programme</span> invites women aged 50 to 70 for mammography every three years — specifically to detect cancers before symptoms appear, when treatment is most effective.</p>
+    </div>
+
+    <hr class="seg-divider">
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- SEGMENT 5 — TREATMENT -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="segment" id="seg-5">
+      <div class="cue-box">
+        <span class="cue-arrow">▶</span>
+        <span class="cue-text">ADVANCE NOW — then read</span>
+      </div>
+      <p class="script-line">Treatment for breast cancer is increasingly <span class="emph">personalised</span> — determined by the type of cancer, its stage, and its receptor status.</p>
+      <p class="script-line">For most early breast cancers, surgery is the cornerstone. Breast-conserving surgery removes the tumour and a margin of tissue. Mastectomy removes the whole breast. Radiotherapy reduces the risk of the cancer returning locally.</p>
+      <p class="script-line">For ER-positive disease — the majority of cases — endocrine therapy follows. <span class="emph">Tamoxifen</span> for premenopausal women; <span class="emph">aromatase inhibitors</span> for postmenopausal women. Typically for five to ten years.</p>
+      <p class="script-line">For HER2-positive disease, <span class="emph">trastuzumab</span> — Herceptin — is added to chemotherapy for a full year. For triple-negative disease, systemic chemotherapy is the main systemic option.</p>
+    </div>
+
+    <hr class="seg-divider">
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- SEGMENT 6 — RESEARCH -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="segment" id="seg-6">
+      <div class="cue-box">
+        <span class="cue-arrow">▶</span>
+        <span class="cue-text">ADVANCE NOW — then read</span>
+      </div>
+      <p class="script-line">The evidence base for breast cancer treatment is among the <span class="emph">strongest in oncology.</span></p>
+      <p class="script-line">The Marmot review of 2012 — a meta-analysis of 11 randomised controlled trials — found that women invited to screening had a <span class="stat">20%</span> reduction in breast cancer mortality. Around 1,300 deaths prevented each year by the NHS programme.</p>
+      <p class="script-line">The same review found that for every 10,000 women invited to screening for 20 years, <span class="stat">129</span> cases represent overdiagnosis — cancers that would not have caused problems during the woman's lifetime. That tension between benefit and harm is a clinically recognised and ongoing discussion.</p>
+      <p class="script-line">On treatment — the Early Breast Cancer Trialists' Collaborative Group analysed more than 21,000 women. Five years of tamoxifen reduces breast cancer mortality by <span class="stat">about a third</span> throughout the first 15 years in ER-positive disease.</p>
+      <p class="script-line">A separate meta-analysis of nearly 32,000 women found that five years of aromatase inhibitors reduces 10-year mortality by <span class="stat">about 40%</span> compared with no endocrine treatment.</p>
+    </div>
+
+    <hr class="seg-divider">
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- SEGMENT 7 — CLOSE -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="segment" id="seg-7">
+      <div class="cue-box">
+        <span class="cue-arrow">▶</span>
+        <span class="cue-text">ADVANCE NOW — then read</span>
+      </div>
+      <p class="script-line">This slide shows what the full 50-year story looks like — a <span class="stat">46%</span> fall in mortality. Not an accident. The result of screening, surgery, and increasingly effective treatment working together.</p>
+      <p class="script-line">Breast cancer remains the most commonly diagnosed cancer in UK women. But it is also one of the conditions where medicine has made the most <span class="emph">remarkable and measurable progress.</span></p>
+      <p class="script-line">The full article at helf.school covers the evidence, the research, and the key terms — in plain English, with full citations.</p>
+      <p class="script-line">Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+    </div>
+
+  </div><!-- end scroll-content -->
+</div><!-- end scroll-wrap -->
+
+<script>
+// ── CONFIGURATION ──
+const SPEEDS = [0, 8, 14, 20, 28, 38, 50];
+let speedIdx = 3;
+let paused = true;
+let rafId = null;
+let pos = 0;
+let fontSize = 1.9;
+
+const wrap = document.getElementById('scroll-wrap');
+const content = document.getElementById('scroll-content');
+const pauseBtn = document.getElementById('pause-btn');
+const speedVal = document.getElementById('speed-val');
+const progressFill = document.getElementById('progress');
+
+// ── SEGMENT DOTS ──
+const segments = document.querySelectorAll('.segment');
+const dotsBar = document.getElementById('dots-bar');
+segments.forEach((seg, i) => {
+  const dot = document.createElement('div');
+  dot.className = 'seg-dot' + (i === 0 ? ' active' : '');
+  dot.addEventListener('click', () => scrollToSeg(i));
+  dotsBar.appendChild(dot);
+});
+
+function scrollToSeg(idx) {
+  const seg = segments[idx];
+  if (!seg) return;
+  const wrapRect = wrap.getBoundingClientRect();
+  const segTop = seg.getBoundingClientRect().top - wrapRect.top;
+  pos = pos + segTop - 80;
+  if (pos < 0) pos = 0;
+  updateScroll();
+}
+
+function updateDots() {
+  const wrapMid = wrap.scrollTop + wrap.clientHeight * 0.3;
+  let active = 0;
+  segments.forEach((seg, i) => {
+    const segTop = seg.offsetTop;
+    if (segTop <= wrapMid + pos) active = i;
+  });
+  document.querySelectorAll('.seg-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === active);
+  });
+}
+
+function updateProgress() {
+  const total = content.scrollHeight - wrap.clientHeight;
+  const pct = total > 0 ? (pos / total) * 100 : 0;
+  progressFill.style.width = Math.min(pct, 100) + '%';
+}
+
+function updateScroll() {
+  wrap.scrollTop = pos;
+  updateDots();
+  updateProgress();
+}
+
+// ── RAF SCROLL ──
+let last = null;
+function tick(ts) {
+  if (!paused && SPEEDS[speedIdx] > 0) {
+    if (last !== null) {
+      const delta = (ts - last) / 1000;
+      pos += SPEEDS[speedIdx] * delta;
+      const max = content.scrollHeight - wrap.clientHeight;
+      if (pos >= max) { pos = max; pause(); }
+      updateScroll();
+    }
+    last = ts;
+  } else {
+    last = null;
+  }
+  rafId = requestAnimationFrame(tick);
+}
+
+function pause() {
+  paused = true;
+  pauseBtn.textContent = '▶ Play';
+  last = null;
+}
+
+function play() {
+  paused = false;
+  pauseBtn.textContent = '⏸ Pause';
+}
+
+pauseBtn.addEventListener('click', () => {
+  if (paused) play(); else pause();
+});
+
+// ── SPEED CONTROLS ──
+document.getElementById('speed-up').addEventListener('click', () => {
+  if (speedIdx < SPEEDS.length - 1) { speedIdx++; speedVal.textContent = speedIdx; }
+});
+document.getElementById('speed-down').addEventListener('click', () => {
+  if (speedIdx > 0) { speedIdx--; speedVal.textContent = speedIdx; }
+});
+
+// ── FONT SIZE ──
+document.getElementById('font-up').addEventListener('click', () => {
+  fontSize = Math.min(fontSize + 0.1, 3.0);
+  document.documentElement.style.setProperty('--font-size', fontSize + 'rem');
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  fontSize = Math.max(fontSize - 0.1, 1.2);
+  document.documentElement.style.setProperty('--font-size', fontSize + 'rem');
+});
+
+// ── KEYBOARD ──
+document.addEventListener('keydown', e => {
+  if (e.key === ' ') { e.preventDefault(); if (paused) play(); else pause(); }
+  if (e.key === 'ArrowUp') { pos = Math.max(0, pos - 120); updateScroll(); }
+  if (e.key === 'ArrowDown') { pos = Math.min(content.scrollHeight - wrap.clientHeight, pos + 120); updateScroll(); }
+  if (e.key === 'ArrowRight') { speedIdx = Math.min(speedIdx + 1, SPEEDS.length - 1); speedVal.textContent = speedIdx; }
+  if (e.key === 'ArrowLeft') { speedIdx = Math.max(speedIdx - 1, 0); speedVal.textContent = speedIdx; }
+});
+
+// ── TOUCH SWIPE ──
+let touchStartY = null;
+wrap.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; }, { passive: true });
+wrap.addEventListener('touchmove', e => {
+  if (touchStartY === null) return;
+  const delta = touchStartY - e.touches[0].clientY;
+  pos = Math.max(0, Math.min(content.scrollHeight - wrap.clientHeight, pos + delta));
+  touchStartY = e.touches[0].clientY;
+  updateScroll();
+}, { passive: true });
+
+// ── START ──
+speedVal.textContent = speedIdx;
+requestAnimationFrame(tick);
+</script>
+</body>
+</html>
