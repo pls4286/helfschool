@@ -58,6 +58,9 @@ Before presenting ANY helf.school file, Claude runs the following audit internal
 - ev-stat-box: `padding:.9rem .75rem` · `overflow:hidden` · `.ev-conditions` at `.78rem`
 - Hero series badge: `color:#fff` — never the series accent colour
 - All animated cards: `animate-ready` class present, no hardcoded `opacity:0`
+- **CTA disclaimer size — LOCKED APRIL 2026:** CTA slide disclaimer text must be `font-size:1rem`, never `.80rem`. Check `.cta-disclaimer-text` before presenting.
+- **Closing slide disclaimer — LOCKED APRIL 2026:** Closing slide must use `.closing-disclaimer` / `.closing-disclaimer-text` classes at `font-size:1rem`. Never reuse `.cta-disclaimer` on the closing slide — it uses `.80rem` text.
+- **No "free at helf.school" — LOCKED APRIL 2026:** CTA slide subline must not reference "free at helf.school". Remove `.cta-sub` text or use a non-pricing line. "Start for free" card is permitted (genuine £0 tier). "Free to read — always" is not permitted. "Evidence-based health education — free at helf.school" is not permitted.
 - **VIEWPORT MAXIMISATION:** Every slide must fill at least 85% of the visible area. Slide padding maximum `1rem 1.5rem 0.8rem`. Body text minimum `.90rem`. Gaps maximum `.5rem`. Slide title minimum `1.55rem`. If content looks small or sparse — fix it before presenting. Visuals are filmed. Undersized content is a delivery failure.
 
 **The rule:** Output first, audit after is the failure pattern. Audit first, output after is the required pattern. Paul must never be the one to catch these errors.
@@ -296,6 +299,68 @@ When updating `helf-school-project-knowledge.md` OR `helf-school-session-start-r
 
 ---
 
+## ⛔ RULE 19 — CANCER SERIES: THREE ELEMENTS USE SERIES GREEN, NOT NAVY — LOCKED APRIL 2026
+
+In Cancer Series articles (27–31), three elements must use `linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%)` — the forest green gradient — instead of plain navy:
+
+1. **Key Terms box** — `.key-terms { background: linear-gradient(...) }`
+2. **Putting it all together box** — `.putting-together { background: linear-gradient(...) }`
+3. **Research card stat box** — `.ev-stat-box { background: linear-gradient(...) }`
+
+Cancer Series colours: `--series: #2A5A3A` · `--series-dark: #1A3A25`
+
+Apply from the start when building articles 28–31. Do not use navy for any of these three elements in Cancer Series articles. Confirmed in `breast-cancer.html` April 2026.
+
+---
+
+## ⛔ RULE 20 — CLOSING SLIDE DISCLAIMER: .closing-disclaimer CLASS AT 1rem — LOCKED APRIL 2026
+
+The closing slide of every visuals file must use the `.closing-disclaimer` and `.closing-disclaimer-text` classes — **not** `.cta-disclaimer`.
+
+**Locked spec:**
+```css
+.closing-disclaimer { max-width:680px; border:1.5px solid rgba(255,255,255,0.40); border-radius:10px; padding:1rem 1.3rem; background:rgba(255,255,255,0.05); }
+.closing-disclaimer-icon { font-size:1.4rem; }
+.closing-disclaimer-text { font-size:1rem; color:rgba(255,255,255,0.90); line-height:1.6; font-weight:400; }
+```
+
+**Why this rule exists:** Multiple files were delivered with `.cta-disclaimer` reused on the closing slide — which uses `.80rem` text, too small to read on camera. Caught by Dr Paul in April 2026.
+
+**The test:** Before presenting any visuals file, grep for `.closing-slide` and confirm the disclaimer inside uses `.closing-disclaimer-text`, not `.cta-disclaimer-text`.
+
+---
+
+## ⛔ RULE 21 — CTA SLIDE: 1rem DISCLAIMER + NO "FREE AT HELF.SCHOOL" — LOCKED APRIL 2026
+
+**CTA disclaimer size:** CTA slide disclaimer text must be `font-size:1rem`, `color:rgba(255,255,255,0.90)`. Never `.80rem`.
+
+**No "free at helf.school":** The CTA slide subline (`.cta-sub`) must not reference being free at helf.school. helf.school is a subscription service. Remove the subline entirely or use a non-pricing line.
+
+**Permitted:** "Start for free" as a card label — there is a genuine £0 Explorer tier.
+**Not permitted:** "Free to read — always" · "Evidence-based health education — free at helf.school" · any variation implying all content is permanently free.
+
+**The test:** Before presenting any visuals file, grep for `cta-sub` and `free at helf` — both must return zero results.
+
+---
+
+## ⛔ RULE 22 — DARK VARIANTS CONFIRMED: RETROFIT UNBLOCKED — APRIL 2026
+
+All series dark variants are confirmed. The research card colour retrofit (navy → series gradient on ev-stat-box) is fully unblocked. Apply per series as files are next opened.
+
+| Series | Primary | Dark variant |
+|--------|---------|-------------|
+| Cardiovascular | `#C8423A` | `#8A2020` |
+| Neurological | `#6B5EA8` | `#4A4080` |
+| Digestive | `#D47C3A` | `#8A4A1A` |
+| Fatigue | `#3A8A7A` | `#1A5A4A` |
+| Medical Decision | `#2E6BA8` | `#1A3A6A` |
+| Practical Health | `#7A6A2E` | `#4A3A1A` |
+| Cancer | `#2A5A3A` | `#1A3A25` |
+
+Retrofit spec: `.ev-stat-box { background: linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%); }`
+
+---
+
 ## CONFIRMED FILE STATUS — UPDATED APRIL 2026
 
 **AUTHORITY NOTE: If any entry below conflicts with the article inventory in `helf-school-project-knowledge.md`, the project knowledge document is correct. Update this table accordingly.**
@@ -312,7 +377,7 @@ When updating `helf-school-project-knowledge.md` OR `helf-school-session-start-r
 | salt-blood-pressure.html + visuals + teleprompter | ✅ Confirmed correct |
 | supplements-cholesterol.html + visuals + teleprompter | ✅ Confirmed correct |
 
-### Practical Health Series (08–12) — ALL COMPLETE ✅
+### Practical Health Series (08–12, extended to 32–33) — 08–12 COMPLETE ✅
 
 | File | Status |
 |------|--------|
@@ -321,6 +386,8 @@ When updating `helf-school-project-knowledge.md` OR `helf-school-session-start-r
 | exercise.html + visuals + teleprompter | ✅ All confirmed correct |
 | stress.html + visuals + teleprompter | ✅ All confirmed correct |
 | alcohol.html + visuals + teleprompter | ✅ All confirmed correct |
+| breast-awareness.html + visuals + teleprompter | Planned — Article 32 |
+| testicular-awareness.html + visuals + teleprompter | Planned — Article 33 |
 
 ### Digestive Health Series (13–21) — ALL BUILT ✅
 
@@ -350,7 +417,7 @@ When updating `helf-school-project-knowledge.md` OR `helf-school-session-start-r
 
 | File | Status |
 |------|--------|
-| breast-cancer.html | ✅ Article HTML built April 2026 — visuals + teleprompter outstanding |
+| breast-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — upload to GitHub outstanding |
 | prostate-cancer.html + visuals + teleprompter | Not yet built |
 | lung-cancer.html + visuals + teleprompter | Not yet built |
 | bowel-cancer.html + visuals + teleprompter | Not yet built |
