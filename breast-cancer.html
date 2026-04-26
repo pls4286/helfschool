@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breast Cancer — helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1B2A4A;
+      --coral: #E8634A;
+      --cream: #FAF7F2;
+      --sage: #7A9E87;
+      --amber: #E8A84A;
+      --series: #2A5A3A;
+      --series-dark: #1A3A25;
+      --series-mid: #3A7A4E;
+      --series-accent: #4A8A5E;
+      --series-light: #A8D5B5;
+      --body-text: #2C2C2C;
+      --font-heading: 'Fraunces', Georgia, serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--body-text);
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--navy);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      text-decoration: none;
+    }
+    .nav-logo svg { width: 36px; height: 36px; }
+    .nav-logo-text { display: flex; flex-direction: column; }
+    .nav-logo-name {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -.01em;
+    }
+    .nav-logo-tag {
+      font-size: .65rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    nav a.nav-link {
+      color: rgba(255,255,255,0.80);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 500;
+    }
+    nav a.nav-link:hover { color: #fff; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--series-dark) 0%, var(--series) 60%, var(--series-mid) 100%);
+      padding: 3.5rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-inner { max-width: 780px; margin: 0 auto; position: relative; }
+    .breadcrumb {
+      font-size: .82rem;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 1.2rem;
+    }
+    .breadcrumb a { color: rgba(255,255,255,0.75); text-decoration: none; }
+    .breadcrumb a:hover { color: #fff; }
+    .breadcrumb span { margin: 0 .4rem; }
+    .series-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.30);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .3rem .75rem;
+      border-radius: 2rem;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: .8rem;
+      letter-spacing: -.02em;
+    }
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.85);
+      max-width: 580px;
+      margin-bottom: 1.6rem;
+      font-weight: 400;
+    }
+    .hero-meta {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-meta-item {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .82rem;
+      color: rgba(255,255,255,0.80);
+      font-weight: 500;
+    }
+    .hero-meta-item svg { width: 14px; height: 14px; opacity: .75; }
+
+    /* ── DISCLAIMER BAR ── */
+    .disclaimer-bar {
+      background: rgba(27,42,74,0.06);
+      border-left: 3px solid var(--series);
+      padding: .8rem 1.2rem;
+      font-size: .84rem;
+      color: #444;
+      font-weight: 400;
+    }
+    .disclaimer-bar-inner { max-width: 780px; margin: 0 auto; }
+
+    /* ── MAIN CONTENT ── */
+    .article-wrap { max-width: 780px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+
+    /* ── SECTIONS ── */
+    .section { margin-bottom: 2.8rem; }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      letter-spacing: -.01em;
+    }
+    .section p {
+      font-size: .98rem;
+      font-weight: 400;
+      color: var(--body-text);
+      margin-bottom: .9rem;
+      line-height: 1.75;
+    }
+    .section p:last-child { margin-bottom: 0; }
+
+    /* ── KEY TERMS BOX ── */
+    .key-terms {
+      background: var(--navy);
+      border-radius: 10px;
+      padding: 1.5rem 1.8rem;
+      margin: 2rem 0;
+    }
+    .key-terms-title {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 1rem;
+      letter-spacing: -.01em;
+    }
+    .kt-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .6rem 2rem;
+    }
+    @media (max-width: 580px) { .kt-grid { grid-template-columns: 1fr; } }
+    .kt-item { }
+    .kt-term {
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--series-light);
+      display: block;
+      margin-bottom: .15rem;
+    }
+    .kt-def {
+      font-size: .92rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.90);
+      line-height: 1.55;
+    }
+
+    /* ── STAT GRID ── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0 1.8rem;
+    }
+    @media (max-width: 540px) { .stat-grid { grid-template-columns: 1fr; } }
+    .stat-card {
+      background: #fff;
+      border: 1px solid rgba(27,42,74,0.10);
+      border-radius: 10px;
+      padding: 1.2rem 1.3rem;
+      border-top: 3px solid var(--series);
+    }
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--series);
+      line-height: 1.05;
+      letter-spacing: -.02em;
+    }
+    .stat-label {
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin: .3rem 0 .4rem;
+    }
+    .stat-prose {
+      font-size: .88rem;
+      color: #555;
+      line-height: 1.55;
+    }
+
+    /* ── BULLET LIST ── */
+    .section ul {
+      list-style: none;
+      padding: 0;
+      margin: .5rem 0 1rem;
+    }
+    .section ul li {
+      font-size: .98rem;
+      font-weight: 400;
+      color: var(--body-text);
+      padding-left: 1.3rem;
+      position: relative;
+      margin-bottom: .55rem;
+      line-height: 1.65;
+    }
+    .section ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: .65em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--series);
+    }
+
+    /* ── STEPS (numbered) ── */
+    .steps { margin: 1rem 0 1.2rem; }
+    .step {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: .8rem;
+      align-items: flex-start;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      background: var(--series);
+      color: #fff;
+      border-radius: 50%;
+      font-size: .8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: .1rem;
+    }
+    .step-text {
+      font-size: .98rem;
+      font-weight: 400;
+      color: var(--body-text);
+      line-height: 1.65;
+    }
+    .step-text strong { font-weight: 600; color: var(--navy); }
+
+    /* ── INFO BOX (highlighted) ── */
+    .info-box {
+      background: rgba(138,58,90,0.07);
+      border-left: 3px solid var(--series);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.2rem;
+      margin: 1.2rem 0;
+      font-size: .95rem;
+      font-weight: 400;
+      color: var(--body-text);
+      line-height: 1.7;
+    }
+
+    /* ── RESEARCH CARDS ── */
+    .research-section { margin-bottom: 2.8rem; }
+    .research-card {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(138,58,90,0.18);
+    }
+    @media (max-width: 640px) { .research-card { grid-template-columns: 1fr; } }
+    .ev-stat-box {
+      background: linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%);
+      padding: 1.1rem .9rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow: hidden;
+    }
+    .ev-kf-label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: .4rem;
+      line-height: 1.3;
+    }
+    .ev-stat-row {
+      font-family: var(--font-heading);
+      font-size: 3.2rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.0;
+      margin-bottom: .35rem;
+      letter-spacing: -.03em;
+    }
+    .ev-outcome {
+      font-size: .95rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.95);
+      margin-bottom: .35rem;
+      line-height: 1.3;
+    }
+    .ev-conditions {
+      font-size: .80rem;
+      line-height: 1.35;
+      color: rgba(255,255,255,0.72);
+    }
+    .ev-body {
+      background: #fff;
+      padding: 1.1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: .5rem;
+    }
+    .ev-body p {
+      font-size: .93rem;
+      color: var(--body-text);
+      font-weight: 400;
+      margin-bottom: 0;
+      line-height: 1.72;
+    }
+    .ev-source {
+      font-size: .78rem;
+      color: rgba(44,44,44,0.55);
+      font-style: italic;
+    }
+
+    /* ── INLINE CITATIONS ── */
+    sup a {
+      color: var(--series-accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .75em;
+    }
+    sup a:hover { text-decoration: underline; }
+
+    /* ── PUTTING IT TOGETHER ── */
+    .putting-together {
+      background: linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%);
+      border-radius: 12px;
+      padding: 2rem 2.2rem;
+      margin: 2.5rem 0;
+    }
+    .putting-together-title {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 1rem;
+      letter-spacing: -.01em;
+    }
+    .putting-together p {
+      font-size: .96rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.75;
+      margin-bottom: .8rem;
+    }
+    .putting-together p:last-child {
+      margin-bottom: 0;
+      font-weight: 600;
+      color: #fff;
+      font-style: italic;
+    }
+
+    /* ── REFERENCES ── */
+    .references { margin-top: 2.5rem; }
+    .references-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 1.2rem;
+      padding-bottom: .5rem;
+      border-bottom: 2px solid rgba(138,58,90,0.2);
+    }
+    .ref-block {
+      margin-bottom: 1.2rem;
+      padding-left: 1rem;
+      border-left: 3px solid var(--series);
+    }
+    .ref-num {
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--series-accent);
+      margin-bottom: .2rem;
+    }
+    .ref-full {
+      font-size: .85rem;
+      color: #444;
+      line-height: 1.6;
+    }
+    .ref-links { margin-top: .4rem; display: flex; gap: .5rem; flex-wrap: wrap; }
+    .ref-pill {
+      display: inline-block;
+      padding: .2rem .6rem;
+      border-radius: 2rem;
+      font-size: .75rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: var(--series);
+      color: #fff;
+    }
+    .ref-pill:hover { background: var(--series-dark); }
+
+    /* ── RESEARCH FLAGS ── */
+    .research-flags {
+      background: rgba(232,168,74,0.10);
+      border: 1px solid rgba(232,168,74,0.3);
+      border-radius: 10px;
+      padding: 1.2rem 1.5rem;
+      margin-top: 2rem;
+    }
+    .rf-title {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .8rem;
+    }
+    .rf-item {
+      font-size: .85rem;
+      color: #555;
+      margin-bottom: .4rem;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .rf-item::before {
+      content: '⚑';
+      position: absolute;
+      left: 0;
+      color: var(--amber);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.60);
+      text-align: center;
+      padding: 2rem;
+      font-size: .82rem;
+      line-height: 1.7;
+    }
+    footer strong { color: rgba(255,255,255,0.85); }
+    footer a { color: rgba(255,255,255,0.60); }
+
+    /* ── PRINT / REDUCE MOTION ── */
+    @media print { .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="6" width="14" height="24" rx="2" fill="none" stroke="#FAF7F2" stroke-width="1.8"/>
+      <rect x="20" y="6" width="14" height="24" rx="2" fill="none" stroke="#FAF7F2" stroke-width="1.8"/>
+      <path d="M16 8 C16 8 18 14 18 18 C18 22 16 28 16 28" stroke="#E8634A" stroke-width="1.6" fill="none"/>
+      <path d="M20 8 C20 8 18 14 18 18 C18 22 20 28 20 28" stroke="#E8634A" stroke-width="1.6" fill="none"/>
+    </svg>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">helf.school</span>
+      <span class="nav-logo-tag">Health Education</span>
+    </div>
+  </a>
+  <a href="helf-school-conditions.html" class="nav-link">All Articles</a>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="helf-school-conditions.html">All Articles</a>
+      <span>›</span>
+      Cancer Series
+      <span>›</span>
+      Breast Cancer
+    </div>
+    <div class="series-badge">Cancer Series &middot; Article 27</div>
+    <h1>Breast Cancer</h1>
+    <p class="hero-subtitle">What it is, what the evidence shows, and how it is managed in UK practice</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zM7.25 4.75v3.75l3.25 1.95-.65 1.09-3.85-2.3V4.75z"/></svg>
+        9 min read
+      </div>
+      <div class="hero-meta-item">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h12v12H2z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 1v2M11 1v2M2 5h12"/></svg>
+        Reviewed 2026
+      </div>
+      <div class="hero-meta-item">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zM4.5 7.5h7M8 4v7"/></svg>
+        3 key sources
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── DISCLAIMER BAR ── -->
+<div class="disclaimer-bar">
+  <div class="disclaimer-bar-inner">
+    <strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+  </div>
+</div>
+
+<!-- ── ARTICLE CONTENT ── -->
+<div class="article-wrap">
+
+  <!-- SECTION 1: What is it? -->
+  <div class="section">
+    <h2 class="section-title">1. What is breast cancer?</h2>
+
+    <p>Breast cancer is a cancer that starts in the breast tissue — most commonly in the cells lining the breast ducts (the small tubes that carry milk to the nipple) or the lobules (the milk-producing glands within the breast). It develops when cells begin to divide and grow in an abnormal, uncontrolled way, eventually forming a mass or tumour.</p>
+
+    <p>The first important distinction is between <strong>invasive</strong> and <strong>in situ</strong> disease. Invasive breast cancer has grown beyond the layer of cells where it started and has the ability to spread through the body. In situ disease — most commonly ductal carcinoma in situ (DCIS) — remains confined within the duct or lobule and cannot yet spread. The majority of breast cancers diagnosed in the UK are invasive. DCIS is sometimes described as Stage 0 breast cancer, or a precancerous change, and when detected early it is highly treatable.</p>
+
+    <p>Breast cancers are further classified by <strong>receptor status</strong> — whether the cancer cells carry specific proteins that can drive growth. This classification directly determines which treatments are likely to be effective:</p>
+
+    <ul>
+      <li><strong>ER-positive</strong> (oestrogen receptor-positive): the most common type, accounting for around 80% of breast cancers. These cancers use the hormone oestrogen to fuel their growth and respond well to endocrine (hormone-blocking) therapies.</li>
+      <li><strong>HER2-positive</strong> (human epidermal growth factor receptor 2-positive): the cancer overproduces a protein called HER2, which drives faster growth. This occurs in approximately 15–20% of cases<sup><a href="#ref-7">7</a></sup> and responds to targeted therapies such as trastuzumab (Herceptin — a monoclonal antibody therapy that targets the HER2 protein).</li>
+      <li><strong>Triple-negative breast cancer</strong>: lacks oestrogen receptors, progesterone receptors, and the HER2 protein. This type accounts for 10–15% of cases<sup><a href="#ref-8">8</a></sup> and cannot be treated with hormone therapies or HER2-targeted drugs; systemic chemotherapy (drug treatment that works throughout the body) is the main systemic treatment option.</li>
+    </ul>
+
+    <p>The most common specific subtype is invasive ductal carcinoma (IDC), arising in the ducts, which accounts for around 75% of all breast cancers. Invasive lobular carcinoma (ILC), arising in the lobules, is the second most common type.</p>
+
+    <p>Breast cancer affects women almost exclusively, but it does occur in men. Cancer Research UK records around 420 new cases in UK men each year — fewer than 1% of all male cancer cases in the UK. The biology and treatment are broadly similar to ER-positive female breast cancer.<sup><a href="#ref-1">1</a></sup></p>
+  </div>
+
+  <!-- KEY TERMS BOX -->
+  <div class="key-terms">
+    <div class="key-terms-title">Key Terms</div>
+    <div class="kt-grid">
+      <div class="kt-item">
+        <span class="kt-term">Breast ducts</span>
+        <span class="kt-def">Small tubes within the breast that carry milk from the glands to the nipple; the most common site where breast cancer begins.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">DCIS (ductal carcinoma in situ)</span>
+        <span class="kt-def">A non-invasive, in situ condition in which abnormal cells are present inside a breast duct but have not spread beyond it; sometimes called Stage 0 breast cancer.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">ER-positive</span>
+        <span class="kt-def">Oestrogen receptor-positive — a breast cancer that uses the hormone oestrogen to grow; the most common type, treated with endocrine (hormone-blocking) therapy.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">HER2-positive</span>
+        <span class="kt-def">A breast cancer that overproduces the HER2 protein (human epidermal growth factor receptor 2), driving faster growth; responds to targeted drugs such as trastuzumab (Herceptin).</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Invasive cancer</span>
+        <span class="kt-def">Cancer that has grown beyond the layer of cells where it started and has the ability to spread to surrounding tissue or other parts of the body.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">In situ</span>
+        <span class="kt-def">A cancer confined to the cells where it began, with no ability to spread — also called non-invasive or Stage 0.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Lobules</span>
+        <span class="kt-def">The milk-producing glands within the breast; the second most common site where breast cancer begins.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Lymph nodes</span>
+        <span class="kt-def">Small bean-shaped glands that form part of the body's immune system; whether cancer has spread to nearby lymph nodes under the arm (axillary lymph nodes) is a key staging factor.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Mammography</span>
+        <span class="kt-def">A low-dose X-ray examination of the breast used both for routine screening and to investigate symptoms.</span>
+      </div>
+      <div class="kt-item">
+        <span class="kt-term">Triple-negative</span>
+        <span class="kt-def">A breast cancer that lacks oestrogen receptors, progesterone receptors, and HER2 — making it unsuitable for hormone-based or HER2-targeted therapies.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: Why does it matter? -->
+  <div class="section">
+    <h2 class="section-title">2. Why does it matter?</h2>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-number">~59,000</div>
+        <div class="stat-label">New cases each year</div>
+        <div class="stat-prose">Breast cancer is the most common cancer in UK women, with around 59,000 new cases diagnosed each year.<sup><a href="#ref-1">1</a></sup></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">1 in 7</div>
+        <div class="stat-label">Lifetime risk</div>
+        <div class="stat-prose">Around 1 in 7 women in the UK will receive a breast cancer diagnosis at some point in their lifetime.<sup><a href="#ref-1">1</a></sup></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">46%</div>
+        <div class="stat-label">Fall in mortality</div>
+        <div class="stat-prose">Breast cancer mortality rates have fallen by 46% since the early 1970s — one of the most significant improvements in UK cancer outcomes.<sup><a href="#ref-1">1</a></sup></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">85%</div>
+        <div class="stat-label">Diagnosed early</div>
+        <div class="stat-prose">In 2022, 85% of breast cancers in England were diagnosed at Stage I or II — when treatment is most effective.<sup><a href="#ref-1">1</a></sup></div>
+      </div>
+    </div>
+
+    <p>Breast cancer is the most commonly diagnosed cancer in women in the UK and the most frequently occurring cancer in women globally. Despite this scale, survival outcomes have improved dramatically over the past five decades, driven by earlier detection through the NHS Breast Screening Programme, advances in surgical technique, and increasingly effective systemic treatments.</p>
+
+    <p>The difference that stage at diagnosis makes is substantial. Five-year survival (the proportion of people alive five years after diagnosis) for Stage I disease is almost 100% in England. For Stage II disease it is 90%, for Stage III it is more than 70%, and for Stage IV disease — where the cancer has spread to other organs (known as metastatic or secondary breast cancer) — it is more than 25%.<sup><a href="#ref-2">2</a></sup> These figures come from cancers diagnosed between 2016 and 2020.</p>
+
+    <p>Ten-year survival stands at more than 3 in 4 (76.6%) for women diagnosed with breast cancer in the UK, based on 2018 predictions.<sup><a href="#ref-1">1</a></sup> The long-term trend is one of continued improvement: in the 1970s, 10-year survival was around 42%. This progress reflects the cumulative effect of the screening programme, improved systemic therapies, and the growing recognition that breast cancer is not a single disease but a family of biologically distinct conditions, each requiring tailored treatment.<sup><a href="#ref-1">1</a></sup></p>
+  </div>
+
+  <!-- SECTION 3: What your doctor might discuss -->
+  <div class="section">
+    <h2 class="section-title">3. What your doctor might discuss</h2>
+
+    <p>Breast cancer is investigated and managed through a well-established pathway in UK practice, guided by NICE NG101 (Early and locally advanced breast cancer: diagnosis and management, updated February 2025) and NICE CG81 (Advanced breast cancer: diagnosis and treatment).<sup><a href="#ref-3">3</a></sup></p>
+
+    <p><strong>Symptoms and self-awareness.</strong> Breast cancer can present in many ways. The most common is a new lump or thickening in the breast or armpit (the axillary region). Other clinically recognised presentations include changes to the skin over the breast — such as dimpling, puckering, or redness — changes to the nipple (inversion, discharge, or a rash that does not resolve), or a change in breast size or shape. Not all breast lumps are cancer — the majority are benign (non-cancerous). However, any new or unexplained change in the breast is clinically recognised as something to have assessed promptly by a GP.</p>
+
+    <p><strong>The triple assessment</strong> is the standard diagnostic pathway for breast symptoms in UK practice. It combines three components:</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>Clinical examination</strong> — assessment of the breast and lymph nodes under the arm by a trained clinician.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>Imaging</strong> — mammography (see Key Terms) for women aged 40 and over; ultrasound (a scan using sound waves) for younger women where breast tissue tends to be denser.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>Biopsy</strong> — a sample of tissue taken from the area of concern (usually using a needle) and examined under a microscope. Biopsy (tissue sampling for laboratory examination) is the only way to confirm a diagnosis of cancer and to determine receptor status.</div>
+      </div>
+    </div>
+
+    <p><strong>Staging.</strong> Once a diagnosis is confirmed, staging describes how far the cancer has spread. The TNM system is used — T refers to the size of the tumour (primary growth), N refers to whether cancer has spread to nearby lymph nodes (see Key Terms), and M refers to whether there is metastasis (spread to distant organs). Stage I is localised; Stage IV indicates spread to other organs. Staging directly guides treatment decisions.</p>
+
+    <p><strong>The NHS Breast Screening Programme</strong> currently invites women aged 50 to 70 for mammography every three years. The aim is to detect cancers before they become symptomatic, when treatment is most effective. Women are invited automatically; those outside this age range are not routinely offered screening, though clinically recognised risk factors may lead to earlier or more frequent surveillance in specific circumstances.</p>
+
+    <p><strong>Treatment</strong> in breast cancer is increasingly personalised, combining several modalities depending on cancer type, stage, and receptor status.</p>
+
+    <ul>
+      <li><strong>Surgery</strong> — the cornerstone of treatment for most early breast cancers. Breast-conserving surgery (removal of the tumour and a surrounding margin of tissue, commonly called a lumpectomy) is offered where clinically appropriate. Mastectomy (removal of the whole breast) is an option for larger or multifocal tumours. Breast reconstruction (rebuilding the shape of the breast) is offered to women who have a mastectomy. Sentinel lymph node biopsy (see Key Terms) — sampling the first lymph node into which the tumour drains — is used to stage the axilla (the armpit region) without the need for full lymph node clearance in most cases.<sup><a href="#ref-3">3</a></sup></li>
+      <li><strong>Radiotherapy</strong> — high-energy radiation directed at the breast or chest wall — is routinely offered after breast-conserving surgery to reduce the risk of local recurrence (the cancer returning in the same area).</li>
+      <li><strong>Endocrine (hormone-blocking) therapy</strong> is the central systemic treatment for ER-positive disease. Tamoxifen — a selective oestrogen receptor modulator (a drug that blocks oestrogen's effect on cancer cells) — is the standard choice for premenopausal women and for men with breast cancer. Aromatase inhibitors (drugs that reduce oestrogen production) — including letrozole (Femara), anastrozole (Arimidex), and exemestane (Aromasin) — are the standard choice for postmenopausal women with ER-positive disease. Treatment typically continues for five to ten years.<sup><a href="#ref-3">3</a></sup></li>
+      <li><strong>Chemotherapy</strong> — drugs that target rapidly dividing cells — is used before surgery (neoadjuvant, to shrink the tumour) or after surgery (adjuvant, to reduce the risk of recurrence), depending on the cancer type and stage. It is particularly important in triple-negative and HER2-positive disease.</li>
+      <li><strong>Targeted therapies</strong> for HER2-positive disease include trastuzumab (Herceptin — a monoclonal antibody that targets the HER2 protein), given alongside chemotherapy for one year. Several newer targeted agents are also used in specific circumstances, as recommended in NICE technology appraisals.</li>
+    </ul>
+
+    <p><strong>Genetic testing.</strong> Mutations (inherited changes) in the BRCA1 and BRCA2 genes (genes involved in DNA repair — BRCA stands for breast cancer gene) significantly increase the lifetime risk of breast and ovarian cancer. In UK practice, genetic testing for these mutations is offered to people who meet specific criteria based on personal and family history, as set out by NICE. A confirmed mutation may lead to enhanced surveillance, preventive drug treatment (chemoprevention), or consideration of risk-reducing surgery.</p>
+  </div>
+
+  <!-- SECTION 4: What the research shows -->
+  <div class="research-section">
+    <h2 class="section-title">4. What the research shows</h2>
+
+    <!-- Research card 1: Mammography screening -->
+    <div class="research-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">NHS Breast Screening Programme</div>
+        <div class="ev-stat-row">20%</div>
+        <div class="ev-outcome">reduction in breast cancer mortality</div>
+        <div class="ev-conditions">in women invited to screening — meta-analysis of 11 RCTs (Marmot 2012)</div>
+      </div>
+      <div class="ev-body">
+        <p>The Independent UK Panel on Breast Cancer Screening, chaired by Professor Sir Michael Marmot, conducted a meta-analysis of 11 randomised controlled trials (studies in which participants were randomly assigned to receive screening or not). The pooled result showed a relative risk (RR — the ratio of the rate in the screened group compared with the unscreened group) of 0.80 (95% confidence interval (CI — the range within which the true effect is likely to fall) 0.73–0.89), representing a 20% reduction in breast cancer mortality for women invited to screening compared with controls.</p>
+        <p>The panel estimated that the NHS screening programme prevents around 1,300 breast cancer deaths per year in the UK. However, the same review acknowledged a significant harm: the panel estimated that for every 10,000 women invited to screening for 20 years, 129 cases represent overdiagnosis — cancers that would not have caused problems during the woman's lifetime but are treated nonetheless. This tension between benefit and harm is a recognised and ongoing area of clinical discussion.</p>
+        <div class="ev-source">Independent UK Panel on Breast Cancer Screening. <em>Lancet</em> 2012;380(9855):1778–86. PMID 23117178.</div>
+      </div>
+    </div>
+
+    <!-- Research card 2: Tamoxifen (EBCTCG 2011) -->
+    <div class="research-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">5 years of tamoxifen — ER-positive disease</div>
+        <div class="ev-stat-row">~⅓</div>
+        <div class="ev-outcome">reduction in breast cancer mortality</div>
+        <div class="ev-conditions">throughout first 15 years — EBCTCG meta-analysis of 20 trials (2011)</div>
+      </div>
+      <div class="ev-body">
+        <p>The Early Breast Cancer Trialists' Collaborative Group (EBCTCG) conducted a patient-level meta-analysis of 20 trials involving 21,457 women with early breast cancer, comparing approximately five years of adjuvant (post-surgery) tamoxifen against no adjuvant endocrine therapy. The meta-analysis found that in women with ER-positive (oestrogen receptor-positive — see Key Terms) disease, five years of tamoxifen reduced the breast cancer mortality rate by about a third throughout the first 15 years after starting treatment.</p>
+        <p>The mortality reduction was present irrespective of age, nodal status (whether the cancer had spread to lymph nodes), or whether chemotherapy had also been given. The effect was also seen in women with weakly ER-positive disease. These findings established five years of tamoxifen as a cornerstone of treatment for premenopausal women with ER-positive breast cancer — a standard that remains in UK clinical practice today.</p>
+        <div class="ev-source">Early Breast Cancer Trialists' Collaborative Group (EBCTCG). <em>Lancet</em> 2011;378(9793):771–84. PMID 21802721.</div>
+      </div>
+    </div>
+
+    <!-- Research card 3: Aromatase inhibitors (EBCTCG 2015) -->
+    <div class="research-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">Aromatase inhibitors — postmenopausal ER-positive</div>
+        <div class="ev-stat-row">~40%</div>
+        <div class="ev-outcome">reduction in 10-year breast cancer mortality</div>
+        <div class="ev-conditions">vs no endocrine treatment — EBCTCG 31,920 women (2015)</div>
+      </div>
+      <div class="ev-body">
+        <p>A further EBCTCG meta-analysis examined data from 31,920 postmenopausal (after the menopause) women with ER-positive early breast cancer, comparing five years of an aromatase inhibitor (AI — a drug that reduces oestrogen production, including letrozole, anastrozole, and exemestane) against five years of tamoxifen, or against no endocrine therapy. The analysis found that five years of an aromatase inhibitor reduces 10-year breast cancer mortality by about 15% compared with five years of tamoxifen, and by about 40% compared with no endocrine treatment.</p>
+        <p>The breast cancer mortality reduction was observed both during treatment (RR (relative risk) 0.79, 95% CI 0.67–0.92) and after treatment ended (RR 0.89, 95% CI 0.81–0.99). The proportional risk reductions were broadly similar regardless of age, tumour grade (how abnormal the cancer cells look under a microscope), nodal status, or HER2 status. These results underpin current NICE guidance recommending aromatase inhibitors as the standard initial endocrine therapy for postmenopausal women with ER-positive early breast cancer at medium or high risk of recurrence.<sup><a href="#ref-3">3</a></sup></p>
+        <div class="ev-source">Early Breast Cancer Trialists' Collaborative Group (EBCTCG). <em>Lancet</em> 2015;386(10001):1341–52. PMID 26211827.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PUTTING IT ALL TOGETHER -->
+  <div class="putting-together">
+    <div class="putting-together-title">Putting it all together</div>
+    <p>Breast cancer is the most common cancer in UK women, with around 59,000 new cases each year and a lifetime risk of 1 in 7 — but it is also one of the conditions where modern medicine has made the most striking progress. Mortality has fallen by 46% since the early 1970s,<sup><a href="#ref-1">1</a></sup> driven by three overlapping advances: earlier detection through the NHS screening programme, improvements in surgery and radiotherapy, and highly effective systemic treatments tailored to the biology of each individual cancer.</p>
+    <p>The evidence base for breast cancer treatment is among the strongest in oncology. Meta-analyses involving tens of thousands of patients have established that five years of tamoxifen reduces breast cancer mortality by about a third in ER-positive disease, and that aromatase inhibitors reduce it by about 40% compared with no endocrine treatment. The classification of breast cancer by receptor status — ER, HER2, and triple-negative — has transformed treatment from a one-size-fits-all approach to one that is increasingly personalised to each tumour's biology.</p>
+    <p><em>The remarkable improvements in survival over the past five decades reflect what becomes possible when early detection, evidence-based treatment, and systematic research work together. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</em></p>
+  </div>
+
+  <!-- REFERENCES -->
+  <div class="references">
+    <div class="references-title">References</div>
+
+    <div id="ref-1" class="ref-block">
+      <div class="ref-num">1</div>
+      <div class="ref-full">Cancer Research UK. Breast cancer statistics. Accessed April 2026. Includes: UK female incidence (around 59,000 new cases per year, 2019 &amp; 2021–22); male incidence (around 420 new cases per year); lifetime risk (1 in 7 UK females); mortality (~11,200 deaths per year, 2022–24); mortality trend (46% fall since the early 1970s — "breast cancer mortality rates have decreased by almost half (46%) in the UK since the early 1970s", 2022–24 data); 10-year survival (76.6% predicted, 2018); stage at diagnosis (85% at Stage I or II in England, 2022).</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.cancerresearchuk.org/health-professional/cancer-statistics/statistics-by-cancer-type/breast-cancer" target="_blank">CRUK Statistics</a>
+        <a class="ref-pill" href="https://www.cancerresearchuk.org/health-professional/cancer-statistics/statistics-by-cancer-type/breast-cancer/mortality" target="_blank">CRUK Mortality</a>
+      </div>
+    </div>
+
+    <div id="ref-2" class="ref-block">
+      <div class="ref-num">2</div>
+      <div class="ref-full">NHS England. Cancer survival in England for patients diagnosed 2016 to 2020, followed up to 2021. February 2023. Five-year survival by stage (England, diagnosed 2016–2020): Stage I almost 100%; Stage II 90%; Stage III more than 70%; Stage IV more than 25%.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://digital.nhs.uk/data-and-information/publications/statistical/cancer-survival-in-england" target="_blank">NHS England</a>
+      </div>
+    </div>
+
+    <div id="ref-3" class="ref-block">
+      <div class="ref-num">3</div>
+      <div class="ref-full">National Institute for Health and Care Excellence. Early and locally advanced breast cancer: diagnosis and management. NICE guideline NG101. Updated February 2025. Also: Advanced breast cancer: diagnosis and treatment. NICE guideline CG81.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.nice.org.uk/guidance/ng101" target="_blank">NICE NG101</a>
+        <a class="ref-pill" href="https://www.nice.org.uk/guidance/cg81" target="_blank">NICE CG81</a>
+      </div>
+    </div>
+
+    <div id="ref-4" class="ref-block">
+      <div class="ref-num">4</div>
+      <div class="ref-full">Independent UK Panel on Breast Cancer Screening. The benefits and harms of breast cancer screening: an independent review. <em>Lancet</em> 2012;380(9855):1778–86. DOI: 10.1016/S0140-6736(12)61611-0. PMID 23117178.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1016/S0140-6736(12)61611-0" target="_blank">DOI</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/23117178/" target="_blank">PubMed 23117178</a>
+      </div>
+    </div>
+
+    <div id="ref-5" class="ref-block">
+      <div class="ref-num">5</div>
+      <div class="ref-full">Early Breast Cancer Trialists' Collaborative Group (EBCTCG). Relevance of breast cancer hormone receptors and other factors to the efficacy of adjuvant tamoxifen: patient-level meta-analysis of randomised trials. <em>Lancet</em> 2011;378(9793):771–84. DOI: 10.1016/S0140-6736(11)60993-8. PMID 21802721.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1016/S0140-6736(11)60993-8" target="_blank">DOI</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/21802721/" target="_blank">PubMed 21802721</a>
+      </div>
+    </div>
+
+    <div id="ref-6" class="ref-block">
+      <div class="ref-num">6</div>
+      <div class="ref-full">Early Breast Cancer Trialists' Collaborative Group (EBCTCG). Aromatase inhibitors versus tamoxifen in early breast cancer: patient-level meta-analysis of the randomised trials. <em>Lancet</em> 2015;386(10001):1341–52. DOI: 10.1016/S0140-6736(15)61074-1. PMID 26211827.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1016/S0140-6736(15)61074-1" target="_blank">DOI</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/26211827/" target="_blank">PubMed 26211827</a>
+      </div>
+    </div>
+
+    <div id="ref-7" class="ref-block">
+      <div class="ref-num">7</div>
+      <div class="ref-full">Tolaney SM, Barry WT, Dang CT, et al. Adjuvant paclitaxel and trastuzumab for node-negative, HER2-positive breast cancer. <em>N Engl J Med</em> 2015;372(2):134–41. DOI: 10.1056/NEJMoa1406281. PMID 25564897. — Source of "approximately 15 to 20% of invasive breast cancers" for HER2-positive prevalence.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1056/NEJMoa1406281" target="_blank">DOI</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/25564897/" target="_blank">PubMed 25564897</a>
+      </div>
+    </div>
+
+    <div id="ref-8" class="ref-block">
+      <div class="ref-num">8</div>
+      <div class="ref-full">Pal S, Lüchtenborg M, Davies EA, Jack RH. The treatment and survival of patients with triple negative breast cancer in a London population. <em>SpringerPlus</em> 2014;3:553. DOI: 10.1186/2193-1801-3-553. PMID 25279266. — UK population-based study; cites 10–15% as the established prevalence of TNBC across breast cancer diagnoses.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1186/2193-1801-3-553" target="_blank">DOI</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/25279266/" target="_blank">PubMed 25279266</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESEARCH FLAGS -->
+  <div class="research-flags">
+    <div class="rf-title">⚑ Research flags — for Dr Paul's review before finalising</div>
+    <div class="rf-item">The "~40%" figure in the EBCTCG 2015 research card is derived from the paper's stated logic ("about 15% compared with tamoxifen; hence about 40% compared with no endocrine treatment") — this reasoning is stated explicitly in the source but confirm the presentation is acceptable for a lay audience.</div>
+    <div class="rf-item">Reference 8 (Pal et al. 2014, SpringerPlus) — SpringerPlus is a peer-reviewed open-access journal published by Springer but is not explicitly listed in the helf.school approved sources. Dr Paul may wish to substitute a primary paper from The Lancet, NEJM, or JAMA that also cites the 10–15% figure for TNBC prevalence.</div>
+  </div>
+
+</div><!-- end article-wrap -->
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p><strong>helf.school</strong> — Health Education</p>
+  <p style="margin-top:.5rem;">Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+  <p style="margin-top:.5rem;">© 2026 helf.school · <a href="index.html">Home</a> · <a href="helf-school-conditions.html">All Articles</a> · <a href="helf-school-membership.html">Membership</a></p>
+  <p style="margin-top:.5rem; font-size:.78rem;">Health education only — not a substitute for professional medical advice. Last reviewed April 2026 · Version 1.0</p>
+</footer>
+
+</body>
+</html>
