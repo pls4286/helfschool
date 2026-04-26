@@ -4,7 +4,7 @@
 
 ## ⛔ RULE 0 — MANDATORY PRE-OUTPUT AUDIT (THE RULE THAT ENFORCES ALL OTHER RULES)
 
-Every session has produced errors — wrong citations, wrong PMIDs, wrong NICE numbers, medical terms without lay definitions, hero text invisible against matching backgrounds, research card stat boxes showing statistical machinery instead of clinical conclusions, and figures paraphrased into different numerical forms. These errors share one cause: output was generated before the full audit was completed.
+Every session has produced errors — wrong citations, wrong PMIDs, wrong NICE numbers, medical terms without lay definitions, hero text invisible against matching backgrounds, research card stat boxes showing statistical machinery instead of clinical conclusions, figures paraphrased into different numerical forms, figures taken from unapproved secondary sources, and stat grid cards missing inline citations. These errors share one cause: output was generated before the full audit was completed.
 
 **This rule exists to stop that pattern.**
 
@@ -14,6 +14,7 @@ Before presenting ANY helf.school file, Claude runs the following audit internal
 - Every cited paper: confirm it EXISTS, is PRIMARY (not a guidance doc citing another paper), and contains the SPECIFIC STAT claimed — fetch the abstract to confirm if needed
 - Every NICE guideline number: verify CG vs NG by web search — never from memory
 - Every PMID: verify by web search that it resolves to the correct paper — a PubMed URL must appear in search results. Never include a PMID from memory or inference
+- Every figure: confirm it was retrieved directly from the approved source page — NOT from a secondary or aggregator page that attributes the figure to an approved source
 
 **Lay-clarification audit (runs before presenting every article):**
 - Read every sentence for medical terminology
@@ -33,6 +34,13 @@ Before presenting ANY helf.school file, Claude runs the following audit internal
 - Correct examples: "The Epley manoeuvre / is safe & effective for BPPV" · "Vestibular rehabilitation / has moderate to strong evidence for its efficacy" · "77% response rate / vs 44% placebo"
 - Incorrect examples: "11" (RCT count) · "OR 2.67" (odds ratio) · "Safe & effective" (no subject) · "Moderate to strong evidence" (no subject)
 
+**Stat grid citation audit — LOCKED APRIL 2026:**
+- Run `grep -A 3 "stat-prose"` before presenting any article
+- Every `.stat-prose` line must have a `ref-` superscript link
+- All stat grid cards. No exceptions. Every card, every time.
+- A stat grid card with no citation is a QC failure regardless of how obvious the stat appears
+- Example of this failure: breast cancer article (April 2026) — three of four stat grid cards had no citations. Caught by Dr Paul during review.
+
 **Exact figure audit (runs before presenting every file):**
 - Every statistic must use the paper's exact numerical expression
 - Never convert between forms: ">30%" must not become "1 in 3" or "33%"; "1 in 1,000" must not become "0.1%"
@@ -40,9 +48,11 @@ Before presenting ANY helf.school file, Claude runs the following audit internal
 
 **Source audit (runs before presenting every file):**
 - Every stat, claim, and causal attribution must be traceable to an approved source
-- Charity and advocacy websites are NOT approved (Epilepsy Action, Alzheimer's Society, etc.)
+- Charity and advocacy websites are NOT approved (Epilepsy Action, Alzheimer's Society, WCRF, Breast Cancer Now, etc.)
+- Aggregator sites (WCRF etc.) are NOT approved even when they attribute data to approved sources — fetch the approved source page directly
 - Derived figures are not acceptable — only cite figures explicitly stated in the approved source
 - Causal attributions require a specific primary citation — never inferred from context
+- Example of this failure: breast cancer article (April 2026) used 60,763 from WCRF instead of "around 59,000" from Cancer Research UK directly
 
 **Visuals audit (runs before presenting every visuals file):**
 - ev-stat-box: `padding:.9rem .75rem` · `overflow:hidden` · `.ev-conditions` at `.78rem`
@@ -73,6 +83,8 @@ If Paul asks for an updated project knowledge document, Claude must:
 4. Never replace the existing document with a shorter one
 
 **The rule:** The existing document is always the base. New information is always added to it. A shorter replacement document is always wrong.
+
+**Why this rule also applies to the session-start-rules file:** In April 2026, Claude rebuilt the session-start-rules file from memory twice in the same session, producing shorter versions than the uploaded original both times. The uploaded document is always the base. If Dr Paul uploads a version, that is the version to build on — not a reconstruction from memory.
 
 ---
 
@@ -185,61 +197,6 @@ Every research card stat box must state the complete clinical finding as it is r
 
 ---
 
-## CONFIRMED FILE STATUS — UPDATED APRIL 2026
-
-**AUTHORITY NOTE: If any entry below conflicts with the article inventory in `helf-school-project-knowledge.md`, the project knowledge document is correct. Update this table accordingly.**
-
-### Cardiovascular Series (01–07) — ALL COMPLETE ON GITHUB ✅
-
-| File | Status |
-|------|--------|
-| hypertension.html + visuals + teleprompter | ✅ Confirmed correct (refs 5+6 ⚑ pending verification) |
-| cholesterol.html + visuals + teleprompter | ✅ Confirmed correct |
-| heart-attack-risk.html + visuals + teleprompter | ✅ Confirmed correct |
-| statins.html + visuals + teleprompter | ✅ Confirmed correct |
-| lifestyle-changes.html + visuals + teleprompter | ✅ Confirmed correct — CANONICAL REFERENCE |
-| salt-blood-pressure.html + visuals + teleprompter | ✅ Confirmed correct |
-| supplements-cholesterol.html + visuals + teleprompter | ✅ Confirmed correct |
-
-### Practical Health Series (08–12) — ALL COMPLETE ✅
-
-| File | Status |
-|------|--------|
-| mediterranean-diet.html + visuals + teleprompter | ✅ All confirmed correct |
-| sleep.html + visuals + teleprompter | ✅ All confirmed correct |
-| exercise.html + visuals + teleprompter | ✅ All confirmed correct |
-| stress.html + visuals + teleprompter | ✅ All confirmed correct |
-| alcohol.html + visuals + teleprompter | ✅ All confirmed correct |
-
-### Digestive Health Series (13–21) — ALL BUILT ✅
-
-| File | Status |
-|------|--------|
-| acid-reflux.html + visuals + teleprompter | ✅ On GitHub |
-| ibd.html + visuals + teleprompter | ✅ On GitHub |
-| bloating.html + visuals + teleprompter | ✅ On GitHub |
-| ibs.html + visuals + teleprompter | ✅ On GitHub |
-| masld.html + visuals + teleprompter | ✅ On GitHub |
-| coeliac.html + visuals + teleprompter | ✅ On GitHub |
-| gallstones.html + visuals + teleprompter | ✅ On GitHub |
-| diverticular-disease.html + visuals + teleprompter | ✅ On GitHub |
-| constipation.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
-
-### Neurological Series (22–26) — ALL BUILT ✅
-
-| File | Status |
-|------|--------|
-| migraine.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
-| headaches.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
-| dizziness-vertigo.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
-| memory-dementia.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
-| epilepsy.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
-
-### OUTSTANDING CITATION FLAGS
-- hypertension.html refs 5 + 6 — Cochrane PubMed IDs flagged ⚑ unverified
-
----
-
 ## ⛔ RULE 12 — VISUALS MUST MAXIMISE VIEWPORT SPACE
 
 **Every visuals slide must fill the available viewport. Slides that leave large areas of empty space are a delivery failure.**
@@ -299,6 +256,108 @@ Use the paper's exact numerical expression in every location a figure appears. N
 Before delivering any file, cross-check every instance of every statistic — stat grid, research cards, Key Terms definitions, body prose, Putting It Together, and teleprompter — for consistency with the source paper's exact wording.
 
 **Why this rule exists:** In April 2026, Kwan & Brodie NEJM 2000 reports "more than 30 percent" but the epilepsy article stat grid showed "1 in 3" and the research card showed "1 in 3" — a conversion that misrepresents the source. Every instance across all file locations had to be corrected.
+
+---
+
+## ⛔ RULE 16 — STAT GRID CITATION RULE — LOCKED APRIL 2026
+
+Every `.stat-prose` line in the Why does it matter? stat grid must carry a superscript inline citation. Run `grep -A 3 "stat-prose"` before presenting any article and confirm every instance has a `ref-` link.
+
+**Every card. No exceptions. Every time.**
+
+**Why this rule exists:** In the breast cancer article (Article 27, April 2026), three of four stat grid cards were presented without citations. This was caught by Dr Paul during review — not by Claude's pre-output audit. The rule is now explicit and the QC grep check is mandatory.
+
+---
+
+## ⛔ RULE 17 — APPROVED SOURCE RETRIEVAL RULE — LOCKED APRIL 2026
+
+Every figure must be retrieved directly from the approved source page. If a figure appears on an unapproved page (WCRF, charity site, aggregator) that attributes it to an approved source, do NOT use that figure. Fetch the approved source page directly and use the figure stated there.
+
+**Why this rule exists:** In the breast cancer article (Article 27, April 2026), the incidence figure 60,763 was taken from the WCRF website and incorrectly presented as a Cancer Research UK figure. The Cancer Research UK statistics page directly states "around 59,000." The error was caught by Dr Paul.
+
+**Approved sources for cancer statistics:** Cancer Research UK (added April 2026) · ONS · NHS/NHS Digital · WHO · Global Burden of Disease.
+**Not approved even when they cite approved sources:** WCRF · Breast Cancer Now · any charity or advocacy website.
+
+---
+
+## ⛔ RULE 18 — NEVER REBUILD EITHER DOCUMENT FROM SCRATCH — LOCKED APRIL 2026
+
+When updating `helf-school-project-knowledge.md` OR `helf-school-session-start-rules.md`, always use the existing uploaded document as the base. Read it fully, identify what is new, and merge new content in. Never rebuild from memory.
+
+**Why this rule exists:** In April 2026, Claude rebuilt both documents from memory in the same session — producing versions shorter than the uploaded originals both times. Both errors were caught by Dr Paul. The uploaded document is always more complete than what Claude can reconstruct from memory. A rebuilt-from-memory version will always be shorter and lose content.
+
+**The mandatory process:**
+1. The uploaded document is the base — always
+2. Read it in full
+3. Identify only what is new from the current session
+4. Add new content to the existing document — do not rewrite or abbreviate existing sections
+5. Run `wc -l` and confirm the new version is equal to or greater than the uploaded version
+6. If the new version is shorter, something has been lost — find it and restore it before delivering
+
+---
+
+## CONFIRMED FILE STATUS — UPDATED APRIL 2026
+
+**AUTHORITY NOTE: If any entry below conflicts with the article inventory in `helf-school-project-knowledge.md`, the project knowledge document is correct. Update this table accordingly.**
+
+### Cardiovascular Series (01–07) — ALL COMPLETE ON GITHUB ✅
+
+| File | Status |
+|------|--------|
+| hypertension.html + visuals + teleprompter | ✅ Confirmed correct (refs 5+6 ⚑ pending verification) |
+| cholesterol.html + visuals + teleprompter | ✅ Confirmed correct |
+| heart-attack-risk.html + visuals + teleprompter | ✅ Confirmed correct |
+| statins.html + visuals + teleprompter | ✅ Confirmed correct |
+| lifestyle-changes.html + visuals + teleprompter | ✅ Confirmed correct — CANONICAL REFERENCE |
+| salt-blood-pressure.html + visuals + teleprompter | ✅ Confirmed correct |
+| supplements-cholesterol.html + visuals + teleprompter | ✅ Confirmed correct |
+
+### Practical Health Series (08–12) — ALL COMPLETE ✅
+
+| File | Status |
+|------|--------|
+| mediterranean-diet.html + visuals + teleprompter | ✅ All confirmed correct |
+| sleep.html + visuals + teleprompter | ✅ All confirmed correct |
+| exercise.html + visuals + teleprompter | ✅ All confirmed correct |
+| stress.html + visuals + teleprompter | ✅ All confirmed correct |
+| alcohol.html + visuals + teleprompter | ✅ All confirmed correct |
+
+### Digestive Health Series (13–21) — ALL BUILT ✅
+
+| File | Status |
+|------|--------|
+| acid-reflux.html + visuals + teleprompter | ✅ On GitHub |
+| ibd.html + visuals + teleprompter | ✅ On GitHub |
+| bloating.html + visuals + teleprompter | ✅ On GitHub |
+| ibs.html + visuals + teleprompter | ✅ On GitHub |
+| masld.html + visuals + teleprompter | ✅ On GitHub |
+| coeliac.html + visuals + teleprompter | ✅ On GitHub |
+| gallstones.html + visuals + teleprompter | ✅ On GitHub |
+| diverticular-disease.html + visuals + teleprompter | ✅ On GitHub |
+| constipation.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+
+### Neurological Series (22–26) — ALL BUILT ✅
+
+| File | Status |
+|------|--------|
+| migraine.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| headaches.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| dizziness-vertigo.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| memory-dementia.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| epilepsy.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+
+### Cancer Series (27–31) — IN PROGRESS
+
+| File | Status |
+|------|--------|
+| breast-cancer.html | ✅ Article HTML built April 2026 — visuals + teleprompter outstanding |
+| prostate-cancer.html + visuals + teleprompter | Not yet built |
+| lung-cancer.html + visuals + teleprompter | Not yet built |
+| bowel-cancer.html + visuals + teleprompter | Not yet built |
+| melanoma.html + visuals + teleprompter | Not yet built |
+
+### OUTSTANDING CITATION FLAGS
+- hypertension.html refs 5 + 6 — Cochrane PubMed IDs flagged ⚑ unverified
 
 ---
 
