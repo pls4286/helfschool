@@ -146,16 +146,19 @@ All three files confirmed complete and on GitHub for all 7 articles. Educational
 | 06 | Salt and Blood Pressure | salt-blood-pressure |
 | 07 | Do Supplements Lower Cholesterol? | supplements-cholesterol |
 
-### Series B — Practical Health (Articles 08–12)
-All three files confirmed complete and on GitHub for all 5 articles. Educational voice retrofit confirmed complete.
+### Series B — Practical Health (Articles 08–12, extended to 32–33)
+All three files confirmed complete and on GitHub for articles 08–12. Educational voice retrofit confirmed complete.
+Articles 32–33 planned — extending the Practical Health series. Same series colour `#7A6A2E`.
 
-| # | Title | Slug |
-|---|-------|------|
-| 08 | The Mediterranean Diet | mediterranean-diet |
-| 09 | Sleep and Your Health | sleep |
-| 10 | Exercise — the Evidence Base | exercise |
-| 11 | Stress and the Body | stress |
-| 12 | Alcohol — What the Evidence Shows | alcohol |
+| # | Title | Slug | Status |
+|---|-------|------|--------|
+| 08 | The Mediterranean Diet | mediterranean-diet | All 3 files on GitHub ✅ |
+| 09 | Sleep and Your Health | sleep | All 3 files on GitHub ✅ |
+| 10 | Exercise — the Evidence Base | exercise | All 3 files on GitHub ✅ |
+| 11 | Stress and the Body | stress | All 3 files on GitHub ✅ |
+| 12 | Alcohol — What the Evidence Shows | alcohol | All 3 files on GitHub ✅ |
+| 32 | Breast Awareness — What to Look For | breast-awareness | Planned — not yet built |
+| 33 | Testicular Awareness — What to Look For | testicular-awareness | Planned — not yet built |
 
 ### Series C — Digestive Health (Articles 13–21)
 Articles 13–20: all three files confirmed complete and on GitHub. Educational voice retrofit confirmed complete.
@@ -292,15 +295,29 @@ Dr Paul does not want to make manual edits to files. When corrections are needed
 
 ### Section structure (all condition articles)
 1. What is it?
-2. Key Terms box — navy background, sits between sections 1 and 2
+2. Key Terms box — navy background by default; **series-colour gradient for Cancer Series** — sits between sections 1 and 2
 3. Why does it matter? — stat grid + prose paragraphs
 4. What your doctor might discuss
 5. What the research shows
-6. "Putting it all together" — navy box, italic text, bold closing line
+6. "Putting it all together" — navy box by default; **series-colour gradient for Cancer Series** — italic text, bold closing line
 7. References
 8. Research flags ⚑ — for Dr Paul's review before upload
 
-### Readability standards
+### Series-colour elements — Cancer Series rule — LOCKED APRIL 2026
+In Cancer Series articles, three elements use `linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%)` instead of plain navy:
+1. **Key Terms box** — `.key-terms { background: linear-gradient(...) }`
+2. **Putting it all together box** — `.putting-together { background: linear-gradient(...) }`
+3. **Research card stat box** — `.ev-stat-box { background: linear-gradient(...) }`
+
+All three are confirmed in `breast-cancer.html` (April 2026). Apply to all future Cancer Series articles (28–31) from the start. Retrofit to other series when dark variant colours are confirmed (see Section 2 dark variants table).
+
+### Key Terms box standards
+- Default (all series): Navy background `#1B2A4A`
+- **Cancer Series: `linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%)`** — forest green gradient, confirmed April 2026
+- Title: Fraunces serif, minimum 1.05rem, `#fff`
+- Term labels: minimum 0.88rem, `font-weight:700`, series-light accent colour
+- Definitions: minimum 0.92rem, `rgba(255,255,255,0.90)` — opacity 0.75 or 0.80 not permitted for definition text
+- 1–2 boxes; alphabetical order within each box
 - Body text: colour `#2C2C2C`, explicit `font-weight:400`
 - Pale colours `#374151`, `#4B5563`, `#555` not permitted anywhere in articles
 - No `fadeUp` or `opacity:0` animations on article body sections — content must be immediately visible on load
@@ -868,6 +885,9 @@ Cancer Research UK is approved for UK cancer incidence, mortality, survival, and
 ### Closing slide disclaimer must use .closing-disclaimer class at 1rem — LOCKED APRIL 2026
 The closing slide disclaimer must use the `.closing-disclaimer` / `.closing-disclaimer-text` classes at `font-size:1rem`, not the `.cta-disclaimer` class at `.80rem`. The closing slide is the final thing the audience sees — it must be clearly readable on camera. Multiple files were delivered with the wrong class reused from the CTA slide. QC item 26 now checks this.
 
+### Cancer Series — three elements use series green, not navy — LOCKED APRIL 2026
+In Cancer Series articles, the Key Terms box, Putting it all together box, and research card stat boxes all use `linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%)` — forest green gradient — instead of plain navy. This creates a consistent series identity throughout the article. Confirmed in `breast-cancer.html` April 2026. Apply from the start in articles 28–31.
+
 ### CTA slide must not reference "free at helf.school" — LOCKED APRIL 2026
 The subline on the CTA slide must not say "Evidence-based health education — free at helf.school" or any variation. helf.school is a subscription service. "Start for free" is permitted as a card label — there is a genuine £0 Explorer tier. "Free to read — always" is not permitted. This was caught by Dr Paul reviewing breast-cancer-visuals.html in April 2026. QC item 28 now checks this.
 
@@ -894,6 +914,10 @@ When updating the project knowledge document, always use the existing document a
 - Article 29: Lung Cancer
 - Article 30: Bowel (Colorectal) Cancer
 - Article 31: Melanoma and Skin Cancer
+
+### Practical Health Series extension — next articles to build
+- Article 32: Breast Awareness (cross-referenced from breast-cancer.html — marked "Coming soon")
+- Article 33: Testicular Awareness
 
 ### Verification
 - `hypertension.html` references 5 & 6 — Cochrane PubMed IDs flagged ⚑ unverified
@@ -1052,7 +1076,7 @@ Article HTML built April 2026. Research flags noted: NICE CKS Vertigo (last revi
 - Overdiagnosis: uses Marmot paper's per-10,000 framing (129 per 10,000) — not the derived 4,000 annual figure
 - Research card stat box: forest green gradient, 3.2rem stat number — new canonical standard
 - All 3 files built April 2026 ✅ — upload to GitHub outstanding
-- Remaining research flags: triple-negative ~15%, HER2-positive ~15–20%, EBCTCG 2015 ~40% derivation
+- Cross-reference signpost box added in Section 3 after symptoms paragraph — signposts forthcoming Article 32 (Breast Awareness, Practical Health series), marked "Coming soon"
 
 ---
 
@@ -1060,6 +1084,22 @@ Article HTML built April 2026. Research flags noted: NICE CKS Vertigo (last revi
 
 ### Neurological Series (Articles 22–26) — COMPLETE APRIL 2026
 Series colour: `#6B5EA8` (purple)
+
+### Practical Health Series extension — Articles 32–33 (planned April 2026)
+
+**Article 32 — Breast Awareness**
+- Practical Health series · slug: `breast-awareness` · colour: `#7A6A2E`
+- Short practical article — NOT a cancer biology article. Covers: what breast tissue normally looks and feels like, changes that are clinically recognised as worth discussing with a GP, how breast awareness fits alongside the NHS screening programme
+- Key clinical distinction to observe: NICE and Cancer Research UK moved away from recommending scheduled monthly breast self-examination (Cochrane evidence found no mortality benefit from formal BSE routines) towards breast awareness — knowing what's normal for you and noticing changes. The article must reflect this distinction.
+- Sources: NICE NG101, Cancer Research UK, NHS
+- Cross-referenced from `breast-cancer.html` Section 3 — "Coming soon in the Practical Health series"
+
+**Article 33 — Testicular Awareness**
+- Practical Health series · slug: `testicular-awareness` · colour: `#7A6A2E`
+- Short practical article aimed primarily at young men (peak age for testicular cancer: 20s–30s)
+- Covers: what is normal, changes to notice (painless lump or swelling, change in size or shape, heaviness), why early detection matters
+- Sources: Cancer Research UK, NHS, NICE
+- Testicular cancer is the most common cancer in men aged 15–49 in the UK — a strong health education hook
 
 ### Cancer Series (Articles 27–31) — IN PROGRESS
 Series colour: `#2A5A3A` (forest green). Dark variant: `#1A3A25`. Confirmed April 2026.
