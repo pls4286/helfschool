@@ -5,7 +5,7 @@
 
 ## ⚠️ DOCUMENT INTEGRITY — CLAUDE MUST READ THIS BEFORE ANY SESSION WORK
 
-**This document has 25 numbered sections. Minimum expected line count: ~800 lines.**
+**This document has 25 numbered sections. Minimum expected line count: ~1200 lines.**
 
 When updating this document at the end of any session, Claude MUST:
 1. Run `wc -l` on the new file before presenting it to Dr Paul
@@ -188,17 +188,17 @@ All five articles: all three files confirmed on GitHub ✅
 | 26 | Epilepsy — What It Is and How It's Managed | epilepsy | All 3 files built April 2026 ✅ — on GitHub |
 
 ### Series E — Cancer (Articles 27–31) — ESTABLISHED APRIL 2026
-Series colour: `#8A3A5A` (deep rose).
+Series colour: `#2A5A3A` (forest green). Dark variant: `#1A3A25`. **Note: initial proposed colour `#8A3A5A` (deep rose) was rejected — contrast issues. Forest green confirmed April 2026.**
 
 | # | Title | Slug | Status |
 |---|-------|------|--------|
 | 27 | Breast Cancer | breast-cancer | All 3 files built April 2026 ✅ — upload to GitHub outstanding |
-| 28 | Prostate Cancer | prostate-cancer | Not yet built |
+| 28 | Prostate Cancer | prostate-cancer | All 3 files built April 2026 ✅ — upload to GitHub outstanding |
 | 29 | Lung Cancer | lung-cancer | Not yet built |
 | 30 | Bowel (Colorectal) Cancer | bowel-cancer | Not yet built |
 | 31 | Melanoma and Skin Cancer | melanoma | Not yet built |
 
-**Total articles with all 3 files on GitHub: 26. Article 27 article HTML built — upload to GitHub outstanding.**
+**Total articles with all 3 files on GitHub: 26. Articles 27 and 28 built — upload to GitHub outstanding.**
 
 ---
 
@@ -207,15 +207,11 @@ Series colour: `#8A3A5A` (deep rose).
 | File | Status | Notes |
 |------|--------|-------|
 | index.html | Rebuilt April 2026 | 20+ years corrected; voice fixed; 2026 |
-| helf-school-conditions.html | Rebuilt April 2026 | Needs rebuilding — now 26 articles + Cancer series |
+| helf-school-conditions.html | Rebuilt April 2026 | Updated April 2026 — 28 articles live, Article 28 linked, Cancer series coming soon |
 | helf-school-membership.html | On GitHub | Pricing: £0 / £6pm or £60pa / £150 lifetime |
 
-### helf-school-conditions.html — needs full rebuild (April 2026)
-Currently shows 20 live articles across 3 series. Needs full rebuild to show:
-- All 26 articles live across 4 series (Cardiovascular, Practical Health, Digestive, Neurological)
-- Cancer series shown as coming soon
-- Filter chips updated to include all 4 live series
-- Hero stats updated: 4 series · 26 articles live
+### helf-school-conditions.html — April 2026 rebuild
+Rebuilt April 2026 to show all 26 articles live across 4 series + Cancer series (Articles 27–28 live, 29–31 coming soon). Updated again April 2026 to mark Article 28 (Prostate Cancer) as live. Hero stat: 28 articles live now.
 
 ### index.html — April 2026 corrections applied
 1. Hero h1: "Understanding your heart" → "Understanding your health"
@@ -273,9 +269,10 @@ Never reverse this order. Cross-check article ↔ presenter before finalising ei
 
 ### Canonical reference files (in Claude project)
 - **Article HTML:** `mediterranean-diet.html`
-- **Visuals HTML:** `lifestyle-changes-visuals.html` (canonical for all layout patterns)
+- **Visuals HTML:** `prostate-cancer-visuals.html` — **NEW PRIMARY CANONICAL REFERENCE confirmed April 2026.** Demonstrates: 3-card split slides, canonical `cta-wrap-v2` CTA (slide 13), brand close (slide 14), ev-card research cards with series gradient stat box. `lifestyle-changes-visuals.html` remains a secondary reference for the 6-row grid pattern.
 - **Teleprompter HTML:** `lifestyle-changes-teleprompter.html` (canonical for cue box standard)
-- **CTA slide:** `hypertension-visuals.html`
+- **CTA slide:** `prostate-cancer-visuals.html` slide 13 — canonical `cta-wrap-v2` pattern
+- **Closing slide:** `prostate-cancer-visuals.html` slide 14 — brand close standard
 
 ### Large file crash risk
 Very large HTML files (e.g. `statins.html`) can crash mid-build if too much is attempted in one turn. Strategy: build one file per turn, confirm successful delivery before proceeding to the next file.
@@ -309,7 +306,7 @@ In Cancer Series articles, three elements use `linear-gradient(160deg, var(--ser
 2. **Putting it all together box** — `.putting-together { background: linear-gradient(...) }`
 3. **Research card stat box** — `.ev-stat-box { background: linear-gradient(...) }`
 
-All three are confirmed in `breast-cancer.html` (April 2026). Apply to all future Cancer Series articles (28–31) from the start. Retrofit to other series when dark variant colours are confirmed (see Section 2 dark variants table).
+All three are confirmed in `breast-cancer.html` and `prostate-cancer.html` (April 2026). Apply to all future Cancer Series articles (29–31) from the start. Retrofit to other series when dark variant colours are confirmed (see Section 2 dark variants table).
 
 ### Key Terms box standards
 - Default (all series): Navy background `#1B2A4A`
@@ -326,22 +323,18 @@ All three are confirmed in `breast-cancer.html` (April 2026). Apply to all futur
 - Hero breadcrumb: minimum `rgba(255,255,255,0.75)`
 - Values of 0.60 or below not permitted for hero/breadcrumb text
 
-### Key Terms box standards
-- Navy background `#1B2A4A`
-- Title: Fraunces serif, minimum 1.05rem, `#fff`
-- Term labels: minimum 0.88rem, `font-weight:700`, accent colour (series accent)
-- Definitions: minimum 0.92rem, `rgba(255,255,255,0.90)` — opacity 0.75 or 0.80 not permitted for definition text
-- 1–2 boxes; alphabetical order within each box
-
 ### Inline citations
 - Every stat or claim in prose carries a superscript number linking to anchored reference `id="ref-N"`
 - Format: `<sup><a href="#ref-1">1</a></sup>`
 - Superscript link colour matches the series accent colour
 - **This rule applies to stat grid `.stat-prose` text as well as body prose — every stat in every stat grid card must carry a superscript citation. No exceptions. Confirmed and locked April 2026.**
 
+### Reference numbering — LOCKED APRIL 2026
+References must display visible numbers. Use CSS `counter-reset` and `counter-increment` on `.ref-block` with a `::before` pseudo-element rendering the number to the left of the border. Delivered without visible numbering in April 2026 — caught by Dr Paul during review. Confirmed canonical: `prostate-cancer.html`.
+
 ### Article research card display standard — LOCKED APRIL 2026
 
-**Canonical reference: `memory-dementia.html` (layout) + `breast-cancer.html` (colour principle)**
+**Canonical reference: `memory-dementia.html` (layout) + `breast-cancer.html` + `prostate-cancer.html` (colour principle)**
 
 These values apply to article HTML files only. The visuals ev-stat-box has a separate locked specification in Section 9.
 
@@ -402,6 +395,9 @@ Every research card stat box must state the complete clinical finding in terms t
 - "Macrogol superior / to lactulose across all outcomes"
 - "20% reduction in breast cancer mortality / in women invited to screening"
 - "~⅓ reduction in breast cancer mortality / throughout first 15 years in ER-positive disease"
+- "2.7% / prostate cancer-specific mortality at 15 years / similar across monitoring, surgery, and radiotherapy"
+- "0.69% / prostate cancer mortality with PSA screening / vs 0.78% without screening"
+- "81 months / median overall survival — docetaxel + hormone therapy / vs 71 months alone"
 
 **Incorrect examples — statistical machinery or incomplete findings:**
 - "11" with label "RCTs — Epley effective"
@@ -464,6 +460,14 @@ Apply everywhere, on first mention per section:
 - letrozole (Femara)
 - anastrozole (Arimidex)
 - exemestane (Aromasin)
+- goserelin (Zoladex)
+- leuprorelin (Prostap)
+- degarelix (Firmagon)
+- relugolix (Orgovyx)
+- docetaxel (Taxotere)
+- abiraterone (Zytiga)
+- enzalutamide (Xtandi)
+- bicalutamide (Casodex)
 
 ### Lay-clarification brackets — ALL medical terminology
 **The general rule:** Every medical or clinical term that a lay reader would not immediately understand must have a plain English definition in brackets on first use in each section. This applies to anatomical terms, physiological terms, symptom descriptors, drug class names, procedural terms, and diagnostic labels — not just statistical measures.
@@ -530,13 +534,24 @@ The fixed viewport is `100vw × 100vh` minus the 52px topbar and 32px dots bar =
 
 **Why this rule exists:** Multiple visuals files were delivered in April 2026 with text too small and gaps too large, leaving slides that looked sparse and underused the screen. Dr Paul explicitly noted the content was too small and the space was not being used well. This is a fundamental presentation quality issue — visuals are for filming and presenting, and undersized content reads poorly on camera.
 
+### 3-CARD RULE — NEVER SHRINK TEXT TO FIT — LOCKED APRIL 2026
+
+**When a slide contains 6 cards, always split into two slides of 3 cards each. Never reduce font size or line clamp to make 6 cards fit.**
+
+This rule was confirmed April 2026 after multiple 6-card slides were delivered with text cut off at the bottom of cards. The correct approach: split to 3+3, label slides "(1 of 2)" and "(2 of 2)". 3-card slides use `-webkit-line-clamp:4` so body text can breathe fully.
+
+Articles with 6 informational points (what is it, risk factors, diagnosis, treatment) will produce two slides each — typically resulting in 14-slide decks rather than 10. This is correct and expected.
+
+**Canonical reference for 3-card layout:** `prostate-cancer-visuals.html` (slides 3–10).
+
 ### Layout
-- 4–6 item slides: **horizontal rows** using the `ev-stat-row` pattern — `72px icon | content | stat` — NOT vertical stacking
+- **3-card slides: `three-grid` class** — `grid-template-rows: repeat(3, 1fr); gap: .55rem` — fills viewport
+- **6-card slides are FORBIDDEN** — always split to 3+3
 - Stats: 2.5–3.6rem font size
 - Colour narrative: red = harm · amber = mechanism · green = action
 - Cards: `min-height:0` + `overflow:hidden`
 - Max 2 `ev-cards` per research slide
-- CTA section: `cta-wrap-v2` class — horizontal row layout
+- CTA section: `cta-wrap-v2` class — `grid-template-rows: auto 1fr auto` — the ONLY correct CTA layout
 - Uneven row heights: use uneven `fr` ratios (e.g. `grid-template-rows: 1fr 1fr 1.5fr`) or `grid-row:span 2` for a key card in 5–6 card grids — prevents bottom-card clipping
 
 ### Animation
@@ -559,33 +574,36 @@ The stat box sits in the left column (220px) of each ev-card. These values are r
 
 **The complete clinical conclusion rule applies equally to visuals ev-stat-boxes.** The stat box in every research card in every visuals file must state the complete clinical finding — not ORs, RCT counts, or incomplete qualifiers. The same test applies: can a lay reader understand the clinical finding from the stat box alone?
 
-### CTA slide standard (all visuals files)
+### CTA slide standard — LOCKED APRIL 2026 — canonical: `prostate-cancer-visuals.html` slide 13
+- **`cta-wrap-v2` class with `grid-template-rows: auto 1fr auto`** — this is the ONLY correct layout. `auto 1fr auto` means: badge/headline takes natural height, 4 rows expand to fill remaining space, disclaimer anchors at bottom. Nothing is ever clipped. **Never use `justify-content: center` or `justify-content: space-between` on the CTA slide — both clip content.**
 - Full-screen with radial gold-glow background + pulsing icon halo (3.2s drop-shadow)
-- **Central icon: minimum `5.5rem`** — the icon must dominate the slide visually. Never `3.2rem` or smaller — it disappears on screen.
-- **Fraunces headline: minimum `clamp(2.8rem, 5.5vw, 4.2rem)`** — this is the most important text on the slide. Never `clamp(2.2rem, 4.5vw, 3.2rem)` — too small.
-- **No subline mentioning "free at helf.school"** — helf.school is a subscription service. The subline must not reference being free. Remove `.cta-sub` text entirely or use a non-pricing line. **LOCKED APRIL 2026.**
-- 4 action cards (NOT chips) — emoji + Fraunces bold label, gradient + gold border
-- **Card emoji icons: minimum `2.2rem`** — never `1.4rem`
-- **Card title text: minimum `.96rem`** — never `.84rem`
-- **"Start for free" card is permitted** — there is a genuine £0 Explorer tier. "Free to read — always" is NOT permitted — it implies all content is permanently free.
-- **CTA disclaimer box — LOCKED APRIL 2026:**
-  - `.cta-disclaimer`: `max-width:720px` · `border:1.5px solid rgba(255,255,255,0.35)` · `padding:1rem 1.3rem` · `background:rgba(255,255,255,0.05)`
-  - Icon: `font-size:1.3rem`
-  - Text: `font-size:1rem` · `color:rgba(255,255,255,0.90)` · `line-height:1.6`
-  - Never `.80rem` for CTA disclaimer text — too small to read on screen
-- Reference: `hypertension-visuals.html` · `breast-cancer-visuals.html` (Cancer Series canonical)
+- **Central icon: minimum `5.5rem`** — the icon must dominate the slide visually.
+- **Fraunces headline: minimum `clamp(2.8rem, 5.5vw, 4.2rem)`**
+- **No subline mentioning "free at helf.school"** — helf.school is a subscription service. **LOCKED APRIL 2026.**
+- 4 horizontal action rows in `.cta-rows-v2` — `grid-template-rows: 1fr 1fr 1fr 1fr`
+- **`med-disclaimer` at bottom — `font-size:1rem` on `.med-disc-text`** — never `.80rem`
+- **`cta-glow` radial gradient overlay** — gold glow behind content
+- Reference: `prostate-cancer-visuals.html` slide 13
 
-### Closing slide standard (all visuals files)
-- **Logo text: minimum `2.8rem`** — never `2rem`. This is the final brand impression.
-- **Tagline: minimum `1.05rem`** — never `.9rem`
-- **Link/series label: minimum `1rem`** — never `.85rem`
-- **Closing slide disclaimer — LOCKED APRIL 2026 — use `.closing-disclaimer` class, NOT `.cta-disclaimer`:**
-  - `.closing-disclaimer`: `max-width:680px` · `border:1.5px solid rgba(255,255,255,0.40)` · `border-radius:10px` · `padding:1rem 1.3rem` · `background:rgba(255,255,255,0.05)`
-  - Icon: `.closing-disclaimer-icon` at `font-size:1.4rem`
-  - Text: `.closing-disclaimer-text` at `font-size:1rem` · `color:rgba(255,255,255,0.90)` · `line-height:1.6` · `font-weight:400`
-  - Never use `.cta-disclaimer` class on closing slide — it uses `.80rem` text, which is too small
-  - **Why this rule exists:** The closing slide disclaimer is the last thing the audience sees. It must be readable. Multiple files were delivered with `.80rem` disclaimer text on the closing slide — confirmed too small in April 2026.
-- Background: gradient from series dark colour to `#0d0d1a`
+### Closing slide standard — NEW STANDARD LOCKED APRIL 2026 — canonical: `prostate-cancer-visuals.html` slide 14
+
+The closing slide is now the **helf.school brand close** — NOT a repeat of the research stats from the CTA slide.
+
+**Structure:**
+- `close-wrap` with `justify-content: flex-start` — **NEVER `justify-content: center`** (clips the logo at top when content height approaches viewport height)
+- **helf.school logo** — large Fraunces, with coral dot
+- **"Health Education" tagline** — uppercase
+- **Brand headline** — e.g. "Evidence-based. Built by a doctor."
+- **Three brand pitch cards:**
+  1. 📚 Article count and series breadth
+  2. 🩺 Dr Paul's credentials — "retired NHS GP with over 20 years of experience"
+  3. 🔓 Start for free — Explorer tier
+- **`med-disclaimer`** at `font-size:1rem`
+- **Series label** — e.g. "Cancer Series · Article 28 · Prostate Cancer"
+
+**Why this standard was adopted:** The previous closing slide repeated the research stats already shown on the CTA slide. Dr Paul identified this as redundant — the closing slide should be the brand impression, not a stat recap. Confirmed April 2026.
+
+**`justify-content: flex-start` is mandatory** — `center` clips the logo at the top when total content height is close to the viewport height. `flex-start` anchors the logo visibly and any overflow falls off the bottom.
 
 ### Readability standards — visuals (all rgba thresholds)
 **Topbar:**
@@ -628,6 +646,9 @@ Cue box always **precedes** the script lines for its segment — never after.
 Dr Paul advances slide FIRST, then reads — viewer sees slide before Dr Paul speaks.
 Label: `▶ ADVANCE NOW — then read`
 Prior teleprompter files built before this standard was confirmed may require retrofitting — confirm per file.
+
+### Cue box — paired slides — CONFIRMED APRIL 2026
+When two slides share a segment (e.g. slides 3–4 on the same topic), the cue box label reads the slide range: e.g. `Slides 3–4 — What is prostate cancer?`. The final cue box in the last segment advances to the closing slide. Confirmed in `prostate-cancer-teleprompter.html` April 2026.
 
 ### Video length standard
 - Maximum 4–5 minutes
@@ -678,8 +699,8 @@ Scale 0.62 · every 2nd frame · 120 colours · under 1.5MB total PPTX
 8. **Lay-clarification — ALL medical terminology in brackets on first use per section, not just statistical terms. Anatomical, physiological, symptom, drug class, and diagnostic terms all require plain English definitions. Statistical terms (HR, RR, OR, SMD, NNT, CI, PAR) are included in this rule.**
 9. **Research card clinical conclusions — complete clinical conclusion test (LOCKED APRIL 2026):** Every research card stat box must state the complete clinical finding in patient-relevant terms. The stat box (label + stat row + outcome + conditions together) must answer: WHAT was studied, WHAT was found, and WHY it matters to someone with that condition. The test: can a lay reader understand the clinical finding from the stat box alone? Statistical machinery (OR values, RCT counts, confidence intervals) must never appear as the headline finding. Incomplete qualifiers ("Safe & effective" without subject; "Moderate to strong evidence" without subject) are not permitted.
 10. Research card stats — outcomes only; never participant/study counts or cost figures as headline stat
-11. CTA slide — disclaimer box present with full canonical phrase
-12. Closing slide — same disclaimer box present
+11. CTA slide — `cta-wrap-v2` with `grid-template-rows: auto 1fr auto`; `med-disc-text` at `font-size:1rem`
+12. Closing slide — brand close structure; `justify-content: flex-start`; three pitch cards; `med-disc-text` at `font-size:1rem`; series label
 13. Copyright year — 2026
 14. Body text weight — `font-weight:400` throughout (never 300 in body)
 15. No `opacity:0` animations on article body sections — content immediately visible
@@ -693,9 +714,11 @@ Scale 0.62 · every 2nd frame · 120 colours · under 1.5MB total PPTX
 23. **EXACT FIGURE RULE — use the paper's exact numerical expression everywhere. Never convert between forms (">30%" must not become "1 in 3" or "33%"; "1 in 1,000" must not become "0.1%"). Cross-check stat grid, research cards, Key Terms, body prose, Putting It Together, and teleprompter for consistency before delivering any file.**
 24. **STAT GRID CITATION RULE — LOCKED APRIL 2026:** Run `grep -A 3 "stat-prose"` before presenting any article. Every `.stat-prose` line must have a `ref-` superscript link. All stat grid cards. No exceptions. A stat grid card with no citation is a QC failure regardless of how obvious the stat appears.
 25. **APPROVED SOURCE RETRIEVAL RULE — LOCKED APRIL 2026:** Every figure must be retrieved directly from the approved source page, not from a secondary or aggregator page that attributes the figure to an approved source. If a stat is found on an unapproved page (e.g. WCRF) that cites Cancer Research UK, fetch the Cancer Research UK page directly and use the figure stated there. Example of failure: breast cancer article (April 2026) used 60,763 (WCRF) instead of "around 59,000" (Cancer Research UK directly).
-26. **CLOSING SLIDE DISCLAIMER SIZE — LOCKED APRIL 2026:** The closing slide must use the `.closing-disclaimer` class with `.closing-disclaimer-text` at `font-size:1rem`. Never use the `.cta-disclaimer` class on the closing slide — it uses `.80rem` text, which is too small. The disclaimer is the last thing the audience sees and must be clearly readable.
-27. **CTA SLIDE DISCLAIMER SIZE — LOCKED APRIL 2026:** CTA disclaimer text must be `font-size:1rem`, `color:rgba(255,255,255,0.90)`. Never `.80rem`. Run a grep check on both disclaimer classes before presenting any visuals file.
-28. **NO "FREE AT HELF.SCHOOL" ON VISUALS — LOCKED APRIL 2026:** The subline on the CTA slide must not reference being "free at helf.school" — helf.school is a subscription service and this is inaccurate. "Start for free" (the £0 Explorer tier) is permitted as a card label. "Free to read — always" is not permitted. "Evidence-based health education — free at helf.school" is not permitted. Check the CTA slide subline before presenting any visuals file.
+26. **CLOSING SLIDE DISCLAIMER SIZE — LOCKED APRIL 2026:** The closing slide must use `justify-content: flex-start` and `med-disc-text` at `font-size:1rem`. Brand close structure — three pitch cards (articles / Dr Paul / free tier). Never stat repeat. Never `justify-content: center` — clips logo at top.
+27. **CTA SLIDE DISCLAIMER SIZE — LOCKED APRIL 2026:** CTA disclaimer text must be `font-size:1rem`, `color:rgba(255,255,255,0.90)`. Never `.80rem`. Run a grep check before presenting any visuals file.
+28. **NO "FREE AT HELF.SCHOOL" ON VISUALS — LOCKED APRIL 2026:** The subline on the CTA slide must not reference being "free at helf.school" — helf.school is a subscription service and this is inaccurate. "Start for free" (the £0 Explorer tier) is permitted as a card label. "Free to read — always" is not permitted. Check the CTA slide subline before presenting any visuals file.
+29. **3-CARD RULE — LOCKED APRIL 2026:** Never 6 cards on one slide. Always split to 3+3. Canonical: `prostate-cancer-visuals.html` slides 3–10.
+30. **REFERENCE NUMBERING — LOCKED APRIL 2026:** References must display visible numbers via CSS counter. Never deliver a reference list without visible numbering. Canonical: `prostate-cancer.html`.
 
 ---
 
@@ -773,8 +796,9 @@ Never include an unverified link. Never assume a study exists based on a plausib
 - **Research card complete clinical conclusion standard: outstanding across 01–23** — all previously built articles should have research card stat boxes audited against the complete clinical conclusion rule when they are next opened for any edit
 - Inline citations (superscripts linking to refs): outstanding across 01–11
 - **Stat grid citations: outstanding across all articles built before April 2026** — apply when next opened
-- CTA slide high-impact standard (disclaimer box, gold-glow, 4 action cards): outstanding across 01–11
-- Visuals layout standard (horizontal rows, ev-stat-row): outstanding across 01–11
+- CTA slide high-impact standard (`cta-wrap-v2`, gold-glow, 4 action rows): outstanding across 01–11
+- **Closing slide brand close standard: outstanding across 01–26** — all previously built visuals files use the old stat-recap closing slide. Retrofit when files are next opened.
+- Visuals layout standard (3-card split, ev-stat-row): outstanding across 01–11
 - Key terms / hero visibility standards: outstanding across 01–11
 - Teleprompter cue box standard: confirm per-file which were built before standard was set
 
@@ -870,7 +894,7 @@ Every `.stat-prose` line in the Why does it matter? stat grid must carry a super
 A figure found on an unapproved page (e.g. WCRF) that attributes its data to an approved source (e.g. Cancer Research UK) must NOT be used. Fetch the approved source page directly and use the figure stated there. In the breast cancer article (Article 27), 60,763 was taken from the WCRF page and incorrectly attributed to Cancer Research UK. The Cancer Research UK page directly states "around 59,000." Caught by Dr Paul. The correct process: search → find the approved source page → retrieve the figure from that page → use only that figure.
 
 ### Cancer Series colour changed from rose to forest green — April 2026
-Initial colour `#8A3A5A` (deep rose) was proposed and approved but rendered poorly — the monochromatic dark rose/pink scheme gave insufficient contrast between card backgrounds and text. Changed to `#2A5A3A` (forest green) with dark variant `#1A3A25`. Forest green is distinct from existing teal `#3A8A7A` and olive `#7A6A2E`.
+Initial colour `#8A3A5A` (deep rose) was proposed and approved but rendered poorly — the monochromatic dark rose/pink scheme gave insufficient contrast between card backgrounds and text. Changed to `#2A5A3A` (forest green) with dark variant `#1A3A25`. Forest green is distinct from existing teal `#3A8A7A` and olive `#7A6A2E`. **The Article Inventory previously showed `#8A3A5A` — this was an error in the document. Corrected April 2026.**
 
 ### Research card stat boxes use series colour, not navy — LOCKED APRIL 2026
 The ev-stat-box background in article research cards must use the series colour gradient (series-dark to series), not plain navy. Established when building breast-cancer.html for the Cancer Series. The amber kf-label contrasts effectively against any series colour. This principle makes each series visually distinctive and reinforces series identity throughout the article. Each series needs a confirmed dark variant colour before this standard can be retrofitted. See Section 2 for the dark variant table.
@@ -900,16 +924,34 @@ Series E. Articles 27–31. Colour `#2A5A3A` (forest green, confirmed April 2026
 ### Never rebuild a project knowledge document from scratch — LOCKED APRIL 2026
 When updating the project knowledge document, always use the existing document as the base and merge new content into it. Never rebuild from memory. The existing document is always larger and more complete than what Claude can reconstruct from memory in a session. Rebuilding from memory loses content and introduces errors. The correct process: read the existing document → identify what is new → add new content to the existing document → verify the new version is equal to or larger than the old one.
 
+### Closing slide must be brand close, not stat repeat — LOCKED APRIL 2026
+The last slide of every visuals deck is the **helf.school brand close**: logo · "Health Education" tagline · brand headline · three pitch cards (articles, Dr Paul credentials, free tier) · `med-disclaimer` · series label. It is NOT a repeat of the research statistics shown on the CTA slide. Confirmed April 2026 when Dr Paul identified stat repeat as redundant. Canonical reference: `prostate-cancer-visuals.html` slide 14.
+
+### Closing slide must use `justify-content: flex-start` — LOCKED APRIL 2026
+`justify-content: center` clips the logo at the top when total content height is close to viewport height. `flex-start` anchors the logo visibly. Confirmed April 2026 after multiple deliveries clipped the helf.school logo. Canonical reference: `prostate-cancer-visuals.html` slide 14.
+
+### CTA slide must use `cta-wrap-v2` with `grid-template-rows: auto 1fr auto` — LOCKED APRIL 2026
+This is the only correct CTA layout. `auto 1fr auto` ensures: top badge/headline takes natural height, middle rows expand to fill remaining space, bottom disclaimer always fully visible. `justify-content: center` or `justify-content: space-between` both cause content to clip. Confirmed after multiple CTA slide deliveries with cut-off content April 2026.
+
+### 6-card slides must be split to 3+3 — LOCKED APRIL 2026
+When a visuals slide has 6 informational cards, always split into two slides of 3 cards each. Never reduce font size or line clamp to make 6 cards fit. Text cut-off on 6-card slides confirmed as a recurring problem April 2026. 3-card slides use `-webkit-line-clamp:4` allowing body text to breathe. Canonical reference: `prostate-cancer-visuals.html` slides 3–10.
+
+### Reference numbering must be visible — LOCKED APRIL 2026
+References must display visible numbers. Use CSS `counter-reset` and `counter-increment` on `.ref-block` with a `::before` pseudo-element to render the number to the left of the border. Delivered without visible numbering once in April 2026 — caught by Dr Paul.
+
+### prostate-cancer-visuals.html is new canonical visuals reference — LOCKED APRIL 2026
+`prostate-cancer-visuals.html` replaces `lifestyle-changes-visuals.html` as the primary canonical visuals reference. It demonstrates: 3-card split slides (slides 3–10), canonical `cta-wrap-v2` CTA (slide 13), brand close (slide 14), `ev-card` research cards with forest green gradient stat box, correct `#stage` padding and `#topbar` structure.
+
 ---
 
 ## 19. OUTSTANDING TASKS (April 2026)
 
-### Immediate
-- Upload `breast-cancer.html`, `breast-cancer-visuals.html` and `breast-cancer-teleprompter.html` to GitHub
-- Rebuild `helf-school-conditions.html` to show all 26 articles live + Cancer series coming soon
+### Immediate — uploads outstanding
+- Upload `breast-cancer.html`, `breast-cancer-visuals.html`, `breast-cancer-teleprompter.html` to GitHub
+- Upload `prostate-cancer.html`, `prostate-cancer-visuals.html`, `prostate-cancer-teleprompter.html` to GitHub
+- Upload `helf-school-conditions.html` to GitHub (updated: Article 28 now live, hero stat 28)
 
 ### Cancer Series — next articles to build
-- Article 28: Prostate Cancer
 - Article 29: Lung Cancer
 - Article 30: Bowel (Colorectal) Cancer
 - Article 31: Melanoma and Skin Cancer
@@ -925,15 +967,16 @@ When updating the project knowledge document, always use the existing document a
 All dark variants confirmed April 2026 — retrofit is fully unblocked. Apply per series as files are next opened. Priority order:
 
 1. **Research card colour retrofit** ← highest priority, highest visual impact — ev-stat-box background: navy → series-colour gradient. Spec: `linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%)`. Dark variants confirmed for all series (see Section 2). Apply across all 26 articles.
-2. **Key Terms + Putting it all together** — navy → series-colour gradient. Cancer Series standard confirmed. Decision outstanding: extend to all series or Cancer-only? If extending, same gradient spec applies.
-3. **Research card display standard** — ev-stat-row to 3.2rem weight 900 across all articles.
-4. **Closing/CTA disclaimer sizes** — closing: `.closing-disclaimer` 1rem; CTA: 1rem. Quick grep check per file.
-5. **No "free at helf.school"** — grep CTA subline per visuals file.
-6. **Research card clinical conclusion standard** — 01–23.
-7. **Stat grid citations** — 01–11 only.
-8. **Inline citations** — 01–11 only.
-9. **CTA slide standard** — 01–11 only.
-10. **Visuals layout standard** — 01–11 only.
+2. **Closing slide brand close retrofit** — stat-recap closing → brand close (logo / pitch cards / disclaimer). Apply across all 26 visuals files.
+3. **Key Terms + Putting it all together** — navy → series-colour gradient. Cancer Series standard confirmed. Decision outstanding: extend to all series or Cancer-only? If extending, same gradient spec applies.
+4. **Research card display standard** — ev-stat-row to 3.2rem weight 900 across all articles.
+5. **Closing/CTA disclaimer sizes** — closing: `med-disc-text` 1rem; CTA: `med-disc-text` 1rem. Quick grep check per file.
+6. **No "free at helf.school"** — grep CTA subline per visuals file.
+7. **Research card clinical conclusion standard** — 01–23.
+8. **Stat grid citations** — 01–11 only.
+9. **Inline citations** — 01–11 only.
+10. **CTA slide standard** — 01–11 only.
+11. **Visuals layout standard** — 01–11 only.
 
 ---
 
@@ -960,15 +1003,17 @@ The Claude project holds **visuals, teleprompter, and screen files only**. Artic
 |------|---------|
 | `mediterranean-diet.html` | Canonical article HTML template |
 | `lifestyle-changes-teleprompter.html` | Canonical teleprompter (cue box standard) |
-| `lifestyle-changes-visuals.html` | Canonical visuals (ev-stat-row horizontal layout, all patterns) |
-| `hypertension-visuals.html` | Canonical CTA slide reference |
+| `prostate-cancer-visuals.html` | **PRIMARY canonical visuals reference** — 3-card splits, `cta-wrap-v2`, brand close, ev-card research cards. Confirmed April 2026. |
+| `lifestyle-changes-visuals.html` | Secondary visuals reference — 6-row grid pattern (still valid for mechanism/info slides where appropriate) |
+| `hypertension-visuals.html` | Legacy CTA slide reference (superseded by prostate-cancer-visuals.html) |
 | `memory-dementia.html` | Canonical article research card layout (220px column, flex-start) |
 | `breast-cancer.html` | Canonical article research card display (3.2rem stat, series gradient background) |
+| `prostate-cancer.html` | Cancer Series article canonical — reference numbering via CSS counter |
 
 ### Files confirmed in Claude project (April 2026)
-**Teleprompters (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine · headaches · dizziness-vertigo · memory-dementia · epilepsy
+**Teleprompters (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine · headaches · dizziness-vertigo · memory-dementia · epilepsy · prostate-cancer
 
-**Visuals (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd (screen) · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine · headaches · dizziness-vertigo · memory-dementia · epilepsy
+**Visuals (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd (screen) · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine · headaches · dizziness-vertigo · memory-dementia · epilepsy · prostate-cancer
 
 **Screen files:** Ar_barretts-screen · Ar_sphincter-screen · ibd-gut-screen · bloating-gut-screen · bloating-fodmap-screen
 
@@ -1037,6 +1082,99 @@ Every figure must be retrieved directly from the approved source page, not from 
 ### Rule 18 — Never rebuild the project knowledge document from scratch — LOCKED APRIL 2026
 When updating the project knowledge document, always use the existing document as the base. Read it fully, identify what is new from the current session, and merge new content into it. Never rebuild from memory. A rebuilt-from-memory version will always be shorter and less complete than the existing document.
 
+### Rule 19 — Cancer Series: three elements use series green, not navy — LOCKED APRIL 2026
+In Cancer Series articles (27–31), three elements must use `linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%)` — the forest green gradient — instead of plain navy:
+1. **Key Terms box**
+2. **Putting it all together box**
+3. **Research card stat box**
+Cancer Series colours: `--series: #2A5A3A` · `--series-dark: #1A3A25`. Apply from the start when building articles 28–31.
+
+### Rule 20 — Closing slide: brand close, `justify-content: flex-start` — LOCKED APRIL 2026
+The closing slide must be the helf.school brand close — NOT a stat repeat. `justify-content: flex-start` is mandatory — never `center`. Structure: logo · tagline · brand headline · three pitch cards (articles / Dr Paul / free tier) · `med-disclaimer` · series label. Canonical: `prostate-cancer-visuals.html` slide 14.
+
+### Rule 21 — CTA slide: `cta-wrap-v2` with `grid-template-rows: auto 1fr auto` — LOCKED APRIL 2026
+Only correct CTA layout. `auto 1fr auto` guarantees: top takes natural height, middle rows fill remaining space, bottom disclaimer always visible. Never `justify-content: center` or `space-between` — both clip content. Canonical: `prostate-cancer-visuals.html` slide 13.
+
+### Rule 22 — 3-card rule: never 6 cards on one slide — LOCKED APRIL 2026
+Always split to 3+3. Label "(1 of 2)" and "(2 of 2)". 3-card slides use `-webkit-line-clamp:4`. Canonical: `prostate-cancer-visuals.html` slides 3–10.
+
+### Rule 23 — Dark variants confirmed: retrofit unblocked — April 2026
+
+| Series | Primary | Dark variant |
+|--------|---------|-------------|
+| Cardiovascular | `#C8423A` | `#8A2020` |
+| Neurological | `#6B5EA8` | `#4A4080` |
+| Digestive | `#D47C3A` | `#8A4A1A` |
+| Fatigue | `#3A8A7A` | `#1A5A4A` |
+| Medical Decision | `#2E6BA8` | `#1A3A6A` |
+| Practical Health | `#7A6A2E` | `#4A3A1A` |
+| Cancer | `#2A5A3A` | `#1A3A25` |
+
+---
+
+## CONFIRMED FILE STATUS — UPDATED APRIL 2026
+
+**AUTHORITY NOTE: If any entry below conflicts with the article inventory in Section 3, Section 3 is correct.**
+
+### Cardiovascular Series (01–07) — ALL COMPLETE ON GITHUB ✅
+
+| File | Status |
+|------|--------|
+| hypertension.html + visuals + teleprompter | ✅ Confirmed correct (refs 5+6 ⚑ pending verification) |
+| cholesterol.html + visuals + teleprompter | ✅ Confirmed correct |
+| heart-attack-risk.html + visuals + teleprompter | ✅ Confirmed correct |
+| statins.html + visuals + teleprompter | ✅ Confirmed correct |
+| lifestyle-changes.html + visuals + teleprompter | ✅ Confirmed correct — CANONICAL REFERENCE |
+| salt-blood-pressure.html + visuals + teleprompter | ✅ Confirmed correct |
+| supplements-cholesterol.html + visuals + teleprompter | ✅ Confirmed correct |
+
+### Practical Health Series (08–12) — COMPLETE ✅
+
+| File | Status |
+|------|--------|
+| mediterranean-diet.html + visuals + teleprompter | ✅ All confirmed correct |
+| sleep.html + visuals + teleprompter | ✅ All confirmed correct |
+| exercise.html + visuals + teleprompter | ✅ All confirmed correct |
+| stress.html + visuals + teleprompter | ✅ All confirmed correct |
+| alcohol.html + visuals + teleprompter | ✅ All confirmed correct |
+
+### Digestive Health Series (13–21) — ALL BUILT ✅
+
+| File | Status |
+|------|--------|
+| acid-reflux.html + visuals + teleprompter | ✅ On GitHub |
+| ibd.html + visuals + teleprompter | ✅ On GitHub |
+| bloating.html + visuals + teleprompter | ✅ On GitHub |
+| ibs.html + visuals + teleprompter | ✅ On GitHub |
+| masld.html + visuals + teleprompter | ✅ On GitHub |
+| coeliac.html + visuals + teleprompter | ✅ On GitHub |
+| gallstones.html + visuals + teleprompter | ✅ On GitHub |
+| diverticular-disease.html + visuals + teleprompter | ✅ On GitHub |
+| constipation.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+
+### Neurological Series (22–26) — ALL BUILT ✅
+
+| File | Status |
+|------|--------|
+| migraine.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| headaches.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| dizziness-vertigo.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| memory-dementia.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| epilepsy.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+
+### Cancer Series (27–31) — IN PROGRESS
+
+| File | Status |
+|------|--------|
+| breast-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — upload to GitHub outstanding |
+| prostate-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — upload to GitHub outstanding |
+| lung-cancer.html + visuals + teleprompter | Not yet built |
+| bowel-cancer.html + visuals + teleprompter | Not yet built |
+| melanoma.html + visuals + teleprompter | Not yet built |
+
+### OUTSTANDING CITATION FLAGS
+- hypertension.html refs 5 + 6 — Cochrane PubMed IDs flagged ⚑ unverified
+
 ---
 
 ## 23. ARTICLE-SPECIFIC NOTES — KNOWN ISSUES
@@ -1048,7 +1186,7 @@ References 5 and 6 — Cochrane PubMed IDs flagged ⚑ unverified. These need ve
 Very large HTML file — has caused mid-build crashes in previous sessions. If this file needs to be rebuilt or significantly edited, handle it in one dedicated turn.
 
 ### conditions page (helf-school-conditions.html)
-Needs full rebuild to show all 26 articles live plus Cancer series coming soon. Rebuild — do not patch.
+Rebuilt April 2026 — shows 28 articles live across 5 series (Articles 27–28 live in Cancer series, 29–31 coming soon). Hero stat: 28 articles live now.
 
 ### index.html
 Rebuilt April 2026 with all 12 corrections listed in Section 4. "About Dr Paul" section correctly reads "NHS GP · 20+ years".
@@ -1079,6 +1217,24 @@ Article HTML built April 2026. Research flags noted: NICE CKS Vertigo (last revi
 - All 3 files built April 2026 ✅ — upload to GitHub outstanding
 - Cross-reference signpost box added in Section 3 after symptoms paragraph — signposts forthcoming Article 32 (Breast Awareness, Practical Health series), marked "Coming soon"
 
+### prostate-cancer.html — April 2026 decisions
+- Cancer Series Article 28. Colour `#2A5A3A` (forest green, dark variant `#1A3A25`)
+- Incidence: "~57,900" — Cancer Research UK directly (2019/2021–2022)
+- 10-year survival: "78.9%" — Cancer Research UK (2018)
+- Deaths: "~12,200" — Cancer Research UK (2021–2023)
+- NICE NG131 (Prostate cancer: diagnosis and management) — primary clinical reference
+- 3 research cards: ProtecT (Hamdy NEJM 2023, PMID 36912538); CAP trial (Martin JAMA 2024, PMID 38581198); STAMPEDE (James Lancet 2016, PMID 26719232)
+- PSA "3 in 4 will not have cancer" — cited Cancer Research UK (citing NICE NG12) as ref 6
+- Biopsy wording: NICE NG131 acknowledges shift to transperineal; does not formally recommend one approach over the other — wording corrected from overstated original
+- ADT side effects: cited NICE NG131
+- LHRH antagonists named: degarelix (Firmagon), relugolix (Orgovyx)
+- All 4 stat grid cards carry inline citations ✅
+- References numbered via CSS counter ✅
+- All PMIDs verified by web search in session ✅
+- All 3 files built April 2026 ✅ — upload to GitHub outstanding
+- Visuals: 14 slides (3-card split pattern) — new canonical reference for all future visuals
+- Teleprompter: 9 segments, 10 cue boxes, 712 words
+
 ---
 
 ## 24. PLANNING NOTES — NEXT SERIES
@@ -1108,7 +1264,7 @@ Series colour: `#2A5A3A` (forest green). Dark variant: `#1A3A25`. Confirmed Apri
 | # | Title | Slug | Status |
 |---|-------|------|--------|
 | 27 | Breast Cancer | breast-cancer | All 3 files built April 2026 ✅ — upload to GitHub outstanding |
-| 28 | Prostate Cancer | prostate-cancer | Not yet built |
+| 28 | Prostate Cancer | prostate-cancer | All 3 files built April 2026 ✅ — upload to GitHub outstanding |
 | 29 | Lung Cancer | lung-cancer | Not yet built |
 | 30 | Bowel (Colorectal) Cancer | bowel-cancer | Not yet built |
 | 31 | Melanoma and Skin Cancer | melanoma | Not yet built |

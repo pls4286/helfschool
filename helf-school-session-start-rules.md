@@ -58,9 +58,10 @@ Before presenting ANY helf.school file, Claude runs the following audit internal
 - ev-stat-box: `padding:.9rem .75rem` · `overflow:hidden` · `.ev-conditions` at `.78rem`
 - Hero series badge: `color:#fff` — never the series accent colour
 - All animated cards: `animate-ready` class present, no hardcoded `opacity:0`
-- **CTA disclaimer size — LOCKED APRIL 2026:** CTA slide disclaimer text must be `font-size:1rem`, never `.80rem`. Check `.cta-disclaimer-text` before presenting.
-- **Closing slide disclaimer — LOCKED APRIL 2026:** Closing slide must use `.closing-disclaimer` / `.closing-disclaimer-text` classes at `font-size:1rem`. Never reuse `.cta-disclaimer` on the closing slide — it uses `.80rem` text.
+- **CTA slide — LOCKED APRIL 2026:** Must use `cta-wrap-v2` with `grid-template-rows: auto 1fr auto`. This is the only layout that guarantees the disclaimer is never clipped. Never `justify-content: center` or `space-between` on the CTA slide. `med-disc-text` at `font-size:1rem`. Canonical: `prostate-cancer-visuals.html` slide 13.
+- **Closing slide — LOCKED APRIL 2026:** Must be the helf.school brand close — NOT a stat repeat. `close-wrap` with `justify-content: flex-start` (never `center` — clips the logo). Three pitch cards (articles / Dr Paul / free tier). `med-disc-text` at `font-size:1rem`. Canonical: `prostate-cancer-visuals.html` slide 14.
 - **No "free at helf.school" — LOCKED APRIL 2026:** CTA slide subline must not reference "free at helf.school". Remove `.cta-sub` text or use a non-pricing line. "Start for free" card is permitted (genuine £0 tier). "Free to read — always" is not permitted. "Evidence-based health education — free at helf.school" is not permitted.
+- **3-CARD RULE — LOCKED APRIL 2026:** Never 6 cards on one slide. Always split to 3+3, labelled "(1 of 2)" and "(2 of 2)". Text cut-off on 6-card slides is a recurring failure. Canonical: `prostate-cancer-visuals.html` slides 3–10.
 - **VIEWPORT MAXIMISATION:** Every slide must fill at least 85% of the visible area. Slide padding maximum `1rem 1.5rem 0.8rem`. Body text minimum `.90rem`. Gaps maximum `.5rem`. Slide title minimum `1.55rem`. If content looks small or sparse — fix it before presenting. Visuals are filmed. Undersized content is a delivery failure.
 
 **The rule:** Output first, audit after is the failure pattern. Audit first, output after is the required pattern. Paul must never be the one to catch these errors.
@@ -328,6 +329,8 @@ The closing slide of every visuals file must use the `.closing-disclaimer` and `
 
 **The test:** Before presenting any visuals file, grep for `.closing-slide` and confirm the disclaimer inside uses `.closing-disclaimer-text`, not `.cta-disclaimer-text`.
 
+**Note — canonical update April 2026:** `prostate-cancer-visuals.html` uses `med-disclaimer` / `med-disc-text` classes on both the CTA and closing slides, which is the new canonical pattern. Both patterns (`.closing-disclaimer` for older files, `med-disc-text` for new files built to the prostate-cancer canonical) are acceptable, provided the font size is `1rem` in both cases.
+
 ---
 
 ## ⛔ RULE 21 — CTA SLIDE: 1rem DISCLAIMER + NO "FREE AT HELF.SCHOOL" — LOCKED APRIL 2026
@@ -361,6 +364,71 @@ Retrofit spec: `.ev-stat-box { background: linear-gradient(160deg, var(--series-
 
 ---
 
+## ⛔ RULE 23 — 3-CARD RULE: NEVER 6 CARDS ON ONE SLIDE — LOCKED APRIL 2026
+
+**When a visuals slide has 6 informational cards, always split into two slides of 3 cards each. Never reduce font size or line clamp to make 6 cards fit.**
+
+Text was cut off on multiple 6-card slides in April 2026. The fix: split to 3+3, label slides "(1 of 2)" and "(2 of 2)". 3-card slides use `-webkit-line-clamp:4` — body text breathes fully and nothing is clipped.
+
+Articles with 6 informational points (what is it, risk factors, diagnosis, treatment) will produce two slides each — typically resulting in 14-slide decks rather than 10. This is correct and expected.
+
+**Canonical reference:** `prostate-cancer-visuals.html` slides 3–10.
+
+---
+
+## ⛔ RULE 24 — CLOSING SLIDE: BRAND CLOSE + `justify-content: flex-start` — LOCKED APRIL 2026
+
+**The closing slide is the helf.school brand close — NOT a repeat of the research statistics from the CTA slide.**
+
+**Structure — canonical: `prostate-cancer-visuals.html` slide 14:**
+- `close-wrap` with `justify-content: flex-start` — **NEVER `justify-content: center`** (clips the logo at top when content height approaches viewport height)
+- helf.school logo — large Fraunces, with coral dot
+- "Health Education" tagline — uppercase
+- Brand headline — e.g. "Evidence-based. Built by a doctor."
+- Three brand pitch cards: 📚 article count · 🩺 Dr Paul credentials · 🔓 Start for free
+- `med-disclaimer` at `font-size:1rem`
+- Series label — e.g. "Cancer Series · Article 28 · Prostate Cancer"
+
+**Why this rule exists:** Dr Paul identified the previous closing slide (which repeated the CTA research stats) as redundant — the closing slide should be the brand impression. Confirmed April 2026.
+
+**Why `justify-content: flex-start` is mandatory:** `center` clips the logo when total content height is close to the viewport. `flex-start` anchors the logo at top — any overflow falls off the bottom, not the top.
+
+---
+
+## ⛔ RULE 25 — CTA SLIDE: `cta-wrap-v2` WITH `grid-template-rows: auto 1fr auto` — LOCKED APRIL 2026
+
+**The CTA slide must use `cta-wrap-v2` with `grid-template-rows: auto 1fr auto`. This is the only correct layout.**
+
+`auto 1fr auto` means: top badge/headline takes its natural height; middle 4 rows expand to fill all remaining space; bottom disclaimer anchors at bottom. Nothing is ever clipped.
+
+**Never use `justify-content: center` or `justify-content: space-between`** — both clip content when total height is close to or exceeds the viewport.
+
+**Structure:**
+- `.cta-top` — badge + headline (auto height)
+- `.cta-rows-v2` — 4 horizontal rows, `grid-template-rows: 1fr 1fr 1fr 1fr` (fills 1fr middle)
+- `.cta-bottom` — `med-disclaimer` at `font-size:1rem` (auto height, always visible)
+
+**Canonical reference:** `prostate-cancer-visuals.html` slide 13.
+
+**Why this rule exists:** Multiple CTA slides were delivered with cut-off top or bottom content in April 2026, caused by using `justify-content: center` or `space-between`. The `auto 1fr auto` grid is the fix that guarantees nothing is clipped.
+
+---
+
+## ⛔ RULE 26 — `prostate-cancer-visuals.html` IS THE NEW CANONICAL VISUALS REFERENCE — LOCKED APRIL 2026
+
+`prostate-cancer-visuals.html` replaces `lifestyle-changes-visuals.html` as the **primary canonical visuals reference** for all future builds.
+
+It demonstrates:
+- **3-card split slides** (slides 3–10) — the correct approach for all informational content
+- **`cta-wrap-v2` CTA** (slide 13) — `grid-template-rows: auto 1fr auto`, canonical layout
+- **Brand close** (slide 14) — `justify-content: flex-start`, three pitch cards
+- **`ev-card` research cards** with forest green gradient stat box
+- **Correct `#stage` padding** and `#topbar` structure throughout
+
+`lifestyle-changes-visuals.html` remains a valid secondary reference for the 6-row grid pattern (used in mechanism/action slides where appropriate). But for overall structure, CTA, closing, and card layout — `prostate-cancer-visuals.html` is the reference.
+
+---
+
 ## CONFIRMED FILE STATUS — UPDATED APRIL 2026
 
 **AUTHORITY NOTE: If any entry below conflicts with the article inventory in `helf-school-project-knowledge.md`, the project knowledge document is correct. Update this table accordingly.**
@@ -373,7 +441,7 @@ Retrofit spec: `.ev-stat-box { background: linear-gradient(160deg, var(--series-
 | cholesterol.html + visuals + teleprompter | ✅ Confirmed correct |
 | heart-attack-risk.html + visuals + teleprompter | ✅ Confirmed correct |
 | statins.html + visuals + teleprompter | ✅ Confirmed correct |
-| lifestyle-changes.html + visuals + teleprompter | ✅ Confirmed correct — CANONICAL REFERENCE |
+| lifestyle-changes.html + visuals + teleprompter | ✅ Confirmed correct — SECONDARY CANONICAL REFERENCE (6-row grid) |
 | salt-blood-pressure.html + visuals + teleprompter | ✅ Confirmed correct |
 | supplements-cholesterol.html + visuals + teleprompter | ✅ Confirmed correct |
 
@@ -418,7 +486,7 @@ Retrofit spec: `.ev-stat-box { background: linear-gradient(160deg, var(--series-
 | File | Status |
 |------|--------|
 | breast-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — upload to GitHub outstanding |
-| prostate-cancer.html + visuals + teleprompter | Not yet built |
+| prostate-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — upload to GitHub outstanding |
 | lung-cancer.html + visuals + teleprompter | Not yet built |
 | bowel-cancer.html + visuals + teleprompter | Not yet built |
 | melanoma.html + visuals + teleprompter | Not yet built |
