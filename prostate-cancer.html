@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prostate Cancer — helf.school</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --coral: #E8634A;
+    --cream: #FAF7F2;
+    --sage: #7A9E87;
+    --amber: #E8A84A;
+    --series: #2A5A3A;
+    --series-dark: #1A3A25;
+    --series-mid: #3A7A50;
+    --series-light: #A0D4B0;
+    --series-accent: #7ABF8E;
+    --body-text: #2C2C2C;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--body-text);
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(155deg, var(--series-dark) 0%, var(--series) 55%, var(--series-mid) 100%);
+    padding: 3.5rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 340px; height: 340px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+    pointer-events: none;
+  }
+
+  .hero-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+
+  .breadcrumb {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.78);
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+  .breadcrumb a { color: rgba(255,255,255,0.78); text-decoration: none; }
+  .breadcrumb a:hover { color: #fff; }
+  .breadcrumb span { margin: 0 0.4rem; }
+
+  .series-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 100px;
+    padding: 0.35rem 1rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1.4rem;
+  }
+  .series-badge::before {
+    content: '';
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--series-light);
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.12;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.88);
+    max-width: 640px;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-weight: 400;
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+    font-size: 0.84rem;
+    color: rgba(255,255,255,0.82);
+    font-weight: 500;
+  }
+  .hero-meta-item { display: flex; align-items: center; gap: 0.45rem; }
+  .hero-meta-item svg { opacity: 0.75; flex-shrink: 0; }
+
+  /* ── DISCLAIMER BAR ── */
+  .disclaimer-bar {
+    background: var(--navy);
+    padding: 0.9rem 2rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.88);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .disclaimer-bar strong { color: var(--amber); font-weight: 700; }
+
+  /* ── MAIN LAYOUT ── */
+  .article-body { max-width: 860px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+
+  /* ── SECTION HEADINGS ── */
+  .section-label {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--series);
+    margin-bottom: 0.5rem;
+  }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1.3rem;
+    line-height: 1.2;
+  }
+  h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.7rem;
+    margin-top: 1.6rem;
+    line-height: 1.3;
+  }
+
+  p { margin-bottom: 1.1rem; font-size: 1rem; line-height: 1.78; color: var(--body-text); font-weight: 400; }
+  p:last-child { margin-bottom: 0; }
+
+  .section-block { margin-bottom: 3.5rem; }
+
+  /* ── KEY TERMS BOX — Cancer Series: forest green gradient ── */
+  .key-terms {
+    background: linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%);
+    border-radius: 14px;
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+  }
+  .key-terms-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .key-terms-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9rem 2rem;
+  }
+  @media (max-width: 620px) { .key-terms-grid { grid-template-columns: 1fr; } }
+  .key-term { }
+  .key-term-label {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--series-light);
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.02em;
+  }
+  .key-term-def {
+    font-size: 0.93rem;
+    color: rgba(255,255,255,0.92);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  /* ── STAT GRID ── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+    margin: 2rem 0 1.8rem;
+  }
+  @media (max-width: 580px) { .stat-grid { grid-template-columns: 1fr; } }
+  .stat-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.4rem 1.5rem;
+    border: 1px solid rgba(42,90,58,0.12);
+    border-top: 4px solid var(--series);
+  }
+  .stat-number {
+    font-family: 'Fraunces', serif;
+    font-size: 2.6rem;
+    font-weight: 900;
+    color: var(--series);
+    line-height: 1.05;
+    margin-bottom: 0.25rem;
+  }
+  .stat-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .stat-prose {
+    font-size: 0.88rem;
+    color: var(--body-text);
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  sup a {
+    color: var(--series);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  sup a:hover { text-decoration: underline; }
+
+  /* ── RESEARCH CARDS — Cancer Series ── */
+  .research-card {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    border-radius: 10px;
+    border: 1px solid rgba(42,90,58,0.18);
+    overflow: hidden;
+    margin-bottom: 1.6rem;
+  }
+  @media (max-width: 600px) { .research-card { grid-template-columns: 1fr; } }
+
+  .ev-stat-box {
+    background: linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%);
+    padding: .9rem .75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+  .ev-kf-label {
+    font-size: .72rem;
+    font-weight: 700;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    margin-bottom: .35rem;
+  }
+  .ev-stat-row {
+    font-size: 3.2rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.0;
+    margin-bottom: .3rem;
+  }
+  .ev-outcome {
+    font-size: .95rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.95);
+    line-height: 1.3;
+    margin-bottom: .3rem;
+  }
+  .ev-conditions {
+    font-size: .78rem;
+    line-height: 1.32;
+    color: rgba(255,255,255,0.72);
+  }
+
+  .ev-body {
+    background: #fff;
+    padding: 1.1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .ev-body p {
+    font-size: .93rem;
+    line-height: 1.72;
+    margin-bottom: .7rem;
+  }
+  .ev-source {
+    font-size: .78rem;
+    color: rgba(44,44,44,0.55);
+    font-style: italic;
+    margin-top: auto;
+  }
+
+  /* ── DOCTOR SECTION — numbered steps ── */
+  .doctor-steps { margin: 1.5rem 0; }
+  .doctor-step {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    align-items: flex-start;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--series);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+  .step-content h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.25rem;
+  }
+  .step-content p { font-size: 0.93rem; color: var(--body-text); margin-bottom: 0; }
+
+  /* ── RISK CALLOUT ── */
+  .risk-callout {
+    background: rgba(42,90,58,0.07);
+    border-left: 4px solid var(--series);
+    border-radius: 0 10px 10px 0;
+    padding: 1.1rem 1.3rem;
+    margin: 1.8rem 0;
+    font-size: 0.95rem;
+    color: var(--body-text);
+    line-height: 1.7;
+  }
+  .risk-callout strong { color: var(--series-dark); }
+
+  /* ── PUTTING IT ALL TOGETHER — Cancer Series: forest green gradient ── */
+  .putting-together {
+    background: linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%);
+    border-radius: 14px;
+    padding: 2rem 2.2rem;
+    margin: 3rem 0 2.5rem;
+  }
+  .putting-together-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--series-light);
+    margin-bottom: 0.6rem;
+  }
+  .putting-together p {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.92);
+    font-style: italic;
+    line-height: 1.8;
+    margin-bottom: 0.9rem;
+  }
+  .putting-together p:last-child {
+    font-style: normal;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0;
+    font-size: 1.05rem;
+  }
+
+  /* ── REFERENCES ── */
+  .references { margin-top: 2.5rem; counter-reset: ref-counter; padding-left: 2rem; }
+  .references h2 { font-size: 1.25rem; margin-bottom: 1.2rem; }
+  .ref-block {
+    counter-increment: ref-counter;
+    border-left: 3px solid var(--series);
+    padding: 0.8rem 0 0.8rem 1.1rem;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  .ref-block::before {
+    content: counter(ref-counter) ".";
+    position: absolute;
+    left: -2rem;
+    top: 0.85rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--series);
+    width: 1.5rem;
+    text-align: right;
+  }
+  .ref-full {
+    font-size: 0.88rem;
+    color: var(--body-text);
+    line-height: 1.65;
+    margin-bottom: 0.4rem;
+    font-weight: 400;
+  }
+  .ref-links { display: flex; gap: 0.7rem; flex-wrap: wrap; }
+  .ref-pill {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.2rem 0.7rem;
+    border-radius: 100px;
+    background: rgba(42,90,58,0.10);
+    color: var(--series-dark);
+    text-decoration: none;
+    border: 1px solid rgba(42,90,58,0.22);
+  }
+  .ref-pill:hover { background: var(--series); color: #fff; }
+
+  /* ── RESEARCH FLAG ── */
+  .research-flag {
+    background: rgba(232,168,74,0.10);
+    border: 1px solid rgba(232,168,74,0.35);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin-top: 2rem;
+    font-size: 0.88rem;
+    color: var(--body-text);
+    line-height: 1.65;
+  }
+  .research-flag-title {
+    font-weight: 700;
+    color: #8A5A00;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.75);
+    padding: 2rem 2rem;
+    text-align: center;
+    font-size: 0.84rem;
+    line-height: 1.6;
+  }
+  .site-footer a { color: rgba(255,255,255,0.75); }
+  .site-footer strong { color: rgba(255,255,255,0.95); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a href="index.html">helf.school</a>
+      <span>›</span>
+      <a href="helf-school-conditions.html">Conditions</a>
+      <span>›</span>
+      <span>Prostate Cancer</span>
+    </nav>
+
+    <div class="series-badge">Cancer Series · Article 28</div>
+
+    <h1>Prostate Cancer</h1>
+    <p class="hero-subtitle">What it is, how it is diagnosed, what medicine knows about treatment — and what the evidence shows about outcomes.</p>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        12–14 minute read
+      </div>
+      <div class="hero-meta-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
+        Evidence-based
+      </div>
+      <div class="hero-meta-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        For adults
+      </div>
+      <div class="hero-meta-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Updated April 2026
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- DISCLAIMER BAR -->
+<div class="disclaimer-bar">
+  <strong>Health education, not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+</div>
+
+<!-- ARTICLE BODY -->
+<main class="article-body">
+
+  <!-- SECTION 1: WHAT IS IT? -->
+  <section class="section-block" id="what-is-it">
+    <div class="section-label">Section 1</div>
+    <h2>What is prostate cancer?</h2>
+
+    <p>The prostate is a small gland — roughly the size and shape of a walnut — that sits just below the bladder in men and people assigned male at birth. It surrounds the urethra (the tube that carries urine from the bladder out of the body) and produces fluid that forms part of semen.</p>
+
+    <p>Prostate cancer develops when cells in the prostate gland begin to divide and grow in an uncontrolled way. The vast majority of prostate cancers are adenocarcinomas (cancers that arise from gland cells), and most grow slowly. Some remain confined to the prostate for years or decades and may never cause significant problems; others are more aggressive and can spread beyond the gland.</p>
+
+    <p>Prostate cancer is the <strong>most common cancer in UK males</strong>.<sup><a href="#ref-1">1</a></sup> Unlike many other cancers, it often causes no symptoms in its early stages — particularly when it is still confined to the prostate gland. This means that in a significant proportion of cases, it is found incidentally during investigation for other symptoms, or following a prostate-specific antigen (PSA) blood test (see Key Terms below).</p>
+
+    <h3>How prostate cancer is graded</h3>
+
+    <p>When prostate cancer is detected, pathologists assess how the cancer cells look under a microscope to determine how abnormal they are. This is done using the <strong>Gleason score</strong> (see Key Terms below), which has now largely been translated into a simpler system called <strong>ISUP grade groups</strong> (see Key Terms below), running from Group 1 (least aggressive) to Group 5 (most aggressive). Grade group is a clinically important factor in determining how prostate cancer is managed.</p>
+
+    <h3>Staging: how far the cancer has spread</h3>
+
+    <p>Staging describes how advanced the cancer is at the time of diagnosis. The three broad categories clinically used are:</p>
+
+    <ul style="margin: 0.8rem 0 1rem 1.4rem; font-size: 1rem; line-height: 1.8; color: var(--body-text);">
+      <li><strong>Localised</strong> — cancer confined within the prostate gland</li>
+      <li><strong>Locally advanced</strong> — cancer that has grown beyond the prostate capsule (the outer covering of the gland) into surrounding tissue, but has not spread to distant organs</li>
+      <li><strong>Metastatic</strong> (see Key Terms below) — cancer that has spread to other parts of the body, most commonly to lymph nodes or bones</li>
+    </ul>
+
+    <p>Localised and locally advanced prostate cancer may be suitable for treatments given with curative intent (radical prostatectomy or radiotherapy). Metastatic prostate cancer is managed rather than cured, with the aim of controlling the cancer and maintaining quality of life for as long as possible.</p>
+  </section>
+
+  <!-- KEY TERMS BOX — Cancer Series: forest green gradient -->
+  <div class="key-terms" aria-label="Key terms">
+    <div class="key-terms-title">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      Key Terms
+    </div>
+    <div class="key-terms-grid">
+      <div class="key-term">
+        <div class="key-term-label">Prostate-specific antigen (PSA)</div>
+        <div class="key-term-def">A protein produced by the prostate gland, measurable in a blood test. Elevated PSA can indicate prostate cancer, but can also be raised by a benign enlarged prostate, prostatitis, or urinary infection. It is a marker, not a diagnosis.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-label">Gleason score</div>
+        <div class="key-term-def">A grading system for prostate cancer based on how abnormal the cancer cells look under a microscope. Two samples are graded 1–5 and added together (e.g. 3+4=7). Higher scores indicate more aggressive cancer.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-label">ISUP grade group</div>
+        <div class="key-term-def">The modern prostate cancer grading system (Groups 1–5) derived from the Gleason score, developed by the International Society of Urological Pathology. Group 1 is the least aggressive; Group 5 the most. This system has largely replaced the older Gleason-only approach in clinical practice.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-label">Active surveillance</div>
+        <div class="key-term-def">A structured monitoring programme for low-risk localised prostate cancer in which treatment is deliberately deferred. Regular PSA tests, MRI scans, and repeat biopsies monitor the cancer for signs of progression. Treatment is initiated if progression is detected.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-label">Androgen deprivation therapy (ADT)</div>
+        <div class="key-term-def">Treatment that reduces levels of male hormones (androgens such as testosterone) in the body, because prostate cancer cells typically depend on these hormones to grow. Also called hormone therapy. Given by injection or implant, sometimes combined with oral tablets.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-label">Radical prostatectomy</div>
+        <div class="key-term-def">Surgical removal of the entire prostate gland, its capsule (outer covering), and seminal vesicles (small glands that produce part of the semen). Performed with the intention of removing the cancer completely.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-label">mpMRI</div>
+        <div class="key-term-def">Multiparametric MRI — a type of MRI scan that combines several different imaging techniques to produce detailed images of the prostate. Used to identify suspicious areas before biopsy and to help stage localised prostate cancer. Recommended by NICE NG131 before biopsy in most men.</div>
+      </div>
+      <div class="key-term">
+        <div class="key-term-label">Metastatic</div>
+        <div class="key-term-def">Describes cancer that has spread from its original site to other parts of the body. In prostate cancer, metastases most commonly occur in lymph nodes and bones. Metastatic prostate cancer is not curable but is treatable.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: WHY DOES IT MATTER? -->
+  <section class="section-block" id="why-it-matters">
+    <div class="section-label">Section 2</div>
+    <h2>Why does it matter?</h2>
+
+    <!-- STAT GRID -->
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-number">~57,900</div>
+        <div class="stat-label">New cases per year in the UK</div>
+        <div class="stat-prose">Prostate cancer is the most common cancer in UK males, accounting for around 28% of all new male cancer cases — approximately 160 diagnoses every day.<sup><a href="#ref-1">1</a></sup></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">78.9%</div>
+        <div class="stat-label">Survive 10 or more years</div>
+        <div class="stat-prose">Around 8 in 10 men diagnosed with prostate cancer in the UK survive their disease for ten years or more — a figure that has risen dramatically over recent decades.<sup><a href="#ref-1">1</a></sup></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">~12,200</div>
+        <div class="stat-label">Deaths per year in the UK</div>
+        <div class="stat-prose">Prostate cancer is the second most common cause of cancer death in UK males, accounting for around 14% of all male cancer deaths (2021–2023).<sup><a href="#ref-1">1</a></sup></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">1 in 6</div>
+        <div class="stat-label">UK males diagnosed in their lifetime</div>
+        <div class="stat-prose">Prostate cancer is a common diagnosis. Risk increases with age — incidence rates are highest in men aged 75 to 79, with over a third of all new cases diagnosed in men aged 75 and over.<sup><a href="#ref-1">1</a></sup></div>
+      </div>
+    </div>
+
+    <p>Prostate cancer sits in a clinically important position: it is very common, often slow-growing, and associated with high survival rates when detected at an early stage. At the same time, it is responsible for thousands of deaths per year in the UK, and advanced disease — particularly metastatic prostate cancer — remains incurable. The majority of prostate cancer deaths occur in older men, with more than three-quarters of all UK prostate cancer deaths in men aged 75 and over.</p>
+
+    <p>Survival has improved substantially over the past fifty years. In the early 1970s, fewer than 1 in 4 men diagnosed with prostate cancer in the UK survived beyond ten years. By 2018, that figure stood at around 78.9% — a transformation driven by earlier detection and advances in treatment.</p>
+
+    <div class="risk-callout">
+      <strong>Clinically recognised higher risk in Black men:</strong> Incidence rates for prostate cancer are clinically recognised as higher in Black men compared with White men in the UK. This is an established pattern reflected in clinical guidelines and is relevant to conversations about when to discuss PSA testing. The underlying reasons — genetic, biological, and social — are the subject of ongoing research.<sup><a href="#ref-1">1</a></sup> <sup><a href="#ref-2">2</a></sup>
+    </div>
+
+    <p>Prostate cancer is not clearly linked to any preventable risk factor — no modifiable lifestyle cause has been conclusively established. The three main clinically recognised risk factors are age (risk increases markedly after 50), ethnicity (higher incidence in Black men), and family history (particularly a first-degree relative with prostate cancer, or a family history of BRCA gene mutations associated with breast cancer). Prostate cancer cannot currently be prevented.</p>
+  </section>
+
+  <!-- SECTION 3: WHAT YOUR DOCTOR MIGHT DISCUSS -->
+  <section class="section-block" id="doctor-discussion">
+    <div class="section-label">Section 3</div>
+    <h2>What your doctor might discuss</h2>
+
+    <p>Prostate cancer is most commonly found in one of three ways in UK practice: following investigation of lower urinary tract symptoms (LUTS — see below); after a PSA blood test that returns an elevated result; or as an incidental finding during investigation for something else. A significant proportion of men diagnosed with prostate cancer have no symptoms at all at the time of diagnosis.</p>
+
+    <h3>Symptoms</h3>
+
+    <p>When prostate cancer does cause symptoms, these typically arise because the tumour is pressing on the urethra (the tube carrying urine from the bladder). Lower urinary tract symptoms (LUTS — difficulty starting to urinate, a weak or interrupted urine stream, a feeling of incomplete bladder emptying, increased frequency, or urgency) are clinically recognised in the context of prostate cancer, although they are more commonly caused by benign prostatic hyperplasia (BPH — a non-cancerous enlargement of the prostate gland that is very common in older men). Blood in the urine or semen, bone pain (particularly in the back, hips, or pelvis), and unexplained weight loss may indicate more advanced disease — these are clinically recognised as patterns warranting prompt investigation.</p>
+
+    <h3>The PSA test and its limitations</h3>
+
+    <p>PSA (see Key Terms) is a protein produced by both normal and cancerous prostate cells. An elevated PSA level can prompt further investigation, but it is an imperfect marker. PSA can be raised by benign prostatic hyperplasia (BPH — non-cancerous prostate enlargement), prostatitis (inflammation of the prostate gland), urinary infection, vigorous exercise, and sexual activity before the test. Conversely, some men with prostate cancer have a PSA within the normal range. <mark style="background:rgba(232,168,74,0.28); padding:0.1rem 0.3rem; border-radius:3px; font-weight:600;">Around three in four men with a raised PSA level will not have cancer.<sup><a href="#ref-6">6</a></sup></mark></p>
+
+    <p>There is no national PSA screening programme in the UK. Under NICE guidance (NG12), PSA testing is offered to men who present with symptoms suggesting possible prostate cancer. Age-specific PSA thresholds are used to identify those who meet the threshold for urgent referral — these thresholds increase with age to account for the fact that PSA levels naturally tend to rise as men get older. Men who are asymptomatic but wish to discuss the PSA test with their GP can do so, and this is a recognised discussion in UK practice.</p>
+
+    <h3>Diagnosis: the pathway in UK practice</h3>
+
+    <p>Following referral to secondary care, the diagnostic pathway in UK clinical practice is guided by NICE NG131.</p>
+
+    <div class="doctor-steps">
+      <div class="doctor-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>mpMRI scan</h4>
+          <p>An mpMRI (see Key Terms) of the prostate is the clinically recommended first-line investigation for most men with suspected prostate cancer. It identifies suspicious areas within the gland and helps guide biopsy — reducing unnecessary biopsies in men with low-risk findings.</p>
+        </div>
+      </div>
+      <div class="doctor-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Biopsy</h4>
+          <p>A prostate biopsy (the removal of small tissue samples from the prostate gland for laboratory examination) is required to confirm a diagnosis of prostate cancer. Both transrectal (needle passed through the back wall of the rectum) and transperineal (needle inserted through the skin between the scrotum and anus) approaches are used in UK practice. NICE NG131 acknowledges a shift towards transperineal biopsy in many centres, noting that it may reduce rates of sepsis (serious blood infection) compared with the transrectal route, though it does not formally recommend one approach over the other.<sup><a href="#ref-2">2</a></sup></p>
+        </div>
+      </div>
+      <div class="doctor-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Staging scans</h4>
+          <p>If cancer is confirmed, further imaging — including CT scanning (computerised tomography — a detailed X-ray technique), bone scans, or PSMA-PET scans (a type of nuclear medicine scan using a tracer that binds to prostate cancer cells) — may be used to determine whether the cancer has spread beyond the prostate.</p>
+        </div>
+      </div>
+      <div class="doctor-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Risk stratification and multidisciplinary team review</h4>
+          <p>The Gleason score/ISUP grade group (see Key Terms), PSA level, and stage are combined to risk-stratify the cancer and inform treatment decisions. All prostate cancer cases in the UK are discussed at a multidisciplinary team (MDT) meeting of specialists before treatment is recommended.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Treatment options</h3>
+
+    <p>Treatment for prostate cancer depends on the stage and grade of the cancer, the man's age and general health, and his preferences. The main treatment approaches in UK practice include:</p>
+
+    <p><strong>Active surveillance</strong> (see Key Terms) is a clinically recommended approach for low-risk localised prostate cancer — particularly ISUP Grade Group 1. Men are monitored regularly with PSA testing, MRI, and repeat biopsy. Treatment is deferred unless the cancer shows evidence of progression. This approach is intended to avoid or delay the side effects of radical treatment in men whose cancer is unlikely to cause harm within their lifetime.</p>
+
+    <p><strong>Radical prostatectomy</strong> (see Key Terms) — surgical removal of the prostate gland — is a treatment option for localised and selected locally advanced prostate cancers. It is commonly performed using robotic-assisted laparoscopic (keyhole) surgery in the UK. Clinically recognised side effects include urinary incontinence (leakage of urine — in some men requiring the use of absorbent pads) and erectile dysfunction (difficulty achieving or maintaining an erection suitable for sexual intercourse). These effects vary in severity and duration between individuals.</p>
+
+    <p><strong>Radiotherapy</strong> — the use of high-energy radiation to destroy cancer cells — can be given externally (external beam radiotherapy, EBRT) or via internal implants (brachytherapy — the insertion of radioactive seeds into the prostate gland). It is an alternative to surgery for localised and locally advanced prostate cancer, often given alongside a short course of androgen deprivation therapy (ADT — see Key Terms). Clinically recognised side effects include bowel changes, urinary symptoms, and effects on sexual function.</p>
+
+    <p><strong>Androgen deprivation therapy (ADT)</strong> (see Key Terms) — given by injection of LHRH agonists (such as goserelin, Zoladex, or leuprorelin, Prostap) or LHRH antagonists (such as degarelix, Firmagon, given by injection, or relugolix, Orgovyx, taken as a once-daily tablet) — reduces testosterone levels to very low levels, slowing prostate cancer growth. LHRH antagonists act more directly than agonists and do not cause the temporary testosterone surge (a brief initial worsening of symptoms) that agonists can produce at the start of treatment. ADT is used alongside radiotherapy for higher-risk localised disease, and as the primary treatment for metastatic prostate cancer. Long-term ADT is associated with side effects including hot flushes, loss of bone density (osteoporosis — thinning of the bones), fatigue, and effects on mood and sexual function.<sup><a href="#ref-2">2</a></sup></p>
+
+    <p><strong>Antiandrogen tablets</strong> such as bicalutamide (Casodex) or enzalutamide (Xtandi) block the effect of testosterone on cancer cells and are used in combination with ADT in some settings, particularly for advanced or castration-resistant disease (prostate cancer that continues to grow despite standard ADT).</p>
+
+    <p><strong>Docetaxel (Taxotere)</strong> — a chemotherapy drug — is added to ADT in men with metastatic hormone-naïve prostate cancer (metastatic prostate cancer that has not yet been treated with ADT) who are sufficiently fit. It is clinically recognised as improving survival in this group (see Section 4).</p>
+
+    <p><strong>Abiraterone (Zytiga)</strong> — a tablet that further suppresses testosterone production — is a clinically recognised option added to standard ADT for metastatic prostate cancer in the UK, typically in combination with prednisolone (a corticosteroid — an anti-inflammatory steroid tablet).</p>
+  </section>
+
+  <!-- SECTION 4: WHAT THE RESEARCH SHOWS -->
+  <section class="section-block" id="research">
+    <div class="section-label">Section 4</div>
+    <h2>What the research shows</h2>
+
+    <p>Three landmark studies address the questions most central to prostate cancer education: what happens to survival across different treatments for localised disease; what the evidence shows for PSA screening; and what adding chemotherapy achieves in advanced disease.</p>
+
+    <!-- RESEARCH CARD 1: ProtecT -->
+    <div class="research-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">ProtecT Trial · NEJM 2023</div>
+        <div class="ev-stat-row">2.7%</div>
+        <div class="ev-outcome">prostate cancer-specific mortality at 15 years</div>
+        <div class="ev-conditions">similar across monitoring (3.1%), surgery (2.2%), and radiotherapy (2.9%) — P=0.53</div>
+      </div>
+      <div class="ev-body">
+        <p>The ProtecT trial (Prostate Testing for Cancer and Treatment) is the largest trial to have directly compared active monitoring, radical prostatectomy, and radiotherapy for localised prostate cancer. Published in the New England Journal of Medicine in 2023 with a median follow-up of 15 years, it followed 1,643 men with PSA-detected localised prostate cancer. Prostate cancer-specific mortality — deaths caused by prostate cancer rather than other causes — was low and similar across all three groups: 3.1% in the active monitoring group, 2.2% in the prostatectomy group, and 2.9% in the radiotherapy group. The overall difference was not statistically significant (P=0.53), meaning the trial found no evidence that any of the three treatment approaches produced a different risk of dying from prostate cancer over 15 years.</p>
+        <p>Active monitoring was associated with a higher rate of metastases (9.4% vs 4.7–5.0% in the radical treatment groups), reflecting the fact that some men progressed during monitoring and required later treatment. However, this higher metastasis rate did not translate into higher prostate cancer deaths over 15 years. These findings illustrate the complexity of treatment decisions for localised prostate cancer — survival outcomes are similar, but the side effect profiles of the three approaches differ substantially. Surgery carries greater risk of urinary leakage and erectile dysfunction; radiotherapy of bowel and urinary changes; active monitoring defers these risks unless the cancer progresses.</p>
+        <div class="ev-source">Hamdy FC et al. N Engl J Med 2023;388(17):1547–1558. PMID 36912538.</div>
+      </div>
+    </div>
+
+    <!-- RESEARCH CARD 2: CAP 15-year -->
+    <div class="research-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">CAP Trial · JAMA 2024</div>
+        <div class="ev-stat-row">0.69%</div>
+        <div class="ev-outcome">prostate cancer mortality with PSA screening</div>
+        <div class="ev-conditions"><mark style="background:rgba(232,168,74,0.35); color:#fff; padding:0.05rem 0.25rem; border-radius:2px; font-weight:700;">vs 0.78% without screening</mark> — 415,357 men, UK primary care, 15-year follow-up</div>
+      </div>
+      <div class="ev-body">
+        <p>The CAP trial (Cluster Randomised Trial of PSA Testing for Prostate Cancer) is the largest trial of PSA screening ever conducted, involving 415,357 men aged 50 to 69 registered with UK general practices. Men were randomly assigned either to receive an invitation for a single PSA test or to continue with standard care. A secondary analysis published in JAMA in 2024, with a median 15-year follow-up, found that prostate cancer mortality was lower in the screened group: 0.69% versus 0.78% — a statistically significant difference (rate ratio 0.92, 95% CI 0.85–0.99).</p>
+        <p>The original 10-year primary analysis of the CAP trial had shown no significant mortality benefit. The extended 15-year follow-up provides the first direct evidence from a UK primary care setting that a single PSA test offered to men in this age range is associated with a reduction in prostate cancer deaths. However, the absolute difference is modest, and the trial also demonstrated higher rates of prostate cancer diagnosis in the screened group — raising ongoing clinical questions about overdiagnosis (the detection of cancers that would not have caused harm within the man's lifetime) and the trade-offs involved in PSA testing at a population level.</p>
+        <div class="ev-source">Martin RM et al. JAMA 2024;331(17):1460–1470. PMID 38581198.</div>
+      </div>
+    </div>
+
+    <!-- RESEARCH CARD 3: STAMPEDE -->
+    <div class="research-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">STAMPEDE Trial · The Lancet 2016</div>
+        <div class="ev-stat-row">81 months</div>
+        <div class="ev-outcome">median overall survival — docetaxel + hormone therapy</div>
+        <div class="ev-conditions">vs 71 months on hormone therapy alone — metastatic hormone-naïve prostate cancer</div>
+      </div>
+      <div class="ev-body">
+        <p>The STAMPEDE trial (Systemic Therapy in Advancing or Metastatic Prostate cancer: Evaluation of Drug Efficacy) is a large UK-based platform trial — a design that allows multiple treatments to be tested simultaneously within a single framework. The primary survival results for the docetaxel arm, published in The Lancet in 2016, compared standard androgen deprivation therapy (ADT) alone against ADT combined with six cycles of docetaxel (Taxotere) — a chemotherapy drug that works by interfering with cancer cell division — in men with high-risk, locally advanced, or metastatic prostate cancer starting long-term hormone therapy.</p>
+        <p>In the metastatic group, adding docetaxel to ADT improved overall survival: median overall survival was 81 months in the docetaxel plus ADT group compared with 71 months in the ADT-only group (hazard ratio (HR) — a measure of relative risk over time — 0.78; 95% CI 0.66–0.93; p=0.006). This finding established the addition of docetaxel to initial hormone therapy as an important clinical advance for metastatic hormone-naïve prostate cancer — men with metastatic disease who have not yet received ADT. Subsequent STAMPEDE analyses have also demonstrated survival benefits for the addition of abiraterone (Zytiga) to ADT.</p>
+        <div class="ev-source">James ND et al. Lancet 2016;387(10024):1163–1177. PMID 26719232.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUTTING IT ALL TOGETHER -->
+  <div class="putting-together">
+    <div class="putting-together-label">Putting it all together</div>
+    <p>Prostate cancer is the most common cancer in UK males, and it occupies an unusual position in oncology: it is frequently slow-growing, often detected without symptoms, and associated with high overall survival rates — yet it still claims around 12,200 lives per year in the UK. The picture is one of genuine complexity. For men with localised disease, the ProtecT trial's 15-year data shows that survival is similar whether the cancer is monitored closely or treated radically; the differences lie in side effects rather than mortality. For men with metastatic disease, the STAMPEDE trial showed that adding chemotherapy to hormone therapy at the outset significantly extends survival. The CAP trial's extended follow-up provides the first UK-based evidence that PSA testing reduces prostate cancer mortality — though the absolute benefit is modest and the balance with overdiagnosis remains a subject of ongoing clinical discussion.</p>
+    <p>The evidence, taken together, reflects a condition in which careful risk stratification, informed decision-making, and close monitoring can all be as important as the treatment itself.</p>
+  </div>
+
+  <!-- REFERENCES -->
+  <section class="references" id="references">
+    <div class="section-label">References</div>
+    <h2>References</h2>
+
+    <div class="ref-block" id="ref-1">
+      <div class="ref-full">Cancer Research UK. Prostate cancer statistics. Accessed April 2026.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.cancerresearchuk.org/health-professional/cancer-statistics/statistics-by-cancer-type/prostate-cancer" target="_blank" rel="noopener">Cancer Research UK</a>
+      </div>
+    </div>
+
+    <div class="ref-block" id="ref-2">
+      <div class="ref-full">National Institute for Health and Care Excellence. Prostate cancer: diagnosis and management. NICE guideline NG131. Published May 2019; updated 2025. nice.org.uk/guidance/ng131</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.nice.org.uk/guidance/ng131" target="_blank" rel="noopener">NICE NG131</a>
+      </div>
+    </div>
+
+    <div class="ref-block" id="ref-3">
+      <div class="ref-full">Hamdy FC, Donovan JL, Lane JA, Metcalfe C, Davis M, Turner EL, et al.; ProtecT Study Group. Fifteen-year outcomes after monitoring, surgery, or radiotherapy for prostate cancer. N Engl J Med 2023;388(17):1547–1558. doi: 10.1056/NEJMoa2214122.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1056/NEJMoa2214122" target="_blank" rel="noopener">DOI</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/36912538/" target="_blank" rel="noopener">PubMed 36912538</a>
+      </div>
+    </div>
+
+    <div class="ref-block" id="ref-4">
+      <div class="ref-full">Martin RM, Turner EL, Young GJ, Metcalfe C, Walsh EI, Lane JA, et al.; CAP Trial Group. Prostate-specific antigen screening and 15-year prostate cancer mortality: a secondary analysis of the CAP randomized clinical trial. JAMA 2024;331(17):1460–1470. doi: 10.1001/jama.2024.4011.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1001/jama.2024.4011" target="_blank" rel="noopener">DOI</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/38581198/" target="_blank" rel="noopener">PubMed 38581198</a>
+      </div>
+    </div>
+
+    <div class="ref-block" id="ref-5">
+      <div class="ref-full">James ND, Sydes MR, Clarke NW, Mason MD, Dearnaley DP, Spears MR, et al.; STAMPEDE investigators. Addition of docetaxel, zoledronic acid, or both to first-line long-term hormone therapy in prostate cancer (STAMPEDE): survival results from an adaptive, multiarm, multistage, platform randomised controlled trial. Lancet 2016;387(10024):1163–1177. doi: 10.1016/S0140-6736(15)01037-5.</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://doi.org/10.1016/S0140-6736(15)01037-5" target="_blank" rel="noopener">DOI</a>
+        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/26719232/" target="_blank" rel="noopener">PubMed 26719232</a>
+      </div>
+    </div>
+
+    <div class="ref-block" id="ref-6">
+      <div class="ref-full">Cancer Research UK. PSA testing — benefits and risks. Accessed April 2026. (Citing NICE guideline NG12: Suspected cancer: recognition and referral.)</div>
+      <div class="ref-links">
+        <a class="ref-pill" href="https://www.cancerresearchuk.org/health-professional/diagnosis/investigations/psa-testing" target="_blank" rel="noopener">Cancer Research UK</a>
+        <a class="ref-pill" href="https://www.nice.org.uk/guidance/ng12" target="_blank" rel="noopener">NICE NG12</a>
+      </div>
+    </div>
+  </section>
+
+
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p style="margin-bottom:0.4rem;"><strong>helf.school</strong> — Health education for everyone.</p>
+  <p style="margin-bottom:0.6rem; font-size:0.82rem;">Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+  <p style="font-size:0.78rem; color:rgba(255,255,255,0.60);">© 2026 helf.school. Health education only — not a substitute for professional medical advice. Information updated April 2026 · Version 1.0</p>
+</footer>
+
+</body>
+</html>
