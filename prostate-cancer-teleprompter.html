@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prostate Cancer — Teleprompter · helf.school</title>
+<style>
+:root{--series:#2A5A3A;--series-light:#A0D4B0;--amber:#E8A84A;--bg:#0a0a0a;--text:#f0f0f0;--cue-bg:rgba(42,90,58,0.25);--cue-border:#2A5A3A;--controls-bg:rgba(0,0,0,0.85)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(--text);overflow:hidden;height:100vh;display:flex;flex-direction:column}
+.controls{position:fixed;top:0;left:0;right:0;height:52px;background:var(--controls-bg);border-bottom:1px solid rgba(160,212,176,.15);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;z-index:100;gap:1rem}
+.controls-left{display:flex;align-items:center;gap:.8rem}
+.controls-right{display:flex;align-items:center;gap:.8rem}
+.ctrl-btn{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.20);color:#fff;cursor:pointer;border-radius:6px;padding:.35rem .9rem;font-size:.88rem;font-weight:600;font-family:Georgia,serif;transition:background .15s}
+.ctrl-btn:hover{background:rgba(255,255,255,.20)}
+.ctrl-btn.pause-btn{background:rgba(42,90,58,.40);border-color:var(--series-light);color:var(--series-light);padding:.35rem 1.2rem;font-size:1.0rem}
+.ctrl-btn.pause-btn:hover{background:rgba(42,90,58,.60)}
+.speed-display{font-size:.85rem;color:rgba(255,255,255,.65);min-width:70px;text-align:center}
+.font-display{font-size:.85rem;color:rgba(255,255,255,.65);min-width:50px;text-align:center}
+.ctrl-label{font-size:.75rem;color:rgba(255,255,255,.45);letter-spacing:.05em}
+.scroll-area{margin-top:52px;margin-bottom:36px;flex:1;overflow:hidden;position:relative}
+.script-inner{padding:3rem 2.5rem 6rem;max-width:860px;margin:0 auto;will-change:transform}
+p.line{font-size:1.9rem;line-height:1.65;color:var(--text);margin-bottom:1.2rem;font-weight:400}
+p.line strong{color:var(--series-light);font-weight:700}
+p.line em{color:var(--amber);font-style:italic}
+p.line mark{background:rgba(232,168,74,.25);color:#fff;padding:.05rem .3rem;border-radius:3px}
+.cue-box{background:var(--cue-bg);border:2px solid var(--cue-border);border-radius:10px;padding:.9rem 1.3rem;margin:1.8rem 0 1.2rem;display:flex;align-items:center;gap:.8rem}
+.cue-arrow{font-size:1.4rem;color:var(--series-light);flex-shrink:0}
+.cue-text{font-family:Georgia,serif;font-size:1.1rem;font-weight:700;color:var(--series-light);letter-spacing:.02em}
+.dots-bar{position:fixed;bottom:0;left:0;right:0;height:36px;background:rgba(0,0,0,.85);border-top:1px solid rgba(160,212,176,.10);display:flex;align-items:center;justify-content:center;gap:.6rem}
+.seg-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.20);cursor:pointer;transition:all .2s;border:none}
+.seg-dot.active{background:var(--series-light);transform:scale(1.3)}
+</style>
+</head>
+<body>
+
+<div class="controls">
+  <div class="controls-left">
+    <button class="ctrl-btn pause-btn" id="pauseBtn" onclick="togglePause()">⏸ Pause</button>
+    <span class="ctrl-label">SPEED</span>
+    <button class="ctrl-btn" onclick="changeSpeed(-1)">−</button>
+    <span class="speed-display" id="speedDisplay">Speed 4</span>
+    <button class="ctrl-btn" onclick="changeSpeed(1)">+</button>
+  </div>
+  <div class="controls-right">
+    <span class="ctrl-label">TEXT</span>
+    <button class="ctrl-btn" onclick="changeFont(-1)">A−</button>
+    <span class="font-display" id="fontDisplay">1.9rem</span>
+    <button class="ctrl-btn" onclick="changeFont(1)">A+</button>
+  </div>
+</div>
+
+<div class="scroll-area" id="scrollArea">
+<div class="script-inner" id="scriptInner">
+
+<!-- SEG 1: INTRO — Slide 1 -->
+<div id="seg-1">
+<p class="line">I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about <strong>prostate cancer.</strong></p>
+<p class="line">What I'm giving you here is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — let's get into it.</p>
+</div>
+
+<!-- SEG 2: SCALE — Slide 2 -->
+<div id="seg-2">
+<div class="cue-box"><span class="cue-arrow">▶ ADVANCE NOW — then read</span><span class="cue-text">Slide 2 — The scale</span></div>
+<p class="line">Prostate cancer is the <em>most common cancer in UK males.</em></p>
+<p class="line">Around <strong>57,900 new diagnoses</strong> every year — that's about 160 men every single day. And the lifetime risk for a UK male is around <strong>1 in 6.</strong></p>
+<p class="line">Survival has been transformed. Today, <strong>78.9%</strong> of men diagnosed survive ten years or more. In the early 1970s, fewer than 1 in 4 did.</p>
+<p class="line">Around <strong>12,200 men</strong> still die from it each year — the second most common cause of cancer death in UK males.</p>
+</div>
+
+<!-- SEG 3: WHAT IS IT — Slides 3 + 4 -->
+<div id="seg-3">
+<div class="cue-box"><span class="cue-arrow">▶ ADVANCE NOW — then read</span><span class="cue-text">Slides 3–4 — What is prostate cancer?</span></div>
+<p class="line">The prostate is a walnut-sized gland sitting just below the bladder in men — it surrounds the urethra and produces part of the fluid in semen.</p>
+<p class="line">Prostate cancer happens when cells in that gland start dividing uncontrolled. Almost all cases are slow-growing. But some are more aggressive and can spread.</p>
+<p class="line">When a biopsy is taken, the cancer is graded using <strong>ISUP grade groups</strong> — 1 to 5, with 1 being least aggressive. And staging tells us how far it's spread — <strong>localised, locally advanced,</strong> or <strong>metastatic.</strong></p>
+</div>
+
+<!-- SEG 4: RISK FACTORS — Slides 5 + 6 -->
+<div id="seg-4">
+<div class="cue-box"><span class="cue-arrow">▶ ADVANCE NOW — then read</span><span class="cue-text">Slides 5–6 — Risk factors and the PSA test</span></div>
+<p class="line">The three main risk factors are age — risk rises sharply after 50 — ethnicity, with clinically recognised higher incidence rates in Black men — and family history, particularly a first-degree relative with prostate cancer.</p>
+<p class="line">Importantly, prostate cancer is <em>not</em> linked to any modifiable lifestyle cause. It cannot currently be prevented.</p>
+<p class="line">Now — the PSA test. It measures a protein from the prostate. An elevated result can prompt investigation. But here's what's crucial to understand: <mark>around 3 in 4 men with a raised PSA will not have cancer.</mark> PSA is an imperfect marker. It prompts investigation — it is not a diagnosis.</p>
+</div>
+
+<!-- SEG 5: DIAGNOSIS — Slides 7 + 8 -->
+<div id="seg-5">
+<div class="cue-box"><span class="cue-arrow">▶ ADVANCE NOW — then read</span><span class="cue-text">Slides 7–8 — Diagnosis pathway</span></div>
+<p class="line">Prostate cancer often causes no symptoms at all. When symptoms do occur — urinary difficulty, blood in the urine or semen, or bone pain — or when PSA is elevated, a man is referred urgently to urology.</p>
+<p class="line">The first investigation, per NICE guidelines, is an <strong>mpMRI scan</strong> — a detailed MRI of the prostate. This identifies suspicious areas and guides whether a biopsy is actually needed.</p>
+<p class="line">If a biopsy confirms cancer, all cases are reviewed at a <strong>multidisciplinary team meeting</strong> where the grade, stage, and PSA are combined to risk-stratify the cancer and agree a treatment plan.</p>
+</div>
+
+<!-- SEG 6: TREATMENT LOCALISED — Slide 9 -->
+<div id="seg-6">
+<div class="cue-box"><span class="cue-arrow">▶ ADVANCE NOW — then read</span><span class="cue-text">Slide 9 — Treatment: localised disease</span></div>
+<p class="line">For low-risk localised disease, the first option is often <strong>active surveillance</strong> — close monitoring with PSA, MRI, and repeat biopsy. Treatment starts only if the cancer progresses.</p>
+<p class="line">For higher-risk localised disease, the main options are <strong>radical prostatectomy</strong> — surgical removal of the prostate — or <strong>radiotherapy.</strong> Both can potentially cure the cancer — but both carry significant side effects that differ between them.</p>
+</div>
+
+<!-- SEG 7: TREATMENT ADVANCED — Slide 10 -->
+<div id="seg-7">
+<div class="cue-box"><span class="cue-arrow">▶ ADVANCE NOW — then read</span><span class="cue-text">Slide 10 — Treatment: advanced disease</span></div>
+<p class="line">For advanced and metastatic disease, <strong>hormone therapy</strong> — which suppresses testosterone — is the cornerstone of treatment. It's given by injection or daily tablet.</p>
+<p class="line">For fit men with newly diagnosed metastatic prostate cancer, adding <strong>docetaxel chemotherapy</strong> to hormone therapy from the outset improves survival — as the STAMPEDE trial showed.</p>
+</div>
+
+<!-- SEG 8: RESEARCH — Slides 11 + 12 -->
+<div id="seg-8">
+<div class="cue-box"><span class="cue-arrow">▶ ADVANCE NOW — then read</span><span class="cue-text">Slide 11 — Research: ProtecT + CAP</span></div>
+<p class="line">The <strong>ProtecT trial,</strong> published in the New England Journal of Medicine in 2023, followed 1,643 UK men for 15 years comparing monitoring, surgery, and radiotherapy for localised prostate cancer.</p>
+<p class="line">Prostate cancer-specific mortality was <strong>2.7%</strong> overall — and statistically similar across all three groups. The key differences between treatments are about <em>side effects,</em> not survival.</p>
+<p class="line">The <strong>CAP trial,</strong> published in JAMA in 2024, randomised over 415,000 UK men to a single PSA test or standard care. At 15 years, prostate cancer mortality was <strong>0.69%</strong> in the screened group versus <strong>0.78%</strong> without screening — the first UK trial evidence that a single PSA test reduces prostate cancer deaths.</p>
+
+<div class="cue-box"><span class="cue-arrow">▶ ADVANCE NOW — then read</span><span class="cue-text">Slide 12 — Research: STAMPEDE</span></div>
+<p class="line">The <strong>STAMPEDE trial,</strong> published in The Lancet in 2016, showed that adding docetaxel chemotherapy to hormone therapy extended median overall survival in metastatic prostate cancer from <strong>71 months to 81 months</strong> — establishing early chemotherapy alongside hormone therapy as standard care for fit men with newly diagnosed metastatic disease.</p>
+</div>
+
+<!-- SEG 9: CTA — Slides 13 + 14 -->
+<div id="seg-9">
+<div class="cue-box"><span class="cue-arrow">▶ ADVANCE NOW — then read</span><span class="cue-text">Slide 13 — CTA</span></div>
+<p class="line">The full article on prostate cancer is available now at <strong>helf.school</strong> — every statistic cited to its primary source, written in plain English.</p>
+<p class="line">Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Thanks for watching.</p>
+
+<div class="cue-box"><span class="cue-arrow">▶ ADVANCE NOW — then read</span><span class="cue-text">Slide 14 — Closing</span></div>
+</div>
+
+</div>
+</div>
+
+<div class="dots-bar" id="dotsBar"></div>
+
+<script>
+const SPEEDS=[0,8,14,20,28,38,50];
+const FONT_SIZES=[1.4,1.6,1.9,2.2,2.6,3.0];
+let speedIdx=3,fontIdx=2,paused=false,pos=0;
+const scrollArea=document.getElementById('scrollArea');
+const inner=document.getElementById('scriptInner');
+const pauseBtn=document.getElementById('pauseBtn');
+const speedDisplay=document.getElementById('speedDisplay');
+const fontDisplay=document.getElementById('fontDisplay');
+const SEGS=['seg-1','seg-2','seg-3','seg-4','seg-5','seg-6','seg-7','seg-8','seg-9'];
+
+function buildDots(){
+  const bar=document.getElementById('dotsBar');
+  SEGS.forEach((id,i)=>{
+    const d=document.createElement('button');
+    d.className='seg-dot'+(i===0?' active':'');
+    d.setAttribute('aria-label','Segment '+(i+1));
+    d.addEventListener('click',()=>jumpTo(id));
+    bar.appendChild(d);
+  });
+}
+function updateDots(){
+  const dots=document.querySelectorAll('.seg-dot');
+  let activeIdx=0;
+  SEGS.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el){const rect=el.getBoundingClientRect();if(rect.top<window.innerHeight*.5)activeIdx=i;}
+  });
+  dots.forEach((d,i)=>d.classList.toggle('active',i===activeIdx));
+}
+function jumpTo(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  const areaTop=scrollArea.getBoundingClientRect().top;
+  const elTop=el.getBoundingClientRect().top;
+  pos+=(elTop-areaTop)-80;
+  applyPos();updateDots();
+}
+function applyPos(){
+  const maxScroll=inner.offsetHeight-scrollArea.offsetHeight;
+  pos=Math.max(0,Math.min(pos,maxScroll));
+  inner.style.transform='translateY('+(-pos)+'px)';
+}
+function scroll(){
+  if(!paused){pos+=SPEEDS[speedIdx]*.05;applyPos();updateDots();}
+  requestAnimationFrame(scroll);
+}
+function togglePause(){
+  paused=!paused;
+  pauseBtn.textContent=paused?'▶ Play':'⏸ Pause';
+  pauseBtn.style.color=paused?'#E8A84A':'var(--series-light)';
+}
+function changeSpeed(dir){
+  speedIdx=Math.max(0,Math.min(SPEEDS.length-1,speedIdx+dir));
+  speedDisplay.textContent='Speed '+(speedIdx+1);
+}
+function changeFont(dir){
+  fontIdx=Math.max(0,Math.min(FONT_SIZES.length-1,fontIdx+dir));
+  const size=FONT_SIZES[fontIdx];
+  document.querySelectorAll('p.line').forEach(p=>p.style.fontSize=size+'rem');
+  fontDisplay.textContent=size+'rem';
+}
+let touchStartY=0;
+scrollArea.addEventListener('touchstart',e=>{touchStartY=e.touches[0].clientY;paused=true;pauseBtn.textContent='▶ Play';pauseBtn.style.color='#E8A84A';},{passive:true});
+scrollArea.addEventListener('touchmove',e=>{
+  const dy=touchStartY-e.touches[0].clientY;
+  pos+=dy*.5;touchStartY=e.touches[0].clientY;
+  applyPos();updateDots();
+},{passive:true});
+document.addEventListener('keydown',e=>{
+  if(e.key===' '){e.preventDefault();togglePause();}
+  if(e.key==='ArrowUp'){e.preventDefault();pos-=80;applyPos();}
+  if(e.key==='ArrowDown'){e.preventDefault();pos+=80;applyPos();}
+});
+buildDots();
+scroll();
+</script>
+</body>
+</html>
