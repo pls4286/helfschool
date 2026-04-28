@@ -4,7 +4,7 @@
 
 ## ⛔ RULE 0 — MANDATORY PRE-OUTPUT AUDIT (THE RULE THAT ENFORCES ALL OTHER RULES)
 
-Every session has produced errors — wrong citations, wrong PMIDs, wrong NICE numbers, medical terms without lay definitions, hero text invisible against matching backgrounds, research card stat boxes showing statistical machinery instead of clinical conclusions, figures paraphrased into different numerical forms, figures taken from unapproved secondary sources, and stat grid cards missing inline citations. These errors share one cause: output was generated before the full audit was completed.
+Every session has produced errors — wrong citations, wrong PMIDs, wrong NICE numbers, medical terms without lay definitions, hero text invisible against matching backgrounds, research card stat boxes showing statistical machinery instead of clinical conclusions, figures paraphrased into different numerical forms, figures taken from unapproved secondary sources, stat grid cards missing inline citations, and body prose stats missing citations entirely. These errors share one cause: output was generated before the full audit was completed.
 
 **This rule exists to stop that pattern.**
 
@@ -41,6 +41,12 @@ Before presenting ANY helf.school file, Claude runs the following audit internal
 - A stat grid card with no citation is a QC failure regardless of how obvious the stat appears
 - Example of this failure: breast cancer article (April 2026) — three of four stat grid cards had no citations. Caught by Dr Paul during review.
 
+**ALL STATS IN ALL LOCATIONS require citations — LOCKED APRIL 2026:**
+- Scan every paragraph and every text element in the file for numerical figures and percentages
+- Every stat in every location must carry an inline superscript citation
+- This covers: body prose, Key Terms box, stat grid (covered above), research card text, Putting it all together box, discussion cards, myth panel evidence text, visuals slide text, teleprompter scripts
+- **Why this rule was added:** Dr Paul identified in `lung-cancer.html` (Article 29, April 2026) that "It is the most common cause of cancer death in the UK" and "around 80 to 85% of all lung cancers are NSCLC" both appeared in body prose without citations. This confirmed the rule applies universally to all locations — not just stat grid cards.
+
 **Exact figure audit (runs before presenting every file):**
 - Every statistic must use the paper's exact numerical expression
 - Never convert between forms: ">30%" must not become "1 in 3" or "33%"; "1 in 1,000" must not become "0.1%"
@@ -53,6 +59,11 @@ Before presenting ANY helf.school file, Claude runs the following audit internal
 - Derived figures are not acceptable — only cite figures explicitly stated in the approved source
 - Causal attributions require a specific primary citation — never inferred from context
 - Example of this failure: breast cancer article (April 2026) used 60,763 from WCRF instead of "around 59,000" from Cancer Research UK directly
+
+**Subtype/list formatting audit — LOCKED APRIL 2026:**
+- Before presenting any article, grep for phrases like "three main", "four types", "two subtypes", "the following", "X stages"
+- Any formally counted or named set of items must appear as a `<ol class="subtype-list">` numbered list — never as comma-separated inline prose
+- Canonical: `lung-cancer.html` Section 1 NSCLC subtypes (Article 29, April 2026)
 
 **Visuals audit (runs before presenting every visuals file):**
 - ev-stat-box: `padding:.9rem .75rem` · `overflow:hidden` · `.ev-conditions` at `.78rem`
@@ -429,6 +440,41 @@ It demonstrates:
 
 ---
 
+## ⛔ RULE 27 — ALL STATS REQUIRE CITATIONS IN EVERY LOCATION — LOCKED APRIL 2026
+
+**Every numerical figure, percentage, or quantitative claim in any helf.school file requires an inline superscript citation — regardless of where in the file it appears.**
+
+This covers every location: body prose paragraphs, Key Terms box definitions, stat grid cards (see Rule 16), research card stat boxes and body text, Putting it all together box, discussion cards, myth panel evidence text, visuals slide text, and teleprompter scripts.
+
+**Before presenting any file:** scan every paragraph and every text element for numerical figures and percentages. Every one must have a superscript citation or be flagged ⚑. If it's a number, it needs a citation.
+
+**Why this rule was added:** Dr Paul identified in `lung-cancer.html` (Article 29, April 2026) that "It is the most common cause of cancer death in the UK" appeared in body prose paragraph 1 without a citation, and "around 80 to 85% of all lung cancers are NSCLC" appeared in body prose paragraph 2 without a citation. Both were body prose statements — locations not previously checked as rigorously as stat grid cards. This confirmed the rule must apply universally. Both were corrected.
+
+**The rule:** No stat anywhere. If it's a number, it needs a citation. No exceptions, no locations exempt.
+
+---
+
+## ⛔ RULE 28 — SUBTYPES AND FORMALLY NAMED SETS MUST BE LISTED, NOT IN PROSE — LOCKED APRIL 2026
+
+**When article body prose introduces a formally counted or named set of items using a phrase like "three main subtypes", "four stages", "two types of", "the following five", those items must be presented in a numbered or bulleted HTML list — never as comma-separated inline prose.**
+
+**The test:** if you can count the items in the introductory sentence, they go in a list.
+
+**Implementation:** use `<ol class="subtype-list">` with the canonical CSS pattern first introduced in `lung-cancer.html` (Article 29, April 2026):
+- Numbered circle markers in series colour
+- Bold term name followed by em-dash and definition
+- Full body size (1rem, line-height 1.72)
+
+**Before presenting any article:** grep for phrases like "three main", "four types", "two subtypes", "the following". Any formally introduced set of items must be in a list.
+
+**Why this rule was added:** Dr Paul identified that the three NSCLC subtypes (adenocarcinoma, squamous cell carcinoma, large cell carcinoma) were written as inline comma-separated prose in the first draft of `lung-cancer.html` Section 1 (April 2026). The rule is now explicit: distinct named items need visual separation so readers can find and refer back to individual items.
+
+**Canonical reference:** `lung-cancer.html` Section 1 — NSCLC subtypes as `<ol class="subtype-list">` (April 2026).
+
+**Retrofit:** Apply `<ol class="subtype-list">` pattern when any article is next opened and contains formally introduced sets of items.
+
+---
+
 ## CONFIRMED FILE STATUS — UPDATED APRIL 2026
 
 **AUTHORITY NOTE: If any entry below conflicts with the article inventory in `helf-school-project-knowledge.md`, the project knowledge document is correct. Update this table accordingly.**
@@ -487,7 +533,7 @@ It demonstrates:
 |------|--------|
 | breast-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — upload to GitHub outstanding |
 | prostate-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — upload to GitHub outstanding |
-| lung-cancer.html + visuals + teleprompter | Not yet built |
+| lung-cancer.html | ✅ Article HTML built April 2026 — visuals and teleprompter outstanding |
 | bowel-cancer.html + visuals + teleprompter | Not yet built |
 | melanoma.html + visuals + teleprompter | Not yet built |
 

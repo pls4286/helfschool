@@ -5,7 +5,7 @@
 
 ## ⚠️ DOCUMENT INTEGRITY — CLAUDE MUST READ THIS BEFORE ANY SESSION WORK
 
-**This document has 25 numbered sections. Minimum expected line count: ~1200 lines.**
+**This document has 25 numbered sections. Minimum expected line count: ~1300 lines.**
 
 When updating this document at the end of any session, Claude MUST:
 1. Run `wc -l` on the new file before presenting it to Dr Paul
@@ -59,11 +59,13 @@ This audit must be completed internally before Claude presents any article, visu
 
 8. **Stat grid citation audit — LOCKED APRIL 2026** — run `grep -A 3 "stat-prose"` before presenting any article and confirm every `.stat-prose` instance has a `ref-` link. Every stat grid card must carry a superscript inline citation. No exceptions.
 
+9. **ALL STATS IN ALL LOCATIONS REQUIRE CITATIONS — LOCKED APRIL 2026** — scan every paragraph and every text element in the file for numerical figures and percentages. Every stat in every location must carry an inline superscript citation. This covers: body prose paragraphs, Key Terms box definitions, research card stat boxes and body text, Putting it all together box, discussion cards, myth panel evidence text, and visuals slide text. Stat grid cards are covered by audit item 8. This broader audit covers all other locations. No stat goes uncited anywhere.
+
 **For every visuals file, additionally run:**
 
-9. **ev-stat-box check** — `.ev-conditions` font is `.78rem`, padding is `.9rem .75rem`, `overflow:hidden` present. ev-conditions text is short enough to fit 220px column.
+10. **ev-stat-box check** — `.ev-conditions` font is `.78rem`, padding is `.9rem .75rem`, `overflow:hidden` present. ev-conditions text is short enough to fit 220px column.
 
-10. **animate-ready check** — all animated cards have `animate-ready` class. No hardcoded `opacity:0` on card elements.
+11. **animate-ready check** — all animated cards have `animate-ready` class. No hardcoded `opacity:0` on card elements.
 
 **This audit replaces the tendency to generate output first and check after. The audit happens before output — every time, without exception.**
 
@@ -194,11 +196,11 @@ Series colour: `#2A5A3A` (forest green). Dark variant: `#1A3A25`. **Note: initia
 |---|-------|------|--------|
 | 27 | Breast Cancer | breast-cancer | All 3 files built April 2026 ✅ — upload to GitHub outstanding |
 | 28 | Prostate Cancer | prostate-cancer | All 3 files built April 2026 ✅ — upload to GitHub outstanding |
-| 29 | Lung Cancer | lung-cancer | Not yet built |
+| 29 | Lung Cancer | lung-cancer | Article HTML built April 2026 ✅ — visuals and teleprompter outstanding |
 | 30 | Bowel (Colorectal) Cancer | bowel-cancer | Not yet built |
 | 31 | Melanoma and Skin Cancer | melanoma | Not yet built |
 
-**Total articles with all 3 files on GitHub: 26. Articles 27 and 28 built — upload to GitHub outstanding.**
+**Total articles with article HTML on GitHub or built: 29. Articles 27, 28, 29 built — Articles 27 and 28 upload to GitHub outstanding. Article 29 visuals and teleprompter outstanding.**
 
 ---
 
@@ -328,6 +330,37 @@ All three are confirmed in `breast-cancer.html` and `prostate-cancer.html` (Apri
 - Format: `<sup><a href="#ref-1">1</a></sup>`
 - Superscript link colour matches the series accent colour
 - **This rule applies to stat grid `.stat-prose` text as well as body prose — every stat in every stat grid card must carry a superscript citation. No exceptions. Confirmed and locked April 2026.**
+
+### All stats require citations — in every location — LOCKED APRIL 2026
+
+**Every numerical figure, percentage, or quantitative claim in any helf.school file requires an inline superscript citation — regardless of location.**
+
+This applies universally to: body prose paragraphs, Key Terms box definitions, stat grid cards (covered separately by the stat grid citation rule), research card stat boxes and body text, Putting it all together box, discussion cards, myth panel evidence text, visuals slide text, and teleprompter scripts. No stat goes uncited anywhere.
+
+**This rule was confirmed after Dr Paul identified in `lung-cancer.html` (Article 29, April 2026):**
+1. An uncited statement "It is the most common cause of cancer death in the UK" in body prose paragraph 1
+2. An uncited NSCLC proportion figure (80 to 85%) in body prose paragraph 2
+
+Both were in body prose — locations previously assumed to be less rigorously checked than stat grid cards. Both were corrected. The rule is now explicit for all locations.
+
+**Process before delivering any file:** scan every paragraph and every text element for numerical figures and percentages. Every one must have a superscript citation or be flagged ⚑.
+
+### Subtypes, stages, and formally named sets — always list, never inline prose — LOCKED APRIL 2026
+
+**When article body prose introduces a formally numbered or named set of items using a phrase such as "three main subtypes", "four stages", "two types of", or "the following five", those items must be presented in a numbered or bulleted HTML list — never run together as a comma-separated sequence within a prose paragraph.**
+
+**The rule:** if you can count the items in the introductory sentence, they go in a list.
+
+**Implementation:** use `<ol class="subtype-list">` with the canonical CSS pattern first introduced in `lung-cancer.html` (Article 29, April 2026):
+- Numbered circle markers in series colour
+- Bold term name followed by em-dash and definition
+- Full body size (`.88rem` to `1rem`)
+
+This applies to: cancer subtypes, disease subtypes, stages, treatment types, diagnostic criteria, risk factor categories, symptom categories, and any other formally introduced set of items with a count.
+
+**Canonical reference:** `lung-cancer.html` Section 1 — NSCLC subtypes (adenocarcinoma, squamous cell carcinoma, large cell carcinoma) presented as a 3-item `<ol class="subtype-list">` (April 2026).
+
+**Why this rule exists:** NSCLC subtypes were written as inline comma-separated prose in the first draft of `lung-cancer.html`. Dr Paul identified this as a formatting failure — distinct named items need visual separation so readers can find and refer back to individual items. Confirmed April 2026.
 
 ### Reference numbering — LOCKED APRIL 2026
 References must display visible numbers. Use CSS `counter-reset` and `counter-increment` on `.ref-block` with a `::before` pseudo-element rendering the number to the left of the border. Delivered without visible numbering in April 2026 — caught by Dr Paul during review. Confirmed canonical: `prostate-cancer.html`.
@@ -468,6 +501,11 @@ Apply everywhere, on first mention per section:
 - abiraterone (Zytiga)
 - enzalutamide (Xtandi)
 - bicalutamide (Casodex)
+- osimertinib (Tagrisso)
+- erlotinib (Tarceva)
+- gefitinib (Iressa)
+- pembrolizumab (Keytruda)
+- pemetrexed (Alimta)
 
 ### Lay-clarification brackets — ALL medical terminology
 **The general rule:** Every medical or clinical term that a lay reader would not immediately understand must have a plain English definition in brackets on first use in each section. This applies to anatomical terms, physiological terms, symptom descriptors, drug class names, procedural terms, and diagnostic labels — not just statistical measures.
@@ -719,6 +757,8 @@ Scale 0.62 · every 2nd frame · 120 colours · under 1.5MB total PPTX
 28. **NO "FREE AT HELF.SCHOOL" ON VISUALS — LOCKED APRIL 2026:** The subline on the CTA slide must not reference being "free at helf.school" — helf.school is a subscription service and this is inaccurate. "Start for free" (the £0 Explorer tier) is permitted as a card label. "Free to read — always" is not permitted. Check the CTA slide subline before presenting any visuals file.
 29. **3-CARD RULE — LOCKED APRIL 2026:** Never 6 cards on one slide. Always split to 3+3. Canonical: `prostate-cancer-visuals.html` slides 3–10.
 30. **REFERENCE NUMBERING — LOCKED APRIL 2026:** References must display visible numbers via CSS counter. Never deliver a reference list without visible numbering. Canonical: `prostate-cancer.html`.
+31. **ALL STATS REQUIRE CITATIONS — EVERY LOCATION — LOCKED APRIL 2026:** Before presenting any article, visuals, or teleprompter file, scan every paragraph and text element for numerical figures and percentages. Every stat in every location — body prose, Key Terms box, stat grid cards, research card text, Putting it all together box, discussion cards, myth panel evidence text, visuals slides — must carry an inline superscript citation. No exceptions. This rule was confirmed after Dr Paul identified two uncited stats in `lung-cancer.html` Article 29 body prose (April 2026).
+32. **SUBTYPE/LIST FORMATTING — LOCKED APRIL 2026:** When body prose introduces a formally counted or named set of items ("three main subtypes", "four stages", "two types of"), those items must appear in a `<ol class="subtype-list">` numbered list — never as comma-separated inline prose. Grep for phrases like "three main", "four types", "two subtypes" before presenting any article. Canonical: `lung-cancer.html` Section 1 (Article 29, April 2026).
 
 ---
 
@@ -740,7 +780,7 @@ Edge incognito uploads occasionally capture the Claude.ai loader HTML (~5,140 by
 
 ## 14. APPROVED RESEARCH SOURCES
 
-BMJ · NICE guidelines · Cochrane Database · NEJM · The Lancet · JAMA · BMJ Best Practice · PubMed · NHS/NHS Digital · ONS · CDC · WHO · Global Burden of Disease Study · ESC/EAS guidelines · Alimentary Pharmacology & Therapeutics · European Heart Journal · QJM · Epilepsia · Seizure: European Journal of Epilepsy · JAMA Neurology
+BMJ · NICE guidelines · Cochrane Database · NEJM · The Lancet · JAMA · BMJ Best Practice · PubMed · NHS/NHS Digital · ONS · CDC · WHO · Global Burden of Disease Study · ESC/EAS guidelines · Alimentary Pharmacology & Therapeutics · European Heart Journal · QJM · Epilepsia · Seizure: European Journal of Epilepsy · JAMA Neurology · BJC Reports (British Journal of Cancer Reports, Springer Nature — added April 2026 for LCINS Article 29 ref 6)
 
 **Cancer Research UK — approved April 2026** for UK cancer incidence, mortality, survival, and risk statistics. Where Cancer Research UK cites a primary source (e.g. ONS data or a specific trial), cite the primary where practical. For Cancer Research UK's own published statistics, cite Cancer Research UK directly and fetch their statistics pages directly — never rely on a secondary page that attributes data to them.
 
@@ -801,6 +841,7 @@ Never include an unverified link. Never assume a study exists based on a plausib
 - Visuals layout standard (3-card split, ev-stat-row): outstanding across 01–11
 - Key terms / hero visibility standards: outstanding across 01–11
 - Teleprompter cue box standard: confirm per-file which were built before standard was set
+- **Subtype list formatting: outstanding across all articles** — apply `<ol class="subtype-list">` pattern when any article is next opened and contains formally introduced sets of items. Canonical: `lung-cancer.html` (April 2026).
 
 ---
 
@@ -942,6 +983,12 @@ References must display visible numbers. Use CSS `counter-reset` and `counter-in
 ### prostate-cancer-visuals.html is new canonical visuals reference — LOCKED APRIL 2026
 `prostate-cancer-visuals.html` replaces `lifestyle-changes-visuals.html` as the primary canonical visuals reference. It demonstrates: 3-card split slides (slides 3–10), canonical `cta-wrap-v2` CTA (slide 13), brand close (slide 14), `ev-card` research cards with forest green gradient stat box, correct `#stage` padding and `#topbar` structure.
 
+### All stats require citations in every location — LOCKED APRIL 2026
+Dr Paul identified in `lung-cancer.html` (Article 29, April 2026): (1) "It is the most common cause of cancer death in the UK" — no inline citation in body prose paragraph 1; (2) "around 85% of all lung cancers are NSCLC" — no inline citation in body prose paragraph 2. Both were body prose statements, not stat grid cards. This confirmed that the citation requirement applies universally to every location where a numerical claim appears — not just stat grid cards. The QC checklist now includes item 31 covering all locations. Pre-output audit item 9 was added to enforce this. The rule: if it's a number, it needs a citation.
+
+### Subtypes and formally named sets must be listed, not written in prose — LOCKED APRIL 2026
+Dr Paul identified that NSCLC subtypes (adenocarcinoma, squamous cell carcinoma, large cell carcinoma) were written as inline comma-separated prose in the first draft of `lung-cancer.html` Section 1. The rule is now explicit: any set of items introduced with a counted phrase ("three main subtypes", "four stages") must be presented as a numbered or bulleted list using `<ol class="subtype-list">`. The CSS pattern for this list was first introduced in `lung-cancer.html` (Article 29, April 2026): numbered circle markers in series colour, bold term + em-dash + definition, full body size. QC item 32 enforces this at delivery.
+
 ---
 
 ## 19. OUTSTANDING TASKS (April 2026)
@@ -951,8 +998,17 @@ References must display visible numbers. Use CSS `counter-reset` and `counter-in
 - Upload `prostate-cancer.html`, `prostate-cancer-visuals.html`, `prostate-cancer-teleprompter.html` to GitHub
 - Upload `helf-school-conditions.html` to GitHub (updated: Article 28 now live, hero stat 28)
 
+### Cancer Series — Article 29 (Lung Cancer) — in progress
+- `lung-cancer.html` — built April 2026 ✅ (includes myth-busting panel, numbered subtype list, 7 references, 4 research flags)
+- `lung-cancer-visuals.html` — not yet built
+- `lung-cancer-teleprompter.html` — not yet built
+- **Research flags outstanding in lung-cancer.html:**
+  1. NSCLC/SCLC proportion (80 to 85%) — cited to NICE NG122, confirm this figure appears in NG122 text; if not, use NICE TA1043 or flag for primary epidemiological source
+  2. EGFR mutation prevalence (10–15%) and ALK rearrangement (3–5%) — confirm in NICE NG122
+  3. Stage 3 and stage 4 five-year survival figures — not yet added; available on CRUK survival page
+  4. PD-L1 "approximately 23 to 28%" figure — verified from KEYNOTE-024 paper, no flag needed
+
 ### Cancer Series — next articles to build
-- Article 29: Lung Cancer
 - Article 30: Bowel (Colorectal) Cancer
 - Article 31: Melanoma and Skin Cancer
 
@@ -977,6 +1033,7 @@ All dark variants confirmed April 2026 — retrofit is fully unblocked. Apply pe
 9. **Inline citations** — 01–11 only.
 10. **CTA slide standard** — 01–11 only.
 11. **Visuals layout standard** — 01–11 only.
+12. **Subtype list formatting** — apply `<ol class="subtype-list">` to any article containing formally introduced sets of items (subtypes, stages, types). Canonical: `lung-cancer.html`.
 
 ---
 
@@ -1009,6 +1066,7 @@ The Claude project holds **visuals, teleprompter, and screen files only**. Artic
 | `memory-dementia.html` | Canonical article research card layout (220px column, flex-start) |
 | `breast-cancer.html` | Canonical article research card display (3.2rem stat, series gradient background) |
 | `prostate-cancer.html` | Cancer Series article canonical — reference numbering via CSS counter |
+| `lung-cancer.html` | Canonical article for: myth-busting panel design; `<ol class="subtype-list">` numbered list pattern |
 
 ### Files confirmed in Claude project (April 2026)
 **Teleprompters (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine · headaches · dizziness-vertigo · memory-dementia · epilepsy · prostate-cancer
@@ -1110,6 +1168,12 @@ Always split to 3+3. Label "(1 of 2)" and "(2 of 2)". 3-card slides use `-webkit
 | Practical Health | `#7A6A2E` | `#4A3A1A` |
 | Cancer | `#2A5A3A` | `#1A3A25` |
 
+### Rule 24 — All stats require citations in every location — LOCKED APRIL 2026
+Every numerical figure, percentage, or quantitative claim in any helf.school file requires an inline superscript citation — regardless of location. This covers: body prose paragraphs, Key Terms box definitions, stat grid cards, research card text, Putting it all together box, discussion cards, myth panel evidence text, visuals slide text, and teleprompter scripts. Before presenting any file, scan every paragraph and text element for uncited numerical claims. No exceptions. Confirmed after Dr Paul identified two uncited body prose stats in `lung-cancer.html` Article 29 (April 2026).
+
+### Rule 25 — Subtypes and formally named sets must be listed — LOCKED APRIL 2026
+When article body prose introduces a formally counted or named set of items using a phrase like "three main subtypes", "four stages", "two types of", those items must be presented in a numbered or bulleted HTML list (`<ol class="subtype-list">`) — never as inline comma-separated prose. Canonical reference: `lung-cancer.html` Section 1 NSCLC subtypes (Article 29, April 2026). Apply this pattern when retrofitting or building any article that contains formally introduced sets of items.
+
 ---
 
 ## CONFIRMED FILE STATUS — UPDATED APRIL 2026
@@ -1168,7 +1232,7 @@ Always split to 3+3. Label "(1 of 2)" and "(2 of 2)". 3-card slides use `-webkit
 |------|--------|
 | breast-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — upload to GitHub outstanding |
 | prostate-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — upload to GitHub outstanding |
-| lung-cancer.html + visuals + teleprompter | Not yet built |
+| lung-cancer.html | ✅ Article HTML built April 2026 — visuals and teleprompter outstanding |
 | bowel-cancer.html + visuals + teleprompter | Not yet built |
 | melanoma.html + visuals + teleprompter | Not yet built |
 
@@ -1235,6 +1299,17 @@ Article HTML built April 2026. Research flags noted: NICE CKS Vertigo (last revi
 - Visuals: 14 slides (3-card split pattern) — new canonical reference for all future visuals
 - Teleprompter: 9 segments, 10 cue boxes, 712 words
 
+### lung-cancer.html — April 2026 decisions
+- Cancer Series Article 29. Colour `#2A5A3A` (forest green, dark variant `#1A3A25`)
+- **Myth-busting panel** at top of article body (before Section 1) — 2×2 dark navy grid; 4 myths vs evidence panels; confirmed citation for each
+- 3 research cards: NELSON (de Koning NEJM 2020, PMID 31995683); KEYNOTE-024 (Reck NEJM 2016, PMID 27718847); FLAURA OS (Ramalingam NEJM 2020, PMID 31751012)
+- 7 references total: CRUK stats (ref 1); NICE NG122 (ref 2); NELSON (ref 3); KEYNOTE-024 (ref 4); FLAURA (ref 5); Khan et al BJC Reports 2023 PMID 39516402 (ref 6 — never-smokers 15%); Doll et al BMJ 2004 PMID 15213107 (ref 7 — cessation halves hazard at age 50)
+- Incidence ~49,300 · deaths ~32,800 · 10-year survival 11.1% · 79% preventable — all from CRUK ref 1 directly
+- 72% caused by smoking / 79% total preventable fraction: both cited from CRUK ref 1, clearly distinguished in Section 1 paragraph 3
+- NSCLC subtypes presented as `<ol class="subtype-list">` numbered list — first use of this pattern ← canonical
+- **Research flags outstanding:** NSCLC/SCLC proportion needs confirmation in NICE NG122 text; EGFR/ALK prevalence needs confirmation in NICE NG122; stage 3/4 survival figures not yet added; PD-L1 23–28% verified from KEYNOTE-024 ✅
+- Article HTML built April 2026 ✅ — visuals and teleprompter outstanding
+
 ---
 
 ## 24. PLANNING NOTES — NEXT SERIES
@@ -1265,7 +1340,7 @@ Series colour: `#2A5A3A` (forest green). Dark variant: `#1A3A25`. Confirmed Apri
 |---|-------|------|--------|
 | 27 | Breast Cancer | breast-cancer | All 3 files built April 2026 ✅ — upload to GitHub outstanding |
 | 28 | Prostate Cancer | prostate-cancer | All 3 files built April 2026 ✅ — upload to GitHub outstanding |
-| 29 | Lung Cancer | lung-cancer | Not yet built |
+| 29 | Lung Cancer | lung-cancer | Article HTML built April 2026 ✅ — visuals and teleprompter outstanding |
 | 30 | Bowel (Colorectal) Cancer | bowel-cancer | Not yet built |
 | 31 | Melanoma and Skin Cancer | melanoma | Not yet built |
 
@@ -1311,6 +1386,15 @@ When writing research card stat boxes, follow this sequence:
 4. Use only the figure stated on the approved source page
 5. If an unapproved page (WCRF, charity site) quotes a figure and attributes it to an approved source, do not use the unapproved page's figure — fetch the approved source directly
 6. If the approved source page gives a different figure (e.g. "around 59,000" vs WCRF's "60,763"), always use the approved source's figure
+
+### Subtype list — canonical CSS pattern — LOCKED APRIL 2026
+When body prose introduces a formally counted set of items, use this pattern (first introduced `lung-cancer.html` April 2026):
+```css
+.article-wrap ol.subtype-list { counter-reset: subtype-counter; list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: .45rem; margin: .6rem 0 1rem 0; }
+.article-wrap ol.subtype-list li { counter-increment: subtype-counter; display: flex; gap: .7rem; align-items: flex-start; font-size: 1rem; line-height: 1.72; color: var(--text); font-weight: 400; }
+.article-wrap ol.subtype-list li::before { content: counter(subtype-counter); background: var(--series); color: #fff; font-size: .72rem; font-weight: 700; width: 1.45rem; height: 1.45rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: .22rem; }
+```
+HTML: `<ol class="subtype-list"><li><strong>Name</strong> — definition text.</li></ol>`
 
 ### Project knowledge update — mandatory process — LOCKED APRIL 2026
 1. Read the existing project knowledge document in full before writing a single word of the update
