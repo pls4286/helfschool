@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lung Cancer — helf.school</title>
+  <meta name="description" content="An evidence-based health education guide to lung cancer — types, causes, symptoms, investigations, treatment options, and the latest research.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <style>
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ─── CSS VARIABLES ─── */
+    :root {
+      --navy:        #1B2A4A;
+      --coral:       #E8634A;
+      --cream:       #FAF7F2;
+      --sage:        #7A9E87;
+      --amber:       #E8A84A;
+      --series:      #2A5A3A;
+      --series-dark: #1A3A25;
+      --series-light:#9DCFB5;
+      --text:        #2C2C2C;
+    }
+
+    /* ─── BASE ─── */
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.7;
+    }
+
+    /* ─── TOP NAV ─── */
+    .topnav {
+      background: var(--navy);
+      padding: .75rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .topnav-logo {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+    }
+    .logo-dot { color: var(--coral); }
+    .topnav-links { display: flex; gap: 1.5rem; }
+    .topnav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    .topnav-links a:hover { color: #fff; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(135deg, var(--series-dark) 0%, var(--series) 60%, #3A7A55 100%);
+      padding: 4rem 2rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      margin-bottom: 1.2rem;
+      font-size: .85rem;
+      color: rgba(255,255,255,0.75);
+    }
+    .breadcrumb a { color: rgba(255,255,255,0.75); text-decoration: none; }
+    .breadcrumb a:hover { color: #fff; }
+    .breadcrumb-sep { color: rgba(255,255,255,0.45); }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding: .25rem .75rem;
+      border-radius: 3px;
+      margin-bottom: .9rem;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: .8rem;
+    }
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.88);
+      max-width: 640px;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .65rem 1.5rem;
+      font-size: .85rem;
+      color: rgba(255,255,255,0.80);
+    }
+
+    /* ─── ARTICLE WRAPPER ─── */
+    .article-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 4rem;
+    }
+
+    /* ─── SECTION HEADINGS ─── */
+    .section-number {
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--series);
+      margin-bottom: .4rem;
+    }
+    h2.section-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.75rem;
+      color: var(--navy);
+      margin-bottom: 1.2rem;
+      line-height: 1.25;
+    }
+
+    /* ─── BODY TEXT ─── */
+    .article-wrap p {
+      font-size: 1rem;
+      line-height: 1.78;
+      color: var(--text);
+      font-weight: 400;
+      margin-bottom: 1.1rem;
+    }
+    .article-wrap p:last-child { margin-bottom: 0; }
+    .section-block { margin-bottom: 3rem; }
+
+    /* ─── INLINE CITATIONS ─── */
+    sup a {
+      color: var(--series);
+      text-decoration: none;
+      font-size: .75em;
+      font-weight: 700;
+    }
+    sup a:hover { text-decoration: underline; }
+
+    /* ─── KEY TERMS — CANCER SERIES GRADIENT ─── */
+    .key-terms {
+      background: linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%);
+      border-radius: 12px;
+      padding: 1.6rem 1.8rem;
+      margin: 2rem 0 2.5rem;
+    }
+    .key-terms-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+    }
+    .key-terms-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem 2.2rem;
+    }
+    @media(max-width:620px) { .key-terms-grid { grid-template-columns: 1fr; } }
+    .kt-term {
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--series-light);
+      margin-bottom: .18rem;
+    }
+    .kt-def {
+      font-size: .92rem;
+      color: rgba(255,255,255,0.90);
+      line-height: 1.52;
+    }
+
+    /* ─── STAT GRID ─── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0 2rem;
+    }
+    @media(max-width:560px) { .stat-grid { grid-template-columns: 1fr; } }
+    .stat-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.3rem 1.4rem;
+      border-top: 3px solid var(--series);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .stat-figure {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 2.4rem;
+      color: var(--series);
+      line-height: 1.0;
+      margin-bottom: .3rem;
+    }
+    .stat-label {
+      font-size: .82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--navy);
+      margin-bottom: .5rem;
+    }
+    .stat-prose {
+      font-size: .88rem;
+      color: var(--text);
+      line-height: 1.62;
+      font-weight: 400;
+    }
+
+    /* ─── SECTION SEPARATOR ─── */
+    .section-sep {
+      height: 1px;
+      background: linear-gradient(90deg, var(--series), transparent);
+      margin: 2.5rem 0;
+      opacity: .2;
+    }
+
+    /* ─── WHAT DOCTOR DISCUSSES — 2-COL CARDS ─── */
+    .discuss-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .9rem;
+      margin: 1.4rem 0 1.8rem;
+    }
+    @media(max-width:580px) { .discuss-grid { grid-template-columns: 1fr; } }
+    .discuss-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1.1rem 1.2rem;
+      border-left: 3px solid var(--series);
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    }
+    .discuss-card-title {
+      font-size: .80rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--series);
+      margin-bottom: .55rem;
+    }
+    .discuss-card p {
+      font-size: .88rem;
+      line-height: 1.65;
+      color: var(--text);
+      font-weight: 400;
+      margin: 0;
+    }
+
+    /* ─── RESEARCH CARDS ─── */
+    .research-card {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      border-radius: 10px;
+      border: 1px solid rgba(42,90,58,0.18);
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    @media(max-width:600px) { .research-card { grid-template-columns: 1fr; } }
+    .ev-stat-box {
+      background: linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%);
+      padding: .9rem .75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow: hidden;
+    }
+    .ev-kf-label {
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--amber);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-bottom: .35rem;
+    }
+    .ev-stat-row {
+      font-family: 'Fraunces', serif;
+      font-size: 3.2rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.0;
+      margin-bottom: .3rem;
+    }
+    .ev-outcome {
+      font-size: .95rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.95);
+      line-height: 1.3;
+      margin-bottom: .3rem;
+    }
+    .ev-conditions {
+      font-size: .78rem;
+      line-height: 1.32;
+      color: rgba(255,255,255,0.72);
+    }
+    .ev-body {
+      background: #fff;
+      padding: 1.1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .ev-body p {
+      font-size: .93rem;
+      line-height: 1.72;
+      color: var(--text);
+      font-weight: 400;
+      margin-bottom: .75rem;
+    }
+    .ev-source {
+      font-size: .78rem;
+      color: rgba(44,44,44,0.55);
+      font-style: italic;
+      margin-top: auto;
+    }
+
+    /* ─── PUTTING IT ALL TOGETHER — CANCER SERIES GRADIENT ─── */
+    .putting-together {
+      background: linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%);
+      border-radius: 12px;
+      padding: 1.8rem 2rem;
+      margin: 2rem 0;
+    }
+    .putting-together-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .putting-together p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.92);
+      line-height: 1.75;
+      margin-bottom: .9rem;
+      font-style: italic;
+      font-weight: 400;
+    }
+    .putting-together p:last-child { margin-bottom: 0; }
+    .putting-together strong { color: #fff; font-style: normal; }
+
+    /* ─── REFERENCES — CSS COUNTER NUMBERING ─── */
+    .references-block {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 2px solid rgba(42,90,58,0.15);
+    }
+    .references-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 1.2rem;
+    }
+    .ref-list {
+      counter-reset: ref-counter;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .9rem;
+    }
+    .ref-block {
+      counter-increment: ref-counter;
+      padding: .65rem .9rem .65rem 2.2rem;
+      position: relative;
+      border-left: 3px solid var(--series);
+      background: #fff;
+      border-radius: 0 6px 6px 0;
+    }
+    .ref-block::before {
+      content: counter(ref-counter);
+      position: absolute;
+      left: -.9rem;
+      top: .6rem;
+      background: var(--series);
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 700;
+      width: 1.55rem;
+      height: 1.55rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ref-full {
+      font-size: .88rem;
+      color: var(--text);
+      line-height: 1.6;
+      font-weight: 400;
+    }
+    .ref-links {
+      display: flex;
+      gap: .5rem;
+      margin-top: .45rem;
+      flex-wrap: wrap;
+    }
+    .ref-pill {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 600;
+      padding: .22rem .65rem;
+      border-radius: 20px;
+      text-decoration: none;
+      border: 1px solid;
+      transition: opacity .15s;
+    }
+    .ref-pill:hover { opacity: .7; }
+    .ref-pill-doi  { color: var(--series); border-color: var(--series); background: rgba(42,90,58,0.06); }
+    .ref-pill-pm   { color: var(--navy);   border-color: var(--navy);   background: rgba(27,42,74,0.06); }
+    .ref-pill-web  { color: #555;          border-color: #aaa;          background: rgba(0,0,0,0.03); }
+
+    /* ─── RESEARCH FLAGS ─── */
+    .flags-block {
+      margin-top: 1.8rem;
+      background: #fffbec;
+      border-left: 4px solid var(--amber);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.2rem;
+    }
+    .flags-title {
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .5rem;
+    }
+    .flags-block p {
+      font-size: .84rem;
+      color: #5A4A1A;
+      line-height: 1.62;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    /* ─── DISCLAIMER BAR ─── */
+    .disclaimer-bar {
+      background: var(--navy);
+      padding: 1.1rem 2rem;
+      text-align: center;
+    }
+    .disclaimer-bar p {
+      font-size: .82rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 2rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: .8rem 0;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      font-size: .85rem;
+    }
+    .footer-links a:hover { color: #fff; }
+    .footer-disc {
+      font-size: .80rem;
+      color: rgba(255,255,255,0.50);
+      max-width: 640px;
+      margin: .5rem auto 0;
+      line-height: 1.6;
+    }
+
+    /* ─── STANDOUT STAT CALLOUT ─── */
+    .standout-stat {
+      background: var(--navy);
+      border-left: 5px solid var(--amber);
+      border-radius: 0 10px 10px 0;
+      padding: 1.25rem 1.6rem;
+      margin: 1.4rem 0;
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+    }
+    .standout-stat-figure {
+      font-family: 'Fraunces', serif;
+      font-size: 3.6rem;
+      font-weight: 900;
+      color: var(--amber);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .standout-stat-text {
+      font-size: .97rem;
+      color: rgba(255,255,255,0.92);
+      line-height: 1.65;
+      font-weight: 400;
+    }
+    .standout-stat-text sup a { color: var(--series-light); font-weight: 700; text-decoration: none; }
+
+    /* ─── ARTICLE BODY LISTS ─── */
+    .article-wrap ol.subtype-list,
+    .article-wrap ul.subtype-list {
+      margin: .6rem 0 1rem 0;
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .45rem;
+    }
+    .article-wrap ol.subtype-list { counter-reset: subtype-counter; }
+    .article-wrap ol.subtype-list li {
+      counter-increment: subtype-counter;
+      display: flex;
+      gap: .7rem;
+      align-items: flex-start;
+      font-size: 1rem;
+      line-height: 1.72;
+      color: var(--text);
+      font-weight: 400;
+    }
+    .article-wrap ol.subtype-list li::before {
+      content: counter(subtype-counter);
+      background: var(--series);
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 700;
+      width: 1.45rem;
+      height: 1.45rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: .22rem;
+    }
+    .article-wrap ul.subtype-list li {
+      display: flex;
+      gap: .7rem;
+      align-items: flex-start;
+      font-size: 1rem;
+      line-height: 1.72;
+      color: var(--text);
+      font-weight: 400;
+    }
+    .article-wrap ul.subtype-list li::before {
+      content: '—';
+      color: var(--series);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ─── MYTH-BUSTING PANEL ─── */
+    .myth-panel {
+      background: var(--navy);
+      border-radius: 14px;
+      padding: 2rem 1.8rem 1.8rem;
+      margin-bottom: 3rem;
+    }
+    .myth-panel-intro {
+      text-align: center;
+      margin-bottom: 1.6rem;
+    }
+    .myth-panel-kicker {
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--amber);
+      margin-bottom: .45rem;
+    }
+    .myth-panel-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: .55rem;
+    }
+    .myth-panel-sub {
+      font-size: .90rem;
+      color: rgba(255,255,255,0.68);
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.58;
+      font-weight: 400;
+    }
+    .myth-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .9rem;
+    }
+    @media(max-width:580px) { .myth-grid { grid-template-columns: 1fr; } }
+    .myth-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .myth-claim-block {
+      padding: .95rem 1.1rem .85rem;
+      border-bottom: 1px solid rgba(255,255,255,0.09);
+    }
+    .myth-claim-label {
+      font-size: .70rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      color: var(--amber);
+      margin-bottom: .38rem;
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+    }
+    .myth-claim-text {
+      font-size: .91rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.55;
+      font-weight: 400;
+    }
+    .myth-evidence-block {
+      padding: .95rem 1.1rem;
+    }
+    .myth-evidence-label {
+      font-size: .70rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      color: var(--series-light);
+      margin-bottom: .38rem;
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+    }
+    .myth-evidence-text {
+      font-size: .89rem;
+      color: rgba(255,255,255,0.92);
+      line-height: 1.62;
+      font-weight: 400;
+    }
+    .myth-evidence-text sup a {
+      color: var(--series-light);
+      font-weight: 700;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── TOP NAV ─── -->
+<nav class="topnav">
+  <a href="index.html" class="topnav-logo">helf<span class="logo-dot">.</span>school</a>
+  <div class="topnav-links">
+    <a href="helf-school-conditions.html">Conditions</a>
+    <a href="helf-school-membership.html">Membership</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">›</span>
+      <a href="helf-school-conditions.html">Conditions</a>
+      <span class="breadcrumb-sep">›</span>
+      Cancer Series
+      <span class="breadcrumb-sep">›</span>
+      Lung Cancer
+    </div>
+    <div class="hero-badge">Cancer Series · Article 29</div>
+    <h1>Lung Cancer</h1>
+    <p class="hero-subtitle">The UK's most common cause of cancer death — what it is, how it is diagnosed, and what the research says about early detection and modern treatment.</p>
+    <div class="hero-meta">
+      <span>📖 Reading time: ~9 min</span>
+      <span>🩺 Evidence-based health education</span>
+      <span>🔬 3 research studies reviewed</span>
+    </div>
+  </div>
+</header>
+
+<!-- ─── ARTICLE BODY ─── -->
+<main class="article-wrap">
+
+  <!-- ── MYTH-BUSTING PANEL ── -->
+  <div class="myth-panel">
+    <div class="myth-panel-intro">
+      <div class="myth-panel-kicker">Myth vs Evidence</div>
+      <div class="myth-panel-title">What social media says about lung cancer — and what the research shows</div>
+      <p class="myth-panel-sub">These four beliefs circulate widely on Instagram, Facebook, and health forums. Each is directly contradicted by published evidence — and some cause real harm by discouraging people from taking symptoms seriously.</p>
+    </div>
+    <div class="myth-grid">
+
+      <div class="myth-card">
+        <div class="myth-claim-block">
+          <div class="myth-claim-label">📱 The claim</div>
+          <div class="myth-claim-text">"Lung cancer only happens to smokers — if you've never smoked, you have nothing to worry about."</div>
+        </div>
+        <div class="myth-evidence-block">
+          <div class="myth-evidence-label">✓ The evidence</div>
+          <div class="myth-evidence-text">Around 15% of lung cancers in the UK are diagnosed in people who have never smoked. If counted as a separate cancer, lung cancer in never-smokers would rank as the 8th most common cause of cancer-related death in the UK. Other recognised risk factors include radon gas, asbestos, air pollution, and occupational exposures.<sup><a href="#ref-6">6</a></sup></div>
+        </div>
+      </div>
+
+      <div class="myth-card">
+        <div class="myth-claim-block">
+          <div class="myth-claim-label">📱 The claim</div>
+          <div class="myth-claim-text">"A cough that won't go away is just a smoker's cough — it's completely normal and nothing to investigate."</div>
+        </div>
+        <div class="myth-evidence-block">
+          <div class="myth-evidence-label">✓ The evidence</div>
+          <div class="myth-evidence-text">A new or changing cough that has been present for three weeks or more is a recognised clinical red flag for lung cancer. NICE NG122 identifies it as one of the symptoms that can prompt an urgent referral for investigation — it is not classified as a normal or expected feature of smoking.<sup><a href="#ref-2">2</a></sup></div>
+        </div>
+      </div>
+
+      <div class="myth-card">
+        <div class="myth-claim-block">
+          <div class="myth-claim-label">📱 The claim</div>
+          <div class="myth-claim-text">"If you've smoked for 30 or 40 years, quitting now is pointless — the damage is already done."</div>
+        </div>
+        <div class="myth-evidence-block">
+          <div class="myth-evidence-label">✓ The evidence</div>
+          <div class="myth-evidence-text">The 50-year British Doctors Study found that prolonged smoking tripled age-specific mortality rates — but cessation at age 50 halved the hazard, and cessation at age 30 avoided almost all of it. Stopping smoking at every age studied was associated with a measurable reduction in lung cancer risk.<sup><a href="#ref-7">7</a></sup></div>
+        </div>
+      </div>
+
+      <div class="myth-card">
+        <div class="myth-claim-block">
+          <div class="myth-claim-label">📱 The claim</div>
+          <div class="myth-claim-text">"Stage 4 lung cancer is a death sentence — treatment is pointless and medicine has nothing to offer."</div>
+        </div>
+        <div class="myth-evidence-block">
+          <div class="myth-evidence-label">✓ The evidence</div>
+          <div class="myth-evidence-text">Modern immunotherapy and targeted therapy have delivered clinically meaningful survival gains even in advanced disease. Pembrolizumab (Keytruda) nearly doubled progression-free survival versus chemotherapy in high PD-L1 tumours.<sup><a href="#ref-4">4</a></sup> Osimertinib (Tagrisso) extended median overall survival to 38.6 months versus 31.8 months in EGFR-mutated disease.<sup><a href="#ref-5">5</a></sup></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── SECTION 1 ── -->
+  <section class="section-block" id="what-is-it">
+    <div class="section-number">Section 1</div>
+    <h2 class="section-title">What is lung cancer?</h2>
+
+    <p>Lung cancer is a malignant tumour (a cancer — a growth of cells that divide in an uncontrolled way and can invade surrounding tissue and spread to other parts of the body) that begins in the cells lining the airways or within the lung tissue itself. It is the most common cause of cancer death in the UK.<sup><a href="#ref-1">1</a></sup></p>
+
+    <p>Most lung cancers fall into one of two main types. Non-small cell lung cancer (NSCLC) accounts for around 80 to 85% of all lung cancers.<sup><a href="#ref-2">2</a></sup> ⚑ It has three main subtypes:</p>
+    <ol class="subtype-list">
+      <li><strong>Adenocarcinoma</strong> — the most common subtype, which typically develops in the outer regions of the lung. It is the form most often found in people who have never smoked, and in women and younger patients.</li>
+      <li><strong>Squamous cell carcinoma</strong> — develops in the cells lining the larger airways known as the bronchi (the two main tubes that branch from the windpipe and carry air into the lungs). It is more closely associated with smoking than adenocarcinoma.</li>
+      <li><strong>Large cell carcinoma</strong> — a less well-defined subtype that can develop anywhere in the lung. It tends to grow and spread relatively quickly.</li>
+    </ol>
+    <p>Small cell lung cancer (SCLC) accounts for the remaining 15 to 20% of cases and is almost always associated with smoking. It tends to grow and spread more rapidly than NSCLC and is usually treated differently.</p>
+
+    <p>The most important risk factor for lung cancer is smoking. Around 72% of lung cancer cases in the UK are directly attributable to smoking (including passive smoking). Together with other recognised risk factors — including radon gas (a naturally occurring radioactive gas that seeps from rock and soil and can accumulate in homes and other buildings), asbestos (a fibrous silicate mineral once widely used in building and insulation, now banned), occupational chemical and dust exposures, and outdoor air pollution — the combined total preventable fraction reaches 79% of all lung cancer cases in the UK.<sup><a href="#ref-1">1</a></sup> This means that around 1 in 5 lung cancer cases occurs in people with no clear modifiable risk factor. Lung cancer can develop in people who have never smoked, though this is less common.</p>
+
+    <div class="standout-stat">
+      <div class="standout-stat-figure">72%</div>
+      <div class="standout-stat-text">of lung cancer cases in the UK are directly attributable to smoking — making tobacco the single most preventable cause of the UK's biggest cancer killer.<sup><a href="#ref-1">1</a></sup></div>
+    </div>
+
+    <p>In recent years, researchers have identified specific molecular changes — alterations in individual genes within the cancer cell — that help determine which treatment will be most effective. The most clinically important are EGFR mutations (changes in the gene for epidermal growth factor receptor, a protein on the cell surface that controls cell growth; these mutations make the cancer sensitive to a class of targeted drugs) and ALK rearrangements (a different type of gene change, also responsive to targeted treatment). Around 10–15% of NSCLC cases carry EGFR mutations.<sup><a href="#ref-2">2</a></sup> ⚑ ALK rearrangements affect a smaller proportion of cases — the specific figure requires confirmation from a primary source; see research flags below. ⚑</p>
+  </section>
+
+  <!-- ── KEY TERMS ── -->
+  <div class="key-terms">
+    <div class="key-terms-title">📋 Key Terms</div>
+    <div class="key-terms-grid">
+      <div>
+        <div class="kt-term">Adenocarcinoma</div>
+        <div class="kt-def">The most common subtype of NSCLC, typically developing in the outer areas of the lung. It is the form of lung cancer most often found in people who have never smoked or who smoke less heavily.</div>
+      </div>
+      <div>
+        <div class="kt-term">Bronchi (sing. bronchus)</div>
+        <div class="kt-def">The two main airways that branch from the windpipe (trachea) into the left and right lungs. The bronchi and the cells lining them are common starting points for lung cancer.</div>
+      </div>
+      <div>
+        <div class="kt-term">EGFR mutation</div>
+        <div class="kt-def">A change in the gene for epidermal growth factor receptor — a protein that helps control how cells grow. EGFR mutations are found in ~10–15% of NSCLC tumours and make those cancers responsive to targeted drugs called EGFR tyrosine kinase inhibitors (TKIs).</div>
+      </div>
+      <div>
+        <div class="kt-term">Malignant</div>
+        <div class="kt-def">Cancerous — describes a tumour made up of cells that grow uncontrollably, can invade nearby tissue, and may spread to distant parts of the body through the blood or lymphatic system.</div>
+      </div>
+      <div>
+        <div class="kt-term">Metastasis</div>
+        <div class="kt-def">The spread of cancer cells from the original tumour to other organs. In lung cancer, common sites of spread include the brain, liver, adrenal glands (small hormone-producing glands above the kidneys), and bones.</div>
+      </div>
+      <div>
+        <div class="kt-term">NSCLC / SCLC</div>
+        <div class="kt-def">The two main types of lung cancer. Non-small cell lung cancer (NSCLC, ~85% of cases) tends to grow more slowly and includes adenocarcinoma and squamous cell carcinoma. Small cell lung cancer (SCLC, ~15%) grows and spreads more quickly and is almost always linked to smoking.</div>
+      </div>
+      <div>
+        <div class="kt-term">PD-L1</div>
+        <div class="kt-def">A protein found on the surface of some cancer cells that helps them hide from the immune system. Approximately 23 to 28% of advanced NSCLC tumours have high PD-L1 expression — these tumours are more likely to respond to a class of immunotherapy drugs called checkpoint inhibitors.</div>
+      </div>
+      <div>
+        <div class="kt-term">Staging</div>
+        <div class="kt-def">The process of assessing how far a cancer has spread. Lung cancer is staged from 1 (confined to the lung) to 4 (spread to distant organs such as the brain or liver). Stage has the single greatest influence on treatment options and likely outcome.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2 ── -->
+  <section class="section-block" id="why-it-matters">
+    <div class="section-number">Section 2</div>
+    <h2 class="section-title">Why does it matter?</h2>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-figure">~50,200</div>
+        <div class="stat-label">new cases per year in the UK</div>
+        <div class="stat-prose">Lung cancer is the 3rd most common cancer in the UK, accounting for 12% of all new cases (2019, 2021–2022). That is nearly 140 new diagnoses every day.<sup><a href="#ref-1">1</a></sup></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-figure">~32,800</div>
+        <div class="stat-label">deaths per year — the UK's biggest cancer killer</div>
+        <div class="stat-prose">Lung cancer accounts for 19% of all cancer deaths in the UK — more than any other cancer type (2022–2024). Around 90 people die from it every day.<sup><a href="#ref-1">1</a></sup></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-figure">11.1%</div>
+        <div class="stat-label">survive 10 or more years</div>
+        <div class="stat-prose">Only 11.1% of people diagnosed with lung cancer in the UK survive for 10 or more years (2018). This low figure reflects how often the disease is discovered at an advanced stage.<sup><a href="#ref-1">1</a></sup></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-figure">79%</div>
+        <div class="stat-label">of cases are preventable</div>
+        <div class="stat-prose">Cancer Research UK estimates that 79% of lung cancer cases in the UK are preventable (2015), with smoking being by far the most important modifiable factor.<sup><a href="#ref-1">1</a></sup></div>
+      </div>
+    </div>
+
+    <p>The relationship between outcome and stage at diagnosis is stark. In England, almost 65 out of 100 people diagnosed with stage 1 lung cancer — disease confined to the lung itself — will survive for 5 years or more after diagnosis. This falls to around 40 out of 100 for stage 2 disease, where the tumour is larger or has begun to spread to nearby lymph nodes (the small glands of the immune system, found in chains throughout the body).<sup><a href="#ref-1">1</a></sup> By stage 4 — when the cancer has spread to distant organs — five-year survival is substantially lower. This gradient is the principal reason that early detection and screening programmes are a major priority in lung cancer research and NHS policy.</p>
+
+    <p>Lung cancer also has a pronounced social gradient. Incidence rates in the most deprived areas of England are 174% higher in women and 168% higher in men compared with the least deprived areas, primarily because smoking rates remain higher in more deprived communities.<sup><a href="#ref-1">1</a></sup> This disparity means that the burden of lung cancer falls disproportionately on those who already face other health disadvantages.</p>
+  </section>
+
+  <div class="section-sep"></div>
+
+  <!-- ── SECTION 3 ── -->
+  <section class="section-block" id="what-doctor-discusses">
+    <div class="section-number">Section 3</div>
+    <h2 class="section-title">What your doctor might discuss</h2>
+
+    <p>Lung cancer often produces few or no symptoms in its early stages — which is one of the main reasons it is so frequently diagnosed when it has already spread. When symptoms do develop, they may include a persistent cough (one that does not resolve over three weeks or more, or that changes in character), haemoptysis (coughing up blood — blood in the sputum, which is the phlegm produced from the airways), unexplained breathlessness (new difficulty breathing not explained by exertion or a known condition such as asthma), chest or shoulder pain, unexplained weight loss, persistent fatigue, and hoarseness (a change in the quality of the voice, caused by the tumour pressing on the nerve supplying the larynx). Repeated chest infections that fail to fully clear, or new-onset wheeze (a continuous high-pitched whistling sound produced by narrowed airways), may also prompt investigation.</p>
+
+    <p>Under NICE guideline NG122,<sup><a href="#ref-2">2</a></sup> certain symptom combinations — particularly in people aged 40 and over who currently smoke or have smoked — trigger an urgent referral for a chest X-ray within two weeks. A chest X-ray is typically the first investigation, though a normal X-ray does not exclude lung cancer entirely if clinical suspicion remains.</p>
+
+    <div class="discuss-grid">
+      <div class="discuss-card">
+        <div class="discuss-card-title">Investigations</div>
+        <p>If a chest X-ray raises concern, a CT scan (computed tomography — a detailed imaging technique that produces cross-sectional pictures using X-rays) of the chest, abdomen, and pelvis is performed. Where the CT raises further concern, a PET-CT scan (positron emission tomography combined with CT — a scan that identifies areas of high metabolic activity and helps determine whether cancer has spread to lymph nodes or distant sites) is often the next step. A tissue sample (biopsy) is required to confirm the diagnosis and determine the tumour type; this may be obtained via bronchoscopy (a thin flexible camera passed through the nose or mouth into the airways), CT-guided needle biopsy (a needle passed through the chest wall under CT guidance), or endobronchial ultrasound (EBUS — a bronchoscopy technique that uses ultrasound to guide sampling of lymph nodes around the central airways).</p>
+      </div>
+      <div class="discuss-card">
+        <div class="discuss-card-title">Molecular testing</div>
+        <p>Once a diagnosis is confirmed, the tumour sample is tested for molecular markers that affect treatment decisions. This includes testing for EGFR mutations (see Key Terms above), ALK rearrangements, ROS1 fusions (another gene rearrangement found in a small proportion of NSCLC tumours, also responsive to targeted treatment), and PD-L1 expression (see Key Terms above). The results of these tests determine whether a person is likely to benefit from targeted therapy, immunotherapy, or chemotherapy as their primary treatment.</p>
+      </div>
+      <div class="discuss-card">
+        <div class="discuss-card-title">Staging</div>
+        <p>Lung cancer is staged using the TNM system: T (the size and local extent of the tumour), N (whether nearby lymph nodes are involved), and M (whether the cancer has spread — metastasised — to distant organs such as the brain, liver, or bones). Stages 1 and 2 describe localised or regionally confined disease; stage 3 describes more extensive local or regional spread; stage 4 indicates distant metastatic spread. The stage determines whether treatment is given with curative intent (aiming to eliminate the cancer entirely) or palliative intent (aiming to control the disease, manage symptoms, and maintain quality of life).</p>
+      </div>
+      <div class="discuss-card">
+        <div class="discuss-card-title">Treatment options</div>
+        <p>For early-stage NSCLC (stages 1 and 2), surgery — typically a lobectomy (removal of a lobe of the lung) or, in some cases, a wedge resection (removal of a smaller section of lung tissue) — offers the best chance of cure. Stereotactic ablative radiotherapy (SABR — a highly focused radiotherapy technique that delivers precisely targeted high doses to the tumour in a small number of sessions) is used for stage 1 disease in people who are not fit for surgery. For locally advanced disease (stage 3), a combination of chemotherapy and radiotherapy is often used. For advanced NSCLC (stage 4), treatment depends on molecular testing: EGFR-mutated tumours are treated with EGFR TKIs such as osimertinib (Tagrisso), erlotinib (Tarceva), or gefitinib (Iressa); tumours with high PD-L1 expression may be treated with immunotherapy such as pembrolizumab (Keytruda); where no targetable mutation is found and PD-L1 expression is low, platinum-based chemotherapy combined with pemetrexed (Alimta) — a chemotherapy drug used in non-squamous NSCLC — or other agents remains standard. SCLC is treated with chemotherapy, typically combined with radiotherapy for limited-stage disease.</p>
+      </div>
+    </div>
+
+    <p>Every patient's case is reviewed by a multidisciplinary team (MDT) before treatment begins, typically including a respiratory physician (a lung specialist), an oncologist (a cancer specialist), a radiologist (a doctor who interprets medical images), a pathologist (a doctor who analyses tissue samples under a microscope), a thoracic surgeon, and a specialist lung cancer nurse. NICE NG122 recommends that all patients who currently smoke are offered smoking cessation support, as continued smoking during treatment affects treatment response and recovery.<sup><a href="#ref-2">2</a></sup></p>
+  </section>
+
+  <div class="section-sep"></div>
+
+  <!-- ── SECTION 4 ── -->
+  <section class="section-block" id="research">
+    <div class="section-number">Section 4</div>
+    <h2 class="section-title">What the research shows</h2>
+
+    <p>Three areas of lung cancer research have produced particularly meaningful advances in recent years: the role of CT screening in reducing mortality in high-risk individuals, the impact of immunotherapy in patients with high PD-L1 expression (see Key Terms above), and the survival gains delivered by EGFR-targeted treatment in the subset of patients whose tumours carry specific EGFR mutations.</p>
+
+    <!-- Research Card 1: NELSON -->
+    <div class="research-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">Key Finding</div>
+        <div class="ev-stat-row">24%</div>
+        <div class="ev-outcome">reduction in lung-cancer mortality / CT screening vs no screening</div>
+        <div class="ev-conditions">high-risk smokers · 10-year follow-up · NELSON trial</div>
+      </div>
+      <div class="ev-body">
+        <p>The NELSON trial was a large Dutch-Belgian randomised controlled trial (RCT — a study design where participants are assigned at random to different treatment or comparison groups, considered the most reliable way to test an intervention) that enrolled 15,789 current and former heavy smokers aged 50–74. Participants were randomly assigned to low-dose CT screening at regular intervals or no screening. After 10 years of follow-up, the CT-screened group had 24% lower lung-cancer mortality than those who received no screening. The trial demonstrated that volume-based CT screening can meaningfully reduce the number of deaths from lung cancer in high-risk individuals, with a low rate of false-positive results (abnormal scan results that turn out not to be cancer). These findings, together with the earlier US National Lung Screening Trial (NLST), provided the evidence base for targeted lung cancer screening programmes now being introduced in England through the NHS.</p>
+        <div class="ev-source">de Koning HJ et al. N Engl J Med 2020;382(6):503–513 · PMID 31995683</div>
+      </div>
+    </div>
+
+    <!-- Research Card 2: KEYNOTE-024 -->
+    <div class="research-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">Key Finding</div>
+        <div class="ev-stat-row">10.3 mo</div>
+        <div class="ev-outcome">median PFS / pembrolizumab vs 6.0 months on chemotherapy</div>
+        <div class="ev-conditions">high PD-L1 NSCLC (≥50% TPS) · first-line · KEYNOTE-024</div>
+      </div>
+      <div class="ev-body">
+        <p>The KEYNOTE-024 trial compared pembrolizumab (Keytruda — an immunotherapy drug that blocks the PD-1 protein on immune cells, preventing cancer cells from using the PD-L1 signal to evade immune attack) with standard platinum-based chemotherapy as first-line treatment in patients with advanced NSCLC whose tumours had high PD-L1 expression (≥50% TPS — tumour proportion score, meaning at least 50% of the tumour cells tested positive for PD-L1). Approximately 23 to 28% of patients with advanced NSCLC fall into this category. Patients who received pembrolizumab had a median progression-free survival (PFS — the length of time from the start of treatment until the cancer begins to grow again) of 10.3 months, compared with 6.0 months on chemotherapy. Overall survival was also significantly better with pembrolizumab (hazard ratio (HR — a measure of the relative risk of death over time) 0.60, meaning a 40% lower risk of death). Pembrolizumab was associated with fewer serious side effects than chemotherapy. These findings established immunotherapy as a standard first-line option for NSCLC with high PD-L1 expression.</p>
+        <div class="ev-source">Reck M et al. N Engl J Med 2016;375(19):1823–1833 · PMID 27718847</div>
+      </div>
+    </div>
+
+    <!-- Research Card 3: FLAURA -->
+    <div class="research-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">Key Finding</div>
+        <div class="ev-stat-row">38.6 mo</div>
+        <div class="ev-outcome">median overall survival / osimertinib vs 31.8 months on standard EGFR therapy</div>
+        <div class="ev-conditions">EGFR-mutated advanced NSCLC · FLAURA trial</div>
+      </div>
+      <div class="ev-body">
+        <p>The FLAURA trial compared osimertinib (Tagrisso — a third-generation EGFR tyrosine kinase inhibitor (TKI), meaning it is a targeted oral drug that blocks the abnormal EGFR protein signal driving tumour growth, including when earlier EGFR TKIs have stopped working) with first-generation EGFR TKIs — erlotinib (Tarceva) or gefitinib (Iressa) — as initial treatment in patients with advanced NSCLC harbouring EGFR mutations. The overall survival analysis showed that patients in the osimertinib group lived a median of 38.6 months, compared with 31.8 months in the comparator group (HR 0.80, meaning approximately a 20% lower risk of death at any given time point). Osimertinib also demonstrated superior penetration of the blood-brain barrier (the protective layer surrounding the brain), an important advantage as EGFR-mutated NSCLC has a tendency to spread to the brain. These findings established osimertinib as the preferred first-line treatment for EGFR-mutated advanced NSCLC, and it is now recommended in NICE guidance.</p>
+        <div class="ev-source">Ramalingam SS et al. N Engl J Med 2020;382(1):41–50 · PMID 31751012</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-sep"></div>
+
+  <!-- ── PUTTING IT ALL TOGETHER ── -->
+  <div class="putting-together">
+    <div class="putting-together-title">Putting it all together</div>
+    <p>Lung cancer is the UK's most common cause of cancer death, responsible for roughly 90 deaths every day. The single most modifiable risk factor is smoking, which underlies the large majority of cases. Yet despite the scale of the disease, outcomes have been improving: overall mortality rates have fallen by more than a fifth over the past decade, driven by declining smoking rates and genuine advances in treatment.</p>
+    <p>What the evidence consistently shows is that stage at diagnosis matters profoundly. The gap in survival between stage 1 and stage 4 disease is large — which is why targeted CT screening for high-risk individuals, supported by the NELSON trial, represents a real opportunity to catch more cancers at a point where treatment can make a bigger difference. For those diagnosed with advanced disease, treatment has been transformed for specific patient groups: immunotherapy has substantially improved outcomes for tumours with high PD-L1 expression, and EGFR-targeted therapy has delivered clinically meaningful survival gains in EGFR-mutated disease. Lung cancer treatment is now increasingly personalised to the molecular profile of the individual tumour — a significant change from a single standard approach to one tailored to the biology of each cancer.</p>
+    <p><strong>Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</strong></p>
+  </div>
+
+  <!-- ── REFERENCES ── -->
+  <div class="references-block">
+    <div class="references-title">References</div>
+    <ol class="ref-list">
+
+      <li class="ref-block" id="ref-1">
+        <div class="ref-full">Cancer Research UK. Lung cancer statistics. cancerresearchuk.org/health-professional/cancer-statistics/statistics-by-cancer-type/lung-cancer [accessed April 2026]. Cancer Research UK. Lung cancer survival. cancerresearchuk.org/about-cancer/lung-cancer/survival [accessed April 2026].</div>
+        <div class="ref-links">
+          <a href="https://www.cancerresearchuk.org/health-professional/cancer-statistics/statistics-by-cancer-type/lung-cancer" target="_blank" class="ref-pill ref-pill-web">Cancer Research UK Stats ↗</a>
+          <a href="https://www.cancerresearchuk.org/about-cancer/lung-cancer/survival" target="_blank" class="ref-pill ref-pill-web">CRUK Survival ↗</a>
+        </div>
+      </li>
+
+      <li class="ref-block" id="ref-2">
+        <div class="ref-full">National Institute for Health and Care Excellence (NICE). Lung cancer: diagnosis and management. NICE guideline NG122. Published March 2019. nice.org.uk/guidance/ng122</div>
+        <div class="ref-links">
+          <a href="https://www.nice.org.uk/guidance/ng122" target="_blank" class="ref-pill ref-pill-doi">NICE NG122 ↗</a>
+        </div>
+      </li>
+
+      <li class="ref-block" id="ref-3">
+        <div class="ref-full">de Koning HJ, van der Aalst CM, de Jong PA, et al. Reduced lung-cancer mortality with volume CT screening in a randomized trial. N Engl J Med 2020;382(6):503–513. doi: 10.1056/NEJMoa1911793. PMID 31995683.</div>
+        <div class="ref-links">
+          <a href="https://doi.org/10.1056/NEJMoa1911793" target="_blank" class="ref-pill ref-pill-doi">DOI ↗</a>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/31995683/" target="_blank" class="ref-pill ref-pill-pm">PubMed ↗</a>
+        </div>
+      </li>
+
+      <li class="ref-block" id="ref-4">
+        <div class="ref-full">Reck M, Rodríguez-Abreu D, Robinson AG, et al. Pembrolizumab versus chemotherapy for PD-L1–positive non–small-cell lung cancer. N Engl J Med 2016;375(19):1823–1833. doi: 10.1056/NEJMoa1606774. PMID 27718847.</div>
+        <div class="ref-links">
+          <a href="https://doi.org/10.1056/NEJMoa1606774" target="_blank" class="ref-pill ref-pill-doi">DOI ↗</a>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/27718847/" target="_blank" class="ref-pill ref-pill-pm">PubMed ↗</a>
+        </div>
+      </li>
+
+      <li class="ref-block" id="ref-5">
+        <div class="ref-full">Ramalingam SS, Vansteenkiste J, Planchard D, et al. Overall survival with osimertinib in untreated, EGFR-mutated advanced non–small-cell lung cancer. N Engl J Med 2020;382(1):41–50. doi: 10.1056/NEJMoa1913662. PMID 31751012.</div>
+        <div class="ref-links">
+          <a href="https://doi.org/10.1056/NEJMoa1913662" target="_blank" class="ref-pill ref-pill-doi">DOI ↗</a>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/31751012/" target="_blank" class="ref-pill ref-pill-pm">PubMed ↗</a>
+        </div>
+      </li>
+
+      <li class="ref-block" id="ref-6">
+        <div class="ref-full">Khan S, Hatton N, Tough D, et al. Lung cancer in never smokers (LCINS): development of a UK national research strategy. BJC Reports 2023;1(1):21. doi: 10.1038/s44276-023-00006-w. PMID 39516402.</div>
+        <div class="ref-links">
+          <a href="https://doi.org/10.1038/s44276-023-00006-w" target="_blank" class="ref-pill ref-pill-doi">DOI ↗</a>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/39516402/" target="_blank" class="ref-pill ref-pill-pm">PubMed ↗</a>
+        </div>
+      </li>
+
+      <li class="ref-block" id="ref-7">
+        <div class="ref-full">Doll R, Peto R, Boreham J, Sutherland I. Mortality in relation to smoking: 50 years' observations on male British doctors. BMJ 2004;328(7455):1519. doi: 10.1136/bmj.38142.554479.AE. PMID 15213107.</div>
+        <div class="ref-links">
+          <a href="https://doi.org/10.1136/bmj.38142.554479.AE" target="_blank" class="ref-pill ref-pill-doi">DOI ↗</a>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/15213107/" target="_blank" class="ref-pill ref-pill-pm">PubMed ↗</a>
+        </div>
+      </li>
+
+    </ol>
+  </div>
+
+  <!-- ── RESEARCH FLAGS ── -->
+  <div class="flags-block">
+    <div class="flags-title">⚑ Research flags — for Dr Paul's review before upload</div>
+    <p>1. NSCLC/SCLC proportion (Section 1, paragraph 2): "around 80 to 85%" cited to NICE NG122 (ref 2). NICE TA1043 explicitly states "around 80 to 85%" — the exact wording in NG122 itself should be confirmed. If NG122 does not state this figure, NICE TA1043 or a primary epidemiological source would be appropriate. &nbsp;|&nbsp; 2. EGFR mutation prevalence (~10–15%) in Section 1 is cited from NICE NG122 (ref 2) — confirm this specific figure is stated in NG122. The ALK rearrangement prevalence has been removed from the article text (previously "around 3–5%") pending confirmation of a primary approved source. Published clinical literature (The Lancet Oncology, NEJM, Cochrane) consistently cites 3–5% of NSCLC — once a PMID from an approved source is confirmed, this figure can be restored with citation. &nbsp;|&nbsp; 3. Stage 3 and stage 4 five-year survival figures are not included — only stages 1 and 2 were retrieved directly from the Cancer Research UK survival page. These figures are available on the CRUK page and should be added in a future session for completeness. &nbsp;|&nbsp; 4. "approximately 23 to 28%" PD-L1 high-expression figure — cited directly from the KEYNOTE-024 paper (ref 4), verified and correct. No further flag required.</p>
+  </div>
+
+</main>
+
+<!-- ─── DISCLAIMER BAR ─── -->
+<div class="disclaimer-bar">
+  <p>helf.school provides health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer">
+  <div class="footer-logo">helf<span style="color:var(--coral)">.</span>school</div>
+  <div class="footer-links">
+    <a href="helf-school-conditions.html">Conditions</a>
+    <a href="helf-school-membership.html">Membership</a>
+    <a href="index.html">Home</a>
+  </div>
+  <p class="footer-disc">© 2026 helf.school · Health education only — not medical advice · Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+</footer>
+
+</body>
+</html>

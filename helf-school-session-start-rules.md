@@ -475,6 +475,63 @@ This covers every location: body prose paragraphs, Key Terms box definitions, st
 
 ---
 
+## ⛔ RULE 28 — SUBTYPES AND FORMALLY NAMED SETS MUST BE LISTED, NOT IN PROSE — LOCKED APRIL 2026
+
+**When article body prose introduces a formally counted or named set of items using a phrase like "three main subtypes", "four stages", "two types of", "the following five", those items must be presented in a numbered or bulleted HTML list — never as comma-separated inline prose.**
+
+**The test:** if you can count the items in the introductory sentence, they go in a list.
+
+**Implementation:** use `<ol class="subtype-list">` with the canonical CSS pattern first introduced in `lung-cancer.html` (Article 29, April 2026):
+- Numbered circle markers in series colour
+- Bold term name followed by em-dash and definition
+- Full body size (1rem, line-height 1.72)
+
+**Before presenting any article:** grep for phrases like "three main", "four types", "two subtypes", "the following". Any formally introduced set of items must be in a list.
+
+**Why this rule was added:** Dr Paul identified that the three NSCLC subtypes (adenocarcinoma, squamous cell carcinoma, large cell carcinoma) were written as inline comma-separated prose in the first draft of `lung-cancer.html` Section 1 (April 2026). The rule is now explicit: distinct named items need visual separation so readers can find and refer back to individual items.
+
+**Canonical reference:** `lung-cancer.html` Section 1 — NSCLC subtypes as `<ol class="subtype-list">` (April 2026).
+
+**Retrofit:** Apply `<ol class="subtype-list">` pattern when any article is next opened and contains formally introduced sets of items.
+
+---
+
+## ⛔ RULE 29 — THE REASON FOR THE STAT MUST BE IN ev-outcome, NOT ev-conditions — LOCKED APRIL 2026
+
+**The comparison, intervention, or condition that produced the stat number — the REASON it is what it is — must appear in the `ev-outcome` line. It must never be relegated to `ev-conditions` alone, where it sits at 0.78rem and carries the least visual weight.**
+
+**The three stat box lines work as a strict hierarchy:**
+- `ev-stat-row` (3.2rem weight 900) — the headline number
+- `ev-outcome` (0.95rem weight 700) — the finding AND the reason: what changed AND what caused it / what it was compared to
+- `ev-conditions` (0.78rem) — population, dataset, trial name only
+
+**Correct — reason in the ev-outcome line:**
+```
+ev-stat-row:   24%
+ev-outcome:    reduction in lung-cancer mortality / CT screening vs no screening
+ev-conditions: high-risk smokers · 10-year follow-up · NELSON trial
+```
+
+**Incorrect — reason buried in ev-conditions (smallest text):**
+```
+ev-stat-row:   24%
+ev-outcome:    reduction in lung-cancer mortality
+ev-conditions: CT screening vs no screening — high-risk smokers at 10 years
+```
+
+**The test:** Read only `ev-stat-row` + `ev-outcome` together. Does a reader immediately understand both the stat AND why it is that number? If not, rewrite `ev-outcome` to include the comparison/intervention.
+
+**Why this rule was added:** The complete clinical conclusion rule already required the reason to be somewhere in the stat box. Dr Paul identified in April 2026 that the comparison was appearing only in `ev-conditions` — the smallest text — rather than in `ev-outcome`. "CT screening vs no screening" is WHY the number is 24% — it must carry visual weight. This rule specifies WHERE the reason must be.
+
+**Canonical reference:** `lung-cancer.html` Article 29 research cards (April 2026):
+- `24% / reduction in lung-cancer mortality / CT screening vs no screening`
+- `10.3 mo / median PFS / pembrolizumab vs 6.0 months on chemotherapy`
+- `38.6 mo / median overall survival / osimertinib vs 31.8 months on standard EGFR therapy`
+
+**This applies equally to visuals ev-stat-boxes.** Same hierarchy: ev-outcome carries both finding and reason; ev-conditions carries trial/population context only.
+
+---
+
 ## CONFIRMED FILE STATUS — UPDATED APRIL 2026
 
 **AUTHORITY NOTE: If any entry below conflicts with the article inventory in `helf-school-project-knowledge.md`, the project knowledge document is correct. Update this table accordingly.**

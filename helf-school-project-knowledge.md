@@ -57,6 +57,8 @@ This audit must be completed internally before Claude presents any article, visu
 
 7. **Research card clinical conclusion audit** — every research card stat box must state the complete clinical finding as it is relevant to the patient. Run the test: can a lay reader understand WHAT was studied and WHAT was found from the stat box alone, without reading the body text? If not, rewrite before presenting. Statistical machinery (OR values, RCT counts, confidence intervals) must never appear in the stat box as the headline finding.
 
+7a. **ev-outcome reason audit — LOCKED APRIL 2026** — for every research card, confirm the ev-outcome line contains BOTH the finding AND the reason/comparison that produced the stat. The comparison ("CT screening vs no screening", "pembrolizumab vs chemotherapy", "osimertinib vs standard EGFR therapy") must be in ev-outcome — never relegated to ev-conditions alone. Read only the ev-stat-row and ev-outcome together: does a reader immediately understand the stat AND why it is that number? If not, rewrite ev-outcome to include the comparison.
+
 8. **Stat grid citation audit — LOCKED APRIL 2026** — run `grep -A 3 "stat-prose"` before presenting any article and confirm every `.stat-prose` instance has a `ref-` link. Every stat grid card must carry a superscript inline citation. No exceptions.
 
 9. **ALL STATS IN ALL LOCATIONS REQUIRE CITATIONS — LOCKED APRIL 2026** — scan every paragraph and every text element in the file for numerical figures and percentages. Every stat in every location must carry an inline superscript citation. This covers: body prose paragraphs, Key Terms box definitions, research card stat boxes and body text, Putting it all together box, discussion cards, myth panel evidence text, and visuals slide text. Stat grid cards are covered by audit item 8. This broader audit covers all other locations. No stat goes uncited anywhere.
@@ -330,6 +332,40 @@ All three are confirmed in `breast-cancer.html` and `prostate-cancer.html` (Apri
 - Format: `<sup><a href="#ref-1">1</a></sup>`
 - Superscript link colour matches the series accent colour
 - **This rule applies to stat grid `.stat-prose` text as well as body prose — every stat in every stat grid card must carry a superscript citation. No exceptions. Confirmed and locked April 2026.**
+
+### The reason for the stat must be in the ev-outcome line — LOCKED APRIL 2026
+
+**The comparison, intervention, or condition that produced the stat number — the REASON it is what it is — must appear in the `ev-outcome` line. It must never be relegated to `ev-conditions` where it sits at 0.78rem, the least prominent text in the stat box.**
+
+The three stat box lines work as a strict hierarchy:
+- `ev-stat-row` — the headline number (24%, 10.3 mo, 38.6 mo) at 3.2rem weight 900
+- `ev-outcome` — the finding AND the reason: what changed AND what caused it / what it was compared to — at 0.95rem weight 700
+- `ev-conditions` — population, dataset, trial name only — at 0.78rem
+
+**Correct — reason in the ev-outcome line:**
+```
+ev-stat-row:   24%
+ev-outcome:    reduction in lung-cancer mortality / CT screening vs no screening
+ev-conditions: high-risk smokers · 10-year follow-up · NELSON trial
+```
+
+**Incorrect — reason buried in ev-conditions (smallest text):**
+```
+ev-stat-row:   24%
+ev-outcome:    reduction in lung-cancer mortality
+ev-conditions: CT screening vs no screening — high-risk smokers at 10 years (NELSON trial)
+```
+
+"CT screening vs no screening" is WHY the number is 24%. It cannot be the smallest text. A reader who sees only ev-stat-row and ev-outcome must immediately understand both the finding AND the reason — the stat and its cause — without needing to read the conditions line. The conditions line handles trial name and population only.
+
+This rule strengthens the existing complete clinical conclusion standard. The prior instruction required the reason to be in the stat box — this instruction specifies it must be in ev-outcome, not ev-conditions.
+
+**Canonical reference:** `lung-cancer.html` Article 29 research cards (April 2026):
+- `24% / reduction in lung-cancer mortality / CT screening vs no screening`
+- `10.3 mo / median PFS / pembrolizumab vs 6.0 months on chemotherapy`
+- `38.6 mo / median overall survival / osimertinib vs 31.8 months on standard EGFR therapy`
+
+**This applies equally to visuals ev-stat-boxes.** The same hierarchy applies: ev-outcome carries both the finding and the reason; ev-conditions carries trial/population context only.
 
 ### All stats require citations — in every location — LOCKED APRIL 2026
 
@@ -759,6 +795,7 @@ Scale 0.62 · every 2nd frame · 120 colours · under 1.5MB total PPTX
 30. **REFERENCE NUMBERING — LOCKED APRIL 2026:** References must display visible numbers via CSS counter. Never deliver a reference list without visible numbering. Canonical: `prostate-cancer.html`.
 31. **ALL STATS REQUIRE CITATIONS — EVERY LOCATION — LOCKED APRIL 2026:** Before presenting any article, visuals, or teleprompter file, scan every paragraph and text element for numerical figures and percentages. Every stat in every location — body prose, Key Terms box, stat grid cards, research card text, Putting it all together box, discussion cards, myth panel evidence text, visuals slides — must carry an inline superscript citation. No exceptions. This rule was confirmed after Dr Paul identified two uncited stats in `lung-cancer.html` Article 29 body prose (April 2026).
 32. **SUBTYPE/LIST FORMATTING — LOCKED APRIL 2026:** When body prose introduces a formally counted or named set of items ("three main subtypes", "four stages", "two types of"), those items must appear in a `<ol class="subtype-list">` numbered list — never as comma-separated inline prose. Grep for phrases like "three main", "four types", "two subtypes" before presenting any article. Canonical: `lung-cancer.html` Section 1 (Article 29, April 2026).
+33. **ev-outcome MUST CARRY THE REASON — LOCKED APRIL 2026:** Before presenting any article or visuals file with research cards, check every ev-outcome line. It must state BOTH the finding AND the comparison/intervention that produced the stat number. "24%" is not enough — "reduction in lung-cancer mortality / CT screening vs no screening" is correct. The comparison must never appear only in ev-conditions. Read ev-stat-row + ev-outcome together: if a reader can't understand the stat AND its cause from those two lines alone, rewrite ev-outcome. Canonical: `lung-cancer.html` Article 29 research cards (April 2026).
 
 ---
 
@@ -988,6 +1025,9 @@ Dr Paul identified in `lung-cancer.html` (Article 29, April 2026): (1) "It is th
 
 ### Subtypes and formally named sets must be listed, not written in prose — LOCKED APRIL 2026
 Dr Paul identified that NSCLC subtypes (adenocarcinoma, squamous cell carcinoma, large cell carcinoma) were written as inline comma-separated prose in the first draft of `lung-cancer.html` Section 1. The rule is now explicit: any set of items introduced with a counted phrase ("three main subtypes", "four stages") must be presented as a numbered or bulleted list using `<ol class="subtype-list">`. The CSS pattern for this list was first introduced in `lung-cancer.html` (Article 29, April 2026): numbered circle markers in series colour, bold term + em-dash + definition, full body size. QC item 32 enforces this at delivery.
+
+### The reason for the stat must be in ev-outcome, not ev-conditions — LOCKED APRIL 2026
+The comparison or intervention that produced a research card stat — the REASON the number is what it is — must appear in the `ev-outcome` line (0.95rem weight 700), not relegated to `ev-conditions` (0.78rem, the smallest text in the box). "CT screening vs no screening" is WHY the number is 24% — it must be prominently visible. The complete clinical conclusion rule already required the reason to be somewhere in the stat box; this rule specifies it must be in ev-outcome specifically. Confirmed and locked April 2026 when Dr Paul identified that the comparison was appearing in ev-conditions rather than ev-outcome across multiple research cards. Canonical: `lung-cancer.html` Article 29 (April 2026): "reduction in lung-cancer mortality / CT screening vs no screening" in ev-outcome; "high-risk smokers · 10-year follow-up · NELSON trial" in ev-conditions.
 
 ---
 
