@@ -581,16 +581,24 @@ When a paper reports a statistic, use its exact wording and numerical form in ev
 
 **Every visuals slide must fill the available viewport. This is non-negotiable.**
 
+**MAXIMUM SIZE MANDATE — LOCKED APRIL 2026: Every visual element must be as big as the parameters make possible. The permitted parameters (max padding, min text size, max gap) define the floor — not the target. Push every element to the largest size that fits without overflow. Dr Paul's instruction: "visuals on each slide must be as big as parameters make possible."**
+
 The fixed viewport is `100vw × 100vh` minus the 52px topbar and 32px dots bar = approximately `calc(100vh - 84px)` of usable vertical space. Every slide must use this space aggressively. Content that occupies only 60–70% of the screen with large empty areas is a failure.
 
 **Required minimums/maximums — apply to every slide:**
 - Slide padding: maximum `1rem 1.5rem 0.8rem` — never `1.8rem` or more top padding
-- Slide title: minimum `1.55rem` — never `1.35rem`
-- Slide subtitle margin-bottom: maximum `.6rem` — never `1rem`
-- All body text in cards and rows: minimum `.90rem` — never `.75rem` or `.80rem`
-- Card/row gaps: maximum `.5rem` — never `.7rem` or `.9rem` between items
-- Info/step row body line clamp: minimum 3 lines — never 2 lines (wastes space)
-- Intro stat numbers: minimum `2.3rem` — never `1.8rem`
+- Slide header margin-bottom: `.4rem` — never `.55rem` or more
+- Slide title: minimum `1.72rem` — never `1.35rem`
+- Slide subtitle margin-bottom: maximum `.4rem` — never `.6rem`
+- All body text in cards and rows: minimum `.93rem` — never `.90rem` if space allows more
+- Card/row gaps: maximum `.48rem` — never `.7rem` or `.9rem` between items
+- Card padding: `.82rem 1rem` — tight but readable; never `.9rem 1.1rem` or larger
+- Info/step row body line clamp: minimum 5 lines — never 4 lines (wastes space)
+- Ev-body paragraph: minimum `.94rem`, line clamp minimum 7 lines
+- Card icons: minimum `1.55rem`
+- Card titles: minimum `1.12rem`
+
+**The maximum-size principle:** Start from the largest font size that fills the space and reduce only if content overflows. Never start from the minimum and accept empty space. If a card has visible empty space below its text, the font is too small or the line clamp is too low.
 
 **CTA slide — confirmed working sizes (April 2026):**
 - Central icon: `5.5rem` — must dominate the slide

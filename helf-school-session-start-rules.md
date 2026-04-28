@@ -212,28 +212,33 @@ Every research card stat box must state the complete clinical finding as it is r
 
 ---
 
-## ⛔ RULE 12 — VISUALS MUST MAXIMISE VIEWPORT SPACE
+## ⛔ RULE 12 — VISUALS MUST MAXIMISE VIEWPORT SPACE — AND EVERY ELEMENT MUST BE AS BIG AS PARAMETERS ALLOW
 
 **Every visuals slide must fill the available viewport. Slides that leave large areas of empty space are a delivery failure.**
 
+**MAXIMUM SIZE MANDATE — LOCKED APRIL 2026:** Dr Paul's instruction is explicit: *"visuals on each slide must be as big as parameters make possible."* The permitted parameters define the floor — not the target. Every element must be pushed to the largest size that fits without overflow. Start big and reduce only if content clips. Never start small and accept empty space.
+
 The fixed viewport is `100vw × 100vh` minus the 52px topbar and 32px dots bar. Every slide must use this space aggressively.
 
-**Required minimums/maximums — every slide:**
+**Required minimums — every slide (push higher where space allows):**
 - Slide padding: maximum `1rem 1.5rem 0.8rem` — never `1.8rem` top padding
-- Slide title: minimum `1.55rem`
-- Slide subtitle margin-bottom: maximum `.6rem`
-- All card/row body text: minimum `.90rem` — never `.75rem` or `.80rem`
-- Card/row gaps: maximum `.5rem` — never `.7rem` or above
-- Info/step row body line clamp: minimum 3 lines — never 2
+- Slide header margin-bottom: `.4rem` — never `.55rem`
+- Slide title: minimum `1.72rem`
+- All card/row body text: minimum `.93rem` — increase if space allows
+- Card/row gaps: maximum `.48rem` — never `.7rem` or above
+- Card padding: `.82rem 1rem` — tight but readable
+- Card icons: minimum `1.55rem`
+- Card titles: minimum `1.12rem`
+- Info/row body line clamp: minimum 5 lines
+- Ev-body paragraph: minimum `.94rem`, line clamp minimum 7
 
 **CTA slide — confirmed working sizes (April 2026):**
-- Central icon: `5.5rem` · Headline: `clamp(2.8rem, 5.5vw, 4.2rem)` · Subline: `1.2rem`
-- Card emoji icons: `2.2rem` · Card title text: `.96rem`
+- Central icon: `5.5rem` · Headline: `clamp(2.4rem, 5.5vw, 3.8rem)` · Row title: `.93rem`
 
 **Closing slide — confirmed working sizes (April 2026):**
-- Logo: `2.8rem` · Tagline: `1.05rem` · Link/series label: `1rem`
+- Logo: `2.8rem` · Tagline: `1.05rem` · Series label: `1rem`
 
-**The test:** Open every slide in a browser before delivering. Content must fill at least 85% of the visible area. If slides look sparse, increase font sizes and reduce gaps until they are full. Visuals are filmed — undersized content reads poorly on camera.
+**The test:** Open every slide in a browser before delivering. Is there visible empty space at the bottom of any card? Is the font noticeably small? If yes — make it bigger. Content must fill at least 85% of the visible area — ideally 95%+. Visuals are filmed — undersized content reads poorly on camera.
 
 ---
 
