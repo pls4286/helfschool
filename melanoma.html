@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Melanoma and Skin Cancer | helf.school</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#1B2A4A;
+    --coral:#E8634A;
+    --cream:#FAF7F2;
+    --sage:#7A9E87;
+    --amber:#E8A84A;
+    --text:#2C2C2C;
+    --series:#2A5A3A;
+    --series-dark:#1A3A25;
+    --series-light:#5A9A6A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'DM Sans',sans-serif;font-weight:400;background:var(--cream);color:var(--text);}
+
+  /* HEADER */
+  .site-header{background:var(--navy);padding:1rem 2rem;display:flex;align-items:center;gap:1rem;}
+  .logo-mark{font-family:'Fraunces',serif;font-size:1.6rem;color:#fff;letter-spacing:-0.02em;}
+  .logo-mark span{color:var(--coral);}
+  .logo-tag{font-size:0.62rem;font-weight:700;letter-spacing:0.18em;color:rgba(255,255,255,0.55);text-transform:uppercase;}
+  .header-nav{margin-left:auto;}
+  .header-nav a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.88rem;font-weight:500;margin-left:1.5rem;}
+
+  /* HERO */
+  .article-hero{
+    background:linear-gradient(160deg,var(--series-dark) 0%,var(--series) 100%);
+    padding:3.5rem 2rem 3rem;
+    display:flex;flex-direction:column;justify-content:center;
+    min-height:88vh;
+  }
+  .article-hero-inner{max-width:860px;margin:0 auto;width:100%;}
+  .breadcrumb{font-size:0.80rem;color:rgba(255,255,255,0.75);margin-bottom:1rem;}
+  .breadcrumb a{color:rgba(255,255,255,0.75);text-decoration:none;}
+  .breadcrumb a:hover{color:#fff;}
+  .series-badge{
+    display:inline-block;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+    background:rgba(255,255,255,0.15);color:#fff;
+    padding:0.3rem 0.8rem;border-radius:20px;margin-bottom:1.2rem;
+  }
+  .article-hero h1{font-family:'Fraunces',serif;font-size:clamp(2rem,5vw,3.2rem);color:#fff;line-height:1.15;margin-bottom:0.9rem;}
+  .hero-subtitle{font-size:1.1rem;color:rgba(255,255,255,0.85);line-height:1.6;max-width:640px;margin-bottom:1.8rem;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:1.5rem;}
+  .hero-meta-item{font-size:0.82rem;color:rgba(255,255,255,0.80);display:flex;align-items:center;gap:0.4rem;}
+  .hero-meta-item svg{width:14px;height:14px;opacity:0.7;}
+
+  /* DISCLAIMER BAR */
+  .disclaimer-bar{background:rgba(232,99,74,0.12);border-top:2px solid var(--coral);padding:0.9rem 2rem;}
+  .disclaimer-bar p{max-width:860px;margin:0 auto;font-size:0.82rem;color:var(--text);line-height:1.6;}
+  .disclaimer-bar strong{color:var(--coral);}
+
+  /* ARTICLE WRAP */
+  .article-wrap{max-width:860px;margin:0 auto;padding:3rem 2rem 4rem;}
+
+  /* MYTH PANEL */
+  .myth-panel{
+    background:var(--navy);border-radius:12px;padding:1.8rem;margin-bottom:2.8rem;
+  }
+  .myth-panel-title{font-family:'Fraunces',serif;font-size:1.15rem;color:#fff;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.6rem;}
+  .myth-panel-title svg{width:20px;height:20px;color:var(--amber);}
+  .myth-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;}
+  .myth-card{background:rgba(255,255,255,0.06);border-radius:8px;padding:1rem 1.1rem;}
+  .myth-label{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);margin-bottom:0.4rem;}
+  .myth-claim{font-size:0.88rem;font-style:italic;color:rgba(255,255,255,0.75);margin-bottom:0.55rem;line-height:1.45;}
+  .myth-evidence{font-size:0.85rem;color:rgba(255,255,255,0.88);line-height:1.55;}
+  @media(max-width:600px){.myth-grid{grid-template-columns:1fr;}}
+
+  /* SECTION HEADINGS */
+  .section-eyebrow{font-size:0.72rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--series);margin-bottom:0.4rem;}
+  .section-title{font-family:'Fraunces',serif;font-size:1.7rem;color:var(--navy);margin-bottom:1.1rem;line-height:1.25;}
+  .article-wrap p{font-size:1rem;line-height:1.78;color:var(--text);font-weight:400;margin-bottom:1rem;}
+  .article-wrap p:last-child{margin-bottom:0;}
+  sup a{color:var(--series-light);font-size:0.75em;text-decoration:none;}
+  sup a:hover{text-decoration:underline;}
+
+  /* SUBTYPE LIST */
+  .article-wrap ol.subtype-list{counter-reset:subtype-counter;list-style:none;padding-left:0;display:flex;flex-direction:column;gap:.45rem;margin:.6rem 0 1rem 0;}
+  .article-wrap ol.subtype-list li{counter-increment:subtype-counter;display:flex;gap:.7rem;align-items:flex-start;font-size:1rem;line-height:1.72;color:var(--text);font-weight:400;}
+  .article-wrap ol.subtype-list li::before{content:counter(subtype-counter);background:var(--series);color:#fff;font-size:.72rem;font-weight:700;width:1.45rem;height:1.45rem;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.22rem;}
+
+  /* KEY TERMS */
+  .key-terms{
+    background:linear-gradient(160deg,var(--series-dark) 0%,var(--series) 100%);
+    border-radius:12px;padding:1.8rem;margin:2.2rem 0 2.8rem;
+  }
+  .key-terms-title{font-family:'Fraunces',serif;font-size:1.08rem;color:#fff;margin-bottom:1.2rem;}
+  .key-terms-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem 2rem;}
+  .key-term{margin-bottom:0.7rem;}
+  .key-term-label{font-size:0.88rem;font-weight:700;color:var(--amber);margin-bottom:0.2rem;}
+  .key-term-def{font-size:0.92rem;color:rgba(255,255,255,0.90);line-height:1.55;}
+  @media(max-width:600px){.key-terms-grid{grid-template-columns:1fr;}}
+
+  /* STAT GRID */
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.8rem 0 2rem;}
+  .stat-card{background:#fff;border-radius:10px;border:1px solid rgba(42,90,58,0.15);padding:1.2rem 1.3rem;}
+  .stat-number{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:700;color:var(--series);line-height:1.1;margin-bottom:0.25rem;}
+  .stat-prose{font-size:0.88rem;color:var(--text);line-height:1.55;}
+  @media(max-width:520px){.stat-grid{grid-template-columns:1fr;}}
+
+  /* STANDOUT STAT */
+  .standout-stat{background:var(--navy);border-radius:12px;padding:1.6rem 1.8rem;margin:2rem 0;display:flex;align-items:flex-start;gap:1.5rem;}
+  .standout-stat-icon{font-size:2.2rem;flex-shrink:0;}
+  .standout-stat-text{flex:1;}
+  .standout-stat-text .label{font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);margin-bottom:0.4rem;}
+  .standout-stat-main{font-family:'Fraunces',serif;font-size:1.5rem;color:#fff;line-height:1.3;margin-bottom:0.4rem;}
+  .standout-stat-sub{font-size:0.88rem;color:rgba(255,255,255,0.80);line-height:1.5;}
+
+  /* DISCUSSION CARDS */
+  .discussion-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.8rem 0;}
+  .discussion-card{background:#fff;border-radius:10px;border:1px solid rgba(42,90,58,0.15);padding:1.1rem 1.2rem;}
+  .discussion-card-icon{font-size:1.4rem;margin-bottom:0.5rem;}
+  .discussion-card h4{font-family:'Fraunces',serif;font-size:0.98rem;color:var(--navy);margin-bottom:0.4rem;line-height:1.3;}
+  .discussion-card p{font-size:0.88rem;line-height:1.6;color:var(--text);margin-bottom:0;}
+  @media(max-width:520px){.discussion-grid{grid-template-columns:1fr;}}
+
+  /* SECTION DIVIDER */
+  .section-divider{border:none;border-top:1px solid rgba(42,90,58,0.15);margin:2.8rem 0;}
+
+  /* RESEARCH CARDS */
+  .research-card{
+    display:grid;grid-template-columns:220px 1fr;border-radius:10px;
+    border:1px solid rgba(42,90,58,0.18);overflow:hidden;margin-bottom:1.4rem;
+  }
+  .ev-stat-box{
+    background:linear-gradient(160deg,var(--series-dark) 0%,var(--series) 100%);
+    padding:1.1rem .9rem;display:flex;flex-direction:column;justify-content:flex-start;overflow:hidden;
+  }
+  .ev-kf-label{font-size:.72rem;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.35rem;}
+  .ev-stat-row{font-family:'Fraunces',serif;font-size:3.2rem;font-weight:900;color:#fff;line-height:1.0;margin-bottom:.3rem;}
+  .ev-stat-unit{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:rgba(255,255,255,0.88);line-height:1;margin-bottom:.3rem;}
+  .ev-outcome{font-size:.95rem;font-weight:700;color:rgba(255,255,255,0.95);line-height:1.3;margin-bottom:.35rem;}
+  .ev-conditions{font-size:.80rem;line-height:1.35;color:rgba(255,255,255,0.72);}
+  .ev-body{background:#fff;padding:1.1rem 1.2rem;display:flex;flex-direction:column;justify-content:space-between;}
+  .ev-body h4{font-family:'Fraunces',serif;font-size:1rem;color:var(--navy);margin-bottom:0.5rem;}
+  .ev-body p{font-size:.93rem;line-height:1.72;color:var(--text);margin-bottom:.6rem;}
+  .ev-source{font-size:.78rem;color:rgba(44,44,44,0.55);font-style:italic;}
+  @media(max-width:620px){.research-card{grid-template-columns:1fr;}}
+
+  /* PUTTING IT ALL TOGETHER */
+  .putting-together{
+    background:linear-gradient(160deg,var(--series-dark) 0%,var(--series) 100%);
+    border-radius:12px;padding:1.8rem;margin:2.4rem 0;
+  }
+  .putting-together p{font-size:1rem;font-style:italic;color:rgba(255,255,255,0.92);line-height:1.8;margin-bottom:0.8rem;}
+  .putting-together p:last-child{margin-bottom:0;font-weight:600;color:#fff;font-style:normal;}
+
+  /* REFERENCES */
+  .references-section{margin-top:2.8rem;}
+  .references-section h3{font-family:'Fraunces',serif;font-size:1.1rem;color:var(--navy);margin-bottom:1.2rem;}
+  .ref-list{counter-reset:ref-counter;list-style:none;padding:0;}
+  .ref-block{counter-increment:ref-counter;position:relative;padding-left:2rem;margin-bottom:0.9rem;}
+  .ref-block::before{
+    content:counter(ref-counter);position:absolute;left:0;top:0.1rem;
+    width:1.4rem;height:1.4rem;border-radius:50%;background:var(--series);
+    color:#fff;font-size:0.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;
+  }
+  .ref-full{font-size:0.85rem;line-height:1.6;color:var(--text);}
+  .ref-links{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.3rem;}
+  .ref-pill{font-size:0.75rem;font-weight:600;padding:0.2rem 0.65rem;border-radius:20px;text-decoration:none;background:rgba(42,90,58,0.10);color:var(--series);border:1px solid rgba(42,90,58,0.25);}
+  .ref-pill:hover{background:var(--series);color:#fff;}
+
+  /* RESEARCH FLAGS */
+  .flag-box{background:rgba(232,168,74,0.10);border:1px solid rgba(232,168,74,0.4);border-radius:8px;padding:1rem 1.2rem;margin-top:2rem;}
+  .flag-box h4{font-size:0.82rem;font-weight:700;color:var(--amber);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.08em;}
+  .flag-box ul{list-style:none;padding:0;}
+  .flag-box li{font-size:0.85rem;color:var(--text);line-height:1.6;padding:0.2rem 0;padding-left:1.2rem;position:relative;}
+  .flag-box li::before{content:"⚑";position:absolute;left:0;color:var(--amber);}
+
+  /* FOOTER */
+  .site-footer{background:var(--navy);padding:2.5rem 2rem;margin-top:4rem;}
+  .site-footer-inner{max-width:860px;margin:0 auto;}
+  .footer-logo{font-family:'Fraunces',serif;font-size:1.3rem;color:#fff;margin-bottom:0.4rem;}
+  .footer-logo span{color:var(--coral);}
+  .footer-disc{font-size:0.80rem;color:rgba(255,255,255,0.60);line-height:1.6;max-width:680px;margin-top:0.8rem;}
+  .footer-copy{font-size:0.78rem;color:rgba(255,255,255,0.40);margin-top:1.2rem;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div>
+    <div class="logo-mark">helf<span>.</span>school</div>
+    <div class="logo-tag">Health Education</div>
+  </div>
+  <nav class="header-nav">
+    <a href="helf-school-conditions.html">All Conditions</a>
+    <a href="helf-school-membership.html">Membership</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="article-hero">
+  <div class="article-hero-inner">
+    <div class="breadcrumb">
+      <a href="helf-school-conditions.html">All Conditions</a> › Cancer Series › Melanoma and Skin Cancer
+    </div>
+    <div class="series-badge">Cancer Series · Article 31</div>
+    <h1>Melanoma and Skin Cancer</h1>
+    <p class="hero-subtitle">The most dangerous form of skin cancer — what it is, why early detection transforms outcomes, and how modern treatment has changed the story of advanced disease.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/></svg>
+        Written by Dr Paul · NHS GP (ret.)
+      </div>
+      <div class="hero-meta-item">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+        Updated April 2026
+      </div>
+      <div class="hero-meta-item">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h7a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/></svg>
+        6 references · 3 clinical trials reviewed
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER BAR -->
+<div class="disclaimer-bar">
+  <p><strong>Health education, not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+</div>
+
+<!-- ARTICLE BODY -->
+<div class="article-wrap">
+
+  <!-- MYTH PANEL -->
+  <div class="myth-panel">
+    <div class="myth-panel-title">
+      <svg viewBox="0 0 20 20" fill="currentColor" style="color:var(--amber);width:20px;height:20px;"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+      What the evidence actually shows
+    </div>
+    <div class="myth-grid">
+      <div class="myth-card">
+        <div class="myth-label">Myth</div>
+        <div class="myth-claim">"Melanoma only affects people with fair skin"</div>
+        <div class="myth-evidence">Melanoma occurs across all skin tones. Acral lentiginous melanoma — which develops on the palms, soles of the feet, and under the nails — is diagnosed more frequently in people with darker skin tones, and can be harder to spot on darker skin.<sup><a href="#ref-2">2</a></sup></div>
+      </div>
+      <div class="myth-card">
+        <div class="myth-label">Myth</div>
+        <div class="myth-claim">"A tan shows your skin is healthy"</div>
+        <div class="myth-evidence">A tan is the skin's visible response to DNA damage caused by ultraviolet (UV) radiation. The evidence shows that UV radiation is responsible for around 86% of melanoma cases in the UK. There is no such thing as a safe tan.<sup><a href="#ref-1">1</a></sup></div>
+      </div>
+      <div class="myth-card">
+        <div class="myth-label">Myth</div>
+        <div class="myth-claim">"Sunbeds are safer than natural sunlight"</div>
+        <div class="myth-evidence">Sunbeds emit concentrated UV radiation. Evidence shows that sunbed use is associated with a significantly increased risk of developing melanoma, and the International Agency for Research on Cancer classifies sunbeds as a Group 1 carcinogen — causing cancer in humans.<sup><a href="#ref-1">1</a></sup></div>
+      </div>
+      <div class="myth-card">
+        <div class="myth-label">Myth</div>
+        <div class="myth-claim">"Melanoma is always brown or black"</div>
+        <div class="myth-evidence">Some melanomas — called amelanotic melanomas (without visible pigment) — appear pink, red, or skin-coloured, and can closely resemble benign lesions. This is one reason why dermoscopy (examination using a magnifying dermatoscope device) is used in clinical assessment rather than relying on appearance alone.<sup><a href="#ref-2">2</a></sup></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1 — WHAT IS IT? -->
+  <p class="section-eyebrow">Section 1</p>
+  <h2 class="section-title">What is melanoma?</h2>
+
+  <p>Melanoma is a cancer that arises from melanocytes (the pigment-producing cells found in the skin, as well as in the eyes and mucous membranes). It is the most dangerous form of skin cancer because of its capacity to spread — to metastasise (spread to other parts of the body) — if not detected early. Unlike basal cell carcinoma (BCC) and squamous cell carcinoma (SCC), the two most common non-melanoma skin cancers, melanoma is far more likely to reach the lymph nodes and distant organs if left untreated.<sup><a href="#ref-2">2</a></sup></p>
+
+  <p>Most melanomas develop on the skin, where they typically appear as a new or changing dark lesion. The ABCDE rule is a widely used checklist for identifying lesions that warrant clinical assessment: Asymmetry, Border (irregular or uneven edges), Colour (multiple shades or uneven distribution), Diameter (wider than 6mm, roughly the size of a pencil eraser), and Evolution (any change in size, shape, or colour). An additional sign, sometimes called the "ugly duckling" sign, describes a mole that simply looks different from the others on the same person — which can be just as important as the ABCDE criteria.<sup><a href="#ref-2">2</a></sup></p>
+
+  <p>Melanoma occurs in several distinct subtypes, each with different growth patterns and clinical features:</p>
+
+  <ol class="subtype-list">
+    <li><strong>Superficial spreading melanoma</strong> — the most common subtype of melanoma in the UK.<sup><a href="#ref-6">6</a></sup> It tends to grow outward across the skin surface before growing downward into deeper layers, which is why early detection is particularly effective for this type.</li>
+    <li><strong>Nodular melanoma</strong> — grows rapidly downward into the skin from the outset. It often appears as a raised, firm, dark or black lump, but can sometimes be skin-coloured or reddish.</li>
+    <li><strong>Lentigo maligna melanoma</strong> — develops from a flat, irregularly pigmented area called a lentigo maligna. It is more common in older adults and typically occurs on chronically sun-exposed areas such as the face and neck.</li>
+    <li><strong>Acral lentiginous melanoma</strong> — the least common subtype, developing on the palms of the hands, soles of the feet, or under the nails. It is more commonly diagnosed in people with darker skin tones and in East Asian populations.</li>
+  </ol>
+
+  <p>An important molecular characteristic that determines treatment options is BRAF mutation status. Approximately half of cutaneous (skin) melanomas carry a mutation in the BRAF gene — most commonly the BRAF V600E variant — which causes uncontrolled cell growth. BRAF mutation testing is now recommended by NICE at diagnosis for higher-risk disease, because the presence of this mutation determines whether BRAF-targeted drug treatment is a treatment option.<sup><a href="#ref-2">2</a></sup></p>
+
+  <!-- KEY TERMS -->
+  <div class="key-terms">
+    <div class="key-terms-title">Key Terms</div>
+    <div class="key-terms-grid">
+      <div>
+        <div class="key-term">
+          <div class="key-term-label">Melanocyte</div>
+          <div class="key-term-def">A specialised cell in the skin (and other tissues) that produces melanin, the pigment that gives skin and hair their colour. Melanoma begins when melanocytes acquire mutations that cause them to grow uncontrollably.</div>
+        </div>
+        <div class="key-term">
+          <div class="key-term-label">ABCDE Rule</div>
+          <div class="key-term-def">A clinical checklist for assessing moles and skin lesions: Asymmetry · Border (irregular) · Colour (uneven or multiple shades) · Diameter (greater than 6mm) · Evolution (any change over time). Lesions with one or more of these features should be assessed clinically.</div>
+        </div>
+        <div class="key-term">
+          <div class="key-term-label">Breslow Thickness</div>
+          <div class="key-term-def">The depth a melanoma has grown into the skin, measured in millimetres from the surface. It is the most important single factor in staging melanoma and in determining the need for sentinel lymph node biopsy.</div>
+        </div>
+        <div class="key-term">
+          <div class="key-term-label">BRAF Gene</div>
+          <div class="key-term-def">A gene that, when carrying a V600 mutation, produces an abnormal protein that drives uncontrolled melanoma cell growth. Approximately half of all cutaneous melanomas carry a BRAF V600 mutation, which determines eligibility for BRAF-targeted drug treatment.</div>
+        </div>
+      </div>
+      <div>
+        <div class="key-term">
+          <div class="key-term-label">Sentinel Lymph Node Biopsy</div>
+          <div class="key-term-def">A surgical procedure in which the first lymph node(s) draining from the melanoma site are removed and examined under a microscope to determine whether cancer cells have spread to the lymph system. It is used for melanomas above a certain depth threshold.</div>
+        </div>
+        <div class="key-term">
+          <div class="key-term-label">Dermatoscopy</div>
+          <div class="key-term-def">Examination of a skin lesion using a handheld device called a dermatoscope, which illuminates and magnifies the lesion to reveal structural patterns beneath the skin surface that are not visible to the naked eye.</div>
+        </div>
+        <div class="key-term">
+          <div class="key-term-label">Immunotherapy</div>
+          <div class="key-term-def">Treatment that works by activating the body's immune system to recognise and attack cancer cells. Checkpoint inhibitors — such as pembrolizumab (Keytruda), nivolumab (Opdivo), and ipilimumab (Yervoy) — are the main class used in melanoma.</div>
+        </div>
+        <div class="key-term">
+          <div class="key-term-label">Metastasis</div>
+          <div class="key-term-def">The spread of cancer cells from the original tumour to other parts of the body — such as the lymph nodes, lungs, liver, brain, or bones — via the bloodstream or lymphatic system.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- SECTION 2 — WHY DOES IT MATTER? -->
+  <p class="section-eyebrow">Section 2</p>
+  <h2 class="section-title">Why does it matter?</h2>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-number">~18,300</div>
+      <div class="stat-prose">new melanoma cases diagnosed in the UK each year — around 48 every day (2018–2019, 2021).<sup><a href="#ref-1">1</a></sup></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">2,600</div>
+      <div class="stat-prose">deaths from melanoma in the UK each year — more than 7 every day (2022–2024).<sup><a href="#ref-1">1</a></sup></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">86%</div>
+      <div class="stat-prose">of melanoma cases in the UK are caused by overexposure to ultraviolet (UV) radiation — making it one of the most preventable cancers (UK, 2015).<sup><a href="#ref-1">1</a></sup></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">92.7%</div>
+      <div class="stat-prose">10-year overall survival across all stages (2018, UK). Melanoma survival has more than doubled in the past 50 years.<sup><a href="#ref-1">1</a></sup></div>
+    </div>
+  </div>
+
+  <p>Melanoma is the fifth most common cancer in the UK, and its incidence has been rising. Over the past decade, the rate of new diagnoses has increased by around 31% — a trend linked to ageing, changing sun exposure habits, and increased awareness and detection.<sup><a href="#ref-1">1</a></sup></p>
+
+  <p>Despite being less common than non-melanoma skin cancers, melanoma is responsible for the vast majority of skin cancer deaths. The reason is its biological behaviour: melanoma that has not been detected early can spread to the lymph nodes, lungs, brain, and liver, at which point treatment becomes significantly more complex. The difference in survival between early- and later-stage disease is one of the largest of any cancer.<sup><a href="#ref-2">2</a></sup></p>
+
+  <div class="standout-stat">
+    <div class="standout-stat-icon">📊</div>
+    <div class="standout-stat-text">
+      <div class="label">The stage gap</div>
+      <div class="standout-stat-main">Around 100% of people diagnosed with stage 1 melanoma survive 5 years or more</div>
+      <div class="standout-stat-sub">This compares with around 85% at stage 2 and around 75% at stage 3 — illustrating how significantly stage at diagnosis affects outcome.<sup><a href="#ref-1">1</a></sup></div>
+    </div>
+  </div>
+
+  <p>The good news is that melanoma survival has transformed over the past 50 years. In the 1970s, fewer than half of people diagnosed with melanoma survived 10 years. By 2018, more than 9 in 10 did — a change driven by increased awareness, earlier diagnosis, and the arrival of effective modern treatments.<sup><a href="#ref-1">1</a></sup></p>
+
+  <p>UV exposure is the single largest modifiable risk factor. This includes sun exposure and sunbed use. The pattern of exposure matters: melanoma risk is more closely linked with intermittent high-intensity UV exposure — such as sunbathing or holidaying in high-sunlight environments — than with low-level chronic outdoor exposure. Fair skin, a family history of melanoma, many moles (particularly atypical ones), and a history of severe sunburn, especially in childhood and adolescence, all increase risk.<sup><a href="#ref-1">1</a></sup></p>
+
+  <hr class="section-divider">
+
+  <!-- SECTION 3 — WHAT YOUR DOCTOR MIGHT DISCUSS -->
+  <p class="section-eyebrow">Section 3</p>
+  <h2 class="section-title">What your doctor might discuss</h2>
+
+  <p>When a skin lesion is of concern, the initial assessment typically involves a clinical examination and, increasingly, dermatoscopy (see Key Terms) — which improves diagnostic accuracy compared with the naked eye alone. If the clinical picture is uncertain or concerning, the standard next step is an excision biopsy (surgical removal of the lesion plus a small margin of surrounding tissue), which allows the pathologist to examine the cells under a microscope and measure Breslow thickness (see Key Terms).<sup><a href="#ref-2">2</a></sup></p>
+
+  <div class="discussion-grid">
+    <div class="discussion-card">
+      <div class="discussion-card-icon">🔬</div>
+      <h4>Biopsy and staging</h4>
+      <p>An excision biopsy confirms or excludes melanoma and establishes Breslow thickness. Staging investigations may include ultrasound of regional lymph nodes, CT (computed tomography) or PET-CT (positron emission tomography) scanning, and MRI (magnetic resonance imaging) of the brain in higher-stage disease.<sup><a href="#ref-2">2</a></sup></p>
+    </div>
+    <div class="discussion-card">
+      <div class="discussion-card-icon">🧬</div>
+      <h4>BRAF testing</h4>
+      <p>NICE guidance now recommends BRAF V600 mutation testing at the time of diagnosis for stage IIA melanoma and above — not only at the point of metastatic disease. Knowing BRAF status early means targeted treatment can begin promptly if the disease progresses.<sup><a href="#ref-2">2</a></sup></p>
+    </div>
+    <div class="discussion-card">
+      <div class="discussion-card-icon">🏥</div>
+      <h4>Sentinel lymph node biopsy</h4>
+      <p>For melanomas above a certain Breslow thickness, a sentinel lymph node biopsy (see Key Terms) is considered. This determines whether cancer cells have spread to the nearest lymph nodes and informs staging and treatment decisions.<sup><a href="#ref-2">2</a></sup></p>
+    </div>
+    <div class="discussion-card">
+      <div class="discussion-card-icon">💊</div>
+      <h4>Treatment pathways</h4>
+      <p>Early-stage disease is treated primarily with surgery. Higher-stage disease may involve adjuvant (preventive) immunotherapy with pembrolizumab (Keytruda) or nivolumab (Opdivo), or adjuvant BRAF-targeted treatment with dabrafenib (Tafinlar) plus trametinib (Mekinist) for BRAF V600-mutant disease. Advanced disease is managed with immunotherapy combinations or targeted therapy.<sup><a href="#ref-2">2</a></sup></p>
+    </div>
+  </div>
+
+  <p>The development of effective immunotherapy and BRAF-targeted therapy over the past decade has substantially changed the treatment of advanced melanoma, with a proportion of patients with stage 4 disease now achieving durable long-term responses that were not achievable with the treatments available before 2011.<sup><a href="#ref-2">2</a></sup></p>
+
+  <hr class="section-divider">
+
+  <!-- SECTION 4 — WHAT THE RESEARCH SHOWS -->
+  <p class="section-eyebrow">Section 4</p>
+  <h2 class="section-title">What the research shows</h2>
+
+  <p>Three landmark clinical trials have defined modern melanoma treatment. Together they establish immunotherapy and BRAF-targeted combination therapy as the standards of care for advanced disease, with survival outcomes that were unthinkable before the immunotherapy era.</p>
+
+  <!-- Research Card 1: KEYNOTE-006 -->
+  <div class="research-card">
+    <div class="ev-stat-box">
+      <div class="ev-kf-label">Median Overall Survival</div>
+      <div class="ev-stat-row">32.7</div>
+      <div class="ev-stat-unit">months</div>
+      <div class="ev-outcome">median OS / pembrolizumab vs 15.9 months on ipilimumab</div>
+      <div class="ev-conditions">advanced melanoma · 5-year follow-up · KEYNOTE-006</div>
+    </div>
+    <div class="ev-body">
+      <div>
+        <h4>KEYNOTE-006 — Pembrolizumab (Keytruda) vs Ipilimumab (Yervoy)</h4>
+        <p>KEYNOTE-006 compared pembrolizumab (Keytruda) — a PD-1 checkpoint inhibitor (a drug that helps the immune system recognise cancer cells) — against ipilimumab (Yervoy) in patients with advanced, previously untreated melanoma. At 5-year follow-up, pembrolizumab produced a median overall survival of 32.7 months compared with 15.9 months for ipilimumab.<sup><a href="#ref-3">3</a></sup> Pembrolizumab is now a standard first-line treatment for advanced melanoma without a BRAF mutation, or in combination for those with one.</p>
+      </div>
+      <div class="ev-source">Robert C et al. Lancet Oncol 2019;20(9):1239–1251. PMID 31345627</div>
+    </div>
+  </div>
+
+  <!-- Research Card 2: COMBI 5-year pooled -->
+  <div class="research-card">
+    <div class="ev-stat-box">
+      <div class="ev-kf-label">5-Year Overall Survival</div>
+      <div class="ev-stat-row">34%</div>
+      <div class="ev-outcome">5-year OS / dabrafenib + trametinib in BRAF V600-mutant metastatic melanoma</div>
+      <div class="ev-conditions">pooled COMBI-d and COMBI-v trials · 563 patients · BRAF V600E/K mutation</div>
+    </div>
+    <div class="ev-body">
+      <div>
+        <h4>COMBI Trials — Dabrafenib (Tafinlar) plus Trametinib (Mekinist)</h4>
+        <p>In approximately half of all melanomas, a BRAF V600 mutation drives the cancer's growth.<sup><a href="#ref-2">2</a></sup> A pooled 5-year analysis of two large trials — COMBI-d and COMBI-v — showed that 34% of patients with BRAF V600-mutant metastatic melanoma were alive at 5 years after treatment with the BRAF inhibitor dabrafenib (Tafinlar) plus the MEK inhibitor trametinib (Mekinist).<sup><a href="#ref-4">4</a></sup> This combination is now the standard targeted therapy for BRAF V600-mutant advanced melanoma and is also used as adjuvant therapy after surgery for high-risk stage III disease.</p>
+      </div>
+      <div class="ev-source">Robert C et al. N Engl J Med 2019;381(7):626–636. PMID 31166680</div>
+    </div>
+  </div>
+
+  <!-- Research Card 3: CheckMate 067 5-year -->
+  <div class="research-card">
+    <div class="ev-stat-box">
+      <div class="ev-kf-label">5-Year Overall Survival</div>
+      <div class="ev-stat-row">52%</div>
+      <div class="ev-outcome">5-year OS / nivolumab + ipilimumab vs 26% on ipilimumab alone</div>
+      <div class="ev-conditions">advanced treatment-naïve melanoma · 5-year follow-up · CheckMate 067</div>
+    </div>
+    <div class="ev-body">
+      <div>
+        <h4>CheckMate 067 — Nivolumab (Opdivo) plus Ipilimumab (Yervoy)</h4>
+        <p>CheckMate 067 assessed the combination of nivolumab (Opdivo) and ipilimumab (Yervoy) — two checkpoint inhibitors that block different immune-suppression pathways — against ipilimumab alone. At 5 years, 52% of patients treated with the combination were alive, compared with 26% on ipilimumab alone.<sup><a href="#ref-5">5</a></sup> This combination remains an important treatment option for advanced melanoma, particularly in patients without a BRAF mutation, and represents a dramatic shift from the pre-immunotherapy era when median survival in advanced disease was measured in months.</p>
+      </div>
+      <div class="ev-source">Larkin J et al. N Engl J Med 2019;381(16):1535–1546. PMID 31562797</div>
+    </div>
+  </div>
+
+  <!-- PUTTING IT ALL TOGETHER -->
+  <div class="putting-together">
+    <p>Melanoma is the most dangerous form of skin cancer — but also one of the most preventable. UV radiation, primarily from sun exposure and sunbeds, accounts for around 86% of all UK melanoma cases.<sup><a href="#ref-1">1</a></sup> Protecting skin from UV, checking regularly for new or changing moles, and seeking prompt clinical assessment when something looks different are the most important things the evidence supports.</p>
+    <p>Early detection makes a profound difference. Around 100% of people diagnosed at stage 1 survive 5 years or more.<sup><a href="#ref-1">1</a></sup> Modern immunotherapy and targeted therapy have transformed survival in advanced disease — but the clearest path to better outcomes remains catching melanoma before it spreads.</p>
+    <p>Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- REFERENCES -->
+  <div class="references-section">
+    <h3>References</h3>
+    <ol class="ref-list">
+      <li id="ref-1" class="ref-block">
+        <div class="ref-full">Cancer Research UK. Melanoma skin cancer statistics. Available at: cancerresearchuk.org/health-professional/cancer-statistics/statistics-by-cancer-type/melanoma-skin-cancer [accessed April 2026].</div>
+        <div class="ref-links">
+          <a class="ref-pill" href="https://www.cancerresearchuk.org/health-professional/cancer-statistics/statistics-by-cancer-type/melanoma-skin-cancer" target="_blank">Cancer Research UK ↗</a>
+        </div>
+      </li>
+      <li id="ref-2" class="ref-block">
+        <div class="ref-full">National Institute for Health and Care Excellence. Melanoma: assessment and management. NICE guideline NG14. Updated July 2022. Available at: nice.org.uk/guidance/ng14.</div>
+        <div class="ref-links">
+          <a class="ref-pill" href="https://www.nice.org.uk/guidance/ng14" target="_blank">NICE NG14 ↗</a>
+        </div>
+      </li>
+      <li id="ref-3" class="ref-block">
+        <div class="ref-full">Robert C, Ribas A, Hamid O, et al. Pembrolizumab versus ipilimumab in advanced melanoma (KEYNOTE-006): post-hoc 5-year results from an open-label, multicentre, randomised, controlled, phase 3 study. Lancet Oncol. 2019;20(9):1239–1251. doi:10.1016/S1470-2045(19)30388-2. PMID 31345627.</div>
+        <div class="ref-links">
+          <a class="ref-pill" href="https://doi.org/10.1016/S1470-2045(19)30388-2" target="_blank">DOI ↗</a>
+          <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/31345627/" target="_blank">PubMed ↗</a>
+        </div>
+      </li>
+      <li id="ref-4" class="ref-block">
+        <div class="ref-full">Robert C, Grob JJ, Stroyakovskiy D, et al. Five-year outcomes with dabrafenib plus trametinib in metastatic melanoma. N Engl J Med. 2019;381(7):626–636. doi:10.1056/NEJMoa1904059. PMID 31166680.</div>
+        <div class="ref-links">
+          <a class="ref-pill" href="https://doi.org/10.1056/NEJMoa1904059" target="_blank">DOI ↗</a>
+          <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/31166680/" target="_blank">PubMed ↗</a>
+        </div>
+      </li>
+      <li id="ref-5" class="ref-block">
+        <div class="ref-full">Larkin J, Chiarion-Sileni V, Gonzalez R, et al. Five-year survival with combined nivolumab and ipilimumab in advanced melanoma. N Engl J Med. 2019;381(16):1535–1546. doi:10.1056/NEJMoa1910836. PMID 31562797.</div>
+        <div class="ref-links">
+          <a class="ref-pill" href="https://doi.org/10.1056/NEJMoa1910836" target="_blank">DOI ↗</a>
+          <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/31562797/" target="_blank">PubMed ↗</a>
+        </div>
+      </li>
+      <li id="ref-6" class="ref-block">
+        <div class="ref-full">Cancer Research UK. Types of melanoma skin cancer. Available at: cancerresearchuk.org/about-cancer/melanoma/stages-types/types [accessed April 2026].</div>
+        <div class="ref-links">
+          <a class="ref-pill" href="https://www.cancerresearchuk.org/about-cancer/melanoma/stages-types/types" target="_blank">Cancer Research UK ↗</a>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- RESEARCH FLAGS -->
+  <div class="flag-box">
+    <h4>Research flags — for review before upload</h4>
+    <ul>
+      <li>BRAF V600 mutation prevalence "approximately half" of cutaneous melanomas — commonly cited figure; confirm in NICE NG14 text or identify a primary epidemiological source (e.g. CRUK cancer statistics or ESMO guidelines) before upload.</li>
+      <li>Author list for Ref 4 (COMBI 5-year pooled, PMID 31166680): listed as Robert C, Grob JJ, Stroyakovskiy D — verify full author order against PubMed before upload.</li>
+      <li>IARC Group 1 classification for sunbeds — cited via CRUK risk factors page. If a direct primary IARC citation is preferred, fetch from IARC Monographs Vol 100D before upload.</li>
+    </ul>
+  </div>
+
+</div><!-- /article-wrap -->
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-logo">helf<span>.</span>school</div>
+    <div class="logo-tag" style="font-size:0.62rem;font-weight:700;letter-spacing:0.18em;color:rgba(255,255,255,0.45);text-transform:uppercase;margin-bottom:0.5rem;">Health Education</div>
+    <div class="footer-disc">Anything personally relevant is a conversation for you to have with your GP or healthcare professional. helf.school provides health education only — not medical advice, diagnosis, or treatment recommendations. Always seek the advice of a qualified clinician for any medical concerns.</div>
+    <div class="footer-copy">© 2026 helf.school · Cancer Series · Article 31 · Melanoma and Skin Cancer</div>
+  </div>
+</footer>
+
+</body>
+</html>
