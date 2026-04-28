@@ -833,6 +833,97 @@ The closing slide is now the **helf.school brand close** — NOT a repeat of the
 
 ---
 
+### LAY IMPACT FIRST — VISUALS AND TELEPROMPTER STANDARD — LOCKED APRIL 2026
+
+**This standard was confirmed when building melanoma-visuals.html (Article 31, April 2026), which is the canonical reference. It applies to all future visuals and teleprompter builds, and is a retrofit instruction for all 30 existing articles.**
+
+The visuals and teleprompter are the doorway — not the textbook. Three questions they must answer for the lay viewer: What is this condition? Does it affect me? Is there anything I can do about it? Full treatment detail lives in the article.
+
+#### VISUALS — Colour narrative (mandatory from Article 31 onwards)
+
+Every informational slide must use the colour narrative to carry meaning. Cards are not all the same colour:
+
+- **Red cards** — risk, harm, danger, mortality figures
+- **Amber cards** — mechanism, process, how something works, gene/molecular information
+- **Green cards** — positive outcomes, action, survival figures, what treatment achieves
+
+This applies to all card types: `three-grid` info cards, `stat-card` hero stat layouts, and intro stat cards. The colour must match the content — a survival stat goes on a green card, a mortality figure goes on a red card.
+
+**Canonical reference:** `melanoma-visuals.html` (April 2026) — slides 3–7 demonstrate the full colour narrative. `lifestyle-changes-visuals.html` remains a secondary reference for the 6-row mechanism grid pattern.
+
+#### VISUALS — Hero stat layout
+
+When a slide has a dominant headline figure, use the hero stat layout: one large stat card spanning the full height of one column (`grid-row: span 2`), with two smaller stat cards stacked in the adjacent column. This is more impactful than three equal cards.
+
+**Canonical example:** `melanoma-visuals.html` slide 5 — ~100% stage 1 survival as the hero stat, with 2,600 deaths and 86% preventable fraction as the flanking cards.
+
+#### VISUALS — Sequential animation for formal lists
+
+When the article contains a formally introduced set of items (ABCDE, stages, types, criteria), a sequential reveal is always more engaging than showing everything at once. Each item slides or fades in on a stagger timer (~1.2 seconds between items) when the slide becomes active. The animation resets if the user navigates away and returns.
+
+**Implementation:** Use `opacity:0; transform:translateX(-28px)` as the default state, `opacity:1; transform:translateX(0)` as the `.visible` state, triggered by JavaScript setTimeout on `runAnimation()` when `goTo()` activates the slide.
+
+**Canonical example:** `melanoma-visuals.html` slide 3 — ABCDE rule with 5-item sequential reveal, each letter in a distinct accent colour, footer note fading in last.
+
+#### VISUALS — No drug names
+
+Drug generic names and brand names must not appear in visuals slides. Describe treatments by class only:
+
+- ✅ "immunotherapy" · "gene-targeted treatment" · "checkpoint inhibitor" · "targeted therapy" · "BRAF inhibitor"
+- ❌ pembrolizumab · nivolumab · ipilimumab · dabrafenib · trametinib · Keytruda · Opdivo · Yervoy
+
+**Why:** The visuals audience is lay people watching a video. Complex drug names add cognitive load without adding clinical understanding. The full drug detail — generic name, brand name, mechanism — lives in the article.
+
+#### VISUALS — Trial names: lean and stat-focused
+
+Trial names may be used in research card titles and ev-conditions (KEYNOTE-006, COMBI, CheckMate 067, NELSON, FLAURA etc.) — they give the finding provenance without requiring explanation. The ev-body must then describe the finding in plain English: what was compared, what the headline stat showed, one sentence of clinical significance. No trial design, no hazard ratios, no confidence intervals in visuals.
+
+#### TELEPROMPTER — No drug names
+
+The same no-drug-names rule applies to teleprompter scripts. Dr Paul describes treatments by what they do, not what they're called:
+
+- ✅ "a type of immunotherapy that helps the immune system recognise cancer cells"
+- ✅ "a gene-targeted treatment for patients whose melanoma has a specific BRAF mutation"
+- ❌ "pembrolizumab — Keytruda —" (the spoken em-dash format is retired for teleprompter scripts going forward)
+
+**Retrofit note:** The spoken em-dash brand name format (e.g. `pembrolizumab — Keytruda —`) was the locked standard from Rule 33. For teleprompter scripts, this is now superseded by the lay-description approach. Rule 33 still applies to article HTML and visuals info cards.
+
+#### TELEPROMPTER — Trial names: name, stat, meaning only
+
+When citing a trial in the teleprompter, the format is: name of trial → headline stat → one plain sentence of what it means for someone with that condition. Nothing else.
+
+**Example (correct):** *"The KEYNOTE-006 trial showed immunotherapy more than doubled survival in advanced melanoma — from around 16 months to nearly 33. That's a profound shift from where we were a decade ago."*
+
+**Not:** trial design, comparator arm description, hazard ratios, confidence intervals, patient numbers.
+
+#### TELEPROMPTER — Three questions standard
+
+Every teleprompter must answer three lay questions, in roughly this order:
+1. **What is this?** — what the condition is, briefly and clearly
+2. **Does it affect me?** — who gets it, what the risk factors are, what to watch for
+3. **Is there anything I can do?** — what detection, prevention, or treatment looks like in plain terms
+
+The research section in the teleprompter exists to answer question 3 — not to describe clinical trial methodology.
+
+#### RETROFIT — apply when any visuals or teleprompter file is next opened
+
+When any existing visuals file is opened for any reason, apply:
+1. Colour narrative — replace uniform card colours with red/amber/green by content type
+2. Check for drug names — replace with class descriptions
+3. Check trial ev-body — reduce to 2–3 sentences max, remove trial design detail
+4. Consider whether any formal list on a slide would benefit from sequential animation
+
+When any existing teleprompter is opened for any reason, apply:
+1. Remove drug generic and brand names — replace with class descriptions
+2. Check trial references — reduce to name + stat + one plain sentence
+3. Verify the three-question structure is present
+
+**Priority articles for colour narrative retrofit (highest visual impact):**
+- Cardiovascular series (01–07) — these have heavy treatment content and risk/benefit stats that would benefit most from red/amber/green differentiation
+- Cancer series (27–30) — already partially correct in newer builds; apply full colour narrative on next open
+
+---
+
 ## 10. TELEPROMPTER HTML STANDARDS
 
 ### Core technical spec
@@ -929,6 +1020,7 @@ Scale 0.62 · every 2nd frame · 120 colours · under 1.5MB total PPTX
 33. **ev-outcome MUST CARRY THE REASON — LOCKED APRIL 2026:** Before presenting any article or visuals file with research cards, check every ev-outcome line. It must state BOTH the finding AND the comparison/intervention that produced the stat number. "24%" is not enough — "reduction in lung-cancer mortality / CT screening vs no screening" is correct. The comparison must never appear only in ev-conditions. Read ev-stat-row + ev-outcome together: if a reader can't understand the stat AND its cause from those two lines alone, rewrite ev-outcome. Canonical: `lung-cancer.html` Article 29 research cards (April 2026).
 34. **DRUG BRAND NAMES — MANDATORY ALONGSIDE ALL GENERIC NAMES — LOCKED APRIL 2026:** Every drug name must be accompanied by its brand name in every helf.school file — article body, Key Terms, myth panels, evidence cards, visuals info cards, and teleprompter scripts. Generic name first, brand name immediately following in parentheses or em-dash format. Brand names are shorter, more recognisable to patients, and — critically in teleprompter files — easier to say fluently while filming. **Format in articles and visuals:** `pembrolizumab (Keytruda)` · `bevacizumab (Avastin)` · `cetuximab (Erbitux)` · `panitumumab (Vectibix)` · `osimertinib (Tagrisso)`. **Format in teleprompter scripts:** `pembrolizumab — Keytruda —` · `bevacizumab — Avastin —` (spoken em-dash form). Before delivering any file, grep for generic drug names and confirm every instance has a brand name alongside it. Common oncology brand names: pembrolizumab=Keytruda · osimertinib=Tagrisso · bevacizumab=Avastin · cetuximab=Erbitux · panitumumab=Vectibix · nivolumab=Opdivo · trastuzumab=Herceptin · rituximab=MabThera · imatinib=Glivec · erlotinib=Tarceva · gefitinib=Iressa.
 35. **RESEARCH CURRENCY — NO ARTICLES OLDER THAN 12 YEARS — LOCKED APRIL 2026:** No research article or trial published more than 12 years before the current date may be used in evidence cards or as a primary stat source. Current year 2026 → no papers published before 2014. Guideline documents (NICE, WHO) are exempt if updated within 12 years — cite the most recent update date. Before selecting any evidence card trial, verify the publication year. If the canonical trial for a topic predates 2014, find a more recent equivalent. **Violation example:** Hardcastle et al. Lancet 1996 (gFOBT trial) — removed from bowel-cancer.html April 2026 and replaced with Bretthauer et al. NEJM 2022 (NordICC, PMID 36214590). Using a 1996 gFOBT trial in a 2026 article about the NHS FIT programme describes a superseded test.
+36. **LAY IMPACT FIRST — VISUALS AND TELEPROMPTER — LOCKED APRIL 2026:** Visuals and teleprompter files must prioritise lay impact over clinical completeness. (1) **Colour narrative:** red cards for risk/harm, amber for mechanism/process, green for positive outcomes/action — never uniform card colours. (2) **No drug names in visuals or teleprompter** — describe by class only: "immunotherapy", "gene-targeted treatment", "checkpoint inhibitor". (3) **Trials in teleprompter:** name + headline stat + one plain sentence only — no trial design, no hazard ratios. (4) **Sequential animation** for formal lists (ABCDE, stages, criteria) — canonical: `melanoma-visuals.html` slide 3. (5) **Three questions standard for teleprompter:** What is this? Does it affect me? Is there anything I can do? Canonical reference: `melanoma-visuals.html` and `melanoma-teleprompter.html` (April 2026). Retrofit instruction: apply colour narrative and remove drug names whenever any visuals or teleprompter file is next opened.
 
 ---
 
@@ -1205,6 +1297,7 @@ The comparison or intervention that produced a research card stat — the REASON
 ### Retrofit backlog (Articles 01–26 — apply when files next opened)
 All dark variants confirmed April 2026 — retrofit is fully unblocked. Apply per series as files are next opened. Priority order:
 
+0. **LAY IMPACT FIRST RETROFIT — Rule 34 — LOCKED APRIL 2026** — When any visuals or teleprompter file is opened for any reason, apply: (a) colour narrative — replace uniform cards with red/amber/green by content type; (b) remove any drug generic or brand names — replace with class descriptions; (c) check teleprompter trial references — reduce to name + stat + one plain sentence; (d) consider sequential animation for any formal list (ABCDE, stages, criteria). Priority series: Cancer (27–30) and Cardiovascular (01–07). Canonical reference: `melanoma-visuals.html` and `melanoma-teleprompter.html` (April 2026).
 1. **DRUG BRAND NAMES RETROFIT — Rule 33 — HIGHEST URGENCY — LOCKED APRIL 2026** — All generic drug names across all articles, visuals, and teleprompter scripts must have a brand name added alongside them. Apply to every file when next opened. The following inventory identifies the likely locations by article:
 
 **Cardiovascular Series (Articles 01–05):**

@@ -660,6 +660,47 @@ Canonical reference: `lung-cancer-visuals.html` slide 10 (April 2026).
 
 ---
 
+## ⛔ RULE 34 — LAY IMPACT FIRST: VISUALS AND TELEPROMPTER — LOCKED APRIL 2026
+
+**The visuals and teleprompter are the doorway — not the textbook. They answer three lay questions: What is this? Does it affect me? Is there anything I can do? Full clinical detail lives in the article.**
+
+### Visuals — colour narrative (mandatory)
+Every informational slide uses colour to carry meaning — never uniform card colours:
+- 🔴 **Red** — risk, harm, danger, mortality figures
+- 🟡 **Amber** — mechanism, process, how something works, gene/molecular information
+- 🟢 **Green** — positive outcomes, action, survival figures, treatment benefit
+
+### Visuals — no drug names
+Describe treatments by class only. Never use generic or brand drug names in visuals slides:
+- ✅ "immunotherapy" · "gene-targeted treatment" · "checkpoint inhibitor" · "targeted therapy"
+- ❌ pembrolizumab · nivolumab · ipilimumab · dabrafenib · trametinib · Keytruda etc.
+
+### Visuals — sequential animation for formal lists
+When a slide contains a formally introduced set of items (ABCDE, stages, criteria), reveal them sequentially on a ~1.2 second stagger timer. Canonical: `melanoma-visuals.html` slide 3 (April 2026).
+
+### Visuals — hero stat layout
+When a slide has a dominant headline figure, use the hero stat layout: one large stat card spanning full height (`grid-row: span 2`), two smaller cards stacked alongside. Canonical: `melanoma-visuals.html` slide 5.
+
+### Teleprompter — no drug names
+No drug generic or brand names in teleprompter scripts. Replace with class descriptions:
+- ✅ "a type of immunotherapy that helps the immune system recognise cancer cells"
+- ❌ "pembrolizumab — Keytruda —"
+
+**Note:** The spoken em-dash brand name format is retired for teleprompter scripts. Rule 33 still applies to article HTML and visuals info cards.
+
+### Teleprompter — trial references: name, stat, meaning only
+Format: trial name → headline stat → one plain sentence of what it means. No trial design, no hazard ratios, no confidence intervals.
+
+**Example:** *"The KEYNOTE-006 trial showed immunotherapy more than doubled survival in advanced melanoma — from around 16 months to nearly 33. That's a profound shift from where we were a decade ago."*
+
+### Retrofit — apply when any file is next opened
+- **Visuals:** apply colour narrative, remove drug names, check ev-body is ≤3 sentences, consider sequential animation for formal lists
+- **Teleprompter:** remove drug names, reduce trial references to name + stat + one sentence, verify three-question structure
+
+**Canonical reference:** `melanoma-visuals.html` · `melanoma-teleprompter.html` (April 2026)
+
+---
+
 ## STANDING RETROFIT INSTRUCTION — BRAND NAMES — RULE 33 — APPLY TO ALL EXISTING FILES
 
 **Whenever any existing helf.school article, visuals file, or teleprompter is opened for any reason — including minor edits, corrections, or updates — the brand name check must be run before the file is re-delivered.**
@@ -738,10 +779,10 @@ The brand name rule (Rule 33, locked April 2026) is a retrofit across the entire
 
 | File | Status |
 |------|--------|
-| breast-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — upload to GitHub outstanding |
-| prostate-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — upload to GitHub outstanding |
-| lung-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — upload to GitHub outstanding |
-| bowel-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — upload to GitHub outstanding |
+| breast-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — on GitHub ✅ |
+| prostate-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — on GitHub ✅ |
+| lung-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — on GitHub ✅ |
+| bowel-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — on GitHub ✅ |
 | melanoma.html + visuals + teleprompter | Not yet built — Article 31, next to build |
 
 ### OUTSTANDING CITATION FLAGS
