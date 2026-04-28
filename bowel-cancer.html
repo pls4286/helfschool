@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bowel Cancer — helf.school</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+/* ─── VARIABLES ─── */
+:root {
+  --navy:         #1B2A4A;
+  --coral:        #E8634A;
+  --cream:        #FAF7F2;
+  --amber:        #E8A84A;
+  --series:       #2A5A3A;
+  --series-dark:  #1A3A25;
+  --series-light: #9DCFB5;
+  --text:         #2C2C2C;
+  --white:        #ffffff;
+}
+
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); line-height: 1.75; }
+img { max-width: 100%; display: block; }
+
+/* ─── NAV ─── */
+.site-nav {
+  background: var(--navy); padding: 1rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+}
+.nav-logo { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.35rem; color: var(--white); text-decoration: none; }
+.nav-logo span { color: var(--coral); }
+.nav-links { display: flex; gap: 1.5rem; list-style: none; }
+.nav-links a { color: rgba(255,255,255,0.80); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
+.nav-links a:hover { color: var(--white); }
+
+/* ─── HERO ─── */
+.article-hero {
+  background: linear-gradient(135deg, var(--series-dark) 0%, var(--series) 60%, #3A7A55 100%);
+  color: var(--white);
+  padding: 3.5rem 2rem 3.5rem;
+  min-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-inner { max-width: 820px; margin: 0 auto; width: 100%; }
+.series-badge {
+  display: inline-flex; align-items: center; gap: .4rem;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 4px; padding: .22rem .75rem;
+  font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .09em;
+  color: rgba(255,255,255,0.90); margin-bottom: 1.1rem;
+}
+.article-h1 {
+  font-family: 'Fraunces', serif; font-weight: 900;
+  font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1.08;
+  margin-bottom: .85rem;
+}
+.article-intro {
+  font-size: 1.15rem; color: rgba(255,255,255,0.88);
+  max-width: 680px; line-height: 1.65; margin-bottom: 2rem;
+}
+.hero-facts {
+  display: flex; flex-wrap: wrap; gap: 0;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: 1.4rem;
+}
+.hero-fact {
+  padding: .6rem 1.8rem .6rem 0; margin-right: 1.8rem;
+  border-right: 1px solid rgba(255,255,255,0.15);
+}
+.hero-fact:last-child { border-right: none; }
+.hf-num { font-family: 'Fraunces', serif; font-weight: 900; font-size: 2.6rem; color: var(--amber); line-height: 1; }
+.hf-label { font-size: .80rem; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: rgba(255,255,255,0.68); margin-top: .2rem; }
+
+/* ─── MYTH PANEL ─── */
+.myth-panel {
+  background: var(--navy); border-radius: 14px;
+  padding: 1.6rem; margin: 2.5rem 0;
+}
+.myth-panel-title {
+  font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.15rem;
+  color: var(--amber); margin-bottom: 1rem;
+}
+.myth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; }
+.myth-card { background: rgba(255,255,255,0.06); border-radius: 10px; overflow: hidden; }
+.myth-claim { padding: .75rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.myth-claim-lbl { font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--amber); margin-bottom: .3rem; }
+.myth-claim-text { font-size: .9rem; font-style: italic; color: rgba(255,255,255,0.72); line-height: 1.5; }
+.myth-evidence { padding: .75rem 1rem; }
+.myth-ev-lbl { font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--series-light); margin-bottom: .3rem; }
+.myth-ev-text { font-size: .9rem; font-weight: 500; color: rgba(255,255,255,0.92); line-height: 1.5; }
+.myth-ev-ref { font-size: .72rem; color: rgba(255,255,255,0.42); font-style: italic; margin-top: .3rem; }
+
+/* ─── ARTICLE BODY ─── */
+.article-body { max-width: 820px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+.section-label {
+  font-size: .75rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--series); margin-bottom: .5rem;
+}
+.section-h2 {
+  font-family: 'Fraunces', serif; font-weight: 700;
+  font-size: 1.75rem; color: var(--navy); margin-bottom: 1.2rem; line-height: 1.2;
+}
+.article-body p { font-size: 1.05rem; margin-bottom: 1.1rem; line-height: 1.78; }
+.article-body p sup a { color: var(--series); font-size: .75em; text-decoration: none; font-weight: 600; }
+.article-body p sup a:hover { text-decoration: underline; }
+.section-divider { border: none; border-top: 2px solid rgba(27,42,74,0.08); margin: 2.8rem 0; }
+
+/* ─── SUBTYPE LIST ─── */
+.subtype-list {
+  list-style: none; margin: 1.1rem 0 1.3rem;
+  padding: 0; display: flex; flex-direction: column; gap: .6rem;
+  counter-reset: subtype-counter;
+}
+.subtype-list li {
+  counter-increment: subtype-counter;
+  display: flex; align-items: flex-start; gap: .8rem;
+  font-size: 1.05rem; line-height: 1.65;
+}
+.subtype-list li::before {
+  content: counter(subtype-counter);
+  background: var(--series); color: var(--white);
+  font-weight: 700; font-size: .82rem;
+  min-width: 1.6rem; height: 1.6rem;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: .18rem;
+}
+
+/* ─── KEY TERMS BOX ─── */
+.key-terms-box {
+  background: rgba(27,42,74,0.05);
+  border: 1px solid rgba(27,42,74,0.12);
+  border-left: 4px solid var(--series);
+  border-radius: 10px;
+  padding: 1.4rem 1.6rem;
+  margin: 2rem 0;
+}
+.kt-title {
+  font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.05rem;
+  color: var(--navy); margin-bottom: .9rem;
+}
+.kt-grid { display: flex; flex-direction: column; gap: .6rem; }
+.kt-row { display: flex; gap: .5rem; font-size: .95rem; line-height: 1.6; }
+.kt-term { font-weight: 700; color: var(--series); flex-shrink: 0; min-width: 120px; }
+.kt-def { color: var(--text); }
+
+/* ─── STANDOUT STAT ─── */
+.standout-stat {
+  background: var(--navy);
+  border-left: 4px solid var(--amber);
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  margin: 1.8rem 0;
+  display: flex; align-items: flex-start; gap: 1rem;
+}
+.ss-num {
+  font-family: 'Fraunces', serif; font-weight: 900;
+  font-size: 3.4rem; color: var(--amber); line-height: 1;
+  flex-shrink: 0;
+}
+.ss-text { color: rgba(255,255,255,0.90); font-size: 1rem; line-height: 1.6; }
+.ss-sup a { color: var(--series-light); font-size: .8em; text-decoration: none; }
+
+/* ─── STAT GRID ─── */
+.stat-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; margin: 1.8rem 0;
+}
+.stat-cell {
+  background: var(--white);
+  border-radius: 10px;
+  border-top: 4px solid var(--series);
+  padding: 1.2rem 1.3rem;
+  box-shadow: 0 2px 8px rgba(27,42,74,0.07);
+}
+.sc-num {
+  font-family: 'Fraunces', serif; font-weight: 900;
+  font-size: 2.1rem; color: var(--series); line-height: 1;
+  margin-bottom: .3rem;
+}
+.sc-label { font-size: .88rem; color: var(--text); line-height: 1.45; font-weight: 500; }
+.sc-source { font-size: .72rem; color: rgba(44,44,44,0.45); font-style: italic; margin-top: .3rem; }
+
+/* ─── EVIDENCE CARDS ─── */
+.ev-section { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+.ev-card {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(27,42,74,0.09);
+  display: grid; grid-template-columns: 220px 1fr;
+}
+.ev-stat-box {
+  background: linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%);
+  padding: 1.15rem 1rem;
+  display: flex; flex-direction: column;
+}
+.ev-kf-label {
+  font-size: .68rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .08em; color: var(--amber); margin-bottom: .4rem;
+}
+.ev-stat-row {
+  font-family: 'Fraunces', serif; font-weight: 900;
+  font-size: 3rem; color: var(--white); line-height: 1; margin-bottom: .08rem;
+}
+.ev-stat-unit {
+  font-family: 'Fraunces', serif; font-weight: 700;
+  font-size: 1.55rem; color: rgba(255,255,255,0.88); line-height: 1; margin-bottom: .3rem;
+}
+.ev-outcome {
+  font-size: .93rem; font-weight: 700;
+  color: rgba(255,255,255,0.95); line-height: 1.3; margin-bottom: .3rem;
+}
+.ev-conditions {
+  font-size: .78rem; color: rgba(255,255,255,0.68); line-height: 1.35;
+}
+.ev-body { padding: 1.2rem 1.4rem; display: flex; flex-direction: column; }
+.ev-body p { font-size: 1rem; line-height: 1.72; color: var(--text); margin-bottom: .7rem; }
+.ev-body p:last-of-type { margin-bottom: 0; }
+.ev-source { font-size: .78rem; color: rgba(44,44,44,0.50); font-style: italic; margin-top: .6rem; }
+
+/* ─── PUTTING IT ALL TOGETHER ─── */
+.putting-together {
+  background: var(--series);
+  border-radius: 12px;
+  padding: 1.6rem 1.8rem;
+  margin-top: 2.5rem;
+}
+.pt-title {
+  font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.1rem;
+  color: var(--amber); margin-bottom: .75rem;
+}
+.pt-body { font-size: 1rem; color: rgba(255,255,255,0.92); line-height: 1.72; }
+
+/* ─── REFERENCES ─── */
+.references-section { margin-top: 3rem; padding-top: 2rem; border-top: 2px solid rgba(27,42,74,0.1); }
+.ref-title {
+  font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.05rem;
+  color: var(--navy); margin-bottom: 1rem;
+}
+.ref-list { list-style: none; display: flex; flex-direction: column; gap: .9rem; }
+.ref-list li { display: flex; gap: .7rem; font-size: .88rem; line-height: 1.58; color: var(--text); align-items: flex-start; }
+.ref-num { color: var(--series); font-weight: 700; flex-shrink: 0; min-width: 1.4rem; padding-top: .1rem; }
+.ref-text { flex: 1; }
+.ref-flag { color: var(--amber); font-size: .8rem; font-weight: 700; }
+.ref-link {
+  display: inline-flex; align-items: center; gap: .25rem;
+  color: var(--white); font-size: .76rem; font-weight: 700;
+  text-decoration: none; white-space: nowrap;
+  background: var(--series);
+  border-radius: 5px;
+  padding: .28rem .75rem;
+  flex-shrink: 0;
+  margin-top: .15rem;
+  transition: background .15s, transform .1s;
+}
+.ref-link:hover { background: var(--series-dark); transform: translateY(-1px); }
+.ref-link::after { content: ' ↗'; font-size: .72rem; }
+
+/* ─── DISCLAIMER ─── */
+.article-disclaimer {
+  background: rgba(27,42,74,0.05);
+  border: 1px solid rgba(27,42,74,0.12);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin-top: 2rem;
+  font-size: .88rem;
+  color: rgba(44,44,44,0.70);
+  line-height: 1.6;
+}
+
+/* ─── FOOTER ─── */
+.site-footer {
+  background: var(--navy); color: rgba(255,255,255,0.65);
+  text-align: center; padding: 2rem; font-size: .85rem;
+}
+.site-footer a { color: rgba(255,255,255,0.80); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 640px) {
+  .myth-grid { grid-template-columns: 1fr; }
+  .stat-grid { grid-template-columns: 1fr; }
+  .ev-card { grid-template-columns: 1fr; }
+  .hero-facts { gap: .8rem; }
+  .hero-fact { border-right: none; padding-right: 0; margin-right: 0; }
+  .kt-row { flex-direction: column; gap: .1rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav class="site-nav">
+  <a href="/" class="nav-logo">helf<span>.</span>school</a>
+  <ul class="nav-links">
+    <li><a href="/helf-school-conditions.html">All Conditions</a></li>
+    <li><a href="/helf-school-membership.html">Membership</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─── -->
+<header class="article-hero">
+  <div class="hero-inner">
+    <div class="series-badge">🟢 Cancer Series · Article 30</div>
+    <h1 class="article-h1">Bowel Cancer</h1>
+    <p class="article-intro">Bowel cancer is the UK's second biggest cancer killer — yet it is also one of the most preventable and detectable cancers we know about. Early-stage survival exceeds 90%. Here is what the evidence says about diagnosis, treatment, and why stage at detection matters so much.</p>
+    <div class="hero-facts">
+      <div class="hero-fact">
+        <div class="hf-num">~44,000</div>
+        <div class="hf-label">new UK cases per year<sup>⚑</sup></div>
+      </div>
+      <div class="hero-fact">
+        <div class="hf-num">48</div>
+        <div class="hf-label">deaths every day (2022–2024)</div>
+      </div>
+      <div class="hero-fact">
+        <div class="hf-num">&gt;90%</div>
+        <div class="hf-label">five-year survival at stage 1</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ─── ARTICLE BODY ─── -->
+<div class="article-body">
+
+<!-- MYTH PANEL -->
+<div class="myth-panel">
+  <div class="myth-panel-title">Four things people commonly get wrong about bowel cancer</div>
+  <div class="myth-grid">
+
+    <div class="myth-card">
+      <div class="myth-claim">
+        <div class="myth-claim-lbl">The myth</div>
+        <div class="myth-claim-text">"Blood in my stool is just piles — it's nothing to worry about and not worth mentioning."</div>
+      </div>
+      <div class="myth-evidence">
+        <div class="myth-ev-lbl">The evidence</div>
+        <div class="myth-ev-text">Blood in or on the stool is one of the primary symptoms that triggers urgent bowel cancer investigation under NICE guidance. Rectal bleeding without an obvious cause, or combined with any change in bowel habit, warrants clinical assessment.</div>
+        <div class="myth-ev-ref">NICE NG12 · Suspected cancer: recognition and referral, 2023</div>
+      </div>
+    </div>
+
+    <div class="myth-card">
+      <div class="myth-claim">
+        <div class="myth-claim-lbl">The myth</div>
+        <div class="myth-claim-text">"The bowel cancer screening test is unpleasant and invasive — not worth bothering with."</div>
+      </div>
+      <div class="myth-evidence">
+        <div class="myth-ev-lbl">The evidence</div>
+        <div class="myth-ev-text">The NHS FIT (faecal immunochemical test) is a home stool test — no hospital visit or bowel preparation required. Evidence from the UK's bowel screening programme shows that screening reduces bowel cancer mortality. Around 40% of eligible people still don't complete the test when sent one.</div>
+        <div class="myth-ev-ref">NICE NG151 · Colorectal cancer, 2023</div>
+      </div>
+    </div>
+
+    <div class="myth-card">
+      <div class="myth-claim">
+        <div class="myth-claim-lbl">The myth</div>
+        <div class="myth-claim-text">"Bowel cancer is only a disease of older people — younger people don't need to think about it."</div>
+      </div>
+      <div class="myth-evidence">
+        <div class="myth-ev-lbl">The evidence</div>
+        <div class="myth-ev-text">While bowel cancer is most common in those over 50, incidence rates in adults under 50 have been rising in the UK and across high-income countries. Around 2,600 cases occur in people under 50 in the UK every year. Late diagnosis in younger adults — who may be assumed not to be at risk — is a recognised clinical problem.</div>
+        <div class="myth-ev-ref">Cancer Research UK · cancerresearchuk.org</div>
+      </div>
+    </div>
+
+    <div class="myth-card">
+      <div class="myth-claim">
+        <div class="myth-claim-lbl">The myth</div>
+        <div class="myth-claim-text">"Bowel cancer can't really be prevented — it's mainly genetic and out of your control."</div>
+      </div>
+      <div class="myth-evidence">
+        <div class="myth-ev-lbl">The evidence</div>
+        <div class="myth-ev-text">Around 75% of bowel cancer cases occur in people with no significant family history.<sup>1</sup> Diet — particularly processed and red meat consumption — physical inactivity, obesity, alcohol, and smoking all independently increase risk. The IARC classifies processed meat as a Group 1 carcinogen for bowel cancer. Each additional 50g consumed per day raises risk by approximately 18% — this is a dose-response relationship starting from low intake levels, not a threshold that only applies at high amounts.</div>
+        <div class="myth-ev-ref">Bouvard V et al. Lancet Oncol 2015 · PMID 26514947</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SECTION 1 -->
+<div class="section-label">Section 1</div>
+<h2 class="section-h2">What is bowel cancer?</h2>
+
+<p>Bowel cancer — formally known as colorectal cancer — is cancer of the large bowel: either the colon or the rectum. The colon is approximately 150 centimetres of looped bowel that absorbs water and nutrients from undigested food as it passes through; the rectum is the final 15 centimetres, which stores waste prior to elimination. When cells in the inner lining of either structure begin dividing in an uncontrolled way, a malignant tumour forms.</p>
+
+<p>More than 95% of bowel cancers are adenocarcinomas — cancers arising from the glandular cells that line the bowel wall.<sup><a href="#ref-3">3</a></sup> The remainder are rarer tumour types that behave and are treated differently:</p>
+
+<ol class="subtype-list">
+  <li><strong>Adenocarcinoma</strong> — cancer of the glandular lining cells; the dominant type, accounting for over 95% of all bowel cancers</li>
+  <li><strong>Neuroendocrine tumour (NET)</strong> — arises from hormone-producing cells; behaviour varies from very slow-growing to aggressive depending on grade</li>
+  <li><strong>Lymphoma</strong> — cancer of lymphoid tissue within the bowel wall; rare, treated differently from adenocarcinoma</li>
+  <li><strong>Gastrointestinal stromal tumour (GIST)</strong> — arises from specialised muscle-related cells; treated with targeted drugs rather than standard chemotherapy</li>
+</ol>
+
+<p>Most bowel cancers do not arise suddenly in previously healthy tissue. The vast majority develop over many years from benign precancerous growths called adenomas — small polyps on the inner lining of the bowel wall. The progression from the normal bowel lining through an adenoma to invasive cancer typically takes a decade or more. This slow development is precisely why screening works: identifying and removing adenomas before they become cancerous can prevent bowel cancer from developing at all.<sup><a href="#ref-1">1</a>,<a href="#ref-3">3</a></sup></p>
+
+<!-- KEY TERMS BOX -->
+<div class="key-terms-box">
+  <div class="kt-title">Key Terms</div>
+  <div class="kt-grid">
+    <div class="kt-row"><span class="kt-term">Colorectal</span><span class="kt-def">Relating to both the colon and the rectum together; used interchangeably with "bowel cancer" in clinical practice.</span></div>
+    <div class="kt-row"><span class="kt-term">Adenocarcinoma</span><span class="kt-def">Cancer arising from glandular cells; the most common type of bowel cancer, accounting for more than 95% of cases.</span></div>
+    <div class="kt-row"><span class="kt-term">Polyp / adenoma</span><span class="kt-def">A small growth on the inner lining of the bowel; adenomas are precancerous polyps that may develop into cancer over years or decades if not removed.</span></div>
+    <div class="kt-row"><span class="kt-term">FIT</span><span class="kt-def">Faecal immunochemical test — a home stool test that detects microscopic amounts of blood; the basis of the NHS Bowel Cancer Screening Programme. More sensitive than the older gFOBT test it replaced.</span></div>
+    <div class="kt-row"><span class="kt-term">gFOBT</span><span class="kt-def">Guaiac faecal occult blood test — the earlier version of the bowel screening home stool test; replaced in England by the more sensitive FIT in 2019. Clinical trials using gFOBT established the evidence base for bowel cancer screening.</span></div>
+    <div class="kt-row"><span class="kt-term">Colonoscopy</span><span class="kt-def">A procedure in which a flexible camera is passed through the bowel to examine the inner lining directly; allows biopsy and polyp removal in the same session.</span></div>
+    <div class="kt-row"><span class="kt-term">MSI-H</span><span class="kt-def">Microsatellite instability-high — a molecular characteristic found in around 15% of all bowel cancers; these tumours have a defect in their DNA repair system and respond strongly to immunotherapy.</span></div>
+    <div class="kt-row"><span class="kt-term">dMMR</span><span class="kt-def">Deficient mismatch repair — the underlying DNA repair defect that causes MSI-H. The two terms are often used interchangeably in clinical practice; both identify tumours likely to respond to pembrolizumab.</span></div>
+    <div class="kt-row"><span class="kt-term">KRAS / NRAS / BRAF</span><span class="kt-def">Genes commonly mutated in bowel cancer. Their status is tested at diagnosis because it determines which targeted treatments are appropriate — for example, anti-EGFR antibody drugs only work if KRAS and NRAS are unmutated.</span></div>
+    <div class="kt-row"><span class="kt-term">Wild-type</span><span class="kt-def">A clinical term meaning "normal" or "unmutated." RAS wild-type means the KRAS and NRAS genes carry no mutations — these tumours can be treated with anti-EGFR antibody drugs such as cetuximab.</span></div>
+    <div class="kt-row"><span class="kt-term">Adjuvant</span><span class="kt-def">Treatment given after surgery to reduce the risk of the cancer returning; adjuvant chemotherapy for bowel cancer is given when the cancer has spread to nearby lymph nodes (stage 3).</span></div>
+    <div class="kt-row"><span class="kt-term">Neoadjuvant</span><span class="kt-def">Treatment given before surgery to shrink the tumour; for rectal cancer, neoadjuvant chemoradiotherapy (chemotherapy combined with radiotherapy) is often given to improve surgical outcomes and reduce local recurrence.</span></div>
+    <div class="kt-row"><span class="kt-term">PFS</span><span class="kt-def">Progression-free survival — the length of time during and after treatment that a patient lives without the cancer growing or spreading; a standard measure of treatment effectiveness in clinical trials.</span></div>
+    <div class="kt-row"><span class="kt-term">Metastasis</span><span class="kt-def">The spread of cancer to other organs; in bowel cancer, the liver and lungs are the most common sites of distant spread.</span></div>
+  </div>
+</div>
+
+<p>Modern bowel cancer treatment is increasingly guided by molecular tumour profiling. At diagnosis, all colorectal tumours are tested for mutations in the KRAS, NRAS, and BRAF genes, and for MSI status. This is clinically important: KRAS or NRAS mutations — found in roughly half of all bowel cancers — mean that anti-EGFR antibody drugs (drugs that block a growth signal on the tumour's surface, such as cetuximab and panitumumab) will not work; these drugs are only effective in tumours where those genes are unmutated (wild-type). BRAF V600E mutations — found in around 10% of metastatic cases — are associated with a specific targeted combination therapy. And MSI-H status — present in roughly 15% of all bowel cancers but only 3–5% of metastatic cases — identifies tumours with exceptional sensitivity to immunotherapy with pembrolizumab (Keytruda).<sup><a href="#ref-3">3</a>,<a href="#ref-4">4</a></sup></p>
+
+<hr class="section-divider">
+
+<!-- SECTION 2 -->
+<div class="section-label">Section 2</div>
+<h2 class="section-h2">Why does it matter?</h2>
+
+<p>Bowel cancer is the fourth most common cancer in the UK, with around 44,000 new diagnoses every year — more than 120 each day.<sup><a href="#ref-1">1</a></sup> It is the second most common cause of cancer death in the UK after lung cancer, responsible for around 17,700 deaths annually — 48 every day (2022–2024).<sup><a href="#ref-1">1</a></sup></p>
+
+<div class="stat-grid">
+  <div class="stat-cell">
+    <div class="sc-num">~44,000</div>
+    <div class="sc-label">new cases diagnosed per year in the UK — 4th most common cancer<sup>⚑</sup></div>
+    <div class="sc-source">Cancer Research UK · cancerresearchuk.org</div>
+  </div>
+  <div class="stat-cell">
+    <div class="sc-num">48</div>
+    <div class="sc-label">deaths every day in the UK (2022–2024) — 2nd biggest cancer killer after lung cancer</div>
+    <div class="sc-source">Cancer Research UK · cancerresearchuk.org</div>
+  </div>
+  <div class="stat-cell">
+    <div class="sc-num">&gt;90%</div>
+    <div class="sc-label">five-year survival for bowel cancer diagnosed at stage 1 — the earliest stage</div>
+    <div class="sc-source">Cancer Research UK · cancerresearchuk.org</div>
+  </div>
+  <div class="stat-cell">
+    <div class="sc-num">~60%</div>
+    <div class="sc-label">overall five-year survival for bowel cancer — heavily influenced by stage at diagnosis</div>
+    <div class="sc-source">Cancer Research UK · cancerresearchuk.org</div>
+  </div>
+</div>
+
+<p>Survival for bowel cancer is very strongly determined by the stage at which cancer is diagnosed. Five-year survival for stage 1 disease exceeds 90%. For stage 4 bowel cancer — disease that has spread to distant organs such as the liver or lungs — five-year survival falls to approximately 8% in UK data.<sup><a href="#ref-1">1</a></sup> The overall five-year survival of around 60% reflects the mix of stages at which bowel cancer is currently being detected in the UK.</p>
+
+<div class="standout-stat">
+  <div class="ss-num">&gt;90%</div>
+  <div class="ss-text">Five-year survival when bowel cancer is found at stage 1 — versus approximately 8% at stage 4. The same disease. The difference is when it is found.<sup><a class="ss-sup" href="#ref-1">1</a></sup></div>
+</div>
+
+<p>The staging distribution is a significant part of the story. NHS England data from the period 2016–2020 shows that only around 43% of staged bowel cancer cases were diagnosed at stages 1 or 2. Around 31% were diagnosed at stage 3, and approximately 26% at stage 4 — the most advanced stage.<sup><a href="#ref-3">3</a></sup> This late-stage skew is one reason bowel cancer remains such a significant cause of mortality despite an overall survival figure that is substantially better than many other cancers. Improving earlier detection — through higher uptake of the NHS Bowel Cancer Screening Programme and faster investigation of symptoms — is a stated clinical and public health priority.</p>
+
+<hr class="section-divider">
+
+<!-- SECTION 3 -->
+<div class="section-label">Section 3</div>
+<h2 class="section-h2">What your doctor might do</h2>
+
+<p>NICE guidance (NG12) defines the symptoms that should prompt urgent clinical consideration of bowel cancer. These include: a persistent change in bowel habit lasting six weeks or more — particularly towards looser and/or more frequent stools; blood in or on the stool without an obvious benign cause; unexplained iron deficiency anaemia; and a mass (a lump that can be felt) in the abdomen or back passage. Unexplained weight loss in combination with any bowel symptom also warrants investigation. In adults under 40, unexplained rectal bleeding or any change in bowel habit with rectal bleeding justifies a two-week-wait (2WW) urgent referral to hospital.<sup><a href="#ref-2">2</a></sup></p>
+
+<p>The FIT (faecal immunochemical test) plays a central role in both primary care investigation and the NHS Bowel Cancer Screening Programme, in which it is offered every two years to eligible adults aged 50–74 in England. A positive FIT test leads to a colonoscopy — a direct camera examination of the entire large bowel that allows both visualisation and tissue biopsy in the same procedure. Where colonoscopy is not immediately appropriate, CT colonography (a CT-based virtual colonoscopy) is an alternative. A tissue biopsy is required to confirm the diagnosis under the microscope and to obtain the tumour material needed for molecular testing.<sup><a href="#ref-3">3</a></sup></p>
+
+<p>Once bowel cancer is confirmed, staging involves a CT scan of the chest, abdomen, and pelvis to identify any distant spread. For rectal cancer specifically, MRI of the pelvis is the standard staging tool, providing detail on local extent and lymph node involvement that guides decisions about surgery and pre-operative treatment. All tumours are sent for full molecular testing — KRAS, NRAS, BRAF, and MSI status — which is now standard practice across the UK and essential for treatment planning.<sup><a href="#ref-3">3</a></sup></p>
+
+<p>Treatment is planned by a colorectal multidisciplinary team (MDT) and is determined by tumour location, stage, molecular profile, and patient fitness. For non-metastatic disease, surgery is the primary treatment: the specific operation — right hemicolectomy, left hemicolectomy, anterior resection, or abdominoperineal resection — depends on where in the bowel the tumour is located. For stage 3 colon cancer, adjuvant chemotherapy — typically the FOLFOX regimen (oxaliplatin combined with 5-fluorouracil and folinic acid) — is offered routinely to reduce the risk of recurrence. For rectal cancer, neoadjuvant chemoradiotherapy before surgery is used in locally advanced cases to shrink the tumour, improve the likelihood of complete surgical removal, and reduce local recurrence rates.<sup><a href="#ref-3">3</a></sup></p>
+
+<p>For metastatic disease, chemotherapy is combined with targeted agents matched to the molecular profile: bevacizumab (an antibody that cuts off the tumour's blood supply) is used regardless of RAS mutation status; cetuximab or panitumumab (antibodies that block the EGFR growth signal on the tumour's surface) are used only in RAS wild-type tumours — those with no KRAS or NRAS mutation — where they significantly improve the chance of tumour shrinkage and extend survival. For the specific subgroup with MSI-H or dMMR tumours — approximately 3–5% of metastatic cases — pembrolizumab (Keytruda) has demonstrated substantially superior outcomes to standard chemotherapy and is now a first-line option.<sup><a href="#ref-3">3</a>,<a href="#ref-4">4</a></sup></p>
+
+<hr class="section-divider">
+
+<!-- SECTION 4 -->
+<div class="section-label">Section 4</div>
+<h2 class="section-h2">What the research shows</h2>
+
+<div class="ev-section">
+
+  <!-- EV CARD 1: KEYNOTE-177 -->
+  <div class="ev-card">
+    <div class="ev-stat-box">
+      <div class="ev-kf-label">Key Finding</div>
+      <div class="ev-stat-row">16.5</div>
+      <div class="ev-stat-unit">months</div>
+      <div class="ev-outcome">median PFS / pembrolizumab vs 8.2 months on chemotherapy</div>
+      <div class="ev-conditions">MSI-H/dMMR metastatic CRC · first-line · KEYNOTE-177</div>
+    </div>
+    <div class="ev-body">
+      <p>The KEYNOTE-177 trial randomised 307 patients with MSI-H or mismatch repair-deficient (dMMR) metastatic colorectal cancer to first-line pembrolizumab (Keytruda) or standard chemotherapy (with or without bevacizumab or cetuximab). Pembrolizumab — a checkpoint inhibitor that reactivates immune-system attack on cancer cells — delivered a median progression-free survival of 16.5 months, versus 8.2 months with chemotherapy. A 40% lower risk of disease progression or death was recorded (hazard ratio 0.60). Overall survival was also significantly better. Pembrolizumab is now a preferred first-line treatment for MSI-H/dMMR metastatic bowel cancer.</p>
+      <div class="ev-source">André T et al. N Engl J Med 2020;383(23):2207–2218 · PMID 33264544</div>
+    </div>
+  </div>
+
+  <!-- EV CARD 2: NordICC colonoscopy screening NEJM 2022 -->
+  <div class="ev-card">
+    <div class="ev-stat-box">
+      <div class="ev-kf-label">Key Finding</div>
+      <div class="ev-stat-row">18%</div>
+      <div class="ev-outcome">reduction in bowel cancer incidence / invitation to colonoscopy screening vs no screening</div>
+      <div class="ev-conditions">85,000+ adults aged 55–64 · 10-year follow-up · NordICC trial</div>
+    </div>
+    <div class="ev-body">
+      <p>The NordICC trial invited more than 85,000 adults aged 55–64 across Norway, Sweden, and Poland to a single colonoscopy screening or to no screening. At 10-year follow-up, bowel cancer incidence was 18% lower in the invited group — rising to 31% lower among those who actually attended for colonoscopy. Bowel cancer mortality was also lower in the screened group. The trial provides robust evidence that bowel screening reduces both cancer incidence and cancer deaths. In the NHS, FIT is the first-line screening test; a positive FIT leads to colonoscopy, combining the accessibility of a home stool test with the diagnostic and therapeutic power of direct bowel examination.</p>
+      <div class="ev-source">Bretthauer M, Løberg M, Wieszczy P, et al. N Engl J Med 2022;387(17):1547–1556 · PMID 36214590</div>
+    </div>
+  </div>
+
+  <!-- EV CARD 3: Processed meat / IARC Lancet Oncol 2015 -->
+  <div class="ev-card">
+    <div class="ev-stat-box">
+      <div class="ev-kf-label">Key Finding</div>
+      <div class="ev-stat-row">+18%</div>
+      <div class="ev-outcome">increased bowel cancer risk / for each additional 50g of processed meat per day</div>
+      <div class="ev-conditions">IARC Working Group · review of 800+ studies · Lancet Oncol 2015</div>
+    </div>
+    <div class="ev-body">
+      <p>An IARC Working Group reviewed more than 800 epidemiological studies and classified processed meat as a Group 1 carcinogen — meaning there is sufficient evidence of a causal relationship with cancer in humans. For bowel cancer, the data show approximately 18% higher relative risk for each additional 50g of processed meat consumed per day. Critically, this is a dose-response relationship that starts from low levels of intake — not a threshold that only applies above a certain daily amount. Even going from 0 to 50g per day (roughly two rashers of bacon, two sausages, or two slices of salami) is associated with approximately 18% higher bowel cancer risk compared with eating none. Red meat was classified as Group 2A (probably carcinogenic), with more limited evidence for bowel cancer.<sup><a href="#ref-6">6</a></sup></p>
+      <div class="ev-source">Bouvard V et al. Lancet Oncol 2015;16(16):1599–1600 · PMID 26514947</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- PUTTING IT ALL TOGETHER -->
+<div class="putting-together">
+  <div class="pt-title">Putting it all together</div>
+  <div class="pt-body">Bowel cancer is the UK's second biggest cancer killer — but it is also one of the most detectable and, in many cases, preventable cancers the NHS deals with. Early-stage survival exceeds 90%, but that figure depends entirely on when the cancer is found. The staging data tells the story: a quarter of bowel cancers are still diagnosed at stage 4 in the UK. The evidence consistently points to the value of screening in detecting cancer and pre-cancerous polyps earlier; to the role of diet and lifestyle as modifiable risk factors; and to meaningful advances in treatment — particularly immunotherapy for MSI-H tumours — that have improved outcomes for advanced disease. The gap between what is achievable and what is currently happening is largely a gap in earlier detection.<sup><a href="#ref-1">1</a>,<a href="#ref-2">2</a>,<a href="#ref-3">3</a></sup></div>
+</div>
+
+<!-- REFERENCES -->
+<div class="references-section">
+  <div class="ref-title">References</div>
+  <ol class="ref-list">
+    <li id="ref-1">
+      <span class="ref-num">1.</span>
+      <span class="ref-text">Cancer Research UK. Bowel cancer statistics — incidence, mortality, and survival data. cancerresearchuk.org <span class="ref-flag">⚑ Incidence figure (~44,000) to be verified against current CRUK incidence statistics page</span></span>
+      <a class="ref-link" href="https://www.cancerresearchuk.org/health-professional/cancer-statistics/statistics-by-cancer-type/bowel-cancer" target="_blank" rel="noopener">View source</a>
+    </li>
+    <li id="ref-2">
+      <span class="ref-num">2.</span>
+      <span class="ref-text">National Institute for Health and Care Excellence. Suspected cancer: recognition and referral. NICE guideline [NG12], 2015, updated 2023.</span>
+      <a class="ref-link" href="https://www.nice.org.uk/guidance/ng12" target="_blank" rel="noopener">View on NICE</a>
+    </li>
+    <li id="ref-3">
+      <span class="ref-num">3.</span>
+      <span class="ref-text">National Institute for Health and Care Excellence. Colorectal cancer. NICE guideline [NG151], 2020, updated 2023.</span>
+      <a class="ref-link" href="https://www.nice.org.uk/guidance/ng151" target="_blank" rel="noopener">View on NICE</a>
+    </li>
+    <li id="ref-4">
+      <span class="ref-num">4.</span>
+      <span class="ref-text">André T, Shiu KK, Kim TW, et al. Pembrolizumab in microsatellite-instability–high advanced colorectal cancer. N Engl J Med 2020;383(23):2207–2218. PMID 33264544</span>
+      <a class="ref-link" href="https://pubmed.ncbi.nlm.nih.gov/33264544/" target="_blank" rel="noopener">PubMed</a>
+    </li>
+    <li id="ref-5">
+      <span class="ref-num">5.</span>
+      <span class="ref-text">Bretthauer M, Løberg M, Wieszczy P, et al. Effect of colonoscopy screening on risks of colorectal cancer and related death. N Engl J Med 2022;387(17):1547–1556. PMID 36214590</span>
+      <a class="ref-link" href="https://pubmed.ncbi.nlm.nih.gov/36214590/" target="_blank" rel="noopener">PubMed</a>
+    </li>
+    <li id="ref-6">
+      <span class="ref-num">6.</span>
+      <span class="ref-text">Bouvard V, Loomis D, Guyton KZ, et al. Carcinogenicity of consumption of red and processed meat. Lancet Oncol 2015;16(16):1599–1600. PMID 26514947</span>
+      <a class="ref-link" href="https://doi.org/10.1016/S1470-2045(15)00444-1" target="_blank" rel="noopener">Lancet Oncol</a>
+    </li>
+  </ol>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="article-disclaimer">
+  <strong>Health education, not medical advice.</strong> helf.school provides evidence-based health information for educational purposes. Anything personally relevant to your health is a conversation for you to have with your GP or healthcare professional.
+</div>
+
+</div><!-- /article-body -->
+
+<!-- ─── FOOTER ─── -->
+<footer class="site-footer">
+  <p>helf.school · Cancer Series · Article 30 · Bowel Cancer<br>
+  <a href="/helf-school-conditions.html">All Conditions</a> · <a href="/helf-school-membership.html">Membership</a></p>
+</footer>
+
+</body>
+</html>
