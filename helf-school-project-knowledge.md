@@ -196,13 +196,13 @@ Series colour: `#2A5A3A` (forest green). Dark variant: `#1A3A25`. **Note: initia
 
 | # | Title | Slug | Status |
 |---|-------|------|--------|
-| 27 | Breast Cancer | breast-cancer | All 3 files built April 2026 ✅ — upload to GitHub outstanding |
-| 28 | Prostate Cancer | prostate-cancer | All 3 files built April 2026 ✅ — upload to GitHub outstanding |
-| 29 | Lung Cancer | lung-cancer | Article HTML built April 2026 ✅ — visuals and teleprompter outstanding |
-| 30 | Bowel (Colorectal) Cancer | bowel-cancer | Not yet built |
-| 31 | Melanoma and Skin Cancer | melanoma | Not yet built |
+| 27 | Breast Cancer | breast-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
+| 28 | Prostate Cancer | prostate-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
+| 29 | Lung Cancer | lung-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
+| 30 | Bowel (Colorectal) Cancer | bowel-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
+| 31 | Melanoma and Skin Cancer | melanoma | Not yet built — Article 31, next to build |
 
-**Total articles with article HTML on GitHub or built: 29. Articles 27, 28, 29 built — Articles 27 and 28 upload to GitHub outstanding. Article 29 visuals and teleprompter outstanding.**
+**Total articles with all 3 files on GitHub: 30. Articles 27–30 all complete and on GitHub ✅. Article 31 (Melanoma) next to build.**
 
 ---
 
@@ -1166,13 +1166,15 @@ The comparison or intervention that produced a research card stat — the REASON
 
 ## 19. OUTSTANDING TASKS (April 2026)
 
-### Immediate — uploads outstanding
-- Upload `breast-cancer.html`, `breast-cancer-visuals.html`, `breast-cancer-teleprompter.html` to GitHub
-- Upload `prostate-cancer.html`, `prostate-cancer-visuals.html`, `prostate-cancer-teleprompter.html` to GitHub
-- Upload `lung-cancer.html`, `lung-cancer-visuals.html`, `lung-cancer-teleprompter.html` to GitHub
-- Upload `bowel-cancer.html`, `bowel-cancer-visuals.html`, `bowel-cancer-teleprompter.html` to GitHub
-- Upload `helf-school-conditions.html` to GitHub (needs updating: Articles 29 and 30 now built — hero stat should read 30)
-- Upload `helf-school-project-knowledge.md` and `helf-school-session-start-rules.md` to GitHub AND Claude Project
+### Immediate — completed this session ✅
+- `breast-cancer.html`, `breast-cancer-visuals.html`, `breast-cancer-teleprompter.html` — on GitHub ✅
+- `prostate-cancer.html`, `prostate-cancer-visuals.html`, `prostate-cancer-teleprompter.html` — on GitHub ✅
+- `lung-cancer.html`, `lung-cancer-visuals.html`, `lung-cancer-teleprompter.html` — on GitHub ✅
+- `bowel-cancer.html`, `bowel-cancer-visuals.html`, `bowel-cancer-teleprompter.html` — on GitHub ✅
+- `helf-school-project-knowledge.md` and `helf-school-session-start-rules.md` — on GitHub AND Claude Project ✅
+
+### Still outstanding
+- `helf-school-conditions.html` — needs updating: hero stat should read 30 articles live, Articles 29 and 30 now showing as live in Cancer series
 
 ### Cancer Series — Article 29 (Lung Cancer) — COMPLETE ✅
 - `lung-cancer.html` — built April 2026 ✅
@@ -1203,19 +1205,7 @@ The comparison or intervention that produced a research card stat — the REASON
 ### Retrofit backlog (Articles 01–26 — apply when files next opened)
 All dark variants confirmed April 2026 — retrofit is fully unblocked. Apply per series as files are next opened. Priority order:
 
-1. **Research card colour retrofit** ← highest priority, highest visual impact — ev-stat-box background: navy → series-colour gradient. Spec: `linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%)`. Dark variants confirmed for all series (see Section 2). Apply across all 26 articles.
-2. **Closing slide brand close retrofit** — stat-recap closing → brand close (logo / pitch cards / disclaimer). Apply across all 26 visuals files.
-3. **Key Terms + Putting it all together** — navy → series-colour gradient. Cancer Series standard confirmed. Decision outstanding: extend to all series or Cancer-only? If extending, same gradient spec applies.
-4. **Research card display standard** — ev-stat-row to 3.2rem weight 900 across all articles.
-5. **Closing/CTA disclaimer sizes** — closing: `med-disc-text` 1rem; CTA: `med-disc-text` 1rem. Quick grep check per file.
-6. **No "free at helf.school"** — grep CTA subline per visuals file.
-7. **Research card clinical conclusion standard** — 01–23.
-8. **Stat grid citations** — 01–11 only.
-9. **Inline citations** — 01–11 only.
-10. **CTA slide standard** — 01–11 only.
-11. **Visuals layout standard** — 01–11 only.
-12. **Subtype list formatting** — apply `<ol class="subtype-list">` to any article containing formally introduced sets of items (subtypes, stages, types). Canonical: `lung-cancer.html`.
-13. **DRUG BRAND NAMES RETROFIT — Rule 33 — LOCKED APRIL 2026** — All generic drug names across all articles, visuals, and teleprompter scripts must have a brand name added alongside them. Apply to every file when next opened. The following inventory identifies the likely locations by article:
+1. **DRUG BRAND NAMES RETROFIT — Rule 33 — HIGHEST URGENCY — LOCKED APRIL 2026** — All generic drug names across all articles, visuals, and teleprompter scripts must have a brand name added alongside them. Apply to every file when next opened. The following inventory identifies the likely locations by article:
 
 **Cardiovascular Series (Articles 01–05):**
 - `hypertension.html` / visuals / teleprompter — ACE inhibitors: ramipril (Tritace/Altace), lisinopril (Zestril), perindopril (Coversyl) · ARBs: losartan (Cozaar), candesartan (Amias), valsartan (Diovan) · calcium channel blockers: amlodipine (Norvasc) · beta-blockers: bisoprolol (Cardicor), atenolol · thiazides: indapamide (Natrilix), bendroflumethiazide (Aprinox)
@@ -1229,6 +1219,19 @@ All dark variants confirmed April 2026 — retrofit is fully unblocked. Apply pe
 - `bowel-cancer.html` / visuals / teleprompter — pembrolizumab (Keytruda) ✅, bevacizumab (Avastin) ✅, cetuximab (Erbitux) ✅, panitumumab (Vectibix) ✅
 
 **Other series:** Check any article containing treatment sections for unbranded drug names. Grep pattern: `egrep -i "mab|tinib|ciclib|pril|sartan|statin|oxacin|vir|mycin" [filename]` will surface most pharmaceutical generics.
+
+2. **Research card colour retrofit** — ev-stat-box background: navy → series-colour gradient. Spec: `linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%)`. Dark variants confirmed for all series (see Section 2). Apply across all 26 articles.
+3. **Closing slide brand close retrofit** — stat-recap closing → brand close (logo / pitch cards / disclaimer). Apply across all 26 visuals files.
+4. **Key Terms + Putting it all together** — navy → series-colour gradient. Cancer Series standard confirmed. Decision outstanding: extend to all series or Cancer-only? If extending, same gradient spec applies.
+5. **Research card display standard** — ev-stat-row to 3.2rem weight 900 across all articles.
+6. **Closing/CTA disclaimer sizes** — closing: `med-disc-text` 1rem; CTA: `med-disc-text` 1rem. Quick grep check per file.
+7. **No "free at helf.school"** — grep CTA subline per visuals file.
+8. **Research card clinical conclusion standard** — 01–23.
+9. **Stat grid citations** — 01–11 only.
+10. **Inline citations** — 01–11 only.
+11. **CTA slide standard** — 01–11 only.
+12. **Visuals layout standard** — 01–11 only.
+13. **Subtype list formatting** — apply `<ol class="subtype-list">` to any article containing formally introduced sets of items (subtypes, stages, types). Canonical: `lung-cancer.html`.
 
 ---
 
@@ -1425,11 +1428,11 @@ When article body prose introduces a formally counted or named set of items usin
 
 | File | Status |
 |------|--------|
-| breast-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — upload to GitHub outstanding |
-| prostate-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — upload to GitHub outstanding |
-| lung-cancer.html | ✅ Article HTML built April 2026 — visuals and teleprompter outstanding |
-| bowel-cancer.html + visuals + teleprompter | Not yet built |
-| melanoma.html + visuals + teleprompter | Not yet built |
+| breast-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — on GitHub ✅ |
+| prostate-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — on GitHub ✅ |
+| lung-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — on GitHub ✅ |
+| bowel-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — on GitHub ✅ |
+| melanoma.html + visuals + teleprompter | Not yet built — Article 31, next to build |
 
 ### OUTSTANDING CITATION FLAGS
 - hypertension.html refs 5 + 6 — Cochrane PubMed IDs flagged ⚑ unverified
@@ -1473,7 +1476,7 @@ Article HTML built April 2026. Research flags noted: NICE CKS Vertigo (last revi
 - All 4 stat grid cards carry inline citations ✅
 - Overdiagnosis: uses Marmot paper's per-10,000 framing (129 per 10,000) — not the derived 4,000 annual figure
 - Research card stat box: forest green gradient, 3.2rem stat number — new canonical standard
-- All 3 files built April 2026 ✅ — upload to GitHub outstanding
+- All 3 files built April 2026 ✅ — on GitHub ✅
 - Cross-reference signpost box added in Section 3 after symptoms paragraph — signposts forthcoming Article 32 (Breast Awareness, Practical Health series), marked "Coming soon"
 
 ### prostate-cancer.html — April 2026 decisions
@@ -1490,7 +1493,7 @@ Article HTML built April 2026. Research flags noted: NICE CKS Vertigo (last revi
 - All 4 stat grid cards carry inline citations ✅
 - References numbered via CSS counter ✅
 - All PMIDs verified by web search in session ✅
-- All 3 files built April 2026 ✅ — upload to GitHub outstanding
+- All 3 files built April 2026 ✅ — on GitHub ✅
 - Visuals: 14 slides (3-card split pattern) — new canonical reference for all future visuals
 - Teleprompter: 9 segments, 10 cue boxes, 712 words
 
@@ -1503,7 +1506,7 @@ Article HTML built April 2026. Research flags noted: NICE CKS Vertigo (last revi
 - 72% caused by smoking / 79% total preventable fraction: both cited from CRUK ref 1, clearly distinguished in Section 1 paragraph 3
 - NSCLC subtypes presented as `<ol class="subtype-list">` numbered list — first use of this pattern ← canonical
 - **Research flags outstanding:** NSCLC/SCLC proportion needs confirmation in NICE NG122 text; EGFR/ALK prevalence needs confirmation in NICE NG122; stage 3/4 survival figures not yet added; PD-L1 23–28% verified from KEYNOTE-024 ✅
-- Article HTML built April 2026 ✅ — visuals and teleprompter outstanding
+- All 3 files built April 2026 ✅ — on GitHub ✅
 
 ---
 
@@ -1533,11 +1536,11 @@ Series colour: `#2A5A3A` (forest green). Dark variant: `#1A3A25`. Confirmed Apri
 
 | # | Title | Slug | Status |
 |---|-------|------|--------|
-| 27 | Breast Cancer | breast-cancer | All 3 files built April 2026 ✅ — upload to GitHub outstanding |
-| 28 | Prostate Cancer | prostate-cancer | All 3 files built April 2026 ✅ — upload to GitHub outstanding |
-| 29 | Lung Cancer | lung-cancer | Article HTML built April 2026 ✅ — visuals and teleprompter outstanding |
-| 30 | Bowel (Colorectal) Cancer | bowel-cancer | Not yet built |
-| 31 | Melanoma and Skin Cancer | melanoma | Not yet built |
+| 27 | Breast Cancer | breast-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
+| 28 | Prostate Cancer | prostate-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
+| 29 | Lung Cancer | lung-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
+| 30 | Bowel (Colorectal) Cancer | bowel-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
+| 31 | Melanoma and Skin Cancer | melanoma | Not yet built — Article 31, next to build |
 
 **Possible future series:**
 - Stroke and TIA (bridges cardiovascular)
