@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bowel Cancer — Visuals · helf.school</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+/* ─── VARIABLES ─── */
+:root {
+  --navy:        #1B2A4A;
+  --coral:       #E8634A;
+  --cream:       #FAF7F2;
+  --amber:       #E8A84A;
+  --series:      #2A5A3A;
+  --series-dark: #1A3A25;
+  --series-light:#9DCFB5;
+  --text:        #2C2C2C;
+  --white:       #ffffff;
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html,body { height:100%; overflow:hidden; }
+body { font-family:'DM Sans',sans-serif; background:#0D1A0F; color:var(--white); }
+
+/* ─── WRAPPER ─── */
+#wrapper { display:flex; flex-direction:column; height:100vh; }
+
+/* ─── TOPBAR ─── */
+#topbar {
+  height:52px; flex-shrink:0;
+  background:linear-gradient(90deg,var(--series-dark) 0%,#1e3d2a 100%);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 1.4rem; border-bottom:1px solid rgba(255,255,255,0.08);
+  position:relative; z-index:10;
+}
+.tb-series { font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--series-light); display:flex; align-items:center; gap:.5rem; }
+.tb-dot { width:7px; height:7px; border-radius:50%; background:var(--amber); flex-shrink:0; }
+#slide-title { position:absolute; left:50%; transform:translateX(-50%); font-family:'Fraunces',serif; font-size:.92rem; font-weight:700; color:rgba(255,255,255,0.90); text-align:center; max-width:55%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.tb-counter { font-size:.82rem; font-weight:600; color:rgba(255,255,255,0.75); letter-spacing:.05em; }
+
+/* ─── STAGE ─── */
+#stage { flex:1; position:relative; overflow:hidden; min-height:0; }
+
+/* ─── SLIDES — explicit width/height, visibility:hidden on inactive ─── */
+.slide {
+  position:absolute;
+  top:0; left:0; width:100%; height:100%;
+  padding:1rem 1.5rem .8rem;
+  display:flex; flex-direction:column;
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:opacity .32s ease;
+}
+.slide.active { opacity:1; visibility:visible; pointer-events:all; }
+
+/* ─── SLIDE HEADER ─── */
+.slide-header { margin-bottom:.4rem; flex-shrink:0; }
+.slide-kicker { font-size:.73rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--amber); margin-bottom:.22rem; }
+.slide-title { font-family:'Fraunces',serif; font-size:1.72rem; font-weight:700; color:var(--white); line-height:1.18; }
+.slide-sub { font-size:.90rem; color:rgba(255,255,255,0.72); margin-top:.18rem; line-height:1.5; }
+
+/* ─── INTRO SLIDE — no space-between, stat grid fills remaining height ─── */
+.intro-slide {
+  background:linear-gradient(140deg,var(--series-dark) 0%,var(--series) 55%,#3A7A55 100%);
+  padding:1rem 1.5rem .8rem;
+  gap:.6rem;
+}
+.intro-slide::before { content:''; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E"); pointer-events:none; }
+.intro-top { position:relative; flex-shrink:0; }
+.intro-badge { display:inline-flex; align-items:center; gap:.45rem; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); border-radius:4px; padding:.28rem .85rem; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.09em; color:rgba(255,255,255,0.90); margin-bottom:.7rem; }
+.intro-h1 { font-family:'Fraunces',serif; font-weight:900; font-size:clamp(3.2rem,8vw,5.8rem); color:#fff; line-height:1.0; margin-bottom:.55rem; }
+.intro-sub { font-size:1.15rem; color:rgba(255,255,255,0.82); line-height:1.55; }
+.intro-stat-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  grid-template-rows:1fr;
+  gap:.65rem;
+  flex:1; min-height:0; position:relative;
+}
+.intro-stat-card { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:1.2rem 1.3rem; display:flex; flex-direction:column; justify-content:center; min-height:0; }
+.intro-stat-card.accent { background:rgba(232,168,74,0.14); border-color:rgba(232,168,74,0.35); }
+.intro-stat-num { font-family:'Fraunces',serif; font-size:clamp(2.4rem,5vw,3.6rem); font-weight:900; color:var(--amber); line-height:1; margin-bottom:.38rem; }
+.intro-stat-label { font-size:.95rem; font-weight:500; color:rgba(255,255,255,0.82); line-height:1.45; }
+
+/* ─── MYTH SLIDE ─── */
+.myth-slide { background:var(--navy); }
+.myth-grid { display:grid; grid-template-columns:1fr 1fr; gap:.7rem; flex:1; min-height:0; }
+.mvc-card { border-radius:12px; overflow:hidden; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.08); transform:translateY(14px); opacity:0; transition:transform .38s ease, opacity .38s ease; }
+.mvc-card.visible { transform:translateY(0); opacity:1; }
+.mvc-card:nth-child(1) { transition-delay:.08s; }
+.mvc-card:nth-child(2) { transition-delay:.2s; }
+.mvc-claim { background:rgba(232,168,74,0.10); border-bottom:1px solid rgba(232,168,74,0.20); padding:.85rem 1rem; flex:1; display:flex; flex-direction:column; gap:.35rem; }
+.mvc-claim-lbl { font-size:.70rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--amber); display:flex; align-items:center; gap:.3rem; }
+.mvc-claim-text { font-size:1rem; font-style:italic; color:rgba(255,255,255,0.75); line-height:1.58; }
+.mvc-evidence { background:rgba(42,90,58,0.35); padding:.85rem 1rem; flex:1; display:flex; flex-direction:column; gap:.35rem; }
+.mvc-ev-lbl { font-size:.70rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--series-light); display:flex; align-items:center; gap:.3rem; }
+.mvc-ev-text { font-size:1rem; font-weight:600; color:rgba(255,255,255,0.96); line-height:1.58; }
+.mvc-ev-ref { font-size:.74rem; color:rgba(255,255,255,0.45); font-style:italic; margin-top:.2rem; }
+
+/* ─── THREE-GRID ─── */
+.three-grid { display:grid; grid-template-rows:repeat(3,1fr); gap:.46rem; flex:1; min-height:0; }
+.info-card { background:#fff; border-radius:10px; border-left:4px solid var(--series); padding:.82rem 1rem; display:flex; flex-direction:column; min-height:0; overflow:hidden; transform:translateY(12px); opacity:0; transition:transform .35s ease, opacity .35s ease; }
+.info-card.visible { transform:translateY(0); opacity:1; }
+.info-card:nth-child(1) { transition-delay:.05s; }
+.info-card:nth-child(2) { transition-delay:.15s; }
+.info-card:nth-child(3) { transition-delay:.25s; }
+.ic-icon { font-size:1.55rem; margin-bottom:.25rem; line-height:1; }
+.ic-title { font-family:'Fraunces',serif; font-weight:700; font-size:1.12rem; color:var(--navy); line-height:1.2; margin-bottom:.32rem; }
+.ic-body { font-size:.93rem; line-height:1.62; color:var(--text); display:-webkit-box; -webkit-line-clamp:5; -webkit-box-orient:vertical; overflow:hidden; }
+.ic-source { font-size:.74rem; color:rgba(44,44,44,0.45); font-style:italic; margin-top:.28rem; }
+.info-card.amber-card { border-left-color:var(--amber); }
+.info-card.green-card { border-left-color:var(--series-light); }
+
+/* ─── EV-CARDS ─── */
+.ev-slide { background:#0f1f15; }
+.ev-cards { display:flex; flex-direction:column; gap:.65rem; flex:1; min-height:0; justify-content:center; }
+.ev-card { display:grid; grid-template-columns:220px 1fr; border-radius:10px; overflow:hidden; border:1px solid rgba(42,90,58,0.25); flex:1; min-height:0; transform:translateY(12px); opacity:0; transition:transform .38s ease, opacity .38s ease; }
+.ev-card.visible { transform:translateY(0); opacity:1; }
+.ev-card:nth-child(1) { transition-delay:.08s; }
+.ev-card:nth-child(2) { transition-delay:.22s; }
+.ev-stat-box { background:linear-gradient(160deg,var(--series-dark) 0%,var(--series) 100%); padding:.9rem .75rem; display:flex; flex-direction:column; justify-content:flex-start; overflow:hidden; }
+.ev-kf-label { font-size:.70rem; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:.08em; margin-bottom:.32rem; }
+.ev-stat-row { font-family:'Fraunces',serif; font-size:3.2rem; font-weight:900; color:#fff; line-height:1.0; margin-bottom:.1rem; }
+.ev-stat-unit { font-family:'Fraunces',serif; font-size:1.65rem; font-weight:700; color:rgba(255,255,255,0.88); line-height:1; margin-bottom:.25rem; }
+.ev-outcome { font-size:.93rem; font-weight:700; color:rgba(255,255,255,0.95); line-height:1.3; margin-bottom:.28rem; }
+.ev-conditions { font-size:.78rem; line-height:1.32; color:rgba(255,255,255,0.68); }
+.ev-body { background:#fff; padding:1rem 1.15rem; display:flex; flex-direction:column; justify-content:space-between; }
+.ev-body p { font-size:.94rem; line-height:1.70; color:var(--text); display:-webkit-box; -webkit-line-clamp:7; -webkit-box-orient:vertical; overflow:hidden; }
+.ev-source { font-size:.75rem; color:rgba(44,44,44,0.50); font-style:italic; margin-top:.4rem; flex-shrink:0; }
+.ev-cards.single { justify-content:center; }
+.ev-cards.single .ev-card { max-height:52%; }
+
+/* ─── CTA SLIDE ─── */
+.cta-slide { background:radial-gradient(ellipse at 50% 30%, rgba(42,90,58,0.9) 0%, var(--series-dark) 65%, #0D1A0F 100%); overflow:hidden; padding:0; }
+.cta-glow { position:absolute; top:-10%; left:50%; transform:translateX(-50%); width:70%; height:60%; background:radial-gradient(ellipse, rgba(232,168,74,0.18) 0%, transparent 70%); pointer-events:none; }
+.cta-wrap-v2 { position:relative; z-index:2; display:grid; grid-template-rows:auto 1fr auto; height:100%; padding:1.1rem 1.5rem .9rem; }
+.cta-top { text-align:center; }
+.cta-icon { font-size:5.5rem; line-height:1; filter:drop-shadow(0 0 20px rgba(232,168,74,0.5)); animation:halo 3.2s ease-in-out infinite; margin-bottom:.35rem; }
+@keyframes halo { 0%,100% { filter:drop-shadow(0 0 20px rgba(232,168,74,0.4)); } 50% { filter:drop-shadow(0 0 38px rgba(232,168,74,0.75)); } }
+.cta-badge { display:inline-block; background:rgba(232,168,74,0.2); border:1px solid rgba(232,168,74,0.4); border-radius:3px; font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--amber); padding:.2rem .7rem; margin-bottom:.55rem; }
+.cta-headline { font-family:'Fraunces',serif; font-weight:900; font-size:clamp(2.4rem,5.5vw,3.8rem); color:#fff; line-height:1.05; }
+.cta-rows-v2 { display:grid; grid-template-rows:1fr 1fr 1fr 1fr; gap:.45rem; padding:.5rem 0; }
+.cta-row { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.10); border-radius:10px; padding:.6rem 1rem; display:flex; align-items:center; gap:.8rem; }
+.cta-row-icon { font-size:1.8rem; line-height:1; flex-shrink:0; }
+.cta-row-title { font-size:.93rem; font-weight:700; color:#fff; line-height:1.2; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.med-disclaimer { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:8px; padding:.7rem 1rem; display:flex; align-items:flex-start; gap:.6rem; }
+.med-disc-icon { font-size:1.2rem; flex-shrink:0; }
+.med-disc-text { font-size:1rem; color:rgba(255,255,255,0.90); line-height:1.55; }
+
+/* ─── CLOSE SLIDE ─── */
+.close-slide { background:linear-gradient(140deg,var(--series-dark) 0%,var(--series) 55%,#3A7A55 100%); }
+.close-slide::before { content:''; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E"); pointer-events:none; }
+.close-wrap { position:relative; z-index:2; display:flex; flex-direction:column; justify-content:flex-start; height:100%; padding:1.4rem 1.8rem 1rem; gap:.8rem; }
+.close-logo { font-family:'Fraunces',serif; font-weight:900; font-size:2.8rem; color:#fff; line-height:1; flex-shrink:0; }
+.close-logo span { color:var(--coral); }
+.close-tagline { font-size:1.05rem; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:rgba(255,255,255,0.70); flex-shrink:0; }
+.close-headline { font-family:'Fraunces',serif; font-size:1.35rem; font-weight:700; color:rgba(255,255,255,0.88); line-height:1.3; flex-shrink:0; }
+.close-cards { display:grid; grid-template-columns:1fr 1fr 1fr; gap:.6rem; flex:1; min-height:0; }
+.close-card { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.85rem; display:flex; flex-direction:column; gap:.3rem; }
+.close-card-icon { font-size:1.6rem; }
+.close-card-title { font-size:.85rem; font-weight:700; color:#fff; line-height:1.3; }
+.close-card-body { font-size:.78rem; color:rgba(255,255,255,0.68); line-height:1.55; }
+.close-series { font-size:1rem; color:rgba(255,255,255,0.65); font-weight:500; letter-spacing:.03em; flex-shrink:0; }
+
+/* ─── DOTS ─── */
+#dots { height:32px; flex-shrink:0; display:flex; align-items:center; justify-content:center; gap:.45rem; background:rgba(0,0,0,0.35); }
+.dot { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,0.28); cursor:pointer; transition:background .2s, transform .2s; }
+.dot.active { background:var(--amber); transform:scale(1.3); }
+</style>
+</head>
+<body>
+<div id="wrapper">
+
+<!-- ─── TOPBAR ─── -->
+<div id="topbar">
+  <div class="tb-series"><div class="tb-dot"></div>Cancer Series · Bowel Cancer</div>
+  <div id="slide-title">Introduction</div>
+  <div class="tb-counter"><span id="cur">1</span> / <span id="tot">11</span></div>
+</div>
+
+<!-- ─── STAGE ─── -->
+<div id="stage">
+
+<!-- ════ SLIDE 1 — INTRO ════ -->
+<div class="slide intro-slide active" id="s1" data-title="Introduction">
+  <div class="intro-top">
+    <div class="intro-badge">🟢 Cancer Series · Article 30</div>
+    <h1 class="intro-h1">Bowel Cancer</h1>
+    <p class="intro-sub">The UK's 2nd biggest cancer killer — yet one of the most detectable and preventable cancers we know. Stage at diagnosis changes everything.</p>
+  </div>
+  <div class="intro-stat-grid">
+    <div class="intro-stat-card">
+      <div class="intro-stat-num">~44,000</div>
+      <div class="intro-stat-label">new UK cases per year — more than 120 every day</div>
+    </div>
+    <div class="intro-stat-card accent">
+      <div class="intro-stat-num">&gt;90%</div>
+      <div class="intro-stat-label">five-year survival at stage 1 — early detection transforms outcomes</div>
+    </div>
+    <div class="intro-stat-card">
+      <div class="intro-stat-num">~60%</div>
+      <div class="intro-stat-label">overall five-year survival — reflecting how many cases are found late</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ SLIDE 2 — MYTH VS EVIDENCE ════ -->
+<div class="slide myth-slide" id="s2" data-title="Myth vs Evidence">
+  <div class="slide-header">
+    <div class="slide-kicker">Myth vs Evidence</div>
+    <div class="slide-title">Two things people commonly get wrong</div>
+    <div class="slide-sub">Common misconceptions — and what the published evidence actually shows</div>
+  </div>
+  <div class="myth-grid">
+    <div class="mvc-card animate-ready">
+      <div class="mvc-claim">
+        <div class="mvc-claim-lbl">📱 The claim</div>
+        <div class="mvc-claim-text">"Blood in my stool is nearly always piles — it's not worth mentioning to a doctor."</div>
+      </div>
+      <div class="mvc-evidence">
+        <div class="mvc-ev-lbl">✓ The evidence</div>
+        <div class="mvc-ev-text">Blood in or on the stool is one of the primary red flag symptoms that triggers urgent bowel cancer investigation under NICE guidance. Rectal bleeding without an obvious cause, particularly combined with any change in bowel habit, warrants clinical assessment.</div>
+        <div class="mvc-ev-ref">NICE NG12 · Suspected cancer: recognition and referral, 2023</div>
+      </div>
+    </div>
+    <div class="mvc-card animate-ready">
+      <div class="mvc-claim">
+        <div class="mvc-claim-lbl">📱 The claim</div>
+        <div class="mvc-claim-text">"The NHS bowel screening test is unpleasant and invasive — not worth bothering with."</div>
+      </div>
+      <div class="mvc-evidence">
+        <div class="mvc-ev-lbl">✓ The evidence</div>
+        <div class="mvc-ev-text">The NHS FIT test is a home stool test — no hospital visit, no preparation required. Clinical trial evidence shows bowel screening reduces cancer incidence by 18–31%. Around 40% of eligible adults still don't complete the test when sent one.</div>
+        <div class="mvc-ev-ref">Bretthauer M et al. NEJM 2022 · PMID 36214590</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ SLIDE 3 — WHAT IS IT? (1 of 2) ════ -->
+<div class="slide" id="s3" data-title="What is bowel cancer? (1 of 2)">
+  <div class="slide-header">
+    <div class="slide-kicker">Section 1 · What is it? (1 of 2)</div>
+    <div class="slide-title">What is bowel cancer?</div>
+    <div class="slide-sub">A cancer of the large bowel — and why how it develops matters</div>
+  </div>
+  <div class="three-grid">
+    <div class="info-card animate-ready">
+      <div class="ic-icon">🫀</div>
+      <div class="ic-title">A cancer of the colon or rectum</div>
+      <div class="ic-body">Bowel cancer begins when cells in the lining of the large bowel — either the colon or the rectum — start dividing in an uncontrolled way, forming a malignant tumour. The colon absorbs water from undigested food; the rectum stores waste before elimination.</div>
+    </div>
+    <div class="info-card animate-ready">
+      <div class="ic-icon">🔬</div>
+      <div class="ic-title">More than 95% are adenocarcinomas</div>
+      <div class="ic-body">Adenocarcinoma — cancer of the glandular cells lining the bowel wall — accounts for over 95% of all bowel cancers. Neuroendocrine tumours, lymphomas, and gastrointestinal stromal tumours make up the remainder, each treated differently.</div>
+      <div class="ic-source">NICE NG151 · Colorectal cancer, 2023</div>
+    </div>
+    <div class="info-card green-card animate-ready">
+      <div class="ic-icon">🌱</div>
+      <div class="ic-title">Most develop slowly from polyps over 10–15 years</div>
+      <div class="ic-body">Most bowel cancers develop from benign polyps (adenomas) — small growths on the bowel lining. This slow development is precisely why screening works: removing polyps before they turn cancerous can prevent bowel cancer from developing at all.</div>
+      <div class="ic-source">NICE NG151 · Colorectal cancer, 2023</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ SLIDE 4 — WHAT IS IT? (2 of 2) ════ -->
+<div class="slide" id="s4" data-title="Risk factors and molecular testing">
+  <div class="slide-header">
+    <div class="slide-kicker">Section 1 · What is it? (2 of 2)</div>
+    <div class="slide-title">Risk factors and molecular testing</div>
+    <div class="slide-sub">Why diet matters — and why every tumour is tested at diagnosis</div>
+  </div>
+  <div class="three-grid">
+    <div class="info-card amber-card animate-ready">
+      <div class="ic-icon">🥩</div>
+      <div class="ic-title">Diet and lifestyle drive most cases</div>
+      <div class="ic-body">Processed meat, obesity, physical inactivity, alcohol, and smoking all independently increase bowel cancer risk. Around 75% of cases occur in people with no significant family history — lifestyle is the dominant driver.</div>
+      <div class="ic-source">Bouvard V et al. Lancet Oncol 2015 · PMID 26514947</div>
+    </div>
+    <div class="info-card animate-ready">
+      <div class="ic-icon">📮</div>
+      <div class="ic-title">The NHS FIT screening test</div>
+      <div class="ic-body">The faecal immunochemical test (FIT) detects microscopic blood in stool from a home sample — no hospital visit required. Offered every 2 years to eligible adults aged 50–74 in England. A positive FIT leads to colonoscopy for further investigation.</div>
+      <div class="ic-source">NICE NG151 · Colorectal cancer, 2023</div>
+    </div>
+    <div class="info-card animate-ready">
+      <div class="ic-icon">🧬</div>
+      <div class="ic-title">Every tumour is tested at diagnosis</div>
+      <div class="ic-body">KRAS, NRAS, BRAF mutations and MSI status are tested in every bowel cancer. These results determine whether anti-EGFR targeted drugs, immunotherapy with pembrolizumab, or standard chemotherapy is the right first-line approach.</div>
+      <div class="ic-source">NICE NG151 · Colorectal cancer, 2023</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ SLIDE 5 — WHY DOES IT MATTER? ════ -->
+<div class="slide" id="s5" data-title="Why does it matter?">
+  <div class="slide-header">
+    <div class="slide-kicker">Section 2 · Why does it matter?</div>
+    <div class="slide-title">The scale — and the stage gap</div>
+    <div class="slide-sub">Why bowel cancer demands attention — and why earlier diagnosis changes everything</div>
+  </div>
+  <div class="three-grid">
+    <div class="info-card animate-ready">
+      <div class="ic-icon">📊</div>
+      <div class="ic-title">~44,000 new cases per year — 4th most common cancer</div>
+      <div class="ic-body">More than 120 new bowel cancer diagnoses every day in the UK. Rates are broadly stable but rising in adults under 50, with around 2,600 under-50 cases each year. It is the 4th most common cancer overall.</div>
+      <div class="ic-source">Cancer Research UK · cancerresearchuk.org</div>
+    </div>
+    <div class="info-card amber-card animate-ready">
+      <div class="ic-icon">⚠️</div>
+      <div class="ic-title">48 deaths every day — the 2nd biggest cancer killer</div>
+      <div class="ic-body">Around 17,700 bowel cancer deaths per year in the UK (2022–2024). It is the 2nd most common cause of cancer death after lung cancer, accounting for 10% of all cancer deaths. Overall five-year survival is around 60%.</div>
+      <div class="ic-source">Cancer Research UK · cancerresearchuk.org</div>
+    </div>
+    <div class="info-card green-card animate-ready">
+      <div class="ic-icon">🎯</div>
+      <div class="ic-title">Stage 1: more than 90% survive 5+ years</div>
+      <div class="ic-body">Stage 1 five-year survival exceeds 90%. Stage 4 survival is approximately 8%. That gap exists because 26% of bowel cancers are still diagnosed at stage 4 in current UK data — where the cancer has already spread to other organs.</div>
+      <div class="ic-source">Cancer Research UK · cancerresearchuk.org</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ SLIDE 6 — DOCTOR DISCUSSION (1 of 2) ════ -->
+<div class="slide" id="s6" data-title="Getting to a diagnosis (1 of 2)">
+  <div class="slide-header">
+    <div class="slide-kicker">Section 3 · What your doctor might discuss (1 of 2)</div>
+    <div class="slide-title">Getting to a diagnosis</div>
+    <div class="slide-sub">From first symptoms to confirmed staging</div>
+  </div>
+  <div class="three-grid">
+    <div class="info-card animate-ready">
+      <div class="ic-icon">🔍</div>
+      <div class="ic-title">Red flags that prompt urgent investigation</div>
+      <div class="ic-body">NICE NG12 identifies: persistent change in bowel habit (6+ weeks), blood in stool without obvious cause, unexplained iron deficiency anaemia, a lump in the abdomen or back passage, unexplained weight loss. These warrant urgent clinical assessment.</div>
+      <div class="ic-source">NICE NG12 · Suspected cancer: recognition and referral, 2023</div>
+    </div>
+    <div class="info-card animate-ready">
+      <div class="ic-icon">🏥</div>
+      <div class="ic-title">FIT test → colonoscopy → biopsy</div>
+      <div class="ic-body">A positive FIT leads to colonoscopy — a direct camera examination of the entire large bowel allowing biopsy and polyp removal in the same procedure. A tissue biopsy confirms the diagnosis under the microscope and enables full molecular testing.</div>
+      <div class="ic-source">NICE NG151 · Colorectal cancer, 2023</div>
+    </div>
+    <div class="info-card animate-ready">
+      <div class="ic-icon">📋</div>
+      <div class="ic-title">Staging determines the treatment plan</div>
+      <div class="ic-body">Staged 1–4 using the TNM system. CT of chest, abdomen, and pelvis identifies distant spread; MRI of the pelvis is standard for rectal cancer staging. Stage is the single most important factor in deciding whether treatment aims to cure or to control.</div>
+      <div class="ic-source">NICE NG151 · Colorectal cancer, 2023</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ SLIDE 7 — DOCTOR DISCUSSION (2 of 2) ════ -->
+<div class="slide" id="s7" data-title="Treatment — matched to the tumour (2 of 2)">
+  <div class="slide-header">
+    <div class="slide-kicker">Section 3 · What your doctor might discuss (2 of 2)</div>
+    <div class="slide-title">Treatment — matched to the tumour's biology</div>
+    <div class="slide-sub">Surgery, chemotherapy, and targeted drugs are selected by molecular profile</div>
+  </div>
+  <div class="three-grid">
+    <div class="info-card animate-ready">
+      <div class="ic-icon">⚕️</div>
+      <div class="ic-title">Surgery — the primary treatment for early disease</div>
+      <div class="ic-body">Right or left hemicolectomy, anterior resection, or APR — the specific operation depends on tumour location. For rectal cancer, neoadjuvant chemoradiotherapy before surgery shrinks the tumour and reduces local recurrence rates.</div>
+      <div class="ic-source">NICE NG151 · Colorectal cancer, 2023</div>
+    </div>
+    <div class="info-card amber-card animate-ready">
+      <div class="ic-icon">💊</div>
+      <div class="ic-title">Chemotherapy for stage 3 and metastatic disease</div>
+      <div class="ic-body">FOLFOX (oxaliplatin plus 5-fluorouracil) is standard adjuvant chemotherapy for stage 3. For metastatic disease, it is combined with bevacizumab or anti-EGFR antibodies (cetuximab, panitumumab) — selected according to the tumour's molecular profile.</div>
+      <div class="ic-source">NICE NG151 · Colorectal cancer, 2023</div>
+    </div>
+    <div class="info-card green-card animate-ready">
+      <div class="ic-icon">🛡️</div>
+      <div class="ic-title">Immunotherapy for MSI-H tumours</div>
+      <div class="ic-body">Around 3–5% of metastatic bowel cancers carry MSI-H or dMMR status — a DNA repair defect that makes them highly sensitive to immunotherapy. Pembrolizumab (Keytruda) is now a preferred first-line option for this subgroup, with substantially better outcomes than chemotherapy.</div>
+      <div class="ic-source">André T et al. NEJM 2020 · PMID 33264544</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ SLIDE 8 — RESEARCH (1 of 2) ════ -->
+<div class="slide ev-slide" id="s8" data-title="What the research shows (1 of 2)">
+  <div class="slide-header">
+    <div class="slide-kicker">Section 4 · What the research shows (1 of 2)</div>
+    <div class="slide-title">Immunotherapy and screening — the evidence</div>
+  </div>
+  <div class="ev-cards">
+    <div class="ev-card animate-ready">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">Key Finding</div>
+        <div class="ev-stat-row">16.5</div>
+        <div class="ev-stat-unit">months</div>
+        <div class="ev-outcome">median PFS / pembrolizumab vs 8.2 months on chemotherapy</div>
+        <div class="ev-conditions">MSI-H/dMMR metastatic CRC · first-line · KEYNOTE-177</div>
+      </div>
+      <div class="ev-body">
+        <p>In KEYNOTE-177, pembrolizumab (Keytruda) was compared with standard chemotherapy as first-line treatment in MSI-H/dMMR metastatic bowel cancer. Progression-free survival was 16.5 months versus 8.2 months. Overall survival was also significantly better. Pembrolizumab is now the preferred first-line option for this molecular subgroup.</p>
+        <div class="ev-source">André T et al. N Engl J Med 2020;383(23):2207–2218 · PMID 33264544</div>
+      </div>
+    </div>
+    <div class="ev-card animate-ready">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">Key Finding</div>
+        <div class="ev-stat-row">18%</div>
+        <div class="ev-outcome">lower bowel cancer incidence / colonoscopy screening vs no screening</div>
+        <div class="ev-conditions">85,000+ adults aged 55–64 · 10-year follow-up · NordICC trial</div>
+      </div>
+      <div class="ev-body">
+        <p>The NordICC trial invited over 85,000 adults to colonoscopy screening or no screening. After 10 years, bowel cancer incidence was 18% lower in the invited group — rising to 31% lower among those who actually attended for colonoscopy. The NHS uses FIT as the first-line test, with positive results leading to colonoscopy.</p>
+        <div class="ev-source">Bretthauer M et al. N Engl J Med 2022;387(17):1547–1556 · PMID 36214590</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ SLIDE 9 — RESEARCH (2 of 2) ════ -->
+<div class="slide ev-slide" id="s9" data-title="Diet and bowel cancer risk">
+  <div class="slide-header">
+    <div class="slide-kicker">Section 4 · What the research shows (2 of 2)</div>
+    <div class="slide-title">Diet and bowel cancer risk</div>
+  </div>
+  <div class="ev-cards single">
+    <div class="ev-card animate-ready">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">Key Finding</div>
+        <div class="ev-stat-row">+18%</div>
+        <div class="ev-outcome">higher bowel cancer risk / for each additional 50g of processed meat per day</div>
+        <div class="ev-conditions">IARC Working Group · 800+ studies reviewed · Lancet Oncol 2015</div>
+      </div>
+      <div class="ev-body">
+        <p>An IARC Working Group classified processed meat as a Group 1 carcinogen for bowel cancer after reviewing over 800 studies. Each additional 50g per day — roughly two rashers of bacon — raises risk by approximately 18%. This is a dose-response relationship starting from low intake levels: even going from 0 to 50g daily carries higher risk than consuming none.</p>
+        <div class="ev-source">Bouvard V et al. Lancet Oncol 2015;16(16):1599–1600 · PMID 26514947</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ SLIDE 10 — CTA ════ -->
+<div class="slide cta-slide" id="s10" data-title="The one thing">
+  <div class="cta-glow"></div>
+  <div class="cta-wrap-v2">
+    <div class="cta-top">
+      <div class="cta-icon">🎯</div>
+      <div class="cta-badge">The evidence is clear on one thing</div>
+      <div class="cta-headline">Bowel cancer caught early has over 90% five-year survival</div>
+    </div>
+    <div class="cta-rows-v2">
+      <div class="cta-row">
+        <div class="cta-row-icon">🩸</div>
+        <div><div class="cta-row-title">Know the red flags — blood in stool, persistent change in bowel habit (6+ weeks), unexplained weight loss</div></div>
+      </div>
+      <div class="cta-row">
+        <div class="cta-row-icon">📮</div>
+        <div><div class="cta-row-title">Complete the NHS FIT test when it arrives — it detects cancer early from a home stool sample, no hospital visit needed</div></div>
+      </div>
+      <div class="cta-row">
+        <div class="cta-row-icon">🥩</div>
+        <div><div class="cta-row-title">The evidence shows each additional 50g of processed meat per day raises bowel cancer risk by 18% — from low intake levels</div></div>
+      </div>
+      <div class="cta-row">
+        <div class="cta-row-icon">📚</div>
+        <div><div class="cta-row-title">Read the full article at helf.school — all the evidence, all the references, in plain English</div></div>
+      </div>
+    </div>
+    <div class="cta-bottom">
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">ℹ️</div>
+        <div class="med-disc-text">helf.school provides health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ SLIDE 11 — BRAND CLOSE ════ -->
+<div class="slide close-slide" id="s11" data-title="helf.school">
+  <div class="close-wrap">
+    <div class="close-logo">helf<span>.</span>school</div>
+    <div class="close-tagline">Health Education</div>
+    <div class="close-headline">Evidence-based. Written by a doctor. Built for everyone.</div>
+    <div class="close-cards">
+      <div class="close-card">
+        <div class="close-card-icon">📚</div>
+        <div class="close-card-title">30 articles across 5 series</div>
+        <div class="close-card-body">Cardiovascular · Practical Health · Digestive · Neurological · Cancer — all in plain English, all evidence-based.</div>
+      </div>
+      <div class="close-card">
+        <div class="close-card-icon">🩺</div>
+        <div class="close-card-title">Written by Dr Paul</div>
+        <div class="close-card-body">Retired NHS GP with over 20 years of experience. Health education done properly — not as advice, but as knowledge.</div>
+      </div>
+      <div class="close-card">
+        <div class="close-card-icon">🔓</div>
+        <div class="close-card-title">Start for free</div>
+        <div class="close-card-body">The Explorer tier is £0 — no credit card required. Upgrade to Member at £6/month or Lifetime access for £150.</div>
+      </div>
+    </div>
+    <div class="med-disclaimer">
+      <div class="med-disc-icon">ℹ️</div>
+      <div class="med-disc-text">helf.school provides health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+    </div>
+    <div class="close-series">Cancer Series · Article 30 · Bowel Cancer</div>
+  </div>
+</div>
+
+</div><!-- /stage -->
+<div id="dots"></div>
+</div><!-- /wrapper -->
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const total  = slides.length;
+let cur = 0;
+
+/* ─── DOTS ─── */
+const dotsEl = document.getElementById('dots');
+slides.forEach((_,i) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i===0?' active':'');
+  d.addEventListener('click', () => goTo(i));
+  dotsEl.appendChild(d);
+});
+
+/* ─── TOPBAR ─── */
+const titleEl = document.getElementById('slide-title');
+const curEl   = document.getElementById('cur');
+const totEl   = document.getElementById('tot');
+totEl.textContent = total;
+
+function updateTopbar(i){
+  titleEl.textContent = slides[i].dataset.title || '';
+  curEl.textContent = i + 1;
+  document.querySelectorAll('.dot').forEach((d,j) => d.classList.toggle('active', j===i));
+}
+
+/* ─── ANIMATE CARDS ─── */
+function animateSlide(slideEl){
+  slideEl.querySelectorAll('.animate-ready').forEach(el => el.classList.remove('visible'));
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    slideEl.querySelectorAll('.animate-ready').forEach(el => el.classList.add('visible'));
+  }));
+}
+
+/* ─── NAVIGATION ─── */
+function goTo(n){
+  if(n < 0 || n >= total) return;
+  slides[cur].classList.remove('active');
+  cur = n;
+  slides[cur].classList.add('active');
+  updateTopbar(cur);
+  animateSlide(slides[cur]);
+}
+function next(){ goTo(Math.min(cur+1, total-1)); }
+function prev(){ goTo(Math.max(cur-1, 0)); }
+
+document.addEventListener('keydown', e => {
+  if(e.key==='ArrowRight'||e.key===' '){ e.preventDefault(); next(); }
+  if(e.key==='ArrowLeft'){ e.preventDefault(); prev(); }
+});
+
+let tx=0;
+document.addEventListener('touchstart', e => { tx=e.touches[0].clientX; }, {passive:true});
+document.addEventListener('touchend',   e => {
+  const dx = e.changedTouches[0].clientX - tx;
+  if(dx < -40) next();
+  if(dx >  40) prev();
+}, {passive:true});
+
+/* ─── INIT ─── */
+updateTopbar(0);
+animateSlide(slides[0]);
+</script>
+</body>
+</html>
