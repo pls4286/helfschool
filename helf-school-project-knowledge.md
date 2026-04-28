@@ -333,6 +333,30 @@ All three are confirmed in `breast-cancer.html` and `prostate-cancer.html` (Apri
 - Superscript link colour matches the series accent colour
 - **This rule applies to stat grid `.stat-prose` text as well as body prose — every stat in every stat grid card must carry a superscript citation. No exceptions. Confirmed and locked April 2026.**
 
+### Visuals research card body = 2–3 sentences maximum — LOCKED APRIL 2026
+
+**The ev-body of every research card in visuals files must contain no more than 2–3 sentences: (1) what was compared, (2) the headline finding, (3) one sentence of clinical context. No trial design detail, no population breakdown, no secondary endpoints. The full explanation is in the article. Viewers are lay people watching a video.**
+
+Canonical examples (lung-cancer-visuals.html, April 2026):
+- NELSON: "The NELSON trial randomised 15,789 long-term smokers to CT screening or no screening. After 10 years, the screened group had 24% lower lung-cancer mortality. This is the evidence behind the NHS targeted screening programme now rolling out."
+- KEYNOTE-024: "Pembrolizumab compared with chemotherapy. 10.3 months vs 6.0 months PFS. Overall survival also significantly better, with fewer serious side effects."
+- FLAURA: "Osimertinib vs standard EGFR drugs. Median overall survival 38.6 months versus 31.8 months. Now the preferred first-line treatment for EGFR-mutated NSCLC."
+
+### CTA slide = health-action "one thing" — LOCKED APRIL 2026
+
+**The CTA slide (second-to-last slide in every visuals file) must function as a health-action moment — not a membership pitch. It identifies the single most actionable implication from the video content, framed in the descriptive educational voice. The membership pitch lives on the brand close slide only.**
+
+Structure:
+- Icon (large, thematic)
+- Badge: "The evidence is clear on one thing" (or equivalent for the topic)
+- Headline: the most important action-oriented finding from the video
+- 4 rows: relevant health facts the viewer can act on (symptoms to know / screening / risk reduction / helf.school link)
+- Medical disclaimer (canonical phrase)
+
+**Educational voice requirement:** Every CTA row must describe what the evidence shows or what programmes exist — never instruct the viewer directly. "The evidence consistently shows that stopping smoking reduces lung cancer risk" not "stop smoking." "The NHS Targeted Lung Health Check is available in many areas" not "ask your GP about screening."
+
+Canonical reference: `lung-cancer-visuals.html` slide 10 (April 2026).
+
 ### The reason for the stat must be in the ev-outcome line — LOCKED APRIL 2026
 
 **The comparison, intervention, or condition that produced the stat number — the REASON it is what it is — must appear in the `ev-outcome` line. It must never be relegated to `ev-conditions` where it sits at 0.78rem, the least prominent text in the stat box.**
@@ -577,6 +601,105 @@ When a paper reports a statistic, use its exact wording and numerical form in ev
 
 ## 9. VISUALS HTML STANDARDS
 
+### CONFIRMED CANONICAL VISUALS REFERENCE — bowel-cancer-visuals.html (April 2026)
+
+**`bowel-cancer-visuals.html` is the first visuals file that was delivered with zero changes required. It is the confirmed canonical reference for all future visuals builds. Every rule below was applied correctly from the first line.**
+
+Dr Paul's confirmation (April 2026): *"Good — you have applied those well and for the first time I don't have to change anything in visuals html."*
+
+---
+
+### VISUALS PRE-BUILD CHECKLIST — MANDATORY BEFORE WRITING ANY VISUALS HTML
+
+Before writing a single line of a new visuals HTML file, confirm these foundational decisions are in place. Every item below caused a delivery failure in a previous session when omitted.
+
+**1. SLIDE POSITIONING — use explicit width/height, NOT inset:0**
+```css
+/* CORRECT — confirmed in bowel-cancer-visuals.html */
+.slide {
+  position:absolute;
+  top:0; left:0; width:100%; height:100%;
+  display:flex; flex-direction:column;
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:opacity .32s ease;
+}
+.slide.active { opacity:1; visibility:visible; pointer-events:all; }
+```
+`inset:0` requires the parent to have a resolved height for `bottom:0` to compute. In some browsers this fails silently and slides show through each other. `width:100%; height:100%` is explicit and reliable. `visibility:hidden` (not just `opacity:0`) ensures inactive slides cannot render at all.
+
+**2. INTRO SLIDE — no space-between, stat grid must have grid-template-rows:1fr**
+```css
+/* CORRECT */
+.intro-slide {
+  padding:1rem 1.5rem .8rem;
+  gap:.6rem;
+  /* NO justify-content:space-between */
+}
+.intro-stat-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  grid-template-rows:1fr;       /* ← critical: makes single row fill grid height */
+  gap:.65rem;
+  flex:1; min-height:0;
+}
+.intro-stat-card {
+  display:flex; flex-direction:column; justify-content:center;
+  min-height:0;                 /* ← prevents flex overflow */
+}
+```
+`justify-content:space-between` on the intro slide conflicts with `flex:1` on the stat grid — they fight for free space and neither wins cleanly. Remove it. `grid-template-rows:1fr` is what makes the single row of stat cards fill the full grid height rather than taking only content height.
+
+**3. ALL SIZES AT MAXIMUM FROM LINE ONE**
+```css
+.slide-title  { font-size:1.72rem; }
+.ic-title     { font-size:1.12rem; }
+.ic-icon      { font-size:1.55rem; }
+.ic-body      { font-size:.93rem; -webkit-line-clamp:5; }
+.ev-body p    { font-size:.94rem; -webkit-line-clamp:7; }
+.three-grid   { gap:.46rem; }
+.slide-header { margin-bottom:.4rem; }
+.info-card    { padding:.82rem 1rem; }
+.cta-row-title { font-size:.93rem; }
+```
+Do not start from minimums and adjust. Start from maximum and reduce only on overflow.
+
+**4. ev-outcome MUST CARRY THE REASON — not just the finding**
+```
+ev-stat-row:   16.5
+ev-stat-unit:  months
+ev-outcome:    median PFS / pembrolizumab vs 8.2 months on chemotherapy
+ev-conditions: MSI-H/dMMR metastatic CRC · first-line · KEYNOTE-177
+```
+Reading ev-stat-row + ev-outcome together must tell the reader BOTH what happened AND why. The comparison goes in ev-outcome, not ev-conditions.
+
+**5. MONTHS SPELLED IN FULL — ev-stat-unit class**
+```html
+<div class="ev-stat-row">16.5</div>
+<div class="ev-stat-unit">months</div>
+```
+`.ev-stat-unit { font-family:'Fraunces',serif; font-size:1.65rem; font-weight:700; color:rgba(255,255,255,0.88); line-height:1; margin-bottom:.25rem; }`
+
+**6. RESEARCH CARD EV-BODY = 2–3 SENTENCES MAXIMUM in visuals**
+- What was compared
+- What the headline finding was
+- One sentence of clinical context
+No trial methodology, no population breakdown, no secondary endpoints.
+
+**7. CTA SLIDE = HEALTH-ACTION "ONE THING" — not a membership pitch**
+- Membership pitch lives on the brand close slide only
+- CTA: 4 action rows (symptoms / screening / risk factor / helf.school link)
+- All rows descriptive — never instructional
+
+**8. NO RESEARCH OLDER THAN 12 YEARS**
+Check every trial year before writing. Current year 2026 → nothing before 2014.
+
+**9. EDUCATIONAL VOICE — pre-check before saving**
+- 0 instances of: "speak to your GP", "you should", "seek help"
+- Canonical phrase × 2: CTA slide + brand close
+
+**10. INTRO STAT CARDS — 3 cards, each with amber number + contextual label**
+The label must be a full sentence explaining what the number means, not just a unit abbreviation.
+
 ### VIEWPORT MAXIMISATION — MANDATORY RULE (LOCKED APRIL 2026)
 
 **Every visuals slide must fill the available viewport. This is non-negotiable.**
@@ -804,6 +927,7 @@ Scale 0.62 · every 2nd frame · 120 colours · under 1.5MB total PPTX
 31. **ALL STATS REQUIRE CITATIONS — EVERY LOCATION — LOCKED APRIL 2026:** Before presenting any article, visuals, or teleprompter file, scan every paragraph and text element for numerical figures and percentages. Every stat in every location — body prose, Key Terms box, stat grid cards, research card text, Putting it all together box, discussion cards, myth panel evidence text, visuals slides — must carry an inline superscript citation. No exceptions. This rule was confirmed after Dr Paul identified two uncited stats in `lung-cancer.html` Article 29 body prose (April 2026).
 32. **SUBTYPE/LIST FORMATTING — LOCKED APRIL 2026:** When body prose introduces a formally counted or named set of items ("three main subtypes", "four stages", "two types of"), those items must appear in a `<ol class="subtype-list">` numbered list — never as comma-separated inline prose. Grep for phrases like "three main", "four types", "two subtypes" before presenting any article. Canonical: `lung-cancer.html` Section 1 (Article 29, April 2026).
 33. **ev-outcome MUST CARRY THE REASON — LOCKED APRIL 2026:** Before presenting any article or visuals file with research cards, check every ev-outcome line. It must state BOTH the finding AND the comparison/intervention that produced the stat number. "24%" is not enough — "reduction in lung-cancer mortality / CT screening vs no screening" is correct. The comparison must never appear only in ev-conditions. Read ev-stat-row + ev-outcome together: if a reader can't understand the stat AND its cause from those two lines alone, rewrite ev-outcome. Canonical: `lung-cancer.html` Article 29 research cards (April 2026).
+35. **DRUG BRAND NAMES — MANDATORY ALONGSIDE ALL GENERIC NAMES — LOCKED APRIL 2026:** Every drug name must be accompanied by its brand name in every helf.school file — article body, Key Terms, myth panels, evidence cards, visuals info cards, and teleprompter scripts. Generic name first, brand name immediately following in parentheses or em-dash format. Brand names are shorter, more recognisable to patients, and — critically in teleprompter files — easier to say fluently while filming. **Format in articles and visuals:** `pembrolizumab (Keytruda)` · `bevacizumab (Avastin)` · `cetuximab (Erbitux)` · `panitumumab (Vectibix)` · `osimertinib (Tagrisso)`. **Format in teleprompter scripts:** `pembrolizumab — Keytruda —` · `bevacizumab — Avastin —` (spoken em-dash form). Before delivering any file, grep for generic drug names and confirm every instance has a brand name alongside it. Common oncology brand names: pembrolizumab=Keytruda · osimertinib=Tagrisso · bevacizumab=Avastin · cetuximab=Erbitux · panitumumab=Vectibix · nivolumab=Opdivo · trastuzumab=Herceptin · rituximab=MabThera · imatinib=Glivec · erlotinib=Tarceva · gefitinib=Iressa. No research article or trial published more than 12 years before the current date may be used in evidence cards or as a primary stat source. Current year 2026 → no papers published before 2014. Guideline documents (NICE, WHO) are exempt if updated within 12 years — cite the most recent update date. Before selecting any evidence card trial, verify the publication year. If the canonical trial for a topic predates 2014, find a more recent equivalent. **Violation example:** Hardcastle et al. Lancet 1996 (gFOBT trial) — removed from bowel-cancer.html April 2026 and replaced with Bretthauer et al. NEJM 2022 (NordICC, PMID 36214590). Using a 1996 gFOBT trial in a 2026 article about the NHS FIT programme describes a superseded test.
 
 ---
 
@@ -1082,6 +1206,20 @@ All dark variants confirmed April 2026 — retrofit is fully unblocked. Apply pe
 10. **CTA slide standard** — 01–11 only.
 11. **Visuals layout standard** — 01–11 only.
 12. **Subtype list formatting** — apply `<ol class="subtype-list">` to any article containing formally introduced sets of items (subtypes, stages, types). Canonical: `lung-cancer.html`.
+13. **DRUG BRAND NAMES RETROFIT — Rule 33 — LOCKED APRIL 2026** — All generic drug names across all articles, visuals, and teleprompter scripts must have a brand name added alongside them. Apply to every file when next opened. The following inventory identifies the likely locations by article:
+
+**Cardiovascular Series (Articles 01–05):**
+- `hypertension.html` / visuals / teleprompter — ACE inhibitors: ramipril (Tritace/Altace), lisinopril (Zestril), perindopril (Coversyl) · ARBs: losartan (Cozaar), candesartan (Amias), valsartan (Diovan) · calcium channel blockers: amlodipine (Norvasc) · beta-blockers: bisoprolol (Cardicor), atenolol · thiazides: indapamide (Natrilix), bendroflumethiazide (Aprinox)
+- `cholesterol.html` / visuals / teleprompter — statins: atorvastatin (Lipitor), rosuvastatin (Crestor), simvastatin (Zocor) · ezetimibe (Ezetrol) · PCSK9 inhibitors: evolocumab (Repatha), alirocumab (Praluent)
+- `heart-attack-risk.html` / visuals / teleprompter — clopidogrel (Plavix), ticagrelor (Brilique), warfarin (Coumadin), rivaroxaban (Xarelto), apixaban (Eliquis), edoxaban (Lixiana), dabigatran (Pradaxa) · ramipril (Tritace) · atorvastatin (Lipitor)
+
+**Cancer Series (Articles 27–31):**
+- `breast-cancer.html` / visuals / teleprompter — trastuzumab (Herceptin), pertuzumab (Perjeta), olaparib (Lynparza), tamoxifen (Nolvadex/Tamofen), palbociclib (Ibrance), ribociclib (Kisqali), abemaciclib (Verzenios), fulvestrant (Faslodex), anastrozole (Arimidex), letrozole (Femara), exemestane (Aromasin), capecitabine (Xeloda)
+- `prostate-cancer.html` / visuals / teleprompter — enzalutamide (Xtandi), abiraterone (Zytiga), docetaxel (Taxotere), olaparib (Lynparza), cabazitaxel (Jevtana)
+- `lung-cancer.html` / visuals / teleprompter — pembrolizumab (Keytruda) ✅, osimertinib (Tagrisso) ✅ · CHECK: erlotinib (Tarceva), gefitinib (Iressa), bevacizumab (Avastin), nivolumab (Opdivo), atezolizumab (Tecentriq)
+- `bowel-cancer.html` / visuals / teleprompter — pembrolizumab (Keytruda) ✅, bevacizumab (Avastin) ✅, cetuximab (Erbitux) ✅, panitumumab (Vectibix) ✅
+
+**Other series:** Check any article containing treatment sections for unbranded drug names. Grep pattern: `egrep -i "mab|tinib|ciclib|pril|sartan|statin|oxacin|vir|mycin" [filename]` will surface most pharmaceutical generics.
 
 ---
 

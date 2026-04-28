@@ -212,6 +212,68 @@ Every research card stat box must state the complete clinical finding as it is r
 
 ---
 
+## ✅ CONFIRMED CANONICAL VISUALS FILE — bowel-cancer-visuals.html (April 2026)
+
+**`bowel-cancer-visuals.html` is the first visuals file delivered with zero changes required on first delivery. Use it as the CSS and structural template for all future visuals builds.**
+
+Dr Paul confirmed (April 2026): *"Good — you have applied those well and for the first time I don't have to change anything in visuals html — please make sure that somehow what you have learned from this gets incorporated into future visuals building."*
+
+---
+
+## ⛔ RULE 11A — VISUALS PRE-BUILD CHECKLIST — RUN BEFORE WRITING ANY VISUALS FILE
+
+**This checklist must be completed mentally before writing the first line of CSS in any new visuals HTML file. Every item below caused a delivery failure when omitted in a previous session.**
+
+### CSS FOUNDATIONS (copy these exactly from bowel-cancer-visuals.html)
+
+**Slide positioning — use explicit width/height:**
+```css
+.slide {
+  position:absolute;
+  top:0; left:0; width:100%; height:100%;
+  display:flex; flex-direction:column;
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:opacity .32s ease;
+}
+.slide.active { opacity:1; visibility:visible; pointer-events:all; }
+```
+Why: `inset:0` fails in some browsers — slides bleed through each other. `visibility:hidden` (not just `opacity:0`) prevents inactive slides from rendering at all.
+
+**Intro slide — no space-between, stat grid with grid-template-rows:1fr:**
+```css
+.intro-slide { padding:1rem 1.5rem .8rem; gap:.6rem; }
+/* NO justify-content:space-between on intro-slide */
+
+.intro-stat-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  grid-template-rows:1fr;   /* ← makes stat card row fill full grid height */
+  gap:.65rem;
+  flex:1; min-height:0;
+}
+.intro-stat-card { display:flex; flex-direction:column; justify-content:center; min-height:0; }
+```
+Why: `justify-content:space-between` conflicts with `flex:1` — stat cards appear too small. `grid-template-rows:1fr` ensures cards fill the bottom half of the slide.
+
+**Maximum sizes — apply from line one:**
+```
+slide-title: 1.72rem · ic-icon: 1.55rem · ic-title: 1.12rem · ic-body: .93rem
+ev-body p: .94rem · three-grid gap: .46rem · slide-header margin-bottom: .4rem
+info-card padding: .82rem 1rem · ic-body line-clamp: 5 · ev-body line-clamp: 7
+```
+
+### CONTENT RULES (check before writing any research cards or CTA)
+
+- **ev-outcome carries the reason** — comparison must be in ev-outcome, not ev-conditions
+- **Months spelled in full** — use `ev-stat-unit` div below `ev-stat-row`
+- **Research ev-body = 2–3 sentences maximum** — no methodology, no population detail
+- **CTA = health action "one thing"** — 4 action rows, membership pitch on brand close only
+- **No research older than 12 years** — check every trial year before writing
+- **0 forbidden phrases** — no "speak to your GP", "you should", "seek help"
+- **Canonical phrase × 2** — CTA slide + brand close
+
+---
+
 ## ⛔ RULE 12 — VISUALS MUST MAXIMISE VIEWPORT SPACE — AND EVERY ELEMENT MUST BE AS BIG AS PARAMETERS ALLOW
 
 **Every visuals slide must fill the available viewport. Slides that leave large areas of empty space are a delivery failure.**
@@ -501,6 +563,88 @@ This covers every location: body prose paragraphs, Key Terms box definitions, st
 
 ---
 
+## ⛔ RULE 33 — DRUG BRAND NAMES MUST ALWAYS ACCOMPANY GENERIC NAMES — LOCKED APRIL 2026
+
+**Every drug name (generic) must be immediately accompanied by its brand name in every helf.school file. This applies to articles, visuals, and teleprompter scripts — especially teleprompter scripts.**
+
+**Why:** Brand names are shorter, more recognisable to patients, and — most importantly for teleprompter files — easier to say fluently while filming. "Keytruda" flows better on camera than "pembrolizumab."
+
+**Format in articles and visuals:**
+`pembrolizumab (Keytruda)` · `bevacizumab (Avastin)` · `cetuximab (Erbitux)` · `panitumumab (Vectibix)` · `osimertinib (Tagrisso)`
+
+**Format in teleprompter scripts (spoken em-dash form):**
+`pembrolizumab — Keytruda —` · `bevacizumab — Avastin —` · `osimertinib — Tagrisso —`
+
+**Pre-delivery check:** grep for every generic drug name and confirm every instance has a brand name alongside it.
+
+**Common oncology brand names reference:**
+- pembrolizumab → Keytruda
+- osimertinib → Tagrisso
+- bevacizumab → Avastin
+- cetuximab → Erbitux
+- panitumumab → Vectibix
+- nivolumab → Opdivo
+- trastuzumab → Herceptin
+- rituximab → MabThera
+- imatinib → Glivec
+- erlotinib → Tarceva
+- gefitinib → Iressa
+- encorafenib → Braftovi
+- binimetinib → Mektovi
+
+---
+
+## ⛔ RULE 32 — RESEARCH CURRENCY: NO ARTICLES OLDER THAN 12 YEARS — LOCKED APRIL 2026
+
+**No research article or clinical trial published more than 12 years before the current date may be used as an evidence card or primary stat source in any helf.school article or visuals file.**
+
+**The calculation:** Current year (2026) minus 12 = 2014. Any paper with a publication year before 2014 is out of scope.
+
+**Guideline documents** (NICE, WHO, ESC, SIGN) are exempt if the document itself has been updated within 12 years — always cite the most recent update date, not the original year of first publication.
+
+**Before selecting any evidence card trial, always check the publication year. If the best-known trial for a topic predates 2014:**
+- Search for a more recent equivalent in the same approved source list
+- Replace with a different but equally relevant line of evidence
+- Never use an outdated trial simply because it is the most famous one
+
+**Why this rule was added:** The Hardcastle et al. Lancet 1996 gFOBT screening trial was used in the first draft of bowel-cancer.html — a paper published 30 years before the article, describing a test (gFOBT) that the NHS replaced with FIT in 2019. Dr Paul identified this in April 2026. The paper was removed and replaced with the NordICC trial (Bretthauer M et al. NEJM 2022; PMID 36214590) — a 10-year randomised trial of colonoscopy screening published in an approved journal within the 12-year window.
+
+**Canonical replacement example:**
+- ❌ Hardcastle et al. Lancet 1996 — gFOBT, 30 years old, superseded test
+- ✅ Bretthauer et al. NEJM 2022 — colonoscopy/bowel screening, recent, same approved journal tier
+
+---
+
+## ⛔ RULE 30 — VISUALS RESEARCH CARD BODY = 2–3 SENTENCES MAXIMUM — LOCKED APRIL 2026
+
+**The ev-body of every research card in visuals files must contain no more than 2–3 sentences. No trial design detail. No population breakdown. No secondary endpoints. The full explanation lives in the article.**
+
+Required structure: (1) what was compared, (2) the headline finding, (3) one sentence of clinical context only.
+
+**Canonical examples — lung-cancer-visuals.html (April 2026):**
+- NELSON: trial name + comparison + 24% mortality reduction + one sentence about NHS screening
+- KEYNOTE-024: pembrolizumab vs chemo + 10.3 vs 6.0 months + one sentence on OS and side effects
+- FLAURA: osimertinib vs standard drugs + 38.6 vs 31.8 months + one sentence on preferred treatment status
+
+**Why:** Viewers are lay people watching a video. They want the headline, not the methodology. The detail is in the article.
+
+---
+
+## ⛔ RULE 31 — CTA SLIDE = HEALTH-ACTION "ONE THING" — LOCKED APRIL 2026
+
+**The CTA slide (second-to-last) must be a health-action moment, not a membership pitch. The membership pitch goes on the brand close slide only.**
+
+Structure:
+- Icon · Badge: "The evidence is clear on one thing" · Large headline (the key finding)
+- 4 action rows: symptoms / screening / risk reduction / helf.school link
+- Medical disclaimer (canonical phrase)
+
+**Voice rule:** Every row describes what the evidence shows — never instructs the viewer. "The evidence shows stopping smoking reduces risk" not "stop smoking." "The NHS screening programme is available" not "ask your GP about screening."
+
+Canonical reference: `lung-cancer-visuals.html` slide 10 (April 2026).
+
+---
+
 ## ⛔ RULE 29 — THE REASON FOR THE STAT MUST BE IN ev-outcome, NOT ev-conditions — LOCKED APRIL 2026
 
 **The comparison, intervention, or condition that produced the stat number — the REASON it is what it is — must appear in the `ev-outcome` line. It must never be relegated to `ev-conditions` alone, where it sits at 0.78rem and carries the least visual weight.**
@@ -534,6 +678,28 @@ ev-conditions: CT screening vs no screening — high-risk smokers at 10 years
 - `38.6 mo / median overall survival / osimertinib vs 31.8 months on standard EGFR therapy`
 
 **This applies equally to visuals ev-stat-boxes.** Same hierarchy: ev-outcome carries both finding and reason; ev-conditions carries trial/population context only.
+
+---
+
+## STANDING RETROFIT INSTRUCTION — BRAND NAMES — RULE 33 — APPLY TO ALL EXISTING FILES
+
+**Whenever any existing helf.school article, visuals file, or teleprompter is opened for any reason — including minor edits, corrections, or updates — the brand name check must be run before the file is re-delivered.**
+
+The brand name rule (Rule 33, locked April 2026) is a retrofit across the entire site. It was not applied to any files built before April 2026. When a file is opened:
+
+1. Run: `grep -i "mab\|tinib\|ciclib\|pril\|sartan\|statin\|oxacin\|mycin\|bevacizumab\|cetuximab\|panitumumab\|erlotinib\|gefitinib" [filename]`
+2. For every generic drug name found, confirm a brand name appears alongside it
+3. Apply brand names before re-delivering
+
+**Priority articles for brand name retrofit (highest drug density):**
+- `hypertension.html` — ramipril (Tritace), amlodipine (Norvasc), losartan (Cozaar), indapamide (Natrilix), bisoprolol (Cardicor)
+- `cholesterol.html` — atorvastatin (Lipitor), rosuvastatin (Crestor), ezetimibe (Ezetrol), evolocumab (Repatha)
+- `heart-attack-risk.html` — clopidogrel (Plavix), ticagrelor (Brilique), rivaroxaban (Xarelto), apixaban (Eliquis)
+- `breast-cancer.html` — trastuzumab (Herceptin), olaparib (Lynparza), tamoxifen (Nolvadex), palbociclib (Ibrance), anastrozole (Arimidex)
+- `prostate-cancer.html` — enzalutamide (Xtandi), abiraterone (Zytiga), docetaxel (Taxotere)
+- `lung-cancer.html` — check for erlotinib (Tarceva), gefitinib (Iressa), bevacizumab (Avastin)
+
+**Already completed (April 2026):** `bowel-cancer.html` · `bowel-cancer-visuals.html` · `bowel-cancer-teleprompter.html`
 
 ---
 

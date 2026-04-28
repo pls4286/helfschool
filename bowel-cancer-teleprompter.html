@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bowel Cancer — Teleprompter · helf.school</title>
+<style>
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html,body { height:100%; overflow:hidden; }
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background:#0a0a0a; color:#f0f0f0;
+  font-size:1.9rem; line-height:1.75;
+}
+
+/* ─── SCROLL WRAPPER ─── */
+#scroll-wrap { position:fixed; top:0; left:0; right:0; bottom:72px; overflow:hidden; }
+#content { padding:4vh 8vw 6vh; will-change:transform; }
+
+/* ─── SEGMENTS ─── */
+.segment { margin-bottom:5vh; }
+
+/* ─── CUE BOX ─── */
+.cue-box {
+  background:#E8A84A; color:#1B2A4A;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:1rem; font-weight:700;
+  letter-spacing:.04em; text-transform:uppercase;
+  padding:.65rem 1.2rem; border-radius:6px;
+  margin-bottom:1.2rem; display:inline-block;
+}
+.cue-label {
+  font-size:.8rem; font-weight:600;
+  text-transform:none; letter-spacing:0;
+  opacity:.75; margin-top:.15rem;
+}
+
+/* ─── SCRIPT TEXT ─── */
+.script-line { margin-bottom:.55rem; color:#f0f0f0; }
+
+/* ─── DIVIDER ─── */
+.seg-divider { border:none; border-top:1px solid rgba(255,255,255,0.08); margin:3vh 0 4vh; }
+
+/* ─── CONTROLS ─── */
+#controls {
+  position:fixed; bottom:0; left:0; right:0; height:72px;
+  background:#111; border-top:1px solid rgba(255,255,255,0.1);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 1.5rem; gap:1rem; z-index:100;
+}
+#dots { display:flex; align-items:center; gap:.45rem; flex-shrink:0; }
+.dot { width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,0.22); cursor:pointer; transition:background .2s, transform .2s; border:none; }
+.dot.active { background:#E8A84A; transform:scale(1.35); }
+
+#btn-pause { background:#E8A84A; color:#1B2A4A; border:none; border-radius:8px; font-size:1.4rem; width:52px; height:42px; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background .15s; }
+#btn-pause:hover { background:#f0b855; }
+
+.speed-group { display:flex; align-items:center; gap:.5rem; flex-shrink:0; }
+.speed-label { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-size:.75rem; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:rgba(255,255,255,0.55); }
+.speed-btn { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); color:rgba(255,255,255,0.80); border-radius:5px; padding:.3rem .65rem; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-size:.82rem; font-weight:600; cursor:pointer; transition:background .15s; }
+.speed-btn:hover { background:rgba(255,255,255,0.15); }
+#speed-display { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-size:.8rem; color:rgba(255,255,255,0.55); min-width:2.5rem; text-align:center; }
+
+.font-group { display:flex; align-items:center; gap:.4rem; flex-shrink:0; }
+.font-btn { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); color:rgba(255,255,255,0.80); border-radius:5px; padding:.3rem .6rem; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-size:.82rem; font-weight:700; cursor:pointer; transition:background .15s; }
+.font-btn:hover { background:rgba(255,255,255,0.15); }
+
+#seg-counter { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-size:.78rem; color:rgba(255,255,255,0.45); flex-shrink:0; min-width:3rem; text-align:right; }
+</style>
+</head>
+<body>
+
+<div id="scroll-wrap">
+  <div id="content">
+
+    <!-- ════ SEGMENT 1 — SLIDE 1: INTRO ════ -->
+    <div class="segment" id="seg-1">
+      <div class="cue-box">
+        ▶ ADVANCE NOW — then read
+        <div class="cue-label">Slide 1 — Introduction</div>
+      </div>
+      <p class="script-line">I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019.</p>
+      <p class="script-line">Today I want to talk about bowel cancer. I have to say upfront — what I'm giving you is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+      <p class="script-line">Right — let's get into it.</p>
+      <p class="script-line">Bowel cancer is the UK's second biggest cancer killer. Around forty-four thousand new diagnoses every year. Around seventeen thousand seven hundred deaths. But this is also a cancer where the survival statistics tell a compelling story — and understanding it matters.</p>
+    </div>
+
+    <hr class="seg-divider">
+
+    <!-- ════ SEGMENT 2 — SLIDE 2: MYTH ════ -->
+    <div class="segment" id="seg-2">
+      <div class="cue-box">
+        ▶ ADVANCE NOW — then read
+        <div class="cue-label">Slide 2 — Myth vs Evidence</div>
+      </div>
+      <p class="script-line">Before we get into the science, I want to deal with two things that regularly get in the way of people acting early.</p>
+      <p class="script-line">First: that blood in the stool is almost always piles and not worth mentioning. That's not the right conclusion. Blood in or on the stool — particularly combined with any change in bowel habit — is one of the primary red flag symptoms NICE identifies for urgent bowel cancer investigation.</p>
+      <p class="script-line">Second: that the bowel screening test is invasive and not worth the bother. The NHS FIT test is a home stool test — no hospital visit, no preparation. And the evidence shows screening reduces cancer incidence significantly.</p>
+    </div>
+
+    <hr class="seg-divider">
+
+    <!-- ════ SEGMENT 3 — SLIDES 3–4: WHAT IS IT ════ -->
+    <div class="segment" id="seg-3">
+      <div class="cue-box">
+        ▶ ADVANCE NOW — then read
+        <div class="cue-label">Slides 3–4 — What is bowel cancer?</div>
+      </div>
+      <p class="script-line">Bowel cancer starts in the lining of the large bowel — either the colon or the rectum. Over ninety-five per cent are adenocarcinomas — cancers of the glandular cells in the bowel wall.</p>
+      <p class="script-line">Most develop slowly — over ten to fifteen years — from benign growths called adenomas, or polyps, on the inner bowel surface. That slow development is precisely why screening can prevent cancer entirely: a polyp removed before it turns cancerous never becomes cancer.</p>
+      <p class="script-line">On risk: processed meat, obesity, physical inactivity, alcohol, and smoking all independently increase risk. Around seventy-five per cent of cases occur in people with no significant family history.</p>
+      <p class="script-line">At diagnosis, every tumour is now tested for molecular markers — KRAS, NRAS, BRAF, and MSI status — because these determine which treatment has the best chance of working for that individual tumour.</p>
+    </div>
+
+    <hr class="seg-divider">
+
+    <!-- ════ SEGMENT 4 — SLIDE 5: WHY IT MATTERS ════ -->
+    <div class="segment" id="seg-4">
+      <div class="cue-box">
+        ▶ ADVANCE NOW — then read
+        <div class="cue-label">Slide 5 — Why does it matter?</div>
+      </div>
+      <p class="script-line">The scale: around forty-four thousand new cases a year. Forty-eight deaths every day.</p>
+      <p class="script-line">But here is the number I want you to hold onto. Stage one five-year survival exceeds ninety per cent. Stage four is approximately eight per cent. The same disease — with completely different outcomes depending on when it is found.</p>
+      <p class="script-line">Around twenty-six per cent of bowel cancers are still diagnosed at stage four in current UK data. That is the gap better screening uptake and earlier symptom recognition are trying to close.</p>
+    </div>
+
+    <hr class="seg-divider">
+
+    <!-- ════ SEGMENT 5 — SLIDES 6–7: DOCTOR DISCUSSION ════ -->
+    <div class="segment" id="seg-5">
+      <div class="cue-box">
+        ▶ ADVANCE NOW — then read
+        <div class="cue-label">Slides 6–7 — What your doctor might discuss</div>
+      </div>
+      <p class="script-line">The recognised red flag symptoms: a persistent change in bowel habit lasting six weeks or more — particularly looser or more frequent stools. Blood in stool without obvious cause. Unexplained iron deficiency anaemia. A lump in the abdomen or back passage. Unexplained weight loss.</p>
+      <p class="script-line">Investigation starts with a FIT test. A positive result leads to colonoscopy — a direct camera examination of the entire large bowel, allowing biopsy and polyp removal in the same procedure.</p>
+      <p class="script-line">For early disease, surgery is the primary treatment. Stage three colon cancer is treated with FOLFOX chemotherapy after surgery. For metastatic disease, bevacizumab — Avastin — or anti-EGFR drugs are added according to the molecular profile. And for MSI-H tumours — three to five per cent of metastatic cases — pembrolizumab (Keytruda) is now a first-line option with substantially better outcomes than chemotherapy.</p>
+    </div>
+
+    <hr class="seg-divider">
+
+    <!-- ════ SEGMENT 6 — SLIDE 8: RESEARCH 1 ════ -->
+    <div class="segment" id="seg-6">
+      <div class="cue-box">
+        ▶ ADVANCE NOW — then read
+        <div class="cue-label">Slide 8 — What the research shows (1 of 2)</div>
+      </div>
+      <p class="script-line">The KEYNOTE-177 trial compared pembrolizumab — Keytruda — with standard chemotherapy as first-line treatment in MSI-H metastatic bowel cancer. Progression-free survival: sixteen point five months versus eight point two months. Overall survival also significantly better. Pembrolizumab is now the preferred first-line option for this molecular subgroup.</p>
+      <p class="script-line">The NordICC trial invited over eighty-five thousand adults to colonoscopy screening or no screening. After ten years, bowel cancer incidence was eighteen per cent lower in the invited group — rising to thirty-one per cent lower among those who actually attended. The NHS uses FIT as the first-line test, with positive results leading to colonoscopy.</p>
+    </div>
+
+    <hr class="seg-divider">
+
+    <!-- ════ SEGMENT 7 — SLIDE 9: RESEARCH 2 ════ -->
+    <div class="segment" id="seg-7">
+      <div class="cue-box">
+        ▶ ADVANCE NOW — then read
+        <div class="cue-label">Slide 9 — Diet and bowel cancer risk</div>
+      </div>
+      <p class="script-line">The IARC Working Group reviewed over eight hundred studies and classified processed meat as a Group 1 carcinogen for bowel cancer. Each additional fifty grams per day — roughly two rashers of bacon — raises risk by approximately eighteen per cent.</p>
+      <p class="script-line">Importantly, this is a dose-response relationship starting from low intake levels — not a threshold that only applies above a certain amount. Even going from none to fifty grams daily is associated with eighteen per cent higher relative risk compared with eating none.</p>
+    </div>
+
+    <hr class="seg-divider">
+
+    <!-- ════ SEGMENT 8 — SLIDE 10: CTA ════ -->
+    <div class="segment" id="seg-8">
+      <div class="cue-box">
+        ▶ ADVANCE NOW — then read
+        <div class="cue-label">Slide 10 — The one thing</div>
+      </div>
+      <p class="script-line">So what is the one thing the evidence is clear about? Bowel cancer caught early has over ninety per cent five-year survival.</p>
+      <p class="script-line">Know the red flags: blood in stool, a persistent change in bowel habit lasting six weeks, unexplained weight loss. Complete the NHS FIT test when it arrives — it detects cancer early from a home stool sample. And the evidence shows that reducing processed meat intake lowers bowel cancer risk — even modest reductions matter.</p>
+      <p class="script-line">For everything covered today — all the evidence, all the references, in plain English — it's at helf.school.</p>
+      <p class="script-line">Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+    </div>
+
+    <hr class="seg-divider">
+
+    <!-- ════ SEGMENT 9 — SLIDE 11: BRAND CLOSE ════ -->
+    <div class="segment" id="seg-9">
+      <div class="cue-box">
+        ▶ ADVANCE NOW — then read
+        <div class="cue-label">Slide 11 — Brand close</div>
+      </div>
+      <p class="script-line">That's it for today. The full article is at helf.school — free to access, evidence-based, written by a doctor.</p>
+      <p class="script-line">Thanks for watching.</p>
+    </div>
+
+    <div style="height:30vh"></div>
+
+  </div>
+</div>
+
+<!-- ─── CONTROLS ─── -->
+<div id="controls">
+  <div id="dots"></div>
+
+  <div class="speed-group">
+    <span class="speed-label">Speed</span>
+    <button class="speed-btn" id="btn-slower">−</button>
+    <span id="speed-display">3</span>
+    <button class="speed-btn" id="btn-faster">+</button>
+  </div>
+
+  <button id="btn-pause">⏸</button>
+
+  <div class="font-group">
+    <button class="font-btn" id="btn-smaller">A−</button>
+    <button class="font-btn" id="btn-bigger">A+</button>
+  </div>
+
+  <span id="seg-counter">1 / 9</span>
+</div>
+
+<script>
+const SPEEDS     = [0, 8, 14, 20, 28, 38, 50];
+const SEG_IDS    = ['seg-1','seg-2','seg-3','seg-4','seg-5','seg-6','seg-7','seg-8','seg-9'];
+const TOTAL_SEGS = SEG_IDS.length;
+
+let speedIdx = 3;
+let paused   = false;
+let fontSize = 1.9;
+let curSeg   = 0;
+let scrollPos = 0;
+let lastTs   = null;
+let rafId    = null;
+
+const scrollWrap = document.getElementById('scroll-wrap');
+const content    = document.getElementById('content');
+const btnPause   = document.getElementById('btn-pause');
+const speedDisp  = document.getElementById('speed-display');
+const segCounter = document.getElementById('seg-counter');
+const dotsEl     = document.getElementById('dots');
+
+/* ─── DOTS ─── */
+SEG_IDS.forEach((id, i) => {
+  const d = document.createElement('button');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.title = 'Segment ' + (i + 1);
+  d.addEventListener('click', () => jumpToSeg(i));
+  dotsEl.appendChild(d);
+});
+
+function updateDots(idx) {
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+  segCounter.textContent = (idx + 1) + ' / ' + TOTAL_SEGS;
+}
+
+function applyScroll() { content.style.transform = 'translateY(' + (-scrollPos) + 'px)'; }
+
+function jumpToSeg(idx) {
+  curSeg = Math.max(0, Math.min(idx, TOTAL_SEGS - 1));
+  const el = document.getElementById(SEG_IDS[curSeg]);
+  if (!el) return;
+  const wrapTop = scrollWrap.getBoundingClientRect().top;
+  const elTop   = el.getBoundingClientRect().top;
+  scrollPos = scrollPos + (elTop - wrapTop) - (scrollWrap.clientHeight * 0.08);
+  if (scrollPos < 0) scrollPos = 0;
+  applyScroll();
+  updateDots(curSeg);
+}
+
+function detectSeg() {
+  const wrapTop = scrollWrap.getBoundingClientRect().top;
+  let best = 0;
+  SEG_IDS.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (el.getBoundingClientRect().top - wrapTop < scrollWrap.clientHeight * 0.4) best = i;
+  });
+  if (best !== curSeg) { curSeg = best; updateDots(curSeg); }
+}
+
+function tick(ts) {
+  if (!lastTs) lastTs = ts;
+  const dt = ts - lastTs;
+  lastTs = ts;
+  if (!paused && SPEEDS[speedIdx] > 0) {
+    scrollPos += SPEEDS[speedIdx] * (dt / 1000);
+    const maxScroll = content.scrollHeight - scrollWrap.clientHeight;
+    if (scrollPos < 0) scrollPos = 0;
+    if (scrollPos > maxScroll) scrollPos = maxScroll;
+    applyScroll();
+    detectSeg();
+  }
+  rafId = requestAnimationFrame(tick);
+}
+
+function togglePause() {
+  paused = !paused;
+  btnPause.textContent = paused ? '▶' : '⏸';
+  if (!paused) lastTs = null;
+}
+
+function changeSpeed(d) {
+  speedIdx = Math.max(0, Math.min(speedIdx + d, SPEEDS.length - 1));
+  speedDisp.textContent = speedIdx;
+}
+
+function changeFontSize(d) {
+  fontSize = Math.max(1.2, Math.min(fontSize + d, 3.0));
+  document.body.style.fontSize = fontSize + 'rem';
+}
+
+document.addEventListener('keydown', e => {
+  switch(e.key) {
+    case ' ':          e.preventDefault(); togglePause(); break;
+    case 'ArrowDown':  e.preventDefault(); jumpToSeg(curSeg + 1); break;
+    case 'ArrowUp':    e.preventDefault(); jumpToSeg(curSeg - 1); break;
+    case 'ArrowRight': changeSpeed(1); break;
+    case 'ArrowLeft':  changeSpeed(-1); break;
+    case '+': case '=': changeFontSize(0.1); break;
+    case '-':           changeFontSize(-0.1); break;
+  }
+});
+
+let tx = 0;
+document.addEventListener('touchstart', e => { tx = e.touches[0].clientY; }, {passive:true});
+document.addEventListener('touchend',   e => {
+  const dy = e.changedTouches[0].clientY - tx;
+  if (dy < -40) jumpToSeg(curSeg + 1);
+  if (dy >  40) jumpToSeg(curSeg - 1);
+}, {passive:true});
+
+document.getElementById('btn-slower').addEventListener('click', () => changeSpeed(-1));
+document.getElementById('btn-faster').addEventListener('click', () => changeSpeed(+1));
+document.getElementById('btn-smaller').addEventListener('click', () => changeFontSize(-0.1));
+document.getElementById('btn-bigger').addEventListener('click',  () => changeFontSize(+0.1));
+btnPause.addEventListener('click', togglePause);
+
+/* ─── INIT ─── */
+updateDots(0);
+rafId = requestAnimationFrame(tick);
+</script>
+</body>
+</html>
