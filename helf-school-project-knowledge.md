@@ -1168,21 +1168,29 @@ The comparison or intervention that produced a research card stat — the REASON
 ### Immediate — uploads outstanding
 - Upload `breast-cancer.html`, `breast-cancer-visuals.html`, `breast-cancer-teleprompter.html` to GitHub
 - Upload `prostate-cancer.html`, `prostate-cancer-visuals.html`, `prostate-cancer-teleprompter.html` to GitHub
-- Upload `helf-school-conditions.html` to GitHub (updated: Article 28 now live, hero stat 28)
+- Upload `lung-cancer.html`, `lung-cancer-visuals.html`, `lung-cancer-teleprompter.html` to GitHub
+- Upload `bowel-cancer.html`, `bowel-cancer-visuals.html`, `bowel-cancer-teleprompter.html` to GitHub
+- Upload `helf-school-conditions.html` to GitHub (needs updating: Articles 29 and 30 now built — hero stat should read 30)
+- Upload `helf-school-project-knowledge.md` and `helf-school-session-start-rules.md` to GitHub AND Claude Project
 
-### Cancer Series — Article 29 (Lung Cancer) — in progress
-- `lung-cancer.html` — built April 2026 ✅ (includes myth-busting panel, numbered subtype list, 7 references, 4 research flags)
-- `lung-cancer-visuals.html` — not yet built
-- `lung-cancer-teleprompter.html` — not yet built
-- **Research flags outstanding in lung-cancer.html:**
-  1. NSCLC/SCLC proportion (80 to 85%) — cited to NICE NG122, confirm this figure appears in NG122 text; if not, use NICE TA1043 or flag for primary epidemiological source
+### Cancer Series — Article 29 (Lung Cancer) — COMPLETE ✅
+- `lung-cancer.html` — built April 2026 ✅
+- `lung-cancer-visuals.html` — built April 2026 ✅
+- `lung-cancer-teleprompter.html` — built April 2026 ✅
+- **Research flags still outstanding in lung-cancer.html:**
+  1. NSCLC/SCLC proportion (80–85%) — cited to NICE NG122, confirm this figure appears in NG122 text
   2. EGFR mutation prevalence (10–15%) and ALK rearrangement (3–5%) — confirm in NICE NG122
   3. Stage 3 and stage 4 five-year survival figures — not yet added; available on CRUK survival page
-  4. PD-L1 "approximately 23 to 28%" figure — verified from KEYNOTE-024 paper, no flag needed
+
+### Cancer Series — Article 30 (Bowel Cancer) — COMPLETE ✅
+- `bowel-cancer.html` — built April 2026 ✅
+- `bowel-cancer-visuals.html` — built April 2026 ✅ (first visuals file delivered with zero changes required)
+- `bowel-cancer-teleprompter.html` — built April 2026 ✅
+- **Research flag outstanding:**
+  - ~44,000 incidence figure — verify exact current number against CRUK incidence statistics page
 
 ### Cancer Series — next articles to build
-- Article 30: Bowel (Colorectal) Cancer
-- Article 31: Melanoma and Skin Cancer
+- Article 31: Melanoma and Skin Cancer (all 3 files)
 
 ### Practical Health Series extension — next articles to build
 - Article 32: Breast Awareness (cross-referenced from breast-cancer.html — marked "Coming soon")

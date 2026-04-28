@@ -761,9 +761,9 @@ The brand name rule (Rule 33, locked April 2026) is a retrofit across the entire
 |------|--------|
 | breast-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — upload to GitHub outstanding |
 | prostate-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — upload to GitHub outstanding |
-| lung-cancer.html | ✅ Article HTML built April 2026 — visuals and teleprompter outstanding |
-| bowel-cancer.html + visuals + teleprompter | Not yet built |
-| melanoma.html + visuals + teleprompter | Not yet built |
+| lung-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — upload to GitHub outstanding |
+| bowel-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — upload to GitHub outstanding |
+| melanoma.html + visuals + teleprompter | Not yet built — Article 31, next to build |
 
 ### OUTSTANDING CITATION FLAGS
 - hypertension.html refs 5 + 6 — Cochrane PubMed IDs flagged ⚑ unverified
