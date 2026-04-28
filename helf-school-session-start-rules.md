@@ -542,109 +542,6 @@ This covers every location: body prose paragraphs, Key Terms box definitions, st
 
 ---
 
-## ⛔ RULE 28 — SUBTYPES AND FORMALLY NAMED SETS MUST BE LISTED, NOT IN PROSE — LOCKED APRIL 2026
-
-**When article body prose introduces a formally counted or named set of items using a phrase like "three main subtypes", "four stages", "two types of", "the following five", those items must be presented in a numbered or bulleted HTML list — never as comma-separated inline prose.**
-
-**The test:** if you can count the items in the introductory sentence, they go in a list.
-
-**Implementation:** use `<ol class="subtype-list">` with the canonical CSS pattern first introduced in `lung-cancer.html` (Article 29, April 2026):
-- Numbered circle markers in series colour
-- Bold term name followed by em-dash and definition
-- Full body size (1rem, line-height 1.72)
-
-**Before presenting any article:** grep for phrases like "three main", "four types", "two subtypes", "the following". Any formally introduced set of items must be in a list.
-
-**Why this rule was added:** Dr Paul identified that the three NSCLC subtypes (adenocarcinoma, squamous cell carcinoma, large cell carcinoma) were written as inline comma-separated prose in the first draft of `lung-cancer.html` Section 1 (April 2026). The rule is now explicit: distinct named items need visual separation so readers can find and refer back to individual items.
-
-**Canonical reference:** `lung-cancer.html` Section 1 — NSCLC subtypes as `<ol class="subtype-list">` (April 2026).
-
-**Retrofit:** Apply `<ol class="subtype-list">` pattern when any article is next opened and contains formally introduced sets of items.
-
----
-
-## ⛔ RULE 33 — DRUG BRAND NAMES MUST ALWAYS ACCOMPANY GENERIC NAMES — LOCKED APRIL 2026
-
-**Every drug name (generic) must be immediately accompanied by its brand name in every helf.school file. This applies to articles, visuals, and teleprompter scripts — especially teleprompter scripts.**
-
-**Why:** Brand names are shorter, more recognisable to patients, and — most importantly for teleprompter files — easier to say fluently while filming. "Keytruda" flows better on camera than "pembrolizumab."
-
-**Format in articles and visuals:**
-`pembrolizumab (Keytruda)` · `bevacizumab (Avastin)` · `cetuximab (Erbitux)` · `panitumumab (Vectibix)` · `osimertinib (Tagrisso)`
-
-**Format in teleprompter scripts (spoken em-dash form):**
-`pembrolizumab — Keytruda —` · `bevacizumab — Avastin —` · `osimertinib — Tagrisso —`
-
-**Pre-delivery check:** grep for every generic drug name and confirm every instance has a brand name alongside it.
-
-**Common oncology brand names reference:**
-- pembrolizumab → Keytruda
-- osimertinib → Tagrisso
-- bevacizumab → Avastin
-- cetuximab → Erbitux
-- panitumumab → Vectibix
-- nivolumab → Opdivo
-- trastuzumab → Herceptin
-- rituximab → MabThera
-- imatinib → Glivec
-- erlotinib → Tarceva
-- gefitinib → Iressa
-- encorafenib → Braftovi
-- binimetinib → Mektovi
-
----
-
-## ⛔ RULE 32 — RESEARCH CURRENCY: NO ARTICLES OLDER THAN 12 YEARS — LOCKED APRIL 2026
-
-**No research article or clinical trial published more than 12 years before the current date may be used as an evidence card or primary stat source in any helf.school article or visuals file.**
-
-**The calculation:** Current year (2026) minus 12 = 2014. Any paper with a publication year before 2014 is out of scope.
-
-**Guideline documents** (NICE, WHO, ESC, SIGN) are exempt if the document itself has been updated within 12 years — always cite the most recent update date, not the original year of first publication.
-
-**Before selecting any evidence card trial, always check the publication year. If the best-known trial for a topic predates 2014:**
-- Search for a more recent equivalent in the same approved source list
-- Replace with a different but equally relevant line of evidence
-- Never use an outdated trial simply because it is the most famous one
-
-**Why this rule was added:** The Hardcastle et al. Lancet 1996 gFOBT screening trial was used in the first draft of bowel-cancer.html — a paper published 30 years before the article, describing a test (gFOBT) that the NHS replaced with FIT in 2019. Dr Paul identified this in April 2026. The paper was removed and replaced with the NordICC trial (Bretthauer M et al. NEJM 2022; PMID 36214590) — a 10-year randomised trial of colonoscopy screening published in an approved journal within the 12-year window.
-
-**Canonical replacement example:**
-- ❌ Hardcastle et al. Lancet 1996 — gFOBT, 30 years old, superseded test
-- ✅ Bretthauer et al. NEJM 2022 — colonoscopy/bowel screening, recent, same approved journal tier
-
----
-
-## ⛔ RULE 30 — VISUALS RESEARCH CARD BODY = 2–3 SENTENCES MAXIMUM — LOCKED APRIL 2026
-
-**The ev-body of every research card in visuals files must contain no more than 2–3 sentences. No trial design detail. No population breakdown. No secondary endpoints. The full explanation lives in the article.**
-
-Required structure: (1) what was compared, (2) the headline finding, (3) one sentence of clinical context only.
-
-**Canonical examples — lung-cancer-visuals.html (April 2026):**
-- NELSON: trial name + comparison + 24% mortality reduction + one sentence about NHS screening
-- KEYNOTE-024: pembrolizumab vs chemo + 10.3 vs 6.0 months + one sentence on OS and side effects
-- FLAURA: osimertinib vs standard drugs + 38.6 vs 31.8 months + one sentence on preferred treatment status
-
-**Why:** Viewers are lay people watching a video. They want the headline, not the methodology. The detail is in the article.
-
----
-
-## ⛔ RULE 31 — CTA SLIDE = HEALTH-ACTION "ONE THING" — LOCKED APRIL 2026
-
-**The CTA slide (second-to-last) must be a health-action moment, not a membership pitch. The membership pitch goes on the brand close slide only.**
-
-Structure:
-- Icon · Badge: "The evidence is clear on one thing" · Large headline (the key finding)
-- 4 action rows: symptoms / screening / risk reduction / helf.school link
-- Medical disclaimer (canonical phrase)
-
-**Voice rule:** Every row describes what the evidence shows — never instructs the viewer. "The evidence shows stopping smoking reduces risk" not "stop smoking." "The NHS screening programme is available" not "ask your GP about screening."
-
-Canonical reference: `lung-cancer-visuals.html` slide 10 (April 2026).
-
----
-
 ## ⛔ RULE 29 — THE REASON FOR THE STAT MUST BE IN ev-outcome, NOT ev-conditions — LOCKED APRIL 2026
 
 **The comparison, intervention, or condition that produced the stat number — the REASON it is what it is — must appear in the `ev-outcome` line. It must never be relegated to `ev-conditions` alone, where it sits at 0.78rem and carries the least visual weight.**
@@ -678,6 +575,88 @@ ev-conditions: CT screening vs no screening — high-risk smokers at 10 years
 - `38.6 mo / median overall survival / osimertinib vs 31.8 months on standard EGFR therapy`
 
 **This applies equally to visuals ev-stat-boxes.** Same hierarchy: ev-outcome carries both finding and reason; ev-conditions carries trial/population context only.
+
+---
+
+## ⛔ RULE 30 — VISUALS RESEARCH CARD BODY = 2–3 SENTENCES MAXIMUM — LOCKED APRIL 2026
+
+**The ev-body of every research card in visuals files must contain no more than 2–3 sentences. No trial design detail. No population breakdown. No secondary endpoints. The full explanation lives in the article.**
+
+Required structure: (1) what was compared, (2) the headline finding, (3) one sentence of clinical context only.
+
+**Canonical examples — lung-cancer-visuals.html (April 2026):**
+- NELSON: trial name + comparison + 24% mortality reduction + one sentence about NHS screening
+- KEYNOTE-024: pembrolizumab vs chemo + 10.3 vs 6.0 months + one sentence on OS and side effects
+- FLAURA: osimertinib vs standard drugs + 38.6 vs 31.8 months + one sentence on preferred treatment status
+
+**Why:** Viewers are lay people watching a video. They want the headline, not the methodology. The detail is in the article.
+
+---
+
+## ⛔ RULE 31 — CTA SLIDE = HEALTH-ACTION "ONE THING" — LOCKED APRIL 2026
+
+**The CTA slide (second-to-last) must be a health-action moment, not a membership pitch. The membership pitch goes on the brand close slide only.**
+
+Structure:
+- Icon · Badge: "The evidence is clear on one thing" · Large headline (the key finding)
+- 4 action rows: symptoms / screening / risk reduction / helf.school link
+- Medical disclaimer (canonical phrase)
+
+**Voice rule:** Every row describes what the evidence shows — never instructs the viewer. "The evidence shows stopping smoking reduces risk" not "stop smoking." "The NHS screening programme is available" not "ask your GP about screening."
+
+Canonical reference: `lung-cancer-visuals.html` slide 10 (April 2026).
+
+---
+
+## ⛔ RULE 32 — RESEARCH CURRENCY: NO ARTICLES OLDER THAN 12 YEARS — LOCKED APRIL 2026
+
+**No research article or clinical trial published more than 12 years before the current date may be used as an evidence card or primary stat source in any helf.school article or visuals file.**
+
+**The calculation:** Current year (2026) minus 12 = 2014. Any paper with a publication year before 2014 is out of scope.
+
+**Guideline documents** (NICE, WHO, ESC, SIGN) are exempt if the document itself has been updated within 12 years — always cite the most recent update date, not the original year of first publication.
+
+**Before selecting any evidence card trial, always check the publication year. If the best-known trial for a topic predates 2014:**
+- Search for a more recent equivalent in the same approved source list
+- Replace with a different but equally relevant line of evidence
+- Never use an outdated trial simply because it is the most famous one
+
+**Why this rule was added:** The Hardcastle et al. Lancet 1996 gFOBT screening trial was used in the first draft of bowel-cancer.html — a paper published 30 years before the article, describing a test (gFOBT) that the NHS replaced with FIT in 2019. Dr Paul identified this in April 2026. The paper was removed and replaced with the NordICC trial (Bretthauer M et al. NEJM 2022; PMID 36214590) — a 10-year randomised trial of colonoscopy screening published in an approved journal within the 12-year window.
+
+**Canonical replacement example:**
+- ❌ Hardcastle et al. Lancet 1996 — gFOBT, 30 years old, superseded test
+- ✅ Bretthauer et al. NEJM 2022 — colonoscopy/bowel screening, recent, same approved journal tier
+
+---
+
+## ⛔ RULE 33 — DRUG BRAND NAMES MUST ALWAYS ACCOMPANY GENERIC NAMES — LOCKED APRIL 2026
+
+**Every drug name (generic) must be immediately accompanied by its brand name in every helf.school file. This applies to articles, visuals, and teleprompter scripts — especially teleprompter scripts.**
+
+**Why:** Brand names are shorter, more recognisable to patients, and — most importantly for teleprompter files — easier to say fluently while filming. "Keytruda" flows better on camera than "pembrolizumab."
+
+**Format in articles and visuals:**
+`pembrolizumab (Keytruda)` · `bevacizumab (Avastin)` · `cetuximab (Erbitux)` · `panitumumab (Vectibix)` · `osimertinib (Tagrisso)`
+
+**Format in teleprompter scripts (spoken em-dash form):**
+`pembrolizumab — Keytruda —` · `bevacizumab — Avastin —` · `osimertinib — Tagrisso —`
+
+**Pre-delivery check:** grep for every generic drug name and confirm every instance has a brand name alongside it.
+
+**Common oncology brand names reference:**
+- pembrolizumab → Keytruda
+- osimertinib → Tagrisso
+- bevacizumab → Avastin
+- cetuximab → Erbitux
+- panitumumab → Vectibix
+- nivolumab → Opdivo
+- trastuzumab → Herceptin
+- rituximab → MabThera
+- imatinib → Glivec
+- erlotinib → Tarceva
+- gefitinib → Iressa
+- encorafenib → Braftovi
+- binimetinib → Mektovi
 
 ---
 
