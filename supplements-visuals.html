@@ -6,7 +6,7 @@
   <title>Do Supplements Lower Cholesterol? — Visuals | helf.school</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--calm:#70b8e8}
+    :root{--navy:#1B2A4A;--coral:#E8634A;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
     #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:var(--navy);border-bottom:2px solid var(--acc2);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
@@ -36,10 +36,10 @@
     .intro-sub{font-size:1.1rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;max-width:680px;line-height:1.5;font-weight:400}
     .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
 
-    /* SPORT HEADLINE SLIDE 2 */
+    /* SPORT TRIAL slide 2 — custom layout, unchanged structure */
     .sport-stage{display:flex;flex-direction:column;flex:1;gap:1.2rem;min-height:0;align-items:center;justify-content:center}
     .sport-row{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;width:100%;max-width:940px}
-    .sport-card{background:linear-gradient(180deg,#1f2e47,#162238);border-radius:20px;padding:1.9rem 1.6rem;text-align:center;box-shadow:0 0 40px rgba(212,184,74,.08)}
+    .sport-card{background:linear-gradient(180deg,#1f2e47,#162238);border-radius:20px;padding:1.9rem 1.6rem;text-align:center}
     .sport-card.win{border:1.5px solid rgba(126,204,153,.5)}
     .sport-card.flat{border:1.5px solid rgba(232,122,90,.5)}
     .sport-num{font-family:'Fraunces',serif;font-size:clamp(4rem,8.5vw,6.2rem);font-weight:700;line-height:.9;letter-spacing:-.03em;margin-bottom:.35rem}
@@ -53,89 +53,88 @@
     .sport-strip-text{font-size:1rem;color:#fff;font-weight:500;font-family:'Fraunces',serif;line-height:1.4}
     .sport-strip-text strong{color:var(--acc)}
 
-    /* 6-ROW CARDS — slides 3, 4, 8 */
-    .sys-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    /* SYS ROWS — max 3 per slide, clamp:4 */
+    .sys-grid{display:grid;grid-template-columns:1fr;gap:.55rem;flex:1;min-height:0}
+    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:12px;padding:.8rem 1.2rem;display:grid;grid-template-columns:60px 1fr auto;gap:1.1rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .sys-card.vis{opacity:1;transform:translateY(0)}
     .sys-card.warn{border-color:rgba(232,168,74,.45)}
-    .sys-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .sys-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
-    .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
-    .sys-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .sys-stat{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem}
+    .sys-icon{font-size:2.2rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .sys-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+    .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.2rem;line-height:1.15}
+    .sys-body{font-size:.92rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+    .sys-stat{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--bad);line-height:1;text-align:right;white-space:nowrap;padding-left:.75rem;padding-top:.1rem}
     .sys-stat.warn{color:var(--warn)}
 
-    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    /* DOC ROWS — max 3 per slide, clamp:4 */
+    .doc-grid{display:grid;grid-template-columns:1fr;gap:.55rem;flex:1;min-height:0}
+    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:12px;padding:.8rem 1.2rem;display:grid;grid-template-columns:60px 1fr auto;gap:1.1rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .doc-card.vis{opacity:1;transform:translateY(0)}
-    .doc-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .doc-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
-    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
-    .doc-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem}
+    .doc-icon{font-size:2.2rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .doc-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.2rem;line-height:1.15}
+    .doc-body{font-size:.92rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--good);line-height:1;text-align:right;white-space:nowrap;padding-left:.75rem;padding-top:.1rem}
 
-    /* EV CARDS */
+    /* EV-CARDS — 2-card: padding 1.1rem, ev-body ≤30w clamp:4 */
     .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
-    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .45s ease}
-    .ev-card.animate-ready{opacity:0;transform:translateY(14px)}
+    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:16px;padding:1.1rem 1.4rem;display:grid;grid-template-columns:220px 1fr;gap:1.4rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .45s ease}
     .ev-card.vis{opacity:1;transform:translateY(0)}
-    .ev-stat-box{background:rgba(212,184,74,.09);border-radius:14px;padding:1.25rem .85rem;text-align:center}
+    .ev-stat-box{background:rgba(212,184,74,.09);border-radius:14px;padding:1.1rem .85rem;text-align:center}
     .ev-kf-label{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(212,184,74,.7);margin-bottom:.55rem}
     .ev-stat-row{display:flex;align-items:baseline;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:.45rem}
     .ev-num{font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:var(--acc);line-height:1;letter-spacing:-.02em;flex-shrink:0}
     .ev-num.bad{color:var(--bad)}
     .ev-num.good{color:var(--good)}
     .ev-outcome{font-size:1rem;font-weight:700;color:#fff;line-height:1.3;text-align:left}
-    .ev-conditions{font-size:.95rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.35}
-    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;margin-bottom:.25rem;line-height:1.15;letter-spacing:-.01em}
+    .ev-conditions{font-size:.85rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.35}
+    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;margin-bottom:.25rem;line-height:1.15}
     .ev-det .ev-journal{font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
-    .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400}
+    .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 
-    /* 6-ROW MECH CARDS */
-    .mech-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    /* MECH ROWS — max 3 per slide, clamp:4 */
+    .mech-grid{display:grid;grid-template-columns:1fr;gap:.55rem;flex:1;min-height:0}
+    .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:12px;padding:.8rem 1.2rem;display:grid;grid-template-columns:60px 1fr auto;gap:1.1rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .mech-card.vis{opacity:1;transform:translateY(0)}
-    .mech-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .mech-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
-    .mech-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
-    .mech-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.7vw,1.55rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem}
+    .mech-icon{font-size:2.2rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .mech-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+    .mech-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.2rem;line-height:1.15}
+    .mech-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+    .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.7vw,1.55rem);font-weight:700;color:var(--warn);line-height:1;text-align:right;white-space:nowrap;padding-left:.75rem;padding-top:.1rem}
 
-    /* CTA SLIDE 9 — HORIZONTAL ROWS, NO ICON */
+    /* CTA — sequential animation */
     .cta-slide{position:relative}
     .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(212,184,74,.18),rgba(212,184,74,.04) 45%,transparent 70%);pointer-events:none;z-index:0}
-    .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem;gap:.45rem;min-height:0;overflow:hidden}
-    .cta-top{display:flex;flex-direction:column;align-items:center;gap:.3rem;text-align:center}
-    .cta-badge-v2{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.3rem .95rem;border-radius:100px}
-    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:700;color:#fff;line-height:1.02;letter-spacing:-.028em}
+    .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem 0;gap:.55rem}
+    .cta-header{text-align:center}
+    .cta-badge-v2{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.42rem 1.15rem;border-radius:100px;display:inline-block;margin-bottom:.4rem}
+    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:700;color:#fff;line-height:1.05;letter-spacing:-.028em}
     .cta-headline-v2 span{color:var(--acc)}
-    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(.95rem,1.5vw,1.2rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);line-height:1.3}
-    .cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.4rem;min-height:0;overflow:hidden}
-    .cta-row-v2{background:linear-gradient(90deg,rgba(212,184,74,.12),rgba(212,184,74,.04));border-left:4px solid var(--acc);border-radius:0 10px 10px 0;padding:.6rem .95rem;display:grid;grid-template-columns:52px 1fr auto;gap:.9rem;align-items:start;min-height:0;overflow:hidden}
-    .cta-row-icon{font-size:1.7rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .cta-row-mid{display:flex;flex-direction:column;gap:.12rem;min-width:0}
-    .cta-row-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.95rem;line-height:1.15}
-    .cta-row-body-v2{font-size:.82rem;color:rgba(255,255,255,.90);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .cta-row-word-v2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.2rem,2vw,1.7rem);color:var(--acc);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:.6rem}
-    .cta-bottom{display:flex;justify-content:center;flex-shrink:0}
-    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.75rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;max-width:900px;width:100%}
-    .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.88);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left;font-weight:400}
+    .cta-items{display:grid;grid-template-rows:repeat(6,1fr);gap:.38rem;min-height:0;overflow:hidden}
+    .cta-item{border-radius:9px;padding:.4rem 1rem;display:flex;align-items:center;gap:.85rem;opacity:0;transform:translateX(-24px);transition:opacity .38s ease,transform .38s ease}
+    .cta-item.visible{opacity:1;transform:translateX(0)}
+    .cta-item.ci-red  {background:rgba(180,45,45,0.25);border:1px solid rgba(220,80,70,0.40)}
+    .cta-item.ci-amber{background:rgba(170,110,20,0.25);border:1px solid rgba(232,168,74,0.40)}
+    .cta-item.ci-green{background:rgba(38,105,55,0.30);border:1px solid rgba(126,204,153,0.42)}
+    .cta-item-icon{font-size:1.45rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .cta-item-text{font-size:.93rem;font-weight:600;color:rgba(255,255,255,.95);line-height:1.3}
+    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.7rem 1.1rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px}
+    .med-disc-icon{font-size:1.2rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .med-disc-text{font-size:1rem;color:rgba(255,255,255,.90);line-height:1.5;font-family:'Fraunces',serif;font-weight:400}
     .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
 
-    /* CLOSING */
-    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.6rem;padding:1.5rem}
-    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
+    /* BRAND CLOSE */
+    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100%;text-align:center;gap:1.1rem;padding:1rem 1.5rem}
+    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em;flex-shrink:0}
     .close-logo .dot{color:var(--coral)}
-    .close-sub{font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82)}
-    .close-headline{font-family:'Fraunces',serif;font-size:clamp(3rem,5.8vw,5.2rem);font-weight:700;color:#fff;max-width:1050px;line-height:1.08;letter-spacing:-.025em}
+    .close-sub{font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82);flex-shrink:0}
+    .close-headline{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:#fff;flex-shrink:0}
     .close-headline span{color:var(--acc)}
-    .close-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1050px;width:100%}
-    .cst-card{background:rgba(212,184,74,.1);border:1px solid rgba(212,184,74,.35);border-radius:16px;padding:1.5rem 1.1rem;display:flex;flex-direction:column;align-items:center;gap:.55rem}
-    .cst-num{font-family:'Fraunces',serif;font-size:clamp(2.4rem,4.4vw,3.8rem);font-weight:700;color:var(--acc);line-height:.95;letter-spacing:-.02em}
-    .cst-lab{font-size:1.05rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.32}
-    .cst-src{font-size:.85rem;color:rgba(255,255,255,.72);font-style:italic}
-    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.3rem}
+    .close-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;width:100%;max-width:1050px;flex:1;min-height:0}
+    .close-card{background:rgba(212,184,74,.10);border:1px solid rgba(212,184,74,.35);border-radius:16px;padding:1.2rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.45rem;justify-content:center}
+    .close-card-icon{font-size:2.2rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .close-card-text{font-size:.95rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.4;text-align:center}
+    .close-card-src{font-size:.80rem;color:rgba(255,255,255,.65);font-style:italic}
+    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);flex-shrink:0}
     .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:.68rem;color:rgba(255,255,255,.18);z-index:90;white-space:nowrap}
   </style>
 </head>
@@ -151,14 +150,14 @@
     <span class="tb-sub">· Supplements &amp; Cholesterol</span>
   </div>
   <div class="tb-right">
-    <span id="counter" class="slide-counter">1 / 10</span>
+    <span id="counter" class="slide-counter">1 / 13</span>
     <span class="kb-hint">← → navigate</span>
   </div>
 </div>
 
 <div id="stage">
 
-  <!-- SLIDE 1 -->
+  <!-- SLIDE 1: INTRO -->
   <div class="slide active">
     <div class="intro-wrap">
       <div class="intro-badge">📋 Cardiovascular Health Series · Article 07</div>
@@ -169,15 +168,15 @@
     </div>
   </div>
 
-  <!-- SLIDE 2: SPORT TRIAL HEADLINE -->
+  <!-- SLIDE 2: SPORT TRIAL HEADLINE — custom layout, drug names removed -->
   <div class="slide">
     <div class="slide-title">SPORT Trial · <span>the head-to-head</span></div>
     <div class="sport-stage">
       <div class="sport-row">
         <div class="sport-card win">
           <div class="sport-num">−37.9%</div>
-          <div class="sport-lbl">LDL reduction · rosuvastatin (Crestor) 5 mg</div>
-          <div class="sport-body">Low-dose statin delivered a substantial, measurable fall in LDL cholesterol over 28 days.</div>
+          <div class="sport-lbl">LDL reduction · a low-dose statin (5mg)</div>
+          <div class="sport-body">Low-dose statin therapy delivered a substantial, measurable fall in LDL cholesterol over 28 days.</div>
           <div class="sport-src">SPORT Trial · JACC · 2023</div>
         </div>
         <div class="sport-card flat">
@@ -194,10 +193,10 @@
     </div>
   </div>
 
-  <!-- SLIDE 3: SIX SUPPLEMENTS · 6 ROWS -->
+  <!-- SLIDE 3: SUPPLEMENTS 1 of 2 — 3 cards (plant sterols, fish oil, red yeast rice) -->
   <div class="slide">
-    <div class="slide-title">Six popular supplements · <span>what trials show</span></div>
-    <div class="sys-grid">
+    <div class="slide-title">Six popular supplements · <span>what trials show — 1 of 2</span></div>
+    <div class="sys-grid" style="grid-template-rows:repeat(3,1fr);">
       <div class="sys-card warn" id="s1">
         <div class="sys-icon">🌿</div>
         <div class="sys-content">
@@ -210,19 +209,26 @@
         <div class="sys-icon">🐟</div>
         <div class="sys-content">
           <div class="sys-title">Fish oil · omega-3</div>
-          <div class="sys-body">Lowers triglycerides dose-dependently — not LDL. UK Biobank 2024: regular use linked to ~13% higher AF risk without prior CVD.</div>
+          <div class="sys-body">Lowers triglycerides — not LDL. UK Biobank 2024: regular use linked to ~13% higher atrial fibrillation (AF) risk without prior CVD.</div>
         </div>
         <div class="sys-stat warn">+AF 13%</div>
       </div>
-      <div class="sys-card animate-ready" id="s3">
+      <div class="sys-card" id="s3">
         <div class="sys-icon">🍚</div>
         <div class="sys-content">
           <div class="sys-title">Red yeast rice</div>
-          <div class="sys-body">Monacolin K is chemically identical to lovastatin (Mevacor) — same risks, no dose control, no monitoring. EFSA 2025: no safe dose.</div>
+          <div class="sys-body">Contains monacolin K — chemically identical to a prescription statin drug. Same risks, no dose control, no monitoring. EFSA 2025: no safe dose.</div>
         </div>
         <div class="sys-stat">⚠️ Caution</div>
       </div>
-      <div class="sys-card animate-ready" id="s4">
+    </div>
+  </div>
+
+  <!-- SLIDE 4: SUPPLEMENTS 2 of 2 — 3 cards (garlic, cinnamon, turmeric) -->
+  <div class="slide">
+    <div class="slide-title">Six popular supplements · <span>what trials show — 2 of 2</span></div>
+    <div class="sys-grid" style="grid-template-rows:repeat(3,1fr);">
+      <div class="sys-card" id="s4">
         <div class="sys-icon">🧄</div>
         <div class="sys-content">
           <div class="sys-title">Garlic extract</div>
@@ -230,15 +236,15 @@
         </div>
         <div class="sys-stat">No effect</div>
       </div>
-      <div class="sys-card animate-ready" id="s5">
+      <div class="sys-card" id="s5">
         <div class="sys-icon">🍂</div>
         <div class="sys-content">
           <div class="sys-title">Cinnamon</div>
-          <div class="sys-body">No significant LDL effect in randomised trials. Popular for "heart health" claims without underlying cholesterol data.</div>
+          <div class="sys-body">No significant LDL effect in randomised trials. Popular for "heart health" claims without underlying cholesterol outcome data.</div>
         </div>
         <div class="sys-stat">No effect</div>
       </div>
-      <div class="sys-card animate-ready" id="s6">
+      <div class="sys-card" id="s6">
         <div class="sys-icon">🌻</div>
         <div class="sys-content">
           <div class="sys-title">Turmeric / curcumin</div>
@@ -249,11 +255,11 @@
     </div>
   </div>
 
-  <!-- SLIDE 4: EVIDENCE-BASED ALTERNATIVES · 6 ROWS -->
+  <!-- SLIDE 5: ALTERNATIVES 1 of 2 — GREEN — 3 cards -->
   <div class="slide">
-    <div class="slide-title">What actually <span>moves the number</span></div>
-    <div class="doc-grid">
-      <div class="doc-card animate-ready" id="d1">
+    <div class="slide-title">What actually <span>moves the number — 1 of 2</span></div>
+    <div class="doc-grid" style="grid-template-rows:repeat(3,1fr);">
+      <div class="doc-card" id="d1">
         <div class="doc-icon">🩸</div>
         <div class="doc-content">
           <div class="doc-title">Know your LDL</div>
@@ -261,7 +267,7 @@
         </div>
         <div class="doc-action">→ Test</div>
       </div>
-      <div class="doc-card animate-ready" id="d2">
+      <div class="doc-card" id="d2">
         <div class="doc-icon">🧮</div>
         <div class="doc-content">
           <div class="doc-title">Get your QRISK3</div>
@@ -269,7 +275,7 @@
         </div>
         <div class="doc-action">→ Calculate</div>
       </div>
-      <div class="doc-card animate-ready" id="d3">
+      <div class="doc-card" id="d3">
         <div class="doc-icon">🥗</div>
         <div class="doc-content">
           <div class="doc-title">Mediterranean eating</div>
@@ -277,7 +283,14 @@
         </div>
         <div class="doc-action">−30%</div>
       </div>
-      <div class="doc-card animate-ready" id="d4">
+    </div>
+  </div>
+
+  <!-- SLIDE 6: ALTERNATIVES 2 of 2 — GREEN — 3 cards -->
+  <div class="slide">
+    <div class="slide-title">What actually <span>moves the number — 2 of 2</span></div>
+    <div class="doc-grid" style="grid-template-rows:repeat(3,1fr);">
+      <div class="doc-card" id="d4">
         <div class="doc-icon">🚶</div>
         <div class="doc-content">
           <div class="doc-title">Regular movement</div>
@@ -285,15 +298,15 @@
         </div>
         <div class="doc-action">−17%</div>
       </div>
-      <div class="doc-card animate-ready" id="d5">
+      <div class="doc-card" id="d5">
         <div class="doc-icon">💊</div>
         <div class="doc-content">
           <div class="doc-title">Statin · NICE NG238</div>
-          <div class="doc-body">Atorvastatin (Lipitor) offered for CVD or QRISK3 ≥10%. Each 1 mmol/L LDL drop ≈ 22% fewer major events (CTT).</div>
+          <div class="doc-body">A high-intensity statin is offered for established CVD or QRISK3 ≥10%. Each 1 mmol/L LDL drop ≈ 22% fewer major events (CTT).</div>
         </div>
         <div class="doc-action">−22%</div>
       </div>
-      <div class="doc-card animate-ready" id="d6">
+      <div class="doc-card" id="d6">
         <div class="doc-icon">🏥</div>
         <div class="doc-content">
           <div class="doc-title">Specialist lipid clinic</div>
@@ -304,122 +317,106 @@
     </div>
   </div>
 
-  <!-- SLIDE 5: RESEARCH — SPORT -->
+  <!-- SLIDE 7: RESEARCH — SPORT — 2 ev-cards, ev-body ≤30w -->
   <div class="slide">
     <div class="slide-title">Research · <span>supplements vs statins head-to-head</span></div>
     <div class="ev-stage">
-      <div class="ev-card animate-ready" id="e1">
+      <div class="ev-card" id="e1">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good">−37.9%</div>
-            <div class="ev-outcome">LDL reduction</div>
-          </div>
-          <div class="ev-conditions">with low-dose rosuvastatin (5mg) at 28 days — SPORT trial</div>
+          <div class="ev-stat-row"><div class="ev-num good">−37.9%</div><div class="ev-outcome">LDL reduction</div></div>
+          <div class="ev-conditions">with a low-dose statin (5mg) at 28 days — vs placebo</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">SPORT — Cleveland Clinic</div>
           <div class="ev-journal">Laffin et al · JACC · 2023 · n=190</div>
-          <div class="ev-body">Randomised, placebo-controlled head-to-head trial. Low-dose rosuvastatin (Crestor) delivered a <strong>substantial LDL reduction</strong>. Six popular supplements showed no significant LDL reduction vs placebo. Garlic actually increased LDL slightly.</div>
+          <div class="ev-body">A low-dose statin (5mg) delivered a 37.9% LDL reduction in 28 days. Six popular supplements showed no significant LDL drop vs placebo. Garlic slightly increased LDL.</div>
         </div>
       </div>
-      <div class="ev-card animate-ready" id="e2">
+      <div class="ev-card" id="e2">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num bad">0%</div>
-            <div class="ev-outcome">meaningful LDL reduction</div>
-          </div>
+          <div class="ev-stat-row"><div class="ev-num bad">0%</div><div class="ev-outcome">meaningful LDL reduction</div></div>
           <div class="ev-conditions">from any of 6 popular supplements vs placebo — SPORT trial</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">SPORT — supplement arm</div>
           <div class="ev-journal">Laffin et al · JACC · 2023</div>
-          <div class="ev-body">The evidence from controlled head-to-head comparison is unusually clean — and unusually unfavourable to the supplement aisle. This includes <strong>plant sterols</strong>, which produced a small non-significant shift, and red yeast rice, which also failed to separate from placebo at this dose.</div>
+          <div class="ev-body">Head-to-head comparison is unusually clear — no supplement separated meaningfully from placebo on LDL. This includes plant sterols and red yeast rice at trial doses.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 6: RESEARCH — PLANT STEROLS + FISH OIL AF -->
+  <!-- SLIDE 8: RESEARCH — PLANT STEROLS + FISH OIL — 2 ev-cards, ev-body ≤30w -->
   <div class="slide">
     <div class="slide-title">Research · <span>plant sterols &amp; fish oil</span></div>
     <div class="ev-stage">
-      <div class="ev-card animate-ready" id="e3">
+      <div class="ev-card" id="e3">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good" style="font-size:2.2rem">−7–12%</div>
-            <div class="ev-outcome">LDL reduction</div>
-          </div>
+          <div class="ev-stat-row"><div class="ev-num good" style="font-size:2.2rem">−7–12%</div><div class="ev-outcome">LDL reduction</div></div>
           <div class="ev-conditions">from plant sterols at 2g/day — 124 randomised trials</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Plant sterols meta-analysis</div>
           <div class="ev-journal">Ras et al · Br J Nutr · 2014 · 124 RCTs</div>
-          <div class="ev-body">Plant sterols at 2 g/day produce a consistent <strong>7–12% LDL reduction</strong> — a real effect on the number. No outcome trial has yet shown this translates into fewer heart attacks or strokes. The number changes; the proven clinical benefit has not yet been demonstrated.</div>
+          <div class="ev-body">Plant sterols at 2g/day produce a consistent 7–12% LDL reduction — a real effect. But no outcome trial has shown this translates into fewer heart attacks or strokes.</div>
         </div>
       </div>
-      <div class="ev-card animate-ready" id="e4">
+      <div class="ev-card" id="e4">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num bad">+13%</div>
-            <div class="ev-outcome">higher AF risk</div>
-          </div>
-          <div class="ev-conditions">with regular fish oil in people without prior CVD</div>
+          <div class="ev-stat-row"><div class="ev-num bad">+13%</div><div class="ev-outcome">higher AF risk</div></div>
+          <div class="ev-conditions">with regular fish oil in people without prior CVD · n=415,000</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Fish oil &amp; atrial fibrillation</div>
           <div class="ev-journal">Chen et al · BMJ Medicine · 2024 · n=415,000</div>
-          <div class="ev-body">Regular fish oil users without prior CV disease had <strong>~13% higher AF risk</strong> and ~5% higher stroke risk. Possible modest benefit in those with existing CV disease. The "safe default supplement" framing does not hold up in the largest observational datasets.</div>
+          <div class="ev-body">Regular fish oil users without prior CV disease had ~13% higher AF risk and ~5% higher stroke risk. Possible modest benefit in those with existing CV disease.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 7: RESEARCH — RED YEAST RICE EFSA -->
+  <!-- SLIDE 9: RESEARCH — RED YEAST RICE + REGULATED — 2 ev-cards, ev-body ≤30w -->
   <div class="slide">
     <div class="slide-title">Research · <span>red yeast rice — the hidden statin</span></div>
     <div class="ev-stage">
-      <div class="ev-card animate-ready" id="e5">
+      <div class="ev-card" id="e5">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num bad" style="font-size:1.8rem">No safe dose</div>
-          </div>
+          <div class="ev-stat-row"><div class="ev-num bad" style="font-size:1.8rem">No safe dose</div></div>
           <div class="ev-outcome" style="text-align:center">of monacolin K as food supplement</div>
           <div class="ev-conditions">EFSA concluded January 2025 — reactions at doses as low as 3mg/day</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">EFSA — red yeast rice safety opinion</div>
           <div class="ev-journal">European Food Safety Authority · January 2025</div>
-          <div class="ev-body">EFSA concluded there is <strong>no safe dose of monacolin K</strong> in food supplements. Monacolin K is chemically identical to lovastatin (Mevacor). Serious adverse reactions — including rhabdomyolysis — have been reported at doses as low as 3mg/day. EU-wide restriction in progress.</div>
+          <div class="ev-body">EFSA (2025) concluded there is no safe dose of monacolin K as a food supplement. Serious reactions — including muscle damage — reported at doses as low as 3mg/day.</div>
         </div>
       </div>
-      <div class="ev-card animate-ready" id="e6">
+      <div class="ev-card" id="e6">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good" style="font-size:2rem">Regulated</div>
-          </div>
+          <div class="ev-stat-row"><div class="ev-num good" style="font-size:2rem">Regulated</div></div>
           <div class="ev-outcome" style="text-align:center">dose, interactions &amp; monitoring</div>
           <div class="ev-conditions">prescription statins carry safeguards red yeast rice does not</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Why prescription matters</div>
           <div class="ev-journal">NICE NG238 · MHRA oversight</div>
-          <div class="ev-body">Prescription statins carry standardised dose, checked interactions, baseline and follow-up blood tests, and clear clinical pathways if symptoms develop. Red yeast rice delivers the same active compound without any of these safeguards.</div>
+          <div class="ev-body">Prescription statins carry standardised dosing, interaction checks, and monitoring pathways. Red yeast rice delivers the same active compound without any of these regulatory safeguards.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 8: WHY STATINS WORK · AMBER · 6 ROWS -->
+  <!-- SLIDE 10: MECHANISMS 1 of 2 — AMBER — 3 cards -->
   <div class="slide">
-    <div class="slide-title">Why statins work <span>where most supplements don't</span></div>
-    <div class="mech-grid">
-      <div class="mech-card animate-ready" id="m1">
+    <div class="slide-title">Why statins work <span>where most supplements don't — 1 of 2</span></div>
+    <div class="mech-grid" style="grid-template-rows:repeat(3,1fr);">
+      <div class="mech-card" id="m1">
         <div class="mech-icon">🧪</div>
         <div class="mech-content">
           <div class="mech-title">Statins block the key enzyme</div>
@@ -427,31 +424,38 @@
         </div>
         <div class="mech-outcome">→ ~−40% LDL</div>
       </div>
-      <div class="mech-card animate-ready" id="m2">
+      <div class="mech-card" id="m2">
         <div class="mech-icon">🌿</div>
         <div class="mech-content">
           <div class="mech-title">Plant sterols block absorption</div>
-          <div class="mech-body">Compete with cholesterol in the gut — modest effect, ceilings at ~7–12% LDL drop, dependent on dietary cholesterol.</div>
+          <div class="mech-body">Compete with cholesterol in the gut — modest effect, ceiling at ~7–12% LDL drop, dependent on dietary cholesterol intake.</div>
         </div>
         <div class="mech-outcome">→ −7–12%</div>
       </div>
-      <div class="mech-card animate-ready" id="m3">
+      <div class="mech-card" id="m3">
         <div class="mech-icon">🐟</div>
         <div class="mech-content">
           <div class="mech-title">Fish oil lowers triglycerides</div>
-          <div class="mech-body">Reduces hepatic triglyceride output — different target from LDL. No consistent LDL effect; possible AF risk.</div>
+          <div class="mech-body">Reduces hepatic triglyceride output — different target from LDL. No consistent LDL effect; possible atrial fibrillation risk without prior CVD.</div>
         </div>
         <div class="mech-outcome">→ Trigs only</div>
       </div>
-      <div class="mech-card animate-ready" id="m4">
+    </div>
+  </div>
+
+  <!-- SLIDE 11: MECHANISMS 2 of 2 — AMBER — 3 cards -->
+  <div class="slide">
+    <div class="slide-title">Why statins work <span>where most supplements don't — 2 of 2</span></div>
+    <div class="mech-grid" style="grid-template-rows:repeat(3,1fr);">
+      <div class="mech-card" id="m4">
         <div class="mech-icon">🍚</div>
         <div class="mech-content">
           <div class="mech-title">Red yeast rice IS a statin</div>
-          <div class="mech-body">Monacolin K = lovastatin. Same mechanism, same risks — but unregulated, variable dose, no monitoring.</div>
+          <div class="mech-body">Monacolin K is chemically identical to a prescription statin drug — same mechanism, same risks, but unregulated, variable dose, no monitoring.</div>
         </div>
         <div class="mech-outcome">→ Unregulated</div>
       </div>
-      <div class="mech-card animate-ready" id="m5">
+      <div class="mech-card" id="m5">
         <div class="mech-icon">🎯</div>
         <div class="mech-content">
           <div class="mech-title">Outcome trials exist for statins</div>
@@ -459,7 +463,7 @@
         </div>
         <div class="mech-outcome">→ −22% events</div>
       </div>
-      <div class="mech-card animate-ready" id="m6">
+      <div class="mech-card" id="m6">
         <div class="mech-icon">📏</div>
         <div class="mech-content">
           <div class="mech-title">Numbers vs outcomes</div>
@@ -470,86 +474,57 @@
     </div>
   </div>
 
-  <!-- SLIDE 9: CTA · HORIZONTAL ROWS · NO ICON -->
+  <!-- SLIDE 12: CTA — SEQUENTIAL ANIMATION -->
   <div class="slide cta-slide">
     <div class="cta-glow"></div>
     <div class="cta-wrap-v2">
-      <div class="cta-top">
+      <div class="cta-header">
         <div class="cta-badge-v2">What the evidence shows</div>
         <div class="cta-headline-v2">Numbers are not outcomes.<br/><span>Evidence is not marketing.</span></div>
-        <div class="cta-subline">Six supplements vs rosuvastatin — the trial is already done.</div>
       </div>
-      <div class="cta-rows-v2">
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">🌿</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Plant sterols — the one supplement with real evidence</div>
-            <div class="cta-row-body-v2">2g/day produces a consistent 7–12% LDL reduction — but no outcome trial has shown fewer heart attacks or strokes</div>
-          </div>
-          <div class="cta-row-word-v2">−7–12%</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">🍚</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Red yeast rice — not a safe natural alternative</div>
-            <div class="cta-row-body-v2">Monacolin K is chemically identical to lovastatin — same risks, no regulatory oversight, no dose certainty</div>
-          </div>
-          <div class="cta-row-word-v2" style="font-size:1.1rem">No safe dose</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">💊</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Statins — the evidence base no supplement matches</div>
-            <div class="cta-row-body-v2">−37.9% LDL in 28 days at low dose; −22% CV events per 1 mmol/L across 170,000+ trial participants</div>
-          </div>
-          <div class="cta-row-word-v2">−37.9%</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">🗣️</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">The right starting point</div>
-            <div class="cta-row-body-v2">Know your LDL and QRISK3 — overall cardiovascular risk determines what intervention, if any, is actually warranted</div>
-          </div>
-          <div class="cta-row-word-v2">QRISK3</div>
-        </div>
-      </div>
-      <div class="cta-bottom">
-        <div class="med-disclaimer">
-          <div class="med-disc-icon">⚕️</div>
-          <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SLIDE 10: CLOSING -->
-  <div class="slide">
-    <div class="close-wrap">
-      <div class="close-logo">helf<span class="dot">.</span>school</div>
-      <div class="close-sub">Health Education</div>
-      <div class="close-headline">Real numbers. <span>Real outcomes.</span></div>
-      <div class="close-stats">
-        <div class="cst-card">
-          <div class="cst-num">−37.9%</div>
-          <div class="cst-lab">LDL · low-dose rosuvastatin</div>
-          <div class="cst-src">SPORT · JACC 2023</div>
-        </div>
-        <div class="cst-card">
-          <div class="cst-num">0%</div>
-          <div class="cst-lab">LDL drop · 6 popular supplements</div>
-          <div class="cst-src">SPORT · JACC 2023</div>
-        </div>
-        <div class="cst-card">
-          <div class="cst-num" style="font-size:2rem">No safe dose</div>
-          <div class="cst-lab">monacolin K · red yeast rice</div>
-          <div class="cst-src">EFSA · January 2025</div>
-        </div>
+      <div class="cta-items">
+        <div class="cta-item ci-red"><div class="cta-item-icon">🍚</div><div class="cta-item-text">Red yeast rice contains the same compound as a prescription statin — without the safeguards</div></div>
+        <div class="cta-item ci-red"><div class="cta-item-icon">🐟</div><div class="cta-item-text">Regular fish oil linked to ~13% higher atrial fibrillation risk without prior heart disease</div></div>
+        <div class="cta-item ci-amber"><div class="cta-item-icon">🌿</div><div class="cta-item-text">Plant sterols reduce LDL by 7–12% — no outcome trial shows fewer heart attacks</div></div>
+        <div class="cta-item ci-amber"><div class="cta-item-icon">📊</div><div class="cta-item-text">SPORT trial: a low-dose statin reduced LDL 37.9% — six supplements showed no significant effect</div></div>
+        <div class="cta-item ci-green"><div class="cta-item-icon">🥗</div><div class="cta-item-text">Mediterranean eating and regular activity are the evidence-based lifestyle levers with real outcome data</div></div>
+        <div class="cta-item ci-green"><div class="cta-item-icon">🩸</div><div class="cta-item-text">Know your LDL and QRISK3 — cardiovascular risk determines what intervention is actually warranted</div></div>
       </div>
       <div class="med-disclaimer">
         <div class="med-disc-icon">⚕️</div>
         <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
       </div>
-      <div class="close-series">Cardiovascular Health Series · Article 07</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 13: BRAND CLOSE -->
+  <div class="slide">
+    <div class="close-wrap">
+      <div class="close-logo">helf<span class="dot">.</span>school</div>
+      <div class="close-sub">Health Education</div>
+      <div class="close-headline">Evidence-based. Written by a doctor. <span>Built for everyone.</span></div>
+      <div class="close-cards">
+        <div class="close-card">
+          <div class="close-card-icon">📚</div>
+          <div class="close-card-text">31 articles across 5 series — cardiovascular, digestive, neurological, cancer, and practical health</div>
+          <div class="close-card-src">helf.school · April 2026</div>
+        </div>
+        <div class="close-card">
+          <div class="close-card-icon">🩺</div>
+          <div class="close-card-text">Written by Dr Paul — retired NHS GP with over 20 years of experience</div>
+          <div class="close-card-src">Retired 2019</div>
+        </div>
+        <div class="close-card">
+          <div class="close-card-icon">🔓</div>
+          <div class="close-card-text">Start for free — Explorer tier requires no payment. Every claim cited to its primary source.</div>
+          <div class="close-card-src">helf.school/conditions</div>
+        </div>
+      </div>
+      <div class="med-disclaimer" style="max-width:680px;">
+        <div class="med-disc-icon">⚕️</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+      </div>
+      <div class="close-series">Cardiovascular Health Series · Article 07 · Supplements &amp; Cholesterol</div>
     </div>
   </div>
 
@@ -566,29 +541,61 @@
   <div class="dot" onclick="goTo(7)"></div>
   <div class="dot" onclick="goTo(8)"></div>
   <div class="dot" onclick="goTo(9)"></div>
+  <div class="dot" onclick="goTo(10)"></div>
+  <div class="dot" onclick="goTo(11)"></div>
+  <div class="dot" onclick="goTo(12)"></div>
 </div>
 
 <div class="disc">Health education — not medical advice. helf.school</div>
 
 <script>
-  const slides=document.querySelectorAll('.slide'),dots=document.querySelectorAll('.dot');
+  const slides=document.querySelectorAll('.slide'), dots=document.querySelectorAll('.dot');
   let cur=0;
-  function show(n){slides[cur].classList.remove('active');dots[cur].classList.remove('active');cur=(n+slides.length)%slides.length;slides[cur].classList.add('active');dots[cur].classList.add('active');document.getElementById('counter').textContent=(cur+1)+' / '+slides.length;triggerSlide(cur)}
-  function goTo(n){show(n)}
-  document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')show(cur+1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')show(cur-1)});
-  let tx=0;
-  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX});
-  document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40){dx<0?show(cur+1):show(cur-1)}});
-  function triggerSlide(n){
-    if(n===2)animateGroup(['s1','s2','s3','s4','s5','s6'],140);
-    if(n===3)animateGroup(['d1','d2','d3','d4','d5','d6'],140);
-    if(n===4)animateGroup(['e1','e2'],260);
-    if(n===5)animateGroup(['e3','e4'],260);
-    if(n===6)animateGroup(['e5','e6'],260);
-    if(n===7)animateGroup(['m1','m2','m3','m4','m5','m6'],140);
+
+  function animateCTA(){
+    const items=document.querySelectorAll('.cta-items .cta-item');
+    items.forEach(r=>r.classList.remove('visible'));
+    items.forEach((item,i)=>{setTimeout(()=>item.classList.add('visible'),350+i*620);});
   }
-  function animateGroup(ids,step){ids.forEach((id,i)=>{setTimeout(()=>{const el=document.getElementById(id);if(el)el.classList.add('vis')},180+i*step)})}
-  slides.forEach(s=>{const obs=new MutationObserver(()=>{if(!s.classList.contains('active')){s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'))}});obs.observe(s,{attributes:true})});
+
+  function show(n){
+    slides[cur].classList.remove('active'); dots[cur].classList.remove('active');
+    cur=(n+slides.length)%slides.length;
+    slides[cur].classList.add('active'); dots[cur].classList.add('active');
+    document.getElementById('counter').textContent=(cur+1)+' / '+slides.length;
+    if(cur===11){animateCTA();}else{triggerSlide(cur);}
+  }
+  function goTo(n){show(n);}
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowDown')show(cur+1);
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp')show(cur-1);
+  });
+  let tx=0;
+  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;});
+  document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40){dx<0?show(cur+1):show(cur-1);}});
+
+  function triggerSlide(n){
+    if(n===2) animateGroup(['s1','s2','s3'],170);
+    if(n===3) animateGroup(['s4','s5','s6'],170);
+    if(n===4) animateGroup(['d1','d2','d3'],140);
+    if(n===5) animateGroup(['d4','d5','d6'],140);
+    if(n===6) animateGroup(['e1','e2'],260);
+    if(n===7) animateGroup(['e3','e4'],260);
+    if(n===8) animateGroup(['e5','e6'],260);
+    if(n===9) animateGroup(['m1','m2','m3'],170);
+    if(n===10) animateGroup(['m4','m5','m6'],170);
+  }
+
+  function animateGroup(ids,step){
+    ids.forEach((id,i)=>{setTimeout(()=>{const el=document.getElementById(id);if(el)el.classList.add('vis');},180+i*step);});
+  }
+
+  slides.forEach(s=>{
+    const obs=new MutationObserver(()=>{if(!s.classList.contains('active')){s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'));}});
+    obs.observe(s,{attributes:true});
+  });
+
   triggerSlide(0);
 </script>
 </body>
