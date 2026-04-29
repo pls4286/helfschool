@@ -57,12 +57,12 @@
 
     /* SYSTEMS GRID (slide 3) — RED · HARM */
     .sys-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.65rem;flex:1;min-height:0}
-    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:14px;padding:1rem 1.5rem;display:grid;grid-template-columns:72px 1fr auto;gap:1.5rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
+    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:14px;padding:.7rem 1.2rem;display:grid;grid-template-columns:72px 1fr auto;gap:1.5rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .sys-card.vis{opacity:1;transform:translateY(0)}
     .sys-icon{font-size:2.8rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .sys-content{display:flex;flex-direction:column;gap:.25rem;min-width:0}
-    .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;line-height:1.12;letter-spacing:-.01em}
-    .sys-body{font-size:1rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .sys-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+    .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.2rem;line-height:1.15;letter-spacing:-.01em}
+    .sys-body{font-size:1rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
     .sys-stat{font-family:'Fraunces',serif;font-size:clamp(2.4rem,3.6vw,3.6rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:1rem;padding-top:.1rem}
 
     /* DOCTOR GRID (slide 4) — GREEN · ACTION */
@@ -72,12 +72,12 @@
     .doc-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
     .doc-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
     .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12;letter-spacing:-.01em}
-    .doc-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .doc-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
     .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.1vw,1.95rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem;padding-top:.1rem}
 
     /* EVIDENCE CARDS (slides 5-7) — UPDATED STAT BLOCK PATTERN */
     .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
-    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .45s ease}
+    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:16px;padding:1.1rem 1.4rem;display:grid;grid-template-columns:220px 1fr;gap:1.4rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .45s ease}
     .ev-card.vis{opacity:1;transform:translateY(0)}
     /* stat panel */
     .ev-stat{background:rgba(212,184,74,.09);border-radius:14px;padding:1.1rem .9rem;text-align:left}
@@ -91,7 +91,7 @@
     /* detail panel */
     .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;margin-bottom:.25rem;line-height:1.15;letter-spacing:-.01em}
     .ev-det .ev-journal{font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
-    .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400}
+    .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 
     /* MECHANISMS (slide 8) — AMBER · MECHANISM */
     .mech-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
@@ -100,7 +100,7 @@
     .mech-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
     .mech-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
     .mech-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12;letter-spacing:-.01em}
-    .mech-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .mech-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
     .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2vw,1.85rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem;padding-top:.1rem}
 
     /* CTA SLIDE 9 — HIGH-IMPACT HORIZONTAL ROWS */
@@ -109,17 +109,19 @@
     .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem 0;gap:.55rem}
     .cta-header{text-align:center}
     .cta-badge-v2{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.42rem 1.15rem;border-radius:100px;display:inline-block;margin-bottom:.4rem}
-    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(2.2rem,4.0vw,3.2rem);font-weight:700;color:#fff;line-height:1.05;letter-spacing:-.028em}
+    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:700;color:#fff;line-height:1.05;letter-spacing:-.028em}
     .cta-headline-v2 span{color:var(--acc)}
     .cta-subline{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.4rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.85);margin-top:.2rem}
     /* horizontal rows */
-    .cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.5rem;min-height:0}
-    .cta-row-v2{display:grid;grid-template-columns:60px 1fr auto;align-items:start;background:rgba(255,255,255,.06);border:1px solid rgba(212,184,74,.30);border-left:4px solid var(--acc);border-radius:0 10px 10px 0;padding:.65rem .9rem;gap:.75rem;min-height:0;overflow:hidden}
-    .cta-row-icon-v2{font-size:1.9rem;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .cta-row-content-v2{min-height:0}
-    .cta-row-title-v2{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(.95rem,1.6vw,1.1rem);color:#fff;line-height:1.2;margin-bottom:.15rem}
-    .cta-row-body-v2{font-size:.88rem;color:rgba(255,255,255,.85);line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-    .cta-row-word-v2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.5rem,2.4vw,2.0rem);color:var(--acc);line-height:1;text-align:right;flex-shrink:0;white-space:nowrap;padding-top:.1rem}
+    .cta-rows-v2{display:grid;grid-template-rows:repeat(6,1fr);gap:.38rem;min-height:0;overflow:hidden}
+    /* Sequential animation items */
+    .cta-item{border-radius:9px;padding:.4rem 1rem;display:flex;align-items:center;gap:.85rem;opacity:0;transform:translateX(-24px);transition:opacity .38s ease,transform .38s ease}
+    .cta-item.visible{opacity:1;transform:translateX(0)}
+    .cta-item.ci-red  {background:rgba(180,45,45,0.25);border:1px solid rgba(220,80,70,0.40)}
+    .cta-item.ci-amber{background:rgba(170,110,20,0.25);border:1px solid rgba(232,168,74,0.40)}
+    .cta-item.ci-green{background:rgba(38,105,55,0.30);border:1px solid rgba(126,204,153,0.42)}
+    .cta-item-icon{font-size:1.45rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .cta-item-text{font-size:.93rem;font-weight:600;color:rgba(255,255,255,0.95);line-height:1.3}
     /* disclaimer */
     .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.7rem 1.1rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px}
     .med-disc-icon{font-size:1.2rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
@@ -155,7 +157,7 @@
     <span class="tb-sub">· Hypertension</span>
   </div>
   <div class="tb-right">
-    <span id="counter" class="slide-counter">1 / 10</span>
+    <span id="counter" class="slide-counter">1 / 13</span>
     <span class="kb-hint">← → navigate</span>
   </div>
 </div>
@@ -197,10 +199,10 @@
     </div>
   </div>
 
-  <!-- SLIDE 3: WHY IT MATTERS — FIVE BODY SYSTEMS · RED · HARM -->
+  <!-- SLIDE 3: BODY SYSTEMS 1 of 2 · RED · HARM -->
   <div class="slide">
-    <div class="slide-title">Why it matters: <span>five body systems</span></div>
-    <div class="sys-grid">
+    <div class="slide-title">Why it matters: <span>five body systems — 1 of 2</span></div>
+    <div class="sys-grid" style="grid-template-rows:repeat(3,1fr);">
       <div class="sys-card" id="s1">
         <div class="sys-icon">❤️</div>
         <div class="sys-content">
@@ -213,7 +215,7 @@
         <div class="sys-icon">🧠</div>
         <div class="sys-content">
           <div class="sys-title">Brain</div>
-          <div class="sys-body">Leading modifiable risk factor for stroke. Also drives vascular dementia (brain damage caused by impaired blood supply) through small-vessel injury.</div>
+          <div class="sys-body">Leading modifiable risk factor for stroke. Also drives vascular dementia through small-vessel injury — brain damage caused by impaired blood supply.</div>
         </div>
         <div class="sys-stat">Stroke</div>
       </div>
@@ -225,11 +227,18 @@
         </div>
         <div class="sys-stat">2nd</div>
       </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: BODY SYSTEMS 2 of 2 · RED · HARM -->
+  <div class="slide">
+    <div class="slide-title">Why it matters: <span>five body systems — 2 of 2</span></div>
+    <div class="sys-grid" style="grid-template-rows:repeat(2,1fr);">
       <div class="sys-card" id="s4">
         <div class="sys-icon">👁️</div>
         <div class="sys-content">
           <div class="sys-title">Eyes</div>
-          <div class="sys-body">Hypertensive retinopathy (damage to the retinal blood vessels) — vessel haemorrhages and permanent vision loss in advanced cases.</div>
+          <div class="sys-body">Hypertensive retinopathy — damage to the retinal blood vessels — with haemorrhages and permanent vision loss in advanced cases.</div>
         </div>
         <div class="sys-stat">Retina</div>
       </div>
@@ -237,17 +246,17 @@
         <div class="sys-icon">🩸</div>
         <div class="sys-content">
           <div class="sys-title">Arteries</div>
-          <div class="sys-body">Accelerates atherosclerosis (arterial plaque build-up), triggers aortic aneurysms, and drives peripheral arterial disease.</div>
+          <div class="sys-body">Accelerates atherosclerosis — arterial plaque build-up — triggers aortic aneurysms, and drives peripheral arterial disease.</div>
         </div>
         <div class="sys-stat">PAD</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 4: WHAT YOUR DOCTOR MIGHT DO · GREEN · ACTION -->
+  <!-- SLIDE 5: DOCTOR — INVESTIGATION 1 of 2 · GREEN · ACTION -->
   <div class="slide">
-    <div class="slide-title">What your <span>doctor might do</span></div>
-    <div class="doc-grid">
+    <div class="slide-title">What your <span>doctor might do — 1 of 2</span></div>
+    <div class="doc-grid" style="grid-template-rows:repeat(3,1fr);">
       <div class="doc-card" id="d1">
         <div class="doc-icon">🩺</div>
         <div class="doc-content">
@@ -272,11 +281,18 @@
         </div>
         <div class="doc-action">Test</div>
       </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: DOCTOR — MANAGEMENT 2 of 2 · GREEN · ACTION -->
+  <div class="slide">
+    <div class="slide-title">What your <span>doctor might do — 2 of 2</span></div>
+    <div class="doc-grid" style="grid-template-rows:repeat(3,1fr);">
       <div class="doc-card" id="d4">
         <div class="doc-icon">💓</div>
         <div class="doc-content">
           <div class="doc-title">ECG (electrocardiogram)</div>
-          <div class="doc-body">Looks for left ventricular hypertrophy (thickening of the heart muscle) — a sign of long-standing pressure strain.</div>
+          <div class="doc-body">Looks for left ventricular hypertrophy — thickening of the heart muscle — a sign of long-standing pressure strain.</div>
         </div>
         <div class="doc-action">Trace</div>
       </div>
@@ -398,10 +414,10 @@
     </div>
   </div>
 
-  <!-- SLIDE 8: MECHANISMS · AMBER -->
+  <!-- SLIDE 8: MECHANISMS part 1 of 2 · AMBER -->
   <div class="slide">
-    <div class="slide-title">How high blood pressure <span>actually damages</span></div>
-    <div class="mech-grid">
+    <div class="slide-title">How high blood pressure <span>damages — part 1 of 2</span></div>
+    <div class="mech-grid" style="grid-template-rows:repeat(3,1fr);">
       <div class="mech-card" id="m1">
         <div class="mech-icon">💪</div>
         <div class="mech-content">
@@ -426,6 +442,13 @@
         </div>
         <div class="mech-outcome">Vascular dementia</div>
       </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: MECHANISMS part 2 of 2 · AMBER -->
+  <div class="slide">
+    <div class="slide-title">How high blood pressure <span>damages — part 2 of 2</span></div>
+    <div class="mech-grid" style="grid-template-rows:repeat(3,1fr);">
       <div class="mech-card" id="m4">
         <div class="mech-icon">🫘</div>
         <div class="mech-content">
@@ -463,38 +486,12 @@
         <div class="cta-subline">Small drops. Large returns.</div>
       </div>
       <div class="cta-rows-v2">
-        <div class="cta-row-v2">
-          <div class="cta-row-icon-v2">🩸</div>
-          <div class="cta-row-content-v2">
-            <div class="cta-row-title-v2">Hypertension is clinically silent — most people have no symptoms</div>
-            <div class="cta-row-body-v2">Around 1 in 3 UK adults is affected; roughly half are undiagnosed or not at target. Checking is the only way to know.</div>
-          </div>
-          <div class="cta-row-word-v2">1 in 3</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon-v2">📉</div>
-          <div class="cta-row-content-v2">
-            <div class="cta-row-title-v2">A 10 mmHg fall in systolic pressure cuts stroke risk by 27%</div>
-            <div class="cta-row-body-v2">Achievable through lifestyle measures — the DASH diet alone produced up to 14 mmHg reduction in clinical trials.</div>
-          </div>
-          <div class="cta-row-word-v2">−27%</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon-v2">🧂</div>
-          <div class="cta-row-content-v2">
-            <div class="cta-row-title-v2">Salt reduction is one of the most evidence-based lifestyle measures</div>
-            <div class="cta-row-body-v2">Weight management, aerobic activity, and alcohol moderation each produce further independent reductions — effects are additive.</div>
-          </div>
-          <div class="cta-row-word-v2">Proven</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon-v2">💊</div>
-          <div class="cta-row-content-v2">
-            <div class="cta-row-title-v2">Medication follows a well-established NICE-guided pathway</div>
-            <div class="cta-row-body-v2">SPRINT confirmed that intensive targets (systolic below 120 mmHg) reduced cardiovascular events by 25% and mortality by 27% versus standard targets.</div>
-          </div>
-          <div class="cta-row-word-v2">−25%</div>
-        </div>
+        <div class="cta-item ci-red"><div class="cta-item-icon">🩸</div><div class="cta-item-text">1 in 3 UK adults has high blood pressure — over half of over-65s</div></div>
+        <div class="cta-item ci-red"><div class="cta-item-icon">😶</div><div class="cta-item-text">Most people with high blood pressure have no symptoms — found only through routine monitoring</div></div>
+        <div class="cta-item ci-amber"><div class="cta-item-icon">📈</div><div class="cta-item-text">Every 20 mmHg rise in systolic pressure doubles cardiovascular mortality risk</div></div>
+        <div class="cta-item ci-amber"><div class="cta-item-icon">🫀</div><div class="cta-item-text">High blood pressure silently damages the heart, brain, kidneys, eyes, and arteries over years</div></div>
+        <div class="cta-item ci-green"><div class="cta-item-icon">📉</div><div class="cta-item-text">A 10 mmHg fall in systolic pressure reduces stroke risk by 27% — Lancet 2016</div></div>
+        <div class="cta-item ci-green"><div class="cta-item-icon">🥗</div><div class="cta-item-text">The DASH diet reduced blood pressure by up to 14 mmHg — matching single-drug therapy</div></div>
       </div>
       <div class="med-disclaimer">
         <div class="med-disc-icon">⚕️</div>
@@ -511,19 +508,19 @@
       <div class="close-headline">Silent to spot. <span>Solvable to treat.</span></div>
       <div class="close-stats">
         <div class="cst-card">
-          <div class="cst-num">1 in 3</div>
-          <div class="cst-lab">UK adults affected</div>
-          <div class="cst-src">NHS Digital · ONS</div>
+          <div class="cst-num" style="font-size:3rem;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">📚</div>
+          <div class="cst-lab">31 articles across 5 series — cardiovascular, digestive, neurological, cancer, and practical health</div>
+          <div class="cst-src">helf.school · April 2026</div>
         </div>
         <div class="cst-card">
-          <div class="cst-num">~50%</div>
-          <div class="cst-lab">undiagnosed or not at target</div>
-          <div class="cst-src">BHF · OHID</div>
+          <div class="cst-num" style="font-size:3rem;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">🩺</div>
+          <div class="cst-lab">Written by Dr Paul — retired NHS GP with over 20 years of experience</div>
+          <div class="cst-src">Retired 2019 · Tier One ill health</div>
         </div>
         <div class="cst-card">
-          <div class="cst-num">10 mmHg↓</div>
-          <div class="cst-lab">→ −20% CHD · −27% stroke risk</div>
-          <div class="cst-src">Ettehad · Lancet 2016</div>
+          <div class="cst-num" style="font-size:3rem;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">🔓</div>
+          <div class="cst-lab">Start for free — Explorer tier requires no payment. Every claim cited to its primary source.</div>
+          <div class="cst-src">helf.school/conditions</div>
         </div>
       </div>
       <div class="med-disclaimer">
@@ -547,6 +544,9 @@
   <div class="dot" onclick="goTo(7)"></div>
   <div class="dot" onclick="goTo(8)"></div>
   <div class="dot" onclick="goTo(9)"></div>
+  <div class="dot" onclick="goTo(10)"></div>
+  <div class="dot" onclick="goTo(11)"></div>
+  <div class="dot" onclick="goTo(12)"></div>
 </div>
 
 <div class="disc">Health education — not medical advice. helf.school</div>
@@ -556,6 +556,12 @@
   const dots   = document.querySelectorAll('.dot');
   let cur = 0;
 
+  function animateCTA(){
+    const items=document.querySelectorAll('.cta-rows-v2 .cta-item');
+    items.forEach(r=>r.classList.remove('visible'));
+    items.forEach((item,i)=>{setTimeout(()=>item.classList.add('visible'),350+i*620)});
+  }
+
   function show(n){
     slides[cur].classList.remove('active');
     dots[cur].classList.remove('active');
@@ -563,7 +569,7 @@
     slides[cur].classList.add('active');
     dots[cur].classList.add('active');
     document.getElementById('counter').textContent = (cur+1)+' / '+slides.length;
-    triggerSlide(cur);
+    if(cur===11){animateCTA();}else{triggerSlide(cur);}
   }
   function goTo(n){ show(n); }
 
@@ -580,12 +586,15 @@
   });
 
   function triggerSlide(n){
-    if(n===2) animateGroup(['s1','s2','s3','s4','s5'], 170);
-    if(n===3) animateGroup(['d1','d2','d3','d4','d5','d6'], 140);
-    if(n===4) animateGroup(['e1','e2'], 260);
-    if(n===5) animateGroup(['e3','e4'], 260);
-    if(n===6) animateGroup(['e5','e6'], 260);
-    if(n===7) animateGroup(['m1','m2','m3','m4','m5','m6'], 140);
+    if(n===2) animateGroup(['s1','s2','s3'], 170);
+    if(n===3) animateGroup(['s4','s5'], 220);
+    if(n===4) animateGroup(['d1','d2','d3'], 140);
+    if(n===5) animateGroup(['d4','d5','d6'], 140);
+    if(n===6) animateGroup(['e1','e2'], 260);
+    if(n===7) animateGroup(['e3','e4'], 260);
+    if(n===8) animateGroup(['e5','e6'], 260);
+    if(n===9) animateGroup(['m1','m2','m3'], 170);
+    if(n===10) animateGroup(['m4','m5','m6'], 170);
   }
 
   function animateGroup(ids, step){
