@@ -6,11 +6,9 @@
   <title>Exercise — Visuals | helf.school</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--calm:#70b8e8;--brain:#b48ac0;--heart:#e8634a;--muscle:#e8c060}
+    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--calm:#70b8e8;--brain:#b48ac0}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
-
-    /* TOPBAR */
     #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:var(--navy);border-bottom:2px solid var(--acc2);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
     .tb-logo{display:flex;align-items:center;gap:.5rem}
     .tb-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff}
@@ -19,24 +17,17 @@
     .tb-right{display:flex;align-items:center;gap:1.2rem}
     .slide-counter{font-size:.88rem;font-weight:700;color:rgba(255,255,255,.90)}
     .kb-hint{font-size:.75rem;color:rgba(255,255,255,.65)}
-
-    /* STAGE */
     #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:2.2vh 1.25rem 3.5vh;overflow:hidden}
-
-    /* SLIDES */
     .slide{display:none;width:100%;max-width:1140px;height:100%;animation:sIn .32s ease}
     .slide.active{display:flex;flex-direction:column;min-height:0}
     @keyframes sIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-
     .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.1vw,1.75rem);font-weight:700;color:#fff;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:2px solid rgba(212,184,74,.3);flex-shrink:0}
     .slide-title span{color:var(--acc)}
-
-    /* SEGMENT DOTS */
     #dots{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:200}
     .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .25s}
     .dot.active{background:var(--acc);transform:scale(1.3)}
 
-    /* ─── SLIDE 1: INTRO ─── */
+    /* INTRO */
     .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.3rem}
     .intro-badge{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.12);border:1px solid rgba(212,184,74,.3);padding:.3rem .9rem;border-radius:100px}
     .intro-icon{font-size:4rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
@@ -45,7 +36,7 @@
     .intro-sub{font-size:1.1rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;max-width:680px;line-height:1.5;font-weight:400}
     .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
 
-    /* ─── SLIDE 2: FOUR TYPES ─── */
+    /* FOUR TYPES slide 2 */
     .types-wrap{display:flex;flex-direction:column;flex:1;min-height:0;gap:1.2rem}
     .types-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;flex:1;min-height:0}
     .type-box{border-radius:14px;padding:1.3rem 1.1rem;display:flex;flex-direction:column;gap:.55rem;animation:boxIn .6s ease backwards}
@@ -61,7 +52,7 @@
     .type-t{font-size:.92rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400;flex:1}
     .type-ex{font-size:.82rem;color:rgba(255,255,255,.85);line-height:1.5;padding-top:.5rem;border-top:1px solid rgba(255,255,255,.20);font-weight:500}
 
-    /* ─── SLIDE 3: GUIDELINES ─── */
+    /* GUIDELINES slide 3 */
     .gl-wrap{display:flex;flex-direction:column;flex:1;min-height:0}
     .gl-rows{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:1rem;flex:1;min-height:0}
     .gl-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:1.1rem 1.3rem;display:flex;gap:1rem;align-items:flex-start;min-height:0}
@@ -78,9 +69,9 @@
     .gl-big{font-family:'Fraunces',serif;font-size:1.75rem;font-weight:700;color:var(--acc);line-height:1.05;letter-spacing:-.02em}
     .gl-big-sub{font-size:.82rem;color:rgba(255,255,255,.85);font-weight:500;letter-spacing:.04em}
     .gl-or{font-family:'Fraunces',serif;font-size:.95rem;font-weight:700;color:rgba(255,255,255,.75);letter-spacing:.08em;flex-shrink:0}
-    .gl-badge{display:block;background:rgba(232,99,74,.22);border:1.5px solid rgba(232,99,74,.55);color:#ffb39a;font-family:'Fraunces',serif;font-size:1rem;font-weight:700;padding:.5rem .8rem;border-radius:10px;letter-spacing:.01em;text-align:center;align-self:stretch}
+    .gl-badge{display:block;background:rgba(232,99,74,.22);border:1.5px solid rgba(232,99,74,.55);color:#ffb39a;font-family:'Fraunces',serif;font-size:1rem;font-weight:700;padding:.5rem .8rem;border-radius:10px;text-align:center;align-self:stretch}
 
-    /* ─── SLIDE 4: BOTH VALUABLE ─── */
+    /* BOTH VALUABLE slide 4 */
     .bv-wrap{display:flex;flex-direction:column;flex:1;min-height:0;gap:1.5rem;justify-content:center;align-items:center;text-align:center}
     .bv-hero{font-family:'Fraunces',serif;font-size:clamp(2rem,4vw,3rem);color:#fff;line-height:1.15;max-width:900px;font-weight:700;letter-spacing:-.02em}
     .bv-hero span{color:var(--acc);font-style:italic}
@@ -94,7 +85,7 @@
     .bv-line{font-size:1.2rem;color:rgba(255,255,255,.92);line-height:1.5;max-width:820px;font-weight:500;font-style:italic}
     .bv-line strong{color:var(--acc);font-style:normal;font-weight:700}
 
-    /* ─── SLIDE 5: LIFESPAN DOSE-RESPONSE ─── */
+    /* LIFESPAN slide 5 */
     .life-wrap{display:flex;flex-direction:column;flex:1;min-height:0;gap:1rem}
     .life-hero{background:linear-gradient(135deg,#2e5038,#1e3525);border-radius:18px;padding:1.4rem 1.8rem;display:flex;align-items:center;justify-content:center;gap:2.5rem;flex-shrink:0}
     .life-hero-num{font-family:'Fraunces',serif;font-size:4.2rem;color:var(--good);font-weight:700;line-height:1;letter-spacing:-.02em}
@@ -105,35 +96,35 @@
     .life-chart-label{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);text-align:center}
     .life-chart-svg{flex:1;min-height:0;width:100%}
 
-    /* ─── SLIDE 6: SIX BENEFITS · HORIZONTAL ROWS · PROTECTION · GREEN ─── */
-    .ben-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .ben-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.32);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    /* BEN-CARDS — max 3 per slide, clamp:4 */
+    .ben-grid{display:grid;grid-template-columns:1fr;gap:.55rem;flex:1;min-height:0}
+    .ben-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.32);border-radius:12px;padding:.8rem 1.2rem;display:grid;grid-template-columns:60px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .ben-card.vis{opacity:1;transform:translateY(0)}
     .ben-card.hero{border-color:rgba(212,184,74,.55);background:linear-gradient(90deg,rgba(212,184,74,.12),rgba(212,184,74,.04))}
-    .ben-icon{font-size:1.9rem;line-height:1;text-align:center;padding-top:.1rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .ben-icon{font-size:2.1rem;line-height:1;text-align:center;padding-top:.1rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
     .ben-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
-    .ben-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
-    .ben-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .ben-stat{display:flex;flex-direction:column;align-items:flex-end;gap:.15rem;text-align:right;white-space:nowrap;padding-left:.75rem}
+    .ben-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.2rem;line-height:1.12}
+    .ben-body{font-size:.90rem;color:rgba(255,255,255,.90);line-height:1.4;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+    .ben-stat{display:flex;flex-direction:column;align-items:flex-end;gap:.15rem;text-align:right;white-space:nowrap;padding-left:.75rem;padding-top:.1rem}
     .ben-stat-lbl{font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(126,204,153,.95);line-height:1}
     .ben-card.hero .ben-stat-lbl{color:rgba(212,184,74,.95)}
-    .ben-stat-val{font-family:'Fraunces',serif;font-size:clamp(1.6rem,2.6vw,2.4rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.02em}
+    .ben-stat-val{font-family:'Fraunces',serif;font-size:clamp(1.5rem,2.4vw,2.2rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.02em}
     .ben-card.hero .ben-stat-val{color:var(--acc)}
 
-    /* ─── SLIDE 7: WHAT YOUR DOCTOR CAN DO · HORIZONTAL ROWS · ACTION · GREEN ─── */
-    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    /* DOC-CARDS — max 3 per slide, clamp:4 */
+    .doc-grid{display:grid;grid-template-columns:1fr;gap:.55rem;flex:1;min-height:0}
+    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:12px;padding:.8rem 1.2rem;display:grid;grid-template-columns:60px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .doc-card.vis{opacity:1;transform:translateY(0)}
-    .doc-card.key{grid-row:span 2;border-color:rgba(232,168,74,.5);background:linear-gradient(90deg,rgba(232,168,74,.10),rgba(232,168,74,.03));padding:1.1rem 1.3rem}
-    .doc-icon{font-size:1.9rem;line-height:1;text-align:center;padding-top:.1rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .doc-card.key{border-color:rgba(232,168,74,.5);background:linear-gradient(90deg,rgba(232,168,74,.10),rgba(232,168,74,.03))}
+    .doc-icon{font-size:2.1rem;line-height:1;text-align:center;padding-top:.1rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
     .doc-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
-    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
-    .doc-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.15rem;line-height:1.12}
+    .doc-body{font-size:.90rem;color:rgba(255,255,255,.90);line-height:1.4;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
     .doc-body strong{color:#fff;font-weight:700}
-    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.2rem,1.95vw,1.75rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.75rem}
+    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.6rem);font-weight:700;color:var(--good);line-height:1;text-align:right;white-space:nowrap;padding-left:.75rem;padding-top:.1rem}
     .doc-card.key .doc-action{color:var(--warn)}
 
-    /* ─── SLIDE 8: 10000 STEPS MYTH ─── */
+    /* STEPS slide 10 */
     .steps-wrap{display:flex;flex-direction:column;flex:1;min-height:0;gap:.85rem}
     .steps-origin{background:linear-gradient(135deg,rgba(212,184,74,.13),rgba(122,106,46,.05));border:1.5px solid rgba(212,184,74,.40);border-radius:14px;padding:.8rem 1.1rem;display:flex;gap:1rem;align-items:center;flex-shrink:0}
     .steps-kanji{font-family:'Fraunces',serif;font-size:2rem;color:var(--acc);font-weight:700;line-height:1;background:rgba(212,184,74,.15);border:2px solid rgba(212,184,74,.55);border-radius:10px;padding:.35rem .7rem;flex-shrink:0;text-align:center;min-width:80px}
@@ -153,12 +144,11 @@
     .step-lbl{font-size:.82rem;color:rgba(255,255,255,.92);line-height:1.3;font-weight:600}
     .step-src{font-size:.78rem;color:rgba(255,255,255,.75);text-align:center;margin-top:.2rem;font-style:italic;flex-shrink:0}
 
-    /* ─── SLIDE 9: RESEARCH EVIDENCE ─── */
-    .ev-stage{display:flex;flex-direction:column;gap:.55rem;flex:1;min-height:0}
-    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:12px;padding:.75rem 1.1rem;display:grid;grid-template-columns:170px 1fr;gap:1.2rem;align-items:center;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .42s ease}
-    .ev-card.animate-ready{opacity:0;transform:translateY(14px)}
+    /* EV-CARDS — ev-finding clamp:4 */
+    .ev-stage{display:flex;flex-direction:column;gap:.65rem;flex:1;min-height:0}
+    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:12px;padding:1rem 1.2rem;display:grid;grid-template-columns:180px 1fr;gap:1.2rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .42s ease}
     .ev-card.vis{opacity:1;transform:translateY(0)}
-    .ev-stat-box{text-align:center;background:rgba(212,184,74,.09);border-radius:10px;padding:.75rem .5rem}
+    .ev-stat-box{text-align:center;background:rgba(212,184,74,.09);border-radius:10px;padding:.85rem .5rem}
     .ev-kf-label{font-size:.6rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(212,184,74,.7);margin-bottom:.4rem}
     .ev-stat-row{display:flex;align-items:baseline;gap:.4rem;justify-content:center;flex-wrap:wrap;margin-bottom:.3rem}
     .ev-num{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;line-height:1;letter-spacing:-.02em;flex-shrink:0}
@@ -166,61 +156,52 @@
     .ev-num.warn{color:var(--warn)}
     .ev-num.bad{color:var(--bad)}
     .ev-outcome{font-size:.88rem;font-weight:700;color:#fff;line-height:1.25;text-align:left}
-    .ev-conditions{font-size:.8rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.3}
+    .ev-conditions{font-size:.80rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.3}
     .ev-detail{min-width:0}
-    .ev-trial{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:.15rem;line-height:1.18;letter-spacing:-.01em}
-    .ev-journal{font-size:.8rem;color:rgba(255,255,255,.85);margin-bottom:.3rem;font-weight:500}
-    .ev-finding{font-size:.88rem;color:rgba(255,255,255,.92);line-height:1.45;font-weight:400}
+    .ev-trial{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:.15rem;line-height:1.18}
+    .ev-journal{font-size:.80rem;color:rgba(255,255,255,.85);margin-bottom:.35rem;font-weight:500}
+    .ev-finding{font-size:.90rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
     .ev-finding strong{color:#fff;font-weight:700}
 
-    /* ─── SLIDE 10: CTA · HORIZONTAL ROWS · NO ICON ─── */
-    .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem;gap:.45rem;min-height:0;overflow:hidden}
-    .cta-top{display:flex;flex-direction:column;align-items:center;gap:.3rem;text-align:center}
-    .cta-badge-v2{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.3rem .95rem;border-radius:100px}
-    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:700;color:#fff;line-height:1.02;letter-spacing:-.028em}
+    /* CTA — sequential animation */
+    .cta-slide{position:relative}
+    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(212,184,74,.18),rgba(212,184,74,.04) 45%,transparent 70%);pointer-events:none;z-index:0}
+    .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem 0;gap:.55rem}
+    .cta-header{text-align:center}
+    .cta-badge-v2{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.42rem 1.15rem;border-radius:100px;display:inline-block;margin-bottom:.4rem}
+    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:700;color:#fff;line-height:1.05;letter-spacing:-.028em}
     .cta-headline-v2 span{color:var(--acc)}
-    .cta-subline-v2{font-family:'Fraunces',serif;font-size:clamp(.95rem,1.5vw,1.2rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);line-height:1.3}
-    .cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.4rem;min-height:0;overflow:hidden}
-    .cta-row-v2{background:linear-gradient(90deg,rgba(212,184,74,.12),rgba(212,184,74,.04));border-left:4px solid var(--acc);border-radius:0 10px 10px 0;padding:.6rem .95rem;display:grid;grid-template-columns:52px 1fr auto;gap:.9rem;align-items:start;min-height:0;overflow:hidden}
-    .cta-row-icon{font-size:1.7rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .cta-row-mid{display:flex;flex-direction:column;gap:.12rem;min-width:0}
-    .cta-row-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.95rem;line-height:1.15}
-    .cta-row-body-v2{font-size:.82rem;color:rgba(255,255,255,.90);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .cta-row-word-v2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.2rem,2vw,1.7rem);color:var(--acc);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:.6rem}
-    .cta-bottom{display:flex;justify-content:center;flex-shrink:0}
-    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.8rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;margin-top:.6rem;max-width:920px}
-    .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.85);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left}
+    .cta-items{display:grid;grid-template-rows:repeat(6,1fr);gap:.38rem;min-height:0;overflow:hidden}
+    .cta-item{border-radius:9px;padding:.4rem 1rem;display:flex;align-items:center;gap:.85rem;opacity:0;transform:translateX(-24px);transition:opacity .38s ease,transform .38s ease}
+    .cta-item.visible{opacity:1;transform:translateX(0)}
+    .cta-item.ci-red  {background:rgba(180,45,45,0.25);border:1px solid rgba(220,80,70,0.40)}
+    .cta-item.ci-amber{background:rgba(170,110,20,0.25);border:1px solid rgba(232,168,74,0.40)}
+    .cta-item.ci-green{background:rgba(38,105,55,0.30);border:1px solid rgba(126,204,153,0.42)}
+    .cta-item-icon{font-size:1.45rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .cta-item-text{font-size:.93rem;font-weight:600;color:rgba(255,255,255,.95);line-height:1.3}
+    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.7rem 1.1rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px}
+    .med-disc-icon{font-size:1.2rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .med-disc-text{font-size:1rem;color:rgba(255,255,255,.90);line-height:1.5;font-family:'Fraunces',serif;font-weight:400}
     .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
 
-    /* ─── SLIDE 11: CLOSING ─── */
-    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.6rem;padding:1.5rem}
-    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
+    /* BRAND CLOSE */
+    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100%;text-align:center;gap:1.1rem;padding:1rem 1.5rem}
+    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em;flex-shrink:0}
     .close-logo .dot{color:var(--coral)}
-    .close-sub{font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82)}
-    .close-headline{font-family:'Fraunces',serif;font-size:clamp(2.4rem,5vw,4.2rem);font-weight:700;color:#fff;max-width:1000px;line-height:1.08;letter-spacing:-.025em}
+    .close-sub{font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82);flex-shrink:0}
+    .close-headline{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:#fff;flex-shrink:0}
     .close-headline span{color:var(--acc)}
-    .close-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1000px;width:100%}
-    .cst-card{background:rgba(212,184,74,.1);border:1px solid rgba(212,184,74,.35);border-radius:16px;padding:1.3rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.45rem}
-    .cst-num{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3rem);font-weight:700;color:var(--acc);line-height:.95;letter-spacing:-.02em}
-    .cst-lab{font-size:.98rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.32}
-    .cst-src{font-size:.78rem;color:rgba(255,255,255,.72);font-style:italic}
-    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.2rem}
-
+    .close-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;width:100%;max-width:1050px;flex:1;min-height:0}
+    .close-card{background:rgba(212,184,74,.10);border:1px solid rgba(212,184,74,.35);border-radius:16px;padding:1.2rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.45rem;justify-content:center}
+    .close-card-icon{font-size:2.2rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .close-card-text{font-size:.95rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.4;text-align:center}
+    .close-card-src{font-size:.80rem;color:rgba(255,255,255,.65);font-style:italic}
+    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);flex-shrink:0}
     .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:.68rem;color:rgba(255,255,255,.22);z-index:90;white-space:nowrap}
-
-    /* Responsive */
-    @media (max-width:900px){
-      .types-grid{grid-template-columns:repeat(2,1fr)}
-      .gl-rows{grid-template-columns:1fr}
-      .steps-evid{grid-template-columns:1fr}
-      .cta-actions{grid-template-columns:repeat(2,1fr)}
-    }
   </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
 <div id="topbar">
   <div class="tb-logo">
     <svg width="20" height="16" viewBox="0 0 22 18" fill="none">
@@ -231,12 +212,11 @@
     <span class="tb-sub">· Exercise</span>
   </div>
   <div class="tb-right">
-    <span class="slide-counter"><span id="cur">1</span> / <span id="tot">11</span></span>
+    <span id="counter" class="slide-counter">1 / 14</span>
     <span class="kb-hint">← → navigate</span>
   </div>
 </div>
 
-<!-- STAGE -->
 <div id="stage">
 
   <!-- SLIDE 1: INTRO -->
@@ -250,7 +230,7 @@
     </div>
   </div>
 
-  <!-- SLIDE 2: FOUR TYPES -->
+  <!-- SLIDE 2: FOUR TYPES — unchanged -->
   <div class="slide">
     <div class="slide-title">The <span>four types</span> of exercise — all four matter</div>
     <div class="types-wrap">
@@ -287,7 +267,7 @@
     </div>
   </div>
 
-  <!-- SLIDE 3: GUIDELINES -->
+  <!-- SLIDE 3: GUIDELINES — unchanged -->
   <div class="slide">
     <div class="slide-title">UK CMO Guidelines <span>· 2019</span> — the baseline for adults</div>
     <div class="gl-wrap">
@@ -297,15 +277,9 @@
           <div class="gl-body">
             <div class="gl-h">Aerobic · per week</div>
             <div class="gl-dual">
-              <div class="gl-dual-col">
-                <div class="gl-big">150 min</div>
-                <div class="gl-big-sub">moderate</div>
-              </div>
+              <div class="gl-dual-col"><div class="gl-big">150 min</div><div class="gl-big-sub">moderate</div></div>
               <div class="gl-or">OR</div>
-              <div class="gl-dual-col">
-                <div class="gl-big">75 min</div>
-                <div class="gl-big-sub">vigorous</div>
-              </div>
+              <div class="gl-dual-col"><div class="gl-big">75 min</div><div class="gl-big-sub">vigorous</div></div>
             </div>
             <div class="gl-sub"><strong>30 min × 5 days</strong> = a brisk walk.</div>
           </div>
@@ -338,7 +312,7 @@
     </div>
   </div>
 
-  <!-- SLIDE 4: BOTH VALUABLE -->
+  <!-- SLIDE 4: BOTH VALUABLE — unchanged -->
   <div class="slide">
     <div class="slide-title">Physical activity <span>and</span> exercise — both count</div>
     <div class="bv-wrap">
@@ -359,7 +333,7 @@
     </div>
   </div>
 
-  <!-- SLIDE 5: LIFESPAN -->
+  <!-- SLIDE 5: LIFESPAN — unchanged -->
   <div class="slide">
     <div class="slide-title">Lifespan — the <span>years of life gained</span> from exercise</div>
     <div class="life-wrap">
@@ -375,34 +349,25 @@
         <svg class="life-chart-svg" viewBox="0 0 820 300" preserveAspectRatio="xMidYMid meet">
           <line x1="80" y1="250" x2="780" y2="250" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
           <line x1="80" y1="40" x2="80" y2="250" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-
           <text x="70" y="255" fill="rgba(255,255,255,0.92)" font-family="DM Sans" font-size="14" font-weight="600" text-anchor="end">0</text>
           <text x="70" y="205" fill="rgba(255,255,255,0.92)" font-family="DM Sans" font-size="14" font-weight="600" text-anchor="end">+1y</text>
           <text x="70" y="155" fill="rgba(255,255,255,0.92)" font-family="DM Sans" font-size="14" font-weight="600" text-anchor="end">+2y</text>
           <text x="70" y="105" fill="rgba(255,255,255,0.92)" font-family="DM Sans" font-size="14" font-weight="600" text-anchor="end">+3y</text>
           <text x="70" y="55" fill="rgba(255,255,255,0.92)" font-family="DM Sans" font-size="14" font-weight="600" text-anchor="end">+4.5y</text>
-
           <line x1="80" y1="105" x2="780" y2="105" stroke="rgba(212,184,74,0.3)" stroke-width="1" stroke-dasharray="4,4"/>
-
           <path d="M 110 250 Q 200 180, 300 145 T 500 95 T 700 75" fill="none" stroke="#7ecc99" stroke-width="4" stroke-linecap="round"/>
-
           <circle cx="180" cy="190" r="9" fill="#7ecc99" stroke="#fff" stroke-width="2"/>
           <circle cx="320" cy="135" r="9" fill="#7ecc99" stroke="#fff" stroke-width="2"/>
           <circle cx="480" cy="90" r="9" fill="#d4b84a" stroke="#fff" stroke-width="2.5"/>
           <circle cx="700" cy="65" r="9" fill="#d4b84a" stroke="#fff" stroke-width="2.5"/>
-
           <text x="180" y="275" fill="rgba(255,255,255,0.92)" font-family="DM Sans" font-size="12" font-weight="600" text-anchor="middle">Half guideline</text>
           <text x="180" y="290" fill="rgba(255,255,255,0.78)" font-family="DM Sans" font-size="10" text-anchor="middle">(~75 min/wk)</text>
-
           <text x="320" y="275" fill="rgba(255,255,255,0.92)" font-family="DM Sans" font-size="12" font-weight="600" text-anchor="middle">Guideline met</text>
           <text x="320" y="290" fill="rgba(255,255,255,0.78)" font-family="DM Sans" font-size="10" text-anchor="middle">(150 min/wk)</text>
-
           <text x="480" y="275" fill="rgba(255,255,255,0.92)" font-family="DM Sans" font-size="12" font-weight="600" text-anchor="middle">2× guideline</text>
           <text x="480" y="290" fill="rgba(255,255,255,0.78)" font-family="DM Sans" font-size="10" text-anchor="middle">(300 min/wk)</text>
-
           <text x="700" y="275" fill="rgba(255,255,255,0.92)" font-family="DM Sans" font-size="12" font-weight="600" text-anchor="middle">3×+ guideline</text>
           <text x="700" y="290" fill="rgba(255,255,255,0.78)" font-family="DM Sans" font-size="10" text-anchor="middle">(450+ min/wk)</text>
-
           <text x="180" y="180" fill="#7ecc99" font-family="Fraunces" font-size="15" font-weight="700" text-anchor="middle">+1.8y</text>
           <text x="320" y="125" fill="#7ecc99" font-family="Fraunces" font-size="15" font-weight="700" text-anchor="middle">+3.4y</text>
           <text x="480" y="80" fill="#d4b84a" font-family="Fraunces" font-size="15" font-weight="700" text-anchor="middle">+4.2y</text>
@@ -412,92 +377,73 @@
     </div>
   </div>
 
-  <!-- SLIDE 6: SIX BENEFITS · HORIZONTAL ROWS · PROTECTION · GREEN -->
+  <!-- SLIDE 6: SIX BENEFITS 1 of 2 — 3 cards -->
   <div class="slide">
-    <div class="slide-title">Six ways <span>regular exercise</span> changes the body</div>
-    <div class="ben-grid">
-
+    <div class="slide-title">Six ways <span>regular exercise</span> changes the body — 1 of 2</div>
+    <div class="ben-grid" style="grid-template-rows:repeat(3,1fr);">
       <div class="ben-card hero" id="b1">
         <div class="ben-icon">⏳</div>
         <div class="ben-content">
           <div class="ben-title">Lifespan</div>
           <div class="ben-body">Years of life added — the biggest dividend comes from going from nothing to something.</div>
         </div>
-        <div class="ben-stat">
-          <span class="ben-stat-lbl">Life gained</span>
-          <span class="ben-stat-val">+2–4.5 yrs</span>
-        </div>
+        <div class="ben-stat"><span class="ben-stat-lbl">Life gained</span><span class="ben-stat-val">+2–4.5 yrs</span></div>
       </div>
-
-      <div class="ben-card animate-ready" id="b2">
+      <div class="ben-card" id="b2">
         <div class="ben-icon">❤️</div>
         <div class="ben-content">
           <div class="ben-title">Cardiovascular events</div>
           <div class="ben-body">Heart attacks, strokes, and cardiovascular deaths — in people who meet the guidelines.</div>
         </div>
-        <div class="ben-stat">
-          <span class="ben-stat-lbl">↓ Risk</span>
-          <span class="ben-stat-val">–20–30%</span>
-        </div>
+        <div class="ben-stat"><span class="ben-stat-lbl">↓ Risk</span><span class="ben-stat-val">–20–30%</span></div>
       </div>
-
-      <div class="ben-card animate-ready" id="b3">
+      <div class="ben-card" id="b3">
         <div class="ben-icon">🍬</div>
         <div class="ben-content">
           <div class="ben-title">Type 2 diabetes</div>
           <div class="ben-body">Improves insulin sensitivity within days of starting — not weeks.</div>
         </div>
-        <div class="ben-stat">
-          <span class="ben-stat-lbl">↓ Risk</span>
-          <span class="ben-stat-val">–30–40%</span>
-        </div>
+        <div class="ben-stat"><span class="ben-stat-lbl">↓ Risk</span><span class="ben-stat-val">–30–40%</span></div>
       </div>
+    </div>
+  </div>
 
-      <div class="ben-card animate-ready" id="b4">
+  <!-- SLIDE 7: SIX BENEFITS 2 of 2 — 3 cards -->
+  <div class="slide">
+    <div class="slide-title">Six ways <span>regular exercise</span> changes the body — 2 of 2</div>
+    <div class="ben-grid" style="grid-template-rows:repeat(3,1fr);">
+      <div class="ben-card" id="b4">
         <div class="ben-icon">🧠</div>
         <div class="ben-content">
           <div class="ben-title">Depression risk</div>
           <div class="ben-body">At recommended activity levels — half the amount still delivers around –18%.</div>
         </div>
-        <div class="ben-stat">
-          <span class="ben-stat-lbl">↓ Risk</span>
-          <span class="ben-stat-val">–25%</span>
-        </div>
+        <div class="ben-stat"><span class="ben-stat-lbl">↓ Risk</span><span class="ben-stat-val">–25%</span></div>
       </div>
-
-      <div class="ben-card animate-ready" id="b5">
+      <div class="ben-card" id="b5">
         <div class="ben-icon">🧩</div>
         <div class="ben-content">
           <div class="ben-title">Dementia risk</div>
           <div class="ben-body">7,000 steps/day vs 2,000 — physical activity protects cognitive function.</div>
         </div>
-        <div class="ben-stat">
-          <span class="ben-stat-lbl">↓ Risk</span>
-          <span class="ben-stat-val">–38%</span>
-        </div>
+        <div class="ben-stat"><span class="ben-stat-lbl">↓ Risk</span><span class="ben-stat-val">–38%</span></div>
       </div>
-
-      <div class="ben-card animate-ready" id="b6">
+      <div class="ben-card" id="b6">
         <div class="ben-icon">🦴</div>
         <div class="ben-content">
           <div class="ben-title">Mortality — from strength work</div>
           <div class="ben-body">Independent of aerobic activity — just 30–60 minutes/week makes the difference.</div>
         </div>
-        <div class="ben-stat">
-          <span class="ben-stat-lbl">↓ Mortality</span>
-          <span class="ben-stat-val">–10–20%</span>
-        </div>
+        <div class="ben-stat"><span class="ben-stat-lbl">↓ Mortality</span><span class="ben-stat-val">–10–20%</span></div>
       </div>
-
     </div>
   </div>
 
-  <!-- SLIDE 7: DOCTOR · HORIZONTAL ROWS · ACTION · GREEN -->
+  <!-- SLIDE 8: DOCTOR TOOLKIT 1 of 2 — 3 cards -->
   <div class="slide">
-    <div class="slide-title">What <span>your doctor</span> can help with</div>
-    <div class="doc-grid">
-
-      <div class="doc-card animate-ready" id="d1">
+    <div class="slide-title">What <span>your doctor</span> can help with — 1 of 2</div>
+    <div class="doc-grid" style="grid-template-rows:repeat(3,1fr);">
+      <div class="doc-card" id="d1">
         <div class="doc-icon">❤️</div>
         <div class="doc-content">
           <div class="doc-title">Cardiovascular risk review</div>
@@ -505,8 +451,7 @@
         </div>
         <div class="doc-action">→ Review</div>
       </div>
-
-      <div class="doc-card animate-ready" id="d2">
+      <div class="doc-card" id="d2">
         <div class="doc-icon">🏥</div>
         <div class="doc-content">
           <div class="doc-title">Cardiac rehabilitation</div>
@@ -514,8 +459,7 @@
         </div>
         <div class="doc-action">NHS</div>
       </div>
-
-      <div class="doc-card animate-ready" id="d3">
+      <div class="doc-card" id="d3">
         <div class="doc-icon">📋</div>
         <div class="doc-content">
           <div class="doc-title">NHS Exercise Referral schemes</div>
@@ -523,8 +467,14 @@
         </div>
         <div class="doc-action">GP referral</div>
       </div>
+    </div>
+  </div>
 
-      <div class="doc-card animate-ready" id="d4">
+  <!-- SLIDE 9: DOCTOR TOOLKIT 2 of 2 — 2 cards (d4 + d5 key) -->
+  <div class="slide">
+    <div class="slide-title">What <span>your doctor</span> can help with — 2 of 2</div>
+    <div class="doc-grid" style="grid-template-rows:repeat(2,1fr);">
+      <div class="doc-card" id="d4">
         <div class="doc-icon">🦴</div>
         <div class="doc-content">
           <div class="doc-title">Physiotherapy</div>
@@ -532,20 +482,18 @@
         </div>
         <div class="doc-action">Self-refer</div>
       </div>
-
       <div class="doc-card key" id="d5">
         <div class="doc-icon">💊</div>
         <div class="doc-content">
           <div class="doc-title">"Pill vs exercise" — not a choice</div>
-          <div class="doc-body">Statins (e.g. atorvastatin / Lipitor) lower cholesterol. Exercise lowers cholesterol, BP, inflammation and glucose — through different mechanisms. <strong>Exercise makes medication more effective — it doesn't replace it.</strong></div>
+          <div class="doc-body">Cholesterol-lowering medication lowers cholesterol. Exercise lowers cholesterol, BP, inflammation and glucose — through different mechanisms. <strong>Exercise makes medication more effective — it doesn't replace it.</strong></div>
         </div>
         <div class="doc-action">Both, not either</div>
       </div>
-
     </div>
   </div>
 
-  <!-- SLIDE 8: 10,000 STEPS MYTH -->
+  <!-- SLIDE 10: 10,000 STEPS MYTH — unchanged -->
   <div class="slide">
     <div class="slide-title">10,000 steps a day — <span>where did it come from?</span></div>
     <div class="steps-wrap">
@@ -578,17 +526,14 @@
     </div>
   </div>
 
-  <!-- SLIDE 9: RESEARCH — LIFESPAN & DOSE -->
+  <!-- SLIDE 11: RESEARCH 1 of 2 — 3 ev-cards, ev-finding clamp:4 -->
   <div class="slide">
     <div class="slide-title">The evidence · <span>lifespan &amp; dose-response</span></div>
     <div class="ev-stage">
-      <div class="ev-card animate-ready" id="e1">
+      <div class="ev-card" id="e1">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good">+3 yrs</div>
-            <div class="ev-outcome">longer life expectancy</div>
-          </div>
+          <div class="ev-stat-row"><div class="ev-num good">+3 yrs</div><div class="ev-outcome">longer life expectancy</div></div>
           <div class="ev-conditions">at just 15 min/day moderate activity — Lancet 2011</div>
         </div>
         <div class="ev-detail">
@@ -597,12 +542,10 @@
           <div class="ev-finding">Just <strong>15 minutes a day</strong> of moderate activity = <strong>+3 years of life</strong>. Well below guideline, still enormous.</div>
         </div>
       </div>
-      <div class="ev-card animate-ready" id="e2">
+      <div class="ev-card" id="e2">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good" style="font-size:1.4rem">+1.8 / +4.5y</div>
-          </div>
+          <div class="ev-stat-row"><div class="ev-num good" style="font-size:1.4rem">+1.8 / +4.5y</div></div>
           <div class="ev-outcome" style="text-align:center">years of life gained</div>
           <div class="ev-conditions">half-guideline / full guideline — clear dose-response</div>
         </div>
@@ -612,13 +555,10 @@
           <div class="ev-finding">Half-guideline = <strong>+1.8 years</strong>. Highest dose = <strong>+4.5 years</strong>. Clear dose-response.</div>
         </div>
       </div>
-      <div class="ev-card animate-ready" id="e3">
+      <div class="ev-card" id="e3">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good">–20%</div>
-            <div class="ev-outcome">lower mortality</div>
-          </div>
+          <div class="ev-stat-row"><div class="ev-num good">–20%</div><div class="ev-outcome">lower mortality</div></div>
           <div class="ev-conditions">at guideline level — plateaus at 3–5× guideline, no harm at 10×</div>
         </div>
         <div class="ev-detail">
@@ -630,16 +570,14 @@
     </div>
   </div>
 
-  <!-- SLIDE 10: RESEARCH — STRENGTH, MOOD & STEPS -->
+  <!-- SLIDE 12: RESEARCH 2 of 2 — 3 ev-cards -->
   <div class="slide">
     <div class="slide-title">The evidence · <span>strength, mood &amp; steps</span></div>
     <div class="ev-stage">
-      <div class="ev-card animate-ready" id="e4">
+      <div class="ev-card" id="e4">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num warn" style="font-size:2rem">–10–20%</div>
-          </div>
+          <div class="ev-stat-row"><div class="ev-num warn" style="font-size:2rem">–10–20%</div></div>
           <div class="ev-outcome" style="text-align:center">lower mortality &amp; disease</div>
           <div class="ev-conditions">from just 30–60 min/week strength training — independent benefit</div>
         </div>
@@ -649,12 +587,10 @@
           <div class="ev-finding"><strong>30–60 min/week</strong> of strength work — independent mortality benefit on top of any aerobic activity.</div>
         </div>
       </div>
-      <div class="ev-card animate-ready" id="e5">
+      <div class="ev-card" id="e5">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good" style="font-size:1.4rem">–18% / –25%</div>
-          </div>
+          <div class="ev-stat-row"><div class="ev-num good" style="font-size:1.4rem">–18% / –25%</div></div>
           <div class="ev-outcome" style="text-align:center">lower depression risk</div>
           <div class="ev-conditions">at half-dose / full dose of recommended activity</div>
         </div>
@@ -664,13 +600,10 @@
           <div class="ev-finding">Half-dose = <strong>–18%</strong> · full dose = <strong>–25%</strong>. Biggest marginal benefit at the lowest end of the scale.</div>
         </div>
       </div>
-      <div class="ev-card animate-ready" id="e6">
+      <div class="ev-card" id="e6">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good">–47%</div>
-            <div class="ev-outcome">lower mortality</div>
-          </div>
+          <div class="ev-stat-row"><div class="ev-num good">–47%</div><div class="ev-outcome">lower mortality</div></div>
           <div class="ev-conditions">at 7,000 steps vs 2,000 — benefit plateaus; 10,000 was marketing</div>
         </div>
         <div class="ev-detail">
@@ -682,82 +615,53 @@
     </div>
   </div>
 
-  <!-- SLIDE 11: CTA · HORIZONTAL ROWS · NO ICON -->
+  <!-- SLIDE 13: CTA — SEQUENTIAL ANIMATION -->
   <div class="slide cta-slide">
     <div class="cta-glow"></div>
     <div class="cta-wrap-v2">
-      <div class="cta-top">
+      <div class="cta-header">
         <div class="cta-badge-v2">Where to start</div>
         <div class="cta-headline-v2">Begin where you are.<br/><span>Start smaller than you think.</span></div>
-        <div class="cta-subline-v2">15 minutes. Not 45. Not tomorrow. The biggest dividend is at the bottom of the curve.</div>
       </div>
-      <div class="cta-rows-v2">
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">🚶</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Add 1,000 steps a day</div>
-            <div class="cta-row-body-v2">Going from 2,000 to 4,000 steps a day alone reduces mortality risk by 36%. Every thousand steps counts — start exactly where you are</div>
-          </div>
-          <div class="cta-row-word-v2">Today</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">💪</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Two strength sessions a week — 30 minutes each</div>
-            <div class="cta-row-body-v2">Press-ups and squats at home will do. 30–60 min/week is enough to independently reduce mortality by 10–20% beyond any aerobic benefit</div>
-          </div>
-          <div class="cta-row-word-v2">This week</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">🪜</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Take the stairs — every time</div>
-            <div class="cta-row-body-v2">Habit stacking is the most reliable way to accumulate movement. Every stair, every walk to the bus, every standing up from the desk — it all accrues</div>
-          </div>
-          <div class="cta-row-word-v2">Always</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">🪑</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Break up long periods of sitting</div>
-            <div class="cta-row-body-v2">Prolonged sitting independently raises cardiovascular risk — even in people who exercise regularly. Stand, walk, move every hour</div>
-          </div>
-          <div class="cta-row-word-v2">Ongoing</div>
-        </div>
+      <div class="cta-items">
+        <div class="cta-item ci-red"><div class="cta-item-icon">⏳</div><div class="cta-item-text">15 minutes of moderate exercise a day adds roughly 3 years of life</div></div>
+        <div class="cta-item ci-red"><div class="cta-item-icon">👟</div><div class="cta-item-text">7,000 steps vs 2,000 — 47% lower mortality; benefit plateaus well before 10,000</div></div>
+        <div class="cta-item ci-amber"><div class="cta-item-icon">📊</div><div class="cta-item-text">Half the guideline — 75 minutes weekly — still adds nearly 2 years of life</div></div>
+        <div class="cta-item ci-amber"><div class="cta-item-icon">💪</div><div class="cta-item-text">30–60 minutes of strength work per week independently lowers mortality by 10–20%</div></div>
+        <div class="cta-item ci-green"><div class="cta-item-icon">🚶</div><div class="cta-item-text">Add 1,000 steps a day — 2,000 to 4,000 steps reduces mortality risk by 36%</div></div>
+        <div class="cta-item ci-green"><div class="cta-item-icon">🪑</div><div class="cta-item-text">Break up long periods of sitting — prolonged sitting raises cardiovascular risk independently</div></div>
       </div>
-      <div class="cta-bottom">
-        <div class="med-disclaimer">
-          <div class="med-disc-icon">⚕️</div>
-          <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
-        </div>
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">⚕️</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 12: CLOSING -->
+  <!-- SLIDE 14: BRAND CLOSE -->
   <div class="slide">
     <div class="close-wrap">
       <div class="close-logo">helf<span class="dot">.</span>school</div>
       <div class="close-sub">Health Education</div>
-      <div class="close-headline">A few minutes today <span>beats a perfect plan you never start.</span></div>
-      <div class="close-stats">
-        <div class="cst-card">
-          <div class="cst-num">+3 yrs</div>
-          <div class="cst-lab">from 15 min/day</div>
-          <div class="cst-src">Wen · Lancet 2011</div>
+      <div class="close-headline">Evidence-based. Written by a doctor. <span>Built for everyone.</span></div>
+      <div class="close-cards">
+        <div class="close-card">
+          <div class="close-card-icon">📚</div>
+          <div class="close-card-text">31 articles across 5 series — cardiovascular, digestive, neurological, cancer, and practical health</div>
+          <div class="close-card-src">helf.school · April 2026</div>
         </div>
-        <div class="cst-card">
-          <div class="cst-num">–47%</div>
-          <div class="cst-lab">mortality at 7k steps/day</div>
-          <div class="cst-src">Ding · LPH 2025</div>
+        <div class="close-card">
+          <div class="close-card-icon">🩺</div>
+          <div class="close-card-text">Written by Dr Paul — retired NHS GP with over 20 years of experience</div>
+          <div class="close-card-src">Retired 2019</div>
         </div>
-        <div class="cst-card">
-          <div class="cst-num">–10–20%</div>
-          <div class="cst-lab">from 30–60 min strength/wk</div>
-          <div class="cst-src">Momma · BJSM 2022</div>
+        <div class="close-card">
+          <div class="close-card-icon">🔓</div>
+          <div class="close-card-text">Start for free — Explorer tier requires no payment. Every claim cited to its primary source.</div>
+          <div class="close-card-src">helf.school/conditions</div>
         </div>
       </div>
-      <div class="med-disclaimer">
+      <div class="med-disclaimer" style="max-width:680px;">
         <div class="med-disc-icon">⚕️</div>
         <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
       </div>
@@ -767,79 +671,71 @@
 
 </div>
 
-<!-- DOTS (built dynamically) -->
-<div id="dots"></div>
+<div id="dots">
+  <div class="dot active" onclick="goTo(0)"></div>
+  <div class="dot" onclick="goTo(1)"></div>
+  <div class="dot" onclick="goTo(2)"></div>
+  <div class="dot" onclick="goTo(3)"></div>
+  <div class="dot" onclick="goTo(4)"></div>
+  <div class="dot" onclick="goTo(5)"></div>
+  <div class="dot" onclick="goTo(6)"></div>
+  <div class="dot" onclick="goTo(7)"></div>
+  <div class="dot" onclick="goTo(8)"></div>
+  <div class="dot" onclick="goTo(9)"></div>
+  <div class="dot" onclick="goTo(10)"></div>
+  <div class="dot" onclick="goTo(11)"></div>
+  <div class="dot" onclick="goTo(12)"></div>
+  <div class="dot" onclick="goTo(13)"></div>
+</div>
 
 <div class="disc">Health education — not medical advice. helf.school</div>
 
 <script>
-(function(){
-  const slides=document.querySelectorAll('.slide');
-  const total=slides.length;
-  const dotsBox=document.getElementById('dots');
-  const cur=document.getElementById('cur');
-  const tot=document.getElementById('tot');
-  tot.textContent=total;
-  let idx=0;
+  const slides=document.querySelectorAll('.slide'), dots=document.querySelectorAll('.dot');
+  let cur=0;
 
-  for(let i=0;i<total;i++){
-    const d=document.createElement('div');
-    d.className='dot'+(i===0?' active':'');
-    d.addEventListener('click',()=>go(i));
-    dotsBox.appendChild(d);
+  function animateCTA(){
+    const items=document.querySelectorAll('.cta-items .cta-item');
+    items.forEach(r=>r.classList.remove('visible'));
+    items.forEach((item,i)=>{setTimeout(()=>item.classList.add('visible'),350+i*620);});
   }
-  const dots=document.querySelectorAll('.dot');
 
-  function go(n){
-    if(n<0||n>=total)return;
-    slides[idx].classList.remove('active');
-    dots[idx].classList.remove('active');
-    idx=n;
-    slides[idx].classList.add('active');
-    dots[idx].classList.add('active');
-    cur.textContent=idx+1;
-    triggerSlide(idx);
+  function show(n){
+    slides[cur].classList.remove('active'); dots[cur].classList.remove('active');
+    cur=(n+slides.length)%slides.length;
+    slides[cur].classList.add('active'); dots[cur].classList.add('active');
+    document.getElementById('counter').textContent=(cur+1)+' / '+slides.length;
+    if(cur===12){animateCTA();}else{triggerSlide(cur);}
   }
+  function goTo(n){show(n);}
 
   document.addEventListener('keydown',e=>{
-    if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' ')go(idx+1);
-    else if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(idx-1);
-    else if(e.key==='Home')go(0);
-    else if(e.key==='End')go(total-1);
+    if(e.key==='ArrowRight'||e.key==='ArrowDown')show(cur+1);
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp')show(cur-1);
   });
-
-  let tx=0, ty=0;
-  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
-  document.addEventListener('touchend',e=>{
-    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
-    if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>50){
-      if(dx<0)go(idx+1); else go(idx-1);
-    }
-  });
+  let tx=0,ty=0;
+  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;});
+  document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>40){dx<0?show(cur+1):show(cur-1);}});
 
   function triggerSlide(n){
-    if(n===5) animateGroup(['b1','b2','b3','b4','b5','b6'], 150);
-    if(n===6) animateGroup(['d1','d2','d3','d4','d5'], 170);
-    if(n===8) animateGroup(['e1','e2','e3'], 220);
-    if(n===9) animateGroup(['e4','e5','e6'], 220);
+    if(n===5) animateGroup(['b1','b2','b3'],160);
+    if(n===6) animateGroup(['b4','b5','b6'],160);
+    if(n===7) animateGroup(['d1','d2','d3'],150);
+    if(n===8) animateGroup(['d4','d5'],220);
+    if(n===10) animateGroup(['e1','e2','e3'],220);
+    if(n===11) animateGroup(['e4','e5','e6'],220);
   }
-  function animateGroup(ids, step){
-    ids.forEach((id,i)=>{
-      setTimeout(()=>{ const el=document.getElementById(id); if(el) el.classList.add('vis'); }, 200 + i*step);
-    });
+
+  function animateGroup(ids,step){
+    ids.forEach((id,i)=>{setTimeout(()=>{const el=document.getElementById(id);if(el)el.classList.add('vis');},180+i*step);});
   }
 
   slides.forEach(s=>{
-    const obs = new MutationObserver(()=>{
-      if(!s.classList.contains('active')){
-        s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'));
-      }
-    });
-    obs.observe(s, {attributes:true});
+    const obs=new MutationObserver(()=>{if(!s.classList.contains('active')){s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'));}});
+    obs.observe(s,{attributes:true});
   });
 
   triggerSlide(0);
-})();
 </script>
 </body>
 </html>

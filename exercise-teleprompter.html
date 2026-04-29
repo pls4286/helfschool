@@ -1,206 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exercise — Teleprompter · helf.school</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Exercise — Teleprompter | helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --bg: #0A0F1A; --text: #F0EDE8; --accent: #d4b84a;
-      --cue-bg: rgba(212,184,74,0.18); --cue-border: #d4b84a;
-      --pause-bg: rgba(200,66,58,0.18); --pause-border: #C8423A;
+    :root{--navy:#1B2A4A;--coral:#E8634A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0a0f18;--cue:#ffd864;--cue-bg:rgba(255,216,100,.10)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{background:var(--bg);min-height:100%;color:#fff;font-family:'DM Sans',sans-serif}
+
+    /* TOPBAR */
+    #topbar{position:fixed;top:0;left:0;right:0;height:52px;z-index:100;background:var(--navy);border-bottom:2px solid var(--acc2);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem;font-size:.85rem}
+    .tb-l{display:flex;align-items:center;gap:.6rem}
+    .tb-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700}
+    .tb-title span{color:var(--coral)}
+    .tb-sub{font-size:.78rem;color:rgba(255,255,255,.80);font-weight:500}
+    .tb-r{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;font-size:.8rem}
+    .btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;padding:.3rem .7rem;border-radius:6px;font-size:.78rem;font-weight:600;cursor:pointer;transition:.15s}
+    .btn:hover{background:rgba(255,255,255,.18)}
+    .btn.primary{background:var(--coral);border-color:var(--coral)}
+    .btn.primary.paused{background:var(--acc);border-color:var(--acc);color:var(--navy)}
+    .spd{display:flex;align-items:center;gap:.3rem;color:rgba(255,255,255,.88)}
+    .spd-val{font-weight:700;color:var(--acc);min-width:1.3rem;text-align:center}
+    .word-count{font-size:.72rem;color:rgba(255,255,255,.70);font-weight:600}
+
+    /* PROGRESS */
+    #prog{position:fixed;top:52px;left:0;right:0;height:3px;background:rgba(255,255,255,.08);z-index:99}
+    #prog-bar{height:100%;background:var(--coral);width:0;transition:width .1s}
+
+    /* SEGMENT DOTS */
+    #segDots{position:fixed;right:12px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:90}
+    .segDot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.22);cursor:pointer;transition:.2s}
+    .segDot.active{background:var(--acc);transform:scale(1.35)}
+
+    /* MAIN */
+    #script{max-width:1020px;margin:0 auto;padding:50vh 2rem 60vh;font-size:var(--script-size,1.9rem);line-height:1.55;color:rgba(255,255,255,.96);font-weight:500}
+
+    .seg{margin-bottom:3.5rem;scroll-margin-top:120px}
+    .seg-head{display:flex;align-items:center;gap:.75rem;padding:.6rem 1rem;margin-bottom:1.1rem;background:rgba(212,184,74,.08);border-left:4px solid var(--acc);border-radius:0 8px 8px 0;font-family:'Fraunces',serif}
+    .seg-num{font-size:.9rem;font-weight:700;color:var(--acc);letter-spacing:.12em;text-transform:uppercase}
+    .seg-title{font-size:1.4rem;font-weight:700;color:#fff;line-height:1.2}
+
+    .seg p{margin-bottom:1.2rem}
+    .seg strong{color:var(--acc);font-weight:700}
+    .seg em{color:#e8b894;font-style:italic;font-weight:500}
+
+    .cue{background:var(--cue-bg);border:2px dashed var(--cue);border-radius:10px;padding:.85rem 1.1rem;margin:1.3rem 0;font-size:calc(var(--script-size,1.9rem) * 0.52);color:var(--cue);font-weight:600;line-height:1.45;font-family:'DM Sans',sans-serif}
+    .cue strong{color:#ffe898;font-weight:700}
+    .cue-label{font-size:.7em;letter-spacing:.12em;text-transform:uppercase;color:var(--cue);opacity:.88;display:block;margin-bottom:.35rem;font-weight:700}
+
+    .end-note{text-align:center;font-family:'Fraunces',serif;color:var(--acc);font-size:1.8rem;font-weight:700;padding:3rem 1rem;border-top:2px solid rgba(212,184,74,.25);margin-top:3rem}
+
+    @media(max-width:640px){
+      #script{padding:40vh 1.25rem 50vh;font-size:var(--script-size,1.55rem)}
+      .tb-title{font-size:.9rem}
+      .tb-sub{display:none}
+      .seg-title{font-size:1.15rem}
+      #segDots{right:6px}
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: var(--bg); color: var(--text); font-family: 'Georgia', serif; font-size: 1.9rem; line-height: 1.65; overflow: hidden; height: 100vh; user-select: none; }
-    .controls { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(10,15,26,0.95); border-bottom: 1px solid rgba(212,184,74,0.35); display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.8rem; flex-wrap: wrap; }
-    .ctrl-label { font-family: sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(240,237,232,0.55); }
-    .ctrl-btn { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: var(--text); border-radius: 5px; padding: 0.28rem 0.65rem; cursor: pointer; }
-    .ctrl-btn:hover { background: rgba(255,255,255,0.15); }
-    .ctrl-btn.active { background: var(--accent); border-color: var(--accent); color: #1B2A4A; }
-    .ctrl-sep { width: 1px; height: 24px; background: rgba(255,255,255,0.15); }
-    .ctrl-speed-display { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; color: var(--accent); min-width: 28px; text-align: center; }
-    .word-count { font-family: sans-serif; font-size: 0.68rem; color: rgba(240,237,232,0.45); margin-left: auto; }
-    .scroll-wrap { position: absolute; top: 56px; left: 0; right: 0; bottom: 48px; overflow: hidden; }
-    .scroll-inner { padding: 3rem 2.2rem 40vh; will-change: transform; }
-    .segment { margin-bottom: 2.8rem; }
-    .cue-box { background: var(--cue-bg); border: 2px solid var(--cue-border); border-radius: 8px; padding: 0.55rem 1rem; margin-bottom: 1.1rem; font-family: sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); display: flex; align-items: center; gap: 0.5rem; }
-    .cue-arrow { font-size: 1rem; flex-shrink: 0; }
-    .pause { background: var(--pause-bg); border-left: 3px solid var(--pause-border); border-radius: 0 6px 6px 0; padding: 0.4rem 0.9rem; margin: 1rem 0; font-family: sans-serif; font-size: 0.80rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #C8423A; }
-    .stat { color: var(--accent); font-weight: 700; }
-    .dots-bar { position: fixed; bottom: 0; left: 0; right: 0; height: 48px; background: rgba(10,15,26,0.95); border-top: 1px solid rgba(212,184,74,0.25); display: flex; align-items: center; justify-content: center; gap: 0.5rem; z-index: 50; }
-    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.22); cursor: pointer; transition: background 0.2s, transform 0.2s; }
-    .dot.active { background: var(--accent); transform: scale(1.3); }
-    .dot-label { font-family: sans-serif; font-size: 0.62rem; color: rgba(240,237,232,0.45); margin: 0 0.3rem; }
   </style>
 </head>
 <body>
 
-<div class="controls">
-  <span class="ctrl-label">Speed</span>
-  <button class="ctrl-btn" id="btn-slower">−</button>
-  <span class="ctrl-speed-display" id="speed-display">3</span>
-  <button class="ctrl-btn" id="btn-faster">+</button>
-  <div class="ctrl-sep"></div>
-  <span class="ctrl-label">Font</span>
-  <button class="ctrl-btn" id="btn-smaller">A−</button>
-  <button class="ctrl-btn" id="btn-bigger">A+</button>
-  <div class="ctrl-sep"></div>
-  <button class="ctrl-btn" id="btn-pause">⏸ Pause</button>
-  <button class="ctrl-btn" id="btn-reset">↑ Top</button>
-  <span class="word-count">~680 words · ~4.5 min</span>
+<!-- TOPBAR -->
+<div id="topbar">
+  <div class="tb-l">
+    <span class="tb-title">helf<span>.</span>school</span>
+    <span class="tb-sub">Teleprompter · Exercise · ~4 min · 6 segments</span>
+  </div>
+  <div class="tb-r">
+    <span class="word-count">~560 words</span>
+    <div class="spd">A <button class="btn" id="fontMinus">–</button><button class="btn" id="fontPlus">+</button></div>
+    <div class="spd">Speed <button class="btn" id="spdMinus">–</button><span class="spd-val" id="spdVal">3</span><button class="btn" id="spdPlus">+</button></div>
+    <button class="btn primary" id="playBtn">▶ Play</button>
+    <button class="btn" id="resetBtn">⟲ Reset</button>
+  </div>
 </div>
 
-<div class="scroll-wrap" id="scroll-wrap">
-<div class="scroll-inner" id="scroll-inner">
+<div id="prog"><div id="prog-bar"></div></div>
 
-  <!-- SEGMENT 0 — INTRO -->
-  <div class="segment" id="seg-0">
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 1 — Title card</div>
+<!-- SEGMENT DOTS -->
+<div id="segDots"></div>
 
-    I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about exercise — what the evidence actually shows, including its effect on lifespan.
+<!-- SCRIPT -->
+<div id="script">
 
-    <div class="pause">— brief pause —</div>
+  <!-- SEG 1: INTRO -->
+  <div class="seg" id="s1" data-title="Introduction">
+    <div class="seg-head">
+      <span class="seg-num">Segment 1</span>
+      <span class="seg-title">Introduction · ~15 sec</span>
+    </div>
 
-    Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — let's get into it.
-  </div>
+    <div class="cue">
+      <span class="cue-label">▶ ADVANCE NOW — Slide 1 · Intro title card</span>
+      Speak to camera. Warm, direct.
+    </div>
 
-  <!-- SEGMENT 1 — UK GUIDELINES -->
-  <div class="segment" id="seg-1">
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 3 — UK CMO Guidelines</div>
 
-    The UK Chief Medical Officers' guidelines set out two elements: <span class="stat">150 minutes of moderate activity a week</span> — that's 30 minutes, five days a week, a brisk walk — plus two sessions of strength training working the major muscle groups.
+    <p>I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about <strong>exercise</strong>.</p>
 
-    <div class="pause">— pause —</div>
+    <p>Now — what I'm giving you here is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — let's get into it.</p></div>
 
-    The strength component is the one most commonly overlooked — and it has independent evidence behind it. Just <span class="stat">30 to 60 minutes a week</span> of strength work — press-ups, squats, weights, heavy gardening — independently lowers mortality risk by ten to twenty percent. That's on top of any aerobic benefit.
+  <!-- SEG 2: BOTH VALUABLE -->
+  <div class="seg" id="s2" data-title="Both count">
+    <div class="seg-head">
+      <span class="seg-num">Segment 2</span>
+      <span class="seg-title">Physical activity AND exercise — both count</span>
+    </div>
 
-    <div class="pause">— pause —</div>
+    <div class="cue">
+      <span class="cue-label">▶ ADVANCE NOW — Slide 4 · Both valuable / Venn</span>
+      Two overlapping circles — physical activity + exercise. Gesture to both.
+    </div>
 
-    The key principle in the evidence: the biggest health dividend comes from moving from no activity to any activity — not from hitting the full target. The first fifteen minutes a day delivers a disproportionately large share of the benefit.
-  </div>
 
-  <!-- SEGMENT 2 — EVERYDAY MOVEMENT COUNTS -->
-  <div class="segment" id="seg-2">
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 4 — Everyday movement</div>
+    <p>Before we talk about how much to do, one message matters above all others.</p>
 
-    One message that matters above all others in the evidence. People often dismiss all the movement they're already doing — everyday activities, gardening, walking to the shops, taking the stairs, pushing a pram.
+    <p>People often say <em>"I don't really exercise"</em> — and dismiss all the movement they're already doing. <strong>Don't</strong>. A gym session counts. So does gardening. So does walking to the shops, taking the stairs, pushing a pram.</p>
 
-    <div class="pause">— pause —</div>
+    <p>Here's the evidence: a 2012 study of <strong>650,000 adults</strong> found that people doing <strong>half the recommended amount</strong> of activity still lived <strong>nearly two years longer</strong> than those doing nothing. What counts is <em>total</em> movement — not where it happened.</p></div>
 
-    For nearly every health outcome, what matters is the total amount of movement across the day — not where it happened or whether it was formal exercise. A gym session counts. So does gardening. The evidence doesn't distinguish between them.
+  <!-- SEG 3: HOW MUCH -->
+  <div class="seg" id="s3" data-title="How much">
+    <div class="seg-head">
+      <span class="seg-num">Segment 3</span>
+      <span class="seg-title">How much should you do?</span>
+    </div>
 
-    <div class="pause">— pause —</div>
+    <div class="cue">
+      <span class="cue-label">▶ ADVANCE NOW — Slide 3 · CMO Guidelines</span>
+      Point to 150 minutes. Then point to 2+ strength sessions.
+    </div>
 
-    A study of <span class="stat">650,000 adults</span> found that people doing half the recommended amount still lived nearly <span class="stat">two years longer</span> than those doing nothing. The evidence is emphatically on the side of any movement at all.
-  </div>
 
-  <!-- SEGMENT 3 — LIFESPAN -->
-  <div class="segment" id="seg-3">
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 5 — Lifespan dose-response</div>
+    <p>The UK Chief Medical Officers' guidelines are clear: <strong>150 minutes of moderate activity a week</strong> — that's 30 minutes, five days a week, a brisk walk — <strong>plus two strength sessions</strong> working the major muscle groups.</p>
 
-    Here's the headline number. Regular exercise adds years of life — and not a small number.
+    <p>The strength part is the one most people skip — and shouldn't. Just <strong>30 to 60 minutes a week</strong> of resistance work — press-ups, squats, weights, heavy gardening — <strong>independently lowers your risk of dying by 10 to 20 per cent</strong>. That's on top of any aerobic benefit.</p></div>
 
-    <div class="pause">— pause —</div>
+  <!-- SEG 4: LIFESPAN -->
+  <div class="seg" id="s4" data-title="Lifespan">
+    <div class="seg-head">
+      <span class="seg-num">Segment 4</span>
+      <span class="seg-title">Lifespan — the headline</span>
+    </div>
 
-    A large Taiwanese study in the Lancet followed over <span class="stat">400,000 people</span>. Those doing just fifteen minutes a day of moderate activity — less than half the guideline — lived on average <span class="stat">three years longer</span> than those who did nothing. Bigger doses added up to four and a half years.
+    <div class="cue">
+      <span class="cue-label">▶ ADVANCE NOW — Slide 5 · Lifespan J-curve</span>
+      Dose-response graph showing +3y at 15 min/day, +4.5y at higher doses.
+    </div>
 
-    <div class="pause">— pause —</div>
 
-    The curve in the data is steep at the bottom and flattens at the top. The largest benefit comes from moving off the sofa — not from hitting the full target or exceeding it.
-  </div>
+    <p>Here's the big one. Regular exercise adds <strong>years of life</strong> — and not a small number.</p>
 
-  <!-- SEGMENT 4 — 10,000 STEPS MYTH -->
-  <div class="segment" id="seg-4">
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 8 — 10,000 steps origin</div>
+    <p>A huge Taiwanese study in the Lancet followed over 400,000 people. Those who did just <strong>15 minutes a day</strong> of moderate activity — less than half the guideline — lived, on average, <strong>three years longer</strong> than those who did nothing. Bigger doses added up to four and a half years.</p>
 
-    A word on the ten thousand steps target — because it comes up constantly.
+    <p>The important bit? <em>The biggest dividend comes from moving off the sofa</em> — not from hitting the full target.</p></div>
 
-    <div class="pause">— pause —</div>
+  <!-- SEG 5: WHAT DOC CAN DO -->
+  <div class="seg" id="s5" data-title="Your doctor">
+  <!-- SEG 5: 10000 STEPS -->
+  <div class="seg" id="s5" data-title="10,000 steps">
+    <div class="seg-head">
+      <span class="seg-num">Segment 5</span>
+      <span class="seg-title">The 10,000 steps myth</span>
+    </div>
 
-    In 1965, a Japanese company launched the world's first consumer pedometer. They called it the Manpo-kei — which translates as "ten thousand steps meter." The number was chosen because it was catchy. It was marketing — not medicine.
+    <div class="cue">
+      <span class="cue-label">▶ ADVANCE NOW — Slide 10 · 10,000 steps origin + evidence</span>
+      Show the Japanese character 万歩計 first. Then the three stat cards: 36% / 47% / plateau.
+    </div>
 
-    <div class="pause">— pause —</div>
 
-    A large 2025 review in the Lancet finally addressed this directly. <span class="stat">Seven thousand steps a day</span> captures almost all the benefit. At that level, there is a <span class="stat">47% lower risk</span> of dying early compared to someone doing 2,000 steps. The benefit curve plateaus well before ten thousand. The evidence says seven thousand is enough.
-  </div>
+    <p>You've probably heard you need <strong>10,000 steps a day</strong>. Here's where that number actually comes from.</p>
 
-  <!-- SEGMENT 5 — CTA -->
-  <div class="segment" id="seg-5">
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 11 — CTA</div>
+    <p>In 1965, a Japanese company launched the world's first consumer pedometer. They called it the <em>Manpo-kei</em> — which literally translates as "10,000 steps meter". The number was chosen partly because the Japanese character for 10,000 looks like a person walking, and partly because it was catchy. <strong>It was marketing — not medicine.</strong></p>
 
-    So — what does the evidence point to? More movement across the day, less prolonged sitting, and two short strength sessions a week. These are the patterns with the strongest evidence for long-term health.
+    <p>A huge 2025 review in the Lancet finally settled it: <strong>7,000 steps a day</strong> captures almost all the benefit. At that level, you get a <strong>47% lower risk of dying early</strong> compared to someone doing 2,000 steps. And even going from 2,000 to 4,000 a day drops that risk by over a third.</p></div>
 
-    <div class="pause">— pause —</div>
+  <!-- SEG 6: CTA & CLOSE -->
+  <div class="seg" id="s6" data-title="Begin where you are">
+    <div class="seg-head">
+      <span class="seg-num">Segment 6</span>
+      <span class="seg-title">Begin where you are</span>
+    </div>
 
-    For anyone with a health condition — raised blood pressure, diabetes, or a cardiac history — NHS Exercise Referral schemes are available in many areas, offering twelve weeks of supervised activity at low or no cost. Cardiac Rehabilitation is the recognised clinical pathway after a cardiac event, and participation consistently improves outcomes.
+    <div class="cue">
+      <span class="cue-label">▶ ADVANCE NOW — Slides 13–14 · CTA + closing</span>
+      Walk CTA → Strength CTA → Closing quote. Hold eye contact on final line.
+    </div>
 
-    <div class="pause">— pause —</div>
 
-    The evidence is clear that the starting point matters far more than the endpoint. Any increase from a current baseline produces measurable benefit. What that looks like in practice is a conversation for you to have with your GP or healthcare professional.
+    <p>So — what does the evidence tell us?</p>
 
-    <div class="pause">— pause —</div>
+    <p>Fifteen minutes of moderate exercise a day adds roughly 3 years of life. That's from the Lancet — 416,000 adults. And 7,000 steps versus 2,000 is associated with 47% lower mortality. The 10,000 figure was always marketing — the evidence says 7,000 is where the benefit plateaus.</p>
 
-    As always — anything personally relevant here is a conversation for you to have with your GP or healthcare professional. I'm Dr Paul. Thanks for watching.
+    <p>Half the guideline — 75 minutes a week — still adds nearly 2 years of life. And 30 to 60 minutes of strength work per week independently lowers mortality by 10 to 20 percent — on top of any aerobic benefit.</p>
 
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW · SLIDE 12 — Closing card</div>
-  </div>
+    <p>In practice — add 1,000 steps a day. Going from 2,000 to 4,000 steps drops mortality risk by 36%. Two strength sessions a week at home will do. And break up long periods of sitting — prolonged sitting raises cardiovascular risk independently, even in people who exercise.</p>
 
-</div>
-</div>
+    <p>For anyone with a cardiac history, raised blood pressure, or diabetes — cardiac rehabilitation and the NHS Exercise Referral scheme are the evidence-based clinical pathways. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
 
-<div class="dots-bar" id="dots-bar">
-  <span class="dot-label">Seg</span>
-  <div class="dot active" data-seg="0" title="Intro"></div>
-  <div class="dot" data-seg="1" title="UK guidelines"></div>
-  <div class="dot" data-seg="2" title="Everyday movement"></div>
-  <div class="dot" data-seg="3" title="Lifespan"></div>
-  <div class="dot" data-seg="4" title="10,000 steps myth"></div>
-  <div class="dot" data-seg="5" title="CTA"></div>
+    <p>I'm Dr Paul. Thanks for watching.</p></div>
+
+  <div class="end-note">— End of script —</div>
+
 </div>
 
 <script>
-  const SPEED_LEVELS = [0, 8, 14, 20, 28, 38, 50];
-  let speedLevel = 3, fontSize = 1.9, paused = false, pos = 0, lastTs = null;
-  const wrap = document.getElementById('scroll-wrap');
-  const inner = document.getElementById('scroll-inner');
-  const spdDisp = document.getElementById('speed-display');
-  function applyFont() { inner.style.fontSize = fontSize + 'rem'; }
-  function raf(ts) {
-    if (!paused) {
-      if (lastTs !== null) { pos += SPEED_LEVELS[speedLevel] * (ts - lastTs) / 1000; inner.style.transform = 'translateY(-' + pos + 'px)'; }
-      lastTs = ts;
-    } else { lastTs = null; }
-    requestAnimationFrame(raf);
-  }
-  requestAnimationFrame(raf);
-  const dots = document.querySelectorAll('.dot');
-  const segs = document.querySelectorAll('.segment');
-  function updateDots() {
-    let active = 0;
-    segs.forEach((seg, i) => { if (pos >= seg.offsetTop - 80) active = i; });
-    dots.forEach(d => d.classList.remove('active'));
-    if (dots[active]) dots[active].classList.add('active');
-  }
-  setInterval(updateDots, 400);
-  dots.forEach(d => d.addEventListener('click', () => {
-    const seg = segs[parseInt(d.dataset.seg)];
-    if (seg) { pos = Math.max(0, seg.offsetTop - 80); inner.style.transform = 'translateY(-' + pos + 'px)'; }
-  }));
-  document.getElementById('btn-faster').addEventListener('click', () => { speedLevel = Math.min(6, speedLevel + 1); spdDisp.textContent = speedLevel; });
-  document.getElementById('btn-slower').addEventListener('click', () => { speedLevel = Math.max(0, speedLevel - 1); spdDisp.textContent = speedLevel; });
-  document.getElementById('btn-bigger').addEventListener('click', () => { fontSize = Math.min(3.2, +(fontSize + 0.15).toFixed(2)); applyFont(); });
-  document.getElementById('btn-smaller').addEventListener('click', () => { fontSize = Math.max(1.2, +(fontSize - 0.15).toFixed(2)); applyFont(); });
-  const pauseBtn = document.getElementById('btn-pause');
-  pauseBtn.addEventListener('click', () => {
-    paused = !paused;
-    pauseBtn.textContent = paused ? '▶ Resume' : '⏸ Pause';
-    pauseBtn.classList.toggle('active', paused);
+(function(){
+  const PX_PER_SEC_BASE=20;
+  let speed=3;
+  let playing=false;
+  let rafId=null;
+  let lastT=0;
+  let accum=0;
+  let fontSize=1.9;
+
+  const playBtn=document.getElementById('playBtn');
+  const resetBtn=document.getElementById('resetBtn');
+  const spdMinus=document.getElementById('spdMinus');
+  const spdPlus=document.getElementById('spdPlus');
+  const spdVal=document.getElementById('spdVal');
+  const fontMinus=document.getElementById('fontMinus');
+  const fontPlus=document.getElementById('fontPlus');
+  const progBar=document.getElementById('prog-bar');
+  const segDotsBox=document.getElementById('segDots');
+  const segs=document.querySelectorAll('.seg');
+
+  // Build segment dots
+  segs.forEach((s,i)=>{
+    const d=document.createElement('div');
+    d.className='segDot';
+    d.title=s.dataset.title||('Segment '+(i+1));
+    d.addEventListener('click',()=>{
+      s.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+    segDotsBox.appendChild(d);
   });
-  document.getElementById('btn-reset').addEventListener('click', () => { pos = 0; inner.style.transform = 'translateY(0)'; });
-  let ty = 0;
-  wrap.addEventListener('touchstart', e => { ty = e.touches[0].clientY; paused = true; pauseBtn.textContent = '▶ Resume'; pauseBtn.classList.add('active'); });
-  wrap.addEventListener('touchmove', e => { e.preventDefault(); const dy = e.touches[0].clientY - ty; pos = Math.max(0, pos - dy * 0.8); inner.style.transform = 'translateY(-' + pos + 'px)'; ty = e.touches[0].clientY; }, { passive: false });
-  applyFont();
+  const segDots=document.querySelectorAll('.segDot');
+
+  function updateProgress(){
+    const h=document.documentElement.scrollHeight-window.innerHeight;
+    const pct=h>0?(window.scrollY/h)*100:0;
+    progBar.style.width=pct+'%';
+    // active segment
+    let act=0;
+    const y=window.scrollY+window.innerHeight/2;
+    segs.forEach((s,i)=>{if(s.offsetTop<=y)act=i});
+    segDots.forEach((d,i)=>d.classList.toggle('active',i===act));
+  }
+  window.addEventListener('scroll',updateProgress,{passive:true});
+  updateProgress();
+
+  function tick(ts){
+    if(!playing){lastT=0;return}
+    if(!lastT)lastT=ts;
+    const dt=(ts-lastT)/1000;
+    lastT=ts;
+    accum+=dt*PX_PER_SEC_BASE*speed;
+    if(accum>=1){
+      const d=Math.floor(accum);
+      accum-=d;
+      window.scrollBy(0,d);
+    }
+    rafId=requestAnimationFrame(tick);
+  }
+
+  function play(){
+    playing=true;
+    playBtn.textContent='❚❚ Pause';
+    playBtn.classList.add('paused');
+    lastT=0;
+    rafId=requestAnimationFrame(tick);
+  }
+  function pause(){
+    playing=false;
+    playBtn.textContent='▶ Play';
+    playBtn.classList.remove('paused');
+    if(rafId)cancelAnimationFrame(rafId);
+  }
+  playBtn.addEventListener('click',()=>{playing?pause():play()});
+  resetBtn.addEventListener('click',()=>{pause();window.scrollTo({top:0,behavior:'smooth'})});
+  spdMinus.addEventListener('click',()=>{speed=Math.max(1,speed-1);spdVal.textContent=speed});
+  spdPlus.addEventListener('click',()=>{speed=Math.min(6,speed+1);spdVal.textContent=speed});
+  fontMinus.addEventListener('click',()=>{fontSize=Math.max(1.1,fontSize-.15);document.documentElement.style.setProperty('--script-size',fontSize+'rem')});
+  fontPlus.addEventListener('click',()=>{fontSize=Math.min(3,fontSize+.15);document.documentElement.style.setProperty('--script-size',fontSize+'rem')});
+
+  // Space = play/pause (when not in input)
+  document.addEventListener('keydown',e=>{
+    if(e.target.tagName==='INPUT')return;
+    if(e.code==='Space'){e.preventDefault();playing?pause():play()}
+    if(e.key==='ArrowUp'){spdPlus.click()}
+    if(e.key==='ArrowDown'){spdMinus.click()}
+  });
+
+  // Touch swipe for speed control
+  let tY=0;
+  document.addEventListener('touchstart',e=>{tY=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',e=>{
+    const dY=e.changedTouches[0].clientY-tY;
+    if(Math.abs(dY)>80){
+      if(dY<0)spdPlus.click(); else spdMinus.click();
+    }
+  });
+})();
 </script>
 </body>
 </html>
