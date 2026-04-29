@@ -6,7 +6,7 @@
   <title>Heart Attack Risk — Visuals | helf.school</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--calm:#70b8e8;--cardio:#C8423A}
+    :root{--navy:#1B2A4A;--coral:#E8634A;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
 
@@ -39,7 +39,7 @@
     .intro-sub{font-size:1.1rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;max-width:680px;line-height:1.5;font-weight:400}
     .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
 
-    /* QRISK DIAGRAM (slide 2) */
+    /* QRISK DIAGRAM */
     .qrisk-stage{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:1.2rem;min-height:0}
     .qrisk-box{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:20px;padding:1.6rem 2rem;display:flex;align-items:center;gap:2rem;max-width:860px}
     .qrisk-num{font-family:'Fraunces',serif;font-size:clamp(5rem,10vw,7rem);font-weight:700;color:var(--acc);line-height:.9;letter-spacing:-.03em}
@@ -59,29 +59,29 @@
     .qt-lbl{font-size:.85rem;color:rgba(255,255,255,.92);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.35rem}
     .qt-desc{font-size:.85rem;color:rgba(255,255,255,.78);line-height:1.35}
 
-    /* RISK FACTOR ROWS (slide 3) — RED */
-    .sys-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.65rem;flex:1;min-height:0}
+    /* SYS ROWS — max 3 per slide, clamp:4 */
+    .sys-grid{display:grid;grid-template-columns:1fr;gap:.65rem;flex:1;min-height:0}
     .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .sys-card.vis{opacity:1;transform:translateY(0)}
     .sys-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
     .sys-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
-    .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12}
-    .sys-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .sys-stat{font-family:'Fraunces',serif;font-size:clamp(1.6rem,2.4vw,2.1rem);font-weight:700;color:var(--bad);line-height:1;text-align:right;white-space:nowrap;padding-left:.75rem;padding-top:.1rem}
+    .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.2rem;line-height:1.15}
+    .sys-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+    .sys-stat{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.1vw,1.8rem);font-weight:700;color:var(--bad);line-height:1;text-align:right;white-space:nowrap;padding-left:.75rem;padding-top:.1rem}
 
-    /* DOCTOR ROWS (slide 4) — GREEN */
-    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
+    /* DOC ROWS — max 3 per slide, clamp:4 */
+    .doc-grid{display:grid;grid-template-columns:1fr;gap:.55rem;flex:1;min-height:0}
     .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .doc-card.vis{opacity:1;transform:translateY(0)}
     .doc-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
     .doc-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
-    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12}
-    .doc-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.2rem;line-height:1.15}
+    .doc-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
     .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.1vw,1.95rem);font-weight:700;color:var(--good);line-height:1;text-align:right;white-space:nowrap;padding-left:.75rem;padding-top:.1rem}
 
-    /* EVIDENCE CARDS — UPDATED STAT BLOCK PATTERN */
+    /* EV-CARDS — 2-card: padding 1.1rem, ev-body ≤30w, clamp:4 */
     .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
-    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .45s ease}
+    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:16px;padding:1.1rem 1.4rem;display:grid;grid-template-columns:220px 1fr;gap:1.4rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .45s ease}
     .ev-card.vis{opacity:1;transform:translateY(0)}
     .ev-stat{background:rgba(212,184,74,.09);border-radius:14px;padding:1.1rem .9rem;text-align:left}
     .ev-stat-context{font-size:.68rem;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:rgba(255,255,255,.60);margin-bottom:.2rem}
@@ -93,52 +93,52 @@
     .ev-label{font-size:.82rem;color:rgba(255,255,255,.80);line-height:1.4}
     .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;margin-bottom:.25rem;line-height:1.15}
     .ev-det .ev-journal{font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
-    .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400}
+    .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 
-    /* MECHANISM ROWS (slide 8) — AMBER */
-    .mech-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.55rem;flex:1;min-height:0}
+    /* MECH ROWS — max 3 per slide, clamp:4 */
+    .mech-grid{display:grid;grid-template-columns:1fr;gap:.55rem;flex:1;min-height:0}
     .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .mech-card.vis{opacity:1;transform:translateY(0)}
     .mech-icon{font-size:2.4rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
     .mech-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
-    .mech-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.3rem;line-height:1.12}
-    .mech-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .mech-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.2rem;line-height:1.15}
+    .mech-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
     .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2vw,1.85rem);font-weight:700;color:var(--warn);line-height:1;text-align:right;white-space:nowrap;padding-left:.75rem;padding-top:.1rem}
 
-    /* CTA SLIDE 9 — HIGH-IMPACT HORIZONTAL ROWS */
+    /* CTA — sequential animation */
     .cta-slide{position:relative}
-    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%, rgba(212,184,74,.18), rgba(212,184,74,.04) 45%, transparent 70%);pointer-events:none;z-index:0}
+    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(212,184,74,.18),rgba(212,184,74,.04) 45%,transparent 70%);pointer-events:none;z-index:0}
     .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem 0;gap:.55rem}
     .cta-header{text-align:center}
     .cta-badge-v2{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.42rem 1.15rem;border-radius:100px;display:inline-block;margin-bottom:.4rem}
-    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(2.2rem,4.0vw,3.2rem);font-weight:700;color:#fff;line-height:1.05;letter-spacing:-.028em}
+    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:700;color:#fff;line-height:1.05;letter-spacing:-.028em}
     .cta-headline-v2 span{color:var(--acc)}
-    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.4rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.85);margin-top:.2rem}
-    .cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.5rem;min-height:0}
-    .cta-row-v2{display:grid;grid-template-columns:60px 1fr auto;align-items:start;background:rgba(255,255,255,.06);border:1px solid rgba(212,184,74,.30);border-left:4px solid var(--acc);border-radius:0 10px 10px 0;padding:.65rem .9rem;gap:.75rem;min-height:0;overflow:hidden}
-    .cta-row-icon-v2{font-size:1.9rem;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .cta-row-content-v2{min-height:0}
-    .cta-row-title-v2{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(.95rem,1.6vw,1.1rem);color:#fff;line-height:1.2;margin-bottom:.15rem}
-    .cta-row-body-v2{font-size:.88rem;color:rgba(255,255,255,.85);line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-    .cta-row-word-v2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.5rem,2.4vw,2.0rem);color:var(--acc);line-height:1;text-align:right;flex-shrink:0;white-space:nowrap;padding-top:.1rem}
+    .cta-items{display:grid;grid-template-rows:repeat(6,1fr);gap:.38rem;min-height:0;overflow:hidden}
+    .cta-item{border-radius:9px;padding:.4rem 1rem;display:flex;align-items:center;gap:.85rem;opacity:0;transform:translateX(-24px);transition:opacity .38s ease,transform .38s ease}
+    .cta-item.visible{opacity:1;transform:translateX(0)}
+    .cta-item.ci-red  {background:rgba(180,45,45,0.25);border:1px solid rgba(220,80,70,0.40)}
+    .cta-item.ci-amber{background:rgba(170,110,20,0.25);border:1px solid rgba(232,168,74,0.40)}
+    .cta-item.ci-green{background:rgba(38,105,55,0.30);border:1px solid rgba(126,204,153,0.42)}
+    .cta-item-icon{font-size:1.45rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .cta-item-text{font-size:.93rem;font-weight:600;color:rgba(255,255,255,.95);line-height:1.3}
     .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.7rem 1.1rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px}
     .med-disc-icon{font-size:1.2rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .med-disc-text{font-size:.88rem;color:rgba(255,255,255,.85);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left}
+    .med-disc-text{font-size:1rem;color:rgba(255,255,255,.90);line-height:1.5;font-family:'Fraunces',serif;font-weight:400}
     .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
 
-    /* CLOSING */
-    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.6rem;padding:1.5rem}
-    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
+    /* BRAND CLOSE */
+    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100%;text-align:center;gap:1.1rem;padding:1rem 1.5rem}
+    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em;flex-shrink:0}
     .close-logo .dot{color:var(--coral)}
-    .close-sub{font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82)}
-    .close-headline{font-family:'Fraunces',serif;font-size:clamp(3rem,5.8vw,5.2rem);font-weight:700;color:#fff;max-width:1050px;line-height:1.08;letter-spacing:-.025em}
+    .close-sub{font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82);flex-shrink:0}
+    .close-headline{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:#fff;flex-shrink:0}
     .close-headline span{color:var(--acc)}
-    .close-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1050px;width:100%}
-    .cst-card{background:rgba(212,184,74,.1);border:1px solid rgba(212,184,74,.35);border-radius:16px;padding:1.5rem 1.1rem;display:flex;flex-direction:column;align-items:center;gap:.55rem}
-    .cst-num{font-family:'Fraunces',serif;font-size:clamp(2.4rem,4.4vw,3.8rem);font-weight:700;color:var(--acc);line-height:.95;letter-spacing:-.02em}
-    .cst-lab{font-size:1.05rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.32}
-    .cst-src{font-size:.85rem;color:rgba(255,255,255,.72);font-style:italic}
-    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.3rem}
+    .close-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;width:100%;max-width:1050px;flex:1;min-height:0}
+    .close-card{background:rgba(212,184,74,.10);border:1px solid rgba(212,184,74,.35);border-radius:16px;padding:1.2rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.45rem;justify-content:center}
+    .close-card-icon{font-size:2.2rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .close-card-text{font-size:.95rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.4;text-align:center}
+    .close-card-src{font-size:.80rem;color:rgba(255,255,255,.65);font-style:italic}
+    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);flex-shrink:0}
 
     .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:.68rem;color:rgba(255,255,255,.18);z-index:90;white-space:nowrap}
   </style>
@@ -155,7 +155,7 @@
     <span class="tb-sub">· Heart Attack Risk</span>
   </div>
   <div class="tb-right">
-    <span id="counter" class="slide-counter">1 / 10</span>
+    <span id="counter" class="slide-counter">1 / 13</span>
     <span class="kb-hint">← → navigate</span>
   </div>
 </div>
@@ -193,21 +193,21 @@
         <div class="qt mid">
           <div class="qt-range">10–19%</div>
           <div class="qt-lbl">Intermediate</div>
-          <div class="qt-desc">Statin often part of clinical discussion · NICE NG238</div>
+          <div class="qt-desc">Statin part of clinical discussion · NICE NG238</div>
         </div>
         <div class="qt high">
           <div class="qt-range">≥20%</div>
           <div class="qt-lbl">High risk</div>
-          <div class="qt-desc">Statin and lifestyle measures both strongly supported by evidence</div>
+          <div class="qt-desc">Statin and lifestyle measures both strongly supported</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 3: RISK FACTORS — RED — HARM -->
+  <!-- SLIDE 3: RISK FACTORS 1 of 2 — RED — 3 cards -->
   <div class="slide">
-    <div class="slide-title">Key risk factors: <span>what QRISK3 captures</span></div>
-    <div class="sys-grid">
+    <div class="slide-title">Key risk factors: <span>what QRISK3 captures — 1 of 2</span></div>
+    <div class="sys-grid" style="grid-template-rows:repeat(3,1fr);">
       <div class="sys-card" id="s1">
         <div class="sys-icon">📊</div>
         <div class="sys-content">
@@ -227,16 +227,23 @@
       <div class="sys-card" id="s3">
         <div class="sys-icon">🩸</div>
         <div class="sys-content">
-          <div class="sys-title">Cholesterol ratio (Total:HDL)</div>
+          <div class="sys-title">Cholesterol ratio</div>
           <div class="sys-body">The ratio of total to HDL cholesterol captures LDL burden. Each 1 mmol/L rise in LDL is associated with increased major vascular event risk.</div>
         </div>
         <div class="sys-stat">per mmol/L</div>
       </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: RISK FACTORS 2 of 2 — RED — 2 cards -->
+  <div class="slide">
+    <div class="slide-title">Key risk factors: <span>what QRISK3 captures — 2 of 2</span></div>
+    <div class="sys-grid" style="grid-template-rows:repeat(2,1fr);">
       <div class="sys-card" id="s4">
         <div class="sys-icon">🚬</div>
         <div class="sys-content">
           <div class="sys-title">Smoking status</div>
-          <div class="sys-body">Current smoking is associated with roughly two to four times higher cardiovascular risk — and is clinically recognised as the single most impactful modifiable factor.</div>
+          <div class="sys-body">Current smoking is associated with roughly two to four times higher cardiovascular risk — clinically recognised as the single most impactful modifiable factor.</div>
         </div>
         <div class="sys-stat">2–4×</div>
       </div>
@@ -251,15 +258,15 @@
     </div>
   </div>
 
-  <!-- SLIDE 4: DOCTOR — GREEN — ACTION -->
+  <!-- SLIDE 5: DOCTOR 1 of 2 — GREEN — 3 cards -->
   <div class="slide">
-    <div class="slide-title">What your <span>doctor might do</span></div>
-    <div class="doc-grid">
+    <div class="slide-title">What your <span>doctor might do — 1 of 2</span></div>
+    <div class="doc-grid" style="grid-template-rows:repeat(3,1fr);">
       <div class="doc-card" id="d1">
         <div class="doc-icon">🧮</div>
         <div class="doc-content">
           <div class="doc-title">QRISK3 calculation</div>
-          <div class="doc-body">Age, sex, BP, cholesterol, smoking, BMI, and comorbidities — combined into a 10-year cardiovascular risk estimate.</div>
+          <div class="doc-body">Age, sex, BP, cholesterol, smoking, BMI, and comorbidities — combined into a personalised 10-year cardiovascular risk estimate.</div>
         </div>
         <div class="doc-action">Calculate</div>
       </div>
@@ -279,6 +286,13 @@
         </div>
         <div class="doc-action">Test</div>
       </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: DOCTOR 2 of 2 — GREEN — 3 cards -->
+  <div class="slide">
+    <div class="slide-title">What your <span>doctor might do — 2 of 2</span></div>
+    <div class="doc-grid" style="grid-template-rows:repeat(3,1fr);">
       <div class="doc-card" id="d4">
         <div class="doc-icon">📋</div>
         <div class="doc-content">
@@ -299,14 +313,14 @@
         <div class="doc-icon">💊</div>
         <div class="doc-content">
           <div class="doc-title">Statin discussion — NICE NG238</div>
-          <div class="doc-body">At 10%+ 10-year risk, NICE NG238 identifies atorvastatin 20mg as the recommended first-line treatment for primary cardiovascular prevention.</div>
+          <div class="doc-body">At 10%+ 10-year risk, NICE NG238 identifies a high-intensity statin as the recommended first-line treatment for primary cardiovascular prevention.</div>
         </div>
         <div class="doc-action">Treat</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 5: RESEARCH — QRISK3 VALIDATION -->
+  <!-- SLIDE 7: RESEARCH — QRISK3 VALIDATION — 2 ev-cards, ev-body ≤30w -->
   <div class="slide">
     <div class="slide-title">Research · <span>how well does QRISK3 work?</span></div>
     <div class="ev-stage">
@@ -318,28 +332,28 @@
           <div class="ev-label">7.9 million UK primary care records · BMJ 2017 · Hippisley-Cox et al</div>
         </div>
         <div class="ev-det">
-          <div class="ev-trial">QRISK3 development and validation</div>
+          <div class="ev-trial">QRISK3 — development and validation</div>
           <div class="ev-journal">Hippisley-Cox et al · BMJ · 2017 · n=7.9M</div>
-          <div class="ev-body">QRISK3 was derived and validated on almost <strong>8 million UK primary care records</strong>. It predicts cardiovascular events more accurately than earlier tools — notably in groups previously underrepresented, including those with mental illness, inflammatory conditions, migraine, and those taking cardiovascular-risk-altering medications.</div>
+          <div class="ev-body">QRISK3 was validated on almost 8 million UK primary care records — more accurate than earlier tools, especially for people with mental illness or inflammatory conditions.</div>
         </div>
       </div>
       <div class="ev-card" id="e2">
         <div class="ev-stat">
           <div class="ev-stat-context">Key finding</div>
           <div class="ev-num good" style="font-size:2.2rem;">Better</div>
-          <div class="ev-what">outcomes from risk-based vs single risk-factor treatment decisions</div>
-          <div class="ev-label">overall risk-based approach identifies more who benefit — Collins and Altman · BMJ</div>
+          <div class="ev-what">outcomes from risk-based vs single risk-factor treatment</div>
+          <div class="ev-label">overall risk approach identifies more who benefit · Collins and Altman · BMJ</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Risk-based vs threshold-based care</div>
-          <div class="ev-journal">Collins and Altman · BMJ · 2012 and follow-up</div>
-          <div class="ev-body">Treating people based on <strong>overall calculated cardiovascular risk</strong> — rather than single cut-offs for individual measures like blood pressure or cholesterol — identifies more people who genuinely benefit from treatment and avoids treating those who are unlikely to do so.</div>
+          <div class="ev-journal">Collins and Altman · BMJ · 2012</div>
+          <div class="ev-body">Treating people based on overall cardiovascular risk — rather than single cut-offs for blood pressure or cholesterol — identifies more who benefit and avoids overtreating those unlikely to do so.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 6: RESEARCH — TREATMENT BENEFITS -->
+  <!-- SLIDE 8: RESEARCH — TREATMENT BENEFITS — 2 ev-cards, ev-body ≤30w -->
   <div class="slide">
     <div class="slide-title">Research · <span>risk-based treatment evidence</span></div>
     <div class="ev-stage">
@@ -348,12 +362,12 @@
           <div class="ev-stat-context">Key finding</div>
           <div class="ev-num good">~22%</div>
           <div class="ev-what">reduction in major cardiovascular events</div>
-          <div class="ev-label">per 1 mmol/L fall in LDL cholesterol · CTT · Lancet 2010 · 26 trials</div>
+          <div class="ev-label">per 1 mmol/L fall in LDL · CTT · Lancet 2010 · 26 trials · 170,000 participants</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">CTT — cholesterol lowering across risk levels</div>
           <div class="ev-journal">Baigent et al · The Lancet · 2010 · 26 trials</div>
-          <div class="ev-body">Every 1 mmol/L reduction in LDL cholesterol produced a <strong>~22% reduction</strong> in major vascular events — the benefit was consistent regardless of baseline cardiovascular risk, supporting the case for risk-scaled prescribing across the full risk spectrum.</div>
+          <div class="ev-body">Every 1 mmol/L LDL reduction cut major vascular events by ~22% — consistent regardless of baseline cardiovascular risk, supporting risk-scaled prescribing across the full risk spectrum.</div>
         </div>
       </div>
       <div class="ev-card" id="e4">
@@ -361,18 +375,18 @@
           <div class="ev-stat-context">Key finding</div>
           <div class="ev-num good">~27%</div>
           <div class="ev-what">reduction in stroke risk</div>
-          <div class="ev-label">per 10 mmHg fall in systolic blood pressure · Ettehad · Lancet 2016 · n=613,815</div>
+          <div class="ev-label">per 10 mmHg fall in systolic BP · Ettehad · Lancet 2016 · n=613,815</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Ettehad — blood pressure lowering</div>
           <div class="ev-journal">Ettehad et al · The Lancet · 2016 · n=613,815</div>
-          <div class="ev-body">Each 10 mmHg reduction in systolic blood pressure (the top reading) cut coronary heart disease by 17%, stroke by <strong>27%</strong>, and major cardiovascular events by ~20% — independent of the starting blood pressure level.</div>
+          <div class="ev-body">Each 10 mmHg reduction in systolic blood pressure cut coronary heart disease by 17%, stroke by 27%, and major cardiovascular events by ~20% — independent of starting blood pressure level.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 7: RESEARCH — MODIFIABLE RISK -->
+  <!-- SLIDE 9: RESEARCH — MODIFIABLE RISK — 2 ev-cards, ev-body ≤30w -->
   <div class="slide">
     <div class="slide-title">Research · <span>most cardiovascular risk is modifiable</span></div>
     <div class="ev-stage">
@@ -386,7 +400,7 @@
         <div class="ev-det">
           <div class="ev-trial">INTERHEART — 52 countries · 29,972 participants</div>
           <div class="ev-journal">Yusuf et al · The Lancet · 2004</div>
-          <div class="ev-body">Across 52 countries and nearly 30,000 people, <strong>nine modifiable factors</strong> — lipids, smoking, blood pressure, diabetes, obesity, diet, physical activity, alcohol, and psychosocial stress — accounted for approximately 90% of the population risk of a first heart attack. The finding was consistent across all sexes, age groups, and world regions.</div>
+          <div class="ev-body">Nine modifiable factors — lipids, smoking, blood pressure, diabetes, obesity, diet, activity, alcohol, and psychosocial stress — accounted for ~90% of first heart attack risk across all ages and regions.</div>
         </div>
       </div>
       <div class="ev-card" id="e6">
@@ -394,21 +408,21 @@
           <div class="ev-stat-context">Key finding</div>
           <div class="ev-num good">~50%</div>
           <div class="ev-what">lower coronary event rate with favourable lifestyle</div>
-          <div class="ev-label">even in those with highest genetic predisposition · Khera · NEJM 2016 · n≈55,685</div>
+          <div class="ev-label">even in highest genetic predisposition · Khera · NEJM 2016 · n≈55,685</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Lifestyle and genetic risk — Khera et al</div>
           <div class="ev-journal">Khera et al · NEJM · 2016 · n≈55,685</div>
-          <div class="ev-body">Even in people with the <strong>highest genetic predisposition</strong> to coronary artery disease, a favourable lifestyle (not smoking, healthy weight, regular physical activity, and a balanced diet) was associated with approximately 50% lower coronary event rates — establishing that lifestyle is a powerful modifier of inherited cardiovascular risk.</div>
+          <div class="ev-body">Even in those with the highest genetic predisposition to coronary disease, a favourable lifestyle was associated with ~50% lower event rates — lifestyle powerfully modifies inherited risk.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 8: MECHANISMS — AMBER -->
+  <!-- SLIDE 10: MECHANISMS 1 of 2 — AMBER — 3 cards -->
   <div class="slide">
-    <div class="slide-title">How risk factors <span>drive heart attack</span></div>
-    <div class="mech-grid">
+    <div class="slide-title">How risk factors <span>drive heart attack — 1 of 2</span></div>
+    <div class="mech-grid" style="grid-template-rows:repeat(3,1fr);">
       <div class="mech-card" id="m1">
         <div class="mech-icon">💪</div>
         <div class="mech-content">
@@ -421,7 +435,7 @@
         <div class="mech-icon">🩸</div>
         <div class="mech-content">
           <div class="mech-title">LDL infiltration and oxidation</div>
-          <div class="mech-body">Raised LDL cholesterol penetrates the damaged artery wall, oxidises, and is engulfed by immune cells — forming the fatty core of atherosclerotic plaque.</div>
+          <div class="mech-body">Raised LDL penetrates the damaged artery wall, oxidises, and is engulfed by immune cells — forming the fatty core of atherosclerotic plaque.</div>
         </div>
         <div class="mech-outcome">Plaque</div>
       </div>
@@ -433,6 +447,13 @@
         </div>
         <div class="mech-outcome">Clot risk</div>
       </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 11: MECHANISMS 2 of 2 — AMBER — 3 cards -->
+  <div class="slide">
+    <div class="slide-title">How risk factors <span>drive heart attack — 2 of 2</span></div>
+    <div class="mech-grid" style="grid-template-rows:repeat(3,1fr);">
       <div class="mech-card" id="m4">
         <div class="mech-icon">🍬</div>
         <div class="mech-content">
@@ -460,48 +481,21 @@
     </div>
   </div>
 
-  <!-- SLIDE 9: CTA — HIGH-IMPACT HORIZONTAL ROWS -->
+  <!-- SLIDE 12: CTA — SEQUENTIAL ANIMATION -->
   <div class="slide cta-slide">
     <div class="cta-glow"></div>
     <div class="cta-wrap-v2">
       <div class="cta-header">
         <div class="cta-badge-v2">What the evidence shows</div>
-        <div class="cta-headline-v2">The number matters.<br/><span>The evidence is clear.</span></div>
-        <div class="cta-subline">Most cardiovascular risk is modifiable.</div>
+        <div class="cta-headline-v2">The number matters.<br/><span>The risk is modifiable.</span></div>
       </div>
-      <div class="cta-rows-v2">
-        <div class="cta-row-v2">
-          <div class="cta-row-icon-v2">🧮</div>
-          <div class="cta-row-content-v2">
-            <div class="cta-row-title-v2">QRISK3 estimates 10-year cardiovascular risk from over 20 clinical variables</div>
-            <div class="cta-row-body-v2">Validated in 7.9 million UK primary care records — the basis for statin prescribing decisions in England.</div>
-          </div>
-          <div class="cta-row-word-v2">7.9M</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon-v2">🎯</div>
-          <div class="cta-row-content-v2">
-            <div class="cta-row-title-v2">~90% of first heart attack risk is attributable to 9 modifiable factors</div>
-            <div class="cta-row-body-v2">INTERHEART study — 52 countries, nearly 30,000 people — consistent across all ages and world regions.</div>
-          </div>
-          <div class="cta-row-word-v2">~90%</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon-v2">🧬</div>
-          <div class="cta-row-content-v2">
-            <div class="cta-row-title-v2">Favourable lifestyle is associated with ~50% lower events even in high genetic risk</div>
-            <div class="cta-row-body-v2">Genetic predisposition does not determine outcome — lifestyle is a powerful and independent modifier of inherited cardiovascular risk.</div>
-          </div>
-          <div class="cta-row-word-v2">−50%</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon-v2">💊</div>
-          <div class="cta-row-content-v2">
-            <div class="cta-row-title-v2">A 10 mmHg fall in systolic blood pressure cuts stroke risk by 27%</div>
-            <div class="cta-row-body-v2">Achievable through lifestyle measures and medication — the NICE NG238 pathway supports risk-based treatment at 10%+ 10-year risk.</div>
-          </div>
-          <div class="cta-row-word-v2">−27%</div>
-        </div>
+      <div class="cta-items">
+        <div class="cta-item ci-red"><div class="cta-item-icon">🧮</div><div class="cta-item-text">QRISK3 scores ≥10% identify people who benefit most from statin discussion</div></div>
+        <div class="cta-item ci-red"><div class="cta-item-icon">🎯</div><div class="cta-item-text">~90% of first heart attack risk comes from 9 modifiable factors — INTERHEART</div></div>
+        <div class="cta-item ci-amber"><div class="cta-item-icon">❤️</div><div class="cta-item-text">Every 20 mmHg rise in systolic blood pressure approximately doubles cardiovascular mortality</div></div>
+        <div class="cta-item ci-amber"><div class="cta-item-icon">📋</div><div class="cta-item-text">The NHS Health Check offers free cardiovascular risk assessment every 5 years aged 40–74</div></div>
+        <div class="cta-item ci-green"><div class="cta-item-icon">📉</div><div class="cta-item-text">Each 1 mmol/L LDL reduction cuts major cardiovascular events by ~22%</div></div>
+        <div class="cta-item ci-green"><div class="cta-item-icon">🧬</div><div class="cta-item-text">Favourable lifestyle cuts coronary events by ~50% even in highest genetic risk</div></div>
       </div>
       <div class="med-disclaimer">
         <div class="med-disc-icon">⚕️</div>
@@ -510,34 +504,34 @@
     </div>
   </div>
 
-  <!-- SLIDE 10: CLOSING -->
+  <!-- SLIDE 13: BRAND CLOSE -->
   <div class="slide">
     <div class="close-wrap">
       <div class="close-logo">helf<span class="dot">.</span>school</div>
       <div class="close-sub">Health Education</div>
-      <div class="close-headline">The number matters.<br/><span>The risk is modifiable.</span></div>
-      <div class="close-stats">
-        <div class="cst-card">
-          <div class="cst-num">10%</div>
-          <div class="cst-lab">10-year risk threshold for statin discussion</div>
-          <div class="cst-src">NICE NG238</div>
+      <div class="close-headline">Evidence-based. Written by a doctor. <span>Built for everyone.</span></div>
+      <div class="close-cards">
+        <div class="close-card">
+          <div class="close-card-icon">📚</div>
+          <div class="close-card-text">31 articles across 5 series — cardiovascular, digestive, neurological, cancer, and practical health</div>
+          <div class="close-card-src">helf.school · April 2026</div>
         </div>
-        <div class="cst-card">
-          <div class="cst-num">~90%</div>
-          <div class="cst-lab">of first MI risk from 9 modifiable factors</div>
-          <div class="cst-src">INTERHEART · Lancet 2004</div>
+        <div class="close-card">
+          <div class="close-card-icon">🩺</div>
+          <div class="close-card-text">Written by Dr Paul — retired NHS GP with over 20 years of experience</div>
+          <div class="close-card-src">Retired 2019</div>
         </div>
-        <div class="cst-card">
-          <div class="cst-num">−50%</div>
-          <div class="cst-lab">events with favourable lifestyle · high genetic risk</div>
-          <div class="cst-src">Khera · NEJM 2016</div>
+        <div class="close-card">
+          <div class="close-card-icon">🔓</div>
+          <div class="close-card-text">Start for free — Explorer tier requires no payment. Every claim cited to its primary source.</div>
+          <div class="close-card-src">helf.school/conditions</div>
         </div>
       </div>
-      <div class="med-disclaimer">
+      <div class="med-disclaimer" style="max-width:680px;">
         <div class="med-disc-icon">⚕️</div>
         <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
       </div>
-      <div class="close-series">Cardiovascular Health Series · Article 03</div>
+      <div class="close-series">Cardiovascular Health Series · Article 03 · Heart Attack Risk</div>
     </div>
   </div>
 
@@ -554,6 +548,9 @@
   <div class="dot" onclick="goTo(7)"></div>
   <div class="dot" onclick="goTo(8)"></div>
   <div class="dot" onclick="goTo(9)"></div>
+  <div class="dot" onclick="goTo(10)"></div>
+  <div class="dot" onclick="goTo(11)"></div>
+  <div class="dot" onclick="goTo(12)"></div>
 </div>
 
 <div class="disc">Health education — not medical advice. helf.school</div>
@@ -562,14 +559,22 @@
   const slides = document.querySelectorAll('.slide');
   const dots   = document.querySelectorAll('.dot');
   let cur = 0;
+
+  function animateCTA(){
+    const items = document.querySelectorAll('.cta-items .cta-item');
+    items.forEach(r => r.classList.remove('visible'));
+    items.forEach((item,i) => { setTimeout(() => item.classList.add('visible'), 350 + i*620); });
+  }
+
   function show(n){
     slides[cur].classList.remove('active'); dots[cur].classList.remove('active');
     cur = (n + slides.length) % slides.length;
     slides[cur].classList.add('active'); dots[cur].classList.add('active');
     document.getElementById('counter').textContent = (cur+1)+' / '+slides.length;
-    triggerSlide(cur);
+    if(cur === 11){ animateCTA(); } else { triggerSlide(cur); }
   }
   function goTo(n){ show(n); }
+
   document.addEventListener('keydown', e=>{
     if(e.key==='ArrowRight'||e.key==='ArrowDown') show(cur+1);
     if(e.key==='ArrowLeft'||e.key==='ArrowUp') show(cur-1);
@@ -580,21 +585,28 @@
     const dx=e.changedTouches[0].clientX-tx;
     if(Math.abs(dx)>40){ dx<0?show(cur+1):show(cur-1); }
   });
+
   function triggerSlide(n){
-    if(n===2) animateGroup(['s1','s2','s3','s4','s5'], 150);
-    if(n===3) animateGroup(['d1','d2','d3','d4','d5','d6'], 140);
-    if(n===4) animateGroup(['e1','e2'], 260);
-    if(n===5) animateGroup(['e3','e4'], 260);
-    if(n===6) animateGroup(['e5','e6'], 260);
-    if(n===7) animateGroup(['m1','m2','m3','m4','m5','m6'], 140);
+    if(n===2) animateGroup(['s1','s2','s3'], 170);
+    if(n===3) animateGroup(['s4','s5'], 220);
+    if(n===4) animateGroup(['d1','d2','d3'], 140);
+    if(n===5) animateGroup(['d4','d5','d6'], 140);
+    if(n===6) animateGroup(['e1','e2'], 260);
+    if(n===7) animateGroup(['e3','e4'], 260);
+    if(n===8) animateGroup(['e5','e6'], 260);
+    if(n===9) animateGroup(['m1','m2','m3'], 170);
+    if(n===10) animateGroup(['m4','m5','m6'], 170);
   }
-  function animateGroup(ids, step){
+
+  function animateGroup(ids,step){
     ids.forEach((id,i)=>{ setTimeout(()=>{ const el=document.getElementById(id); if(el) el.classList.add('vis'); }, 180+i*step); });
   }
+
   slides.forEach(s=>{
     const obs = new MutationObserver(()=>{ if(!s.classList.contains('active')){ s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis')); } });
     obs.observe(s, {attributes:true});
   });
+
   triggerSlide(0);
 </script>
 </body>
