@@ -6,12 +6,12 @@
   <title>Prostate Cancer — Visuals | helf.school</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root{--navy:#1B2A4A;--coral:#E8634A;--amber:#E8A84A;--acc:#A0D4B0;--acc2:#2A5A3A;--series:#2A5A3A;--series-dark:#1A3A25;--bg:#060e08;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a}
+    :root{--navy:#1B2A4A;--coral:#E8634A;--amber:#E8A84A;--acc:#A0D4B0;--acc2:#2A5A3A;--series:#2A5A3A;--series-dark:#1A3A25;--bg:#0e2418;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
 
     /* TOPBAR */
-    #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:rgba(6,14,8,.95);border-bottom:2px solid var(--acc2);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
+    #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:rgba(14,36,24,.95);border-bottom:2px solid var(--acc2);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
     .tb-logo{display:flex;align-items:center;gap:.5rem}
     .tb-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff}
     .tb-dot{color:var(--coral)}
@@ -22,9 +22,18 @@
 
     /* STAGE */
     #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:2.2vh 1.25rem 3.5vh;overflow:hidden}
-    .slide{display:none;width:100%;max-width:1140px;height:100%;animation:sIn .32s ease}
-    .slide.active{display:flex;flex-direction:column;min-height:0}
-    @keyframes sIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+    /* SLIDES — opacity/visibility pattern */
+    .slide{
+      position:absolute;top:0;left:0;width:100%;height:100%;
+      display:flex;flex-direction:column;
+      padding:2.2vh 1.25rem 3.5vh;
+      max-width:1140px;left:50%;transform:translateX(-50%);
+      opacity:0;visibility:hidden;pointer-events:none;
+      transition:opacity .32s ease;
+    }
+    .slide.active{opacity:1;visibility:visible;pointer-events:all;}
+
     .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.1vw,1.75rem);font-weight:700;color:#fff;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:2px solid rgba(160,212,176,.3);flex-shrink:0}
     .slide-title span{color:var(--acc)}
 
@@ -45,7 +54,7 @@
     /* BIG PICTURE */
     .big-stage{display:flex;flex-direction:column;flex:1;gap:1.2rem;min-height:0;align-items:center;justify-content:center}
     .big-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;width:100%;max-width:960px}
-    .big-card{background:linear-gradient(180deg,rgba(42,90,58,.35),rgba(26,58,37,.25));border:1.5px solid rgba(160,212,176,.45);border-radius:20px;padding:1.8rem 1.6rem;text-align:center;box-shadow:0 0 40px rgba(160,212,176,.06)}
+    .big-card{background:linear-gradient(180deg,rgba(42,90,58,.35),rgba(26,58,37,.25));border:1.5px solid rgba(160,212,176,.45);border-radius:20px;padding:1.8rem 1.6rem;text-align:center}
     .big-num{font-family:'Fraunces',serif;font-size:clamp(4rem,8.5vw,6.2rem);font-weight:700;color:var(--acc);line-height:.9;letter-spacing:-.03em;margin-bottom:.3rem}
     .big-lbl{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:.45rem}
     .big-body{font-size:.95rem;color:rgba(255,255,255,.88);line-height:1.45;font-weight:400}
@@ -55,11 +64,17 @@
     .big-strip-text{font-size:1rem;color:#fff;font-weight:500;font-family:'Fraunces',serif;line-height:1.4}
     .big-strip-text strong{color:var(--good)}
 
-    /* 6-ROW INFO CARDS */
+    /* 6-ROW CARDS — base */
     .sys-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .sys-card{background:linear-gradient(90deg,rgba(26,58,37,.55),rgba(6,14,8,.6));border:1px solid rgba(160,212,176,.28);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .sys-card{background:linear-gradient(90deg,rgba(26,58,37,.55),rgba(14,36,24,.6));border:1px solid rgba(160,212,176,.28);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
     .sys-card.animate-ready{opacity:0;transform:translateY(14px)}
     .sys-card.vis{opacity:1;transform:translateY(0)}
+
+    /* COLOUR VARIANTS — red/amber/green narrative */
+    .sys-card.c-red,.doc-card.c-red{background:linear-gradient(90deg,rgba(180,45,45,.55) 0%,rgba(110,25,25,.42) 100%);border-color:rgba(220,80,70,.55);}
+    .sys-card.c-amber,.doc-card.c-amber{background:linear-gradient(90deg,rgba(170,110,20,.55) 0%,rgba(110,68,12,.42) 100%);border-color:rgba(232,168,74,.55);}
+    .sys-card.c-green,.doc-card.c-green{background:linear-gradient(90deg,rgba(38,105,55,.55) 0%,rgba(22,65,33,.42) 100%);border-color:rgba(160,212,176,.52);}
+
     .sys-icon{font-size:1.9rem;line-height:1;text-align:center;padding-top:.1rem}
     .sys-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
     .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
@@ -71,7 +86,7 @@
 
     /* 6-ROW DOC CARDS */
     .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .doc-card{background:linear-gradient(90deg,rgba(26,58,37,.55),rgba(6,14,8,.6));border:1px solid rgba(160,212,176,.28);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .doc-card{background:linear-gradient(90deg,rgba(26,58,37,.55),rgba(14,36,24,.6));border:1px solid rgba(160,212,176,.28);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
     .doc-card.animate-ready{opacity:0;transform:translateY(14px)}
     .doc-card.vis{opacity:1;transform:translateY(0)}
     .doc-icon{font-size:1.9rem;line-height:1;text-align:center;padding-top:.1rem}
@@ -83,21 +98,21 @@
 
     /* EVIDENCE CARDS */
     .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
-    .ev-card{background:linear-gradient(180deg,rgba(26,58,37,.5),rgba(6,14,8,.6));border:1px solid rgba(160,212,176,.28);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .45s ease}
+    .ev-card{background:linear-gradient(180deg,rgba(26,58,37,.5),rgba(14,36,24,.6));border:1px solid rgba(160,212,176,.28);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .45s ease}
     .ev-card.animate-ready{opacity:0;transform:translateY(14px)}
     .ev-card.vis{opacity:1;transform:translateY(0)}
-    .ev-stat-box{background:linear-gradient(160deg,var(--series-dark) 0%,var(--series) 100%);border-radius:14px;padding:1.1rem .85rem;text-align:center;overflow:hidden}
+    .ev-stat-box{background:linear-gradient(160deg,var(--series-dark) 0%,var(--series) 100%);border-radius:14px;padding:1.1rem .85rem;text-align:left;overflow:hidden;display:flex;flex-direction:column;}
     .ev-kf-label{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--amber);margin-bottom:.45rem}
-    .ev-stat-row{display:flex;align-items:baseline;gap:.4rem;justify-content:center;flex-wrap:wrap;margin-bottom:.35rem}
-    .ev-num{font-family:'Fraunces',serif;font-size:2.8rem;font-weight:700;color:#fff;line-height:1;letter-spacing:-.02em;flex-shrink:0}
-    .ev-outcome{font-size:.95rem;font-weight:700;color:rgba(255,255,255,.95);line-height:1.3;text-align:left}
+    .ev-num{font-family:'Fraunces',serif;font-size:3.2rem;font-weight:900;color:#fff;line-height:1;letter-spacing:-.02em;margin-bottom:.3rem}
+    .ev-stat-unit{font-family:'Fraunces',serif;font-size:1.65rem;font-weight:700;color:rgba(255,255,255,.88);line-height:1;margin-bottom:.3rem}
+    .ev-outcome{font-size:.95rem;font-weight:700;color:rgba(255,255,255,.95);line-height:1.3;margin-bottom:.35rem}
     .ev-conditions{font-size:.78rem;font-weight:500;color:rgba(255,255,255,.72);line-height:1.32}
     .ev-conditions mark{background:rgba(232,168,74,.35);color:#fff;font-weight:700;padding:.02rem .2rem;border-radius:2px}
     .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.4rem;margin-bottom:.2rem;line-height:1.15;letter-spacing:-.01em}
     .ev-det .ev-journal{font-size:.90rem;color:rgba(255,255,255,.80);margin-bottom:.55rem;font-weight:500}
     .ev-det .ev-body{font-size:.95rem;color:rgba(255,255,255,.90);line-height:1.5;font-weight:400}
 
-    /* CTA SLIDE — canonical cta-wrap-v2 pattern */
+    /* CTA SLIDE — canonical cta-wrap-v2 */
     .cta-slide{position:relative}
     .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(232,168,74,.16),rgba(232,168,74,.04) 45%,transparent 70%);pointer-events:none;z-index:0}
     .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem;gap:.45rem;min-height:0;overflow:hidden}
@@ -128,12 +143,10 @@
     .close-headline span{color:var(--acc)}
     .close-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1000px;width:100%}
     .cst-card{background:rgba(160,212,176,.10);border:1px solid rgba(160,212,176,.35);border-radius:16px;padding:1.4rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.5rem}
-    .cst-num{font-family:'Fraunces',serif;font-size:clamp(2.2rem,4vw,3.4rem);font-weight:700;color:var(--acc);line-height:.95;letter-spacing:-.02em}
-    .cst-num.emoji{font-size:3rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;line-height:1;color:inherit;letter-spacing:0}
+    .cst-num.emoji{font-size:3rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;line-height:1;}
     .cst-lab{font-size:1rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.3}
     .cst-src{font-size:.82rem;color:rgba(255,255,255,.70);font-style:italic}
     .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.70);margin-top:.3rem}
-    .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:.68rem;color:rgba(255,255,255,.18);z-index:90;white-space:nowrap}
   </style>
 </head>
 <body>
@@ -191,27 +204,27 @@
     </div>
   </div>
 
-  <!-- SLIDE 3: WHAT IS PROSTATE CANCER -->
+  <!-- SLIDE 3: WHAT IS PROSTATE CANCER — colour narrative applied -->
   <div class="slide">
     <div class="slide-title">What is <span>prostate cancer?</span></div>
     <div class="sys-grid">
-      <div class="sys-card animate-ready" id="s1">
+      <div class="sys-card c-amber animate-ready" id="s1">
         <div class="sys-icon">🫀</div>
         <div class="sys-content">
           <div class="sys-title">The prostate gland</div>
-          <div class="sys-body">Walnut-sized gland sitting below the bladder in men — surrounds the urethra and produces fluid that forms part of semen.</div>
+          <div class="sys-body">Walnut-sized gland sitting below the bladder — surrounds the urethra and produces fluid that forms part of semen.</div>
         </div>
         <div class="sys-stat acc">Anatomy</div>
       </div>
-      <div class="sys-card animate-ready" id="s2">
+      <div class="sys-card c-red animate-ready" id="s2">
         <div class="sys-icon">🔬</div>
         <div class="sys-content">
           <div class="sys-title">Cancer development</div>
           <div class="sys-body">Cells divide and grow uncontrolled. Almost all are adenocarcinomas — gland-cell cancers. Most grow slowly; some are more aggressive.</div>
         </div>
-        <div class="sys-stat acc">>99%</div>
+        <div class="sys-stat acc">&gt;99%</div>
       </div>
-      <div class="sys-card animate-ready" id="s3">
+      <div class="sys-card c-amber animate-ready" id="s3">
         <div class="sys-icon">📊</div>
         <div class="sys-content">
           <div class="sys-title">ISUP grade groups — how aggressive?</div>
@@ -219,23 +232,23 @@
         </div>
         <div class="sys-stat warn">1 → 5</div>
       </div>
-      <div class="sys-card animate-ready" id="s4">
+      <div class="sys-card c-green animate-ready" id="s4">
         <div class="sys-icon">📍</div>
         <div class="sys-content">
           <div class="sys-title">Localised disease</div>
-          <div class="sys-body">Cancer confined within the prostate gland. The most treatable stage — radical prostatectomy or radiotherapy can be curative.</div>
+          <div class="sys-body">Cancer confined within the prostate gland. The most treatable stage — surgery or radiotherapy can be curative.</div>
         </div>
         <div class="sys-stat good">Stage 1–2</div>
       </div>
-      <div class="sys-card animate-ready" id="s5">
+      <div class="sys-card c-amber animate-ready" id="s5">
         <div class="sys-icon">🗺️</div>
         <div class="sys-content">
           <div class="sys-title">Locally advanced</div>
-          <div class="sys-body">Cancer has grown beyond the prostate capsule — the outer covering — into surrounding tissue, but has not spread to distant sites.</div>
+          <div class="sys-body">Cancer has grown beyond the prostate capsule into surrounding tissue, but has not spread to distant sites.</div>
         </div>
         <div class="sys-stat warn">Stage 3</div>
       </div>
-      <div class="sys-card animate-ready" id="s6">
+      <div class="sys-card c-red animate-ready" id="s6">
         <div class="sys-icon">🌐</div>
         <div class="sys-content">
           <div class="sys-title">Metastatic</div>
@@ -246,11 +259,11 @@
     </div>
   </div>
 
-  <!-- SLIDE 4: RISK FACTORS + PSA -->
+  <!-- SLIDE 4: RISK FACTORS + PSA — colour narrative -->
   <div class="slide">
     <div class="slide-title">Risk factors and <span>the PSA test</span></div>
     <div class="sys-grid">
-      <div class="sys-card animate-ready" id="r1">
+      <div class="sys-card c-red animate-ready" id="r1">
         <div class="sys-icon">⏳</div>
         <div class="sys-content">
           <div class="sys-title">Age</div>
@@ -258,62 +271,62 @@
         </div>
         <div class="sys-stat bad">After 50</div>
       </div>
-      <div class="sys-card animate-ready" id="r2">
+      <div class="sys-card c-red animate-ready" id="r2">
         <div class="sys-icon">🧬</div>
         <div class="sys-content">
           <div class="sys-title">Ethnicity — Black men at higher risk</div>
-          <div class="sys-body">Clinically recognised higher incidence rates in Black men compared with White men — established in UK clinical guidelines (NICE NG131).</div>
+          <div class="sys-body">Clinically recognised higher incidence in Black men compared with White men — established in NICE NG131 clinical guidance.</div>
         </div>
         <div class="sys-stat bad">↑ Risk</div>
       </div>
-      <div class="sys-card animate-ready" id="r3">
+      <div class="sys-card c-red animate-ready" id="r3">
         <div class="sys-icon">👨‍👧‍👦</div>
         <div class="sys-content">
           <div class="sys-title">Family history</div>
-          <div class="sys-body">First-degree relative (father/brother) with prostate cancer increases risk. BRCA gene mutations — associated with breast cancer — also raise risk.</div>
+          <div class="sys-body">First-degree relative (father/brother) with prostate cancer increases risk. BRCA gene mutations also raise risk.</div>
         </div>
         <div class="sys-stat bad">↑ Risk</div>
       </div>
-      <div class="sys-card animate-ready" id="r4">
+      <div class="sys-card c-amber animate-ready" id="r4">
         <div class="sys-icon">🚫</div>
         <div class="sys-content">
-          <div class="sys-title">No preventable causes</div>
+          <div class="sys-title">No established preventable causes</div>
           <div class="sys-body">Prostate cancer is NOT clearly linked to any modifiable lifestyle risk factor — no diet, exercise, or alcohol pattern has been conclusively established.</div>
         </div>
         <div class="sys-stat warn">Cannot prevent</div>
       </div>
-      <div class="sys-card animate-ready" id="r5">
+      <div class="sys-card c-amber animate-ready" id="r5">
         <div class="sys-icon">🩸</div>
         <div class="sys-content">
           <div class="sys-title">The PSA test — a marker, not a diagnosis</div>
-          <div class="sys-body">PSA (prostate-specific antigen) blood test measures a protein from the prostate. Elevated level prompts investigation — can also be raised by BPH, prostatitis, infection.</div>
+          <div class="sys-body">PSA (prostate-specific antigen) blood test measures a protein from the prostate. An elevated level prompts investigation — but can also be raised by benign conditions.</div>
         </div>
         <div class="sys-stat acc">Marker only</div>
       </div>
-      <div class="sys-card animate-ready" id="r6">
+      <div class="sys-card c-green animate-ready" id="r6">
         <div class="sys-icon">⚠️</div>
         <div class="sys-content">
           <div class="sys-title">~3 in 4 with raised PSA will not have cancer</div>
-          <div class="sys-body">Around 75% of men with elevated PSA do not have prostate cancer. PSA is an imperfect marker — it prompts investigation, not a definitive diagnosis.</div>
+          <div class="sys-body">Around 75% of men with elevated PSA do not have prostate cancer — an imperfect marker that prompts investigation, not a definitive diagnosis.</div>
         </div>
         <div class="sys-stat warn">75% benign</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 5: DIAGNOSIS PATHWAY -->
+  <!-- SLIDE 5: DIAGNOSIS PATHWAY — colour narrative -->
   <div class="slide">
     <div class="slide-title">How prostate cancer <span>is diagnosed — NICE NG131</span></div>
     <div class="doc-grid">
-      <div class="doc-card animate-ready" id="d1">
+      <div class="doc-card c-amber animate-ready" id="d1">
         <div class="doc-icon">💊</div>
         <div class="doc-content">
           <div class="doc-title">Symptoms — often none</div>
-          <div class="doc-body">Urinary difficulty, blood in urine or semen, or bone pain may occur. Many men have no symptoms at all — PSA testing or incidental finding.</div>
+          <div class="doc-body">Urinary difficulty, blood in urine or semen, or bone pain may occur. Many men have no symptoms — PSA testing or incidental finding leads to diagnosis.</div>
         </div>
         <div class="doc-action acc">Often silent</div>
       </div>
-      <div class="doc-card animate-ready" id="d2">
+      <div class="doc-card c-amber animate-ready" id="d2">
         <div class="doc-icon">🩸</div>
         <div class="doc-content">
           <div class="doc-title">PSA test and urgent referral</div>
@@ -321,46 +334,46 @@
         </div>
         <div class="doc-action warn">2WW referral</div>
       </div>
-      <div class="doc-card animate-ready" id="d3">
+      <div class="doc-card c-amber animate-ready" id="d3">
         <div class="doc-icon">🔭</div>
         <div class="doc-content">
           <div class="doc-title">mpMRI — first-line investigation</div>
-          <div class="doc-body">Multiparametric MRI recommended by NICE NG131 before biopsy. Scores 1–5 on Likert scale. Identifies suspicious areas — reduces unnecessary biopsies.</div>
+          <div class="doc-body">Multiparametric MRI recommended by NICE NG131 before biopsy. Scores 1–5 on Likert scale — identifies suspicious areas and reduces unnecessary biopsies.</div>
         </div>
         <div class="doc-action">NICE NG131</div>
       </div>
-      <div class="doc-card animate-ready" id="d4">
+      <div class="doc-card c-amber animate-ready" id="d4">
         <div class="doc-icon">🔬</div>
         <div class="doc-content">
           <div class="doc-title">Prostate biopsy</div>
-          <div class="doc-body">Tissue samples confirm diagnosis. Transrectal and transperineal approaches used in UK practice. NICE NG131 notes a shift towards transperineal — may reduce sepsis risk.</div>
+          <div class="doc-body">Tissue samples confirm diagnosis. Both transrectal and transperineal approaches are used in UK practice — NICE NG131 notes a shift towards transperineal.</div>
         </div>
         <div class="doc-action">Confirms</div>
       </div>
-      <div class="doc-card animate-ready" id="d5">
+      <div class="doc-card c-amber animate-ready" id="d5">
         <div class="doc-icon">📊</div>
         <div class="doc-content">
           <div class="doc-title">Grading + staging scans</div>
-          <div class="doc-body">ISUP grade group determined from biopsy. CT and/or bone scan used to assess spread for higher-risk disease. PSMA-PET increasingly used in specialist centres.</div>
+          <div class="doc-body">ISUP grade group determined from biopsy. CT and/or bone scan used to assess spread for higher-risk disease.</div>
         </div>
         <div class="doc-action acc">ISUP 1–5</div>
       </div>
-      <div class="doc-card animate-ready" id="d6">
+      <div class="doc-card c-green animate-ready" id="d6">
         <div class="doc-icon">🏥</div>
         <div class="doc-content">
           <div class="doc-title">MDT review — risk stratification</div>
-          <div class="doc-body">All prostate cancer cases discussed at multidisciplinary team meeting. Grade, stage, and PSA combined to risk-stratify — low, intermediate, or high — and agree treatment.</div>
+          <div class="doc-body">All prostate cancer cases discussed at multidisciplinary team meeting. Grade, stage, and PSA combined to risk-stratify and agree treatment plan.</div>
         </div>
         <div class="doc-action good">MDT</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 6: TREATMENT OPTIONS -->
+  <!-- SLIDE 6: TREATMENT — colour narrative, no drug names -->
   <div class="slide">
     <div class="slide-title">Treatment approaches <span>in UK practice — NICE NG131</span></div>
     <div class="doc-grid">
-      <div class="doc-card animate-ready" id="t1">
+      <div class="doc-card c-green animate-ready" id="t1">
         <div class="doc-icon">👁️</div>
         <div class="doc-content">
           <div class="doc-title">Active surveillance</div>
@@ -368,43 +381,43 @@
         </div>
         <div class="doc-action">NICE NG131</div>
       </div>
-      <div class="doc-card animate-ready" id="t2">
+      <div class="doc-card c-green animate-ready" id="t2">
         <div class="doc-icon">🔪</div>
         <div class="doc-content">
-          <div class="doc-title">Radical prostatectomy — surgery</div>
+          <div class="doc-title">Surgery — radical prostatectomy</div>
           <div class="doc-body">Removal of the entire prostate — robotic-assisted in most UK centres. Side effects include urinary leakage and erectile dysfunction (variable severity).</div>
         </div>
         <div class="doc-action good">Curative</div>
       </div>
-      <div class="doc-card animate-ready" id="t3">
+      <div class="doc-card c-green animate-ready" id="t3">
         <div class="doc-icon">☢️</div>
         <div class="doc-content">
           <div class="doc-title">Radiotherapy</div>
-          <div class="doc-body">External beam (EBRT) or internal seeds (brachytherapy). Often combined with hormone therapy for higher-risk disease. Bowel and urinary side effects.</div>
+          <div class="doc-body">External beam or internal seeds (brachytherapy). Often combined with hormone therapy for higher-risk disease. Bowel and urinary side effects occur.</div>
         </div>
         <div class="doc-action good">Curative</div>
       </div>
-      <div class="doc-card animate-ready" id="t4">
+      <div class="doc-card c-amber animate-ready" id="t4">
         <div class="doc-icon">💉</div>
         <div class="doc-content">
-          <div class="doc-title">Hormone therapy (ADT)</div>
-          <div class="doc-body">Suppresses testosterone — injections (goserelin/Zoladex, leuprorelin/Prostap) or daily oral tablet (relugolix/Orgovyx). Long-term side effects include bone density loss and fatigue.</div>
+          <div class="doc-title">Hormone therapy — suppressing testosterone</div>
+          <div class="doc-body">Suppresses testosterone to slow cancer growth. Given by regular injection or as a daily oral tablet. Long-term side effects include bone density loss and fatigue.</div>
         </div>
         <div class="doc-action warn">ADT</div>
       </div>
-      <div class="doc-card animate-ready" id="t5">
+      <div class="doc-card c-amber animate-ready" id="t5">
         <div class="doc-icon">💊</div>
         <div class="doc-content">
-          <div class="doc-title">Docetaxel (Taxotere) — chemotherapy</div>
-          <div class="doc-body">Added to ADT for fit men with newly diagnosed metastatic disease. STAMPEDE trial showed extended median survival vs hormone therapy alone.</div>
+          <div class="doc-title">Chemotherapy — for metastatic disease</div>
+          <div class="doc-body">Added to hormone therapy for fit men with newly diagnosed metastatic disease. STAMPEDE trial showed extended median survival vs hormone therapy alone.</div>
         </div>
         <div class="doc-action acc">+10 months</div>
       </div>
-      <div class="doc-card animate-ready" id="t6">
+      <div class="doc-card c-amber animate-ready" id="t6">
         <div class="doc-icon">💊</div>
         <div class="doc-content">
-          <div class="doc-title">Abiraterone (Zytiga) + prednisolone</div>
-          <div class="doc-body">Further suppresses testosterone production. NICE-approved option for metastatic hormone-sensitive prostate cancer — given with prednisolone (a corticosteroid).</div>
+          <div class="doc-title">Androgen synthesis inhibitor — advanced disease</div>
+          <div class="doc-body">A further hormone-suppressant treatment given alongside a low-dose steroid. NICE-approved for metastatic hormone-sensitive prostate cancer.</div>
         </div>
         <div class="doc-action acc">NICE TA493</div>
       </div>
@@ -418,59 +431,54 @@
       <div class="ev-card animate-ready" id="e1">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num">2.7%</div>
-            <div class="ev-outcome">prostate cancer-specific mortality at 15 years</div>
-          </div>
-          <div class="ev-conditions">similar across monitoring (3.1%), surgery (2.2%), and radiotherapy (2.9%) — P=0.53 · 1,643 men</div>
+          <div class="ev-num">2.7%</div>
+          <div class="ev-outcome">prostate cancer-specific mortality at 15 years / similar across monitoring, surgery, and radiotherapy</div>
+          <div class="ev-conditions">1,643 men · PSA-detected localised prostate cancer · ProtecT trial · P=0.53</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">ProtecT — localised prostate cancer</div>
           <div class="ev-journal">Hamdy FC et al · N Engl J Med · 2023 · PMID 36912538</div>
-          <div class="ev-body">1,643 UK men with PSA-detected localised prostate cancer followed for a median 15 years. Prostate cancer-specific mortality was low and statistically similar across all three treatment groups. The key differences lie in <strong>side effects, not survival</strong> — the choice between monitoring, surgery, and radiotherapy is a trade-off of effects, not mortality risk.</div>
+          <div class="ev-body">1,643 UK men with PSA-detected localised prostate cancer followed for a median 15 years. Prostate cancer-specific mortality was low and similar across all three treatment groups. <strong>The key differences are in side effects, not survival</strong> — the choice between monitoring, surgery, and radiotherapy is a trade-off of effects, not mortality risk.</div>
         </div>
       </div>
       <div class="ev-card animate-ready" id="e2">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num">0.69%</div>
-            <div class="ev-outcome">prostate cancer mortality — PSA screening group</div>
-          </div>
-          <div class="ev-conditions"><mark>vs 0.78% without screening</mark> — 415,357 men, UK primary care, 15-year follow-up</div>
+          <div class="ev-num">0.69%</div>
+          <div class="ev-outcome">prostate cancer mortality / PSA screening group vs 0.78% without screening</div>
+          <div class="ev-conditions">415,357 men · UK primary care · 15-year follow-up · CAP trial</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">CAP trial — PSA screening</div>
           <div class="ev-journal">Martin RM et al · JAMA · 2024 · PMID 38581198</div>
-          <div class="ev-body">The largest PSA screening trial ever conducted — 415,357 UK men aged 50–69 randomised to an invitation for a single PSA test or standard care. 15-year follow-up showed significantly lower prostate cancer mortality in the screened group. <strong>First UK trial evidence that a single PSA test reduces prostate cancer deaths</strong> — though the absolute difference is modest.</div>
+          <div class="ev-body">The largest PSA screening trial ever conducted — 415,357 UK men aged 50–69 randomised to a single PSA test or standard care. At 15 years, prostate cancer mortality was significantly lower in the screened group. <strong>First UK trial evidence that a single PSA test reduces prostate cancer deaths</strong> — though the absolute difference is modest.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 8: RESEARCH — STAMPEDE -->
+  <!-- SLIDE 8: RESEARCH — STAMPEDE, no drug names -->
   <div class="slide">
     <div class="slide-title">Research · <span>advanced disease treatment</span></div>
     <div class="ev-stage">
       <div class="ev-card animate-ready" id="e3" style="flex:1.4">
         <div class="ev-stat-box">
-          <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num">81 months</div>
-          </div>
-          <div class="ev-outcome">median overall survival — docetaxel + hormone therapy</div>
-          <div class="ev-conditions">vs 71 months — hormone therapy alone · metastatic hormone-naïve prostate cancer · HR 0.78</div>
+          <div class="ev-kf-label">Median Overall Survival</div>
+          <div class="ev-num">81</div>
+          <div class="ev-stat-unit">months</div>
+          <div class="ev-outcome">median OS / chemotherapy + hormone therapy vs 71 months on hormone therapy alone</div>
+          <div class="ev-conditions">metastatic hormone-naïve prostate cancer · HR 0.78 · STAMPEDE trial</div>
         </div>
         <div class="ev-det">
-          <div class="ev-trial">STAMPEDE — docetaxel + ADT</div>
+          <div class="ev-trial">STAMPEDE — chemotherapy added to hormone therapy</div>
           <div class="ev-journal">James ND et al · The Lancet · 2016 · PMID 26719232</div>
-          <div class="ev-body">Large UK platform trial comparing standard hormone therapy (ADT) alone against ADT plus docetaxel (Taxotere — chemotherapy that interferes with cancer cell division) in men with high-risk or metastatic prostate cancer. Adding docetaxel upfront improved overall survival in the metastatic group — median 81 vs 71 months (HR 0.78; 95% CI 0.66–0.93; P=0.006). <strong>This established early docetaxel alongside ADT as standard care</strong> for fit men with newly diagnosed metastatic prostate cancer.</div>
+          <div class="ev-body">Large UK platform trial comparing hormone therapy alone against hormone therapy plus chemotherapy in men with high-risk or metastatic prostate cancer. Adding chemotherapy upfront extended median overall survival from 71 to 81 months in the metastatic group. <strong>This established early chemotherapy alongside hormone therapy as standard care</strong> for fit men with newly diagnosed metastatic prostate cancer.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 9: CTA — canonical cta-wrap-v2 pattern -->
+  <!-- SLIDE 9: CTA — canonical cta-wrap-v2, drug names removed -->
   <div class="slide cta-slide">
     <div class="cta-glow"></div>
     <div class="cta-wrap-v2">
@@ -492,7 +500,7 @@
           <div class="cta-row-icon">🩸</div>
           <div class="cta-row-mid">
             <div class="cta-row-label">CAP trial — PSA screening</div>
-            <div class="cta-row-body-v2">A single PSA test reduced 15-year prostate cancer mortality — 0.69% vs 0.78% in the unscreened group. First UK trial evidence for PSA screening benefit.</div>
+            <div class="cta-row-body-v2">A single PSA test reduced 15-year prostate cancer mortality — 0.69% vs 0.78% without screening. First UK trial evidence for PSA screening benefit.</div>
           </div>
           <div class="cta-row-word-v2">0.69%</div>
         </div>
@@ -500,7 +508,7 @@
           <div class="cta-row-icon">💊</div>
           <div class="cta-row-mid">
             <div class="cta-row-label">STAMPEDE — metastatic disease</div>
-            <div class="cta-row-body-v2">Adding docetaxel chemotherapy to hormone therapy extended median overall survival by 10 months — 81 vs 71 months — in metastatic prostate cancer.</div>
+            <div class="cta-row-body-v2">Adding chemotherapy to hormone therapy extended median overall survival by 10 months — 81 vs 71 months — in metastatic prostate cancer.</div>
           </div>
           <div class="cta-row-word-v2">+10 months</div>
         </div>
@@ -522,7 +530,7 @@
     </div>
   </div>
 
-  <!-- SLIDE 10: CLOSING — helf.school brand close -->
+  <!-- SLIDE 10: CLOSING — article count updated to 31 -->
   <div class="slide">
     <div class="close-wrap">
       <div class="close-logo">helf<span class="cl-dot">.</span>school</div>
@@ -531,7 +539,7 @@
       <div class="close-stats">
         <div class="cst-card">
           <div class="cst-num emoji">📚</div>
-          <div class="cst-lab">26 articles live across 5 series — cardiovascular, practical health, digestive, neurological and cancer</div>
+          <div class="cst-lab">31 articles live across 5 series — cardiovascular, practical health, digestive, neurological and cancer</div>
           <div class="cst-src">helf.school · April 2026</div>
         </div>
         <div class="cst-card">
@@ -568,8 +576,6 @@
   <div class="dot" onclick="goTo(9)"></div>
 </div>
 
-<div class="disc">Health education — not medical advice. helf.school</div>
-
 <script>
   const slides=document.querySelectorAll('.slide'),dots=document.querySelectorAll('.dot');
   let cur=0;
@@ -586,8 +592,8 @@
     if(e.key==='ArrowLeft'||e.key==='ArrowUp')show(cur-1);
   });
   let tx=0;
-  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX});
-  document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40){dx<0?show(cur+1):show(cur-1)}});
+  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+  document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40){dx<0?show(cur+1):show(cur-1)}},{passive:true});
   function triggerSlide(n){
     if(n===2)animateGroup(['s1','s2','s3','s4','s5','s6'],140);
     if(n===3)animateGroup(['r1','r2','r3','r4','r5','r6'],140);
