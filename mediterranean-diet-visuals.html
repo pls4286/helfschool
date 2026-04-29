@@ -116,31 +116,30 @@
     .ben-icon{font-size:2.8rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
     .ben-content{display:flex;flex-direction:column;gap:.28rem;min-width:0}
     .ben-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;line-height:1.12;letter-spacing:-.01em}
-    .ben-body{font-size:1rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .ben-body{font-size:1rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
     .ben-src{font-size:.8rem;color:rgba(255,255,255,.72);margin-top:.15rem;font-style:italic;line-height:1.35}
     .ben-stat{font-family:'Fraunces',serif;font-size:clamp(2.4rem,3.6vw,3.4rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:1rem;display:flex;flex-direction:column;align-items:flex-end;gap:.2rem}
     .ben-stat-lbl{font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(126,204,153,.95);line-height:1}
 
-    /* ─── SLIDE 6: CTA · HIGH-IMPACT ─── */
+    /* ─── SLIDE 6: CTA · SEQUENTIAL ANIMATION ─── */
     .cta-slide{position:relative}
     .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(212,184,74,.18),rgba(212,184,74,.04) 45%,transparent 70%);pointer-events:none;z-index:0}
-    .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem;gap:.45rem;min-height:0;overflow:hidden}
+    .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem 0;gap:.55rem}
     .cta-top{display:flex;flex-direction:column;align-items:center;gap:.3rem;text-align:center}
     .cta-badge{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.3rem .95rem;border-radius:100px}
-    .cta-headline{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:700;color:#fff;line-height:1.02;letter-spacing:-.028em}
+    .cta-headline{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:700;color:#fff;line-height:1.05;letter-spacing:-.028em}
     .cta-headline span{color:var(--acc)}
-    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(.95rem,1.5vw,1.2rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);line-height:1.3}
-    .cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.4rem;min-height:0;overflow:hidden}
-    .cta-row-v2{background:linear-gradient(90deg,rgba(212,184,74,.12),rgba(212,184,74,.04));border-left:4px solid var(--acc);border-radius:0 10px 10px 0;padding:.6rem .95rem;display:grid;grid-template-columns:52px 1fr auto;gap:.9rem;align-items:start;min-height:0;overflow:hidden}
-    .cta-row-icon{font-size:1.7rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .cta-row-mid{display:flex;flex-direction:column;gap:.12rem;min-width:0}
-    .cta-row-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.95rem;line-height:1.15}
-    .cta-row-body-v2{font-size:.82rem;color:rgba(255,255,255,.90);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .cta-row-word-v2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.2rem,2vw,1.7rem);color:var(--acc);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:.6rem}
-    .cta-bottom{display:flex;justify-content:center;flex-shrink:0}
-    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.8rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;margin-top:.6rem;max-width:900px}
+    .cta-items{display:grid;grid-template-rows:repeat(6,1fr);gap:.38rem;min-height:0;overflow:hidden}
+    .cta-item{border-radius:9px;padding:.4rem 1rem;display:flex;align-items:center;gap:.85rem;opacity:0;transform:translateX(-24px);transition:opacity .38s ease,transform .38s ease}
+    .cta-item.visible{opacity:1;transform:translateX(0)}
+    .cta-item.ci-red  {background:rgba(180,45,45,0.25);border:1px solid rgba(220,80,70,0.40)}
+    .cta-item.ci-amber{background:rgba(170,110,20,0.25);border:1px solid rgba(232,168,74,0.40)}
+    .cta-item.ci-green{background:rgba(38,105,55,0.30);border:1px solid rgba(126,204,153,0.42)}
+    .cta-item-icon{font-size:1.45rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .cta-item-text{font-size:.93rem;font-weight:600;color:rgba(255,255,255,.95);line-height:1.3}
+    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.7rem 1.1rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px}
     .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.85);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left}
+    .med-disc-text{font-size:1rem;color:rgba(255,255,255,.90);line-height:1.5;font-family:'Fraunces',serif;text-align:left;font-weight:400}
     .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
 
     /* ─── SLIDE 7: CLOSING ─── */
@@ -434,79 +433,50 @@
     </div>
   </div>
 
-  <!-- SLIDE 6: CTA · HORIZONTAL ROWS · NO ICON -->
+  <!-- SLIDE 6: CTA · SEQUENTIAL ANIMATION -->
   <div class="slide cta-slide">
     <div class="cta-glow"></div>
     <div class="cta-wrap-v2">
       <div class="cta-top">
         <div class="cta-badge">What the evidence shows</div>
         <div class="cta-headline">Start with one meal.<br/><span>Not a transformation.</span></div>
-        <div class="cta-subline">Small swaps. Long returns. Even partial adherence brings real benefit.</div>
       </div>
-      <div class="cta-rows-v2">
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">🫒</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Swap butter for extra-virgin olive oil</div>
-            <div class="cta-row-body-v2">For cooking, drizzling, and dressings — shifts fat intake from saturated to monounsaturated, the most protective fat in the pattern</div>
-          </div>
-          <div class="cta-row-word-v2">Today</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">🐟</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Add oily fish twice a week</div>
-            <div class="cta-row-body-v2">Salmon, mackerel, sardines, herring — tinned is fine and significantly cheaper than fresh</div>
-          </div>
-          <div class="cta-row-word-v2">This week</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">🥦</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Make vegetables the majority of every plate</div>
-            <div class="cta-row-body-v2">Half the plate or more — varied and colourful. The foundation the whole pattern rests on</div>
-          </div>
-          <div class="cta-row-word-v2">This month</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">🫘</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Add legumes and whole grains</div>
-            <div class="cta-row-body-v2">Lentils, chickpeas, beans into stews and salads — high in fibre, plant protein, and slow-release energy</div>
-          </div>
-          <div class="cta-row-word-v2">Ongoing</div>
-        </div>
+      <div class="cta-items">
+        <div class="cta-item ci-red"><div class="cta-item-icon">📊</div><div class="cta-item-text">~30% fewer major cardiovascular events in PREDIMED — 7,447 high-risk participants</div></div>
+        <div class="cta-item ci-red"><div class="cta-item-icon">✅</div><div class="cta-item-text">Even partial adherence — moving in the direction without full adoption — brings real benefit</div></div>
+        <div class="cta-item ci-amber"><div class="cta-item-icon">🫒</div><div class="cta-item-text">Replacing butter with olive oil shifts fat from saturated to monounsaturated</div></div>
+        <div class="cta-item ci-amber"><div class="cta-item-icon">🐟</div><div class="cta-item-text">Oily fish twice weekly and legumes regularly — protein with omega-3 fats and fibre</div></div>
+        <div class="cta-item ci-green"><div class="cta-item-icon">🥦</div><div class="cta-item-text">Make vegetables the majority of every plate — the foundation the whole pattern rests on</div></div>
+        <div class="cta-item ci-green"><div class="cta-item-icon">🧠</div><div class="cta-item-text">23% lower diabetes risk · ~30% lower Alzheimer's risk — evidence extends beyond the heart</div></div>
       </div>
-      <div class="cta-bottom">
-        <div class="med-disclaimer">
-          <div class="med-disc-icon">⚕️</div>
-          <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
-        </div>
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">⚕️</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 7: CLOSING -->
+  <!-- SLIDE 7: BRAND CLOSE -->
   <div class="slide">
-    <div class="close-wrap">
+    <div class="close-wrap" style="justify-content:flex-start;">
       <div class="close-logo">helf<span class="dot">.</span>school</div>
       <div class="close-sub">Health Education</div>
-      <div class="close-headline">A pattern, <span>not a diet.</span></div>
+      <div class="close-headline">Evidence-based. Written by a doctor. <span>Built for everyone.</span></div>
       <div class="close-stats">
         <div class="cst-card">
-          <div class="cst-num">~30%</div>
-          <div class="cst-lab">↓ cardiovascular events</div>
-          <div class="cst-src">PREDIMED · NEJM 2018</div>
+          <div class="cst-num" style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;font-size:2.5rem;">📚</div>
+          <div class="cst-lab">31 articles across 5 series — cardiovascular, digestive, neurological, cancer, and practical health</div>
+          <div class="cst-src">helf.school · April 2026</div>
         </div>
         <div class="cst-card">
-          <div class="cst-num">23%</div>
-          <div class="cst-lab">↓ type 2 diabetes risk</div>
-          <div class="cst-src">Koloverou · Metabolism 2014</div>
+          <div class="cst-num" style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;font-size:2.5rem;">🩺</div>
+          <div class="cst-lab">Written by Dr Paul — retired NHS GP with over 20 years of experience</div>
+          <div class="cst-src">Retired 2019</div>
         </div>
         <div class="cst-card">
-          <div class="cst-num">~30%</div>
-          <div class="cst-lab">↓ Alzheimer's risk</div>
-          <div class="cst-src">Dominguez · GeroScience 2025</div>
+          <div class="cst-num" style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;font-size:2.5rem;">🔓</div>
+          <div class="cst-lab">Start for free — Explorer tier requires no payment. Every claim cited to its primary source.</div>
+          <div class="cst-src">helf.school/conditions</div>
         </div>
       </div>
       <div class="med-disclaimer">
@@ -537,6 +507,12 @@
   const dots   = document.querySelectorAll('.dot');
   let cur = 0;
 
+  function animateCTA(){
+    const items=document.querySelectorAll('.cta-items .cta-item');
+    items.forEach(r=>r.classList.remove('visible'));
+    items.forEach((item,i)=>{setTimeout(()=>item.classList.add('visible'),350+i*620);});
+  }
+
   function show(n){
     slides[cur].classList.remove('active');
     dots[cur].classList.remove('active');
@@ -544,7 +520,7 @@
     slides[cur].classList.add('active');
     dots[cur].classList.add('active');
     document.getElementById('counter').textContent = (cur+1)+' / '+slides.length;
-    triggerSlide(cur);
+    if(cur===5){animateCTA();}else{triggerSlide(cur);}
   }
   function goTo(n){ show(n); }
 
