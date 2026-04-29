@@ -3,502 +3,518 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Melanoma and Skin Cancer | helf.school Visuals</title>
+<title>Melanoma and Skin Cancer — Visuals · helf.school</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --navy:#1B2A4A;
-  --coral:#E8634A;
-  --cream:#FAF7F2;
-  --amber:#E8A84A;
-  --series:#2A5A3A;
-  --series-dark:#1A3A25;
-  --series-light:#5A9A6A;
-  --text:#2C2C2C;
+  --navy:        #1B2A4A;
+  --coral:       #E8634A;
+  --amber:       #E8A84A;
+  --series:      #2A5A3A;
+  --series-dark: #1A3A25;
+  --series-light:#9DCFB5;
+  --text:        #2C2C2C;
+  --bg:          #0e2418;
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-html,body{width:100%;height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;background:var(--navy);}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html,body{ width:100%; height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; background:var(--bg); }
 
 /* TOPBAR */
 #topbar{
-  position:fixed;top:0;left:0;width:100%;height:52px;z-index:100;
-  background:rgba(27,42,74,0.97);backdrop-filter:blur(8px);
-  display:flex;align-items:center;padding:0 1.4rem;gap:1rem;
+  position:fixed; top:0; left:0; width:100%; height:52px; z-index:100;
+  background:rgba(26,58,37,0.97); backdrop-filter:blur(8px);
+  display:flex; align-items:center; padding:0 1.4rem; gap:1rem;
   border-bottom:1px solid rgba(255,255,255,0.08);
 }
-.topbar-logo{font-family:'Fraunces',serif;font-size:1.25rem;color:#fff;letter-spacing:-0.01em;}
-.topbar-logo span{color:var(--coral);}
-.topbar-sub{font-size:0.75rem;color:rgba(255,255,255,0.75);font-weight:500;flex:1;}
-.topbar-counter{font-size:0.85rem;color:rgba(255,255,255,0.90);font-weight:600;}
-.topbar-hint{font-size:0.72rem;color:rgba(255,255,255,0.60);}
+.topbar-logo{ font-family:'Fraunces',serif; font-size:1.25rem; color:#fff; }
+.topbar-logo span{ color:var(--coral); }
+.topbar-sub{ font-size:.75rem; color:rgba(255,255,255,0.75); font-weight:500; flex:1; }
+.topbar-counter{ font-size:.85rem; color:rgba(255,255,255,0.90); font-weight:600; }
+.topbar-hint{ font-size:.72rem; color:rgba(255,255,255,0.60); }
 
 /* STAGE + SLIDES */
-#stage{
-  position:fixed;top:52px;left:0;width:100%;
-  height:calc(100vh - 84px);overflow:hidden;
-}
+#stage{ position:fixed; top:52px; left:0; width:100%; height:calc(100vh - 84px); overflow:hidden; }
 .slide{
-  position:absolute;
-  top:0;left:0;width:100%;height:100%;
-  display:flex;flex-direction:column;
-  opacity:0;visibility:hidden;pointer-events:none;
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  display:flex; flex-direction:column;
+  opacity:0; visibility:hidden; pointer-events:none;
   transition:opacity .32s ease;
   padding:1rem 1.5rem .8rem;
-  background:linear-gradient(160deg,var(--series-dark) 0%,var(--series) 60%,#1e4a2e 100%);
 }
-.slide.active{opacity:1;visibility:visible;pointer-events:all;}
+.slide.active{ opacity:1; visibility:visible; pointer-events:all; }
 
 /* SLIDE HEADER */
-.slide-header{margin-bottom:.4rem;}
-.slide-badge{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:rgba(255,255,255,0.15);color:#fff;padding:.22rem .65rem;border-radius:20px;margin-bottom:.3rem;}
-.slide-title{font-family:'Fraunces',serif;font-size:1.72rem;color:#fff;line-height:1.2;font-weight:700;}
-.slide-subtitle{font-size:.88rem;color:rgba(255,255,255,0.80);margin-top:.2rem;margin-bottom:.4rem;line-height:1.4;}
-
-/* 3-CARD GRID */
-.three-grid{display:grid;grid-template-rows:repeat(3,1fr);gap:.46rem;flex:1;min-height:0;}
-.info-card{background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.15);border-radius:9px;padding:.82rem 1rem;display:flex;flex-direction:column;gap:.3rem;min-height:0;overflow:hidden;}
-.ic-icon{font-size:1.55rem;line-height:1;}
-.ic-title{font-family:'Fraunces',serif;font-size:1.12rem;color:#fff;font-weight:600;line-height:1.25;}
-.ic-body{font-size:.93rem;color:rgba(255,255,255,0.88);line-height:1.55;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;}
+.slide-header{ margin-bottom:.4rem; flex-shrink:0; }
+.slide-badge{ display:inline-block; font-size:.65rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; background:rgba(255,255,255,0.15); color:#fff; padding:.22rem .65rem; border-radius:20px; margin-bottom:.3rem; }
+.slide-title{ font-family:'Fraunces',serif; font-size:1.72rem; color:#fff; line-height:1.2; font-weight:700; }
+.slide-subtitle{ font-size:.88rem; color:rgba(255,255,255,0.80); margin-top:.2rem; margin-bottom:.2rem; line-height:1.4; }
 
 /* INTRO SLIDE */
-.intro-slide{gap:.6rem;}
-.intro-title{font-family:'Fraunces',serif;font-size:2.1rem;color:#fff;font-weight:700;line-height:1.18;}
-.intro-sub{font-size:.95rem;color:rgba(255,255,255,0.82);line-height:1.5;margin-bottom:.2rem;}
-.intro-stat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr;gap:.65rem;flex:1;min-height:0;}
-.intro-stat-card{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.18);border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:.8rem .6rem;min-height:0;}
-.intro-stat-num{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:900;color:var(--amber);line-height:1;}
-.intro-stat-label{font-size:.80rem;color:rgba(255,255,255,0.90);line-height:1.4;margin-top:.3rem;font-weight:500;}
-.intro-stat-src{font-size:.68rem;color:rgba(255,255,255,0.55);margin-top:.25rem;}
+.intro-slide{ background:linear-gradient(140deg,var(--series-dark) 0%,var(--series) 55%,#3A7A55 100%); gap:.6rem; }
+.intro-slide::before{ content:''; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E"); pointer-events:none; }
+.intro-top{ position:relative; flex-shrink:0; }
+.intro-badge-pill{ display:inline-flex; align-items:center; gap:.45rem; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); border-radius:4px; padding:.28rem .85rem; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.09em; color:rgba(255,255,255,0.90); margin-bottom:.7rem; }
+.intro-h1{ font-family:'Fraunces',serif; font-weight:900; font-size:clamp(3.2rem,8vw,5.8rem); color:#fff; line-height:1.0; margin-bottom:.55rem; }
+.intro-sub{ font-size:1.15rem; color:rgba(255,255,255,0.82); line-height:1.55; }
+.intro-stat-grid{ display:grid; grid-template-columns:1fr 1fr 1fr; grid-template-rows:1fr; gap:.65rem; flex:1; min-height:0; }
+.intro-stat-card{ background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:1.2rem 1.3rem; display:flex; flex-direction:column; justify-content:center; min-height:0; }
+.intro-stat-num{ font-family:'Fraunces',serif; font-size:clamp(2.4rem,5vw,3.6rem); font-weight:900; color:var(--amber); line-height:1; margin-bottom:.38rem; }
+.intro-stat-label{ font-size:.95rem; font-weight:500; color:rgba(255,255,255,0.82); line-height:1.45; }
+.intro-stat-src{ font-size:.72rem; color:rgba(255,255,255,0.55); margin-top:.25rem; }
 
 /* MYTH SLIDE */
-.myth-grid{display:grid;grid-template-rows:1fr 1fr;gap:.52rem;flex:1;min-height:0;}
-.myth-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:9px;padding:.9rem 1rem;display:flex;gap:.85rem;align-items:flex-start;min-height:0;overflow:hidden;}
-.myth-icon{font-size:1.5rem;flex-shrink:0;margin-top:.1rem;}
-.myth-content{flex:1;min-width:0;}
-.myth-claim{font-size:.82rem;font-style:italic;color:rgba(255,255,255,0.65);margin-bottom:.3rem;line-height:1.4;}
-.myth-label-ev{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:.22rem;}
-.myth-response{font-size:.90rem;color:rgba(255,255,255,0.92);line-height:1.55;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
+.myth-grid{ display:grid; grid-template-rows:1fr 1fr; gap:.52rem; flex:1; min-height:0; }
+.myth-card{ background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:9px; padding:.9rem 1rem; display:flex; gap:.85rem; align-items:flex-start; min-height:0; overflow:hidden; }
+.myth-icon{ font-size:1.5rem; flex-shrink:0; margin-top:.1rem; }
+.myth-content{ flex:1; min-width:0; }
+.myth-claim{ font-size:.82rem; font-style:italic; color:rgba(255,255,255,0.65); margin-bottom:.3rem; line-height:1.4; }
+.myth-label-ev{ font-size:.65rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); margin-bottom:.22rem; }
+.myth-response{ font-size:.90rem; color:rgba(255,255,255,0.92); line-height:1.55; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
 
-/* RESEARCH EV-CARDS */
-.ev-card{display:grid;grid-template-columns:220px 1fr;border-radius:10px;overflow:hidden;flex:1;min-height:0;}
-.ev-card + .ev-card{margin-top:.52rem;}
-.ev-stat-box{background:linear-gradient(160deg,var(--series-dark) 0%,#1a4a2a 100%);border:1px solid rgba(255,255,255,0.15);padding:.9rem .75rem;display:flex;flex-direction:column;justify-content:flex-start;overflow:hidden;}
-.ev-kf-label{font-size:.68rem;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.35rem;}
-.ev-stat-row{font-family:'Fraunces',serif;font-size:3.2rem;font-weight:900;color:#fff;line-height:1.0;margin-bottom:.3rem;}
-.ev-stat-unit{font-family:'Fraunces',serif;font-size:1.65rem;font-weight:700;color:rgba(255,255,255,0.88);line-height:1;margin-bottom:.25rem;}
-.ev-outcome{font-size:.95rem;font-weight:700;color:rgba(255,255,255,0.95);line-height:1.3;margin-bottom:.35rem;}
-.ev-conditions{font-size:.78rem;line-height:1.32;color:rgba(255,255,255,0.68);}
-.ev-body-panel{background:rgba(255,255,255,0.96);padding:.9rem 1rem;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;}
-.ev-body-title{font-family:'Fraunces',serif;font-size:.98rem;color:var(--navy);font-weight:700;margin-bottom:.4rem;line-height:1.25;}
-.ev-body p{font-size:.94rem;line-height:1.65;color:var(--text);display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden;}
-.ev-source{font-size:.74rem;color:rgba(44,44,44,0.50);font-style:italic;margin-top:.4rem;}
-
-/* RESEARCH SLIDE LAYOUT */
-.research-slide-single{display:flex;flex-direction:column;flex:1;min-height:0;}
-.research-slide-double{display:flex;flex-direction:column;gap:.52rem;flex:1;min-height:0;}
-.research-slide-double .ev-card{flex:1;}
-
-/* CTA SLIDE */
-.cta-wrap-v2{
-  display:grid;
-  grid-template-rows:auto 1fr auto;
-  width:100%;height:100%;
-  background:radial-gradient(ellipse at 50% 30%,rgba(232,168,74,0.18) 0%,transparent 65%),
-             linear-gradient(160deg,var(--series-dark) 0%,var(--series) 100%);
-  gap:.6rem;
+/* ─── THREE-GRID — dark coloured cards, colour narrative ───
+   ic-body word limit: ≤25 words ALL cards (proved correct for 768px viewport)
+   ic-title: ≤7 words (prevents 2-line wrap)
+   line-clamp: 4 (not 5 — 5 only fits at 900px+; at 768px only 3.8–4.4 lines available)
+*/
+.three-grid{ display:grid; grid-template-rows:repeat(3,1fr); gap:.46rem; flex:1; min-height:0; }
+.info-card{
+  border-radius:10px;
+  background:linear-gradient(90deg,rgba(38,105,55,.55) 0%,rgba(22,65,33,.42) 100%);
+  border:1px solid rgba(160,212,176,0.28);
+  padding:.82rem 1rem; display:flex; flex-direction:column; gap:.28rem;
+  min-height:0; overflow:hidden;
+  transform:translateY(12px); opacity:0;
+  transition:transform .35s ease, opacity .35s ease;
 }
-.cta-top{display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:.3rem;}
-.cta-icon{font-size:5.5rem;line-height:1;margin-bottom:.4rem;
-  filter:drop-shadow(0 0 18px rgba(232,168,74,0.5));
-  animation:halo 3.2s ease-in-out infinite;}
-@keyframes halo{0%,100%{filter:drop-shadow(0 0 14px rgba(232,168,74,0.4));}50%{filter:drop-shadow(0 0 28px rgba(232,168,74,0.75));}}
-.cta-badge{font-size:.70rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.4rem;}
-.cta-headline{font-family:'Fraunces',serif;font-size:clamp(2.4rem,5.5vw,3.8rem);color:#fff;line-height:1.12;font-weight:900;max-width:700px;margin:0 auto;}
-.cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.42rem;padding:0 .3rem;}
-.cta-row{background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.15);border-radius:9px;display:flex;align-items:start;gap:.9rem;padding:.7rem 1rem;}
-.cta-row-icon{font-size:1.55rem;flex-shrink:0;margin-top:.05rem;}
-.cta-row-text{flex:1;min-width:0;}
-.cta-row-title{font-size:.93rem;font-weight:700;color:#fff;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.cta-row-sub{font-size:.80rem;color:rgba(255,255,255,0.75);line-height:1.45;margin-top:.15rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.cta-bottom{padding-bottom:.2rem;}
-.med-disclaimer{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.18);border-radius:8px;padding:.7rem 1rem;display:flex;gap:.6rem;align-items:flex-start;}
-.med-disc-icon{font-size:1.1rem;flex-shrink:0;}
-.med-disc-text{font-size:1rem;color:rgba(255,255,255,0.90);line-height:1.5;font-weight:400;}
+.info-card.visible{ transform:translateY(0); opacity:1; }
+.info-card:nth-child(1){ transition-delay:.05s; }
+.info-card:nth-child(2){ transition-delay:.15s; }
+.info-card:nth-child(3){ transition-delay:.25s; }
+.info-card.c-red   { background:linear-gradient(90deg,rgba(180,45,45,.55) 0%,rgba(110,25,25,.42) 100%); border-color:rgba(220,80,70,.55); }
+.info-card.c-amber { background:linear-gradient(90deg,rgba(170,110,20,.55) 0%,rgba(110,68,12,.42) 100%); border-color:rgba(232,168,74,.55); }
+.info-card.c-green { background:linear-gradient(90deg,rgba(38,105,55,.55) 0%,rgba(22,65,33,.42) 100%); border-color:rgba(160,212,176,.52); }
+.ic-icon{ font-size:1.55rem; line-height:1; }
+.ic-title{ font-family:'Fraunces',serif; font-size:1.12rem; color:#fff; font-weight:700; line-height:1.2; }
+.ic-body{
+  font-size:.93rem; color:rgba(255,255,255,0.88); line-height:1.62; font-weight:400;
+  display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden;
+  /* LOCKED: clamp:4, content ≤25 words. Proved at 768px filming viewport. */
+}
+.ic-source{ font-size:.74rem; color:rgba(255,255,255,0.55); font-style:italic; }
+
+/* EV-CARDS */
+.ev-card{ display:grid; grid-template-columns:220px 1fr; border-radius:10px; overflow:hidden; flex:1; min-height:0; }
+.ev-card + .ev-card{ margin-top:.52rem; }
+.ev-stat-box{ background:linear-gradient(160deg,var(--series-dark) 0%,var(--series) 100%); border:1px solid rgba(255,255,255,0.15); padding:.9rem .75rem; display:flex; flex-direction:column; justify-content:flex-start; overflow:hidden; }
+.ev-kf-label{ font-size:.68rem; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:.07em; margin-bottom:.35rem; }
+.ev-stat-row{ font-family:'Fraunces',serif; font-size:3.2rem; font-weight:900; color:#fff; line-height:1.0; margin-bottom:.1rem; }
+.ev-stat-unit{ font-family:'Fraunces',serif; font-size:1.65rem; font-weight:700; color:rgba(255,255,255,0.88); line-height:1; margin-bottom:.25rem; }
+.ev-outcome{ font-size:.95rem; font-weight:700; color:rgba(255,255,255,0.95); line-height:1.3; margin-bottom:.35rem; }
+.ev-conditions{ font-size:.78rem; line-height:1.32; color:rgba(255,255,255,0.68); }
+.ev-body-panel{ background:rgba(255,255,255,0.96); padding:.9rem 1rem; display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; }
+.ev-body-title{ font-family:'Fraunces',serif; font-size:.98rem; color:var(--navy); font-weight:700; margin-bottom:.4rem; line-height:1.25; }
+.ev-body-panel p{ font-size:.94rem; line-height:1.65; color:var(--text); display:-webkit-box; -webkit-line-clamp:6; -webkit-box-orient:vertical; overflow:hidden; }
+.ev-source{ font-size:.74rem; color:rgba(44,44,44,0.50); font-style:italic; margin-top:.4rem; }
+.research-slide-single{ display:flex; flex-direction:column; flex:1; min-height:0; }
+.research-slide-double{ display:flex; flex-direction:column; gap:.52rem; flex:1; min-height:0; }
+.research-slide-double .ev-card{ flex:1; }
+
+/* CTA SLIDE — sequential animation
+   item text ≤15 words each (fits 2 lines at 768px row height of ~78px)
+*/
+.cta-slide{ background:radial-gradient(ellipse at 50% 25%, rgba(42,90,58,0.75) 0%, var(--series-dark) 55%, var(--bg) 100%); overflow:hidden; padding:0; }
+.cta-wrap-v2{ display:grid; grid-template-rows:auto 1fr auto; width:100%; height:100%; gap:.5rem; padding:1rem 1.5rem .8rem; }
+.cta-top{ display:flex; flex-direction:column; align-items:center; text-align:center; }
+.cta-badge{ font-size:.70rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--amber); margin-bottom:.4rem; }
+.cta-headline{ font-family:'Fraunces',serif; font-size:clamp(1.8rem,4vw,2.8rem); color:#fff; line-height:1.1; font-weight:900; margin:.0 auto .2rem; }
+.cta-subline{ font-size:.88rem; color:rgba(255,255,255,0.72); line-height:1.4; }
+.cta-items{ display:grid; grid-template-rows:repeat(6,1fr); gap:.38rem; min-height:0; overflow:hidden; }
+.cta-item{ border-radius:9px; padding:.55rem 1rem; display:flex; align-items:center; gap:.85rem; opacity:0; transform:translateX(-24px); transition:opacity .38s ease, transform .38s ease; }
+.cta-item.visible{ opacity:1; transform:translateX(0); }
+.cta-item.ci-red   { background:rgba(180,45,45,0.25); border:1px solid rgba(220,80,70,0.40); }
+.cta-item.ci-amber { background:rgba(170,110,20,0.25); border:1px solid rgba(232,168,74,0.40); }
+.cta-item.ci-green { background:rgba(38,105,55,0.30); border:1px solid rgba(160,212,176,0.42); }
+.cta-item-icon{ font-size:1.45rem; flex-shrink:0; }
+.cta-item-text{ font-size:.93rem; font-weight:600; color:rgba(255,255,255,0.95); line-height:1.3; }
+.med-disclaimer{ background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.18); border-radius:8px; padding:.65rem 1rem; display:flex; gap:.6rem; align-items:flex-start; }
+.med-disc-icon{ font-size:1.1rem; flex-shrink:0; }
+.med-disc-text{ font-size:1rem; color:rgba(255,255,255,0.90); line-height:1.5; font-weight:400; }
 
 /* BRAND CLOSE */
-.close-wrap{
-  display:flex;flex-direction:column;justify-content:flex-start;
-  align-items:center;text-align:center;
-  background:radial-gradient(ellipse at 50% 20%,rgba(232,99,74,0.12) 0%,transparent 60%),
-             linear-gradient(160deg,var(--series-dark) 0%,var(--series) 100%);
-  gap:.7rem;padding-top:.8rem;
-}
-.close-logo{font-family:'Fraunces',serif;font-size:2.8rem;color:#fff;letter-spacing:-0.02em;line-height:1;}
-.close-logo span{color:var(--coral);}
-.close-tag{font-size:1.05rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.70);}
-.close-headline{font-family:'Fraunces',serif;font-size:1.5rem;color:#fff;margin:.2rem 0;}
-.close-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;width:100%;max-width:760px;margin:.1rem auto;}
-.close-card{background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.16);border-radius:9px;padding:.85rem .9rem;text-align:center;}
-.close-card-icon{font-size:1.7rem;margin-bottom:.35rem;}
-.close-card-text{font-size:.88rem;color:rgba(255,255,255,0.88);line-height:1.5;font-weight:500;}
-.close-series{font-size:1rem;color:rgba(255,255,255,0.65);margin-top:.2rem;}
+.close-slide{ background:linear-gradient(140deg,var(--series-dark) 0%,var(--series) 55%,#3A7A55 100%); padding:0; }
+.close-slide::before{ content:''; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E"); pointer-events:none; }
+.close-wrap{ position:relative; z-index:2; display:flex; flex-direction:column; justify-content:flex-start; align-items:center; text-align:center; height:100%; gap:.7rem; padding:1.4rem 1.5rem .8rem; }
+.close-logo{ font-family:'Fraunces',serif; font-size:2.8rem; color:#fff; letter-spacing:-0.02em; line-height:1; flex-shrink:0; }
+.close-logo span{ color:var(--coral); }
+.close-tag{ font-size:1.05rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,0.70); flex-shrink:0; }
+.close-headline{ font-family:'Fraunces',serif; font-size:1.5rem; color:#fff; flex-shrink:0; }
+.close-cards{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:.6rem; width:100%; max-width:760px; flex:1; min-height:0; }
+.close-card{ background:rgba(255,255,255,0.09); border:1px solid rgba(255,255,255,0.16); border-radius:9px; padding:.85rem .9rem; text-align:center; }
+.close-card-icon{ font-size:1.7rem; margin-bottom:.35rem; }
+.close-card-text{ font-size:.88rem; color:rgba(255,255,255,0.88); line-height:1.5; font-weight:500; }
+.close-series{ font-size:1rem; color:rgba(255,255,255,0.65); flex-shrink:0; }
 
 /* DOT NAV */
-#dots{position:fixed;bottom:0;left:0;width:100%;height:32px;display:flex;align-items:center;justify-content:center;gap:.5rem;background:rgba(27,42,74,0.85);backdrop-filter:blur(6px);}
-.dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.25);cursor:pointer;transition:background .2s,transform .2s;}
-.dot.active{background:var(--amber);transform:scale(1.25);}
+#dots{ position:fixed; bottom:0; left:0; width:100%; height:32px; display:flex; align-items:center; justify-content:center; gap:.5rem; background:rgba(0,0,0,0.35); }
+.dot{ width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,0.25); cursor:pointer; transition:background .2s, transform .2s; }
+.dot.active{ background:var(--amber); transform:scale(1.25); }
 </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
 <div id="topbar">
-  <div>
-    <div class="topbar-logo">helf<span>.</span>school</div>
-  </div>
+  <div><div class="topbar-logo">helf<span>.</span>school</div></div>
   <div class="topbar-sub">Melanoma and Skin Cancer · Cancer Series · Article 31</div>
   <div class="topbar-counter" id="counter">1 / 11</div>
   <div class="topbar-hint">← → or tap</div>
 </div>
 
-<!-- STAGE -->
 <div id="stage">
 
-  <!-- SLIDE 1: INTRO -->
-  <div class="slide intro-slide active" id="slide-1">
-    <div class="slide-header">
-      <div class="slide-badge">Cancer Series · Article 31</div>
-      <div class="intro-title">Melanoma and Skin Cancer</div>
-      <div class="intro-sub">The most dangerous form of skin cancer — and one of the most preventable.</div>
+<!-- SLIDE 1: INTRO -->
+<div class="slide intro-slide active" id="slide-1">
+  <div class="intro-top">
+    <div class="intro-badge-pill">🩺 Cancer Series · Article 31</div>
+    <h1 class="intro-h1">Melanoma</h1>
+    <p class="intro-sub">The most dangerous skin cancer — and one of the most preventable.</p>
+  </div>
+  <div class="intro-stat-grid">
+    <div class="intro-stat-card">
+      <div class="intro-stat-num">~18,300</div>
+      <div class="intro-stat-label">new melanoma diagnoses in the UK each year — around 48 every day</div>
+      <div class="intro-stat-src">Cancer Research UK, 2018–2021</div>
     </div>
-    <div class="intro-stat-grid">
-      <div class="intro-stat-card">
-        <div class="intro-stat-num">~18,300</div>
-        <div class="intro-stat-label">new melanoma diagnoses in the UK each year — around 48 every day</div>
-        <div class="intro-stat-src">Cancer Research UK, 2018–2021</div>
+    <div class="intro-stat-card">
+      <div class="intro-stat-num">86%</div>
+      <div class="intro-stat-label">of melanoma cases caused by UV radiation — making it one of the most preventable cancers</div>
+      <div class="intro-stat-src">Cancer Research UK, UK 2015</div>
+    </div>
+    <div class="intro-stat-card">
+      <div class="intro-stat-num">92.7%</div>
+      <div class="intro-stat-label">10-year overall survival across all stages — more than doubled in 50 years</div>
+      <div class="intro-stat-src">Cancer Research UK, UK 2018</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 2: MYTH VS EVIDENCE -->
+<div class="slide" id="slide-2">
+  <div class="slide-header">
+    <div class="slide-badge">Myth vs Evidence</div>
+    <div class="slide-title">Common misconceptions</div>
+    <div class="slide-subtitle">Two beliefs that don't reflect the clinical picture</div>
+  </div>
+  <div class="myth-grid">
+    <div class="myth-card">
+      <div class="myth-icon">🌞</div>
+      <div class="myth-content">
+        <div class="myth-claim">"A tan shows your skin is healthy"</div>
+        <div class="myth-label-ev">The evidence</div>
+        <div class="myth-response">A tan is the skin's visible response to DNA damage caused by UV radiation. The evidence shows UV — from sun and sunbeds — causes around 86% of UK melanoma cases. There is no such thing as a safe tan.</div>
       </div>
-      <div class="intro-stat-card">
-        <div class="intro-stat-num">86%</div>
-        <div class="intro-stat-label">of melanoma cases are caused by overexposure to UV radiation — making it one of the most preventable cancers</div>
-        <div class="intro-stat-src">Cancer Research UK, UK 2015</div>
-      </div>
-      <div class="intro-stat-card">
-        <div class="intro-stat-num">92.7%</div>
-        <div class="intro-stat-label">10-year overall survival across all stages — melanoma survival has more than doubled in 50 years</div>
-        <div class="intro-stat-src">Cancer Research UK, UK 2018</div>
+    </div>
+    <div class="myth-card">
+      <div class="myth-icon">🔬</div>
+      <div class="myth-content">
+        <div class="myth-claim">"Melanoma only affects people with fair skin"</div>
+        <div class="myth-label-ev">The evidence</div>
+        <div class="myth-response">Melanoma occurs across all skin tones. Acral lentiginous melanoma — developing on the palms, soles, and under the nails — is more frequent in people with darker skin and can be harder to spot.</div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- SLIDE 2: MYTH VS EVIDENCE -->
-  <div class="slide" id="slide-2">
-    <div class="slide-header">
-      <div class="slide-badge">Melanoma · What the evidence shows</div>
-      <div class="slide-title">Common misconceptions</div>
-      <div class="slide-subtitle">Two widely held beliefs that don't reflect the clinical picture</div>
+<!-- SLIDE 3: WHAT IS IT? (1 of 2) -->
+<div class="slide" id="slide-3">
+  <div class="slide-header">
+    <div class="slide-badge">What is it? · 1 of 2</div>
+    <div class="slide-title">Melanoma — the basics</div>
+    <div class="slide-subtitle">A cancer of the skin's pigment cells</div>
+  </div>
+  <div class="three-grid">
+    <!-- amber = mechanism | NO source | ≤25 words -->
+    <div class="info-card c-amber animate-ready">
+      <div class="ic-icon">🔬</div>
+      <div class="ic-title">What melanoma is</div>
+      <div class="ic-body">Melanoma arises from the skin's pigment cells. Its danger comes from the ability to spread to lymph nodes and distant organs if not caught early.</div>
     </div>
-    <div class="myth-grid">
-      <div class="myth-card">
-        <div class="myth-icon">🌞</div>
-        <div class="myth-content">
-          <div class="myth-claim">"A tan shows your skin is healthy"</div>
-          <div class="myth-label-ev">The evidence</div>
-          <div class="myth-response">A tan is the skin's visible response to DNA damage caused by UV radiation. The evidence shows that UV radiation — from sun exposure and sunbeds — is responsible for around 86% of melanoma cases in the UK. There is no such thing as a safe tan.</div>
-        </div>
+    <!-- red = harm | NO source | ≤25 words -->
+    <div class="info-card c-red animate-ready">
+      <div class="ic-icon">🔡</div>
+      <div class="ic-title">The ABCDE rule</div>
+      <div class="ic-body">Asymmetry · irregular Border · multiple Colours · Diameter over 6mm · Evolution — any change. A mole that looks different also warrants assessment.</div>
+    </div>
+    <!-- amber = mechanism | NO source | ≤25 words -->
+    <div class="info-card c-amber animate-ready">
+      <div class="ic-icon">📋</div>
+      <div class="ic-title">Four main subtypes</div>
+      <div class="ic-body">Superficial spreading (most common) · Nodular (fast-growing) · Lentigo maligna (sun-damaged skin) · Acral lentiginous (palms, soles, nails — more common in darker skin).</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: WHAT IS IT? (2 of 2) -->
+<div class="slide" id="slide-4">
+  <div class="slide-header">
+    <div class="slide-badge">What is it? · 2 of 2</div>
+    <div class="slide-title">Risk factors and gene testing</div>
+    <div class="slide-subtitle">UV is the biggest modifiable risk</div>
+  </div>
+  <div class="three-grid">
+    <!-- red = harm | NO source | ≤25 words -->
+    <div class="info-card c-red animate-ready">
+      <div class="ic-icon">☀️</div>
+      <div class="ic-title">UV exposure — the key risk</div>
+      <div class="ic-body">Intense UV — sunbeds and strong sunshine — carries more melanoma risk than everyday exposure. Fair skin, many moles, and family history are risk factors.</div>
+    </div>
+    <!-- amber = mechanism | NO source | ≤25 words -->
+    <div class="info-card c-amber animate-ready">
+      <div class="ic-icon">🧬</div>
+      <div class="ic-title">The BRAF gene mutation</div>
+      <div class="ic-body">Around half of melanomas carry a BRAF mutation. NICE recommends testing at diagnosis for higher-risk disease, as the result determines which treatments are available.</div>
+    </div>
+    <!-- green = action | NO source | ≤25 words -->
+    <div class="info-card c-green animate-ready">
+      <div class="ic-icon">📊</div>
+      <div class="ic-title">Stage at diagnosis matters most</div>
+      <div class="ic-body">Staged 1 to 4 based on tumour depth, lymph nodes, and spread. Stage at diagnosis is the single most important factor in determining outcome.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: WHY DOES IT MATTER? -->
+<div class="slide" id="slide-5">
+  <div class="slide-header">
+    <div class="slide-badge">Why does it matter?</div>
+    <div class="slide-title">The scale — and the stage gap</div>
+    <div class="slide-subtitle">Survival depends heavily on stage at diagnosis</div>
+  </div>
+  <div class="three-grid">
+    <!-- amber = context | NO source | ≤25 words -->
+    <div class="info-card c-amber animate-ready">
+      <div class="ic-icon">📈</div>
+      <div class="ic-title">A rising diagnosis rate</div>
+      <div class="ic-body">Around 18,300 melanoma diagnoses in the UK each year — roughly 48 every day. Rates have risen by around 31% over the past decade.</div>
+    </div>
+    <!-- green = positive | NO source | ≤25 words -->
+    <div class="info-card c-green animate-ready">
+      <div class="ic-icon">🟢</div>
+      <div class="ic-title">Stage 1 — around 100% five-year survival</div>
+      <div class="ic-body">Stage 1 melanoma has around 100% five-year survival. This falls to 85% at stage 2 and 75% at stage 3, where lymph nodes are involved.</div>
+    </div>
+    <!-- green = positive | NO source | ≤25 words -->
+    <div class="info-card c-green animate-ready">
+      <div class="ic-icon">💊</div>
+      <div class="ic-title">Modern treatment changed the outlook</div>
+      <div class="ic-body">Fewer than half survived 10 years in the 1970s. By 2018, more than 9 in 10 did — driven by immunotherapy and gene-targeted treatment.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: DOCTOR DISCUSSION (1 of 2) -->
+<div class="slide" id="slide-6">
+  <div class="slide-header">
+    <div class="slide-badge">What your doctor might do · 1 of 2</div>
+    <div class="slide-title">Diagnosis and staging</div>
+    <div class="slide-subtitle">From assessment to full staging</div>
+  </div>
+  <div class="three-grid">
+    <!-- amber = mechanism | NO source | ≤25 words -->
+    <div class="info-card c-amber animate-ready">
+      <div class="ic-icon">🔍</div>
+      <div class="ic-title">Dermatoscopy and biopsy</div>
+      <div class="ic-body">Lesions are assessed using dermatoscopy — a handheld magnifier. If uncertain, a biopsy removes and examines the lesion, confirming diagnosis and measuring tumour depth.</div>
+    </div>
+    <!-- amber = mechanism | NO source | ≤25 words -->
+    <div class="info-card c-amber animate-ready">
+      <div class="ic-icon">🧬</div>
+      <div class="ic-title">BRAF testing at diagnosis</div>
+      <div class="ic-body">NICE recommends BRAF testing at diagnosis for stage IIA and above. Early BRAF status means gene-targeted treatment can begin promptly if needed.</div>
+    </div>
+    <!-- green = action | NO source | ≤25 words -->
+    <div class="info-card c-green animate-ready">
+      <div class="ic-icon">🏥</div>
+      <div class="ic-title">Sentinel node and staging scans</div>
+      <div class="ic-body">Sentinel lymph node biopsy checks whether cancer has reached the nearest nodes. CT, PET-CT, and MRI then assess spread and establish the stage.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: DOCTOR DISCUSSION (2 of 2) -->
+<div class="slide" id="slide-7">
+  <div class="slide-header">
+    <div class="slide-badge">What your doctor might do · 2 of 2</div>
+    <div class="slide-title">Treatment pathways</div>
+    <div class="slide-subtitle">Surgery, immunotherapy, and targeted treatment</div>
+  </div>
+  <div class="three-grid">
+    <!-- green = action | NO source | ≤25 words -->
+    <div class="info-card c-green animate-ready">
+      <div class="ic-icon">🏥</div>
+      <div class="ic-title">Surgery — mainstay for early disease</div>
+      <div class="ic-body">Surgical removal with a defined margin is the primary treatment for early disease. For most stage 1 and stage 2 cases, surgery is curative.</div>
+    </div>
+    <!-- green = action | NO source | ≤25 words -->
+    <div class="info-card c-green animate-ready">
+      <div class="ic-icon">💊</div>
+      <div class="ic-title">Immunotherapy — activating immune response</div>
+      <div class="ic-body">Immunotherapy activates the immune system to recognise and attack cancer cells. Checkpoint inhibitors, given alone or in combination, have transformed treatment of advanced melanoma.</div>
+    </div>
+    <!-- green = action | NO source | ≤25 words -->
+    <div class="info-card c-green animate-ready">
+      <div class="ic-icon">🧬</div>
+      <div class="ic-title">Gene-targeted therapy for BRAF disease</div>
+      <div class="ic-body">Targeted oral tablets block the protein driving BRAF-mutant melanoma growth. Used in advanced disease and as adjuvant treatment after surgery for stage III.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: RESEARCH (1 of 2) -->
+<div class="slide" id="slide-8">
+  <div class="slide-header">
+    <div class="slide-badge">What the research shows · 1 of 2</div>
+    <div class="slide-title">Immunotherapy — landmark results</div>
+    <div class="slide-subtitle">Two trials that redefined survival in advanced melanoma</div>
+  </div>
+  <div class="research-slide-double">
+    <div class="ev-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">Median Overall Survival</div>
+        <div class="ev-stat-row">32.7</div>
+        <div class="ev-stat-unit">months</div>
+        <div class="ev-outcome">with immunotherapy / vs 15.9 months on older treatment</div>
+        <div class="ev-conditions">advanced melanoma · 5-year follow-up · KEYNOTE-006</div>
       </div>
-      <div class="myth-card">
-        <div class="myth-icon">🔬</div>
-        <div class="myth-content">
-          <div class="myth-claim">"Melanoma only affects people with fair skin"</div>
-          <div class="myth-label-ev">The evidence</div>
-          <div class="myth-response">Melanoma occurs across all skin tones. Acral lentiginous melanoma — developing on the palms, soles, and under the nails — is diagnosed more frequently in people with darker skin, and can be harder to spot. Awareness of all skin types matters.</div>
+      <div class="ev-body-panel">
+        <div>
+          <div class="ev-body-title">KEYNOTE-006 — immunotherapy more than doubled survival</div>
+          <p>A checkpoint inhibitor immunotherapy was compared with an older immune treatment in advanced melanoma. Immunotherapy more than doubled median survival — 32.7 months versus 15.9 months — and is now a standard first-line treatment.</p>
         </div>
+        <div class="ev-source">Robert C et al. Lancet Oncol 2019 · PMID 31345627</div>
+      </div>
+    </div>
+    <div class="ev-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">5-Year Overall Survival</div>
+        <div class="ev-stat-row">34%</div>
+        <div class="ev-outcome">with gene-targeted therapy in BRAF-mutant metastatic melanoma</div>
+        <div class="ev-conditions">BRAF V600-mutant disease · COMBI-d and COMBI-v pooled</div>
+      </div>
+      <div class="ev-body-panel">
+        <div>
+          <div class="ev-body-title">COMBI trials — 34% alive at 5 years</div>
+          <p>A pooled analysis of two large trials showed 34% of patients with BRAF-mutant metastatic melanoma alive at 5 years on gene-targeted combination treatment. Before the treatment era, very few patients with advanced disease survived this long.</p>
+        </div>
+        <div class="ev-source">Robert C et al. N Engl J Med 2019 · PMID 31166680</div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- SLIDE 3: WHAT IS IT? (1 of 2) -->
-  <div class="slide" id="slide-3">
-    <div class="slide-header">
-      <div class="slide-badge">What is it? · 1 of 2</div>
-      <div class="slide-title">Melanoma — the basics</div>
-      <div class="slide-subtitle">A cancer of the pigment-producing cells, with a critical dependence on early detection</div>
-    </div>
-    <div class="three-grid">
-      <div class="info-card">
-        <div class="ic-icon">🔬</div>
-        <div class="ic-title">What melanoma is</div>
-        <div class="ic-body">Melanoma arises from melanocytes — the pigment-producing cells in the skin. It is the most dangerous skin cancer because it can spread to lymph nodes and distant organs. Unlike basal cell carcinoma and squamous cell carcinoma, melanoma has a much higher potential to metastasise (spread) if not caught early.</div>
+<!-- SLIDE 9: RESEARCH (2 of 2) -->
+<div class="slide" id="slide-9">
+  <div class="slide-header">
+    <div class="slide-badge">What the research shows · 2 of 2</div>
+    <div class="slide-title">Combination immunotherapy</div>
+    <div class="slide-subtitle">CheckMate 067 — blocking two pathways at once</div>
+  </div>
+  <div class="research-slide-single">
+    <div class="ev-card" style="flex:1;">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">5-Year Overall Survival</div>
+        <div class="ev-stat-row">52%</div>
+        <div class="ev-outcome">with combination immunotherapy / vs 26% on older treatment</div>
+        <div class="ev-conditions">advanced melanoma · treatment-naïve · CheckMate 067</div>
       </div>
-      <div class="info-card">
-        <div class="ic-icon">🔡</div>
-        <div class="ic-title">The ABCDE rule</div>
-        <div class="ic-body">A clinical checklist for spotting lesions that need assessment: Asymmetry · Border (irregular or uneven) · Colour (multiple shades or uneven) · Diameter (wider than 6mm — roughly the size of a pencil eraser) · Evolution (any change over time). An "ugly duckling" — a mole that simply looks different from the others — is also a recognised warning sign.</div>
-      </div>
-      <div class="info-card">
-        <div class="ic-icon">📋</div>
-        <div class="ic-title">Four main subtypes</div>
-        <div class="ic-body">Superficial spreading melanoma is the most common — it grows outward before downward. Nodular melanoma grows rapidly into deeper skin from the start. Lentigo maligna melanoma develops on sun-exposed areas in older adults. Acral lentiginous melanoma appears on palms, soles, or under nails, and is more common in people with darker skin.</div>
+      <div class="ev-body-panel">
+        <div>
+          <div class="ev-body-title">CheckMate 067 — 52% alive at 5 years</div>
+          <p>Combination immunotherapy — blocking two immune-suppression pathways simultaneously — was compared with an older single immune treatment in advanced melanoma. At 5 years, 52% of patients on combination treatment were alive, versus 26% on the older treatment alone.</p>
+        </div>
+        <div class="ev-source">Larkin J et al. N Engl J Med 2019 · PMID 31562797</div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- SLIDE 4: WHAT IS IT? (2 of 2) -->
-  <div class="slide" id="slide-4">
-    <div class="slide-header">
-      <div class="slide-badge">What is it? · 2 of 2</div>
-      <div class="slide-title">Risk factors and gene testing</div>
-      <div class="slide-subtitle">UV exposure is the single largest modifiable risk — and gene testing now shapes treatment from the start</div>
+<!-- SLIDE 10: CTA — SEQUENTIAL ANIMATION
+     item text ≤15 words each (proved correct for 768px viewport row height of ~78px)
+-->
+<div class="slide cta-slide" id="slide-10">
+  <div class="cta-wrap-v2">
+    <div class="cta-top">
+      <div class="cta-badge">Cancer Research UK · NICE · Clinical trial evidence</div>
+      <div class="cta-headline">What the evidence shows about melanoma</div>
+      <div class="cta-subline">Stage 1 survival is around 100% — earlier recognition changes outcomes.</div>
     </div>
-    <div class="three-grid">
-      <div class="info-card">
-        <div class="ic-icon">☀️</div>
-        <div class="ic-title">UV exposure — the key risk</div>
-        <div class="ic-body">Melanoma risk is more closely linked with intermittent high-intensity UV — sunbathing, sunbeds, or holidays in strong sunshine — than with everyday outdoor exposure. Fair skin, a history of severe sunburn (especially in childhood), many moles, and a family history of melanoma all increase risk.</div>
-      </div>
-      <div class="info-card">
-        <div class="ic-icon">🧬</div>
-        <div class="ic-title">The BRAF gene mutation</div>
-        <div class="ic-body">Approximately half of all skin melanomas carry a mutation in the BRAF gene — most commonly BRAF V600E — which drives uncontrolled cell growth. NICE guidance now recommends BRAF gene testing at the time of diagnosis for higher-risk disease, because its presence determines whether gene-targeted drug treatment is a treatment option.</div>
-      </div>
-      <div class="info-card">
-        <div class="ic-icon">📊</div>
-        <div class="ic-title">Stage at diagnosis matters most</div>
-        <div class="ic-body">Melanoma is staged 1 to 4 based on how deeply the tumour has grown into the skin, whether it has reached nearby lymph nodes, and whether it has spread to distant organs. Stage at diagnosis is the single most important factor determining outcome — which is why early recognition is so clinically significant.</div>
-      </div>
+    <div class="cta-items">
+      <div class="cta-item ci-red"><div class="cta-item-icon">🔡</div><div class="cta-item-text">The ABCDE signs — Asymmetry, Border, Colours, Diameter over 6mm, Evolution — are warning features</div></div>
+      <div class="cta-item ci-red"><div class="cta-item-icon">🌞</div><div class="cta-item-text">86% of UK melanoma cases are caused by UV radiation — sun and sunbeds</div></div>
+      <div class="cta-item ci-amber"><div class="cta-item-icon">🌡️</div><div class="cta-item-text">A tan is the skin's response to DNA damage — not a sign of health</div></div>
+      <div class="cta-item ci-amber"><div class="cta-item-icon">👁️</div><div class="cta-item-text">Melanoma occurs across all skin tones — acral lentiginous affects palms, soles, and nails</div></div>
+      <div class="cta-item ci-green"><div class="cta-item-icon">🎯</div><div class="cta-item-text">Melanoma caught at stage 1 has around 100% five-year survival</div></div>
+      <div class="cta-item ci-green"><div class="cta-item-icon">💊</div><div class="cta-item-text">Immunotherapy more than doubled survival in advanced melanoma — from 16 months to nearly 33</div></div>
     </div>
-  </div>
-
-  <!-- SLIDE 5: WHY DOES IT MATTER? -->
-  <div class="slide" id="slide-5">
-    <div class="slide-header">
-      <div class="slide-badge">Why does it matter?</div>
-      <div class="slide-title">The scale — and the stage gap</div>
-      <div class="slide-subtitle">Melanoma survival depends heavily on the stage at which it is found</div>
-    </div>
-    <div class="three-grid">
-      <div class="info-card">
-        <div class="ic-icon">📈</div>
-        <div class="ic-title">A rising diagnosis rate</div>
-        <div class="ic-body">Around 18,300 people are diagnosed with melanoma in the UK each year — roughly 48 every day. That rate has risen by around 31% over the past decade, linked to ageing, changing sun habits, and improved detection. Despite rising cases, mortality rates have remained stable — reflecting better treatment.</div>
-      </div>
-      <div class="info-card">
-        <div class="ic-icon">🟢</div>
-        <div class="ic-title">Stage 1 — around 100% survive 5 years</div>
-        <div class="ic-body">When melanoma is caught at stage 1 — confined to the skin, not yet spread — around 100% of people survive 5 years or more. At stage 2 this falls to around 85%. At stage 3, where cancer has reached nearby lymph nodes, it is around 75%. Early detection is the single most powerful factor in outcome.</div>
-      </div>
-      <div class="info-card">
-        <div class="ic-icon">🔬</div>
-        <div class="ic-title">Modern treatment has changed the outlook</div>
-        <div class="ic-body">In the 1970s, fewer than half of people diagnosed with melanoma survived 10 years. By 2018, more than 9 in 10 did. The arrival of effective immunotherapy and gene-targeted treatments over the past 15 years has dramatically changed outcomes for advanced disease — making melanoma one of oncology's greatest success stories.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SLIDE 6: DOCTOR DISCUSSION (1 of 2) -->
-  <div class="slide" id="slide-6">
-    <div class="slide-header">
-      <div class="slide-badge">What your doctor might do · 1 of 2</div>
-      <div class="slide-title">Diagnosis and staging</div>
-      <div class="slide-subtitle">From initial assessment through to full staging for higher-risk disease</div>
-    </div>
-    <div class="three-grid">
-      <div class="info-card">
-        <div class="ic-icon">🔍</div>
-        <div class="ic-title">Dermatoscopy and excision biopsy</div>
-        <div class="ic-body">A concerning lesion is first assessed clinically, increasingly with dermatoscopy — a handheld magnifying device that reveals skin structure below the surface. If the picture is uncertain, an excision biopsy is performed: the lesion plus a small margin of surrounding tissue is removed and examined by a pathologist, who confirms or excludes melanoma and measures its depth (Breslow thickness).</div>
-      </div>
-      <div class="info-card">
-        <div class="ic-icon">🧬</div>
-        <div class="ic-title">BRAF gene testing — now at diagnosis</div>
-        <div class="ic-body">NICE guidance now recommends BRAF gene testing at the time of diagnosis for stage IIA and above — not only at the point of advanced disease. Knowing BRAF status early means gene-targeted treatment can begin promptly if the disease progresses, without the delay of retrieving and re-testing samples later.</div>
-      </div>
-      <div class="info-card">
-        <div class="ic-icon">🏥</div>
-        <div class="ic-title">Sentinel lymph node biopsy and staging scans</div>
-        <div class="ic-body">For melanomas above a certain depth, a sentinel lymph node biopsy determines whether cancer has reached the nearest lymph nodes. CT, PET-CT, and MRI scans assess spread to other parts of the body. Together, these investigations establish the stage of the melanoma and guide the treatment plan.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SLIDE 7: DOCTOR DISCUSSION (2 of 2) -->
-  <div class="slide" id="slide-7">
-    <div class="slide-header">
-      <div class="slide-badge">What your doctor might do · 2 of 2</div>
-      <div class="slide-title">Treatment pathways</div>
-      <div class="slide-subtitle">Surgery for early-stage disease; immunotherapy and gene-targeted treatment for advanced disease</div>
-    </div>
-    <div class="three-grid">
-      <div class="info-card">
-        <div class="ic-icon">🏥</div>
-        <div class="ic-title">Surgery — the mainstay for early disease</div>
-        <div class="ic-body">The primary treatment for early-stage melanoma is surgical removal with a defined margin of surrounding tissue. The width of this margin is determined by the Breslow thickness. For most stage 1 and stage 2 melanomas, surgery is curative. Some patients with higher-risk resected disease may receive adjuvant (preventive) treatment afterwards.</div>
-      </div>
-      <div class="info-card">
-        <div class="ic-icon">💊</div>
-        <div class="ic-title">Immunotherapy — activating the immune system</div>
-        <div class="ic-body">Immunotherapy — treatment that helps the body's immune system recognise and attack cancer cells — has transformed the treatment of advanced melanoma. Checkpoint inhibitors, given by infusion, block immune-suppression signals that cancer cells use to hide. They can be given alone or as a combination. Some patients achieve durable long-term responses.</div>
-      </div>
-      <div class="info-card">
-        <div class="ic-icon">🧬</div>
-        <div class="ic-title">Gene-targeted therapy — for BRAF-mutant disease</div>
-        <div class="ic-body">For patients whose melanoma carries a BRAF gene mutation, gene-targeted treatment directly blocks the abnormal protein that drives cancer growth. This combination of a BRAF inhibitor plus a MEK inhibitor is taken as oral tablets. It is now used both in advanced disease and as adjuvant treatment after surgery in high-risk stage III disease.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SLIDE 8: RESEARCH (1 of 2) -->
-  <div class="slide" id="slide-8">
-    <div class="slide-header">
-      <div class="slide-badge">What the research shows · 1 of 2</div>
-      <div class="slide-title">Immunotherapy — landmark results</div>
-      <div class="slide-subtitle">Three clinical trials redefined survival in advanced melanoma</div>
-    </div>
-    <div class="research-slide-double">
-      <div class="ev-card">
-        <div class="ev-stat-box">
-          <div class="ev-kf-label">Median Overall Survival</div>
-          <div class="ev-stat-row">32.7</div>
-          <div class="ev-stat-unit">months</div>
-          <div class="ev-outcome">with immunotherapy / vs 15.9 months on older treatment</div>
-          <div class="ev-conditions">advanced melanoma · 5-year follow-up · KEYNOTE-006</div>
-        </div>
-        <div class="ev-body-panel">
-          <div>
-            <div class="ev-body-title">KEYNOTE-006 — Immunotherapy vs older treatment</div>
-            <p>The KEYNOTE-006 trial compared a checkpoint inhibitor immunotherapy against an older immune treatment in advanced melanoma. Immunotherapy more than doubled median survival — 32.7 months versus 15.9 months. It is now a standard first-line treatment for advanced disease.</p>
-          </div>
-          <div class="ev-source">Robert C et al. Lancet Oncol 2019. PMID 31345627</div>
-        </div>
-      </div>
-      <div class="ev-card">
-        <div class="ev-stat-box">
-          <div class="ev-kf-label">5-Year Overall Survival</div>
-          <div class="ev-stat-row">34%</div>
-          <div class="ev-outcome">with gene-targeted therapy / in BRAF-mutant metastatic melanoma</div>
-          <div class="ev-conditions">BRAF V600-mutant disease · COMBI-d and COMBI-v trials pooled</div>
-        </div>
-        <div class="ev-body-panel">
-          <div>
-            <div class="ev-body-title">COMBI Trials — Gene-targeted treatment</div>
-            <p>A pooled analysis of two large trials showed 34% of patients with BRAF-mutant metastatic melanoma were alive at 5 years on gene-targeted combination treatment. This represented a fundamental change from the pre-treatment era, when very few patients with advanced disease survived this long.</p>
-          </div>
-          <div class="ev-source">Robert C et al. N Engl J Med 2019. PMID 31166680</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SLIDE 9: RESEARCH (2 of 2) -->
-  <div class="slide" id="slide-9">
-    <div class="slide-header">
-      <div class="slide-badge">What the research shows · 2 of 2</div>
-      <div class="slide-title">Combination immunotherapy</div>
-      <div class="slide-subtitle">Blocking two immune-suppression pathways at once — the CheckMate 067 results</div>
-    </div>
-    <div class="research-slide-single">
-      <div class="ev-card" style="flex:1;">
-        <div class="ev-stat-box">
-          <div class="ev-kf-label">5-Year Overall Survival</div>
-          <div class="ev-stat-row">52%</div>
-          <div class="ev-outcome">with combination immunotherapy / vs 26% on older treatment</div>
-          <div class="ev-conditions">advanced treatment-naïve melanoma · 5-year follow-up · CheckMate 067</div>
-        </div>
-        <div class="ev-body-panel">
-          <div>
-            <div class="ev-body-title">CheckMate 067 — Combination immunotherapy</div>
-            <p>The CheckMate 067 trial compared combination immunotherapy — blocking two different immune-suppression signals simultaneously — against an older single immune treatment. At 5 years, 52% of patients on combination treatment were alive, compared with 26% on the older treatment alone. Before the immunotherapy era, median survival in advanced melanoma was measured in months. These results represent one of the most dramatic improvements in cancer survival seen in any tumour type.</p>
-          </div>
-          <div class="ev-source">Larkin J et al. N Engl J Med 2019. PMID 31562797</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SLIDE 10: CTA -->
-  <div class="slide" id="slide-10" style="padding:0;">
-    <div class="cta-wrap-v2">
-      <div class="cta-top">
-        <div class="cta-icon">🌞</div>
-        <div class="cta-badge">The evidence is clear on one thing</div>
-        <div class="cta-headline">Melanoma caught early has around 100% five-year survival</div>
-      </div>
-      <div class="cta-rows-v2">
-        <div class="cta-row">
-          <div class="cta-row-icon">🔍</div>
-          <div class="cta-row-text">
-            <div class="cta-row-title">The ABCDE signs are worth knowing</div>
-            <div class="cta-row-sub">Clinical evidence shows that Asymmetry, irregular Border, multiple Colours, Diameter greater than 6mm, and Evolution — any change — are the features associated with melanomas that need assessment.</div>
-          </div>
-        </div>
-        <div class="cta-row">
-          <div class="cta-row-icon">☀️</div>
-          <div class="cta-row-text">
-            <div class="cta-row-title">UV exposure is the single biggest preventable risk</div>
-            <div class="cta-row-sub">The evidence shows that 86% of UK melanoma cases are linked to UV radiation — from sun exposure and sunbeds. Consistent sun protection, particularly in intense sun, is the most evidence-supported protective measure.</div>
-          </div>
-        </div>
-        <div class="cta-row">
-          <div class="cta-row-icon">🏥</div>
-          <div class="cta-row-text">
-            <div class="cta-row-title">Modern treatment has transformed advanced disease</div>
-            <div class="cta-row-sub">Immunotherapy and gene-targeted treatment have produced 5-year survival rates of 34–52% in advanced melanoma — outcomes that were not achievable a decade ago. Clinical trials continue to improve on these results.</div>
-          </div>
-        </div>
-        <div class="cta-row">
-          <div class="cta-row-icon">📚</div>
-          <div class="cta-row-text">
-            <div class="cta-row-title">helf.school — evidence-based health education</div>
-            <div class="cta-row-sub">The full article on melanoma and skin cancer is available at helf.school — part of the Cancer Series, covering breast, prostate, lung, bowel, and melanoma.</div>
-          </div>
-        </div>
-      </div>
-      <div class="cta-bottom" style="padding:0 1rem .5rem;">
-        <div class="med-disclaimer">
-          <div class="med-disc-icon">ℹ️</div>
-          <div class="med-disc-text">Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SLIDE 11: BRAND CLOSE -->
-  <div class="slide" id="slide-11" style="padding:0;">
-    <div class="close-wrap" style="padding:1rem 1.5rem .8rem;">
-      <div class="close-logo">helf<span>.</span>school</div>
-      <div class="close-tag">Health Education</div>
-      <div class="close-headline">Evidence-based. Built by a doctor.</div>
-      <div class="close-cards">
-        <div class="close-card">
-          <div class="close-card-icon">📚</div>
-          <div class="close-card-text">31 articles across 5 series — cardiovascular, digestive, neurological, cancer, and practical health</div>
-        </div>
-        <div class="close-card">
-          <div class="close-card-icon">🩺</div>
-          <div class="close-card-text">Written by Dr Paul — retired NHS GP with over 20 years of experience</div>
-        </div>
-        <div class="close-card">
-          <div class="close-card-icon">🔓</div>
-          <div class="close-card-text">Start for free — Explorer tier available with no credit card required</div>
-        </div>
-      </div>
-      <div class="med-disclaimer" style="max-width:680px;margin-top:.2rem;">
+    <div class="cta-bottom">
+      <div class="med-disclaimer">
         <div class="med-disc-icon">ℹ️</div>
-        <div class="med-disc-text">Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+        <div class="med-disc-text">helf.school provides health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
       </div>
-      <div class="close-series">Cancer Series · Article 31 · Melanoma and Skin Cancer</div>
     </div>
   </div>
+</div>
+
+<!-- SLIDE 11: BRAND CLOSE -->
+<div class="slide close-slide" id="slide-11">
+  <div class="close-wrap">
+    <div class="close-logo">helf<span>.</span>school</div>
+    <div class="close-tag">Health Education</div>
+    <div class="close-headline">Evidence-based. Written by a doctor. Built for everyone.</div>
+    <div class="close-cards">
+      <div class="close-card">
+        <div class="close-card-icon">📚</div>
+        <div class="close-card-text">31 articles across 5 series — cardiovascular, digestive, neurological, cancer, and practical health</div>
+      </div>
+      <div class="close-card">
+        <div class="close-card-icon">🩺</div>
+        <div class="close-card-text">Written by Dr Paul — retired NHS GP with over 20 years of experience</div>
+      </div>
+      <div class="close-card">
+        <div class="close-card-icon">🔓</div>
+        <div class="close-card-text">Start for free — Explorer tier, no credit card required. Member at £6/month or Lifetime at £150.</div>
+      </div>
+    </div>
+    <div class="med-disclaimer" style="max-width:680px; margin-top:auto;">
+      <div class="med-disc-icon">ℹ️</div>
+      <div class="med-disc-text">helf.school provides health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+    </div>
+    <div class="close-series">Cancer Series · Article 31 · Melanoma and Skin Cancer</div>
+  </div>
+</div>
 
 </div><!-- /stage -->
-
-<!-- DOT NAV -->
 <div id="dots"></div>
 
 <script>
 const TOTAL = 11;
 let current = 1;
+
+function animateSlide(n) {
+  const slideEl = document.getElementById('slide-' + n);
+  if (!slideEl) return;
+  slideEl.querySelectorAll('.animate-ready').forEach(el => el.classList.remove('visible'));
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    slideEl.querySelectorAll('.animate-ready').forEach(el => el.classList.add('visible'));
+  }));
+}
+
+function animateCTA() {
+  const items = document.querySelectorAll('#slide-10 .cta-item');
+  items.forEach(r => r.classList.remove('visible'));
+  items.forEach((item, i) => {
+    setTimeout(() => item.classList.add('visible'), 350 + i * 620);
+  });
+}
 
 function goTo(n) {
   if (n < 1 || n > TOTAL) return;
@@ -508,9 +524,10 @@ function goTo(n) {
   document.getElementById('slide-' + current).classList.add('active');
   document.querySelectorAll('.dot')[current - 1].classList.add('active');
   document.getElementById('counter').textContent = current + ' / ' + TOTAL;
+  if (current === 10) { animateCTA(); }
+  else { animateSlide(current); }
 }
 
-// Build dots
 const dotsEl = document.getElementById('dots');
 for (let i = 1; i <= TOTAL; i++) {
   const d = document.createElement('div');
@@ -519,19 +536,19 @@ for (let i = 1; i <= TOTAL; i++) {
   dotsEl.appendChild(d);
 }
 
-// Keyboard
 document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goTo(current + 1);
-  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goTo(current - 1);
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
 });
 
-// Touch swipe
 let tx = 0;
 document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
 document.addEventListener('touchend', e => {
   const dx = e.changedTouches[0].clientX - tx;
   if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
 }, {passive:true});
+
+animateSlide(1);
 </script>
 </body>
 </html>
