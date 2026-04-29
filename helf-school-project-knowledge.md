@@ -337,6 +337,12 @@ All three are confirmed in `breast-cancer.html` and `prostate-cancer.html` (Apri
 
 **The ev-body of every research card in visuals files must contain no more than 2–3 sentences: (1) what was compared, (2) the headline finding, (3) one sentence of clinical context. No trial design detail, no population breakdown, no secondary endpoints. The full explanation is in the article. Viewers are lay people watching a video.**
 
+**⛔ EV-BODY WORD LIMIT — LOCKED APRIL 2026:**
+- **Two stacked ev-cards: ≤ 30 words** — the ev-det panel is ~441px wide at 768px filming viewport. At 1.05rem × 1.5 line-height, that gives 7–8 words/line × 4 lines = ~30 words max. Exceeding this clips the text mid-sentence on screen.
+- **Single ev-card: ≤ 44 words** (more vertical height available, same width constraint)
+- Run the ev-body QC script (in session-start-rules Rule 36) before presenting any visuals file with research cards.
+- **Canonical failure:** cholesterol-visuals.html slides 7–9 — ev-body texts of 33–42 words all clipped. Caught by Dr Paul April 2026.
+
 Canonical examples (lung-cancer-visuals.html, April 2026):
 - NELSON: "The NELSON trial randomised 15,789 long-term smokers to CT screening or no screening. After 10 years, the screened group had 24% lower lung-cancer mortality. This is the evidence behind the NHS targeted screening programme now rolling out."
 - KEYNOTE-024: "Pembrolizumab compared with chemotherapy. 10.3 months vs 6.0 months PFS. Overall survival also significantly better, with fewer serious side effects."

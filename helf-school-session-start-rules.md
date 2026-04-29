@@ -909,6 +909,36 @@ The brand name rule (Rule 33, locked April 2026) is a retrofit across the entire
 - At `ev-card padding:1.5rem` and `ev-body line-clamp:5`: two cards = 469px → CLIPS by 3px
 - At `ev-card padding:1.1rem` and `ev-body line-clamp:4`: two cards = 396px → FITS with 70px margin ✅
 
+**⛔ EV-BODY WORD LIMIT — LOCKED APRIL 2026:**
+`ev-det .ev-body` text has a hard word limit depending on the number of ev-cards on the slide.
+
+**Mathematical proof at 768px filming viewport:**
+- ev-det panel width = stage(728px) − stat-col(220px) − gap(22px) − padding(45px) = **441px**
+- At 1.05rem × 1.5 line-height: **7–8 words per line**
+- `line-clamp:4` = 4 lines × 7.5 words = **~30 words maximum**
+
+**THE RULE:**
+- **Two stacked ev-cards: ev-body ≤ 30 words** — strictly enforced
+- **Single ev-card: ev-body ≤ 44 words** (more height available, same width)
+
+**MANDATORY QC — add to pre-delivery script:**
+```python
+import re
+content = open('filename.html').read()
+bodies = re.findall(r'class="ev-body">(.*?)</div>', content, re.DOTALL)
+failures = 0
+for i, b in enumerate(bodies):
+    text = re.sub(r'<[^>]+>', '', b).strip()
+    w = len(text.split())
+    # Use 30 words for 2-card slides (conservative — safe for all)
+    status = '✓' if w <= 30 else f'✗ OVER (30 limit)'
+    print(f"ev-body {i+1}: {w}/30  {status}")
+    if w > 30: failures += 1
+print(f"{'ALL PASS' if failures == 0 else str(failures)+' FAILURES — DO NOT DELIVER'}")
+```
+
+**Canonical failure:** cholesterol-visuals.html slides 7, 8, 9 — all ev-body texts 33–42 words, visibly clipped on screen. Caught by Dr Paul April 2026. Root cause: 44-word limit was calculated from a wider content area that doesn't exist once the 220px stat column and padding are subtracted.
+
 **THE MANDATORY SPEC for any slide with two stacked ev-cards:**
 ```css
 .ev-card { padding: 1.1rem 1.4rem; gap: 1.4rem; }
@@ -947,6 +977,8 @@ Then before touching any visuals file, confirm these three checks pass:
 2. Does any slide have more than 3 cards in a single grid? If yes, split to two slides before showing me anything. 5 or 6 cards always clips at filming viewports. No exceptions.
 
 3. If a slide has two stacked ev-cards: does `ev-card padding` = 1.1rem and `ev-body line-clamp` = 4? If not, fix before showing me anything.
+
+4. Does any ev-body text exceed 30 words? At filming viewport the ev-det panel is only ~441px wide — 7-8 words per line, 4 lines = 30 words max. Run the ev-body QC script from the session-start-rules before presenting any research slide.
 
 Run the Python QC script from the session-start-rules on every visuals file before presenting it. Do not present any file that has not passed QC. If you present a file with clipping problems these checks would have caught, the process has failed.
 
