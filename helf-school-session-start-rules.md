@@ -660,6 +660,26 @@ Canonical reference: `lung-cancer-visuals.html` slide 10 (April 2026).
 
 ---
 
+## ⛔ RULE 35 — SERIES BACKGROUND COLOUR — VISUALS — LOCKED APRIL 2026
+
+**The principle:** Visuals slide backgrounds must use the series dark colour family — not near-black. Near-black (`#050f08`, `#060e08`) breaks the series identity.
+
+**Confirmed series slide background values:**
+- Cancer → `#0e2418` (deep forest green)
+- Cardiovascular → `#1a0808` (dark crimson)
+- Neurological → `#0f0d1a` (dark purple)
+- Digestive → `#1a0e08` (dark amber)
+- Fatigue → `#081a14` (dark teal)
+- Practical Health → `#120e08` (dark olive)
+
+**Gradient cards** must also stay within the series colour family at both ends — never fade to near-black.
+
+**Retrofit:** When any visuals file is opened, replace near-black background with the correct series dark colour.
+
+**Canonical:** `breast-cancer-visuals.html` and `prostate-cancer-visuals.html` (April 2026) — both use `#0e2418`.
+
+---
+
 ## ⛔ RULE 34 — LAY IMPACT FIRST: VISUALS AND TELEPROMPTER — LOCKED APRIL 2026
 
 **The visuals and teleprompter are the doorway — not the textbook. They answer three lay questions: What is this? Does it affect me? Is there anything I can do? Full clinical detail lives in the article.**

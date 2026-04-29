@@ -833,6 +833,34 @@ The closing slide is now the **helf.school brand close** — NOT a repeat of the
 
 ---
 
+### SERIES BACKGROUND COLOUR STANDARD — VISUALS — LOCKED APRIL 2026
+
+**The principle:** Every series has a colour identity. That identity must run consistently through the article HTML (Key Terms box, Putting it all together, research card stat boxes) AND through the visuals HTML (slide backgrounds, card gradients). Near-black (`#050f08`, `#060e08`) is not a series colour — it is a non-colour that breaks the identity. All visuals slide backgrounds must use the **series dark colour family**.
+
+**Confirmed series background values (canonical April 2026):**
+
+| Series | Base colour | Slide background | Slide bg hex |
+|---|---|---|---|
+| Cancer | Forest green `#2A5A3A` | Deep forest green | `#0e2418` |
+| Cardiovascular | Crimson `#C8423A` | Dark crimson | `#1a0808` |
+| Neurological | Purple `#6B5EA8` | Dark purple | `#0f0d1a` |
+| Digestive | Amber `#D47C3A` | Dark amber | `#1a0e08` |
+| Fatigue | Teal `#3A8A7A` | Dark teal | `#081a14` |
+| Practical Health | Olive `#7A6A2E` | Dark olive | `#120e08` |
+
+**Cancer Series confirmed:** `#0e2418` — applied to `breast-cancer-visuals.html` and `prostate-cancer-visuals.html` April 2026. All Cancer Series visuals files must use this as the base slide background, not near-black.
+
+**Retrofit instruction:** When any visuals file is opened, check the background. If it uses `#050f08`, `#060e08`, or any other near-black value, replace with the correct series dark colour from the table above.
+
+**Gradient cards within slides** (info cards, stat cards) should use the series dark colour family at both ends of the gradient — they must NOT fade to near-black. Example for Cancer Series:
+```css
+.c-red  { background: linear-gradient(90deg, rgba(180,45,45,.55) 0%, rgba(110,25,25,.42) 100%); }
+.c-amber{ background: linear-gradient(90deg, rgba(170,110,20,.55) 0%, rgba(110,68,12,.42) 100%); }
+.c-green{ background: linear-gradient(90deg, rgba(38,105,55,.55) 0%, rgba(22,65,33,.42) 100%); }
+```
+
+---
+
 ### LAY IMPACT FIRST — VISUALS AND TELEPROMPTER STANDARD — LOCKED APRIL 2026
 
 **This standard was confirmed when building melanoma-visuals.html (Article 31, April 2026), which is the canonical reference. It applies to all future visuals and teleprompter builds, and is a retrofit instruction for all 30 existing articles.**
