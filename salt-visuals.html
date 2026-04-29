@@ -6,7 +6,7 @@
   <title>Salt &amp; Blood Pressure — Visuals | helf.school</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--calm:#70b8e8}
+    :root{--navy:#1B2A4A;--coral:#E8634A;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
     #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:var(--navy);border-bottom:2px solid var(--acc2);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
@@ -36,7 +36,7 @@
     .intro-sub{font-size:1.1rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;max-width:680px;line-height:1.5;font-weight:400}
     .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
 
-    /* SLIDE 2 — SALT SOURCES */
+    /* SALT SOURCES slide 2 — unchanged */
     .src-stage{display:flex;flex-direction:column;flex:1;gap:1.1rem;min-height:0;align-items:center;justify-content:center}
     .src-split{display:grid;grid-template-columns:3fr 1fr;gap:.75rem;width:100%;max-width:940px;height:110px}
     .src-seg{border-radius:14px;padding:1rem 1.4rem;display:flex;flex-direction:column;justify-content:center}
@@ -59,91 +59,86 @@
     .lab-chip.low{background:rgba(126,204,153,.18);border:1px solid rgba(126,204,153,.55)}
     .lab-chip strong{font-family:'Fraunces',serif;font-size:1rem;margin-right:.3rem}
 
-    /* 5-ROW CARDS — slide 3 */
-    .sys-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.45rem;flex:1;min-height:0}
-    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:12px;padding:.7rem 1.2rem;display:grid;grid-template-columns:58px 1fr auto;gap:1.1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
-    .sys-card.animate-ready{opacity:0;transform:translateY(14px)}
+    /* SYS ROWS — max 3 per slide, clamp:4 */
+    .sys-grid{display:grid;grid-template-columns:1fr;gap:.55rem;flex:1;min-height:0}
+    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:12px;padding:.8rem 1.2rem;display:grid;grid-template-columns:60px 1fr auto;gap:1.1rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .sys-card.vis{opacity:1;transform:translateY(0)}
     .sys-icon{font-size:2.2rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .sys-content{display:flex;flex-direction:column;gap:.18rem;min-width:0}
-    .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.2rem;line-height:1.12;letter-spacing:-.01em}
-    .sys-body{font-size:.93rem;color:rgba(255,255,255,.90);line-height:1.38;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .sys-stat{font-family:'Fraunces',serif;font-size:clamp(1.5rem,2.4vw,2.2rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:.75rem}
+    .sys-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+    .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.2rem;line-height:1.15}
+    .sys-body{font-size:.92rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+    .sys-stat{font-family:'Fraunces',serif;font-size:clamp(1.2rem,2vw,1.9rem);font-weight:700;color:var(--bad);line-height:1;text-align:right;white-space:nowrap;padding-left:.75rem;padding-top:.1rem}
 
-    /* 6-ROW CARDS — slides 4, 8 */
-    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
-    .doc-card.animate-ready{opacity:0;transform:translateY(14px)}
+    /* DOC ROWS — max 3 per slide, clamp:4 */
+    .doc-grid{display:grid;grid-template-columns:1fr;gap:.55rem;flex:1;min-height:0}
+    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:12px;padding:.8rem 1.2rem;display:grid;grid-template-columns:60px 1fr auto;gap:1.1rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .doc-card.vis{opacity:1;transform:translateY(0)}
-    .doc-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .doc-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
-    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
-    .doc-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem}
+    .doc-icon{font-size:2.2rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .doc-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.2rem;line-height:1.15}
+    .doc-body{font-size:.92rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--good);line-height:1;text-align:right;white-space:nowrap;padding-left:.75rem;padding-top:.1rem}
 
-    /* EV CARDS */
+    /* EV-CARDS — 2-card: padding 1.1rem, ev-body ≤26w clamp:4 */
     .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
-    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .45s ease}
-    .ev-card.animate-ready{opacity:0;transform:translateY(14px)}
+    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:16px;padding:1.1rem 1.4rem;display:grid;grid-template-columns:220px 1fr;gap:1.4rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .45s ease}
     .ev-card.vis{opacity:1;transform:translateY(0)}
-    .ev-stat-box{background:rgba(212,184,74,.09);border-radius:14px;padding:1.25rem .85rem;text-align:center}
+    .ev-stat-box{background:rgba(212,184,74,.09);border-radius:14px;padding:1.1rem .85rem;text-align:center}
     .ev-kf-label{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(212,184,74,.7);margin-bottom:.55rem}
     .ev-stat-row{display:flex;align-items:baseline;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:.45rem}
     .ev-num{font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:var(--acc);line-height:1;letter-spacing:-.02em;flex-shrink:0}
     .ev-num.bad{color:var(--bad)}
     .ev-num.good{color:var(--good)}
     .ev-outcome{font-size:1rem;font-weight:700;color:#fff;line-height:1.3;text-align:left}
-    .ev-conditions{font-size:.95rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.35}
-    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;margin-bottom:.25rem;line-height:1.15;letter-spacing:-.01em}
+    .ev-conditions{font-size:.85rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.35}
+    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;margin-bottom:.25rem;line-height:1.15}
     .ev-det .ev-journal{font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
-    .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400}
+    .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 
-    /* 6-ROW MECH CARDS */
-    .mech-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
-    .mech-card.animate-ready{opacity:0;transform:translateY(14px)}
+    /* MECH ROWS — max 3 per slide, clamp:4 */
+    .mech-grid{display:grid;grid-template-columns:1fr;gap:.55rem;flex:1;min-height:0}
+    .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:12px;padding:.8rem 1.2rem;display:grid;grid-template-columns:60px 1fr auto;gap:1.1rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .mech-card.vis{opacity:1;transform:translateY(0)}
-    .mech-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .mech-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
-    .mech-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
-    .mech-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.7vw,1.55rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem}
+    .mech-icon{font-size:2.2rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
+    .mech-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+    .mech-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.2rem;line-height:1.15}
+    .mech-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+    .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.7vw,1.55rem);font-weight:700;color:var(--warn);line-height:1;text-align:right;white-space:nowrap;padding-left:.75rem;padding-top:.1rem}
 
-    /* CTA SLIDE 9 — HORIZONTAL ROWS, NO ICON */
+    /* CTA — sequential animation */
     .cta-slide{position:relative}
     .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(212,184,74,.18),rgba(212,184,74,.04) 45%,transparent 70%);pointer-events:none;z-index:0}
-    .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem;gap:.45rem;min-height:0;overflow:hidden}
-    .cta-top{display:flex;flex-direction:column;align-items:center;gap:.3rem;text-align:center}
-    .cta-badge-v2{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.3rem .95rem;border-radius:100px}
-    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:700;color:#fff;line-height:1.02;letter-spacing:-.028em}
+    .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem 0;gap:.55rem}
+    .cta-header{text-align:center}
+    .cta-badge-v2{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.42rem 1.15rem;border-radius:100px;display:inline-block;margin-bottom:.4rem}
+    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:700;color:#fff;line-height:1.05;letter-spacing:-.028em}
     .cta-headline-v2 span{color:var(--acc)}
-    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(.95rem,1.5vw,1.2rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);line-height:1.3}
-    .cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.4rem;min-height:0;overflow:hidden}
-    .cta-row-v2{background:linear-gradient(90deg,rgba(212,184,74,.12),rgba(212,184,74,.04));border-left:4px solid var(--acc);border-radius:0 10px 10px 0;padding:.6rem .95rem;display:grid;grid-template-columns:52px 1fr auto;gap:.9rem;align-items:start;min-height:0;overflow:hidden}
-    .cta-row-icon{font-size:1.7rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .cta-row-mid{display:flex;flex-direction:column;gap:.12rem;min-width:0}
-    .cta-row-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.95rem;line-height:1.15}
-    .cta-row-body-v2{font-size:.82rem;color:rgba(255,255,255,.90);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .cta-row-word-v2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.2rem,2vw,1.7rem);color:var(--acc);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:.6rem}
-    .cta-bottom{display:flex;justify-content:center;flex-shrink:0}
-    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.75rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;max-width:900px;width:100%}
-    .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.88);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left;font-weight:400}
+    .cta-items{display:grid;grid-template-rows:repeat(6,1fr);gap:.38rem;min-height:0;overflow:hidden}
+    .cta-item{border-radius:9px;padding:.4rem 1rem;display:flex;align-items:center;gap:.85rem;opacity:0;transform:translateX(-24px);transition:opacity .38s ease,transform .38s ease}
+    .cta-item.visible{opacity:1;transform:translateX(0)}
+    .cta-item.ci-red  {background:rgba(180,45,45,0.25);border:1px solid rgba(220,80,70,0.40)}
+    .cta-item.ci-amber{background:rgba(170,110,20,0.25);border:1px solid rgba(232,168,74,0.40)}
+    .cta-item.ci-green{background:rgba(38,105,55,0.30);border:1px solid rgba(126,204,153,0.42)}
+    .cta-item-icon{font-size:1.45rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .cta-item-text{font-size:.93rem;font-weight:600;color:rgba(255,255,255,.95);line-height:1.3}
+    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.7rem 1.1rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px}
+    .med-disc-icon{font-size:1.2rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .med-disc-text{font-size:1rem;color:rgba(255,255,255,.90);line-height:1.5;font-family:'Fraunces',serif;font-weight:400}
     .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
 
-    /* CLOSING */
-    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.6rem;padding:1.5rem}
-    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
+    /* BRAND CLOSE */
+    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100%;text-align:center;gap:1.1rem;padding:1rem 1.5rem}
+    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em;flex-shrink:0}
     .close-logo .dot{color:var(--coral)}
-    .close-sub{font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82)}
-    .close-headline{font-family:'Fraunces',serif;font-size:clamp(3rem,5.8vw,5.2rem);font-weight:700;color:#fff;max-width:1050px;line-height:1.08;letter-spacing:-.025em}
+    .close-sub{font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82);flex-shrink:0}
+    .close-headline{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:#fff;flex-shrink:0}
     .close-headline span{color:var(--acc)}
-    .close-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1050px;width:100%}
-    .cst-card{background:rgba(212,184,74,.1);border:1px solid rgba(212,184,74,.35);border-radius:16px;padding:1.5rem 1.1rem;display:flex;flex-direction:column;align-items:center;gap:.55rem}
-    .cst-num{font-family:'Fraunces',serif;font-size:clamp(2.4rem,4.4vw,3.8rem);font-weight:700;color:var(--acc);line-height:.95;letter-spacing:-.02em}
-    .cst-lab{font-size:1.05rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.32}
-    .cst-src{font-size:.85rem;color:rgba(255,255,255,.72);font-style:italic}
-    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.3rem}
+    .close-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;width:100%;max-width:1050px;flex:1;min-height:0}
+    .close-card{background:rgba(212,184,74,.10);border:1px solid rgba(212,184,74,.35);border-radius:16px;padding:1.2rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.45rem;justify-content:center}
+    .close-card-icon{font-size:2.2rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .close-card-text{font-size:.95rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.4;text-align:center}
+    .close-card-src{font-size:.80rem;color:rgba(255,255,255,.65);font-style:italic}
+    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);flex-shrink:0}
     .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:.68rem;color:rgba(255,255,255,.18);z-index:90;white-space:nowrap}
   </style>
 </head>
@@ -159,7 +154,7 @@
     <span class="tb-sub">· Salt &amp; Blood Pressure</span>
   </div>
   <div class="tb-right">
-    <span id="counter" class="slide-counter">1 / 10</span>
+    <span id="counter" class="slide-counter">1 / 13</span>
     <span class="kb-hint">← → navigate</span>
   </div>
 </div>
@@ -177,7 +172,7 @@
     </div>
   </div>
 
-  <!-- SLIDE 2: WHERE DOES OUR SALT COME FROM -->
+  <!-- SLIDE 2: SALT SOURCES — custom layout, unchanged -->
   <div class="slide">
     <div class="slide-title">Where UK salt <span>actually comes from</span></div>
     <div class="src-stage">
@@ -215,11 +210,11 @@
     </div>
   </div>
 
-  <!-- SLIDE 3: WHERE SALT DRIVES HARM · RED · 5 ROWS -->
+  <!-- SLIDE 3: HARM 1 of 2 — RED — 3 cards -->
   <div class="slide">
-    <div class="slide-title">Where excess salt <span>drives cardiovascular harm</span></div>
-    <div class="sys-grid">
-      <div class="sys-card animate-ready" id="s1">
+    <div class="slide-title">Where excess salt <span>drives cardiovascular harm — 1 of 2</span></div>
+    <div class="sys-grid" style="grid-template-rows:repeat(3,1fr);">
+      <div class="sys-card" id="s1">
         <div class="sys-icon">❤️</div>
         <div class="sys-content">
           <div class="sys-title">Blood pressure rise</div>
@@ -227,7 +222,7 @@
         </div>
         <div class="sys-stat">8–14 mmHg</div>
       </div>
-      <div class="sys-card animate-ready" id="s2">
+      <div class="sys-card" id="s2">
         <div class="sys-icon">🧠</div>
         <div class="sys-content">
           <div class="sys-title">Stroke risk</div>
@@ -235,7 +230,7 @@
         </div>
         <div class="sys-stat">↑ Stroke</div>
       </div>
-      <div class="sys-card animate-ready" id="s3">
+      <div class="sys-card" id="s3">
         <div class="sys-icon">💓</div>
         <div class="sys-content">
           <div class="sys-title">Heart attack &amp; heart failure</div>
@@ -243,7 +238,14 @@
         </div>
         <div class="sys-stat">↑ CHD, HF</div>
       </div>
-      <div class="sys-card animate-ready" id="s4">
+    </div>
+  </div>
+
+  <!-- SLIDE 4: HARM 2 of 2 — RED — 2 cards -->
+  <div class="slide">
+    <div class="slide-title">Where excess salt <span>drives cardiovascular harm — 2 of 2</span></div>
+    <div class="sys-grid" style="grid-template-rows:repeat(2,1fr);">
+      <div class="sys-card" id="s4">
         <div class="sys-icon">🫘</div>
         <div class="sys-content">
           <div class="sys-title">Kidney strain</div>
@@ -251,7 +253,7 @@
         </div>
         <div class="sys-stat">↑ CKD</div>
       </div>
-      <div class="sys-card animate-ready" id="s5">
+      <div class="sys-card" id="s5">
         <div class="sys-icon">🫀</div>
         <div class="sys-content">
           <div class="sys-title">Left-ventricular hypertrophy</div>
@@ -262,11 +264,11 @@
     </div>
   </div>
 
-  <!-- SLIDE 4: PRACTICAL SWAPS · GREEN · 6 ROWS -->
+  <!-- SLIDE 5: PRACTICAL SWAPS 1 of 2 — GREEN — 3 cards -->
   <div class="slide">
-    <div class="slide-title">Practical swaps · <span>what actually lowers intake</span></div>
-    <div class="doc-grid">
-      <div class="doc-card animate-ready" id="d1">
+    <div class="slide-title">Practical swaps · <span>what actually lowers intake — 1 of 2</span></div>
+    <div class="doc-grid" style="grid-template-rows:repeat(3,1fr);">
+      <div class="doc-card" id="d1">
         <div class="doc-icon">🏷️</div>
         <div class="doc-content">
           <div class="doc-title">Check the label</div>
@@ -274,7 +276,7 @@
         </div>
         <div class="doc-action">→ Read</div>
       </div>
-      <div class="doc-card animate-ready" id="d2">
+      <div class="doc-card" id="d2">
         <div class="doc-icon">🍞</div>
         <div class="doc-content">
           <div class="doc-title">Know the top UK sources</div>
@@ -282,7 +284,7 @@
         </div>
         <div class="doc-action">→ Target</div>
       </div>
-      <div class="doc-card animate-ready" id="d3">
+      <div class="doc-card" id="d3">
         <div class="doc-icon">🍳</div>
         <div class="doc-content">
           <div class="doc-title">Home cook more often</div>
@@ -290,7 +292,14 @@
         </div>
         <div class="doc-action">→ Cook</div>
       </div>
-      <div class="doc-card animate-ready" id="d4">
+    </div>
+  </div>
+
+  <!-- SLIDE 6: PRACTICAL SWAPS 2 of 2 — GREEN — 3 cards -->
+  <div class="slide">
+    <div class="slide-title">Practical swaps · <span>what actually lowers intake — 2 of 2</span></div>
+    <div class="doc-grid" style="grid-template-rows:repeat(3,1fr);">
+      <div class="doc-card" id="d4">
         <div class="doc-icon">🌿</div>
         <div class="doc-content">
           <div class="doc-title">Herbs, spices, lemon, pepper</div>
@@ -298,7 +307,7 @@
         </div>
         <div class="doc-action">→ Season</div>
       </div>
-      <div class="doc-card animate-ready" id="d5">
+      <div class="doc-card" id="d5">
         <div class="doc-icon">🍌</div>
         <div class="doc-content">
           <div class="doc-title">Add potassium-rich foods</div>
@@ -306,7 +315,7 @@
         </div>
         <div class="doc-action">−24% stroke</div>
       </div>
-      <div class="doc-card animate-ready" id="d6">
+      <div class="doc-card" id="d6">
         <div class="doc-icon">👅</div>
         <div class="doc-content">
           <div class="doc-title">Taste before adding</div>
@@ -317,122 +326,107 @@
     </div>
   </div>
 
-  <!-- SLIDE 5: RESEARCH — INTERSALT + DASH-SODIUM -->
+  <!-- SLIDE 7: RESEARCH — SALT & BP — 2 ev-cards, ev-body ≤26w -->
   <div class="slide">
     <div class="slide-title">Research · <span>salt and blood pressure</span></div>
     <div class="ev-stage">
-      <div class="ev-card animate-ready" id="e1">
+      <div class="ev-card" id="e1">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num bad" style="font-size:2rem">Dose-response</div>
-          </div>
+          <div class="ev-stat-row"><div class="ev-num bad" style="font-size:2rem">Dose-response</div></div>
           <div class="ev-outcome" style="text-align:center">sodium intake and blood pressure</div>
           <div class="ev-conditions">confirmed across 52 countries and 10,000+ participants</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">INTERSALT — international BP survey</div>
           <div class="ev-journal">INTERSALT Cooperative Group · BMJ · 1988 · n&gt;10,000</div>
-          <div class="ev-body">Populations with the lowest sodium intakes had lower blood pressures and far less age-related BP rise. Sodium intake and blood pressure <strong>tracked closely</strong> across very different cultures and diets worldwide.</div>
+          <div class="ev-body">Populations with the lowest sodium intakes had lower blood pressures and far less age-related BP rise. Sodium intake tracked closely with blood pressure across very different cultures worldwide.</div>
         </div>
       </div>
-      <div class="ev-card animate-ready" id="e2">
+      <div class="ev-card" id="e2">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good" style="font-size:2.2rem">−8 to −14</div>
-            <div class="ev-outcome">mmHg systolic BP</div>
-          </div>
+          <div class="ev-stat-row"><div class="ev-num good" style="font-size:2.2rem">−8 to −14</div><div class="ev-outcome">mmHg systolic BP</div></div>
           <div class="ev-conditions">from low-sodium DASH diet — comparable to a single drug</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">DASH-Sodium — controlled feeding trial</div>
           <div class="ev-journal">Sacks et al · NEJM · 2001 · n=412</div>
-          <div class="ev-body">A low-sodium DASH-style diet reduced systolic BP by <strong>8–14 mmHg</strong> in people with hypertension — a drop comparable to a single antihypertensive drug. Benefit also seen in normotensive participants.</div>
+          <div class="ev-body">The DASH diet with low sodium reduced systolic BP by 8–14 mmHg in people with hypertension — matching a single blood pressure drug. Benefits also seen in those without hypertension.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 6: RESEARCH — COCHRANE + UK PROGRAMME -->
+  <!-- SLIDE 8: RESEARCH — SCALE — 2 ev-cards, ev-body ≤26w -->
   <div class="slide">
     <div class="slide-title">Research · <span>reducing salt at scale</span></div>
     <div class="ev-stage">
-      <div class="ev-card animate-ready" id="e3">
+      <div class="ev-card" id="e3">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good" style="font-size:2rem">Lower = lower</div>
-          </div>
+          <div class="ev-stat-row"><div class="ev-num good" style="font-size:2rem">Lower = lower</div></div>
           <div class="ev-outcome" style="text-align:center">salt intake, lower blood pressure</div>
           <div class="ev-conditions">sustained over 4+ weeks — dose-response confirmed</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Cochrane — long-term salt reduction</div>
           <div class="ev-journal">He, Li, MacGregor · Cochrane Database · 2013</div>
-          <div class="ev-body">Sustained, modest salt reduction produced consistent, significant BP reductions in both hypertensive and normotensive adults — <strong>the lower the intake achieved, the lower the blood pressure</strong>, across the 3–12 g/day range.</div>
+          <div class="ev-body">Sustained modest salt reduction produced consistent BP reductions in hypertensive and normotensive adults alike — the lower the intake achieved, the lower the blood pressure.</div>
         </div>
       </div>
-      <div class="ev-card animate-ready" id="e4">
+      <div class="ev-card" id="e4">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good">−42%</div>
-            <div class="ev-outcome">stroke mortality</div>
-          </div>
+          <div class="ev-stat-row"><div class="ev-num good">−42%</div><div class="ev-outcome">stroke mortality</div></div>
           <div class="ev-conditions">during UK salt reduction programme 2003–2011</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">UK Salt Reduction Programme</div>
           <div class="ev-journal">He et al · BMJ Open · 2014</div>
-          <div class="ev-body">UK average salt intake fell ~15% (≈1.4 g/day) between 2003 and 2011 through reformulation and labelling. Stroke mortality fell <strong>~42%</strong> and ischaemic heart disease mortality ~40% over the same period.</div>
+          <div class="ev-body">UK average salt intake fell ~15% between 2003 and 2011. Stroke mortality fell ~42% and ischaemic heart disease mortality ~40% over the same period.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 7: RESEARCH — POTASSIUM + NICE -->
+  <!-- SLIDE 9: RESEARCH — POTASSIUM & NICE — 2 ev-cards, ev-body ≤26w -->
   <div class="slide">
     <div class="slide-title">Research · <span>potassium — the other side</span></div>
     <div class="ev-stage">
-      <div class="ev-card animate-ready" id="e5">
+      <div class="ev-card" id="e5">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good">−24%</div>
-            <div class="ev-outcome">lower stroke risk</div>
-          </div>
+          <div class="ev-stat-row"><div class="ev-num good">−24%</div><div class="ev-outcome">lower stroke risk</div></div>
           <div class="ev-conditions">associated with higher potassium intake — WHO meta-analysis</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Potassium intake &amp; CV outcomes</div>
           <div class="ev-journal">Aburto et al · BMJ · 2013 · WHO meta-analysis</div>
-          <div class="ev-body">Higher potassium intakes associated with <strong>about 24% lower stroke risk</strong> and lower blood pressure. Potassium directly counteracts sodium's pressure-raising effect — fruit, vegetables, beans, and dairy are the main sources.</div>
+          <div class="ev-body">Higher potassium intake is associated with ~24% lower stroke risk and lower blood pressure. Fruit, vegetables, beans and dairy are the main potassium sources.</div>
         </div>
       </div>
-      <div class="ev-card animate-ready" id="e6">
+      <div class="ev-card" id="e6">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good" style="font-size:2rem">First-line</div>
-          </div>
+          <div class="ev-stat-row"><div class="ev-num good" style="font-size:2rem">First-line</div></div>
           <div class="ev-outcome" style="text-align:center">lifestyle recommendation</div>
           <div class="ev-conditions">NICE NG136 — for all adults with hypertension</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">NICE guidance — hypertension in adults</div>
           <div class="ev-journal">NICE NG136 · ongoing review</div>
-          <div class="ev-body">NICE places salt reduction as <strong>first-line lifestyle advice</strong> for everyone with hypertension — alongside medication where indicated, not instead of it.</div>
+          <div class="ev-body">NICE places salt reduction as first-line lifestyle advice for everyone with hypertension — alongside medication where indicated, not instead of it.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 8: MECHANISMS · AMBER · 6 ROWS -->
+  <!-- SLIDE 10: MECHANISMS 1 of 2 — AMBER — 3 cards -->
   <div class="slide">
-    <div class="slide-title">How excess salt <span>raises blood pressure</span></div>
-    <div class="mech-grid">
-      <div class="mech-card animate-ready" id="m1">
+    <div class="slide-title">How excess salt <span>raises blood pressure — 1 of 2</span></div>
+    <div class="mech-grid" style="grid-template-rows:repeat(3,1fr);">
+      <div class="mech-card" id="m1">
         <div class="mech-icon">💧</div>
         <div class="mech-content">
           <div class="mech-title">Volume expansion</div>
@@ -440,15 +434,15 @@
         </div>
         <div class="mech-outcome">→ ↑ Volume</div>
       </div>
-      <div class="mech-card animate-ready" id="m2">
+      <div class="mech-card" id="m2">
         <div class="mech-icon">💪</div>
         <div class="mech-content">
           <div class="mech-title">Vessel stiffening</div>
-          <div class="mech-body">Sustained higher pressure stiffens artery walls over time, further raising systolic BP.</div>
+          <div class="mech-body">Sustained higher pressure stiffens artery walls over time, further raising systolic blood pressure.</div>
         </div>
         <div class="mech-outcome">→ ↑ Stiffness</div>
       </div>
-      <div class="mech-card animate-ready" id="m3">
+      <div class="mech-card" id="m3">
         <div class="mech-icon">🌊</div>
         <div class="mech-content">
           <div class="mech-title">Endothelial dysfunction</div>
@@ -456,7 +450,14 @@
         </div>
         <div class="mech-outcome">→ ↓ NO</div>
       </div>
-      <div class="mech-card animate-ready" id="m4">
+    </div>
+  </div>
+
+  <!-- SLIDE 11: MECHANISMS 2 of 2 — AMBER — 3 cards -->
+  <div class="slide">
+    <div class="slide-title">How excess salt <span>raises blood pressure — 2 of 2</span></div>
+    <div class="mech-grid" style="grid-template-rows:repeat(3,1fr);">
+      <div class="mech-card" id="m4">
         <div class="mech-icon">⚡</div>
         <div class="mech-content">
           <div class="mech-title">Sympathetic activation</div>
@@ -464,15 +465,15 @@
         </div>
         <div class="mech-outcome">→ ↑ SNS</div>
       </div>
-      <div class="mech-card animate-ready" id="m5">
+      <div class="mech-card" id="m5">
         <div class="mech-icon">🫘</div>
         <div class="mech-content">
           <div class="mech-title">Renal sodium handling</div>
-          <div class="mech-body">Alters renin-angiotensin-aldosterone signalling — kidneys hold onto more sodium, raising BP further.</div>
+          <div class="mech-body">Alters renin-angiotensin-aldosterone (RAAS) signalling — kidneys hold onto more sodium, raising BP further.</div>
         </div>
         <div class="mech-outcome">→ RAAS</div>
       </div>
-      <div class="mech-card animate-ready" id="m6">
+      <div class="mech-card" id="m6">
         <div class="mech-icon">🫀</div>
         <div class="mech-content">
           <div class="mech-title">Cardiac remodelling</div>
@@ -483,86 +484,57 @@
     </div>
   </div>
 
-  <!-- SLIDE 9: CTA · HORIZONTAL ROWS · NO ICON -->
+  <!-- SLIDE 12: CTA — SEQUENTIAL ANIMATION -->
   <div class="slide cta-slide">
     <div class="cta-glow"></div>
     <div class="cta-wrap-v2">
-      <div class="cta-top">
+      <div class="cta-header">
         <div class="cta-badge-v2">What the evidence shows</div>
         <div class="cta-headline-v2">Sources, not shakers.<br/><span>Labels, not guesswork.</span></div>
-        <div class="cta-subline">75% of UK salt is already in food before it's touched.</div>
       </div>
-      <div class="cta-rows-v2">
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">🏷️</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Check labels on daily foods</div>
-            <div class="cta-row-body-v2">Bread, cheese, sauces, ready meals — high is &gt;1.5g/100g. Two brands of the same product often differ 2–3×</div>
-          </div>
-          <div class="cta-row-word-v2">&gt;1.5g = high</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">🍳</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Home cook more often</div>
-            <div class="cta-row-body-v2">Shifts intake from the 75% already in food toward the 25% directly controllable — the biggest single lever</div>
-          </div>
-          <div class="cta-row-word-v2">75% hidden</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">💊</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Low-sodium DASH diet effect</div>
-            <div class="cta-row-body-v2">A sustained low-sodium eating pattern can drop systolic BP by 8–14 mmHg — comparable to a single blood pressure drug</div>
-          </div>
-          <div class="cta-row-word-v2">8–14 mmHg</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">🍌</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Increase potassium-rich foods</div>
-            <div class="cta-row-body-v2">Fruit, veg, beans, dairy — potassium directly counteracts sodium's pressure effect, linked to 24% lower stroke risk</div>
-          </div>
-          <div class="cta-row-word-v2">−24% stroke</div>
-        </div>
-      </div>
-      <div class="cta-bottom">
-        <div class="med-disclaimer">
-          <div class="med-disc-icon">⚕️</div>
-          <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SLIDE 10: CLOSING -->
-  <div class="slide">
-    <div class="close-wrap">
-      <div class="close-logo">helf<span class="dot">.</span>school</div>
-      <div class="close-sub">Health Education</div>
-      <div class="close-headline">Sources. Labels. <span>Habits that stack.</span></div>
-      <div class="close-stats">
-        <div class="cst-card">
-          <div class="cst-num">~75%</div>
-          <div class="cst-lab">of UK salt already in food before cooking</div>
-          <div class="cst-src">NHS · BDA · NDNS</div>
-        </div>
-        <div class="cst-card">
-          <div class="cst-num">8–14</div>
-          <div class="cst-lab">mmHg systolic drop · low-Na DASH diet</div>
-          <div class="cst-src">DASH-Sodium · NEJM 2001</div>
-        </div>
-        <div class="cst-card">
-          <div class="cst-num">−24%</div>
-          <div class="cst-lab">stroke risk with higher potassium intake</div>
-          <div class="cst-src">Aburto · BMJ 2013</div>
-        </div>
+      <div class="cta-items">
+        <div class="cta-item ci-red"><div class="cta-item-icon">🧂</div><div class="cta-item-text">~75% of UK salt is already in food before cooking or seasoning</div></div>
+        <div class="cta-item ci-red"><div class="cta-item-icon">📊</div><div class="cta-item-text">UK adults consume 8–9g salt daily — 50% above the recommended 6g limit</div></div>
+        <div class="cta-item ci-amber"><div class="cta-item-icon">💧</div><div class="cta-item-text">Sodium raises BP by pulling water into the bloodstream — circulating volume increases</div></div>
+        <div class="cta-item ci-amber"><div class="cta-item-icon">💊</div><div class="cta-item-text">Low-sodium DASH diet reduced systolic BP by 8–14 mmHg — matching a single drug</div></div>
+        <div class="cta-item ci-green"><div class="cta-item-icon">🍌</div><div class="cta-item-text">Higher potassium intake is associated with 24% lower stroke risk — fruit, veg, beans</div></div>
+        <div class="cta-item ci-green"><div class="cta-item-icon">📉</div><div class="cta-item-text">UK salt reduction 2003–2011 cut stroke mortality by ~42% and heart disease mortality ~40%</div></div>
       </div>
       <div class="med-disclaimer">
         <div class="med-disc-icon">⚕️</div>
         <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
       </div>
-      <div class="close-series">Cardiovascular Health Series · Article 06</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 13: BRAND CLOSE -->
+  <div class="slide">
+    <div class="close-wrap">
+      <div class="close-logo">helf<span class="dot">.</span>school</div>
+      <div class="close-sub">Health Education</div>
+      <div class="close-headline">Evidence-based. Written by a doctor. <span>Built for everyone.</span></div>
+      <div class="close-cards">
+        <div class="close-card">
+          <div class="close-card-icon">📚</div>
+          <div class="close-card-text">31 articles across 5 series — cardiovascular, digestive, neurological, cancer, and practical health</div>
+          <div class="close-card-src">helf.school · April 2026</div>
+        </div>
+        <div class="close-card">
+          <div class="close-card-icon">🩺</div>
+          <div class="close-card-text">Written by Dr Paul — retired NHS GP with over 20 years of experience</div>
+          <div class="close-card-src">Retired 2019</div>
+        </div>
+        <div class="close-card">
+          <div class="close-card-icon">🔓</div>
+          <div class="close-card-text">Start for free — Explorer tier requires no payment. Every claim cited to its primary source.</div>
+          <div class="close-card-src">helf.school/conditions</div>
+        </div>
+      </div>
+      <div class="med-disclaimer" style="max-width:680px;">
+        <div class="med-disc-icon">⚕️</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+      </div>
+      <div class="close-series">Cardiovascular Health Series · Article 06 · Salt &amp; Blood Pressure</div>
     </div>
   </div>
 
@@ -579,29 +551,61 @@
   <div class="dot" onclick="goTo(7)"></div>
   <div class="dot" onclick="goTo(8)"></div>
   <div class="dot" onclick="goTo(9)"></div>
+  <div class="dot" onclick="goTo(10)"></div>
+  <div class="dot" onclick="goTo(11)"></div>
+  <div class="dot" onclick="goTo(12)"></div>
 </div>
 
 <div class="disc">Health education — not medical advice. helf.school</div>
 
 <script>
-  const slides=document.querySelectorAll('.slide'),dots=document.querySelectorAll('.dot');
+  const slides=document.querySelectorAll('.slide'), dots=document.querySelectorAll('.dot');
   let cur=0;
-  function show(n){slides[cur].classList.remove('active');dots[cur].classList.remove('active');cur=(n+slides.length)%slides.length;slides[cur].classList.add('active');dots[cur].classList.add('active');document.getElementById('counter').textContent=(cur+1)+' / '+slides.length;triggerSlide(cur)}
-  function goTo(n){show(n)}
-  document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')show(cur+1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')show(cur-1)});
-  let tx=0;
-  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX});
-  document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40){dx<0?show(cur+1):show(cur-1)}});
-  function triggerSlide(n){
-    if(n===2)animateGroup(['s1','s2','s3','s4','s5'],160);
-    if(n===3)animateGroup(['d1','d2','d3','d4','d5','d6'],140);
-    if(n===4)animateGroup(['e1','e2'],260);
-    if(n===5)animateGroup(['e3','e4'],260);
-    if(n===6)animateGroup(['e5','e6'],260);
-    if(n===7)animateGroup(['m1','m2','m3','m4','m5','m6'],140);
+
+  function animateCTA(){
+    const items=document.querySelectorAll('.cta-items .cta-item');
+    items.forEach(r=>r.classList.remove('visible'));
+    items.forEach((item,i)=>{setTimeout(()=>item.classList.add('visible'),350+i*620);});
   }
-  function animateGroup(ids,step){ids.forEach((id,i)=>{setTimeout(()=>{const el=document.getElementById(id);if(el)el.classList.add('vis')},180+i*step)})}
-  slides.forEach(s=>{const obs=new MutationObserver(()=>{if(!s.classList.contains('active')){s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'))}});obs.observe(s,{attributes:true})});
+
+  function show(n){
+    slides[cur].classList.remove('active'); dots[cur].classList.remove('active');
+    cur=(n+slides.length)%slides.length;
+    slides[cur].classList.add('active'); dots[cur].classList.add('active');
+    document.getElementById('counter').textContent=(cur+1)+' / '+slides.length;
+    if(cur===11){animateCTA();}else{triggerSlide(cur);}
+  }
+  function goTo(n){show(n);}
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowDown')show(cur+1);
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp')show(cur-1);
+  });
+  let tx=0;
+  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;});
+  document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40){dx<0?show(cur+1):show(cur-1);}});
+
+  function triggerSlide(n){
+    if(n===2) animateGroup(['s1','s2','s3'],170);
+    if(n===3) animateGroup(['s4','s5'],220);
+    if(n===4) animateGroup(['d1','d2','d3'],140);
+    if(n===5) animateGroup(['d4','d5','d6'],140);
+    if(n===6) animateGroup(['e1','e2'],260);
+    if(n===7) animateGroup(['e3','e4'],260);
+    if(n===8) animateGroup(['e5','e6'],260);
+    if(n===9) animateGroup(['m1','m2','m3'],170);
+    if(n===10) animateGroup(['m4','m5','m6'],170);
+  }
+
+  function animateGroup(ids,step){
+    ids.forEach((id,i)=>{setTimeout(()=>{const el=document.getElementById(id);if(el)el.classList.add('vis');},180+i*step);});
+  }
+
+  slides.forEach(s=>{
+    const obs=new MutationObserver(()=>{if(!s.classList.contains('active')){s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'));}});
+    obs.observe(s,{attributes:true});
+  });
+
   triggerSlide(0);
 </script>
 </body>
