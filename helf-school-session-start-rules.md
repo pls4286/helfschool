@@ -930,7 +930,6 @@ failures = 0
 for i, b in enumerate(bodies):
     text = re.sub(r'<[^>]+>', '', b).strip()
     w = len(text.split())
-    # Use 30 words for 2-card slides (conservative — safe for all)
     status = '✓' if w <= 30 else f'✗ OVER (30 limit)'
     print(f"ev-body {i+1}: {w}/30  {status}")
     if w > 30: failures += 1
@@ -962,6 +961,31 @@ print(f"Two cards: {two_cards:.0f}px, available: {avail}px, fits: {two_cards <= 
 
 ---
 
+## ⛔ RULE 37 — ev-stage MUST USE display:flex — NEVER display:grid — LOCKED APRIL 2026
+
+**The `.ev-stage` container must always use `display:flex;flex-direction:column`. Using `display:grid` or `grid-template-rows` on `.ev-stage` causes the middle ev-card to clip on filming viewports.**
+
+**The only correct CSS:**
+```css
+.ev-stage { display: flex; flex-direction: column; gap: .95rem; flex: 1; min-height: 0; }
+```
+
+**Never use:**
+```css
+/* ❌ FORBIDDEN */
+.ev-stage { display: grid; grid-template-rows: 1fr 1fr 1.5fr; }
+```
+
+**Why this rule exists:** `stress-visuals.html` used `display:grid;grid-template-rows:1fr 1fr 1.5fr` on `.ev-stage`. The middle card (ea2, IPD-Work, +23% CHD risk) clipped because the 1fr row height was insufficient — the bottom card had 1.5fr allocation but the middle card did not. The flex layout distributes height evenly and allows natural growth.
+
+**Root cause chain:** original file used grid on ev-stage → audit missed it → middle card clipped on camera → caught by Dr Paul April 2026.
+
+**QC check:** `grep "ev-stage" [filename.html]` — must show `display:flex`, never `display:grid`.
+
+**Canonical failure:** `stress-visuals.html` slide 7 — IPD-Work middle ev-card clipped. Caught by Dr Paul April 2026.
+
+---
+
 ## SESSION-START PROMPT — PASTE THIS AT THE START OF EVERY NEW SESSION
 
 **Copy and paste the following at the start of each new session before asking Claude to do anything:**
@@ -970,7 +994,7 @@ print(f"Two cards: {two_cards:.0f}px, available: {avail}px, fits: {two_cards <= 
 
 Before you do anything, read `/mnt/project/helf-school-project-knowledge.md` and `/mnt/project/helf-school-session-start-rules.md` in full. Do not summarise them back to me. Confirm you have read both by telling me: (1) what Section 17 says is the retrofit status, and (2) what the next outstanding file to work on is.
 
-Then before touching any visuals file, confirm these three checks pass:
+Then before touching any visuals file, confirm these five checks pass:
 
 1. Does every CSS rule using `-webkit-line-clamp` also have `display:-webkit-box`? Without it, clamp does nothing and text clips. Fix before showing me anything.
 
@@ -979,6 +1003,8 @@ Then before touching any visuals file, confirm these three checks pass:
 3. If a slide has two stacked ev-cards: does `ev-card padding` = 1.1rem and `ev-body line-clamp` = 4? If not, fix before showing me anything.
 
 4. Does any ev-body text exceed 30 words? At filming viewport the ev-det panel is only ~441px wide — 7-8 words per line, 4 lines = 30 words max. Run the ev-body QC script from the session-start-rules before presenting any research slide.
+
+5. Does `.ev-stage` use `display:flex`? If it uses `display:grid` or `grid-template-rows`, fix it before showing me anything. A grid ev-stage clips the middle card.
 
 Run the Python QC script from the session-start-rules on every visuals file before presenting it. Do not present any file that has not passed QC. If you present a file with clipping problems these checks would have caught, the process has failed.
 
