@@ -162,12 +162,15 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0e2418;font-family:
 @keyframes halo{0%,100%{filter:drop-shadow(0 0 14px rgba(168,213,181,0.4));}50%{filter:drop-shadow(0 0 28px rgba(168,213,181,0.75));}}
 .cta-badge{font-size:.70rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.35rem;}
 .cta-headline{font-family:var(--font-h);font-size:clamp(2.2rem,4.5vw,3.4rem);color:#fff;line-height:1.12;font-weight:900;max-width:720px;margin:0 auto 0.3rem;}
-.cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.4rem;min-height:0;overflow:hidden;}
-.cta-row{background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.15);border-radius:9px;display:flex;align-items:start;gap:.9rem;padding:.68rem 1rem;}
-.cta-row-icon{font-size:1.55rem;flex-shrink:0;margin-top:.05rem;}
-.cta-row-text{flex:1;min-width:0;}
-.cta-row-title{font-size:.93rem;font-weight:700;color:#fff;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.cta-row-sub{font-size:.80rem;color:rgba(255,255,255,0.75);line-height:1.45;margin-top:.12rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+/* CTA items — sequential animation */
+.cta-items{display:grid;grid-template-rows:repeat(6,1fr);gap:.38rem;min-height:0;overflow:hidden;}
+.cta-item{border-radius:9px;padding:.55rem 1rem;display:flex;align-items:center;gap:.85rem;opacity:0;transform:translateX(-24px);transition:opacity .38s ease,transform .38s ease;}
+.cta-item.visible{opacity:1;transform:translateX(0);}
+.cta-item.ci-red  {background:rgba(180,45,45,0.25);border:1px solid rgba(220,80,70,0.40);}
+.cta-item.ci-amber{background:rgba(170,110,20,0.25);border:1px solid rgba(232,168,74,0.40);}
+.cta-item.ci-green{background:rgba(38,105,55,0.30);border:1px solid rgba(168,213,181,0.42);}
+.cta-item-icon{font-size:1.45rem;flex-shrink:0;}
+.cta-item-text{font-size:.93rem;font-weight:600;color:rgba(255,255,255,0.95);line-height:1.3;}
 .cta-bottom{}
 .med-disclaimer{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.18);border-radius:8px;padding:.65rem 1rem;display:flex;gap:.6rem;align-items:flex-start;}
 .med-disc-icon{font-size:1.1rem;flex-shrink:0;}
@@ -255,19 +258,19 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0e2418;font-family:
       <div class="card-icon">🟢</div>
       <div class="card-label" style="color:rgba(200,255,200,0.90);">Most common · ~80%</div>
       <div class="card-title">Hormone-sensitive (ER-positive)</div>
-      <div class="card-body" style="color:rgba(220,255,220,0.90);">Cancer cells use oestrogen to grow. Responds well to hormone-blocking treatment — the subject of the strongest evidence base in breast cancer. Around 80% of breast cancers fall into this category.</div>
+      <div class="card-body" style="color:rgba(220,255,220,0.90);">Cancer cells use oestrogen to grow. Responds well to hormone-blocking treatment — the strongest evidence base in breast cancer. Around 80% of cases.</div>
     </div>
     <div class="card amber animate-ready">
       <div class="card-icon">🟡</div>
       <div class="card-label" style="color:rgba(255,240,180,0.90);">HER2-positive · ~15–20%</div>
       <div class="card-title">HER2-positive</div>
-      <div class="card-body" style="color:rgba(255,245,210,0.90);">Overproduces the HER2 protein, driving faster growth. Responds well to targeted antibody treatment given alongside chemotherapy. The development of this treatment transformed outcomes for HER2-positive disease.</div>
+      <div class="card-body" style="color:rgba(255,245,210,0.90);">Overproduces the HER2 protein, driving faster growth. Responds well to targeted antibody treatment given alongside chemotherapy — transforming outcomes for this subtype.</div>
     </div>
     <div class="card red animate-ready">
       <div class="card-icon">🔴</div>
       <div class="card-label" style="color:rgba(255,220,220,0.90);">Hardest to treat · ~15%</div>
       <div class="card-title">Triple-negative</div>
-      <div class="card-body" style="color:rgba(255,230,230,0.90);">Lacks oestrogen, progesterone, and HER2 receptors — so cannot be treated with hormone-blocking or HER2-targeted therapies. Chemotherapy (drug treatment working throughout the body) is the main systemic treatment option.</div>
+      <div class="card-body" style="color:rgba(255,230,230,0.90);">Lacks oestrogen, progesterone, and HER2 receptors — so hormone-blocking and targeted therapies don't apply. Chemotherapy is the main systemic treatment option.</div>
     </div>
   </div>
 </div>
@@ -321,19 +324,19 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0e2418;font-family:
       <div class="card-icon">👩‍⚕️</div>
       <div class="card-label" style="color:rgba(255,240,180,0.90);">Step 1 — Clinical</div>
       <div class="card-title">Clinical examination</div>
-      <div class="card-body" style="color:rgba(255,245,210,0.90);">Assessment of the breast and lymph nodes (small glands under the arm) by a trained clinician. Covers shape, skin changes, nipple changes, and any lumps or thickening found on examination.</div>
+      <div class="card-body" style="color:rgba(255,245,210,0.90);">Assessment of the breast and lymph nodes by a clinician — covering shape, skin and nipple changes, and any lump or thickening found on examination.</div>
     </div>
     <div class="card amber animate-ready">
       <div class="card-icon">🔬</div>
       <div class="card-label" style="color:rgba(255,240,180,0.90);">Step 2 — Imaging</div>
       <div class="card-title">Mammography or ultrasound</div>
-      <div class="card-body" style="color:rgba(255,245,210,0.90);">Mammography (low-dose X-ray) for women aged 40 and over. Ultrasound (a scan using sound waves) for younger women, where denser breast tissue is harder to read on X-ray. Both can identify areas needing further investigation.</div>
+      <div class="card-body" style="color:rgba(255,245,210,0.90);">Mammography (low-dose X-ray) for women aged 40 and over. Ultrasound for younger women, where denser breast tissue can be harder to read on X-ray.</div>
     </div>
     <div class="card green animate-ready">
       <div class="card-icon">🧫</div>
       <div class="card-label" style="color:rgba(200,255,200,0.90);">Step 3 — Pathology</div>
       <div class="card-title">Biopsy — the only way to confirm</div>
-      <div class="card-body" style="color:rgba(220,255,220,0.90);">A tissue sample taken by needle, examined under a microscope. The only way to confirm cancer and determine receptor status — ER-positive, HER2-positive, or triple-negative — which determines the treatment pathway.</div>
+      <div class="card-body" style="color:rgba(220,255,220,0.90);">A tissue sample taken by needle and examined under a microscope. The only way to confirm cancer and determine receptor status, which decides treatment.</div>
     </div>
   </div>
   <div class="info-box">
@@ -351,19 +354,19 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0e2418;font-family:
       <div class="card-icon">🏥</div>
       <div class="card-label" style="color:rgba(200,255,200,0.90);">Primary treatment</div>
       <div class="card-title">Surgery — the first step for most</div>
-      <div class="card-body" style="color:rgba(220,255,220,0.90);">Breast-conserving surgery (removing the tumour and a margin of surrounding tissue) or mastectomy (removal of the whole breast). Sentinel lymph node biopsy assesses whether cancer has reached the armpit glands without requiring full clearance in most cases.</div>
+      <div class="card-body" style="color:rgba(220,255,220,0.90);">Breast-conserving surgery removes the tumour and a margin of tissue. Mastectomy removes the whole breast. Lymph node biopsy checks whether cancer has spread.</div>
     </div>
     <div class="card amber animate-ready">
       <div class="card-icon">💊</div>
       <div class="card-label" style="color:rgba(255,240,180,0.90);">For hormone-sensitive disease</div>
       <div class="card-title">Hormone-blocking treatment</div>
-      <div class="card-body" style="color:rgba(255,245,210,0.90);">For ER-positive breast cancer — the most common type — hormone-blocking treatment reduces the oestrogen that cancer cells use to grow. Typically given for 5 to 10 years. This treatment has one of the strongest evidence bases in oncology.</div>
+      <div class="card-body" style="color:rgba(255,245,210,0.90);">For ER-positive disease — the most common type — hormone-blocking treatment reduces the oestrogen cancer cells need to grow. Given for 5 to 10 years.</div>
     </div>
     <div class="card red animate-ready">
       <div class="card-icon">⚡</div>
       <div class="card-label" style="color:rgba(255,220,220,0.90);">Additional treatments</div>
       <div class="card-title">Radiotherapy, chemotherapy, targeted treatment</div>
-      <div class="card-body" style="color:rgba(255,230,230,0.90);">Radiotherapy after breast-conserving surgery reduces local recurrence. Chemotherapy before or after surgery for higher-risk disease. Targeted antibody treatment added for HER2-positive disease, given alongside chemotherapy for one year.</div>
+      <div class="card-body" style="color:rgba(255,230,230,0.90);">Radiotherapy after breast-conserving surgery reduces local recurrence. Chemotherapy for higher-risk disease. Targeted antibody treatment added for HER2-positive disease, given alongside chemotherapy for one year.</div>
     </div>
   </div>
 </div>
@@ -481,47 +484,25 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0e2418;font-family:
   </div>
 </div>
 
-<!-- SLIDE 9: CTA — cta-wrap-v2 -->
+<!-- SLIDE 9: CTA — sequential animation -->
 <div class="slide" data-slide="8" style="padding:0;">
   <div class="cta-wrap-v2">
     <div class="cta-top">
-      <div class="cta-badge">The evidence is clear on one thing</div>
-      <div class="cta-headline">Breast cancer caught early has around 100% five-year survival</div>
+      <div class="cta-badge">Cancer Research UK · NHS England · EBCTCG</div>
+      <div class="cta-headline">What the evidence shows about breast cancer</div>
     </div>
-    <div class="cta-rows-v2">
-      <div class="cta-row">
-        <div class="cta-row-icon">🎀</div>
-        <div class="cta-row-text">
-          <div class="cta-row-title">The NHS Breast Screening Programme is the evidence-based route to early detection</div>
-          <div class="cta-row-sub">Women aged 50 to 70 are invited for mammography every 3 years. The evidence shows a 20% reduction in breast cancer mortality in women invited to screening.</div>
-        </div>
-      </div>
-      <div class="cta-row">
-        <div class="cta-row-icon">🔍</div>
-        <div class="cta-row-text">
-          <div class="cta-row-title">Breast awareness — knowing what's normal — is clinically recognised as important</div>
-          <div class="cta-row-sub">Changes in shape, skin, nipple, or any new lump or thickening are recognised as changes worth discussing with a GP or healthcare professional.</div>
-        </div>
-      </div>
-      <div class="cta-row">
-        <div class="cta-row-icon">📈</div>
-        <div class="cta-row-text">
-          <div class="cta-row-title">Mortality has fallen 46% since the early 1970s — treatment works</div>
-          <div class="cta-row-sub">Screening, hormone-blocking treatment, targeted treatment, and improved surgery have together produced one of the most significant cancer survival improvements of the modern era.</div>
-        </div>
-      </div>
-      <div class="cta-row">
-        <div class="cta-row-icon">📚</div>
-        <div class="cta-row-text">
-          <div class="cta-row-title">helf.school — the full article with all the evidence</div>
-          <div class="cta-row-sub">The breast cancer article covers types, staging, diagnosis, treatments, and the full clinical trial evidence — part of the Cancer Series at helf.school.</div>
-        </div>
-      </div>
+    <div class="cta-items">
+      <div class="cta-item ci-red"><div class="cta-item-icon">🎀</div><div class="cta-item-text">NHS Breast Screening invites women aged 50–70 every 3 years — no referral needed</div></div>
+      <div class="cta-item ci-red"><div class="cta-item-icon">🔍</div><div class="cta-item-text">Changes in shape, skin, nipple, or any new lump are worth discussing with a GP</div></div>
+      <div class="cta-item ci-amber"><div class="cta-item-icon">🧬</div><div class="cta-item-text">Receptor status — ER-positive, HER2-positive, or triple-negative — determines the treatment pathway</div></div>
+      <div class="cta-item ci-amber"><div class="cta-item-icon">📊</div><div class="cta-item-text">Screening reduces breast cancer mortality by 20% in women invited — Marmot review, 11 trials</div></div>
+      <div class="cta-item ci-green"><div class="cta-item-icon">📈</div><div class="cta-item-text">Mortality has fallen 46% since the early 1970s — screening and treatment working together</div></div>
+      <div class="cta-item ci-green"><div class="cta-item-icon">🎯</div><div class="cta-item-text">Stage I breast cancer has around 100% five-year survival — stage at diagnosis matters most</div></div>
     </div>
     <div class="cta-bottom">
       <div class="med-disclaimer">
         <div class="med-disc-icon">ℹ️</div>
-        <div class="med-disc-text">Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+        <div class="med-disc-text">helf.school provides health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
       </div>
     </div>
   </div>
@@ -549,7 +530,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0e2418;font-family:
     </div>
     <div class="med-disclaimer" style="max-width:680px;">
       <div class="med-disc-icon">ℹ️</div>
-      <div class="med-disc-text">Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+      <div class="med-disc-text">helf.school provides health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
     </div>
     <div class="close-series">Cancer Series · Article 27 · Breast Cancer</div>
   </div>
@@ -588,6 +569,14 @@ function resetSlide(slideEl) {
   if (chartWrap) chartWrap.classList.remove('chart-visible');
 }
 
+function animateCTA() {
+  const items = document.querySelectorAll('[data-slide="8"] .cta-item');
+  items.forEach(r => r.classList.remove('visible'));
+  items.forEach((item, i) => {
+    setTimeout(() => item.classList.add('visible'), 350 + i * 620);
+  });
+}
+
 function goTo(n) {
   const slides = document.querySelectorAll('.slide');
   const dots = document.querySelectorAll('.dot');
@@ -598,7 +587,8 @@ function goTo(n) {
   slides[current].classList.add('active');
   dots[current].classList.add('active');
   document.getElementById('counter').textContent = (current + 1) + ' / ' + TOTAL;
-  requestAnimationFrame(() => animateSlide(slides[current]));
+  if (current === 8) { animateCTA(); }
+  else { requestAnimationFrame(() => animateSlide(slides[current])); }
 }
 
 document.addEventListener('keydown', e => {
