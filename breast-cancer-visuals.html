@@ -6,273 +6,204 @@
 <title>Breast Cancer — Visuals · helf.school</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --navy: #1B2A4A;
-  --amber: #E8A84A;
-  --series: #2A5A3A;
-  --series-dark: #1A3A25;
-  --series-mid: #3A7A4E;
-  --series-light: #A8D5B5;
-  --font-h: 'Fraunces', Georgia, serif;
-  --font-b: 'DM Sans', sans-serif;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#1B2A4A;
+  --amber:#E8A84A;
+  --coral:#E8634A;
+  --series:#2A5A3A;
+  --series-dark:#1A3A25;
+  --series-mid:#3A7A4E;
+  --series-light:#A8D5B5;
+  --red:#C8423A;
+  --red-dark:#8A2020;
+  --green:#2A7A3A;
+  --green-dark:#1A4A25;
+  --amber-dark:#8A5A10;
+  --font-h:'Fraunces',Georgia,serif;
+  --font-b:'DM Sans',sans-serif;
 }
+html,body{width:100%;height:100%;overflow:hidden;background:#050f08;font-family:var(--font-b);}
 
-html, body { width: 100%; height: 100%; overflow: hidden; background: #050f08; font-family: var(--font-b); }
-
-/* ── TOPBAR ── */
-.topbar {
-  position: fixed; top: 0; left: 0; right: 0; height: 52px;
-  background: rgba(5,15,8,0.94); backdrop-filter: blur(8px);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 1.5rem; z-index: 100; border-bottom: 1px solid rgba(42,90,58,0.40);
+/* TOPBAR */
+.topbar{
+  position:fixed;top:0;left:0;right:0;height:52px;
+  background:rgba(5,15,8,0.94);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 1.5rem;z-index:100;border-bottom:1px solid rgba(42,90,58,0.40);
 }
-.topbar-left { display: flex; align-items: center; gap: .8rem; }
-.tb-logo { font-family: var(--font-h); font-size: .95rem; font-weight: 700; color: #fff; }
-.tb-sep { width: 1px; height: 18px; background: rgba(255,255,255,0.20); }
-.tb-title { font-size: .88rem; font-weight: 600; color: rgba(255,255,255,0.90); }
-.tb-sub { font-size: .75rem; color: rgba(255,255,255,0.55); margin-left: .3rem; }
-.tb-right { display: flex; align-items: center; gap: 1rem; }
-.tb-counter { font-size: .85rem; font-weight: 700; color: rgba(255,255,255,0.90); }
-.tb-hint { font-size: .75rem; color: rgba(255,255,255,0.60); }
+.topbar-left{display:flex;align-items:center;gap:.8rem;}
+.tb-logo{font-family:var(--font-h);font-size:.95rem;font-weight:700;color:#fff;}
+.tb-sep{width:1px;height:18px;background:rgba(255,255,255,0.20);}
+.tb-title{font-size:.88rem;font-weight:600;color:rgba(255,255,255,0.90);}
+.tb-sub{font-size:.75rem;color:rgba(255,255,255,0.55);margin-left:.3rem;}
+.tb-right{display:flex;align-items:center;gap:1rem;}
+.tb-counter{font-size:.85rem;font-weight:700;color:rgba(255,255,255,0.90);}
+.tb-hint{font-size:.75rem;color:rgba(255,255,255,0.60);}
 
-/* ── DOTS ── */
-.dots-bar {
-  position: fixed; bottom: 0; left: 0; right: 0; height: 32px;
-  display: flex; align-items: center; justify-content: center; gap: .45rem;
-  background: rgba(5,15,8,0.90); z-index: 100;
+/* DOTS */
+.dots-bar{
+  position:fixed;bottom:0;left:0;right:0;height:32px;
+  display:flex;align-items:center;justify-content:center;gap:.45rem;
+  background:rgba(5,15,8,0.90);z-index:100;
 }
-.dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.22); cursor: pointer; transition: all .25s; }
-.dot.active { background: var(--series-light); transform: scale(1.3); }
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.22);cursor:pointer;transition:all .25s;}
+.dot.active{background:var(--series-light);transform:scale(1.3);}
 
-/* ── SLIDES ── */
-.slides-wrap { position: fixed; top: 52px; left: 0; right: 0; bottom: 32px; }
-.slide {
-  position: absolute; inset: 0;
-  display: none; flex-direction: column;
-  padding: 1rem 1.5rem 0.8rem;
-  overflow: hidden;
+/* SLIDES — visibility pattern */
+.slides-wrap{position:fixed;top:52px;left:0;right:0;bottom:32px;}
+.slide{
+  position:absolute;
+  top:0;left:0;width:100%;height:100%;
+  display:flex;flex-direction:column;
+  padding:1rem 1.5rem .8rem;
+  overflow:hidden;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .32s ease;
 }
-.slide.active { display: flex; }
+.slide.active{opacity:1;visibility:visible;pointer-events:all;}
 
-/* ── SLIDE TITLES ── */
-.slide-title {
-  font-family: var(--font-h); font-size: 1.6rem; font-weight: 700;
-  color: #fff; line-height: 1.15; margin-bottom: .3rem; flex-shrink: 0;
+/* SLIDE HEADER */
+.slide-title{font-family:var(--font-h);font-size:1.72rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:.3rem;flex-shrink:0;}
+.slide-sub{font-size:.80rem;color:rgba(255,255,255,0.62);margin-bottom:.4rem;flex-shrink:0;}
+
+/* BASE CARD */
+.card{border-radius:10px;padding:.88rem 1rem;display:flex;flex-direction:column;gap:.32rem;overflow:hidden;min-height:0;transition:opacity .4s ease,transform .4s ease;}
+.card.animate-ready{opacity:0;transform:translateY(14px);}
+.card.visible{opacity:1;transform:translateY(0);}
+.card-icon{font-size:1.6rem;line-height:1;}
+.card-label{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.85;}
+.card-title{font-family:var(--font-h);font-size:1.12rem;font-weight:700;line-height:1.25;color:#fff;}
+.card-body{font-size:.93rem;line-height:1.58;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* STAT PULL-OUT CARD */
+.stat-card{border-radius:10px;padding:.88rem 1rem;display:flex;flex-direction:column;gap:.28rem;overflow:hidden;min-height:0;transition:opacity .4s ease,transform .4s ease;}
+.stat-card.animate-ready{opacity:0;transform:translateY(14px);}
+.stat-card.visible{opacity:1;transform:translateY(0);}
+.stat-card-num{font-family:var(--font-h);font-size:3.6rem;font-weight:900;line-height:1;color:#fff;}
+.stat-card-label{font-size:.93rem;font-weight:700;color:#fff;line-height:1.35;}
+.stat-card-sub{font-size:.82rem;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* COLOUR VARIANTS */
+.red  {background:linear-gradient(135deg,var(--red-dark) 0%,var(--red) 100%);border:1px solid rgba(255,255,255,0.12);}
+.amber{background:linear-gradient(135deg,var(--amber-dark) 0%,#C88A20 100%);border:1px solid rgba(255,255,255,0.12);}
+.green{background:linear-gradient(135deg,var(--green-dark) 0%,var(--green) 100%);border:1px solid rgba(255,255,255,0.12);}
+.navy-card{background:linear-gradient(135deg,#0e1a2e 0%,var(--navy) 100%);border:1px solid rgba(255,255,255,0.12);}
+.red  .card-label{color:rgba(255,220,220,0.90);}
+.amber.card-label{color:rgba(255,240,180,0.90);}
+.green .card-label{color:rgba(200,255,200,0.90);}
+.red  .card-body,.red  .stat-card-sub{color:rgba(255,230,230,0.90);}
+.amber .card-body,.amber .stat-card-sub{color:rgba(255,245,210,0.90);}
+.green .card-body,.green .stat-card-sub{color:rgba(220,255,220,0.90);}
+
+/* THREE-CARD GRID */
+.three-grid{display:grid;grid-template-rows:repeat(3,1fr);gap:.48rem;flex:1;min-height:0;}
+
+/* HERO STAT GRID */
+.hero-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.48rem;flex:1;min-height:0;}
+.hero-stat-grid .big{grid-row:span 2;}
+
+/* INTRO */
+.intro-slide{background:linear-gradient(135deg,var(--series-dark) 0%,var(--series) 60%,var(--series-mid) 100%);}
+.intro-badge{display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.28);color:#fff;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .75rem;border-radius:20px;margin-bottom:.5rem;flex-shrink:0;}
+.intro-h1{font-family:var(--font-h);font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:.25rem;flex-shrink:0;letter-spacing:-.02em;}
+.intro-sub{font-size:.92rem;color:rgba(255,255,255,0.85);margin-bottom:.55rem;flex-shrink:0;}
+.intro-stat-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;grid-template-rows:1fr;gap:.55rem;flex:1;min-height:0;}
+.intro-stat-card{border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:.8rem .6rem;min-height:0;transition:opacity .4s ease,transform .4s ease;}
+.intro-stat-card.animate-ready{opacity:0;transform:translateY(14px);}
+.intro-stat-card.visible{opacity:1;transform:translateY(0);}
+.intro-stat-num{font-family:var(--font-h);font-size:2.6rem;font-weight:900;color:var(--amber);line-height:1;}
+.intro-stat-label{font-size:.80rem;color:rgba(255,255,255,0.90);line-height:1.4;margin-top:.3rem;font-weight:500;}
+.source-tag{font-size:.75rem;color:rgba(255,255,255,0.45);text-align:right;flex-shrink:0;margin-top:.25rem;}
+
+/* STAGE ROWS */
+.stage-rows{display:flex;flex-direction:column;gap:.42rem;flex:1;min-height:0;}
+.stage-row{display:flex;align-items:center;gap:.9rem;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:.75rem 1rem;flex:1;transition:opacity .4s ease,transform .4s ease;}
+.stage-row.animate-ready{opacity:0;transform:translateX(-12px);}
+.stage-row.visible{opacity:1;transform:translateX(0);}
+.stage-badge{flex-shrink:0;font-family:var(--font-h);font-size:.82rem;font-weight:700;color:#fff;background:var(--series);padding:.3rem .65rem;border-radius:6px;white-space:nowrap;}
+.stage-label{flex:1;font-size:.90rem;color:rgba(255,255,255,0.80);line-height:1.4;}
+.stage-bar-wrap{flex:2;height:14px;background:rgba(255,255,255,0.12);border-radius:7px;overflow:hidden;}
+.stage-bar{height:100%;border-radius:7px;width:0;transition:width 0.8s ease 0.3s;}
+.stage-stat{flex-shrink:0;font-family:var(--font-h);font-size:1.8rem;font-weight:900;color:var(--series-light);width:82px;text-align:right;}
+
+/* EV CARDS */
+.ev-cards{display:flex;flex-direction:column;gap:.48rem;flex:1;min-height:0;}
+.ev-card{display:grid;grid-template-columns:220px 1fr;border-radius:10px;overflow:hidden;flex:1;min-height:0;border:1px solid rgba(168,213,181,0.28);transition:opacity .45s ease,transform .45s ease;}
+.ev-card.animate-ready{opacity:0;transform:translateY(14px);}
+.ev-card.visible{opacity:1;transform:translateY(0);}
+.ev-stat-box{background:linear-gradient(160deg,var(--series-dark) 0%,var(--series) 100%);padding:.9rem .75rem;display:flex;flex-direction:column;justify-content:flex-start;overflow:hidden;}
+.ev-kf-label{font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--amber);margin-bottom:.35rem;}
+.ev-stat-row{font-family:var(--font-h);font-size:3.2rem;font-weight:900;color:#fff;line-height:1.0;margin-bottom:.3rem;}
+.ev-stat-unit{font-family:var(--font-h);font-size:1.65rem;font-weight:700;color:rgba(255,255,255,0.88);line-height:1;margin-bottom:.25rem;}
+.ev-outcome{font-size:.95rem;font-weight:700;color:rgba(255,255,255,0.95);line-height:1.3;margin-bottom:.35rem;}
+.ev-conditions{font-size:.78rem;line-height:1.32;color:rgba(255,255,255,0.68);}
+.ev-body-panel{background:rgba(255,255,255,0.96);padding:.9rem 1rem;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;}
+.ev-body-title{font-family:var(--font-h);font-size:.98rem;color:var(--navy);font-weight:700;margin-bottom:.38rem;line-height:1.25;}
+.ev-body-panel p{font-size:.93rem;line-height:1.65;color:#2C2C2C;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden;}
+.ev-source{font-size:.74rem;color:rgba(44,44,44,0.50);font-style:italic;margin-top:.38rem;}
+
+/* INFO BOX */
+.info-box{background:rgba(42,90,58,0.30);border:1px solid rgba(168,213,181,0.32);border-radius:10px;padding:.7rem 1rem;display:flex;align-items:center;gap:.8rem;flex-shrink:0;margin-top:.42rem;}
+.info-box-icon{font-size:1.6rem;flex-shrink:0;}
+.info-box-text{font-size:.88rem;color:rgba(255,255,255,0.88);line-height:1.45;}
+.info-box-text strong{color:#fff;font-weight:700;}
+
+/* CTA */
+.cta-wrap-v2{
+  display:grid;grid-template-rows:auto 1fr auto;
+  width:100%;height:100%;
+  background:radial-gradient(ellipse at 50% 30%,rgba(42,90,58,0.55) 0%,transparent 65%),
+             linear-gradient(160deg,var(--series-dark) 0%,#050f08 100%);
+  gap:.4rem;padding:.6rem 1.5rem .4rem;
 }
-.slide-sub {
-  font-size: .80rem; color: rgba(255,255,255,0.62);
-  margin-bottom: .5rem; flex-shrink: 0;
+.cta-top{display:flex;flex-direction:column;align-items:center;text-align:center;}
+.cta-icon-big{font-size:4.5rem;line-height:1;margin-bottom:.2rem;animation:halo 3.2s ease-in-out infinite;}
+@keyframes halo{0%,100%{filter:drop-shadow(0 0 14px rgba(168,213,181,0.4));}50%{filter:drop-shadow(0 0 28px rgba(168,213,181,0.75));}}
+.cta-badge{font-size:.70rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.35rem;}
+.cta-headline{font-family:var(--font-h);font-size:clamp(2.2rem,4.5vw,3.4rem);color:#fff;line-height:1.12;font-weight:900;max-width:720px;margin:0 auto 0.3rem;}
+.cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.4rem;min-height:0;overflow:hidden;}
+.cta-row{background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.15);border-radius:9px;display:flex;align-items:start;gap:.9rem;padding:.68rem 1rem;}
+.cta-row-icon{font-size:1.55rem;flex-shrink:0;margin-top:.05rem;}
+.cta-row-text{flex:1;min-width:0;}
+.cta-row-title{font-size:.93rem;font-weight:700;color:#fff;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.cta-row-sub{font-size:.80rem;color:rgba(255,255,255,0.75);line-height:1.45;margin-top:.12rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.cta-bottom{}
+.med-disclaimer{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.18);border-radius:8px;padding:.65rem 1rem;display:flex;gap:.6rem;align-items:flex-start;}
+.med-disc-icon{font-size:1.1rem;flex-shrink:0;}
+.med-disc-text{font-size:1rem;color:rgba(255,255,255,0.90);line-height:1.5;font-weight:400;}
+
+/* BRAND CLOSE */
+.close-wrap{
+  display:flex;flex-direction:column;justify-content:flex-start;
+  align-items:center;text-align:center;
+  background:radial-gradient(ellipse at 50% 20%,rgba(42,90,58,0.25) 0%,transparent 60%),
+             linear-gradient(160deg,var(--series-dark) 0%,#050f08 100%);
+  gap:.65rem;padding:.9rem 1.5rem .8rem;
 }
+.close-logo{font-family:var(--font-h);font-size:2.8rem;color:#fff;letter-spacing:-0.02em;line-height:1;}
+.close-logo span{color:var(--coral);}
+.close-tag{font-size:1.05rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.70);}
+.close-headline{font-family:var(--font-h);font-size:1.5rem;color:#fff;}
+.close-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;width:100%;max-width:760px;}
+.close-card{background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.16);border-radius:9px;padding:.85rem .9rem;text-align:center;}
+.close-card-icon{font-size:1.7rem;margin-bottom:.32rem;}
+.close-card-text{font-size:.88rem;color:rgba(255,255,255,0.88);line-height:1.5;font-weight:500;}
+.close-series{font-size:1rem;color:rgba(255,255,255,0.65);}
 
-/* ── STAT GRID ── */
-.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .45rem; flex: 1; min-height: 0; }
-
-/* Base stat-card — ALWAYS VISIBLE */
-.stat-card {
-  background: rgba(255,255,255,0.09); border: 1px solid rgba(168,213,181,0.22);
-  border-radius: 10px; padding: 1rem 1.1rem; display: flex; flex-direction: column;
-  justify-content: center; border-top: 3px solid var(--series-light);
-  transition: opacity .4s ease, transform .4s ease;
-}
-/* animate-ready makes it invisible ONLY when JS sets initial state */
-.stat-card.animate-ready { opacity: 0; transform: translateY(14px); }
-.stat-card.visible { opacity: 1; transform: translateY(0); }
-
-.sc-num { font-family: var(--font-h); font-size: 2.8rem; font-weight: 900; color: #fff; line-height: 1; margin-bottom: .3rem; letter-spacing: -.02em; }
-.sc-label { font-size: .78rem; font-weight: 700; color: var(--series-light); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .25rem; }
-.sc-prose { font-size: .90rem; color: rgba(255,255,255,0.78); line-height: 1.5; }
-
-/* ── INFO ROWS ── */
-.rows-wrap { display: flex; flex-direction: column; gap: .45rem; flex: 1; min-height: 0; }
-
-/* Base info-row — ALWAYS VISIBLE */
-.info-row {
-  display: grid; grid-template-columns: 60px 1fr auto;
-  align-items: start; background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.12); border-radius: 10px;
-  padding: .75rem .9rem; gap: .7rem; flex: 1; min-height: 0;
-  transition: opacity .4s ease, transform .4s ease;
-}
-.info-row.animate-ready { opacity: 0; transform: translateY(14px); }
-.info-row.visible { opacity: 1; transform: translateY(0); }
-
-.row-icon { font-size: 1.8rem; line-height: 1; text-align: center; padding-top: .1rem; }
-.row-content { min-width: 0; }
-.row-title { font-family: var(--font-h); font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: .2rem; }
-.row-body {
-  font-size: .92rem; color: rgba(255,255,255,0.80); line-height: 1.5;
-  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-}
-.row-stat { font-family: var(--font-h); font-size: 1.6rem; font-weight: 700; color: var(--series-light); line-height: 1; text-align: right; white-space: nowrap; padding-top: .1rem; }
-
-/* ── STEP ROWS ── */
-.step-rows { display: flex; flex-direction: column; gap: .45rem; flex: 1; min-height: 0; }
-
-/* Base step-row — ALWAYS VISIBLE */
-.step-row {
-  display: flex; align-items: flex-start; gap: .85rem;
-  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 10px; padding: .8rem 1rem; flex: 1; min-height: 0;
-  transition: opacity .4s ease, transform .4s ease;
-}
-.step-row.animate-ready { opacity: 0; transform: translateY(14px); }
-.step-row.visible { opacity: 1; transform: translateY(0); }
-
-.step-num {
-  flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%;
-  background: var(--series); color: #fff; font-size: .9rem; font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-  border: 2px solid var(--series-light); margin-top: .05rem;
-}
-.step-content { flex: 1; min-width: 0; }
-.step-title { font-family: var(--font-h); font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: .2rem; }
-.step-body {
-  font-size: .92rem; color: rgba(255,255,255,0.80); line-height: 1.5;
-  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-}
-.step-tag { flex-shrink: 0; font-size: .78rem; font-weight: 700; color: var(--amber); text-align: right; padding-top: .2rem; white-space: nowrap; }
-
-/* ── STAGE ROWS ── */
-.stage-rows { display: flex; flex-direction: column; gap: .4rem; flex: 1; min-height: 0; }
-
-/* Base stage-row — ALWAYS VISIBLE */
-.stage-row {
-  display: flex; align-items: center; gap: .9rem;
-  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 10px; padding: .75rem 1rem; flex: 1;
-  transition: opacity .4s ease, transform .4s ease;
-}
-.stage-row.animate-ready { opacity: 0; transform: translateX(-12px); }
-.stage-row.visible { opacity: 1; transform: translateX(0); }
-
-.stage-badge { flex-shrink: 0; font-family: var(--font-h); font-size: .82rem; font-weight: 700; color: #fff; background: var(--series); padding: .3rem .65rem; border-radius: 6px; white-space: nowrap; }
-.stage-label { flex: 1; font-size: .90rem; color: rgba(255,255,255,0.80); line-height: 1.4; }
-.stage-bar-wrap { flex: 2; height: 14px; background: rgba(255,255,255,0.12); border-radius: 7px; overflow: hidden; }
-.stage-bar { height: 100%; border-radius: 7px; width: 0; transition: width 0.8s ease 0.3s; }
-.stage-stat { flex-shrink: 0; font-family: var(--font-h); font-size: 1.8rem; font-weight: 900; color: var(--series-light); width: 82px; text-align: right; }
-
-/* ── EV CARDS (research) ── */
-.ev-cards { display: flex; flex-direction: column; gap: .45rem; flex: 1; min-height: 0; }
-
-/* Base ev-card — ALWAYS VISIBLE */
-.ev-card {
-  display: grid; grid-template-columns: 220px 1fr;
-  border-radius: 10px; overflow: hidden; flex: 1; min-height: 0;
-  border: 1px solid rgba(168,213,181,0.28);
-  transition: opacity .45s ease, transform .45s ease;
-}
-.ev-card.animate-ready { opacity: 0; transform: translateY(14px); }
-.ev-card.visible { opacity: 1; transform: translateY(0); }
-
-.ev-stat-box {
-  background: linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%);
-  padding: .9rem .75rem;
-  display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden;
-}
-.ev-kf-label { font-size: .72rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--amber); margin-bottom: .35rem; }
-.ev-stat-row { font-family: var(--font-h); font-size: 2.2rem; font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: .3rem; }
-.ev-outcome { font-size: .88rem; font-weight: 700; color: rgba(255,255,255,0.92); line-height: 1.3; margin-bottom: .3rem; }
-.ev-conditions { font-size: .78rem; line-height: 1.32; color: rgba(255,255,255,0.65); }
-.ev-body { background: rgba(255,255,255,0.06); padding: .9rem 1rem; display: flex; flex-direction: column; justify-content: space-between; }
-.ev-body p { font-size: .90rem; color: rgba(255,255,255,0.84); line-height: 1.6; margin-bottom: .4rem; }
-.ev-body p:last-child { margin-bottom: 0; }
-.ev-source { font-size: .75rem; color: rgba(255,255,255,0.50); font-style: italic; margin-top: .4rem; }
-
-/* ── INFO BOX ── */
-.info-box {
-  background: rgba(42,90,58,0.30); border: 1px solid rgba(168,213,181,0.32);
-  border-radius: 10px; padding: .7rem 1rem;
-  display: flex; align-items: center; gap: .8rem; flex-shrink: 0; margin-top: .45rem;
-}
-.info-box-icon { font-size: 1.6rem; flex-shrink: 0; }
-.info-box-text { font-size: .88rem; color: rgba(255,255,255,0.88); line-height: 1.45; }
-.info-box-text strong { color: #fff; font-weight: 700; }
-
-/* ── ROW COLOUR VARIANTS ── */
-.row-er { border-left: 3px solid #7A9E87; }
-.row-her2 { border-left: 3px solid var(--amber); }
-.row-tn { border-left: 3px solid #C8423A; }
-
-/* ── SOURCE TAG ── */
-.source-tag { font-size: .75rem; color: rgba(255,255,255,0.50); text-align: right; flex-shrink: 0; margin-top: .25rem; }
-
-/* ── INTRO SLIDE ── */
-.intro-slide { background: linear-gradient(135deg, var(--series-dark) 0%, var(--series) 60%, var(--series-mid) 100%); }
-.intro-badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .28rem .75rem; border-radius: 20px; margin-bottom: .6rem; flex-shrink: 0; }
-.intro-h1 { font-family: var(--font-h); font-size: clamp(2.2rem, 4.5vw, 3.4rem); font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: .3rem; flex-shrink: 0; letter-spacing: -.02em; }
-.intro-sub { font-size: .92rem; color: rgba(255,255,255,0.85); margin-bottom: .6rem; flex-shrink: 0; }
-
-/* ── CTA SLIDE ── */
-.cta-slide {
-  background: radial-gradient(ellipse at 50% 40%, rgba(42,90,58,0.70) 0%, rgba(26,58,37,0.92) 50%, #050f08 100%);
-  align-items: center; justify-content: center; text-align: center; gap: .7rem;
-}
-.cta-icon { font-size: 5.5rem; line-height: 1; animation: halo 3.2s ease-in-out infinite; }
-@keyframes halo {
-  0%,100% { filter: drop-shadow(0 0 18px rgba(168,213,181,0.40)); }
-  50% { filter: drop-shadow(0 0 42px rgba(168,213,181,0.85)); }
-}
-.cta-h { font-family: var(--font-h); font-size: clamp(2.8rem, 5.5vw, 4.2rem); font-weight: 900; color: #fff; line-height: 1.1; letter-spacing: -.03em; }
-.cta-sub { font-family: var(--font-h); font-size: 1.2rem; font-style: italic; color: rgba(255,255,255,0.82); }
-.cta-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; width: 100%; max-width: 860px; }
-.cta-card {
-  background: rgba(42,90,58,0.32); border: 1px solid rgba(168,213,181,0.28);
-  border-radius: 10px; padding: .85rem .7rem;
-  display: flex; flex-direction: column; align-items: center; gap: .35rem;
-}
-.cta-card-icon { font-size: 2.2rem; line-height: 1; }
-.cta-card-title { font-family: var(--font-h); font-size: .96rem; font-weight: 700; color: #fff; text-align: center; line-height: 1.25; }
-.cta-disclaimer {
-  max-width: 640px; border: 1px dashed rgba(255,255,255,0.30); border-radius: 8px;
-  padding: .65rem 1rem; display: flex; align-items: flex-start; gap: .6rem;
-}
-.cta-disclaimer-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .05rem; }
-.cta-disclaimer-text { font-size: .80rem; color: rgba(255,255,255,0.78); line-height: 1.5; text-align: left; }
-.cta-disclaimer-text strong { color: #fff; }
-
-/* ── CLOSING SLIDE ── */
-.closing-slide {
-  background: linear-gradient(160deg, var(--series-dark) 0%, #050f08 100%);
-  align-items: center; justify-content: center; text-align: center; gap: .8rem;
-}
-.closing-logo { font-family: var(--font-h); font-size: 2.8rem; font-weight: 900; color: #fff; letter-spacing: -.02em; }
-.closing-logo span { color: var(--series-light); }
-.closing-tag { font-size: 1.05rem; color: rgba(255,255,255,0.70); letter-spacing: .06em; text-transform: uppercase; }
-.closing-series { font-size: 1rem; color: rgba(255,255,255,0.52); }
-
-/* Closing slide disclaimer — larger than CTA for prominence */
-.closing-disclaimer {
-  max-width: 680px;
-  border: 1.5px solid rgba(255,255,255,0.40);
-  border-radius: 10px;
-  padding: 1rem 1.3rem;
-  display: flex; align-items: flex-start; gap: .75rem;
-  background: rgba(255,255,255,0.05);
-}
-.closing-disclaimer-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: .05rem; }
-.closing-disclaimer-text { font-size: 1rem; color: rgba(255,255,255,0.90); line-height: 1.6; text-align: left; font-weight: 400; }
-.closing-disclaimer-text strong { color: #fff; font-weight: 700; }
-/* ── MORTALITY CHART ── */
-.chart-slide { background: linear-gradient(160deg, #050f08 0%, #091a0d 100%); }
-.chart-wrap { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; position: relative; }
-#mort-line {
-  transition: stroke-dashoffset 2.4s cubic-bezier(0.4,0,0.2,1) 0.3s;
-}
-#mort-area {
-  opacity: 0;
-  transition: opacity 1s ease 1.5s;
-}
-.chart-visible #mort-line { stroke-dashoffset: 0; }
-.chart-visible #mort-area { opacity: 1; }
-#milestone-labels { opacity: 0; transition: opacity 0.6s ease 2s; }
-.chart-visible #milestone-labels { opacity: 1; }
+/* CHART */
+.chart-slide{background:linear-gradient(160deg,#050f08 0%,#091a0d 100%);}
+.chart-wrap{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;position:relative;}
+#mort-line{transition:stroke-dashoffset 2.4s cubic-bezier(0.4,0,0.2,1) 0.3s;}
+#mort-area{opacity:0;transition:opacity 1s ease 1.5s;}
+.chart-visible #mort-line{stroke-dashoffset:0;}
+.chart-visible #mort-area{opacity:1;}
+#milestone-labels{opacity:0;transition:opacity 0.6s ease 2s;}
+.chart-visible #milestone-labels{opacity:1;}
 </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
 <div class="topbar">
   <div class="topbar-left">
     <div class="tb-logo">helf.school</div>
@@ -281,383 +212,355 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #050f08; f
   </div>
   <div class="tb-right">
     <div class="tb-hint">→ advance</div>
-    <div class="tb-counter" id="counter">1 / 9</div>
+    <div class="tb-counter" id="counter">1 / 10</div>
   </div>
 </div>
 
-<!-- DOTS -->
 <div class="dots-bar" id="dots"></div>
 
-<!-- SLIDES -->
 <div class="slides-wrap" id="slides">
 
-  <!-- SLIDE 1: INTRO -->
-  <div class="slide intro-slide active" data-slide="0">
-    <div class="intro-badge">Cancer Series · Article 27</div>
-    <div class="intro-h1">Breast Cancer</div>
-    <div class="intro-sub">The most common cancer in UK women — and one of the great success stories of modern medicine</div>
-    <div class="stat-grid">
-      <div class="stat-card animate-ready">
-        <div class="sc-num">~59,000</div>
-        <div class="sc-label">New cases per year</div>
-        <div class="sc-prose">The most commonly diagnosed cancer in UK women.</div>
-      </div>
-      <div class="stat-card animate-ready">
-        <div class="sc-num">1 in 7</div>
-        <div class="sc-label">Lifetime risk</div>
-        <div class="sc-prose">Around 1 in 7 UK women will be diagnosed at some point.</div>
-      </div>
-      <div class="stat-card animate-ready">
-        <div class="sc-num">46%</div>
-        <div class="sc-label">Fall in mortality</div>
-        <div class="sc-prose">Mortality has fallen 46% since the early 1970s.</div>
-      </div>
-      <div class="stat-card animate-ready">
-        <div class="sc-num">85%</div>
-        <div class="sc-label">Diagnosed early</div>
-        <div class="sc-prose">85% of cases in England diagnosed at Stage I or II.</div>
-      </div>
+<!-- SLIDE 1: INTRO -->
+<div class="slide intro-slide active" data-slide="0">
+  <div class="intro-badge">Cancer Series · Article 27</div>
+  <div class="intro-h1">Breast Cancer</div>
+  <div class="intro-sub">The most common cancer in UK women — and one of the great success stories of modern medicine</div>
+  <div class="intro-stat-grid">
+    <div class="intro-stat-card red animate-ready">
+      <div class="intro-stat-num">~59,000</div>
+      <div class="intro-stat-label">new cases diagnosed in the UK each year — the most common cancer in UK women</div>
     </div>
-    <div class="source-tag">Source: Cancer Research UK · NHS England 2022–24</div>
-  </div>
-
-  <!-- SLIDE 2: TYPES -->
-  <div class="slide" style="background:linear-gradient(160deg,#050f08 0%,#0d1a12 100%);" data-slide="1">
-    <div class="slide-title">Not one disease — three distinct types</div>
-    <div class="slide-sub">Receptor status determines treatment · Source: Cancer Research UK</div>
-    <div class="rows-wrap">
-      <div class="info-row row-er animate-ready">
-        <div class="row-icon">🟢</div>
-        <div class="row-content">
-          <div class="row-title">ER-positive (oestrogen receptor-positive)</div>
-          <div class="row-body">The most common type — cancer cells use oestrogen to grow. Responds well to endocrine therapies including tamoxifen and aromatase inhibitors (letrozole, anastrozole, exemestane). The subject of the strongest evidence base in breast cancer treatment.</div>
-        </div>
-        <div class="row-stat">~80%</div>
-      </div>
-      <div class="info-row row-her2 animate-ready">
-        <div class="row-icon">🟡</div>
-        <div class="row-content">
-          <div class="row-title">HER2-positive</div>
-          <div class="row-body">Overproduces the HER2 protein (human epidermal growth factor receptor 2), driving faster growth. Responds to targeted therapies including trastuzumab (Herceptin — a monoclonal antibody). Given alongside chemotherapy for one year.</div>
-        </div>
-        <div class="row-stat">~15–20%</div>
-      </div>
-      <div class="info-row row-tn animate-ready">
-        <div class="row-icon">🔴</div>
-        <div class="row-content">
-          <div class="row-title">Triple-negative</div>
-          <div class="row-body">Lacks oestrogen receptors, progesterone receptors, and HER2 — so cannot be treated with hormone-based or HER2-targeted therapies. Systemic chemotherapy (drug treatment working throughout the body) is the main systemic treatment option.</div>
-        </div>
-        <div class="row-stat">~15%</div>
-      </div>
+    <div class="intro-stat-card amber animate-ready">
+      <div class="intro-stat-num">1 in 7</div>
+      <div class="intro-stat-label">UK women will be diagnosed at some point during their lifetime</div>
+    </div>
+    <div class="intro-stat-card green animate-ready">
+      <div class="intro-stat-num">46%</div>
+      <div class="intro-stat-label">fall in mortality since the early 1970s — one of medicine's greatest improvements</div>
+    </div>
+    <div class="intro-stat-card green animate-ready">
+      <div class="intro-stat-num">85%</div>
+      <div class="intro-stat-label">of cases in England diagnosed at stage I or II — when outcomes are best</div>
     </div>
   </div>
+  <div class="source-tag">Source: Cancer Research UK · NHS England 2022–24</div>
+</div>
 
-  <!-- SLIDE 3: SURVIVAL BY STAGE -->
-  <div class="slide" style="background:linear-gradient(160deg,#050f08 0%,#0d1a12 100%);" data-slide="2">
-    <div class="slide-title">Stage at diagnosis — 5-year survival rates</div>
-    <div class="slide-sub">Cancers diagnosed 2016–2020, England · Source: NHS England Feb 2023</div>
-
-    <!-- PROMINENT LABEL BAR -->
-    <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(168,213,181,0.12);border:1px solid rgba(168,213,181,0.30);border-radius:8px;padding:.45rem 1rem;flex-shrink:0;margin-bottom:.4rem;">
-      <div style="font-size:.78rem;font-weight:700;color:rgba(255,255,255,0.60);text-transform:uppercase;letter-spacing:.08em;">Stage</div>
-      <div style="flex:1;margin:0 1rem;"></div>
-      <div style="font-family:var(--font-h);font-size:1.05rem;font-weight:900;color:var(--series-light);letter-spacing:.04em;text-transform:uppercase;">% Alive After 5 Years</div>
+<!-- SLIDE 2: TYPES — colour narrative -->
+<div class="slide" style="background:linear-gradient(160deg,#050f08 0%,#0d1a12 100%);" data-slide="1">
+  <div class="slide-title">Not one disease — three distinct types</div>
+  <div class="slide-sub">Receptor status determines treatment · Source: Cancer Research UK</div>
+  <div class="three-grid">
+    <div class="card green animate-ready">
+      <div class="card-icon">🟢</div>
+      <div class="card-label" style="color:rgba(200,255,200,0.90);">Most common · ~80%</div>
+      <div class="card-title">Hormone-sensitive (ER-positive)</div>
+      <div class="card-body" style="color:rgba(220,255,220,0.90);">Cancer cells use oestrogen to grow. Responds well to hormone-blocking treatment — the subject of the strongest evidence base in breast cancer. Around 80% of breast cancers fall into this category.</div>
     </div>
-
-    <div class="stage-rows">
-      <div class="stage-row animate-ready">
-        <div class="stage-badge">Stage I</div>
-        <div class="stage-label">Localised — confined to the breast</div>
-        <div class="stage-bar-wrap"><div class="stage-bar" style="background:#7A9E87;" data-width="99"></div></div>
-        <div class="stage-stat">~100%</div>
-      </div>
-      <div class="stage-row animate-ready">
-        <div class="stage-badge">Stage II</div>
-        <div class="stage-label">Spread to nearby lymph nodes or tumour larger</div>
-        <div class="stage-bar-wrap"><div class="stage-bar" style="background:var(--amber);" data-width="90"></div></div>
-        <div class="stage-stat">90%</div>
-      </div>
-      <div class="stage-row animate-ready">
-        <div class="stage-badge">Stage III</div>
-        <div class="stage-label">Locally advanced — larger spread to nearby tissue</div>
-        <div class="stage-bar-wrap"><div class="stage-bar" style="background:#E8834A;" data-width="72"></div></div>
-        <div class="stage-stat">&gt;70%</div>
-      </div>
-      <div class="stage-row animate-ready">
-        <div class="stage-badge">Stage IV</div>
-        <div class="stage-label">Metastatic — spread to distant organs</div>
-        <div class="stage-bar-wrap"><div class="stage-bar" style="background:#C8423A;" data-width="27"></div></div>
-        <div class="stage-stat">&gt;25%</div>
-      </div>
+    <div class="card amber animate-ready">
+      <div class="card-icon">🟡</div>
+      <div class="card-label" style="color:rgba(255,240,180,0.90);">HER2-positive · ~15–20%</div>
+      <div class="card-title">HER2-positive</div>
+      <div class="card-body" style="color:rgba(255,245,210,0.90);">Overproduces the HER2 protein, driving faster growth. Responds well to targeted antibody treatment given alongside chemotherapy. The development of this treatment transformed outcomes for HER2-positive disease.</div>
     </div>
-    <div class="info-box">
-      <div class="info-box-icon">📈</div>
-      <div class="info-box-text">Ten-year survival stands at more than 3 in 4 women — <strong>76.6%</strong> predicted for those diagnosed in 2018. Early detection is the single most powerful determinant of outcome.</div>
+    <div class="card red animate-ready">
+      <div class="card-icon">🔴</div>
+      <div class="card-label" style="color:rgba(255,220,220,0.90);">Hardest to treat · ~15%</div>
+      <div class="card-title">Triple-negative</div>
+      <div class="card-body" style="color:rgba(255,230,230,0.90);">Lacks oestrogen, progesterone, and HER2 receptors — so cannot be treated with hormone-blocking or HER2-targeted therapies. Chemotherapy (drug treatment working throughout the body) is the main systemic treatment option.</div>
     </div>
   </div>
+</div>
 
-  <!-- SLIDE 4: DIAGNOSIS -->
-  <div class="slide" style="background:linear-gradient(160deg,#050f08 0%,#0d1a12 100%);" data-slide="3">
-    <div class="slide-title">How breast cancer is diagnosed</div>
-    <div class="slide-sub">The triple assessment — standard UK diagnostic pathway · NICE NG101</div>
-    <div class="step-rows">
-      <div class="step-row animate-ready">
-        <div class="step-num">1</div>
-        <div class="step-content">
-          <div class="step-title">Clinical examination</div>
-          <div class="step-body">Assessment of the breast and lymph nodes (small glands under the arm) by a trained clinician. Covers shape, skin changes, nipple changes, and any lumps or thickening felt on examination.</div>
-        </div>
-        <div class="step-tag">Clinical</div>
-      </div>
-      <div class="step-row animate-ready">
-        <div class="step-num">2</div>
-        <div class="step-content">
-          <div class="step-title">Imaging</div>
-          <div class="step-body">Mammography (a low-dose X-ray of the breast) for women aged 40 and over. Ultrasound (a scan using sound waves to image internal structures) for younger women where denser breast tissue is harder to read on X-ray.</div>
-        </div>
-        <div class="step-tag">Imaging</div>
-      </div>
-      <div class="step-row animate-ready">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <div class="step-title">Biopsy</div>
-          <div class="step-body">A tissue sample taken from the area of concern — usually by needle — examined under a microscope. The only way to confirm cancer and determine receptor status (ER-positive, HER2-positive, or triple-negative).</div>
-        </div>
-        <div class="step-tag">Pathology</div>
-      </div>
+<!-- SLIDE 3: STAGE SURVIVAL -->
+<div class="slide" style="background:linear-gradient(160deg,#050f08 0%,#0d1a12 100%);" data-slide="2">
+  <div class="slide-title">Stage at diagnosis — 5-year survival rates</div>
+  <div class="slide-sub">Cancers diagnosed 2016–2020, England · Source: NHS England Feb 2023</div>
+  <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(168,213,181,0.12);border:1px solid rgba(168,213,181,0.30);border-radius:8px;padding:.42rem 1rem;flex-shrink:0;margin-bottom:.38rem;">
+    <div style="font-size:.78rem;font-weight:700;color:rgba(255,255,255,0.60);text-transform:uppercase;letter-spacing:.08em;">Stage</div>
+    <div style="font-family:var(--font-h);font-size:1.05rem;font-weight:900;color:var(--series-light);letter-spacing:.04em;text-transform:uppercase;">% Alive After 5 Years</div>
+  </div>
+  <div class="stage-rows">
+    <div class="stage-row animate-ready">
+      <div class="stage-badge">Stage I</div>
+      <div class="stage-label">Localised — confined to the breast</div>
+      <div class="stage-bar-wrap"><div class="stage-bar" style="background:#7A9E87;" data-width="99"></div></div>
+      <div class="stage-stat">~100%</div>
     </div>
-    <div class="info-box">
-      <div class="info-box-icon">🎀</div>
-      <div class="info-box-text"><strong>NHS Breast Screening Programme</strong> — women aged 50 to 70 invited for mammography every 3 years. Aims to detect cancers before symptoms appear, when treatment is most effective.</div>
+    <div class="stage-row animate-ready">
+      <div class="stage-badge">Stage II</div>
+      <div class="stage-label">Spread to nearby lymph nodes or tumour larger</div>
+      <div class="stage-bar-wrap"><div class="stage-bar" style="background:var(--amber);" data-width="90"></div></div>
+      <div class="stage-stat">90%</div>
+    </div>
+    <div class="stage-row animate-ready">
+      <div class="stage-badge">Stage III</div>
+      <div class="stage-label">Locally advanced — spread to nearby tissue</div>
+      <div class="stage-bar-wrap"><div class="stage-bar" style="background:#E8834A;" data-width="72"></div></div>
+      <div class="stage-stat">&gt;70%</div>
+    </div>
+    <div class="stage-row animate-ready">
+      <div class="stage-badge">Stage IV</div>
+      <div class="stage-label">Metastatic — spread to distant organs</div>
+      <div class="stage-bar-wrap"><div class="stage-bar" style="background:#C8423A;" data-width="27"></div></div>
+      <div class="stage-stat">&gt;25%</div>
     </div>
   </div>
+  <div class="info-box">
+    <div class="info-box-icon">📈</div>
+    <div class="info-box-text">Ten-year survival stands at <strong>76.6%</strong> — more than 3 in 4 women. Early detection is the single most powerful determinant of outcome.</div>
+  </div>
+</div>
 
-  <!-- SLIDE 5: TREATMENT -->
-  <div class="slide" style="background:linear-gradient(160deg,#050f08 0%,#0d1a12 100%);" data-slide="4">
-    <div class="slide-title">Treatment is personalised to the cancer's biology</div>
-    <div class="slide-sub">Combined approach — determined by type, stage, and receptor status · NICE NG101</div>
-    <div class="rows-wrap">
-      <div class="info-row animate-ready" style="border-left:3px solid var(--series-light);">
-        <div class="row-icon">🔪</div>
-        <div class="row-content">
-          <div class="row-title">Surgery</div>
-          <div class="row-body">Breast-conserving surgery (lumpectomy — removal of the tumour and a margin of surrounding tissue) or mastectomy (removal of the whole breast). Sentinel lymph node biopsy stages the axilla (armpit region) without full node clearance in most cases.</div>
-        </div>
-      </div>
-      <div class="info-row animate-ready" style="border-left:3px solid #6B9ECC;">
-        <div class="row-icon">⚡</div>
-        <div class="row-content">
-          <div class="row-title">Radiotherapy</div>
-          <div class="row-body">High-energy radiation directed at the breast or chest wall after breast-conserving surgery — reduces the risk of local recurrence (the cancer returning in the same area).</div>
-        </div>
-      </div>
-      <div class="info-row animate-ready" style="border-left:3px solid #7A9E87;">
-        <div class="row-icon">💊</div>
-        <div class="row-content">
-          <div class="row-title">Endocrine (hormone-blocking) therapy</div>
-          <div class="row-body">Tamoxifen for premenopausal women with ER-positive disease. Aromatase inhibitors (letrozole, anastrozole, exemestane) for postmenopausal women. Typically 5–10 years of treatment.</div>
-        </div>
-      </div>
-      <div class="info-row animate-ready" style="border-left:3px solid var(--amber);">
-        <div class="row-icon">🧪</div>
-        <div class="row-content">
-          <div class="row-title">Chemotherapy &amp; targeted therapy</div>
-          <div class="row-body">Chemotherapy used before surgery (neoadjuvant) or after (adjuvant). Trastuzumab (Herceptin) added for HER2-positive disease — given alongside chemotherapy for one year.</div>
-        </div>
-      </div>
+<!-- SLIDE 4: DIAGNOSIS -->
+<div class="slide" style="background:linear-gradient(160deg,#050f08 0%,#0d1a12 100%);" data-slide="3">
+  <div class="slide-title">How breast cancer is diagnosed</div>
+  <div class="slide-sub">The triple assessment — standard UK diagnostic pathway · NICE NG101</div>
+  <div class="three-grid">
+    <div class="card amber animate-ready">
+      <div class="card-icon">👩‍⚕️</div>
+      <div class="card-label" style="color:rgba(255,240,180,0.90);">Step 1 — Clinical</div>
+      <div class="card-title">Clinical examination</div>
+      <div class="card-body" style="color:rgba(255,245,210,0.90);">Assessment of the breast and lymph nodes (small glands under the arm) by a trained clinician. Covers shape, skin changes, nipple changes, and any lumps or thickening found on examination.</div>
+    </div>
+    <div class="card amber animate-ready">
+      <div class="card-icon">🔬</div>
+      <div class="card-label" style="color:rgba(255,240,180,0.90);">Step 2 — Imaging</div>
+      <div class="card-title">Mammography or ultrasound</div>
+      <div class="card-body" style="color:rgba(255,245,210,0.90);">Mammography (low-dose X-ray) for women aged 40 and over. Ultrasound (a scan using sound waves) for younger women, where denser breast tissue is harder to read on X-ray. Both can identify areas needing further investigation.</div>
+    </div>
+    <div class="card green animate-ready">
+      <div class="card-icon">🧫</div>
+      <div class="card-label" style="color:rgba(200,255,200,0.90);">Step 3 — Pathology</div>
+      <div class="card-title">Biopsy — the only way to confirm</div>
+      <div class="card-body" style="color:rgba(220,255,220,0.90);">A tissue sample taken by needle, examined under a microscope. The only way to confirm cancer and determine receptor status — ER-positive, HER2-positive, or triple-negative — which determines the treatment pathway.</div>
     </div>
   </div>
+  <div class="info-box">
+    <div class="info-box-icon">🎀</div>
+    <div class="info-box-text"><strong>NHS Breast Screening Programme</strong> — women aged 50 to 70 invited for mammography every 3 years. Aims to detect cancers before symptoms appear, when treatment is most effective.</div>
+  </div>
+</div>
 
-  <!-- SLIDE 6: RESEARCH 1+2 -->
-  <div class="slide" style="background:linear-gradient(160deg,#050f08 0%,#0d1a12 100%);" data-slide="5">
-    <div class="slide-title">What the research shows</div>
-    <div class="slide-sub">Sources: Marmot et al, Lancet 2012 · EBCTCG, Lancet 2011</div>
-    <div class="ev-cards">
-      <div class="ev-card animate-ready">
-        <div class="ev-stat-box">
-          <div class="ev-kf-label">NHS Breast Screening</div>
-          <div class="ev-stat-row">20%</div>
-          <div class="ev-outcome">reduction in breast cancer mortality</div>
-          <div class="ev-conditions">women invited to screening · meta-analysis of 11 RCTs · Marmot 2012</div>
-        </div>
-        <div class="ev-body">
-          <p>The Independent UK Panel (Marmot 2012) pooled 11 randomised controlled trials, finding a relative risk of 0.80 (95% CI 0.73–0.89) — a 20% reduction in breast cancer mortality. The panel estimated around 1,300 deaths prevented per year. The same review identified a significant harm: for every 10,000 women invited to screening for 20 years, 129 cases represent overdiagnosis — cancers that would not have caused problems during the woman's lifetime but are treated nonetheless.</p>
-          <div class="ev-source">Independent UK Panel on Breast Cancer Screening. Lancet 2012;380(9855):1778–86. PMID 23117178.</div>
-        </div>
+<!-- SLIDE 5: TREATMENT -->
+<div class="slide" style="background:linear-gradient(160deg,#050f08 0%,#0d1a12 100%);" data-slide="4">
+  <div class="slide-title">Treatment — personalised to the cancer's biology</div>
+  <div class="slide-sub">Combined approach determined by type, stage, and receptor status · NICE NG101</div>
+  <div class="three-grid">
+    <div class="card green animate-ready">
+      <div class="card-icon">🏥</div>
+      <div class="card-label" style="color:rgba(200,255,200,0.90);">Primary treatment</div>
+      <div class="card-title">Surgery — the first step for most</div>
+      <div class="card-body" style="color:rgba(220,255,220,0.90);">Breast-conserving surgery (removing the tumour and a margin of surrounding tissue) or mastectomy (removal of the whole breast). Sentinel lymph node biopsy assesses whether cancer has reached the armpit glands without requiring full clearance in most cases.</div>
+    </div>
+    <div class="card amber animate-ready">
+      <div class="card-icon">💊</div>
+      <div class="card-label" style="color:rgba(255,240,180,0.90);">For hormone-sensitive disease</div>
+      <div class="card-title">Hormone-blocking treatment</div>
+      <div class="card-body" style="color:rgba(255,245,210,0.90);">For ER-positive breast cancer — the most common type — hormone-blocking treatment reduces the oestrogen that cancer cells use to grow. Typically given for 5 to 10 years. This treatment has one of the strongest evidence bases in oncology.</div>
+    </div>
+    <div class="card red animate-ready">
+      <div class="card-icon">⚡</div>
+      <div class="card-label" style="color:rgba(255,220,220,0.90);">Additional treatments</div>
+      <div class="card-title">Radiotherapy, chemotherapy, targeted treatment</div>
+      <div class="card-body" style="color:rgba(255,230,230,0.90);">Radiotherapy after breast-conserving surgery reduces local recurrence. Chemotherapy before or after surgery for higher-risk disease. Targeted antibody treatment added for HER2-positive disease, given alongside chemotherapy for one year.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: RESEARCH 1/2 -->
+<div class="slide" style="background:linear-gradient(160deg,#050f08 0%,#0d1a12 100%);" data-slide="5">
+  <div class="slide-title">What the research shows · 1 of 2</div>
+  <div class="slide-sub">Sources: Marmot et al. Lancet 2012 · EBCTCG Lancet 2011</div>
+  <div class="ev-cards">
+    <div class="ev-card animate-ready">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">NHS Breast Screening</div>
+        <div class="ev-stat-row">20%</div>
+        <div class="ev-outcome">reduction in breast cancer mortality / women invited to screening vs not invited</div>
+        <div class="ev-conditions">meta-analysis of 11 RCTs · Marmot Independent Review 2012</div>
       </div>
-      <div class="ev-card animate-ready">
-        <div class="ev-stat-box">
-          <div class="ev-kf-label">5 years of tamoxifen — ER-positive</div>
-          <div class="ev-stat-row">~⅓</div>
-          <div class="ev-outcome">reduction in breast cancer mortality</div>
-          <div class="ev-conditions">throughout first 15 years · EBCTCG · 20 trials · 21,457 women</div>
+      <div class="ev-body-panel">
+        <div>
+          <div class="ev-body-title">Marmot 2012 — The Independent Breast Screening Review</div>
+          <p>The Independent UK Panel pooled 11 randomised controlled trials of breast screening and found a 20% reduction in breast cancer mortality in women invited to screening. The review also identified a significant harm: for every 10,000 women screened over 20 years, around 129 cases represent overdiagnosis — cancers detected and treated that would not have caused problems in the woman's lifetime.</p>
         </div>
-        <div class="ev-body">
-          <p>The EBCTCG patient-level meta-analysis of 20 trials found that in women with ER-positive disease, five years of adjuvant tamoxifen reduced the breast cancer mortality rate by about a third throughout the first 15 years — irrespective of age, nodal status, or whether chemotherapy was also given. This established tamoxifen as a cornerstone of treatment for premenopausal ER-positive breast cancer.</p>
-          <div class="ev-source">EBCTCG. Lancet 2011;378(9793):771–84. PMID 21802721.</div>
+        <div class="ev-source">Independent UK Panel on Breast Cancer Screening. Lancet 2012;380(9855):1778–86. PMID 23117178.</div>
+      </div>
+    </div>
+    <div class="ev-card animate-ready">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">5 years hormone-blocking treatment</div>
+        <div class="ev-stat-row">~⅓</div>
+        <div class="ev-outcome">reduction in breast cancer mortality / over first 15 years in ER-positive disease</div>
+        <div class="ev-conditions">20 trials · 21,457 women · ER-positive early breast cancer · EBCTCG 2011</div>
+      </div>
+      <div class="ev-body-panel">
+        <div>
+          <div class="ev-body-title">EBCTCG 2011 — Hormone-blocking treatment evidence</div>
+          <p>A patient-level meta-analysis of 20 trials found that five years of hormone-blocking treatment reduced breast cancer mortality by about a third throughout the first 15 years in women with ER-positive disease — irrespective of age, nodal status, or whether chemotherapy was also given. This established hormone-blocking treatment as a cornerstone of care.</p>
         </div>
+        <div class="ev-source">EBCTCG. Lancet 2011;378(9793):771–84. PMID 21802721.</div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- SLIDE 7: RESEARCH 3 -->
-  <div class="slide" style="background:linear-gradient(160deg,#050f08 0%,#0d1a12 100%);" data-slide="6">
-    <div class="slide-title">What the research shows</div>
-    <div class="slide-sub">Source: EBCTCG, Lancet 2015 · 31,920 postmenopausal women with ER-positive early breast cancer</div>
-    <div class="ev-cards">
-      <div class="ev-card animate-ready">
-        <div class="ev-stat-box">
-          <div class="ev-kf-label">Aromatase inhibitors — postmenopausal ER-positive</div>
-          <div class="ev-stat-row">~40%</div>
-          <div class="ev-outcome">reduction in 10-year breast cancer mortality</div>
-          <div class="ev-conditions">vs no endocrine treatment · EBCTCG 31,920 women</div>
+<!-- SLIDE 7: RESEARCH 2/2 -->
+<div class="slide" style="background:linear-gradient(160deg,#050f08 0%,#0d1a12 100%);" data-slide="6">
+  <div class="slide-title">What the research shows · 2 of 2</div>
+  <div class="slide-sub">Source: EBCTCG. Lancet 2015 · 31,920 postmenopausal women with ER-positive early breast cancer</div>
+  <div class="ev-cards">
+    <div class="ev-card animate-ready" style="flex:1;">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">Aromatase inhibitor class — postmenopausal ER-positive</div>
+        <div class="ev-stat-row">~40%</div>
+        <div class="ev-outcome">reduction in 10-year breast cancer mortality / vs no hormone-blocking treatment</div>
+        <div class="ev-conditions">31,920 postmenopausal women · ER-positive early breast cancer · EBCTCG 2015</div>
+      </div>
+      <div class="ev-body-panel">
+        <div>
+          <div class="ev-body-title">EBCTCG 2015 — Aromatase inhibitor class evidence</div>
+          <p>A further meta-analysis of 31,920 postmenopausal women found that five years of a hormone-blocking treatment from the aromatase inhibitor class reduced 10-year breast cancer mortality by about 40% compared with no hormone-blocking treatment, and by about 15% compared with the older hormone-blocking treatment. The benefit was consistent regardless of age, tumour grade, nodal status, or HER2 status.</p>
+          <p>These findings underpin NICE NG101 guidance recommending this class as the standard first-choice hormone-blocking treatment for postmenopausal women with ER-positive early breast cancer at medium or high risk of recurrence.</p>
         </div>
-        <div class="ev-body">
-          <p>A further EBCTCG meta-analysis of 31,920 postmenopausal women with ER-positive early breast cancer found that five years of an aromatase inhibitor — letrozole, anastrozole, or exemestane — reduces 10-year breast cancer mortality by about 15% compared with tamoxifen, and by about 40% compared with no endocrine treatment. The proportional benefit was consistent regardless of age, tumour grade, nodal status, or HER2 status, and was present both during and after treatment ended.</p>
-          <p>These findings underpin NICE NG101 guidance recommending aromatase inhibitors as the standard first-choice endocrine therapy for postmenopausal women with ER-positive early breast cancer at medium or high risk of recurrence.</p>
-          <div class="ev-source">EBCTCG. Lancet 2015;386(10001):1341–52. PMID 26211827.</div>
+        <div class="ev-source">EBCTCG. Lancet 2015;386(10001):1341–52. PMID 26211827.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: MORTALITY CHART -->
+<div class="slide chart-slide" style="padding:.6rem 1rem .5rem;" data-slide="7">
+  <div class="chart-wrap" id="chart-wrap" style="flex:1;min-height:0;width:100%;">
+    <svg viewBox="0 0 860 450" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%;" xmlns="http://www.w3.org/2000/svg">
+      <text x="80" y="26" fill="#fff" font-size="22" font-weight="700" font-family="Fraunces" letter-spacing="-0.5">Breast cancer mortality — 50 years of progress</text>
+      <text x="80" y="44" fill="rgba(168,213,181,0.80)" font-size="13" font-family="DM Sans">Age-standardised mortality rate (illustrative of documented trend) · Source: Cancer Research UK 2022–24</text>
+      <line x1="322" y1="52" x2="322" y2="415" stroke="rgba(232,168,74,0.50)" stroke-width="1.5" stroke-dasharray="6,4"/>
+      <line x1="417" y1="52" x2="417" y2="415" stroke="rgba(232,168,74,0.35)" stroke-width="1.5" stroke-dasharray="6,4"/>
+      <line x1="503" y1="52" x2="503" y2="415" stroke="rgba(232,168,74,0.35)" stroke-width="1.5" stroke-dasharray="6,4"/>
+      <rect x="257" y="52" width="130" height="52" rx="7" fill="rgba(232,168,74,0.28)" stroke="rgba(232,168,74,0.65)" stroke-width="1.5"/>
+      <text x="322" y="75" fill="#E8A84A" font-size="16" font-weight="700" text-anchor="middle" font-family="DM Sans">NHS Screening</text>
+      <text x="322" y="95" fill="rgba(232,168,74,0.90)" font-size="14" text-anchor="middle" font-family="DM Sans">launched 1988</text>
+      <rect x="438" y="52" width="130" height="52" rx="7" fill="rgba(232,168,74,0.22)" stroke="rgba(232,168,74,0.55)" stroke-width="1.5"/>
+      <text x="503" y="75" fill="#E8A84A" font-size="16" font-weight="700" text-anchor="middle" font-family="DM Sans">Aromatase</text>
+      <text x="503" y="95" fill="rgba(232,168,74,0.90)" font-size="14" text-anchor="middle" font-family="DM Sans">inhibitor class</text>
+      <rect x="352" y="107" width="130" height="52" rx="7" fill="rgba(232,168,74,0.22)" stroke="rgba(232,168,74,0.55)" stroke-width="1.5"/>
+      <text x="417" y="130" fill="#E8A84A" font-size="16" font-weight="700" text-anchor="middle" font-family="DM Sans">Hormone-blocking</text>
+      <text x="417" y="150" fill="rgba(232,168,74,0.90)" font-size="14" text-anchor="middle" font-family="DM Sans">treatment established</text>
+      <line x1="80" y1="184" x2="780" y2="184" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+      <line x1="80" y1="234" x2="780" y2="234" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+      <line x1="80" y1="284" x2="780" y2="284" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+      <line x1="80" y1="334" x2="780" y2="334" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+      <line x1="80" y1="384" x2="780" y2="384" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+      <line x1="80" y1="165" x2="80" y2="415" stroke="rgba(255,255,255,0.28)" stroke-width="2"/>
+      <line x1="80" y1="415" x2="782" y2="415" stroke="rgba(255,255,255,0.28)" stroke-width="2"/>
+      <text x="94" y="433" fill="rgba(255,255,255,0.62)" font-size="14" text-anchor="middle" font-family="DM Sans" font-weight="500">1970</text>
+      <text x="215" y="433" fill="rgba(255,255,255,0.62)" font-size="14" text-anchor="middle" font-family="DM Sans" font-weight="500">1980</text>
+      <text x="349" y="433" fill="rgba(255,255,255,0.62)" font-size="14" text-anchor="middle" font-family="DM Sans" font-weight="500">1990</text>
+      <text x="484" y="433" fill="rgba(255,255,255,0.62)" font-size="14" text-anchor="middle" font-family="DM Sans" font-weight="500">2000</text>
+      <text x="618" y="433" fill="rgba(255,255,255,0.62)" font-size="14" text-anchor="middle" font-family="DM Sans" font-weight="500">2010</text>
+      <text x="780" y="433" fill="rgba(255,255,255,0.62)" font-size="14" text-anchor="middle" font-family="DM Sans" font-weight="500">2022</text>
+      <text x="22" y="295" fill="rgba(255,255,255,0.45)" font-size="12" text-anchor="middle" font-family="DM Sans" transform="rotate(-90,22,295)">Mortality rate</text>
+      <path id="mort-area" d="M 94,415 L 94,204 L 147,196 L 215,192 L 282,184 L 322,184 L 349,204 L 390,234 L 444,273 L 497,307 L 551,338 L 605,357 L 659,369 L 713,377 L 780,380 L 780,415 Z" fill="rgba(42,90,58,0.32)" stroke="none"/>
+      <line x1="94" y1="204" x2="780" y2="204" stroke="rgba(255,255,255,0.13)" stroke-width="1.5" stroke-dasharray="7,5"/>
+      <path id="mort-line" d="M 94,204 L 147,196 L 215,192 L 282,184 L 322,184 L 349,204 L 390,234 L 444,273 L 497,307 L 551,338 L 605,357 L 659,369 L 713,377 L 780,380" fill="none" stroke="#A8D5B5" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" pathLength="1200" stroke-dasharray="1200" stroke-dashoffset="1200"/>
+      <circle cx="94" cy="204" r="8" fill="#A8D5B5" stroke="#050f08" stroke-width="2.5"/>
+      <circle cx="780" cy="380" r="8" fill="#A8D5B5" stroke="#050f08" stroke-width="2.5"/>
+      <text x="94" y="193" fill="rgba(255,255,255,0.72)" font-size="13" font-weight="700" text-anchor="middle" font-family="DM Sans">1970s</text>
+      <text x="780" y="396" fill="#A8D5B5" font-size="13" font-weight="700" text-anchor="middle" font-family="DM Sans">Today</text>
+      <rect x="598" y="163" width="178" height="128" rx="10" fill="rgba(26,58,37,0.90)" stroke="rgba(168,213,181,0.42)" stroke-width="1.5"/>
+      <text x="687" y="222" fill="#A8D5B5" font-size="58" font-weight="900" text-anchor="middle" font-family="Fraunces" letter-spacing="-2">46%</text>
+      <text x="687" y="244" fill="rgba(255,255,255,0.88)" font-size="14" font-weight="700" text-anchor="middle" font-family="DM Sans">fall in mortality</text>
+      <text x="687" y="262" fill="rgba(168,213,181,0.78)" font-size="12" text-anchor="middle" font-family="DM Sans">since the early 1970s</text>
+      <text x="687" y="280" fill="rgba(168,213,181,0.60)" font-size="11" text-anchor="middle" font-family="DM Sans">Cancer Research UK 2022–24</text>
+      <line x1="797" y1="204" x2="797" y2="380" stroke="rgba(168,213,181,0.60)" stroke-width="2"/>
+      <line x1="791" y1="204" x2="803" y2="204" stroke="rgba(168,213,181,0.60)" stroke-width="2"/>
+      <line x1="791" y1="380" x2="803" y2="380" stroke="rgba(168,213,181,0.60)" stroke-width="2"/>
+    </svg>
+  </div>
+</div>
+
+<!-- SLIDE 9: CTA — cta-wrap-v2 -->
+<div class="slide" data-slide="8" style="padding:0;">
+  <div class="cta-wrap-v2">
+    <div class="cta-top">
+      <div class="cta-badge">The evidence is clear on one thing</div>
+      <div class="cta-headline">Breast cancer caught early has around 100% five-year survival</div>
+    </div>
+    <div class="cta-rows-v2">
+      <div class="cta-row">
+        <div class="cta-row-icon">🎀</div>
+        <div class="cta-row-text">
+          <div class="cta-row-title">The NHS Breast Screening Programme is the evidence-based route to early detection</div>
+          <div class="cta-row-sub">Women aged 50 to 70 are invited for mammography every 3 years. The evidence shows a 20% reduction in breast cancer mortality in women invited to screening.</div>
+        </div>
+      </div>
+      <div class="cta-row">
+        <div class="cta-row-icon">🔍</div>
+        <div class="cta-row-text">
+          <div class="cta-row-title">Breast awareness — knowing what's normal — is clinically recognised as important</div>
+          <div class="cta-row-sub">Changes in shape, skin, nipple, or any new lump or thickening are recognised as changes worth discussing with a GP or healthcare professional.</div>
+        </div>
+      </div>
+      <div class="cta-row">
+        <div class="cta-row-icon">📈</div>
+        <div class="cta-row-text">
+          <div class="cta-row-title">Mortality has fallen 46% since the early 1970s — treatment works</div>
+          <div class="cta-row-sub">Screening, hormone-blocking treatment, targeted treatment, and improved surgery have together produced one of the most significant cancer survival improvements of the modern era.</div>
+        </div>
+      </div>
+      <div class="cta-row">
+        <div class="cta-row-icon">📚</div>
+        <div class="cta-row-text">
+          <div class="cta-row-title">helf.school — the full article with all the evidence</div>
+          <div class="cta-row-sub">The breast cancer article covers types, staging, diagnosis, treatments, and the full clinical trial evidence — part of the Cancer Series at helf.school.</div>
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- SLIDE 8: MORTALITY TREND CHART -->
-  <div class="slide chart-slide" style="padding:.6rem 1rem .5rem;" data-slide="7">
-    <div class="chart-wrap" id="chart-wrap" style="flex:1;min-height:0;width:100%;">
-      <svg viewBox="0 0 860 450" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%;" xmlns="http://www.w3.org/2000/svg">
-
-        <!-- TITLE -->
-        <text x="80" y="26" fill="#fff" font-size="22" font-weight="700" font-family="Fraunces" letter-spacing="-0.5">Breast cancer mortality — 50 years of progress</text>
-        <text x="80" y="44" fill="rgba(168,213,181,0.80)" font-size="13" font-family="DM Sans">Age-standardised mortality rate (illustrative of documented trend) · Source: Cancer Research UK 2022–24</text>
-
-        <!-- MILESTONE VERTICAL DASHED LINES — full height -->
-        <line x1="322" y1="52" x2="322" y2="415" stroke="rgba(232,168,74,0.50)" stroke-width="1.5" stroke-dasharray="6,4"/>
-        <line x1="417" y1="52" x2="417" y2="415" stroke="rgba(232,168,74,0.35)" stroke-width="1.5" stroke-dasharray="6,4"/>
-        <line x1="503" y1="52" x2="503" y2="415" stroke="rgba(232,168,74,0.35)" stroke-width="1.5" stroke-dasharray="6,4"/>
-
-        <!-- MILESTONE TABS — ROW 1: NHS Screening + Aromatase (don't overlap) -->
-        <rect x="257" y="52" width="130" height="52" rx="7" fill="rgba(232,168,74,0.28)" stroke="rgba(232,168,74,0.65)" stroke-width="1.5"/>
-        <text x="322" y="75" fill="#E8A84A" font-size="16" font-weight="700" text-anchor="middle" font-family="DM Sans">NHS Screening</text>
-        <text x="322" y="95" fill="rgba(232,168,74,0.90)" font-size="14" text-anchor="middle" font-family="DM Sans">launched 1988</text>
-
-        <rect x="438" y="52" width="130" height="52" rx="7" fill="rgba(232,168,74,0.22)" stroke="rgba(232,168,74,0.55)" stroke-width="1.5"/>
-        <text x="503" y="75" fill="#E8A84A" font-size="16" font-weight="700" text-anchor="middle" font-family="DM Sans">Aromatase</text>
-        <text x="503" y="95" fill="rgba(232,168,74,0.90)" font-size="14" text-anchor="middle" font-family="DM Sans">inhibitors</text>
-
-        <!-- MILESTONE TABS — ROW 2: Tamoxifen (staggered below, sits between the two above) -->
-        <rect x="352" y="107" width="130" height="52" rx="7" fill="rgba(232,168,74,0.22)" stroke="rgba(232,168,74,0.55)" stroke-width="1.5"/>
-        <text x="417" y="130" fill="#E8A84A" font-size="16" font-weight="700" text-anchor="middle" font-family="DM Sans">Tamoxifen</text>
-        <text x="417" y="150" fill="rgba(232,168,74,0.90)" font-size="14" text-anchor="middle" font-family="DM Sans">established</text>
-
-        <!-- CHART AREA: y:165–415 -->
-
-        <!-- Grid lines -->
-        <line x1="80" y1="184" x2="780" y2="184" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
-        <line x1="80" y1="234" x2="780" y2="234" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
-        <line x1="80" y1="284" x2="780" y2="284" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
-        <line x1="80" y1="334" x2="780" y2="334" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
-        <line x1="80" y1="384" x2="780" y2="384" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
-
-        <!-- Axes -->
-        <line x1="80" y1="165" x2="80" y2="415" stroke="rgba(255,255,255,0.28)" stroke-width="2"/>
-        <line x1="80" y1="415" x2="782" y2="415" stroke="rgba(255,255,255,0.28)" stroke-width="2"/>
-
-        <!-- X axis labels -->
-        <text x="94" y="433" fill="rgba(255,255,255,0.62)" font-size="14" text-anchor="middle" font-family="DM Sans" font-weight="500">1970</text>
-        <text x="215" y="433" fill="rgba(255,255,255,0.62)" font-size="14" text-anchor="middle" font-family="DM Sans" font-weight="500">1980</text>
-        <text x="349" y="433" fill="rgba(255,255,255,0.62)" font-size="14" text-anchor="middle" font-family="DM Sans" font-weight="500">1990</text>
-        <text x="484" y="433" fill="rgba(255,255,255,0.62)" font-size="14" text-anchor="middle" font-family="DM Sans" font-weight="500">2000</text>
-        <text x="618" y="433" fill="rgba(255,255,255,0.62)" font-size="14" text-anchor="middle" font-family="DM Sans" font-weight="500">2010</text>
-        <text x="780" y="433" fill="rgba(255,255,255,0.62)" font-size="14" text-anchor="middle" font-family="DM Sans" font-weight="500">2022</text>
-
-        <!-- Y axis label -->
-        <text x="22" y="295" fill="rgba(255,255,255,0.45)" font-size="12" text-anchor="middle" font-family="DM Sans" transform="rotate(-90,22,295)">Mortality rate</text>
-
-        <!-- Area fill -->
-        <path id="mort-area"
-          d="M 94,415 L 94,204 L 147,196 L 215,192 L 282,184 L 322,184 L 349,204 L 390,234 L 444,273 L 497,307 L 551,338 L 605,357 L 659,369 L 713,377 L 780,380 L 780,415 Z"
-          fill="rgba(42,90,58,0.32)" stroke="none"/>
-
-        <!-- 1970s baseline -->
-        <line x1="94" y1="204" x2="780" y2="204" stroke="rgba(255,255,255,0.13)" stroke-width="1.5" stroke-dasharray="7,5"/>
-
-        <!-- MORTALITY LINE -->
-        <path id="mort-line"
-          d="M 94,204 L 147,196 L 215,192 L 282,184 L 322,184 L 349,204 L 390,234 L 444,273 L 497,307 L 551,338 L 605,357 L 659,369 L 713,377 L 780,380"
-          fill="none" stroke="#A8D5B5" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"
-          pathLength="1200" stroke-dasharray="1200" stroke-dashoffset="1200"/>
-
-        <!-- Dots -->
-        <circle cx="94" cy="204" r="8" fill="#A8D5B5" stroke="#050f08" stroke-width="2.5"/>
-        <circle cx="780" cy="380" r="8" fill="#A8D5B5" stroke="#050f08" stroke-width="2.5"/>
-
-        <!-- Labels -->
-        <text x="94" y="193" fill="rgba(255,255,255,0.72)" font-size="13" font-weight="700" text-anchor="middle" font-family="DM Sans">1970s</text>
-        <text x="780" y="396" fill="#A8D5B5" font-size="13" font-weight="700" text-anchor="middle" font-family="DM Sans">Today</text>
-
-        <!-- 46% annotation -->
-        <rect x="598" y="163" width="178" height="128" rx="10" fill="rgba(26,58,37,0.90)" stroke="rgba(168,213,181,0.42)" stroke-width="1.5"/>
-        <text x="687" y="222" fill="#A8D5B5" font-size="58" font-weight="900" text-anchor="middle" font-family="Fraunces" letter-spacing="-2">46%</text>
-        <text x="687" y="244" fill="rgba(255,255,255,0.88)" font-size="14" font-weight="700" text-anchor="middle" font-family="DM Sans">fall in mortality</text>
-        <text x="687" y="262" fill="rgba(168,213,181,0.78)" font-size="12" text-anchor="middle" font-family="DM Sans">since the early 1970s</text>
-        <text x="687" y="280" fill="rgba(168,213,181,0.60)" font-size="11" text-anchor="middle" font-family="DM Sans">Cancer Research UK 2022–24</text>
-
-        <!-- Bracket -->
-        <line x1="797" y1="204" x2="797" y2="380" stroke="rgba(168,213,181,0.60)" stroke-width="2"/>
-        <line x1="791" y1="204" x2="803" y2="204" stroke="rgba(168,213,181,0.60)" stroke-width="2"/>
-        <line x1="791" y1="380" x2="803" y2="380" stroke="rgba(168,213,181,0.60)" stroke-width="2"/>
-
-      </svg>
-    </div>
-  </div>
-
-  <!-- SLIDE 9: CTA -->
-  <div class="slide cta-slide" data-slide="8">
-    <div class="cta-icon">🎗️</div>
-    <div class="cta-h">Read the full article</div>
-    <div class="cta-cards">
-      <div class="cta-card">
-        <div class="cta-card-icon">🔬</div>
-        <div class="cta-card-title">Full research with citations</div>
-      </div>
-      <div class="cta-card">
-        <div class="cta-card-icon">📖</div>
-        <div class="cta-card-title">Key Terms explained</div>
-      </div>
-      <div class="cta-card">
-        <div class="cta-card-icon">💊</div>
-        <div class="cta-card-title">Treatments in detail</div>
-      </div>
-      <div class="cta-card">
-        <div class="cta-card-icon">🆓</div>
-        <div class="cta-card-title">Start for free</div>
+    <div class="cta-bottom">
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">ℹ️</div>
+        <div class="med-disc-text">Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
       </div>
     </div>
-    <div class="cta-disclaimer" style="max-width:720px;border:1.5px solid rgba(255,255,255,0.35);padding:1rem 1.3rem;background:rgba(255,255,255,0.05);">
-      <div class="cta-disclaimer-icon" style="font-size:1.3rem;">⚕️</div>
-      <div class="cta-disclaimer-text" style="font-size:1rem;color:rgba(255,255,255,0.90);line-height:1.6;"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
-    </div>
   </div>
+</div>
 
-  <!-- SLIDE 10: CLOSING -->
-  <div class="slide closing-slide" data-slide="9">
-    <div class="closing-logo">helf<span>.</span>school</div>
-    <div class="closing-tag">Health Education</div>
-    <div class="closing-series">Cancer Series · breast-cancer.html</div>
-    <div class="closing-disclaimer" style="margin-top:.6rem;">
-      <div class="closing-disclaimer-icon">⚕️</div>
-      <div class="closing-disclaimer-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+<!-- SLIDE 10: BRAND CLOSE -->
+<div class="slide" data-slide="9" style="padding:0;">
+  <div class="close-wrap">
+    <div class="close-logo">helf<span>.</span>school</div>
+    <div class="close-tag">Health Education</div>
+    <div class="close-headline">Evidence-based. Built by a doctor.</div>
+    <div class="close-cards">
+      <div class="close-card">
+        <div class="close-card-icon">📚</div>
+        <div class="close-card-text">31 articles across 5 series — cardiovascular, digestive, neurological, cancer, and practical health</div>
+      </div>
+      <div class="close-card">
+        <div class="close-card-icon">🩺</div>
+        <div class="close-card-text">Written by Dr Paul — retired NHS GP with over 20 years of experience</div>
+      </div>
+      <div class="close-card">
+        <div class="close-card-icon">🔓</div>
+        <div class="close-card-text">Start for free — Explorer tier available with no credit card required</div>
+      </div>
     </div>
+    <div class="med-disclaimer" style="max-width:680px;">
+      <div class="med-disc-icon">ℹ️</div>
+      <div class="med-disc-text">Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+    </div>
+    <div class="close-series">Cancer Series · Article 27 · Breast Cancer</div>
   </div>
+</div>
 
-</div><!-- end slides-wrap -->
+</div><!-- /slides-wrap -->
 
 <script>
 const TOTAL = 10;
 let current = 0;
 
-// Build dots
 const dotsEl = document.getElementById('dots');
 for (let i = 0; i < TOTAL; i++) {
   const d = document.createElement('div');
@@ -674,7 +577,6 @@ function animateSlide(slideEl) {
     const w = bar.getAttribute('data-width');
     if (w) setTimeout(() => { bar.style.width = w + '%'; }, 350);
   });
-  // Trigger mortality chart line animation
   const chartWrap = slideEl.querySelector('#chart-wrap');
   if (chartWrap) setTimeout(() => chartWrap.classList.add('chart-visible'), 100);
 }
@@ -682,7 +584,6 @@ function animateSlide(slideEl) {
 function resetSlide(slideEl) {
   slideEl.querySelectorAll('.animate-ready').forEach(c => c.classList.remove('visible'));
   slideEl.querySelectorAll('.stage-bar').forEach(bar => { bar.style.width = '0'; });
-  // Reset chart animation
   const chartWrap = slideEl.querySelector('#chart-wrap');
   if (chartWrap) chartWrap.classList.remove('chart-visible');
 }
@@ -706,7 +607,13 @@ document.addEventListener('keydown', e => {
 });
 document.getElementById('slides').addEventListener('click', () => { if (current < TOTAL - 1) goTo(current + 1); });
 
-// Animate first slide on load
+let tx = 0;
+document.getElementById('slides').addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+document.getElementById('slides').addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - tx;
+  if (Math.abs(dx) > 40) { if (dx < 0 && current < TOTAL-1) goTo(current+1); else if (dx > 0 && current > 0) goTo(current-1); }
+}, {passive:true});
+
 requestAnimationFrame(() => animateSlide(document.querySelector('.slide.active')));
 </script>
 </body>
