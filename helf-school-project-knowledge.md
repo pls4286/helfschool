@@ -700,6 +700,19 @@ Check every trial year before writing. Current year 2026 → nothing before 2014
 **10. INTRO STAT CARDS — 3 cards, each with amber number + contextual label**
 The label must be a full sentence explaining what the number means, not just a unit abbreviation.
 
+**11. INFO CARD BODY TEXT — TWO-TIER WORD LIMIT — LOCKED APRIL 2026**
+
+Every `.ic-body` in a three-grid slide must observe these hard limits:
+
+- **Cards WITHOUT `.ic-source`:** ≤34 words maximum
+- **Cards WITH `.ic-source`:** ≤23 words maximum — the source line occupies one full row, reducing visible body space from 5 lines to 4
+
+**The rule:** write the key fact (sentence 1), then one tight sentence of context (sentence 2). No long parenthetical clauses, multiple qualifying phrases, or three-sentence content.
+
+**Verification before delivery:** run a word count on every `.ic-body`. Cards with source must be ≤23w. Cards without source must be ≤34w. Do not deliver if any card exceeds its limit.
+
+**Canonical failure:** `lung-cancer-visuals.html` April 2026, slides 4–7 — cards ran 27–35 words with source lines present, causing visible mid-sentence clipping across four slides. Required multiple rebuilds to resolve. Root cause: source line was not accounted for in the word count target.
+
 ### VIEWPORT MAXIMISATION — MANDATORY RULE (LOCKED APRIL 2026)
 
 **Every visuals slide must fill the available viewport. This is non-negotiable.**
@@ -1120,18 +1133,33 @@ Never include an unverified link. Never assume a study exists based on a plausib
 - Educational voice: confirmed complete across Articles 01–26 (as built)
 - Article HTML retrofits (Articles 13–18): confirmed complete
 - Visuals and teleprompters (Articles 13–18): confirmed built
+- **Cancer Series visuals + teleprompters (Articles 27–31) — ALL COMPLETE April 2026 ✅**
+  - breast-cancer-visuals + teleprompter ✅ (CTA sequential animation, card-body ≤25 words, brand close, drug names removed)
+  - prostate-cancer-visuals + teleprompter ✅ (CTA sequential animation, drug names removed)
+  - lung-cancer-visuals + teleprompter ✅ (dark cards, colour narrative, sequential CTA)
+  - bowel-cancer-visuals + teleprompter ✅ (dark cards, colour narrative, sequential CTA)
+  - melanoma-visuals + teleprompter ✅ (dark cards, colour narrative, sequential CTA, line-clamp:4, ≤25 words)
+- **Cardiovascular Series Article 01 — Hypertension visuals + teleprompter ✅ April 2026**
+  - CTA sequential animation applied ✅
+  - Brand close pitch cards applied ✅
+  - `display:-webkit-box` fixed on all body elements ✅
+  - 5-card and 6-card slides split to max 3 cards per slide ✅ (now 13 slides)
+  - ev-card padding reduced to 1.1rem, ev-body clamp:4 ✅
+  - Teleprompter slide numbers updated to match ✅
 
 ### Outstanding — to confirm and apply
 - Research card stat standard (outcomes only, not counts): outstanding across 01–11
 - **Research card complete clinical conclusion standard: outstanding across 01–23** — all previously built articles should have research card stat boxes audited against the complete clinical conclusion rule when they are next opened for any edit
 - Inline citations (superscripts linking to refs): outstanding across 01–11
 - **Stat grid citations: outstanding across all articles built before April 2026** — apply when next opened
-- CTA slide high-impact standard (`cta-wrap-v2`, gold-glow, 4 action rows): outstanding across 01–11
-- **Closing slide brand close standard: outstanding across 01–26** — all previously built visuals files use the old stat-recap closing slide. Retrofit when files are next opened.
+- CTA sequential animation: outstanding across Cardiovascular 02–07 and all other non-Cancer series visuals
+- **Closing slide brand close standard: outstanding across 01–07 and 19–26** — retrofit when files are next opened (Cancer series done ✅)
 - Visuals layout standard (3-card split, ev-stat-row): outstanding across 01–11
 - Key terms / hero visibility standards: outstanding across 01–11
 - Teleprompter cue box standard: confirm per-file which were built before standard was set
 - **Subtype list formatting: outstanding across all articles** — apply `<ol class="subtype-list">` pattern when any article is next opened and contains formally introduced sets of items. Canonical: `lung-cancer.html` (April 2026).
+- **`display:-webkit-box` + `clamp:4` audit: outstanding across Cardiovascular 02–07 visuals** — ALL CSS rules using `-webkit-line-clamp` must also have `display:-webkit-box`. Without it clamp does nothing. AND: `.sys-body`, `.doc-body`, `.mech-body` must have `line-clamp:4` — NEVER `line-clamp:2`. At 768px filming viewport a 3-card grid gives ~98px for body text = 4.3 lines at 22.7px/line. `clamp:2` cuts sentences mid-thought (45px shown). `clamp:4` shows full sentences (91px). Word limit for these classes: ≤35 words (wider cards than ic-body). Canonical failure: hypertension-visuals.html slides 3–6, 8–9 — all body text cut to 2 lines after webkit-box was added. Caught by Dr Paul April 2026.
+- **5/6-card grid split: outstanding across Cardiovascular 02–07 visuals** — any slide with 5 or 6 cards in a single grid must be split to 3+3 or 3+2. Proven at 600px viewport: 5 cards always clips, 6 cards always clips.
 
 ---
 
@@ -1286,46 +1314,43 @@ The comparison or intervention that produced a research card stat — the REASON
 
 ## 19. OUTSTANDING TASKS (April 2026)
 
-### Immediate — completed this session ✅
-- `breast-cancer.html`, `breast-cancer-visuals.html`, `breast-cancer-teleprompter.html` — on GitHub ✅
-- `prostate-cancer.html`, `prostate-cancer-visuals.html`, `prostate-cancer-teleprompter.html` — on GitHub ✅
-- `lung-cancer.html`, `lung-cancer-visuals.html`, `lung-cancer-teleprompter.html` — on GitHub ✅
-- `bowel-cancer.html`, `bowel-cancer-visuals.html`, `bowel-cancer-teleprompter.html` — on GitHub ✅
-- `helf-school-project-knowledge.md` and `helf-school-session-start-rules.md` — on GitHub AND Claude Project ✅
+### Completed this session ✅
+- Cancer Series visuals + teleprompters (27–31): all retrofitted to current standards ✅
+- Hypertension visuals + teleprompter (Article 01): retrofitted ✅ — CTA sequential animation, brand close, 13 slides, all body elements fixed, ev-card sizing corrected
 
-### Still outstanding
-- `helf-school-conditions.html` — needs updating: hero stat should read 30 articles live, Articles 29 and 30 now showing as live in Cancer series
+### Next priority — Cardiovascular Series retrofit (Articles 02–07)
+Apply in order. Each file needs:
+1. CTA sequential animation (replace static cta-rows-v2)
+2. Brand close pitch cards (replace stat-recap close)
+3. `display:-webkit-box` on ALL body elements (sys-body/doc-body/mech-body) — AND set `line-clamp:4` on all three. NEVER `line-clamp:2`. Clamp:2 cuts sentences mid-thought. Proven at 768px: 4 lines fit (91px) within available card body space (98px). See session-start-rules Root Cause 3.
+4. Split any 5+ card slides to max 3 cards per slide
+5. ev-card: reduce padding to 1.1rem, ev-body clamp:4 if two cards per slide
+6. Teleprompter: remove specific drug names, update CTA segment, update slide numbers
 
-### Cancer Series — Article 29 (Lung Cancer) — COMPLETE ✅
-- `lung-cancer.html` — built April 2026 ✅
-- `lung-cancer-visuals.html` — built April 2026 ✅
-- `lung-cancer-teleprompter.html` — built April 2026 ✅
-- **Research flags still outstanding in lung-cancer.html:**
-  1. NSCLC/SCLC proportion (80–85%) — cited to NICE NG122, confirm this figure appears in NG122 text
-  2. EGFR mutation prevalence (10–15%) and ALK rearrangement (3–5%) — confirm in NICE NG122
-  3. Stage 3 and stage 4 five-year survival figures — not yet added; available on CRUK survival page
+- Article 02: Cholesterol Explained (`cholesterol-visuals.html`, `cholesterol-teleprompter.html`)
+- Article 03: How Doctors Estimate Heart Attack Risk (`heart-attack-risk-visuals.html`, `heart-attack-risk-teleprompter.html`)
+- Article 04: Statins — Benefits & Risks (`statins-visuals.html`, `statins-teleprompter.html`)
+- Article 05: Lifestyle Changes (`lifestyle-visuals.html`, `lifestyle-teleprompter.html`)
+- Article 06: Salt and Blood Pressure (`salt-visuals.html`, `salt-teleprompter.html`)
+- Article 07: Supplements (`supplements-visuals.html`, `supplements-teleprompter.html`)
 
-### Cancer Series — Article 30 (Bowel Cancer) — COMPLETE ✅
-- `bowel-cancer.html` — built April 2026 ✅
-- `bowel-cancer-visuals.html` — built April 2026 ✅ (first visuals file delivered with zero changes required)
-- `bowel-cancer-teleprompter.html` — built April 2026 ✅
-- **Research flag outstanding:**
-  - ~44,000 incidence figure — verify exact current number against CRUK incidence statistics page
-
-### Cancer Series — next articles to build
-- Article 31: Melanoma and Skin Cancer (all 3 files)
-
-### Practical Health Series extension — next articles to build
+### Practical Health Series extension
 - Article 32: Breast Awareness (cross-referenced from breast-cancer.html — marked "Coming soon")
 - Article 33: Testicular Awareness
 
-### Verification
+### Verification outstanding
 - `hypertension.html` references 5 & 6 — Cochrane PubMed IDs flagged ⚑ unverified
+- `helf-school-conditions.html` — hero stat needs updating to 31 articles live
+
+### Still needed: update project knowledge and session-start-rules to GitHub + Claude Project
+Upload both MD files at end of each session to keep them current.
 
 ### Retrofit backlog (Articles 01–26 — apply when files next opened)
 All dark variants confirmed April 2026 — retrofit is fully unblocked. Apply per series as files are next opened. Priority order:
 
 0. **LAY IMPACT FIRST RETROFIT — Rule 34 — LOCKED APRIL 2026** — When any visuals or teleprompter file is opened for any reason, apply: (a) colour narrative — replace uniform cards with red/amber/green by content type; (b) remove any drug generic or brand names — replace with class descriptions; (c) check teleprompter trial references — reduce to name + stat + one plain sentence; (d) consider sequential animation for any formal list (ABCDE, stages, criteria). Priority series: Cancer (27–30) and Cardiovascular (01–07). Canonical reference: `melanoma-visuals.html` and `melanoma-teleprompter.html` (April 2026).
+
+**TELEPROMPTER CONSISTENCY RULE — LOCKED APRIL 2026:** Whenever a visuals file is updated for any reason, the matching teleprompter must be reviewed slide-by-slide before either file is uploaded. Any segment whose corresponding slide has changed content must be rewritten to match. This rule exists because visuals and teleprompter are filmed together — if the CTA slide changes from an article pitch to a sequential symptom reveal, the script must reflect what Dr Paul will see on screen. A visuals retrofit is not complete until the teleprompter has been reviewed and updated. Canonical example: `lung-cancer-visuals.html` CTA slide changed to sequential red flag symptoms (April 2026) — `lung-cancer-teleprompter.html` required matching update.
 1. **DRUG BRAND NAMES RETROFIT — Rule 33 — HIGHEST URGENCY — LOCKED APRIL 2026** — All generic drug names across all articles, visuals, and teleprompter scripts must have a brand name added alongside them. Apply to every file when next opened. The following inventory identifies the likely locations by article:
 
 **Cardiovascular Series (Articles 01–05):**

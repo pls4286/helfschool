@@ -69,11 +69,101 @@ Before presenting ANY helf.school file, Claude runs the following audit internal
 - ev-stat-box: `padding:.9rem .75rem` · `overflow:hidden` · `.ev-conditions` at `.78rem`
 - Hero series badge: `color:#fff` — never the series accent colour
 - All animated cards: `animate-ready` class present, no hardcoded `opacity:0`
+- **ic-body — DEFINITIVE STANDARD — LOCKED APRIL 2026 — MATHEMATICAL PROOF:**
+
+  At 768px viewport (filming standard): card height ≈ 190px. Overhead (padding + icon + 1-line title + gaps) ≈ 84px. Available body height ≈ 108px. At .93rem × 1.62 line-height (24.3px/line) = **4.4 lines MAX**. With a 2-line title (many ic-titles wrap): only **3.8 lines MAX**. Five lines NEVER fit at filming viewports. This is why slides 3,4,6,7 clip on EVERY build.
+
+  **THE RULES — NO EXCEPTIONS:**
+  - **`-webkit-line-clamp: 4`** in CSS — never 5. 5 only fits at 900px+.
+  - **ic-body ≤ 25 words** — ALL cards, regardless of ic-source presence
+  - **ic-title ≤ 7 words** — prevents 2-line wrap, preserves body space
+  - **CTA animation items ≤ 15 words** each (6 rows × ~78px at 768px = 60px content = 3 text lines; 15 words fills 1-2 lines safely)
+  - **ev-body-panel paragraphs: 2 sentences maximum** (single card), 2 sentences each (two-card layout)
+
+  **MANDATORY QC — run before presenting any visuals file with three-grid slides. Zero failures required:**
+  ```python
+  python3 - <<'EOF'
+  import re
+  content = open('filename.html').read()
+  bodies = re.findall(r'class="ic-body">(.*?)</div>', content, re.DOTALL)
+  failures = 0
+  for i, body in enumerate(bodies):
+      text = re.sub(r'<[^>]+>', '', body).strip()
+      words = len(text.split())
+      status = '✓' if words <= 25 else '✗ OVER'
+      print(f"Card {i+1:2d}: {words:2d}/25  {status}")
+      if words > 25: failures += 1
+  print(f"\n{'ALL PASS' if failures == 0 else str(failures)+' FAILURES — DO NOT DELIVER'}")
+  EOF
+  ```
+  Note: The previous QC regex was broken — it only worked for cards WITH ic-source (using ic-source close as an anchor). Cards WITHOUT ic-source returned no matches, giving a false ALL PASS. The correct script above extracts ic-body directly and catches all cards.
+
+  **Canonical failure record:** Slides 3,4,6,7 clipped on melanoma-visuals AND bowel-cancer-visuals AND lung-cancer-visuals — all three caught by Dr Paul after delivery. Root cause every time: line-clamp set to 5 and word limit set to 35, neither of which fits at 768px filming viewport.
 - **CTA slide — LOCKED APRIL 2026:** Must use `cta-wrap-v2` with `grid-template-rows: auto 1fr auto`. This is the only layout that guarantees the disclaimer is never clipped. Never `justify-content: center` or `space-between` on the CTA slide. `med-disc-text` at `font-size:1rem`. Canonical: `prostate-cancer-visuals.html` slide 13.
 - **Closing slide — LOCKED APRIL 2026:** Must be the helf.school brand close — NOT a stat repeat. `close-wrap` with `justify-content: flex-start` (never `center` — clips the logo). Three pitch cards (articles / Dr Paul / free tier). `med-disc-text` at `font-size:1rem`. Canonical: `prostate-cancer-visuals.html` slide 14.
 - **No "free at helf.school" — LOCKED APRIL 2026:** CTA slide subline must not reference "free at helf.school". Remove `.cta-sub` text or use a non-pricing line. "Start for free" card is permitted (genuine £0 tier). "Free to read — always" is not permitted. "Evidence-based health education — free at helf.school" is not permitted.
-- **3-CARD RULE — LOCKED APRIL 2026:** Never 6 cards on one slide. Always split to 3+3, labelled "(1 of 2)" and "(2 of 2)". Text cut-off on 6-card slides is a recurring failure. Canonical: `prostate-cancer-visuals.html` slides 3–10.
+- **CARD GRID CLIPPING — DEFINITIVE RULE — LOCKED APRIL 2026 — DO NOT SKIP:**
+
+  **The two root causes of every card text clipping failure:**
+
+  **Root cause 1 — `display:-webkit-box` is MISSING.**
+  Every CSS rule using `-webkit-line-clamp` MUST also include `display:-webkit-box` and `-webkit-box-orient:vertical`. Without `display:-webkit-box`, line-clamp has ZERO effect. Text renders fully and is sliced by `overflow:hidden` mid-character. This is invisible in the CSS — the clamp value looks correct but does nothing. Every single Cardiovascular Series clipping failure (April 2026) was caused by this missing property.
+
+  **MANDATORY PATTERN — no exceptions:**
+  ```css
+  .ic-body {
+    display: -webkit-box;        ← REQUIRED or clamp does NOTHING
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  ```
+  **QC CHECK:** `grep -n "line-clamp" [file.html]` — every matching line must have `display:-webkit-box` in the same CSS rule. Any rule with `line-clamp` but no `display:-webkit-box` = BROKEN. Fix before delivering.
+
+  **⛔ ROOT CAUSE 3 — WRONG CLAMP VALUE ON sys-body / doc-body / mech-body — LOCKED APRIL 2026**
+
+  The Cardiovascular Series visuals use three body text classes that are NOT the same as `ic-body`:
+  - `.sys-body` — five/six body-system cards (slide 3–4)
+  - `.doc-body` — doctor discussion cards (slides 5–6)
+  - `.mech-body` — mechanism cards (slides 8–9)
+
+  **These classes MUST have `line-clamp:4` — NEVER `line-clamp:2`.**
+
+  At 768px filming viewport, a 3-card grid gives each card ~193px height. After overhead (padding + icon + title + gaps = ~96px), ~98px remains for body text. At `1rem × 1.42 line-height = 22.7px per line`, this gives **4.3 lines available**. `clamp:2` shows only 45px — sentences are visually cut mid-thought. `clamp:4` shows 91px — all text fits with 7px margin.
+
+  **Word limit for these classes: ≤35 words** (4 lines × ~8-9 words/line on the wider Cardiovascular card layout). This is NOT the same as the `ic-body` 25-word limit — `ic-body` is a narrower card at `.93rem`.
+
+  **The correct CSS for all three classes:**
+  ```css
+  .sys-body, .doc-body, .mech-body {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;   /* NEVER 2 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  ```
+
+  **What went wrong (April 2026):** These classes originally had `line-clamp:2` with NO `display:-webkit-box` — so the clamp was silently inactive and all text showed. When `display:-webkit-box` was correctly added to fix the clipping failure, the `clamp:2` suddenly activated and cut every sentence to 2 lines. The fix required both properties together AND the correct clamp value of 4. Caught by Dr Paul. Do not repeat.
+
+  **Canonical failure:** hypertension-visuals.html slides 3–6 and 8–9 — all sys-body/doc-body/mech-body text cut to 2 lines after webkit-box was added. Dr Paul: "sentences are not complete — you have chopped them off."
+
+  **Root cause 2 — Too many cards per slide.**
+  Mathematically proven at filming viewports (worst case: 600px viewport height):
+
+  | Cards per slide | Content area per card | Fits standard text (✓/✗) |
+  |---|---|---|
+  | 2 | 205px | ✓ |
+  | 3 | 126px | ✓ |
+  | 4 | 86px | ✓ (barely — no margin) |
+  | 5 | 63px | ✗ ALWAYS CLIPS |
+  | 6 | 47px | ✗ ALWAYS CLIPS |
+
+  **THE RULE: Maximum 3 cards per slide.** This is proven safe at ALL filming viewports ≥600px with a comfortable margin. 4 cards is technically viable but fragile. 5+ cards clips at any viewport under 700px regardless of font size or clamp settings. When a design calls for more than 3 cards, split into two slides labelled "(1 of 2)" and "(2 of 2)". No exceptions.
+
+  **Canonical failure record:** 5-row sys-grid and 6-row doc-grid in hypertension-visuals.html — clips at viewports under 700px. Caught by Dr Paul repeatedly across multiple deliveries (April 2026). Root cause: both webkit-box missing AND too many cards. Fixed by adding webkit-box + splitting all 5+ card slides to 3 cards max.
 - **VIEWPORT MAXIMISATION:** Every slide must fill at least 85% of the visible area. Slide padding maximum `1rem 1.5rem 0.8rem`. Body text minimum `.90rem`. Gaps maximum `.5rem`. Slide title minimum `1.55rem`. If content looks small or sparse — fix it before presenting. Visuals are filmed. Undersized content is a delivery failure.
+- **TELEPROMPTER CONSISTENCY — LOCKED APRIL 2026:** Whenever a visuals file is updated, the matching teleprompter must be reviewed slide-by-slide before either file is uploaded. Any segment whose slide content has changed must be rewritten to match. A visuals retrofit is not complete until the teleprompter has been checked and updated.
+- **CTA SLIDE = SEQUENTIAL ANIMATION — LOCKED APRIL 2026:** The second-to-last slide in every visuals file must be a sequential animation. Items reveal left-to-right with 620ms stagger, fired by `animateCTA()` called from `goTo()` when the CTA slide becomes active. The static `cta-rows-v2` layout is superseded. Content: condition red flags (ci-red) → risk/mechanism evidence (ci-amber) → screening/action (ci-green) → positive early-stage survival (ci-green). Keep `cta-wrap-v2` grid with `grid-template-rows:auto 1fr auto`. Canonical: `lung-cancer-visuals.html` slide 10 and `bowel-cancer-visuals.html` slide 10.
 
 **The rule:** Output first, audit after is the failure pattern. Audit first, output after is the required pattern. Paul must never be the one to catch these errors.
 
@@ -751,7 +841,7 @@ The brand name rule (Rule 33, locked April 2026) is a retrofit across the entire
 
 | File | Status |
 |------|--------|
-| hypertension.html + visuals + teleprompter | ✅ Confirmed correct (refs 5+6 ⚑ pending verification) |
+| hypertension.html + visuals + teleprompter | ✅ Article correct (refs 5+6 ⚑ pending) · Visuals + teleprompter RETROFITTED April 2026: CTA sequential animation, brand close, display:-webkit-box fixed, 5+6 card slides split to 3-max, now 13 slides |
 | cholesterol.html + visuals + teleprompter | ✅ Confirmed correct |
 | heart-attack-risk.html + visuals + teleprompter | ✅ Confirmed correct |
 | statins.html + visuals + teleprompter | ✅ Confirmed correct |
@@ -795,18 +885,70 @@ The brand name rule (Rule 33, locked April 2026) is a retrofit across the entire
 | memory-dementia.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
 | epilepsy.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
 
-### Cancer Series (27–31) — IN PROGRESS
+### Cancer Series (27–31) — ALL COMPLETE ✅ April 2026
 
 | File | Status |
 |------|--------|
-| breast-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — on GitHub ✅ |
-| prostate-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — on GitHub ✅ |
-| lung-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — on GitHub ✅ |
-| bowel-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — on GitHub ✅ |
-| melanoma.html + visuals + teleprompter | Not yet built — Article 31, next to build |
+| breast-cancer.html + visuals + teleprompter | ✅ All 3 files built + retrofitted April 2026 |
+| prostate-cancer.html + visuals + teleprompter | ✅ All 3 files built + retrofitted April 2026 |
+| lung-cancer.html + visuals + teleprompter | ✅ All 3 files built + retrofitted April 2026 |
+| bowel-cancer.html + visuals + teleprompter | ✅ All 3 files built + retrofitted April 2026 |
+| melanoma.html + visuals + teleprompter | ✅ All 3 files built + retrofitted April 2026 |
 
 ### OUTSTANDING CITATION FLAGS
 - hypertension.html refs 5 + 6 — Cochrane PubMed IDs flagged ⚑ unverified
+
+---
+
+## ⛔ RULE 36 — EV-CARD TWO-CARD HEIGHT CONSTRAINT — LOCKED APRIL 2026
+
+**When a slide contains two stacked ev-cards, the combined height of both cards plus the gap must fit within the available stage height at 600px viewport (the minimum filming viewport).**
+
+**Mathematically proven constraint:**
+- Available stage height at 600px = ~466px (600 minus 48px topbar minus 56px padding/title)
+- At `ev-card padding:1.5rem` and `ev-body line-clamp:5`: two cards = 469px → CLIPS by 3px
+- At `ev-card padding:1.1rem` and `ev-body line-clamp:4`: two cards = 396px → FITS with 70px margin ✅
+
+**THE MANDATORY SPEC for any slide with two stacked ev-cards:**
+```css
+.ev-card { padding: 1.1rem 1.4rem; gap: 1.4rem; }
+.ev-det .ev-body { -webkit-line-clamp: 4; }
+```
+
+**Python verification (run before presenting any slide with two ev-cards):**
+```python
+# At 600px viewport (worst case):
+avail = 466  # px
+card_pad = 1.1 * 16 * 2  # 1.1rem top + bottom
+ev_det_h = 24 + 4 + 15.2 + 9.6 + (1.05 * 16 * 1.5 * 4)  # title+journal+clamp:4 body
+card_h = max(155, ev_det_h) + card_pad  # 155px = min ev-stat-box
+two_cards = card_h * 2 + 0.95 * 16  # gap
+print(f"Two cards: {two_cards:.0f}px, available: {avail}px, fits: {two_cards <= avail}")
+```
+
+**Canonical failure:** hypertension-visuals.html slides 7+8+9 — each slide had two ev-cards at 1.5rem padding with clamp:5, overflowing by 3px at 600px viewport. Caught by Dr Paul repeatedly. Fixed by reducing padding to 1.1rem and clamp to 4.
+
+**Note:** Single ev-card slides are not affected. This constraint applies only when two cards are stacked vertically on the same slide.
+
+---
+
+## SESSION-START PROMPT — PASTE THIS AT THE START OF EVERY NEW SESSION
+
+**Copy and paste the following at the start of each new session before asking Claude to do anything:**
+
+---
+
+Before you do anything, read `/mnt/project/helf-school-project-knowledge.md` and `/mnt/project/helf-school-session-start-rules.md` in full. Do not summarise them back to me. Confirm you have read both by telling me: (1) what Section 17 says is the retrofit status, and (2) what the next outstanding file to work on is.
+
+Then before touching any visuals file, confirm these three checks pass:
+
+1. Does every CSS rule using `-webkit-line-clamp` also have `display:-webkit-box`? Without it, clamp does nothing and text clips. Fix before showing me anything.
+
+2. Does any slide have more than 3 cards in a single grid? If yes, split to two slides before showing me anything. 5 or 6 cards always clips at filming viewports. No exceptions.
+
+3. If a slide has two stacked ev-cards: does `ev-card padding` = 1.1rem and `ev-body line-clamp` = 4? If not, fix before showing me anything.
+
+Run the Python QC script from the session-start-rules on every visuals file before presenting it. Do not present any file that has not passed QC. If you present a file with clipping problems these checks would have caught, the process has failed.
 
 ---
 
