@@ -121,13 +121,16 @@
     .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:700;color:#fff;line-height:1.02;letter-spacing:-.028em}
     .cta-headline-v2 span{color:var(--acc)}
     .cta-subline{font-family:'Fraunces',serif;font-size:clamp(.95rem,1.5vw,1.2rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);line-height:1.3}
-    .cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.4rem;min-height:0;overflow:hidden}
-    .cta-row-v2{background:linear-gradient(90deg,rgba(160,212,176,.12),rgba(160,212,176,.04));border-left:4px solid var(--acc);border-radius:0 10px 10px 0;padding:.6rem .95rem;display:grid;grid-template-columns:52px 1fr auto;gap:.9rem;align-items:start;min-height:0;overflow:hidden}
-    .cta-row-icon{font-size:1.7rem;line-height:1;padding-top:.1rem}
-    .cta-row-mid{display:flex;flex-direction:column;gap:.12rem;min-width:0}
-    .cta-row-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.95rem;line-height:1.15}
-    .cta-row-body-v2{font-size:.90rem;color:rgba(255,255,255,.90);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .cta-row-word-v2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.2rem,2vw,1.7rem);color:var(--acc);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:.6rem}
+    .cta-rows-v2{display:grid;grid-template-rows:repeat(6,1fr);gap:.38rem;min-height:0;overflow:hidden}
+    .cta-row-v2{display:none}
+    /* Sequential animation items */
+    .cta-item{border-radius:9px;padding:.55rem 1rem;display:flex;align-items:center;gap:.9rem;opacity:0;transform:translateX(-24px);transition:opacity .38s ease,transform .38s ease}
+    .cta-item.visible{opacity:1;transform:translateX(0)}
+    .cta-item.ci-red  {background:rgba(180,45,45,0.25);border:1px solid rgba(220,80,70,0.40)}
+    .cta-item.ci-amber{background:rgba(170,110,20,0.25);border:1px solid rgba(232,168,74,0.40)}
+    .cta-item.ci-green{background:rgba(38,105,55,0.30);border:1px solid rgba(160,212,176,0.42)}
+    .cta-item-icon{font-size:1.45rem;flex-shrink:0}
+    .cta-item-text{font-size:.93rem;font-weight:600;color:rgba(255,255,255,0.95);line-height:1.3}
     .cta-bottom{display:flex;justify-content:center;flex-shrink:0}
     .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.75rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;max-width:900px;width:100%}
     .med-disc-icon{font-size:1.25rem;flex-shrink:0}
@@ -322,7 +325,7 @@
         <div class="doc-icon">💊</div>
         <div class="doc-content">
           <div class="doc-title">Symptoms — often none</div>
-          <div class="doc-body">Urinary difficulty, blood in urine or semen, or bone pain may occur. Many men have no symptoms — PSA testing or incidental finding leads to diagnosis.</div>
+          <div class="doc-body">Urinary difficulty, blood in urine or semen, or bone pain may occur. Most prostate cancers are found through PSA testing or incidental finding, without symptoms.</div>
         </div>
         <div class="doc-action acc">Often silent</div>
       </div>
@@ -488,38 +491,12 @@
         <div class="cta-subline">Prostate cancer is common — and where the evidence is clear, the choices matter.</div>
       </div>
       <div class="cta-rows-v2">
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">🔬</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">ProtecT trial — localised disease</div>
-            <div class="cta-row-body-v2">At 15 years, prostate cancer-specific mortality was similar across monitoring, surgery, and radiotherapy — 2.7% overall. The choice is about side effects, not survival.</div>
-          </div>
-          <div class="cta-row-word-v2">2.7%</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">🩸</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">CAP trial — PSA screening</div>
-            <div class="cta-row-body-v2">A single PSA test reduced 15-year prostate cancer mortality — 0.69% vs 0.78% without screening. First UK trial evidence for PSA screening benefit.</div>
-          </div>
-          <div class="cta-row-word-v2">0.69%</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">💊</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">STAMPEDE — metastatic disease</div>
-            <div class="cta-row-body-v2">Adding chemotherapy to hormone therapy extended median overall survival by 10 months — 81 vs 71 months — in metastatic prostate cancer.</div>
-          </div>
-          <div class="cta-row-word-v2">+10 months</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">👁️</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Active surveillance — not always treatment</div>
-            <div class="cta-row-body-v2">NICE NG131 recommends active surveillance for low-risk localised prostate cancer — close monitoring defers treatment until the cancer shows signs of progression.</div>
-          </div>
-          <div class="cta-row-word-v2">NICE</div>
-        </div>
+        <div class="cta-item ci-red"><div class="cta-item-icon">⏳</div><div class="cta-item-text">Risk rises sharply after 50 — and Black men have clinically recognised higher incidence rates</div></div>
+        <div class="cta-item ci-amber"><div class="cta-item-icon">🩸</div><div class="cta-item-text">Most raised PSA results are not cancer. PSA is a marker, not a diagnosis</div></div>
+        <div class="cta-item ci-green"><div class="cta-item-icon">👁️</div><div class="cta-item-text">Active surveillance is NICE-recommended for low-risk localised disease — treatment deferred until progression</div></div>
+        <div class="cta-item ci-green"><div class="cta-item-icon">🔬</div><div class="cta-item-text">ProtecT: at 15 years, mortality was 2.7% — similar across monitoring, surgery, and radiotherapy</div></div>
+        <div class="cta-item ci-green"><div class="cta-item-icon">🩺</div><div class="cta-item-text">CAP trial: one PSA test reduced prostate cancer mortality — 0.69% vs 0.78% without screening</div></div>
+        <div class="cta-item ci-amber"><div class="cta-item-icon">💊</div><div class="cta-item-text">STAMPEDE: adding chemotherapy to hormone therapy extended median survival by 10 months in metastatic disease</div></div>
       </div>
       <div class="cta-bottom">
         <div class="med-disclaimer">
@@ -579,12 +556,17 @@
 <script>
   const slides=document.querySelectorAll('.slide'),dots=document.querySelectorAll('.dot');
   let cur=0;
+  function animateCTA(){
+    const items=document.querySelectorAll('.cta-rows-v2 .cta-item');
+    items.forEach(r=>r.classList.remove('visible'));
+    items.forEach((item,i)=>{setTimeout(()=>item.classList.add('visible'),350+i*620)});
+  }
   function show(n){
     slides[cur].classList.remove('active');dots[cur].classList.remove('active');
     cur=(n+slides.length)%slides.length;
     slides[cur].classList.add('active');dots[cur].classList.add('active');
     document.getElementById('counter').textContent=(cur+1)+' / '+slides.length;
-    triggerSlide(cur);
+    if(cur===8){animateCTA();}else{triggerSlide(cur);}
   }
   function goTo(n){show(n)}
   document.addEventListener('keydown',e=>{
