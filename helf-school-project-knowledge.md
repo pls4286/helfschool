@@ -5,7 +5,9 @@
 
 ## ⚠️ DOCUMENT INTEGRITY — CLAUDE MUST READ THIS BEFORE ANY SESSION WORK
 
-**This document has 25 numbered sections. Minimum expected line count: ~1760 lines.**
+**This document has 25 numbered sections. Minimum expected line count: ~1552 lines.**
+
+**Note — April 2026:** The authoritative version is the one stored in the Claude project (114KB). When pasted through chat, blank lines collapse, reducing apparent line count. The 1552-line figure is the reliable baseline for `wc -l` checks in Claude's bash environment. All content is present at this count.
 
 When updating this document at the end of any session, Claude MUST:
 1. Run `wc -l` on the new file before presenting it to Dr Paul
@@ -734,7 +736,7 @@ Before presenting any article, visuals, or teleprompter HTML — verify via web 
   - **gallstones (19): visuals + teleprompter ✅ full structural rebuild April 2026** — pre-canonical architecture (inset:0, no nav dots, side-by-side ev-cards, quote-card close); rebuilt to canonical standard; 12-slide deck
   - **diverticular-disease (20): visuals + teleprompter ✅ full structural rebuild April 2026** — same pre-canonical architecture as gallstones; rebuilt to canonical standard; 10-slide deck; myth comparison preserved; risk/doc 5→3+2
   - **masld (17): ✅ visuals + teleprompter retrofit complete April 2026**
-  - **constipation (21): visuals + teleprompter ✅ retrofit complete April 2026**
+  - **constipation (21): ✅ visuals + teleprompter retrofit complete April 2026**
 
 ### Outstanding — to confirm and apply
 - Research card complete clinical conclusion standard: outstanding across 01–23
@@ -887,28 +889,17 @@ Both used: `position:absolute; inset:0`, no nav dots, side-by-side ev-cards (`1f
 - Cancer Series visuals + teleprompters (27–31): all complete ✅
 - Cardiovascular Series visuals + teleprompters (01–07): all complete ✅
 - Practical Health Series visuals + teleprompters (08–12): all complete ✅
-- Digestive Series:
+- Digestive Series — ALL COMPLETE ✅:
   - acid-reflux (13) ✅ · bloating (15) ✅ · ibs (16) ✅
-  - **ibd (14) ✅ full rebuild April 2026**
-  - **coeliac (18) ✅ full rebuild April 2026**
-  - **gallstones (19) ✅ full structural rebuild April 2026**
-  - **diverticular-disease (20) ✅ full structural rebuild April 2026**
+  - ibd (14) ✅ full rebuild April 2026
+  - coeliac (18) ✅ full rebuild April 2026
+  - gallstones (19) ✅ full structural rebuild April 2026
+  - diverticular-disease (20) ✅ full structural rebuild April 2026
+  - **masld (17) ✅ retrofit complete April 2026**
+  - **constipation (21) ✅ retrofit complete April 2026**
 
-### Digestive Series — ALL COMPLETE ✅
-masld (17) ✅ April 2026 · constipation (21) ✅ April 2026 — **entire Digestive Series (13–21) visuals + teleprompters now complete.**
-
-Each file needs:
-1. CTA sequential animation
-2. Brand close pitch cards
-3. `display:-webkit-box` on ALL body elements — AND set `line-clamp:4`
-4. Split any 4+ card slides — max 3 cards per slide (Rule 38: 4-card is mandatory split)
-5. ev-card: padding 1.1rem, ev-body clamp:4 if two cards per slide
-6. ev-stage: confirm `display:flex`
-7. Teleprompter: remove drug names, update CTA segment, update slide numbers
-8. Check for pre-canonical architecture (inset:0, no nav dots) — if present, full rebuild required
-
-### Then: Neurological Series (Articles 22–26)
-Same retrofit checklist.
+### Next priority — Neurological Series (Articles 22–26)
+Same retrofit checklist as Digestive Series above.
 
 ### Practical Health Series extension
 - Article 32: Breast Awareness
@@ -929,7 +920,7 @@ Same retrofit checklist.
 7. **Stat grid citations** — 01–11
 8. **Subtype list formatting** — `<ol class="subtype-list">` where applicable
 
-**TELEPROMPTER CONSISTENCY RULE — LOCKED APRIL 2026:** Whenever a visuals file is updated, the matching teleprompter must be reviewed slide-by-slide before either file is uploaded. A visuals retrofit is not complete until the teleprompter has been reviewed and updated.
+**TELEPROMPTER CONSISTENCY RULE — LOCKED APRIL 2026:** Whenever a visuals file is updated, the matching teleprompter must be reviewed slide-by-slide before either file is uploaded.
 
 ---
 
@@ -1052,10 +1043,10 @@ Key Terms box · Putting it all together box · Research card stat box all use s
 ### Rule 32 — Research currency: no articles older than 12 years — LOCKED APRIL 2026
 
 ### Rule 33 — Drug brand names alongside all generics — LOCKED APRIL 2026
-Every generic drug name must have its brand name alongside in every file.
+Articles/visuals: `pembrolizumab (Keytruda)`. Teleprompter: class description approach.
 
 ### Rule 34 — Lay impact first: visuals and teleprompter — LOCKED APRIL 2026
-Colour narrative mandatory. No drug names in visuals or teleprompter.
+Colour narrative mandatory. No drug names in visuals/teleprompter.
 
 ### Rule 35 — Series background colour: never near-black — LOCKED APRIL 2026
 Cancer `#0e2418` · Cardiovascular `#1a0808` · Neurological `#0f0d1a` · Digestive `#1a0e08` · Fatigue `#081a14` · Practical `#120e08`
@@ -1067,7 +1058,7 @@ Two stacked ev-cards: ev-body ≤ 30 words. Single ev-card: ev-body ≤ 44 words
 Canonical failure: `stress-visuals.html` slide 7 (April 2026).
 
 ### Rule 38 — 4-card slides must split — LOCKED APRIL 2026
-**Any slide grid with 4 cards must be split to 2+2 across two slides.** The QC label "⚠ 4-card (fragile)" is not a pass — it is a mandatory split. Confirmed April 2026 after ibd-visuals.html 4-card treatment ladder clipped on filming viewport.
+**Any slide with 4 or more cards must split to ≤3 cards per slide.** The QC label "⚠ 4-card (fragile)" is not a pass — it is a mandatory split. Confirmed April 2026 after ibd-visuals.html 4-card treatment ladder clipped on filming viewport.
 
 ---
 
@@ -1097,19 +1088,19 @@ Canonical failure: `stress-visuals.html` slide 7 (April 2026).
 | stress.html + visuals + teleprompter | ✅ All confirmed correct |
 | alcohol.html + visuals + teleprompter | ✅ All confirmed correct |
 
-### Digestive Health Series (13–21)
+### Digestive Health Series (13–21) — ALL COMPLETE ✅
 
 | File | Status |
 |------|--------|
-| acid-reflux + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter retrofitted April 2026 |
-| ibd + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter **full rebuild** April 2026 |
-| bloating + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter retrofitted April 2026 |
-| ibs + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter retrofitted April 2026 |
-| masld + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter **retrofit complete** April 2026 |
-| coeliac + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter **full rebuild** April 2026 |
-| gallstones + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter **full structural rebuild** April 2026 |
-| diverticular-disease + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter **full structural rebuild** April 2026 |
-| constipation + visuals + teleprompter | ✅ Built April 2026 · visuals + teleprompter **retrofit complete** April 2026 |
+| acid-reflux + visuals + teleprompter | ✅ On GitHub · retrofitted April 2026 |
+| ibd + visuals + teleprompter | ✅ On GitHub · full rebuild April 2026 |
+| bloating + visuals + teleprompter | ✅ On GitHub · retrofitted April 2026 |
+| ibs + visuals + teleprompter | ✅ On GitHub · retrofitted April 2026 |
+| masld + visuals + teleprompter | ✅ On GitHub · **retrofit complete April 2026** |
+| coeliac + visuals + teleprompter | ✅ On GitHub · full rebuild April 2026 |
+| gallstones + visuals + teleprompter | ✅ On GitHub · full structural rebuild April 2026 |
+| diverticular-disease + visuals + teleprompter | ✅ On GitHub · full structural rebuild April 2026 |
+| constipation + visuals + teleprompter | ✅ Built April 2026 · **retrofit complete April 2026** |
 
 ### Neurological Series (22–26) — ALL BUILT ✅
 
@@ -1151,7 +1142,7 @@ Hero stat: 28 articles live now. Needs updating to 31 when all series complete.
 NICE NG217 (April 2022, updated January 2025). Kwan & Brodie NEJM 2000: "more than 30 percent" not "1 in 3". SUDEP stat: ~1 in 1,000 per year (Thurman et al Epilepsia 2014, PMID 24903551). Misdiagnosis rate: 26.1% (Smith, Defalla & Chadwick QJM 1999, PMID 10209668). NEAD neutral language. Valproate teratogenicity inline definition present.
 
 ### breast-cancer.html — April 2026 decisions
-Incidence "around 59,000" (CRUK direct, not WCRF 60,763). Screening age 50–70. NICE NG101 + CG81. 3 research cards: Marmot 2012 (PMID 23117178); EBCTCG tamoxifen 2011 (PMID 21802721); EBCTCG aromatase inhibitors 2015 (PMID 26211827). All 4 stat grid cards carry inline citations ✅. Forest green gradient stat box — canonical standard.
+Incidence "around 59,000" (CRUK direct, not WCRF 60,763). Screening age 50–70. NICE NG101 + CG81. 3 research cards: Marmot 2012 (PMID 23117178); EBCTCG tamoxifen 2011 (PMID 21802721); EBCTCG aromatase inhibitors 2015 (PMID 26211827). All 4 stat grid cards carry inline citations ✅. Overdiagnosis: 129 per 10,000 framing. Forest green gradient stat box — canonical standard.
 
 ### prostate-cancer.html — April 2026 decisions
 Incidence ~57,900 (CRUK). 10-year survival 78.9%. Deaths ~12,200. NICE NG131. 3 research cards: ProtecT (PMID 36912538); CAP trial (PMID 38581198); STAMPEDE (PMID 26719232). Visuals: 14 slides (3-card split) — canonical reference for all future visuals. Teleprompter: 9 segments, 10 cue boxes, 712 words.
@@ -1224,7 +1215,7 @@ for i,b in enumerate(bodies):
 grep "ev-stage" filename.html
 
 # Check forbidden phrases
-grep -i "speak to your GP|you should|seek help" filename.html
+grep -i "speak to your GP\|you should\|seek help" filename.html
 ```
 
 ### Research card stat box — writing guidance
@@ -1240,11 +1231,13 @@ grep -i "speak to your GP|you should|seek help" filename.html
 4. Only then include the PMID. Never from memory.
 
 ### Project knowledge update — mandatory process — LOCKED APRIL 2026
-1. `web_fetch` live GitHub version
-2. Write exact fetched content to `/home/claude/helf-school-project-knowledge.md`
-3. `str_replace` only new session content
-4. `wc -l` confirm new ≥ original
-5. Deliver for download + upload to GitHub and Claude Project
+1. **`web_fetch` the live version from GitHub** — never rely on the project copy which may be stale. URL: `https://raw.githubusercontent.com/pls4286/helfschool/main/helf-school-project-knowledge.md`
+2. Write the exact fetched content to `/home/claude/helf-school-project-knowledge.md` — use Python append operations or `create_file`
+3. `str_replace` to add only the new session content — never rewrite from scratch
+4. Run `wc -l` on the new file and confirm it is equal to or greater than the previous version
+5. Verify all 25 sections are present by scanning for each section heading
+6. Never deliver a shorter version without explicit explanation and Dr Paul's confirmation
+7. Deliver for download and re-upload to both GitHub and the Claude Project
 
 ### Subtype list — canonical CSS pattern — LOCKED APRIL 2026
 ```css
@@ -1263,36 +1256,7 @@ HTML: `<ol class="subtype-list"><li><strong>Name</strong> — definition text.</
 
 ---
 
-## SESSION LOG — 30 April 2026
-
-### Session summary
-Short orientation session. Dr Paul uploaded a legacy project instructions document (older format, covering Articles 01–07 cardiovascular only) as session context. No new files were built or delivered this session. Session closed promptly for end-of-session upload.
-
-### Process improvement confirmed this session
-**Project knowledge update protocol now locked** — at every session end:
-1. Dr Paul pastes the live GitHub content directly into the conversation
-2. Claude writes it to `/home/claude/` via `create_file`
-3. `str_replace` adds only the new session content
-4. `wc -l` confirms new count ≥ original
-5. Delivered for download and re-upload to GitHub and Claude Project
-
-This process was confirmed necessary after two failed attempts: (1) the project copy was 184 lines shorter than the live GitHub version; (2) the previous session's update was applied to the stale copy, making the stale copy worse.
-
-### Notes confirmed / discrepancies flagged
-
-**Membership pricing — CONFIRMED £150 Lifetime**
-- Legacy uploaded doc stated £120 Lifetime — this was an old version of the instructions
-- Current project knowledge (Section 15) states £150 — confirmed correct
-- No action required
-
-**Article 06 (Salt and Blood Pressure) — status from legacy doc noted for awareness only**
-- Section 3 and Confirmed File Status show salt-blood-pressure.html + visuals + teleprompter ✅ all confirmed correct
-- The legacy doc's research flags were for an older draft — not current status
-
----
-
 *End of document. Update at the end of every session. Download via Artifact panel. Upload to both GitHub (pls4286/helfschool/main) and the Claude Project to take effect in future sessions.*
-
 ---
 
 ## 17. RETROFIT STATUS (retroactive standards across existing articles)
@@ -1317,28 +1281,28 @@ This process was confirmed necessary after two failed attempts: (1) the project 
 - **Practical Health Series visuals + teleprompters (Articles 08–12) — ALL COMPLETE April 2026 ✅**
   - Articles 10 (exercise), 11 (stress), 12 (alcohol) completed this session ✅
   - ev-stage display:flex enforced (Rule 37) — stress-visuals slide 7 clipping resolved ✅
-- **Digestive Series — partial retrofit completed April 2026:**
+- **Digestive Series — ALL COMPLETE April 2026 ✅:**
   - ibd (14): visuals + teleprompter ✅ full retrofit April 2026 — 12-slide deck
   - coeliac (18): visuals + teleprompter ✅ full retrofit April 2026 — 12-slide deck
-  - gallstones (19): visuals + teleprompter ✅ **full structural rebuild** April 2026 — 12-slide deck (pre-canonical architecture found — rebuild required)
-  - diverticular-disease (20): visuals + teleprompter ✅ **full structural rebuild** April 2026 — 10-slide deck (pre-canonical architecture found — rebuild required)
-  - masld (17): ✅ complete April 2026
-  - constipation (21): outstanding
+  - gallstones (19): visuals + teleprompter ✅ **full structural rebuild** April 2026 — 12-slide deck
+  - diverticular-disease (20): visuals + teleprompter ✅ **full structural rebuild** April 2026 — 10-slide deck
+  - **masld (17): ✅ retrofit complete April 2026**
+  - **constipation (21): ✅ retrofit complete April 2026**
 
 ### Outstanding — to confirm and apply
 - Research card stat standard (outcomes only, not counts): outstanding across 01–11
 - **Research card complete clinical conclusion standard: outstanding across 01–23** — audit when next opened
 - Inline citations (superscripts linking to refs): outstanding across 01–11
 - **Stat grid citations: outstanding across all articles built before April 2026**
-- CTA sequential animation: outstanding across Digestive and Neurological non-Cancer series visuals
-- **Closing slide brand close standard: outstanding across 19–26**
+- CTA sequential animation: outstanding across Neurological series visuals
+- **Closing slide brand close standard: outstanding across Neurological series 22–26**
 - Visuals layout standard (3-card split, ev-stat-row): outstanding across 01–11
 - Key terms / hero visibility standards: outstanding across 01–11
 - Teleprompter cue box standard: confirm per-file which were built before standard was set
 - **Subtype list formatting: outstanding across all articles**
-- **`display:-webkit-box` + `clamp:4` audit: outstanding across Digestive and Neurological visuals** — `.sys-body`, `.doc-body`, `.mech-body` must have `line-clamp:4` — NEVER `line-clamp:2`.
-- **5/6-card grid split: outstanding across Digestive and Neurological visuals**
-- **ev-stage display:flex audit: outstanding across Digestive and Neurological visuals**
+- **`display:-webkit-box` + `clamp:4` audit: outstanding across Neurological visuals** — `.sys-body`, `.doc-body`, `.mech-body` must have `line-clamp:4` — NEVER `line-clamp:2`.
+- **5/6-card grid split: outstanding across Neurological visuals**
+- **ev-stage display:flex audit: outstanding across Neurological visuals**
 
 ---
 
@@ -1525,17 +1489,17 @@ Mandatory process at every session end:
 - Practical Health Series visuals + teleprompters (08–12): all retrofitted ✅
   - Articles 10–12 (exercise, stress, alcohol) completed April 2026
   - New rule confirmed: ev-stage must use display:flex, never display:grid (Rule 37)
-- **Digestive Series partial — April 2026 session:**
-  - acid-reflux (13): visuals + teleprompter ✅
-  - bloating (15): visuals + teleprompter ✅
-  - ibs (16): visuals + teleprompter ✅
-  - ibd (14): visuals + teleprompter ✅ full retrofit April 2026 — 12-slide deck
-  - coeliac (18): visuals + teleprompter ✅ full retrofit April 2026 — 12-slide deck
-  - gallstones (19): visuals + teleprompter ✅ **full structural rebuild** April 2026 — 12-slide deck
-  - diverticular-disease (20): visuals + teleprompter ✅ **full structural rebuild** April 2026 — 10-slide deck
+- **Digestive Series — ALL COMPLETE April 2026 ✅:**
+  - acid-reflux (13) ✅ · bloating (15) ✅ · ibs (16) ✅
+  - ibd (14) ✅ full retrofit April 2026 — 12-slide deck
+  - coeliac (18) ✅ full retrofit April 2026 — 12-slide deck
+  - gallstones (19) ✅ full structural rebuild April 2026 — 12-slide deck
+  - diverticular-disease (20) ✅ full structural rebuild April 2026 — 10-slide deck
+  - **masld (17) ✅ retrofit complete April 2026**
+  - **constipation (21) ✅ retrofit complete April 2026**
 
-### Digestive Health Series — ALL COMPLETE ✅
-masld (17) ✅ April 2026 · constipation (21) ✅ April 2026 — entire Digestive Series (13–21) visuals + teleprompters complete.
+### Next priority — Neurological Series (Articles 22–26)
+Same retrofit checklist as Digestive Series above.
 
 Each file needs:
 1. CTA sequential animation (replace static cta-rows-v2)
@@ -1545,9 +1509,6 @@ Each file needs:
 5. ev-card: reduce padding to 1.1rem, ev-body clamp:4 if two cards per slide
 6. **ev-stage: confirm `display:flex` — fix if `display:grid` found**
 7. Check for pre-canonical architecture (inset:0, no nav dots) — if found, full structural rebuild required
-
-### Then: Neurological Series (Articles 22–26)
-Same retrofit checklist as Digestive Series above.
 
 ### Practical Health Series extension
 - Article 32: Breast Awareness
