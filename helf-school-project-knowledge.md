@@ -1283,6 +1283,27 @@ The comparison or intervention that produced a research card stat — the REASON
 ### ev-stage must use display:flex, never display:grid — LOCKED APRIL 2026
 `stress-visuals.html` used `display:grid;grid-template-rows:1fr 1fr 1.5fr` — the middle card (ea2, IPD-Work) clipped because 1fr row height was insufficient. Flex distributes evenly. Caught by Dr Paul April 2026. Root cause chain: original file used grid on ev-stage → audit missed it → middle card clipped on camera. See Rule 37 in session-start-rules.
 
+### close-logo `.dot` CSS bug — LOCKED APRIL 2026
+Using `<span class="dot">.</span>` inside `.close-logo` applies navigation dot CSS (width:8px; height:8px; border-radius:50%) to the period, making it tiny and invisible. Always use `<span class="cl-dot">.</span>` with `.cl-dot{color:var(--coral)}` in CSS. This bug was present in acid-reflux, bloating, and IBS visuals — fixed in all three April 2026.
+
+### disc footer visibility — LOCKED APRIL 2026
+The `.disc` footer bar must use `color:rgba(255,255,255,.65)` and `font-size:clamp(.65rem,1vw,.80rem)`. Previous files used `.22` opacity (too faint to see) and `.68rem` fixed. Fixed in acid-reflux, bloating, IBS visuals April 2026.
+
+### 5-card grids split to 3+2 — confirmed pattern April 2026
+When a visuals slide has 5 cards, split to 3+2 across two slides. CSS pattern: `.sys-grid-2`, `.doc-grid-2`, `.mech-grid-2` with `grid-template-rows:repeat(2,1fr)`. Used in IBS visuals April 2026 (5 sys-cards, 5 doc-cards, 5 mech-cards — each split 3+2). The 3+3 rule covers 6 cards; this extends to 5 cards with the same principle.
+
+### Drug class descriptions for teleprompter — Digestive Series — April 2026
+Established class descriptions to replace specific drug generics in Digestive Series teleprompters:
+- amitriptyline → "low-dose gut-brain modulator" (IBS/bloating teleprompters)
+- loperamide → "gut-slowing agent" or "bowel-slowing agent" (IBS teleprompter)
+- rifaximin → "gut-targeted antibiotic" (bloating teleprompter)
+- omeprazole/lansoprazole/esomeprazole → "proton pump inhibitor — a PPI" (acid-reflux teleprompter)
+- famotidine → "H2 receptor antagonist — a second type of acid-reducer" (acid-reflux teleprompter)
+These descriptions keep the class mechanism clear for the lay viewer without requiring pronunciation of complex generics.
+
+### IBS teleprompter — non-sequential slide references — April 2026
+The IBS teleprompter was written with mechanisms (old slide 9) discussed in seg-2 BEFORE the doctor segment (old slide 4). In the new 14-slide deck, mechanisms are at slides 11–12 (after research). The cue boxes were updated to reflect new slide numbering; the script content was retained. Dr Paul can advance through intervening slides during each segment as appropriate.
+
 ---
 
 ## 19. OUTSTANDING TASKS (April 2026)
@@ -1293,9 +1314,19 @@ The comparison or intervention that produced a research card stat — the REASON
 - Practical Health Series visuals + teleprompters (08–12): all retrofitted ✅
   - Articles 10–12 (exercise, stress, alcohol) completed April 2026 this session
   - New rule confirmed: ev-stage must use display:flex, never display:grid (Rule 37)
+- **Digestive Series partial — April 2026 session:**
+  - acid-reflux visuals + teleprompter ✅
+  - bloating visuals + teleprompter ✅
+  - ibs visuals + teleprompter ✅
 
-### Next priority — Digestive Health Series (Articles 13–21)
-Retrofit in order: acid-reflux → bloating → ibs → ibd → coeliac → gallstones → diverticular-disease → masld → constipation
+- **Digestive Health Series visuals + teleprompters (Articles 13–21) — IN PROGRESS April 2026**
+  - acid-reflux (13): visuals + teleprompter ✅ retrofitted April 2026
+  - bloating (15): visuals + teleprompter ✅ retrofitted April 2026
+  - ibs (16): visuals + teleprompter ✅ retrofitted April 2026
+  - ibd (14), coeliac (18), gallstones (19), diverticular-disease (20), masld (17), constipation (21): outstanding
+
+### Next priority — Digestive Health Series (Articles 13–21) — CONTINUING
+Retrofit in order: **ibd → coeliac → gallstones → diverticular-disease → masld → constipation** (acid-reflux, bloating, IBS complete ✅)
 
 Each file needs:
 1. CTA sequential animation (replace static cta-rows-v2)
