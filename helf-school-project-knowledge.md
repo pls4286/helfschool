@@ -733,14 +733,10 @@ Before presenting any article, visuals, or teleprompter HTML — verify via web 
   - **coeliac (18): visuals + teleprompter ✅ full rebuild April 2026** — 12-slide deck; 5-card doc-grid split 3+2; series gradient; sequential CTA; brand close
   - **gallstones (19): visuals + teleprompter ✅ full structural rebuild April 2026** — pre-canonical architecture (inset:0, no nav dots, side-by-side ev-cards, quote-card close); rebuilt to canonical standard; 12-slide deck
   - **diverticular-disease (20): visuals + teleprompter ✅ full structural rebuild April 2026** — same pre-canonical architecture as gallstones; rebuilt to canonical standard; 10-slide deck; myth comparison preserved; risk/doc 5→3+2
-  - **masld (17): OUTSTANDING — next priority**
-  - **constipation (21): OUTSTANDING**
+  - **masld (17): ✅ visuals + teleprompter retrofit complete April 2026**
+  - **constipation (21): visuals + teleprompter ✅ retrofit complete April 2026**
 
 ### Outstanding — to confirm and apply
-- **`display:-webkit-box` + `clamp:4` audit: outstanding across masld and constipation visuals**
-- **5/6/4-card grid splits: outstanding across masld and constipation visuals**
-- **ev-stage display:flex: outstanding across masld and constipation visuals**
-- **Closing slide brand close: outstanding across masld and constipation**
 - Research card complete clinical conclusion standard: outstanding across 01–23
 - Stat grid citations: outstanding across all articles built before April 2026
 - Visuals layout standard (3-card split, ev-stat-row): outstanding across 01–11
@@ -898,8 +894,8 @@ Both used: `position:absolute; inset:0`, no nav dots, side-by-side ev-cards (`1f
   - **gallstones (19) ✅ full structural rebuild April 2026**
   - **diverticular-disease (20) ✅ full structural rebuild April 2026**
 
-### Next priority — Digestive Series remaining
-**masld (17) → constipation (21)**
+### Digestive Series — ALL COMPLETE ✅
+masld (17) ✅ April 2026 · constipation (21) ✅ April 2026 — **entire Digestive Series (13–21) visuals + teleprompters now complete.**
 
 Each file needs:
 1. CTA sequential animation
@@ -1109,11 +1105,11 @@ Canonical failure: `stress-visuals.html` slide 7 (April 2026).
 | ibd + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter **full rebuild** April 2026 |
 | bloating + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter retrofitted April 2026 |
 | ibs + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter retrofitted April 2026 |
-| masld + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter retrofit **OUTSTANDING** |
+| masld + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter **retrofit complete** April 2026 |
 | coeliac + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter **full rebuild** April 2026 |
 | gallstones + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter **full structural rebuild** April 2026 |
 | diverticular-disease + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter **full structural rebuild** April 2026 |
-| constipation + visuals + teleprompter | ✅ Built April 2026 · visuals + teleprompter retrofit **OUTSTANDING** |
+| constipation + visuals + teleprompter | ✅ Built April 2026 · visuals + teleprompter **retrofit complete** April 2026 |
 
 ### Neurological Series (22–26) — ALL BUILT ✅
 
@@ -1326,7 +1322,7 @@ This process was confirmed necessary after two failed attempts: (1) the project 
   - coeliac (18): visuals + teleprompter ✅ full retrofit April 2026 — 12-slide deck
   - gallstones (19): visuals + teleprompter ✅ **full structural rebuild** April 2026 — 12-slide deck (pre-canonical architecture found — rebuild required)
   - diverticular-disease (20): visuals + teleprompter ✅ **full structural rebuild** April 2026 — 10-slide deck (pre-canonical architecture found — rebuild required)
-  - masld (17): outstanding
+  - masld (17): ✅ complete April 2026
   - constipation (21): outstanding
 
 ### Outstanding — to confirm and apply
@@ -1538,8 +1534,8 @@ Mandatory process at every session end:
   - gallstones (19): visuals + teleprompter ✅ **full structural rebuild** April 2026 — 12-slide deck
   - diverticular-disease (20): visuals + teleprompter ✅ **full structural rebuild** April 2026 — 10-slide deck
 
-### Next priority — Digestive Health Series (Articles 13–21) — CONTINUING
-Remaining: **masld (17) → constipation (21)**
+### Digestive Health Series — ALL COMPLETE ✅
+masld (17) ✅ April 2026 · constipation (21) ✅ April 2026 — entire Digestive Series (13–21) visuals + teleprompters complete.
 
 Each file needs:
 1. CTA sequential animation (replace static cta-rows-v2)
