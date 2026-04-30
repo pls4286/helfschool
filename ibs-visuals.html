@@ -6,7 +6,7 @@
   <title>IBS — Visuals | helf.school</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--calm:#70b8e8;--digest:#D47C3A}
+    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#d4b84a;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--digest:#D47C3A;--digest-dark:#8A4A1A}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
 
@@ -24,15 +24,14 @@
     #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:2.2vh 1.25rem 3.5vh;overflow:hidden}
 
     /* SLIDES */
-    .slide{display:none;width:100%;max-width:1140px;height:100%;animation:sIn .32s ease}
-    .slide.active{display:flex;flex-direction:column;min-height:0}
-    @keyframes sIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;padding:2.2vh 1.25rem 3.5vh;max-width:1140px;left:50%;transform:translateX(-50%);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .32s ease}
+    .slide.active{opacity:1;visibility:visible;pointer-events:all}
     .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.1vw,1.75rem);font-weight:700;color:#fff;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:2px solid rgba(212,124,58,.35);flex-shrink:0}
     .slide-title span{color:var(--digest)}
 
     /* DOTS */
-    #dots{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:200}
-    .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .25s}
+    #dots{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:200}
+    .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .25s}
     .dot.active{background:var(--digest);transform:scale(1.3)}
 
     /* ─── SLIDE 1: INTRO ─── */
@@ -68,60 +67,65 @@
     .dgbi-note{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:.65rem 1rem;font-size:.88rem;color:rgba(255,255,255,.90);line-height:1.45;flex-shrink:0}
     .dgbi-note strong{color:var(--digest)}
 
-    /* ─── SLIDE 3: WHY IT MATTERS · HARM · RED ─── */
-    .sys-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.55rem;flex:1;min-height:0}
-    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:14px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    /* ─── SLIDES 3–4: WHY IT MATTERS · 3+2 cards ─── */
+    .sys-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(3,1fr);gap:.55rem;flex:1;min-height:0}
+    .sys-grid-2{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(2,1fr);gap:.55rem;flex:1;min-height:0}
+    .sys-card{background:linear-gradient(90deg,rgba(180,45,45,.55),rgba(110,25,25,.42));border:1px solid rgba(220,80,70,.55);border-radius:14px;padding:.75rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
     .sys-card.animate-ready{opacity:0;transform:translateY(14px)}
     .sys-card.vis{opacity:1;transform:translateY(0)}
     .sys-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
     .sys-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
     .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
-    .sys-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .sys-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
     .sys-stat{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
+    .sys-stat.warn{color:var(--warn)}
 
-    /* ─── SLIDE 4: DOCTOR · GREEN ─── */
-    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.55rem;flex:1;min-height:0}
-    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    /* ─── SLIDES 5–6: DOCTOR · 3+2 cards ─── */
+    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(3,1fr);gap:.55rem;flex:1;min-height:0}
+    .doc-grid-2{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(2,1fr);gap:.55rem;flex:1;min-height:0}
+    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.75rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
     .doc-card.animate-ready{opacity:0;transform:translateY(14px)}
     .doc-card.vis{opacity:1;transform:translateY(0)}
+    .doc-card.c-amber{background:linear-gradient(90deg,rgba(170,110,20,.55),rgba(110,68,12,.42));border-color:rgba(232,168,74,.55)}
+    .doc-card.c-green{background:linear-gradient(90deg,rgba(38,105,55,.55),rgba(22,65,33,.42));border-color:rgba(160,212,176,.52)}
     .doc-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
     .doc-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
     .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
-    .doc-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .doc-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
     .doc-body strong{color:#fff;font-weight:700}
     .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
+    .doc-action.warn{color:var(--warn)}
 
-    /* ─── SLIDES 5–8: RESEARCH · EV-CARDS — 2 per slide ─── */
+    /* ─── SLIDES 7–10: RESEARCH · EV-CARDS ─── */
     .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
-    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,124,58,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .45s ease}
+    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,124,58,.32);border-radius:16px;padding:1.1rem 1.4rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .45s ease}
     .ev-card.animate-ready{opacity:0;transform:translateY(14px)}
     .ev-card.vis{opacity:1;transform:translateY(0)}
-    .ev-stat-box{background:rgba(212,124,58,.09);border-radius:14px;padding:1.25rem .85rem;text-align:center;overflow:hidden}
-    .ev-kf-label{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(212,124,58,.8);margin-bottom:.55rem}
-    .ev-stat-row{display:flex;align-items:baseline;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:.45rem}
-    .ev-num{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;line-height:1;letter-spacing:-.02em;flex-shrink:0}
-    .ev-num.good{color:var(--good)}
-    .ev-num.bad{color:var(--bad)}
-    .ev-num.warn{color:var(--warn)}
-    .ev-outcome{font-size:.95rem;font-weight:700;color:#fff;line-height:1.3;text-align:left}
-    .ev-conditions{font-size:.88rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.35}
-    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.4rem;margin-bottom:.25rem;line-height:1.15;letter-spacing:-.01em}
-    .ev-det .ev-journal{font-size:.92rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
-    .ev-det .ev-body{font-size:1rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400}
+    .ev-stat-box{background:linear-gradient(160deg,var(--digest-dark) 0%,var(--digest) 100%);border-radius:14px;padding:.9rem .75rem;text-align:left;overflow:hidden;display:flex;flex-direction:column}
+    .ev-kf-label{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--amber);margin-bottom:.45rem}
+    .ev-num{font-family:'Fraunces',serif;font-size:3.2rem;font-weight:900;color:#fff;line-height:1;letter-spacing:-.02em;margin-bottom:.3rem}
+    .ev-num.lg{font-size:2rem}
+    .ev-num.md{font-size:2.5rem}
+    .ev-outcome{font-size:.95rem;font-weight:700;color:rgba(255,255,255,.95);line-height:1.3;margin-bottom:.35rem}
+    .ev-conditions{font-size:.78rem;font-weight:500;color:rgba(255,255,255,.72);line-height:1.32}
+    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.4rem;margin-bottom:.2rem;line-height:1.15;letter-spacing:-.01em}
+    .ev-det .ev-journal{font-size:.90rem;color:rgba(255,255,255,.80);margin-bottom:.55rem;font-weight:500}
+    .ev-det .ev-body{font-size:.95rem;color:rgba(255,255,255,.90);line-height:1.5;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
     .ev-det .ev-body strong{color:#fff;font-weight:700}
 
-    /* ─── SLIDE 9: MECHANISMS · AMBER ─── */
-    .mech-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.55rem;flex:1;min-height:0}
-    .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:14px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    /* ─── SLIDES 11–12: MECHANISMS · 3+2 cards ─── */
+    .mech-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(3,1fr);gap:.55rem;flex:1;min-height:0}
+    .mech-grid-2{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(2,1fr);gap:.55rem;flex:1;min-height:0}
+    .mech-card{background:linear-gradient(90deg,rgba(170,110,20,.55),rgba(110,68,12,.42));border:1px solid rgba(232,168,74,.55);border-radius:14px;padding:.75rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
     .mech-card.animate-ready{opacity:0;transform:translateY(14px)}
     .mech-card.vis{opacity:1;transform:translateY(0)}
     .mech-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
     .mech-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
     .mech-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
-    .mech-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .mech-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
     .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
 
-    /* ─── SLIDE 10: CTA · cta-wrap-v2 ─── */
+    /* ─── SLIDE 13: CTA ─── */
     .cta-slide{position:relative}
     .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(212,184,74,.18),rgba(212,184,74,.04) 45%,transparent 70%);pointer-events:none;z-index:0}
     .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem;gap:.45rem;min-height:0;overflow:hidden}
@@ -130,34 +134,35 @@
     .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:700;color:#fff;line-height:1.02;letter-spacing:-.028em}
     .cta-headline-v2 span{color:var(--acc)}
     .cta-subline{font-family:'Fraunces',serif;font-size:clamp(.95rem,1.5vw,1.2rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);line-height:1.3}
-    .cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.4rem;min-height:0;overflow:hidden}
-    .cta-row-v2{background:linear-gradient(90deg,rgba(212,184,74,.12),rgba(212,184,74,.04));border-left:4px solid var(--acc);border-radius:0 10px 10px 0;padding:.6rem .95rem;display:grid;grid-template-columns:52px 1fr auto;gap:.9rem;align-items:start;min-height:0;overflow:hidden}
-    .cta-row-icon{font-size:1.7rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .cta-row-mid{display:flex;flex-direction:column;gap:.12rem;min-width:0}
-    .cta-row-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.95rem;line-height:1.15}
-    .cta-row-body-v2{font-size:.82rem;color:rgba(255,255,255,.90);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .cta-row-word-v2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.2rem,2vw,1.7rem);color:var(--acc);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:.6rem}
+    .cta-rows-v2{display:grid;grid-template-rows:repeat(4,1fr);gap:.4rem;min-height:0;overflow:hidden}
+    .cta-item{border-radius:9px;padding:.6rem 1rem;display:flex;align-items:center;gap:.9rem;opacity:0;transform:translateX(-24px);transition:opacity .38s ease,transform .38s ease}
+    .cta-item.visible{opacity:1;transform:translateX(0)}
+    .cta-item.ci-red{background:rgba(180,45,45,.25);border:1px solid rgba(220,80,70,.40)}
+    .cta-item.ci-amber{background:rgba(170,110,20,.25);border:1px solid rgba(232,168,74,.40)}
+    .cta-item.ci-green{background:rgba(38,105,55,.30);border:1px solid rgba(160,212,176,.42)}
+    .cta-item-icon{font-size:1.5rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .cta-item-text{font-size:.93rem;font-weight:600;color:rgba(255,255,255,.95);line-height:1.3}
     .cta-bottom{display:flex;justify-content:center;flex-shrink:0}
     .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.75rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;max-width:900px;width:100%}
     .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.88);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left;font-weight:400}
+    .med-disc-text{font-size:1rem;color:rgba(255,255,255,.90);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left;font-weight:400}
     .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
 
-    /* ─── SLIDE 11: CLOSING ─── */
-    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.6rem;padding:1.5rem}
+    /* ─── SLIDE 14: CLOSING ─── */
+    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100%;text-align:center;gap:1.1rem;padding:1rem 1.5rem}
     .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
-    .close-logo .dot{color:var(--coral)}
+    .cl-dot{color:var(--coral)}
     .close-sub{font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82)}
     .close-headline{font-family:'Fraunces',serif;font-size:clamp(2.4rem,4.8vw,4rem);font-weight:700;color:#fff;max-width:1000px;line-height:1.08;letter-spacing:-.025em}
     .close-headline span{color:var(--digest)}
     .close-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1000px;width:100%}
-    .cst-card{background:rgba(212,124,58,.12);border:1px solid rgba(212,124,58,.4);border-radius:16px;padding:1.3rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.45rem}
-    .cst-num{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3rem);font-weight:700;color:var(--digest);line-height:.95;letter-spacing:-.02em}
-    .cst-lab{font-size:.98rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.32}
-    .cst-src{font-size:.78rem;color:rgba(255,255,255,.72);font-style:italic}
-    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.2rem}
+    .cst-card{background:rgba(212,124,58,.12);border:1px solid rgba(212,124,58,.4);border-radius:16px;padding:1.4rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.5rem}
+    .cst-num{font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;font-size:3rem;line-height:1}
+    .cst-lab{font-size:1rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.3}
+    .cst-src{font-size:.82rem;color:rgba(255,255,255,.70);font-style:italic}
+    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.70);margin-top:.3rem}
 
-    .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:.68rem;color:rgba(255,255,255,.22);z-index:90;white-space:nowrap}
+    .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:clamp(.65rem,1vw,.80rem);color:rgba(255,255,255,.65);z-index:90;white-space:nowrap}
   </style>
 </head>
 <body>
@@ -173,7 +178,7 @@
     <span class="tb-sub">· IBS</span>
   </div>
   <div class="tb-right">
-    <span id="counter" class="slide-counter">1 / 11</span>
+    <span id="counter" class="slide-counter">1 / 14</span>
     <span class="kb-hint">← → navigate</span>
   </div>
 </div>
@@ -200,7 +205,7 @@
         <div class="scale-hero-num">1 in 10</div>
         <div class="scale-hero-text">
           <div class="scale-hero-label">UK adults have IBS — one of the most common conditions in primary care worldwide</div>
-          <div class="scale-hero-sub">Oka et al. · Lancet Gastroenterol Hepatol 2020 · systematic review · Sperber et al. · Gastroenterology 2021 · 73,076 adults · 33 countries</div>
+          <div class="scale-hero-sub">Oka et al. · Lancet Gastroenterol Hepatol 2020 · Sperber et al. · Gastroenterology 2021 · 73,076 adults · 33 countries</div>
         </div>
       </div>
       <div class="subtype-grid">
@@ -229,9 +234,9 @@
     </div>
   </div>
 
-  <!-- SLIDE 3: WHY IT MATTERS · HARM · RED -->
+  <!-- SLIDE 3: WHY IT MATTERS A (s1–s3) -->
   <div class="slide">
-    <div class="slide-title">Why IBS <span>matters</span> — what it does to daily life</div>
+    <div class="slide-title">Why IBS <span>matters</span> — what it does to daily life (1 of 2)</div>
     <div class="sys-grid">
 
       <div class="sys-card animate-ready" id="s1">
@@ -258,8 +263,16 @@
           <div class="sys-title">Mental health</div>
           <div class="sys-body">Anxiety and depression are far more prevalent in IBS — not as causes, but as two-way gut-brain interactions. Each makes the other worse.</div>
         </div>
-        <div class="sys-stat">↔ Two-way</div>
+        <div class="sys-stat warn">↔ Two-way</div>
       </div>
+
+    </div>
+  </div>
+
+  <!-- SLIDE 4: WHY IT MATTERS B (s4–s5) -->
+  <div class="slide">
+    <div class="slide-title">Why IBS <span>matters</span> — what it does to daily life (2 of 2)</div>
+    <div class="sys-grid-2">
 
       <div class="sys-card animate-ready" id="s4">
         <div class="sys-icon">🍽️</div>
@@ -282,21 +295,21 @@
     </div>
   </div>
 
-  <!-- SLIDE 4: WHAT DOCTOR MIGHT DO · GREEN -->
+  <!-- SLIDE 5: DOCTOR A (d1–d3) -->
   <div class="slide">
-    <div class="slide-title">What your <span>doctor might do</span> — stepped approach</div>
+    <div class="slide-title">What your <span>doctor might do</span> — stepped approach (1 of 2)</div>
     <div class="doc-grid">
 
-      <div class="doc-card animate-ready" id="d1">
+      <div class="doc-card c-green animate-ready" id="d1">
         <div class="doc-icon">🧪</div>
         <div class="doc-content">
           <div class="doc-title">Rule out first — bloods &amp; calprotectin</div>
-          <div class="doc-body">FBC + CRP, coeliac serology (common IBS-D mimic), faecal calprotectin (distinguishes IBS from IBD). Normal results support the diagnosis.</div>
+          <div class="doc-body">FBC + CRP, coeliac serology (common IBS-D mimic), faecal calprotectin — distinguishes IBS from IBD (inflammatory bowel disease). Normal results support the diagnosis.</div>
         </div>
         <div class="doc-action">1st step</div>
       </div>
 
-      <div class="doc-card animate-ready" id="d2">
+      <div class="doc-card c-green animate-ready" id="d2">
         <div class="doc-icon">🍽️</div>
         <div class="doc-content">
           <div class="doc-title">Dietitian-led low-FODMAP diet</div>
@@ -305,25 +318,33 @@
         <div class="doc-action">Dietitian</div>
       </div>
 
-      <div class="doc-card animate-ready" id="d3">
+      <div class="doc-card c-amber animate-ready" id="d3">
         <div class="doc-icon">💊</div>
         <div class="doc-content">
           <div class="doc-title">Symptom-specific medications</div>
-          <div class="doc-body">Antispasmodics (mebeverine/Colofac) for cramps · loperamide for IBS-D · laxatives for IBS-C · peppermint oil capsules for bloating.</div>
+          <div class="doc-body">Antispasmodics — mebeverine (Colofac) for cramps · loperamide (Imodium) for IBS-D · laxatives for IBS-C · peppermint oil capsules for bloating.</div>
         </div>
-        <div class="doc-action">Targeted</div>
+        <div class="doc-action warn">Targeted</div>
       </div>
 
-      <div class="doc-card animate-ready" id="d4">
+    </div>
+  </div>
+
+  <!-- SLIDE 6: DOCTOR B (d4–d5) -->
+  <div class="slide">
+    <div class="slide-title">What your <span>doctor might do</span> — stepped approach (2 of 2)</div>
+    <div class="doc-grid-2">
+
+      <div class="doc-card c-amber animate-ready" id="d4">
         <div class="doc-icon">💊</div>
         <div class="doc-content">
-          <div class="doc-title">Low-dose amitriptyline — ATLANTIS 2023</div>
-          <div class="doc-body">463 patients, 55 GP practices — amitriptyline significantly improved IBS vs placebo. <strong>NNT = 6. No specialist referral needed.</strong></div>
+          <div class="doc-title">Low-dose amitriptyline (Tryptizol) — ATLANTIS 2023</div>
+          <div class="doc-body">463 patients, 55 GP practices — amitriptyline (Tryptizol) significantly improved IBS vs placebo. <strong>NNT = 6. No specialist referral needed.</strong></div>
         </div>
-        <div class="doc-action">NNT = 6</div>
+        <div class="doc-action warn">NNT = 6</div>
       </div>
 
-      <div class="doc-card animate-ready" id="d5">
+      <div class="doc-card c-green animate-ready" id="d5">
         <div class="doc-icon">🎯</div>
         <div class="doc-content">
           <div class="doc-title">Gut-directed hypnotherapy &amp; CBT</div>
@@ -335,7 +356,7 @@
     </div>
   </div>
 
-  <!-- SLIDE 5: RESEARCH 1a — scale + ATLANTIS -->
+  <!-- SLIDE 7: RESEARCH — scale + ATLANTIS -->
   <div class="slide">
     <div class="slide-title">Research · <span>scale &amp; treatment</span></div>
     <div class="ev-stage">
@@ -343,39 +364,35 @@
       <div class="ev-card animate-ready" id="e1">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num warn" style="font-size:1.8rem">1 in 10</div>
-            <div class="ev-outcome">UK adults — underdiagnosed globally</div>
-          </div>
+          <div class="ev-num lg">1 in 10</div>
+          <div class="ev-outcome">IBS globally / significantly underdiagnosed &amp; undertreated</div>
           <div class="ev-conditions">Sperber et al. · 73,076 adults · 33 countries · 2021</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Sperber et al. — global epidemiology of IBS</div>
           <div class="ev-journal">Gastroenterology · 2021 · 73,076 adults · 33 countries</div>
-          <div class="ev-body">IBS is <strong>significantly underdiagnosed and undertreated globally</strong>. Many patients receive "everything looks normal" without explanation, management plan, or referral pathway ⚑.</div>
+          <div class="ev-body">IBS is <strong>significantly underdiagnosed and undertreated globally</strong>. Many patients receive "everything looks normal" without explanation, management plan, or referral pathway.</div>
         </div>
       </div>
 
       <div class="ev-card animate-ready" id="e2">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good" style="font-size:2rem">NNT = 6</div>
-            <div class="ev-outcome">low-dose amitriptyline · IBS</div>
-          </div>
-          <div class="ev-conditions">463 patients · 55 GP practices · 6 months</div>
+          <div class="ev-num md">NNT = 6</div>
+          <div class="ev-outcome">IBS response / amitriptyline vs placebo at 6 months</div>
+          <div class="ev-conditions">463 patients · 55 GP practices · ATLANTIS · Lancet 2023</div>
         </div>
         <div class="ev-det">
-          <div class="ev-trial">ATLANTIS trial — amitriptyline for IBS</div>
+          <div class="ev-trial">ATLANTIS — amitriptyline (Tryptizol) for IBS</div>
           <div class="ev-journal">Ford et al. · The Lancet · 2023 · 463 patients · 55 GP practices</div>
-          <div class="ev-body">Amitriptyline significantly improved IBS Symptom Severity Scores vs placebo over 6 months. <strong>NNT = 6 — no specialist referral required.</strong> A clear signal for primary care to offer this when first-line fails ⚑.</div>
+          <div class="ev-body">Low-dose amitriptyline improved IBS symptoms vs placebo at 6 months. <strong>NNT = 6 — no specialist referral needed.</strong> A clear indication for primary care use when first-line fails.</div>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- SLIDE 6: RESEARCH 1b — FODMAP + hypnotherapy -->
+  <!-- SLIDE 8: RESEARCH — dietary + psychological -->
   <div class="slide">
     <div class="slide-title">Research · <span>dietary &amp; psychological treatments</span></div>
     <div class="ev-stage">
@@ -383,39 +400,35 @@
       <div class="ev-card animate-ready" id="e3">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good">50–70%</div>
-            <div class="ev-outcome">symptom improvement</div>
-          </div>
-          <div class="ev-conditions">low-FODMAP diet · IBS · Monash University</div>
+          <div class="ev-num">50–70%</div>
+          <div class="ev-outcome">IBS symptom relief / low-FODMAP vs normal diet</div>
+          <div class="ev-conditions">Halmos et al. · crossover RCT · Monash University 2014</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Halmos et al. — low-FODMAP crossover RCT</div>
           <div class="ev-journal">Gastroenterology · 2014 · Monash University · 30 IBS patients</div>
-          <div class="ev-body">Low-FODMAP significantly reduced IBS symptoms compared with normal diet. <strong>The evidence-based first-line dietary approach for IBS</strong> — but requires dietitian guidance for safe implementation ⚑.</div>
+          <div class="ev-body">Low-FODMAP significantly reduced IBS symptoms compared with normal diet. <strong>The evidence-based first-line dietary approach for IBS</strong> — but requires dietitian guidance for safe implementation.</div>
         </div>
       </div>
 
       <div class="ev-card animate-ready" id="e4">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good" style="font-size:1.9rem">≈ Equal</div>
-            <div class="ev-outcome">hypnotherapy vs low-FODMAP</div>
-          </div>
-          <div class="ev-conditions">at 6 months — plus added mental health benefit</div>
+          <div class="ev-num lg">≈ Equal</div>
+          <div class="ev-outcome">at 6 months / gut hypnotherapy vs low-FODMAP</div>
+          <div class="ev-conditions">plus added mental health benefit · Peters et al. 2016</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Peters et al. — gut-directed hypnotherapy vs low-FODMAP</div>
-          <div class="ev-journal">American Journal of Gastroenterology · 2016 · 74 patients · Monash University</div>
-          <div class="ev-body">Hypnotherapy and low-FODMAP produced <strong>comparable, durable improvement</strong> at 6 months. Hypnotherapy additionally improved anxiety and quality of life — an important added benefit ⚑.</div>
+          <div class="ev-journal">Am J Gastroenterology · 2016 · 74 patients · Monash University</div>
+          <div class="ev-body">Hypnotherapy and low-FODMAP produced <strong>comparable, durable improvement</strong> at 6 months. Hypnotherapy additionally improved anxiety and quality of life — an important added benefit.</div>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- SLIDE 7: RESEARCH 2a — Rome IV + PI-IBS -->
+  <!-- SLIDE 9: RESEARCH — diagnosis + subtypes -->
   <div class="slide">
     <div class="slide-title">Research · <span>diagnosis &amp; subtypes</span></div>
     <div class="ev-stage">
@@ -423,39 +436,35 @@
       <div class="ev-card animate-ready" id="e5">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num warn" style="font-size:1.9rem">Rome IV</div>
-            <div class="ev-outcome">current diagnostic standard</div>
-          </div>
-          <div class="ev-conditions">recurrent pain ≥1 day/week for 3 months + stool changes</div>
+          <div class="ev-num lg">Rome IV</div>
+          <div class="ev-outcome">diagnostic criteria / international standard for IBS</div>
+          <div class="ev-conditions">pain ≥1 day/week for 3 months + stool changes · Mearin et al. 2016</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Mearin et al. — Rome IV criteria for IBS</div>
           <div class="ev-journal">Gastroenterology · 2016 · 150(6):1393–1407</div>
-          <div class="ev-body">Rome IV requires <strong>recurrent abdominal pain ≥1 day/week for 3 months</strong>, plus ≥2 of: change in stool frequency, stool form, or defecation-related pain. The international standard underpinning all modern IBS diagnosis ⚑.</div>
+          <div class="ev-body">Rome IV: abdominal pain ≥1 day/week for 3 months, plus stool frequency change, stool form change, or defecation-related pain. <strong>The international diagnostic standard for IBS.</strong></div>
         </div>
       </div>
 
       <div class="ev-card animate-ready" id="e6">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num bad">~10%</div>
-            <div class="ev-outcome">IBS follows a gut infection</div>
-          </div>
-          <div class="ev-conditions">post-infectious IBS — a distinct recognised subtype</div>
+          <div class="ev-num">~10%</div>
+          <div class="ev-outcome">IBS cases follow a gut infection / post-infectious subtype</div>
+          <div class="ev-conditions">PI-IBS · distinct recognised subtype · Rodríguez et al. 2020</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Post-infectious IBS — systematic review</div>
-          <div class="ev-journal">Rodríguez et al. · Neurogastroenterology &amp; Motility · 2020</div>
-          <div class="ev-body">Approximately <strong>10% of IBS cases follow an acute gut infection</strong> — the infection resolves but the gut does not return to normal. Post-infectious IBS (PI-IBS) has altered gut microbiome and permeability ⚑.</div>
+          <div class="ev-journal">Rodríguez et al. · Neurogastroenterol Motility · 2020</div>
+          <div class="ev-body">Around <strong>10% of IBS follows an acute gut infection</strong> — the infection resolves but the gut does not recover fully. Recognised as post-infectious IBS, with distinct microbiome changes.</div>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- SLIDE 8: RESEARCH 2b — misdiagnosis + gut-brain axis -->
+  <!-- SLIDE 10: RESEARCH — misdiagnosis + gut-brain -->
   <div class="slide">
     <div class="slide-title">Research · <span>misdiagnosis &amp; gut-brain axis</span></div>
     <div class="ev-stage">
@@ -463,41 +472,37 @@
       <div class="ev-card animate-ready" id="e7">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num bad" style="font-size:1.8rem">1 in 4</div>
-            <div class="ev-outcome">IBS patients previously misdiagnosed</div>
-          </div>
-          <div class="ev-conditions">calprotectin reliably distinguishes IBS from IBD</div>
+          <div class="ev-num lg">1 in 4</div>
+          <div class="ev-outcome">IBS patients previously misdiagnosed / calprotectin distinguishes from IBD</div>
+          <div class="ev-conditions">NICE CG61 · reviewed 2023</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">NICE CG61 · IBS diagnosis evidence</div>
           <div class="ev-journal">NICE Clinical Guideline CG61 · reviewed 2023</div>
-          <div class="ev-body">Up to <strong>1 in 4 people later diagnosed with IBS were previously labelled with another condition</strong>. Faecal calprotectin reliably distinguishes IBS from IBD (inflammatory bowel disease) in primary care ⚑.</div>
+          <div class="ev-body">Up to <strong>1 in 4 people later diagnosed with IBS were previously labelled with another condition</strong>. Faecal calprotectin reliably distinguishes IBS from IBD in primary care.</div>
         </div>
       </div>
 
       <div class="ev-card animate-ready" id="e8">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num warn" style="font-size:2rem">↔ Two-way</div>
-            <div class="ev-outcome">gut-brain axis · IBS &amp; mental health</div>
-          </div>
-          <div class="ev-conditions">vagus nerve, microbiome, enteric nervous system</div>
+          <div class="ev-num lg">↔ Two-way</div>
+          <div class="ev-outcome">gut-brain interaction / anxiety worsens IBS, IBS worsens anxiety</div>
+          <div class="ev-conditions">vagus nerve · microbiome · enteric nervous system · Mayer 2023</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Mayer et al. — the gut-brain axis in IBS</div>
           <div class="ev-journal">Nature Reviews Gastroenterology &amp; Hepatology · 2023</div>
-          <div class="ev-body">IBS is driven by <strong>bidirectional gut-brain communication</strong> — anxiety worsens gut symptoms; gut symptoms worsen anxiety. Explains why psychological therapies produce physical gut improvement ⚑.</div>
+          <div class="ev-body">IBS is driven by <strong>bidirectional gut-brain communication</strong> — anxiety worsens gut symptoms; gut symptoms worsen anxiety. Explains why psychological therapies produce physical gut improvement.</div>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- SLIDE 9: MECHANISMS · AMBER -->
+  <!-- SLIDE 11: MECHANISMS A (m1–m3) -->
   <div class="slide">
-    <div class="slide-title">How IBS <span>actually works</span> — the gut-brain axis</div>
+    <div class="slide-title">How IBS <span>actually works</span> — gut-brain axis (1 of 2)</div>
     <div class="mech-grid">
 
       <div class="mech-card animate-ready" id="m1">
@@ -522,10 +527,18 @@
         <div class="mech-icon">🦠</div>
         <div class="mech-content">
           <div class="mech-title">Altered gut microbiome</div>
-          <div class="mech-body">Gut bacteria composition differs in many people with IBS — particularly after PI-IBS. Drives fermentation patterns and symptom severity.</div>
+          <div class="mech-body">Gut bacteria composition differs in many people with IBS — particularly after post-infectious IBS. Drives fermentation patterns and symptom severity.</div>
         </div>
         <div class="mech-outcome">→ Fermentation</div>
       </div>
+
+    </div>
+  </div>
+
+  <!-- SLIDE 12: MECHANISMS B (m4–m5) -->
+  <div class="slide">
+    <div class="slide-title">How IBS <span>actually works</span> — gut-brain axis (2 of 2)</div>
+    <div class="mech-grid-2">
 
       <div class="mech-card animate-ready" id="m4">
         <div class="mech-icon">🧠</div>
@@ -548,7 +561,7 @@
     </div>
   </div>
 
-  <!-- SLIDE 10: CTA · cta-wrap-v2 HORIZONTAL ROWS -->
+  <!-- SLIDE 13: CTA · sequential animation -->
   <div class="slide cta-slide">
     <div class="cta-glow"></div>
     <div class="cta-wrap-v2">
@@ -558,37 +571,21 @@
         <div class="cta-subline">A diagnosis, an explanation, and a structured plan — the evidence-based standard of care for IBS.</div>
       </div>
       <div class="cta-rows-v2">
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">🧪</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Calprotectin — rules out IBD</div>
-            <div class="cta-row-body-v2">Faecal calprotectin reliably distinguishes IBS from inflammatory bowel disease — an essential first investigation before management</div>
-          </div>
-          <div class="cta-row-word-v2">1st step</div>
+        <div class="cta-item ci-green">
+          <div class="cta-item-icon">🧪</div>
+          <div class="cta-item-text">Faecal calprotectin reliably distinguishes IBS from IBD — an essential first step before any management plan is started</div>
         </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">🍽️</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Low-FODMAP diet — dietitian-led</div>
-            <div class="cta-row-body-v2">~50–70% symptom improvement with proper dietitian guidance — requires structured 4–6 week trial with systematic reintroduction</div>
-          </div>
-          <div class="cta-row-word-v2">50–70%</div>
+        <div class="cta-item ci-green">
+          <div class="cta-item-icon">🍽️</div>
+          <div class="cta-item-text">Low-FODMAP with dietitian guidance produces ~50–70% symptom improvement — requires structured 4–6 week trial with systematic reintroduction</div>
         </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">🧠</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Gut-directed hypnotherapy or CBT</div>
-            <div class="cta-row-body-v2">Trial evidence comparable to low-FODMAP — additionally improves anxiety and quality of life. NHS referral pathways exist</div>
-          </div>
-          <div class="cta-row-word-v2">Evidence-based</div>
+        <div class="cta-item ci-green">
+          <div class="cta-item-icon">🧠</div>
+          <div class="cta-item-text">Gut-directed hypnotherapy and CBT have trial evidence comparable to low-FODMAP — and additionally improve anxiety and quality of life</div>
         </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">💊</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Low-dose amitriptyline — ATLANTIS 2023</div>
-            <div class="cta-row-body-v2">NNT=6 in a Lancet trial across 55 GP practices — no specialist referral required if first-line treatments haven't worked</div>
-          </div>
-          <div class="cta-row-word-v2">NNT = 6</div>
+        <div class="cta-item ci-amber">
+          <div class="cta-item-icon">💊</div>
+          <div class="cta-item-text">Low-dose gut-brain modulator therapy — NNT = 6 in the ATLANTIS Lancet trial across 55 GP practices — no specialist referral required</div>
         </div>
       </div>
       <div class="cta-bottom">
@@ -600,27 +597,27 @@
     </div>
   </div>
 
-  <!-- SLIDE 11: CLOSING -->
+  <!-- SLIDE 14: CLOSING — brand close -->
   <div class="slide">
     <div class="close-wrap">
-      <div class="close-logo">helf<span class="dot">.</span>school</div>
+      <div class="close-logo">helf<span class="cl-dot">.</span>school</div>
       <div class="close-sub">Health Education</div>
       <div class="close-headline">Real disorder. <span>Real treatments.</span></div>
       <div class="close-stats">
         <div class="cst-card">
-          <div class="cst-num">1 in 10</div>
-          <div class="cst-lab">UK adults with IBS</div>
-          <div class="cst-src">Oka · Lancet GH 2020</div>
+          <div class="cst-num">📚</div>
+          <div class="cst-lab">31 articles live across 5 series — cardiovascular, practical health, digestive, neurological and cancer</div>
+          <div class="cst-src">helf.school · April 2026</div>
         </div>
         <div class="cst-card">
-          <div class="cst-num">NNT = 6</div>
-          <div class="cst-lab">low-dose amitriptyline · no referral needed</div>
-          <div class="cst-src">ATLANTIS · Lancet 2023</div>
+          <div class="cst-num">🩺</div>
+          <div class="cst-lab">Written by Dr Paul — retired NHS GP with over 20 years of experience in UK general practice</div>
+          <div class="cst-src">Retired 2019 · Tier One ill health</div>
         </div>
         <div class="cst-card">
-          <div class="cst-num">50–70%</div>
-          <div class="cst-lab">symptom improvement · low-FODMAP</div>
-          <div class="cst-src">Halmos · Gastro 2014</div>
+          <div class="cst-num">🔓</div>
+          <div class="cst-lab">Start for free — Explorer tier requires no payment. Every claim cited to its primary source.</div>
+          <div class="cst-src">helf.school/conditions</div>
         </div>
       </div>
       <div class="med-disclaimer">
@@ -633,7 +630,7 @@
 
 </div><!-- /stage -->
 
-<!-- DOTS -->
+<!-- DOTS — 14 slides -->
 <div id="dots">
   <div class="dot active" onclick="goTo(0)"></div>
   <div class="dot" onclick="goTo(1)"></div>
@@ -646,60 +643,64 @@
   <div class="dot" onclick="goTo(8)"></div>
   <div class="dot" onclick="goTo(9)"></div>
   <div class="dot" onclick="goTo(10)"></div>
+  <div class="dot" onclick="goTo(11)"></div>
+  <div class="dot" onclick="goTo(12)"></div>
+  <div class="dot" onclick="goTo(13)"></div>
 </div>
 
 <div class="disc">Health education — not medical advice. helf.school</div>
 
 <script>
-  const slides = document.querySelectorAll('.slide');
-  const dots   = document.querySelectorAll('.dot');
-  let cur = 0;
+  const slides=document.querySelectorAll('.slide'),dots=document.querySelectorAll('.dot');
+  let cur=0;
+
+  function animateCTA(){
+    const items=document.querySelectorAll('.cta-rows-v2 .cta-item');
+    items.forEach(r=>r.classList.remove('visible'));
+    items.forEach((item,i)=>{setTimeout(()=>item.classList.add('visible'),350+i*620)});
+  }
 
   function show(n){
     slides[cur].classList.remove('active');
     dots[cur].classList.remove('active');
-    cur = (n + slides.length) % slides.length;
+    cur=(n+slides.length)%slides.length;
     slides[cur].classList.add('active');
     dots[cur].classList.add('active');
-    document.getElementById('counter').textContent = (cur+1)+' / '+slides.length;
-    triggerSlide(cur);
+    document.getElementById('counter').textContent=(cur+1)+' / '+slides.length;
+    if(cur===12){animateCTA();}else{triggerSlide(cur);}
   }
-  function goTo(n){ show(n); }
+  function goTo(n){show(n);}
 
-  document.addEventListener('keydown', e=>{
-    if(e.key==='ArrowRight'||e.key==='ArrowDown') show(cur+1);
-    if(e.key==='ArrowLeft'||e.key==='ArrowUp') show(cur-1);
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowDown')show(cur+1);
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp')show(cur-1);
   });
 
-  let tx=0, ty=0;
-  document.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; ty=e.touches[0].clientY; });
-  document.addEventListener('touchend', e=>{
-    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
-    if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>40){ dx<0?show(cur+1):show(cur-1); }
-  });
+  let tx=0;
+  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+  document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40){dx<0?show(cur+1):show(cur-1)}},{passive:true});
 
   function triggerSlide(n){
-    if(n===2) animateGroup(['s1','s2','s3','s4','s5'], 140);
-    if(n===3) animateGroup(['d1','d2','d3','d4','d5'], 140);
-    if(n===4) animateGroup(['e1','e2'], 260);
-    if(n===5) animateGroup(['e3','e4'], 260);
-    if(n===6) animateGroup(['e5','e6'], 260);
-    if(n===7) animateGroup(['e7','e8'], 260);
-    if(n===8) animateGroup(['m1','m2','m3','m4','m5'], 140);
+    if(n===2)animateGroup(['s1','s2','s3'],140);
+    if(n===3)animateGroup(['s4','s5'],140);
+    if(n===4)animateGroup(['d1','d2','d3'],140);
+    if(n===5)animateGroup(['d4','d5'],140);
+    if(n===6)animateGroup(['e1','e2'],260);
+    if(n===7)animateGroup(['e3','e4'],260);
+    if(n===8)animateGroup(['e5','e6'],260);
+    if(n===9)animateGroup(['e7','e8'],260);
+    if(n===10)animateGroup(['m1','m2','m3'],140);
+    if(n===11)animateGroup(['m4','m5'],140);
   }
-  function animateGroup(ids, step){
-    ids.forEach((id,i)=>{
-      setTimeout(()=>{ const el=document.getElementById(id); if(el) el.classList.add('vis'); }, 180 + i*step);
-    });
+  function animateGroup(ids,step){
+    ids.forEach((id,i)=>{setTimeout(()=>{const el=document.getElementById(id);if(el)el.classList.add('vis')},180+i*step)});
   }
 
   slides.forEach(s=>{
-    const obs = new MutationObserver(()=>{
-      if(!s.classList.contains('active')){
-        s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'));
-      }
+    const obs=new MutationObserver(()=>{
+      if(!s.classList.contains('active')){s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'))}
     });
-    obs.observe(s, {attributes:true});
+    obs.observe(s,{attributes:true});
   });
 
   triggerSlide(0);
