@@ -6,135 +6,151 @@
   <title>Constipation — Visuals | helf.school</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#D47C3A;--acc2:#A85E22;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--calm:#70b8e8}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
-    #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:var(--navy);border-bottom:2px solid var(--acc2);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
-    .tb-logo{display:flex;align-items:center;gap:.5rem}
-    .tb-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff}
-    .tb-dot{color:var(--coral)}
-    .tb-sub{font-size:.75rem;color:rgba(255,255,255,.78);margin-left:.25rem;font-weight:500}
-    .tb-right{display:flex;align-items:center;gap:1.2rem}
-    .slide-counter{font-size:.85rem;font-weight:700;color:rgba(255,255,255,.90)}
-    .kb-hint{font-size:.75rem;color:rgba(255,255,255,.65)}
-    #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:2.2vh 1.25rem 3.5vh;overflow:hidden}
-    .slide{display:none;width:100%;max-width:1140px;height:100%;animation:sIn .32s ease}
-    .slide.active{display:flex;flex-direction:column;min-height:0}
-    @keyframes sIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-    .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.1vw,1.75rem);font-weight:700;color:#fff;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:2px solid rgba(212,124,58,.3);flex-shrink:0}
-    .slide-title span{color:var(--acc)}
-    #dots{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:200}
-    .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .25s}
-    .dot.active{background:var(--acc);transform:scale(1.3)}
+    :root {
+      --navy:#1B2A4A; --coral:#E8634A; --sage:#7A9E87; --amber:#E8A84A;
+      --series:#D47C3A; --series-dark:#8A4A1A;
+      --bg:#1a0e08;
+      --good:#7ecc99; --warn:#e8a84a; --bad:#e87a5a;
+    }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html,body { height:100%; background:var(--bg); overflow:hidden; font-family:'DM Sans',sans-serif; font-weight:400; }
 
-    /* INTRO */
-    .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.3rem}
-    .intro-badge{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,124,58,.12);border:1px solid rgba(212,124,58,.3);padding:.3rem .9rem;border-radius:100px}
-    .intro-icon{font-size:4rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .intro-title{font-family:'Fraunces',serif;font-size:clamp(2.6rem,5.5vw,4.4rem);font-weight:700;color:#fff;line-height:1.05;max-width:960px;letter-spacing:-.02em}
-    .intro-title span{color:var(--acc)}
-    .intro-sub{font-size:1.1rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;max-width:680px;line-height:1.5;font-weight:400}
-    .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+    /* TOPBAR */
+    #topbar { position:fixed; top:0; left:0; right:0; height:48px; z-index:100; background:var(--navy); border-bottom:2px solid var(--series); display:flex; align-items:center; justify-content:space-between; padding:0 1.25rem; }
+    .tb-logo { display:flex; align-items:center; gap:.5rem; }
+    .tb-title { font-family:'Fraunces',serif; font-size:1rem; font-weight:700; color:#fff; }
+    .tb-dot { color:var(--coral); }
+    .tb-sub { font-size:.75rem; color:rgba(255,255,255,.78); margin-left:.25rem; font-weight:500; }
+    .tb-right { display:flex; align-items:center; gap:1.2rem; }
+    .slide-counter { font-size:.88rem; font-weight:700; color:rgba(255,255,255,.90); }
+    .kb-hint { font-size:.75rem; color:rgba(255,255,255,.65); }
 
-    /* BIG PICTURE */
-    .big-stage{display:flex;flex-direction:column;flex:1;gap:1.2rem;min-height:0;align-items:center;justify-content:center}
-    .big-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;width:100%;max-width:960px}
-    .big-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1.5px solid rgba(212,124,58,.45);border-radius:20px;padding:1.8rem 1.6rem;text-align:center;box-shadow:0 0 40px rgba(212,124,58,.08)}
-    .big-num{font-family:'Fraunces',serif;font-size:clamp(4rem,8.5vw,6.2rem);font-weight:700;color:var(--acc);line-height:.9;letter-spacing:-.03em;margin-bottom:.3rem}
-    .big-lbl{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:.45rem}
-    .big-body{font-size:.95rem;color:rgba(255,255,255,.88);line-height:1.45;font-weight:400}
-    .big-src{font-size:.78rem;color:rgba(255,255,255,.70);font-style:italic;margin-top:.55rem}
-    .big-strip{display:flex;align-items:center;justify-content:center;gap:.9rem;padding:.85rem 1.5rem;background:rgba(126,204,153,.12);border:1px solid rgba(126,204,153,.4);border-radius:12px;max-width:920px}
-    .big-strip-icon{font-size:1.4rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .big-strip-text{font-size:1rem;color:#fff;font-weight:500;font-family:'Fraunces',serif;line-height:1.4}
-    .big-strip-text strong{color:var(--good)}
+    /* STAGE + SLIDES — canonical architecture */
+    #stage { position:fixed; top:48px; left:0; right:0; bottom:32px; overflow:hidden; }
+    .slide { position:absolute; top:0; left:0; width:100%; height:100%; display:flex; flex-direction:column; padding:1rem 1.5rem .8rem; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .32s ease; }
+    .slide.active { opacity:1; visibility:visible; pointer-events:all; }
+    .slide-header { flex-shrink:0; margin-bottom:.42rem; }
+    .slide-title { font-family:'Fraunces',serif; font-size:1.72rem; font-weight:700; color:#fff; padding-bottom:.45rem; border-bottom:2px solid rgba(212,124,58,.35); line-height:1.1; }
+    .slide-title span { color:var(--series); }
+    .slide-tag { font-size:.72rem; font-weight:700; letter-spacing:.11em; text-transform:uppercase; color:rgba(255,255,255,.55); margin-top:.18rem; }
 
-    /* 6-ROW CARDS — CAUSES */
-    .sys-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
-    .sys-card.animate-ready{opacity:0;transform:translateY(14px)}
-    .sys-card.vis{opacity:1;transform:translateY(0)}
-    .sys-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .sys-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
-    .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
-    .sys-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .sys-stat{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
+    /* DOTS */
+    #dots { position:fixed; bottom:0; left:50%; transform:translateX(-50%); height:32px; display:flex; align-items:center; gap:7px; z-index:200; }
+    .nav-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.25); cursor:pointer; transition:all .25s; }
+    .nav-dot.active { background:var(--series); transform:scale(1.3); }
 
-    /* 6-ROW CARDS — WHAT HELPS */
-    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
-    .doc-card.animate-ready{opacity:0;transform:translateY(14px)}
-    .doc-card.vis{opacity:1;transform:translateY(0)}
-    .doc-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .doc-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
-    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
-    .doc-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
+    /* ═══ SLIDE 1: INTRO ═══ */
+    .intro-wrap { display:flex; flex-direction:column; align-items:center; justify-content:center; flex:1; min-height:0; text-align:center; gap:1.2rem; }
+    .intro-badge { font-size:.74rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--series); background:rgba(212,124,58,.14); border:1px solid rgba(212,124,58,.35); padding:.3rem .9rem; border-radius:100px; }
+    .intro-icon { font-size:3.8rem; line-height:1; }
+    .intro-title { font-family:'Fraunces',serif; font-size:clamp(2.6rem,5.5vw,4.4rem); font-weight:700; color:#fff; line-height:1.05; max-width:960px; letter-spacing:-.02em; }
+    .intro-title span { color:var(--series); }
+    .intro-sub { font-size:1.1rem; color:rgba(255,255,255,.85); font-style:italic; font-family:'Fraunces',serif; max-width:680px; line-height:1.5; font-weight:400; }
+    .intro-tagline { font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.70); }
 
-    /* EVIDENCE CARDS */
-    .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
-    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,124,58,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .45s ease}
-    .ev-card.animate-ready{opacity:0;transform:translateY(14px)}
-    .ev-card.vis{opacity:1;transform:translateY(0)}
-    .ev-stat-box{background:rgba(212,124,58,.09);border-radius:14px;padding:.9rem .75rem;text-align:center;overflow:hidden}
-    .ev-kf-label{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(212,124,58,.7);margin-bottom:.35rem}
-    .ev-stat-row{display:flex;align-items:baseline;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:.3rem}
-    .ev-num{font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:var(--acc);line-height:1;letter-spacing:-.02em;flex-shrink:0}
-    .ev-num.bad{color:var(--bad)}
-    .ev-num.good{color:var(--good)}
-    .ev-outcome{font-size:1rem;font-weight:700;color:#fff;line-height:1.3;text-align:left}
-    .ev-conditions{font-size:.78rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.32}
-    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;margin-bottom:.25rem;line-height:1.15;letter-spacing:-.01em}
-    .ev-det .ev-journal{font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
-    .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    /* ═══ SLIDE 2: BIG PICTURE ═══ */
+    .big-stage { display:flex; flex-direction:column; flex:1; min-height:0; gap:1.1rem; align-items:center; justify-content:center; }
+    .big-row { display:grid; grid-template-columns:1fr 1fr; gap:1.1rem; width:100%; max-width:980px; }
+    .big-card { background:linear-gradient(180deg,#1f2e47,#162238); border:1.5px solid rgba(212,124,58,.45); border-radius:20px; padding:1.6rem 1.4rem; text-align:center; }
+    .big-num { font-family:'Fraunces',serif; font-size:clamp(3.8rem,8vw,6rem); font-weight:700; color:var(--series); line-height:.9; letter-spacing:-.03em; margin-bottom:.3rem; }
+    .big-lbl { font-family:'Fraunces',serif; font-size:1.25rem; font-weight:700; color:#fff; line-height:1.2; margin-bottom:.4rem; }
+    .big-body { font-size:.95rem; color:rgba(255,255,255,.88); line-height:1.45; font-weight:400; }
+    .big-src { font-size:.78rem; color:rgba(255,255,255,.65); font-style:italic; margin-top:.5rem; }
+    .big-strip { display:flex; align-items:center; justify-content:center; gap:.9rem; padding:.85rem 1.5rem; background:rgba(126,204,153,.12); border:1px solid rgba(126,204,153,.40); border-radius:12px; max-width:980px; width:100%; }
+    .big-strip-icon { font-size:1.4rem; }
+    .big-strip-text { font-size:1rem; color:#fff; font-weight:500; font-family:'Fraunces',serif; line-height:1.4; }
+    .big-strip-text strong { color:var(--good); }
 
-    /* 6-ROW MECH CARDS */
-    .mech-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(212,124,58,.32);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
-    .mech-card.animate-ready{opacity:0;transform:translateY(14px)}
-    .mech-card.vis{opacity:1;transform:translateY(0)}
-    .mech-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .mech-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
-    .mech-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
-    .mech-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.7vw,1.55rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
+    /* ═══ THREE-GRID (3 cards per slide) ═══ */
+    .three-grid { display:grid; grid-template-columns:1fr; grid-template-rows:repeat(3,1fr); gap:.48rem; flex:1; min-height:0; overflow:hidden; }
 
-    /* CTA SLIDE */
-    .cta-slide{position:relative}
-    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(212,124,58,.18),rgba(212,124,58,.04) 45%,transparent 70%);pointer-events:none;z-index:0}
-    .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem;gap:.45rem;min-height:0;overflow:hidden}
-    .cta-top{display:flex;flex-direction:column;align-items:center;gap:.3rem;text-align:center}
-    .cta-badge-v2{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,124,58,.18);border:1.5px solid rgba(212,124,58,.55);padding:.3rem .95rem;border-radius:100px}
-    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:700;color:#fff;line-height:1.02;letter-spacing:-.028em}
-    .cta-headline-v2 span{color:var(--acc)}
-    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(.95rem,1.5vw,1.2rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);line-height:1.3}
-    .cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.4rem;min-height:0;overflow:hidden}
-    .cta-row-v2{background:linear-gradient(90deg,rgba(212,124,58,.12),rgba(212,124,58,.04));border-left:4px solid var(--acc);border-radius:0 10px 10px 0;padding:.6rem .95rem;display:grid;grid-template-columns:52px 1fr auto;gap:.9rem;align-items:start;min-height:0;overflow:hidden}
-    .cta-row-icon{font-size:1.7rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .cta-row-mid{display:flex;flex-direction:column;gap:.12rem;min-width:0}
-    .cta-row-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.95rem;line-height:1.15}
-    .cta-row-body-v2{font-size:.82rem;color:rgba(255,255,255,.90);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .cta-row-word-v2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.2rem,2vw,1.7rem);color:var(--acc);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:.6rem}
-    .cta-bottom{display:flex;justify-content:center;flex-shrink:0}
-    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.75rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;max-width:900px;width:100%}
-    .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.88);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left;font-weight:400}
-    .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
+    /* CAUSE CARDS — red border */
+    .sys-card { background:linear-gradient(90deg,rgba(232,122,90,.11),rgba(232,122,90,.03)); border:1px solid rgba(232,122,90,.30); border-left:3px solid var(--bad); border-radius:12px; padding:.82rem 1rem; display:grid; grid-template-columns:48px 1fr auto; gap:.85rem; align-items:start; min-height:0; overflow:hidden; opacity:0; transform:translateY(14px); transition:all .42s ease; }
+    .sys-card.vis { opacity:1; transform:translateY(0); }
+    .sys-icon { font-size:1.65rem; line-height:1; padding-top:.08rem; }
+    .sys-content { display:flex; flex-direction:column; gap:.1rem; min-width:0; }
+    .sys-title { font-family:'Fraunces',serif; font-weight:700; color:#fff; font-size:1.12rem; line-height:1.1; letter-spacing:-.01em; }
+    /* ROOT CAUSE 3 FIX: line-clamp:4 (was :2 in 6-row original) */
+    .sys-body { font-size:.93rem; color:rgba(255,255,255,.90); line-height:1.42; font-weight:400; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
+    .sys-stat { font-family:'Fraunces',serif; font-size:1.12rem; font-weight:700; color:var(--bad); line-height:1; white-space:nowrap; padding-left:.35rem; padding-top:.1rem; text-align:right; }
 
-    /* CLOSING */
-    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.6rem;padding:1.5rem}
-    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
-    .close-logo .cdot{color:var(--coral)}
-    .close-sub{font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82)}
-    .close-headline{font-family:'Fraunces',serif;font-size:clamp(3rem,5.8vw,5.2rem);font-weight:700;color:#fff;max-width:1050px;line-height:1.08;letter-spacing:-.025em}
-    .close-headline span{color:var(--acc)}
-    .close-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1050px;width:100%}
-    .cst-card{background:rgba(212,124,58,.1);border:1px solid rgba(212,124,58,.35);border-radius:16px;padding:1.5rem 1.1rem;display:flex;flex-direction:column;align-items:center;gap:.55rem}
-    .cst-num{font-family:'Fraunces',serif;font-size:clamp(2.4rem,4.4vw,3.8rem);font-weight:700;color:var(--acc);line-height:.95;letter-spacing:-.02em}
-    .cst-lab{font-size:1.05rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.32}
-    .cst-src{font-size:.85rem;color:rgba(255,255,255,.72);font-style:italic}
-    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.3rem}
-    .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:.68rem;color:rgba(255,255,255,.18);z-index:90;white-space:nowrap}
+    /* HELP CARDS — green border */
+    .doc-card { background:linear-gradient(90deg,rgba(126,204,153,.09),rgba(126,204,153,.02)); border:1px solid rgba(126,204,153,.28); border-left:3px solid var(--good); border-radius:12px; padding:.82rem 1rem; display:grid; grid-template-columns:48px 1fr auto; gap:.85rem; align-items:start; min-height:0; overflow:hidden; opacity:0; transform:translateY(14px); transition:all .42s ease; }
+    .doc-card.vis { opacity:1; transform:translateY(0); }
+    .dc-icon { font-size:1.65rem; line-height:1; padding-top:.08rem; }
+    .dc-content { display:flex; flex-direction:column; gap:.1rem; min-width:0; }
+    .dc-title { font-family:'Fraunces',serif; font-weight:700; color:#fff; font-size:1.12rem; line-height:1.1; letter-spacing:-.01em; }
+    /* ROOT CAUSE 3 FIX: line-clamp:4 (was :2) */
+    .dc-body { font-size:.93rem; color:rgba(255,255,255,.90); line-height:1.42; font-weight:400; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
+    .dc-body strong { color:#fff; font-weight:700; }
+    .dc-action { font-family:'Fraunces',serif; font-size:1.12rem; font-weight:700; color:var(--good); line-height:1; white-space:nowrap; padding-left:.35rem; padding-top:.1rem; text-align:right; }
+
+    /* MECHANISM CARDS — amber border */
+    .mech-card { background:linear-gradient(90deg,rgba(212,124,58,.09),rgba(212,124,58,.02)); border:1px solid rgba(212,124,58,.28); border-left:3px solid var(--series); border-radius:12px; padding:.82rem 1rem; display:grid; grid-template-columns:48px 1fr auto; gap:.85rem; align-items:start; min-height:0; overflow:hidden; opacity:0; transform:translateY(14px); transition:all .42s ease; }
+    .mech-card.vis { opacity:1; transform:translateY(0); }
+    .mc-icon { font-size:1.65rem; line-height:1; padding-top:.08rem; }
+    .mc-content { display:flex; flex-direction:column; gap:.1rem; min-width:0; }
+    .mc-title { font-family:'Fraunces',serif; font-weight:700; color:#fff; font-size:1.12rem; line-height:1.1; letter-spacing:-.01em; }
+    /* ROOT CAUSE 3 FIX: line-clamp:4 (was :2) */
+    .mc-body { font-size:.93rem; color:rgba(255,255,255,.90); line-height:1.42; font-weight:400; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
+    .mc-outcome { font-family:'Fraunces',serif; font-size:1.12rem; font-weight:700; color:var(--warn); line-height:1; white-space:nowrap; padding-left:.35rem; padding-top:.1rem; text-align:right; }
+
+    /* ═══ SLIDE 7: RESEARCH EV-CARDS ═══ */
+    .ev-stage { display:flex; flex-direction:column; gap:.95rem; flex:1; min-height:0; }
+    /* ev-card padding: 1.1rem 1.4rem (Rule 36 fix, was 1.5rem 1.8rem) */
+    .ev-card { background:linear-gradient(180deg,#1f2e47,#162238); border:1px solid rgba(212,124,58,.30); border-radius:16px; padding:1.1rem 1.4rem; display:grid; grid-template-columns:220px 1fr; gap:1.35rem; align-items:center; min-height:0; overflow:hidden; opacity:0; transform:translateY(14px); transition:all .45s ease; }
+    .ev-card.vis { opacity:1; transform:translateY(0); }
+    /* ev-stat-box: series gradient (was plain amber tint) */
+    .ev-stat-box { background:linear-gradient(160deg,var(--series-dark) 0%,var(--series) 100%); border-radius:12px; padding:.9rem .75rem; text-align:center; overflow:hidden; }
+    .ev-kf-label { font-size:.72rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--amber); margin-bottom:.35rem; }
+    /* ev-stat-row: canonical 3.2rem weight:900 */
+    .ev-stat-row { font-family:'Fraunces',serif; font-size:3.2rem; font-weight:900; color:#fff; line-height:1.0; letter-spacing:-.02em; margin-bottom:.3rem; }
+    .ev-outcome { font-size:.92rem; font-weight:700; color:rgba(255,255,255,.95); line-height:1.3; }
+    .ev-conditions { font-size:.76rem; color:rgba(255,255,255,.70); line-height:1.32; margin-top:.22rem; }
+    .ev-trial { font-family:'Fraunces',serif; font-weight:700; color:#fff; font-size:1.30rem; margin-bottom:.2rem; line-height:1.15; letter-spacing:-.01em; }
+    .ev-journal { font-size:.84rem; color:rgba(255,255,255,.75); margin-bottom:.52rem; font-weight:500; }
+    /* ev-body: line-clamp:4 (was :3), webkit-box present */
+    .ev-body { font-size:.93rem; color:rgba(255,255,255,.92); line-height:1.55; font-weight:400; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
+    .ev-body strong { color:#fff; font-weight:700; }
+
+    /* ═══ SLIDE 10: CTA ═══ */
+    .cta-slide { position:relative; }
+    .cta-glow { position:absolute; inset:0; background:radial-gradient(ellipse at 50% 40%,rgba(212,124,58,.18),rgba(212,124,58,.04) 45%,transparent 68%); pointer-events:none; z-index:0; }
+    .cta-wrap-v2 { position:relative; z-index:1; display:grid; grid-template-rows:auto 1fr auto; flex:1; min-height:0; gap:.4rem; overflow:hidden; }
+    .cta-top { display:flex; flex-direction:column; align-items:center; gap:.22rem; text-align:center; flex-shrink:0; }
+    .cta-badge-v2 { font-size:.78rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--series); background:rgba(212,124,58,.18); border:1.5px solid rgba(212,124,58,.55); padding:.3rem .95rem; border-radius:100px; }
+    .cta-headline-v2 { font-family:'Fraunces',serif; font-size:clamp(2.8rem,5.5vw,4.2rem); font-weight:700; color:#fff; line-height:1.02; letter-spacing:-.028em; }
+    .cta-headline-v2 span { color:var(--series); }
+    .cta-subline { font-family:'Fraunces',serif; font-size:clamp(.92rem,1.4vw,1.12rem); font-weight:500; font-style:italic; color:rgba(255,255,255,.88); line-height:1.3; }
+    .cta-rows-v2 { display:grid; grid-template-rows:1fr 1fr 1fr 1fr; gap:.38rem; min-height:0; overflow:hidden; }
+    /* cta rows start hidden — animateCTA() reveals with 620ms stagger */
+    .cta-row-v2 { background:linear-gradient(90deg,rgba(212,124,58,.12),rgba(212,124,58,.04)); border-left:4px solid var(--series); border-radius:0 10px 10px 0; padding:.55rem .95rem; display:grid; grid-template-columns:52px 1fr auto; gap:.85rem; align-items:start; min-height:0; overflow:hidden; opacity:0; transform:translateX(-20px); }
+    .cta-row-icon { font-size:1.7rem; line-height:1; padding-top:.1rem; }
+    .cta-row-mid { display:flex; flex-direction:column; gap:.1rem; min-width:0; }
+    .cta-row-label { font-family:'Fraunces',serif; font-weight:700; color:#fff; font-size:.95rem; line-height:1.15; }
+    .cta-row-body-v2 { font-size:.88rem; color:rgba(255,255,255,.90); line-height:1.35; font-weight:400; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+    .cta-row-word-v2 { font-family:'Fraunces',serif; font-weight:900; font-size:clamp(1.2rem,2vw,1.7rem); color:var(--series); line-height:1; letter-spacing:-.02em; text-align:right; white-space:nowrap; padding-left:.5rem; }
+    .cta-bottom { display:flex; justify-content:center; flex-shrink:0; }
+
+    /* MED DISCLAIMER — font-size:1rem (was .9rem) */
+    .med-disclaimer { display:flex; align-items:center; gap:.8rem; padding:.7rem 1.1rem; background:rgba(255,255,255,.06); border:1px dashed rgba(255,255,255,.28); border-radius:12px; max-width:900px; width:100%; }
+    .med-disc-icon { font-size:1.2rem; flex-shrink:0; }
+    .med-disc-text { font-size:1rem; color:rgba(255,255,255,.90); font-style:italic; line-height:1.45; font-family:'Fraunces',serif; font-weight:400; }
+    .med-disc-text strong { font-style:normal; color:var(--series); font-weight:700; }
+
+    /* ═══ SLIDE 11: BRAND CLOSE (Rule 24 — justify-content:flex-start) ═══ */
+    .close-wrap { display:flex; flex-direction:column; align-items:center; justify-content:flex-start; flex:1; min-height:0; gap:1.3rem; padding:.3rem 0; }
+    .close-logo { display:flex; align-items:center; gap:.4rem; font-family:'Fraunces',serif; font-size:2.8rem; font-weight:700; color:#fff; letter-spacing:-.02em; line-height:1; }
+    .cl-dot { color:var(--coral); }
+    .close-sub { font-size:1.05rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.80); }
+    .close-headline { font-family:'Fraunces',serif; font-size:clamp(2.1rem,4vw,3.3rem); font-weight:700; color:#fff; max-width:900px; line-height:1.08; letter-spacing:-.025em; text-align:center; }
+    .close-headline span { color:var(--series); }
+    .close-pitch { display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem; max-width:1000px; width:100%; }
+    .cp-card { background:rgba(212,124,58,.12); border:1px solid rgba(212,124,58,.38); border-radius:16px; padding:1.15rem 1rem; display:flex; flex-direction:column; align-items:center; gap:.38rem; text-align:center; }
+    .cp-icon { font-size:2rem; line-height:1; }
+    .cp-title { font-family:'Fraunces',serif; font-size:1.05rem; font-weight:700; color:#fff; line-height:1.2; }
+    .cp-body { font-size:.90rem; color:rgba(255,255,255,.88); line-height:1.45; font-weight:400; }
+    .close-series { font-size:.85rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.70); }
   </style>
 </head>
 <body>
@@ -149,7 +165,7 @@
     <span class="tb-sub">· Constipation</span>
   </div>
   <div class="tb-right">
-    <span id="counter" class="slide-counter">1 / 8</span>
+    <span id="counter" class="slide-counter">1 / 11</span>
     <span class="kb-hint">← → navigate</span>
   </div>
 </div>
@@ -159,242 +175,298 @@
   <!-- SLIDE 1: INTRO -->
   <div class="slide active">
     <div class="intro-wrap">
-      <div class="intro-badge">🫁 Digestive Health Series · Article 21</div>
-      <div class="intro-icon">🫁</div>
+      <div class="intro-badge">📋 Digestive Health Series · Article 21</div>
+      <div class="intro-icon">🌾</div>
       <div class="intro-title"><span>Constipation</span></div>
-      <div class="intro-sub">What the evidence shows about causes, laxatives, fibre, and getting things moving.</div>
+      <div class="intro-sub">What the evidence shows about causes, fibre, laxatives, and getting things moving.</div>
       <div class="intro-tagline">Dr Paul · Retired NHS GP · helf.school</div>
     </div>
   </div>
 
   <!-- SLIDE 2: BIG PICTURE -->
   <div class="slide">
-    <div class="slide-title">The big picture · <span>constipation in the UK</span></div>
+    <div class="slide-header">
+      <div class="slide-title">The <span>big picture</span> — constipation in the UK</div>
+    </div>
     <div class="big-stage">
       <div class="big-row">
         <div class="big-card">
           <div class="big-num">1 in 7</div>
           <div class="big-lbl">adults in the UK</div>
-          <div class="big-body">affected by constipation at any given time — it affects women <strong>twice as often</strong> as men, and becomes more common with age.</div>
-          <div class="big-src">NHS Inform · Constipation</div>
+          <div class="big-body">affected at any given time — twice as common in women as in men, and becomes more frequent with age.</div>
+          <div class="big-src">NHS Inform · Constipation ✅</div>
         </div>
         <div class="big-card">
-          <div class="big-num">2×</div>
-          <div class="big-lbl">more common in women</div>
-          <div class="big-body">than in men — alongside around <strong>18.6 million laxative prescriptions</strong> issued in England each year, making this one of the most common digestive presentations in UK primary care.</div>
-          <div class="big-src">NHS Inform · Dowden · Prescriber 2021</div>
+          <div class="big-num">18.6M</div>
+          <div class="big-lbl">laxative prescriptions/year</div>
+          <div class="big-body">issued in England annually — making this one of the most common digestive presentations in UK primary care.</div>
+          <div class="big-src">⚑ Dowden · Prescriber 2021 — verify against NHS Digital prescribing data</div>
         </div>
       </div>
       <div class="big-strip">
         <div class="big-strip-icon">📋</div>
-        <div class="big-strip-text">Most cases are <strong>functional</strong> — no clear structural cause is found. Lifestyle, medications, and toileting habits are the most common drivers.</div>
+        <div class="big-strip-text">Most cases are <strong>functional</strong> — no clear structural cause found. Lifestyle, medications, and toileting habits are the most common drivers.</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 3: WHAT DRIVES CONSTIPATION -->
+  <!-- SLIDE 3: WHAT DRIVES CONSTIPATION 1/2
+       3 cards (was 6-card grid — Rule 38 split) -->
   <div class="slide">
-    <div class="slide-title">What <span>drives constipation</span></div>
-    <div class="sys-grid">
-      <div class="sys-card animate-ready" id="s1">
+    <div class="slide-header">
+      <div class="slide-title">What <span>drives constipation</span> — main causes</div>
+      <div class="slide-tag">1 of 2</div>
+    </div>
+    <div class="three-grid">
+      <div class="sys-card" id="s1">
         <div class="sys-icon">🌾</div>
         <div class="sys-content">
           <div class="sys-title">Low dietary fibre</div>
-          <div class="sys-body">Under 25–30g/day reduces stool bulk and slows colonic transit — most UK adults consume well below the recommended amount.</div>
+          <div class="sys-body">Under 25–30g/day reduces stool bulk and slows colonic transit. Most UK adults consume well below the recommended intake — average estimated at around 18g/day.</div>
         </div>
         <div class="sys-stat">&lt;20g/day</div>
       </div>
-      <div class="sys-card animate-ready" id="s2">
+      <div class="sys-card" id="s2">
         <div class="sys-icon">💧</div>
         <div class="sys-content">
           <div class="sys-title">Insufficient fluid intake</div>
-          <div class="sys-body">Dehydration concentrates stool and slows transit — fluid is essential for fibre to function and maintain stool consistency.</div>
+          <div class="sys-body">Dehydration concentrates stool and slows transit. Fluid is essential for fibre to function — without adequate hydration, even a high-fibre diet may not improve bowel frequency.</div>
         </div>
         <div class="sys-stat">↑ Hardness</div>
       </div>
-      <div class="sys-card animate-ready" id="s3">
+      <div class="sys-card" id="s3">
         <div class="sys-icon">🛋️</div>
         <div class="sys-content">
           <div class="sys-title">Physical inactivity</div>
-          <div class="sys-body">Sedentary behaviour is independently associated with slower colonic transit — gut motility responds directly to movement.</div>
+          <div class="sys-body">Sedentary behaviour is independently associated with slower colonic transit. Gut motility responds directly to movement — exercise is one of the few lifestyle measures with consistent evidence for improvement.</div>
         </div>
         <div class="sys-stat">↓ Motility</div>
       </div>
-      <div class="sys-card animate-ready" id="s4">
+    </div>
+  </div>
+
+  <!-- SLIDE 4: WHAT DRIVES CONSTIPATION 2/2
+       3 cards (was part of 6-card grid — Rule 38 split) -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-title">What <span>drives constipation</span> — medications &amp; habits</div>
+      <div class="slide-tag">2 of 2</div>
+    </div>
+    <div class="three-grid">
+      <div class="sys-card" id="s4">
         <div class="sys-icon">💊</div>
         <div class="sys-content">
           <div class="sys-title">Constipating medications</div>
-          <div class="sys-body">Opioids, iron supplements, tricyclic antidepressants, and calcium-based antacids are among the most common pharmaceutical causes.</div>
+          <div class="sys-body">Opioids, iron supplements, tricyclic antidepressants, and calcium-based antacids are among the most common pharmaceutical causes. Reviewing current medications is a clinically important early step.</div>
         </div>
         <div class="sys-stat">60+ drugs</div>
       </div>
-      <div class="sys-card animate-ready" id="s5">
+      <div class="sys-card" id="s5">
         <div class="sys-icon">🚽</div>
         <div class="sys-content">
           <div class="sys-title">Ignoring the urge</div>
-          <div class="sys-body">Repeatedly suppressing the defecation reflex raises the threshold over time — the urge becomes weaker and less reliable.</div>
+          <div class="sys-body">Repeatedly suppressing the defecation reflex raises the threshold over time — the urge becomes progressively weaker and less reliable. Acting promptly preserves the reflex.</div>
         </div>
         <div class="sys-stat">↑ Threshold</div>
       </div>
-      <div class="sys-card animate-ready" id="s6">
+      <div class="sys-card" id="s6">
         <div class="sys-icon">🩺</div>
         <div class="sys-content">
           <div class="sys-title">Underlying conditions</div>
-          <div class="sys-body">Hypothyroidism, diabetes, IBS-C, pelvic floor dysfunction, and several neurological conditions present with constipation as a key feature.</div>
+          <div class="sys-body">Hypothyroidism, diabetes, IBS-C, pelvic floor dysfunction, and neurological conditions present with constipation as a key feature. Identifying the underlying cause is more effective than treating the symptom indefinitely.</div>
         </div>
         <div class="sys-stat">Check cause</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 4: WHAT THE EVIDENCE SUPPORTS -->
+  <!-- SLIDE 5: WHAT HELPS 1/2
+       3 cards (was 6-card grid — Rule 38 split) -->
   <div class="slide">
-    <div class="slide-title">What <span>the evidence supports</span></div>
-    <div class="doc-grid">
-      <div class="doc-card animate-ready" id="d1">
-        <div class="doc-icon">🌾</div>
-        <div class="doc-content">
-          <div class="doc-title">Increase dietary fibre</div>
-          <div class="doc-body">25–30g daily is the evidence-based target — vegetables, fruit, wholegrains, legumes; increased gradually to avoid bloating.</div>
+    <div class="slide-header">
+      <div class="slide-title">What <span>the evidence supports</span></div>
+      <div class="slide-tag">1 of 2 — diet, fluids, movement</div>
+    </div>
+    <div class="three-grid">
+      <div class="doc-card" id="d1">
+        <div class="dc-icon">🌾</div>
+        <div class="dc-content">
+          <div class="dc-title">Increase dietary fibre</div>
+          <div class="dc-body">25–30g daily is the evidence-based target — vegetables, fruit, wholegrains, and legumes. Increase gradually over 2–3 weeks to allow gut bacteria to adapt and minimise bloating.</div>
         </div>
-        <div class="doc-action">25–30g</div>
+        <div class="dc-action">25–30g</div>
       </div>
-      <div class="doc-card animate-ready" id="d2">
-        <div class="doc-icon">💧</div>
-        <div class="doc-content">
-          <div class="doc-title">Adequate fluid intake</div>
-          <div class="doc-body">1.5–2 litres daily maintains stool hydration and is essential for fibre supplementation to be effective.</div>
+      <div class="doc-card" id="d2">
+        <div class="dc-icon">💧</div>
+        <div class="dc-content">
+          <div class="dc-title">Adequate fluid intake</div>
+          <div class="dc-body">1.5–2 litres daily maintains stool hydration and is essential for fibre supplementation to be effective. Dehydration causes the colon to absorb more water from stool, progressively hardening it.</div>
         </div>
-        <div class="doc-action">1.5–2L</div>
+        <div class="dc-action">1.5–2L</div>
       </div>
-      <div class="doc-card animate-ready" id="d3">
-        <div class="doc-icon">🚶</div>
-        <div class="doc-content">
-          <div class="doc-title">Regular movement</div>
-          <div class="doc-body">Moderate daily activity stimulates colonic motility through the enteric nervous system — transit time responds to movement.</div>
+      <div class="doc-card" id="d3">
+        <div class="dc-icon">🚶</div>
+        <div class="dc-content">
+          <div class="dc-title">Regular movement</div>
+          <div class="dc-body">Moderate daily activity stimulates colonic motility through the enteric nervous system — transit time responds directly to movement. Even 20–30 minutes of walking regularly can improve bowel habit.</div>
         </div>
-        <div class="doc-action">↑ Transit</div>
-      </div>
-      <div class="doc-card animate-ready" id="d4">
-        <div class="doc-icon">🪑</div>
-        <div class="doc-content">
-          <div class="doc-title">Footstool toileting position</div>
-          <div class="doc-body">Raising feet 20–30 cm mimics natural squatting — relaxes the puborectalis muscle and eases passage with less straining.</div>
-        </div>
-        <div class="doc-action">Footstool</div>
-      </div>
-      <div class="doc-card animate-ready" id="d5">
-        <div class="doc-icon">💊</div>
-        <div class="doc-content">
-          <div class="doc-title">First-line laxative: macrogol</div>
-          <div class="doc-body">Macrogol (Movicol, Laxido) is the evidence-based first-line laxative for adults in UK clinical practice — preferred over lactulose.</div>
-        </div>
-        <div class="doc-action">Macrogol</div>
-      </div>
-      <div class="doc-card animate-ready" id="d6">
-        <div class="doc-icon">📅</div>
-        <div class="doc-content">
-          <div class="doc-title">Respond to the urge</div>
-          <div class="doc-body">Acting promptly when the urge arrives maintains the defecation reflex — repeated delay weakens the signal over time.</div>
-        </div>
-        <div class="doc-action">Act on urge</div>
+        <div class="dc-action">↑ Transit</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 5: RESEARCH — LAXATIVES AND FIBRE -->
+  <!-- SLIDE 6: WHAT HELPS 2/2
+       3 cards (was part of 6-card grid — Rule 38 split) -->
   <div class="slide">
-    <div class="slide-title">Research · <span>laxatives &amp; fibre supplements</span> · Lee-Robichaud 2010 · Christodoulides 2016</div>
+    <div class="slide-header">
+      <div class="slide-title">What <span>the evidence supports</span></div>
+      <div class="slide-tag">2 of 2 — position, laxative, habit</div>
+    </div>
+    <div class="three-grid">
+      <div class="doc-card" id="d4">
+        <div class="dc-icon">🪑</div>
+        <div class="dc-content">
+          <div class="dc-title">Footstool toileting position</div>
+          <div class="dc-body">Raising feet 20–30 cm mimics natural squatting — relaxes the puborectalis muscle and straightens the anorectal angle. Eases passage and reduces the need for straining.</div>
+        </div>
+        <div class="dc-action">Footstool</div>
+      </div>
+      <div class="doc-card" id="d5">
+        <div class="dc-icon">💊</div>
+        <div class="dc-content">
+          <div class="dc-title">First-line laxative — macrogol</div>
+          <div class="dc-body">Macrogol (sold as Movicol or Laxido) is the evidence-based first-line laxative for adults in UK clinical practice — preferred over lactulose, which is less effective and causes more bloating.</div>
+        </div>
+        <div class="dc-action">Macrogol</div>
+      </div>
+      <div class="doc-card" id="d6">
+        <div class="dc-icon">📅</div>
+        <div class="dc-content">
+          <div class="dc-title">Respond to the urge</div>
+          <div class="dc-body">Acting promptly when the urge arrives maintains the defecation reflex — repeated delay weakens the signal over time. The urge typically lasts only a short window before it subsides.</div>
+        </div>
+        <div class="dc-action">Act on urge</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: RESEARCH — 2 EV-CARDS
+       Canonical stat box structure
+       ev-outcome carries reason (Rule 29)
+       ev-stat-box: series gradient
+       ev-card: 1.1rem padding
+       ev-body: ≤30 words, line-clamp:4 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-title">What the <span>evidence</span> shows — laxatives &amp; fibre supplements</div>
+    </div>
     <div class="ev-stage">
-      <div class="ev-card animate-ready" id="e1">
+
+      <div class="ev-card" id="e1">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good">4/4</div>
-            <div class="ev-outcome">outcomes · macrogol vs lactulose</div>
-          </div>
-          <div class="ev-conditions">superior on stool frequency, consistency, straining &amp; rescue laxative use</div>
+          <!-- ev-stat-row: canonical 3.2rem weight:900 -->
+          <div class="ev-stat-row">4/4</div>
+          <!-- ev-outcome: STAT (4/4 outcomes) + REASON (vs lactulose) — Rule 29 -->
+          <div class="ev-outcome">outcomes macrogol superior / vs lactulose on stool frequency, consistency, straining, rescue use</div>
+          <div class="ev-conditions">Cochrane review · 10 RCTs · underpins NICE CKS first-line guidance</div>
         </div>
         <div class="ev-det">
-          <div class="ev-trial">Macrogol vs lactulose — Cochrane review</div>
-          <div class="ev-journal">Lee-Robichaud et al · Cochrane · 2010 · CD007570</div>
-          <div class="ev-body">Systematic review finding macrogol <strong>superior to lactulose across all four primary outcomes</strong> — stool frequency per week, stool consistency, straining, and need for additional laxative use. This evidence underpins NICE CKS first-line guidance for adult constipation.</div>
+          <div class="ev-trial">Macrogol vs lactulose — Cochrane systematic review</div>
+          <div class="ev-journal">Lee-Robichaud et al · Cochrane Database Syst Rev · 2010 · CD007570 ✅</div>
+          <div class="ev-body">Macrogol superior to lactulose across all four primary outcomes — stool frequency, consistency, straining, and rescue laxative use. <strong>Evidence underpins NICE CKS first-line guidance</strong> for adult constipation.</div>
         </div>
       </div>
-      <div class="ev-card animate-ready" id="e2">
+
+      <div class="ev-card" id="e2">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good">77%</div>
-            <div class="ev-outcome">response rate · fibre supplement</div>
-          </div>
-          <div class="ev-conditions">vs 44% placebo · RR 1.71 (CI 1.20–2.42) · psyllium / ispaghula husk</div>
+          <div class="ev-stat-row">77%</div>
+          <!-- ev-outcome: STAT (77%) + REASON (vs 44% placebo) — Rule 29 -->
+          <div class="ev-outcome">response rate with fibre supplements / vs 44% on placebo</div>
+          <div class="ev-conditions">RR 1.71 (CI 1.20–2.42) · psyllium &amp; ispaghula husk · ⚑ verify PMID</div>
         </div>
         <div class="ev-det">
-          <div class="ev-trial">Fibre supplementation in functional constipation</div>
-          <div class="ev-journal">Christodoulides et al · Aliment Pharmacol Ther · 2016</div>
-          <div class="ev-body">Meta-analysis demonstrating that <strong>fibre supplements</strong> — primarily psyllium and ispaghula husk (Fybogel) — produced a 77% response rate versus 44% on placebo. This evidence applies specifically to fibre supplements, not to increasing whole-food dietary fibre, for which RCT evidence is more limited.</div>
+          <div class="ev-trial">Fibre supplements in functional constipation — meta-analysis</div>
+          <div class="ev-journal">Christodoulides et al · Aliment Pharmacol Ther · 2016 ⚑ verify PMID before upload</div>
+          <div class="ev-body">Fibre supplements — psyllium and ispaghula husk (Fybogel) — produced a <strong>77% response rate versus 44% on placebo</strong>. Evidence applies to supplements specifically, not to increasing whole-food dietary fibre.</div>
         </div>
       </div>
+
     </div>
   </div>
 
-  <!-- SLIDE 6: MECHANISMS -->
+  <!-- SLIDE 8: MECHANISMS 1/2
+       3 cards (was 6-card grid — Rule 38 split) -->
   <div class="slide">
-    <div class="slide-title">How these changes <span>work in the colon</span></div>
-    <div class="mech-grid">
-      <div class="mech-card animate-ready" id="m1">
-        <div class="mech-icon">🌾</div>
-        <div class="mech-content">
-          <div class="mech-title">Dietary fibre</div>
-          <div class="mech-body">Adds bulk and retains water in the stool — reduces transit time and softens passage through the large intestine.</div>
+    <div class="slide-header">
+      <div class="slide-title">How these changes <span>work in the colon</span></div>
+      <div class="slide-tag">1 of 2</div>
+    </div>
+    <div class="three-grid">
+      <div class="mech-card" id="m1">
+        <div class="mc-icon">🌾</div>
+        <div class="mc-content">
+          <div class="mc-title">Dietary fibre</div>
+          <div class="mc-body">Adds bulk to stool and retains water in the large intestine — reducing transit time and softening passage. Both insoluble fibre (bulk) and soluble fibre (water retention) contribute.</div>
         </div>
-        <div class="mech-outcome">→ ↑ Bulk, ↓ Transit</div>
+        <div class="mc-outcome">→ ↑ Bulk, ↓ Transit</div>
       </div>
-      <div class="mech-card animate-ready" id="m2">
-        <div class="mech-icon">💧</div>
-        <div class="mech-content">
-          <div class="mech-title">Fluid intake</div>
-          <div class="mech-body">Adequate hydration maintains stool water content — the colon reabsorbs water when intake is low, hardening stool progressively.</div>
+      <div class="mech-card" id="m2">
+        <div class="mc-icon">💧</div>
+        <div class="mc-content">
+          <div class="mc-title">Fluid intake</div>
+          <div class="mc-body">Adequate hydration maintains stool water content — the colon reabsorbs water when intake is low, hardening stool progressively. Sufficient fluid intake prevents this concentration effect.</div>
         </div>
-        <div class="mech-outcome">→ Stool softness</div>
+        <div class="mc-outcome">→ Stool softness</div>
       </div>
-      <div class="mech-card animate-ready" id="m3">
-        <div class="mech-icon">🚶</div>
-        <div class="mech-content">
-          <div class="mech-title">Physical activity</div>
-          <div class="mech-body">Movement stimulates the enteric nervous system — peristaltic activity in the colon is directly sensitive to physical activity levels.</div>
+      <div class="mech-card" id="m3">
+        <div class="mc-icon">🚶</div>
+        <div class="mc-content">
+          <div class="mc-title">Physical activity</div>
+          <div class="mc-body">Movement stimulates the enteric nervous system — peristaltic activity in the colon is directly sensitive to physical activity levels. The mechanism is well established even if optimal dose remains under study.</div>
         </div>
-        <div class="mech-outcome">→ ↑ Peristalsis</div>
-      </div>
-      <div class="mech-card animate-ready" id="m4">
-        <div class="mech-icon">🪑</div>
-        <div class="mech-content">
-          <div class="mech-title">Footstool position</div>
-          <div class="mech-body">Raises the anorectal angle to approximately 35°, relaxing the puborectalis muscle — enables more complete emptying with less straining.</div>
-        </div>
-        <div class="mech-outcome">→ ↓ Straining</div>
-      </div>
-      <div class="mech-card animate-ready" id="m5">
-        <div class="mech-icon">💊</div>
-        <div class="mech-content">
-          <div class="mech-title">Macrogol (osmotic laxative)</div>
-          <div class="mech-body">Draws water into the colon by osmosis — softens stool and increases luminal volume, stimulating the propulsive reflex without systemic absorption.</div>
-        </div>
-        <div class="mech-outcome">→ Osmotic action</div>
-      </div>
-      <div class="mech-card animate-ready" id="m6">
-        <div class="mech-icon">🩺</div>
-        <div class="mech-content">
-          <div class="mech-title">Treating the underlying cause</div>
-          <div class="mech-body">Correcting hypothyroidism, reviewing constipating medications, or addressing pelvic floor dysfunction removes the driver — not just the symptom.</div>
-        </div>
-        <div class="mech-outcome">→ Root cause</div>
+        <div class="mc-outcome">→ ↑ Peristalsis</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 7: CTA -->
+  <!-- SLIDE 9: MECHANISMS 2/2
+       3 cards (was part of 6-card grid — Rule 38 split) -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-title">How these changes <span>work in the colon</span></div>
+      <div class="slide-tag">2 of 2</div>
+    </div>
+    <div class="three-grid">
+      <div class="mech-card" id="m4">
+        <div class="mc-icon">🪑</div>
+        <div class="mc-content">
+          <div class="mc-title">Footstool position</div>
+          <div class="mc-body">Raising feet to 20–30 cm creates an anorectal angle of approximately 35°, relaxing the puborectalis muscle — enabling more complete rectal emptying with significantly less straining effort.</div>
+        </div>
+        <div class="mc-outcome">→ ↓ Straining</div>
+      </div>
+      <div class="mech-card" id="m5">
+        <div class="mc-icon">💊</div>
+        <div class="mc-content">
+          <div class="mc-title">Macrogol (osmotic laxative)</div>
+          <div class="mc-body">Draws water into the colon by osmosis — softening stool and increasing luminal volume, stimulating the propulsive reflex. Not absorbed systemically; safe for regular use in most adults.</div>
+        </div>
+        <div class="mc-outcome">→ Osmotic action</div>
+      </div>
+      <div class="mech-card" id="m6">
+        <div class="mc-icon">🩺</div>
+        <div class="mc-content">
+          <div class="mc-title">Treating the underlying cause</div>
+          <div class="mc-body">Correcting hypothyroidism, reviewing constipating medications, or addressing pelvic floor dysfunction removes the driver — not just the symptom. This is more effective than treating the symptom indefinitely.</div>
+        </div>
+        <div class="mc-outcome">→ Root cause</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: CTA — SEQUENTIAL ANIMATION -->
   <div class="slide cta-slide">
     <div class="cta-glow"></div>
     <div class="cta-wrap-v2">
@@ -423,16 +495,16 @@
         <div class="cta-row-v2">
           <div class="cta-row-icon">💊</div>
           <div class="cta-row-mid">
-            <div class="cta-row-label">Macrogol as first-line laxative</div>
-            <div class="cta-row-body-v2">10 RCTs support macrogol (Movicol, Laxido) over lactulose — the NICE-endorsed adult first-line laxative of choice</div>
+            <div class="cta-row-label">Macrogol — first-line laxative</div>
+            <div class="cta-row-body-v2">Cochrane review: superior to lactulose on all four outcomes — the NICE-endorsed adult first-line laxative of choice</div>
           </div>
           <div class="cta-row-word-v2">1st line</div>
         </div>
         <div class="cta-row-v2">
           <div class="cta-row-icon">🪑</div>
           <div class="cta-row-mid">
-            <div class="cta-row-label">Footstool positioning</div>
-            <div class="cta-row-body-v2">Raising feet 20–30 cm creates a squatting angle, relaxing defecation muscles — evidence-aligned and often overlooked</div>
+            <div class="cta-row-label">Footstool — often overlooked</div>
+            <div class="cta-row-body-v2">Raising feet 20–30 cm creates a squatting angle, relaxing defecation muscles — evidence-aligned and completely free</div>
           </div>
           <div class="cta-row-word-v2">Footstool</div>
         </div>
@@ -446,86 +518,144 @@
     </div>
   </div>
 
-  <!-- SLIDE 8: CLOSING -->
+  <!-- SLIDE 11: BRAND CLOSE (Rule 24 — justify-content:flex-start, not stat repeat) -->
   <div class="slide">
     <div class="close-wrap">
-      <div class="close-logo">helf<span class="cdot">.</span>school</div>
+      <div class="close-logo">helf<span class="cl-dot">.</span>school</div>
       <div class="close-sub">Health Education</div>
-      <div class="close-headline">Simple steps. <span>Clear evidence.</span></div>
-      <div class="close-stats">
-        <div class="cst-card">
-          <div class="cst-num">1 in 7</div>
-          <div class="cst-lab">adults in UK affected at any time</div>
-          <div class="cst-src">NHS Inform</div>
+      <div class="close-headline">Evidence-based.<br/><span>Built by a doctor.</span></div>
+      <div class="close-pitch">
+        <div class="cp-card">
+          <div class="cp-icon">📚</div>
+          <div class="cp-title">31 articles · 6 series</div>
+          <div class="cp-body">Evidence-based health education — written by a doctor, in plain English</div>
         </div>
-        <div class="cst-card">
-          <div class="cst-num">77%</div>
-          <div class="cst-lab">response rate · fibre supplements</div>
-          <div class="cst-src">Christodoulides · APT 2016</div>
+        <div class="cp-card">
+          <div class="cp-icon">🩺</div>
+          <div class="cp-title">Dr Paul</div>
+          <div class="cp-body">Over 20 years as an NHS GP before retiring in 2019</div>
         </div>
-        <div class="cst-card">
-          <div class="cst-num">4/4</div>
-          <div class="cst-lab">outcomes macrogol superior</div>
-          <div class="cst-src">Cochrane 2010 · CD007570</div>
+        <div class="cp-card">
+          <div class="cp-icon">🔓</div>
+          <div class="cp-title">Start for free</div>
+          <div class="cp-body">No credit card required — explore the full library at helf.school</div>
         </div>
       </div>
       <div class="med-disclaimer">
         <div class="med-disc-icon">⚕️</div>
         <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
       </div>
-      <div class="close-series">Digestive Health Series · Article 21</div>
+      <div class="close-series">Digestive Health Series · Article 21 · Constipation</div>
     </div>
   </div>
 
-</div>
+</div><!-- /stage -->
 
+<!-- 11 DOTS -->
 <div id="dots">
-  <div class="dot active" onclick="goTo(0)"></div>
-  <div class="dot" onclick="goTo(1)"></div>
-  <div class="dot" onclick="goTo(2)"></div>
-  <div class="dot" onclick="goTo(3)"></div>
-  <div class="dot" onclick="goTo(4)"></div>
-  <div class="dot" onclick="goTo(5)"></div>
-  <div class="dot" onclick="goTo(6)"></div>
-  <div class="dot" onclick="goTo(7)"></div>
+  <div class="nav-dot active" onclick="goTo(0)"></div>
+  <div class="nav-dot" onclick="goTo(1)"></div>
+  <div class="nav-dot" onclick="goTo(2)"></div>
+  <div class="nav-dot" onclick="goTo(3)"></div>
+  <div class="nav-dot" onclick="goTo(4)"></div>
+  <div class="nav-dot" onclick="goTo(5)"></div>
+  <div class="nav-dot" onclick="goTo(6)"></div>
+  <div class="nav-dot" onclick="goTo(7)"></div>
+  <div class="nav-dot" onclick="goTo(8)"></div>
+  <div class="nav-dot" onclick="goTo(9)"></div>
+  <div class="nav-dot" onclick="goTo(10)"></div>
 </div>
-
-<div class="disc">Health education — not medical advice. helf.school</div>
 
 <script>
-  const slides=document.querySelectorAll('.slide'),dots=document.querySelectorAll('.dot');
-  let cur=0;
-  function show(n){
-    slides[cur].classList.remove('active');dots[cur].classList.remove('active');
-    cur=(n+slides.length)%slides.length;
-    slides[cur].classList.add('active');dots[cur].classList.add('active');
-    document.getElementById('counter').textContent=(cur+1)+' / '+slides.length;
+  const slides  = document.querySelectorAll('.slide');
+  const navDots = document.querySelectorAll('.nav-dot');
+  let cur = 0;
+
+  function show(n) {
+    slides[cur].classList.remove('active');
+    navDots[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    navDots[cur].classList.add('active');
+    document.getElementById('counter').textContent = (cur+1)+' / '+slides.length;
     triggerSlide(cur);
   }
-  function goTo(n){show(n)}
-  document.addEventListener('keydown',e=>{
-    if(e.key==='ArrowRight'||e.key==='ArrowDown')show(cur+1);
-    if(e.key==='ArrowLeft'||e.key==='ArrowUp')show(cur-1);
+  function goTo(n) { show(n); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key==='ArrowRight'||e.key==='ArrowDown') show(cur+1);
+    if (e.key==='ArrowLeft'||e.key==='ArrowUp')   show(cur-1);
   });
-  let tx=0;
-  document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX});
-  document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40){dx<0?show(cur+1):show(cur-1)}});
-  function triggerSlide(n){
-    if(n===2)animateGroup(['s1','s2','s3','s4','s5','s6'],140);
-    if(n===3)animateGroup(['d1','d2','d3','d4','d5','d6'],140);
-    if(n===4)animateGroup(['e1','e2'],260);
-    if(n===5)animateGroup(['m1','m2','m3','m4','m5','m6'],140);
-  }
-  function animateGroup(ids,step){
-    ids.forEach((id,i)=>{setTimeout(()=>{const el=document.getElementById(id);if(el)el.classList.add('vis')},180+i*step)});
-  }
-  slides.forEach(s=>{
-    const obs=new MutationObserver(()=>{
-      if(!s.classList.contains('active')){s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'))}
+
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+  document.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 40) { dx < 0 ? show(cur+1) : show(cur-1); }
+  });
+
+  function animateCTA() {
+    document.querySelectorAll('.cta-row-v2').forEach((row, i) => {
+      setTimeout(() => {
+        row.style.transition = 'opacity .45s ease, transform .45s ease';
+        row.style.opacity    = '1';
+        row.style.transform  = 'translateX(0)';
+      }, 180 + i * 620);
     });
-    obs.observe(s,{attributes:true});
+  }
+
+  function triggerSlide(n) {
+    if (n===2) animateIds(['s1','s2','s3'], 150);
+    if (n===3) animateIds(['s4','s5','s6'], 150);
+    if (n===4) animateIds(['d1','d2','d3'], 150);
+    if (n===5) animateIds(['d4','d5','d6'], 150);
+    if (n===6) animateIds(['e1','e2'], 280);
+    if (n===7) animateIds(['m1','m2','m3'], 150);
+    if (n===8) animateIds(['m4','m5','m6'], 150);
+    if (n===9) animateCTA();
+  }
+
+  function animateIds(ids, step) {
+    ids.forEach((id, i) => {
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('vis');
+      }, 160 + i * step);
+    });
+  }
+
+  slides.forEach(s => {
+    const obs = new MutationObserver(() => {
+      if (!s.classList.contains('active')) {
+        s.querySelectorAll('.vis').forEach(el => el.classList.remove('vis'));
+        s.querySelectorAll('.cta-row-v2').forEach(row => {
+          row.style.opacity   = '0';
+          row.style.transform = 'translateX(-20px)';
+          row.style.transition = '';
+        });
+      }
+    });
+    obs.observe(s, { attributes: true });
   });
+
   triggerSlide(0);
 </script>
+
+<!--
+  RESEARCH FLAGS — VERIFY BEFORE UPLOAD
+  ────────────────────────────────────────────────────────────────────
+  SLIDE 2: 18.6M laxative prescriptions
+    → Attributed to Dowden · Prescriber 2021 — NOT an approved source.
+      Verify against NHS Digital prescribing data or a primary NHS England
+      publication and update big-src before upload.
+
+  SLIDE 7 (e2): Christodoulides et al · Aliment Pharmacol Ther · 2016
+    → PubMed-indexed meta-analysis — borderline approved.
+      Verify PMID and confirm it is the correct Christodoulides 2016
+      meta-analysis on fibre supplementation before upload.
+
+  SLIDE 7 (e1): Lee-Robichaud et al · Cochrane · 2010 · CD007570
+    → Cochrane is an approved source ✅ — verify PMID is correct.
+-->
 </body>
 </html>
