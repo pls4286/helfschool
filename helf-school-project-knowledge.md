@@ -1,5 +1,5 @@
 # helf.school — Project Knowledge
-**Last updated: April 2026**
+**Last updated: 30 April 2026**
 
 ---
 
@@ -1788,6 +1788,33 @@ HTML: `<ol class="subtype-list"><li><strong>Name</strong> — definition text.</
 4. Use only the figure stated on the approved source page
 5. If an unapproved page (WCRF, charity site) quotes a figure and attributes it to an approved source, do not use the unapproved page's figure — fetch the approved source directly
 6. If the approved source page gives a different figure (e.g. "around 59,000" vs WCRF's "60,763"), always use the approved source's figure
+
+---
+
+## SESSION LOG — 30 April 2026
+
+### Session summary
+Short orientation session. Dr Paul uploaded a legacy project instructions document (older format, covering Articles 01–07 cardiovascular only) as session context. No new files were built or delivered. Session closed promptly for upload.
+
+### Notes confirmed / discrepancies flagged
+
+**Membership pricing discrepancy — NEEDS CONFIRMATION:**
+- Legacy uploaded doc states: £0 Free / £6/month / £60/year / £120 Lifetime
+- Current project knowledge (Section 15) states: £0 Free / £6/month / £60/year / £150 Lifetime
+- **Action required:** Dr Paul to confirm correct lifetime price before any membership page changes.
+
+**Article 06 (Salt and Blood Pressure) — status noted from uploaded doc:**
+- Article draft confirmed complete
+- Five research flags still requiring verification before finalising:
+  1. INTERSALT study — BMJ 1988
+  2. 12,000 strokes / 7,000 heart attacks per 2mmHg — He FJ, MacGregor GA, BMJ 2003
+  3. DASH-Sodium trial 8–14 mmHg — Sacks FM et al. NEJM 2001
+  4. UK salt reduction programme figures — He FJ et al. BMJ Open 2014
+  5. Potassium meta-analysis 24% stroke risk reduction — Aburto NJ et al. BMJ 2013
+- Salt sources visual (salt-sources.html) built and approved
+- 75% processed/restaurant salt stat confirmed via BDA, NHS, National Diet & Nutrition Survey
+
+**Session-start rule followed:** Both `helf-school-project-knowledge.md` and `helf-school-session-start-rules.md` read in full before any output. ✅
 
 ---
 
