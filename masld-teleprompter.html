@@ -5,32 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MASLD — Teleprompter · helf.school</title>
   <style>
-    :root {
-      --bg: #0A0F1A; --text: #F0EDE8; --accent: #D47C3A;
-      --cue-bg: rgba(212,124,58,0.18); --cue-border: #D47C3A;
-      --pause-bg: rgba(200,66,58,0.18); --pause-border: #C8423A;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: var(--bg); color: var(--text); font-family: 'Georgia', serif; font-size: 1.9rem; line-height: 1.65; overflow: hidden; height: 100vh; user-select: none; }
-    .controls { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(10,15,26,0.95); border-bottom: 1px solid rgba(212,124,58,0.35); display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.8rem; flex-wrap: wrap; }
-    .ctrl-label { font-family: sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(240,237,232,0.55); }
-    .ctrl-btn { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: var(--text); border-radius: 5px; padding: 0.28rem 0.65rem; cursor: pointer; }
-    .ctrl-btn:hover { background: rgba(255,255,255,0.15); }
-    .ctrl-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-    .ctrl-sep { width: 1px; height: 24px; background: rgba(255,255,255,0.15); }
-    .ctrl-speed-display { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; color: var(--accent); min-width: 28px; text-align: center; }
-    .word-count { font-family: sans-serif; font-size: 0.68rem; color: rgba(240,237,232,0.45); margin-left: auto; }
-    .scroll-wrap { position: absolute; top: 56px; left: 0; right: 0; bottom: 48px; overflow: hidden; }
-    .scroll-inner { padding: 3rem 2.2rem 40vh; will-change: transform; }
-    .segment { margin-bottom: 2.8rem; }
-    .cue-box { background: var(--cue-bg); border: 2px solid var(--cue-border); border-radius: 8px; padding: 0.55rem 1rem; margin-bottom: 1.1rem; font-family: sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); display: flex; align-items: center; gap: 0.5rem; }
-    .cue-arrow { font-size: 1rem; flex-shrink: 0; }
-    .pause { background: var(--pause-bg); border-left: 3px solid var(--pause-border); border-radius: 0 6px 6px 0; padding: 0.4rem 0.9rem; margin: 1rem 0; font-family: sans-serif; font-size: 0.80rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #C8423A; }
-    .stat { color: var(--accent); font-weight: 700; }
-    .dots-bar { position: fixed; bottom: 0; left: 0; right: 0; height: 48px; background: rgba(10,15,26,0.95); border-top: 1px solid rgba(212,124,58,0.25); display: flex; align-items: center; justify-content: center; gap: 0.5rem; z-index: 50; }
-    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.22); cursor: pointer; transition: background 0.2s, transform 0.2s; }
-    .dot.active { background: var(--accent); transform: scale(1.3); }
-    .dot-label { font-family: sans-serif; font-size: 0.62rem; color: rgba(240,237,232,0.45); margin: 0 0.3rem; }
+    :root { --bg:#0A0F1A; --text:#F0EDE8; --accent:#D47C3A; --cue-bg:rgba(212,124,58,0.18); --cue-border:#D47C3A; --pause-bg:rgba(200,66,58,0.18); --pause-border:#C8423A; }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--bg); color:var(--text); font-family:'Georgia',serif; font-size:1.9rem; line-height:1.65; overflow:hidden; height:100vh; user-select:none; }
+    .controls { position:fixed; top:0; left:0; right:0; z-index:50; background:rgba(10,15,26,0.95); border-bottom:1px solid rgba(212,124,58,0.35); display:flex; align-items:center; gap:0.6rem; padding:0.5rem 0.8rem; flex-wrap:wrap; }
+    .ctrl-label { font-family:sans-serif; font-size:0.68rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(240,237,232,0.55); }
+    .ctrl-btn { font-family:sans-serif; font-size:0.80rem; font-weight:700; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); color:var(--text); border-radius:5px; padding:0.28rem 0.65rem; cursor:pointer; }
+    .ctrl-btn:hover { background:rgba(255,255,255,0.15); }
+    .ctrl-btn.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+    .ctrl-sep { width:1px; height:24px; background:rgba(255,255,255,0.15); }
+    .ctrl-speed-display { font-family:sans-serif; font-size:0.80rem; font-weight:700; color:var(--accent); min-width:28px; text-align:center; }
+    .word-count { font-family:sans-serif; font-size:0.68rem; color:rgba(240,237,232,0.45); margin-left:auto; }
+    .scroll-wrap { position:absolute; top:56px; left:0; right:0; bottom:48px; overflow:hidden; }
+    .scroll-inner { padding:3rem 2.2rem 40vh; will-change:transform; }
+    .segment { margin-bottom:2.8rem; }
+    .cue-box { background:var(--cue-bg); border:2px solid var(--cue-border); border-radius:8px; padding:0.55rem 1rem; margin-bottom:1.1rem; font-family:sans-serif; font-size:0.88rem; font-weight:700; letter-spacing:0.04em; color:var(--accent); display:flex; align-items:center; gap:0.5rem; }
+    .cue-arrow { font-size:1rem; flex-shrink:0; }
+    .pause { background:var(--pause-bg); border-left:3px solid var(--pause-border); border-radius:0 6px 6px 0; padding:0.4rem 0.9rem; margin:1rem 0; font-family:sans-serif; font-size:0.80rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:#C8423A; }
+    .stat { color:var(--accent); font-weight:700; }
+    .dots-bar { position:fixed; bottom:0; left:0; right:0; height:48px; background:rgba(10,15,26,0.95); border-top:1px solid rgba(212,124,58,0.25); display:flex; align-items:center; justify-content:center; gap:0.5rem; z-index:50; }
+    .dot { width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.22); cursor:pointer; transition:background 0.2s,transform 0.2s; }
+    .dot.active { background:var(--accent); transform:scale(1.3); }
+    .dot-label { font-family:sans-serif; font-size:0.62rem; color:rgba(240,237,232,0.45); margin:0 0.3rem; }
   </style>
 </head>
 <body>
@@ -77,9 +73,10 @@
     The spectrum: simple steatosis — fat in the liver, no inflammation, often reversible. Then <span class="stat">MASH</span> — inflammation and cell damage. Then <span class="stat">fibrosis</span> — scarring. Then cirrhosis — advanced scarring largely irreversible. And in some cases, liver cancer. The key point: the liver has no pain receptors. Most stages are completely silent.
   </div>
 
-  <!-- SEGMENT 2 — WHY IT MATTERS -->
+  <!-- SEGMENT 2 — RISK FACTORS
+       SLIDES 3-4 (was: SLIDE 3 — now split to two slides) -->
   <div class="segment" id="seg-2">
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 3 — Risk factors</div>
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDES 3–4 — Risk factors</div>
 
     MASLD affects around <span class="stat">1 in 5 people in the UK</span> — approximately 10 million people. The vast majority have no symptoms. No pain. No warning signs.
 
@@ -92,9 +89,11 @@
     MASLD also significantly increases cardiovascular risk — which remains the leading cause of death in people with the condition. Managing fatty liver and managing cardiovascular risk are largely the same conversation.
   </div>
 
-  <!-- SEGMENT 3 — WHAT DOCTORS DO -->
+  <!-- SEGMENT 3 — WHAT DOCTORS DO + LIFESTYLE
+       SLIDES 5-7 (was: SLIDE 4 — now split to three slides)
+       RULE 34 FIX: drug names removed — class descriptions only -->
   <div class="segment" id="seg-3">
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 4 — What doctors do</div>
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDES 5–7 — What doctors discuss</div>
 
     MASLD is often picked up incidentally — on an ultrasound done for another reason, or when a blood test shows raised liver enzymes. Many GPs now screen people with known risk factors: obesity, type 2 diabetes, or metabolic syndrome.
 
@@ -104,12 +103,13 @@
 
     Step two where needed: FibroScan — a non-invasive scan that measures liver stiffness as a proxy for fibrosis.
 
-    Treatment: <span class="stat">lifestyle intervention is the cornerstone</span>. Weight loss targets are specific — 5% reduces liver fat. 7% improves inflammation. 10% can reverse fibrosis. GLP-1 receptor agonists — semaglutide, tirzepatide — are showing significant benefit and may be prescribed for their licensed indications with liver benefit as an additional effect.
+    Treatment: <span class="stat">lifestyle intervention is the cornerstone</span>. Weight loss targets are specific — 5% reduces liver fat. 7% improves inflammation. 10% can reverse fibrosis. GLP-1 receptor agonists and dual GLP-1/GIP agonists are showing significant benefit and may be prescribed for their licensed indications with liver benefit as an additional effect.
   </div>
 
-  <!-- SEGMENT 4 — RESEARCH -->
+  <!-- SEGMENT 4 — RESEARCH
+       SLIDES 8-9 (was: SLIDES 6-7) -->
   <div class="segment" id="seg-4">
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDES 6–7 — Research evidence cards</div>
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDES 8–9 — Research evidence</div>
 
     The evidence base is clear.
 
@@ -126,9 +126,10 @@
     And on coffee — genuinely evidence-based. Regular consumption of 2 to 3 cups per day is associated with slower liver disease progression. The EASL 2024 guidelines explicitly include it — anti-inflammatory and antifibrotic effects from bioactive compounds. This is one of the more welcome findings in liver medicine.
   </div>
 
-  <!-- SEGMENT 5 — CLOSE -->
+  <!-- SEGMENT 5 — CLOSE
+       SLIDE 10 CTA / SLIDE 11 Closing (was: SLIDE 8 / SLIDE 9) -->
   <div class="segment" id="seg-5">
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 8 — CTA</div>
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 10 — CTA</div>
 
     A few things to take from this.
 
@@ -144,7 +145,7 @@
 
     The full article with all references is at helf.school — Article 17 in the Digestive Health series. As always, anything personally relevant is a conversation for you to have with your GP or healthcare professional. I'm Dr Paul. Thanks for watching.
 
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW · SLIDE 9 — Closing card</div>
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW · SLIDE 11 — Closing card</div>
   </div>
 
 </div>
