@@ -6,183 +6,37 @@
   <title>Gallstones — Teleprompter · helf.school</title>
   <style>
     :root {
-      --bg:     #0A0F1A;
-      --text:   #F0EDE8;
-      --muted:  rgba(240,237,232,0.60);
-      --accent: #D47C3A;
-      --cue-bg: rgba(212,124,58,0.18);
-      --cue-border: #D47C3A;
-      --pause-bg: rgba(122,158,135,0.18);
-      --pause-border: #7A9E87;
-      --warn-bg: rgba(200,66,58,0.18);
-      --warn-border: #C8423A;
+      --bg: #0A0F1A; --text: #F0EDE8; --accent: #D47C3A;
+      --cue-bg: rgba(212,124,58,0.18); --cue-border: #D47C3A;
+      --pause-bg: rgba(122,158,135,0.18); --pause-border: #7A9E87;
+      --warn-bg: rgba(200,66,58,0.18); --warn-border: #C8423A;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Georgia', serif;
-      font-size: 1.9rem;
-      line-height: 1.65;
-      overflow: hidden;
-      height: 100vh;
-      user-select: none;
-    }
-
-    /* ── CONTROLS ──────────────────────────── */
-    .controls {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 50;
-      background: rgba(10,15,26,0.95);
-      border-bottom: 1px solid rgba(212,124,58,0.35);
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.5rem 0.8rem;
-      flex-wrap: wrap;
-    }
-    .ctrl-label {
-      font-family: sans-serif;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(240,237,232,0.55);
-    }
-    .ctrl-btn {
-      font-family: sans-serif;
-      font-size: 0.80rem;
-      font-weight: 700;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.18);
-      color: var(--text);
-      border-radius: 5px;
-      padding: 0.28rem 0.65rem;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
+    body { background: var(--bg); color: var(--text); font-family: 'Georgia', serif; font-size: 1.9rem; line-height: 1.65; overflow: hidden; height: 100vh; user-select: none; }
+    .controls { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(10,15,26,0.95); border-bottom: 1px solid rgba(212,124,58,0.35); display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.8rem; flex-wrap: wrap; }
+    .ctrl-label { font-family: sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(240,237,232,0.55); }
+    .ctrl-btn { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: var(--text); border-radius: 5px; padding: 0.28rem 0.65rem; cursor: pointer; }
     .ctrl-btn:hover { background: rgba(255,255,255,0.15); }
     .ctrl-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
     .ctrl-sep { width: 1px; height: 24px; background: rgba(255,255,255,0.15); }
-    .ctrl-speed-display {
-      font-family: sans-serif;
-      font-size: 0.80rem;
-      font-weight: 700;
-      color: var(--accent);
-      min-width: 28px;
-      text-align: center;
-    }
-    .word-count {
-      font-family: sans-serif;
-      font-size: 0.68rem;
-      color: rgba(240,237,232,0.45);
-      margin-left: auto;
-    }
-
-    /* ── SCROLL CONTAINER ──────────────────── */
-    .scroll-wrap {
-      position: absolute;
-      top: 56px; left: 0; right: 0; bottom: 48px;
-      overflow: hidden;
-    }
-    .scroll-inner {
-      padding: 3rem 2.2rem 40vh;
-      will-change: transform;
-    }
-
-    /* ── SEGMENTS ──────────────────────────── */
+    .ctrl-speed-display { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; color: var(--accent); min-width: 28px; text-align: center; }
+    .word-count { font-family: sans-serif; font-size: 0.68rem; color: rgba(240,237,232,0.45); margin-left: auto; }
+    .scroll-wrap { position: absolute; top: 56px; left: 0; right: 0; bottom: 48px; overflow: hidden; }
+    .scroll-inner { padding: 3rem 2.2rem 40vh; will-change: transform; }
     .segment { margin-bottom: 2.8rem; }
-
-    /* ── CUE BOX ───────────────────────────── */
-    .cue-box {
-      background: var(--cue-bg);
-      border: 2px solid var(--cue-border);
-      border-radius: 8px;
-      padding: 0.55rem 1rem;
-      margin-bottom: 1.1rem;
-      font-family: sans-serif;
-      font-size: 0.88rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .cue-box .cue-arrow { font-size: 1rem; flex-shrink: 0; }
-
-    /* ── PAUSE ─────────────────────────────── */
-    .pause {
-      background: var(--pause-bg);
-      border-left: 3px solid var(--pause-border);
-      border-radius: 0 6px 6px 0;
-      padding: 0.4rem 0.9rem;
-      margin: 1rem 0;
-      font-family: sans-serif;
-      font-size: 0.80rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: #7A9E87;
-    }
-
-    /* ── STAT HIGHLIGHT ────────────────────── */
-    .stat {
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    /* ── WARNING ───────────────────────────── */
-    .warn-box {
-      background: var(--warn-bg);
-      border: 2px solid var(--warn-border);
-      border-radius: 8px;
-      padding: 0.55rem 1rem;
-      margin: 1rem 0;
-      font-family: sans-serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #FF8A80;
-    }
-
-    /* ── SEGMENT DOTS ──────────────────────── */
-    .dots-bar {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      height: 48px;
-      background: rgba(10,15,26,0.95);
-      border-top: 1px solid rgba(212,124,58,0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      z-index: 50;
-    }
-    .dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.22);
-      cursor: pointer;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .dot.active {
-      background: var(--accent);
-      transform: scale(1.3);
-    }
-    .dot-label {
-      font-family: sans-serif;
-      font-size: 0.62rem;
-      color: rgba(240,237,232,0.45);
-      margin: 0 0.3rem;
-    }
+    .cue-box { background: var(--cue-bg); border: 2px solid var(--cue-border); border-radius: 8px; padding: 0.55rem 1rem; margin-bottom: 1.1rem; font-family: sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); display: flex; align-items: center; gap: 0.5rem; }
+    .cue-arrow { font-size: 1rem; flex-shrink: 0; }
+    .pause { background: var(--pause-bg); border-left: 3px solid var(--pause-border); border-radius: 0 6px 6px 0; padding: 0.4rem 0.9rem; margin: 1rem 0; font-family: sans-serif; font-size: 0.80rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #7A9E87; }
+    .stat { color: var(--accent); font-weight: 700; }
+    .warn-box { background: var(--warn-bg); border: 2px solid var(--warn-border); border-radius: 8px; padding: 0.55rem 1rem; margin: 1rem 0; font-family: sans-serif; font-size: 0.85rem; font-weight: 700; color: #FF8A80; }
+    .dots-bar { position: fixed; bottom: 0; left: 0; right: 0; height: 48px; background: rgba(10,15,26,0.95); border-top: 1px solid rgba(212,124,58,0.25); display: flex; align-items: center; justify-content: center; gap: 0.5rem; z-index: 50; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.22); cursor: pointer; transition: background 0.2s, transform 0.2s; }
+    .dot.active { background: var(--accent); transform: scale(1.3); }
+    .dot-label { font-family: sans-serif; font-size: 0.62rem; color: rgba(240,237,232,0.45); margin: 0 0.3rem; }
   </style>
 </head>
 <body>
 
-<!-- ── CONTROLS ─────────────────────────────── -->
 <div class="controls">
   <span class="ctrl-label">Speed</span>
   <button class="ctrl-btn" id="btn-slower">−</button>
@@ -198,13 +52,12 @@
   <span class="word-count">~650 words · ~4.5 min</span>
 </div>
 
-<!-- ── SCROLL WRAP ───────────────────────────── -->
 <div class="scroll-wrap" id="scroll-wrap">
 <div class="scroll-inner" id="scroll-inner">
 
-  <!-- ══════════════════════════ SEGMENT 0 — INTRO -->
+  <!-- SEGMENT 0 — INTRO -->
   <div class="segment" id="seg-0">
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 1 — Title card</div>
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · Slide 1 — Title card</div>
 
     I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about gallstones.
 
@@ -213,11 +66,11 @@
     Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — let's get into it.
   </div>
 
-  <!-- ══════════════════════════ SEGMENT 1 — WHAT ARE GALLSTONES -->
+  <!-- SEGMENT 1 — WHAT ARE GALLSTONES -->
   <div class="segment" id="seg-1">
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 2 — Scale / numbers</div>
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · Slide 2 — Scale and numbers</div>
 
-    The gallbladder is a small organ that sits under the liver and stores bile — the digestive fluid that helps break down fats. Gallstones form when the balance of substances in bile goes wrong and cholesterol crystalises into hard deposits. They can be as small as a grain of sand or as large as a golf ball.
+    The gallbladder is a small organ that sits under the liver and stores bile — the digestive fluid that helps break down fats. Gallstones form when the balance of substances in bile goes wrong and cholesterol crystallises into hard deposits. They can be as small as a grain of sand or as large as a golf ball.
 
     <div class="pause">— pause —</div>
 
@@ -228,9 +81,9 @@
     But gallstones are genuinely common. In the UK, somewhere between <span class="stat">15 and 20% of adults have them</span> — and around <span class="stat">66,000 cholecystectomies</span> — gallbladder removals — are performed here every year. It's one of the most common surgical procedures in the country.
   </div>
 
-  <!-- ══════════════════════════ SEGMENT 2 — RISK FACTORS -->
+  <!-- SEGMENT 2 — RISK FACTORS -->
   <div class="segment" id="seg-2">
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 3 — The 5 Fs</div>
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · Slides 3–4 — The 5 Fs</div>
 
     Who gets gallstones? Medical students learn the "5 Fs" — Female, Forty, Fertile, Fat, and Fair. It's a rough mnemonic, but it captures something real.
 
@@ -243,9 +96,9 @@
     So if someone comes to see me — a woman in her forties who's had two or three pregnancies — I'd have a much higher index of suspicion for gallstones than for a young male with upper abdominal pain.
   </div>
 
-  <!-- ══════════════════════════ SEGMENT 3 — COMPLICATIONS -->
+  <!-- SEGMENT 3 — COMPLICATIONS -->
   <div class="segment" id="seg-3">
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 4 — Complications</div>
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · Slides 5–6 — Complications</div>
 
     When gallstones do cause problems, it's because one has moved and got stuck in a bile duct. The classic symptom is biliary colic — a severe, cramping pain in the upper right abdomen, often after a fatty meal, that builds over minutes and can last several hours before it settles.
 
@@ -262,9 +115,9 @@
     <div class="warn-box">⚠️ RED FLAG — Charcot's triad: upper right pain + fever + jaundice. That combination suggests cholangitis — infection in the bile ducts — clinically recognised as time-sensitive. 111 and urgent GP services exist for this.</div>
   </div>
 
-  <!-- ══════════════════════════ SEGMENT 4 — WHAT DOCTORS DO -->
+  <!-- SEGMENT 4 — WHAT DOCTORS DO -->
   <div class="segment" id="seg-4">
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 5 — Doctor's toolkit</div>
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · Slides 7–8 — Diagnosis and treatment</div>
 
     In practice, when gallstones are suspected, the first investigations are blood tests — liver function tests, CRP, and amylase — and an abdominal ultrasound. Ultrasound is the go-to first imaging: no radiation, quick, and it detects gallbladder stones well.
 
@@ -277,9 +130,9 @@
     For asymptomatic gallstones, NICE guidelines say: reassure and watch. No surgery needed. For symptomatic gallstones, the standard treatment is laparoscopic cholecystectomy — keyhole surgery to remove the gallbladder. Usually a day case. Most people are back to normal within a couple of weeks.
   </div>
 
-  <!-- ══════════════════════════ SEGMENT 5 — EVIDENCE -->
+  <!-- SEGMENT 5 — EVIDENCE -->
   <div class="segment" id="seg-5">
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 6 — C-GALL RCT</div>
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · Slide 9 — C-GALL trial</div>
 
     Now — what does the evidence actually say about surgery versus watchful waiting for symptomatic gallstones? There's a UK randomised trial — the C-GALL trial — published in 2024 — that looked at exactly this.
 
@@ -296,9 +149,9 @@
     The message from C-GALL: watchful waiting is a reasonable short-term option, but for most people with symptomatic gallstones, surgery is where they end up — and it produces better disease-specific outcomes.
   </div>
 
-  <!-- ══════════════════════════ SEGMENT 6 — NICE / TAKEAWAY -->
+  <!-- SEGMENT 6 — NICE / KEY MESSAGES -->
   <div class="segment" id="seg-6">
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 7 — NICE guidelines</div>
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · Slide 10 — NICE guidelines</div>
 
     NICE guideline CG188 — confirmed current — makes three straightforward recommendations. Silent gallstones: no treatment, just reassurance. Symptomatic gallstones: offer keyhole surgery. Acute cholecystitis: surgery within one week of diagnosis to prevent complications while waiting.
 
@@ -307,9 +160,9 @@
     One more thing worth knowing: after successful surgery, there's no need to restrict diet. The gallbladder is a storage organ — the liver keeps making bile and it drains directly into the small intestine. People eat normally.
   </div>
 
-  <!-- ══════════════════════════ SEGMENT 7 — CTA / CLOSE -->
+  <!-- SEGMENT 7 — CTA / CLOSE -->
   <div class="segment" id="seg-7">
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 8 — CTA</div>
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · Slide 11 — CTA</div>
 
     So — what do I want you to take away from this?
 
@@ -325,13 +178,12 @@
 
     As always — anything personally relevant here is a conversation for you to have with your GP or healthcare professional. I'm Dr Paul. Thanks for watching.
 
-    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW · SLIDE 9 — Closing card</div>
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW · Slide 12 — Closing card</div>
   </div>
 
-</div><!-- /scroll-inner -->
-</div><!-- /scroll-wrap -->
+</div>
+</div>
 
-<!-- ── DOTS ───────────────────────────────── -->
 <div class="dots-bar" id="dots-bar">
   <span class="dot-label">Seg</span>
   <div class="dot active" data-seg="0" title="Intro"></div>
@@ -340,111 +192,52 @@
   <div class="dot" data-seg="3" title="Complications"></div>
   <div class="dot" data-seg="4" title="What doctors do"></div>
   <div class="dot" data-seg="5" title="The evidence"></div>
-  <div class="dot" data-seg="6" title="NICE / takeaway"></div>
+  <div class="dot" data-seg="6" title="NICE / key messages"></div>
   <div class="dot" data-seg="7" title="CTA / Close"></div>
 </div>
 
 <script>
-  // ── SCROLL ENGINE ──────────────────────────────
-  const PX_PER_SEC_BASE = 20;
   const SPEED_LEVELS = [0, 8, 14, 20, 28, 38, 50];
-
-  let speedLevel = 3;
-  let fontSize   = 1.9;
-  let paused     = false;
-  let pos        = 0;
-  let lastTs     = null;
-
-  const wrap   = document.getElementById('scroll-wrap');
-  const inner  = document.getElementById('scroll-inner');
+  let speedLevel = 3, fontSize = 1.9, paused = false, pos = 0, lastTs = null;
+  const wrap = document.getElementById('scroll-wrap');
+  const inner = document.getElementById('scroll-inner');
   const spdDisp = document.getElementById('speed-display');
-
-  function applyFont() {
-    inner.style.fontSize = fontSize + 'rem';
-  }
-
+  function applyFont() { inner.style.fontSize = fontSize + 'rem'; }
   function raf(ts) {
     if (!paused) {
-      if (lastTs !== null) {
-        const dt = (ts - lastTs) / 1000;
-        pos += SPEED_LEVELS[speedLevel] * dt;
-        inner.style.transform = 'translateY(-' + pos + 'px)';
-      }
+      if (lastTs !== null) { pos += SPEED_LEVELS[speedLevel] * (ts - lastTs) / 1000; inner.style.transform = 'translateY(-' + pos + 'px)'; }
       lastTs = ts;
-    } else {
-      lastTs = null;
-    }
+    } else { lastTs = null; }
     requestAnimationFrame(raf);
   }
   requestAnimationFrame(raf);
-
-  // Dot sync
   const dots = document.querySelectorAll('.dot');
   const segs = document.querySelectorAll('.segment');
-
   function updateDots() {
-    const scrollTop = pos;
     let active = 0;
-    segs.forEach((seg, i) => {
-      const top = seg.offsetTop - 80;
-      if (scrollTop >= top) active = i;
-    });
+    segs.forEach((seg, i) => { if (pos >= seg.offsetTop - 80) active = i; });
     dots.forEach(d => d.classList.remove('active'));
     if (dots[active]) dots[active].classList.add('active');
   }
-
   setInterval(updateDots, 400);
-
-  dots.forEach(d => {
-    d.addEventListener('click', () => {
-      const idx = parseInt(d.dataset.seg);
-      const seg = segs[idx];
-      if (seg) {
-        pos = Math.max(0, seg.offsetTop - 80);
-        inner.style.transform = 'translateY(-' + pos + 'px)';
-      }
-    });
-  });
-
-  // Controls
-  document.getElementById('btn-faster').addEventListener('click', () => {
-    speedLevel = Math.min(6, speedLevel + 1);
-    spdDisp.textContent = speedLevel;
-  });
-  document.getElementById('btn-slower').addEventListener('click', () => {
-    speedLevel = Math.max(0, speedLevel - 1);
-    spdDisp.textContent = speedLevel;
-  });
-  document.getElementById('btn-bigger').addEventListener('click', () => {
-    fontSize = Math.min(3.2, +(fontSize + 0.15).toFixed(2));
-    applyFont();
-  });
-  document.getElementById('btn-smaller').addEventListener('click', () => {
-    fontSize = Math.max(1.2, +(fontSize - 0.15).toFixed(2));
-    applyFont();
-  });
+  dots.forEach(d => d.addEventListener('click', () => {
+    const seg = segs[parseInt(d.dataset.seg)];
+    if (seg) { pos = Math.max(0, seg.offsetTop - 80); inner.style.transform = 'translateY(-' + pos + 'px)'; }
+  }));
+  document.getElementById('btn-faster').addEventListener('click', () => { speedLevel = Math.min(6, speedLevel + 1); spdDisp.textContent = speedLevel; });
+  document.getElementById('btn-slower').addEventListener('click', () => { speedLevel = Math.max(0, speedLevel - 1); spdDisp.textContent = speedLevel; });
+  document.getElementById('btn-bigger').addEventListener('click', () => { fontSize = Math.min(3.2, +(fontSize + 0.15).toFixed(2)); applyFont(); });
+  document.getElementById('btn-smaller').addEventListener('click', () => { fontSize = Math.max(1.2, +(fontSize - 0.15).toFixed(2)); applyFont(); });
   const pauseBtn = document.getElementById('btn-pause');
   pauseBtn.addEventListener('click', () => {
     paused = !paused;
     pauseBtn.textContent = paused ? '▶ Resume' : '⏸ Pause';
     pauseBtn.classList.toggle('active', paused);
   });
-  document.getElementById('btn-reset').addEventListener('click', () => {
-    pos = 0;
-    inner.style.transform = 'translateY(0)';
-  });
-
-  // Touch swipe to pause/resume
+  document.getElementById('btn-reset').addEventListener('click', () => { pos = 0; inner.style.transform = 'translateY(0)'; });
   let ty = 0;
   wrap.addEventListener('touchstart', e => { ty = e.touches[0].clientY; paused = true; pauseBtn.textContent = '▶ Resume'; pauseBtn.classList.add('active'); });
-  wrap.addEventListener('touchmove', e => {
-    e.preventDefault();
-    const dy = e.touches[0].clientY - ty;
-    pos = Math.max(0, pos - dy * 0.8);
-    inner.style.transform = 'translateY(-' + pos + 'px)';
-    ty = e.touches[0].clientY;
-  }, { passive: false });
-
+  wrap.addEventListener('touchmove', e => { e.preventDefault(); const dy = e.touches[0].clientY - ty; pos = Math.max(0, pos - dy * 0.8); inner.style.transform = 'translateY(-' + pos + 'px)'; ty = e.touches[0].clientY; }, { passive: false });
   applyFont();
 </script>
 </body>
