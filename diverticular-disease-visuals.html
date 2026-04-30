@@ -1,193 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Diverticular Disease — Visuals · helf.school</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --navy: #1B2A4A; --digestive: #D47C3A; --sage: #7A9E87;
-      --amber: #E8A84A; --bad: #C8423A;
+    :root{
+      --navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;
+      --acc:#d4b84a;--digest:#D47C3A;--digest-dark:#8A4A1A;
+      --bg:#1a0e08;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { width: 100%; height: 100%; font-family: 'DM Sans', sans-serif; font-weight: 400; overflow: hidden; background: #000; }
-
-    .stage { width: 100vw; height: 100vh; position: relative; overflow: hidden; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
 
     /* TOPBAR */
-    .topbar { position: absolute; top: 0; left: 0; right: 0; height: 52px; background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: space-between; padding: 0 1.1rem; z-index: 20; backdrop-filter: blur(6px); }
-    .topbar-left { display: flex; align-items: center; gap: 0.65rem; }
-    .topbar-logo { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.05rem; color: #fff; }
-    .topbar-sep { width:1px; height:20px; background:rgba(255,255,255,0.25); }
-    .topbar-series { font-size: 0.75rem; color: rgba(255,255,255,0.80); font-weight: 500; }
-    .slide-counter { font-size: 0.85rem; color: rgba(255,255,255,0.90); font-weight: 600; }
-    .kbd-hint { font-size: 0.72rem; color: rgba(255,255,255,0.60); }
+    #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:var(--navy);border-bottom:2px solid var(--digest);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
+    .tb-logo{display:flex;align-items:center;gap:.5rem}
+    .tb-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff}
+    .tb-dot{color:var(--coral)}
+    .tb-sub{font-size:.75rem;color:rgba(255,255,255,.78);margin-left:.25rem;font-weight:500}
+    .tb-right{display:flex;align-items:center;gap:1.2rem}
+    .slide-counter{font-size:.88rem;font-weight:700;color:rgba(255,255,255,.90)}
+    .kb-hint{font-size:.75rem;color:rgba(255,255,255,.65)}
+
+    /* STAGE */
+    #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:2.2vh 1.25rem 3.5vh;overflow:hidden}
 
     /* SLIDES */
-    .slide { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; padding: 0.6rem 0.75rem; padding-top: 58px; display: grid; }
-    .slide.active { opacity: 1; pointer-events: all; }
+    .slide{display:none;width:100%;max-width:1140px;height:100%;animation:sIn .32s ease}
+    .slide.active{display:flex;flex-direction:column;min-height:0}
+    @keyframes sIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-    .slide-title-block { margin-bottom: 0.55rem; }
-    .slide-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; color: var(--digestive); margin-bottom: 0.22rem; }
-    .slide-title { font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(1.3rem, 2.6vw, 1.85rem); color: #fff; line-height: 1.15; }
-    .slide-subtitle { font-size: 0.80rem; color: rgba(255,255,255,0.80); margin-top: 0.2rem; }
+    .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.1vw,1.72rem);font-weight:700;color:#fff;margin-bottom:.4rem;padding-bottom:.4rem;border-bottom:2px solid rgba(212,124,58,.35);flex-shrink:0}
+    .slide-title span{color:var(--digest)}
 
-    /* SLIDE 1 — INTRO */
-    #slide-1 { background: linear-gradient(135deg, var(--navy) 0%, #1E3C1E 55%, #2A4A1A 100%); display: flex; align-items: center; justify-content: center; padding-top: 52px; }
-    #slide-1::before { content:''; position:absolute; top:-80px; right:-80px; width:500px; height:500px; background: radial-gradient(circle, rgba(212,124,58,0.20) 0%, transparent 65%); border-radius:50%; }
-    .intro-inner { text-align: center; position: relative; z-index: 1; max-width: 760px; padding: 1rem; }
-    .intro-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(212,124,58,0.22); border: 1px solid rgba(212,124,58,0.40); border-radius: 20px; padding: 0.3rem 0.9rem; margin-bottom: 1.2rem; }
-    .intro-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--digestive); }
-    .intro-badge-text { font-size: 0.80rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.90); }
-    .intro-title { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(2.4rem, 6vw, 4.8rem); color: #fff; line-height: 1.05; margin-bottom: 1rem; letter-spacing: -0.02em; }
-    .intro-subtitle { font-size: clamp(0.95rem, 1.8vw, 1.15rem); color: rgba(255,255,255,0.85); max-width: 580px; margin: 0 auto 1.8rem; line-height: 1.55; }
-    .intro-stats { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
-    .intro-stat-n { font-family: 'Fraunces', serif; font-weight: 900; font-size: 2.5rem; color: var(--digestive); line-height: 1; }
-    .intro-stat-l { font-size: 0.80rem; color: rgba(255,255,255,0.80); margin-top: 0.2rem; }
+    /* NAV DOTS */
+    #dots{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:200}
+    .nav-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .25s}
+    .nav-dot.active{background:var(--digest);transform:scale(1.3)}
 
-    /* SLIDE 2 — THE THREE STAGES (AMBER/MECHANISM) */
-    #slide-2 { background: linear-gradient(160deg, #1A1A0A 0%, #2A2010 100%); grid-template-rows: auto 1fr; }
-    .stages-rows { display: grid; grid-template-rows: 1fr 1fr 1fr; gap: 0.6rem; min-height: 0; }
-    .stage-row { display: grid; grid-template-columns: 72px 1fr auto; align-items: start; border-radius: 0 10px 10px 0; padding: 0.9rem 1rem; gap: 0.8rem; min-height: 0; overflow: hidden; }
-    .stage-row.asymptomatic { background: rgba(122,158,135,0.12); border-left: 4px solid var(--sage); }
-    .stage-row.symptomatic { background: rgba(232,168,74,0.12); border-left: 4px solid var(--amber); }
-    .stage-row.itis { background: rgba(200,66,58,0.12); border-left: 4px solid var(--bad); }
-    .stage-icon { font-size: 2.2rem; text-align: center; font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif; padding-top: 0.1rem; }
-    .stage-content { min-height: 0; }
-    .stage-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; line-height: 1.2; }
-    .stage-title.green { color: var(--sage); }
-    .stage-title.amber { color: var(--amber); }
-    .stage-title.red { color: #FF8A80; }
-    .stage-body { font-size: 0.93rem; color: rgba(255,255,255,0.88); line-height: 1.5; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-    .stage-stat { font-family: 'Fraunces', serif; font-weight: 900; font-size: 2.6rem; line-height: 1; text-align: right; flex-shrink: 0; padding-top: 0.1rem; }
-    .stage-stat.green { color: var(--sage); }
-    .stage-stat.amber { color: var(--amber); }
-    .stage-stat.red { color: #FF8A80; }
+    /* ── SLIDE 1: INTRO ── */
+    .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.2rem}
+    .intro-badge{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--digest);background:rgba(212,124,58,.14);border:1px solid rgba(212,124,58,.35);padding:.3rem .9rem;border-radius:100px}
+    .intro-icon{font-size:3.8rem;line-height:1}
+    .intro-title{font-family:'Fraunces',serif;font-size:clamp(2.6rem,5.5vw,4.8rem);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-.02em}
+    .intro-sub{font-size:1.05rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;max-width:660px;line-height:1.5;font-weight:400}
+    .intro-stats{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap}
+    .intro-stat{text-align:center}
+    .intro-stat-n{font-family:'Fraunces',serif;font-weight:900;font-size:2.5rem;color:var(--digest);line-height:1}
+    .intro-stat-l{font-size:.80rem;color:rgba(255,255,255,.80);margin-top:.2rem;font-weight:500}
+    .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
 
-    /* SLIDE 3 — RISK FACTORS (AMBER) */
-    #slide-3 { background: linear-gradient(160deg, #1A1A0A 0%, #2A2010 100%); grid-template-rows: auto 1fr; }
-    .risk-rows { display: grid; grid-template-rows: 1fr 1fr 1fr 1fr 1fr; gap: 0.5rem; min-height: 0; }
-    .risk-row { display: grid; grid-template-columns: 72px 1fr auto; align-items: start; background: rgba(232,168,74,0.10); border-left: 3px solid var(--amber); border-radius: 0 8px 8px 0; padding: 0.65rem 0.9rem; gap: 0.7rem; min-height: 0; overflow: hidden; }
-    .risk-icon { font-size: 1.9rem; text-align: center; font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif; padding-top: 0.1rem; }
-    .risk-content { min-height: 0; }
-    .risk-title { font-size: 1.0rem; font-weight: 700; color: var(--amber); margin-bottom: 0.2rem; }
-    .risk-body { font-size: 0.93rem; color: rgba(255,255,255,0.88); line-height: 1.45; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-    .risk-stat { font-family: 'Fraunces', serif; font-weight: 900; font-size: 2.4rem; color: var(--amber); line-height: 1; text-align: right; flex-shrink: 0; padding-top: 0.1rem; }
+    /* ── SLIDE 2: THREE STAGES ── */
+    .stages-grid{display:grid;grid-template-rows:1fr 1fr 1fr;gap:.6rem;flex:1;min-height:0}
+    .stage-row{display:grid;grid-template-columns:72px 1fr auto;align-items:start;border-radius:0 10px 10px 0;padding:.85rem 1rem;gap:.8rem;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .stage-row.animate-ready{opacity:0;transform:translateY(14px)}
+    .stage-row.vis{opacity:1;transform:translateY(0)}
+    .stage-row.asym{background:rgba(122,158,135,.12);border-left:4px solid var(--good)}
+    .stage-row.symp{background:rgba(232,168,74,.12);border-left:4px solid var(--warn)}
+    .stage-row.itis{background:rgba(200,66,58,.12);border-left:4px solid var(--bad)}
+    .stage-icon{font-size:2.2rem;text-align:center;padding-top:.1rem}
+    .stage-content{min-height:0}
+    .stage-title{font-size:1.1rem;font-weight:700;margin-bottom:.22rem;line-height:1.2}
+    .stage-title.green{color:var(--good)}
+    .stage-title.amber{color:var(--warn)}
+    .stage-title.red{color:#FF8A80}
+    .stage-body{font-size:.93rem;color:rgba(255,255,255,.90);line-height:1.48;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .stage-stat{font-family:'Fraunces',serif;font-weight:900;font-size:2.5rem;line-height:1;text-align:right;flex-shrink:0;padding-top:.1rem}
+    .stage-stat.green{color:var(--good)}
+    .stage-stat.amber{color:var(--warn)}
+    .stage-stat.red{color:#FF8A80}
 
-    /* SLIDE 4 — DIET MYTH BUSTED */
-    #slide-4 { background: linear-gradient(160deg, #0A1A10 0%, #0F2818 100%); grid-template-rows: auto 1fr; }
-    .myth-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; gap: 0.7rem; min-height: 0; }
-    .myth-card { border-radius: 10px; padding: 1.1rem 1.15rem; display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
-    .myth-card.old { background: rgba(200,66,58,0.12); border: 1px solid rgba(200,66,58,0.30); }
-    .myth-card.new { background: rgba(122,158,135,0.12); border: 1px solid rgba(122,158,135,0.30); }
-    .myth-badge { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 20px; display: inline-block; align-self: flex-start; margin-bottom: 0.6rem; }
-    .myth-badge.old { background: rgba(200,66,58,0.22); color: #FF8A80; border: 1px solid rgba(200,66,58,0.35); }
-    .myth-badge.new { background: rgba(122,158,135,0.22); color: var(--sage); border: 1px solid rgba(122,158,135,0.35); }
-    .myth-icon { font-size: 2.4rem; margin-bottom: 0.5rem; font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif; }
-    .myth-title { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.1rem; color: #fff; line-height: 1.25; margin-bottom: 0.5rem; }
-    .myth-body { font-size: 0.93rem; color: rgba(255,255,255,0.88); line-height: 1.5; flex: 1; overflow: hidden; }
-    .myth-source { font-size: 0.80rem; color: rgba(255,255,255,0.80); margin-top: auto; padding-top: 0.5rem; }
+    /* ── RISK ROWS (slides 3, 4) — AMBER ── */
+    .risk-grid{display:grid;grid-template-columns:1fr;gap:.5rem;flex:1;min-height:0}
+    .risk-grid-3{grid-template-rows:repeat(3,1fr)}
+    .risk-grid-2{grid-template-rows:repeat(2,1fr)}
+    .risk-row{display:grid;grid-template-columns:72px 1fr auto;align-items:start;background:rgba(232,168,74,.10);border-left:3px solid var(--amber);border-radius:0 10px 10px 0;padding:.7rem 1rem;gap:.7rem;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .risk-row.animate-ready{opacity:0;transform:translateY(14px)}
+    .risk-row.vis{opacity:1;transform:translateY(0)}
+    .risk-icon{font-size:1.9rem;text-align:center;padding-top:.1rem}
+    .risk-content{min-height:0}
+    .risk-title{font-size:1.05rem;font-weight:700;color:var(--amber);margin-bottom:.18rem}
+    .risk-body{font-size:.93rem;color:rgba(255,255,255,.90);line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .risk-stat{font-family:'Fraunces',serif;font-weight:900;font-size:2.2rem;color:var(--amber);line-height:1;text-align:right;flex-shrink:0;padding-top:.1rem}
 
-    /* SLIDE 5 — DOCTOR'S TOOLKIT (GREEN) */
-    #slide-5 { background: linear-gradient(160deg, #0A1A10 0%, #0F2818 100%); grid-template-rows: auto 1fr; }
-    .doc-rows { display: grid; grid-template-rows: 1fr 1fr 1fr 1fr 1fr; gap: 0.5rem; min-height: 0; }
-    .doc-row { display: grid; grid-template-columns: 72px 1fr auto; align-items: start; background: rgba(122,158,135,0.10); border-left: 3px solid var(--sage); border-radius: 0 8px 8px 0; padding: 0.65rem 0.9rem; gap: 0.7rem; min-height: 0; overflow: hidden; }
-    .doc-icon { font-size: 1.9rem; text-align: center; font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif; padding-top: 0.1rem; }
-    .doc-content { min-height: 0; }
-    .doc-title { font-size: 1.0rem; font-weight: 700; color: var(--sage); margin-bottom: 0.2rem; }
-    .doc-body { font-size: 0.93rem; color: rgba(255,255,255,0.88); line-height: 1.45; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-    .doc-stat { font-family: 'Fraunces', serif; font-weight: 900; font-size: 2.4rem; color: var(--sage); line-height: 1; text-align: right; flex-shrink: 0; padding-top: 0.1rem; }
+    /* ── SLIDE 5: MYTH COMPARISON ── */
+    .myth-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;flex:1;min-height:0}
+    .myth-card{border-radius:12px;padding:1.1rem 1.15rem;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+    .myth-card.old{background:rgba(200,66,58,.12);border:1px solid rgba(200,66,58,.30)}
+    .myth-card.new{background:rgba(122,158,135,.12);border:1px solid rgba(122,158,135,.30)}
+    .myth-badge{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.22rem .6rem;border-radius:20px;display:inline-block;align-self:flex-start;margin-bottom:.55rem}
+    .myth-badge.old{background:rgba(200,66,58,.22);color:#FF8A80;border:1px solid rgba(200,66,58,.35)}
+    .myth-badge.new{background:rgba(122,158,135,.22);color:var(--sage);border:1px solid rgba(122,158,135,.35)}
+    .myth-icon{font-size:2.2rem;margin-bottom:.45rem}
+    .myth-title{font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;color:#fff;line-height:1.25;margin-bottom:.45rem}
+    .myth-body{font-size:.91rem;color:rgba(255,255,255,.88);line-height:1.50;flex:1;overflow:hidden;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical}
+    .myth-source{font-size:.78rem;color:rgba(255,255,255,.65);margin-top:auto;padding-top:.45rem;font-style:italic}
 
-    /* SLIDE 6 — EVIDENCE CARDS */
-    #slide-6 { background: linear-gradient(160deg, #0F1E38 0%, var(--navy) 100%); grid-template-rows: auto 1fr; }
-    .ev-cards { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; gap: 0.65rem; min-height: 0; }
-    .ev-card { background: rgba(255,255,255,0.05); border-radius: 10px; padding: 1rem 1.1rem; display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.10); min-height: 0; overflow: hidden; }
-    .ev-badge { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: rgba(212,124,58,0.22); color: var(--digestive); border: 1px solid rgba(212,124,58,0.35); padding: 0.2rem 0.6rem; border-radius: 20px; display: inline-block; align-self: flex-start; margin-bottom: 0.55rem; }
-    .ev-title { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.0rem; color: #fff; line-height: 1.25; margin-bottom: 0.5rem; }
-    .ev-stat-block { background: rgba(255,255,255,0.08); border-radius: 8px; padding: 0.8rem 1rem; margin-bottom: 0.7rem; }
-    .ev-stat-context { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(255,255,255,0.60); margin-bottom: 0.15rem; }
-    .ev-stat-row { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; line-height: 1.15; margin-bottom: 0.25rem; }
-    .ev-stat { font-family: 'Fraunces', serif; font-weight: 900; font-size: 2.8rem; line-height: 1; flex-shrink: 0; }
-    .ev-stat-what { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.25rem; color: #fff; line-height: 1.2; }
-    .ev-stat-label { font-size: 0.95rem; font-weight: 600; color: rgba(255,255,255,0.85); line-height: 1.4; }
-    .ev-finding { font-size: 0.93rem; color: rgba(255,255,255,0.88); line-height: 1.5; flex: 1; overflow: hidden; }
-    .ev-journal { font-size: 0.80rem; color: rgba(255,255,255,0.80); margin-top: auto; padding-top: 0.5rem; }
+    /* ── DOC ROWS (slides 6, 7) — GREEN ── */
+    .doc-grid{display:grid;grid-template-columns:1fr;gap:.5rem;flex:1;min-height:0}
+    .doc-grid-3{grid-template-rows:repeat(3,1fr)}
+    .doc-grid-2{grid-template-rows:repeat(2,1fr)}
+    .doc-row{display:grid;grid-template-columns:72px 1fr auto;align-items:start;background:rgba(122,158,135,.10);border-left:3px solid var(--good);border-radius:0 10px 10px 0;padding:.7rem 1rem;gap:.7rem;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .doc-row.animate-ready{opacity:0;transform:translateY(14px)}
+    .doc-row.vis{opacity:1;transform:translateY(0)}
+    .doc-icon{font-size:1.9rem;text-align:center;padding-top:.1rem}
+    .doc-content{min-height:0}
+    .doc-title{font-size:1.05rem;font-weight:700;color:var(--good);margin-bottom:.18rem}
+    .doc-body{font-size:.93rem;color:rgba(255,255,255,.90);line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .doc-body strong{color:#fff;font-weight:700}
+    .doc-stat{font-family:'Fraunces',serif;font-weight:900;font-size:1.8rem;color:var(--good);line-height:1;text-align:right;flex-shrink:0;padding-top:.1rem;white-space:nowrap}
 
-    /* SLIDE 7 — CTA (horizontal rows) */
-    #slide-7 {
-      background: radial-gradient(ellipse at 50% 30%, rgba(212,124,58,0.35) 0%, rgba(27,42,74,0.97) 55%, #080E1C 100%);
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      padding: 58px 1.1rem 0.6rem;
-    }
-    .cta-header { text-align: center; padding-bottom: 0.4rem; }
-    .cta-title { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(1.5rem, 3.0vw, 2.2rem); color: #fff; line-height: 1.1; letter-spacing: -0.02em; }
-    .cta-sub { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(0.82rem, 1.4vw, 0.95rem); color: rgba(255,255,255,0.80); margin-top: 0.2rem; }
-    .cta-rows { display: grid; grid-template-rows: 1fr 1fr 1fr 1fr; gap: 0.45rem; min-height: 0; }
-    .cta-row { display: grid; grid-template-columns: 60px 1fr auto; align-items: start; background: rgba(255,255,255,0.06); border: 1px solid rgba(212,124,58,0.30); border-left: 4px solid var(--digestive); border-radius: 0 10px 10px 0; padding: 0.6rem 0.9rem; gap: 0.7rem; min-height: 0; overflow: hidden; }
-    .cta-row-icon { font-size: 1.7rem; text-align: center; font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif; padding-top: 0.1rem; }
-    .cta-row-content { min-height: 0; }
-    .cta-row-title { font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(0.95rem, 1.6vw, 1.08rem); color: #fff; line-height: 1.2; margin-bottom: 0.18rem; }
-    .cta-row-body { font-size: 0.90rem; color: rgba(255,255,255,0.85); line-height: 1.4; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
-    .cta-row-word { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(1.4rem, 2.4vw, 2.0rem); color: var(--digestive); line-height: 1; text-align: right; flex-shrink: 0; padding-top: 0.1rem; white-space: nowrap; }
-    .cta-disclaimer { background: rgba(255,255,255,0.04); border: 1px dashed rgba(255,255,255,0.25); border-radius: 8px; padding: 0.5rem 1rem; font-size: 0.80rem; color: rgba(255,255,255,0.85); line-height: 1.45; text-align: center; margin-top: 0.4rem; }
-    .cta-disclaimer strong { color: #fff; }
+    /* ── EV-CARDS (slide 8) ── */
+    .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
+    .ev-card{background:linear-gradient(180deg,rgba(30,18,8,.85),rgba(18,10,4,.92));border:1px solid rgba(212,124,58,.32);border-radius:16px;padding:1.1rem 1.4rem;display:grid;grid-template-columns:220px 1fr;gap:1.4rem;align-items:center;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .45s ease}
+    .ev-card.animate-ready{opacity:0;transform:translateY(14px)}
+    .ev-card.vis{opacity:1;transform:translateY(0)}
+    .ev-stat-box{background:linear-gradient(160deg,var(--digest-dark) 0%,var(--digest) 100%);border-radius:12px;padding:.9rem .75rem;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start}
+    .ev-kf-label{font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--amber);margin-bottom:.35rem}
+    .ev-stat-row{font-family:'Fraunces',serif;font-size:3.2rem;font-weight:900;color:#fff;line-height:1.0;margin-bottom:.3rem}
+    .ev-outcome{font-size:.95rem;font-weight:700;color:rgba(255,255,255,.95);line-height:1.3;margin-bottom:.2rem}
+    .ev-conditions{font-size:.78rem;line-height:1.32;color:rgba(255,255,255,.72)}
+    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.35rem;margin-bottom:.2rem;line-height:1.15}
+    .ev-det .ev-journal{font-size:.88rem;color:rgba(255,255,255,.78);margin-bottom:.55rem;font-weight:500}
+    .ev-det .ev-body{font-size:.94rem;color:rgba(255,255,255,.92);line-height:1.55;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+    .ev-det .ev-body strong{color:#fff;font-weight:700}
 
-    /* SLIDE 8 — CLOSING */
-    #slide-8 { background: var(--navy); display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 52px; }
-    .closing-inner { max-width: 680px; padding: 1.5rem; }
-    .closing-logo { font-family: 'Fraunces', serif; font-weight: 900; font-size: 2.5rem; color: #fff; margin-bottom: 0.4rem; }
-    .closing-dot { color: var(--digestive); }
-    .closing-tagline { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.70); margin-bottom: 2rem; }
-    .closing-message { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(1.2rem, 2.5vw, 1.6rem); color: rgba(255,255,255,0.88); line-height: 1.45; margin-bottom: 1.5rem; }
-    .closing-disclaimer { font-size: 0.82rem; color: rgba(255,255,255,0.65); line-height: 1.55; }
-    .closing-series { font-size: 0.80rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.70); margin-top: 1.5rem; }
+    /* ── CTA · sequential animation ── */
+    .cta-slide{position:relative}
+    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(212,184,74,.18),rgba(212,184,74,.04) 45%,transparent 70%);pointer-events:none;z-index:0}
+    .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem;gap:.45rem;min-height:0;overflow:hidden}
+    .cta-top{display:flex;flex-direction:column;align-items:center;gap:.25rem;text-align:center}
+    .cta-badge-v2{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.3rem .95rem;border-radius:100px}
+    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:700;color:#fff;line-height:1.02;letter-spacing:-.028em}
+    .cta-headline-v2 span{color:var(--acc)}
+    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(.92rem,1.4vw,1.1rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.88);line-height:1.3}
+    .cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.4rem;min-height:0;overflow:hidden}
+    .cta-row-v2{background:linear-gradient(90deg,rgba(212,184,74,.12),rgba(212,184,74,.04));border-left:4px solid var(--acc);border-radius:0 10px 10px 0;padding:.55rem .9rem;display:grid;grid-template-columns:52px 1fr auto;gap:.9rem;align-items:start;min-height:0;overflow:hidden}
+    .cta-row-icon{font-size:1.7rem;line-height:1;padding-top:.1rem}
+    .cta-row-mid{display:flex;flex-direction:column;gap:.1rem;min-width:0}
+    .cta-row-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.96rem;line-height:1.15}
+    .cta-row-body-v2{font-size:.82rem;color:rgba(255,255,255,.90);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .cta-row-word-v2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.2rem,2vw,1.7rem);color:var(--acc);line-height:1;text-align:right;white-space:nowrap;padding-left:.6rem}
+    .cta-anim-item{opacity:0;transform:translateX(-32px);transition:opacity .5s ease,transform .5s ease}
+    .cta-anim-item.cta-item-vis{opacity:1;transform:translateX(0)}
+    .cta-bottom{display:flex;justify-content:center;flex-shrink:0}
+    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.7rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;max-width:900px;width:100%}
+    .med-disc-icon{font-size:1.25rem;flex-shrink:0}
+    .med-disc-text{font-size:1rem;color:rgba(255,255,255,.90);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left;font-weight:400}
+    .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
+
+    /* ── BRAND CLOSE ── */
+    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100%;text-align:center;gap:1.2rem;padding-top:1.5rem}
+    .close-logo{display:flex;align-items:center;gap:.35rem;font-family:'Fraunces',serif;font-size:2.8rem;font-weight:700;color:#fff;letter-spacing:-.02em}
+    .cl-dot{color:var(--coral)}
+    .close-tagline{font-size:1.05rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.80)}
+    .close-headline{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:#fff;max-width:900px;line-height:1.12;letter-spacing:-.02em}
+    .close-headline span{color:var(--digest)}
+    .close-pitch{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:960px;width:100%}
+    .pitch-card{background:rgba(212,124,58,.10);border:1px solid rgba(212,124,58,.38);border-radius:14px;padding:1.1rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;text-align:center}
+    .pitch-icon{font-size:2.2rem;line-height:1}
+    .pitch-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;line-height:1.2}
+    .pitch-body{font-size:.88rem;color:rgba(255,255,255,.85);line-height:1.45;font-weight:400}
+    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.70)}
+
+    .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:clamp(.65rem,1vw,.80rem);color:rgba(255,255,255,.65);z-index:90;white-space:nowrap}
   </style>
 </head>
 <body>
-<div class="stage" id="stage">
 
-  <!-- TOPBAR -->
-  <div class="topbar">
-    <div class="topbar-left">
-      <div class="topbar-logo">helf.school</div>
-      <div class="topbar-sep"></div>
-      <div class="topbar-series">Digestive Health · Article 20</div>
-      <div class="topbar-sep"></div>
-      <div class="topbar-series">Diverticular Disease</div>
-    </div>
-    <div style="display:flex;align-items:center;gap:1.2rem;">
-      <div class="kbd-hint">← → to navigate</div>
-      <div class="slide-counter" id="counter">1 / 8</div>
-    </div>
+<!-- TOPBAR -->
+<div id="topbar">
+  <div class="tb-logo">
+    <svg width="20" height="16" viewBox="0 0 22 18" fill="none">
+      <path d="M11 2C8 2 5.5 4 4 6.5 2.5 9 2.5 12 4 14.5c1 1.8 2.8 3 5 3.4V4.5" stroke="#E8634A" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M11 2C14 2 16.5 4 18 6.5 19.5 9 19.5 12 18 14.5c-1 1.8-2.8 3-5 3.4V4.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <span class="tb-title">helf<span class="tb-dot">.</span>school</span>
+    <span class="tb-sub">· Diverticular Disease</span>
   </div>
+  <div class="tb-right">
+    <span id="counter" class="slide-counter">1 / 10</span>
+    <span class="kb-hint">← → navigate</span>
+  </div>
+</div>
 
-  <!-- SLIDE 1 — INTRO -->
-  <div class="slide active" id="slide-1">
-    <div class="intro-inner">
-      <div class="intro-badge"><div class="intro-badge-dot"></div><span class="intro-badge-text">Digestive Health Series · Article 20</span></div>
+<div id="stage">
+
+  <!-- SLIDE 1: INTRO -->
+  <div class="slide active">
+    <div class="intro-wrap">
+      <div class="intro-badge">📋 Digestive Health Series · Article 20</div>
+      <div class="intro-icon">🫘</div>
       <div class="intro-title">Diverticular Disease</div>
-      <div class="intro-subtitle">Most people with diverticula never know they have them. This is what the evidence says about diet, lifestyle — and the old advice that turned out to be wrong.</div>
+      <div class="intro-sub">Most people with diverticula never know they have them. This is what the evidence says about diet, lifestyle — and the old advice that turned out to be wrong.</div>
       <div class="intro-stats">
-        <div><div class="intro-stat-n">1 in 2</div><div class="intro-stat-l">UK adults by older age</div></div>
-        <div><div class="intro-stat-n">75%</div><div class="intro-stat-l">remain asymptomatic</div></div>
-        <div><div class="intro-stat-n">41%</div><div class="intro-stat-l">risk cut with 30g fibre</div></div>
+        <div class="intro-stat">
+          <div class="intro-stat-n">1 in 2</div>
+          <div class="intro-stat-l">UK adults by older age</div>
+        </div>
+        <div class="intro-stat">
+          <div class="intro-stat-n">75%</div>
+          <div class="intro-stat-l">remain asymptomatic</div>
+        </div>
+        <div class="intro-stat">
+          <div class="intro-stat-n">41%</div>
+          <div class="intro-stat-l">risk cut with 30g fibre</div>
+        </div>
       </div>
+      <div class="intro-tagline">Dr Paul · Retired NHS GP · helf.school</div>
     </div>
   </div>
 
-  <!-- SLIDE 2 — THREE STAGES -->
-  <div class="slide" id="slide-2">
-    <div class="slide-title-block">
-      <div class="slide-eyebrow">Understanding the spectrum</div>
-      <div class="slide-title">Three different stages — three different experiences</div>
-      <div class="slide-subtitle">The distinction matters — most people are in stage 1 and need no treatment</div>
-    </div>
-    <div class="stages-rows">
-      <div class="stage-row asymptomatic">
+  <!-- SLIDE 2: THREE STAGES -->
+  <div class="slide">
+    <div class="slide-title">Three stages — <span>three different experiences</span></div>
+    <div class="stages-grid">
+
+      <div class="stage-row asym animate-ready" id="s1">
         <div class="stage-icon">🤫</div>
         <div class="stage-content">
           <div class="stage-title green">Diverticulosis — silent pouches</div>
@@ -195,7 +226,8 @@
         </div>
         <div class="stage-stat green">75%</div>
       </div>
-      <div class="stage-row symptomatic">
+
+      <div class="stage-row symp animate-ready" id="s2">
         <div class="stage-icon">😖</div>
         <div class="stage-content">
           <div class="stage-title amber">Diverticular disease — symptomatic</div>
@@ -203,34 +235,34 @@
         </div>
         <div class="stage-stat amber">25%</div>
       </div>
-      <div class="stage-row itis">
+
+      <div class="stage-row itis animate-ready" id="s3">
         <div class="stage-icon">🤒</div>
         <div class="stage-content">
           <div class="stage-title red">Diverticulitis — inflamed or infected</div>
-          <div class="stage-body">Persistent lower left pain with fever, nausea, tenderness. Can be uncomplicated (managed at home) or complicated — involving abscess, perforation, or peritonitis.</div>
+          <div class="stage-body">Persistent lower left pain with fever, nausea, and tenderness. Can be uncomplicated — managed at home — or complicated, involving abscess, perforation, or peritonitis.</div>
         </div>
         <div class="stage-stat red">~5%</div>
       </div>
+
     </div>
   </div>
 
-  <!-- SLIDE 3 — RISK FACTORS (AMBER) -->
-  <div class="slide" id="slide-3">
-    <div class="slide-title-block">
-      <div class="slide-eyebrow">Why diverticula form</div>
-      <div class="slide-title">Risk factors — a Western lifestyle pattern</div>
-      <div class="slide-subtitle">Rare in rural Africa and Asia — strongly linked to low-fibre Westernised diet</div>
-    </div>
-    <div class="risk-rows">
-      <div class="risk-row">
+  <!-- SLIDE 3: RISK FACTORS (1 of 2) — Low fibre, Age, Obesity · AMBER -->
+  <div class="slide">
+    <div class="slide-title">Why diverticula form — <span>risk factors</span> (1 of 2)</div>
+    <div class="risk-grid risk-grid-3">
+
+      <div class="risk-row animate-ready" id="r1">
         <div class="risk-icon">🌾</div>
         <div class="risk-content">
-          <div class="risk-title">Low dietary fibre</div>
-          <div class="risk-body">The strongest modifiable risk factor. Average UK adult consumes ~18g/day — well below the recommended 30g. Low fibre increases colonic pressure during bowel contractions, weakening the bowel wall.</div>
+          <div class="risk-title">Low dietary fibre — the strongest modifiable factor</div>
+          <div class="risk-body">Average UK adult consumes ~18g/day — well below the recommended 30g. Low fibre increases colonic pressure during bowel contractions, progressively weakening the bowel wall.</div>
         </div>
         <div class="risk-stat">18g</div>
       </div>
-      <div class="risk-row">
+
+      <div class="risk-row animate-ready" id="r2">
         <div class="risk-icon">🎂</div>
         <div class="risk-content">
           <div class="risk-title">Age</div>
@@ -238,227 +270,319 @@
         </div>
         <div class="risk-stat">85+</div>
       </div>
-      <div class="risk-row">
+
+      <div class="risk-row animate-ready" id="r3">
         <div class="risk-icon">⚖️</div>
         <div class="risk-content">
           <div class="risk-title">Obesity and low physical activity</div>
-          <div class="risk-body">Both independently increase risk. Physical activity improves gut motility (bowel movement) and reduces colonic pressure. Obesity is a particularly strong risk factor in younger adults under 50.</div>
+          <div class="risk-body">Both independently increase risk. Physical activity improves gut motility and reduces colonic pressure. Obesity is a particularly strong risk factor in adults under 50.</div>
         </div>
-        <div class="risk-stat">↑BMI</div>
+        <div class="risk-stat">↑ BMI</div>
       </div>
-      <div class="risk-row">
+
+    </div>
+  </div>
+
+  <!-- SLIDE 4: RISK FACTORS (2 of 2) — Smoking, NSAIDs · AMBER -->
+  <div class="slide">
+    <div class="slide-title">Why diverticula form — <span>risk factors</span> (2 of 2)</div>
+    <div class="risk-grid risk-grid-2">
+
+      <div class="risk-row animate-ready" id="r4">
         <div class="risk-icon">🚬</div>
         <div class="risk-content">
           <div class="risk-title">Smoking</div>
           <div class="risk-body">Increases risk of diverticular disease and complications. NICE NG147 identifies smoking cessation as part of the first-line management of symptomatic diverticular disease.</div>
         </div>
-        <div class="risk-stat">↑Risk</div>
+        <div class="risk-stat">↑ Risk</div>
       </div>
-      <div class="risk-row">
+
+      <div class="risk-row animate-ready" id="r5">
         <div class="risk-icon">💊</div>
         <div class="risk-content">
           <div class="risk-title">NSAIDs and opioids</div>
-          <div class="risk-body">Regular use of non-steroidal anti-inflammatory drugs (such as ibuprofen) or opioid painkillers increases the risk of diverticular perforation. NICE advises avoiding both where possible.</div>
+          <div class="risk-body">Regular use of non-steroidal anti-inflammatory drugs — such as ibuprofen — or opioid painkillers increases the risk of diverticular perforation. NICE NG147 advises avoiding both where possible.</div>
         </div>
         <div class="risk-stat">⚠️</div>
       </div>
+
     </div>
   </div>
 
-  <!-- SLIDE 4 — DIET MYTH BUSTED -->
-  <div class="slide" id="slide-4">
-    <div class="slide-title-block">
-      <div class="slide-eyebrow">Old advice vs current evidence</div>
-      <div class="slide-title">The seeds and nuts myth — reversed by NICE 2019</div>
-      <div class="slide-subtitle">Source: NICE NG147 · 2019, amended September 2024</div>
-    </div>
+  <!-- SLIDE 5: DIET MYTH — 2-col comparison -->
+  <div class="slide">
+    <div class="slide-title">Old advice vs evidence — <span>the seeds and nuts myth reversed</span></div>
     <div class="myth-grid">
+
       <div class="myth-card old">
         <div class="myth-badge old">❌ Old advice — now reversed</div>
         <div class="myth-icon">🚫</div>
         <div class="myth-title">Avoid seeds, nuts, popcorn, and fruit skins</div>
-        <div class="myth-body">For decades, people with diverticular disease were routinely told to avoid seeds, nuts, popcorn, and fruit skins — on the theory that they might lodge inside diverticula and trigger inflammation or infection. This advice was widely given by GPs and dietitians and caused significant dietary restriction in many people.</div>
+        <div class="myth-body">For decades, people with diverticular disease were routinely told to avoid these foods — on the theory that small particles might lodge inside diverticula and trigger inflammation. This advice was widely given and caused significant unnecessary dietary restriction. There was never any evidence behind it.</div>
         <div class="myth-source">Theoretical basis only — no evidence ever supported this</div>
       </div>
+
       <div class="myth-card new">
-        <div class="myth-badge new">✅ Current NICE guidance</div>
+        <div class="myth-badge new">✅ Current NICE guidance — NG147</div>
         <div class="myth-icon">🥜</div>
         <div class="myth-title">No need to avoid seeds, nuts, or fruit skins</div>
-        <div class="myth-body">NICE NG147 explicitly states there is no need to avoid these foods. Not only is there no evidence they cause diverticulitis — avoiding them may reduce fibre intake, which is counterproductive. These foods are a useful source of dietary fibre and should form part of a healthy, balanced diet in people with diverticular disease.</div>
+        <div class="myth-body">NICE NG147 explicitly states there is no need to avoid these foods. Not only is there no evidence they cause diverticulitis — avoiding them reduces fibre intake, which is counterproductive. These foods are a useful source of dietary fibre and belong in a healthy diet for people with diverticular disease.</div>
         <div class="myth-source">NICE NG147 · 2019, amended September 2024</div>
       </div>
+
     </div>
   </div>
 
-  <!-- SLIDE 5 — DOCTOR'S TOOLKIT (GREEN) -->
-  <div class="slide" id="slide-5">
-    <div class="slide-title-block">
-      <div class="slide-eyebrow">What your doctor does</div>
-      <div class="slide-title">Management pathway — UK practice</div>
-      <div class="slide-subtitle">Source: NICE NG147</div>
-    </div>
-    <div class="doc-rows">
-      <div class="doc-row">
+  <!-- SLIDE 6: DOCTOR TOOLKIT (1 of 2) — Lifestyle, Pain, No ABx · GREEN -->
+  <div class="slide">
+    <div class="slide-title">Management in UK practice — <span>what your doctor does</span> (1 of 2)</div>
+    <div class="doc-grid doc-grid-3">
+
+      <div class="doc-row animate-ready" id="d1">
         <div class="doc-icon">🌾</div>
         <div class="doc-content">
           <div class="doc-title">Lifestyle first — fibre, fluids, exercise, smoking</div>
-          <div class="doc-body">Gradual increase to 30g fibre/day; ~2L fluid daily; regular physical activity; stop smoking; achieve healthy weight. First-line for all symptomatic disease.</div>
+          <div class="doc-body">Gradual increase to 30g fibre/day. ~2L fluid daily. Regular physical activity. Stop smoking. Achieve healthy weight. <strong>First-line for all symptomatic disease</strong> — NICE NG147.</div>
         </div>
         <div class="doc-stat">30g</div>
       </div>
-      <div class="doc-row">
+
+      <div class="doc-row animate-ready" id="d2">
         <div class="doc-icon">💊</div>
         <div class="doc-content">
           <div class="doc-title">Paracetamol + antispasmodics for pain</div>
-          <div class="doc-body">Paracetamol for abdominal pain; antispasmodics (bowel muscle relaxants) for cramping. NSAIDs and opioids explicitly avoided — both increase risk of bowel perforation.</div>
+          <div class="doc-body">Paracetamol for abdominal pain; antispasmodics — bowel muscle relaxants — for cramping. <strong>NSAIDs and opioids explicitly avoided</strong> — both increase risk of bowel perforation.</div>
         </div>
-        <div class="doc-stat">No NSAID</div>
+        <div class="doc-stat">No NSAIDs</div>
       </div>
-      <div class="doc-row">
+
+      <div class="doc-row animate-ready" id="d3">
         <div class="doc-icon">🚫</div>
         <div class="doc-content">
-          <div class="doc-title">No antibiotics for uncomplicated disease</div>
-          <div class="doc-body">Major change from previous practice. Antibiotics are not recommended for uncomplicated diverticular disease or uncomplicated acute diverticulitis — trial evidence shows no benefit.</div>
+          <div class="doc-title">No antibiotics for uncomplicated diverticulitis</div>
+          <div class="doc-body">Major change from previous practice. Randomised trial evidence shows antibiotics do not reduce complications or speed recovery in uncomplicated cases. <strong>NICE NG147 does not recommend them.</strong></div>
         </div>
         <div class="doc-stat">No ABx</div>
       </div>
-      <div class="doc-row">
+
+    </div>
+  </div>
+
+  <!-- SLIDE 7: DOCTOR TOOLKIT (2 of 2) — CT scan, Surgery · GREEN -->
+  <div class="slide">
+    <div class="slide-title">Management in UK practice — <span>what your doctor does</span> (2 of 2)</div>
+    <div class="doc-grid doc-grid-2">
+
+      <div class="doc-row animate-ready" id="d4">
         <div class="doc-icon">🔬</div>
         <div class="doc-content">
-          <div class="doc-title">CT scan for suspected diverticulitis</div>
-          <div class="doc-body">CT scanning is the investigation of choice to confirm acute diverticulitis and identify complications (abscess, perforation). Colonoscopy typically follows 6–8 weeks later to exclude colorectal cancer.</div>
+          <div class="doc-title">CT scan for suspected acute diverticulitis</div>
+          <div class="doc-body">CT scanning is the investigation of choice to confirm acute diverticulitis and identify complications — abscess or perforation. Colonoscopy typically follows 6–8 weeks later to exclude colorectal cancer.</div>
         </div>
         <div class="doc-stat">CT</div>
       </div>
-      <div class="doc-row">
+
+      <div class="doc-row animate-ready" id="d5">
         <div class="doc-icon">🏥</div>
         <div class="doc-content">
-          <div class="doc-title">Surgery — for complications only</div>
-          <div class="doc-body">Emergency surgery for peritonitis or perforation. Elective sigmoid colectomy (removal of the sigmoid colon) considered for recurrent disease significantly affecting quality of life.</div>
+          <div class="doc-title">Surgery — for complications or recurrent severe disease</div>
+          <div class="doc-body">Emergency surgery for peritonitis or perforation. Elective sigmoid colectomy — removal of the sigmoid colon — considered for recurrent disease significantly affecting quality of life.</div>
         </div>
         <div class="doc-stat">Rare</div>
       </div>
+
     </div>
   </div>
 
-  <!-- SLIDE 6 — EVIDENCE -->
-  <div class="slide" id="slide-6">
-    <div class="slide-title-block">
-      <div class="slide-eyebrow">The research</div>
-      <div class="slide-title">Fibre, diet, and diverticular disease — the evidence</div>
-      <div class="slide-subtitle">Source: Aune et al. Eur J Nutr 2020 · Crowe et al. BMJ 2011</div>
+  <!-- SLIDE 8: EVIDENCE — 2 stacked ev-cards -->
+  <div class="slide">
+    <div class="slide-title">What the <span>evidence</span> shows · fibre and diverticular disease</div>
+    <div class="ev-stage">
+
+      <div class="ev-card animate-ready" id="e1">
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">41%</div>
+          <div class="ev-outcome">lower risk of diverticular disease / 30g fibre vs low intake ⚑</div>
+          <div class="ev-conditions">Aune · Eur J Nutr 2020 · 5 cohorts · 865,829 participants</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">Aune et al. — dietary fibre and diverticular disease</div>
+          <div class="ev-journal">European Journal of Nutrition · 2020 · DOI: 10.1007/s00394-019-01967-w</div>
+          <div class="ev-body">Risk fell 23% at 20g/day and <strong>41% at 30g/day</strong>. UK recommended intake is 30g — average actual intake ~18g. Consistent dose-response across 5 cohort studies ⚑.</div>
+        </div>
+      </div>
+
+      <div class="ev-card animate-ready" id="e2">
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">31%</div>
+          <div class="ev-outcome">lower risk of diverticular disease / vegetarians vs meat-eaters in UK ⚑</div>
+          <div class="ev-conditions">Crowe · BMJ 2011 · EPIC-Oxford · 47,033 UK adults</div>
+        </div>
+        <div class="ev-det">
+          <div class="ev-trial">Crowe et al. — EPIC-Oxford cohort</div>
+          <div class="ev-journal">BMJ · 2011 · DOI: 10.1136/bmj.d4131 · 11.6-year follow-up</div>
+          <div class="ev-body">47,033 UK participants followed 11.6 years. The association was primarily <strong>driven by fibre intake</strong>, not meat avoidance. Highest fibre consumers had 41% lower risk than those with lowest intake ⚑.</div>
+        </div>
+      </div>
+
     </div>
-    <div class="ev-cards">
-      <div class="ev-card">
-        <div class="ev-badge">Meta-Analysis · 2020</div>
-        <div class="ev-title">Dietary fibre and diverticular disease risk — 865,829 participants</div>
-        <div class="ev-stat-block">
-          <div class="ev-stat-context">Key finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-stat" style="color:var(--digestive);">41%</div>
-            <div class="ev-stat-what">lower risk of diverticular disease</div>
+  </div>
+
+  <!-- SLIDE 9: CTA · SEQUENTIAL ANIMATION -->
+  <div class="slide cta-slide">
+    <div class="cta-glow"></div>
+    <div class="cta-wrap-v2">
+      <div class="cta-top">
+        <div class="cta-badge-v2">What the evidence shows</div>
+        <div class="cta-headline-v2">Most diverticula stay quiet.<br/><span>Fibre is the lever.</span></div>
+        <div class="cta-subline">Four things worth knowing — including the one piece of old advice that turned out to be completely wrong.</div>
+      </div>
+      <div class="cta-rows-v2">
+        <div class="cta-row-v2 cta-anim-item" id="ci1">
+          <div class="cta-row-icon">🤫</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Diverticula found on a scan — not a diagnosis of disease</div>
+            <div class="cta-row-body-v2">75% of people with diverticula remain asymptomatic for life — an incidental finding needs no treatment and no dietary restrictions</div>
           </div>
-          <div class="ev-stat-label">at 30g dietary fibre per day vs low intake (7.5g/day)</div>
+          <div class="cta-row-word-v2">75%</div>
         </div>
-        <div class="ev-finding">Risk fell 23% at 20g/day, 41% at 30g/day, and 58% at 40g/day. The UK recommended intake is 30g — average actual UK intake is ~18g. Five cohort studies, consistent dose-response.</div>
-        <div class="ev-journal">Aune D et al. · Eur J Nutr · 2020 · DOI: 10.1007/s00394-019-01967-w</div>
-      </div>
-      <div class="ev-card">
-        <div class="ev-badge">UK Cohort · BMJ · 2011</div>
-        <div class="ev-title">EPIC-Oxford — 47,033 UK adults: vegetarians vs meat eaters</div>
-        <div class="ev-stat-block">
-          <div class="ev-stat-context">Key finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-stat" style="color:var(--sage);">31%</div>
-            <div class="ev-stat-what">lower risk of diverticular disease</div>
+        <div class="cta-row-v2 cta-anim-item" id="ci2">
+          <div class="cta-row-icon">🌾</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">30g fibre per day — a 41% lower risk in the evidence</div>
+            <div class="cta-row-body-v2">Most UK adults consume only ~18g. Wholegrains, fruit, vegetables, pulses, and yes — seeds and nuts — all count</div>
           </div>
-          <div class="ev-stat-label">in vegetarians vs meat eaters — adjusted for BMI, smoking, alcohol, activity</div>
+          <div class="cta-row-word-v2">30g</div>
         </div>
-        <div class="ev-finding">47,033 UK participants followed 11.6 years. Those with the highest fibre intake had 41% lower risk than those with the lowest — the association was primarily driven by fibre, not meat avoidance.</div>
-        <div class="ev-journal">Crowe FL et al. · BMJ · 2011 · DOI: 10.1136/bmj.d4131</div>
+        <div class="cta-row-v2 cta-anim-item" id="ci3">
+          <div class="cta-row-icon">🥜</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Seeds, nuts, and fruit skins — the old advice was wrong</div>
+            <div class="cta-row-body-v2">NICE formally reversed decades of dietary restriction in 2019 — no evidence they cause diverticulitis, and avoiding them reduces fibre unnecessarily</div>
+          </div>
+          <div class="cta-row-word-v2">✅ Fine</div>
+        </div>
+        <div class="cta-row-v2 cta-anim-item" id="ci4">
+          <div class="cta-row-icon">🚫</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Worsening pain with fever — a recognised clinical pattern</div>
+            <div class="cta-row-body-v2">Lower left abdominal pain that is worsening, persistent, or accompanied by fever is a recognised pattern warranting clinical assessment</div>
+          </div>
+          <div class="cta-row-word-v2">Assess</div>
+        </div>
+      </div>
+      <div class="cta-bottom">
+        <div class="med-disclaimer">
+          <div class="med-disc-icon">⚕️</div>
+          <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 7 — CTA -->
-  <div class="slide" id="slide-7">
-    <div class="cta-header">
-      <div class="cta-title">What to take away from this</div>
-      <div class="cta-sub">Four things worth knowing about diverticular disease</div>
-    </div>
-    <div class="cta-rows">
-      <div class="cta-row">
-        <div class="cta-row-icon">🤫</div>
-        <div class="cta-row-content">
-          <div class="cta-row-title">Most diverticula are silent — finding them is not a diagnosis of disease</div>
-          <div class="cta-row-body">75% remain silent for life — an incidental finding needs no treatment and no diet changes.</div>
+  <!-- SLIDE 10: BRAND CLOSE -->
+  <div class="slide">
+    <div class="close-wrap">
+      <div class="close-logo">helf<span class="cl-dot">.</span>school</div>
+      <div class="close-tagline">Health Education</div>
+      <div class="close-headline">Most diverticula stay quiet. <span>Fibre changes the picture.</span></div>
+      <div class="close-pitch">
+        <div class="pitch-card">
+          <div class="pitch-icon">📚</div>
+          <div class="pitch-title">31 in-depth condition guides</div>
+          <div class="pitch-body">Across five series — cardiovascular, digestive, neurological, cancer, and practical health</div>
         </div>
-        <div class="cta-row-word">75%</div>
-      </div>
-      <div class="cta-row">
-        <div class="cta-row-icon">🌾</div>
-        <div class="cta-row-content">
-          <div class="cta-row-title">Dietary fibre is the strongest modifiable factor — 30g per day</div>
-          <div class="cta-row-body">A 41% risk reduction at 30g/day versus low intake. Most UK adults consume only 18g. Wholegrains, fruit, vegetables, and pulses all count.</div>
+        <div class="pitch-card">
+          <div class="pitch-icon">🩺</div>
+          <div class="pitch-title">Built by a doctor</div>
+          <div class="pitch-body">Dr Paul — retired NHS GP with over 20 years of experience in frontline care</div>
         </div>
-        <div class="cta-row-word">30g</div>
-      </div>
-      <div class="cta-row">
-        <div class="cta-row-icon">🥜</div>
-        <div class="cta-row-content">
-          <div class="cta-row-title">Seeds, nuts, and fruit skins are fine — old advice was wrong</div>
-          <div class="cta-row-body">NICE reversed decades of guidance in 2019. There is no evidence these foods cause diverticulitis — and avoiding them reduces fibre intake unnecessarily.</div>
+        <div class="pitch-card">
+          <div class="pitch-icon">🔓</div>
+          <div class="pitch-title">Start for free</div>
+          <div class="pitch-body">Explorer tier — no credit card required. Upgrade whenever you're ready</div>
         </div>
-        <div class="cta-row-word">✅ Fine</div>
       </div>
-      <div class="cta-row">
-        <div class="cta-row-icon">🚫</div>
-        <div class="cta-row-content">
-          <div class="cta-row-title">Antibiotics are no longer routine — and NSAIDs carry real risk</div>
-          <div class="cta-row-body">No antibiotics for uncomplicated diverticulitis — evidence shows no benefit. NSAIDs increase perforation risk.</div>
-        </div>
-        <div class="cta-row-word">No ABx</div>
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">⚕️</div>
+        <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
       </div>
-    </div>
-    <div class="cta-disclaimer">
-      <strong>⚕️ Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+      <div class="close-series">Digestive Health Series · Article 20 · Diverticular Disease</div>
     </div>
   </div>
 
-  <!-- SLIDE 8 — CLOSING -->
-  <div class="slide" id="slide-8">
-    <div class="closing-inner">
-      <div class="closing-logo">helf<span class="closing-dot">.</span>school</div>
-      <div class="closing-tagline">Health Education</div>
-      <div class="closing-message">"Most diverticula stay quiet for life. The evidence points clearly toward dietary fibre — and the good news is the bowel responds to dietary change at any age."</div>
-      <div class="closing-disclaimer">⚕️ Health education — not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
-      <div class="closing-series">Digestive Health Series · Article 20 of 21</div>
-    </div>
-  </div>
+</div><!-- /stage -->
 
+<!-- DOTS (10 slides) -->
+<div id="dots">
+  <div class="nav-dot active" onclick="goTo(0)"></div>
+  <div class="nav-dot" onclick="goTo(1)"></div>
+  <div class="nav-dot" onclick="goTo(2)"></div>
+  <div class="nav-dot" onclick="goTo(3)"></div>
+  <div class="nav-dot" onclick="goTo(4)"></div>
+  <div class="nav-dot" onclick="goTo(5)"></div>
+  <div class="nav-dot" onclick="goTo(6)"></div>
+  <div class="nav-dot" onclick="goTo(7)"></div>
+  <div class="nav-dot" onclick="goTo(8)"></div>
+  <div class="nav-dot" onclick="goTo(9)"></div>
 </div>
+
+<div class="disc">Health education — not medical advice. helf.school</div>
 
 <script>
   const slides = document.querySelectorAll('.slide');
-  const counter = document.getElementById('counter');
-  let current = 0;
-  function show(n) {
-    slides[current].classList.remove('active');
-    current = (n + slides.length) % slides.length;
-    slides[current].classList.add('active');
-    counter.textContent = (current + 1) + ' / ' + slides.length;
+  const dots   = document.querySelectorAll('.nav-dot');
+  let cur = 0;
+
+  function show(n){
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    slides[cur].querySelectorAll('.vis').forEach(el => el.classList.remove('vis'));
+    slides[cur].querySelectorAll('.cta-item-vis').forEach(el => el.classList.remove('cta-item-vis'));
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    document.getElementById('counter').textContent = (cur+1)+' / '+slides.length;
+    triggerSlide(cur);
   }
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') show(current + 1);
-    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   show(current - 1);
+  function goTo(n){ show(n); }
+
+  document.addEventListener('keydown', e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowDown') show(cur+1);
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp') show(cur-1);
   });
-  let tx = 0;
-  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
-  document.addEventListener('touchend',   e => {
-    const dx = e.changedTouches[0].clientX - tx;
-    if (dx < -40) show(current + 1);
-    if (dx >  40) show(current - 1);
+
+  let tx=0;
+  document.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; });
+  document.addEventListener('touchend', e=>{
+    const dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>40){ dx<0?show(cur+1):show(cur-1); }
   });
+
+  function animateGroup(ids, step){
+    ids.forEach((id,i)=>{
+      setTimeout(()=>{ const el=document.getElementById(id); if(el) el.classList.add('vis'); }, 180+i*step);
+    });
+  }
+  function animateCTA(){
+    document.querySelectorAll('.cta-anim-item').forEach((item,i)=>{
+      setTimeout(()=> item.classList.add('cta-item-vis'), 400+i*620);
+    });
+  }
+
+  function triggerSlide(n){
+    if(n===1) animateGroup(['s1','s2','s3'], 200);
+    if(n===2) animateGroup(['r1','r2','r3'], 140);
+    if(n===3) animateGroup(['r4','r5'], 200);
+    if(n===5) animateGroup(['d1','d2','d3'], 140);
+    if(n===6) animateGroup(['d4','d5'], 200);
+    if(n===7) animateGroup(['e1','e2'], 260);
+    if(n===8) animateCTA();
+  }
+
+  triggerSlide(0);
 </script>
 </body>
 </html>
