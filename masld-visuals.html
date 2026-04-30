@@ -6,187 +6,217 @@
   <title>MASLD — Visuals | helf.school</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#d4b84a;--acc2:#7A6A2E;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--calm:#70b8e8;--digest:#D47C3A}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
+    :root {
+      --navy:#1B2A4A; --coral:#E8634A; --sage:#7A9E87; --amber:#E8A84A;
+      --series:#D47C3A; --series-dark:#8A4A1A;
+      --bg:#1a0e08;
+      --good:#7ecc99; --warn:#e8a84a; --bad:#e87a5a;
+    }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html,body { height:100%; background:var(--bg); overflow:hidden; font-family:'DM Sans',sans-serif; font-weight:400; }
 
-    /* TOPBAR */
-    #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:var(--navy);border-bottom:2px solid var(--digest);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
-    .tb-logo{display:flex;align-items:center;gap:.5rem}
-    .tb-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff}
-    .tb-dot{color:var(--coral)}
-    .tb-sub{font-size:.75rem;color:rgba(255,255,255,.78);margin-left:.25rem;font-weight:500}
-    .tb-right{display:flex;align-items:center;gap:1.2rem}
-    .slide-counter{font-size:.88rem;font-weight:700;color:rgba(255,255,255,.90)}
-    .kb-hint{font-size:.75rem;color:rgba(255,255,255,.65)}
+    /* ─── TOPBAR ─── */
+    #topbar { position:fixed; top:0; left:0; right:0; height:48px; z-index:100; background:var(--navy); border-bottom:2px solid var(--series); display:flex; align-items:center; justify-content:space-between; padding:0 1.25rem; }
+    .tb-logo { display:flex; align-items:center; gap:.5rem; }
+    .tb-title { font-family:'Fraunces',serif; font-size:1rem; font-weight:700; color:#fff; }
+    .tb-dot { color:var(--coral); }
+    .tb-sub { font-size:.75rem; color:rgba(255,255,255,.78); margin-left:.25rem; font-weight:500; }
+    .tb-right { display:flex; align-items:center; gap:1.2rem; }
+    .slide-counter { font-size:.88rem; font-weight:700; color:rgba(255,255,255,.90); }
+    .kb-hint { font-size:.75rem; color:rgba(255,255,255,.65); }
 
-    /* STAGE */
-    #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:2.2vh 1.25rem 3.5vh;overflow:hidden}
+    /* ─── STAGE + SLIDES ─── */
+    #stage { position:fixed; top:48px; left:0; right:0; bottom:32px; overflow:hidden; }
+    .slide { position:absolute; top:0; left:0; width:100%; height:100%; display:flex; flex-direction:column; padding:1rem 1.5rem .8rem; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .32s ease; }
+    .slide.active { opacity:1; visibility:visible; pointer-events:all; }
 
-    /* SLIDES */
-    .slide{display:none;width:100%;max-width:1140px;height:100%;animation:sIn .32s ease}
-    .slide.active{display:flex;flex-direction:column;min-height:0}
-    @keyframes sIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-    .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.1vw,1.75rem);font-weight:700;color:#fff;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:2px solid rgba(212,124,58,.35);flex-shrink:0}
-    .slide-title span{color:var(--digest)}
+    /* ─── SLIDE HEADER ─── */
+    .slide-header { flex-shrink:0; margin-bottom:.42rem; }
+    .slide-title { font-family:'Fraunces',serif; font-size:1.72rem; font-weight:700; color:#fff; padding-bottom:.45rem; border-bottom:2px solid rgba(212,124,58,.35); line-height:1.1; }
+    .slide-title span { color:var(--series); }
+    .slide-tag { font-size:.72rem; font-weight:700; letter-spacing:.11em; text-transform:uppercase; color:rgba(255,255,255,.55); margin-top:.18rem; }
 
-    /* DOTS */
-    #dots{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:200}
-    .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .25s}
-    .dot.active{background:var(--digest);transform:scale(1.3)}
+    /* ─── DOTS ─── */
+    #dots { position:fixed; bottom:0; left:50%; transform:translateX(-50%); height:32px; display:flex; align-items:center; gap:7px; z-index:200; }
+    .nav-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.25); cursor:pointer; transition:all .25s; }
+    .nav-dot.active { background:var(--series); transform:scale(1.3); }
 
-    /* ─── SLIDE 1: INTRO ─── */
-    .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.3rem}
-    .intro-badge{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--digest);background:rgba(212,124,58,.14);border:1px solid rgba(212,124,58,.35);padding:.3rem .9rem;border-radius:100px}
-    .intro-icon{font-size:4rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .intro-title{font-family:'Fraunces',serif;font-size:clamp(2.4rem,4.8vw,3.9rem);font-weight:700;color:#fff;line-height:1.05;max-width:1000px;letter-spacing:-.02em}
-    .intro-title span{color:var(--digest)}
-    .intro-sub{font-size:1.1rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;max-width:680px;line-height:1.5;font-weight:400}
-    .intro-tagline{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+    /* ═══════════════════════════════════════════
+       SLIDE 1: INTRO
+    ═══════════════════════════════════════════ */
+    .intro-wrap { display:flex; flex-direction:column; align-items:center; justify-content:center; flex:1; min-height:0; text-align:center; gap:1.2rem; }
+    .intro-badge { font-size:.74rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--series); background:rgba(212,124,58,.14); border:1px solid rgba(212,124,58,.35); padding:.3rem .9rem; border-radius:100px; }
+    .intro-icon { font-size:3.8rem; line-height:1; }
+    .intro-title { font-family:'Fraunces',serif; font-size:clamp(2.2rem,4.5vw,3.7rem); font-weight:700; color:#fff; line-height:1.05; max-width:980px; letter-spacing:-.02em; }
+    .intro-title span { color:var(--series); }
+    .intro-sub { font-size:1.05rem; color:rgba(255,255,255,.85); font-style:italic; font-family:'Fraunces',serif; max-width:680px; line-height:1.5; font-weight:400; }
+    .intro-tagline { font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.70); }
 
-    /* ─── SLIDE 2: MASLD SPECTRUM ─── */
-    .spec-wrap{display:flex;flex-direction:column;flex:1;min-height:0;gap:1rem;justify-content:center}
-    .spectrum{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr auto 1fr;gap:.3rem;align-items:stretch;width:100%}
-    .spec-step{padding:1.15rem .75rem;text-align:center;border:1px solid;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:.4rem;opacity:1;transform:translateY(0);transition:all .45s ease}
-    .spec-step.animate-ready{opacity:0;transform:translateY(12px)}
-    .spec-step.vis{opacity:1;transform:translateY(0)}
-    .spec-step.s1{background:rgba(126,204,153,.12);border-color:rgba(126,204,153,.4)}
-    .spec-step.s2{background:rgba(232,168,74,.12);border-color:rgba(232,168,74,.4)}
-    .spec-step.s3{background:rgba(212,124,58,.14);border-color:rgba(212,124,58,.45)}
-    .spec-step.s4{background:rgba(232,99,74,.15);border-color:rgba(232,99,74,.45)}
-    .spec-step.s5{background:rgba(180,50,50,.22);border-color:rgba(232,99,74,.55)}
-    .spec-name{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;line-height:1.1}
-    .spec-step.s1 .spec-name{color:var(--good)}
-    .spec-step.s2 .spec-name{color:var(--warn)}
-    .spec-step.s3 .spec-name{color:var(--digest)}
-    .spec-step.s4 .spec-name{color:var(--coral)}
-    .spec-step.s5 .spec-name{color:#ff8080}
-    .spec-desc{font-size:.82rem;color:rgba(255,255,255,.92);line-height:1.4;font-weight:400}
-    .spec-arrow{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.55);font-size:1.2rem;padding:0 .1rem}
-    .spec-note{background:rgba(212,124,58,.1);border:1px solid rgba(212,124,58,.4);border-radius:12px;padding:.85rem 1.2rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:center;flex-shrink:0}
-    .spec-note-stat{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:700;color:var(--digest);line-height:1;letter-spacing:-.02em}
-    .spec-note-txt{font-size:.95rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400}
-    .spec-note-txt strong{color:#fff;font-weight:700}
+    /* ═══════════════════════════════════════════
+       SLIDE 2: MASLD SPECTRUM
+    ═══════════════════════════════════════════ */
+    .spec-outer { display:flex; flex-direction:column; flex:1; min-height:0; gap:.8rem; }
+    .spectrum { display:grid; grid-template-columns:1fr auto 1fr auto 1fr auto 1fr auto 1fr; gap:.22rem; align-items:stretch; }
+    .spec-step { padding:1rem .65rem; text-align:center; border:1px solid; border-radius:12px; display:flex; flex-direction:column; align-items:center; gap:.32rem; opacity:0; transform:translateY(12px); transition:all .45s ease; }
+    .spec-step.vis { opacity:1; transform:translateY(0); }
+    .spec-step.s1 { background:rgba(126,204,153,.12); border-color:rgba(126,204,153,.40); }
+    .spec-step.s2 { background:rgba(232,168,74,.12); border-color:rgba(232,168,74,.40); }
+    .spec-step.s3 { background:rgba(212,124,58,.14); border-color:rgba(212,124,58,.45); }
+    .spec-step.s4 { background:rgba(232,99,74,.15); border-color:rgba(232,99,74,.45); }
+    .spec-step.s5 { background:rgba(180,50,50,.22); border-color:rgba(232,99,74,.55); }
+    .spec-name { font-family:'Fraunces',serif; font-size:1.02rem; font-weight:700; line-height:1.1; }
+    .spec-step.s1 .spec-name { color:var(--good); }
+    .spec-step.s2 .spec-name { color:var(--warn); }
+    .spec-step.s3 .spec-name { color:var(--series); }
+    .spec-step.s4 .spec-name { color:var(--coral); }
+    .spec-step.s5 .spec-name { color:#ff8080; }
+    .spec-desc { font-size:.80rem; color:rgba(255,255,255,.92); line-height:1.38; font-weight:400; }
+    .spec-arrow { display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.55); font-size:1.1rem; }
+    .spec-note { background:rgba(212,124,58,.10); border:1px solid rgba(212,124,58,.40); border-radius:12px; padding:.8rem 1.1rem; display:grid; grid-template-columns:auto 1fr; gap:.9rem; align-items:center; flex-shrink:0; }
+    .spec-note-stat { font-family:'Fraunces',serif; font-size:2.2rem; font-weight:700; color:var(--series); line-height:1; letter-spacing:-.02em; }
+    .spec-note-txt { font-size:.93rem; color:rgba(255,255,255,.92); line-height:1.5; font-weight:400; }
+    .spec-note-txt strong { color:#fff; font-weight:700; }
 
-    /* ─── SLIDE 3: RISK FACTORS + WAIST ─── */
-    .risk-wrap{display:grid;grid-template-columns:1fr 320px;gap:.85rem;flex:1;min-height:0}
-    .risk-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.45rem;min-height:0}
-    .risk-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:12px;padding:.55rem .9rem;display:grid;grid-template-columns:48px 1fr auto;gap:.75rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
-    .risk-card.animate-ready{opacity:0;transform:translateY(14px)}
-    .risk-card.vis{opacity:1;transform:translateY(0)}
-    .risk-icon{font-size:1.7rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .risk-content{display:flex;flex-direction:column;gap:.12rem;min-width:0}
-    .risk-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.98rem;line-height:1.1;letter-spacing:-.01em}
-    .risk-body{font-size:.82rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .risk-tag{font-family:'Fraunces',serif;font-size:.85rem;font-weight:700;color:var(--warn);line-height:1;white-space:nowrap;padding-left:.4rem;padding-top:.1rem}
-    .waist-panel{background:rgba(255,255,255,.04);border:1px solid rgba(232,168,74,.35);border-radius:14px;padding:1rem 1.1rem;display:flex;flex-direction:column;align-items:stretch;gap:.75rem;min-height:0}
-    .waist-title{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;color:var(--warn);text-align:center;line-height:1.2}
-    .waist-svg{width:100%;max-width:320px;height:auto;align-self:center}
-    .waist-rows{display:grid;grid-template-columns:1fr;gap:.5rem}
-    .waist-row{display:grid;grid-template-columns:68px 1fr 1fr;align-items:center;gap:.6rem;padding:.55rem .7rem;border-radius:10px;border:1px solid}
-    .waist-row.men{background:rgba(232,168,74,.12);border-color:rgba(232,168,74,.45)}
-    .waist-row.women{background:rgba(126,204,153,.12);border-color:rgba(126,204,153,.45)}
-    .waist-sex{font-family:'Fraunces',serif;font-weight:700;font-size:1rem;letter-spacing:.04em;text-transform:uppercase;line-height:1}
-    .waist-row.men .waist-sex{color:var(--warn)}
-    .waist-row.women .waist-sex{color:var(--good)}
-    .waist-thresh{display:flex;flex-direction:column;gap:.1rem;align-items:center;text-align:center}
-    .waist-cm{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:700;color:#fff;line-height:1;letter-spacing:-.01em}
-    .waist-lbl{font-size:.72rem;color:rgba(255,255,255,.85);font-weight:600;letter-spacing:.04em;text-transform:uppercase;line-height:1}
+    /* ═══════════════════════════════════════════
+       SLIDES 3–4: RISK FACTOR CARDS (red border)
+       SLIDES 5–6: DOCTOR CARDS (green border)
+       Common grid layouts
+    ═══════════════════════════════════════════ */
+    .three-grid { display:grid; grid-template-columns:1fr; grid-template-rows:repeat(3,1fr); gap:.46rem; flex:1; min-height:0; overflow:hidden; }
+    .two-grid   { display:grid; grid-template-columns:1fr; grid-template-rows:repeat(2,1fr); gap:.46rem; flex:1; min-height:0; overflow:hidden; }
+    /* risk-split: 3 cards left + waist panel right */
+    .risk-split { display:grid; grid-template-columns:1fr 292px; gap:.8rem; flex:1; min-height:0; }
 
-    /* ─── SLIDE 4: DOCTOR · GREEN ─── */
-    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr);gap:.55rem;flex:1;min-height:0}
-    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
-    .doc-card.animate-ready{opacity:0;transform:translateY(14px)}
-    .doc-card.vis{opacity:1;transform:translateY(0)}
-    .doc-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .doc-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
-    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
-    .doc-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .doc-body strong{color:#fff;font-weight:700}
-    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
+    /* RISK CARDS — red */
+    .risk-card { background:linear-gradient(90deg,rgba(232,99,74,.11),rgba(232,99,74,.03)); border:1px solid rgba(232,99,74,.30); border-left:3px solid var(--bad); border-radius:12px; padding:.82rem 1rem; display:grid; grid-template-columns:46px 1fr auto; gap:.72rem; align-items:start; min-height:0; overflow:hidden; opacity:0; transform:translateY(14px); transition:all .42s ease; }
+    .risk-card.vis { opacity:1; transform:translateY(0); }
+    .rc-icon { font-size:1.55rem; line-height:1; padding-top:.08rem; }
+    .rc-content { display:flex; flex-direction:column; gap:.1rem; min-width:0; }
+    .rc-title { font-family:'Fraunces',serif; font-weight:700; color:#fff; font-size:1.12rem; line-height:1.1; letter-spacing:-.01em; }
+    /* ROOT CAUSE 1+3 FIX: display:-webkit-box present, line-clamp:4 not :2 */
+    .rc-body { font-size:.93rem; color:rgba(255,255,255,.90); line-height:1.42; font-weight:400; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
+    .rc-tag { font-family:'Fraunces',serif; font-size:.82rem; font-weight:700; color:var(--bad); line-height:1; white-space:nowrap; padding-left:.35rem; padding-top:.1rem; text-align:right; }
 
-    /* ─── SLIDE 5: LIFESTYLE — WEIGHT + DIET ─── */
-    .life-wrap{display:flex;flex-direction:column;flex:1;min-height:0;gap:1rem}
-    .weight-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
-    .w-card{border:1px solid;border-radius:14px;padding:1.2rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;text-align:center;opacity:1;transform:translateY(0);transition:all .45s ease}
-    .w-card.animate-ready{opacity:0;transform:translateY(14px)}
-    .w-card.vis{opacity:1;transform:translateY(0)}
-    .w-card.w1{background:rgba(126,204,153,.1);border-color:rgba(126,204,153,.4)}
-    .w-card.w2{background:rgba(232,168,74,.12);border-color:rgba(232,168,74,.45)}
-    .w-card.w3{background:linear-gradient(135deg,rgba(212,124,58,.22),rgba(212,124,58,.08));border-color:rgba(212,124,58,.55);border-width:2px}
-    .w-num{font-family:'Fraunces',serif;font-size:clamp(2.6rem,4.5vw,3.4rem);font-weight:700;line-height:1;letter-spacing:-.02em}
-    .w-card.w1 .w-num{color:var(--good)}
-    .w-card.w2 .w-num{color:var(--warn)}
-    .w-card.w3 .w-num{color:var(--digest)}
-    .w-label{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;line-height:1.15}
-    .w-effect{font-size:.88rem;color:rgba(255,255,255,.90);line-height:1.4;font-weight:400}
-    .life-duo{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-    .life-card{background:rgba(255,255,255,.05);border:1px solid rgba(212,124,58,.3);border-radius:12px;padding:1rem 1.25rem}
-    .life-card h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:var(--digest);margin-bottom:.5rem;line-height:1.2}
-    .life-card p{font-size:.92rem;color:rgba(255,255,255,.92);line-height:1.55;font-weight:400}
-    .life-card p strong{color:var(--digest);font-weight:700}
+    /* DOC CARDS — green */
+    .doc-card { background:linear-gradient(90deg,rgba(126,204,153,.09),rgba(126,204,153,.02)); border:1px solid rgba(126,204,153,.28); border-left:3px solid var(--good); border-radius:12px; padding:.82rem 1rem; display:grid; grid-template-columns:46px 1fr auto; gap:.72rem; align-items:start; min-height:0; overflow:hidden; opacity:0; transform:translateY(14px); transition:all .42s ease; }
+    .doc-card.vis { opacity:1; transform:translateY(0); }
+    .dc-icon { font-size:1.55rem; line-height:1; padding-top:.08rem; }
+    .dc-content { display:flex; flex-direction:column; gap:.1rem; min-width:0; }
+    .dc-title { font-family:'Fraunces',serif; font-weight:700; color:#fff; font-size:1.12rem; line-height:1.1; letter-spacing:-.01em; }
+    /* ROOT CAUSE 1+3 FIX: display:-webkit-box present, line-clamp:4 not :2 */
+    .dc-body { font-size:.93rem; color:rgba(255,255,255,.90); line-height:1.42; font-weight:400; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
+    .dc-body strong { color:#fff; font-weight:700; }
+    .dc-action { font-family:'Fraunces',serif; font-size:1.12rem; font-weight:700; color:var(--good); line-height:1; letter-spacing:-.01em; text-align:right; white-space:nowrap; padding-left:.35rem; padding-top:.1rem; }
 
-    /* ─── SLIDES 6–7: RESEARCH · EV-CARDS — 2 per slide ─── */
-    .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
-    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,124,58,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .45s ease}
-    .ev-card.animate-ready{opacity:0;transform:translateY(14px)}
-    .ev-card.vis{opacity:1;transform:translateY(0)}
-    .ev-stat-box{background:rgba(212,124,58,.09);border-radius:14px;padding:1.25rem .85rem;text-align:center;overflow:hidden}
-    .ev-kf-label{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(212,124,58,.8);margin-bottom:.55rem}
-    .ev-stat-row{display:flex;align-items:baseline;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:.45rem}
-    .ev-num{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;line-height:1;letter-spacing:-.02em;flex-shrink:0}
-    .ev-num.good{color:var(--good)}
-    .ev-num.bad{color:var(--bad)}
-    .ev-num.warn{color:var(--warn)}
-    .ev-outcome{font-size:.95rem;font-weight:700;color:#fff;line-height:1.3;text-align:left}
-    .ev-conditions{font-size:.88rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.35}
-    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.4rem;margin-bottom:.25rem;line-height:1.15;letter-spacing:-.01em}
-    .ev-det .ev-journal{font-size:.92rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
-    .ev-det .ev-body{font-size:1rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400}
-    .ev-det .ev-body strong{color:#fff;font-weight:700}
+    /* ═══════════════════════════════════════════
+       SLIDE 3 WAIST PANEL
+    ═══════════════════════════════════════════ */
+    .waist-panel { background:rgba(255,255,255,.04); border:1px solid rgba(232,168,74,.35); border-radius:14px; padding:.85rem .95rem; display:flex; flex-direction:column; align-items:stretch; gap:.6rem; min-height:0; overflow:hidden; }
+    .waist-title { font-family:'Fraunces',serif; font-size:1.02rem; font-weight:700; color:var(--warn); text-align:center; line-height:1.2; flex-shrink:0; }
+    .waist-svg { width:100%; height:auto; align-self:center; flex-shrink:0; }
+    .waist-rows { display:grid; grid-template-columns:1fr; gap:.42rem; }
+    .waist-row { display:grid; grid-template-columns:55px 1fr 1fr; align-items:center; gap:.5rem; padding:.48rem .65rem; border-radius:9px; border:1px solid; }
+    .waist-row.men { background:rgba(232,168,74,.12); border-color:rgba(232,168,74,.45); }
+    .waist-row.women { background:rgba(126,204,153,.12); border-color:rgba(126,204,153,.45); }
+    .waist-sex { font-family:'Fraunces',serif; font-weight:700; font-size:.92rem; letter-spacing:.04em; text-transform:uppercase; line-height:1; }
+    .waist-row.men .waist-sex { color:var(--warn); }
+    .waist-row.women .waist-sex { color:var(--good); }
+    .waist-thresh { display:flex; flex-direction:column; gap:.06rem; align-items:center; text-align:center; }
+    .waist-cm { font-family:'Fraunces',serif; font-size:1.2rem; font-weight:700; color:#fff; line-height:1; letter-spacing:-.01em; }
+    .waist-lbl { font-size:.68rem; color:rgba(255,255,255,.85); font-weight:600; letter-spacing:.04em; text-transform:uppercase; line-height:1; }
 
-    /* ─── SLIDE 8: CTA · cta-wrap-v2 ─── */
-    .cta-slide{position:relative}
-    .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(212,184,74,.18),rgba(212,184,74,.04) 45%,transparent 70%);pointer-events:none;z-index:0}
-    .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem;gap:.45rem;min-height:0;overflow:hidden}
-    .cta-top{display:flex;flex-direction:column;align-items:center;gap:.3rem;text-align:center}
-    .cta-badge-v2{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.3rem .95rem;border-radius:100px}
-    .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:700;color:#fff;line-height:1.02;letter-spacing:-.028em}
-    .cta-headline-v2 span{color:var(--acc)}
-    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(.95rem,1.5vw,1.2rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);line-height:1.3}
-    .cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.4rem;min-height:0;overflow:hidden}
-    .cta-row-v2{background:linear-gradient(90deg,rgba(212,184,74,.12),rgba(212,184,74,.04));border-left:4px solid var(--acc);border-radius:0 10px 10px 0;padding:.6rem .95rem;display:grid;grid-template-columns:52px 1fr auto;gap:.9rem;align-items:start;min-height:0;overflow:hidden}
-    .cta-row-icon{font-size:1.7rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .cta-row-mid{display:flex;flex-direction:column;gap:.12rem;min-width:0}
-    .cta-row-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.95rem;line-height:1.15}
-    .cta-row-body-v2{font-size:.82rem;color:rgba(255,255,255,.90);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .cta-row-word-v2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.2rem,2vw,1.7rem);color:var(--acc);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:.6rem}
-    .cta-bottom{display:flex;justify-content:center;flex-shrink:0}
-    .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.75rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;max-width:900px;width:100%}
-    .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.88);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left;font-weight:400}
-    .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
+    /* ═══════════════════════════════════════════
+       SLIDE 7: LIFESTYLE
+    ═══════════════════════════════════════════ */
+    .life-wrap { display:flex; flex-direction:column; flex:1; min-height:0; gap:.82rem; }
+    .weight-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:.82rem; flex-shrink:0; }
+    .w-card { border:1px solid; border-radius:14px; padding:1rem .95rem; display:flex; flex-direction:column; align-items:center; gap:.32rem; text-align:center; opacity:0; transform:translateY(14px); transition:all .45s ease; }
+    .w-card.vis { opacity:1; transform:translateY(0); }
+    .w-card.w1 { background:rgba(126,204,153,.10); border-color:rgba(126,204,153,.40); }
+    .w-card.w2 { background:rgba(232,168,74,.12); border-color:rgba(232,168,74,.45); }
+    .w-card.w3 { background:linear-gradient(135deg,rgba(212,124,58,.22),rgba(212,124,58,.08)); border-color:rgba(212,124,58,.55); border-width:2px; }
+    .w-num { font-family:'Fraunces',serif; font-size:clamp(2.4rem,4vw,3.2rem); font-weight:700; line-height:1; letter-spacing:-.02em; }
+    .w-card.w1 .w-num { color:var(--good); }
+    .w-card.w2 .w-num { color:var(--warn); }
+    .w-card.w3 .w-num { color:var(--series); }
+    .w-label { font-family:'Fraunces',serif; font-size:1rem; font-weight:700; color:#fff; line-height:1.15; }
+    .w-effect { font-size:.90rem; color:rgba(255,255,255,.90); line-height:1.42; font-weight:400; }
+    .w-effect strong { font-weight:700; color:#fff; }
+    .life-duo { display:grid; grid-template-columns:1fr 1fr; gap:.82rem; flex:1; min-height:0; }
+    .life-card { background:rgba(255,255,255,.05); border:1px solid rgba(212,124,58,.28); border-radius:12px; padding:.88rem 1.1rem; display:flex; flex-direction:column; gap:.35rem; min-height:0; overflow:hidden; }
+    .life-card-title { font-family:'Fraunces',serif; font-size:1.05rem; font-weight:700; color:var(--series); line-height:1.2; flex-shrink:0; }
+    .life-card-body { font-size:.93rem; color:rgba(255,255,255,.92); line-height:1.55; font-weight:400; display:-webkit-box; -webkit-line-clamp:5; -webkit-box-orient:vertical; overflow:hidden; }
+    .life-card-body strong { color:var(--series); font-weight:700; }
 
-    /* ─── SLIDE 9: CLOSING ─── */
-    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.6rem;padding:1.5rem}
-    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
-    .close-logo .dot{color:var(--coral)}
-    .close-sub{font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82)}
-    .close-headline{font-family:'Fraunces',serif;font-size:clamp(2.4rem,4.8vw,4rem);font-weight:700;color:#fff;max-width:1000px;line-height:1.08;letter-spacing:-.025em}
-    .close-headline span{color:var(--digest)}
-    .close-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1000px;width:100%}
-    .cst-card{background:rgba(212,124,58,.12);border:1px solid rgba(212,124,58,.4);border-radius:16px;padding:1.3rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.45rem}
-    .cst-num{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3rem);font-weight:700;color:var(--digest);line-height:.95;letter-spacing:-.02em}
-    .cst-lab{font-size:.98rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.32}
-    .cst-src{font-size:.78rem;color:rgba(255,255,255,.72);font-style:italic}
-    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.2rem}
+    /* ═══════════════════════════════════════════
+       SLIDES 8–9: RESEARCH EV-CARDS
+    ═══════════════════════════════════════════ */
+    /* ev-stage: flex column NOT grid (Rule 37) */
+    .ev-stage { display:flex; flex-direction:column; gap:.95rem; flex:1; min-height:0; }
+    /* ev-card padding: 1.1rem 1.4rem (Rule 36 fix, was 1.5rem 1.8rem) */
+    .ev-card { background:linear-gradient(180deg,#1f2e47,#162238); border:1px solid rgba(212,124,58,.30); border-radius:16px; padding:1.1rem 1.4rem; display:grid; grid-template-columns:220px 1fr; gap:1.35rem; align-items:center; min-height:0; overflow:hidden; opacity:0; transform:translateY(14px); transition:all .45s ease; }
+    .ev-card.vis { opacity:1; transform:translateY(0); }
+    /* ev-stat-box: series gradient (was plain amber tint) */
+    .ev-stat-box { background:linear-gradient(160deg,var(--series-dark) 0%,var(--series) 100%); border-radius:12px; padding:.9rem .75rem; text-align:center; overflow:hidden; }
+    .ev-kf-label { font-size:.72rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--amber); margin-bottom:.35rem; }
+    /* ev-stat-row: 3.2rem weight 900 */
+    .ev-stat-row { font-family:'Fraunces',serif; font-size:3.2rem; font-weight:900; color:#fff; line-height:1.0; letter-spacing:-.02em; margin-bottom:.3rem; }
+    .ev-outcome { font-size:.92rem; font-weight:700; color:rgba(255,255,255,.95); line-height:1.3; }
+    .ev-conditions { font-size:.76rem; color:rgba(255,255,255,.70); line-height:1.32; margin-top:.22rem; }
+    .ev-trial { font-family:'Fraunces',serif; font-weight:700; color:#fff; font-size:1.30rem; margin-bottom:.2rem; line-height:1.15; letter-spacing:-.01em; }
+    .ev-journal { font-size:.84rem; color:rgba(255,255,255,.75); margin-bottom:.52rem; font-weight:500; }
+    /* ev-body: webkit-box added (was missing), line-clamp:4 */
+    .ev-body { font-size:.93rem; color:rgba(255,255,255,.92); line-height:1.55; font-weight:400; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
+    .ev-body strong { color:#fff; font-weight:700; }
 
-    .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:.68rem;color:rgba(255,255,255,.22);z-index:90;white-space:nowrap}
+    /* ═══════════════════════════════════════════
+       SLIDE 10: CTA — SEQUENTIAL ANIMATION
+    ═══════════════════════════════════════════ */
+    .cta-slide { position:relative; }
+    .cta-glow { position:absolute; inset:0; background:radial-gradient(ellipse at 50% 40%,rgba(212,184,74,.18),rgba(212,184,74,.04) 45%,transparent 68%); pointer-events:none; z-index:0; }
+    .cta-wrap-v2 { position:relative; z-index:1; display:grid; grid-template-rows:auto 1fr auto; flex:1; min-height:0; gap:.4rem; overflow:hidden; }
+    .cta-top { display:flex; flex-direction:column; align-items:center; gap:.22rem; text-align:center; flex-shrink:0; }
+    .cta-badge-v2 { font-size:.78rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--amber); background:rgba(232,168,74,.18); border:1.5px solid rgba(232,168,74,.55); padding:.3rem .95rem; border-radius:100px; }
+    .cta-headline-v2 { font-family:'Fraunces',serif; font-size:clamp(2.8rem,5.5vw,4.2rem); font-weight:700; color:#fff; line-height:1.02; letter-spacing:-.028em; }
+    .cta-headline-v2 span { color:var(--amber); }
+    .cta-rows-v2 { display:grid; grid-template-rows:1fr 1fr 1fr 1fr; gap:.38rem; min-height:0; overflow:hidden; }
+    /* cta-row-v2: starts opacity:0 translateX(-20px) — animateCTA() reveals with stagger */
+    .cta-row-v2 { background:linear-gradient(90deg,rgba(232,168,74,.12),rgba(232,168,74,.04)); border-left:4px solid var(--amber); border-radius:0 10px 10px 0; padding:.55rem .95rem; display:grid; grid-template-columns:52px 1fr auto; gap:.85rem; align-items:start; min-height:0; overflow:hidden; opacity:0; transform:translateX(-20px); }
+    .cta-row-icon { font-size:1.7rem; line-height:1; padding-top:.1rem; }
+    .cta-row-mid { display:flex; flex-direction:column; gap:.1rem; min-width:0; }
+    .cta-row-label { font-family:'Fraunces',serif; font-weight:700; color:#fff; font-size:.95rem; line-height:1.15; }
+    .cta-row-body-v2 { font-size:.88rem; color:rgba(255,255,255,.90); line-height:1.35; font-weight:400; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+    .cta-row-word-v2 { font-family:'Fraunces',serif; font-weight:900; font-size:clamp(1.2rem,2vw,1.7rem); color:var(--amber); line-height:1; letter-spacing:-.02em; text-align:right; white-space:nowrap; padding-left:.5rem; }
+    .cta-bottom { display:flex; justify-content:center; flex-shrink:0; }
+
+    /* MED DISCLAIMER — font-size:1rem (was .9rem) */
+    .med-disclaimer { display:flex; align-items:center; gap:.8rem; padding:.7rem 1.1rem; background:rgba(255,255,255,.06); border:1px dashed rgba(255,255,255,.28); border-radius:12px; max-width:900px; width:100%; }
+    .med-disc-icon { font-size:1.2rem; flex-shrink:0; }
+    .med-disc-text { font-size:1rem; color:rgba(255,255,255,.90); font-style:italic; line-height:1.45; font-family:'Fraunces',serif; font-weight:400; }
+    .med-disc-text strong { font-style:normal; color:var(--amber); font-weight:700; }
+
+    /* ═══════════════════════════════════════════
+       SLIDE 11: BRAND CLOSE (Rule 24)
+    ═══════════════════════════════════════════ */
+    /* justify-content:flex-start (Rule 24) */
+    .close-wrap { display:flex; flex-direction:column; align-items:center; justify-content:flex-start; flex:1; min-height:0; gap:1.3rem; padding:.3rem 0; }
+    .close-logo { display:flex; align-items:center; gap:.4rem; font-family:'Fraunces',serif; font-size:2.8rem; font-weight:700; color:#fff; letter-spacing:-.02em; line-height:1; }
+    /* cl-dot (not .dot) — avoids nav-dot CSS collision */
+    .cl-dot { color:var(--coral); }
+    .close-sub { font-size:1.05rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.80); }
+    .close-headline { font-family:'Fraunces',serif; font-size:clamp(2.1rem,4vw,3.3rem); font-weight:700; color:#fff; max-width:900px; line-height:1.08; letter-spacing:-.025em; text-align:center; }
+    .close-headline span { color:var(--series); }
+    .close-pitch { display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem; max-width:1000px; width:100%; }
+    .cp-card { background:rgba(212,124,58,.12); border:1px solid rgba(212,124,58,.38); border-radius:16px; padding:1.15rem 1rem; display:flex; flex-direction:column; align-items:center; gap:.38rem; text-align:center; }
+    .cp-icon { font-size:2rem; line-height:1; }
+    .cp-title { font-family:'Fraunces',serif; font-size:1.05rem; font-weight:700; color:#fff; line-height:1.2; }
+    .cp-body { font-size:.90rem; color:rgba(255,255,255,.88); line-height:1.45; font-weight:400; }
+    .close-series { font-size:.85rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.70); }
   </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
+<!-- ─── TOPBAR ─── -->
 <div id="topbar">
   <div class="tb-logo">
     <svg width="20" height="16" viewBox="0 0 22 18" fill="none">
@@ -197,119 +227,114 @@
     <span class="tb-sub">· MASLD</span>
   </div>
   <div class="tb-right">
-    <span id="counter" class="slide-counter">1 / 9</span>
+    <span id="counter" class="slide-counter">1 / 11</span>
     <span class="kb-hint">← → navigate</span>
   </div>
 </div>
 
-<!-- STAGE -->
+<!-- ─── STAGE ─── -->
 <div id="stage">
 
-  <!-- SLIDE 1: INTRO -->
+  <!-- ══════════════════════════════════════
+       SLIDE 1: INTRO
+  ══════════════════════════════════════ -->
   <div class="slide active">
     <div class="intro-wrap">
       <div class="intro-badge">📋 Digestive Health Series · Article 17</div>
       <div class="intro-icon">🫀</div>
-      <div class="intro-title">Fatty Liver Disease —<br/>MASLD, <span>the silent epidemic</span></div>
-      <div class="intro-sub">Why 1 in 5 UK adults are affected, why most don't know, and what the evidence says about reversing it.</div>
+      <div class="intro-title">Fatty Liver Disease —<br/><span>MASLD, the silent epidemic</span></div>
+      <div class="intro-sub">Why 1 in 5 UK adults are affected, why most don't know, and what the evidence shows about reversing it.</div>
       <div class="intro-tagline">Dr Paul · Retired NHS GP · helf.school</div>
     </div>
   </div>
 
-  <!-- SLIDE 2: MASLD SPECTRUM -->
+  <!-- ══════════════════════════════════════
+       SLIDE 2: MASLD SPECTRUM
+  ══════════════════════════════════════ -->
   <div class="slide">
-    <div class="slide-title">The MASLD <span>spectrum</span> — from fat to serious disease</div>
-    <div class="spec-wrap">
+    <div class="slide-header">
+      <div class="slide-title">The MASLD <span>spectrum</span> — from fat to serious disease</div>
+    </div>
+    <div class="spec-outer">
       <div class="spectrum">
-        <div class="spec-step s1 animate-ready" id="sp1">
+        <div class="spec-step s1" id="sp1">
           <div class="spec-name">Steatosis</div>
-          <div class="spec-desc">Fat in liver cells · no inflammation · reversible with lifestyle change</div>
+          <div class="spec-desc">Fat in liver cells · no inflammation · reversible with lifestyle</div>
         </div>
         <div class="spec-arrow">→</div>
-        <div class="spec-step s2 animate-ready" id="sp2">
+        <div class="spec-step s2" id="sp2">
           <div class="spec-name">MASH</div>
           <div class="spec-desc">Fat + inflammation + cell damage · previously called NASH</div>
         </div>
         <div class="spec-arrow">→</div>
-        <div class="spec-step s3 animate-ready" id="sp3">
+        <div class="spec-step s3" id="sp3">
           <div class="spec-name">Fibrosis</div>
           <div class="spec-desc">Scar tissue forming · still reversible at early stages</div>
         </div>
         <div class="spec-arrow">→</div>
-        <div class="spec-step s4 animate-ready" id="sp4">
+        <div class="spec-step s4" id="sp4">
           <div class="spec-name">Cirrhosis</div>
           <div class="spec-desc">Advanced scarring · largely irreversible · liver failure risk rises</div>
         </div>
         <div class="spec-arrow">→</div>
-        <div class="spec-step s5 animate-ready" id="sp5">
+        <div class="spec-step s5" id="sp5">
           <div class="spec-name">HCC</div>
           <div class="spec-desc">Liver cancer (hepatocellular carcinoma) · can occur without cirrhosis</div>
         </div>
       </div>
       <div class="spec-note">
         <div class="spec-note-stat">1 in 5</div>
-        <div class="spec-note-txt">UK adults estimated to have MASLD — around <strong>10 million people</strong>, and roughly half are currently undiagnosed. The liver has no pain receptors, so most stages are silent until advanced ⚑.</div>
+        <div class="spec-note-txt">UK adults estimated to have MASLD — around <strong>10 million people</strong>. The liver has no pain receptors, so most stages are completely silent. Many are undiagnosed ⚑.</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 3: RISK FACTORS + WAIST CIRCUMFERENCE -->
+  <!-- ══════════════════════════════════════
+       SLIDE 3: RISK FACTORS 1 of 2
+       3 cards + waist panel
+       (was 5-card single slide — RULE 38 FIX)
+  ══════════════════════════════════════ -->
   <div class="slide">
-    <div class="slide-title">What <span>drives MASLD</span> — the main risk factors</div>
-    <div class="risk-wrap">
-
-      <div class="risk-grid">
-        <div class="risk-card animate-ready" id="r1">
-          <div class="risk-icon">⚖️</div>
-          <div class="risk-content">
-            <div class="risk-title">Central obesity — abdominal fat</div>
-            <div class="risk-body">Visceral fat around the liver drives steatosis more powerfully than BMI alone.</div>
+    <div class="slide-header">
+      <div class="slide-title">What <span>drives MASLD</span> — main risk factors</div>
+      <div class="slide-tag">1 of 2</div>
+    </div>
+    <div class="risk-split">
+      <div class="three-grid">
+        <div class="risk-card" id="r1">
+          <div class="rc-icon">⚖️</div>
+          <div class="rc-content">
+            <div class="rc-title">Central obesity — abdominal fat</div>
+            <div class="rc-body">Visceral fat around the liver drives steatosis more powerfully than BMI alone. Waist circumference is the key clinical measure.</div>
           </div>
-          <div class="risk-tag">Top driver</div>
+          <div class="rc-tag">Top driver</div>
         </div>
-        <div class="risk-card animate-ready" id="r2">
-          <div class="risk-icon">🩸</div>
-          <div class="risk-content">
-            <div class="risk-title">Type 2 diabetes &amp; insulin resistance</div>
-            <div class="risk-body">Most people with T2D have MASLD. Insulin resistance is the central metabolic driver of liver fat accumulation.</div>
+        <div class="risk-card" id="r2">
+          <div class="rc-icon">🩸</div>
+          <div class="rc-content">
+            <div class="rc-title">Type 2 diabetes &amp; insulin resistance</div>
+            <div class="rc-body">Insulin resistance is the central metabolic driver of liver fat accumulation. Most people with type 2 diabetes have MASLD.</div>
           </div>
-          <div class="risk-tag">Metabolic</div>
+          <div class="rc-tag">Metabolic</div>
         </div>
-        <div class="risk-card animate-ready" id="r3">
-          <div class="risk-icon">📈</div>
-          <div class="risk-content">
-            <div class="risk-title">High triglycerides · low HDL</div>
-            <div class="risk-body">Classic metabolic dyslipidaemia — the liver overproduces triglycerides under insulin resistance.</div>
+        <div class="risk-card" id="r3">
+          <div class="rc-icon">📈</div>
+          <div class="rc-content">
+            <div class="rc-title">High triglycerides &amp; low HDL</div>
+            <div class="rc-body">Classic metabolic dyslipidaemia — the liver overproduces triglycerides under insulin resistance. Raises cardiovascular risk alongside liver disease.</div>
           </div>
-          <div class="risk-tag">Lipids</div>
-        </div>
-        <div class="risk-card animate-ready" id="r4">
-          <div class="risk-icon">🍟</div>
-          <div class="risk-content">
-            <div class="risk-title">Ultra-processed food &amp; added sugar</div>
-            <div class="risk-body">Fructose-heavy diets are metabolised by the liver and drive fat deposition and inflammation.</div>
-          </div>
-          <div class="risk-tag">Diet</div>
-        </div>
-        <div class="risk-card animate-ready" id="r5">
-          <div class="risk-icon">🛋️</div>
-          <div class="risk-content">
-            <div class="risk-title">Physical inactivity</div>
-            <div class="risk-body">Exercise reduces liver fat independently of weight loss. Sedentary patterns accelerate disease progression.</div>
-          </div>
-          <div class="risk-tag">Activity</div>
+          <div class="rc-tag">Lipids</div>
         </div>
       </div>
-
       <div class="waist-panel">
         <div class="waist-title">Waist circumference — visceral fat risk</div>
-        <svg class="waist-svg" viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="160" cy="80" rx="72" ry="60" fill="rgba(212,124,58,0.12)" stroke="rgba(212,124,58,0.55)" stroke-width="2"/>
-          <ellipse cx="160" cy="82" rx="48" ry="40" fill="rgba(232,99,74,0.2)" stroke="rgba(232,99,74,0.5)" stroke-width="1.5" stroke-dasharray="4 3"/>
-          <ellipse cx="152" cy="78" rx="18" ry="14" fill="rgba(122,158,135,0.3)" stroke="rgba(122,158,135,0.55)" stroke-width="1.2"/>
-          <ellipse cx="174" cy="84" rx="12" ry="12" fill="rgba(122,158,135,0.25)" stroke="rgba(122,158,135,0.55)" stroke-width="1.2"/>
-          <line x1="70" y1="80" x2="250" y2="80" stroke="rgba(232,168,74,0.9)" stroke-width="2" stroke-dasharray="6 4"/>
-          <text x="160" y="20" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="15" font-weight="700" fill="rgba(255,255,255,.92)">measured here ▾</text>
+        <svg class="waist-svg" viewBox="0 0 280 138" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="140" cy="70" rx="64" ry="53" fill="rgba(212,124,58,0.12)" stroke="rgba(212,124,58,0.55)" stroke-width="2"/>
+          <ellipse cx="140" cy="72" rx="42" ry="35" fill="rgba(232,99,74,0.20)" stroke="rgba(232,99,74,0.50)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <ellipse cx="133" cy="68" rx="15" ry="12" fill="rgba(122,158,135,0.30)" stroke="rgba(122,158,135,0.55)" stroke-width="1.2"/>
+          <ellipse cx="152" cy="74" rx="11" ry="10" fill="rgba(122,158,135,0.25)" stroke="rgba(122,158,135,0.55)" stroke-width="1.2"/>
+          <line x1="63" y1="70" x2="217" y2="70" stroke="rgba(232,168,74,0.9)" stroke-width="2" stroke-dasharray="6 4"/>
+          <text x="140" y="18" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="rgba(255,255,255,.90)">measured here ▾</text>
         </svg>
         <div class="waist-rows">
           <div class="waist-row men">
@@ -336,79 +361,125 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- SLIDE 4: WHAT DOCTOR MIGHT DO · GREEN -->
+  <!-- ══════════════════════════════════════
+       SLIDE 4: RISK FACTORS 2 of 2
+       2 cards (was part of 5-card grid — RULE 38 FIX)
+  ══════════════════════════════════════ -->
   <div class="slide">
-    <div class="slide-title">What your <span>doctor might do</span></div>
-    <div class="doc-grid">
-
-      <div class="doc-card animate-ready" id="d1">
-        <div class="doc-icon">🧮</div>
-        <div class="doc-content">
-          <div class="doc-title">FIB-4 score — first-line in primary care</div>
-          <div class="doc-body">Calculated from age, AST, ALT, platelets — bloods already available in UK primary care. Identifies who needs onward assessment. Recommended by EASL 2024.</div>
+    <div class="slide-header">
+      <div class="slide-title">What <span>drives MASLD</span> — diet &amp; activity</div>
+      <div class="slide-tag">2 of 2</div>
+    </div>
+    <div class="two-grid">
+      <div class="risk-card" id="r4">
+        <div class="rc-icon">🍟</div>
+        <div class="rc-content">
+          <div class="rc-title">Ultra-processed food &amp; added sugar</div>
+          <div class="rc-body">Fructose-heavy diets — refined carbohydrates and added sugars — drive liver fat deposition and promote active inflammation.</div>
         </div>
-        <div class="doc-action">1st-line</div>
+        <div class="rc-tag">Diet</div>
       </div>
-
-      <div class="doc-card animate-ready" id="d2">
-        <div class="doc-icon">📡</div>
-        <div class="doc-content">
-          <div class="doc-title">Imaging — ultrasound &amp; FibroScan</div>
-          <div class="doc-body">Liver ultrasound confirms steatosis. <strong>FibroScan (transient elastography)</strong> estimates liver stiffness — non-invasive assessment of fibrosis severity.</div>
+      <div class="risk-card" id="r5">
+        <div class="rc-icon">🛋️</div>
+        <div class="rc-content">
+          <div class="rc-title">Physical inactivity</div>
+          <div class="rc-body">Exercise reduces liver fat independently of weight loss. Physical inactivity accelerates disease progression at every stage of MASLD.</div>
         </div>
-        <div class="doc-action">Imaging</div>
+        <div class="rc-tag">Activity</div>
       </div>
-
-      <div class="doc-card animate-ready" id="d3">
-        <div class="doc-icon">🩺</div>
-        <div class="doc-content">
-          <div class="doc-title">Specialist referral — advanced fibrosis</div>
-          <div class="doc-body">Hepatology referral when FIB-4 elevated or imaging suggests ≥ F2 fibrosis. Ongoing specialist surveillance for cirrhosis and HCC risk.</div>
-        </div>
-        <div class="doc-action">Hepatology</div>
-      </div>
-
-      <div class="doc-card animate-ready" id="d4">
-        <div class="doc-icon">💊</div>
-        <div class="doc-content">
-          <div class="doc-title">Pharmacotherapy — selected cases</div>
-          <div class="doc-body"><strong>Resmetirom (Rezdiffra)</strong> for non-cirrhotic MASH with ≥ F2 fibrosis where approved. <strong>GLP-1 agonists</strong>: semaglutide (Ozempic/Wegovy), tirzepatide (Mounjaro) — particularly where T2D or significant obesity.</div>
-        </div>
-        <div class="doc-action">Targeted Rx</div>
-      </div>
-
-      <div class="doc-card animate-ready" id="d5">
-        <div class="doc-icon">🥗</div>
-        <div class="doc-content">
-          <div class="doc-title">Lifestyle support — the foundation</div>
-          <div class="doc-body">Dietitian-led Mediterranean pattern, structured exercise referral, weight-management support. The cornerstone of treatment at every stage.</div>
-        </div>
-        <div class="doc-action">Cornerstone</div>
-      </div>
-
     </div>
   </div>
 
-  <!-- SLIDE 5: LIFESTYLE — WEIGHT THRESHOLDS + DIET -->
+  <!-- ══════════════════════════════════════
+       SLIDE 5: WHAT YOUR DOCTOR MIGHT DO 1 of 2
+       3 cards (was part of 5-card grid — RULE 38 FIX)
+  ══════════════════════════════════════ -->
   <div class="slide">
-    <div class="slide-title">Lifestyle — <span>the cornerstone of treatment</span></div>
+    <div class="slide-header">
+      <div class="slide-title">What your <span>doctor might discuss</span></div>
+      <div class="slide-tag">1 of 2 — assessment</div>
+    </div>
+    <div class="three-grid">
+      <div class="doc-card" id="d1">
+        <div class="dc-icon">🧮</div>
+        <div class="dc-content">
+          <div class="dc-title">FIB-4 score — first-line assessment</div>
+          <div class="dc-body">Calculated from age, AST (a liver enzyme), ALT (a liver enzyme), and platelet count — all available from routine NHS blood tests. Identifies who needs onward investigation. EASL 2024 first-line recommendation.</div>
+        </div>
+        <div class="dc-action">1st-line</div>
+      </div>
+      <div class="doc-card" id="d2">
+        <div class="dc-icon">📡</div>
+        <div class="dc-content">
+          <div class="dc-title">Imaging — ultrasound &amp; FibroScan</div>
+          <div class="dc-body">Liver ultrasound confirms steatosis (fat in the liver). FibroScan — transient elastography — measures liver stiffness as a non-invasive marker of fibrosis severity.</div>
+        </div>
+        <div class="dc-action">Imaging</div>
+      </div>
+      <div class="doc-card" id="d3">
+        <div class="dc-icon">🩺</div>
+        <div class="dc-content">
+          <div class="dc-title">Specialist referral — significant fibrosis</div>
+          <div class="dc-body">Hepatology referral when FIB-4 is elevated or imaging suggests significant fibrosis. Ongoing surveillance for cirrhosis and liver cancer risk where indicated.</div>
+        </div>
+        <div class="dc-action">Hepatology</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 6: WHAT YOUR DOCTOR MIGHT DO 2 of 2
+       2 cards — NO DRUG NAMES (Rule 34 fix)
+  ══════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-title">What your <span>doctor might discuss</span></div>
+      <div class="slide-tag">2 of 2 — treatment</div>
+    </div>
+    <div class="two-grid">
+      <!-- Rule 34: no drug names — class descriptions only -->
+      <div class="doc-card" id="d4">
+        <div class="dc-icon">💊</div>
+        <div class="dc-content">
+          <div class="dc-title">Pharmacotherapy — selected cases</div>
+          <div class="dc-body">A MASH-specific approved drug class is now available for non-cirrhotic MASH with significant fibrosis. GLP-1 receptor agonists and dual GLP-1/GIP agonists are considered where obesity or type 2 diabetes is present.</div>
+        </div>
+        <div class="dc-action">Targeted Rx</div>
+      </div>
+      <div class="doc-card" id="d5">
+        <div class="dc-icon">🥗</div>
+        <div class="dc-content">
+          <div class="dc-title">Lifestyle support — the foundation</div>
+          <div class="dc-body">Mediterranean-pattern diet, structured exercise, and weight management support are the cornerstone of treatment at every stage of MASLD.</div>
+        </div>
+        <div class="dc-action">Cornerstone</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 7: LIFESTYLE
+  ══════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-title">Lifestyle — <span>the cornerstone of treatment</span></div>
+    </div>
     <div class="life-wrap">
       <div class="weight-row">
-        <div class="w-card w1 animate-ready" id="w1">
+        <div class="w-card w1" id="w1">
           <div class="w-num">≥5%</div>
           <div class="w-label">Weight loss</div>
           <div class="w-effect">Reduces <strong>steatosis</strong> — fat in the liver</div>
         </div>
-        <div class="w-card w2 animate-ready" id="w2">
+        <div class="w-card w2" id="w2">
           <div class="w-num">≥7%</div>
           <div class="w-label">Weight loss</div>
-          <div class="w-effect">Improves <strong>necroinflammation</strong> — active cell damage</div>
+          <div class="w-effect">Improves active <strong>inflammation</strong> and cell damage</div>
         </div>
-        <div class="w-card w3 animate-ready" id="w3">
+        <div class="w-card w3" id="w3">
           <div class="w-num">≥10%</div>
           <div class="w-label">Weight loss</div>
           <div class="w-effect">Stabilises or <strong>reverses fibrosis</strong> — including F2–F3</div>
@@ -416,138 +487,151 @@
       </div>
       <div class="life-duo">
         <div class="life-card">
-          <h3>🥗 Diet — Mediterranean pattern</h3>
-          <p>12-week RCT: Mediterranean diet reduced liver fat by <strong>~39%</strong> and improved insulin sensitivity vs standard low-fat diet. High vegetables, legumes, fish, olive oil. Low ultra-processed food, added sugar, refined carbs.</p>
+          <div class="life-card-title">🥗 Diet — Mediterranean pattern</div>
+          <div class="life-card-body">High vegetables, legumes, fish, and olive oil. Low ultra-processed food, added sugar, and refined carbohydrates. The evidence consistently shows significant reduction in liver fat and improved insulin sensitivity — ranked as the best dietary pattern for MASLD.</div>
         </div>
         <div class="life-card">
-          <h3>☕ Coffee — genuinely evidence-based</h3>
-          <p><strong>2–3 cups per day</strong> associated with slower disease progression. Anti-inflammatory and antifibrotic effects. Explicitly recommended in EASL 2024 guidelines — one of the more welcome evidence-based interventions.</p>
+          <div class="life-card-title">☕ Coffee — genuinely evidence-based</div>
+          <div class="life-card-body"><strong>2–3 cups per day</strong> associated with slower liver disease progression. Anti-inflammatory and antifibrotic effects. Explicitly included in EASL 2024 international guidelines — one of the more welcome evidence-based findings in liver medicine.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 6: RESEARCH — EASL guidelines + weight loss -->
+  <!-- ══════════════════════════════════════
+       SLIDE 8: RESEARCH 1 — EASL GUIDELINES + WEIGHT LOSS
+       ev-outcome carries reason (Rule 29 fix)
+       ev-stat-box: series gradient (not amber tint)
+       ev-card padding: 1.1rem 1.4rem (Rule 36 fix)
+       ev-body webkit-box + line-clamp:4 added
+  ══════════════════════════════════════ -->
   <div class="slide">
-    <div class="slide-title">What the <span>evidence</span> shows · guidelines &amp; weight loss</div>
+    <div class="slide-header">
+      <div class="slide-title">What the <span>evidence</span> shows — guidelines &amp; weight loss</div>
+    </div>
     <div class="ev-stage">
 
-      <div class="ev-card animate-ready" id="e1">
+      <div class="ev-card" id="e1">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num warn" style="font-size:1.9rem">UK standard</div>
-            <div class="ev-outcome">EASL/EASD/EASO guidelines</div>
-          </div>
-          <div class="ev-conditions">FIB-4 first-line · lifestyle primary · GLP-1 for eligible patients</div>
+          <div class="ev-stat-row">FIB-4</div>
+          <!-- ev-outcome: STAT (FIB-4) + REASON (recommended first-line in primary care) -->
+          <div class="ev-outcome">recommended first-line / fibrosis assessment in primary care</div>
+          <div class="ev-conditions">EASL 2024 · GLP-1 agonists for eligible patients · lifestyle at every stage</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">EASL/EASD/EASO Clinical Practice Guidelines</div>
-          <div class="ev-journal">Journal of Hepatology · 2024 · 81(3):492–542</div>
-          <div class="ev-body"><strong>FIB-4 as first-line fibrosis assessment</strong> in primary care. Lifestyle modification as primary treatment. GLP-1 receptor agonists for eligible patients. Resmetirom (Rezdiffra) for non-cirrhotic MASH with ≥ F2 fibrosis where approved ⚑.</div>
+          <div class="ev-journal">Journal of Hepatology · 2024 · 81(3):492–542 ⚑</div>
+          <div class="ev-body"><strong>FIB-4 as first-line fibrosis assessment</strong> in primary care. Lifestyle modification as primary treatment at every stage. GLP-1 receptor agonists recommended for eligible patients.</div>
         </div>
       </div>
 
-      <div class="ev-card animate-ready" id="e2">
+      <div class="ev-card" id="e2">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good">≥10%</div>
-            <div class="ev-outcome">weight loss reverses fibrosis</div>
-          </div>
-          <div class="ev-conditions">5% reduces fat · 7% improves inflammation · 10% reverses scarring</div>
+          <div class="ev-stat-row">≥10%</div>
+          <!-- ev-outcome: STAT (≥10%) + REASON (vs ≥5% fat, ≥7% inflammation) -->
+          <div class="ev-outcome">weight loss reverses fibrosis / stepwise: 5% reduces fat, 7% improves inflammation</div>
+          <div class="ev-conditions">MASH patients · RCT evidence · dose-response relationship</div>
         </div>
         <div class="ev-det">
-          <div class="ev-trial">Romero-Gómez et al. — weight loss thresholds</div>
-          <div class="ev-journal">Journal of Hepatology · 2017 · 67(4):829–846</div>
-          <div class="ev-body"><strong>≥5% weight loss reduces steatosis. ≥7% improves necroinflammation. ≥10% stabilises or reverses fibrosis</strong> — including at F2–F3 stage. Benefit maintained only while weight loss is sustained ⚑.</div>
+          <div class="ev-trial">Weight loss thresholds — MASH evidence summary</div>
+          <div class="ev-journal">Journal of Hepatology · 2017 · 67(4):829–846 ⚑</div>
+          <div class="ev-body">≥5% weight loss reduces liver fat. ≥7% improves active inflammation. <strong>≥10% stabilises or reverses fibrosis</strong> including F2–F3. Benefit persists while weight loss is maintained.</div>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- SLIDE 7: RESEARCH — Mediterranean diet + UK prevalence -->
+  <!-- ══════════════════════════════════════
+       SLIDE 9: RESEARCH 2 — MEDITERRANEAN DIET + UK PREVALENCE
+       e3: ev-outcome now includes "vs standard low-fat diet" (Rule 29 fix)
+       e4: British Liver Trust NOT approved — flagged ⚑ for replacement
+  ══════════════════════════════════════ -->
   <div class="slide">
-    <div class="slide-title">What the <span>evidence</span> shows · diet &amp; prevalence</div>
+    <div class="slide-header">
+      <div class="slide-title">What the <span>evidence</span> shows — diet &amp; prevalence</div>
+    </div>
     <div class="ev-stage">
 
-      <div class="ev-card animate-ready" id="e3">
+      <div class="ev-card" id="e3">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good">~39%</div>
-            <div class="ev-outcome">reduction in liver fat</div>
-          </div>
-          <div class="ev-conditions">Mediterranean diet vs standard low-fat · 12-week RCT</div>
+          <div class="ev-stat-row">~39%</div>
+          <!-- ev-outcome: STAT (~39%) + REASON (vs standard low-fat diet) — Rule 29 fix -->
+          <div class="ev-outcome">reduction in liver fat / Mediterranean diet vs standard low-fat diet</div>
+          <div class="ev-conditions">12-week RCT · improved insulin sensitivity · ⚑ primary RCT citation needed</div>
         </div>
         <div class="ev-det">
-          <div class="ev-trial">Mediterranean diet RCT — 12-week intervention</div>
-          <div class="ev-journal">Reviewed: Karimi et al. Int J Mol Sci · 2025 · 26(19):9625</div>
-          <div class="ev-body">Mediterranean diet reduced hepatic steatosis by <strong>~39%</strong> and improved insulin sensitivity vs standard low-fat diet. Consistently outperforms other dietary patterns across MASLD trials ⚑.</div>
+          <div class="ev-trial">Mediterranean diet in MASLD — 12-week RCT</div>
+          <div class="ev-journal">⚑ Primary RCT citation required — verify via web search before upload</div>
+          <div class="ev-body">Mediterranean diet reduced liver fat by <strong>~39%</strong> and improved insulin sensitivity vs standard low-fat diet. Consistently outperforms other dietary patterns across MASLD trials.</div>
         </div>
       </div>
 
-      <div class="ev-card animate-ready" id="e4">
+      <div class="ev-card" id="e4">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num bad" style="font-size:1.9rem">~10M</div>
-            <div class="ev-outcome">UK adults with MASLD</div>
-          </div>
-          <div class="ev-conditions">~4.8M undiagnosed — forecast rising to 10.4M by 2032</div>
+          <div class="ev-stat-row">~10M</div>
+          <div class="ev-outcome">UK adults with MASLD / majority currently undiagnosed</div>
+          <div class="ev-conditions">~4.8M undiagnosed · forecast to 10.4M by 2032 · ⚑ source to replace</div>
         </div>
         <div class="ev-det">
-          <div class="ev-trial">British Liver Trust — UK prevalence alert</div>
-          <div class="ev-journal">British Liver Trust · June 2025 · GlobalData analysis</div>
-          <div class="ev-body">~10M UK adults have MASLD; only ~5.2M diagnosed. <strong>~4.8M undiagnosed.</strong> Forecast to rise to 10.4M by 2032. Urgent call for MASLD to receive same clinical attention as other major chronic conditions ⚑.</div>
+          <div class="ev-trial">UK MASLD prevalence — ⚑ source requires replacement</div>
+          <!-- Rule 14: British Liver Trust is NOT an approved source -->
+          <div class="ev-journal">⚑ British Liver Trust / GlobalData 2025 — NOT approved. Replace with EASL 2024 epidemiology section, NHS England data, or a primary JAMA/Lancet/NEJM prevalence paper before upload.</div>
+          <div class="ev-body">Approximately <strong>10 million UK adults</strong> estimated to have MASLD, with around half currently undiagnosed. Forecast to rise to 10.4 million by 2032.</div>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- SLIDE 8: CTA · cta-wrap-v2 HORIZONTAL ROWS -->
+  <!-- ══════════════════════════════════════
+       SLIDE 10: CTA — SEQUENTIAL ANIMATION
+       animateCTA() fires on enter, 620ms stagger
+       (was static rows — fixed)
+  ══════════════════════════════════════ -->
   <div class="slide cta-slide">
     <div class="cta-glow"></div>
     <div class="cta-wrap-v2">
       <div class="cta-top">
-        <div class="cta-badge-v2">What the evidence shows</div>
+        <div class="cta-badge-v2">The evidence is clear on one thing</div>
         <div class="cta-headline-v2">Silent. Common.<br/><span>Often reversible.</span></div>
-        <div class="cta-subline">MASLD is the most common chronic liver condition in the UK — and in early stages, the evidence consistently shows it can be reversed.</div>
       </div>
       <div class="cta-rows-v2">
         <div class="cta-row-v2">
-          <div class="cta-row-icon">🧮</div>
+          <div class="cta-row-icon">🔕</div>
           <div class="cta-row-mid">
-            <div class="cta-row-label">FIB-4 — evidence-based first assessment</div>
-            <div class="cta-row-body-v2">Calculated from routine blood tests — identifies who needs further investigation. EASL 2024 recommends it as the first-line assessment in primary care</div>
+            <div class="cta-row-label">Clinically recognised as a silent condition</div>
+            <div class="cta-row-body-v2">Affects 1 in 5 UK adults — the liver has no pain receptors, so most stages are symptomless until advanced. Many people remain undiagnosed</div>
           </div>
-          <div class="cta-row-word-v2">1st-line</div>
+          <div class="cta-row-word-v2">1 in 5</div>
+        </div>
+        <div class="cta-row-v2">
+          <div class="cta-row-icon">📏</div>
+          <div class="cta-row-mid">
+            <div class="cta-row-label">Waist circumference — the key clinical indicator</div>
+            <div class="cta-row-body-v2">Visceral fat around the liver is a more reliable indicator than BMI. Risk rises above 94 cm in men and 80 cm in women</div>
+          </div>
+          <div class="cta-row-word-v2">Waist</div>
         </div>
         <div class="cta-row-v2">
           <div class="cta-row-icon">⚖️</div>
           <div class="cta-row-mid">
-            <div class="cta-row-label">Weight loss — the primary treatment</div>
-            <div class="cta-row-body-v2">5% reduces liver fat; 7% improves inflammation; ≥10% can reverse fibrosis. Benefit is maintained while the weight loss is sustained</div>
+            <div class="cta-row-label">≥10% weight loss — evidence shows fibrosis reversal</div>
+            <div class="cta-row-body-v2">5% reduces liver fat; 7% improves inflammation; ≥10% can reverse scarring including at F2–F3 stage. Sustained weight loss sustains the benefit</div>
           </div>
           <div class="cta-row-word-v2">≥10%</div>
         </div>
         <div class="cta-row-v2">
           <div class="cta-row-icon">🥗</div>
           <div class="cta-row-mid">
-            <div class="cta-row-label">Mediterranean diet — ranked best evidence</div>
-            <div class="cta-row-body-v2">~39% reduction in liver fat in 12-week RCT — consistently outperforms other dietary patterns across MASLD trials</div>
+            <div class="cta-row-label">Mediterranean diet — ranked best evidence for MASLD</div>
+            <div class="cta-row-body-v2">~39% reduction in liver fat vs standard low-fat diet — consistently the top-performing dietary pattern across MASLD research trials</div>
           </div>
           <div class="cta-row-word-v2">~39%↓</div>
-        </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">☕</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Coffee — in EASL 2024 guidelines</div>
-            <div class="cta-row-body-v2">2–3 cups/day associated with slower disease progression — anti-inflammatory and antifibrotic effects explicitly in international clinical guidelines</div>
-          </div>
-          <div class="cta-row-word-v2">2–3 cups</div>
         </div>
       </div>
       <div class="cta-bottom">
@@ -559,27 +643,31 @@
     </div>
   </div>
 
-  <!-- SLIDE 9: CLOSING -->
+  <!-- ══════════════════════════════════════
+       SLIDE 11: BRAND CLOSE (Rule 24)
+       justify-content:flex-start
+       cl-dot (not .dot) — bug fixed
+  ══════════════════════════════════════ -->
   <div class="slide">
     <div class="close-wrap">
-      <div class="close-logo">helf<span class="dot">.</span>school</div>
+      <div class="close-logo">helf<span class="cl-dot">.</span>school</div>
       <div class="close-sub">Health Education</div>
-      <div class="close-headline">A silent epidemic. <span>A reversible one.</span></div>
-      <div class="close-stats">
-        <div class="cst-card">
-          <div class="cst-num">1 in 5</div>
-          <div class="cst-lab">UK adults with MASLD</div>
-          <div class="cst-src">British Liver Trust 2025</div>
+      <div class="close-headline">Evidence-based.<br/><span>Built by a doctor.</span></div>
+      <div class="close-pitch">
+        <div class="cp-card">
+          <div class="cp-icon">📚</div>
+          <div class="cp-title">31 articles · 6 series</div>
+          <div class="cp-body">Evidence-based health education — written by a doctor, in plain English</div>
         </div>
-        <div class="cst-card">
-          <div class="cst-num">≥10%</div>
-          <div class="cst-lab">weight loss · reverses fibrosis</div>
-          <div class="cst-src">Romero-Gómez · J Hepatol 2017</div>
+        <div class="cp-card">
+          <div class="cp-icon">🩺</div>
+          <div class="cp-title">Dr Paul</div>
+          <div class="cp-body">Over 20 years as an NHS GP before retiring in 2019</div>
         </div>
-        <div class="cst-card">
-          <div class="cst-num">~39%</div>
-          <div class="cst-lab">liver fat reduction · Med diet</div>
-          <div class="cst-src">Karimi · IJMS 2025</div>
+        <div class="cp-card">
+          <div class="cp-icon">🔓</div>
+          <div class="cp-title">Start for free</div>
+          <div class="cp-body">No credit card required — explore the full library at helf.school</div>
         </div>
       </div>
       <div class="med-disclaimer">
@@ -592,73 +680,120 @@
 
 </div><!-- /stage -->
 
-<!-- DOTS -->
+<!-- ─── DOTS (11 total) ─── -->
 <div id="dots">
-  <div class="dot active" onclick="goTo(0)"></div>
-  <div class="dot" onclick="goTo(1)"></div>
-  <div class="dot" onclick="goTo(2)"></div>
-  <div class="dot" onclick="goTo(3)"></div>
-  <div class="dot" onclick="goTo(4)"></div>
-  <div class="dot" onclick="goTo(5)"></div>
-  <div class="dot" onclick="goTo(6)"></div>
-  <div class="dot" onclick="goTo(7)"></div>
-  <div class="dot" onclick="goTo(8)"></div>
+  <div class="nav-dot active" onclick="goTo(0)"></div>
+  <div class="nav-dot" onclick="goTo(1)"></div>
+  <div class="nav-dot" onclick="goTo(2)"></div>
+  <div class="nav-dot" onclick="goTo(3)"></div>
+  <div class="nav-dot" onclick="goTo(4)"></div>
+  <div class="nav-dot" onclick="goTo(5)"></div>
+  <div class="nav-dot" onclick="goTo(6)"></div>
+  <div class="nav-dot" onclick="goTo(7)"></div>
+  <div class="nav-dot" onclick="goTo(8)"></div>
+  <div class="nav-dot" onclick="goTo(9)"></div>
+  <div class="nav-dot" onclick="goTo(10)"></div>
 </div>
 
-<div class="disc">Health education — not medical advice. helf.school</div>
-
 <script>
-  const slides = document.querySelectorAll('.slide');
-  const dots   = document.querySelectorAll('.dot');
+  const slides  = document.querySelectorAll('.slide');
+  const navDots = document.querySelectorAll('.nav-dot');
   let cur = 0;
 
-  function show(n){
+  function show(n) {
     slides[cur].classList.remove('active');
-    dots[cur].classList.remove('active');
+    navDots[cur].classList.remove('active');
     cur = (n + slides.length) % slides.length;
     slides[cur].classList.add('active');
-    dots[cur].classList.add('active');
+    navDots[cur].classList.add('active');
     document.getElementById('counter').textContent = (cur+1)+' / '+slides.length;
     triggerSlide(cur);
   }
-  function goTo(n){ show(n); }
+  function goTo(n) { show(n); }
 
-  document.addEventListener('keydown', e=>{
-    if(e.key==='ArrowRight'||e.key==='ArrowDown') show(cur+1);
-    if(e.key==='ArrowLeft'||e.key==='ArrowUp') show(cur-1);
+  document.addEventListener('keydown', e => {
+    if (e.key==='ArrowRight'||e.key==='ArrowDown') show(cur+1);
+    if (e.key==='ArrowLeft'||e.key==='ArrowUp')   show(cur-1);
   });
 
-  let tx=0, ty=0;
-  document.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; ty=e.touches[0].clientY; });
-  document.addEventListener('touchend', e=>{
-    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
-    if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>40){ dx<0?show(cur+1):show(cur-1); }
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+  document.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 40) { dx < 0 ? show(cur+1) : show(cur-1); }
   });
 
-  function triggerSlide(n){
-    if(n===1) animateGroup(['sp1','sp2','sp3','sp4','sp5'], 170);
-    if(n===2) animateGroup(['r1','r2','r3','r4','r5'], 140);
-    if(n===3) animateGroup(['d1','d2','d3','d4','d5'], 140);
-    if(n===4) animateGroup(['w1','w2','w3'], 260);
-    if(n===5) animateGroup(['e1','e2'], 260);
-    if(n===6) animateGroup(['e3','e4'], 260);
-  }
-  function animateGroup(ids, step){
-    ids.forEach((id,i)=>{
-      setTimeout(()=>{ const el=document.getElementById(id); if(el) el.classList.add('vis'); }, 180 + i*step);
+  /* Sequential CTA animation — 620ms stagger, 180ms base */
+  function animateCTA() {
+    document.querySelectorAll('.cta-row-v2').forEach((row, i) => {
+      setTimeout(() => {
+        row.style.transition = 'opacity .45s ease, transform .45s ease';
+        row.style.opacity    = '1';
+        row.style.transform  = 'translateX(0)';
+      }, 180 + i * 620);
     });
   }
 
-  slides.forEach(s=>{
-    const obs = new MutationObserver(()=>{
-      if(!s.classList.contains('active')){
-        s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'));
+  function triggerSlide(n) {
+    if (n===1)  animateIds(['sp1','sp2','sp3','sp4','sp5'], 160);
+    if (n===2)  animateIds(['r1','r2','r3'],  150);
+    if (n===3)  animateIds(['r4','r5'],       180);
+    if (n===4)  animateIds(['d1','d2','d3'],  150);
+    if (n===5)  animateIds(['d4','d5'],       180);
+    if (n===6)  animateIds(['w1','w2','w3'],  260);
+    if (n===7)  animateIds(['e1','e2'],       280);
+    if (n===8)  animateIds(['e3','e4'],       280);
+    if (n===9)  animateCTA();
+  }
+
+  function animateIds(ids, step) {
+    ids.forEach((id, i) => {
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('vis');
+      }, 160 + i * step);
+    });
+  }
+
+  /* Reset animations when leaving a slide */
+  slides.forEach(s => {
+    const obs = new MutationObserver(() => {
+      if (!s.classList.contains('active')) {
+        s.querySelectorAll('.vis').forEach(el => el.classList.remove('vis'));
+        s.querySelectorAll('.cta-row-v2').forEach(row => {
+          row.style.opacity   = '0';
+          row.style.transform = 'translateX(-20px)';
+          row.style.transition = '';
+        });
       }
     });
-    obs.observe(s, {attributes:true});
+    obs.observe(s, { attributes: true });
   });
 
   triggerSlide(0);
 </script>
+
+<!--
+  ⚑ RESEARCH FLAGS — VERIFY BEFORE UPLOAD
+  ─────────────────────────────────────────
+  SLIDE 8 (e1): EASL/EASD/EASO 2024 · Journal of Hepatology 81(3):492–542
+    → Verify exact PMID via web search. PMID ~38670593 (unconfirmed)
+
+  SLIDE 8 (e2): Weight loss thresholds · Journal of Hepatology 2017 · 67(4):829–846
+    → Confirm Romero-Gómez et al. is the correct primary source for the
+      ≥5/7/10% stepwise thresholds. If not, identify the primary RCT and update.
+
+  SLIDE 9 (e3): Mediterranean diet ~39% liver fat reduction
+    → Karimi et al. IJMS 2025 is a review — NOT a primary RCT.
+      Identify and cite the primary RCT (12-week intervention). Search:
+      "Mediterranean diet MASLD liver fat RCT" on PubMed.
+      Update ev-journal to approved source before upload.
+
+  SLIDE 9 (e4): UK MASLD prevalence ~10M / ~4.8M undiagnosed
+    → British Liver Trust / GlobalData 2025 is NOT an approved source.
+      Replace with one of: EASL 2024 guidelines epidemiology section (PMID above),
+      NHS England / NHS Digital data, or a primary Lancet/JAMA/NEJM
+      MASLD prevalence paper (e.g. Younossi et al. series).
+-->
 </body>
 </html>
