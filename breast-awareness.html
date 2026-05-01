@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breast Awareness — What to Look For | helf.school</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#1B2A4A;
+    --coral:#E8634A;
+    --cream:#FAF7F2;
+    --sage:#7A9E87;
+    --amber:#E8A84A;
+    --text:#2C2C2C;
+    --series:#7A6A2E;
+    --series-dark:#4A3A1A;
+    --series-light:#C0A850;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'DM Sans',sans-serif;font-weight:400;background:var(--cream);color:var(--text);}
+
+  .site-header{background:var(--navy);padding:1rem 2rem;display:flex;align-items:center;gap:1rem;}
+  .logo-mark{font-family:'Fraunces',serif;font-size:1.6rem;color:#fff;letter-spacing:-0.02em;}
+  .logo-mark span{color:var(--coral);}
+  .logo-tag{font-size:0.62rem;font-weight:700;letter-spacing:0.18em;color:rgba(255,255,255,0.55);text-transform:uppercase;}
+  .header-nav{margin-left:auto;}
+  .header-nav a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.88rem;font-weight:500;margin-left:1.5rem;}
+
+  .article-hero{background:linear-gradient(160deg,var(--series-dark) 0%,var(--series) 100%);padding:3.5rem 2rem 3rem;display:flex;flex-direction:column;justify-content:center;min-height:88vh;}
+  .article-hero-inner{max-width:860px;margin:0 auto;width:100%;}
+  .breadcrumb{font-size:0.80rem;color:rgba(255,255,255,0.75);margin-bottom:1rem;}
+  .breadcrumb a{color:rgba(255,255,255,0.75);text-decoration:none;}
+  .series-badge{display:inline-block;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;background:rgba(255,255,255,0.15);color:#fff;padding:0.3rem 0.8rem;border-radius:20px;margin-bottom:1.2rem;}
+  .article-hero h1{font-family:'Fraunces',serif;font-size:clamp(2rem,5vw,3.2rem);color:#fff;line-height:1.15;margin-bottom:0.9rem;}
+  .hero-subtitle{font-size:1.1rem;color:rgba(255,255,255,0.85);line-height:1.6;max-width:640px;margin-bottom:1.8rem;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:1.5rem;}
+  .hero-meta-item{font-size:0.82rem;color:rgba(255,255,255,0.80);}
+
+  .disclaimer-bar{background:rgba(232,99,74,0.12);border-top:2px solid var(--coral);padding:0.9rem 2rem;}
+  .disclaimer-bar p{max-width:860px;margin:0 auto;font-size:0.82rem;color:var(--text);line-height:1.6;}
+  .disclaimer-bar strong{color:var(--coral);}
+
+  .article-wrap{max-width:860px;margin:0 auto;padding:3rem 2rem 4rem;}
+  .section-eyebrow{font-size:0.72rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--series);margin-bottom:0.4rem;}
+  .section-title{font-family:'Fraunces',serif;font-size:1.7rem;color:var(--navy);margin-bottom:1.1rem;line-height:1.25;}
+  .article-wrap p{font-size:1rem;line-height:1.78;color:var(--text);font-weight:400;margin-bottom:1rem;}
+  .article-wrap p:last-child{margin-bottom:0;}
+  sup a{color:var(--series-light);font-size:0.75em;text-decoration:none;}
+  sup a:hover{text-decoration:underline;}
+
+  .key-terms{background:var(--navy);border-radius:12px;padding:1.8rem;margin:2.2rem 0 2.8rem;}
+  .key-terms-title{font-family:'Fraunces',serif;font-size:1.08rem;color:#fff;margin-bottom:1.2rem;}
+  .key-terms-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem 2rem;}
+  .key-term{margin-bottom:0.7rem;}
+  .key-term-label{font-size:0.88rem;font-weight:700;color:var(--amber);margin-bottom:0.2rem;}
+  .key-term-def{font-size:0.92rem;color:rgba(255,255,255,0.90);line-height:1.55;}
+  @media(max-width:600px){.key-terms-grid{grid-template-columns:1fr;}}
+
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.8rem 0 2rem;}
+  .stat-card{background:#fff;border-radius:10px;border:1px solid rgba(122,106,46,0.15);padding:1.2rem 1.3rem;}
+  .stat-number{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:700;color:var(--series);line-height:1.1;margin-bottom:0.25rem;}
+  .stat-prose{font-size:0.88rem;color:var(--text);line-height:1.55;}
+  @media(max-width:520px){.stat-grid{grid-template-columns:1fr;}}
+
+  .article-wrap ol.subtype-list{counter-reset:subtype-counter;list-style:none;padding-left:0;display:flex;flex-direction:column;gap:.45rem;margin:.6rem 0 1.2rem 0;}
+  .article-wrap ol.subtype-list li{counter-increment:subtype-counter;display:flex;gap:.7rem;align-items:flex-start;font-size:1rem;line-height:1.72;color:var(--text);font-weight:400;}
+  .article-wrap ol.subtype-list li::before{content:counter(subtype-counter);background:var(--series);color:#fff;font-size:.72rem;font-weight:700;width:1.45rem;height:1.45rem;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.22rem;}
+
+  .bodies-box{background:#fff;border-radius:12px;border:2px solid rgba(122,106,46,0.20);padding:1.6rem 1.8rem;margin:1.8rem 0;}
+  .bodies-box-title{font-family:'Fraunces',serif;font-size:1.05rem;color:var(--navy);margin-bottom:0.9rem;}
+  .bodies-box p{font-size:0.95rem;color:var(--text);line-height:1.72;margin-bottom:0.75rem;}
+  .bodies-box p:last-child{margin-bottom:0;}
+
+  .screening-panel{background:linear-gradient(160deg,var(--series-dark) 0%,var(--series) 100%);border-radius:12px;padding:1.8rem;margin:2.2rem 0;}
+  .screening-panel-title{font-family:'Fraunces',serif;font-size:1.08rem;color:#fff;margin-bottom:1rem;}
+  .screening-facts{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-top:0.8rem;}
+  .screening-fact{background:rgba(255,255,255,0.10);border-radius:8px;padding:0.9rem 1rem;}
+  .screening-fact-label{font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);margin-bottom:0.3rem;}
+  .screening-fact-text{font-size:0.90rem;color:rgba(255,255,255,0.92);line-height:1.5;}
+  @media(max-width:520px){.screening-facts{grid-template-columns:1fr;}}
+
+  .section-divider{border:none;border-top:1px solid rgba(122,106,46,0.15);margin:2.8rem 0;}
+
+  .research-card{display:grid;grid-template-columns:220px 1fr;border-radius:10px;border:1px solid rgba(122,106,46,0.18);overflow:hidden;margin-bottom:1.4rem;}
+  .ev-stat-box{background:linear-gradient(160deg,var(--series-dark) 0%,var(--series) 100%);padding:1.1rem .9rem;display:flex;flex-direction:column;justify-content:flex-start;overflow:hidden;}
+  .ev-kf-label{font-size:.72rem;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.35rem;}
+  .ev-text-stat{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:700;color:#fff;line-height:1.25;margin-bottom:.3rem;}
+  .ev-outcome{font-size:.95rem;font-weight:700;color:rgba(255,255,255,0.95);line-height:1.3;margin-bottom:.35rem;}
+  .ev-conditions{font-size:.80rem;line-height:1.35;color:rgba(255,255,255,0.72);}
+  .ev-body{background:#fff;padding:1.1rem 1.2rem;display:flex;flex-direction:column;justify-content:space-between;}
+  .ev-body h4{font-family:'Fraunces',serif;font-size:1rem;color:var(--navy);margin-bottom:0.5rem;}
+  .ev-body p{font-size:.93rem;line-height:1.72;color:var(--text);margin-bottom:.6rem;}
+  .ev-source{font-size:.78rem;color:rgba(44,44,44,0.55);font-style:italic;}
+  @media(max-width:620px){.research-card{grid-template-columns:1fr;}}
+
+  .putting-together{background:var(--navy);border-radius:12px;padding:1.8rem;margin:2.4rem 0;}
+  .putting-together p{font-size:1rem;font-style:italic;color:rgba(255,255,255,0.92);line-height:1.8;margin-bottom:0.8rem;}
+  .putting-together p:last-child{margin-bottom:0;font-weight:600;color:#fff;font-style:normal;}
+
+  .signpost-box{background:#fff;border-radius:10px;border:1px solid rgba(122,106,46,0.20);padding:1.2rem 1.4rem;margin:2rem 0;display:flex;gap:1rem;align-items:flex-start;}
+  .signpost-icon{font-size:1.6rem;flex-shrink:0;}
+  .signpost-body strong{color:var(--series);display:block;margin-bottom:0.3rem;font-size:0.92rem;}
+  .signpost-body p{font-size:0.90rem;color:var(--text);line-height:1.6;margin-bottom:0;}
+
+  .references-section{margin-top:2.8rem;}
+  .references-section h3{font-family:'Fraunces',serif;font-size:1.1rem;color:var(--navy);margin-bottom:1.2rem;}
+  .ref-list{counter-reset:ref-counter;list-style:none;padding:0;}
+  .ref-block{counter-increment:ref-counter;position:relative;padding-left:2rem;margin-bottom:0.9rem;}
+  .ref-block::before{content:counter(ref-counter);position:absolute;left:0;top:0.1rem;width:1.4rem;height:1.4rem;border-radius:50%;background:var(--series);color:#fff;font-size:0.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;}
+  .ref-full{font-size:0.85rem;line-height:1.6;color:var(--text);}
+  .ref-links{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.3rem;}
+  .ref-pill{font-size:0.75rem;font-weight:600;padding:0.2rem 0.65rem;border-radius:20px;text-decoration:none;background:rgba(122,106,46,0.10);color:var(--series);border:1px solid rgba(122,106,46,0.25);}
+  .ref-pill:hover{background:var(--series);color:#fff;}
+
+  .flag-box{background:rgba(232,168,74,0.10);border:1px solid rgba(232,168,74,0.4);border-radius:8px;padding:1rem 1.2rem;margin-top:2rem;}
+  .flag-box h4{font-size:0.82rem;font-weight:700;color:var(--amber);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.08em;}
+  .flag-box ul{list-style:none;padding:0;}
+  .flag-box li{font-size:0.85rem;color:var(--text);line-height:1.6;padding:0.2rem 0;padding-left:1.2rem;position:relative;}
+  .flag-box li::before{content:"⚑";position:absolute;left:0;color:var(--amber);}
+
+  .site-footer{background:var(--navy);padding:2.5rem 2rem;margin-top:4rem;}
+  .site-footer-inner{max-width:860px;margin:0 auto;}
+  .footer-logo{font-family:'Fraunces',serif;font-size:1.3rem;color:#fff;margin-bottom:0.4rem;}
+  .footer-logo span{color:var(--coral);}
+  .footer-disc{font-size:0.80rem;color:rgba(255,255,255,0.60);line-height:1.6;max-width:680px;margin-top:0.8rem;}
+  .footer-copy{font-size:0.78rem;color:rgba(255,255,255,0.40);margin-top:1.2rem;}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div>
+    <div class="logo-mark">helf<span>.</span>school</div>
+    <div class="logo-tag">Health Education</div>
+  </div>
+  <nav class="header-nav">
+    <a href="helf-school-conditions.html">All Conditions</a>
+    <a href="helf-school-membership.html">Membership</a>
+  </nav>
+</header>
+
+<section class="article-hero">
+  <div class="article-hero-inner">
+    <div class="breadcrumb">
+      <a href="helf-school-conditions.html">All Conditions</a> › Practical Health › Breast Awareness
+    </div>
+    <div class="series-badge">Practical Health · Article 32</div>
+    <h1>Breast Awareness — What to Look For</h1>
+    <p class="hero-subtitle">Knowing what is normal for your own body — and recognising when something changes — is the approach now described in UK clinical guidance in place of scheduled self-examination routines.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">Written by Dr Paul · NHS GP (ret.)</div>
+      <div class="hero-meta-item">Updated April 2026</div>
+      <div class="hero-meta-item">4 references · NICE NG101</div>
+    </div>
+  </div>
+</section>
+
+<div class="disclaimer-bar">
+  <p><strong>Health education, not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+</div>
+
+<div class="article-wrap">
+
+  <p class="section-eyebrow">Section 1</p>
+  <h2 class="section-title">What is breast awareness?</h2>
+
+  <p>Breast awareness is a term used in clinical practice to describe familiarity with how your own body normally looks and feels — and being alert to anything that is new or different. It is the approach now described in UK clinical guidance as preferable to the previously promoted practice of formal monthly breast self-examination (BSE) — in which people were taught to follow a specific prescribed checking routine at a set time each month.<sup><a href="#ref-2">2</a></sup></p>
+
+  <p>The distinction matters. Formal BSE involved learning a technique and performing it to a schedule. Breast awareness is less prescriptive: it describes an ongoing, general familiarity with how your own breast tissue normally looks and feels — across different times of the month and different stages of life — so that anything genuinely new or different becomes noticeable against that background of personal normality.</p>
+
+  <p>Breast cancer can develop in anyone with breast tissue. It is far more common in women — around 59,000 diagnoses in the UK each year<sup><a href="#ref-1">1</a></sup> — but around 420 men are also diagnosed in the UK each year.<sup><a href="#ref-1">1</a></sup> The principles of breast awareness apply to everyone.</p>
+
+  <div class="key-terms">
+    <div class="key-terms-title">Key Terms</div>
+    <div class="key-terms-grid">
+      <div>
+        <div class="key-term">
+          <div class="key-term-label">Breast Awareness</div>
+          <div class="key-term-def">Knowing what is normal for your own body — how your breast tissue normally looks and feels at different times of the month and at different life stages — and noticing when something is new or different. The clinical approach recommended by NICE in preference to scheduled self-examination routines.</div>
+        </div>
+        <div class="key-term">
+          <div class="key-term-label">Nipple Inversion</div>
+          <div class="key-term-def">When a nipple that previously pointed outward becomes drawn inward or retracted. Nipple inversion present since early adulthood or for many years is generally not clinically significant; inversion that is new is clinically recognised as worth assessment.</div>
+        </div>
+        <div class="key-term">
+          <div class="key-term-label">Lymph Nodes</div>
+          <div class="key-term-def">Small glands forming part of the lymphatic system. Several lymph nodes sit in the armpit (clinically called the axilla). A new lump or swelling in the armpit can sometimes be associated with changes in nearby breast tissue.</div>
+        </div>
+      </div>
+      <div>
+        <div class="key-term">
+          <div class="key-term-label">Peau d'Orange</div>
+          <div class="key-term-def">French for "orange skin" — a clinical term for a texture change in which the skin of the breast develops a dimpled or pitted surface resembling an orange peel. It is associated with certain breast changes and clinically recognised as worth assessment when new.</div>
+        </div>
+        <div class="key-term">
+          <div class="key-term-label">Mammography</div>
+          <div class="key-term-def">An X-ray of the breast tissue used to detect changes too small to feel. The NHS Breast Screening Programme uses mammography to screen eligible people aged 50 to 70, inviting them every three years.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <p class="section-eyebrow">Section 2</p>
+  <h2 class="section-title">Why does it matter?</h2>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-number">1 in 7</div>
+      <div class="stat-prose">women in the UK will develop breast cancer at some point in their lifetime — making breast awareness relevant for the majority of the population.<sup><a href="#ref-1">1</a></sup></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">~59,000</div>
+      <div class="stat-prose">new breast cancer diagnoses in the UK each year — around 160 every day. It is the most commonly diagnosed cancer in the UK.<sup><a href="#ref-1">1</a></sup></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">50–70</div>
+      <div class="stat-prose">the age range for which the NHS Breast Screening Programme routinely invites eligible people for mammography (breast X-ray) every 3 years.<sup><a href="#ref-3">3</a></sup></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">~420</div>
+      <div class="stat-prose">men diagnosed with breast cancer in the UK each year — a reminder that breast awareness is relevant for everyone with breast tissue, not only women.<sup><a href="#ref-1">1</a></sup></div>
+    </div>
+  </div>
+
+  <p>Breast cancer outcomes are strongly linked to stage at diagnosis. The earlier a change is identified and investigated, the wider the range of available treatment options and the better the outcomes, on average. This is the clinical rationale behind breast awareness — not to create anxiety, but to build a reliable sense of personal normality so that genuinely new changes can be noticed promptly.</p>
+
+  <p>It is important to understand that the vast majority of breast changes are not cancer. Many are the result of normal hormonal fluctuations across the menstrual cycle, benign (non-cancerous) cysts, or fibroadenomas (non-cancerous lumps made of glandular and fibrous tissue). The purpose of breast awareness is not to generate alarm at every change, but to create familiarity — so that changes that are genuinely new, different, or persistent stand out clearly against a background of individual normality.</p>
+
+  <hr class="section-divider">
+
+  <p class="section-eyebrow">Section 3</p>
+  <h2 class="section-title">What does normal look and feel like?</h2>
+
+  <p>There is no single standard for what breast tissue looks or feels like. Normal varies considerably between individuals, and changes over time within the same person in response to hormones, age, pregnancy, breastfeeding, and other factors. Getting to know what is normal for you — rather than comparing to an external standard — is the clinically relevant goal.</p>
+
+  <div class="bodies-box">
+    <div class="bodies-box-title">Things that are clinically considered normal</div>
+    <p><strong>Cyclical changes.</strong> Many people notice that breast tissue changes across the menstrual cycle — becoming more tender, fuller, or lumpier in the days before a period, and settling again once a period begins. This cyclical tenderness and lumpiness is caused by normal hormonal fluctuation (changes in oestrogen — the main female sex hormone — and progesterone) and is a recognised physiological (body function) response.</p>
+    <p><strong>Asymmetry.</strong> It is clinically normal for one breast to be a slightly different size or shape from the other. Most people are not perfectly symmetrical, and a mild persistent difference between the two sides is not, in itself, a sign of a problem — unless that difference is new or has changed.</p>
+    <p><strong>Nodularity.</strong> Breast tissue can feel dense, grainy, or nodular (lumpy), particularly in younger people and in the upper-outer area of the breast towards the armpit. This reflects breast composition — denser tissue contains a higher proportion of glandular (milk-producing) and fibrous tissue relative to fat — and is not itself a cause for concern.</p>
+    <p><strong>Changes at menopause and with age.</strong> After the menopause — when the ovaries stop producing oestrogen — breast tissue often changes in composition, becoming less dense and sometimes feeling softer or less firm. This is a normal part of ageing. The menopause is the natural end of menstrual periods, typically occurring between the ages of 45 and 55.</p>
+    <p><strong>Nipple variation.</strong> Nipples vary considerably. Some are inverted (pointing inward), some are flat, some are prominent. Nipple inversion (see Key Terms: Nipple Inversion) or other characteristics that have been present since early adulthood are not clinically significant in themselves. What becomes clinically meaningful is a change in a previously established appearance.</p>
+  </div>
+
+  <p>The key clinical principle is this: because normal varies so much between individuals, the most useful benchmark is your own established normal — not any external standard or comparison with other people.</p>
+
+  <hr class="section-divider">
+
+  <p class="section-eyebrow">Section 4</p>
+  <h2 class="section-title">Changes that are clinically recognised as worth assessment</h2>
+
+  <p>The following changes are clinically recognised as warranting assessment — not because they are always significant, but because they are the kinds of changes that benefit from clinical investigation to establish what they are. The majority will have a benign explanation. Some will require further investigation.<sup><a href="#ref-2">2</a></sup> <sup><a href="#ref-3">3</a></sup></p>
+
+  <ol class="subtype-list">
+    <li><strong>A new lump or area of thickening in the breast, upper chest, or armpit.</strong> Particularly one that feels harder or different from the surrounding tissue, or that does not change with the menstrual cycle. A new swelling in the armpit (see Key Terms: Lymph Nodes) can sometimes be associated with changes in breast tissue, as the lymph nodes there drain the breast area.</li>
+    <li><strong>A change in the size, shape, or outline (contour) of one or both breasts.</strong> Including any new asymmetry that was not present before — such as one breast appearing visibly higher or lower than previously, or a new change in the silhouette of either breast when viewed in a mirror with arms raised.</li>
+    <li><strong>A change in skin texture.</strong> Including dimpling, puckering, a rash on the breast or around the nipple, or skin that develops an orange-peel surface (see Key Terms: Peau d'Orange). Any unexplained redness or visible skin change in the breast area is also included in this category.</li>
+    <li><strong>Changes to a nipple.</strong> Including inversion that is new (see Key Terms: Nipple Inversion); discharge that is not breast milk — particularly if bloodstained or coming from one breast only; or a change in the position, direction, or general appearance of a nipple that differs from its previously established state.</li>
+    <li><strong>Persistent pain in one area.</strong> Most breast pain — particularly cyclical pain linked to the menstrual cycle — is not associated with breast cancer, and cyclical breast pain is very common. Persistent, localised, non-cyclical pain that is present in the same area and does not resolve is clinically recognised as the type more likely to warrant assessment.</li>
+    <li><strong>Redness, warmth, or unexplained swelling in part of the breast.</strong> Particularly in the absence of a known infection or injury. Inflammatory breast cancer — a rarer but fast-developing form of the disease — can present with redness, warmth, and swelling rather than a palpable lump, which is one reason why clinically significant changes are not always detectable as a distinct mass.</li>
+  </ol>
+
+  <p>The general clinical principle: changes that are new, persistent (lasting more than a few weeks), and clearly different from what has previously been individually normal are the ones clinically recognised as warranting assessment. Temporary changes that follow the pattern of the menstrual cycle and resolve predictably fall into a different category.</p>
+
+  <hr class="section-divider">
+
+  <p class="section-eyebrow">Section 5</p>
+  <h2 class="section-title">How this fits with the NHS Breast Screening Programme</h2>
+
+  <p>Breast awareness and the NHS Breast Screening Programme are complementary, not alternatives. They detect different things, in different ways, at different points in time.</p>
+
+  <div class="screening-panel">
+    <div class="screening-panel-title">The NHS Breast Screening Programme — key facts</div>
+    <div class="screening-facts">
+      <div class="screening-fact">
+        <div class="screening-fact-label">Who is invited</div>
+        <div class="screening-fact-text">People aged 50 to 70 are routinely invited for breast screening every 3 years. Invitations are sent automatically by the NHS to those registered with a GP.</div>
+      </div>
+      <div class="screening-fact">
+        <div class="screening-fact-label">The test</div>
+        <div class="screening-fact-text">Mammography — an X-ray of breast tissue — can identify changes too small to feel, including some cancers at a very early stage before symptoms develop.</div>
+      </div>
+      <div class="screening-fact">
+        <div class="screening-fact-label">Outside the routine age range</div>
+        <div class="screening-fact-text">Those over 70 can continue to request screening by contacting their local breast screening service directly. Those with a higher familial (family history) risk may be offered earlier or more frequent surveillance through their GP.</div>
+      </div>
+      <div class="screening-fact">
+        <div class="screening-fact-label">Why awareness still matters</div>
+        <div class="screening-fact-text">Routine screening takes place every 3 years. Breast awareness means changes developing between appointments are more likely to be noticed and acted on.</div>
+      </div>
+    </div>
+  </div>
+
+  <p>Mammography reveals changes in the internal structure of breast tissue that are not yet detectable by touch. This is its clinical value — identifying early-stage cancers before they cause noticeable symptoms. Breast awareness complements this by describing attention to changes that become noticeable — lumps, skin changes, nipple changes — in between screening appointments, or in people outside the routine screening age range.</p>
+
+  <p>For people with a significant family history of breast cancer — for example, a first-degree relative (parent, sibling, or child) diagnosed at a young age, or several relatives affected — there is a clinical pathway through a GP referral to a familial cancer service, where individual risk is assessed and a personalised surveillance (monitoring) plan may be offered. This is a separate service from the routine population screening programme.<sup><a href="#ref-2">2</a></sup></p>
+
+  <hr class="section-divider">
+
+  <p class="section-eyebrow">Section 6</p>
+  <h2 class="section-title">What the research shows</h2>
+
+  <p>The shift from scheduled monthly breast self-examination to breast awareness is grounded in evidence from large-scale randomised trials and systematic reviews, which informed the current NICE clinical guidance.<sup><a href="#ref-2">2</a></sup></p>
+
+  <div class="research-card">
+    <div class="ev-stat-box">
+      <div class="ev-kf-label">Clinical Guidance</div>
+      <div class="ev-text-stat">Breast awareness</div>
+      <div class="ev-outcome">clinically recommended / over scheduled self-examination routines</div>
+      <div class="ev-conditions">no mortality benefit from formal BSE found · NICE NG101 · updated April 2025</div>
+    </div>
+    <div class="ev-body">
+      <div>
+        <h4>The evidence behind the shift away from formal scheduled self-examination</h4>
+        <p>Large randomised controlled trials covering hundreds of thousands of women found no reduction in breast cancer mortality from formal scheduled breast self-examination compared with no BSE routine. Systematic reviews of this evidence reached consistent conclusions.<sup><a href="#ref-4">4</a></sup> NICE NG101 (updated April 2025) does not recommend formal breast self-examination. The clinical approach described in NICE guidance is breast awareness — knowing what is individually normal and noticing change — which does not involve a prescribed technique or schedule.</p>
+      </div>
+      <div class="ev-source">NICE. Early and locally advanced breast cancer: diagnosis and management. NG101. Updated April 2025.</div>
+    </div>
+  </div>
+
+  <p>It is important to understand what this evidence shows and what it does not show. The absence of mortality benefit from formal BSE as a prescribed routine does not mean that noticing changes is without clinical value. Earlier detection of breast cancer is associated with better outcomes — the evidence indicates that the benefit comes from ongoing awareness itself, not from adherence to a specific scheduled technique.</p>
+
+  <div class="bodies-box" style="border-color:rgba(232,168,74,0.35);margin-top:1.6rem;">
+    <div class="bodies-box-title" style="color:var(--series);">A note on monthly checking — and the NHS video guide</div>
+    <p>Some NHS resources — including the NHS breast checking page — suggest checking once a month as a practical way to build familiarity. This is a reasonable practical approach, and the NHS page includes a genuinely useful video demonstrating how to look and feel for changes.<sup><a href="#ref-3">3</a></sup></p>
+    <p>NICE NG101 takes a slightly different position: it does not recommend any fixed schedule, because the evidence does not show that monthly checking outperforms less prescribed awareness. The clinical emphasis in NICE guidance is on familiarity — knowing your own normal — rather than on calendar adherence.</p>
+    <p>For the purpose of this article, both the video technique and the awareness approach are clinically valuable. If a monthly habit helps build that familiarity, that is a reasonable individual choice. What the evidence does not support is the idea that missing a monthly check is a clinical failure, or that checking more frequently than that adds meaningful additional benefit.</p>
+  </div>
+
+  <div class="signpost-box">
+    <div class="signpost-icon">🎥</div>
+    <div class="signpost-body">
+      <strong>The NHS has a free video guide to breast and chest checking technique</strong>
+      <p>The NHS page on how to check your breasts or chest includes a video demonstrating the technique — what to look for in a mirror and how to feel the breast tissue. It is a useful visual educational resource, available at nhs.uk.<sup><a href="#ref-3">3</a></sup></p>
+    </div>
+  </div>
+
+  <div class="signpost-box">
+    <div class="signpost-icon">📖</div>
+    <div class="signpost-body">
+      <strong>For a deeper understanding of breast cancer itself</strong>
+      <p>helf.school has a separate article — Breast Cancer (Article 27, Cancer Series) — covering what breast cancer is, how it develops, how it is diagnosed, and what the clinical trial evidence shows about treatment. It is available in the conditions library.</p>
+    </div>
+  </div>
+
+  <div class="putting-together">
+    <p>Breast awareness is not about following a routine or performing a prescribed technique at a set time. It describes something simpler and more durable: familiarity with your own body — how your breast tissue normally looks and feels at different points in the menstrual cycle and across different stages of life — so that something genuinely new or different becomes noticeable against that personal baseline.</p>
+    <p>Most breast changes have a benign explanation. Many are part of normal hormonal fluctuation, or the natural changes of ageing. The changes clinically recognised as warranting assessment are those that are new, persistent, and different from what has previously been individually normal.</p>
+    <p>The NHS Breast Screening Programme and breast awareness serve different but complementary roles. Screening detects changes too small to feel; awareness detects changes that become noticeable to the individual. Both have a place in the broader picture of early detection.</p>
+    <p>Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+  </div>
+
+  <hr class="section-divider">
+
+  <div class="references-section">
+    <h3>References</h3>
+    <ol class="ref-list">
+      <li id="ref-1" class="ref-block">
+        <div class="ref-full">Cancer Research UK. Breast cancer statistics. Available at: cancerresearchuk.org/health-professional/cancer-statistics/statistics-by-cancer-type/breast-cancer [accessed April 2026].</div>
+        <div class="ref-links">
+          <a class="ref-pill" href="https://www.cancerresearchuk.org/health-professional/cancer-statistics/statistics-by-cancer-type/breast-cancer" target="_blank">Cancer Research UK ↗</a>
+        </div>
+      </li>
+      <li id="ref-2" class="ref-block">
+        <div class="ref-full">National Institute for Health and Care Excellence. Early and locally advanced breast cancer: diagnosis and management. NICE guideline NG101. Published July 2018. Updated April 2025. Available at: nice.org.uk/guidance/ng101.</div>
+        <div class="ref-links">
+          <a class="ref-pill" href="https://www.nice.org.uk/guidance/ng101" target="_blank">NICE NG101 ↗</a>
+        </div>
+      </li>
+      <li id="ref-3" class="ref-block">
+        <div class="ref-full">NHS. How to check your breasts or chest. Available at: nhs.uk/tests-and-treatments/how-to-check-your-breasts-or-chest/ [accessed April 2026].</div>
+        <div class="ref-links">
+          <a class="ref-pill" href="https://www.nhs.uk/tests-and-treatments/how-to-check-your-breasts-or-chest/" target="_blank">NHS ↗</a>
+        </div>
+      </li>
+      <li id="ref-4" class="ref-block">
+        <div class="ref-full">Kösters JP, Gøtzsche PC. Regular self-examination or clinical examination for early detection of breast cancer. Cochrane Database Syst Rev. 2003;(2):CD003373. doi:10.1002/14651858.CD003373. PMID 12804462.</div>
+        <div class="ref-links">
+          <a class="ref-pill" href="https://doi.org/10.1002/14651858.CD003373" target="_blank">DOI ↗</a>
+          <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/12804462/" target="_blank">PubMed ↗</a>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <div class="flag-box">
+    <h4>Reference note</h4>
+    <ul>
+      <li>Ref 4 (Kösters &amp; Gøtzsche, Cochrane 2003, PMID 12804462) — published 2003. No more recent Cochrane update exists — this remains the current version of CD003373, with a 2007 literature search update but no new published version. As the article cites NICE NG101 as the primary source rather than this review directly, the citation is included for completeness and transparency.</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-logo">helf<span>.</span>school</div>
+    <div class="logo-tag" style="font-size:0.62rem;font-weight:700;letter-spacing:0.18em;color:rgba(255,255,255,0.45);text-transform:uppercase;margin-bottom:0.5rem;">Health Education</div>
+    <div class="footer-disc">Anything personally relevant is a conversation for you to have with your GP or healthcare professional. helf.school provides health education only — not medical advice, diagnosis, or treatment recommendations.</div>
+    <div class="footer-copy">© 2026 helf.school · Practical Health · Article 32 · Breast Awareness</div>
+  </div>
+</footer>
+
+</body>
+</html>
