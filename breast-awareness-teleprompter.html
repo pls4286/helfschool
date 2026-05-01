@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breast Awareness Teleprompter | helf.school</title>
+<style>
+  :root {
+    --navy:#1B2A4A;
+    --coral:#E8634A;
+    --amber:#E8A84A;
+    --series:#7A6A2E;
+    --series-dark:#4A3A1A;
+    --bg:#0e1a2e;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;font-family:Georgia,serif;}
+
+  #scroll{position:fixed;top:44px;left:0;width:100%;height:calc(100% - 84px);overflow:hidden;padding:4vh 8vw 45vh;}
+  #content{will-change:transform;}
+
+  .seg-block{margin-bottom:3.5rem;}
+  .script-line{font-size:1.9rem;line-height:1.75;color:rgba(255,255,255,0.92);font-weight:400;}
+
+  .cue-box{display:flex;align-items:center;gap:.8rem;background:rgba(122,106,46,0.22);border:2px solid var(--series);border-radius:10px;padding:.7rem 1.1rem;margin-bottom:1.1rem;}
+  .cue-arrow{font-size:1.4rem;color:var(--amber);}
+  .cue-text{font-size:1rem;font-family:'Arial',sans-serif;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--amber);}
+
+  #seg-dots{position:fixed;bottom:0;left:0;width:100%;height:40px;background:rgba(14,26,46,0.95);display:flex;align-items:center;justify-content:center;gap:.6rem;border-top:1px solid rgba(255,255,255,0.08);}
+  .seg-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.20);cursor:pointer;transition:background .2s,transform .2s;}
+  .seg-dot.active{background:var(--amber);transform:scale(1.3);}
+
+  #controls{position:fixed;top:0;left:0;width:100%;height:44px;background:rgba(14,26,46,0.95);display:flex;align-items:center;gap:.6rem;padding:0 1rem;border-bottom:1px solid rgba(255,255,255,0.08);z-index:10;}
+  .ctrl-btn{background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.20);border-radius:6px;color:#fff;font-size:.85rem;font-family:Arial,sans-serif;padding:.25rem .6rem;cursor:pointer;font-weight:600;}
+  .ctrl-btn:hover{background:rgba(255,255,255,0.18);}
+  .pause-btn{background:rgba(122,106,46,0.4);border-color:var(--series);font-size:1rem;padding:.25rem .8rem;}
+  .pause-btn.paused{background:rgba(200,66,58,0.35);border-color:#C8423A;}
+  #speed-label{font-size:.80rem;color:rgba(255,255,255,0.55);font-family:Arial,sans-serif;margin-left:.2rem;}
+  #font-label{font-size:.80rem;color:rgba(255,255,255,0.55);font-family:Arial,sans-serif;margin-left:.4rem;}
+  .ctrl-sep{width:1px;height:22px;background:rgba(255,255,255,0.12);margin:0 .2rem;}
+  .logo{font-size:.85rem;color:rgba(255,255,255,0.35);font-family:Arial,sans-serif;margin-left:auto;letter-spacing:.04em;}
+</style>
+</head>
+<body>
+
+<div id="controls">
+  <button class="ctrl-btn" onclick="changeSpeed(-1)">◀</button>
+  <span id="speed-label">Speed 3</span>
+  <button class="ctrl-btn" onclick="changeSpeed(1)">▶</button>
+  <div class="ctrl-sep"></div>
+  <button class="ctrl-btn" onclick="changeFont(-1)">A−</button>
+  <span id="font-label">1.9rem</span>
+  <button class="ctrl-btn" onclick="changeFont(1)">A+</button>
+  <div class="ctrl-sep"></div>
+  <button class="ctrl-btn pause-btn" id="pause-btn" onclick="togglePause()">⏸</button>
+  <span class="logo">helf.school · Breast Awareness · Article 32</span>
+</div>
+
+<div id="scroll">
+<div id="content">
+
+<!-- SEG 1 — SLIDE 1: INTRO -->
+<div class="seg-block" id="seg-1">
+  <div class="cue-box">
+    <span class="cue-arrow">▶</span>
+    <span class="cue-text">Slide 1 — Intro · ADVANCE NOW — then read</span>
+  </div>
+  <div class="script-line">
+    I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019.
+    Today I want to talk about breast awareness — what it means clinically,
+    what is considered normal, and the kinds of changes that are worth knowing about.
+    Now, I do have to say upfront — what I'm giving you here is health education, not medical advice.
+    Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+    Right — let's get into it.
+  </div>
+</div>
+
+<!-- SEG 2 — SLIDES 2–3: WHAT IS AWARENESS + WHAT DOES NORMAL LOOK LIKE -->
+<div class="seg-block" id="seg-2">
+  <div class="cue-box">
+    <span class="cue-arrow">▶</span>
+    <span class="cue-text">Slides 2–3 — What is breast awareness? · ADVANCE NOW — then read</span>
+  </div>
+  <div class="script-line">
+    So what is breast awareness — and how is it different from what you might have heard before?
+
+    For many years, women were encouraged to perform formal monthly breast self-examination —
+    a specific technique, at a set time each month.
+    The clinical evidence, though, found no reduction in breast cancer mortality from that kind of scheduled routine.
+    So NICE — the body that sets UK clinical guidelines — now describes a different approach.
+    Not a technique. Not a schedule.
+    Just familiarity with how your own body normally looks and feels.
+
+    And that's the key — your normal.
+    Because what's normal varies enormously between people.
+    Breast tissue often becomes more tender or lumpier before a period and settles again afterwards.
+    It's clinically normal for one breast to be a slightly different size or shape from the other.
+    After the menopause, breast tissue often feels softer and less dense.
+    All of that is within the range of normal.
+    What breast awareness is really about is building enough familiarity with your own body
+    that anything genuinely new or different becomes noticeable.
+  </div>
+</div>
+
+<!-- SEG 3 — SLIDES 4–5: CHANGES WORTH ASSESSMENT 1 AND 2 OF 2 -->
+<div class="seg-block" id="seg-3">
+  <div class="cue-box">
+    <span class="cue-arrow">▶</span>
+    <span class="cue-text">Slides 4–5 — Changes worth assessment · ADVANCE NOW — then read</span>
+  </div>
+  <div class="script-line">
+    So what kinds of changes are clinically recognised as worth assessment?
+    There are six main ones — and I want to be clear:
+    most breast changes have a benign explanation.
+    Knowing these doesn't mean every change is significant.
+    It means knowing what falls outside the range of normal variation.
+
+    First — a new lump or area of thickening in the breast, chest, or armpit,
+    particularly one that feels harder than the surrounding tissue
+    or doesn't change with the menstrual cycle.
+
+    Second — a change in size, shape, or outline of one or both breasts —
+    any new visible difference that wasn't there before.
+
+    Third — a change in skin texture: dimpling, puckering, a rash,
+    or an orange-peel surface that clinicians call peau d'orange.
+
+    Then: changes to a nipple — new inversion, discharge that isn't breast milk,
+    or a change in position or appearance.
+
+    Persistent pain in one area that doesn't follow the menstrual cycle and doesn't go away.
+
+    And redness, warmth, or unexplained swelling —
+    because not all clinically significant changes come as a detectable lump.
+  </div>
+</div>
+
+<!-- SEG 4 — SLIDE 6: NHS SCREENING PROGRAMME -->
+<div class="seg-block" id="seg-4">
+  <div class="cue-box">
+    <span class="cue-arrow">▶</span>
+    <span class="cue-text">Slide 6 — NHS Screening Programme · ADVANCE NOW — then read</span>
+  </div>
+  <div class="script-line">
+    Now — breast awareness and the NHS Breast Screening Programme do different things,
+    and they complement each other rather than replace each other.
+
+    The screening programme invites everyone aged 50 to 70 for mammography —
+    an X-ray of breast tissue — every three years.
+    Mammography can detect changes too small to feel —
+    that's its clinical value.
+    It finds things early, before symptoms develop.
+
+    But routine screening is every three years.
+    Breast awareness is ongoing.
+    It's what fills the gap between appointments —
+    and it's relevant for everyone, not just those within the screening age range.
+  </div>
+</div>
+
+<!-- SEG 5 — SLIDE 7: RESEARCH — NICE NG101 -->
+<div class="seg-block" id="seg-5">
+  <div class="cue-box">
+    <span class="cue-arrow">▶</span>
+    <span class="cue-text">Slide 7 — Research · ADVANCE NOW — then read</span>
+  </div>
+  <div class="script-line">
+    The clinical guidance on this is clear.
+    NICE NG101 — the national guideline on breast cancer diagnosis and management —
+    does not recommend formal monthly self-examination.
+    Large randomised trials found no survival advantage from a scheduled checking routine
+    compared with no routine at all.
+    What NICE describes instead is breast awareness.
+    Familiarity with your own normal. Noticing change.
+    Not a technique. Not a calendar. Just knowing your body.
+  </div>
+</div>
+
+<!-- SEG 6 — SLIDE 8: CTA + SLIDE 9: BRAND CLOSE -->
+<div class="seg-block" id="seg-6">
+  <div class="cue-box">
+    <span class="cue-arrow">▶</span>
+    <span class="cue-text">Slide 8 — What the evidence shows · ADVANCE NOW — then read</span>
+  </div>
+  <div class="script-line">
+    So — to bring this together.
+
+    Breast awareness is about knowing what's normal for you —
+    not following a set routine or technique.
+    Six types of change are clinically recognised as worth assessment —
+    from new lumps and skin texture changes to nipple changes and persistent localised pain.
+    The NHS screening programme invites those aged 50 to 70 for mammography every three years —
+    breast awareness is what works alongside it, not instead of it.
+    And the NHS has a useful free video guide to checking technique — available at nhs.uk.
+
+    Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
+  </div>
+
+  <div class="cue-box" style="margin-top:2.5rem;">
+    <span class="cue-arrow">▶</span>
+    <span class="cue-text">Slide 9 — Brand close · ADVANCE NOW — then read</span>
+  </div>
+  <div class="script-line">
+    Thanks for watching. I'm Dr Paul — this is helf.school. Evidence-based. Built by a doctor.
+  </div>
+</div>
+
+</div>
+</div>
+
+<div id="seg-dots"></div>
+
+<script>
+  const SPEEDS = [0, 8, 14, 20, 28, 38, 50];
+  const SEGS = 6;
+  let speedIdx = 3;
+  let paused = false;
+  let pos = 0;
+  let fontSize = 1.9;
+  let raf;
+
+  const content = document.getElementById('content');
+  const scroll = document.getElementById('scroll');
+  const pauseBtn = document.getElementById('pause-btn');
+
+  const dotsEl = document.getElementById('seg-dots');
+  for (let i = 1; i <= SEGS; i++) {
+    const d = document.createElement('div');
+    d.className = 'seg-dot' + (i === 1 ? ' active' : '');
+    d.title = 'Segment ' + i;
+    d.addEventListener('click', () => jumpToSeg(i));
+    dotsEl.appendChild(d);
+  }
+
+  function jumpToSeg(n) {
+    const el = document.getElementById('seg-' + n);
+    if (!el) return;
+    pos = Math.max(0, el.offsetTop - scroll.clientHeight * 0.12);
+    content.style.transform = 'translateY(-' + pos + 'px)';
+    updateDots();
+  }
+
+  function updateDots() {
+    const viewMid = pos + scroll.clientHeight * 0.35;
+    let active = 1;
+    for (let i = 1; i <= SEGS; i++) {
+      const el = document.getElementById('seg-' + i);
+      if (el && el.offsetTop <= viewMid) active = i;
+    }
+    document.querySelectorAll('.seg-dot').forEach((d, idx) => {
+      d.classList.toggle('active', idx + 1 === active);
+    });
+  }
+
+  function tick() {
+    if (!paused && SPEEDS[speedIdx] > 0) {
+      pos += SPEEDS[speedIdx] / 60;
+      const maxPos = content.offsetHeight - scroll.clientHeight * 0.55;
+      if (pos > maxPos) pos = maxPos;
+      content.style.transform = 'translateY(-' + pos + 'px)';
+      updateDots();
+    }
+    raf = requestAnimationFrame(tick);
+  }
+
+  function togglePause() {
+    paused = !paused;
+    pauseBtn.textContent = paused ? '▶' : '⏸';
+    pauseBtn.classList.toggle('paused', paused);
+  }
+
+  function changeSpeed(dir) {
+    speedIdx = Math.max(0, Math.min(SPEEDS.length - 1, speedIdx + dir));
+    document.getElementById('speed-label').textContent = 'Speed ' + speedIdx;
+  }
+
+  function changeFont(dir) {
+    fontSize = Math.max(1.2, Math.min(2.8, Math.round((fontSize + dir * 0.1) * 10) / 10));
+    document.querySelectorAll('.script-line').forEach(el => el.style.fontSize = fontSize + 'rem');
+    document.getElementById('font-label').textContent = fontSize.toFixed(1) + 'rem';
+  }
+
+  let ty = 0;
+  scroll.addEventListener('touchstart', e => {
+    ty = e.touches[0].clientY; paused = true;
+    pauseBtn.textContent = '▶'; pauseBtn.classList.add('paused');
+  }, {passive:true});
+  scroll.addEventListener('touchmove', e => {
+    const dy = ty - e.touches[0].clientY;
+    pos = Math.max(0, pos + dy); ty = e.touches[0].clientY;
+    content.style.transform = 'translateY(-' + pos + 'px)';
+    updateDots();
+  }, {passive:true});
+
+  document.addEventListener('keydown', e => {
+    if (e.key === ' ') { e.preventDefault(); togglePause(); }
+    if (e.key === 'ArrowUp') changeSpeed(-1);
+    if (e.key === 'ArrowDown') changeSpeed(1);
+  });
+
+  tick();
+</script>
+</body>
+</html>
