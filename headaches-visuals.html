@@ -6,10 +6,12 @@
   <title>Headaches — Types &amp; Red Flags — Visuals | helf.school</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root{--navy:#1B2A4A;--coral:#E8634A;--sage:#7A9E87;--amber:#E8A84A;--acc:#6B5EA8;--acc2:#4A4080;--bg:#0d1520;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a;--calm:#70b8e8}
+    :root{--navy:#1B2A4A;--coral:#E8634A;--amber:#E8A84A;--acc:#9B8FD4;--acc2:#4A4080;--series:#6B5EA8;--series-dark:#4A4080;--bg:#0f0d1a;--good:#7ecc99;--warn:#e8a84a;--bad:#e87a5a}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;background:var(--bg);overflow:hidden;font-family:'DM Sans',sans-serif}
-    #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:var(--navy);border-bottom:2px solid var(--acc2);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
+
+    /* TOPBAR */
+    #topbar{position:fixed;top:0;left:0;right:0;height:48px;z-index:100;background:rgba(15,13,26,.95);border-bottom:2px solid var(--acc2);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
     .tb-logo{display:flex;align-items:center;gap:.5rem}
     .tb-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#fff}
     .tb-dot{color:var(--coral)}
@@ -17,20 +19,33 @@
     .tb-right{display:flex;align-items:center;gap:1.2rem}
     .slide-counter{font-size:.85rem;font-weight:700;color:rgba(255,255,255,.90)}
     .kb-hint{font-size:.75rem;color:rgba(255,255,255,.65)}
-    #stage{position:fixed;top:48px;left:0;right:0;bottom:0;display:flex;align-items:flex-start;justify-content:center;padding:2.2vh 1.25rem 3.5vh;overflow:hidden}
-    .slide{display:none;width:100%;max-width:1140px;height:100%;animation:sIn .32s ease}
-    .slide.active{display:flex;flex-direction:column;min-height:0}
-    @keyframes sIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-    .slide-title{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.1vw,1.75rem);font-weight:700;color:#fff;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:2px solid rgba(107,94,168,.3);flex-shrink:0}
+
+    /* STAGE */
+    #stage{position:fixed;top:48px;left:0;right:0;bottom:0;overflow:hidden}
+
+    /* SLIDES — opacity/visibility canonical */
+    .slide{
+      position:absolute;top:0;left:0;width:100%;height:100%;
+      display:flex;flex-direction:column;
+      padding:1rem 1.5rem .8rem;
+      max-width:1140px;left:50%;transform:translateX(-50%);
+      opacity:0;visibility:hidden;pointer-events:none;
+      transition:opacity .32s ease;
+    }
+    .slide.active{opacity:1;visibility:visible;pointer-events:all}
+
+    .slide-title{font-family:'Fraunces',serif;font-size:1.72rem;font-weight:700;color:#fff;margin-bottom:.4rem;padding-bottom:.45rem;border-bottom:2px solid rgba(107,94,168,.3);flex-shrink:0}
     .slide-title span{color:var(--acc)}
-    #dots{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:200}
-    .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .25s}
-    .dot.active{background:var(--acc);transform:scale(1.3)}
+
+    /* NAV DOTS */
+    #dots{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:200}
+    .nav-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .25s}
+    .nav-dot.active{background:var(--acc);transform:scale(1.3)}
 
     /* INTRO */
     .intro-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.3rem}
     .intro-badge{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:rgba(107,94,168,.22);border:1px solid rgba(107,94,168,.45);padding:.3rem .9rem;border-radius:100px}
-    .intro-icon{font-size:4rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .intro-icon{font-size:4rem;line-height:1}
     .intro-title{font-family:'Fraunces',serif;font-size:clamp(2.6rem,5.5vw,4.4rem);font-weight:700;color:#fff;line-height:1.05;max-width:960px;letter-spacing:-.02em}
     .intro-title span{color:var(--acc)}
     .intro-sub{font-size:1.1rem;color:rgba(255,255,255,.85);font-style:italic;font-family:'Fraunces',serif;max-width:680px;line-height:1.5;font-weight:400}
@@ -39,67 +54,51 @@
     /* BIG PICTURE */
     .big-stage{display:flex;flex-direction:column;flex:1;gap:1.2rem;min-height:0;align-items:center;justify-content:center}
     .big-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;width:100%;max-width:1060px}
-    .big-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1.5px solid rgba(107,94,168,.45);border-radius:20px;padding:1.5rem 1.2rem;text-align:center;box-shadow:0 0 40px rgba(107,94,168,.08)}
+    .big-card{background:linear-gradient(180deg,rgba(107,94,168,.28),rgba(74,64,128,.18));border:1.5px solid rgba(155,143,212,.45);border-radius:20px;padding:1.5rem 1.2rem;text-align:center}
     .big-num{font-family:'Fraunces',serif;font-size:clamp(3rem,6.5vw,5rem);font-weight:700;color:var(--acc);line-height:.9;letter-spacing:-.03em;margin-bottom:.3rem}
     .big-lbl{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:.4rem}
     .big-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400}
     .big-src{font-size:.75rem;color:rgba(255,255,255,.65);font-style:italic;margin-top:.45rem}
-    .big-strip{display:flex;align-items:center;justify-content:center;gap:.9rem;padding:.85rem 1.5rem;background:rgba(232,168,74,.12);border:1px solid rgba(232,168,74,.4);border-radius:12px;max-width:1040px}
-    .big-strip-icon{font-size:1.4rem;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+    .big-strip{display:flex;align-items:center;justify-content:center;gap:.9rem;padding:.85rem 1.5rem;background:rgba(155,143,212,.10);border:1px solid rgba(155,143,212,.35);border-radius:12px;max-width:1040px}
+    .big-strip-icon{font-size:1.4rem}
     .big-strip-text{font-size:1rem;color:#fff;font-weight:500;font-family:'Fraunces',serif;line-height:1.4}
     .big-strip-text strong{color:var(--warn)}
 
-    /* 6-ROW CARDS — TYPES / INFO (amber stat) */
-    .info-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .info-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(107,94,168,.32);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
-    .info-card.animate-ready{opacity:0;transform:translateY(14px)}
-    .info-card.vis{opacity:1;transform:translateY(0)}
-    .info-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .info-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
-    .info-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
-    .info-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .info-stat{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--warn);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
+    /* THREE-CARD GRID */
+    .three-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(3,1fr);gap:.46rem;flex:1;min-height:0}
 
-    /* 6-ROW CARDS — TREATMENT (green stat) */
-    .doc-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
-    .doc-card.animate-ready{opacity:0;transform:translateY(14px)}
-    .doc-card.vis{opacity:1;transform:translateY(0)}
-    .doc-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .doc-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
-    .doc-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
-    .doc-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--good);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
-
-    /* 6-ROW CARDS — RED FLAGS (red stat) */
-    .flag-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(6,1fr);gap:.35rem;flex:1;min-height:0}
-    .flag-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.38);border-radius:10px;padding:.6rem 1.1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
-    .flag-card.animate-ready{opacity:0;transform:translateY(14px)}
-    .flag-card.vis{opacity:1;transform:translateY(0)}
-    .flag-icon{font-size:1.9rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .flag-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
-    .flag-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.1rem;line-height:1.12;letter-spacing:-.01em}
-    .flag-body{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .flag-stat{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;color:var(--bad);line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
+    /* INFO CARDS — colour variants */
+    .ic{border-radius:10px;padding:.82rem 1rem;display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:start;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .4s ease}
+    .ic.animate-ready{opacity:0;transform:translateY(14px)}
+    .ic.vis{opacity:1;transform:translateY(0)}
+    .ic.c-red  {background:linear-gradient(90deg,rgba(180,45,45,.55),rgba(110,25,25,.42));border:1px solid rgba(220,80,70,.55)}
+    .ic.c-amber{background:linear-gradient(90deg,rgba(170,110,20,.55),rgba(110,68,12,.42));border:1px solid rgba(232,168,74,.55)}
+    .ic.c-green{background:linear-gradient(90deg,rgba(50,120,70,.55),rgba(28,75,42,.42));border:1px solid rgba(126,204,153,.52)}
+    .ic-icon{font-size:1.55rem;line-height:1;text-align:center;padding-top:.15rem}
+    .ic-content{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+    .ic-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.12rem;line-height:1.12;letter-spacing:-.01em}
+    .ic-body{font-size:.93rem;color:rgba(255,255,255,.88);line-height:1.38;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+    .ic-stat{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.55rem);font-weight:700;line-height:1;letter-spacing:-.01em;text-align:right;white-space:nowrap;padding-left:.6rem;padding-top:.1rem}
+    .ic-stat.bad {color:var(--bad)}
+    .ic-stat.warn{color:var(--warn)}
+    .ic-stat.good{color:var(--good)}
+    .ic-stat.acc {color:var(--acc)}
 
     /* EVIDENCE CARDS */
     .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
-    .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(107,94,168,.32);border-radius:16px;padding:1.5rem 1.8rem;display:grid;grid-template-columns:220px 1fr;gap:1.6rem;align-items:center;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .45s ease}
+    .ev-card{background:linear-gradient(180deg,rgba(74,64,128,.45),rgba(15,13,26,.6));border:1px solid rgba(107,94,168,.35);border-radius:16px;padding:1.1rem 1.4rem;display:grid;grid-template-columns:220px 1fr;gap:1.4rem;align-items:center;min-height:0;overflow:hidden;opacity:1;transform:translateY(0);transition:all .45s ease}
     .ev-card.animate-ready{opacity:0;transform:translateY(14px)}
     .ev-card.vis{opacity:1;transform:translateY(0)}
-    .ev-stat-box{background:rgba(107,94,168,.09);border-radius:14px;padding:.9rem .75rem;text-align:center;overflow:hidden}
-    .ev-kf-label{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(107,94,168,.75);margin-bottom:.35rem}
-    .ev-stat-row{display:flex;align-items:baseline;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:.3rem}
-    .ev-num{font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:var(--acc);line-height:1;letter-spacing:-.02em;flex-shrink:0}
-    .ev-num.bad{color:var(--bad)}
-    .ev-num.good{color:var(--good)}
-    .ev-outcome{font-size:1rem;font-weight:700;color:#fff;line-height:1.3;text-align:left}
-    .ev-conditions{font-size:.78rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.32}
-    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;margin-bottom:.25rem;line-height:1.15;letter-spacing:-.01em}
-    .ev-det .ev-journal{font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
-    .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .ev-stat-box{background:linear-gradient(160deg,var(--series-dark) 0%,var(--series) 100%);border-radius:14px;padding:.9rem .75rem;text-align:left;overflow:hidden;display:flex;flex-direction:column}
+    .ev-kf-label{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--amber);margin-bottom:.35rem}
+    .ev-num{font-family:'Fraunces',serif;font-size:3.2rem;font-weight:900;color:#fff;line-height:1;letter-spacing:-.02em;margin-bottom:.3rem}
+    .ev-outcome{font-size:.95rem;font-weight:700;color:rgba(255,255,255,.95);line-height:1.3;margin-bottom:.3rem}
+    .ev-conditions{font-size:.78rem;font-weight:500;color:rgba(255,255,255,.72);line-height:1.32}
+    .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.4rem;margin-bottom:.2rem;line-height:1.15;letter-spacing:-.01em}
+    .ev-det .ev-journal{font-size:.90rem;color:rgba(255,255,255,.80);margin-bottom:.5rem;font-weight:500}
+    .ev-det .ev-body{font-size:.93rem;color:rgba(255,255,255,.90);line-height:1.5;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 
-    /* CTA SLIDE */
+    /* CTA — sequential animation */
     .cta-slide{position:relative}
     .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(107,94,168,.22),rgba(107,94,168,.05) 45%,transparent 70%);pointer-events:none;z-index:0}
     .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem;gap:.45rem;min-height:0;overflow:hidden}
@@ -107,34 +106,36 @@
     .cta-badge-v2{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(107,94,168,.18);border:1.5px solid rgba(107,94,168,.55);padding:.3rem .95rem;border-radius:100px}
     .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:700;color:#fff;line-height:1.02;letter-spacing:-.028em}
     .cta-headline-v2 span{color:var(--acc)}
-    .cta-subline{font-family:'Fraunces',serif;font-size:clamp(.95rem,1.5vw,1.2rem);font-weight:500;font-style:italic;color:rgba(255,255,255,.90);line-height:1.3}
-    .cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.4rem;min-height:0;overflow:hidden}
-    .cta-row-v2{background:linear-gradient(90deg,rgba(107,94,168,.14),rgba(107,94,168,.04));border-left:4px solid var(--acc);border-radius:0 10px 10px 0;padding:.6rem .95rem;display:grid;grid-template-columns:52px 1fr auto;gap:.9rem;align-items:start;min-height:0;overflow:hidden}
-    .cta-row-icon{font-size:1.7rem;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
-    .cta-row-mid{display:flex;flex-direction:column;gap:.12rem;min-width:0}
-    .cta-row-label{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:.95rem;line-height:1.15}
-    .cta-row-body-v2{font-size:.82rem;color:rgba(255,255,255,.90);line-height:1.35;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .cta-row-word-v2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.2rem,2vw,1.7rem);color:var(--acc);line-height:1;letter-spacing:-.02em;text-align:right;white-space:nowrap;padding-left:.6rem}
+    .cta-rows-v2{display:grid;grid-template-rows:repeat(6,1fr);gap:.38rem;min-height:0;overflow:hidden}
+    .cta-item{border-radius:9px;padding:.55rem 1rem;display:flex;align-items:center;gap:.9rem;opacity:0;transform:translateX(-24px);transition:opacity .38s ease,transform .38s ease}
+    .cta-item.visible{opacity:1;transform:translateX(0)}
+    .cta-item.ci-red  {background:rgba(180,45,45,.25);border:1px solid rgba(220,80,70,.40)}
+    .cta-item.ci-amber{background:rgba(170,110,20,.25);border:1px solid rgba(232,168,74,.40)}
+    .cta-item.ci-green{background:rgba(50,120,70,.30);border:1px solid rgba(126,204,153,.42)}
+    .cta-item-icon{font-size:1.45rem;flex-shrink:0}
+    .cta-item-text{font-size:.93rem;font-weight:600;color:rgba(255,255,255,.95);line-height:1.3}
     .cta-bottom{display:flex;justify-content:center;flex-shrink:0}
     .med-disclaimer{display:flex;align-items:center;gap:.8rem;padding:.75rem 1.2rem;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);border-radius:12px;max-width:900px;width:100%}
-    .med-disc-icon{font-size:1.25rem;flex-shrink:0;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-    .med-disc-text{font-size:.9rem;color:rgba(255,255,255,.88);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left;font-weight:400}
+    .med-disc-icon{font-size:1.25rem;flex-shrink:0}
+    .med-disc-text{font-size:1rem;color:rgba(255,255,255,.90);font-style:italic;line-height:1.45;font-family:'Fraunces',serif;text-align:left;font-weight:400}
     .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
 
-    /* CLOSING */
-    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:1.6rem;padding:1.5rem}
-    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}
-    .close-logo .cdot{color:var(--coral)}
+    /* BRAND CLOSE */
+    .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100%;text-align:center;gap:1.1rem;padding:1rem 1.5rem}
+    .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.8rem;font-weight:700;color:#fff;letter-spacing:-.02em}
+    .close-logo .cl-dot{color:var(--coral)}
     .close-sub{font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.82)}
-    .close-headline{font-family:'Fraunces',serif;font-size:clamp(3rem,5.8vw,5.2rem);font-weight:700;color:#fff;max-width:1050px;line-height:1.08;letter-spacing:-.025em}
+    .close-headline{font-family:'Fraunces',serif;font-size:clamp(2.8rem,5.2vw,4.6rem);font-weight:700;color:#fff;max-width:1000px;line-height:1.08;letter-spacing:-.025em}
     .close-headline span{color:var(--acc)}
-    .close-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1050px;width:100%}
-    .cst-card{background:rgba(107,94,168,.12);border:1px solid rgba(107,94,168,.38);border-radius:16px;padding:1.5rem 1.1rem;display:flex;flex-direction:column;align-items:center;gap:.55rem}
-    .cst-num{font-family:'Fraunces',serif;font-size:clamp(2.4rem,4.4vw,3.8rem);font-weight:700;color:var(--acc);line-height:.95;letter-spacing:-.02em}
-    .cst-lab{font-size:1.05rem;color:rgba(255,255,255,.95);font-weight:600;line-height:1.32}
-    .cst-src{font-size:.85rem;color:rgba(255,255,255,.72);font-style:italic}
-    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.3rem}
-    .disc{position:fixed;bottom:4px;left:50%;transform:translateX(-50%);font-size:.68rem;color:rgba(255,255,255,.18);z-index:90;white-space:nowrap}
+    .close-pitch{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:980px;width:100%}
+    .cp-card{background:rgba(107,94,168,.12);border:1px solid rgba(107,94,168,.38);border-radius:16px;padding:1.3rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.5rem}
+    .cp-icon{font-size:2.2rem;line-height:1}
+    .cp-label{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;color:#fff;line-height:1.2}
+    .cp-body{font-size:.88rem;color:rgba(255,255,255,.80);line-height:1.4;font-weight:400}
+    .close-series{font-size:.85rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.70)}
+
+    /* FOOTER */
+    .disc{position:fixed;bottom:3px;left:50%;transform:translateX(-50%);font-size:clamp(.65rem,1vw,.80rem);color:rgba(255,255,255,.65);z-index:90;white-space:nowrap}
   </style>
 </head>
 <body>
@@ -149,7 +150,7 @@
     <span class="tb-sub">· Headaches</span>
   </div>
   <div class="tb-right">
-    <span id="counter" class="slide-counter">1 / 8</span>
+    <span id="counter" class="slide-counter">1 / 11</span>
     <span class="kb-hint">← → navigate</span>
   </div>
 </div>
@@ -162,14 +163,14 @@
       <div class="intro-badge">🧠 Neurological Health Series · Article 23</div>
       <div class="intro-icon">🧠</div>
       <div class="intro-title">Headaches —<br/><span>Types &amp; Red Flags</span></div>
-      <div class="intro-sub">How the three main headache types differ, why accurate identification matters, and which patterns require prompt assessment.</div>
+      <div class="intro-sub">How the three main types differ, why accurate identification matters, and which patterns need prompt assessment.</div>
       <div class="intro-tagline">Dr Paul · Retired NHS GP · helf.school</div>
     </div>
   </div>
 
   <!-- SLIDE 2: BIG PICTURE -->
   <div class="slide">
-    <div class="slide-title">The big picture · <span>headache disorders worldwide</span></div>
+    <div class="slide-title">The scale of <span>headache disorders</span></div>
     <div class="big-stage">
       <div class="big-row">
         <div class="big-card">
@@ -181,266 +182,274 @@
         <div class="big-card">
           <div class="big-num">0.1%</div>
           <div class="big-lbl">cluster headache prevalence</div>
-          <div class="big-body">Rare but among the <strong>most severe pain conditions known</strong> — attacks are very severe, unilateral, and last 15 minutes to 3 hours.</div>
-          <div class="big-src">NICE CG150 · NHS Scotland Headache Pathway</div>
+          <div class="big-body">Rare but among the <strong>most severe pain conditions known</strong> — very severe, strictly one-sided, lasting 15 minutes to 3 hours.</div>
+          <div class="big-src">NICE CG150</div>
         </div>
         <div class="big-card">
           <div class="big-num">1–2%</div>
           <div class="big-lbl">medication overuse headache</div>
-          <div class="big-body">Of the general population — often <strong>unrecognised</strong>, caused by the very treatments being taken, and reversible with withdrawal.</div>
+          <div class="big-body">Often <strong>unrecognised</strong> — caused by the very treatments being taken to manage headaches, and reversible with withdrawal.</div>
           <div class="big-src">NICE CG150</div>
         </div>
       </div>
       <div class="big-strip">
         <div class="big-strip-icon">⚠️</div>
-        <div class="big-strip-text">The three primary headache types require <strong>fundamentally different treatments</strong> — accurate type identification directly determines whether treatment works.</div>
+        <div class="big-strip-text">The three primary types require <strong>fundamentally different treatments</strong> — accurate type identification directly determines whether treatment works.</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 3: WHAT DISTINGUISHES THE TYPES -->
+  <!-- SLIDE 3: TYPES 1/2 — amber (mechanism/information) -->
   <div class="slide">
-    <div class="slide-title">What <span>distinguishes the three types</span></div>
-    <div class="info-grid">
-      <div class="info-card animate-ready" id="s1">
-        <div class="info-icon">📍</div>
-        <div class="info-content">
-          <div class="info-title">Location</div>
-          <div class="info-body">TTH: bilateral (band-like, both sides) · Migraine: usually one-sided · Cluster: strictly unilateral periorbital (around the eye) or temporal (at the temple)</div>
+    <div class="slide-title">What <span>distinguishes the three types</span> · 1 of 2</div>
+    <div class="three-grid">
+      <div class="ic c-amber animate-ready" id="s1">
+        <div class="ic-icon">📍</div>
+        <div class="ic-content">
+          <div class="ic-title">Location</div>
+          <div class="ic-body">TTH: bilateral pressing band. Migraine: typically one-sided. Cluster: strictly around one eye or temple — always the same side.</div>
         </div>
-        <div class="info-stat">Location</div>
+        <div class="ic-stat warn">Location</div>
       </div>
-      <div class="info-card animate-ready" id="s2">
-        <div class="info-icon">💢</div>
-        <div class="info-content">
-          <div class="info-title">Severity</div>
-          <div class="info-body">TTH: mild-moderate pressing pain · Migraine: moderate-severe pulsating · Cluster: severe to very severe — rated among the most painful conditions known</div>
+      <div class="ic c-amber animate-ready" id="s2">
+        <div class="ic-icon">💢</div>
+        <div class="ic-content">
+          <div class="ic-title">Severity</div>
+          <div class="ic-body">TTH: mild to moderate pressing pain. Migraine: moderate to severe pulsating. Cluster: severe to very severe — rated among the most painful conditions known.</div>
         </div>
-        <div class="info-stat">Severity</div>
+        <div class="ic-stat warn">Severity</div>
       </div>
-      <div class="info-card animate-ready" id="s3">
-        <div class="info-icon">⏱️</div>
-        <div class="info-content">
-          <div class="info-title">Duration</div>
-          <div class="info-body">TTH: 30 min–7 days · Migraine: 4–72 hours · Cluster: 15 min–3 hours but up to 8 attacks per day — brief duration rules out oral analgesics</div>
+      <div class="ic c-amber animate-ready" id="s3">
+        <div class="ic-icon">⏱️</div>
+        <div class="ic-content">
+          <div class="ic-title">Duration</div>
+          <div class="ic-body">TTH: 30 minutes to 7 days. Migraine: 4 to 72 hours. Cluster: 15 minutes to 3 hours — brief duration rules out oral painkillers.</div>
         </div>
-        <div class="info-stat">Duration</div>
-      </div>
-      <div class="info-card animate-ready" id="s4">
-        <div class="info-icon">🤢</div>
-        <div class="info-content">
-          <div class="info-title">Associated features</div>
-          <div class="info-body">TTH: none · Migraine: nausea, photophobia (light sensitivity), phonophobia (sound sensitivity) · Cluster: same-side tearing, nasal congestion, drooping eyelid</div>
-        </div>
-        <div class="info-stat">Features</div>
-      </div>
-      <div class="info-card animate-ready" id="s5">
-        <div class="info-icon">🏃</div>
-        <div class="info-content">
-          <div class="info-title">Behaviour during attack</div>
-          <div class="info-body">TTH: unaffected by activity · Migraine: worsened by activity — patient lies still · Cluster: restless, pacing — patient cannot keep still</div>
-        </div>
-        <div class="info-stat">Behaviour</div>
-      </div>
-      <div class="info-card animate-ready" id="s6">
-        <div class="info-icon">⚠️</div>
-        <div class="info-content">
-          <div class="info-title">Medication overuse headache</div>
-          <div class="info-body">A fourth pattern: daily headache from overusing acute treatments. Triptans or opioids &gt;10 days/month, or analgesics &gt;15 days/month — worsens with more medication</div>
-        </div>
-        <div class="info-stat">&gt;10 days/mo</div>
+        <div class="ic-stat warn">Duration</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 4: TREATMENT PER TYPE -->
+  <!-- SLIDE 4: TYPES 2/2 — amber/red -->
   <div class="slide">
-    <div class="slide-title">Treatment <span>per headache type</span></div>
-    <div class="doc-grid">
-      <div class="doc-card animate-ready" id="d1">
-        <div class="doc-icon">💊</div>
-        <div class="doc-content">
-          <div class="doc-title">TTH — simple analgesia</div>
-          <div class="doc-body">Aspirin, ibuprofen, or paracetamol. Effective and appropriate. Triptans are NOT effective for TTH — this distinction matters clinically.</div>
+    <div class="slide-title">What <span>distinguishes the three types</span> · 2 of 2</div>
+    <div class="three-grid">
+      <div class="ic c-amber animate-ready" id="t1">
+        <div class="ic-icon">🤢</div>
+        <div class="ic-content">
+          <div class="ic-title">Associated features</div>
+          <div class="ic-body">TTH: none typically. Migraine: nausea, light sensitivity, sound sensitivity. Cluster: same-side tearing, nasal congestion, and drooping eyelid during attacks.</div>
         </div>
-        <div class="doc-action">Analgesia</div>
+        <div class="ic-stat warn">Features</div>
       </div>
-      <div class="doc-card animate-ready" id="d2">
-        <div class="doc-icon">🚫</div>
-        <div class="doc-content">
-          <div class="doc-title">TTH — not triptans</div>
-          <div class="doc-body">Triptans are migraine-specific. Using them for TTH provides no benefit and risks developing medication overuse headache with frequent use.</div>
+      <div class="ic c-amber animate-ready" id="t2">
+        <div class="ic-icon">🏃</div>
+        <div class="ic-content">
+          <div class="ic-title">Behaviour during attack</div>
+          <div class="ic-body">TTH: unaffected by routine activity. Migraine: worsened by activity — patient prefers to lie still. Cluster: agitated, restless, unable to keep still.</div>
         </div>
-        <div class="doc-action">No triptans</div>
+        <div class="ic-stat warn">Behaviour</div>
       </div>
-      <div class="doc-card animate-ready" id="d3">
-        <div class="doc-icon">🎯</div>
-        <div class="doc-content">
-          <div class="doc-title">Migraine — triptan + NSAID early</div>
-          <div class="doc-body">Sumatriptan (Imigran) + NSAID combination as first-line per NICE CG150. Treatment at attack onset produces significantly better outcomes than waiting.</div>
+      <div class="ic c-red animate-ready" id="t3">
+        <div class="ic-icon">⚠️</div>
+        <div class="ic-content">
+          <div class="ic-title">Medication overuse headache</div>
+          <div class="ic-body">Daily headache caused by overusing acute treatments — more than 10 days per month for triptans or opioids, or 15 for painkillers.</div>
         </div>
-        <div class="doc-action">Early + combo</div>
-      </div>
-      <div class="doc-card animate-ready" id="d4">
-        <div class="doc-icon">💨</div>
-        <div class="doc-content">
-          <div class="doc-title">Cluster — 100% oxygen</div>
-          <div class="doc-body">12–15 litres per minute for 15–20 minutes via non-rebreathable mask. Level A evidence. No systemic effects. The only primary headache treated with oxygen.</div>
-        </div>
-        <div class="doc-action">O₂ first</div>
-      </div>
-      <div class="doc-card animate-ready" id="d5">
-        <div class="doc-icon">💉</div>
-        <div class="doc-content">
-          <div class="doc-title">Cluster — subcutaneous sumatriptan</div>
-          <div class="doc-body">6mg subcutaneous injection — alongside oxygen as first-line. Oral triptans are too slow for cluster attack duration. Verapamil (Cordilox) for prevention.</div>
-        </div>
-        <div class="doc-action">6mg SC</div>
-      </div>
-      <div class="doc-card animate-ready" id="d6">
-        <div class="doc-icon">🔄</div>
-        <div class="doc-content">
-          <div class="doc-title">MOH — withdraw the drug</div>
-          <div class="doc-body">Stopping the overused medication is the recognised treatment. Headache initially worsens before improving. Around half achieve meaningful improvement within 2 months.</div>
-        </div>
-        <div class="doc-action">Withdraw</div>
+        <div class="ic-stat bad">&gt;10 days/mo</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 5: RESEARCH -->
+  <!-- SLIDE 5: TREATMENT 1/2 — green/amber/green -->
   <div class="slide">
-    <div class="slide-title">Research · <span>cluster treatment &amp; TTH burden</span> · NEJM 1991 · Lancet Neurol 2018</div>
+    <div class="slide-title">Treatment <span>per headache type</span> · 1 of 2</div>
+    <div class="three-grid">
+      <div class="ic c-green animate-ready" id="d1">
+        <div class="ic-icon">💊</div>
+        <div class="ic-content">
+          <div class="ic-title">TTH — simple analgesia</div>
+          <div class="ic-body">Simple over-the-counter analgesics — effective and appropriate for tension-type headache. Responds well to standard pain relief taken at onset of the headache.</div>
+        </div>
+        <div class="ic-stat good">Analgesia</div>
+      </div>
+      <div class="ic c-amber animate-ready" id="d2">
+        <div class="ic-icon">🚫</div>
+        <div class="ic-content">
+          <div class="ic-title">TTH — not triptans</div>
+          <div class="ic-body">Triptans are migraine-specific — not effective for tension-type headache. Using them for TTH also risks developing medication overuse headache.</div>
+        </div>
+        <div class="ic-stat warn">No triptans</div>
+      </div>
+      <div class="ic c-green animate-ready" id="d3">
+        <div class="ic-icon">🎯</div>
+        <div class="ic-content">
+          <div class="ic-title">Migraine — triptan + painkiller, early</div>
+          <div class="ic-body">NICE first-line triptan combined with an anti-inflammatory painkiller — treat at attack onset. Combination is clinically superior to either treatment alone.</div>
+        </div>
+        <div class="ic-stat good">Early + combo</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: TREATMENT 2/2 — green/green/amber -->
+  <div class="slide">
+    <div class="slide-title">Treatment <span>per headache type</span> · 2 of 2</div>
+    <div class="three-grid">
+      <div class="ic c-green animate-ready" id="e1">
+        <div class="ic-icon">💨</div>
+        <div class="ic-content">
+          <div class="ic-title">Cluster — high-flow oxygen</div>
+          <div class="ic-body">High-flow oxygen via mask for 15–20 minutes. Level A evidence, no systemic effects — the only primary headache type treated with oxygen.</div>
+        </div>
+        <div class="ic-stat good">O₂ first</div>
+      </div>
+      <div class="ic c-green animate-ready" id="e2">
+        <div class="ic-icon">💉</div>
+        <div class="ic-content">
+          <div class="ic-title">Cluster — subcutaneous injection</div>
+          <div class="ic-body">Subcutaneous triptan injection as first-line alongside oxygen — oral treatments are too slow for attacks lasting as little as 15 minutes.</div>
+        </div>
+        <div class="ic-stat good">SC injection</div>
+      </div>
+      <div class="ic c-amber animate-ready" id="e3">
+        <div class="ic-icon">🔄</div>
+        <div class="ic-content">
+          <div class="ic-title">MOH — withdraw the drug</div>
+          <div class="ic-body">Stopping the overused medication is the recognised treatment. Headache initially worsens before improving — around half achieve meaningful improvement within two months.</div>
+        </div>
+        <div class="ic-stat warn">Withdraw</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: RESEARCH — two stacked ev-cards -->
+  <div class="slide">
+    <div class="slide-title">Research · <span>cluster treatment &amp; TTH global burden</span></div>
     <div class="ev-stage">
-      <div class="ev-card animate-ready" id="e1">
+      <div class="ev-card animate-ready" id="ev1">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good">74%</div>
-            <div class="ev-outcome">headache response · sumatriptan 6mg SC</div>
-          </div>
-          <div class="ev-conditions">vs 26% placebo · within 15 minutes · cluster attacks</div>
+          <div class="ev-num">74%</div>
+          <div class="ev-outcome">headache response within 15 minutes / subcutaneous injection vs 26% placebo · cluster headache</div>
+          <div class="ev-conditions">49 patients · randomised crossover · NEJM 1991</div>
         </div>
         <div class="ev-det">
-          <div class="ev-trial">Subcutaneous sumatriptan for acute cluster headache</div>
+          <div class="ev-trial">Subcutaneous injection for cluster headache</div>
           <div class="ev-journal">Sumatriptan Cluster Headache Study Group · N Engl J Med · 1991;325:322–326</div>
-          <div class="ev-body">Randomised double-blind crossover trial in 49 patients with cluster headache. Subcutaneous sumatriptan 6mg reduced headache severity in <strong>74% of attacks within 15 minutes</strong> versus 26% on placebo; 46% were pain-free at 15 minutes versus 10% on placebo. The trial established subcutaneous sumatriptan as first-line acute treatment for cluster headache alongside 100% oxygen.</div>
+          <div class="ev-body">74% of cluster attacks responded within 15 minutes vs 26% on placebo. 46% were completely pain-free. Established subcutaneous injection as first-line acute treatment for cluster headache.</div>
         </div>
       </div>
-      <div class="ev-card animate-ready" id="e2">
+      <div class="ev-card animate-ready" id="ev2">
         <div class="ev-stat-box">
           <div class="ev-kf-label">Key Finding</div>
-          <div class="ev-stat-row">
-            <div class="ev-num good">~26%</div>
-            <div class="ev-outcome">global adult prevalence · tension-type headache</div>
-          </div>
-          <div class="ev-conditions">1.89 billion people · most prevalent neurological condition globally</div>
+          <div class="ev-num">~26%</div>
+          <div class="ev-outcome">global adult prevalence / tension-type headache · 1.89 billion people worldwide</div>
+          <div class="ev-conditions">GBD 2016 systematic analysis · Lancet Neurol 2018</div>
         </div>
         <div class="ev-det">
-          <div class="ev-trial">Global burden of migraine and tension-type headache</div>
+          <div class="ev-trial">Global burden — headache disorders</div>
           <div class="ev-journal">GBD 2016 Headache Collaborators · Lancet Neurol · 2018;17:954–976</div>
-          <div class="ev-body">The GBD 2016 headache-specific systematic analysis found approximately <strong>1.89 billion people</strong> globally had tension-type headache — making it the most prevalent neurological condition worldwide. Despite this, TTH generates proportionally fewer disability-adjusted life years than migraine, because individual attacks are less severe. Over half the global adult population has an active headache disorder at any one time.</div>
+          <div class="ev-body">1.89 billion people affected — the most prevalent neurological condition worldwide. Despite high prevalence, individual TTH attacks are less disabling than migraine, but cumulative burden on healthcare is substantial.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 6: RED FLAGS -->
+  <!-- SLIDE 8: RED FLAGS 1/2 — red -->
   <div class="slide">
-    <div class="slide-title">Headache patterns <span>clinically recognised as requiring prompt assessment</span></div>
-    <div class="flag-grid">
-      <div class="flag-card animate-ready" id="f1">
-        <div class="flag-icon">⚡</div>
-        <div class="flag-content">
-          <div class="flag-title">Thunderclap headache</div>
-          <div class="flag-body">Reaches maximum intensity within seconds to minutes — clinically recognised as time-sensitive to exclude subarachnoid haemorrhage (bleeding around the brain).</div>
+    <div class="slide-title">Patterns <span>clinically recognised as requiring prompt assessment</span> · 1 of 2</div>
+    <div class="three-grid">
+      <div class="ic c-red animate-ready" id="f1">
+        <div class="ic-icon">⚡</div>
+        <div class="ic-content">
+          <div class="ic-title">Thunderclap headache</div>
+          <div class="ic-body">Reaches maximum intensity within seconds — clinically recognised as time-sensitive to exclude bleeding around the brain. 111 and urgent GP services exist for this.</div>
         </div>
-        <div class="flag-stat">Urgent</div>
+        <div class="ic-stat bad">Urgent</div>
       </div>
-      <div class="flag-card animate-ready" id="f2">
-        <div class="flag-icon">👴</div>
-        <div class="flag-content">
-          <div class="flag-title">New headache over 50</div>
-          <div class="flag-body">Particularly if progressive, or with scalp tenderness or jaw pain on chewing — warrants assessment to exclude giant cell arteritis (GCA — a vasculitic condition affecting arteries).</div>
+      <div class="ic c-red animate-ready" id="f2">
+        <div class="ic-icon">👴</div>
+        <div class="ic-content">
+          <div class="ic-title">New headache over age 50</div>
+          <div class="ic-body">Particularly if progressive, or with scalp tenderness or jaw pain on chewing — warrants assessment to exclude giant cell arteritis, a vasculitic condition.</div>
         </div>
-        <div class="flag-stat">Assess</div>
+        <div class="ic-stat bad">Assess</div>
       </div>
-      <div class="flag-card animate-ready" id="f3">
-        <div class="flag-icon">🌡️</div>
-        <div class="flag-content">
-          <div class="flag-title">Fever + neck stiffness ± rash</div>
-          <div class="flag-body">A pattern clinically recognised as time-sensitive — 111 and urgent GP services exist for this presentation. May indicate meningitis or other serious infection.</div>
+      <div class="ic c-red animate-ready" id="f3">
+        <div class="ic-icon">🌡️</div>
+        <div class="ic-content">
+          <div class="ic-title">Fever, neck stiffness ± rash</div>
+          <div class="ic-body">A pattern clinically recognised as time-sensitive — 111 and urgent GP services exist for this presentation. May indicate meningitis or other serious infection.</div>
         </div>
-        <div class="flag-stat">Time-sensitive</div>
-      </div>
-      <div class="flag-card animate-ready" id="f4">
-        <div class="flag-icon">🧠</div>
-        <div class="flag-content">
-          <div class="flag-title">Focal neurological deficit</div>
-          <div class="flag-body">New weakness, speech difficulty, or visual loss not consistent with typical migraine aura — clinically recognised as requiring urgent assessment.</div>
-        </div>
-        <div class="flag-stat">Urgent</div>
-      </div>
-      <div class="flag-card animate-ready" id="f5">
-        <div class="flag-icon">💪</div>
-        <div class="flag-content">
-          <div class="flag-title">Worsened by exertion or straining</div>
-          <div class="flag-body">Headache aggravated by coughing, straining, or exertion (Valsalva manoeuvre — a bearing-down action) may indicate raised intracranial pressure (pressure inside the skull).</div>
-        </div>
-        <div class="flag-stat">Investigate</div>
-      </div>
-      <div class="flag-card animate-ready" id="f6">
-        <div class="flag-icon">🔬</div>
-        <div class="flag-content">
-          <div class="flag-title">Known cancer or immunosuppression</div>
-          <div class="flag-body">New or changing headache in someone with known cancer, HIV, or who is immunosuppressed warrants a lower threshold for investigation.</div>
-        </div>
-        <div class="flag-stat">Lower threshold</div>
+        <div class="ic-stat bad">Time-sensitive</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 7: CTA -->
+  <!-- SLIDE 9: RED FLAGS 2/2 — red -->
+  <div class="slide">
+    <div class="slide-title">Patterns <span>requiring prompt assessment</span> · 2 of 2</div>
+    <div class="three-grid">
+      <div class="ic c-red animate-ready" id="g1">
+        <div class="ic-icon">🧠</div>
+        <div class="ic-content">
+          <div class="ic-title">New focal neurological deficit</div>
+          <div class="ic-body">New weakness, speech difficulty, or visual loss not consistent with migraine aura — clinically recognised as requiring urgent assessment.</div>
+        </div>
+        <div class="ic-stat bad">Urgent</div>
+      </div>
+      <div class="ic c-red animate-ready" id="g2">
+        <div class="ic-icon">💪</div>
+        <div class="ic-content">
+          <div class="ic-title">Worsened by exertion or straining</div>
+          <div class="ic-body">Headache worsened by coughing, straining, or bearing down may indicate raised pressure inside the skull — warrants investigation to exclude structural cause.</div>
+        </div>
+        <div class="ic-stat bad">Investigate</div>
+      </div>
+      <div class="ic c-red animate-ready" id="g3">
+        <div class="ic-icon">🔬</div>
+        <div class="ic-content">
+          <div class="ic-title">Known cancer or immunosuppression</div>
+          <div class="ic-body">New or changing headache in someone with known cancer, HIV, or who is immunosuppressed warrants a lower threshold for investigation and assessment.</div>
+        </div>
+        <div class="ic-stat bad">Lower threshold</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: CTA — sequential animation -->
   <div class="slide cta-slide">
     <div class="cta-glow"></div>
     <div class="cta-wrap-v2">
       <div class="cta-top">
         <div class="cta-badge-v2">What the evidence shows</div>
         <div class="cta-headline-v2">Type first.<br/><span>Treatment follows.</span></div>
-        <div class="cta-subline">The three primary headache types look different, feel different, and need different treatments.</div>
       </div>
       <div class="cta-rows-v2">
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">🤕</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Tension-type: analgesia, not triptans</div>
-            <div class="cta-row-body-v2">TTH responds to aspirin, ibuprofen, or paracetamol — triptans are ineffective for TTH and risk medication overuse with repeated use</div>
-          </div>
-          <div class="cta-row-word-v2">Analgesia</div>
+        <div class="cta-item ci-red" id="ci1">
+          <div class="cta-item-icon">🤕</div>
+          <div class="cta-item-text">Tension-type headache is the most prevalent neurological condition worldwide — affecting 26% of adults</div>
         </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">💨</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Cluster: oxygen and subcutaneous injection</div>
-            <div class="cta-row-body-v2">100% oxygen and subcutaneous sumatriptan — oral analgesics are too slow for attacks lasting as little as 15 minutes</div>
-          </div>
-          <div class="cta-row-word-v2">O₂ + SC</div>
+        <div class="cta-item ci-red" id="ci2">
+          <div class="cta-item-icon">💢</div>
+          <div class="cta-item-text">Cluster headache is among the most severe pain conditions known — rare but distinctive</div>
         </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">⚠️</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Medication overuse worsens headache</div>
-            <div class="cta-row-body-v2">Triptans or opioids more than 10 days per month can cause daily headache — the treatment becomes the driver of the condition</div>
-          </div>
-          <div class="cta-row-word-v2">≤10 days</div>
+        <div class="cta-item ci-amber" id="ci3">
+          <div class="cta-item-icon">⚠️</div>
+          <div class="cta-item-text">The three types need fundamentally different treatments — getting type wrong means treatment fails</div>
         </div>
-        <div class="cta-row-v2">
-          <div class="cta-row-icon">⚡</div>
-          <div class="cta-row-mid">
-            <div class="cta-row-label">Thunderclap headache is clinically time-sensitive</div>
-            <div class="cta-row-body-v2">A headache reaching maximum intensity within seconds is clinically recognised as requiring urgent assessment — 111 and urgent GP services exist for this</div>
-          </div>
-          <div class="cta-row-word-v2">Urgent</div>
+        <div class="cta-item ci-amber" id="ci4">
+          <div class="cta-item-icon">💊</div>
+          <div class="cta-item-text">Medication overuse headache affects 1–2% of the population and is often unrecognised</div>
+        </div>
+        <div class="cta-item ci-green" id="ci5">
+          <div class="cta-item-icon">✅</div>
+          <div class="cta-item-text">74% of cluster attacks respond within 15 minutes to subcutaneous injection vs 26% on placebo</div>
+        </div>
+        <div class="cta-item ci-red" id="ci6">
+          <div class="cta-item-icon">⚡</div>
+          <div class="cta-item-text">Thunderclap headache — maximum intensity within seconds — is clinically time-sensitive to assess</div>
         </div>
       </div>
       <div class="cta-bottom">
@@ -452,85 +461,91 @@
     </div>
   </div>
 
-  <!-- SLIDE 8: CLOSING -->
+  <!-- SLIDE 11: BRAND CLOSE -->
   <div class="slide">
     <div class="close-wrap">
-      <div class="close-logo">helf<span class="cdot">.</span>school</div>
+      <div class="close-logo">helf<span class="cl-dot">.</span>school</div>
       <div class="close-sub">Health Education</div>
-      <div class="close-headline">Type first. <span>Treatment follows.</span></div>
-      <div class="close-stats">
-        <div class="cst-card">
-          <div class="cst-num">~26%</div>
-          <div class="cst-lab">global adult prevalence · tension-type headache</div>
-          <div class="cst-src">GBD 2016 · Lancet Neurol 2018</div>
+      <div class="close-headline">Evidence-based.<br/><span>Built by a doctor.</span></div>
+      <div class="close-pitch">
+        <div class="cp-card">
+          <div class="cp-icon">📚</div>
+          <div class="cp-label">31 articles</div>
+          <div class="cp-body">Covering cardiovascular, neurological, digestive, cancer, and practical health</div>
         </div>
-        <div class="cst-card">
-          <div class="cst-num">74%</div>
-          <div class="cst-lab">headache response · sumatriptan SC · cluster</div>
-          <div class="cst-src">NEJM · 1991;325:322</div>
+        <div class="cp-card">
+          <div class="cp-icon">🩺</div>
+          <div class="cp-label">Dr Paul</div>
+          <div class="cp-body">Retired NHS GP with over twenty years of clinical experience</div>
         </div>
-        <div class="cst-card">
-          <div class="cst-num">1–2%</div>
-          <div class="cst-lab">of population · medication overuse headache</div>
-          <div class="cst-src">NICE CG150</div>
+        <div class="cp-card">
+          <div class="cp-icon">🔓</div>
+          <div class="cp-label">Start for free</div>
+          <div class="cp-body">No credit card required — explore helf.school at no cost</div>
         </div>
       </div>
-      <div class="med-disclaimer">
+      <div class="med-disclaimer" style="max-width:820px">
         <div class="med-disc-icon">⚕️</div>
         <div class="med-disc-text"><strong>Health education — not medical advice.</strong> Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
       </div>
-      <div class="close-series">Neurological Health Series · Article 23</div>
+      <div class="close-series">Neurological Health Series · Article 23 · Headaches</div>
     </div>
   </div>
 
 </div>
 
 <div id="dots">
-  <div class="dot active" onclick="goTo(0)"></div>
-  <div class="dot" onclick="goTo(1)"></div>
-  <div class="dot" onclick="goTo(2)"></div>
-  <div class="dot" onclick="goTo(3)"></div>
-  <div class="dot" onclick="goTo(4)"></div>
-  <div class="dot" onclick="goTo(5)"></div>
-  <div class="dot" onclick="goTo(6)"></div>
-  <div class="dot" onclick="goTo(7)"></div>
+  <div class="nav-dot active" onclick="goTo(0)"></div>
+  <div class="nav-dot" onclick="goTo(1)"></div>
+  <div class="nav-dot" onclick="goTo(2)"></div>
+  <div class="nav-dot" onclick="goTo(3)"></div>
+  <div class="nav-dot" onclick="goTo(4)"></div>
+  <div class="nav-dot" onclick="goTo(5)"></div>
+  <div class="nav-dot" onclick="goTo(6)"></div>
+  <div class="nav-dot" onclick="goTo(7)"></div>
+  <div class="nav-dot" onclick="goTo(8)"></div>
+  <div class="nav-dot" onclick="goTo(9)"></div>
+  <div class="nav-dot" onclick="goTo(10)"></div>
 </div>
 
 <div class="disc">Health education — not medical advice. helf.school</div>
 
 <script>
-  const slides=document.querySelectorAll('.slide'),dots=document.querySelectorAll('.dot');
+  const slides=document.querySelectorAll('.slide'),dots=document.querySelectorAll('.nav-dot');
   let cur=0;
-  function show(n){
+  function goTo(n){
     slides[cur].classList.remove('active');dots[cur].classList.remove('active');
+    slides[cur].querySelectorAll('.animate-ready').forEach(el=>el.classList.remove('vis'));
+    slides[cur].querySelectorAll('.cta-item').forEach(el=>el.classList.remove('visible'));
     cur=(n+slides.length)%slides.length;
     slides[cur].classList.add('active');dots[cur].classList.add('active');
     document.getElementById('counter').textContent=(cur+1)+' / '+slides.length;
     triggerSlide(cur);
   }
-  function goTo(n){show(n)}
   document.addEventListener('keydown',e=>{
-    if(e.key==='ArrowRight'||e.key==='ArrowDown')show(cur+1);
-    if(e.key==='ArrowLeft'||e.key==='ArrowUp')show(cur-1);
+    if(e.key==='ArrowRight'||e.key==='ArrowDown')goTo(cur+1);
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp')goTo(cur-1);
   });
   let tx=0;
   document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX});
-  document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40){dx<0?show(cur+1):show(cur-1)}});
-  function triggerSlide(n){
-    if(n===2)animateGroup(['s1','s2','s3','s4','s5','s6'],140);
-    if(n===3)animateGroup(['d1','d2','d3','d4','d5','d6'],140);
-    if(n===4)animateGroup(['e1','e2'],260);
-    if(n===5)animateGroup(['f1','f2','f3','f4','f5','f6'],140);
-  }
+  document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40){dx<0?goTo(cur+1):goTo(cur-1)}});
+
   function animateGroup(ids,step){
-    ids.forEach((id,i)=>{setTimeout(()=>{const el=document.getElementById(id);if(el)el.classList.add('vis')},180+i*step)});
+    ids.forEach((id,i)=>setTimeout(()=>{const el=document.getElementById(id);if(el)el.classList.add('vis')},180+i*step));
   }
-  slides.forEach(s=>{
-    const obs=new MutationObserver(()=>{
-      if(!s.classList.contains('active')){s.querySelectorAll('.vis').forEach(el=>el.classList.remove('vis'))}
-    });
-    obs.observe(s,{attributes:true});
-  });
+  function animateCTA(){
+    ['ci1','ci2','ci3','ci4','ci5','ci6'].forEach((id,i)=>setTimeout(()=>{const el=document.getElementById(id);if(el)el.classList.add('visible')},200+i*620));
+  }
+  function triggerSlide(n){
+    if(n===2)animateGroup(['s1','s2','s3'],140);
+    if(n===3)animateGroup(['t1','t2','t3'],140);
+    if(n===4)animateGroup(['d1','d2','d3'],140);
+    if(n===5)animateGroup(['e1','e2','e3'],140);
+    if(n===6)animateGroup(['ev1','ev2'],280);
+    if(n===7)animateGroup(['f1','f2','f3'],140);
+    if(n===8)animateGroup(['g1','g2','g3'],140);
+    if(n===9)animateCTA();
+  }
   triggerSlide(0);
 </script>
 </body>
