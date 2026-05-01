@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breast Awareness — Visuals · helf.school</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:        #1B2A4A;
+  --coral:       #E8634A;
+  --amber:       #E8A84A;
+  --series:      #7A6A2E;
+  --series-dark: #4A3A1A;
+  --series-light:#C0A850;
+  --text:        #2C2C2C;
+  --bg:          #120e08;
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html,body{ width:100%; height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; background:var(--bg); }
+
+/* TOPBAR */
+#topbar{
+  position:fixed; top:0; left:0; width:100%; height:52px; z-index:100;
+  background:rgba(74,58,26,0.97); backdrop-filter:blur(8px);
+  display:flex; align-items:center; padding:0 1.4rem; gap:1rem;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.topbar-logo{ font-family:'Fraunces',serif; font-size:1.25rem; color:#fff; }
+.topbar-logo span{ color:var(--coral); }
+.topbar-sub{ font-size:.75rem; color:rgba(255,255,255,0.75); font-weight:500; flex:1; }
+.topbar-counter{ font-size:.85rem; color:rgba(255,255,255,0.90); font-weight:600; }
+.topbar-hint{ font-size:.72rem; color:rgba(255,255,255,0.60); }
+
+/* STAGE */
+#stage{ position:fixed; top:52px; left:0; width:100%; height:calc(100vh - 84px); overflow:hidden; }
+
+/* SLIDES — canonical opacity/visibility architecture */
+.slide{
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  display:flex; flex-direction:column;
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:opacity .32s ease;
+  padding:1rem 1.5rem .8rem;
+}
+.slide.active{ opacity:1; visibility:visible; pointer-events:all; }
+
+/* SLIDE HEADER */
+.slide-header{ margin-bottom:.4rem; flex-shrink:0; }
+.slide-badge{ display:inline-block; font-size:.65rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; background:rgba(255,255,255,0.15); color:#fff; padding:.22rem .65rem; border-radius:20px; margin-bottom:.3rem; }
+.slide-title{ font-family:'Fraunces',serif; font-size:1.72rem; color:#fff; line-height:1.2; font-weight:700; }
+.slide-subtitle{ font-size:.88rem; color:rgba(255,255,255,0.80); margin-top:.2rem; }
+
+/* INTRO SLIDE */
+.intro-slide{ background:linear-gradient(140deg,var(--series-dark) 0%,var(--series) 55%,#9A8A4E 100%); gap:.6rem; }
+.intro-slide::before{ content:''; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E"); pointer-events:none; }
+.intro-top{ position:relative; flex-shrink:0; }
+.intro-badge-pill{ display:inline-flex; align-items:center; gap:.45rem; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); border-radius:4px; padding:.28rem .85rem; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.09em; color:rgba(255,255,255,0.90); margin-bottom:.7rem; }
+.intro-h1{ font-family:'Fraunces',serif; font-weight:900; font-size:clamp(2.6rem,6.5vw,4.8rem); color:#fff; line-height:1.05; margin-bottom:.45rem; }
+.intro-sub{ font-size:1.1rem; color:rgba(255,255,255,0.82); line-height:1.5; }
+.intro-stat-grid{ display:grid; grid-template-columns:1fr 1fr 1fr; grid-template-rows:1fr; gap:.65rem; flex:1; min-height:0; }
+.intro-stat-card{ background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:1.1rem 1.2rem; display:flex; flex-direction:column; justify-content:center; min-height:0; }
+.intro-stat-num{ font-family:'Fraunces',serif; font-size:clamp(2.2rem,4.5vw,3.2rem); font-weight:900; color:var(--amber); line-height:1; margin-bottom:.35rem; }
+.intro-stat-label{ font-size:.93rem; font-weight:500; color:rgba(255,255,255,0.85); line-height:1.45; }
+.intro-stat-src{ font-size:.72rem; color:rgba(255,255,255,0.55); margin-top:.2rem; }
+
+/* THREE-GRID INFO CARDS */
+.three-grid{ display:grid; grid-template-rows:repeat(3,1fr); gap:.46rem; flex:1; min-height:0; }
+.info-card{
+  border-radius:10px;
+  background:linear-gradient(90deg,rgba(122,106,46,.50) 0%,rgba(74,58,26,.40) 100%);
+  border:1px solid rgba(192,168,80,0.30);
+  padding:.82rem 1rem; display:flex; flex-direction:column; gap:.28rem;
+  min-height:0; overflow:hidden;
+  transform:translateY(12px); opacity:0;
+  transition:transform .35s ease, opacity .35s ease;
+}
+.info-card.visible{ transform:translateY(0); opacity:1; }
+.info-card:nth-child(1){ transition-delay:.05s; }
+.info-card:nth-child(2){ transition-delay:.15s; }
+.info-card:nth-child(3){ transition-delay:.25s; }
+.info-card.c-red   { background:linear-gradient(90deg,rgba(180,45,45,.55) 0%,rgba(110,25,25,.42) 100%); border-color:rgba(220,80,70,.55); }
+.info-card.c-amber { background:linear-gradient(90deg,rgba(170,110,20,.50) 0%,rgba(110,68,12,.38) 100%); border-color:rgba(232,168,74,.50); }
+.info-card.c-green { background:linear-gradient(90deg,rgba(38,105,55,.50) 0%,rgba(22,65,33,.38) 100%); border-color:rgba(120,192,140,.42); }
+.ic-icon{ font-size:1.55rem; line-height:1; }
+.ic-title{ font-family:'Fraunces',serif; font-size:1.12rem; color:#fff; font-weight:700; line-height:1.2; }
+.ic-body{
+  font-size:.93rem; color:rgba(255,255,255,0.88); line-height:1.62; font-weight:400;
+  display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden;
+}
+
+/* EV-CARDS */
+.ev-stage{ display:flex; flex-direction:column; gap:.95rem; flex:1; min-height:0; }
+.ev-card{ display:grid; grid-template-columns:220px 1fr; border-radius:10px; overflow:hidden; flex:1; min-height:0; }
+.ev-stat-box{ background:linear-gradient(160deg,var(--series-dark) 0%,var(--series) 100%); border:1px solid rgba(255,255,255,0.15); padding:.9rem .75rem; display:flex; flex-direction:column; justify-content:flex-start; overflow:hidden; }
+.ev-kf-label{ font-size:.68rem; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:.07em; margin-bottom:.35rem; }
+.ev-text-stat{ font-family:'Fraunces',serif; font-size:1.35rem; font-weight:700; color:#fff; line-height:1.25; margin-bottom:.3rem; }
+.ev-stat-row{ font-family:'Fraunces',serif; font-size:3.2rem; font-weight:900; color:#fff; line-height:1.0; margin-bottom:.3rem; }
+.ev-outcome{ font-size:.95rem; font-weight:700; color:rgba(255,255,255,0.95); line-height:1.3; margin-bottom:.35rem; }
+.ev-conditions{ font-size:.78rem; line-height:1.32; color:rgba(255,255,255,0.68); }
+.ev-body-panel{ background:rgba(255,255,255,0.96); padding:.9rem 1rem; display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; }
+.ev-body-title{ font-family:'Fraunces',serif; font-size:.98rem; color:var(--navy); font-weight:700; margin-bottom:.4rem; line-height:1.25; }
+.ev-body-panel p{ font-size:.94rem; line-height:1.65; color:var(--text); display:-webkit-box; -webkit-line-clamp:7; -webkit-box-orient:vertical; overflow:hidden; }
+.ev-source{ font-size:.74rem; color:rgba(44,44,44,0.50); font-style:italic; margin-top:.4rem; }
+
+/* CTA SLIDE */
+.cta-slide{ background:radial-gradient(ellipse at 50% 25%, rgba(122,106,46,0.70) 0%, var(--series-dark) 55%, var(--bg) 100%); overflow:hidden; padding:0; }
+.cta-wrap-v2{ display:grid; grid-template-rows:auto 1fr auto; width:100%; height:100%; gap:.5rem; padding:1rem 1.5rem .8rem; }
+.cta-top{ display:flex; flex-direction:column; align-items:center; text-align:center; }
+.cta-badge{ font-size:.70rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--amber); margin-bottom:.4rem; }
+.cta-headline{ font-family:'Fraunces',serif; font-size:clamp(1.8rem,4vw,2.8rem); color:#fff; line-height:1.1; font-weight:900; margin-bottom:.2rem; }
+.cta-subline{ font-size:.88rem; color:rgba(255,255,255,0.72); line-height:1.4; }
+.cta-items{ display:grid; grid-template-rows:repeat(6,1fr); gap:.38rem; min-height:0; overflow:hidden; }
+.cta-item{ border-radius:9px; padding:.55rem 1rem; display:flex; align-items:center; gap:.85rem; opacity:0; transform:translateX(-24px); transition:opacity .38s ease, transform .38s ease; }
+.cta-item.visible{ opacity:1; transform:translateX(0); }
+.cta-item.ci-red   { background:rgba(180,45,45,0.25); border:1px solid rgba(220,80,70,0.40); }
+.cta-item.ci-amber { background:rgba(170,110,20,0.25); border:1px solid rgba(232,168,74,0.40); }
+.cta-item.ci-green { background:rgba(38,105,55,0.28); border:1px solid rgba(120,192,140,0.38); }
+.cta-item-icon{ font-size:1.45rem; flex-shrink:0; }
+.cta-item-text{ font-size:.93rem; font-weight:600; color:rgba(255,255,255,0.95); line-height:1.3; }
+.med-disclaimer{ background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.18); border-radius:8px; padding:.65rem 1rem; display:flex; gap:.6rem; align-items:flex-start; }
+.med-disc-icon{ font-size:1.1rem; flex-shrink:0; }
+.med-disc-text{ font-size:1rem; color:rgba(255,255,255,0.90); line-height:1.5; font-weight:400; }
+
+/* BRAND CLOSE */
+.close-slide{ background:linear-gradient(140deg,var(--series-dark) 0%,var(--series) 55%,#9A8A4E 100%); padding:0; }
+.close-slide::before{ content:''; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E"); pointer-events:none; }
+.close-wrap{ position:relative; z-index:2; display:flex; flex-direction:column; justify-content:flex-start; align-items:center; text-align:center; height:100%; gap:.7rem; padding:1.4rem 1.5rem .8rem; }
+.close-logo{ font-family:'Fraunces',serif; font-size:2.8rem; color:#fff; letter-spacing:-0.02em; line-height:1; flex-shrink:0; }
+.close-logo .cl-dot{ color:var(--coral); }
+.close-tag{ font-size:1.05rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,0.70); flex-shrink:0; }
+.close-headline{ font-family:'Fraunces',serif; font-size:1.5rem; color:#fff; flex-shrink:0; }
+.close-cards{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:.6rem; width:100%; max-width:760px; flex:1; min-height:0; }
+.close-card{ background:rgba(255,255,255,0.09); border:1px solid rgba(255,255,255,0.16); border-radius:9px; padding:.85rem .9rem; text-align:center; }
+.close-card-icon{ font-size:1.7rem; margin-bottom:.35rem; }
+.close-card-text{ font-size:.88rem; color:rgba(255,255,255,0.88); line-height:1.5; font-weight:500; }
+.close-series{ font-size:1rem; color:rgba(255,255,255,0.65); flex-shrink:0; }
+
+/* DOT NAV */
+#dots{ position:fixed; bottom:0; left:0; width:100%; height:32px; display:flex; align-items:center; justify-content:center; gap:.5rem; background:rgba(0,0,0,0.35); }
+.nav-dot{ width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,0.25); cursor:pointer; transition:background .2s, transform .2s; }
+.nav-dot.active{ background:var(--amber); transform:scale(1.25); }
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <div><div class="topbar-logo">helf<span>.</span>school</div></div>
+  <div class="topbar-sub">Breast Awareness · Practical Health · Article 32</div>
+  <div class="topbar-counter" id="counter">1 / 9</div>
+  <div class="topbar-hint">← → or tap</div>
+</div>
+
+<div id="stage">
+
+<!-- SLIDE 1: INTRO -->
+<div class="slide intro-slide active" id="slide-1">
+  <div class="intro-top">
+    <div class="intro-badge-pill">🩺 Practical Health · Article 32</div>
+    <h1 class="intro-h1">Breast Awareness</h1>
+    <p class="intro-sub">Knowing what is normal for your own body — and noticing when something changes.</p>
+  </div>
+  <div class="intro-stat-grid">
+    <div class="intro-stat-card">
+      <div class="intro-stat-num">1 in 7</div>
+      <div class="intro-stat-label">women in the UK will develop breast cancer in their lifetime</div>
+      <div class="intro-stat-src">Cancer Research UK</div>
+    </div>
+    <div class="intro-stat-card">
+      <div class="intro-stat-num">~59,000</div>
+      <div class="intro-stat-label">new breast cancer diagnoses in the UK each year — the most commonly diagnosed cancer</div>
+      <div class="intro-stat-src">Cancer Research UK</div>
+    </div>
+    <div class="intro-stat-card">
+      <div class="intro-stat-num">50–70</div>
+      <div class="intro-stat-label">age range routinely invited for NHS mammography screening every 3 years</div>
+      <div class="intro-stat-src">NHS Breast Screening Programme</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 2: WHAT IS BREAST AWARENESS? -->
+<div class="slide" id="slide-2">
+  <div class="slide-header">
+    <div class="slide-badge">What is it?</div>
+    <div class="slide-title">Breast awareness — the clinical approach</div>
+    <div class="slide-subtitle">Knowing your own normal — not following a prescribed routine</div>
+  </div>
+  <div class="three-grid">
+    <div class="info-card c-amber animate-ready">
+      <div class="ic-icon">🔍</div>
+      <div class="ic-title">Knowing your own normal</div>
+      <div class="ic-body">Breast awareness describes familiarity with how your own body looks and feels — so that anything new or different becomes noticeable against that personal baseline.</div>
+    </div>
+    <div class="info-card c-amber animate-ready">
+      <div class="ic-icon">📅</div>
+      <div class="ic-title">No prescribed schedule or technique</div>
+      <div class="ic-body">Unlike formal monthly self-examination, breast awareness is not tied to a specific date, time, or technique. Clinical guidance emphasises familiarity, not calendar adherence.</div>
+    </div>
+    <div class="info-card c-green animate-ready">
+      <div class="ic-icon">🌿</div>
+      <div class="ic-title">Relevant for everyone with breast tissue</div>
+      <div class="ic-body">Breast cancer can develop in anyone with breast tissue — women and men alike. Around 420 men are diagnosed in the UK each year. The principles apply to all.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: WHAT DOES NORMAL LOOK AND FEEL LIKE? -->
+<div class="slide" id="slide-3">
+  <div class="slide-header">
+    <div class="slide-badge">What does normal feel like?</div>
+    <div class="slide-title">Normal varies — and changes over time</div>
+    <div class="slide-subtitle">There is no single standard — what matters is knowing your own</div>
+  </div>
+  <div class="three-grid">
+    <div class="info-card c-amber animate-ready">
+      <div class="ic-icon">🔄</div>
+      <div class="ic-title">Cyclical changes are normal</div>
+      <div class="ic-body">Breast tissue commonly becomes more tender or lumpier before a period — a recognised normal hormonal response.</div>
+    </div>
+    <div class="info-card c-amber animate-ready">
+      <div class="ic-icon">⚖️</div>
+      <div class="ic-title">Asymmetry and nodularity are common</div>
+      <div class="ic-body">It is clinically normal for one breast to differ slightly from the other. Breast tissue can feel dense or nodular — this reflects normal composition, not a problem.</div>
+    </div>
+    <div class="info-card c-amber animate-ready">
+      <div class="ic-icon">🕐</div>
+      <div class="ic-title">Breasts change with age and menopause</div>
+      <div class="ic-body">After the menopause — when oestrogen production falls — breast tissue often feels softer and less dense. This is part of normal ageing. Your normal is the benchmark.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: CHANGES WORTH ASSESSMENT 1 of 2 -->
+<div class="slide" id="slide-4">
+  <div class="slide-header">
+    <div class="slide-badge">Changes worth assessment · 1 of 2</div>
+    <div class="slide-title">Changes that are new and persistent</div>
+    <div class="slide-subtitle">Most have a benign explanation — assessment establishes what they are</div>
+  </div>
+  <div class="three-grid">
+    <div class="info-card c-red animate-ready">
+      <div class="ic-icon">❗</div>
+      <div class="ic-title">A new lump or area of thickening</div>
+      <div class="ic-body">In the breast, upper chest, or armpit — particularly one that feels harder or different from the surrounding tissue, or that does not change with the menstrual cycle.</div>
+    </div>
+    <div class="info-card c-red animate-ready">
+      <div class="ic-icon">📐</div>
+      <div class="ic-title">A change in size, shape, or outline</div>
+      <div class="ic-body">Including any new difference between the two sides that was not there before — such as one breast appearing higher, lower, or a changed visible silhouette or contour.</div>
+    </div>
+    <div class="info-card c-red animate-ready">
+      <div class="ic-icon">👁️</div>
+      <div class="ic-title">A change in skin texture</div>
+      <div class="ic-body">Dimpling, puckering, a rash on the breast or nipple area, or skin developing an orange-peel surface — called peau d'orange — are clinically recognised as worth assessment.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: CHANGES WORTH ASSESSMENT 2 of 2 -->
+<div class="slide" id="slide-5">
+  <div class="slide-header">
+    <div class="slide-badge">Changes worth assessment · 2 of 2</div>
+    <div class="slide-title">Further changes to be aware of</div>
+    <div class="slide-subtitle">New, persistent changes different from your established normal</div>
+  </div>
+  <div class="three-grid">
+    <div class="info-card c-red animate-ready">
+      <div class="ic-icon">🔴</div>
+      <div class="ic-title">Changes to a nipple</div>
+      <div class="ic-body">New inversion (a nipple turning inward that previously pointed outward), discharge not related to breastfeeding — especially if bloodstained — or a change in nipple position or appearance.</div>
+    </div>
+    <div class="info-card c-red animate-ready">
+      <div class="ic-icon">📍</div>
+      <div class="ic-title">Persistent localised pain</div>
+      <div class="ic-body">Cyclical breast pain linked to periods is common and not associated with cancer. Persistent, non-cyclical pain in one specific area that does not resolve is the type worth assessment.</div>
+    </div>
+    <div class="info-card c-red animate-ready">
+      <div class="ic-icon">🌡️</div>
+      <div class="ic-title">Redness, warmth, or unexplained swelling</div>
+      <div class="ic-body">Particularly without a known infection or injury. Some breast cancers present with these signs rather than a detectable lump — making full awareness of the range important.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: NHS BREAST SCREENING PROGRAMME -->
+<div class="slide" id="slide-6">
+  <div class="slide-header">
+    <div class="slide-badge">The NHS Breast Screening Programme</div>
+    <div class="slide-title">Screening and awareness — complementary, not alternatives</div>
+    <div class="slide-subtitle">They detect different things at different points in time</div>
+  </div>
+  <div class="three-grid">
+    <div class="info-card c-green animate-ready">
+      <div class="ic-icon">🏥</div>
+      <div class="ic-title">Ages 50 to 70 — every 3 years</div>
+      <div class="ic-body">The NHS routinely invites eligible people aged 50 to 70 for mammography every 3 years. Invitations are sent automatically. Those over 70 can request continued screening.</div>
+    </div>
+    <div class="info-card c-amber animate-ready">
+      <div class="ic-icon">🔬</div>
+      <div class="ic-title">What mammography detects</div>
+      <div class="ic-body">Mammography — an X-ray of breast tissue — identifies changes too small to feel. Its clinical value is finding early-stage changes before they cause noticeable symptoms.</div>
+    </div>
+    <div class="info-card c-green animate-ready">
+      <div class="ic-icon">📆</div>
+      <div class="ic-title">Awareness between appointments</div>
+      <div class="ic-body">Routine screening takes place every 3 years. Breast awareness means changes developing between appointments — lumps, skin changes, nipple changes — are more likely to be noticed.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: RESEARCH — NICE NG101 -->
+<div class="slide" id="slide-7">
+  <div class="slide-header">
+    <div class="slide-badge">What the research shows</div>
+    <div class="slide-title">The evidence behind breast awareness</div>
+    <div class="slide-subtitle">Why clinical guidance moved away from formal self-examination routines</div>
+  </div>
+  <div class="ev-stage">
+    <div class="ev-card">
+      <div class="ev-stat-box">
+        <div class="ev-kf-label">Clinical Guidance</div>
+        <div class="ev-text-stat">Breast awareness</div>
+        <div class="ev-outcome">clinically recommended / over scheduled self-examination routines</div>
+        <div class="ev-conditions">no mortality benefit from formal BSE · NICE NG101 · updated April 2025</div>
+      </div>
+      <div class="ev-body-panel">
+        <div>
+          <div class="ev-body-title">NICE NG101 — why awareness replaced scheduled self-examination</div>
+          <p>Large randomised trials found no reduction in breast cancer mortality from formal monthly self-examination. NICE NG101 does not recommend formal BSE. The clinically described approach is breast awareness — knowing what is individually normal and noticing change — without a prescribed schedule or technique.</p>
+        </div>
+        <div class="ev-source">NICE. Early and locally advanced breast cancer: diagnosis and management. NG101. Updated April 2025.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: CTA — SEQUENTIAL ANIMATION -->
+<div class="slide cta-slide" id="slide-8">
+  <div class="cta-wrap-v2">
+    <div class="cta-top">
+      <div class="cta-badge">NICE NG101 · NHS · Cancer Research UK</div>
+      <div class="cta-headline">What the evidence shows about breast awareness</div>
+      <div class="cta-subline">Familiarity with your own normal — not adherence to a schedule.</div>
+    </div>
+    <div class="cta-items" style="grid-template-rows:repeat(5,1fr);">
+      <div class="cta-item ci-amber"><div class="cta-item-icon">🔍</div><div class="cta-item-text">Breast awareness — knowing your own normal, not following a prescribed technique or schedule</div></div>
+      <div class="cta-item ci-red"><div class="cta-item-icon">❗</div><div class="cta-item-text">Six changes are clinically recognised — including new lumps, skin texture changes, and nipple changes</div></div>
+      <div class="cta-item ci-red"><div class="cta-item-icon">📍</div><div class="cta-item-text">Changes that are new, persistent, and different from your personal normal are worth assessment</div></div>
+      <div class="cta-item ci-green"><div class="cta-item-icon">🏥</div><div class="cta-item-text">The NHS invites women aged 50 to 70 for mammography every 3 years — awareness is complementary</div></div>
+      <div class="cta-item ci-green"><div class="cta-item-icon">🎥</div><div class="cta-item-text">The NHS has a free video guide to checking technique — available at nhs.uk</div></div>
+    </div>
+    <div class="cta-bottom">
+      <div class="med-disclaimer">
+        <div class="med-disc-icon">ℹ️</div>
+        <div class="med-disc-text">helf.school provides health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 9: BRAND CLOSE -->
+<div class="slide close-slide" id="slide-9">
+  <div class="close-wrap">
+    <div class="close-logo">helf<span class="cl-dot">.</span>school</div>
+    <div class="close-tag">Health Education</div>
+    <div class="close-headline">Evidence-based. Written by a doctor. Built for everyone.</div>
+    <div class="close-cards">
+      <div class="close-card">
+        <div class="close-card-icon">📚</div>
+        <div class="close-card-text">32 articles across 5 series — cardiovascular, digestive, neurological, cancer, and practical health</div>
+      </div>
+      <div class="close-card">
+        <div class="close-card-icon">🩺</div>
+        <div class="close-card-text">Written by Dr Paul — retired NHS GP with over 20 years of experience</div>
+      </div>
+      <div class="close-card">
+        <div class="close-card-icon">🔓</div>
+        <div class="close-card-text">Start for free — Explorer tier, no credit card required. Member at £6/month or Lifetime at £150.</div>
+      </div>
+    </div>
+    <div class="med-disclaimer" style="max-width:680px; margin-top:auto;">
+      <div class="med-disc-icon">ℹ️</div>
+      <div class="med-disc-text">helf.school provides health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
+    </div>
+    <div class="close-series">Practical Health · Article 32 · Breast Awareness</div>
+  </div>
+</div>
+
+</div><!-- /stage -->
+<div id="dots"></div>
+
+<script>
+const TOTAL = 9;
+let current = 1;
+
+function animateSlide(n) {
+  const slideEl = document.getElementById('slide-' + n);
+  if (!slideEl) return;
+  slideEl.querySelectorAll('.animate-ready').forEach(el => el.classList.remove('visible'));
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    slideEl.querySelectorAll('.animate-ready').forEach(el => el.classList.add('visible'));
+  }));
+}
+
+function animateCTA() {
+  const items = document.querySelectorAll('#slide-8 .cta-item');
+  items.forEach(r => r.classList.remove('visible'));
+  items.forEach((item, i) => {
+    setTimeout(() => item.classList.add('visible'), 350 + i * 580);
+  });
+}
+
+function goTo(n) {
+  if (n < 1 || n > TOTAL) return;
+  document.getElementById('slide-' + current).classList.remove('active');
+  document.querySelectorAll('.nav-dot')[current - 1].classList.remove('active');
+  current = n;
+  document.getElementById('slide-' + current).classList.add('active');
+  document.querySelectorAll('.nav-dot')[current - 1].classList.add('active');
+  document.getElementById('counter').textContent = current + ' / ' + TOTAL;
+  if (current === 8) { animateCTA(); }
+  else { animateSlide(current); }
+}
+
+const dotsEl = document.getElementById('dots');
+for (let i = 1; i <= TOTAL; i++) {
+  const d = document.createElement('div');
+  d.className = 'nav-dot' + (i === 1 ? ' active' : '');
+  d.addEventListener('click', () => goTo(i));
+  dotsEl.appendChild(d);
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+});
+
+let tx = 0;
+document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - tx;
+  if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
+}, {passive:true});
+
+animateSlide(1);
+</script>
+</body>
+</html>
