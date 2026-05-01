@@ -5,7 +5,7 @@
 
 ## ⚠️ DOCUMENT INTEGRITY — CLAUDE MUST READ THIS BEFORE ANY SESSION WORK
 
-**This document has 25 numbered sections. Minimum expected line count: ~1760 lines.**
+**This document has 25 numbered sections. Minimum expected line count: ~1300 lines.**
 
 When updating this document at the end of any session, Claude MUST:
 1. Run `wc -l` on the new file before presenting it to Dr Paul
@@ -29,13 +29,6 @@ Section 0 · Section 1 (Project Overview) · Section 2 (Design System) · Sectio
 **Critical file integrity rule:** Files in the Claude project that are approximately 5,140 bytes and begin with "data-build-id" are Edge incognito loader stubs captured during upload — they are NOT the real file and are NOT corrupted. Never flag these as corrupted. Always verify real content via GitHub raw URL before any assessment. The article inventory in this document is the authoritative source of truth for what is built — not file sizes.
 
 **GitHub raw URL format:** `https://raw.githubusercontent.com/pls4286/helfschool/main/[filename].html`
-
-**Project knowledge update protocol — LOCKED APRIL 2026:** At session end, the mandatory process is:
-1. `web_fetch` the live version from GitHub (not the project copy, which may be stale)
-2. Write the exact fetched content to `/home/claude/helf-school-project-knowledge.md`
-3. `str_replace` to add only the new session content — never rewrite from scratch
-4. `bash wc -l` to confirm new line count ≥ original
-5. Deliver for download and re-upload to both GitHub and the Claude Project
 
 ---
 
@@ -116,6 +109,7 @@ This audit must be completed internally before Claude presents any article, visu
 - **Cancer (series): `#2A5A3A` (forest green) — confirmed April 2026. Dark variant: `#1A3A25`.**
 
 ### Series dark variants — for research card stat box gradients
+Each series uses its own colour on research card stat box backgrounds (gradient from series-dark to series). Dark variants must be agreed before retrofitting existing articles. Currently confirmed:
 
 | Series | Primary | Dark variant | Status |
 |--------|---------|-------------|--------|
@@ -127,12 +121,12 @@ This audit must be completed internally before Claude presents any article, visu
 | Practical Health | `#7A6A2E` | `#4A3A1A` | ✅ Confirmed April 2026 |
 | Cancer | `#2A5A3A` | `#1A3A25` | ✅ Confirmed April 2026 |
 
-**All dark variants confirmed April 2026. Research card colour retrofit is now unblocked across all series.**
+**All dark variants confirmed April 2026. Research card colour retrofit is now unblocked across all 26 articles.**
 
 ### Fonts
 - Headings: Fraunces (serif)
 - Body: DM Sans — minimum weights required: `wght@400;500;600;700`
-- **Never use weight 300 anywhere in body text**
+- **Never use weight 300 anywhere in body text** — not permitted in articles, visuals, or teleprompters
 
 ### Logo
 Open-book SVG + "HEALTH EDUCATION" tagline. Used in all site pages.
@@ -144,6 +138,7 @@ Open-book SVG + "HEALTH EDUCATION" tagline. Used in all site pages.
 Three files required per article: **Article HTML · Visuals HTML · Teleprompter HTML**
 
 ### Series A — Cardiovascular Health (Articles 01–07)
+All three files confirmed complete and on GitHub for all 7 articles. Educational voice retrofit confirmed complete.
 
 | # | Title | Slug |
 |---|-------|------|
@@ -156,6 +151,8 @@ Three files required per article: **Article HTML · Visuals HTML · Teleprompter
 | 07 | Do Supplements Lower Cholesterol? | supplements-cholesterol |
 
 ### Series B — Practical Health (Articles 08–12, extended to 32–33)
+All three files confirmed complete and on GitHub for articles 08–12. Educational voice retrofit confirmed complete.
+Articles 32–33 planned — extending the Practical Health series. Same series colour `#7A6A2E`.
 
 | # | Title | Slug | Status |
 |---|-------|------|--------|
@@ -168,6 +165,8 @@ Three files required per article: **Article HTML · Visuals HTML · Teleprompter
 | 33 | Testicular Awareness — What to Look For | testicular-awareness | Planned — not yet built |
 
 ### Series C — Digestive Health (Articles 13–21)
+Articles 13–20: all three files confirmed complete and on GitHub. Educational voice retrofit confirmed complete.
+Article 21: all three files confirmed on GitHub ✅
 
 | # | Title | Slug | Status |
 |---|-------|------|--------|
@@ -182,17 +181,18 @@ Three files required per article: **Article HTML · Visuals HTML · Teleprompter
 | 21 | Constipation | constipation | All 3 files built April 2026 ✅ — on GitHub |
 
 ### Series D — Neurological Health (Articles 22–26)
+All five articles: all three files confirmed on GitHub ✅
 
 | # | Title | Slug | Status |
 |---|-------|------|--------|
-| 22 | Migraine | migraine | All 3 files built April 2026 ✅ — visuals + teleprompter retrofitted May 2026 ✅ |
-| 23 | Headaches — Types and Red Flags | headaches | All 3 files built April 2026 ✅ — visuals + teleprompter retrofitted May 2026 ✅ |
-| 24 | Dizziness and Vertigo | dizziness-vertigo | All 3 files built April 2026 ✅ — visuals + teleprompter FULL STRUCTURAL REBUILD May 2026 ✅ |
-| 25 | Memory, Cognition and Dementia | memory-dementia | All 3 files built April 2026 ✅ — on GitHub · retrofit outstanding |
-| 26 | Epilepsy — What It Is and How It's Managed | epilepsy | All 3 files built April 2026 ✅ — on GitHub · retrofit outstanding |
+| 22 | Migraine | migraine | All 3 files built April 2026 ✅ — on GitHub |
+| 23 | Headaches — Types and Red Flags | headaches | All 3 files built April 2026 ✅ — on GitHub |
+| 24 | Dizziness and Vertigo | dizziness-vertigo | All 3 files built April 2026 ✅ — on GitHub |
+| 25 | Memory, Cognition and Dementia | memory-dementia | All 3 files built April 2026 ✅ — visuals + teleprompter FULL STRUCTURAL REBUILD May 2026 ✅ — 11-slide deck |
+| 26 | Epilepsy — What It Is and How It's Managed | epilepsy | All 3 files built April 2026 ✅ — visuals + teleprompter FULL STRUCTURAL REBUILD May 2026 ✅ — 12-slide deck |
 
 ### Series E — Cancer (Articles 27–31) — ESTABLISHED APRIL 2026
-Series colour: `#2A5A3A` (forest green). Dark variant: `#1A3A25`. Note: initial proposed colour `#8A3A5A` (deep rose) was rejected — contrast issues. Forest green confirmed April 2026.
+Series colour: `#2A5A3A` (forest green). Dark variant: `#1A3A25`. **Note: initial proposed colour `#8A3A5A` (deep rose) was rejected — contrast issues. Forest green confirmed April 2026.**
 
 | # | Title | Slug | Status |
 |---|-------|------|--------|
@@ -200,9 +200,9 @@ Series colour: `#2A5A3A` (forest green). Dark variant: `#1A3A25`. Note: initial 
 | 28 | Prostate Cancer | prostate-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
 | 29 | Lung Cancer | lung-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
 | 30 | Bowel (Colorectal) Cancer | bowel-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
-| 31 | Melanoma and Skin Cancer | melanoma | All 3 files built April 2026 ✅ — on GitHub ✅ |
+| 31 | Melanoma and Skin Cancer | melanoma | Not yet built — Article 31, next to build |
 
-**Total articles with all 3 files on GitHub: 31. All complete ✅.**
+**Total articles with all 3 files on GitHub: 30. Articles 27–30 all complete and on GitHub ✅. Article 31 (Melanoma) next to build.**
 
 ---
 
@@ -211,18 +211,25 @@ Series colour: `#2A5A3A` (forest green). Dark variant: `#1A3A25`. Note: initial 
 | File | Status | Notes |
 |------|--------|-------|
 | index.html | Rebuilt April 2026 | 20+ years corrected; voice fixed; 2026 |
-| helf-school-conditions.html | Rebuilt April 2026 | 28 articles live; hero stat needs updating to 31 |
+| helf-school-conditions.html | Rebuilt April 2026 | Updated April 2026 — 28 articles live, Article 28 linked, Cancer series coming soon |
 | helf-school-membership.html | On GitHub | Pricing: £0 / £6pm or £60pa / £150 lifetime |
+
+### helf-school-conditions.html — April 2026 rebuild
+Rebuilt April 2026 to show all 26 articles live across 4 series + Cancer series (Articles 27–28 live, 29–31 coming soon). Updated again April 2026 to mark Article 28 (Prostate Cancer) as live. Hero stat: 28 articles live now.
 
 ### index.html — April 2026 corrections applied
 1. Hero h1: "Understanding your heart" → "Understanding your health"
 2. Hero subtitle: "cardiovascular health" → "your health"
-3. Why helf.school pillar: **30+ years → 20+ years** (primary fix)
-4. Copyright © 2025 → © 2026
-5. Disclaimer doc date: March 2025 → April 2026 · Version 1.0 → 1.1
-6. "About Dr [Name]" → "About Dr Paul" throughout
-7. "Heart Conditions A–Z" footer link → `helf-school-conditions.html`
-8. All canonical phrases corrected throughout
+3. Hero trust item: full canonical phrase
+4. Disclaimer banner: full canonical phrase
+5. Why helf.school pillar: **30+ years → 20+ years** (primary fix)
+6. Footer disclaimer: full canonical phrase
+7. Copyright © 2025 → © 2026
+8. Disclaimer doc date: March 2025 → April 2026 · Version 1.0 → 1.1
+9. Article template voice: full canonical phrase
+10. Cloudflare email obfuscation removed → plain text contact reference
+11. "About Dr [Name]" → "About Dr Paul" throughout
+12. "Heart Conditions A–Z" footer link → `helf-school-conditions.html`
 
 ---
 
@@ -247,16 +254,6 @@ helf.school **describes** what medicine knows and what services exist. It **neve
 
 Applies to: every article, every visuals file, every teleprompter, every CTA, every disclaimer, every site page — new and retrospective.
 
-### Educational voice — practical guidance
-
-**Describing what medicine knows:** "Clinically recognised as a time-sensitive condition — 111/urgent GP exists for this" rather than "Call 111 immediately."
-
-**Describing what services exist:** "The NHS screening programme invites women aged 50–70" rather than "Ask your GP about breast screening."
-
-**Describing shared decisions:** "NICE describes this as a decision to be made with full information about benefits and risks" rather than "Discuss this with your doctor."
-
-**The distinction that matters:** helf.school tells readers what medicine knows. It never tells them what to do. The reader decides what to do with the information — that is the essence of empowerment.
-
 ---
 
 ## 6. VIDEO INTRO STANDARD (Segment 1, ~15–18 seconds)
@@ -276,7 +273,7 @@ Never reverse this order. Cross-check article ↔ presenter before finalising ei
 
 ### Canonical reference files (in Claude project)
 - **Article HTML:** `mediterranean-diet.html`
-- **Visuals HTML:** `prostate-cancer-visuals.html` — PRIMARY CANONICAL REFERENCE confirmed April 2026. Demonstrates: 3-card split slides, canonical `cta-wrap-v2` CTA (slide 13), brand close (slide 14), ev-card research cards with series gradient stat box. `lifestyle-changes-visuals.html` remains a secondary reference for the 6-row grid pattern.
+- **Visuals HTML:** `prostate-cancer-visuals.html` — **NEW PRIMARY CANONICAL REFERENCE confirmed April 2026.** Demonstrates: 3-card split slides, canonical `cta-wrap-v2` CTA (slide 13), brand close (slide 14), ev-card research cards with series gradient stat box. `lifestyle-changes-visuals.html` remains a secondary reference for the 6-row grid pattern.
 - **Teleprompter HTML:** `lifestyle-changes-teleprompter.html` (canonical for cue box standard)
 - **CTA slide:** `prostate-cancer-visuals.html` slide 13 — canonical `cta-wrap-v2` pattern
 - **Closing slide:** `prostate-cancer-visuals.html` slide 14 — brand close standard
@@ -288,6 +285,8 @@ Very large HTML files (e.g. `statins.html`) can crash mid-build if too much is a
 GitHub raw URLs via `web_fetch` at session start:
 `https://raw.githubusercontent.com/pls4286/helfschool/main/[filename].html`
 
+Note: Claude cannot self-initiate `web_fetch` to GitHub raw URLs — the URL must be provided by Dr Paul or constructed from a confirmed slug. Do not rely on project uploads for article HTML files — they live on GitHub only by design and are intentionally absent from the Claude project.
+
 ### Dr Paul's preference
 Dr Paul does not want to make manual edits to files. When corrections are needed to existing site files, Claude fetches the current file, applies all changes, and delivers the corrected file for download. Never ask Dr Paul to edit manually via the GitHub editor.
 
@@ -297,120 +296,306 @@ Dr Paul does not want to make manual edits to files. When corrections are needed
 
 ### Section structure (all condition articles)
 1. What is it?
-2. Key Terms box — navy background by default; series-colour gradient for Cancer Series — sits between sections 1 and 2
+2. Key Terms box — navy background by default; **series-colour gradient for Cancer Series** — sits between sections 1 and 2
 3. Why does it matter? — stat grid + prose paragraphs
 4. What your doctor might discuss
 5. What the research shows
-6. "Putting it all together" — navy box by default; series-colour gradient for Cancer Series — italic text, bold closing line
+6. "Putting it all together" — navy box by default; **series-colour gradient for Cancer Series** — italic text, bold closing line
 7. References
 8. Research flags ⚑ — for Dr Paul's review before upload
 
 ### Series-colour elements — Cancer Series rule — LOCKED APRIL 2026
 In Cancer Series articles, three elements use `linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%)` instead of plain navy:
-1. **Key Terms box**
-2. **Putting it all together box**
-3. **Research card stat box**
+1. **Key Terms box** — `.key-terms { background: linear-gradient(...) }`
+2. **Putting it all together box** — `.putting-together { background: linear-gradient(...) }`
+3. **Research card stat box** — `.ev-stat-box { background: linear-gradient(...) }`
 
-All three confirmed in `breast-cancer.html` and `prostate-cancer.html` (April 2026). Apply to all future Cancer Series articles from the start.
+All three are confirmed in `breast-cancer.html` and `prostate-cancer.html` (April 2026). Apply to all future Cancer Series articles (29–31) from the start. Retrofit to other series when dark variant colours are confirmed (see Section 2 dark variants table).
 
 ### Key Terms box standards
 - Default (all series): Navy background `#1B2A4A`
-- Cancer Series: `linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%)` — forest green gradient
+- **Cancer Series: `linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%)`** — forest green gradient, confirmed April 2026
 - Title: Fraunces serif, minimum 1.05rem, `#fff`
 - Term labels: minimum 0.88rem, `font-weight:700`, series-light accent colour
-- Definitions: minimum 0.92rem, `rgba(255,255,255,0.90)` — opacity 0.75 or 0.80 not permitted
+- Definitions: minimum 0.92rem, `rgba(255,255,255,0.90)` — opacity 0.75 or 0.80 not permitted for definition text
+- 1–2 boxes; alphabetical order within each box
 - Body text: colour `#2C2C2C`, explicit `font-weight:400`
 - Pale colours `#374151`, `#4B5563`, `#555` not permitted anywhere in articles
-- No `fadeUp` or `opacity:0` animations on article body sections
-- Hero subtitle: minimum `rgba(255,255,255,0.85)`
+- No `fadeUp` or `opacity:0` animations on article body sections — content must be immediately visible on load
+- Hero subtitle: minimum `rgba(255,255,255,0.85)`; below this not permitted
 - Hero meta items: minimum `rgba(255,255,255,0.80)`
 - Hero breadcrumb: minimum `rgba(255,255,255,0.75)`
+- Values of 0.60 or below not permitted for hero/breadcrumb text
 
 ### Inline citations
 - Every stat or claim in prose carries a superscript number linking to anchored reference `id="ref-N"`
 - Format: `<sup><a href="#ref-1">1</a></sup>`
 - Superscript link colour matches the series accent colour
-- **Every stat in every stat grid card must carry a superscript citation. No exceptions.**
+- **This rule applies to stat grid `.stat-prose` text as well as body prose — every stat in every stat grid card must carry a superscript citation. No exceptions. Confirmed and locked April 2026.**
 
 ### Visuals research card body = 2–3 sentences maximum — LOCKED APRIL 2026
 
-**⛔ EV-BODY WORD LIMIT — LOCKED APRIL 2026:**
-- **Two stacked ev-cards: ≤ 30 words**
-- **Single ev-card: ≤ 44 words**
-- Canonical failure: cholesterol-visuals.html slides 7–9 — ev-body texts of 33–42 words all clipped.
+**The ev-body of every research card in visuals files must contain no more than 2–3 sentences: (1) what was compared, (2) the headline finding, (3) one sentence of clinical context. No trial design detail, no population breakdown, no secondary endpoints. The full explanation is in the article. Viewers are lay people watching a video.**
+
+Canonical examples (lung-cancer-visuals.html, April 2026):
+- NELSON: "The NELSON trial randomised 15,789 long-term smokers to CT screening or no screening. After 10 years, the screened group had 24% lower lung-cancer mortality. This is the evidence behind the NHS targeted screening programme now rolling out."
+- KEYNOTE-024: "Pembrolizumab compared with chemotherapy. 10.3 months vs 6.0 months PFS. Overall survival also significantly better, with fewer serious side effects."
+- FLAURA: "Osimertinib vs standard EGFR drugs. Median overall survival 38.6 months versus 31.8 months. Now the preferred first-line treatment for EGFR-mutated NSCLC."
 
 ### CTA slide = health-action "one thing" — LOCKED APRIL 2026
-The CTA slide must function as a health-action moment — not a membership pitch. The membership pitch lives on the brand close slide only. Structure: Icon · Badge · Headline · 4 rows · Medical disclaimer.
+
+**The CTA slide (second-to-last slide in every visuals file) must function as a health-action moment — not a membership pitch. It identifies the single most actionable implication from the video content, framed in the descriptive educational voice. The membership pitch lives on the brand close slide only.**
+
+Structure:
+- Icon (large, thematic)
+- Badge: "The evidence is clear on one thing" (or equivalent for the topic)
+- Headline: the most important action-oriented finding from the video
+- 4 rows: relevant health facts the viewer can act on (symptoms to know / screening / risk reduction / helf.school link)
+- Medical disclaimer (canonical phrase)
+
+**Educational voice requirement:** Every CTA row must describe what the evidence shows or what programmes exist — never instruct the viewer directly. "The evidence consistently shows that stopping smoking reduces lung cancer risk" not "stop smoking." "The NHS Targeted Lung Health Check is available in many areas" not "ask your GP about screening."
+
+Canonical reference: `lung-cancer-visuals.html` slide 10 (April 2026).
 
 ### The reason for the stat must be in the ev-outcome line — LOCKED APRIL 2026
 
+**The comparison, intervention, or condition that produced the stat number — the REASON it is what it is — must appear in the `ev-outcome` line. It must never be relegated to `ev-conditions` where it sits at 0.78rem, the least prominent text in the stat box.**
+
+The three stat box lines work as a strict hierarchy:
+- `ev-stat-row` — the headline number (24%, 10.3 mo, 38.6 mo) at 3.2rem weight 900
+- `ev-outcome` — the finding AND the reason: what changed AND what caused it / what it was compared to — at 0.95rem weight 700
+- `ev-conditions` — population, dataset, trial name only — at 0.78rem
+
+**Correct — reason in the ev-outcome line:**
 ```
 ev-stat-row:   24%
 ev-outcome:    reduction in lung-cancer mortality / CT screening vs no screening
 ev-conditions: high-risk smokers · 10-year follow-up · NELSON trial
 ```
 
-"CT screening vs no screening" is WHY the number is 24%. It cannot be the smallest text. Must appear in ev-outcome (0.95rem weight 700), never relegated to ev-conditions (0.78rem).
+**Incorrect — reason buried in ev-conditions (smallest text):**
+```
+ev-stat-row:   24%
+ev-outcome:    reduction in lung-cancer mortality
+ev-conditions: CT screening vs no screening — high-risk smokers at 10 years (NELSON trial)
+```
+
+"CT screening vs no screening" is WHY the number is 24%. It cannot be the smallest text. A reader who sees only ev-stat-row and ev-outcome must immediately understand both the finding AND the reason — the stat and its cause — without needing to read the conditions line. The conditions line handles trial name and population only.
+
+This rule strengthens the existing complete clinical conclusion standard. The prior instruction required the reason to be in the stat box — this instruction specifies it must be in ev-outcome, not ev-conditions.
+
+**Canonical reference:** `lung-cancer.html` Article 29 research cards (April 2026):
+- `24% / reduction in lung-cancer mortality / CT screening vs no screening`
+- `10.3 mo / median PFS / pembrolizumab vs 6.0 months on chemotherapy`
+- `38.6 mo / median overall survival / osimertinib vs 31.8 months on standard EGFR therapy`
+
+**This applies equally to visuals ev-stat-boxes.** The same hierarchy applies: ev-outcome carries both the finding and the reason; ev-conditions carries trial/population context only.
 
 ### All stats require citations — in every location — LOCKED APRIL 2026
-Every numerical figure in any helf.school file requires an inline superscript citation — regardless of location. Body prose, Key Terms, research cards, Putting it all together, myth panels, visuals slides, teleprompter scripts.
+
+**Every numerical figure, percentage, or quantitative claim in any helf.school file requires an inline superscript citation — regardless of location.**
+
+This applies universally to: body prose paragraphs, Key Terms box definitions, stat grid cards (covered separately by the stat grid citation rule), research card stat boxes and body text, Putting it all together box, discussion cards, myth panel evidence text, visuals slide text, and teleprompter scripts. No stat goes uncited anywhere.
+
+**This rule was confirmed after Dr Paul identified in `lung-cancer.html` (Article 29, April 2026):**
+1. An uncited statement "It is the most common cause of cancer death in the UK" in body prose paragraph 1
+2. An uncited NSCLC proportion figure (80 to 85%) in body prose paragraph 2
+
+Both were in body prose — locations previously assumed to be less rigorously checked than stat grid cards. Both were corrected. The rule is now explicit for all locations.
+
+**Process before delivering any file:** scan every paragraph and every text element for numerical figures and percentages. Every one must have a superscript citation or be flagged ⚑.
 
 ### Subtypes, stages, and formally named sets — always list, never inline prose — LOCKED APRIL 2026
-Use `<ol class="subtype-list">` — never run together as comma-separated prose. Canonical: `lung-cancer.html` Section 1.
+
+**When article body prose introduces a formally numbered or named set of items using a phrase such as "three main subtypes", "four stages", "two types of", or "the following five", those items must be presented in a numbered or bulleted HTML list — never run together as a comma-separated sequence within a prose paragraph.**
+
+**The rule:** if you can count the items in the introductory sentence, they go in a list.
+
+**Implementation:** use `<ol class="subtype-list">` with the canonical CSS pattern first introduced in `lung-cancer.html` (Article 29, April 2026):
+- Numbered circle markers in series colour
+- Bold term name followed by em-dash and definition
+- Full body size (`.88rem` to `1rem`)
+
+This applies to: cancer subtypes, disease subtypes, stages, treatment types, diagnostic criteria, risk factor categories, symptom categories, and any other formally introduced set of items with a count.
+
+**Canonical reference:** `lung-cancer.html` Section 1 — NSCLC subtypes (adenocarcinoma, squamous cell carcinoma, large cell carcinoma) presented as a 3-item `<ol class="subtype-list">` (April 2026).
+
+**Why this rule exists:** NSCLC subtypes were written as inline comma-separated prose in the first draft of `lung-cancer.html`. Dr Paul identified this as a formatting failure — distinct named items need visual separation so readers can find and refer back to individual items. Confirmed April 2026.
 
 ### Reference numbering — LOCKED APRIL 2026
-References must display visible numbers. Use CSS `counter-reset` and `counter-increment` on `.ref-block`. Canonical: `prostate-cancer.html`.
+References must display visible numbers. Use CSS `counter-reset` and `counter-increment` on `.ref-block` with a `::before` pseudo-element rendering the number to the left of the border. Delivered without visible numbering in April 2026 — caught by Dr Paul during review. Confirmed canonical: `prostate-cancer.html`.
 
 ### Article research card display standard — LOCKED APRIL 2026
 
+**Canonical reference: `memory-dementia.html` (layout) + `breast-cancer.html` + `prostate-cancer.html` (colour principle)**
+
+These values apply to article HTML files only. The visuals ev-stat-box has a separate locked specification in Section 9.
+
 ```css
-.research-card { grid-template-columns: 220px 1fr; border-radius: 10px; }
-.ev-stat-box { background: linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%); padding: 1.1rem .9rem; overflow: hidden; }
-.ev-kf-label { font-size: .72rem; font-weight: 700; color: var(--amber); text-transform: uppercase; }
+/* Research card layout */
+.research-card { grid-template-columns: 220px 1fr; border-radius: 10px; border: 1px solid rgba(series,0.18); }
+
+/* Stat box — series colour gradient, NOT navy */
+.ev-stat-box {
+  background: linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%);
+  padding: 1.1rem .9rem;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+.ev-kf-label { font-size: .72rem; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: .07em; }
 .ev-stat-row { font-size: 3.2rem; font-weight: 900; color: #fff; line-height: 1.0; }
-.ev-outcome { font-size: .95rem; font-weight: 700; color: rgba(255,255,255,0.95); }
-.ev-conditions { font-size: .80rem; color: rgba(255,255,255,0.72); }
+.ev-outcome { font-size: .95rem; font-weight: 700; color: rgba(255,255,255,0.95); line-height: 1.3; }
+.ev-conditions { font-size: .80rem; line-height: 1.35; color: rgba(255,255,255,0.72); }
+
+/* Body */
+.ev-body { background: #fff; padding: 1.1rem 1.2rem; }
 .ev-body p { font-size: .93rem; line-height: 1.72; }
+.ev-source { font-size: .78rem; color: rgba(44,44,44,0.55); font-style: italic; }
 ```
 
-**Stat box background: series-colour gradient — never plain navy. ev-stat-row: 3.2rem weight 900. ev-kf-label: always amber `#E8A84A`.**
+**Key rules:**
+- **Stat box background: series-colour gradient** — each series uses its own dark-to-mid gradient, never plain navy. The amber kf-label pops beautifully against any series colour.
+- **ev-stat-row: 3.2rem weight 900** — the headline stat must dominate the stat box. This is health education — the finding must be unmissable.
+- **ev-kf-label: always amber `#E8A84A`** — consistent accent across all series, regardless of series colour.
+- **Column: 220px** — confirmed from memory-dementia canonical.
+- These values apply to articles only. For visuals, see Section 9 locked spec.
 
-### Research card stat standard — complete clinical conclusion rule — LOCKED APRIL 2026
-Every research card stat box must state the complete clinical finding in terms immediately meaningful to a lay reader. The test: can a lay reader understand the clinical finding from the stat box alone, without reading the body text? If not, rewrite.
+**Why the stat number must be large:** The research section is where readers learn what medicine has found. The stat box is the headline — it must lead with the clinically important finding in a size and weight that commands attention. A 2.2rem number at 220px reads as a supporting detail, not a headline. 3.2rem reads as news.
+Every `.stat-prose` line in the Why does it matter? stat grid must carry a superscript inline citation. Run `grep -A 3 "stat-prose"` before presenting any article and confirm every instance has a `ref-` link. Not optional, not limited to "the obvious stats." Every card, every time.
 
-**Stat boxes show outcomes only — effect sizes, risk changes, response rates. NEVER: participant counts, study counts, cost figures, incomplete qualifiers.**
+**Why this rule was added:** In the breast cancer article (Article 27, April 2026), three of four stat grid cards were delivered without citations. Caught by Dr Paul during review — not by the pre-output audit. Now explicit in the QC checklist.
+
+### Research card stat standard
+
+**The stat box must convey the clinically important and relevant finding — not statistical machinery.**
+
+This is a fundamental rule of health education. helf.school exists to help people understand their conditions. The research section must therefore convey what the research shows about their condition — stated as a complete, patient-relevant clinical conclusion.
+
+**The complete clinical conclusion rule — LOCKED APRIL 2026:**
+
+Every research card stat box must state the complete clinical finding in terms that are immediately meaningful to a lay reader. The stat box (ev-kf-label + ev-stat-row + ev-outcome + ev-conditions together) must answer:
+1. **WHAT** was studied or found
+2. **WHAT** the finding means for someone with that condition
+3. Enough context for the finding to stand alone without the body text
+
+**The test:** Can a lay reader understand the clinical finding from the stat box alone, without reading the body text? If not, rewrite.
+
+**Correct examples — complete clinical conclusions:**
+- "The Epley manoeuvre / is a safe & effective treatment for BPPV"
+- "Vestibular rehabilitation / has moderate to strong evidence for its efficacy"
+- "77% response rate / vs 44% placebo" (complete comparison — reader understands what works)
+- "PEG superior / across all 4 outcomes" (clear clinical comparison)
+- "Macrogol superior / to lactulose across all outcomes"
+- "20% reduction in breast cancer mortality / in women invited to screening"
+- "~⅓ reduction in breast cancer mortality / throughout first 15 years in ER-positive disease"
+- "2.7% / prostate cancer-specific mortality at 15 years / similar across monitoring, surgery, and radiotherapy"
+- "0.69% / prostate cancer mortality with PSA screening / vs 0.78% without screening"
+- "81 months / median overall survival — docetaxel + hormone therapy / vs 71 months alone"
+
+**Incorrect examples — statistical machinery or incomplete findings:**
+- "11" with label "RCTs — Epley effective"
+- "OR 2.67"
+- "Safe & effective" without stating WHAT is safe and effective
+- "Moderate to strong evidence" without stating WHAT has that evidence level
+- Participant counts, study counts, or cost figures as the headline stat
+
+**Stat boxes show outcomes only — effect sizes, risk changes, response rates, or complete qualitative clinical conclusions. NEVER:**
+- Participant counts ("868 participants", "2,441 participants")
+- Study counts ("10 RCTs", "39 studies")
+- Cost figures ("£113m", "£2.3bn")
+- Incomplete qualifiers
+
+**Good stat box examples:**
+- `~30% CV event reduction` · `77% response vs 44% placebo` · `PEG superior across 4 outcomes` · `+12% / +30% mortality risk` · `The Epley manoeuvre / is safe & effective for BPPV` · `Vestibular rehabilitation / has moderate to strong evidence`
+
+**Bad stat box examples:**
+- `1.38M participants` · `87 RCTs` · `£168m NHS cost` · `11 RCTs` · `OR 2.67` · `Safe & effective` (without subject) · `Moderate to strong evidence` (without subject)
 
 ### Full references standard
-Full citation block: authors · title · journal · year · vol · pages · DOI. Pill links: journal DOI and PubMed — verified by web search in same session only.
+- Full citation block: authors · title · journal · year · vol · pages · DOI
+- CSS classes: `.ref-block` / `.ref-full` / `.ref-links`
+- Pill links: journal DOI and PubMed — verified by web search in same session only
+- PMC/PubMed links treated as unreliable unless verified in same session
+- Reference block `border-left` colour matches series accent
+- Inline citations (superscripts) must link to corresponding `id="ref-N"` anchor
+
+### Research flags ⚑
+- Unverified claims flagged ⚑ for Dr Paul's review
+- Pre-draft rule: before building any article HTML, verify every cited study — (1) exists, (2) correct condition, (3) supports the specific claim, (4) URL/DOI resolves to correct article
+- Never include an unverified link in a delivered file
 
 ### Drug naming standard
 Apply everywhere, on first mention per section:
-- macrogol (Movicol, Laxido) · ispaghula husk (Fybogel) · senna (Senokot) · bisacodyl (Dulcolax)
-- linaclotide (Constella) · prucalopride (Resolor) · atorvastatin (Lipitor) · semaglutide (Ozempic)
-- infliximab (Remicade) · adalimumab (Humira) · prochlorperazine (Stemetil)
-- betahistine (Serc) · cinnarizine (Stugeron) · lamotrigine (Lamictal) · levetiracetam (Keppra)
-- sodium valproate (Epilim) · carbamazepine (Tegretol) · lacosamide (Vimpat) · topiramate (Topamax)
-- donepezil (Aricept) · rivastigmine (Exelon) · galantamine (Reminyl) · memantine (Ebixa)
-- trastuzumab (Herceptin) · letrozole (Femara) · anastrozole (Arimidex) · exemestane (Aromasin)
-- goserelin (Zoladex) · leuprorelin (Prostap) · degarelix (Firmagon) · relugolix (Orgovyx)
-- docetaxel (Taxotere) · abiraterone (Zytiga) · enzalutamide (Xtandi) · bicalutamide (Casodex)
-- osimertinib (Tagrisso) · erlotinib (Tarceva) · gefitinib (Iressa)
-- pembrolizumab (Keytruda) · pemetrexed (Alimta)
+- macrogol (Movicol, Laxido)
+- ispaghula husk (Fybogel)
+- senna (Senokot)
+- bisacodyl (Dulcolax)
+- linaclotide (Constella)
+- prucalopride (Resolor)
+- atorvastatin (Lipitor)
+- semaglutide (Ozempic)
+- infliximab (Remicade)
+- adalimumab (Humira)
+- prochlorperazine (Stemetil)
+- betahistine (Serc)
+- cinnarizine (Stugeron)
+- lamotrigine (Lamictal)
+- levetiracetam (Keppra)
+- sodium valproate (Epilim)
+- carbamazepine (Tegretol)
+- lacosamide (Vimpat)
+- topiramate (Topamax)
+- donepezil (Aricept)
+- rivastigmine (Exelon)
+- galantamine (Reminyl)
+- memantine (Ebixa)
+- trastuzumab (Herceptin)
+- letrozole (Femara)
+- anastrozole (Arimidex)
+- exemestane (Aromasin)
+- goserelin (Zoladex)
+- leuprorelin (Prostap)
+- degarelix (Firmagon)
+- relugolix (Orgovyx)
+- docetaxel (Taxotere)
+- abiraterone (Zytiga)
+- enzalutamide (Xtandi)
+- bicalutamide (Casodex)
+- osimertinib (Tagrisso)
+- erlotinib (Tarceva)
+- gefitinib (Iressa)
+- pembrolizumab (Keytruda)
+- pemetrexed (Alimta)
 
 ### Lay-clarification brackets — ALL medical terminology
-Every medical or clinical term that a lay reader would not immediately understand must have a plain English definition in brackets on first use in each section.
+**The general rule:** Every medical or clinical term that a lay reader would not immediately understand must have a plain English definition in brackets on first use in each section. This applies to anatomical terms, physiological terms, symptom descriptors, drug class names, procedural terms, and diagnostic labels — not just statistical measures.
 
-**Statistical measures** (require lay clarification on first use per section):
-- HR (hazard ratio) · RR (relative risk) · OR (odds ratio) · SMD (standardised mean difference)
-- NNT (number needed to treat) · CI (confidence interval) · PAR (population-attributable risk)
+Examples of terms requiring lay clarification:
+- Anatomical: periorbital (around the eye) · temporal (at the temple) · ipsilateral (same side) · bilateral (both sides)
+- Symptoms: lacrimation (tearing) · rhinorrhoea (runny nose) · ptosis (drooping eyelid) · miosis (pupil constriction) · conjunctival redness (redness of the white of the eye)
+- Clinical: teratogenic (capable of causing harm to a developing foetus) · hepatotoxic (toxic to the liver) · tachycardia (fast heart rate)
+- Drug classes: tricyclic antidepressant · beta-blocker · prokinetic antiemetic · aromatase inhibitor · selective oestrogen receptor modulator
+
+**Why this keeps failing:** Earlier versions of this rule listed only statistical terms. Any term not on the explicit list was not caught at QC. The rule is now general: if a lay reader might not know it, it needs a definition in brackets on first use.
+
+**Statistical measures** (also require lay clarification on first use per section):
+- HR (hazard ratio — HR 1.23 = 23% higher risk)
+- RR (relative risk)
+- OR (odds ratio)
+- SMD (standardised mean difference — effect size)
+- NNT (number needed to treat)
+- CI (confidence interval)
+- PAR (population-attributable risk)
 
 ### Inline lay definitions — safety-critical and Key Terms box terms
-**Rule 1:** Safety-critical terms must always have an inline lay definition in the same sentence where the term first appears. A Key Terms box entry alone is not sufficient.
+Two rules apply to all article HTML files:
 
-**Rule 2:** When a Key Terms box term appears in a structured list or criteria box, add **(see Key Terms below)** immediately after the term.
+**Rule 1 — Safety-critical terms:** Any clinical term that carries significant implications for the reader — especially safety-critical ones such as teratogenicity, hepatotoxicity, nephrotoxicity, arrhythmia, or similar — must always have an **inline lay definition** in the same sentence where the term first appears. A Key Terms box entry alone is not sufficient.
+
+**Rule 2 — Structured lists and criteria boxes:** When a medical term that appears in the Key Terms box also appears in a structured list, numbered criteria, or diagnostic criteria box — where prose inline explanation is not practical — add **(see Key Terms below)** immediately after the term.
 
 ### Cite the paper's exact numerical expression — never convert or paraphrase — LOCKED APRIL 2026
-Never convert between forms — do not turn ">30%" into "1 in 3" or "33%". Cross-check every instance of every figure for consistency against the source paper's exact wording before delivering any file.
+When a paper reports a statistic, use its exact wording and numerical form in every location it appears. Never convert between forms — do not turn ">30%" into "1 in 3", "33%", or "around a third"; do not turn "1 in 1,000" into "0.1%". The conversion introduces inaccuracy and misrepresents the source. This rule applies to the stat grid, research cards, Key Terms definitions, body prose, Putting It Together box, and the teleprompter. Before delivering any file, cross-check every instance of every figure for consistency against the source paper's exact wording.
 
 ---
 
@@ -418,168 +603,365 @@ Never convert between forms — do not turn ">30%" into "1 in 3" or "33%". Cross
 
 ### CONFIRMED CANONICAL VISUALS REFERENCE — bowel-cancer-visuals.html (April 2026)
 
-`bowel-cancer-visuals.html` is the first visuals file delivered with zero changes required. Confirmed canonical reference for all future visuals builds.
+**`bowel-cancer-visuals.html` is the first visuals file that was delivered with zero changes required. It is the confirmed canonical reference for all future visuals builds. Every rule below was applied correctly from the first line.**
+
+Dr Paul's confirmation (April 2026): *"Good — you have applied those well and for the first time I don't have to change anything in visuals html."*
 
 ---
 
 ### VISUALS PRE-BUILD CHECKLIST — MANDATORY BEFORE WRITING ANY VISUALS HTML
 
+Before writing a single line of a new visuals HTML file, confirm these foundational decisions are in place. Every item below caused a delivery failure in a previous session when omitted.
+
 **1. SLIDE POSITIONING — use explicit width/height, NOT inset:0**
 ```css
+/* CORRECT — confirmed in bowel-cancer-visuals.html */
 .slide {
-  position:absolute; top:0; left:0; width:100%; height:100%;
+  position:absolute;
+  top:0; left:0; width:100%; height:100%;
   display:flex; flex-direction:column;
   opacity:0; visibility:hidden; pointer-events:none;
   transition:opacity .32s ease;
 }
 .slide.active { opacity:1; visibility:visible; pointer-events:all; }
 ```
+`inset:0` requires the parent to have a resolved height for `bottom:0` to compute. In some browsers this fails silently and slides show through each other. `width:100%; height:100%` is explicit and reliable. `visibility:hidden` (not just `opacity:0`) ensures inactive slides cannot render at all.
 
-**2. INTRO SLIDE — no space-between, stat grid with grid-template-rows:1fr**
+**2. INTRO SLIDE — no space-between, stat grid must have grid-template-rows:1fr**
 ```css
-.intro-slide { padding:1rem 1.5rem .8rem; gap:.6rem; }
-.intro-stat-grid { display:grid; grid-template-columns:1fr 1fr 1fr; grid-template-rows:1fr; gap:.65rem; flex:1; min-height:0; }
+/* CORRECT */
+.intro-slide {
+  padding:1rem 1.5rem .8rem;
+  gap:.6rem;
+  /* NO justify-content:space-between */
+}
+.intro-stat-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  grid-template-rows:1fr;       /* ← critical: makes single row fill grid height */
+  gap:.65rem;
+  flex:1; min-height:0;
+}
+.intro-stat-card {
+  display:flex; flex-direction:column; justify-content:center;
+  min-height:0;                 /* ← prevents flex overflow */
+}
 ```
+`justify-content:space-between` on the intro slide conflicts with `flex:1` on the stat grid — they fight for free space and neither wins cleanly. Remove it. `grid-template-rows:1fr` is what makes the single row of stat cards fill the full grid height rather than taking only content height.
 
 **3. ALL SIZES AT MAXIMUM FROM LINE ONE**
-slide-title: 1.72rem · ic-icon: 1.55rem · ic-title: 1.12rem · ic-body: .93rem
-ev-body p: .94rem · three-grid gap: .46rem · slide-header margin-bottom: .4rem
+```css
+.slide-title  { font-size:1.72rem; }
+.ic-title     { font-size:1.12rem; }
+.ic-icon      { font-size:1.55rem; }
+.ic-body      { font-size:.93rem; -webkit-line-clamp:5; }
+.ev-body p    { font-size:.94rem; -webkit-line-clamp:7; }
+.three-grid   { gap:.46rem; }
+.slide-header { margin-bottom:.4rem; }
+.info-card    { padding:.82rem 1rem; }
+.cta-row-title { font-size:.93rem; }
+```
+Do not start from minimums and adjust. Start from maximum and reduce only on overflow.
 
 **4. ev-outcome MUST CARRY THE REASON — not just the finding**
+```
+ev-stat-row:   16.5
+ev-stat-unit:  months
+ev-outcome:    median PFS / pembrolizumab vs 8.2 months on chemotherapy
+ev-conditions: MSI-H/dMMR metastatic CRC · first-line · KEYNOTE-177
+```
+Reading ev-stat-row + ev-outcome together must tell the reader BOTH what happened AND why. The comparison goes in ev-outcome, not ev-conditions.
 
 **5. MONTHS SPELLED IN FULL — ev-stat-unit class**
 ```html
-<div class="ev-stat-row">16.5</div><div class="ev-stat-unit">months</div>
+<div class="ev-stat-row">16.5</div>
+<div class="ev-stat-unit">months</div>
 ```
+`.ev-stat-unit { font-family:'Fraunces',serif; font-size:1.65rem; font-weight:700; color:rgba(255,255,255,0.88); line-height:1; margin-bottom:.25rem; }`
 
-**6. RESEARCH CARD EV-BODY = 2–3 SENTENCES MAXIMUM**
-Two stacked ev-cards: ≤ 30 words. Single ev-card: ≤ 44 words.
+**6. RESEARCH CARD EV-BODY = 2–3 SENTENCES MAXIMUM in visuals**
+- What was compared
+- What the headline finding was
+- One sentence of clinical context
+No trial methodology, no population breakdown, no secondary endpoints.
 
 **7. CTA SLIDE = HEALTH-ACTION "ONE THING" — not a membership pitch**
+- Membership pitch lives on the brand close slide only
+- CTA: 4 action rows (symptoms / screening / risk factor / helf.school link)
+- All rows descriptive — never instructional
 
 **8. NO RESEARCH OLDER THAN 12 YEARS**
-Current year 2026 → nothing before 2014.
+Check every trial year before writing. Current year 2026 → nothing before 2014.
 
 **9. EDUCATIONAL VOICE — pre-check before saving**
-0 instances of forbidden phrases. Canonical phrase × 2: CTA slide + brand close.
+- 0 instances of: "speak to your GP", "you should", "seek help"
+- Canonical phrase × 2: CTA slide + brand close
 
 **10. INTRO STAT CARDS — 3 cards, each with amber number + contextual label**
-Label must be a full sentence explaining what the number means.
+The label must be a full sentence explaining what the number means, not just a unit abbreviation.
 
 **11. INFO CARD BODY TEXT — TWO-TIER WORD LIMIT — LOCKED APRIL 2026**
-- Cards WITHOUT `.ic-source`: ≤34 words maximum
-- Cards WITH `.ic-source`: ≤23 words maximum
-Canonical failure: lung-cancer-visuals.html April 2026, slides 4–7.
+
+Every `.ic-body` in a three-grid slide must observe these hard limits:
+
+- **Cards WITHOUT `.ic-source`:** ≤34 words maximum
+- **Cards WITH `.ic-source`:** ≤23 words maximum — the source line occupies one full row, reducing visible body space from 5 lines to 4
+
+**The rule:** write the key fact (sentence 1), then one tight sentence of context (sentence 2). No long parenthetical clauses, multiple qualifying phrases, or three-sentence content.
+
+**Verification before delivery:** run a word count on every `.ic-body`. Cards with source must be ≤23w. Cards without source must be ≤34w. Do not deliver if any card exceeds its limit.
+
+**Canonical failure:** `lung-cancer-visuals.html` April 2026, slides 4–7 — cards ran 27–35 words with source lines present, causing visible mid-sentence clipping across four slides. Required multiple rebuilds to resolve. Root cause: source line was not accounted for in the word count target.
 
 ### VIEWPORT MAXIMISATION — MANDATORY RULE (LOCKED APRIL 2026)
 
-**Every visual element must be as big as the parameters make possible.**
+**Every visuals slide must fill the available viewport. This is non-negotiable.**
 
-Required minimums/maximums:
-- Slide padding: maximum `1rem 1.5rem 0.8rem`
-- Slide header margin-bottom: `.4rem`
-- Slide title: minimum `1.72rem`
-- All body text: minimum `.93rem`
-- Card/row gaps: maximum `.48rem`
-- Card padding: `.82rem 1rem`
-- Info/step row body line clamp: minimum 5 lines
+**MAXIMUM SIZE MANDATE — LOCKED APRIL 2026: Every visual element must be as big as the parameters make possible. The permitted parameters (max padding, min text size, max gap) define the floor — not the target. Push every element to the largest size that fits without overflow. Dr Paul's instruction: "visuals on each slide must be as big as parameters make possible."**
+
+The fixed viewport is `100vw × 100vh` minus the 52px topbar and 32px dots bar = approximately `calc(100vh - 84px)` of usable vertical space. Every slide must use this space aggressively. Content that occupies only 60–70% of the screen with large empty areas is a failure.
+
+**Required minimums/maximums — apply to every slide:**
+- Slide padding: maximum `1rem 1.5rem 0.8rem` — never `1.8rem` or more top padding
+- Slide header margin-bottom: `.4rem` — never `.55rem` or more
+- Slide title: minimum `1.72rem` — never `1.35rem`
+- Slide subtitle margin-bottom: maximum `.4rem` — never `.6rem`
+- All body text in cards and rows: minimum `.93rem` — never `.90rem` if space allows more
+- Card/row gaps: maximum `.48rem` — never `.7rem` or `.9rem` between items
+- Card padding: `.82rem 1rem` — tight but readable; never `.9rem 1.1rem` or larger
+- Info/step row body line clamp: minimum 5 lines — never 4 lines (wastes space)
 - Ev-body paragraph: minimum `.94rem`, line clamp minimum 7 lines
 - Card icons: minimum `1.55rem`
 - Card titles: minimum `1.12rem`
 
-**CTA slide confirmed working sizes:** Central icon `5.5rem` · Headline `clamp(2.8rem, 5.5vw, 4.2rem)`
+**The maximum-size principle:** Start from the largest font size that fills the space and reduce only if content overflows. Never start from the minimum and accept empty space. If a card has visible empty space below its text, the font is too small or the line clamp is too low.
+
+**CTA slide — confirmed working sizes (April 2026):**
+- Central icon: `5.5rem` — must dominate the slide
+- Headline: `clamp(2.8rem, 5.5vw, 4.2rem)`
+- Italic subline: `1.2rem`
+- Card emoji icons: `2.2rem`
+- Card title text: `.96rem`
+
+**Closing slide — confirmed working sizes (April 2026):**
+- Logo: `2.8rem`
+- Tagline: `1.05rem`
+- Link/series label: `1rem`
+
+**The test before delivering any visuals file:** Open every slide in a browser. Is the content filling at least 85% of the visible area? If large white/dark expanses of empty space are visible below the content, the sizing is wrong. Increase font sizes and reduce gaps until the slide feels full.
+
+**Why this rule exists:** Multiple visuals files were delivered in April 2026 with text too small and gaps too large, leaving slides that looked sparse and underused the screen. Dr Paul explicitly noted the content was too small and the space was not being used well. This is a fundamental presentation quality issue — visuals are for filming and presenting, and undersized content reads poorly on camera.
 
 ### 3-CARD RULE — NEVER SHRINK TEXT TO FIT — LOCKED APRIL 2026
-When a slide contains 6 cards, always split into two slides of 3 cards each. Never reduce font size or line clamp to fit. Canonical reference: `prostate-cancer-visuals.html` slides 3–10.
 
-### 4-CARD RULE — LOCKED APRIL 2026
-**Any slide with 4 cards must also split to ≤3 per slide. The QC label "⚠ 4-card (fragile)" is NOT a pass — it is a mandatory split.** Confirmed April 2026 after ibd-visuals.html 4-card treatment ladder clipped on filming viewport. QC item 38.
+**When a slide contains 6 cards, always split into two slides of 3 cards each. Never reduce font size or line clamp to make 6 cards fit.**
+
+This rule was confirmed April 2026 after multiple 6-card slides were delivered with text cut off at the bottom of cards. The correct approach: split to 3+3, label slides "(1 of 2)" and "(2 of 2)". 3-card slides use `-webkit-line-clamp:4` so body text can breathe fully.
+
+Articles with 6 informational points (what is it, risk factors, diagnosis, treatment) will produce two slides each — typically resulting in 14-slide decks rather than 10. This is correct and expected.
+
+**Canonical reference for 3-card layout:** `prostate-cancer-visuals.html` (slides 3–10).
 
 ### Layout
-- 3-card slides: `three-grid` class — `grid-template-rows: repeat(3, 1fr); gap: .55rem`
-- 4/6-card slides are FORBIDDEN — always split
+- **3-card slides: `three-grid` class** — `grid-template-rows: repeat(3, 1fr); gap: .55rem` — fills viewport
+- **6-card slides are FORBIDDEN** — always split to 3+3
+- Stats: 2.5–3.6rem font size
 - Colour narrative: red = harm · amber = mechanism · green = action
 - Cards: `min-height:0` + `overflow:hidden`
 - Max 2 `ev-cards` per research slide
 - CTA section: `cta-wrap-v2` class — `grid-template-rows: auto 1fr auto` — the ONLY correct CTA layout
+- Uneven row heights: use uneven `fr` ratios (e.g. `grid-template-rows: 1fr 1fr 1.5fr`) or `grid-row:span 2` for a key card in 5–6 card grids — prevents bottom-card clipping
 
-### ev-stage MUST USE display:flex — NEVER display:grid — LOCKED APRIL 2026
-```css
-/* ✅ CORRECT */
-.ev-stage { display: flex; flex-direction: column; gap: .95rem; flex: 1; min-height: 0; }
-/* ❌ FORBIDDEN */
-.ev-stage { display: grid; grid-template-rows: 1fr 1fr 1.5fr; }
-```
-Canonical failure: `stress-visuals.html` slide 7. Middle card clipped because 1fr row insufficient.
+### Animation
+- `animate-ready` class on all animated cards — **never** hardcoded `opacity:0` in final delivered files
+- Cards animate in on keyboard advance, not on page load
 
 ### ev-stat-box — EXACT SPECIFICATION (locked April 2026)
+The stat box sits in the left column (220px) of each ev-card. These values are required exactly — do not increase padding or font sizes or text will overflow the bottom of the box:
+
 ```css
 .ev-stat-box { padding: .9rem .75rem; overflow: hidden; }
 .ev-kf-label { margin-bottom: .35rem; }
 .ev-stat-row { margin-bottom: .3rem; }
 .ev-conditions { font-size: .78rem; line-height: 1.32; }
 ```
-Do NOT increase padding on `.ev-stat-box`. Do NOT use `.ev-conditions` font size above `.78rem`.
+
+- `.ev-conditions` text must be short enough to fit 220px — keep under ~8 words per line, ~2 lines maximum
+- Do NOT increase padding on `.ev-stat-box` — text will disappear off the bottom of the card
+- Do NOT use `.ev-conditions` font size above `.78rem` — it will overflow at any larger size
+
+**The complete clinical conclusion rule applies equally to visuals ev-stat-boxes.** The stat box in every research card in every visuals file must state the complete clinical finding — not ORs, RCT counts, or incomplete qualifiers. The same test applies: can a lay reader understand the clinical finding from the stat box alone?
 
 ### CTA slide standard — LOCKED APRIL 2026 — canonical: `prostate-cancer-visuals.html` slide 13
-- `cta-wrap-v2` with `grid-template-rows: auto 1fr auto` — ONLY correct layout
-- Central icon: minimum `5.5rem`
-- Fraunces headline: minimum `clamp(2.8rem, 5.5vw, 4.2rem)`
-- **No subline mentioning "free at helf.school"**
-- 4 horizontal action rows in `.cta-rows-v2`
-- `med-disclaimer` at bottom — `font-size:1rem` on `.med-disc-text` — never `.80rem`
+- **`cta-wrap-v2` class with `grid-template-rows: auto 1fr auto`** — this is the ONLY correct layout. `auto 1fr auto` means: badge/headline takes natural height, 4 rows expand to fill remaining space, disclaimer anchors at bottom. Nothing is ever clipped. **Never use `justify-content: center` or `justify-content: space-between` on the CTA slide — both clip content.**
+- Full-screen with radial gold-glow background + pulsing icon halo (3.2s drop-shadow)
+- **Central icon: minimum `5.5rem`** — the icon must dominate the slide visually.
+- **Fraunces headline: minimum `clamp(2.8rem, 5.5vw, 4.2rem)`**
+- **No subline mentioning "free at helf.school"** — helf.school is a subscription service. **LOCKED APRIL 2026.**
+- 4 horizontal action rows in `.cta-rows-v2` — `grid-template-rows: 1fr 1fr 1fr 1fr`
+- **`med-disclaimer` at bottom — `font-size:1rem` on `.med-disc-text`** — never `.80rem`
+- **`cta-glow` radial gradient overlay** — gold glow behind content
+- Reference: `prostate-cancer-visuals.html` slide 13
 
-### Closing slide standard — LOCKED APRIL 2026 — canonical: `prostate-cancer-visuals.html` slide 14
-- `close-wrap` with `justify-content: flex-start` — NEVER `justify-content: center`
-- helf.school logo · "Health Education" tagline · Brand headline
-- Three brand pitch cards: 📚 articles · 🩺 Dr Paul credentials · 🔓 Start for free
-- `med-disclaimer` at `font-size:1rem`
-- Series label
+### Closing slide standard — NEW STANDARD LOCKED APRIL 2026 — canonical: `prostate-cancer-visuals.html` slide 14
 
-### Readability standards — visuals
+The closing slide is now the **helf.school brand close** — NOT a repeat of the research stats from the CTA slide.
+
+**Structure:**
+- `close-wrap` with `justify-content: flex-start` — **NEVER `justify-content: center`** (clips the logo at top when content height approaches viewport height)
+- **helf.school logo** — large Fraunces, with coral dot
+- **"Health Education" tagline** — uppercase
+- **Brand headline** — e.g. "Evidence-based. Built by a doctor."
+- **Three brand pitch cards:**
+  1. 📚 Article count and series breadth
+  2. 🩺 Dr Paul's credentials — "retired NHS GP with over 20 years of experience"
+  3. 🔓 Start for free — Explorer tier
+- **`med-disclaimer`** at `font-size:1rem`
+- **Series label** — e.g. "Cancer Series · Article 28 · Prostate Cancer"
+
+**Why this standard was adopted:** The previous closing slide repeated the research stats already shown on the CTA slide. Dr Paul identified this as redundant — the closing slide should be the brand impression, not a stat recap. Confirmed April 2026.
+
+**`justify-content: flex-start` is mandatory** — `center` clips the logo at the top when total content height is close to the viewport height. `flex-start` anchors the logo visibly and any overflow falls off the bottom.
+
+### Readability standards — visuals (all rgba thresholds)
+**Topbar:**
 - Subtitle: minimum 0.75rem, `rgba(255,255,255,0.75)`
 - Slide counter: minimum 0.85rem, `rgba(255,255,255,0.90)`
-- Source attributions: minimum 0.75rem, `rgba(255,255,255,0.55)` on dark backgrounds
+- Keyboard hint: minimum `rgba(255,255,255,0.60)` — values 0.35 or below not permitted
+
+**Animation/diagram text:**
+- Labels: minimum 13px, `rgba(255,255,255,0.80)`
+- SVG annotations: minimum 10px, `rgba(255,255,255,0.60)` — opacity 0.50 or below not permitted
+
+**Source attributions:**
+- Minimum 0.75rem, `rgba(255,255,255,0.55)` on dark backgrounds
+- Minimum 0.75rem, `#2C2C2C` on light backgrounds
+- `.source-tag` style at `rgba(255,255,255,0.25)` not permitted
+
+**Presenter intro and closing slides:**
 - Taglines + series label: minimum `rgba(255,255,255,0.70)`
+- Logo dot: minimum `rgba(255,255,255,0.60)`
+- Stat card label: `rgba(255,255,255,0.90)`
+- Stat source: 0.75rem, `rgba(255,255,255,0.65)`
+
+---
 
 ### SERIES BACKGROUND COLOUR STANDARD — VISUALS — LOCKED APRIL 2026
 
-| Series | Slide bg hex |
-|---|---|
-| Cancer | `#0e2418` |
-| Cardiovascular | `#1a0808` |
-| Neurological | `#0f0d1a` |
-| Digestive | `#1a0e08` |
-| Fatigue | `#081a14` |
-| Practical Health | `#120e08` |
+**The principle:** Every series has a colour identity. That identity must run consistently through the article HTML (Key Terms box, Putting it all together, research card stat boxes) AND through the visuals HTML (slide backgrounds, card gradients). Near-black (`#050f08`, `#060e08`) is not a series colour — it is a non-colour that breaks the identity. All visuals slide backgrounds must use the **series dark colour family**.
 
-Near-black (`#050f08`, `#060e08`) breaks series identity — replace when any visuals file is opened.
+**Confirmed series background values (canonical April 2026):**
+
+| Series | Base colour | Slide background | Slide bg hex |
+|---|---|---|---|
+| Cancer | Forest green `#2A5A3A` | Deep forest green | `#0e2418` |
+| Cardiovascular | Crimson `#C8423A` | Dark crimson | `#1a0808` |
+| Neurological | Purple `#6B5EA8` | Dark purple | `#0f0d1a` |
+| Digestive | Amber `#D47C3A` | Dark amber | `#1a0e08` |
+| Fatigue | Teal `#3A8A7A` | Dark teal | `#081a14` |
+| Practical Health | Olive `#7A6A2E` | Dark olive | `#120e08` |
+
+**Cancer Series confirmed:** `#0e2418` — applied to `breast-cancer-visuals.html` and `prostate-cancer-visuals.html` April 2026. All Cancer Series visuals files must use this as the base slide background, not near-black.
+
+**Retrofit instruction:** When any visuals file is opened, check the background. If it uses `#050f08`, `#060e08`, or any other near-black value, replace with the correct series dark colour from the table above.
+
+**Gradient cards within slides** (info cards, stat cards) should use the series dark colour family at both ends of the gradient — they must NOT fade to near-black. Example for Cancer Series:
+```css
+.c-red  { background: linear-gradient(90deg, rgba(180,45,45,.55) 0%, rgba(110,25,25,.42) 100%); }
+.c-amber{ background: linear-gradient(90deg, rgba(170,110,20,.55) 0%, rgba(110,68,12,.42) 100%); }
+.c-green{ background: linear-gradient(90deg, rgba(38,105,55,.55) 0%, rgba(22,65,33,.42) 100%); }
+```
+
+---
 
 ### LAY IMPACT FIRST — VISUALS AND TELEPROMPTER STANDARD — LOCKED APRIL 2026
 
-Three questions every visuals/teleprompter must answer: What is this? Does it affect me? Is there anything I can do about it?
+**This standard was confirmed when building melanoma-visuals.html (Article 31, April 2026), which is the canonical reference. It applies to all future visuals and teleprompter builds, and is a retrofit instruction for all 30 existing articles.**
 
-#### Colour narrative (mandatory)
+The visuals and teleprompter are the doorway — not the textbook. Three questions they must answer for the lay viewer: What is this condition? Does it affect me? Is there anything I can do about it? Full treatment detail lives in the article.
+
+#### VISUALS — Colour narrative (mandatory from Article 31 onwards)
+
+Every informational slide must use the colour narrative to carry meaning. Cards are not all the same colour:
+
 - **Red cards** — risk, harm, danger, mortality figures
-- **Amber cards** — mechanism, process, how something works
-- **Green cards** — positive outcomes, action, survival figures
+- **Amber cards** — mechanism, process, how something works, gene/molecular information
+- **Green cards** — positive outcomes, action, survival figures, what treatment achieves
 
-#### No drug names in visuals or teleprompter
-Describe treatments by class only: "immunotherapy" · "gene-targeted treatment" · "checkpoint inhibitor"
+This applies to all card types: `three-grid` info cards, `stat-card` hero stat layouts, and intro stat cards. The colour must match the content — a survival stat goes on a green card, a mortality figure goes on a red card.
 
-#### Teleprompter — Trial names: name, stat, meaning only
-Format: name of trial → headline stat → one plain sentence. No hazard ratios, no confidence intervals.
+**Canonical reference:** `melanoma-visuals.html` (April 2026) — slides 3–7 demonstrate the full colour narrative. `lifestyle-changes-visuals.html` remains a secondary reference for the 6-row mechanism grid pattern.
 
-#### Teleprompter — Three questions standard
-1. What is this?
-2. Does it affect me?
-3. Is there anything I can do?
+#### VISUALS — Hero stat layout
+
+When a slide has a dominant headline figure, use the hero stat layout: one large stat card spanning the full height of one column (`grid-row: span 2`), with two smaller stat cards stacked in the adjacent column. This is more impactful than three equal cards.
+
+**Canonical example:** `melanoma-visuals.html` slide 5 — ~100% stage 1 survival as the hero stat, with 2,600 deaths and 86% preventable fraction as the flanking cards.
+
+#### VISUALS — Sequential animation for formal lists
+
+When the article contains a formally introduced set of items (ABCDE, stages, types, criteria), a sequential reveal is always more engaging than showing everything at once. Each item slides or fades in on a stagger timer (~1.2 seconds between items) when the slide becomes active. The animation resets if the user navigates away and returns.
+
+**Implementation:** Use `opacity:0; transform:translateX(-28px)` as the default state, `opacity:1; transform:translateX(0)` as the `.visible` state, triggered by JavaScript setTimeout on `runAnimation()` when `goTo()` activates the slide.
+
+**Canonical example:** `melanoma-visuals.html` slide 3 — ABCDE rule with 5-item sequential reveal, each letter in a distinct accent colour, footer note fading in last.
+
+#### VISUALS — No drug names
+
+Drug generic names and brand names must not appear in visuals slides. Describe treatments by class only:
+
+- ✅ "immunotherapy" · "gene-targeted treatment" · "checkpoint inhibitor" · "targeted therapy" · "BRAF inhibitor"
+- ❌ pembrolizumab · nivolumab · ipilimumab · dabrafenib · trametinib · Keytruda · Opdivo · Yervoy
+
+**Why:** The visuals audience is lay people watching a video. Complex drug names add cognitive load without adding clinical understanding. The full drug detail — generic name, brand name, mechanism — lives in the article.
+
+#### VISUALS — Trial names: lean and stat-focused
+
+Trial names may be used in research card titles and ev-conditions (KEYNOTE-006, COMBI, CheckMate 067, NELSON, FLAURA etc.) — they give the finding provenance without requiring explanation. The ev-body must then describe the finding in plain English: what was compared, what the headline stat showed, one sentence of clinical significance. No trial design, no hazard ratios, no confidence intervals in visuals.
+
+#### TELEPROMPTER — No drug names
+
+The same no-drug-names rule applies to teleprompter scripts. Dr Paul describes treatments by what they do, not what they're called:
+
+- ✅ "a type of immunotherapy that helps the immune system recognise cancer cells"
+- ✅ "a gene-targeted treatment for patients whose melanoma has a specific BRAF mutation"
+- ❌ "pembrolizumab — Keytruda —" (the spoken em-dash format is retired for teleprompter scripts going forward)
+
+**Retrofit note:** The spoken em-dash brand name format (e.g. `pembrolizumab — Keytruda —`) was the locked standard from Rule 33. For teleprompter scripts, this is now superseded by the lay-description approach. Rule 33 still applies to article HTML and visuals info cards.
+
+#### TELEPROMPTER — Trial names: name, stat, meaning only
+
+When citing a trial in the teleprompter, the format is: name of trial → headline stat → one plain sentence of what it means for someone with that condition. Nothing else.
+
+**Example (correct):** *"The KEYNOTE-006 trial showed immunotherapy more than doubled survival in advanced melanoma — from around 16 months to nearly 33. That's a profound shift from where we were a decade ago."*
+
+**Not:** trial design, comparator arm description, hazard ratios, confidence intervals, patient numbers.
+
+#### TELEPROMPTER — Three questions standard
+
+Every teleprompter must answer three lay questions, in roughly this order:
+1. **What is this?** — what the condition is, briefly and clearly
+2. **Does it affect me?** — who gets it, what the risk factors are, what to watch for
+3. **Is there anything I can do?** — what detection, prevention, or treatment looks like in plain terms
+
+The research section in the teleprompter exists to answer question 3 — not to describe clinical trial methodology.
 
 #### RETROFIT — apply when any visuals or teleprompter file is next opened
-1. Colour narrative — replace uniform cards with red/amber/green
-2. Remove drug names — replace with class descriptions
-3. Check trial ev-body — reduce to 2–3 sentences max
-4. Consider sequential animation for formal lists
+
+When any existing visuals file is opened for any reason, apply:
+1. Colour narrative — replace uniform card colours with red/amber/green by content type
+2. Check for drug names — replace with class descriptions
+3. Check trial ev-body — reduce to 2–3 sentences max, remove trial design detail
+4. Consider whether any formal list on a slide would benefit from sequential animation
+
+When any existing teleprompter is opened for any reason, apply:
+1. Remove drug generic and brand names — replace with class descriptions
+2. Check trial references — reduce to name + stat + one plain sentence
+3. Verify the three-question structure is present
+
+**Priority articles for colour narrative retrofit (highest visual impact):**
+- Cardiovascular series (01–07) — these have heavy treatment content and risk/benefit stats that would benefit most from red/amber/green differentiation
+- Cancer series (27–30) — already partially correct in newer builds; apply full colour narrative on next open
 
 ---
 
@@ -591,80 +973,95 @@ Format: name of trial → headline stat → one plain sentence. No hazard ratios
 - Speed levels: `[0, 8, 14, 20, 28, 38, 50]`, default index 3 (speed 20)
 - Controls: speed 1–6 · A+/A− font size · touch swipe
 - Segment dots: bottom of screen
-- Pause button: ⏸ — **NOT ▶ PLAY button**
-- No Google Fonts — fully self-contained
+- Pause button: ⏸ — **NOT ▶ PLAY button** (a common error)
+- No Google Fonts — fully self-contained (no external dependencies)
 - No topbar
 - Segment IDs: `seg-N`
 
-### Cue box standard
-Cue box always **precedes** the script lines for its segment.
-Dr Paul advances slide FIRST, then reads.
+### Cue box standard (reference file: `lifestyle-changes-teleprompter.html`)
+Cue box always **precedes** the script lines for its segment — never after.
+Dr Paul advances slide FIRST, then reads — viewer sees slide before Dr Paul speaks.
 Label: `▶ ADVANCE NOW — then read`
+Prior teleprompter files built before this standard was confirmed may require retrofitting — confirm per file.
 
-### Cue box — paired slides
-When two slides share a segment, cue box label reads the slide range: e.g. `Slides 3–4 — What is prostate cancer?`
+### Cue box — paired slides — CONFIRMED APRIL 2026
+When two slides share a segment (e.g. slides 3–4 on the same topic), the cue box label reads the slide range: e.g. `Slides 3–4 — What is prostate cancer?`. The final cue box in the last segment advances to the closing slide. Confirmed in `prostate-cancer-teleprompter.html` April 2026.
 
 ### Video length standard
 - Maximum 4–5 minutes
 - Word count: approximately 600–750 words at ~150 words per minute
+- Cut ruthlessly — no redundant examples, tight preamble, merge segments where possible
+- The teleprompter is the tight, high-impact doorway to the full article
+
+### Teleprompter content standard
+Each teleprompter must deliver:
+1. Fundamental messages stated clearly
+2. Key statistics with exact numbers — no rounding drift from the article figures
+3. Specific practical pointers — "add 1,000 steps/day" not "move more"; "30g fibre daily" not "eat more fibre"
+
+Every segment serves message, statistic, or action — cut what doesn't earn its place.
 
 ---
 
 ## 11. GRAPHICS AND ANIMATION STANDARDS
 
 ### Standalone animation files
-- GIF capture sources only — never embedded directly in articles or presenter files
+- Standalone animation HTML files (e.g. `salt-sources.html`) are GIF capture sources only
+- Never embedded directly in articles or presenter files
+- Each presenter contains its own inline recreation of the visual in the `visuals{}` object
+
+### New video — three files always required
+For any visual used in a video: standalone animation HTML (GIF source) + screen file + presenter cue box must all exist before filming.
 
 ### GIF settings
 Scale 0.62 · every 2nd frame · 120 colours · under 1.5MB total PPTX
 
 ### Video screen workflow
-- Camera-ready HTML files: full-screen, responsive, auto-animate on load, bold for filming
-- Presenter HTML: bold red `.diagram-cue` callout box shows filename
-- Layout: `flex-start`, `6vh` top padding
+- Camera-ready HTML files (e.g. `ar-sphincter-screen.html`): full-screen, responsive, auto-animate on load, bold for filming
+- Presenter HTML: bold red `.diagram-cue` callout box shows filename to open on second screen facing camera
+- Dr Paul reads from presenter; diagram HTML full-screened on second screen
+- Layout: `flex-start`, `6vh` top padding (prevents title clipping)
 
 ---
 
 ## 12. QC CHECKLIST (run before every upload)
 
-1. Readability — no pale text below colour minimums
-2. References — full citation blocks with DOI; pill links verified in same session
-3. Research flags ⚑ — all claims verified
+1. Readability — no pale text below colour minimums specified above
+2. References — full citation blocks with DOI; pill links verified in same session; **each cited stat confirmed to be in the specific paper cited, not just in a secondary source that references it**
+3. Research flags ⚑ — all claims verified against source; no unverified links
 4. Graphics — standalone animation file exists; presenter has matching inline visual
 5. Article ↔ presenter consistency — all facts, study names, years, citations match exactly
 6. Educational voice — no forbidden phrases; canonical phrase correct and in full throughout
 7. Drug names — brand names in brackets after all generics
-8. **Lay-clarification — ALL medical terminology in brackets on first use per section**
-9. **Research card clinical conclusions — complete clinical conclusion test (LOCKED APRIL 2026)**
-10. Research card stats — outcomes only; never participant/study counts
+8. **Lay-clarification — ALL medical terminology in brackets on first use per section, not just statistical terms. Anatomical, physiological, symptom, drug class, and diagnostic terms all require plain English definitions. Statistical terms (HR, RR, OR, SMD, NNT, CI, PAR) are included in this rule.**
+9. **Research card clinical conclusions — complete clinical conclusion test (LOCKED APRIL 2026):** Every research card stat box must state the complete clinical finding in patient-relevant terms. The stat box (label + stat row + outcome + conditions together) must answer: WHAT was studied, WHAT was found, and WHY it matters to someone with that condition. The test: can a lay reader understand the clinical finding from the stat box alone? Statistical machinery (OR values, RCT counts, confidence intervals) must never appear as the headline finding. Incomplete qualifiers ("Safe & effective" without subject; "Moderate to strong evidence" without subject) are not permitted.
+10. Research card stats — outcomes only; never participant/study counts or cost figures as headline stat
 11. CTA slide — `cta-wrap-v2` with `grid-template-rows: auto 1fr auto`; `med-disc-text` at `font-size:1rem`
-12. Closing slide — brand close structure; `justify-content: flex-start`; three pitch cards
+12. Closing slide — brand close structure; `justify-content: flex-start`; three pitch cards; `med-disc-text` at `font-size:1rem`; series label
 13. Copyright year — 2026
-14. Body text weight — `font-weight:400` throughout (never 300)
-15. No `opacity:0` animations on article body sections
-16. **ev-stat-box — `.ev-conditions` font is `.78rem`, padding is `.9rem .75rem`, `overflow:hidden` present**
-17. **NICE guideline numbers — verify CG vs NG via web search in the same session**
-18. **Safety-critical terms — inline lay definition in same sentence**
-19. **Structured lists — Key Terms box terms in lists need "(see Key Terms below)"**
-20. **VIEWPORT MAXIMISATION — content must fill at least 85% of visible area**
-21. **PMID VERIFICATION — every PMID verified by web search in same session**
-22. **STRICT SOURCE RULE — every stat traceable to approved source**
-23. **EXACT FIGURE RULE — paper's exact numerical expression everywhere**
-24. **STAT GRID CITATION RULE — every `.stat-prose` line has `ref-` superscript link**
-25. **APPROVED SOURCE RETRIEVAL RULE — fetch directly from approved source page**
-26. **CLOSING SLIDE DISCLAIMER — `justify-content: flex-start`; `med-disc-text` at `font-size:1rem`**
-27. **CTA SLIDE DISCLAIMER — `font-size:1rem`; never `.80rem`**
-28. **NO "FREE AT HELF.SCHOOL" ON VISUALS**
-29. **3-CARD RULE — never 6 cards on one slide**
-30. **REFERENCE NUMBERING — visible numbers via CSS counter**
-31. **ALL STATS REQUIRE CITATIONS — every location**
-32. **SUBTYPE/LIST FORMATTING — `<ol class="subtype-list">` for formally introduced sets**
-33. **ev-outcome MUST CARRY THE REASON**
-34. **DRUG BRAND NAMES — mandatory alongside all generic names**
-35. **RESEARCH CURRENCY — no articles older than 12 years**
-36. **LAY IMPACT FIRST — colour narrative, no drug names, three-question structure**
-37. **ev-stage MUST USE display:flex — never display:grid**
-38. **4-CARD SLIDES MUST SPLIT — "fragile" is NOT a passing QC result. Any slide with 4 or more cards must split to ≤3 cards per slide. Confirmed April 2026 after ibd-visuals.html 4-card treatment ladder clipped on Dr Paul's filming viewport. LOCKED APRIL 2026.**
+14. Body text weight — `font-weight:400` throughout (never 300 in body)
+15. No `opacity:0` animations on article body sections — content immediately visible
+16. **ev-stat-box — `.ev-conditions` font is `.78rem`, padding is `.9rem .75rem`, `overflow:hidden` present — check before delivery on every visuals file**
+17. **NICE guideline numbers — verify CG vs NG via web search in the same session. Never cite from memory.**
+18. **Safety-critical terms — any term like teratogenic, hepatotoxic, nephrotoxic must have an inline lay definition in the same sentence, not just a Key Terms entry**
+19. **Structured lists and criteria boxes — any Key Terms box term appearing in a list or criteria box must have "(see Key Terms below)" added immediately after it**
+20. **VIEWPORT MAXIMISATION — open every slide in a browser before delivering. Content must fill at least 85% of the visible area. Slide padding maximum `1rem 1.5rem 0.8rem`. Body text minimum `.90rem`. Card/row gaps maximum `.5rem`. Slide title minimum `1.55rem`. If slides look sparse or content is small, increase font sizes and reduce gaps before delivering.**
+21. **PMID VERIFICATION — every PMID must be verified by web search in the same session. A PubMed URL must be found in search results confirming the PMID resolves to the correct paper. Never include a PMID from memory or inference.**
+22. **STRICT SOURCE RULE — every stat, claim, and causal attribution must be traceable to an approved source. Charity and advocacy websites (Epilepsy Action, Alzheimer's Society, WCRF, etc.) are not approved. Derived figures (calculating deaths from a prevalence rate) are not acceptable — only cite figures explicitly stated in the approved source. If a stat cannot be traced, omit it.**
+23. **EXACT FIGURE RULE — use the paper's exact numerical expression everywhere. Never convert between forms (">30%" must not become "1 in 3" or "33%"; "1 in 1,000" must not become "0.1%"). Cross-check stat grid, research cards, Key Terms, body prose, Putting It Together, and teleprompter for consistency before delivering any file.**
+24. **STAT GRID CITATION RULE — LOCKED APRIL 2026:** Run `grep -A 3 "stat-prose"` before presenting any article. Every `.stat-prose` line must have a `ref-` superscript link. All stat grid cards. No exceptions. A stat grid card with no citation is a QC failure regardless of how obvious the stat appears.
+25. **APPROVED SOURCE RETRIEVAL RULE — LOCKED APRIL 2026:** Every figure must be retrieved directly from the approved source page, not from a secondary or aggregator page that attributes the figure to an approved source. If a stat is found on an unapproved page (e.g. WCRF) that cites Cancer Research UK, fetch the Cancer Research UK page directly and use the figure stated there. Example of failure: breast cancer article (April 2026) used 60,763 (WCRF) instead of "around 59,000" (Cancer Research UK directly).
+26. **CLOSING SLIDE DISCLAIMER SIZE — LOCKED APRIL 2026:** The closing slide must use `justify-content: flex-start` and `med-disc-text` at `font-size:1rem`. Brand close structure — three pitch cards (articles / Dr Paul / free tier). Never stat repeat. Never `justify-content: center` — clips logo at top.
+27. **CTA SLIDE DISCLAIMER SIZE — LOCKED APRIL 2026:** CTA disclaimer text must be `font-size:1rem`, `color:rgba(255,255,255,0.90)`. Never `.80rem`. Run a grep check before presenting any visuals file.
+28. **NO "FREE AT HELF.SCHOOL" ON VISUALS — LOCKED APRIL 2026:** The subline on the CTA slide must not reference being "free at helf.school" — helf.school is a subscription service and this is inaccurate. "Start for free" (the £0 Explorer tier) is permitted as a card label. "Free to read — always" is not permitted. Check the CTA slide subline before presenting any visuals file.
+29. **3-CARD RULE — LOCKED APRIL 2026:** Never 6 cards on one slide. Always split to 3+3. Canonical: `prostate-cancer-visuals.html` slides 3–10.
+30. **REFERENCE NUMBERING — LOCKED APRIL 2026:** References must display visible numbers via CSS counter. Never deliver a reference list without visible numbering. Canonical: `prostate-cancer.html`.
+31. **ALL STATS REQUIRE CITATIONS — EVERY LOCATION — LOCKED APRIL 2026:** Before presenting any article, visuals, or teleprompter file, scan every paragraph and text element for numerical figures and percentages. Every stat in every location — body prose, Key Terms box, stat grid cards, research card text, Putting it all together box, discussion cards, myth panel evidence text, visuals slides — must carry an inline superscript citation. No exceptions. This rule was confirmed after Dr Paul identified two uncited stats in `lung-cancer.html` Article 29 body prose (April 2026).
+32. **SUBTYPE/LIST FORMATTING — LOCKED APRIL 2026:** When body prose introduces a formally counted or named set of items ("three main subtypes", "four stages", "two types of"), those items must appear in a `<ol class="subtype-list">` numbered list — never as comma-separated inline prose. Grep for phrases like "three main", "four types", "two subtypes" before presenting any article. Canonical: `lung-cancer.html` Section 1 (Article 29, April 2026).
+33. **ev-outcome MUST CARRY THE REASON — LOCKED APRIL 2026:** Before presenting any article or visuals file with research cards, check every ev-outcome line. It must state BOTH the finding AND the comparison/intervention that produced the stat number. "24%" is not enough — "reduction in lung-cancer mortality / CT screening vs no screening" is correct. The comparison must never appear only in ev-conditions. Read ev-stat-row + ev-outcome together: if a reader can't understand the stat AND its cause from those two lines alone, rewrite ev-outcome. Canonical: `lung-cancer.html` Article 29 research cards (April 2026).
+34. **DRUG BRAND NAMES — MANDATORY ALONGSIDE ALL GENERIC NAMES — LOCKED APRIL 2026:** Every drug name must be accompanied by its brand name in every helf.school file — article body, Key Terms, myth panels, evidence cards, visuals info cards, and teleprompter scripts. Generic name first, brand name immediately following in parentheses or em-dash format. Brand names are shorter, more recognisable to patients, and — critically in teleprompter files — easier to say fluently while filming. **Format in articles and visuals:** `pembrolizumab (Keytruda)` · `bevacizumab (Avastin)` · `cetuximab (Erbitux)` · `panitumumab (Vectibix)` · `osimertinib (Tagrisso)`. **Format in teleprompter scripts:** `pembrolizumab — Keytruda —` · `bevacizumab — Avastin —` (spoken em-dash form). Before delivering any file, grep for generic drug names and confirm every instance has a brand name alongside it. Common oncology brand names: pembrolizumab=Keytruda · osimertinib=Tagrisso · bevacizumab=Avastin · cetuximab=Erbitux · panitumumab=Vectibix · nivolumab=Opdivo · trastuzumab=Herceptin · rituximab=MabThera · imatinib=Glivec · erlotinib=Tarceva · gefitinib=Iressa.
+35. **RESEARCH CURRENCY — NO ARTICLES OLDER THAN 12 YEARS — LOCKED APRIL 2026:** No research article or trial published more than 12 years before the current date may be used in evidence cards or as a primary stat source. Current year 2026 → no papers published before 2014. Guideline documents (NICE, WHO) are exempt if updated within 12 years — cite the most recent update date. Before selecting any evidence card trial, verify the publication year. If the canonical trial for a topic predates 2014, find a more recent equivalent. **Violation example:** Hardcastle et al. Lancet 1996 (gFOBT trial) — removed from bowel-cancer.html April 2026 and replaced with Bretthauer et al. NEJM 2022 (NordICC, PMID 36214590). Using a 1996 gFOBT trial in a 2026 article about the NHS FIT programme describes a superseded test.
+36. **LAY IMPACT FIRST — VISUALS AND TELEPROMPTER — LOCKED APRIL 2026:** Visuals and teleprompter files must prioritise lay impact over clinical completeness. (1) **Colour narrative:** red cards for risk/harm, amber for mechanism/process, green for positive outcomes/action — never uniform card colours. (2) **No drug names in visuals or teleprompter** — describe by class only: "immunotherapy", "gene-targeted treatment", "checkpoint inhibitor". (3) **Trials in teleprompter:** name + headline stat + one plain sentence only — no trial design, no hazard ratios. (4) **Sequential animation** for formal lists (ABCDE, stages, criteria) — canonical: `melanoma-visuals.html` slide 3. (5) **Three questions standard for teleprompter:** What is this? Does it affect me? Is there anything I can do? Canonical reference: `melanoma-visuals.html` and `melanoma-teleprompter.html` (April 2026). Retrofit instruction: apply colour narrative and remove drug names whenever any visuals or teleprompter file is next opened.
 
 ---
 
@@ -672,23 +1069,29 @@ Scale 0.62 · every 2nd frame · 120 colours · under 1.5MB total PPTX
 
 ### Downloading from Claude
 **Primary route:** Artifact panel download button.
+**Backup route:** Open in Notepad → File → Save As → Downloads → `[filename].html` → file type "All Files".
 **Never Ctrl+S** — saves the webpage wrapper, not the source HTML.
 
 ### Uploading to GitHub
-github.com/pls4286/helfschool/upload/main — sign in with Google if session expired. Individual HTML files, not zipped.
+github.com/pls4286/helfschool/upload/main
+Sign in with Google if session has expired. Upload individual HTML files (not zipped). Commit with a brief description.
 
 ### File corruption pattern — know and ignore
-Edge incognito uploads occasionally capture the Claude.ai loader HTML (~5,140 bytes). Verify content via GitHub raw URL before any assessment.
+Edge incognito uploads occasionally capture the Claude.ai loader HTML (~5,140 bytes, begins with "data-build-id") instead of the actual file. Never false-alarm on byte size alone. Verify content via GitHub raw URL before any assessment. This is an upload capture issue, not a file corruption issue.
 
 ---
 
 ## 14. APPROVED RESEARCH SOURCES
 
-BMJ · NICE guidelines · Cochrane Database · NEJM · The Lancet · JAMA · BMJ Best Practice · PubMed · NHS/NHS Digital · ONS · CDC · WHO · Global Burden of Disease Study · ESC/EAS guidelines · Alimentary Pharmacology & Therapeutics · European Heart Journal · QJM · Epilepsia · Seizure: European Journal of Epilepsy · JAMA Neurology · BJC Reports
+BMJ · NICE guidelines · Cochrane Database · NEJM · The Lancet · JAMA · BMJ Best Practice · PubMed · NHS/NHS Digital · ONS · CDC · WHO · Global Burden of Disease Study · ESC/EAS guidelines · Alimentary Pharmacology & Therapeutics · European Heart Journal · QJM · Epilepsia · Seizure: European Journal of Epilepsy · JAMA Neurology · BJC Reports (British Journal of Cancer Reports, Springer Nature — added April 2026 for LCINS Article 29 ref 6)
 
-**Cancer Research UK — approved April 2026** for UK cancer incidence, mortality, survival, and risk statistics. Always fetch their statistics pages directly.
+**Cancer Research UK — approved April 2026** for UK cancer incidence, mortality, survival, and risk statistics. Where Cancer Research UK cites a primary source (e.g. ONS data or a specific trial), cite the primary where practical. For Cancer Research UK's own published statistics, cite Cancer Research UK directly and fetch their statistics pages directly — never rely on a secondary page that attributes data to them.
 
-**NOT approved:** Epilepsy Action · Alzheimer's Society · WCRF · Breast Cancer Now · any charity or advocacy website.
+No non-peer-reviewed sources, commercial health sites, or forum content permitted.
+
+**NOT approved (explicit list):** Epilepsy Action · Alzheimer's Society · Alzheimer's Research UK · World Cancer Research Fund (WCRF) · Breast Cancer Now · any charity or advocacy website · any secondary source that cites a primary paper without being that primary paper.
+
+**WCRF specifically:** The WCRF website publishes cancer statistics attributed to Cancer Research UK and NHS Digital. These must NOT be cited as Cancer Research UK figures. Always fetch the Cancer Research UK statistics page directly. Example of failure: breast cancer article (April 2026) used WCRF's 60,763 instead of Cancer Research UK's "around 59,000."
 
 ---
 
@@ -705,617 +1108,23 @@ BMJ · NICE guidelines · Cochrane Database · NEJM · The Lancet · JAMA · BMJ
 Before presenting any article, visuals, or teleprompter HTML — verify via web search that every cited study, trial, or statistic:
 1. Exists as a real published paper
 2. Relates to the correct condition
-3. **Contains the specific stat or finding claimed**
-4. URL/DOI resolves to the correct article
-5. **PMID resolves to the correct paper — verified by web search. Never from memory.**
-6. **The figure comes directly from the approved source page — LOCKED APRIL 2026**
+3. **Contains the specific stat or finding claimed — not just plausibly could contain it**
+4. URL/DOI resolves to the correct article — fetch the abstract or full text if needed to confirm
+5. **PMID resolves to the correct paper — a PubMed URL must be found in search results confirming the PMID. Never include a PMID from memory or inference.**
+6. **The figure comes directly from the approved source page, not from a secondary page attributing it to an approved source — LOCKED APRIL 2026**
 
-**Derived statistics are not acceptable.** Never cite NICE CG99 for adult constipation — covers children only. Correct adult reference: NICE CKS at `cks.nice.org.uk/constipation`.
+**Step 3 is the step that fails most often.** Finding a paper by the same author on the same topic is not sufficient. The specific numerical claim must be traceable to that specific paper. If the stat appears in a secondary source (a review, a guidance document, an editorial) that itself cites a primary paper, cite the primary paper — not the secondary source.
 
-**NICE guideline number rule:** Always verify CG vs NG via web search before citing. Never from memory.
+**Step 5 is a new rule confirmed April 2026.** Claude has repeatedly generated plausible-sounding but incorrect PMIDs. Every PMID must be verified by web search before inclusion.
 
----
+**Step 6 was added April 2026** after 60,763 (from WCRF) was used instead of "around 59,000" (from Cancer Research UK directly). Always search for and fetch the approved source page itself.
 
-## 17. RETROFIT STATUS (retroactive standards across existing articles)
+**Derived statistics are not acceptable.** If a source provides a prevalence rate but not an absolute count, do not calculate and cite an absolute figure. Only cite figures explicitly stated in the approved source.
 
-### Confirmed complete
-- Educational voice: confirmed complete across Articles 01–26 (as built)
-- **Cancer Series visuals + teleprompters (Articles 27–31) — ALL COMPLETE April 2026 ✅**
-- **Cardiovascular Series visuals + teleprompters (Articles 01–07) — ALL COMPLETE April 2026 ✅**
-  - CTA sequential animation applied ✅ · Brand close pitch cards applied ✅
-  - `display:-webkit-box` fixed ✅ · 5/6-card slides split ✅ · ev-stage display:flex ✅
-- **Practical Health Series visuals + teleprompters (Articles 08–12) — ALL COMPLETE April 2026 ✅**
-- **Digestive Series retrofit — April 2026:**
-  - acid-reflux (13): visuals + teleprompter ✅ retrofitted April 2026
-  - bloating (15): visuals + teleprompter ✅ retrofitted April 2026
-  - ibs (16): visuals + teleprompter ✅ retrofitted April 2026
-  - **ibd (14): visuals + teleprompter ✅ full rebuild April 2026** — 12-slide deck; 5-card grids split 3+2; 4-card treatment ladder split 2+2 (Rule 38); series gradient ev-stat-box; sequential CTA; brand close; .cl-dot; webkit-box fixed
-  - **coeliac (18): visuals + teleprompter ✅ full rebuild April 2026** — 12-slide deck; 5-card doc-grid split 3+2; series gradient; sequential CTA; brand close
-  - **gallstones (19): visuals + teleprompter ✅ full structural rebuild April 2026** — pre-canonical architecture (inset:0, no nav dots, side-by-side ev-cards, quote-card close); rebuilt to canonical standard; 12-slide deck
-  - **diverticular-disease (20): visuals + teleprompter ✅ full structural rebuild April 2026** — same pre-canonical architecture as gallstones; rebuilt to canonical standard; 10-slide deck; myth comparison preserved; risk/doc 5→3+2
-  - **masld (17): ✅ visuals + teleprompter retrofit complete April 2026**
-  - **constipation (21): ✅ visuals + teleprompter retrofit complete April 2026**
-- **Neurological Series — PARTIAL RETROFIT May 2026:**
-  - migraine (22): visuals + teleprompter ✅ retrofitted May 2026 — 11-slide canonical rebuild; 6-card grids → 3-card splits; sequential CTA; brand close; canonical opacity/visibility architecture
-  - headaches (23): visuals + teleprompter ✅ retrofitted May 2026 — 11-slide canonical rebuild; 6-card grids → 3-card splits; sequential CTA; brand close; OTC drug names replaced with class descriptions
-  - dizziness-vertigo (24): visuals + teleprompter ✅ FULL STRUCTURAL REBUILD May 2026 — 12-slide deck; pre-canonical inset:0 architecture; text-stat approach for Epley/VR Cochrane cards; ⚑ Fife & FitzGerald 2005 pending source verification
-  - memory-dementia (25): outstanding
-  - epilepsy (26): outstanding
+Never include an unverified link. Never assume a study exists based on a plausible-sounding citation. Never cite NICE CG99 for adult constipation — it covers children and young people only. The correct adult reference is NICE CKS at `cks.nice.org.uk/constipation`.
 
-### Outstanding — to confirm and apply
-- Research card complete clinical conclusion standard: outstanding across 01–23
-- Stat grid citations: outstanding across all articles built before April 2026
-- Visuals layout standard (3-card split, ev-stat-row): outstanding across 01–11
-- Subtype list formatting: outstanding across all articles
-- **Neurological Series (25–26): full retrofit checklist outstanding** — same as completed Digestive/Neurological articles above
-- **`display:-webkit-box` + `clamp:4` audit: outstanding across memory-dementia (25) and epilepsy (26)** — ALL CSS rules using `-webkit-line-clamp` must also have `display:-webkit-box`. AND `.sys-body`, `.doc-body`, `.mech-body` must have `line-clamp:4` — NEVER `line-clamp:2`. Word limit for these classes: ≤35 words.
-- **5/6/4-card grid splits: outstanding across memory-dementia (25) and epilepsy (26)**
-- **ev-stage display:flex: outstanding across memory-dementia (25) and epilepsy (26)**
-- **Pre-canonical architecture check: required for memory-dementia (25) and epilepsy (26)** — check for `inset:0`, `display:none/active`, `.dot` not `.nav-dot`, stat-repeat closing. If all four markers present, full structural rebuild required.
+**NICE guideline number rule:** Always verify the exact NICE guideline number — including whether it is CG or NG — via web search before citing. CG and NG are different series and different documents. Never cite a NICE guideline number from memory.
 
----
-
-## 18. KEY LEARNING POINTS (accumulated)
-
-### NICE CG99 is for children only — never cite for adults
-Adult constipation: **NICE CKS** at `cks.nice.org.uk/constipation`.
-
-### Dr Paul's experience is 20+ years, not 30+
-All references must read "20+ years" or "over twenty years as an NHS GP".
-
-### Local link testing — expected not to work
-Links are relative — work on live GitHub site, not from local downloaded file.
-
-### Dr Paul prefers Claude to handle all file edits
-Never ask Dr Paul to make manual edits.
-
-### Conditions page — always rebuild, never patch
-
-### Educational voice — systemic issue in older files
-When fetching any older file for any purpose, audit for forbidden phrases and correct them.
-
-### Teleprompter cue box — advance THEN read
-Label: `▶ ADVANCE NOW — then read`
-
-### Large file writing — use create_file not bash
-For HTML files over ~400 lines, `create_file` is the correct tool.
-
-### Constipation article — April 2026 research decisions
-NICE CG99 excluded; Rome IV criteria; macrogol vs lactulose (Cochrane 2010, CD007570); fibre 77% vs 44% (Christodoulides 2016 APT). Fibre evidence is for fibre supplements, not dietary fibre from whole foods.
-
-### Secondary source cited instead of primary — April 2026
-Step 3 of pre-draft verification requires confirming the specific stat is in the specific paper — not just a plausible paper by the same author.
-
-### Lay-clarification rule broadened — April 2026
-Every medical term a lay reader would not immediately understand requires a definition in brackets on first use in each section.
-
-### Safety-critical terms need inline lay definitions — April 2026
-Inline lay definition in same sentence, not just a Key Terms entry.
-
-### NICE guideline number verification — CG vs NG — LOCKED APRIL 2026
-Always verify via web search in the same session. migraine.html delivered citing NICE NG150 (incorrect) instead of NICE CG150 (correct) April 2026.
-
-### Visuals must maximise viewport space — LOCKED APRIL 2026
-Slide padding max `1rem 1.5rem 0.8rem`; body text min `.90rem`; gaps max `.5rem`; slide title min `1.55rem`. Content must fill at least 85%.
-
-### ev-stat-box text overflow — confirmed fix April 2026
-`padding:.9rem .75rem` + `overflow:hidden`; `.ev-conditions` `font-size:.78rem; line-height:1.32`.
-
-### Research card stat boxes must state complete clinical conclusions — LOCKED APRIL 2026
-The test: read the stat box alone — does a lay reader understand what the research found? If not, rewrite. Never lead with ORs, RCT counts, participant counts, or cost figures.
-
-### PMIDs must be verified by web search every time — LOCKED APRIL 2026
-In April 2026, PMID 25088348 included for Thurman et al Epilepsia 2014 — correct PMID is 24903551. Mandatory process: search → find PubMed URL → use that PMID only. Never from memory.
-
-### Charity and advocacy websites are not approved sources — LOCKED APRIL 2026
-Epilepsy Action, Alzheimer's Society, WCRF, Breast Cancer Now not approved. Derived statistics not acceptable.
-
-### Causal attributions require primary citations — April 2026
-Causal claims require a specific primary citation. Inference not sufficient.
-
-### NEAD — use neutral language — April 2026
-Use neutral language: "episodes that resemble seizures but are not caused by abnormal electrical activity in the brain."
-
-### Exact figure rule — never convert between numerical forms — LOCKED APRIL 2026
-Kwan & Brodie reports "more than 30 percent" — not "1 in 3" or "33%". Always cite the paper's exact expression.
-
-### Stat grid cards require inline citations — LOCKED APRIL 2026
-Breast cancer (Article 27) — 3 of 4 stat grid cards delivered without citations. Caught by Dr Paul. The grep check is mandatory before delivery.
-
-### Approved source retrieval — fetch from the approved source page directly — LOCKED APRIL 2026
-breast-cancer (Article 27): 60,763 taken from WCRF page, incorrectly attributed to CRUK. CRUK page states "around 59,000." Always fetch the approved source directly.
-
-### Cancer Series colour changed from rose to forest green — April 2026
-Initial `#8A3A5A` rejected — contrast issues. Changed to `#2A5A3A` (forest green). Dark variant `#1A3A25`.
-
-### Research card stat boxes use series colour, not navy — LOCKED APRIL 2026
-ev-stat-box: series-colour gradient (series-dark to series), never plain navy.
-
-### Never rebuild a project knowledge document from scratch — LOCKED APRIL 2026
-Always use the existing document as the base. Rebuilding from memory loses content and introduces errors.
-
-### Closing slide must be brand close, not stat repeat — LOCKED APRIL 2026
-Last slide: logo · tagline · brand headline · three pitch cards · med-disclaimer · series label. NOT a repeat of research stats.
-
-### Closing slide must use `justify-content: flex-start` — LOCKED APRIL 2026
-`center` clips the logo. `flex-start` anchors visibly.
-
-### CTA slide must use `cta-wrap-v2` with `grid-template-rows: auto 1fr auto` — LOCKED APRIL 2026
-Only correct CTA layout. `justify-content: center` or `space-between` clip content.
-
-### 6-card slides must be split to 3+3 — LOCKED APRIL 2026
-Never reduce font size or line clamp to make 6 cards fit.
-
-### prostate-cancer-visuals.html is canonical visuals reference — LOCKED APRIL 2026
-Replaces `lifestyle-changes-visuals.html` as primary canonical reference.
-
-### All stats require citations in every location — LOCKED APRIL 2026
-If it's a number anywhere in the file, it needs a citation.
-
-### Subtypes and formally named sets must be listed — LOCKED APRIL 2026
-`<ol class="subtype-list">` for any formally introduced set. Canonical: `lung-cancer.html` (Article 29, April 2026).
-
-### The reason for the stat must be in ev-outcome, not ev-conditions — LOCKED APRIL 2026
-ev-outcome (0.95rem weight 700) carries the reason. ev-conditions (0.78rem) handles trial name and population only.
-
-### ev-stage must use display:flex, never display:grid — LOCKED APRIL 2026
-Canonical failure: `stress-visuals.html` slide 7. Flex distributes evenly; grid clips.
-
-### close-logo `.dot` CSS bug — LOCKED APRIL 2026
-Use `<span class="cl-dot">` not `<span class="dot">`. Nav dot CSS makes `.dot` tiny and invisible.
-
-### disc footer visibility — LOCKED APRIL 2026
-`.disc` must use `color:rgba(255,255,255,.65)` and `font-size:clamp(.65rem,1vw,.80rem)`.
-
-### 5-card grids split to 3+2 — confirmed pattern April 2026
-CSS pattern: `.sys-grid-2`, `.doc-grid-2`, `.mech-grid-2` with `grid-template-rows:repeat(2,1fr)`.
-
-### Drug class descriptions for teleprompter — Digestive Series — April 2026
-- amitriptyline → "low-dose gut-brain modulator"
-- loperamide → "gut-slowing agent"
-- rifaximin → "gut-targeted antibiotic"
-- omeprazole/lansoprazole/esomeprazole → "proton pump inhibitor — a PPI"
-- famotidine → "H2 receptor antagonist — a second type of acid-reducer"
-
-### 4-card slides must split — "fragile" is not a QC pass — LOCKED APRIL 2026
-Any slide with 4 or more cards must split to ≤3 per slide. Confirmed April 2026 after ibd-visuals.html 4-card treatment ladder clipped on filming viewport. Correction: split to 2+2. QC item 38.
-
-### Gallstones and diverticular-disease were pre-canonical architecture — full rebuild required — April 2026
-Both used: `position:absolute; inset:0`, no nav dots, side-by-side ev-cards (`1fr 1fr`), quote-card close, missing `-webkit-box`. Cannot be patched — full structural rebuild required. When any visuals file of this vintage is opened, expect full rebuild. Canonical: `prostate-cancer-visuals.html`.
-
-### Project knowledge update protocol — LOCKED APRIL 2026
-1. `web_fetch` live GitHub version
-2. Write exact fetched content to `/home/claude/helf-school-project-knowledge.md`
-3. `str_replace` only new session content
-4. `wc -l` confirm new ≥ original
-5. Deliver for download + upload to GitHub and Claude Project
-
-### dizziness-vertigo-visuals.html was pre-canonical architecture — full structural rebuild required — May 2026
-Used `position:absolute; inset:0` slides, `display:none/active` pattern, `.dot` (not `.nav-dot`), stat-repeat closing, old CTA pattern — the same four pre-canonical markers as gallstones and diverticular-disease (April 2026). Full structural rebuild required; patching not viable. Rebuilt to 12-slide canonical deck May 2026. **Confirmed pattern: when all four markers are present, expect full rebuild, not retrofit.**
-
-### Text-stat approach for research cards with no headline percentage — confirmed May 2026
-When a Cochrane review concludes "safe and effective" or "moderate to strong evidence" without a single headline percentage, use `.ev-text-stat` class (1.35rem weight:700) in place of `.ev-num`. The ev-outcome carries the qualitative clinical conclusion. Confirmed in `dizziness-vertigo-visuals.html` May 2026 for Epley manoeuvre and vestibular rehabilitation cards. CSS: `.ev-text-stat{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:700;color:#fff;line-height:1.25;margin-bottom:.3rem}`
-
-### Fife & FitzGerald 2005 (Int J Audiol) — source verification outstanding — May 2026
-`dizziness-vertigo-visuals.html` slide 10 and the teleprompter reference Fife & FitzGerald 2005, Int J Audiol (93-week wait audit). Int J Audiol is not in the approved sources list. Flagged ⚑ — must be verified or replaced before the dizziness-vertigo article goes live.
-
-### OTC drug names (aspirin/ibuprofen/paracetamol) are drug names — Rule 34 applies — May 2026
-In headaches-visuals.html, the TTH treatment card initially included "Aspirin, ibuprofen, or paracetamol". These are generic drug names and Rule 34 applies even to OTC medicines. Replaced with "Simple over-the-counter analgesics". Apply same principle across all visuals files.
-
----
-
-## 19. OUTSTANDING TASKS (April–May 2026)
-
-### Completed ✅
-- Cancer Series visuals + teleprompters (27–31): all complete ✅
-- Cardiovascular Series visuals + teleprompters (01–07): all complete ✅
-- Practical Health Series visuals + teleprompters (08–12): all complete ✅
-- Digestive Series — ALL COMPLETE April 2026 ✅:
-  - acid-reflux (13) ✅ · bloating (15) ✅ · ibs (16) ✅
-  - **ibd (14) ✅ full rebuild April 2026**
-  - **coeliac (18) ✅ full rebuild April 2026**
-  - **gallstones (19) ✅ full structural rebuild April 2026**
-  - **diverticular-disease (20) ✅ full structural rebuild April 2026**
-  - **masld (17) ✅ retrofit complete April 2026**
-  - **constipation (21) ✅ retrofit complete April 2026**
-- **Neurological Series — PARTIAL May 2026:**
-  - migraine (22) ✅ visuals + teleprompter retrofitted May 2026 — 11-slide rebuild
-  - headaches (23) ✅ visuals + teleprompter retrofitted May 2026 — 11-slide rebuild
-  - dizziness-vertigo (24) ✅ visuals + teleprompter FULL STRUCTURAL REBUILD May 2026 — 12-slide deck
-
-### Next priority — Neurological Series Articles 25–26
-**memory-dementia (25) → epilepsy (26)**
-
-Each file needs:
-1. CTA sequential animation
-2. Brand close pitch cards
-3. `display:-webkit-box` on ALL body elements — AND set `line-clamp:4`
-4. Split any 4+ card slides — max 3 cards per slide (Rule 38: 4-card is mandatory split)
-5. ev-card: padding 1.1rem, ev-body clamp:4 if two cards per slide
-6. ev-stage: confirm `display:flex` — fix if `display:grid` found
-7. Check for pre-canonical architecture (inset:0, no nav dots) — if all four markers present, full structural rebuild required (Rule 40)
-8. Teleprompter: remove drug names, update cue boxes to match new slide count
-
-### Practical Health Series extension
-- Article 32: Breast Awareness
-- Article 33: Testicular Awareness
-
-### Verification outstanding
-- `hypertension.html` references 5 & 6 — Cochrane PubMed IDs ⚑ unverified
-- `helf-school-conditions.html` — hero stat needs updating to 31 articles live
-- `dizziness-vertigo-visuals.html` slide 10 — Fife & FitzGerald 2005 (Int J Audiol) ⚑ not in approved sources list
-
-### Retrofit backlog (apply when files next opened)
-0. **LAY IMPACT FIRST** — colour narrative, remove drug names, three-question structure
-1. **DRUG BRAND NAMES** — all generics need brand names alongside
-2. **Research card colour** — ev-stat-box: navy → series-colour gradient
-3. **Closing slide brand close** — stat-recap → brand close
-4. **Research card display standard** — ev-stat-row to 3.2rem weight 900
-5. **Disclaimer sizes** — med-disc-text 1rem on both CTA and closing slides
-6. **Research card clinical conclusion standard** — 01–23
-7. **Stat grid citations** — 01–11
-8. **Subtype list formatting** — `<ol class="subtype-list">` where applicable
-
-**TELEPROMPTER CONSISTENCY RULE — LOCKED APRIL 2026:** Whenever a visuals file is updated, the matching teleprompter must be reviewed slide-by-slide before either file is uploaded. A visuals retrofit is not complete until the teleprompter has been reviewed and updated.
-
----
-
-## 20. CONSTIPATION ARTICLE — VERIFIED REFERENCES (April 2026)
-
-| Ref | Citation | DOI / URL | Used for |
-|-----|----------|-----------|----------|
-| 1 | NICE CKS Constipation (adults). Last revised 2023 | cks.nice.org.uk/constipation | Definition (Rome IV), red flags, laxative stepwise |
-| 2 | Dowden A. Prescriber 2021 + BJHA 2025 | wchh.onlinelibrary.wiley.com/doi/10.1002/psb.1954 | NHS burden: ~83,000 admissions/yr; 18.6m prescriptions; ~£113m cost |
-| 3 | Lee-Robichaud H et al. Cochrane 2010;(7):CD007570. PMID 20614462 | doi.org/10.1002/14651858.CD007570.pub2 | Macrogol superior to lactulose (10 RCTs, 868 participants) |
-| 4 | Christodoulides S et al. APT 2016;44(2):103–116. PMID 27170558 | doi.org/10.1111/apt.13662 | Fibre: 77% response vs 44% placebo |
-| 5 | NHS Inform. Constipation | nhsinform.scot/illnesses-and-conditions/stomach-liver-and-gastrointestinal-tract/constipation | Prevalence: 1 in 7 adults UK; women twice as often as men |
-
----
-
-## 21. CLAUDE PROJECT FILE NOTES
-
-The Claude project holds **visuals, teleprompter, and screen files only**. Article HTML files live on GitHub only. Exception: `mediterranean-diet.html` kept as canonical article template.
-
-### Canonical reference files
-| File | Purpose |
-|------|---------|
-| `mediterranean-diet.html` | Canonical article HTML template |
-| `lifestyle-changes-teleprompter.html` | Canonical teleprompter (cue box standard) |
-| `prostate-cancer-visuals.html` | **PRIMARY canonical visuals reference** |
-| `lifestyle-changes-visuals.html` | Secondary visuals reference — 6-row grid pattern |
-| `memory-dementia.html` | Canonical article research card layout (220px column) |
-| `breast-cancer.html` | Canonical article research card display (3.2rem stat, series gradient) |
-| `prostate-cancer.html` | Cancer Series article canonical — reference numbering via CSS counter |
-| `lung-cancer.html` | Canonical: myth-busting panel; `<ol class="subtype-list">` pattern |
-
-### Files confirmed in Claude project (April 2026)
-**Teleprompters:** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine · headaches · dizziness-vertigo · memory-dementia · epilepsy · prostate-cancer
-
-**Visuals:** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd (screen) · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine · headaches · dizziness-vertigo · memory-dementia · epilepsy · prostate-cancer
-
-**Screen files:** Ar_barretts-screen · Ar_sphincter-screen · ibd-gut-screen · bloating-gut-screen · bloating-fodmap-screen
-
----
-
-## 22. SESSION START RULES (content of helf-school-session-start-rules.md)
-
-### Rule 1 — Read before acting
-Read both documents in full before any output. No exceptions.
-
-### Rule 2 — Article inventory is the source of truth
-Section 3 is authoritative. Do not infer status from file sizes or project file listings.
-
-### Rule 3 — 5,140-byte files are NOT corrupted
-Edge incognito loader stubs. Never flag as corrupted.
-
-### Rule 4 — Never produce output before confirming understanding
-Before building any file: (1) which file, (2) current status per inventory, (3) canonical reference checked.
-
-### Rule 5 — Educational voice check on every file
-
-### Rule 6 — Cross-check article ↔ teleprompter before delivery
-
-### Rule 6A — Project knowledge always overrides session-start-rules on status
-
-### Rule 7 — One large file per turn
-
-### Rule 8 — Verify references before building
-Run web searches to verify all planned citations. Fetch figures directly from approved source page.
-
-### Rule 9 — Update project knowledge at session end
-Upload to both GitHub AND the Claude Project.
-
-### Rule 10 — NICE CG99 is children only
-
-### Rule 11 — Research card complete clinical conclusion
-
-### Rule 12 — Visuals must maximise viewport space
-Body text minimum `.90rem`. Content must fill at least 85%.
-
-### Rule 13 — PMIDs must be verified by web search every time
-
-### Rule 14 — Strict source rule
-Only approved sources. Derived statistics not acceptable.
-
-### Rule 15 — Exact figure rule — LOCKED APRIL 2026
-Use paper's exact numerical expression everywhere.
-
-### Rule 16 — Stat grid citation rule — LOCKED APRIL 2026
-Every `.stat-prose` line must carry a superscript citation.
-
-### Rule 17 — Approved source retrieval rule — LOCKED APRIL 2026
-Every figure must be retrieved directly from the approved source page.
-
-### Rule 18 — Never rebuild the project knowledge document from scratch — LOCKED APRIL 2026
-
-### Rule 19 — Cancer Series: three elements use series green, not navy — LOCKED APRIL 2026
-Key Terms box · Putting it all together box · Research card stat box all use series gradient.
-
-### Rule 20 — Closing slide: brand close, `justify-content: flex-start` — LOCKED APRIL 2026
-
-### Rule 21 — CTA slide: `cta-wrap-v2` with `grid-template-rows: auto 1fr auto` — LOCKED APRIL 2026
-
-### Rule 22 — 3-card rule: never 6 cards on one slide — LOCKED APRIL 2026
-
-### Rule 23 — Dark variants confirmed: retrofit unblocked — April 2026
-
-### Rule 24 — All stats require citations in every location — LOCKED APRIL 2026
-
-### Rule 25 — Subtypes and formally named sets must be listed — LOCKED APRIL 2026
-`<ol class="subtype-list">` — never inline comma-separated prose.
-
-### Rule 26 — prostate-cancer-visuals.html is canonical visuals reference — LOCKED APRIL 2026
-
-### Rule 27 — All stats require citations in every location — LOCKED APRIL 2026
-
-### Rule 28 — Subtypes in lists only — LOCKED APRIL 2026
-
-### Rule 29 — ev-outcome must carry the reason — LOCKED APRIL 2026
-
-### Rule 30 — Visuals research card body = 2–3 sentences maximum — LOCKED APRIL 2026
-
-### Rule 31 — CTA slide = health-action one thing — LOCKED APRIL 2026
-
-### Rule 32 — Research currency: no articles older than 12 years — LOCKED APRIL 2026
-
-### Rule 33 — Drug brand names alongside all generics — LOCKED APRIL 2026
-Articles/visuals: `pembrolizumab (Keytruda)`. Teleprompter: class description approach.
-
-### Rule 34 — Lay impact first: visuals and teleprompter — LOCKED APRIL 2026
-Colour narrative mandatory. No drug names in visuals/teleprompter.
-
-### Rule 35 — Series background colour: never near-black — LOCKED APRIL 2026
-Cancer `#0e2418` · Cardiovascular `#1a0808` · Neurological `#0f0d1a` · Digestive `#1a0e08` · Fatigue `#081a14` · Practical `#120e08`
-
-### Rule 36 — EV-card two-card height constraint — LOCKED APRIL 2026
-Two stacked ev-cards: ev-body ≤ 30 words. Single ev-card: ev-body ≤ 44 words.
-
-### Rule 37 — ev-stage MUST USE display:flex — NEVER display:grid — LOCKED APRIL 2026
-Canonical failure: `stress-visuals.html` slide 7 (April 2026).
-
-### Rule 38 — 4-card slides must split — LOCKED APRIL 2026
-**Any slide with 4 or more cards must split to ≤3 cards per slide.** The QC label "⚠ 4-card (fragile)" is not a pass — it is a mandatory split. Confirmed April 2026 after ibd-visuals.html 4-card treatment ladder clipped on filming viewport.
-
-### Rule 39 — Text-stat approach for qualitative Cochrane conclusions — LOCKED MAY 2026
-When no single headline percentage exists (e.g. Cochrane reviews concluding "safe and effective" or "moderate to strong evidence"), use `.ev-text-stat` class (1.35rem weight:700) in place of `.ev-num`. The ev-outcome carries the qualitative clinical conclusion. CSS: `.ev-text-stat{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:700;color:#fff;line-height:1.25;margin-bottom:.3rem}`. Canonical: `dizziness-vertigo-visuals.html` May 2026.
-
-### Rule 40 — Pre-canonical architecture = mandatory full rebuild — LOCKED MAY 2026
-When a visuals file uses `position:absolute; inset:0` · `display:none/active` · `.dot` (not `.nav-dot`) · stat-repeat closing — all four markers indicate pre-canonical architecture. Full structural rebuild is required; patching is not viable. Canonical failures: gallstones and diverticular-disease (April 2026), dizziness-vertigo (May 2026).
-
----
-
-## CONFIRMED FILE STATUS — UPDATED APRIL 2026
-
-**AUTHORITY NOTE: If any entry below conflicts with Section 3, Section 3 is correct.**
-
-### Cardiovascular Series (01–07) — ALL COMPLETE ✅
-
-| File | Status |
-|------|--------|
-| hypertension.html + visuals + teleprompter | ✅ Confirmed correct (refs 5+6 ⚑ pending verification) |
-| cholesterol.html + visuals + teleprompter | ✅ Confirmed correct |
-| heart-attack-risk.html + visuals + teleprompter | ✅ Confirmed correct |
-| statins.html + visuals + teleprompter | ✅ Confirmed correct |
-| lifestyle-changes.html + visuals + teleprompter | ✅ Confirmed correct — CANONICAL REFERENCE |
-| salt-blood-pressure.html + visuals + teleprompter | ✅ Confirmed correct |
-| supplements-cholesterol.html + visuals + teleprompter | ✅ Confirmed correct |
-
-### Practical Health Series (08–12) — COMPLETE ✅
-
-| File | Status |
-|------|--------|
-| mediterranean-diet.html + visuals + teleprompter | ✅ All confirmed correct |
-| sleep.html + visuals + teleprompter | ✅ All confirmed correct |
-| exercise.html + visuals + teleprompter | ✅ All confirmed correct |
-| stress.html + visuals + teleprompter | ✅ All confirmed correct |
-| alcohol.html + visuals + teleprompter | ✅ All confirmed correct |
-
-### Digestive Health Series (13–21)
-
-| File | Status |
-|------|--------|
-| acid-reflux + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter retrofitted April 2026 |
-| ibd + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter **full rebuild** April 2026 |
-| bloating + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter retrofitted April 2026 |
-| ibs + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter retrofitted April 2026 |
-| masld + visuals + teleprompter | ✅ On GitHub · retrofit complete April 2026 |
-| coeliac + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter **full rebuild** April 2026 |
-| gallstones + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter **full structural rebuild** April 2026 |
-| diverticular-disease + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter **full structural rebuild** April 2026 |
-| constipation + visuals + teleprompter | ✅ Built April 2026 · retrofit complete April 2026 |
-
-### Neurological Series (22–26) — PARTIAL RETROFIT May 2026
-
-| File | Status |
-|------|--------|
-| migraine + visuals + teleprompter | ✅ Built April 2026 · visuals + teleprompter RETROFITTED May 2026 · 11-slide deck |
-| headaches + visuals + teleprompter | ✅ Built April 2026 · visuals + teleprompter RETROFITTED May 2026 · 11-slide deck |
-| dizziness-vertigo + visuals + teleprompter | ✅ Built April 2026 · FULL STRUCTURAL REBUILD May 2026 · 12-slide deck · ⚑ Fife & FitzGerald ref pending |
-| memory-dementia + visuals + teleprompter | ✅ Built April 2026 — on GitHub · retrofit outstanding |
-| epilepsy + visuals + teleprompter | ✅ Built April 2026 — on GitHub · retrofit outstanding |
-
-### Cancer Series (27–31) — ALL COMPLETE ✅
-
-| File | Status |
-|------|--------|
-| breast-cancer + visuals + teleprompter | ✅ All 3 files built + retrofitted April 2026 |
-| prostate-cancer + visuals + teleprompter | ✅ All 3 files built + retrofitted April 2026 — PRIMARY CANONICAL REFERENCE |
-| lung-cancer + visuals + teleprompter | ✅ All 3 files built + retrofitted April 2026 |
-| bowel-cancer + visuals + teleprompter | ✅ All 3 files built + retrofitted April 2026 — FIRST ZERO-CHANGE DELIVERY |
-| melanoma + visuals + teleprompter | ✅ All 3 files built + retrofitted April 2026 |
-
-### OUTSTANDING CITATION FLAGS
-- hypertension.html refs 5 + 6 — Cochrane PubMed IDs flagged ⚑ unverified
-- dizziness-vertigo-visuals.html slide 10 — Fife & FitzGerald 2005 (Int J Audiol) ⚑ not in approved sources
-
----
-
-## 23. ARTICLE-SPECIFIC NOTES — KNOWN ISSUES
-
-### hypertension.html
-References 5 and 6 — Cochrane PubMed IDs flagged ⚑ unverified.
-
-### statins.html
-Very large HTML file — has caused mid-build crashes. Handle in one dedicated turn.
-
-### conditions page (helf-school-conditions.html)
-Hero stat: 28 articles live now. Needs updating to 31 when all series complete.
-
-### epilepsy.html — April 2026 decisions
-NICE NG217 (April 2022, updated January 2025). Kwan & Brodie NEJM 2000: "more than 30 percent" not "1 in 3". SUDEP stat: ~1 in 1,000 per year (Thurman et al Epilepsia 2014, PMID 24903551). Misdiagnosis rate: 26.1% (Smith, Defalla & Chadwick QJM 1999, PMID 10209668). NEAD neutral language. Valproate teratogenicity inline definition present.
-
-### breast-cancer.html — April 2026 decisions
-Incidence "around 59,000" (CRUK direct, not WCRF 60,763). Screening age 50–70. NICE NG101 + CG81. 3 research cards: Marmot 2012 (PMID 23117178); EBCTCG tamoxifen 2011 (PMID 21802721); EBCTCG aromatase inhibitors 2015 (PMID 26211827). All 4 stat grid cards carry inline citations ✅. Overdiagnosis: 129 per 10,000 framing. Forest green gradient stat box — canonical standard.
-
-### prostate-cancer.html — April 2026 decisions
-Incidence ~57,900 (CRUK). 10-year survival 78.9%. Deaths ~12,200. NICE NG131. 3 research cards: ProtecT (PMID 36912538); CAP trial (PMID 38581198); STAMPEDE (PMID 26719232). Visuals: 14 slides (3-card split) — canonical reference for all future visuals. Teleprompter: 9 segments, 10 cue boxes, 712 words.
-
-### lung-cancer.html — April 2026 decisions
-Myth-busting panel (2×2 dark navy grid). 3 research cards: NELSON (PMID 31995683); KEYNOTE-024 (PMID 27718847); FLAURA (PMID 31751012). NSCLC subtypes as `<ol class="subtype-list">` — first use of this pattern, canonical.
-
-### ibd-visuals.html — April 2026 full rebuild
-12-slide deck. Harm/doc 5-card grids split 3+2. Treatment ladder 4-card → 2+2 (Rule 38 — mandatory split). Drug names → class descriptions (anti-TNF agents, immunomodulators, aminosalicylates, corticosteroids). Teleprompter updated to 12-slide deck.
-
-### coeliac-visuals.html — April 2026 full rebuild
-12-slide deck. 5-card doc-grid split 3+2. ev-stat-box → series gradient. ev-outcome carries reason. Sequential CTA. Brand close. Teleprompter updated.
-
-### gallstones-visuals.html — April 2026 full structural rebuild
-Pre-canonical architecture: `inset:0` slides, no nav dots, side-by-side ev-cards, quote-card close, 5 webkit-box omissions, old stat format. Full structural rebuild — cannot be patched. 12-slide deck. All row grids ≤3 per slide. Teleprompter: 8 segments, cue boxes updated.
-
-### diverticular-disease-visuals.html — April 2026 full structural rebuild
-Same pre-canonical architecture as gallstones. Full structural rebuild. 10-slide deck. Myth comparison (2-col) preserved as this is clinically valuable. Risk/doc 5→3+2. Canonical ev-stage. Sequential CTA. Brand close. Teleprompter: 7 segments, cue boxes updated.
-
-### migraine-visuals.html — May 2026 retrofit
-Pre-retrofit issues: `display:none` slides, 6-card grids, `line-clamp:2`, ev-stat-box plain tint, static CTA, stat-repeat closing. Rebuilt to 11-slide canonical deck: intro · big picture · triggers 1/2+2/2 · evidence 1/2+2/2 · research · mechanisms 1/2+2/2 · CTA sequential · brand close. Colour narrative applied throughout. No drug names ✅.
-
-### migraine-teleprompter.html — May 2026 update
-Cue boxes updated to 11-slide structure. Drug names (sumatriptan/Imigran/propranolol/topiramate/amitriptyline/erenumab) replaced with class descriptions per Rule 34.
-
-### headaches-visuals.html — May 2026 retrofit
-Pre-retrofit issues: same as migraine. Rebuilt to 11-slide canonical deck: intro · big picture · types 1/2+2/2 · treatment 1/2+2/2 · research · red flags 1/2+2/2 · CTA sequential · brand close. OTC drug names (aspirin/ibuprofen/paracetamol) replaced with "simple over-the-counter analgesics" per Rule 34. Colour narrative applied throughout.
-
-### headaches-teleprompter.html — May 2026 update
-Cue boxes updated to 11-slide structure. Drug names (sumatriptan/Imigran and OTC generics) replaced with class descriptions.
-
-### dizziness-vertigo-visuals.html — May 2026 FULL STRUCTURAL REBUILD
-Pre-canonical architecture confirmed: `position:absolute; inset:0` · `display:none/active` · `.dot` not `.nav-dot` · stat-repeat closing · old CTA 4-card grid. Same vintage as gallstones and diverticular-disease (April 2026). Full structural rebuild to 12-slide canonical deck: intro · big picture (2.4%/86%/8% stats) · dizziness vs vertigo 1/2+2/2 · causes 1/2+2/2 · BPPV mechanism · red flags · research (Epley+VR Cochrane) · research (treatment gap) · CTA sequential · brand close. Text-stat approach for Epley and VR Cochrane cards (`.ev-text-stat` class, no single headline percentage). **⚑ Fife & FitzGerald 2005 (Int J Audiol) — not in approved sources — pending verification before article goes live.**
-
-### dizziness-vertigo-teleprompter.html — May 2026 update
-7 segments mapped to 12 slides. seg-1 added for new big picture slide. seg-4 carries two cue boxes (slides 7 and 8 for BPPV mechanism + red flags). seg-5 carries two cue boxes (slides 9 and 10 for two research slides). No drug names in original ✅.
-
----
-
-## 24. PLANNING NOTES — NEXT SERIES
-
-### Neurological Series (Articles 22–26) — PARTIAL RETROFIT May 2026
-Series colour: `#6B5EA8` (purple). Articles 22–24 retrofitted May 2026. Articles 25–26 outstanding.
-
-### Practical Health Series extension — Articles 32–33 (planned April 2026)
-
-**Article 32 — Breast Awareness**
-Practical Health series · slug: `breast-awareness`. Short practical article — NOT cancer biology. NICE/CRUK moved away from monthly BSE towards breast awareness. Cross-referenced from `breast-cancer.html` Section 3 — "Coming soon."
-
-**Article 33 — Testicular Awareness**
-Practical Health series · slug: `testicular-awareness`. Aimed at young men (peak: 20s–30s). Testicular cancer is the most common cancer in men aged 15–49 in the UK.
-
-### Cancer Series (Articles 27–31) — ALL COMPLETE ✅ April 2026
-
-**Possible future series:**
-- Stroke and TIA (bridges cardiovascular)
-- Parkinson's Disease (rising incidence, ageing population)
-
----
-
-## 25. PROCESS NOTES — FILE CREATION IN CLAUDE
-
-### Writing large HTML files
-Use `create_file` for all HTML files. Bash heredocs fail on large HTML content.
-
-### File already exists error
-Run `rm /home/claude/filename.html` then retry `create_file`.
-
-### Outputs directory
-All files for Dr Paul must be copied to `/mnt/user-data/outputs/` and presented via `present_files`.
-
-### QC before presenting
-Always run bash QC checks before copying to outputs. Deliver only after QC passes.
-
-**Standard QC bash commands:**
-```bash
-# Check ev-body word counts
-python3 -c "
-import re, sys
-c=open(sys.argv[1]).read()
-bodies=re.findall(r'class=\"ev-body\">(.*?)</div>',c,re.DOTALL)
-for i,b in enumerate(bodies):
-    t=re.sub(r'<[^>]+>','',b).strip(); w=len(t.split())
-    print(f'ev-body {i+1}: {w}w {chr(10003) if w<=30 else chr(10007)}')
-" filename.html
-
-# Check ev-stage uses flex not grid
-grep "ev-stage" filename.html
-
-# Check forbidden phrases
-grep -i "speak to your GP\|you should\|seek help" filename.html
-```
-
-### Research card stat box — writing guidance
-1. Identify the clinically important finding
-2. State as complete subject + finding: "The Epley manoeuvre / is safe & effective for BPPV"
-3. Check: can a lay reader understand this from the stat box alone?
-4. Never lead with ORs, RCT counts, CIs, or participant counts
-
-### PMID verification — mandatory process
-1. Search by author, title, journal, year
-2. Find PubMed URL in search results
-3. PMID is the number in that URL
-4. Only then include the PMID. Never from memory.
-
-### Project knowledge update — mandatory process — LOCKED APRIL 2026
-1. `web_fetch` live GitHub version
-2. Write exact fetched content to `/home/claude/helf-school-project-knowledge.md`
-3. `str_replace` only new session content
-4. `wc -l` confirm new ≥ original
-5. Deliver for download + upload to GitHub and Claude Project
-
-### Subtype list — canonical CSS pattern — LOCKED APRIL 2026
-```css
-.article-wrap ol.subtype-list { counter-reset: subtype-counter; list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: .45rem; margin: .6rem 0 1rem 0; }
-.article-wrap ol.subtype-list li { counter-increment: subtype-counter; display: flex; gap: .7rem; align-items: flex-start; font-size: 1rem; line-height: 1.72; color: var(--text); font-weight: 400; }
-.article-wrap ol.subtype-list li::before { content: counter(subtype-counter); background: var(--series); color: #fff; font-size: .72rem; font-weight: 700; width: 1.45rem; height: 1.45rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: .22rem; }
-```
-HTML: `<ol class="subtype-list"><li><strong>Name</strong> — definition text.</li></ol>`
-
-### Approved source figure retrieval — mandatory process — LOCKED APRIL 2026
-1. Identify which approved source should hold the figure
-2. Search for that approved source page specifically
-3. Retrieve the figure from that page
-4. Use only the figure stated on the approved source page
-5. If an unapproved page attributes a figure to an approved source, do not use it — fetch the approved source directly
-
----
-
-*End of document. Update at the end of every session. Download via Artifact panel. Upload to both GitHub (pls4286/helfschool/main) and the Claude Project to take effect in future sessions.*
 ---
 
 ## 17. RETROFIT STATUS (retroactive standards across existing articles)
@@ -1325,71 +1134,63 @@ HTML: `<ol class="subtype-list"><li><strong>Name</strong> — definition text.</
 - Article HTML retrofits (Articles 13–18): confirmed complete
 - Visuals and teleprompters (Articles 13–18): confirmed built
 - **Cancer Series visuals + teleprompters (Articles 27–31) — ALL COMPLETE April 2026 ✅**
-  - breast-cancer-visuals + teleprompter ✅
-  - prostate-cancer-visuals + teleprompter ✅
-  - lung-cancer-visuals + teleprompter ✅
-  - bowel-cancer-visuals + teleprompter ✅
-  - melanoma-visuals + teleprompter ✅
-- **Cardiovascular Series visuals + teleprompters (Articles 01–07) — ALL COMPLETE April 2026 ✅**
+  - breast-cancer-visuals + teleprompter ✅ (CTA sequential animation, card-body ≤25 words, brand close, drug names removed)
+  - prostate-cancer-visuals + teleprompter ✅ (CTA sequential animation, drug names removed)
+  - lung-cancer-visuals + teleprompter ✅ (dark cards, colour narrative, sequential CTA)
+  - bowel-cancer-visuals + teleprompter ✅ (dark cards, colour narrative, sequential CTA)
+  - melanoma-visuals + teleprompter ✅ (dark cards, colour narrative, sequential CTA, line-clamp:4, ≤25 words)
+- **Cardiovascular Series Article 01 — Hypertension visuals + teleprompter ✅ April 2026**
   - CTA sequential animation applied ✅
   - Brand close pitch cards applied ✅
   - `display:-webkit-box` fixed on all body elements ✅
-  - 5-card and 6-card slides split to max 3 cards per slide ✅
+  - 5-card and 6-card slides split to max 3 cards per slide ✅ (now 13 slides)
   - ev-card padding reduced to 1.1rem, ev-body clamp:4 ✅
   - Teleprompter slide numbers updated to match ✅
-- **Practical Health Series visuals + teleprompters (Articles 08–12) — ALL COMPLETE April 2026 ✅**
-  - Articles 10 (exercise), 11 (stress), 12 (alcohol) completed this session ✅
-  - ev-stage display:flex enforced (Rule 37) — stress-visuals slide 7 clipping resolved ✅
-- **Digestive Series — partial retrofit completed April 2026:**
-  - ibd (14): visuals + teleprompter ✅ full retrofit April 2026 — 12-slide deck
-  - coeliac (18): visuals + teleprompter ✅ full retrofit April 2026 — 12-slide deck
-  - gallstones (19): visuals + teleprompter ✅ **full structural rebuild** April 2026 — 12-slide deck (pre-canonical architecture found — rebuild required)
-  - diverticular-disease (20): visuals + teleprompter ✅ **full structural rebuild** April 2026 — 10-slide deck (pre-canonical architecture found — rebuild required)
-  - masld (17): outstanding
-  - constipation (21): outstanding
 
 ### Outstanding — to confirm and apply
 - Research card stat standard (outcomes only, not counts): outstanding across 01–11
-- **Research card complete clinical conclusion standard: outstanding across 01–23** — audit when next opened
+- **Research card complete clinical conclusion standard: outstanding across 01–23** — all previously built articles should have research card stat boxes audited against the complete clinical conclusion rule when they are next opened for any edit
 - Inline citations (superscripts linking to refs): outstanding across 01–11
-- **Stat grid citations: outstanding across all articles built before April 2026**
-- CTA sequential animation: outstanding across Digestive and Neurological non-Cancer series visuals
-- **Closing slide brand close standard: outstanding across 19–26**
+- **Stat grid citations: outstanding across all articles built before April 2026** — apply when next opened
+- CTA sequential animation: outstanding across Cardiovascular 02–07 and all other non-Cancer series visuals
+- **Closing slide brand close standard: outstanding across 01–07 and 19–26** — retrofit when files are next opened (Cancer series done ✅)
 - Visuals layout standard (3-card split, ev-stat-row): outstanding across 01–11
 - Key terms / hero visibility standards: outstanding across 01–11
 - Teleprompter cue box standard: confirm per-file which were built before standard was set
-- **Subtype list formatting: outstanding across all articles**
-- **`display:-webkit-box` + `clamp:4` audit: outstanding across Digestive and Neurological visuals** — `.sys-body`, `.doc-body`, `.mech-body` must have `line-clamp:4` — NEVER `line-clamp:2`.
-- **5/6-card grid split: outstanding across Digestive and Neurological visuals**
-- **ev-stage display:flex audit: outstanding across Digestive and Neurological visuals**
+- **Subtype list formatting: outstanding across all articles** — apply `<ol class="subtype-list">` pattern when any article is next opened and contains formally introduced sets of items. Canonical: `lung-cancer.html` (April 2026).
+- **`display:-webkit-box` + `clamp:4` audit: outstanding across Cardiovascular 02–07 visuals** — ALL CSS rules using `-webkit-line-clamp` must also have `display:-webkit-box`. Without it clamp does nothing. AND: `.sys-body`, `.doc-body`, `.mech-body` must have `line-clamp:4` — NEVER `line-clamp:2`. At 768px filming viewport a 3-card grid gives ~98px for body text = 4.3 lines at 22.7px/line. `clamp:2` cuts sentences mid-thought (45px shown). `clamp:4` shows full sentences (91px). Word limit for these classes: ≤35 words (wider cards than ic-body). Canonical failure: hypertension-visuals.html slides 3–6, 8–9 — all body text cut to 2 lines after webkit-box was added. Caught by Dr Paul April 2026.
+- **5/6-card grid split: outstanding across Cardiovascular 02–07 visuals** — any slide with 5 or 6 cards in a single grid must be split to 3+3 or 3+2. Proven at 600px viewport: 5 cards always clips, 6 cards always clips.
 
 ---
 
 ## 18. KEY LEARNING POINTS (accumulated)
 
 ### NICE CG99 is for children only — never cite for adults
-NICE CG99 covers constipation in **children and young people only**. Adult constipation: **NICE CKS** at `cks.nice.org.uk/constipation`.
+NICE CG99 covers constipation in **children and young people only**. For adult constipation the correct reference is **NICE CKS** at `cks.nice.org.uk/constipation`. Citing CG99 for an adult article is a meaningful clinical error.
 
 ### Dr Paul's experience is 20+ years, not 30+
-All references must read "20+ years" or "over twenty years as an NHS GP".
+All references to clinical experience must read "20+ years" or "over twenty years as an NHS GP". The incorrect "30+" was on the live index.html and was corrected April 2026.
 
 ### Local link testing — expected not to work
-When Dr Paul opens a downloaded HTML file locally and clicks article links, they appear broken. Expected — links are relative and work on the live GitHub site.
+When Dr Paul opens a downloaded HTML file locally and clicks article links, they appear broken. This is expected and correct — links are correctly coded as relative and work on the live GitHub site.
 
 ### Dr Paul prefers Claude to handle all file edits
-Never ask Dr Paul to make manual edits. Claude fetches, applies all changes, delivers the corrected file for download and re-upload.
+Never ask Dr Paul to make manual edits to files via the GitHub editor. When corrections are needed, Claude fetches the file, applies all changes, and delivers the corrected file for download and re-upload.
 
 ### Conditions page — always rebuild, never patch
-When helf-school-conditions.html needs significant changes, rebuild from scratch.
+When helf-school-conditions.html needs significant changes, rebuild from scratch. The old version had deeply structural problems. Partial patching would miss cascading issues.
 
 ### Educational voice — systemic issue in older files
-When fetching any older file for any purpose, audit for forbidden phrases and correct them as part of the work.
+index.html had directive language in three locations. When fetching any older file for any purpose, audit for forbidden phrases and correct them as part of the work.
 
 ### Teleprompter cue box — advance THEN read
-The cue box precedes the script for its segment. Label: `▶ ADVANCE NOW — then read`.
+The cue box precedes the script for its segment. Dr Paul advances the slide first, then reads the script — the viewer sees the slide before Dr Paul speaks. Cue box label: `▶ ADVANCE NOW — then read`.
 
 ### Large file writing — use create_file not bash
-For HTML files over ~400 lines, `create_file` is the correct tool.
+For HTML files over ~400 lines, `create_file` is the correct tool. Bash heredocs fail on large HTML because of shell character escaping.
+
+### File already exists — delete and retry
+If `create_file` reports "file already exists", delete the existing placeholder (`rm /home/claude/filename.html`) and retry.
 
 ### Constipation article — April 2026 research decisions
 - NICE CG99 explicitly excluded (children only)
@@ -1400,232 +1201,197 @@ For HTML files over ~400 lines, `create_file` is the correct tool.
 - Research card 2: fibre supplementation response rate 77% vs 44% (Christodoulides 2016)
 - Important distinction: fibre evidence is for fibre supplements not dietary fibre from whole foods
 
-### Secondary source cited instead of primary — April 2026
-In headaches article, Reference 5 was a consensus document, not the actual case-control study.
+### Secondary source cited instead of primary research paper — April 2026
+In the headaches article (Article 23), Reference 5 was incorrectly cited as Kernick et al BJGP 2008;58(557):880 — a consensus imaging guidance document. The correct paper was Kernick et al BJGP 2007;57(542):695 — the actual case-control study. The error occurred because the pre-draft check confirmed the 2008 paper existed and was by the same author on the same topic — but did not verify that the specific stat was in that paper. **The rule strengthened as a result:** Step 3 of the pre-draft verification rule now explicitly requires confirming the specific stat is in the specific paper.
 
 ### Lay-clarification rule broadened — April 2026
-Every medical or clinical term a lay reader would not immediately understand requires a plain English definition in brackets on first use in each section.
+The original lay-clarification rule listed only statistical terms. This caused anatomical and clinical terms to slip through QC in the headaches article. The rule has been broadened: **every medical or clinical term a lay reader would not immediately understand requires a plain English definition in brackets on first use in each section.** This is now a general rule, not a list of specific terms.
 
 ### Safety-critical terms need inline lay definitions — April 2026
-Inline lay definition in same sentence, not just a Key Terms entry.
+Any clinical term that carries significant implications for the reader must have an inline lay definition in the same sentence, not just a Key Terms box entry. Confirmed when "teratogenic" appeared in the migraine article without a lay explanation.
+
+### Structured lists — Key Terms terms need "(see Key Terms below)" — LOCKED APRIL 2026
+When a medical term from the Key Terms box appears in a structured list or criteria box, add "(see Key Terms below)" immediately after the term.
 
 ### NICE guideline number verification — CG vs NG — LOCKED APRIL 2026
-Always verify via web search in the same session. In April 2026, migraine.html delivered citing NICE NG150 (incorrect) instead of NICE CG150 (correct).
+NICE uses two guideline series: **CG** (pre-~2014) and **NG** (from ~2014 onwards). These are entirely separate documents. In April 2026, migraine.html was delivered citing NICE NG150 (incorrect) instead of NICE CG150 (correct). Always verify via web search in the same session.
 
 ### Visuals must maximise viewport space — LOCKED APRIL 2026
-Slide padding max `1rem 1.5rem 0.8rem`; body text min `.90rem`; gaps max `.5rem`; slide title min `1.55rem`. Test: content must fill at least 85%.
+Multiple visuals files were delivered with text too small and gaps too large. Dr Paul explicitly identified this as a problem. Fix: slide padding maximum `1rem 1.5rem 0.8rem`; body text minimum `.90rem`; gaps maximum `.5rem`; line clamp minimum 3 lines; slide title minimum `1.55rem`. Test: open every slide in a browser — content must fill at least 85%. See Section 9 and QC item 20.
 
 ### ev-stat-box text overflow — confirmed fix April 2026
-`.ev-stat-box` `padding:.9rem .75rem` + `overflow:hidden`; `.ev-conditions` `font-size:.78rem; line-height:1.32`.
+The confirmed fix: `.ev-stat-box` `padding:.9rem .75rem` + `overflow:hidden`; `.ev-conditions` `font-size:.78rem; line-height:1.32`. Do not increase either value.
+
+### session-start-rules.md status table conflict — April 2026
+The session-start-rules.md file fell out of sync with project knowledge multiple times in April 2026. Fix applied: Rule 6A added — project knowledge always overrides session-start-rules on status.
 
 ### Research card stat boxes must state complete clinical conclusions — LOCKED APRIL 2026
-The research section exists to tell readers what medicine has found — in terms they can understand. Every research card stat box must state the complete clinical finding as it is relevant to the patient. The test: read the stat box alone. Does a lay reader understand what the research found? If not, rewrite.
+**This is a health education site, not a statistics journal.** The research section exists to tell readers what medicine has found about their condition — in terms they can understand and use. Every research card stat box must state the complete clinical finding as it is relevant to the patient. The failure mode: stat boxes showing "11" (RCTs) and "OR 2.67" as the headline finding. These are statistical machinery — they tell the reader nothing. The test: read the stat box alone. Does a lay reader understand what the research found about their condition? If not, rewrite. See Section 8 and QC item 9.
 
 ### PMIDs must be verified by web search every time — LOCKED APRIL 2026
-Mandatory process: (1) search for the paper by author, title, journal, year; (2) find a PubMed URL in the search results; (3) the PMID is the number in that URL; (4) only then include the PMID in the file. Never from memory.
+Claude has repeatedly generated plausible-sounding but incorrect PMIDs. In April 2026, PMID 25088348 was included for Thurman et al Epilepsia 2014 — the correct PMID is 24903551. Mandatory process: (1) search for the paper by author, title, journal, year; (2) find a PubMed URL in the search results; (3) the PMID is the number in that URL; (4) only then include the PMID in the file. Never include a PMID from memory. No exceptions.
 
 ### Charity and advocacy websites are not approved sources — LOCKED APRIL 2026
-Epilepsy Action, Alzheimer's Society, WCRF, Breast Cancer Now, and similar organisations are not in the approved source list. Derived statistics are also not acceptable.
+Epilepsy Action, Alzheimer's Society, Alzheimer's Research UK, WCRF, Breast Cancer Now, and similar organisations are not in the approved source list. Stats and claims derived from charity websites must not be included. Derived statistics are also not acceptable — only figures explicitly stated in an approved source may be cited. If a stat cannot be traced to an approved source, omit it.
 
 ### Causal attributions require primary citations — April 2026
-Causal claims require a specific primary citation confirming that causal relationship. Inference from context is not sufficient.
+Causal claims (e.g. "driven partly by disability discrimination") require a specific primary citation confirming that causal relationship. Inference from context is not sufficient. If the causal attribution cannot be cited, it must be removed.
 
 ### NEAD — use neutral language — April 2026
-Non-epileptic attack disorder (NEAD) should not be described as "typically a manifestation of psychological distress." Use neutral language.
+Non-epileptic attack disorder (NEAD) should not be described as "typically a manifestation of psychological distress." Use neutral language: "episodes that resemble seizures but are not caused by abnormal electrical activity in the brain."
 
 ### Drug-resistant epilepsy — cite the paper's exact figure — April 2026
-Kwan & Brodie NEJM 2000 reports "more than 30 percent" — not "1 in 3" or "33%".
+Kwan & Brodie NEJM 2000 reports "more than 30 percent" — not "1 in 3" or "33%". Always cite the paper's exact language.
 
 ### Exact figure rule — never convert between numerical forms — LOCKED APRIL 2026
-When a paper reports a statistic, use its exact numerical expression everywhere.
+When a paper reports a statistic, use its exact numerical expression everywhere. Never convert between forms. Cross-check all instances before delivering any file.
 
 ### Stat grid cards require inline citations — LOCKED APRIL 2026
-Every `.stat-prose` line in the Why does it matter? stat grid must carry a superscript inline citation. In the breast cancer article (Article 27), three of four stat grid cards were presented without citations. Caught by Dr Paul during review.
+Every `.stat-prose` line in the Why does it matter? stat grid must carry a superscript inline citation. In the breast cancer article (Article 27, April 2026), three of four stat grid cards were presented without citations. Caught by Dr Paul during review — not by the pre-output audit. The QC checklist now includes an explicit grep check (item 24). Every card, every time, no exceptions.
 
 ### Approved source retrieval — fetch from the approved source page directly — LOCKED APRIL 2026
-A figure found on an unapproved page that attributes its data to an approved source must NOT be used. Fetch the approved source page directly. In the breast cancer article, 60,763 was taken from the WCRF page. The Cancer Research UK page directly states "around 59,000." Caught by Dr Paul.
+A figure found on an unapproved page (e.g. WCRF) that attributes its data to an approved source (e.g. Cancer Research UK) must NOT be used. Fetch the approved source page directly and use the figure stated there. In the breast cancer article (Article 27), 60,763 was taken from the WCRF page and incorrectly attributed to Cancer Research UK. The Cancer Research UK page directly states "around 59,000." Caught by Dr Paul. The correct process: search → find the approved source page → retrieve the figure from that page → use only that figure.
 
 ### Cancer Series colour changed from rose to forest green — April 2026
-Initial colour `#8A3A5A` (deep rose) was rejected — contrast issues. Changed to `#2A5A3A` (forest green) with dark variant `#1A3A25`.
+Initial colour `#8A3A5A` (deep rose) was proposed and approved but rendered poorly — the monochromatic dark rose/pink scheme gave insufficient contrast between card backgrounds and text. Changed to `#2A5A3A` (forest green) with dark variant `#1A3A25`. Forest green is distinct from existing teal `#3A8A7A` and olive `#7A6A2E`. **The Article Inventory previously showed `#8A3A5A` — this was an error in the document. Corrected April 2026.**
 
 ### Research card stat boxes use series colour, not navy — LOCKED APRIL 2026
-The ev-stat-box background must use the series colour gradient (series-dark to series), not plain navy.
+The ev-stat-box background in article research cards must use the series colour gradient (series-dark to series), not plain navy. Established when building breast-cancer.html for the Cancer Series. The amber kf-label contrasts effectively against any series colour. This principle makes each series visually distinctive and reinforces series identity throughout the article. Each series needs a confirmed dark variant colour before this standard can be retrofitted. See Section 2 for the dark variant table.
 
 ### Article research card display standard confirmed — April 2026
-ev-stat-row: 3.2rem weight 900. Canonical reference: `breast-cancer.html`.
+The research card stat box in articles must be visually commanding. ev-stat-row: 3.2rem weight 900. The stat box is the headline — it must lead with the clinically important finding in a size that commands attention. Canonical reference: `breast-cancer.html`. See Section 8 for the full CSS specification.
 
 ### Series dark variants must be confirmed before retrofit — April 2026
-All dark variants are now confirmed for all series (see Section 2). Research card colour retrofit is fully unblocked.
+The series-coloured stat box gradient requires a dark variant for each series. Proposed variants are in Section 2. Dr Paul must confirm each dark variant before the research card colour retrofit is applied to existing articles.
+Cancer Research UK is approved for UK cancer incidence, mortality, survival, and risk statistics. Always fetch their statistics pages directly.
 
 ### Closing slide disclaimer must use .closing-disclaimer class at 1rem — LOCKED APRIL 2026
-The closing slide disclaimer must use the `.closing-disclaimer` / `.closing-disclaimer-text` classes at `font-size:1rem`, not the `.cta-disclaimer` class at `.80rem`.
+The closing slide disclaimer must use the `.closing-disclaimer` / `.closing-disclaimer-text` classes at `font-size:1rem`, not the `.cta-disclaimer` class at `.80rem`. The closing slide is the final thing the audience sees — it must be clearly readable on camera. Multiple files were delivered with the wrong class reused from the CTA slide. QC item 26 now checks this.
 
 ### Cancer Series — three elements use series green, not navy — LOCKED APRIL 2026
-In Cancer Series articles, the Key Terms box, Putting it all together box, and research card stat boxes all use forest green gradient.
+In Cancer Series articles, the Key Terms box, Putting it all together box, and research card stat boxes all use `linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%)` — forest green gradient — instead of plain navy. This creates a consistent series identity throughout the article. Confirmed in `breast-cancer.html` April 2026. Apply from the start in articles 28–31.
 
 ### CTA slide must not reference "free at helf.school" — LOCKED APRIL 2026
-helf.school is a subscription service. Caught by Dr Paul reviewing breast-cancer-visuals.html in April 2026.
+The subline on the CTA slide must not say "Evidence-based health education — free at helf.school" or any variation. helf.school is a subscription service. "Start for free" is permitted as a card label — there is a genuine £0 Explorer tier. "Free to read — always" is not permitted. This was caught by Dr Paul reviewing breast-cancer-visuals.html in April 2026. QC item 28 now checks this.
 
 ### CTA disclaimer text size locked at 1rem — LOCKED APRIL 2026
-CTA slide disclaimer text must be `font-size:1rem`. Never `.80rem`.
+CTA slide disclaimer text must be `font-size:1rem`, `color:rgba(255,255,255,0.90)`. Never `.80rem` — too small to read on screen. QC item 27 enforces this.
 
 ### Cancer Series established — April 2026
-Series E. Articles 27–31. Colour `#2A5A3A` (forest green). Dark variant `#1A3A25`.
+Series E. Articles 27–31. Colour `#2A5A3A` (forest green, confirmed April 2026 — initial rose colour `#8A3A5A` rejected due to contrast issues). Dark variant `#1A3A25`.
 
 ### Never rebuild a project knowledge document from scratch — LOCKED APRIL 2026
-Always use the existing document as the base and merge new content into it. Never rebuild from memory.
+When updating the project knowledge document, always use the existing document as the base and merge new content into it. Never rebuild from memory. The existing document is always larger and more complete than what Claude can reconstruct from memory in a session. Rebuilding from memory loses content and introduces errors. The correct process: read the existing document → identify what is new → add new content to the existing document → verify the new version is equal to or larger than the old one.
 
 ### Closing slide must be brand close, not stat repeat — LOCKED APRIL 2026
-The last slide is the helf.school brand close: logo · tagline · brand headline · three pitch cards · med-disclaimer · series label. It is NOT a repeat of the research statistics.
+The last slide of every visuals deck is the **helf.school brand close**: logo · "Health Education" tagline · brand headline · three pitch cards (articles, Dr Paul credentials, free tier) · `med-disclaimer` · series label. It is NOT a repeat of the research statistics shown on the CTA slide. Confirmed April 2026 when Dr Paul identified stat repeat as redundant. Canonical reference: `prostate-cancer-visuals.html` slide 14.
 
 ### Closing slide must use `justify-content: flex-start` — LOCKED APRIL 2026
-`flex-start` anchors the logo visibly. Canonical reference: `prostate-cancer-visuals.html` slide 14.
+`justify-content: center` clips the logo at the top when total content height is close to viewport height. `flex-start` anchors the logo visibly. Confirmed April 2026 after multiple deliveries clipped the helf.school logo. Canonical reference: `prostate-cancer-visuals.html` slide 14.
 
 ### CTA slide must use `cta-wrap-v2` with `grid-template-rows: auto 1fr auto` — LOCKED APRIL 2026
-This is the only correct CTA layout. `justify-content: center` or `justify-content: space-between` both cause content to clip.
+This is the only correct CTA layout. `auto 1fr auto` ensures: top badge/headline takes natural height, middle rows expand to fill remaining space, bottom disclaimer always fully visible. `justify-content: center` or `justify-content: space-between` both cause content to clip. Confirmed after multiple CTA slide deliveries with cut-off content April 2026.
 
 ### 6-card slides must be split to 3+3 — LOCKED APRIL 2026
-Always split to two slides of 3 cards each. Never reduce font size or line clamp to make 6 cards fit.
+When a visuals slide has 6 informational cards, always split into two slides of 3 cards each. Never reduce font size or line clamp to make 6 cards fit. Text cut-off on 6-card slides confirmed as a recurring problem April 2026. 3-card slides use `-webkit-line-clamp:4` allowing body text to breathe. Canonical reference: `prostate-cancer-visuals.html` slides 3–10.
 
 ### Reference numbering must be visible — LOCKED APRIL 2026
-Use CSS `counter-reset` and `counter-increment` on `.ref-block` with a `::before` pseudo-element.
+References must display visible numbers. Use CSS `counter-reset` and `counter-increment` on `.ref-block` with a `::before` pseudo-element to render the number to the left of the border. Delivered without visible numbering once in April 2026 — caught by Dr Paul.
 
 ### prostate-cancer-visuals.html is new canonical visuals reference — LOCKED APRIL 2026
-Replaces `lifestyle-changes-visuals.html` as the primary canonical reference.
+`prostate-cancer-visuals.html` replaces `lifestyle-changes-visuals.html` as the primary canonical visuals reference. It demonstrates: 3-card split slides (slides 3–10), canonical `cta-wrap-v2` CTA (slide 13), brand close (slide 14), `ev-card` research cards with forest green gradient stat box, correct `#stage` padding and `#topbar` structure.
 
 ### All stats require citations in every location — LOCKED APRIL 2026
-Every numerical figure requires an inline superscript citation regardless of location.
+Dr Paul identified in `lung-cancer.html` (Article 29, April 2026): (1) "It is the most common cause of cancer death in the UK" — no inline citation in body prose paragraph 1; (2) "around 85% of all lung cancers are NSCLC" — no inline citation in body prose paragraph 2. Both were body prose statements, not stat grid cards. This confirmed that the citation requirement applies universally to every location where a numerical claim appears — not just stat grid cards. The QC checklist now includes item 31 covering all locations. Pre-output audit item 9 was added to enforce this. The rule: if it's a number, it needs a citation.
 
 ### Subtypes and formally named sets must be listed, not written in prose — LOCKED APRIL 2026
-Use `<ol class="subtype-list">` for any set introduced with a counted phrase. Canonical: `lung-cancer.html`.
+Dr Paul identified that NSCLC subtypes (adenocarcinoma, squamous cell carcinoma, large cell carcinoma) were written as inline comma-separated prose in the first draft of `lung-cancer.html` Section 1. The rule is now explicit: any set of items introduced with a counted phrase ("three main subtypes", "four stages") must be presented as a numbered or bulleted list using `<ol class="subtype-list">`. The CSS pattern for this list was first introduced in `lung-cancer.html` (Article 29, April 2026): numbered circle markers in series colour, bold term + em-dash + definition, full body size. QC item 32 enforces this at delivery.
 
 ### The reason for the stat must be in ev-outcome, not ev-conditions — LOCKED APRIL 2026
-The comparison that produced the stat must appear in the `ev-outcome` line (0.95rem weight 700), not relegated to `ev-conditions` (0.78rem).
-
-### ev-stage must use display:flex, never display:grid — LOCKED APRIL 2026
-`stress-visuals.html` middle card clipped because grid 1fr row was insufficient. Flex distributes evenly.
-
-### close-logo `.dot` CSS bug — LOCKED APRIL 2026
-Using `<span class="dot">.</span>` inside `.close-logo` applies navigation dot CSS, making it tiny and invisible. Always use `<span class="cl-dot">.</span>` with `.cl-dot{color:var(--coral)}`. Fixed in acid-reflux, bloating, and IBS visuals April 2026.
-
-### disc footer visibility — LOCKED APRIL 2026
-The `.disc` footer bar must use `color:rgba(255,255,255,.65)` and `font-size:clamp(.65rem,1vw,.80rem)`. Fixed in acid-reflux, bloating, IBS visuals April 2026.
-
-### 5-card grids split to 3+2 — confirmed pattern April 2026
-When a visuals slide has 5 cards, split to 3+2 across two slides. CSS pattern: `.sys-grid-2`, `.doc-grid-2`, `.mech-grid-2` with `grid-template-rows:repeat(2,1fr)`.
-
-### Drug class descriptions for teleprompter — Digestive Series — April 2026
-- amitriptyline → "low-dose gut-brain modulator"
-- loperamide → "gut-slowing agent" or "bowel-slowing agent"
-- rifaximin → "gut-targeted antibiotic"
-- omeprazole/lansoprazole/esomeprazole → "proton pump inhibitor — a PPI"
-- famotidine → "H2 receptor antagonist — a second type of acid-reducer"
-
-### IBS teleprompter — non-sequential slide references — April 2026
-The IBS teleprompter was written with mechanisms (old slide 9) discussed in seg-2 BEFORE the doctor segment (old slide 4). Cue boxes updated to reflect new slide numbering in the 14-slide deck.
-
-### 4-card slides must split — "fragile" is NOT a passing QC result — LOCKED APRIL 2026
-Any slide grid with 4 cards must be split to 2+2 across two slides. Discovered when ibd-visuals.html treatment ladder (4 cards) was confirmed clipping on Dr Paul's filming viewport. "Fragile" is a failure — not an acceptable QC pass. QC item 38 now enforces this.
-
-### Pre-canonical architecture pattern — full structural rebuild required — LOCKED APRIL 2026
-When any visuals file uses `position:absolute; inset:0`, has no nav dots (uses `.dot` not `.nav-dot`), uses side-by-side ev-cards (1fr 1fr), or has a quote-card closing — a full structural rebuild is required. Patching is not possible. Both `gallstones-visuals.html` and `diverticular-disease-visuals.html` were this vintage — both required full structural rebuild April 2026.
-
-### Project knowledge update protocol — LOCKED APRIL 2026
-Mandatory process at every session end:
-1. `web_fetch` the live version from GitHub — never rely on the project copy which may be stale
-2. Write the fetched content to `/home/claude/helf-school-project-knowledge.md` using `create_file` or Python append
-3. `str_replace` to add only the new session content — never rewrite from scratch
-4. `bash wc -l` to confirm new line count ≥ original
-5. Deliver for download and re-upload to both GitHub and the Claude Project
+The comparison or intervention that produced a research card stat — the REASON the number is what it is — must appear in the `ev-outcome` line (0.95rem weight 700), not relegated to `ev-conditions` (0.78rem, the smallest text in the box). "CT screening vs no screening" is WHY the number is 24% — it must be prominently visible. The complete clinical conclusion rule already required the reason to be somewhere in the stat box; this rule specifies it must be in ev-outcome specifically. Confirmed and locked April 2026 when Dr Paul identified that the comparison was appearing in ev-conditions rather than ev-outcome across multiple research cards. Canonical: `lung-cancer.html` Article 29 (April 2026): "reduction in lung-cancer mortality / CT screening vs no screening" in ev-outcome; "high-risk smokers · 10-year follow-up · NELSON trial" in ev-conditions.
 
 ---
 
 ## 19. OUTSTANDING TASKS (April 2026)
 
-### Completed ✅
-- Cancer Series visuals + teleprompters (27–31): all retrofitted ✅
-- Cardiovascular Series visuals + teleprompters (01–07): all retrofitted ✅
-- Practical Health Series visuals + teleprompters (08–12): all retrofitted ✅
-  - Articles 10–12 (exercise, stress, alcohol) completed April 2026
-  - New rule confirmed: ev-stage must use display:flex, never display:grid (Rule 37)
-- **Digestive Series partial — April 2026 session:**
-  - acid-reflux (13): visuals + teleprompter ✅
-  - bloating (15): visuals + teleprompter ✅
-  - ibs (16): visuals + teleprompter ✅
-  - ibd (14): visuals + teleprompter ✅ full retrofit April 2026 — 12-slide deck
-  - coeliac (18): visuals + teleprompter ✅ full retrofit April 2026 — 12-slide deck
-  - gallstones (19): visuals + teleprompter ✅ **full structural rebuild** April 2026 — 12-slide deck
-  - diverticular-disease (20): visuals + teleprompter ✅ **full structural rebuild** April 2026 — 10-slide deck
+### Completed this session ✅
+- Cancer Series visuals + teleprompters (27–31): all retrofitted to current standards ✅
+- Hypertension visuals + teleprompter (Article 01): retrofitted ✅ — CTA sequential animation, brand close, 13 slides, all body elements fixed, ev-card sizing corrected
 
-### Next priority — Digestive Health Series (Articles 13–21) — CONTINUING
-Remaining: **masld (17) → constipation (21)**
-
-Each file needs:
+### Next priority — Cardiovascular Series retrofit (Articles 02–07)
+Apply in order. Each file needs:
 1. CTA sequential animation (replace static cta-rows-v2)
 2. Brand close pitch cards (replace stat-recap close)
-3. `display:-webkit-box` on ALL body elements (sys-body/doc-body/mech-body) — AND set `line-clamp:4`
-4. Split any 4+ card slides to max 3 cards per slide (4-card = mandatory split, not "fragile")
+3. `display:-webkit-box` on ALL body elements (sys-body/doc-body/mech-body) — AND set `line-clamp:4` on all three. NEVER `line-clamp:2`. Clamp:2 cuts sentences mid-thought. Proven at 768px: 4 lines fit (91px) within available card body space (98px). See session-start-rules Root Cause 3.
+4. Split any 5+ card slides to max 3 cards per slide
 5. ev-card: reduce padding to 1.1rem, ev-body clamp:4 if two cards per slide
-6. **ev-stage: confirm `display:flex` — fix if `display:grid` found**
-7. Check for pre-canonical architecture (inset:0, no nav dots) — if found, full structural rebuild required
+6. Teleprompter: remove specific drug names, update CTA segment, update slide numbers
 
-### Then: Neurological Series (Articles 22–26)
-Same retrofit checklist as Digestive Series above.
+- Article 02: Cholesterol Explained (`cholesterol-visuals.html`, `cholesterol-teleprompter.html`)
+- Article 03: How Doctors Estimate Heart Attack Risk (`heart-attack-risk-visuals.html`, `heart-attack-risk-teleprompter.html`)
+- Article 04: Statins — Benefits & Risks (`statins-visuals.html`, `statins-teleprompter.html`)
+- Article 05: Lifestyle Changes (`lifestyle-visuals.html`, `lifestyle-teleprompter.html`)
+- Article 06: Salt and Blood Pressure (`salt-visuals.html`, `salt-teleprompter.html`)
+- Article 07: Supplements (`supplements-visuals.html`, `supplements-teleprompter.html`)
 
 ### Practical Health Series extension
-- Article 32: Breast Awareness
+- Article 32: Breast Awareness (cross-referenced from breast-cancer.html — marked "Coming soon")
 - Article 33: Testicular Awareness
 
 ### Verification outstanding
-- `hypertension.html` references 5 & 6 — Cochrane PubMed IDs flagged ⛑ unverified
+- `hypertension.html` references 5 & 6 — Cochrane PubMed IDs flagged ⚑ unverified
 - `helf-school-conditions.html` — hero stat needs updating to 31 articles live
 
-### Retrofit backlog (apply when files next opened)
-All dark variants confirmed April 2026 — retrofit is fully unblocked.
+### Still needed: update project knowledge and session-start-rules to GitHub + Claude Project
+Upload both MD files at end of each session to keep them current.
 
-0. **LAY IMPACT FIRST RETROFIT — Rule 34 — LOCKED APRIL 2026** — When any visuals or teleprompter file is opened for any reason, apply: (a) colour narrative; (b) remove drug names; (c) trim teleprompter trial references; (d) consider sequential animation for formal lists. Priority: Cancer (27–30) and Cardiovascular (01–07).
+### Retrofit backlog (Articles 01–26 — apply when files next opened)
+All dark variants confirmed April 2026 — retrofit is fully unblocked. Apply per series as files are next opened. Priority order:
 
-**TELEPROMPTER CONSISTENCY RULE — LOCKED APRIL 2026:** Whenever a visuals file is updated for any reason, the matching teleprompter must be reviewed slide-by-slide before either file is uploaded.
+0. **LAY IMPACT FIRST RETROFIT — Rule 34 — LOCKED APRIL 2026** — When any visuals or teleprompter file is opened for any reason, apply: (a) colour narrative — replace uniform cards with red/amber/green by content type; (b) remove any drug generic or brand names — replace with class descriptions; (c) check teleprompter trial references — reduce to name + stat + one plain sentence; (d) consider sequential animation for any formal list (ABCDE, stages, criteria). Priority series: Cancer (27–30) and Cardiovascular (01–07). Canonical reference: `melanoma-visuals.html` and `melanoma-teleprompter.html` (April 2026).
 
-1. **DRUG BRAND NAMES RETROFIT — Rule 33 — HIGHEST URGENCY — LOCKED APRIL 2026**
+**TELEPROMPTER CONSISTENCY RULE — LOCKED APRIL 2026:** Whenever a visuals file is updated for any reason, the matching teleprompter must be reviewed slide-by-slide before either file is uploaded. Any segment whose corresponding slide has changed content must be rewritten to match. This rule exists because visuals and teleprompter are filmed together — if the CTA slide changes from an article pitch to a sequential symptom reveal, the script must reflect what Dr Paul will see on screen. A visuals retrofit is not complete until the teleprompter has been reviewed and updated. Canonical example: `lung-cancer-visuals.html` CTA slide changed to sequential red flag symptoms (April 2026) — `lung-cancer-teleprompter.html` required matching update.
+1. **DRUG BRAND NAMES RETROFIT — Rule 33 — HIGHEST URGENCY — LOCKED APRIL 2026** — All generic drug names across all articles, visuals, and teleprompter scripts must have a brand name added alongside them. Apply to every file when next opened. The following inventory identifies the likely locations by article:
 
 **Cardiovascular Series (Articles 01–05):**
 - `hypertension.html` / visuals / teleprompter — ACE inhibitors: ramipril (Tritace/Altace), lisinopril (Zestril), perindopril (Coversyl) · ARBs: losartan (Cozaar), candesartan (Amias), valsartan (Diovan) · calcium channel blockers: amlodipine (Norvasc) · beta-blockers: bisoprolol (Cardicor), atenolol · thiazides: indapamide (Natrilix), bendroflumethiazide (Aprinox)
 - `cholesterol.html` / visuals / teleprompter — statins: atorvastatin (Lipitor), rosuvastatin (Crestor), simvastatin (Zocor) · ezetimibe (Ezetrol) · PCSK9 inhibitors: evolocumab (Repatha), alirocumab (Praluent)
-- `heart-attack-risk.html` / visuals / teleprompter — clopidogrel (Plavix), ticagrelor (Brilique), warfarin (Coumadin), rivaroxaban (Xarelto), apixaban (Eliquis), edoxaban (Lixiana), dabigatran (Pradaxa)
+- `heart-attack-risk.html` / visuals / teleprompter — clopidogrel (Plavix), ticagrelor (Brilique), warfarin (Coumadin), rivaroxaban (Xarelto), apixaban (Eliquis), edoxaban (Lixiana), dabigatran (Pradaxa) · ramipril (Tritace) · atorvastatin (Lipitor)
 
 **Cancer Series (Articles 27–31):**
-- `breast-cancer.html` / visuals / teleprompter — trastuzumab (Herceptin), pertuzumab (Perjeta), olaparib (Lynparza), tamoxifen (Nolvadex/Tamofen), palbociclib (Ibrance), ribociclib (Kisqali), abemaciclib (Verzenios), fulvestrant (Faslodex)
+- `breast-cancer.html` / visuals / teleprompter — trastuzumab (Herceptin), pertuzumab (Perjeta), olaparib (Lynparza), tamoxifen (Nolvadex/Tamofen), palbociclib (Ibrance), ribociclib (Kisqali), abemaciclib (Verzenios), fulvestrant (Faslodex), anastrozole (Arimidex), letrozole (Femara), exemestane (Aromasin), capecitabine (Xeloda)
 - `prostate-cancer.html` / visuals / teleprompter — enzalutamide (Xtandi), abiraterone (Zytiga), docetaxel (Taxotere), olaparib (Lynparza), cabazitaxel (Jevtana)
-- `lung-cancer.html` / visuals / teleprompter — CHECK: erlotinib (Tarceva), gefitinib (Iressa), bevacizumab (Avastin), nivolumab (Opdivo), atezolizumab (Tecentriq)
+- `lung-cancer.html` / visuals / teleprompter — pembrolizumab (Keytruda) ✅, osimertinib (Tagrisso) ✅ · CHECK: erlotinib (Tarceva), gefitinib (Iressa), bevacizumab (Avastin), nivolumab (Opdivo), atezolizumab (Tecentriq)
 - `bowel-cancer.html` / visuals / teleprompter — pembrolizumab (Keytruda) ✅, bevacizumab (Avastin) ✅, cetuximab (Erbitux) ✅, panitumumab (Vectibix) ✅
 
-**Other series:** Grep pattern: `egrep -i "mab|tinib|ciclib|pril|sartan|statin|oxacin|vir|mycin" [filename]`
+**Other series:** Check any article containing treatment sections for unbranded drug names. Grep pattern: `egrep -i "mab|tinib|ciclib|pril|sartan|statin|oxacin|vir|mycin" [filename]` will surface most pharmaceutical generics.
 
-2. **Research card colour retrofit** — ev-stat-box background: navy → series-colour gradient.
-3. **Closing slide brand close retrofit** — apply across all 26 visuals files.
-4. **Key Terms + Putting it all together** — navy → series-colour gradient. Decision outstanding: extend to all series or Cancer-only?
+2. **Research card colour retrofit** — ev-stat-box background: navy → series-colour gradient. Spec: `linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%)`. Dark variants confirmed for all series (see Section 2). Apply across all 26 articles.
+3. **Closing slide brand close retrofit** — stat-recap closing → brand close (logo / pitch cards / disclaimer). Apply across all 26 visuals files.
+4. **Key Terms + Putting it all together** — navy → series-colour gradient. Cancer Series standard confirmed. Decision outstanding: extend to all series or Cancer-only? If extending, same gradient spec applies.
 5. **Research card display standard** — ev-stat-row to 3.2rem weight 900 across all articles.
-6. **Closing/CTA disclaimer sizes** — `med-disc-text` 1rem per file.
+6. **Closing/CTA disclaimer sizes** — closing: `med-disc-text` 1rem; CTA: `med-disc-text` 1rem. Quick grep check per file.
 7. **No "free at helf.school"** — grep CTA subline per visuals file.
 8. **Research card clinical conclusion standard** — 01–23.
 9. **Stat grid citations** — 01–11 only.
 10. **Inline citations** — 01–11 only.
 11. **CTA slide standard** — 01–11 only.
 12. **Visuals layout standard** — 01–11 only.
-13. **Subtype list formatting** — apply `<ol class="subtype-list">` to any article containing formally introduced sets.
+13. **Subtype list formatting** — apply `<ol class="subtype-list">` to any article containing formally introduced sets of items (subtypes, stages, types). Canonical: `lung-cancer.html`.
 
 ---
 
 ## 20. CONSTIPATION ARTICLE — VERIFIED REFERENCES (April 2026)
 
+All five sources verified by web search in April 2026 session.
+
 | Ref | Citation | DOI / URL | Used for |
 |-----|----------|-----------|----------|
-| 1 | NICE CKS Constipation (adults). Last revised 2023 | cks.nice.org.uk/constipation | Definition (Rome IV), red flags, laxative stepwise |
+| 1 | NICE CKS Constipation (adults). Last revised 2023 | cks.nice.org.uk/constipation | Definition (Rome IV), red flags, laxative stepwise approach |
 | 2 | Dowden A. Prescriber 2021 + BJHA 2025 | wchh.onlinelibrary.wiley.com/doi/10.1002/psb.1954 | NHS burden: ~83,000 admissions/yr; 18.6m prescriptions; ~£113m cost |
-| 3 | Lee-Robichaud H et al. Cochrane 2010;(7):CD007570. PMID 20614462 | doi.org/10.1002/14651858.CD007570.pub2 | Macrogol superior to lactulose (10 RCTs, 868 participants) |
-| 4 | Christodoulides S et al. APT 2016;44(2):103–116. PMID 27170558 | doi.org/10.1111/apt.13662 | Fibre: 77% response vs 44% placebo |
-| 5 | NHS Inform. Constipation | nhsinform.scot/illnesses-and-conditions/stomach-liver-and-gastrointestinal-tract/constipation | Prevalence: 1 in 7 adults UK; women twice as often as men |
+| 3 | Lee-Robichaud H et al. Cochrane Database Syst Rev 2010;(7):CD007570. PMID 20614462 | doi.org/10.1002/14651858.CD007570.pub2 | Macrogol superior to lactulose across all outcomes (10 RCTs, 868 participants) |
+| 4 | Christodoulides S et al. Aliment Pharmacol Ther 2016;44(2):103–116. PMID 27170558 | doi.org/10.1111/apt.13662 | Fibre: 77% response vs 44% placebo; RR 1.71 (95% CI 1.20–2.42) |
+| 5 | NHS Inform. Constipation | nhsinform.scot/illnesses-and-conditions/stomach-liver-and-gastrointestinal-tract/constipation | Prevalence: 1 in 7 adults UK at any time; women twice as often as men |
 
 ---
 
@@ -1638,19 +1404,22 @@ The Claude project holds **visuals, teleprompter, and screen files only**. Artic
 |------|---------|
 | `mediterranean-diet.html` | Canonical article HTML template |
 | `lifestyle-changes-teleprompter.html` | Canonical teleprompter (cue box standard) |
-| `prostate-cancer-visuals.html` | **PRIMARY canonical visuals reference** |
-| `lifestyle-changes-visuals.html` | Secondary visuals reference — 6-row grid pattern |
-| `memory-dementia.html` | Canonical article research card layout (220px column) |
-| `breast-cancer.html` | Canonical article research card display (3.2rem stat, series gradient) |
+| `prostate-cancer-visuals.html` | **PRIMARY canonical visuals reference** — 3-card splits, `cta-wrap-v2`, brand close, ev-card research cards. Confirmed April 2026. |
+| `lifestyle-changes-visuals.html` | Secondary visuals reference — 6-row grid pattern (still valid for mechanism/info slides where appropriate) |
+| `hypertension-visuals.html` | Legacy CTA slide reference (superseded by prostate-cancer-visuals.html) |
+| `memory-dementia.html` | Canonical article research card layout (220px column, flex-start) |
+| `breast-cancer.html` | Canonical article research card display (3.2rem stat, series gradient background) |
 | `prostate-cancer.html` | Cancer Series article canonical — reference numbering via CSS counter |
-| `lung-cancer.html` | Canonical: myth-busting panel design; `<ol class="subtype-list">` pattern |
+| `lung-cancer.html` | Canonical article for: myth-busting panel design; `<ol class="subtype-list">` numbered list pattern |
 
 ### Files confirmed in Claude project (April 2026)
-**Teleprompters:** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine · headaches · dizziness-vertigo · memory-dementia · epilepsy · prostate-cancer
+**Teleprompters (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine · headaches · dizziness-vertigo · memory-dementia · epilepsy · prostate-cancer
 
-**Visuals:** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd (screen) · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine · headaches · dizziness-vertigo · memory-dementia · epilepsy · prostate-cancer
+**Visuals (all series):** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd (screen) · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine · headaches · dizziness-vertigo · memory-dementia · epilepsy · prostate-cancer
 
 **Screen files:** Ar_barretts-screen · Ar_sphincter-screen · ibd-gut-screen · bloating-gut-screen · bloating-fodmap-screen
+
+**Scripts (older format):** acid-reflux-script · bloating-script · cholesterol-script · heart-attack-risk-script · hypertension-script · ibd-script · ibs-script
 
 ---
 
@@ -1659,133 +1428,107 @@ The Claude project holds **visuals, teleprompter, and screen files only**. Artic
 These rules must be applied at the start of every session, before any output or assessment is produced.
 
 ### Rule 1 — Read before acting
-Read `helf-school-project-knowledge.md` AND `helf-school-session-start-rules.md` in full before any output. No exceptions.
+Read `helf-school-project-knowledge.md` AND `helf-school-session-start-rules.md` in full before any output, checks, or assessments. No exceptions.
 
 ### Rule 2 — Article inventory is the source of truth
-The article inventory in Section 3 is authoritative. Do not infer status from file sizes or project file listings.
+The article inventory in Section 3 of this document is authoritative. Do not infer article status from file sizes, project file listings, or previous session summaries alone.
 
 ### Rule 3 — 5,140-byte files are NOT corrupted
-Files ~5,140 bytes beginning with "data-build-id" are Edge incognito loader stubs. Never flag as corrupted.
+Files approximately 5,140 bytes beginning with "data-build-id" are Edge incognito loader stubs. Never flag as corrupted. Fetch from GitHub raw URL to verify content.
 
 ### Rule 4 — Never produce output before confirming understanding
 Before building or modifying any file, confirm: (1) which article/file, (2) current status per inventory, (3) canonical reference checked.
 
 ### Rule 5 — Educational voice check on every file
-Audit every file for forbidden phrases before delivery. Always apply the full canonical phrase.
+Audit every file for forbidden phrases before delivery. Always apply the full canonical phrase; never shorten it.
 
 ### Rule 6 — Cross-check article ↔ teleprompter before delivery
-All key statistics, study names, years, and citation authors must match exactly.
+All key statistics, study names, years, and citation authors must match exactly between both files.
 
 ### Rule 6A — Project knowledge always overrides session-start-rules on status
-If session-start-rules.md conflicts with Section 3 of this document, this document is correct.
+**If the file status table in session-start-rules.md conflicts with Section 3 of this document, this document (project knowledge) is correct.** Never flag work as outstanding based on session-start-rules.md alone.
 
 ### Rule 7 — One large file per turn
-Build very large HTML files one per turn. Wait for confirmation before proceeding.
+Build very large HTML files one per turn. Wait for confirmation before proceeding to the next file.
 
 ### Rule 8 — Verify references before building
-Run web searches to verify all planned citations. Fetch figures directly from approved source page.
+Run web searches to verify all planned citations before building any article HTML. Fetch figures directly from the approved source page — not from a secondary page that attributes the figure to an approved source.
 
 ### Rule 9 — Update project knowledge at session end
 Update this document and session-start-rules.md together. Dr Paul uploads both to GitHub AND the Claude Project.
 
 ### Rule 10 — NICE CG99 is children only
-Never cite NICE CG99 in any adult article.
+Never cite NICE CG99 in any adult article. Correct adult constipation reference: NICE CKS at cks.nice.org.uk/constipation.
 
 ### Rule 11 — Research card complete clinical conclusion
-The stat box must state WHAT was studied and WHAT was found in patient-relevant terms.
+Before presenting any article or visuals file, audit every research card stat box against the complete clinical conclusion rule (Section 8, QC item 9). The stat box must state WHAT was studied and WHAT was found in patient-relevant terms. Statistical machinery (ORs, RCT counts, CIs) must never be the headline finding. The test: can a lay reader understand the clinical finding from the stat box alone?
 
 ### Rule 12 — Visuals must maximise viewport space
-Every visuals slide must fill the available viewport. Body text minimum `.90rem`. Content must fill at least 85%.
+Every visuals slide must fill the available viewport. Slide padding maximum `1rem 1.5rem 0.8rem`. Body text minimum `.90rem`. Gaps maximum `.5rem`. Slide title minimum `1.55rem`. Open every slide in a browser before delivering — content must fill at least 85% of the visible area.
 
 ### Rule 13 — PMIDs must be verified by web search every time
-Every PMID must be found in a web search result before inclusion.
+Every PMID must be found in a web search result before inclusion. Mandatory process: (1) search for paper by author/title/journal/year; (2) find PubMed URL in results; (3) PMID is the number in that URL; (4) only then include it. Never from memory. No exceptions.
 
 ### Rule 14 — Strict source rule
-Only approved sources. Derived statistics not acceptable. Causal attributions require primary citation.
+Only approved sources (Section 14) may be cited. Charity/advocacy websites are not approved. WCRF is not approved even when it cites Cancer Research UK. Derived statistics are not acceptable. Causal attributions require a primary citation. If a stat cannot be traced to an approved source, omit it.
 
 ### Rule 15 — Exact figure rule — LOCKED APRIL 2026
-Use paper's exact numerical expression everywhere. Never convert between forms.
+Use the paper's exact numerical expression everywhere. Never convert between forms. Cross-check stat grid, research cards, Key Terms, body prose, Putting It Together, and teleprompter before delivering any file.
 
 ### Rule 16 — Stat grid citation rule — LOCKED APRIL 2026
-Every `.stat-prose` line must carry a superscript citation.
+Every `.stat-prose` line in the Why does it matter? stat grid must carry a superscript inline citation. Run `grep -A 3 "stat-prose"` before presenting any article and confirm every instance has a `ref-` link. All stat grid cards. No exceptions.
 
 ### Rule 17 — Approved source retrieval rule — LOCKED APRIL 2026
-Every figure must be retrieved directly from the approved source page.
+Every figure must be retrieved directly from the approved source page, not from a secondary or aggregator page. If a figure appears on WCRF or any other unapproved page attributed to Cancer Research UK, fetch the Cancer Research UK page and use the figure stated there.
 
 ### Rule 18 — Never rebuild the project knowledge document from scratch — LOCKED APRIL 2026
-Always use the existing document as the base. Never rebuild from memory.
+When updating the project knowledge document, always use the existing document as the base. Read it fully, identify what is new from the current session, and merge new content into it. Never rebuild from memory. A rebuilt-from-memory version will always be shorter and less complete than the existing document.
 
 ### Rule 19 — Cancer Series: three elements use series green, not navy — LOCKED APRIL 2026
-Key Terms box · Putting it all together box · Research card stat box all use series gradient.
+In Cancer Series articles (27–31), three elements must use `linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%)` — the forest green gradient — instead of plain navy:
+1. **Key Terms box**
+2. **Putting it all together box**
+3. **Research card stat box**
+Cancer Series colours: `--series: #2A5A3A` · `--series-dark: #1A3A25`. Apply from the start when building articles 28–31.
 
 ### Rule 20 — Closing slide: brand close, `justify-content: flex-start` — LOCKED APRIL 2026
-Never stat repeat. Never `justify-content: center`.
+The closing slide must be the helf.school brand close — NOT a stat repeat. `justify-content: flex-start` is mandatory — never `center`. Structure: logo · tagline · brand headline · three pitch cards (articles / Dr Paul / free tier) · `med-disclaimer` · series label. Canonical: `prostate-cancer-visuals.html` slide 14.
 
 ### Rule 21 — CTA slide: `cta-wrap-v2` with `grid-template-rows: auto 1fr auto` — LOCKED APRIL 2026
-Only correct CTA layout. Never `justify-content: center` or `space-between`.
+Only correct CTA layout. `auto 1fr auto` guarantees: top takes natural height, middle rows fill remaining space, bottom disclaimer always visible. Never `justify-content: center` or `space-between` — both clip content. Canonical: `prostate-cancer-visuals.html` slide 13.
 
 ### Rule 22 — 3-card rule: never 6 cards on one slide — LOCKED APRIL 2026
-Always split to 3+3.
+Always split to 3+3. Label "(1 of 2)" and "(2 of 2)". 3-card slides use `-webkit-line-clamp:4`. Canonical: `prostate-cancer-visuals.html` slides 3–10.
 
 ### Rule 23 — Dark variants confirmed: retrofit unblocked — April 2026
-All series dark variants confirmed — see Section 2 table.
+
+| Series | Primary | Dark variant |
+|--------|---------|-------------|
+| Cardiovascular | `#C8423A` | `#8A2020` |
+| Neurological | `#6B5EA8` | `#4A4080` |
+| Digestive | `#D47C3A` | `#8A4A1A` |
+| Fatigue | `#3A8A7A` | `#1A5A4A` |
+| Medical Decision | `#2E6BA8` | `#1A3A6A` |
+| Practical Health | `#7A6A2E` | `#4A3A1A` |
+| Cancer | `#2A5A3A` | `#1A3A25` |
 
 ### Rule 24 — All stats require citations in every location — LOCKED APRIL 2026
-Every numerical figure requires an inline superscript citation in every location.
+Every numerical figure, percentage, or quantitative claim in any helf.school file requires an inline superscript citation — regardless of location. This covers: body prose paragraphs, Key Terms box definitions, stat grid cards, research card text, Putting it all together box, discussion cards, myth panel evidence text, visuals slide text, and teleprompter scripts. Before presenting any file, scan every paragraph and text element for uncited numerical claims. No exceptions. Confirmed after Dr Paul identified two uncited body prose stats in `lung-cancer.html` Article 29 (April 2026).
 
 ### Rule 25 — Subtypes and formally named sets must be listed — LOCKED APRIL 2026
-Use `<ol class="subtype-list">` for any formally counted set. Canonical: `lung-cancer.html` (April 2026).
-
-### Rule 26 — prostate-cancer-visuals.html is canonical visuals reference — LOCKED APRIL 2026
-Replaces `lifestyle-changes-visuals.html` as primary canonical reference.
-
-### Rule 27 — All stats require citations in every location — LOCKED APRIL 2026
-Every numerical figure, percentage, or quantitative claim requires an inline superscript citation — regardless of location. Body prose, Key Terms, stat grid, research cards, Putting it all together box, discussion cards, myth panels, visuals slides, and teleprompter scripts. If it's a number, it needs a citation. No exceptions.
-
-### Rule 28 — Subtypes in lists only — LOCKED APRIL 2026
-Any formally introduced set of items must appear in a `<ol class="subtype-list">` list.
-
-### Rule 29 — ev-outcome must carry the reason — LOCKED APRIL 2026
-For every research card, confirm the ev-outcome line contains BOTH the finding AND the reason/comparison. A reader must immediately understand the stat AND its cause from ev-stat-row + ev-outcome together.
-
-### Rule 30 — Visuals research card body = 2–3 sentences maximum — LOCKED APRIL 2026
-(1) what was compared, (2) headline finding, (3) one sentence of clinical context only.
-
-### Rule 31 — CTA slide = health-action one thing — LOCKED APRIL 2026
-CTA must be a health-action moment. Membership pitch on brand close only.
-
-### Rule 32 — Research currency: no articles older than 12 years — LOCKED APRIL 2026
-Nothing before 2014. Check every trial year before selecting.
-
-### Rule 33 — Drug brand names alongside all generics — LOCKED APRIL 2026
-Every generic drug name must have its brand name alongside in every file.
-
-### Rule 34 — Lay impact first: visuals and teleprompter — LOCKED APRIL 2026
-Colour narrative mandatory. No drug names in visuals or teleprompter. Teleprompter trials: name + stat + one plain sentence. Three-question structure. Canonical: `melanoma-visuals.html` (April 2026).
-
-### Rule 35 — Series background colour: never near-black — LOCKED APRIL 2026
-Visuals slide backgrounds must use the series dark colour family. Near-black (`#050f08`, `#060e08`) breaks series identity.
-
-### Rule 36 — EV-card two-card height constraint — LOCKED APRIL 2026
-Two stacked ev-cards: `ev-card padding:1.1rem 1.4rem` and `ev-body line-clamp:4`. Hard word limits: two stacked = ≤30 words; single = ≤44 words.
-
-### Rule 37 — ev-stage MUST USE display:flex — NEVER display:grid — LOCKED APRIL 2026
-`.ev-stage { display: flex; flex-direction: column; gap: .95rem; flex: 1; min-height: 0; }` — never `display:grid`.
-
-### Rule 38 — 4-card slides must split — "fragile" is NOT a pass — LOCKED APRIL 2026
-Any slide grid with 4 cards must be split to 2+2 across two slides. "Fragile" at QC = mandatory split, not approval to ship. Canonical failure: ibd-visuals.html treatment ladder — 4 cards clipped at filming viewport. Caught by Dr Paul April 2026.
+When article body prose introduces a formally counted or named set of items using a phrase like "three main subtypes", "four stages", "two types of", those items must be presented in a numbered or bulleted HTML list (`<ol class="subtype-list">`) — never as inline comma-separated prose. Canonical reference: `lung-cancer.html` Section 1 NSCLC subtypes (Article 29, April 2026). Apply this pattern when retrofitting or building any article that contains formally introduced sets of items.
 
 ---
 
 ## CONFIRMED FILE STATUS — UPDATED APRIL 2026
 
-**AUTHORITY NOTE: If any entry below conflicts with Section 3, Section 3 is correct.**
+**AUTHORITY NOTE: If any entry below conflicts with the article inventory in Section 3, Section 3 is correct.**
 
-### Cardiovascular Series (01–07) — ALL COMPLETE ✅
+### Cardiovascular Series (01–07) — ALL COMPLETE ON GITHUB ✅
 
 | File | Status |
 |------|--------|
-| hypertension.html + visuals + teleprompter | ✅ Confirmed correct (refs 5+6 ⛑ pending verification) |
+| hypertension.html + visuals + teleprompter | ✅ Confirmed correct (refs 5+6 ⚑ pending verification) |
 | cholesterol.html + visuals + teleprompter | ✅ Confirmed correct |
 | heart-attack-risk.html + visuals + teleprompter | ✅ Confirmed correct |
 | statins.html + visuals + teleprompter | ✅ Confirmed correct |
@@ -1817,35 +1560,35 @@ Any slide grid with 4 cards must be split to 2+2 across two slides. "Fragile" at
 | diverticular-disease.html + visuals + teleprompter | ✅ On GitHub |
 | constipation.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
 
-### Neurological Series (22–26) — ALL BUILT ✅
+### Neurological Series (22–26) — ALL COMPLETE ✅ May 2026
 
 | File | Status |
 |------|--------|
-| migraine.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
-| headaches.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
-| dizziness-vertigo.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
-| memory-dementia.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
-| epilepsy.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| migraine.html + visuals + teleprompter | ✅ Built April 2026 — visuals + teleprompter RETROFITTED May 2026 · 11-slide deck |
+| headaches.html + visuals + teleprompter | ✅ Built April 2026 — visuals + teleprompter RETROFITTED May 2026 · 11-slide deck |
+| dizziness-vertigo.html + visuals + teleprompter | ✅ Built April 2026 — FULL STRUCTURAL REBUILD May 2026 · 12-slide deck · ⚑ Fife & FitzGerald ref pending |
+| memory-dementia.html + visuals + teleprompter | ✅ Built April 2026 — **FULL STRUCTURAL REBUILD May 2026** · 11-slide deck · ⚑ ONS/prevalence sources pending |
+| epilepsy.html + visuals + teleprompter | ✅ Built April 2026 — **FULL STRUCTURAL REBUILD May 2026** · 12-slide deck · all sources approved |
 
-### Cancer Series (27–31) — ALL COMPLETE ✅
+### Cancer Series (27–31) — IN PROGRESS
 
 | File | Status |
 |------|--------|
-| breast-cancer.html + visuals + teleprompter | ✅ All 3 files built + retrofitted April 2026 |
-| prostate-cancer.html + visuals + teleprompter | ✅ All 3 files built + retrofitted April 2026 — PRIMARY CANONICAL REFERENCE |
-| lung-cancer.html + visuals + teleprompter | ✅ All 3 files built + retrofitted April 2026 |
-| bowel-cancer.html + visuals + teleprompter | ✅ All 3 files built + retrofitted April 2026 — FIRST ZERO-CHANGE DELIVERY |
-| melanoma.html + visuals + teleprompter | ✅ All 3 files built + retrofitted April 2026 |
+| breast-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — on GitHub ✅ |
+| prostate-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — on GitHub ✅ |
+| lung-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — on GitHub ✅ |
+| bowel-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — on GitHub ✅ |
+| melanoma.html + visuals + teleprompter | Not yet built — Article 31, next to build |
 
 ### OUTSTANDING CITATION FLAGS
-- hypertension.html refs 5 + 6 — Cochrane PubMed IDs flagged ⛑ unverified
+- hypertension.html refs 5 + 6 — Cochrane PubMed IDs flagged ⚑ unverified
 
 ---
 
 ## 23. ARTICLE-SPECIFIC NOTES — KNOWN ISSUES
 
 ### hypertension.html
-References 5 and 6 — Cochrane PubMed IDs flagged ⛑ unverified. These need verification via web search before the article can be confirmed fully complete.
+References 5 and 6 — Cochrane PubMed IDs flagged ⚑ unverified. These need verification via web search before the article can be confirmed fully complete.
 
 ### statins.html
 Very large HTML file — has caused mid-build crashes in previous sessions. If this file needs to be rebuilt or significantly edited, handle it in one dedicated turn.
@@ -1877,7 +1620,10 @@ Article HTML built April 2026. Research flags noted: NICE CKS Vertigo (last revi
 - NICE NG101 (updated February 2025) and CG81
 - 3 research cards: Marmot 2012 (PMID 23117178); EBCTCG tamoxifen 2011 (PMID 21802721); EBCTCG aromatase inhibitors 2015 (PMID 26211827)
 - All 4 stat grid cards carry inline citations ✅
+- Overdiagnosis: uses Marmot paper's per-10,000 framing (129 per 10,000) — not the derived 4,000 annual figure
+- Research card stat box: forest green gradient, 3.2rem stat number — new canonical standard
 - All 3 files built April 2026 ✅ — on GitHub ✅
+- Cross-reference signpost box added in Section 3 after symptoms paragraph — signposts forthcoming Article 32 (Breast Awareness, Practical Health series), marked "Coming soon"
 
 ### prostate-cancer.html — April 2026 decisions
 - Cancer Series Article 28. Colour `#2A5A3A` (forest green, dark variant `#1A3A25`)
@@ -1886,42 +1632,27 @@ Article HTML built April 2026. Research flags noted: NICE CKS Vertigo (last revi
 - Deaths: "~12,200" — Cancer Research UK (2021–2023)
 - NICE NG131 (Prostate cancer: diagnosis and management) — primary clinical reference
 - 3 research cards: ProtecT (Hamdy NEJM 2023, PMID 36912538); CAP trial (Martin JAMA 2024, PMID 38581198); STAMPEDE (James Lancet 2016, PMID 26719232)
+- PSA "3 in 4 will not have cancer" — cited Cancer Research UK (citing NICE NG12) as ref 6
+- Biopsy wording: NICE NG131 acknowledges shift to transperineal; does not formally recommend one approach over the other — wording corrected from overstated original
+- ADT side effects: cited NICE NG131
+- LHRH antagonists named: degarelix (Firmagon), relugolix (Orgovyx)
 - All 4 stat grid cards carry inline citations ✅
 - References numbered via CSS counter ✅
 - All PMIDs verified by web search in session ✅
 - All 3 files built April 2026 ✅ — on GitHub ✅
 - Visuals: 14 slides (3-card split pattern) — new canonical reference for all future visuals
+- Teleprompter: 9 segments, 10 cue boxes, 712 words
 
 ### lung-cancer.html — April 2026 decisions
 - Cancer Series Article 29. Colour `#2A5A3A` (forest green, dark variant `#1A3A25`)
-- **Myth-busting panel** at top of article body (before Section 1) — 2×2 dark navy grid; 4 myths vs evidence panels
+- **Myth-busting panel** at top of article body (before Section 1) — 2×2 dark navy grid; 4 myths vs evidence panels; confirmed citation for each
 - 3 research cards: NELSON (de Koning NEJM 2020, PMID 31995683); KEYNOTE-024 (Reck NEJM 2016, PMID 27718847); FLAURA OS (Ramalingam NEJM 2020, PMID 31751012)
+- 7 references total: CRUK stats (ref 1); NICE NG122 (ref 2); NELSON (ref 3); KEYNOTE-024 (ref 4); FLAURA (ref 5); Khan et al BJC Reports 2023 PMID 39516402 (ref 6 — never-smokers 15%); Doll et al BMJ 2004 PMID 15213107 (ref 7 — cessation halves hazard at age 50)
+- Incidence ~49,300 · deaths ~32,800 · 10-year survival 11.1% · 79% preventable — all from CRUK ref 1 directly
+- 72% caused by smoking / 79% total preventable fraction: both cited from CRUK ref 1, clearly distinguished in Section 1 paragraph 3
 - NSCLC subtypes presented as `<ol class="subtype-list">` numbered list — first use of this pattern ← canonical
+- **Research flags outstanding:** NSCLC/SCLC proportion needs confirmation in NICE NG122 text; EGFR/ALK prevalence needs confirmation in NICE NG122; stage 3/4 survival figures not yet added; PD-L1 23–28% verified from KEYNOTE-024 ✅
 - All 3 files built April 2026 ✅ — on GitHub ✅
-
-### ibd-visuals.html — April 2026 retrofit decisions
-- Full retrofit April 2026 — 12-slide deck
-- 4-card treatment ladder (slides 9–10 in old deck) identified as clipping on Dr Paul's filming viewport — split to 2+2 (now slides 8 and 9 in new deck)
-- Rule 38 confirmed: 4-card slides must split — "fragile" is NOT a passing QC result
-- All other retrofit checklist items applied ✅
-
-### coeliac-visuals.html — April 2026 retrofit decisions
-- Full retrofit April 2026 — 12-slide deck
-- All retrofit checklist items applied ✅
-- Matched teleprompter updated to align with new slide numbering
-
-### gallstones-visuals.html — April 2026 rebuild decisions
-- Pre-canonical architecture found: `position:absolute; inset:0`, no `.nav-dot` class (used `.dot`), side-by-side ev-cards (1fr 1fr), quote-card closing slide — full structural rebuild required (patching not viable with 20+ QC failures)
-- New 12-slide deck: intro · what are gallstones (3 slides) · risk factors (2 slides) · symptoms (1 slide) · doctor toolkit (2 slides) · evidence (2 stacked ev-cards) · CTA sequential · brand close
-- All QC checks passed on delivery ✅
-- Matched teleprompter rebuilt to match new 12-slide structure
-
-### diverticular-disease-visuals.html — April 2026 rebuild decisions
-- Pre-canonical architecture found: same pattern as gallstones — `inset:0`, no nav dots, side-by-side ev-cards, quote-card close — full structural rebuild required
-- New 10-slide deck: intro · three stages (3-row green/amber/red) · risk factors 1/2 (amber, 3 rows: low fibre/age/obesity) · risk factors 2/2 (amber, 2 rows: smoking/NSAIDs) · diet myth busted (2-col comparison: old advice vs NICE NG147) · doctor toolkit 1/2 (green, 3 rows: lifestyle/pain/no-ABx) · doctor toolkit 2/2 (green, 2 rows: CT/surgery) · evidence (2 stacked ev-cards) · CTA sequential · brand close
-- Diet myth comparison (slide 5) retained as 2-col layout — unique to diverticular disease
-- All QC checks passed on delivery: 0 failures ✅
-- Matched 7-segment teleprompter delivered with correct cue boxes
 
 ---
 
@@ -1935,17 +1666,27 @@ Series colour: `#6B5EA8` (purple)
 **Article 32 — Breast Awareness**
 - Practical Health series · slug: `breast-awareness` · colour: `#7A6A2E`
 - Short practical article — NOT a cancer biology article. Covers: what breast tissue normally looks and feels like, changes that are clinically recognised as worth discussing with a GP, how breast awareness fits alongside the NHS screening programme
-- Key clinical distinction to observe: NICE and Cancer Research UK moved away from recommending scheduled monthly breast self-examination (Cochrane evidence found no mortality benefit from formal BSE routines) towards breast awareness.
+- Key clinical distinction to observe: NICE and Cancer Research UK moved away from recommending scheduled monthly breast self-examination (Cochrane evidence found no mortality benefit from formal BSE routines) towards breast awareness — knowing what's normal for you and noticing changes. The article must reflect this distinction.
 - Sources: NICE NG101, Cancer Research UK, NHS
 - Cross-referenced from `breast-cancer.html` Section 3 — "Coming soon in the Practical Health series"
 
 **Article 33 — Testicular Awareness**
 - Practical Health series · slug: `testicular-awareness` · colour: `#7A6A2E`
 - Short practical article aimed primarily at young men (peak age for testicular cancer: 20s–30s)
+- Covers: what is normal, changes to notice (painless lump or swelling, change in size or shape, heaviness), why early detection matters
+- Sources: Cancer Research UK, NHS, NICE
 - Testicular cancer is the most common cancer in men aged 15–49 in the UK — a strong health education hook
 
-### Cancer Series (Articles 27–31) — ALL COMPLETE ✅ April 2026
-Series colour: `#2A5A3A` (forest green). Dark variant: `#1A3A25`.
+### Cancer Series (Articles 27–31) — IN PROGRESS
+Series colour: `#2A5A3A` (forest green). Dark variant: `#1A3A25`. Confirmed April 2026.
+
+| # | Title | Slug | Status |
+|---|-------|------|--------|
+| 27 | Breast Cancer | breast-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
+| 28 | Prostate Cancer | prostate-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
+| 29 | Lung Cancer | lung-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
+| 30 | Bowel (Colorectal) Cancer | bowel-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
+| 31 | Melanoma and Skin Cancer | melanoma | Not yet built — Article 31, next to build |
 
 **Possible future series:**
 - Stroke and TIA (bridges cardiovascular)
@@ -1956,54 +1697,42 @@ Series colour: `#2A5A3A` (forest green). Dark variant: `#1A3A25`.
 ## 25. PROCESS NOTES — FILE CREATION IN CLAUDE
 
 ### Writing large HTML files
-Use `create_file` for all HTML files. Bash heredocs fail on large HTML content.
+Use `create_file` for all HTML files. Bash heredocs fail on large HTML content because shell escaping breaks SVG paths, CSS values, and JavaScript (backticks, `$`, `&`, `>`, `<`). `create_file` handles all of these correctly.
 
 ### File already exists error
-Run `rm /home/claude/filename.html` then retry `create_file`.
+If `create_file` reports "file already exists", the cause is always a placeholder or earlier version from the same session. Run `rm /home/claude/filename.html` then retry `create_file`.
 
 ### Outputs directory
-All files for Dr Paul must be copied to `/mnt/user-data/outputs/` and presented via `present_files`.
+All files for Dr Paul must be copied to `/mnt/user-data/outputs/` and presented via `present_files`. Files in `/home/claude/` are not visible to Dr Paul until this step is completed.
 
 ### QC before presenting
 Always run bash QC checks (grep for key phrases, count required elements, verify word counts) before copying to outputs. Deliver only after QC passes.
 
-**Standard QC bash commands:**
-```bash
-# Check ev-body word counts
-python3 -c "
-import re, sys
-c=open(sys.argv[1]).read()
-bodies=re.findall(r'class=\"ev-body\">(.*?)</div>',c,re.DOTALL)
-for i,b in enumerate(bodies):
-    t=re.sub(r'<[^>]+>','',b).strip(); w=len(t.split())
-    print(f'ev-body {i+1}: {w}w {chr(10003) if w<=30 else chr(10007)}')
-" filename.html
-
-# Check ev-stage uses flex not grid
-grep "ev-stage" filename.html
-
-# Check forbidden phrases
-grep -i "speak to your GP|you should|seek help" filename.html
-```
-
 ### Research card stat box — writing guidance
-1. Identify the clinically important finding
-2. State it as complete subject + finding: "The Epley manoeuvre / is safe & effective for BPPV"
+When writing research card stat boxes, follow this sequence:
+1. Identify the clinically important finding — what does this research tell someone with this condition?
+2. State it as a complete subject + finding: "The Epley manoeuvre / is safe & effective for BPPV"
 3. Check: can a lay reader understand this from the stat box alone?
-4. Never lead with ORs, RCT counts, CIs, or participant counts
+4. Put supporting detail (effect sizes, study scale, comparator) in the body text and `.ev-conditions` line
+5. Never lead with ORs, RCT counts, confidence intervals, or participant counts
 
 ### PMID verification — mandatory process
-1. Search by author, title, journal, year
-2. Find PubMed URL in search results
-3. PMID is the number in that URL
-4. Only then include the PMID in the file. Never from memory.
+1. Search for the paper by author, title, journal, year
+2. Find a PubMed URL in the search results
+3. The PMID is the number in that URL
+4. Only then include the PMID in the file
+5. Never include a PMID from memory — it will be wrong
 
 ### Approved source figure retrieval — mandatory process — LOCKED APRIL 2026
-1. Search for the approved source page specifically
-2. Retrieve the figure from that page only
-3. Never use a figure from an unapproved page that attributes it to an approved source
+1. Identify which approved source should hold the figure
+2. Search for that approved source page specifically
+3. Retrieve the figure from that page
+4. Use only the figure stated on the approved source page
+5. If an unapproved page (WCRF, charity site) quotes a figure and attributes it to an approved source, do not use the unapproved page's figure — fetch the approved source directly
+6. If the approved source page gives a different figure (e.g. "around 59,000" vs WCRF's "60,763"), always use the approved source's figure
 
 ### Subtype list — canonical CSS pattern — LOCKED APRIL 2026
+When body prose introduces a formally counted set of items, use this pattern (first introduced `lung-cancer.html` April 2026):
 ```css
 .article-wrap ol.subtype-list { counter-reset: subtype-counter; list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: .45rem; margin: .6rem 0 1rem 0; }
 .article-wrap ol.subtype-list li { counter-increment: subtype-counter; display: flex; gap: .7rem; align-items: flex-start; font-size: 1rem; line-height: 1.72; color: var(--text); font-weight: 400; }
@@ -2012,13 +1741,74 @@ grep -i "speak to your GP|you should|seek help" filename.html
 HTML: `<ol class="subtype-list"><li><strong>Name</strong> — definition text.</li></ol>`
 
 ### Project knowledge update — mandatory process — LOCKED APRIL 2026
-1. **`web_fetch` the live version from GitHub** — never rely on the project copy which may be stale. URL: `https://raw.githubusercontent.com/pls4286/helfschool/main/helf-school-project-knowledge.md`
-2. Write the exact fetched content to `/home/claude/helf-school-project-knowledge.md` — use Python append operations or `create_file`
-3. `str_replace` to add only the new session content — never rewrite from scratch
+1. Read the existing project knowledge document in full before writing a single word of the update
+2. Identify what is new from the current session only
+3. Add new content to the existing document — do not rewrite or abbreviate existing sections
 4. Run `wc -l` on the new file and confirm it is equal to or greater than the previous version
-5. Verify all 25 sections are present by scanning for each section heading
+5. Verify all 25 sections are present
 6. Never deliver a shorter version without explicit explanation and Dr Paul's confirmation
-7. Deliver for download and re-upload to both GitHub and the Claude Project
+
+---
+
+## SESSION UPDATE — May 2026 — Memory, Cognition & Dementia (25) + Epilepsy (26)
+
+### Section 17 — Retrofit additions May 2026
+
+**Neurological Series — NOW FULLY COMPLETE ✅ May 2026**
+
+- migraine (22): visuals + teleprompter ✅ retrofitted May 2026 — 11-slide canonical rebuild; 6-card grids → 3-card splits; sequential CTA; brand close; canonical opacity/visibility architecture
+- headaches (23): visuals + teleprompter ✅ retrofitted May 2026 — 11-slide canonical rebuild; OTC drug names (aspirin/ibuprofen/paracetamol) replaced with class descriptions per Rule 34
+- dizziness-vertigo (24): visuals + teleprompter ✅ FULL STRUCTURAL REBUILD May 2026 — 12-slide deck; pre-canonical inset:0 architecture; text-stat approach for Epley/VR Cochrane cards; ⚑ Fife & FitzGerald 2005 (Int J Audiol) pending source verification
+- **memory-dementia (25): visuals + teleprompter ✅ FULL STRUCTURAL REBUILD May 2026 — 11-slide deck** · pre-canonical architecture confirmed (inset:0/display:none/dot/no brand close) · drug names → class descriptions (cholinesterase inhibitors, NMDA receptor antagonist) · ⚑ ONS death stats + NHS Digital prevalence (~900k) + 1.4M projection all pending source verification · Alzheimer's Society/ARUK/Carnall Farrar NOT approved sources
+- **epilepsy (26): visuals + teleprompter ✅ FULL STRUCTURAL REBUILD May 2026 — 12-slide deck** · pre-canonical architecture confirmed · all sources approved (Seizure, JAMA Neurology, NEJM, QJM, Epilepsia) · all PMIDs verified (29279892, 10660394, 10209668, 24903551) · drug names → class descriptions throughout · valproate described as class only per Rule 34 · MHRA Pregnancy Prevention Programme named without drug name
+
+### Section 18 — Key learning point additions May 2026
+
+### Three-column card grids clip at filming viewport — use horizontal ic-card layout — LOCKED MAY 2026
+At 768px filming viewport, a three-column card grid gives ~200px content width per card = 4–5 words per line. With line-clamp:4, maximum visible = 16–20 words. For text-heavy content needing complete sentences, use the horizontal `ic-card` layout (full card width, icon left, text right) instead. Canonical failure: memory-dementia-visuals.html slide 5 — hl-cards 3-column grid truncated all three card bodies mid-sentence. Fix: replaced with `three-grid` ic-card layout. Confirmed May 2026.
+
+### info-row-body two-sentence word limit — LOCKED MAY 2026
+Any `info-row-body` running to two sentences must stay ≤28 words total. First sentence alone typically consumes 15–18 words at line-clamp:3. A second sentence pushing total above 28 words clips at the third line at filming viewport. Canonical failures: memory-dementia-visuals.html slide 7 top card (32 words) and epilepsy-visuals.html slide 7 top card (31 words) — both caught by Dr Paul. Fix: trim to ≤29 words, all sentences complete.
+
+### Approved sources for dementia statistics — LOCKED MAY 2026
+Alzheimer's Society, ARUK, and Carnall Farrar are NOT approved sources. Correct sources: prevention fraction (45%) and hearing loss (9%) → Livingston et al, Lancet 2024 ✅; UK leading cause of death → ONS mortality statistics ⚑ verify; UK prevalence (~900k) → NHS Digital ⚑ verify; projections (1.4M by 2040) → NHS projection data ⚑ verify.
+
+### Pre-canonical architecture confirmed in Articles 25 and 26 — May 2026
+Both memory-dementia-visuals.html and epilepsy-visuals.html used pre-canonical architecture — same four markers as gallstones, diverticular-disease, and dizziness-vertigo. Full structural rebuild required for both (Rule 40). Pattern now fully confirmed: all Neurological Series visuals built before the canonical standard require full rebuild, not retrofit.
+
+### Epilepsy drug resistance — 11% is after TWO drug failures, not one — LOCKED MAY 2026
+The Kwan & Brodie NEJM 2000 finding: once two anti-seizure medications have failed, the probability of any further medication achieving seizure freedom is approximately 11%. This is after TWO failures — not after one. Never state "if the first drug fails → 11%." Correct framing: "once two drugs have failed, probability of further medication succeeding is only ~11%." Caught in epilepsy-teleprompter.html May 2026 — corrected before delivery.
+
+### Section 19 — Outstanding tasks update May 2026
+
+**Completed this session:**
+- memory-dementia (25): visuals + teleprompter FULL STRUCTURAL REBUILD ✅
+- epilepsy (26): visuals + teleprompter FULL STRUCTURAL REBUILD ✅
+- **Neurological Series Articles 22–26 — ALL COMPLETE ✅**
+
+**Priority 1 — Verification outstanding:**
+- ⚑ memory-dementia-visuals.html — ONS death statistics, NHS Digital prevalence (~900k), 1.4M projection — verify before article goes live
+- ⚑ dizziness-vertigo-visuals.html slide 10 — Fife & FitzGerald 2005 (Int J Audiol) — not in approved sources — verify or replace before article goes live
+- ⚑ hypertension.html refs 5 & 6 — Cochrane PubMed IDs unverified
+- helf-school-conditions.html — hero stat needs updating to 31 articles live
+
+**Priority 2 — Next builds:**
+- Article 32: Breast Awareness (Practical Health Series) — not yet built
+- Article 33: Testicular Awareness (Practical Health Series) — not yet built
+
+### Section 23 — Article-specific notes additions May 2026
+
+### memory-dementia-visuals.html — May 2026 FULL STRUCTURAL REBUILD
+Pre-canonical architecture confirmed. Rebuilt to 11-slide canonical deck: Intro · Types 1/2+2/2 (Alzheimer/Vascular/Lewy; FTD/Mixed/MCI) · 14 risk factors life-course · Hearing loss (horizontal ic-cards — converted from 3-col hl-cards which clipped) · Assessment 1/2+2/2 · Research (Lancet 2024 x2) · Research (ONS deaths + incidence declining) · CTA sequential · Brand close. Drug names removed: cholinesterase inhibitors and NMDA receptor antagonist by class only. **⚑ ONS, NHS Digital, and projection sources flagged — must verify before article goes live.**
+
+### memory-dementia-teleprompter.html — May 2026 update
+6 segments · 8 cue boxes. Seg 2 → slides 2–3; seg 3 → slide 4; seg 4 → slide 5; seg 5 → slides 6–7; seg 6 → three cue boxes (slides 8, 9, 10). Drug names removed (donepezil/rivastigmine/galantamine → "cholinesterase inhibitors"). MCI paragraph added to seg-2. Incidence declining paragraph moved to after slide 9 cue.
+
+### epilepsy-visuals.html — May 2026 FULL STRUCTURAL REBUILD
+Pre-canonical architecture confirmed. Rebuilt to 12-slide canonical deck: Intro · Seizure types 1/2+2/2 · Assessment 1/2+2/2 · Medications (3 rows + valproate warn-band, class only) · Drug-resistant 1/2+2/2 · Research (Chen+Kwan) · Research (Smith+Thurman) · CTA sequential · Brand close. All sources approved. All PMIDs verified: 29279892 · 10660394 · 10209668 · 24903551.
+
+### epilepsy-teleprompter.html — May 2026 update
+6 segments · 8 cue boxes. Seg 2 → slides 2–3; seg 3 → slides 4–5; seg 4 → slide 6; seg 5 → slides 7–8; seg 6 → three cue boxes (slides 9, 10, 11). All drug names → class descriptions. Valproate: "one particular anti-seizure medication class... MHRA Pregnancy Prevention Programme." SUDEP paragraph added to seg-5. **Key correction: seg-5 originally said "if the first drug fails → 11%" — clinically wrong. Corrected to "once two drugs have failed → 11%."** Research split across slides 9 and 10 with separate cue boxes.
 
 ---
 
