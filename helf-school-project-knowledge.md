@@ -161,7 +161,7 @@ Articles 32–33 planned — extending the Practical Health series. Same series 
 | 10 | Exercise — the Evidence Base | exercise | All 3 files on GitHub ✅ |
 | 11 | Stress and the Body | stress | All 3 files on GitHub ✅ |
 | 12 | Alcohol — What the Evidence Shows | alcohol | All 3 files on GitHub ✅ |
-| 32 | Breast Awareness — What to Look For | breast-awareness | Planned — not yet built |
+| 32 | Breast Awareness — What to Look For | breast-awareness | All 3 files built May 2026 ✅ |
 | 33 | Testicular Awareness — What to Look For | testicular-awareness | Planned — not yet built |
 
 ### Series C — Digestive Health (Articles 13–21)
@@ -200,9 +200,9 @@ Series colour: `#2A5A3A` (forest green). Dark variant: `#1A3A25`. **Note: initia
 | 28 | Prostate Cancer | prostate-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
 | 29 | Lung Cancer | lung-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
 | 30 | Bowel (Colorectal) Cancer | bowel-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
-| 31 | Melanoma and Skin Cancer | melanoma | Not yet built — Article 31, next to build |
+| 31 | Melanoma and Skin Cancer | melanoma | All 3 files built April 2026 ✅ — on GitHub ✅ |
 
-**Total articles with all 3 files on GitHub: 30. Articles 27–30 all complete and on GitHub ✅. Article 31 (Melanoma) next to build.**
+**Total articles with all 3 files on GitHub: 31. All Cancer Series complete ✅.**
 
 ---
 
@@ -1335,8 +1335,8 @@ Apply in order. Each file needs:
 - Article 07: Supplements (`supplements-visuals.html`, `supplements-teleprompter.html`)
 
 ### Practical Health Series extension
-- Article 32: Breast Awareness (cross-referenced from breast-cancer.html — marked "Coming soon")
-- Article 33: Testicular Awareness
+- Article 32: Breast Awareness (cross-referenced from breast-cancer.html — marked "Coming soon") ✅ Built May 2026
+- Article 33: Testicular Awareness — next to build
 
 ### Verification outstanding
 - `hypertension.html` references 5 & 6 — Cochrane PubMed IDs flagged ⚑ unverified
@@ -1578,7 +1578,7 @@ When article body prose introduces a formally counted or named set of items usin
 | prostate-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — on GitHub ✅ |
 | lung-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — on GitHub ✅ |
 | bowel-cancer.html + visuals + teleprompter | ✅ All 3 files built April 2026 — on GitHub ✅ |
-| melanoma.html + visuals + teleprompter | Not yet built — Article 31, next to build |
+| melanoma.html + visuals + teleprompter | ✅ All 3 files built April 2026 — on GitHub ✅ |
 
 ### OUTSTANDING CITATION FLAGS
 - hypertension.html refs 5 + 6 — Cochrane PubMed IDs flagged ⚑ unverified
@@ -1686,7 +1686,7 @@ Series colour: `#2A5A3A` (forest green). Dark variant: `#1A3A25`. Confirmed Apri
 | 28 | Prostate Cancer | prostate-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
 | 29 | Lung Cancer | lung-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
 | 30 | Bowel (Colorectal) Cancer | bowel-cancer | All 3 files built April 2026 ✅ — on GitHub ✅ |
-| 31 | Melanoma and Skin Cancer | melanoma | Not yet built — Article 31, next to build |
+| 31 | Melanoma and Skin Cancer | melanoma | All 3 files built April 2026 ✅ — on GitHub ✅ |
 
 **Possible future series:**
 - Stroke and TIA (bridges cardiovascular)
@@ -1747,6 +1747,64 @@ HTML: `<ol class="subtype-list"><li><strong>Name</strong> — definition text.</
 4. Run `wc -l` on the new file and confirm it is equal to or greater than the previous version
 5. Verify all 25 sections are present
 6. Never deliver a shorter version without explicit explanation and Dr Paul's confirmation
+
+---
+
+## SESSION UPDATE — May 2026 — Article 32 (Breast Awareness) + Melanoma confirmed
+
+### Section 3 updates — May 2026
+- **Article 31 (Melanoma)** — confirmed all 3 files on GitHub ✅ (previously shown as "not yet built" — error corrected)
+- **Article 32 (Breast Awareness)** — all 3 files built May 2026 ✅ (article + visuals + teleprompter)
+- Cancer Series now fully complete: Articles 27–31 all on GitHub ✅
+- Total articles with all 3 files on GitHub: **32**
+
+### Section 17 — Retrofit/build additions May 2026
+
+**Practical Health Series extension:**
+- **breast-awareness (32): article + visuals + teleprompter ✅ BUILT May 2026** — 9-slide visuals deck · 6 segments · 726 words
+
+### Section 18 — Key learning point additions May 2026
+
+### CTA slides — maximum 5 items — LOCKED MAY 2026
+CTA slides must use a maximum of 5 action rows, not 6. A 6-item CTA was delivered for breast-awareness-visuals.html and the bottom item (row 6) was not visible at filming viewport despite shortened item text. Confirmed pattern: 6 rows clip reliably at filming viewport — 5 rows are the safe maximum. Update `grid-template-rows` to `repeat(5,1fr)` and the cta-items inline style. Canonical failure: breast-awareness-visuals.html slide 8 May 2026.
+
+### NICE NG101 date correction — May 2026
+NICE NG101 last updated **14 April 2025** — not February 2025 as previously recorded in project knowledge. Verified directly from NICE website (nice.org.uk/guidance/ng101) in May 2026 session. Any reference to "NICE NG101 updated February 2025" in existing files should be corrected to "April 2025".
+
+### Cochrane BSE review — no update exists — May 2026
+Kösters & Gøtzsche, Cochrane 2003 (CD003373, PMID 12804462 ✅) is the most current version. A 2007 literature search update was conducted internally but no new published version exists. This is the foundational evidence cited by NICE NG101 for the move away from formal breast self-examination. PMID verified May 2026 via PubMed.
+
+### Breast awareness — NHS monthly checking tension — May 2026
+The NHS page at nhs.uk/tests-and-treatments/how-to-check-your-breasts-or-chest/ explicitly says "about once a month" for checking — in tension with NICE NG101's breast awareness (no prescribed schedule) approach. Resolution applied in breast-awareness.html: dedicated callout box explains both approaches, validates the NHS video technique resource, and makes clear the evidence supports awareness familiarity over calendar adherence. NHS page retained as Ref 3 for its video guide value.
+
+### Section 19 — Outstanding tasks update May 2026
+
+**Completed this session:**
+- Melanoma (31): confirmed all 3 files on GitHub ✅ (Article Inventory corrected)
+- breast-awareness (32): article + visuals + teleprompter ✅ BUILT May 2026
+
+**Priority — next build:**
+- Article 33: Testicular Awareness (Practical Health Series)
+
+### Section 23 — Article-specific notes May 2026
+
+### breast-awareness.html — May 2026
+Practical Health Series Article 32. Slug: breast-awareness. Colour #7A6A2E (olive), dark #4A3A1A.
+- 6 sections: What is breast awareness · Why does it matter (stat grid) · What does normal look and feel like · Changes clinically recognised as worth assessment (6-item subtype-list) · NHS Breast Screening Programme · What the research shows
+- Ref 1: Cancer Research UK (1 in 7 · ~59,000 · ~420 men) · Ref 2: NICE NG101 (April 2025) · Ref 3: NHS nhs.uk checking page (retained for video) · Ref 4: Kösters & Gøtzsche Cochrane 2003 PMID 12804462 ✅ (no update exists — included for completeness, cited by NICE NG101)
+- Reference note box retained in article (reader-facing, not internal flag): explains why 2003 Cochrane is cited
+- Callout box added explaining NHS monthly vs NICE awareness tension — clinically honest and educationally valuable
+- Signpost box links to NHS free video guide at nhs.uk
+
+### breast-awareness-visuals.html — May 2026
+9-slide canonical deck: Intro · What is awareness · What does normal look like · Changes 1/2+2/2 · NHS Screening · Research (NICE NG101 text-stat) · CTA sequential (5 items) · Brand close.
+Colour narrative: amber = mechanism/concept · red = changes to know · green = action/screening.
+**CTA: 5 items only** (6 clipped at filming viewport — confirmed pattern).
+All 15 ic-body cards ≤29 words · ev-body 44 words (single card) · 0 forbidden phrases · 2 canonical phrases ✅
+
+### breast-awareness-teleprompter.html — May 2026
+6 segments · 7 cue boxes · 726 words. Seg 1 → slide 1 · Seg 2 → slides 2–3 · Seg 3 → slides 4–5 · Seg 4 → slide 6 · Seg 5 → slide 7 · Seg 6 → two cue boxes (slides 8 + 9).
+No drug names (none in this article). NICE NG101 approach described throughout — no monthly checking instruction. Canonical phrase × 2 ✅.
 
 ---
 
