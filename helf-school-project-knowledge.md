@@ -1,11 +1,11 @@
 # helf.school — Project Knowledge
-**Last updated: May 2026**
+**Last updated: April 2026**
 
 ---
 
 ## ⚠️ DOCUMENT INTEGRITY — CLAUDE MUST READ THIS BEFORE ANY SESSION WORK
 
-**This document has 25 numbered sections. Minimum expected line count: ~1300 lines.**
+**This document has 25 numbered sections. Minimum expected line count: ~1815 lines.**
 
 When updating this document at the end of any session, Claude MUST:
 1. Run `wc -l` on the new file before presenting it to Dr Paul
@@ -188,8 +188,8 @@ All five articles: all three files confirmed on GitHub ✅
 | 22 | Migraine | migraine | All 3 files built April 2026 ✅ — on GitHub |
 | 23 | Headaches — Types and Red Flags | headaches | All 3 files built April 2026 ✅ — on GitHub |
 | 24 | Dizziness and Vertigo | dizziness-vertigo | All 3 files built April 2026 ✅ — on GitHub |
-| 25 | Memory, Cognition and Dementia | memory-dementia | All 3 files built April 2026 ✅ — visuals + teleprompter FULL STRUCTURAL REBUILD May 2026 ✅ — 11-slide deck |
-| 26 | Epilepsy — What It Is and How It's Managed | epilepsy | All 3 files built April 2026 ✅ — visuals + teleprompter FULL STRUCTURAL REBUILD May 2026 ✅ — 12-slide deck |
+| 25 | Memory, Cognition and Dementia | memory-dementia | All 3 files built April 2026 ✅ — on GitHub |
+| 26 | Epilepsy — What It Is and How It's Managed | epilepsy | All 3 files built April 2026 ✅ — on GitHub |
 
 ### Series E — Cancer (Articles 27–31) — ESTABLISHED APRIL 2026
 Series colour: `#2A5A3A` (forest green). Dark variant: `#1A3A25`. **Note: initial proposed colour `#8A3A5A` (deep rose) was rejected — contrast issues. Forest green confirmed April 2026.**
@@ -1560,15 +1560,15 @@ When article body prose introduces a formally counted or named set of items usin
 | diverticular-disease.html + visuals + teleprompter | ✅ On GitHub |
 | constipation.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
 
-### Neurological Series (22–26) — ALL COMPLETE ✅ May 2026
+### Neurological Series (22–26) — ALL BUILT ✅
 
 | File | Status |
 |------|--------|
-| migraine.html + visuals + teleprompter | ✅ Built April 2026 — visuals + teleprompter RETROFITTED May 2026 · 11-slide deck |
-| headaches.html + visuals + teleprompter | ✅ Built April 2026 — visuals + teleprompter RETROFITTED May 2026 · 11-slide deck |
-| dizziness-vertigo.html + visuals + teleprompter | ✅ Built April 2026 — FULL STRUCTURAL REBUILD May 2026 · 12-slide deck · ⚑ Fife & FitzGerald ref pending |
-| memory-dementia.html + visuals + teleprompter | ✅ Built April 2026 — **FULL STRUCTURAL REBUILD May 2026** · 11-slide deck · ⚑ ONS/prevalence sources pending |
-| epilepsy.html + visuals + teleprompter | ✅ Built April 2026 — **FULL STRUCTURAL REBUILD May 2026** · 12-slide deck · all sources approved |
+| migraine.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| headaches.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| dizziness-vertigo.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| memory-dementia.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| epilepsy.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
 
 ### Cancer Series (27–31) — IN PROGRESS
 
@@ -1747,68 +1747,6 @@ HTML: `<ol class="subtype-list"><li><strong>Name</strong> — definition text.</
 4. Run `wc -l` on the new file and confirm it is equal to or greater than the previous version
 5. Verify all 25 sections are present
 6. Never deliver a shorter version without explicit explanation and Dr Paul's confirmation
-
----
-
-## SESSION UPDATE — May 2026 — Memory, Cognition & Dementia (25) + Epilepsy (26)
-
-### Section 17 — Retrofit additions May 2026
-
-**Neurological Series — NOW FULLY COMPLETE ✅ May 2026**
-
-- migraine (22): visuals + teleprompter ✅ retrofitted May 2026 — 11-slide canonical rebuild; 6-card grids → 3-card splits; sequential CTA; brand close; canonical opacity/visibility architecture
-- headaches (23): visuals + teleprompter ✅ retrofitted May 2026 — 11-slide canonical rebuild; OTC drug names (aspirin/ibuprofen/paracetamol) replaced with class descriptions per Rule 34
-- dizziness-vertigo (24): visuals + teleprompter ✅ FULL STRUCTURAL REBUILD May 2026 — 12-slide deck; pre-canonical inset:0 architecture; text-stat approach for Epley/VR Cochrane cards; ⚑ Fife & FitzGerald 2005 (Int J Audiol) pending source verification
-- **memory-dementia (25): visuals + teleprompter ✅ FULL STRUCTURAL REBUILD May 2026 — 11-slide deck** · pre-canonical architecture confirmed (inset:0/display:none/dot/no brand close) · drug names → class descriptions (cholinesterase inhibitors, NMDA receptor antagonist) · ⚑ ONS death stats + NHS Digital prevalence (~900k) + 1.4M projection all pending source verification · Alzheimer's Society/ARUK/Carnall Farrar NOT approved sources
-- **epilepsy (26): visuals + teleprompter ✅ FULL STRUCTURAL REBUILD May 2026 — 12-slide deck** · pre-canonical architecture confirmed · all sources approved (Seizure, JAMA Neurology, NEJM, QJM, Epilepsia) · all PMIDs verified (29279892, 10660394, 10209668, 24903551) · drug names → class descriptions throughout · valproate described as class only per Rule 34 · MHRA Pregnancy Prevention Programme named without drug name
-
-### Section 18 — Key learning point additions May 2026
-
-### Three-column card grids clip at filming viewport — use horizontal ic-card layout — LOCKED MAY 2026
-At 768px filming viewport, a three-column card grid gives ~200px content width per card = 4–5 words per line. With line-clamp:4, maximum visible = 16–20 words. For text-heavy content needing complete sentences, use the horizontal `ic-card` layout (full card width, icon left, text right) instead. Canonical failure: memory-dementia-visuals.html slide 5 — hl-cards 3-column grid truncated all three card bodies mid-sentence. Fix: replaced with `three-grid` ic-card layout. Confirmed May 2026.
-
-### info-row-body two-sentence word limit — LOCKED MAY 2026
-Any `info-row-body` running to two sentences must stay ≤28 words total. First sentence alone typically consumes 15–18 words at line-clamp:3. A second sentence pushing total above 28 words clips at the third line at filming viewport. Canonical failures: memory-dementia-visuals.html slide 7 top card (32 words) and epilepsy-visuals.html slide 7 top card (31 words) — both caught by Dr Paul. Fix: trim to ≤29 words, all sentences complete.
-
-### Approved sources for dementia statistics — LOCKED MAY 2026
-Alzheimer's Society, ARUK, and Carnall Farrar are NOT approved sources. Correct sources: prevention fraction (45%) and hearing loss (9%) → Livingston et al, Lancet 2024 ✅; UK leading cause of death → ONS mortality statistics ⚑ verify; UK prevalence (~900k) → NHS Digital ⚑ verify; projections (1.4M by 2040) → NHS projection data ⚑ verify.
-
-### Pre-canonical architecture confirmed in Articles 25 and 26 — May 2026
-Both memory-dementia-visuals.html and epilepsy-visuals.html used pre-canonical architecture — same four markers as gallstones, diverticular-disease, and dizziness-vertigo. Full structural rebuild required for both (Rule 40). Pattern now fully confirmed: all Neurological Series visuals built before the canonical standard require full rebuild, not retrofit.
-
-### Epilepsy drug resistance — 11% is after TWO drug failures, not one — LOCKED MAY 2026
-The Kwan & Brodie NEJM 2000 finding: once two anti-seizure medications have failed, the probability of any further medication achieving seizure freedom is approximately 11%. This is after TWO failures — not after one. Never state "if the first drug fails → 11%." Correct framing: "once two drugs have failed, probability of further medication succeeding is only ~11%." Caught in epilepsy-teleprompter.html May 2026 — corrected before delivery.
-
-### Section 19 — Outstanding tasks update May 2026
-
-**Completed this session:**
-- memory-dementia (25): visuals + teleprompter FULL STRUCTURAL REBUILD ✅
-- epilepsy (26): visuals + teleprompter FULL STRUCTURAL REBUILD ✅
-- **Neurological Series Articles 22–26 — ALL COMPLETE ✅**
-
-**Priority 1 — Verification outstanding:**
-- ⚑ memory-dementia-visuals.html — ONS death statistics, NHS Digital prevalence (~900k), 1.4M projection — verify before article goes live
-- ⚑ dizziness-vertigo-visuals.html slide 10 — Fife & FitzGerald 2005 (Int J Audiol) — not in approved sources — verify or replace before article goes live
-- ⚑ hypertension.html refs 5 & 6 — Cochrane PubMed IDs unverified
-- helf-school-conditions.html — hero stat needs updating to 31 articles live
-
-**Priority 2 — Next builds:**
-- Article 32: Breast Awareness (Practical Health Series) — not yet built
-- Article 33: Testicular Awareness (Practical Health Series) — not yet built
-
-### Section 23 — Article-specific notes additions May 2026
-
-### memory-dementia-visuals.html — May 2026 FULL STRUCTURAL REBUILD
-Pre-canonical architecture confirmed. Rebuilt to 11-slide canonical deck: Intro · Types 1/2+2/2 (Alzheimer/Vascular/Lewy; FTD/Mixed/MCI) · 14 risk factors life-course · Hearing loss (horizontal ic-cards — converted from 3-col hl-cards which clipped) · Assessment 1/2+2/2 · Research (Lancet 2024 x2) · Research (ONS deaths + incidence declining) · CTA sequential · Brand close. Drug names removed: cholinesterase inhibitors and NMDA receptor antagonist by class only. **⚑ ONS, NHS Digital, and projection sources flagged — must verify before article goes live.**
-
-### memory-dementia-teleprompter.html — May 2026 update
-6 segments · 8 cue boxes. Seg 2 → slides 2–3; seg 3 → slide 4; seg 4 → slide 5; seg 5 → slides 6–7; seg 6 → three cue boxes (slides 8, 9, 10). Drug names removed (donepezil/rivastigmine/galantamine → "cholinesterase inhibitors"). MCI paragraph added to seg-2. Incidence declining paragraph moved to after slide 9 cue.
-
-### epilepsy-visuals.html — May 2026 FULL STRUCTURAL REBUILD
-Pre-canonical architecture confirmed. Rebuilt to 12-slide canonical deck: Intro · Seizure types 1/2+2/2 · Assessment 1/2+2/2 · Medications (3 rows + valproate warn-band, class only) · Drug-resistant 1/2+2/2 · Research (Chen+Kwan) · Research (Smith+Thurman) · CTA sequential · Brand close. All sources approved. All PMIDs verified: 29279892 · 10660394 · 10209668 · 24903551.
-
-### epilepsy-teleprompter.html — May 2026 update
-6 segments · 8 cue boxes. Seg 2 → slides 2–3; seg 3 → slides 4–5; seg 4 → slide 6; seg 5 → slides 7–8; seg 6 → three cue boxes (slides 9, 10, 11). All drug names → class descriptions. Valproate: "one particular anti-seizure medication class... MHRA Pregnancy Prevention Programme." SUDEP paragraph added to seg-5. **Key correction: seg-5 originally said "if the first drug fails → 11%" — clinically wrong. Corrected to "once two drugs have failed → 11%."** Research split across slides 9 and 10 with separate cue boxes.
 
 ---
 
