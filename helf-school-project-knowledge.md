@@ -1,13 +1,11 @@
 # helf.school — Project Knowledge
-**Last updated: April 2026**
+**Last updated: May 2026**
 
 ---
 
 ## ⚠️ DOCUMENT INTEGRITY — CLAUDE MUST READ THIS BEFORE ANY SESSION WORK
 
-**This document has 25 numbered sections. Minimum expected line count: ~1552 lines.**
-
-**Note — April 2026:** The authoritative version is the one stored in the Claude project (114KB). When pasted through chat, blank lines collapse, reducing apparent line count. The 1552-line figure is the reliable baseline for `wc -l` checks in Claude's bash environment. All content is present at this count.
+**This document has 25 numbered sections. Minimum expected line count: ~1760 lines.**
 
 When updating this document at the end of any session, Claude MUST:
 1. Run `wc -l` on the new file before presenting it to Dr Paul
@@ -187,11 +185,11 @@ Three files required per article: **Article HTML · Visuals HTML · Teleprompter
 
 | # | Title | Slug | Status |
 |---|-------|------|--------|
-| 22 | Migraine | migraine | All 3 files built April 2026 ✅ — on GitHub |
-| 23 | Headaches — Types and Red Flags | headaches | All 3 files built April 2026 ✅ — on GitHub |
-| 24 | Dizziness and Vertigo | dizziness-vertigo | All 3 files built April 2026 ✅ — on GitHub |
-| 25 | Memory, Cognition and Dementia | memory-dementia | All 3 files built April 2026 ✅ — on GitHub |
-| 26 | Epilepsy — What It Is and How It's Managed | epilepsy | All 3 files built April 2026 ✅ — on GitHub |
+| 22 | Migraine | migraine | All 3 files built April 2026 ✅ — visuals + teleprompter retrofitted May 2026 ✅ |
+| 23 | Headaches — Types and Red Flags | headaches | All 3 files built April 2026 ✅ — visuals + teleprompter retrofitted May 2026 ✅ |
+| 24 | Dizziness and Vertigo | dizziness-vertigo | All 3 files built April 2026 ✅ — visuals + teleprompter FULL STRUCTURAL REBUILD May 2026 ✅ |
+| 25 | Memory, Cognition and Dementia | memory-dementia | All 3 files built April 2026 ✅ — on GitHub · retrofit outstanding |
+| 26 | Epilepsy — What It Is and How It's Managed | epilepsy | All 3 files built April 2026 ✅ — on GitHub · retrofit outstanding |
 
 ### Series E — Cancer (Articles 27–31) — ESTABLISHED APRIL 2026
 Series colour: `#2A5A3A` (forest green). Dark variant: `#1A3A25`. Note: initial proposed colour `#8A3A5A` (deep rose) was rejected — contrast issues. Forest green confirmed April 2026.
@@ -737,12 +735,23 @@ Before presenting any article, visuals, or teleprompter HTML — verify via web 
   - **diverticular-disease (20): visuals + teleprompter ✅ full structural rebuild April 2026** — same pre-canonical architecture as gallstones; rebuilt to canonical standard; 10-slide deck; myth comparison preserved; risk/doc 5→3+2
   - **masld (17): ✅ visuals + teleprompter retrofit complete April 2026**
   - **constipation (21): ✅ visuals + teleprompter retrofit complete April 2026**
+- **Neurological Series — PARTIAL RETROFIT May 2026:**
+  - migraine (22): visuals + teleprompter ✅ retrofitted May 2026 — 11-slide canonical rebuild; 6-card grids → 3-card splits; sequential CTA; brand close; canonical opacity/visibility architecture
+  - headaches (23): visuals + teleprompter ✅ retrofitted May 2026 — 11-slide canonical rebuild; 6-card grids → 3-card splits; sequential CTA; brand close; OTC drug names replaced with class descriptions
+  - dizziness-vertigo (24): visuals + teleprompter ✅ FULL STRUCTURAL REBUILD May 2026 — 12-slide deck; pre-canonical inset:0 architecture; text-stat approach for Epley/VR Cochrane cards; ⚑ Fife & FitzGerald 2005 pending source verification
+  - memory-dementia (25): outstanding
+  - epilepsy (26): outstanding
 
 ### Outstanding — to confirm and apply
 - Research card complete clinical conclusion standard: outstanding across 01–23
 - Stat grid citations: outstanding across all articles built before April 2026
 - Visuals layout standard (3-card split, ev-stat-row): outstanding across 01–11
 - Subtype list formatting: outstanding across all articles
+- **Neurological Series (25–26): full retrofit checklist outstanding** — same as completed Digestive/Neurological articles above
+- **`display:-webkit-box` + `clamp:4` audit: outstanding across memory-dementia (25) and epilepsy (26)** — ALL CSS rules using `-webkit-line-clamp` must also have `display:-webkit-box`. AND `.sys-body`, `.doc-body`, `.mech-body` must have `line-clamp:4` — NEVER `line-clamp:2`. Word limit for these classes: ≤35 words.
+- **5/6/4-card grid splits: outstanding across memory-dementia (25) and epilepsy (26)**
+- **ev-stage display:flex: outstanding across memory-dementia (25) and epilepsy (26)**
+- **Pre-canonical architecture check: required for memory-dementia (25) and epilepsy (26)** — check for `inset:0`, `display:none/active`, `.dot` not `.nav-dot`, stat-repeat closing. If all four markers present, full structural rebuild required.
 
 ---
 
@@ -881,25 +890,51 @@ Both used: `position:absolute; inset:0`, no nav dots, side-by-side ev-cards (`1f
 4. `wc -l` confirm new ≥ original
 5. Deliver for download + upload to GitHub and Claude Project
 
+### dizziness-vertigo-visuals.html was pre-canonical architecture — full structural rebuild required — May 2026
+Used `position:absolute; inset:0` slides, `display:none/active` pattern, `.dot` (not `.nav-dot`), stat-repeat closing, old CTA pattern — the same four pre-canonical markers as gallstones and diverticular-disease (April 2026). Full structural rebuild required; patching not viable. Rebuilt to 12-slide canonical deck May 2026. **Confirmed pattern: when all four markers are present, expect full rebuild, not retrofit.**
+
+### Text-stat approach for research cards with no headline percentage — confirmed May 2026
+When a Cochrane review concludes "safe and effective" or "moderate to strong evidence" without a single headline percentage, use `.ev-text-stat` class (1.35rem weight:700) in place of `.ev-num`. The ev-outcome carries the qualitative clinical conclusion. Confirmed in `dizziness-vertigo-visuals.html` May 2026 for Epley manoeuvre and vestibular rehabilitation cards. CSS: `.ev-text-stat{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:700;color:#fff;line-height:1.25;margin-bottom:.3rem}`
+
+### Fife & FitzGerald 2005 (Int J Audiol) — source verification outstanding — May 2026
+`dizziness-vertigo-visuals.html` slide 10 and the teleprompter reference Fife & FitzGerald 2005, Int J Audiol (93-week wait audit). Int J Audiol is not in the approved sources list. Flagged ⚑ — must be verified or replaced before the dizziness-vertigo article goes live.
+
+### OTC drug names (aspirin/ibuprofen/paracetamol) are drug names — Rule 34 applies — May 2026
+In headaches-visuals.html, the TTH treatment card initially included "Aspirin, ibuprofen, or paracetamol". These are generic drug names and Rule 34 applies even to OTC medicines. Replaced with "Simple over-the-counter analgesics". Apply same principle across all visuals files.
+
 ---
 
-## 19. OUTSTANDING TASKS (April 2026)
+## 19. OUTSTANDING TASKS (April–May 2026)
 
 ### Completed ✅
 - Cancer Series visuals + teleprompters (27–31): all complete ✅
 - Cardiovascular Series visuals + teleprompters (01–07): all complete ✅
 - Practical Health Series visuals + teleprompters (08–12): all complete ✅
-- Digestive Series — ALL COMPLETE ✅:
+- Digestive Series — ALL COMPLETE April 2026 ✅:
   - acid-reflux (13) ✅ · bloating (15) ✅ · ibs (16) ✅
-  - ibd (14) ✅ full rebuild April 2026
-  - coeliac (18) ✅ full rebuild April 2026
-  - gallstones (19) ✅ full structural rebuild April 2026
-  - diverticular-disease (20) ✅ full structural rebuild April 2026
+  - **ibd (14) ✅ full rebuild April 2026**
+  - **coeliac (18) ✅ full rebuild April 2026**
+  - **gallstones (19) ✅ full structural rebuild April 2026**
+  - **diverticular-disease (20) ✅ full structural rebuild April 2026**
   - **masld (17) ✅ retrofit complete April 2026**
   - **constipation (21) ✅ retrofit complete April 2026**
+- **Neurological Series — PARTIAL May 2026:**
+  - migraine (22) ✅ visuals + teleprompter retrofitted May 2026 — 11-slide rebuild
+  - headaches (23) ✅ visuals + teleprompter retrofitted May 2026 — 11-slide rebuild
+  - dizziness-vertigo (24) ✅ visuals + teleprompter FULL STRUCTURAL REBUILD May 2026 — 12-slide deck
 
-### Next priority — Neurological Series (Articles 22–26)
-Same retrofit checklist as Digestive Series above.
+### Next priority — Neurological Series Articles 25–26
+**memory-dementia (25) → epilepsy (26)**
+
+Each file needs:
+1. CTA sequential animation
+2. Brand close pitch cards
+3. `display:-webkit-box` on ALL body elements — AND set `line-clamp:4`
+4. Split any 4+ card slides — max 3 cards per slide (Rule 38: 4-card is mandatory split)
+5. ev-card: padding 1.1rem, ev-body clamp:4 if two cards per slide
+6. ev-stage: confirm `display:flex` — fix if `display:grid` found
+7. Check for pre-canonical architecture (inset:0, no nav dots) — if all four markers present, full structural rebuild required (Rule 40)
+8. Teleprompter: remove drug names, update cue boxes to match new slide count
 
 ### Practical Health Series extension
 - Article 32: Breast Awareness
@@ -908,6 +943,7 @@ Same retrofit checklist as Digestive Series above.
 ### Verification outstanding
 - `hypertension.html` references 5 & 6 — Cochrane PubMed IDs ⚑ unverified
 - `helf-school-conditions.html` — hero stat needs updating to 31 articles live
+- `dizziness-vertigo-visuals.html` slide 10 — Fife & FitzGerald 2005 (Int J Audiol) ⚑ not in approved sources list
 
 ### Retrofit backlog (apply when files next opened)
 0. **LAY IMPACT FIRST** — colour narrative, remove drug names, three-question structure
@@ -920,7 +956,7 @@ Same retrofit checklist as Digestive Series above.
 7. **Stat grid citations** — 01–11
 8. **Subtype list formatting** — `<ol class="subtype-list">` where applicable
 
-**TELEPROMPTER CONSISTENCY RULE — LOCKED APRIL 2026:** Whenever a visuals file is updated, the matching teleprompter must be reviewed slide-by-slide before either file is uploaded.
+**TELEPROMPTER CONSISTENCY RULE — LOCKED APRIL 2026:** Whenever a visuals file is updated, the matching teleprompter must be reviewed slide-by-slide before either file is uploaded. A visuals retrofit is not complete until the teleprompter has been reviewed and updated.
 
 ---
 
@@ -1060,6 +1096,12 @@ Canonical failure: `stress-visuals.html` slide 7 (April 2026).
 ### Rule 38 — 4-card slides must split — LOCKED APRIL 2026
 **Any slide with 4 or more cards must split to ≤3 cards per slide.** The QC label "⚠ 4-card (fragile)" is not a pass — it is a mandatory split. Confirmed April 2026 after ibd-visuals.html 4-card treatment ladder clipped on filming viewport.
 
+### Rule 39 — Text-stat approach for qualitative Cochrane conclusions — LOCKED MAY 2026
+When no single headline percentage exists (e.g. Cochrane reviews concluding "safe and effective" or "moderate to strong evidence"), use `.ev-text-stat` class (1.35rem weight:700) in place of `.ev-num`. The ev-outcome carries the qualitative clinical conclusion. CSS: `.ev-text-stat{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:700;color:#fff;line-height:1.25;margin-bottom:.3rem}`. Canonical: `dizziness-vertigo-visuals.html` May 2026.
+
+### Rule 40 — Pre-canonical architecture = mandatory full rebuild — LOCKED MAY 2026
+When a visuals file uses `position:absolute; inset:0` · `display:none/active` · `.dot` (not `.nav-dot`) · stat-repeat closing — all four markers indicate pre-canonical architecture. Full structural rebuild is required; patching is not viable. Canonical failures: gallstones and diverticular-disease (April 2026), dizziness-vertigo (May 2026).
+
 ---
 
 ## CONFIRMED FILE STATUS — UPDATED APRIL 2026
@@ -1088,29 +1130,29 @@ Canonical failure: `stress-visuals.html` slide 7 (April 2026).
 | stress.html + visuals + teleprompter | ✅ All confirmed correct |
 | alcohol.html + visuals + teleprompter | ✅ All confirmed correct |
 
-### Digestive Health Series (13–21) — ALL COMPLETE ✅
+### Digestive Health Series (13–21)
 
 | File | Status |
 |------|--------|
-| acid-reflux + visuals + teleprompter | ✅ On GitHub · retrofitted April 2026 |
-| ibd + visuals + teleprompter | ✅ On GitHub · full rebuild April 2026 |
-| bloating + visuals + teleprompter | ✅ On GitHub · retrofitted April 2026 |
-| ibs + visuals + teleprompter | ✅ On GitHub · retrofitted April 2026 |
-| masld + visuals + teleprompter | ✅ On GitHub · **retrofit complete April 2026** |
-| coeliac + visuals + teleprompter | ✅ On GitHub · full rebuild April 2026 |
-| gallstones + visuals + teleprompter | ✅ On GitHub · full structural rebuild April 2026 |
-| diverticular-disease + visuals + teleprompter | ✅ On GitHub · full structural rebuild April 2026 |
-| constipation + visuals + teleprompter | ✅ Built April 2026 · **retrofit complete April 2026** |
+| acid-reflux + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter retrofitted April 2026 |
+| ibd + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter **full rebuild** April 2026 |
+| bloating + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter retrofitted April 2026 |
+| ibs + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter retrofitted April 2026 |
+| masld + visuals + teleprompter | ✅ On GitHub · retrofit complete April 2026 |
+| coeliac + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter **full rebuild** April 2026 |
+| gallstones + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter **full structural rebuild** April 2026 |
+| diverticular-disease + visuals + teleprompter | ✅ On GitHub · visuals + teleprompter **full structural rebuild** April 2026 |
+| constipation + visuals + teleprompter | ✅ Built April 2026 · retrofit complete April 2026 |
 
-### Neurological Series (22–26) — ALL BUILT ✅
+### Neurological Series (22–26) — PARTIAL RETROFIT May 2026
 
 | File | Status |
 |------|--------|
-| migraine + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
-| headaches + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
-| dizziness-vertigo + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
-| memory-dementia + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
-| epilepsy + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| migraine + visuals + teleprompter | ✅ Built April 2026 · visuals + teleprompter RETROFITTED May 2026 · 11-slide deck |
+| headaches + visuals + teleprompter | ✅ Built April 2026 · visuals + teleprompter RETROFITTED May 2026 · 11-slide deck |
+| dizziness-vertigo + visuals + teleprompter | ✅ Built April 2026 · FULL STRUCTURAL REBUILD May 2026 · 12-slide deck · ⚑ Fife & FitzGerald ref pending |
+| memory-dementia + visuals + teleprompter | ✅ Built April 2026 — on GitHub · retrofit outstanding |
+| epilepsy + visuals + teleprompter | ✅ Built April 2026 — on GitHub · retrofit outstanding |
 
 ### Cancer Series (27–31) — ALL COMPLETE ✅
 
@@ -1124,6 +1166,7 @@ Canonical failure: `stress-visuals.html` slide 7 (April 2026).
 
 ### OUTSTANDING CITATION FLAGS
 - hypertension.html refs 5 + 6 — Cochrane PubMed IDs flagged ⚑ unverified
+- dizziness-vertigo-visuals.html slide 10 — Fife & FitzGerald 2005 (Int J Audiol) ⚑ not in approved sources
 
 ---
 
@@ -1151,23 +1194,41 @@ Incidence ~57,900 (CRUK). 10-year survival 78.9%. Deaths ~12,200. NICE NG131. 3 
 Myth-busting panel (2×2 dark navy grid). 3 research cards: NELSON (PMID 31995683); KEYNOTE-024 (PMID 27718847); FLAURA (PMID 31751012). NSCLC subtypes as `<ol class="subtype-list">` — first use of this pattern, canonical.
 
 ### ibd-visuals.html — April 2026 full rebuild
-12-slide deck. Harm/doc 5-card grids split 3+2. Treatment ladder 4-card → 2+2 (Rule 38 — mandatory split). Drug names → class descriptions. Teleprompter updated to 12-slide deck.
+12-slide deck. Harm/doc 5-card grids split 3+2. Treatment ladder 4-card → 2+2 (Rule 38 — mandatory split). Drug names → class descriptions (anti-TNF agents, immunomodulators, aminosalicylates, corticosteroids). Teleprompter updated to 12-slide deck.
 
 ### coeliac-visuals.html — April 2026 full rebuild
 12-slide deck. 5-card doc-grid split 3+2. ev-stat-box → series gradient. ev-outcome carries reason. Sequential CTA. Brand close. Teleprompter updated.
 
 ### gallstones-visuals.html — April 2026 full structural rebuild
-Pre-canonical architecture: `inset:0` slides, no nav dots, side-by-side ev-cards, quote-card close, 5 webkit-box omissions. Full structural rebuild — cannot be patched. 12-slide deck. Teleprompter: 8 segments, cue boxes updated.
+Pre-canonical architecture: `inset:0` slides, no nav dots, side-by-side ev-cards, quote-card close, 5 webkit-box omissions, old stat format. Full structural rebuild — cannot be patched. 12-slide deck. All row grids ≤3 per slide. Teleprompter: 8 segments, cue boxes updated.
 
 ### diverticular-disease-visuals.html — April 2026 full structural rebuild
-Same pre-canonical architecture as gallstones. Full structural rebuild. 10-slide deck. Myth comparison (2-col) preserved. Risk/doc 5→3+2. Sequential CTA. Brand close. Teleprompter: 7 segments, cue boxes updated.
+Same pre-canonical architecture as gallstones. Full structural rebuild. 10-slide deck. Myth comparison (2-col) preserved as this is clinically valuable. Risk/doc 5→3+2. Canonical ev-stage. Sequential CTA. Brand close. Teleprompter: 7 segments, cue boxes updated.
+
+### migraine-visuals.html — May 2026 retrofit
+Pre-retrofit issues: `display:none` slides, 6-card grids, `line-clamp:2`, ev-stat-box plain tint, static CTA, stat-repeat closing. Rebuilt to 11-slide canonical deck: intro · big picture · triggers 1/2+2/2 · evidence 1/2+2/2 · research · mechanisms 1/2+2/2 · CTA sequential · brand close. Colour narrative applied throughout. No drug names ✅.
+
+### migraine-teleprompter.html — May 2026 update
+Cue boxes updated to 11-slide structure. Drug names (sumatriptan/Imigran/propranolol/topiramate/amitriptyline/erenumab) replaced with class descriptions per Rule 34.
+
+### headaches-visuals.html — May 2026 retrofit
+Pre-retrofit issues: same as migraine. Rebuilt to 11-slide canonical deck: intro · big picture · types 1/2+2/2 · treatment 1/2+2/2 · research · red flags 1/2+2/2 · CTA sequential · brand close. OTC drug names (aspirin/ibuprofen/paracetamol) replaced with "simple over-the-counter analgesics" per Rule 34. Colour narrative applied throughout.
+
+### headaches-teleprompter.html — May 2026 update
+Cue boxes updated to 11-slide structure. Drug names (sumatriptan/Imigran and OTC generics) replaced with class descriptions.
+
+### dizziness-vertigo-visuals.html — May 2026 FULL STRUCTURAL REBUILD
+Pre-canonical architecture confirmed: `position:absolute; inset:0` · `display:none/active` · `.dot` not `.nav-dot` · stat-repeat closing · old CTA 4-card grid. Same vintage as gallstones and diverticular-disease (April 2026). Full structural rebuild to 12-slide canonical deck: intro · big picture (2.4%/86%/8% stats) · dizziness vs vertigo 1/2+2/2 · causes 1/2+2/2 · BPPV mechanism · red flags · research (Epley+VR Cochrane) · research (treatment gap) · CTA sequential · brand close. Text-stat approach for Epley and VR Cochrane cards (`.ev-text-stat` class, no single headline percentage). **⚑ Fife & FitzGerald 2005 (Int J Audiol) — not in approved sources — pending verification before article goes live.**
+
+### dizziness-vertigo-teleprompter.html — May 2026 update
+7 segments mapped to 12 slides. seg-1 added for new big picture slide. seg-4 carries two cue boxes (slides 7 and 8 for BPPV mechanism + red flags). seg-5 carries two cue boxes (slides 9 and 10 for two research slides). No drug names in original ✅.
 
 ---
 
 ## 24. PLANNING NOTES — NEXT SERIES
 
-### Neurological Series (Articles 22–26) — COMPLETE APRIL 2026
-Series colour: `#6B5EA8` (purple). All 3 files on GitHub ✅.
+### Neurological Series (Articles 22–26) — PARTIAL RETROFIT May 2026
+Series colour: `#6B5EA8` (purple). Articles 22–24 retrofitted May 2026. Articles 25–26 outstanding.
 
 ### Practical Health Series extension — Articles 32–33 (planned April 2026)
 
@@ -1231,13 +1292,11 @@ grep -i "speak to your GP\|you should\|seek help" filename.html
 4. Only then include the PMID. Never from memory.
 
 ### Project knowledge update — mandatory process — LOCKED APRIL 2026
-1. **`web_fetch` the live version from GitHub** — never rely on the project copy which may be stale. URL: `https://raw.githubusercontent.com/pls4286/helfschool/main/helf-school-project-knowledge.md`
-2. Write the exact fetched content to `/home/claude/helf-school-project-knowledge.md` — use Python append operations or `create_file`
-3. `str_replace` to add only the new session content — never rewrite from scratch
-4. Run `wc -l` on the new file and confirm it is equal to or greater than the previous version
-5. Verify all 25 sections are present by scanning for each section heading
-6. Never deliver a shorter version without explicit explanation and Dr Paul's confirmation
-7. Deliver for download and re-upload to both GitHub and the Claude Project
+1. `web_fetch` live GitHub version
+2. Write exact fetched content to `/home/claude/helf-school-project-knowledge.md`
+3. `str_replace` only new session content
+4. `wc -l` confirm new ≥ original
+5. Deliver for download + upload to GitHub and Claude Project
 
 ### Subtype list — canonical CSS pattern — LOCKED APRIL 2026
 ```css
@@ -1281,28 +1340,28 @@ HTML: `<ol class="subtype-list"><li><strong>Name</strong> — definition text.</
 - **Practical Health Series visuals + teleprompters (Articles 08–12) — ALL COMPLETE April 2026 ✅**
   - Articles 10 (exercise), 11 (stress), 12 (alcohol) completed this session ✅
   - ev-stage display:flex enforced (Rule 37) — stress-visuals slide 7 clipping resolved ✅
-- **Digestive Series — ALL COMPLETE April 2026 ✅:**
+- **Digestive Series — partial retrofit completed April 2026:**
   - ibd (14): visuals + teleprompter ✅ full retrofit April 2026 — 12-slide deck
   - coeliac (18): visuals + teleprompter ✅ full retrofit April 2026 — 12-slide deck
-  - gallstones (19): visuals + teleprompter ✅ **full structural rebuild** April 2026 — 12-slide deck
-  - diverticular-disease (20): visuals + teleprompter ✅ **full structural rebuild** April 2026 — 10-slide deck
-  - **masld (17): ✅ retrofit complete April 2026**
-  - **constipation (21): ✅ retrofit complete April 2026**
+  - gallstones (19): visuals + teleprompter ✅ **full structural rebuild** April 2026 — 12-slide deck (pre-canonical architecture found — rebuild required)
+  - diverticular-disease (20): visuals + teleprompter ✅ **full structural rebuild** April 2026 — 10-slide deck (pre-canonical architecture found — rebuild required)
+  - masld (17): outstanding
+  - constipation (21): outstanding
 
 ### Outstanding — to confirm and apply
 - Research card stat standard (outcomes only, not counts): outstanding across 01–11
 - **Research card complete clinical conclusion standard: outstanding across 01–23** — audit when next opened
 - Inline citations (superscripts linking to refs): outstanding across 01–11
 - **Stat grid citations: outstanding across all articles built before April 2026**
-- CTA sequential animation: outstanding across Neurological series visuals
-- **Closing slide brand close standard: outstanding across Neurological series 22–26**
+- CTA sequential animation: outstanding across Digestive and Neurological non-Cancer series visuals
+- **Closing slide brand close standard: outstanding across 19–26**
 - Visuals layout standard (3-card split, ev-stat-row): outstanding across 01–11
 - Key terms / hero visibility standards: outstanding across 01–11
 - Teleprompter cue box standard: confirm per-file which were built before standard was set
 - **Subtype list formatting: outstanding across all articles**
-- **`display:-webkit-box` + `clamp:4` audit: outstanding across Neurological visuals** — `.sys-body`, `.doc-body`, `.mech-body` must have `line-clamp:4` — NEVER `line-clamp:2`.
-- **5/6-card grid split: outstanding across Neurological visuals**
-- **ev-stage display:flex audit: outstanding across Neurological visuals**
+- **`display:-webkit-box` + `clamp:4` audit: outstanding across Digestive and Neurological visuals** — `.sys-body`, `.doc-body`, `.mech-body` must have `line-clamp:4` — NEVER `line-clamp:2`.
+- **5/6-card grid split: outstanding across Digestive and Neurological visuals**
+- **ev-stage display:flex audit: outstanding across Digestive and Neurological visuals**
 
 ---
 
@@ -1489,17 +1548,17 @@ Mandatory process at every session end:
 - Practical Health Series visuals + teleprompters (08–12): all retrofitted ✅
   - Articles 10–12 (exercise, stress, alcohol) completed April 2026
   - New rule confirmed: ev-stage must use display:flex, never display:grid (Rule 37)
-- **Digestive Series — ALL COMPLETE April 2026 ✅:**
-  - acid-reflux (13) ✅ · bloating (15) ✅ · ibs (16) ✅
-  - ibd (14) ✅ full retrofit April 2026 — 12-slide deck
-  - coeliac (18) ✅ full retrofit April 2026 — 12-slide deck
-  - gallstones (19) ✅ full structural rebuild April 2026 — 12-slide deck
-  - diverticular-disease (20) ✅ full structural rebuild April 2026 — 10-slide deck
-  - **masld (17) ✅ retrofit complete April 2026**
-  - **constipation (21) ✅ retrofit complete April 2026**
+- **Digestive Series partial — April 2026 session:**
+  - acid-reflux (13): visuals + teleprompter ✅
+  - bloating (15): visuals + teleprompter ✅
+  - ibs (16): visuals + teleprompter ✅
+  - ibd (14): visuals + teleprompter ✅ full retrofit April 2026 — 12-slide deck
+  - coeliac (18): visuals + teleprompter ✅ full retrofit April 2026 — 12-slide deck
+  - gallstones (19): visuals + teleprompter ✅ **full structural rebuild** April 2026 — 12-slide deck
+  - diverticular-disease (20): visuals + teleprompter ✅ **full structural rebuild** April 2026 — 10-slide deck
 
-### Next priority — Neurological Series (Articles 22–26)
-Same retrofit checklist as Digestive Series above.
+### Next priority — Digestive Health Series (Articles 13–21) — CONTINUING
+Remaining: **masld (17) → constipation (21)**
 
 Each file needs:
 1. CTA sequential animation (replace static cta-rows-v2)
@@ -1510,12 +1569,15 @@ Each file needs:
 6. **ev-stage: confirm `display:flex` — fix if `display:grid` found**
 7. Check for pre-canonical architecture (inset:0, no nav dots) — if found, full structural rebuild required
 
+### Then: Neurological Series (Articles 22–26)
+Same retrofit checklist as Digestive Series above.
+
 ### Practical Health Series extension
 - Article 32: Breast Awareness
 - Article 33: Testicular Awareness
 
 ### Verification outstanding
-- `hypertension.html` references 5 & 6 — Cochrane PubMed IDs flagged ⚑ unverified
+- `hypertension.html` references 5 & 6 — Cochrane PubMed IDs flagged ⛑ unverified
 - `helf-school-conditions.html` — hero stat needs updating to 31 articles live
 
 ### Retrofit backlog (apply when files next opened)
@@ -1552,3 +1614,412 @@ All dark variants confirmed April 2026 — retrofit is fully unblocked.
 11. **CTA slide standard** — 01–11 only.
 12. **Visuals layout standard** — 01–11 only.
 13. **Subtype list formatting** — apply `<ol class="subtype-list">` to any article containing formally introduced sets.
+
+---
+
+## 20. CONSTIPATION ARTICLE — VERIFIED REFERENCES (April 2026)
+
+| Ref | Citation | DOI / URL | Used for |
+|-----|----------|-----------|----------|
+| 1 | NICE CKS Constipation (adults). Last revised 2023 | cks.nice.org.uk/constipation | Definition (Rome IV), red flags, laxative stepwise |
+| 2 | Dowden A. Prescriber 2021 + BJHA 2025 | wchh.onlinelibrary.wiley.com/doi/10.1002/psb.1954 | NHS burden: ~83,000 admissions/yr; 18.6m prescriptions; ~£113m cost |
+| 3 | Lee-Robichaud H et al. Cochrane 2010;(7):CD007570. PMID 20614462 | doi.org/10.1002/14651858.CD007570.pub2 | Macrogol superior to lactulose (10 RCTs, 868 participants) |
+| 4 | Christodoulides S et al. APT 2016;44(2):103–116. PMID 27170558 | doi.org/10.1111/apt.13662 | Fibre: 77% response vs 44% placebo |
+| 5 | NHS Inform. Constipation | nhsinform.scot/illnesses-and-conditions/stomach-liver-and-gastrointestinal-tract/constipation | Prevalence: 1 in 7 adults UK; women twice as often as men |
+
+---
+
+## 21. CLAUDE PROJECT FILE NOTES
+
+The Claude project holds **visuals, teleprompter, and screen files only**. Article HTML files live on GitHub only — intentionally absent from the Claude project. Exception: `mediterranean-diet.html` kept as canonical article template.
+
+### Canonical reference files
+| File | Purpose |
+|------|---------|
+| `mediterranean-diet.html` | Canonical article HTML template |
+| `lifestyle-changes-teleprompter.html` | Canonical teleprompter (cue box standard) |
+| `prostate-cancer-visuals.html` | **PRIMARY canonical visuals reference** |
+| `lifestyle-changes-visuals.html` | Secondary visuals reference — 6-row grid pattern |
+| `memory-dementia.html` | Canonical article research card layout (220px column) |
+| `breast-cancer.html` | Canonical article research card display (3.2rem stat, series gradient) |
+| `prostate-cancer.html` | Cancer Series article canonical — reference numbering via CSS counter |
+| `lung-cancer.html` | Canonical: myth-busting panel design; `<ol class="subtype-list">` pattern |
+
+### Files confirmed in Claude project (April 2026)
+**Teleprompters:** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine · headaches · dizziness-vertigo · memory-dementia · epilepsy · prostate-cancer
+
+**Visuals:** hypertension · cholesterol · heart-attack-risk · statins · lifestyle · salt · supplements · mediterranean-diet · sleep · exercise · stress · alcohol · gallstones · diverticular-disease · ibd (screen) · ibs · bloating · coeliac · masld · acid-reflux · constipation · migraine · headaches · dizziness-vertigo · memory-dementia · epilepsy · prostate-cancer
+
+**Screen files:** Ar_barretts-screen · Ar_sphincter-screen · ibd-gut-screen · bloating-gut-screen · bloating-fodmap-screen
+
+---
+
+## 22. SESSION START RULES (content of helf-school-session-start-rules.md)
+
+These rules must be applied at the start of every session, before any output or assessment is produced.
+
+### Rule 1 — Read before acting
+Read `helf-school-project-knowledge.md` AND `helf-school-session-start-rules.md` in full before any output. No exceptions.
+
+### Rule 2 — Article inventory is the source of truth
+The article inventory in Section 3 is authoritative. Do not infer status from file sizes or project file listings.
+
+### Rule 3 — 5,140-byte files are NOT corrupted
+Files ~5,140 bytes beginning with "data-build-id" are Edge incognito loader stubs. Never flag as corrupted.
+
+### Rule 4 — Never produce output before confirming understanding
+Before building or modifying any file, confirm: (1) which article/file, (2) current status per inventory, (3) canonical reference checked.
+
+### Rule 5 — Educational voice check on every file
+Audit every file for forbidden phrases before delivery. Always apply the full canonical phrase.
+
+### Rule 6 — Cross-check article ↔ teleprompter before delivery
+All key statistics, study names, years, and citation authors must match exactly.
+
+### Rule 6A — Project knowledge always overrides session-start-rules on status
+If session-start-rules.md conflicts with Section 3 of this document, this document is correct.
+
+### Rule 7 — One large file per turn
+Build very large HTML files one per turn. Wait for confirmation before proceeding.
+
+### Rule 8 — Verify references before building
+Run web searches to verify all planned citations. Fetch figures directly from approved source page.
+
+### Rule 9 — Update project knowledge at session end
+Update this document and session-start-rules.md together. Dr Paul uploads both to GitHub AND the Claude Project.
+
+### Rule 10 — NICE CG99 is children only
+Never cite NICE CG99 in any adult article.
+
+### Rule 11 — Research card complete clinical conclusion
+The stat box must state WHAT was studied and WHAT was found in patient-relevant terms.
+
+### Rule 12 — Visuals must maximise viewport space
+Every visuals slide must fill the available viewport. Body text minimum `.90rem`. Content must fill at least 85%.
+
+### Rule 13 — PMIDs must be verified by web search every time
+Every PMID must be found in a web search result before inclusion.
+
+### Rule 14 — Strict source rule
+Only approved sources. Derived statistics not acceptable. Causal attributions require primary citation.
+
+### Rule 15 — Exact figure rule — LOCKED APRIL 2026
+Use paper's exact numerical expression everywhere. Never convert between forms.
+
+### Rule 16 — Stat grid citation rule — LOCKED APRIL 2026
+Every `.stat-prose` line must carry a superscript citation.
+
+### Rule 17 — Approved source retrieval rule — LOCKED APRIL 2026
+Every figure must be retrieved directly from the approved source page.
+
+### Rule 18 — Never rebuild the project knowledge document from scratch — LOCKED APRIL 2026
+Always use the existing document as the base. Never rebuild from memory.
+
+### Rule 19 — Cancer Series: three elements use series green, not navy — LOCKED APRIL 2026
+Key Terms box · Putting it all together box · Research card stat box all use series gradient.
+
+### Rule 20 — Closing slide: brand close, `justify-content: flex-start` — LOCKED APRIL 2026
+Never stat repeat. Never `justify-content: center`.
+
+### Rule 21 — CTA slide: `cta-wrap-v2` with `grid-template-rows: auto 1fr auto` — LOCKED APRIL 2026
+Only correct CTA layout. Never `justify-content: center` or `space-between`.
+
+### Rule 22 — 3-card rule: never 6 cards on one slide — LOCKED APRIL 2026
+Always split to 3+3.
+
+### Rule 23 — Dark variants confirmed: retrofit unblocked — April 2026
+All series dark variants confirmed — see Section 2 table.
+
+### Rule 24 — All stats require citations in every location — LOCKED APRIL 2026
+Every numerical figure requires an inline superscript citation in every location.
+
+### Rule 25 — Subtypes and formally named sets must be listed — LOCKED APRIL 2026
+Use `<ol class="subtype-list">` for any formally counted set. Canonical: `lung-cancer.html` (April 2026).
+
+### Rule 26 — prostate-cancer-visuals.html is canonical visuals reference — LOCKED APRIL 2026
+Replaces `lifestyle-changes-visuals.html` as primary canonical reference.
+
+### Rule 27 — All stats require citations in every location — LOCKED APRIL 2026
+Every numerical figure, percentage, or quantitative claim requires an inline superscript citation — regardless of location. Body prose, Key Terms, stat grid, research cards, Putting it all together box, discussion cards, myth panels, visuals slides, and teleprompter scripts. If it's a number, it needs a citation. No exceptions.
+
+### Rule 28 — Subtypes in lists only — LOCKED APRIL 2026
+Any formally introduced set of items must appear in a `<ol class="subtype-list">` list.
+
+### Rule 29 — ev-outcome must carry the reason — LOCKED APRIL 2026
+For every research card, confirm the ev-outcome line contains BOTH the finding AND the reason/comparison. A reader must immediately understand the stat AND its cause from ev-stat-row + ev-outcome together.
+
+### Rule 30 — Visuals research card body = 2–3 sentences maximum — LOCKED APRIL 2026
+(1) what was compared, (2) headline finding, (3) one sentence of clinical context only.
+
+### Rule 31 — CTA slide = health-action one thing — LOCKED APRIL 2026
+CTA must be a health-action moment. Membership pitch on brand close only.
+
+### Rule 32 — Research currency: no articles older than 12 years — LOCKED APRIL 2026
+Nothing before 2014. Check every trial year before selecting.
+
+### Rule 33 — Drug brand names alongside all generics — LOCKED APRIL 2026
+Every generic drug name must have its brand name alongside in every file.
+
+### Rule 34 — Lay impact first: visuals and teleprompter — LOCKED APRIL 2026
+Colour narrative mandatory. No drug names in visuals or teleprompter. Teleprompter trials: name + stat + one plain sentence. Three-question structure. Canonical: `melanoma-visuals.html` (April 2026).
+
+### Rule 35 — Series background colour: never near-black — LOCKED APRIL 2026
+Visuals slide backgrounds must use the series dark colour family. Near-black (`#050f08`, `#060e08`) breaks series identity.
+
+### Rule 36 — EV-card two-card height constraint — LOCKED APRIL 2026
+Two stacked ev-cards: `ev-card padding:1.1rem 1.4rem` and `ev-body line-clamp:4`. Hard word limits: two stacked = ≤30 words; single = ≤44 words.
+
+### Rule 37 — ev-stage MUST USE display:flex — NEVER display:grid — LOCKED APRIL 2026
+`.ev-stage { display: flex; flex-direction: column; gap: .95rem; flex: 1; min-height: 0; }` — never `display:grid`.
+
+### Rule 38 — 4-card slides must split — "fragile" is NOT a pass — LOCKED APRIL 2026
+Any slide grid with 4 cards must be split to 2+2 across two slides. "Fragile" at QC = mandatory split, not approval to ship. Canonical failure: ibd-visuals.html treatment ladder — 4 cards clipped at filming viewport. Caught by Dr Paul April 2026.
+
+---
+
+## CONFIRMED FILE STATUS — UPDATED APRIL 2026
+
+**AUTHORITY NOTE: If any entry below conflicts with Section 3, Section 3 is correct.**
+
+### Cardiovascular Series (01–07) — ALL COMPLETE ✅
+
+| File | Status |
+|------|--------|
+| hypertension.html + visuals + teleprompter | ✅ Confirmed correct (refs 5+6 ⛑ pending verification) |
+| cholesterol.html + visuals + teleprompter | ✅ Confirmed correct |
+| heart-attack-risk.html + visuals + teleprompter | ✅ Confirmed correct |
+| statins.html + visuals + teleprompter | ✅ Confirmed correct |
+| lifestyle-changes.html + visuals + teleprompter | ✅ Confirmed correct — CANONICAL REFERENCE |
+| salt-blood-pressure.html + visuals + teleprompter | ✅ Confirmed correct |
+| supplements-cholesterol.html + visuals + teleprompter | ✅ Confirmed correct |
+
+### Practical Health Series (08–12) — COMPLETE ✅
+
+| File | Status |
+|------|--------|
+| mediterranean-diet.html + visuals + teleprompter | ✅ All confirmed correct |
+| sleep.html + visuals + teleprompter | ✅ All confirmed correct |
+| exercise.html + visuals + teleprompter | ✅ All confirmed correct |
+| stress.html + visuals + teleprompter | ✅ All confirmed correct |
+| alcohol.html + visuals + teleprompter | ✅ All confirmed correct |
+
+### Digestive Health Series (13–21) — ALL BUILT ✅
+
+| File | Status |
+|------|--------|
+| acid-reflux.html + visuals + teleprompter | ✅ On GitHub |
+| ibd.html + visuals + teleprompter | ✅ On GitHub |
+| bloating.html + visuals + teleprompter | ✅ On GitHub |
+| ibs.html + visuals + teleprompter | ✅ On GitHub |
+| masld.html + visuals + teleprompter | ✅ On GitHub |
+| coeliac.html + visuals + teleprompter | ✅ On GitHub |
+| gallstones.html + visuals + teleprompter | ✅ On GitHub |
+| diverticular-disease.html + visuals + teleprompter | ✅ On GitHub |
+| constipation.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+
+### Neurological Series (22–26) — ALL BUILT ✅
+
+| File | Status |
+|------|--------|
+| migraine.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| headaches.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| dizziness-vertigo.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| memory-dementia.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+| epilepsy.html + visuals + teleprompter | ✅ Built April 2026 — on GitHub |
+
+### Cancer Series (27–31) — ALL COMPLETE ✅
+
+| File | Status |
+|------|--------|
+| breast-cancer.html + visuals + teleprompter | ✅ All 3 files built + retrofitted April 2026 |
+| prostate-cancer.html + visuals + teleprompter | ✅ All 3 files built + retrofitted April 2026 — PRIMARY CANONICAL REFERENCE |
+| lung-cancer.html + visuals + teleprompter | ✅ All 3 files built + retrofitted April 2026 |
+| bowel-cancer.html + visuals + teleprompter | ✅ All 3 files built + retrofitted April 2026 — FIRST ZERO-CHANGE DELIVERY |
+| melanoma.html + visuals + teleprompter | ✅ All 3 files built + retrofitted April 2026 |
+
+### OUTSTANDING CITATION FLAGS
+- hypertension.html refs 5 + 6 — Cochrane PubMed IDs flagged ⛑ unverified
+
+---
+
+## 23. ARTICLE-SPECIFIC NOTES — KNOWN ISSUES
+
+### hypertension.html
+References 5 and 6 — Cochrane PubMed IDs flagged ⛑ unverified. These need verification via web search before the article can be confirmed fully complete.
+
+### statins.html
+Very large HTML file — has caused mid-build crashes in previous sessions. If this file needs to be rebuilt or significantly edited, handle it in one dedicated turn.
+
+### conditions page (helf-school-conditions.html)
+Rebuilt April 2026 — shows 28 articles live across 5 series (Articles 27–28 live in Cancer series, 29–31 coming soon). Hero stat: 28 articles live now.
+
+### index.html
+Rebuilt April 2026 with all 12 corrections listed in Section 4. "About Dr Paul" section correctly reads "NHS GP · 20+ years".
+
+### dizziness-vertigo.html
+Article HTML built April 2026. Research flags noted: NICE CKS Vertigo (last revised 2022 — check for updates); betahistine/Ménière's evidence contested (BEMED 2016 trial); 92-week UK delay figure cited via von Brevern 2007 rather than primary UK source.
+
+### epilepsy.html — April 2026 decisions
+- NICE NG217 (April 2022, updated January 2025) used as primary clinical reference
+- Kwan & Brodie NEJM 2000: figure is "more than 30%" not "1 in 3" — all instances corrected
+- SUDEP stat: ~1 in 1,000 per year (Thurman et al Epilepsia 2014, PMID 24903551) — no derived UK death count
+- Misdiagnosis rate: 26.1% from Smith, Defalla & Chadwick QJM 1999 (PMID 10209668)
+- NEAD described neutrally — not attributed to psychological distress
+- Disability/unemployment paragraph removed — Epilepsy Action not an approved source
+- Valproate: teratogenicity inline lay definition present; MHRA Valproate Pregnancy Prevention Programme referenced
+- 6 references total; all PMIDs verified by web search in session
+
+### breast-cancer.html — April 2026 decisions
+- Cancer Series Article 27. Colour `#2A5A3A` (forest green, dark variant `#1A3A25`). Initial rose colour `#8A3A5A` rejected — contrast issues.
+- Incidence: "around 59,000" — Cancer Research UK directly (NOT WCRF's 60,763)
+- Male incidence: "around 420" — Cancer Research UK directly
+- Screening age: 50 to 70 (Cancer Research UK) — not 50 to 71
+- NICE NG101 (updated February 2025) and CG81
+- 3 research cards: Marmot 2012 (PMID 23117178); EBCTCG tamoxifen 2011 (PMID 21802721); EBCTCG aromatase inhibitors 2015 (PMID 26211827)
+- All 4 stat grid cards carry inline citations ✅
+- All 3 files built April 2026 ✅ — on GitHub ✅
+
+### prostate-cancer.html — April 2026 decisions
+- Cancer Series Article 28. Colour `#2A5A3A` (forest green, dark variant `#1A3A25`)
+- Incidence: "~57,900" — Cancer Research UK directly (2019/2021–2022)
+- 10-year survival: "78.9%" — Cancer Research UK (2018)
+- Deaths: "~12,200" — Cancer Research UK (2021–2023)
+- NICE NG131 (Prostate cancer: diagnosis and management) — primary clinical reference
+- 3 research cards: ProtecT (Hamdy NEJM 2023, PMID 36912538); CAP trial (Martin JAMA 2024, PMID 38581198); STAMPEDE (James Lancet 2016, PMID 26719232)
+- All 4 stat grid cards carry inline citations ✅
+- References numbered via CSS counter ✅
+- All PMIDs verified by web search in session ✅
+- All 3 files built April 2026 ✅ — on GitHub ✅
+- Visuals: 14 slides (3-card split pattern) — new canonical reference for all future visuals
+
+### lung-cancer.html — April 2026 decisions
+- Cancer Series Article 29. Colour `#2A5A3A` (forest green, dark variant `#1A3A25`)
+- **Myth-busting panel** at top of article body (before Section 1) — 2×2 dark navy grid; 4 myths vs evidence panels
+- 3 research cards: NELSON (de Koning NEJM 2020, PMID 31995683); KEYNOTE-024 (Reck NEJM 2016, PMID 27718847); FLAURA OS (Ramalingam NEJM 2020, PMID 31751012)
+- NSCLC subtypes presented as `<ol class="subtype-list">` numbered list — first use of this pattern ← canonical
+- All 3 files built April 2026 ✅ — on GitHub ✅
+
+### ibd-visuals.html — April 2026 retrofit decisions
+- Full retrofit April 2026 — 12-slide deck
+- 4-card treatment ladder (slides 9–10 in old deck) identified as clipping on Dr Paul's filming viewport — split to 2+2 (now slides 8 and 9 in new deck)
+- Rule 38 confirmed: 4-card slides must split — "fragile" is NOT a passing QC result
+- All other retrofit checklist items applied ✅
+
+### coeliac-visuals.html — April 2026 retrofit decisions
+- Full retrofit April 2026 — 12-slide deck
+- All retrofit checklist items applied ✅
+- Matched teleprompter updated to align with new slide numbering
+
+### gallstones-visuals.html — April 2026 rebuild decisions
+- Pre-canonical architecture found: `position:absolute; inset:0`, no `.nav-dot` class (used `.dot`), side-by-side ev-cards (1fr 1fr), quote-card closing slide — full structural rebuild required (patching not viable with 20+ QC failures)
+- New 12-slide deck: intro · what are gallstones (3 slides) · risk factors (2 slides) · symptoms (1 slide) · doctor toolkit (2 slides) · evidence (2 stacked ev-cards) · CTA sequential · brand close
+- All QC checks passed on delivery ✅
+- Matched teleprompter rebuilt to match new 12-slide structure
+
+### diverticular-disease-visuals.html — April 2026 rebuild decisions
+- Pre-canonical architecture found: same pattern as gallstones — `inset:0`, no nav dots, side-by-side ev-cards, quote-card close — full structural rebuild required
+- New 10-slide deck: intro · three stages (3-row green/amber/red) · risk factors 1/2 (amber, 3 rows: low fibre/age/obesity) · risk factors 2/2 (amber, 2 rows: smoking/NSAIDs) · diet myth busted (2-col comparison: old advice vs NICE NG147) · doctor toolkit 1/2 (green, 3 rows: lifestyle/pain/no-ABx) · doctor toolkit 2/2 (green, 2 rows: CT/surgery) · evidence (2 stacked ev-cards) · CTA sequential · brand close
+- Diet myth comparison (slide 5) retained as 2-col layout — unique to diverticular disease
+- All QC checks passed on delivery: 0 failures ✅
+- Matched 7-segment teleprompter delivered with correct cue boxes
+
+---
+
+## 24. PLANNING NOTES — NEXT SERIES
+
+### Neurological Series (Articles 22–26) — COMPLETE APRIL 2026
+Series colour: `#6B5EA8` (purple)
+
+### Practical Health Series extension — Articles 32–33 (planned April 2026)
+
+**Article 32 — Breast Awareness**
+- Practical Health series · slug: `breast-awareness` · colour: `#7A6A2E`
+- Short practical article — NOT a cancer biology article. Covers: what breast tissue normally looks and feels like, changes that are clinically recognised as worth discussing with a GP, how breast awareness fits alongside the NHS screening programme
+- Key clinical distinction to observe: NICE and Cancer Research UK moved away from recommending scheduled monthly breast self-examination (Cochrane evidence found no mortality benefit from formal BSE routines) towards breast awareness.
+- Sources: NICE NG101, Cancer Research UK, NHS
+- Cross-referenced from `breast-cancer.html` Section 3 — "Coming soon in the Practical Health series"
+
+**Article 33 — Testicular Awareness**
+- Practical Health series · slug: `testicular-awareness` · colour: `#7A6A2E`
+- Short practical article aimed primarily at young men (peak age for testicular cancer: 20s–30s)
+- Testicular cancer is the most common cancer in men aged 15–49 in the UK — a strong health education hook
+
+### Cancer Series (Articles 27–31) — ALL COMPLETE ✅ April 2026
+Series colour: `#2A5A3A` (forest green). Dark variant: `#1A3A25`.
+
+**Possible future series:**
+- Stroke and TIA (bridges cardiovascular)
+- Parkinson's Disease (rising incidence, ageing population)
+
+---
+
+## 25. PROCESS NOTES — FILE CREATION IN CLAUDE
+
+### Writing large HTML files
+Use `create_file` for all HTML files. Bash heredocs fail on large HTML content.
+
+### File already exists error
+Run `rm /home/claude/filename.html` then retry `create_file`.
+
+### Outputs directory
+All files for Dr Paul must be copied to `/mnt/user-data/outputs/` and presented via `present_files`.
+
+### QC before presenting
+Always run bash QC checks (grep for key phrases, count required elements, verify word counts) before copying to outputs. Deliver only after QC passes.
+
+**Standard QC bash commands:**
+```bash
+# Check ev-body word counts
+python3 -c "
+import re, sys
+c=open(sys.argv[1]).read()
+bodies=re.findall(r'class=\"ev-body\">(.*?)</div>',c,re.DOTALL)
+for i,b in enumerate(bodies):
+    t=re.sub(r'<[^>]+>','',b).strip(); w=len(t.split())
+    print(f'ev-body {i+1}: {w}w {chr(10003) if w<=30 else chr(10007)}')
+" filename.html
+
+# Check ev-stage uses flex not grid
+grep "ev-stage" filename.html
+
+# Check forbidden phrases
+grep -i "speak to your GP|you should|seek help" filename.html
+```
+
+### Research card stat box — writing guidance
+1. Identify the clinically important finding
+2. State it as complete subject + finding: "The Epley manoeuvre / is safe & effective for BPPV"
+3. Check: can a lay reader understand this from the stat box alone?
+4. Never lead with ORs, RCT counts, CIs, or participant counts
+
+### PMID verification — mandatory process
+1. Search by author, title, journal, year
+2. Find PubMed URL in search results
+3. PMID is the number in that URL
+4. Only then include the PMID in the file. Never from memory.
+
+### Approved source figure retrieval — mandatory process — LOCKED APRIL 2026
+1. Search for the approved source page specifically
+2. Retrieve the figure from that page only
+3. Never use a figure from an unapproved page that attributes it to an approved source
+
+### Subtype list — canonical CSS pattern — LOCKED APRIL 2026
+```css
+.article-wrap ol.subtype-list { counter-reset: subtype-counter; list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: .45rem; margin: .6rem 0 1rem 0; }
+.article-wrap ol.subtype-list li { counter-increment: subtype-counter; display: flex; gap: .7rem; align-items: flex-start; font-size: 1rem; line-height: 1.72; color: var(--text); font-weight: 400; }
+.article-wrap ol.subtype-list li::before { content: counter(subtype-counter); background: var(--series); color: #fff; font-size: .72rem; font-weight: 700; width: 1.45rem; height: 1.45rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: .22rem; }
+```
+HTML: `<ol class="subtype-list"><li><strong>Name</strong> — definition text.</li></ol>`
+
+### Project knowledge update — mandatory process — LOCKED APRIL 2026
+1. **`web_fetch` the live version from GitHub** — never rely on the project copy which may be stale. URL: `https://raw.githubusercontent.com/pls4286/helfschool/main/helf-school-project-knowledge.md`
+2. Write the exact fetched content to `/home/claude/helf-school-project-knowledge.md` — use Python append operations or `create_file`
+3. `str_replace` to add only the new session content — never rewrite from scratch
+4. Run `wc -l` on the new file and confirm it is equal to or greater than the previous version
+5. Verify all 25 sections are present by scanning for each section heading
+6. Never deliver a shorter version without explicit explanation and Dr Paul's confirmation
+7. Deliver for download and re-upload to both GitHub and the Claude Project
+
+---
+
+*End of document. Update at the end of every session. Download via Artifact panel. Upload to both GitHub (pls4286/helfschool/main) and the Claude Project to take effect in future sessions.*
