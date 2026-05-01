@@ -1,229 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dizziness and Vertigo — Teleprompter · helf.school</title>
-<style>
-* { box-sizing:border-box; margin:0; padding:0; }
-:root { --neuro:#6B5EA8; --amber:#E8A84A; --navy:#1B2A4A; }
-html, body { width:100vw; height:100vh; overflow:hidden; background:#0a0a0a; color:#f0f0f0; font-family:Georgia,serif; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dizziness and Vertigo — Teleprompter · helf.school</title>
+  <style>
+    :root {
+      --bg: #0A0F1A; --text: #F0EDE8; --accent: #7A9E87;
+      --cue-bg: rgba(122,158,135,0.18); --cue-border: #7A9E87;
+      --pause-bg: rgba(200,66,58,0.18); --pause-border: #C8423A;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Georgia', serif; font-size: 1.9rem; line-height: 1.65; overflow: hidden; height: 100vh; user-select: none; }
 
-/* CONTROLS */
-.controls { position:fixed; top:0; left:0; right:0; height:48px; background:#111; border-bottom:1px solid #222; display:flex; align-items:center; gap:.6rem; padding:0 1rem; z-index:100; }
-.ctrl-btn { background:#222; border:1px solid #333; color:#ccc; font-size:.78rem; padding:.3rem .7rem; border-radius:5px; cursor:pointer; font-family:sans-serif; }
-.ctrl-btn:hover { background:#333; color:#fff; }
-.ctrl-label { font-family:sans-serif; font-size:.75rem; color:#666; margin-left:.4rem; }
-.speed-display { font-family:sans-serif; font-size:.75rem; color:var(--amber); min-width:60px; }
-.seg-label { font-family:sans-serif; font-size:.75rem; color:var(--neuro); margin-left:auto; }
-#pause-btn { background:var(--neuro); color:#fff; border-color:var(--neuro); font-weight:700; }
+    .controls { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(10,15,26,0.95); border-bottom: 1px solid rgba(122,158,135,0.35); display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.8rem; flex-wrap: wrap; }
+    .ctrl-label { font-family: sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(240,237,232,0.55); }
+    .ctrl-btn { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: var(--text); border-radius: 5px; padding: 0.28rem 0.65rem; cursor: pointer; }
+    .ctrl-btn:hover { background: rgba(255,255,255,0.15); }
+    .ctrl-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .ctrl-sep { width: 1px; height: 24px; background: rgba(255,255,255,0.15); }
+    .ctrl-speed-display { font-family: sans-serif; font-size: 0.80rem; font-weight: 700; color: var(--accent); min-width: 28px; text-align: center; }
+    .word-count { font-family: sans-serif; font-size: 0.68rem; color: rgba(240,237,232,0.45); margin-left: auto; }
 
-/* SCROLL AREA */
-.scroll-wrap { position:fixed; top:48px; left:0; right:0; bottom:32px; overflow-y:scroll; scrollbar-width:none; }
-.scroll-wrap::-webkit-scrollbar { display:none; }
-.scroll-content { padding:4vh 10vw 50vh; }
+    .scroll-wrap { position: absolute; top: 56px; left: 0; right: 0; bottom: 48px; overflow: hidden; }
+    .scroll-inner { padding: 3rem 2.2rem 40vh; will-change: transform; }
 
-/* TEXT */
-.script-text { font-size:1.9rem; line-height:1.75; color:#f0f0f0; }
-.script-text p { margin-bottom:1.4em; }
+    .segment { margin-bottom: 2.8rem; }
 
-/* CUE BOX */
-.cue { background:#1a1a0a; border:2px solid var(--amber); border-radius:8px; padding:.7rem 1.1rem; margin:1.8rem 0 1rem; display:flex; align-items:center; gap:.75rem; }
-.cue-arrow { font-size:1.4rem; color:var(--amber); flex-shrink:0; }
-.cue-text { font-family:sans-serif; font-size:1rem; font-weight:700; color:var(--amber); line-height:1.3; }
+    .cue-box { background: var(--cue-bg); border: 2px solid var(--cue-border); border-radius: 8px; padding: 0.55rem 1rem; margin-bottom: 1.1rem; font-family: sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); display: flex; align-items: center; gap: 0.5rem; }
+    .cue-arrow { font-size: 1rem; flex-shrink: 0; }
 
-/* SEGMENT MARKER */
-.seg { border-top:2px dashed #2a2a2a; margin:2.5rem 0 0; padding-top:1rem; }
-.seg-title { font-family:sans-serif; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:#444; margin-bottom:1rem; }
+    .pause { background: var(--pause-bg); border-left: 3px solid var(--pause-border); border-radius: 0 6px 6px 0; padding: 0.4rem 0.9rem; margin: 1rem 0; font-family: sans-serif; font-size: 0.80rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #C8423A; }
 
-/* DOTS */
-.dots { position:fixed; bottom:0; left:0; right:0; height:32px; background:#111; border-top:1px solid #1a1a1a; display:flex; align-items:center; justify-content:center; gap:.5rem; }
-.dot { width:8px; height:8px; border-radius:50%; background:#333; cursor:pointer; transition:background .2s; }
-.dot.active { background:var(--neuro); }
-</style>
+    .stat { color: var(--accent); font-weight: 700; }
+
+    .dots-bar { position: fixed; bottom: 0; left: 0; right: 0; height: 48px; background: rgba(10,15,26,0.95); border-top: 1px solid rgba(122,158,135,0.25); display: flex; align-items: center; justify-content: center; gap: 0.5rem; z-index: 50; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.22); cursor: pointer; transition: background 0.2s, transform 0.2s; }
+    .dot.active { background: var(--accent); transform: scale(1.3); }
+    .dot-label { font-family: sans-serif; font-size: 0.62rem; color: rgba(240,237,232,0.45); margin: 0 0.3rem; }
+  </style>
 </head>
 <body>
 
 <div class="controls">
-  <button class="ctrl-btn" id="pause-btn">⏸ Pause</button>
-  <span class="ctrl-label">Speed:</span>
-  <button class="ctrl-btn" onclick="changeSpeed(-1)">−</button>
-  <span class="speed-display" id="speed-disp">Speed 4</span>
-  <button class="ctrl-btn" onclick="changeSpeed(1)">+</button>
-  <span class="ctrl-label">Font:</span>
-  <button class="ctrl-btn" onclick="changeFont(-2)">A−</button>
-  <button class="ctrl-btn" onclick="changeFont(2)">A+</button>
-  <span class="seg-label" id="seg-label">Segment 1</span>
+  <span class="ctrl-label">Speed</span>
+  <button class="ctrl-btn" id="btn-slower">−</button>
+  <span class="ctrl-speed-display" id="speed-display">3</span>
+  <button class="ctrl-btn" id="btn-faster">+</button>
+  <div class="ctrl-sep"></div>
+  <span class="ctrl-label">Font</span>
+  <button class="ctrl-btn" id="btn-smaller">A−</button>
+  <button class="ctrl-btn" id="btn-bigger">A+</button>
+  <div class="ctrl-sep"></div>
+  <button class="ctrl-btn" id="btn-pause">⏸ Pause</button>
+  <button class="ctrl-btn" id="btn-reset">↑ Top</button>
+  <span class="word-count">~680 words · ~4.5 min</span>
 </div>
 
 <div class="scroll-wrap" id="scroll-wrap">
-<div class="scroll-content">
-<div class="script-text" id="script">
+<div class="scroll-inner" id="scroll-inner">
 
-<!-- SEGMENT 1 — INTRO -->
-<div class="seg" id="seg-1">
-<div class="seg-title">Segment 1 — Intro (~18 seconds)</div>
+  <!-- SEGMENT 0 — INTRO -->
+  <div class="segment" id="seg-0">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 1 — Title card</div>
 
-<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 1: Title card</span></div>
+    I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about dizziness and vertigo.
 
-<p>I'm Dr Paul — I spent over twenty years as an NHS GP before I retired in 2019. Today I want to talk to you about dizziness and vertigo.</p>
+    <div class="pause">— brief pause —</div>
 
-<p>Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — let's get into it.</p>
+    Now, I do have to say upfront — what I'm giving you here is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional. Right — let's get into it.
+  </div>
+
+  <!-- SEGMENT 1 — BIG PICTURE -->
+  <div class="segment" id="seg-1">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 2 — Big picture</div>
+
+    Vertigo is one of the most common and treatable conditions in primary care — and the statistics around it are striking. Around <span class="stat">2.4% of people</span> will experience BPPV — the most common form of vertigo — at some point in their lives. Of those, <span class="stat">86%</span> either sought medical help or experienced significant disruption to their daily lives.
+
+    <div class="pause">— pause —</div>
+
+    And yet only <span class="stat">8%</span> received effective treatment. That's the treatment gap this article is about — most people with a highly treatable condition never receive the five-minute procedure that would resolve the problem.
+  </div>
+
+  <!-- SEGMENT 2 — DIZZINESS VS VERTIGO -->
+  <div class="segment" id="seg-2">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDES 3–4 — Dizziness vs Vertigo</div>
+
+    Dizziness is one of the most common reasons people see their GP — but the word covers several very different experiences, and distinguishing between them really matters.
+
+    <div class="pause">— pause —</div>
+
+    Dizziness is a broad umbrella term. It includes lightheadedness — that feeling you might faint — and a general sense of unsteadiness. But <em>vertigo</em> is something more specific. Vertigo is the distinct sensation that either you or the world around you is spinning or rotating — when no actual movement is occurring.
+
+    <div class="pause">— pause —</div>
+
+    Vertigo also has two main origins. Peripheral vertigo — the most common — comes from the vestibular system, the balance mechanism in the inner ear. Central vertigo is less common but more serious, coming from the brainstem or cerebellum — the part of the brain that co-ordinates balance. There's a bedside clinical test called HINTS that trained doctors use to distinguish between the two — but it requires specific training and isn't available in every surgery. NICE guidance is clear: when it can't be done, refer immediately.
+  </div>
+
+  <!-- SEGMENT 3 — CAUSES -->
+  <div class="segment" id="seg-3">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDES 5–6 — Main causes</div>
+
+    The four main causes of peripheral vertigo are quite different from each other — and <span class="stat">duration is the key clue</span>.
+
+    <div class="pause">— pause —</div>
+
+    BPPV — Benign Paroxysmal Positional Vertigo — causes brief, intense spinning lasting seconds, triggered by head position changes: rolling over in bed, looking up, bending forward. Displaced calcium crystals in the inner ear. The most common single cause of vertigo.
+
+    <div class="pause">— pause —</div>
+
+    Vestibular neuritis typically follows a viral illness and causes a single prolonged episode of severe spinning lasting hours to days — without any hearing loss. The body recovers as the brain compensates over weeks.
+
+    <div class="pause">— pause —</div>
+
+    Ménière's disease causes recurring episodes with a characteristic pattern — vertigo, fluctuating hearing loss, ringing in the ears, and a sense of pressure or fullness. Episodes last minutes to hours.
+
+    <div class="pause">— pause —</div>
+
+    Labyrinthitis is similar to vestibular neuritis but involves both balance and hearing — that's the key distinguishing feature. And importantly: all four of these peripheral causes have recognised, effective treatments.
+  </div>
+
+  <!-- SEGMENT 4 — BPPV MECHANISM + RED FLAGS -->
+  <div class="segment" id="seg-4">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 7 — BPPV mechanism</div>
+
+    BPPV is a mechanical problem — and it has a highly effective mechanical solution.
+
+    <div class="pause">— pause —</div>
+
+    The inner ear contains tiny calcium crystals called otoconia — sometimes called ear stones. When they become displaced and migrate into the semicircular canals — the fluid-filled tubes that detect head rotation — they continue moving after the head has stopped. The brain gets a false signal of ongoing movement, and the result is that brief but intense spinning sensation.
+
+    <div class="pause">— pause —</div>
+
+    A clinician can confirm the diagnosis using the Dix-Hallpike test — moving the patient from sitting to lying with the head turned to one side. The treatment is the Epley manoeuvre — a sequence of guided head and body movements that takes about five minutes and repositions the displaced crystals. It's one of the most effective procedures in all of primary care medicine.
+
+    <div class="pause">— pause —</div>
+
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 8 — Red flags</div>
+
+    Before I get to the research — when is vertigo a time-sensitive presentation?
+
+    <div class="pause">— pause —</div>
+
+    Certain patterns are clinically recognised as potentially indicating a stroke affecting the brainstem or cerebellum. These include: vertigo with a sudden new severe headache or neck stiffness; vertigo with double vision, slurred speech, or difficulty swallowing; new weakness alongside vertigo; sudden complete inability to walk; or spontaneous vertical eye flickering at rest — not triggered by a positional test. These patterns are clinically time-sensitive, and 111 and urgent services exist for them.
+  </div>
+
+  <!-- SEGMENT 5 — RESEARCH -->
+  <div class="segment" id="seg-5">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 9 — Research: treatment evidence</div>
+
+    On the evidence. The Cochrane systematic review of the Epley manoeuvre concluded that it is safe and effective — superior to sham manoeuvres — and produces equivalent results whether it's done in primary care or a specialist clinic. Around <span class="stat">36% of people</span> experience a recurrence within 4 years, but the manoeuvre can simply be repeated.
+
+    <div class="pause">— pause —</div>
+
+    For vestibular neuritis recovery and other inner ear conditions, vestibular rehabilitation — physiotherapy-based graded exercises — has moderate to strong evidence for its efficacy. A Cochrane review of 39 studies covering <span class="stat">2,441 participants</span> found significant improvements in dizziness frequency, activity limitation, and daily life. The exercises work by helping the brain adapt to the changed signals from a damaged vestibular system.
+
+    <div class="pause">— pause —</div>
+
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 10 — Research: treatment gap</div>
+
+    And then there's the treatment gap. A large population study found that despite <span class="stat">86% of people</span> with BPPV seeking medical help, only <span class="stat">8% received effective treatment</span>. A UK audit traced patients from their first GP visit to eventual treatment and found an average wait of <span class="stat">93 weeks</span> — with 58 of those weeks within primary care alone. These are people with a highly treatable condition, waiting nearly two years for a five-minute procedure.
+  </div>
+
+  <!-- SEGMENT 6 — CLOSE -->
+  <div class="segment" id="seg-6">
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW — then read · SLIDE 11 — CTA</div>
+
+    So — a few things worth holding onto. If your vertigo is brief, triggered by head position changes, and not accompanied by any neurological symptoms, BPPV is the most likely cause — and it's highly treatable. Note how long episodes last, because duration is the clearest clue to the cause.
+
+    <div class="pause">— pause —</div>
+
+    If your vertigo comes with new neurological symptoms — visual changes, speech difficulty, sudden inability to walk — that pattern is clinically time-sensitive and 111 exists for it.
+
+    <div class="pause">— pause —</div>
+
+    Most people living with treatable vertigo have never received the assessment and intervention that would help them. That's exactly the gap that good health education can help to close.
+
+    <div class="pause">— pause —</div>
+
+    As always — anything personally relevant here is a conversation for you to have with your GP or healthcare professional. I'm Dr Paul. Thanks for watching.
+
+    <div class="cue-box"><span class="cue-arrow">▶</span> ADVANCE NOW · SLIDE 12 — Closing card</div>
+  </div>
+
+</div>
 </div>
 
-<!-- SEGMENT 2 — DIZZINESS VS VERTIGO -->
-<div class="seg" id="seg-2">
-<div class="seg-title">Segment 2 — Dizziness vs Vertigo (~45 seconds)</div>
-
-<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 2: Dizziness vs Vertigo</span></div>
-
-<p>Dizziness is one of the most common reasons people see their GP — but the word covers several very different experiences, and distinguishing between them really matters.</p>
-
-<p>Dizziness is a broad umbrella term. It includes lightheadedness — that feeling you might faint — and a general sense of unsteadiness. But <em>vertigo</em> is something more specific. Vertigo is the distinct sensation that either you or the world around you is spinning or rotating — when no actual movement is occurring.</p>
-
-<p>Vertigo also has two main origins. Peripheral vertigo — the most common — comes from the vestibular system, the balance mechanism in the inner ear. Central vertigo is less common but more serious, and comes from the brainstem or cerebellum — the part of the brain at the back of the skull that co-ordinates balance. That distinction shapes everything that follows.</p>
+<div class="dots-bar" id="dots-bar">
+  <span class="dot-label">Seg</span>
+  <div class="dot active" data-seg="0" title="Intro"></div>
+  <div class="dot" data-seg="1" title="Big picture"></div>
+  <div class="dot" data-seg="2" title="Dizziness vs Vertigo"></div>
+  <div class="dot" data-seg="3" title="Causes"></div>
+  <div class="dot" data-seg="4" title="BPPV and red flags"></div>
+  <div class="dot" data-seg="5" title="Research"></div>
+  <div class="dot" data-seg="6" title="Close"></div>
 </div>
-
-<!-- SEGMENT 3 — CAUSES -->
-<div class="seg" id="seg-3">
-<div class="seg-title">Segment 3 — Main causes (~50 seconds)</div>
-
-<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 3: Main causes</span></div>
-
-<p>The four main causes of peripheral vertigo are quite different from each other — and duration is the key clue.</p>
-
-<p>BPPV — Benign Paroxysmal Positional Vertigo — causes brief, intense spinning lasting seconds, triggered by head position changes: rolling over in bed, looking up, bending forward. Displaced calcium crystals in the inner ear. The most common single cause of vertigo.</p>
-
-<p>Vestibular neuritis typically follows a viral illness and causes a single prolonged episode of severe spinning lasting hours to days — without any hearing loss. The body recovers as the brain compensates over weeks.</p>
-
-<p>Ménière's disease causes recurring episodes with a characteristic pattern — vertigo, fluctuating hearing loss, ringing in the ears, and a sense of pressure or fullness. Episodes last minutes to hours.</p>
-
-<p>Labyrinthitis is similar to vestibular neuritis but involves both balance and hearing — that's the key distinguishing feature.</p>
-</div>
-
-<!-- SEGMENT 4 — BPPV MECHANISM -->
-<div class="seg" id="seg-4">
-<div class="seg-title">Segment 4 — BPPV mechanism and treatment (~55 seconds)</div>
-
-<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 4: BPPV mechanism</span></div>
-
-<p>BPPV is a mechanical problem — and it has a highly effective mechanical solution.</p>
-
-<p>The inner ear contains tiny calcium crystals called otoconia — sometimes called ear stones. Normally they sit in a specific part of the inner ear. When they become displaced and migrate into the semicircular canals — the fluid-filled tubes that detect head rotation — they continue moving after the head has stopped. The brain gets a false signal of ongoing movement, and the result is that brief but intense spinning sensation.</p>
-
-<p>A GP or physiotherapist can confirm the diagnosis using the Dix-Hallpike test — moving the patient from sitting to lying with the head turned to one side. If it reproduces the vertigo and triggers characteristic eye movements, that's a positive test.</p>
-
-<p>The treatment is the Epley manoeuvre — a sequence of guided head and body movements that takes about five minutes and repositions the displaced crystals. It's one of the most effective procedures in all of primary care medicine.</p>
-</div>
-
-<!-- SEGMENT 5 — RED FLAGS -->
-<div class="seg" id="seg-5">
-<div class="seg-title">Segment 5 — Red flags (~40 seconds)</div>
-
-<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 5: Red flags</span></div>
-
-<p>Before I get to the research, I want to be clear about when vertigo is a time-sensitive presentation.</p>
-
-<p>Certain patterns are clinically recognised as potentially indicating a stroke affecting the brainstem or cerebellum — what doctors call posterior circulation stroke. These include: vertigo with a sudden new severe headache; vertigo with double vision, slurred speech, or difficulty swallowing; sudden complete inability to walk; or spontaneous eye flickering — nystagmus — that happens at rest rather than being triggered by a positional test.</p>
-
-<p>There is a clinical examination called HINTS that trained doctors use to help distinguish inner ear vertigo from a stroke — but it requires specific training and isn't available in every GP surgery. NICE guidance is clear: if the assessment can't be done, refer immediately. 111 and urgent services exist for this pattern.</p>
-</div>
-
-<!-- SEGMENT 6 — RESEARCH -->
-<div class="seg" id="seg-6">
-<div class="seg-title">Segment 6 — Research (~60 seconds)</div>
-
-<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 6: Research — treatment</span></div>
-
-<p>Now — what does the evidence actually show?</p>
-
-<p>For BPPV, the Cochrane systematic review of the Epley manoeuvre — covering 11 randomised controlled trials and 745 patients — concluded that the Epley manoeuvre is safe and effective, superior to sham manoeuvres, and produces equivalent results whether it's done in primary care or a specialist clinic. Around 36% of people experience a recurrence within 4 years — but the manoeuvre can simply be repeated.</p>
-
-<p>For vestibular neuritis recovery and other inner ear conditions, vestibular rehabilitation — physiotherapy-based graded exercises — has moderate to strong evidence for its efficacy. A Cochrane review of 39 studies covering 2,441 participants found significant improvements in dizziness frequency, activity limitation, and daily life. The exercises work by helping the brain adapt to the changed signals from a damaged vestibular system.</p>
-
-<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 7: Treatment gap</span></div>
-
-<p>And then there's the treatment gap — which is striking. A large population study found that despite 86% of people with BPPV seeking medical help, only 8% received effective treatment. A UK audit traced 20 patients from their first GP visit to eventual treatment and found an average wait of 93 weeks — with 58 of those weeks within primary care alone. These are people with a highly treatable condition, waiting nearly two years for a five-minute procedure.</p>
-</div>
-
-<!-- SEGMENT 7 — CLOSE -->
-<div class="seg" id="seg-7">
-<div class="seg-title">Segment 7 — Close (~30 seconds)</div>
-
-<div class="cue"><span class="cue-arrow">▶</span><span class="cue-text">ADVANCE NOW — then read · Slide 8: CTA</span></div>
-
-<p>So — a few things worth holding onto. If your vertigo is brief, triggered by head position changes, and not accompanied by any neurological symptoms, BPPV is the most likely cause — and it's highly treatable. Note how long episodes last, because duration is the clearest clue to the cause.</p>
-
-<p>If your vertigo comes with new neurological symptoms — visual changes, speech difficulty, sudden inability to walk — that pattern is clinically time-sensitive and 111 exists for it.</p>
-
-<p>The full article on helf.school goes into all of this in much more detail — the conditions, the evidence, the management, and the red flags. As always, anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
-</div>
-
-</div><!-- end script -->
-</div><!-- end scroll-content -->
-</div><!-- end scroll-wrap -->
-
-<div class="dots" id="dots"></div>
 
 <script>
-const SEGS = 7;
-const SPEEDS = [0, 8, 14, 20, 28, 38, 50];
-let speedIdx = 3;
-let paused = false;
-let rafId = null;
-let fontSize = 1.9;
+  const SPEED_LEVELS = [0, 8, 14, 20, 28, 38, 50];
+  let speedLevel = 3, fontSize = 1.9, paused = false, pos = 0, lastTs = null;
+  const wrap  = document.getElementById('scroll-wrap');
+  const inner = document.getElementById('scroll-inner');
+  const spdDisp = document.getElementById('speed-display');
 
-const wrap = document.getElementById('scroll-wrap');
-const scriptEl = document.getElementById('script');
-const pauseBtn = document.getElementById('pause-btn');
-const speedDisp = document.getElementById('speed-disp');
-const segLabel = document.getElementById('seg-label');
+  function applyFont() { inner.style.fontSize = fontSize + 'rem'; }
 
-function scroll() {
-  if (!paused && SPEEDS[speedIdx] > 0) {
-    wrap.scrollTop += SPEEDS[speedIdx] / 60;
+  function raf(ts) {
+    if (!paused) {
+      if (lastTs !== null) { pos += SPEED_LEVELS[speedLevel] * (ts - lastTs) / 1000; inner.style.transform = 'translateY(-' + pos + 'px)'; }
+      lastTs = ts;
+    } else { lastTs = null; }
+    requestAnimationFrame(raf);
   }
-  rafId = requestAnimationFrame(scroll);
-}
-rafId = requestAnimationFrame(scroll);
+  requestAnimationFrame(raf);
 
-pauseBtn.addEventListener('click', () => {
-  paused = !paused;
-  pauseBtn.textContent = paused ? '▶ Resume' : '⏸ Pause';
-});
+  const dots = document.querySelectorAll('.dot');
+  const segs = document.querySelectorAll('.segment');
 
-function changeSpeed(dir) {
-  speedIdx = Math.max(0, Math.min(SPEEDS.length-1, speedIdx+dir));
-  speedDisp.textContent = 'Speed ' + speedIdx;
-}
+  function updateDots() {
+    let active = 0;
+    segs.forEach((seg, i) => { if (pos >= seg.offsetTop - 80) active = i; });
+    dots.forEach(d => d.classList.remove('active'));
+    if (dots[active]) dots[active].classList.add('active');
+  }
+  setInterval(updateDots, 400);
 
-function changeFont(dir) {
-  fontSize = Math.max(1.2, Math.min(3.0, fontSize + dir*0.1));
-  scriptEl.style.fontSize = fontSize + 'rem';
-}
+  dots.forEach(d => d.addEventListener('click', () => {
+    const seg = segs[parseInt(d.dataset.seg)];
+    if (seg) { pos = Math.max(0, seg.offsetTop - 80); inner.style.transform = 'translateY(-' + pos + 'px)'; }
+  }));
 
-// Segment tracking
-const segEls = Array.from({length:SEGS},(_,i)=>document.getElementById('seg-'+(i+1)));
-const dots = document.getElementById('dots');
-for (let i=0;i<SEGS;i++) {
-  const d = document.createElement('div');
-  d.className = 'dot'+(i===0?' active':'');
-  d.onclick = () => { segEls[i].scrollIntoView({behavior:'smooth'}); };
-  dots.appendChild(d);
-}
-const dotEls = dots.querySelectorAll('.dot');
-wrap.addEventListener('scroll', () => {
-  const top = wrap.scrollTop + 100;
-  let active = 0;
-  segEls.forEach((el,i) => { if(el.offsetTop <= top) active = i; });
-  dotEls.forEach((d,i) => d.classList.toggle('active',i===active));
-  segLabel.textContent = 'Segment ' + (active+1);
-});
+  document.getElementById('btn-faster').addEventListener('click', () => { speedLevel = Math.min(6, speedLevel + 1); spdDisp.textContent = speedLevel; });
+  document.getElementById('btn-slower').addEventListener('click', () => { speedLevel = Math.max(0, speedLevel - 1); spdDisp.textContent = speedLevel; });
+  document.getElementById('btn-bigger').addEventListener('click', () => { fontSize = Math.min(3.2, +(fontSize + 0.15).toFixed(2)); applyFont(); });
+  document.getElementById('btn-smaller').addEventListener('click', () => { fontSize = Math.max(1.2, +(fontSize - 0.15).toFixed(2)); applyFont(); });
 
-// Touch swipe
-let touchY = 0;
-wrap.addEventListener('touchstart', e => { touchY = e.touches[0].clientY; paused = true; pauseBtn.textContent = '▶ Resume'; });
-wrap.addEventListener('touchend', e => { const dy = touchY - e.changedTouches[0].clientY; wrap.scrollTop += dy * 2; });
+  const pauseBtn = document.getElementById('btn-pause');
+  pauseBtn.addEventListener('click', () => {
+    paused = !paused;
+    pauseBtn.textContent = paused ? '▶ Resume' : '⏸ Pause';
+    pauseBtn.classList.toggle('active', paused);
+  });
+  document.getElementById('btn-reset').addEventListener('click', () => { pos = 0; inner.style.transform = 'translateY(0)'; });
+
+  let ty = 0;
+  wrap.addEventListener('touchstart', e => { ty = e.touches[0].clientY; paused = true; pauseBtn.textContent = '▶ Resume'; pauseBtn.classList.add('active'); });
+  wrap.addEventListener('touchmove', e => { e.preventDefault(); const dy = e.touches[0].clientY - ty; pos = Math.max(0, pos - dy * 0.8); inner.style.transform = 'translateY(-' + pos + 'px)'; ty = e.touches[0].clientY; }, { passive: false });
+
+  applyFont();
 </script>
 </body>
 </html>
