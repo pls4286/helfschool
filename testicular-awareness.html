@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testicular Awareness — What to Look For | helf.school</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── ROOT / DESIGN TOKENS ─────────────────────────────── */
+    :root {
+      --navy:        #1B2A4A;
+      --coral:       #E8634A;
+      --cream:       #FAF7F2;
+      --sage:        #7A9E87;
+      --amber:       #E8A84A;
+      --series:      #7A6A2E;
+      --series-dark: #4A3A1A;
+      --series-light:#C4A84A;
+      --text:        #2C2C2C;
+      --text-muted:  rgba(44,44,44,0.65);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.72;
+    }
+
+    /* ── TOPBAR ───────────────────────────────────────────── */
+    .topbar {
+      background: var(--navy);
+      padding: .55rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .topbar-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem;
+      color: #fff;
+      text-decoration: none;
+    }
+    .topbar-logo span { color: var(--coral); }
+    .topbar-tagline {
+      font-size: .72rem;
+      color: rgba(255,255,255,0.70);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(160deg, var(--series-dark) 0%, var(--series) 100%);
+      padding: 3rem 1.5rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .breadcrumb {
+      font-size: .78rem;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: .9rem;
+    }
+    .breadcrumb a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover { color: #fff; }
+    .series-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .10em;
+      padding: .28rem .80rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.85rem, 4.5vw, 2.8rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.18;
+      margin-bottom: .75rem;
+    }
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.85);
+      max-width: 560px;
+      margin-bottom: 1.4rem;
+      line-height: 1.58;
+    }
+    .hero-meta {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-meta-item {
+      font-size: .82rem;
+      color: rgba(255,255,255,0.80);
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    /* ── DISCLAIMER BAR ───────────────────────────────────── */
+    .disclaimer-bar {
+      background: rgba(74,58,26,0.07);
+      border-left: 4px solid var(--series);
+      padding: .80rem 1.5rem;
+    }
+    .disclaimer-bar-inner {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .disclaimer-bar p {
+      font-size: .83rem;
+      color: rgba(44,44,44,0.78);
+      line-height: 1.55;
+    }
+
+    /* ── ARTICLE BODY ─────────────────────────────────────── */
+    .article-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 2.2rem 1.5rem 3.5rem;
+    }
+
+    .section-label {
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--series);
+      margin-bottom: .35rem;
+    }
+    .section-heading {
+      font-family: 'Fraunces', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      line-height: 1.25;
+    }
+    .article-section { margin-bottom: 2.6rem; }
+
+    .article-wrap p {
+      font-size: 1rem;
+      line-height: 1.78;
+      color: var(--text);
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+    .article-wrap p:last-child { margin-bottom: 0; }
+
+    /* Override for p elements inside dark-background containers */
+    .key-terms p { color: rgba(255,255,255,0.90); margin-bottom: .2rem; font-size: inherit; line-height: inherit; }
+    .key-terms .key-term-label { color: var(--series-light); font-weight: 700; font-size: .88rem; }
+    .key-terms .key-terms-title { color: #fff; font-size: 1.08rem; font-weight: 700; margin-bottom: 1rem; }
+
+    /* Inline citations */
+    sup a {
+      color: var(--series);
+      font-size: .72rem;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    sup a:hover { text-decoration: underline; }
+
+    /* ── KEY TERMS BOX ────────────────────────────────────── */
+    .key-terms {
+      background: var(--navy);
+      border-radius: 12px;
+      padding: 1.4rem 1.5rem;
+      margin: 1.8rem 0 2rem;
+    }
+    .key-terms-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .key-terms-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .85rem 1.5rem;
+    }
+    @media (max-width: 560px) { .key-terms-grid { grid-template-columns: 1fr; } }
+    .key-term-label {
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--series-light);
+      margin-bottom: .2rem;
+    }
+    .key-term-def {
+      font-size: .92rem;
+      color: rgba(255,255,255,0.90);
+      line-height: 1.55;
+      font-weight: 400;
+    }
+
+    /* ── STAT GRID ────────────────────────────────────────── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.6rem;
+    }
+    @media (max-width: 560px) { .stat-grid { grid-template-columns: 1fr; } }
+    .stat-card {
+      background: linear-gradient(160deg, rgba(122,106,46,0.11) 0%, rgba(122,106,46,0.05) 100%);
+      border-radius: 10px;
+      padding: 1.2rem 1.1rem;
+      border: 1px solid rgba(122,106,46,0.22);
+      border-top: 3px solid var(--series);
+    }
+    .stat-number {
+      font-family: 'Fraunces', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--series);
+      line-height: 1.0;
+      margin-bottom: .2rem;
+    }
+    .stat-label {
+      font-size: .80rem;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: .5rem;
+    }
+    .stat-prose {
+      font-size: .90rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      font-weight: 400;
+    }
+
+    /* ── SUBTYPE LIST ─────────────────────────────────────── */
+    .article-wrap ol.subtype-list {
+      counter-reset: subtype-counter;
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      margin: .7rem 0 1.1rem 0;
+    }
+    .article-wrap ol.subtype-list li {
+      counter-increment: subtype-counter;
+      display: flex;
+      gap: .7rem;
+      align-items: flex-start;
+      font-size: 1rem;
+      line-height: 1.72;
+      color: var(--text);
+      font-weight: 400;
+    }
+    .article-wrap ol.subtype-list li::before {
+      content: counter(subtype-counter);
+      background: var(--series);
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 700;
+      width: 1.45rem;
+      height: 1.45rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: .26rem;
+    }
+
+    /* ── CALLOUT BOX ──────────────────────────────────────── */
+    .callout-box {
+      background: rgba(122,106,46,0.07);
+      border-left: 4px solid var(--series);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.2rem;
+      margin: 1rem 0 .5rem;
+    }
+    .callout-box p {
+      font-size: .93rem;
+      color: var(--text);
+      margin-bottom: 0;
+      font-weight: 400;
+    }
+
+    /* ── CHECKING STEPS LIST ──────────────────────────────── */
+    .check-steps {
+      list-style: none;
+      padding: 0;
+      margin: .9rem 0 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .65rem;
+    }
+    .check-steps li {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      font-size: .97rem;
+      line-height: 1.65;
+      color: var(--text);
+      font-weight: 400;
+    }
+    .check-step-num {
+      background: var(--series);
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 700;
+      min-width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: .18rem;
+    }
+
+    /* ── NHS VIDEO SIGNPOST ───────────────────────────────── */
+    .nhs-signpost {
+      background: #fff;
+      border: 1px solid rgba(122,106,46,0.20);
+      border-radius: 10px;
+      padding: 1.1rem 1.3rem;
+      margin: 1.2rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .nhs-signpost-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+      margin-top: .1rem;
+    }
+    .nhs-signpost-text p {
+      font-size: .93rem;
+      line-height: 1.60;
+      color: var(--text);
+      margin-bottom: 0;
+    }
+    .nhs-signpost-text a {
+      color: var(--series);
+      font-weight: 600;
+      word-break: break-all;
+    }
+
+    /* ── RESEARCH CARD ────────────────────────────────────── */
+    .research-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .research-card {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      border-radius: 10px;
+      border: 1px solid rgba(122,106,46,0.18);
+      overflow: hidden;
+    }
+    @media (max-width: 620px) { .research-card { grid-template-columns: 1fr; } }
+
+    .ev-stat-box {
+      background: var(--navy);
+      color: #fff;
+      padding: .9rem .75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow: hidden;
+    }
+    .ev-kf-label {
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--amber);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-bottom: .35rem;
+    }
+    .ev-stat-row {
+      font-size: 3.2rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.0;
+      margin-bottom: .3rem;
+    }
+    .ev-outcome {
+      font-size: .95rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.95);
+      line-height: 1.3;
+      margin-bottom: .35rem;
+    }
+    .ev-conditions {
+      font-size: .78rem;
+      line-height: 1.32;
+      color: rgba(255,255,255,0.72);
+    }
+    .ev-body {
+      background: #fff;
+      padding: 1.1rem 1.2rem;
+    }
+    .ev-body p {
+      font-size: .93rem;
+      line-height: 1.72;
+      color: var(--text);
+      margin-bottom: .6rem;
+    }
+    .ev-body p:last-child { margin-bottom: 0; }
+    .ev-source {
+      font-size: .78rem;
+      color: rgba(44,44,44,0.55);
+      font-style: italic;
+    }
+
+    /* ── PUTTING IT ALL TOGETHER ──────────────────────────── */
+    .putting-together {
+      background: var(--navy);
+      border-radius: 12px;
+      padding: 1.7rem 1.8rem;
+      margin: 2rem 0;
+    }
+    .putting-together h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.12rem;
+      color: var(--amber);
+      margin-bottom: .85rem;
+    }
+    .putting-together p {
+      font-size: .97rem;
+      color: rgba(255,255,255,0.92);
+      line-height: 1.72;
+      font-style: italic;
+      margin-bottom: .8rem;
+      font-weight: 400;
+    }
+    .putting-together p.closing {
+      font-style: normal;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0;
+    }
+
+    /* ── REFERENCES ───────────────────────────────────────── */
+    .references-section {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(44,44,44,0.12);
+    }
+    .references-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+    .ref-list {
+      counter-reset: ref-counter;
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .ref-block {
+      counter-increment: ref-counter;
+      display: flex;
+      gap: .8rem;
+      align-items: flex-start;
+    }
+    .ref-block::before {
+      content: counter(ref-counter);
+      color: var(--series);
+      font-size: .80rem;
+      font-weight: 700;
+      min-width: 1.4rem;
+      text-align: right;
+      padding-top: .10rem;
+      flex-shrink: 0;
+    }
+    .ref-full {
+      font-size: .82rem;
+      color: var(--text-muted);
+      line-height: 1.58;
+      border-left: 2px solid var(--series);
+      padding-left: .75rem;
+    }
+    .ref-links { margin-top: .3rem; }
+    .ref-pill {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--series);
+      background: rgba(122,106,46,0.10);
+      border: 1px solid rgba(122,106,46,0.25);
+      border-radius: 4px;
+      padding: .1rem .45rem;
+      text-decoration: none;
+      margin-right: .4rem;
+    }
+    .ref-pill:hover { background: rgba(122,106,46,0.18); }
+
+    /* ── RESEARCH FLAGS ───────────────────────────────────── */
+    .research-flags {
+      margin-top: 1.8rem;
+      padding: .9rem 1.1rem;
+      background: rgba(232,99,74,0.06);
+      border-left: 3px solid var(--coral);
+      border-radius: 0 6px 6px 0;
+    }
+    .flags-title {
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--coral);
+      margin-bottom: .35rem;
+    }
+    .flags-note {
+      font-size: .82rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    .site-footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.75);
+      padding: 2.2rem 1.5rem;
+      text-align: center;
+      font-size: .82rem;
+    }
+    .footer-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.12rem;
+      color: #fff;
+      margin-bottom: .5rem;
+    }
+    .footer-logo span { color: var(--coral); }
+    .footer-disclaimer {
+      max-width: 600px;
+      margin: 0 auto .9rem;
+      line-height: 1.62;
+      color: rgba(255,255,255,0.75);
+    }
+    .footer-small {
+      font-size: .75rem;
+      color: rgba(255,255,255,0.45);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── TOPBAR ──────────────────────────────────────────────── -->
+<nav class="topbar">
+  <a href="/index.html" class="topbar-logo">helf<span>.</span>school</a>
+  <span class="topbar-tagline">Health Education</span>
+</nav>
+
+<!-- ── HERO ───────────────────────────────────────────────── -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="/index.html">helf.school</a> &rsaquo;
+      <a href="/helf-school-conditions.html">Library</a> &rsaquo;
+      <a href="/helf-school-conditions.html">Practical Health</a> &rsaquo;
+      Testicular Awareness
+    </div>
+    <span class="series-badge">Practical Health &middot; Article 33</span>
+    <h1>Testicular Awareness<br>What to Look For</h1>
+    <p class="hero-subtitle">A short practical guide to knowing what is normal for your testicles — and recognising changes that are worth having assessed.</p>
+    <div class="hero-meta">
+      <span class="hero-meta-item">📖 Read time: ~7 min</span>
+      <span class="hero-meta-item">✅ Evidence-based</span>
+      <span class="hero-meta-item">🗓 Updated May 2026</span>
+    </div>
+  </div>
+</header>
+
+<!-- ── DISCLAIMER BAR ─────────────────────────────────────── -->
+<div class="disclaimer-bar">
+  <div class="disclaimer-bar-inner">
+    <p>This article is health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+  </div>
+</div>
+
+<!-- ── ARTICLE ─────────────────────────────────────────────── -->
+<main class="article-wrap">
+
+  <!-- SECTION 1 — WHAT IS TESTICULAR AWARENESS? -->
+  <section class="article-section">
+    <p class="section-label">Section 1</p>
+    <h2 class="section-heading">What is testicular awareness?</h2>
+
+    <p>Testicular awareness means knowing what is normal for your testicles — their usual size, shape, weight, and feel — so that any change is easier to notice. It is not a formal clinical examination routine; it is a practical familiarity with your own body.</p>
+
+    <p>The testicles (each one individually is called a testis) are two oval-shaped glands housed in the scrotum (the pouch of skin beneath the penis). They produce sperm and testosterone (the main male sex hormone). At the back of each testicle sits the epididymis (a coiled tube that carries sperm toward the urethra — the tube through which both urine and semen leave the body), which can normally be felt as a soft, slightly raised ridge. Getting familiar with this structure matters: it is one of the most common reasons a man who is examining himself for the first time perceives what feels like a lump.</p>
+
+    <p>Testicular cancer is the most common cancer in men aged 15 to 49 in the UK,<sup><a href="#ref-1">1</a></sup> making awareness in this age group clinically important. It is also one of the most treatable cancers, with excellent survival rates — particularly when changes come to clinical attention early.</p>
+  </section>
+
+  <!-- KEY TERMS -->
+  <div class="key-terms">
+    <p class="key-terms-title">🔑 Key Terms</p>
+    <div class="key-terms-grid">
+      <div class="key-term-item">
+        <p class="key-term-label">Testicle (testis)</p>
+        <p class="key-term-def">One of two oval-shaped glands inside the scrotum that produce sperm and the hormone testosterone. Both terms — testicle and testis — refer to the same structure.</p>
+      </div>
+      <div class="key-term-item">
+        <p class="key-term-label">Scrotum</p>
+        <p class="key-term-def">The pouch of skin below the penis that houses and protects the testicles, keeping them at a slightly lower temperature than the rest of the body — necessary for sperm production.</p>
+      </div>
+      <div class="key-term-item">
+        <p class="key-term-label">Epididymis</p>
+        <p class="key-term-def">A coiled tube at the back of each testicle that carries sperm. Normally felt as a soft, raised ridge — not a lump — and important to recognise as normal anatomy.</p>
+      </div>
+      <div class="key-term-item">
+        <p class="key-term-label">Germ cell tumour</p>
+        <p class="key-term-def">The most common type of testicular cancer (around 95% of cases), arising from the cells responsible for producing sperm. The two main subtypes are seminoma and non-seminoma.</p>
+      </div>
+      <div class="key-term-item">
+        <p class="key-term-label">Cryptorchidism</p>
+        <p class="key-term-def">The medical term for an undescended testicle — when one or both testicles fail to move into the scrotum before birth. A recognised risk factor for testicular cancer.</p>
+      </div>
+      <div class="key-term-item">
+        <p class="key-term-label">Hydrocele</p>
+        <p class="key-term-def">A collection of fluid around the testicle causing the scrotum to feel swollen or heavy. A common and usually benign (non-cancerous) cause of scrotal changes.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 — WHY DOES IT MATTER? -->
+  <section class="article-section">
+    <p class="section-label">Section 2</p>
+    <h2 class="section-heading">Why does testicular awareness matter?</h2>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-number">~2,400</div>
+        <div class="stat-label">new cases per year in the UK</div>
+        <div class="stat-prose">Testicular cancer accounts for 1% of all cancers in men — but it is the most common cancer in men aged 15 to 49, making it a clinically important topic for this age group.<sup><a href="#ref-1">1</a></sup></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">97.6%</div>
+        <div class="stat-label">10-year survival (men aged 15–44)</div>
+        <div class="stat-prose">Among men aged 15 to 44 at diagnosis, 97.6% survive for 10 years or more — one of the highest survival rates of any cancer in the UK.<sup><a href="#ref-1">1</a></sup></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">~70</div>
+        <div class="stat-label">deaths per year in the UK</div>
+        <div class="stat-prose">Deaths from testicular cancer are rare — around 70 per year, or more than one per week. Mortality has fallen by more than four-fifths (82%) since the early 1970s, driven by advances in treatment.<sup><a href="#ref-1">1</a></sup></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">30–34</div>
+        <div class="stat-label">peak age group at diagnosis</div>
+        <div class="stat-prose">Incidence is highest in men aged 30 to 34, with around 1 in 5 (19%) of all new UK cases diagnosed in this age group each year.<sup><a href="#ref-1">1</a></sup></div>
+      </div>
+    </div>
+
+    <p>Despite these reassuring outcomes, testicular awareness remains clinically valuable. Most testicular cancers are noticed first by the man himself — not identified during a routine medical examination. Becoming familiar with what is normal for your testicles means that changes are more likely to come to clinical attention promptly.</p>
+
+    <p>Several risk factors are clinically recognised as increasing the likelihood of testicular cancer. Cryptorchidism (an undescended testicle at birth — see Key Terms above) is a recognised risk factor,<sup><a href="#ref-2">2</a></sup> as is a personal or family history of the condition. Men with a brother who has been diagnosed with testicular cancer face a risk around 8 to 9 times higher than average.<sup><a href="#ref-2">2</a></sup> The presence of a risk factor does not mean cancer is inevitable — but it is a recognised reason to be particularly familiar with any changes.</p>
+  </section>
+
+  <!-- SECTION 3 — WHAT DOES NORMAL LOOK AND FEEL LIKE? -->
+  <section class="article-section">
+    <p class="section-label">Section 3</p>
+    <h2 class="section-heading">What does a normal testicle look and feel like?</h2>
+
+    <p>Each testicle should feel smooth and firm, without hard areas or lumps on its surface. It is entirely normal for one testicle to be slightly larger than the other, or to hang slightly lower — this is a common anatomical variation and not a cause for concern.</p>
+
+    <p>At the back of each testicle, the epididymis (see Key Terms above) can normally be felt as a soft, raised ridge running along the length of the testicle. This is one of the most frequently misidentified structures when men examine themselves for the first time: it is normal anatomy, not a new lump. Becoming familiar with its usual position and texture is a practical part of testicular awareness.</p>
+
+    <p>The scrotum itself should feel comfortable at rest, without any unusual heaviness, pressure, or dragging sensation. The skin of the scrotum is normally soft and pliable.</p>
+  </section>
+
+  <!-- SECTION 4 — CHANGES WORTH ASSESSMENT -->
+  <section class="article-section">
+    <p class="section-label">Section 4</p>
+    <h2 class="section-heading">Changes that are clinically recognised as worth assessment</h2>
+
+    <p>NHS guidance identifies six types of change as clinically recognised reasons to have a testicular assessment:<sup><a href="#ref-3">3</a></sup></p>
+
+    <ol class="subtype-list">
+      <li><strong>A painless lump or swelling on a testicle</strong> — even if small, such as the size of a pea. The absence of pain does not reduce the clinical significance of a new lump.</li>
+      <li><strong>One testicle becoming noticeably larger</strong> — a progressive change in size, distinct from the normal minor difference in size between the two sides.</li>
+      <li><strong>A heavy, dragging, or full feeling in the scrotum</strong> — a sensation of weight or pressure that is new or increasing.</li>
+      <li><strong>An ache or dull pain in a testicle, the scrotum, or the groin</strong> — persistent or recurring discomfort in this area.</li>
+      <li><strong>A hard, tender, or changed area in the epididymis</strong> (see Key Terms above) — a change to the soft tube felt at the back of each testicle.</li>
+      <li><strong>Any change to one or both testicles that is new or feels different from usual</strong> — the clinical principle is that anything unfamiliar to you is worth having checked, even if it does not fit a specific description.</li>
+    </ol>
+
+    <div class="callout-box">
+      <p><strong>Most scrotal lumps and swellings are not cancer.</strong> Many have benign (non-cancerous) causes — including epididymal cysts (small fluid-filled sacs near the epididymis), hydroceles (see Key Terms above), varicoceles (swollen veins within the scrotum), or inflammation. The clinical principle is that any scrotal change that is new, persists, or concerns you is worth having assessed, rather than being monitored privately at home.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 5 — HOW TO CHECK -->
+  <section class="article-section">
+    <p class="section-label">Section 5</p>
+    <h2 class="section-heading">How to check your testicles</h2>
+
+    <p>NHS guidance recommends checking around once a month. The best time is during or after a warm bath or shower, when the scrotum is relaxed and easier to examine.<sup><a href="#ref-3">3</a></sup></p>
+
+    <ul class="check-steps">
+      <li><span class="check-step-num">1</span>Hold the scrotum in the palm of one hand to support the weight of the testicles.</li>
+      <li><span class="check-step-num">2</span>Use the other hand to gently roll one testicle at a time between thumb and fingers, feeling the surface carefully.</li>
+      <li><span class="check-step-num">3</span>Check the surface of the testicle itself for any new lumps, hard areas, or changes in texture or firmness.</li>
+      <li><span class="check-step-num">4</span>Feel behind the testicle — the soft epididymis (see Key Terms above) — and note whether it feels as usual.</li>
+      <li><span class="check-step-num">5</span>Repeat for the other testicle. Check both sides each time.</li>
+    </ul>
+
+    <p>Checking regularly builds a reliable sense of what is normal for you. It takes only a few minutes and requires no equipment. NHS guidance recommends starting from puberty — usually around age 12 — and continuing as a regular habit through adult life.<sup><a href="#ref-3">3</a></sup></p>
+
+    <div class="nhs-signpost">
+      <div class="nhs-signpost-icon">🎬</div>
+      <div class="nhs-signpost-text">
+        <p>The NHS provides a video guide demonstrating the checking technique, available at <a href="https://www.nhs.uk/tests-and-treatments/how-to-check-your-testicles/" target="_blank" rel="noopener">nhs.uk/tests-and-treatments/how-to-check-your-testicles/</a><sup><a href="#ref-3">3</a></sup></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6 — WHAT THE RESEARCH SHOWS -->
+  <section class="article-section">
+    <p class="section-label">Section 6</p>
+    <h2 class="section-heading">What the research shows</h2>
+
+    <div class="research-grid">
+      <div class="research-card">
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">97.6%</div>
+          <div class="ev-outcome">10-year survival / men aged 15–44 diagnosed with testicular cancer in the UK</div>
+          <div class="ev-conditions">UK national data · Cancer Research UK · 2018</div>
+        </div>
+        <div class="ev-body">
+          <p>Testicular cancer is one of the most treatable cancers in the UK. Among men aged 15 to 44 at the time of diagnosis, 97.6% survive for 10 years or more. Across all ages, 10-year survival stands at 96.5%. These figures reflect decades of improvement in treatment — and the fact that the large majority of cases are diagnosed at a stage where treatment is highly effective.</p>
+          <p class="ev-source">Cancer Research UK — Testicular cancer statistics (2018 data). cancerresearchuk.org</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUTTING IT ALL TOGETHER -->
+  <div class="putting-together">
+    <h3>Putting it all together</h3>
+    <p>Testicular cancer is one of the most treatable cancers in the UK, with survival rates that reflect decades of medical progress. Most cases are noticed first by the man himself — not discovered at a routine clinical appointment. Testicular awareness requires no training, no equipment, and only a few minutes each month. The practice is straightforward: get to know what is normal for your testicles, and notice what changes.</p>
+    <p class="closing">If any change is new, persists, or simply feels different from usual, that is a clinically recognised reason to have it assessed. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+  </div>
+
+  <!-- REFERENCES -->
+  <section class="references-section">
+    <h3 class="references-title">References</h3>
+    <ol class="ref-list">
+
+      <li class="ref-block" id="ref-1">
+        <div class="ref-full">
+          Cancer Research UK. Testicular cancer statistics: incidence, survival, and mortality.
+          cancerresearchuk.org/health-professional/cancer-statistics/statistics-by-cancer-type/testicular-cancer
+          [Accessed May 2026]
+          <div class="ref-links">
+            <a class="ref-pill" href="https://www.cancerresearchuk.org/health-professional/cancer-statistics/statistics-by-cancer-type/testicular-cancer" target="_blank" rel="noopener">Cancer Research UK</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="ref-block" id="ref-2">
+        <div class="ref-full">
+          Cancer Research UK. Testicular cancer risk factors.
+          cancerresearchuk.org/health-professional/cancer-statistics/statistics-by-cancer-type/testicular-cancer/risk-factors
+          [Accessed May 2026]
+          <div class="ref-links">
+            <a class="ref-pill" href="https://www.cancerresearchuk.org/health-professional/cancer-statistics/statistics-by-cancer-type/testicular-cancer/risk-factors" target="_blank" rel="noopener">Cancer Research UK</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="ref-block" id="ref-3">
+        <div class="ref-full">
+          NHS. How to check your testicles.
+          nhs.uk/tests-and-treatments/how-to-check-your-testicles/
+          Last reviewed: 20 August 2024. [Accessed May 2026]
+          <div class="ref-links">
+            <a class="ref-pill" href="https://www.nhs.uk/tests-and-treatments/how-to-check-your-testicles/" target="_blank" rel="noopener">NHS</a>
+          </div>
+        </div>
+      </li>
+
+    </ol>
+  </section>
+
+
+
+</main>
+
+<!-- ── FOOTER ──────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <p class="footer-logo">helf<span>.</span>school</p>
+  <p class="footer-disclaimer">helf.school is a health education resource. This content describes what medicine knows and what services exist — it is not a substitute for clinical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
+  <p class="footer-small">&copy; 2026 helf.school &middot; Practical Health Series &middot; Article 33</p>
+</footer>
+
+</body>
+</html>
