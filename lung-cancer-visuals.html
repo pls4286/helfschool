@@ -9,572 +9,281 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --navy:        #1B2A4A;
-  --coral:       #E8634A;
-  --amber:       #E8A84A;
-  --series:      #2A5A3A;
-  --series-dark: #1A3A25;
-  --series-light:#9DCFB5;
-  --text:        #2C2C2C;
-  --white:       #ffffff;
-  --bg:          #0e2418;
+  --navy:#1B2A4A;--coral:#E8634A;--cream:#FAF7F2;--amber:#E8A84A;
+  --amber-dim:rgba(232,168,74,0.18);--series:#2A5A3A;--series-dark:#1A3A25;
+  --series-light:#9DCFB5;--text:#2C2C2C;--white:#ffffff;
 }
-*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
-html,body { height:100%; overflow:hidden; }
-body { font-family:'DM Sans',sans-serif; font-weight:400; background:var(--bg); color:var(--white); }
-#wrapper { display:flex; flex-direction:column; height:100vh; }
-
-/* TOPBAR */
-#topbar {
-  height:52px; flex-shrink:0;
-  background:linear-gradient(90deg,var(--series-dark) 0%,#1e3d2a 100%);
-  display:flex; align-items:center; justify-content:space-between;
-  padding:0 1.4rem; border-bottom:1px solid rgba(255,255,255,0.08);
-  position:relative; z-index:10;
-}
-.tb-series { font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--series-light); display:flex; align-items:center; gap:.5rem; }
-.tb-dot { width:7px; height:7px; border-radius:50%; background:var(--amber); flex-shrink:0; }
-#slide-title { position:absolute; left:50%; transform:translateX(-50%); font-family:'Fraunces',serif; font-size:.92rem; font-weight:700; color:rgba(255,255,255,0.90); text-align:center; max-width:55%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.tb-counter { font-size:.85rem; font-weight:600; color:rgba(255,255,255,0.90); letter-spacing:.05em; }
-
-/* STAGE */
-#stage { flex:1; position:relative; overflow:hidden; min-height:0; }
-
-/* SLIDES */
-.slide {
-  position:absolute; top:0; left:0; width:100%; height:100%;
-  padding:1rem 1.5rem .8rem; display:flex; flex-direction:column;
-  opacity:0; visibility:hidden; pointer-events:none;
-  transition:opacity .32s ease;
-}
-.slide.active { opacity:1; visibility:visible; pointer-events:all; }
-
-/* SLIDE HEADER */
-.slide-header { margin-bottom:.4rem; flex-shrink:0; }
-.slide-kicker { font-size:.73rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--amber); margin-bottom:.22rem; }
-.slide-title { font-family:'Fraunces',serif; font-size:1.72rem; font-weight:700; color:var(--white); line-height:1.18; }
-.slide-sub { font-size:.90rem; color:rgba(255,255,255,0.72); margin-top:.18rem; line-height:1.5; }
-
-/* INTRO SLIDE */
-.intro-slide {
-  background:linear-gradient(140deg,var(--series-dark) 0%,var(--series) 55%,#3A7A55 100%);
-  padding:1rem 1.5rem .8rem; gap:.6rem;
-}
-.intro-slide::before { content:''; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E"); pointer-events:none; }
-.intro-top { position:relative; flex-shrink:0; }
-.intro-badge { display:inline-flex; align-items:center; gap:.45rem; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); border-radius:4px; padding:.28rem .85rem; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.09em; color:rgba(255,255,255,0.90); margin-bottom:.7rem; }
-.intro-h1 { font-family:'Fraunces',serif; font-weight:900; font-size:clamp(3.2rem,8vw,5.8rem); color:#fff; line-height:1.0; margin-bottom:.55rem; }
-.intro-sub { font-size:1.15rem; color:rgba(255,255,255,0.82); line-height:1.55; }
-.intro-stat-grid { display:grid; grid-template-columns:1fr 1fr 1fr; grid-template-rows:1fr; gap:.65rem; flex:1; min-height:0; position:relative; }
-.intro-stat-card { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:1.2rem 1.3rem; display:flex; flex-direction:column; justify-content:center; min-height:0; }
-.intro-stat-card.accent { background:rgba(232,168,74,0.14); border-color:rgba(232,168,74,0.35); }
-.intro-stat-num { font-family:'Fraunces',serif; font-size:clamp(2.4rem,5vw,3.6rem); font-weight:900; color:var(--amber); line-height:1; margin-bottom:.38rem; }
-.intro-stat-label { font-size:.95rem; font-weight:500; color:rgba(255,255,255,0.82); line-height:1.45; }
-
-/* THREE-GRID — dark coloured cards, colour narrative */
-.three-grid { display:grid; grid-template-rows:repeat(3,1fr); gap:.46rem; flex:1; min-height:0; }
-.info-card {
-  border-radius:10px;
-  background:linear-gradient(90deg,rgba(38,105,55,.55) 0%,rgba(22,65,33,.42) 100%);
-  border:1px solid rgba(160,212,176,0.28);
-  padding:.82rem 1rem; display:flex; flex-direction:column; gap:.25rem;
-  min-height:0; overflow:hidden;
-  transform:translateY(12px); opacity:0;
-  transition:transform .35s ease, opacity .35s ease;
-}
-.info-card.visible { transform:translateY(0); opacity:1; }
-.info-card:nth-child(1) { transition-delay:.05s; }
-.info-card:nth-child(2) { transition-delay:.15s; }
-.info-card:nth-child(3) { transition-delay:.25s; }
-.info-card.c-red   { background:linear-gradient(90deg,rgba(180,45,45,.55) 0%,rgba(110,25,25,.42) 100%); border-color:rgba(220,80,70,.55); }
-.info-card.c-amber { background:linear-gradient(90deg,rgba(170,110,20,.55) 0%,rgba(110,68,12,.42) 100%); border-color:rgba(232,168,74,.55); }
-.info-card.c-green { background:linear-gradient(90deg,rgba(38,105,55,.55) 0%,rgba(22,65,33,.42) 100%); border-color:rgba(160,212,176,.52); }
-.ic-icon { font-size:1.55rem; line-height:1; }
-.ic-title { font-family:'Fraunces',serif; font-weight:700; font-size:1.12rem; color:#fff; line-height:1.2; }
-/* ic-body: ≤30w without source / ≤22w with source — prevents clipping — LOCKED APRIL 2026 */
-.ic-body { font-size:.93rem; line-height:1.55; color:rgba(255,255,255,0.88); font-weight:400; display:-webkit-box; -webkit-line-clamp:5; -webkit-box-orient:vertical; overflow:hidden; }
-.ic-source { font-size:.74rem; color:rgba(255,255,255,0.55); font-style:italic; flex-shrink:0; }
-
-/* MYTH SLIDE */
-.myth-slide { background:var(--navy); }
-.myth-grid { display:grid; grid-template-columns:1fr 1fr; gap:.7rem; flex:1; min-height:0; }
-.mvc-card { border-radius:12px; overflow:hidden; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.08); transform:translateY(14px); opacity:0; transition:transform .38s ease, opacity .38s ease; }
-.mvc-card.visible { transform:translateY(0); opacity:1; }
-.mvc-card:nth-child(1) { transition-delay:.08s; }
-.mvc-card:nth-child(2) { transition-delay:.2s; }
-.mvc-claim { background:rgba(232,168,74,0.10); border-bottom:1px solid rgba(232,168,74,0.20); padding:.85rem 1rem; flex:1; display:flex; flex-direction:column; gap:.35rem; }
-.mvc-claim-lbl { font-size:.70rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--amber); }
-.mvc-claim-text { font-size:1rem; font-style:italic; color:rgba(255,255,255,0.75); line-height:1.58; }
-.mvc-evidence { background:rgba(42,90,58,0.35); padding:.85rem 1rem; flex:1; display:flex; flex-direction:column; gap:.35rem; }
-.mvc-ev-lbl { font-size:.70rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--series-light); }
-.mvc-ev-text { font-size:1rem; font-weight:600; color:rgba(255,255,255,0.96); line-height:1.58; }
-.mvc-ev-ref { font-size:.74rem; color:rgba(255,255,255,0.55); font-style:italic; }
-
-/* EV-CARDS */
-.ev-slide { background:var(--bg); }
-.ev-cards { display:flex; flex-direction:column; gap:.65rem; flex:1; min-height:0; justify-content:center; }
-.ev-card { display:grid; grid-template-columns:220px 1fr; border-radius:10px; overflow:hidden; border:1px solid rgba(42,90,58,0.25); flex:1; min-height:0; transform:translateY(12px); opacity:0; transition:transform .38s ease, opacity .38s ease; }
-.ev-card.visible { transform:translateY(0); opacity:1; }
-.ev-card:nth-child(1) { transition-delay:.08s; }
-.ev-card:nth-child(2) { transition-delay:.22s; }
-.ev-stat-box { background:linear-gradient(160deg,var(--series-dark) 0%,var(--series) 100%); padding:.9rem .75rem; display:flex; flex-direction:column; justify-content:flex-start; overflow:hidden; }
-.ev-kf-label { font-size:.70rem; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:.08em; margin-bottom:.32rem; }
-.ev-stat-row { font-family:'Fraunces',serif; font-size:3.2rem; font-weight:900; color:#fff; line-height:1.0; margin-bottom:.1rem; }
-.ev-stat-unit { font-family:'Fraunces',serif; font-size:1.65rem; font-weight:700; color:rgba(255,255,255,0.88); line-height:1; margin-bottom:.25rem; }
-.ev-outcome { font-size:.93rem; font-weight:700; color:rgba(255,255,255,0.95); line-height:1.3; margin-bottom:.28rem; }
-.ev-conditions { font-size:.78rem; line-height:1.32; color:rgba(255,255,255,0.68); }
-.ev-body-panel { background:rgba(255,255,255,0.96); padding:.9rem 1rem; display:flex; flex-direction:column; justify-content:space-between; }
-.ev-body-title { font-family:'Fraunces',serif; font-size:.98rem; color:var(--navy); font-weight:700; margin-bottom:.4rem; line-height:1.25; }
-.ev-body-panel p { font-size:.94rem; line-height:1.70; color:var(--text); font-weight:400; display:-webkit-box; -webkit-line-clamp:5; -webkit-box-orient:vertical; overflow:hidden; }
-.ev-source { font-size:.75rem; color:rgba(44,44,44,0.50); font-style:italic; margin-top:.4rem; flex-shrink:0; }
-.ev-cards.single { justify-content:center; }
-.ev-cards.single .ev-card { max-height:65%; }
-.ev-cards.single .ev-body-panel p { -webkit-line-clamp:8; }
-
-/* CTA — SEQUENTIAL SYMPTOM SLIDE */
-.cta-slide {
-  background:radial-gradient(ellipse at 50% 20%, rgba(180,45,45,0.35) 0%, rgba(26,58,37,0.8) 45%, var(--bg) 100%);
-  overflow:hidden; padding:0;
-}
-.cta-wrap-v2 {
-  position:relative; z-index:2;
-  display:grid; grid-template-rows:auto 1fr auto;
-  height:100%; padding:.9rem 1.5rem .8rem; gap:.4rem;
-}
-.cta-top { text-align:center; flex-shrink:0; }
-.cta-badge { display:inline-block; background:rgba(220,80,70,0.25); border:1px solid rgba(220,80,70,0.5); border-radius:3px; font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:rgba(255,200,190,0.95); padding:.18rem .7rem; margin-bottom:.3rem; }
-.cta-headline { font-family:'Fraunces',serif; font-weight:900; font-size:clamp(1.8rem,4vw,2.8rem); color:#fff; line-height:1.05; margin-bottom:.15rem; }
-.cta-subline { font-size:.85rem; color:rgba(255,255,255,0.72); line-height:1.35; }
-/* Symptom rows — sequential reveal, compact to fit 7 rows */
-.sym-rows { display:grid; grid-template-rows:repeat(7,1fr); gap:.28rem; min-height:0; overflow:hidden; }
-.sym-row { background:rgba(180,45,45,0.18); border:1px solid rgba(220,80,70,0.35); border-radius:9px; padding:.42rem .9rem; display:flex; align-items:center; gap:.8rem; opacity:0; transform:translateX(-24px); transition:opacity .38s ease, transform .38s ease; }
-.sym-row.visible { opacity:1; transform:translateX(0); }
-.sym-icon { font-size:1.35rem; flex-shrink:0; }
-.sym-text { font-size:.90rem; font-weight:600; color:rgba(255,255,255,0.95); line-height:1.25; }
-.cta-bottom { flex-shrink:0; }
-.med-disclaimer { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:8px; padding:.62rem 1rem; display:flex; align-items:flex-start; gap:.6rem; }
-.med-disc-icon { font-size:1.1rem; flex-shrink:0; }
-.med-disc-text { font-size:1rem; color:rgba(255,255,255,0.90); line-height:1.5; font-weight:400; }
-
-/* CLOSING SLIDE */
-.close-slide { background:linear-gradient(140deg,var(--series-dark) 0%,var(--series) 55%,#3A7A55 100%); }
-.close-slide::before { content:''; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E"); pointer-events:none; }
-.close-wrap { position:relative; z-index:2; display:flex; flex-direction:column; justify-content:flex-start; height:100%; padding:1.4rem 1.8rem 1rem; gap:.8rem; }
-.close-logo { font-family:'Fraunces',serif; font-weight:900; font-size:2.8rem; color:#fff; line-height:1; flex-shrink:0; }
-.close-logo span { color:var(--coral); }
-.close-tagline { font-size:1.05rem; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:rgba(255,255,255,0.70); flex-shrink:0; }
-.close-headline { font-family:'Fraunces',serif; font-size:1.35rem; font-weight:700; color:rgba(255,255,255,0.88); line-height:1.3; flex-shrink:0; }
-.close-cards { display:grid; grid-template-columns:1fr 1fr 1fr; gap:.6rem; flex:1; min-height:0; }
-.close-card { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.85rem; display:flex; flex-direction:column; gap:.3rem; }
-.close-card-icon { font-size:1.6rem; }
-.close-card-title { font-size:.85rem; font-weight:700; color:#fff; line-height:1.3; }
-.close-card-body { font-size:.78rem; color:rgba(255,255,255,0.68); line-height:1.55; }
-.close-series { font-size:1rem; color:rgba(255,255,255,0.65); font-weight:500; letter-spacing:.03em; flex-shrink:0; }
-
-/* DOTS */
-#dots { height:32px; flex-shrink:0; display:flex; align-items:center; justify-content:center; gap:.45rem; background:rgba(0,0,0,0.35); }
-.dot { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,0.28); cursor:pointer; transition:background .2s, transform .2s; }
-.dot.active { background:var(--amber); transform:scale(1.3); }
-
-@media(max-width:600px){
-  .ev-card { grid-template-columns:1fr; }
-  .myth-grid { grid-template-columns:1fr; }
-  .close-cards { grid-template-columns:1fr; }
-  .intro-stat-grid { grid-template-columns:1fr; grid-template-rows:1fr 1fr 1fr; }
-}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{font-family:'DM Sans',sans-serif;font-weight:400;background:#0D1A0F;color:var(--white)}
+#wrapper{display:flex;flex-direction:column;height:100vh}
+#topbar{height:52px;flex-shrink:0;background:linear-gradient(90deg,var(--series-dark) 0%,#1e3d2a 100%);display:flex;align-items:center;justify-content:space-between;padding:0 1.4rem;border-bottom:1px solid rgba(255,255,255,0.08);position:relative;z-index:10}
+.tb-series{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--series-light);display:flex;align-items:center;gap:.5rem}
+.tb-dot{width:7px;height:7px;border-radius:50%;background:var(--amber);flex-shrink:0}
+#slide-title{position:absolute;left:50%;transform:translateX(-50%);font-family:'Fraunces',serif;font-size:.92rem;font-weight:700;color:rgba(255,255,255,0.90);text-align:center;max-width:55%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tb-counter{font-size:.82rem;font-weight:600;color:rgba(255,255,255,0.75);letter-spacing:.05em}
+#stage{flex:1;position:relative;overflow:hidden;min-height:0}
+.slide{position:absolute;inset:0;padding:1rem 1.5rem .8rem;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .32s ease}
+.slide.active{opacity:1;pointer-events:all}
+.slide-header{margin-bottom:.4rem;flex-shrink:0}
+.slide-kicker{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--amber);margin-bottom:.22rem}
+.slide-title{font-family:'Fraunces',serif;font-size:1.72rem;font-weight:700;color:var(--white);line-height:1.18}
+.slide-sub{font-size:.90rem;color:rgba(255,255,255,0.72);margin-top:.18rem;line-height:1.5}
+.three-grid{display:grid;grid-template-rows:repeat(3,1fr);gap:.46rem;flex:1;min-height:0}
+.info-card{background:#fff;border-radius:10px;border-left:4px solid var(--series);padding:.82rem 1rem;display:flex;flex-direction:column;min-height:0;overflow:hidden;transform:translateY(12px);opacity:0;transition:transform .35s ease,opacity .35s ease}
+.info-card.visible{transform:translateY(0);opacity:1}
+.info-card:nth-child(1){transition-delay:.05s}
+.info-card:nth-child(2){transition-delay:.15s}
+.info-card:nth-child(3){transition-delay:.25s}
+.ic-icon{font-size:1.55rem;margin-bottom:.25rem;line-height:1}
+.ic-title{font-family:'Fraunces',serif;font-weight:700;font-size:1.12rem;color:var(--navy);line-height:1.2;margin-bottom:.32rem}
+.ic-body{font-size:.93rem;line-height:1.62;color:var(--text);font-weight:400;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.ic-source{font-size:.74rem;color:rgba(44,44,44,0.45);font-style:italic;margin-top:.28rem}
+.info-card.amber-card{border-left-color:var(--amber)}
+.info-card.amber-card .ic-title{color:var(--series-dark)}
+.intro-slide{background:linear-gradient(140deg,var(--series-dark) 0%,var(--series) 55%,#3A7A55 100%);justify-content:space-between;padding:1rem 1.5rem .8rem;gap:.7rem}
+.intro-slide::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+.intro-top{position:relative;flex-shrink:0}
+.intro-badge{display:inline-flex;align-items:center;gap:.45rem;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:4px;padding:.28rem .85rem;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,0.90);margin-bottom:.7rem}
+.intro-h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(3.2rem,8vw,5.8rem);color:#fff;line-height:1.0;margin-bottom:.55rem}
+.intro-sub{font-size:1.15rem;color:rgba(255,255,255,0.82);line-height:1.55}
+.intro-stat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.65rem;flex:1;min-height:0;position:relative}
+.intro-stat-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:12px;padding:1.2rem 1.3rem;display:flex;flex-direction:column;justify-content:center}
+.intro-stat-card.accent{background:rgba(232,168,74,0.14);border-color:rgba(232,168,74,0.35)}
+.intro-stat-num{font-family:'Fraunces',serif;font-size:clamp(2.4rem,5vw,3.6rem);font-weight:900;color:var(--amber);line-height:1;margin-bottom:.38rem}
+.intro-stat-label{font-size:.95rem;font-weight:500;color:rgba(255,255,255,0.82);line-height:1.45}
+.myth-slide{background:var(--navy)}
+.myth-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;flex:1;min-height:0}
+.mvc-card{border-radius:12px;overflow:hidden;display:flex;flex-direction:column;border:1px solid rgba(255,255,255,0.08);transform:translateY(14px);opacity:0;transition:transform .38s ease,opacity .38s ease}
+.mvc-card.visible{transform:translateY(0);opacity:1}
+.mvc-card:nth-child(1){transition-delay:.08s}
+.mvc-card:nth-child(2){transition-delay:.2s}
+.mvc-claim{background:rgba(232,168,74,0.10);border-bottom:1px solid rgba(232,168,74,0.20);padding:.85rem 1rem;flex:1;display:flex;flex-direction:column;gap:.35rem}
+.mvc-claim-lbl{font-size:.70rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--amber);display:flex;align-items:center;gap:.3rem}
+.mvc-claim-text{font-size:1rem;font-style:italic;color:rgba(255,255,255,0.75);line-height:1.58;font-weight:400}
+.mvc-evidence{background:rgba(42,90,58,0.35);padding:.85rem 1rem;flex:1;display:flex;flex-direction:column;gap:.35rem}
+.mvc-ev-lbl{font-size:.70rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--series-light);display:flex;align-items:center;gap:.3rem}
+.mvc-ev-text{font-size:1rem;font-weight:600;color:rgba(255,255,255,0.96);line-height:1.58}
+.mvc-ev-ref{font-size:.74rem;color:rgba(255,255,255,0.45);font-style:italic;margin-top:.2rem}
+.ev-slide{background:#0f1f15}
+.ev-cards{display:flex;flex-direction:column;gap:.65rem;flex:1;min-height:0;justify-content:center}
+.ev-card{display:grid;grid-template-columns:220px 1fr;border-radius:10px;overflow:hidden;border:1px solid rgba(42,90,58,0.25);flex:1;min-height:0;transform:translateY(12px);opacity:0;transition:transform .38s ease,opacity .38s ease}
+.ev-card.visible{transform:translateY(0);opacity:1}
+.ev-card:nth-child(1){transition-delay:.08s}
+.ev-card:nth-child(2){transition-delay:.22s}
+.ev-stat-box{background:linear-gradient(160deg,var(--series-dark) 0%,var(--series) 100%);padding:.9rem .75rem;display:flex;flex-direction:column;justify-content:flex-start;overflow:hidden}
+.ev-kf-label{font-size:.70rem;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.32rem}
+.ev-stat-row{font-family:'Fraunces',serif;font-size:3.2rem;font-weight:900;color:#fff;line-height:1.0;margin-bottom:.1rem}
+.ev-stat-unit{font-family:'Fraunces',serif;font-size:1.65rem;font-weight:700;color:rgba(255,255,255,0.88);line-height:1;margin-bottom:.25rem}
+.ev-outcome{font-size:.93rem;font-weight:700;color:rgba(255,255,255,0.95);line-height:1.3;margin-bottom:.28rem}
+.ev-conditions{font-size:.78rem;line-height:1.32;color:rgba(255,255,255,0.68)}
+.ev-body{background:#fff;padding:1rem 1.15rem;display:flex;flex-direction:column;justify-content:space-between}
+.ev-body p{font-size:.94rem;line-height:1.70;color:var(--text);font-weight:400;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden}
+.ev-source{font-size:.75rem;color:rgba(44,44,44,0.50);font-style:italic;margin-top:.4rem;flex-shrink:0}
+.ev-cards.single{justify-content:center}
+.ev-cards.single .ev-card{max-height:48%}
+.cta-slide{background:radial-gradient(ellipse at 50% 30%,rgba(42,90,58,0.9) 0%,var(--series-dark) 65%,#0D1A0F 100%);overflow:hidden;padding:0}
+.cta-glow{position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:70%;height:60%;background:radial-gradient(ellipse,rgba(232,168,74,0.18) 0%,transparent 70%);pointer-events:none}
+.cta-wrap-v2{position:relative;z-index:2;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:1.1rem 1.5rem .9rem}
+.cta-top{text-align:center}
+.cta-icon{font-size:5.5rem;line-height:1;filter:drop-shadow(0 0 20px rgba(232,168,74,0.5));animation:halo 3.2s ease-in-out infinite;margin-bottom:.35rem}
+@keyframes halo{0%,100%{filter:drop-shadow(0 0 20px rgba(232,168,74,0.4))}50%{filter:drop-shadow(0 0 38px rgba(232,168,74,0.75))}}
+.cta-badge{display:inline-block;background:rgba(232,168,74,0.2);border:1px solid rgba(232,168,74,0.4);border-radius:3px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--amber);padding:.2rem .7rem;margin-bottom:.55rem}
+.cta-headline{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.4rem,5.5vw,3.8rem);color:#fff;line-height:1.05}
+.cta-rows-v2{display:grid;grid-template-rows:1fr 1fr 1fr 1fr;gap:.45rem;padding:.5rem 0}
+.cta-row{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.10);border-radius:10px;padding:.6rem 1rem;display:flex;align-items:center;gap:.8rem}
+.cta-row-icon{font-size:1.8rem;line-height:1;flex-shrink:0}
+.cta-row-title{font-size:.93rem;font-weight:700;color:#fff;line-height:1.2;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.med-disclaimer{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:.7rem 1rem;display:flex;align-items:flex-start;gap:.6rem}
+.med-disc-icon{font-size:1.2rem;flex-shrink:0}
+.med-disc-text{font-size:1rem;color:rgba(255,255,255,0.90);line-height:1.55;font-weight:400}
+.close-slide{background:linear-gradient(140deg,var(--series-dark) 0%,var(--series) 55%,#3A7A55 100%)}
+.close-slide::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+.close-wrap{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-start;height:100%;padding:1.4rem 1.8rem 1rem;gap:.8rem}
+.close-logo{font-family:'Fraunces',serif;font-weight:900;font-size:2.8rem;color:#fff;line-height:1;flex-shrink:0}
+.close-logo span{color:var(--coral)}
+.close-tagline{font-size:1.05rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,0.70);flex-shrink:0}
+.close-headline{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:700;color:rgba(255,255,255,0.88);line-height:1.3;flex-shrink:0}
+.close-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;flex:1;min-height:0}
+.close-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:.85rem;display:flex;flex-direction:column;gap:.3rem}
+.close-card-icon{font-size:1.6rem}
+.close-card-title{font-size:.85rem;font-weight:700;color:#fff;line-height:1.3}
+.close-card-body{font-size:.78rem;color:rgba(255,255,255,0.68);line-height:1.55}
+.close-series{font-size:1rem;color:rgba(255,255,255,0.65);font-weight:500;letter-spacing:.03em;flex-shrink:0}
+#dots{height:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:.45rem;background:rgba(0,0,0,0.35)}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.28);cursor:pointer;transition:background .2s,transform .2s}
+.dot.active{background:var(--amber);transform:scale(1.3)}
+.kb-hint{position:absolute;bottom:.3rem;right:.7rem;font-size:.72rem;color:rgba(255,255,255,0.60);letter-spacing:.04em;pointer-events:none}
+@media(max-width:600px){.ev-card{grid-template-columns:1fr}.myth-grid{grid-template-columns:1fr}.close-cards{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div id="wrapper">
-
 <div id="topbar">
   <div class="tb-series"><div class="tb-dot"></div>Cancer Series · Lung Cancer</div>
   <div id="slide-title">Introduction</div>
   <div class="tb-counter"><span id="cur">1</span> / <span id="tot">11</span></div>
 </div>
-
 <div id="stage">
 
-<!-- SLIDE 1 — INTRO -->
 <div class="slide intro-slide active" id="s1" data-title="Introduction">
   <div class="intro-top">
     <div class="intro-badge">🩺 Cancer Series · Article 29</div>
     <h1 class="intro-h1">Lung Cancer</h1>
-    <p class="intro-sub">The UK's biggest cancer killer — and what science is genuinely doing about it.</p>
+    <p class="intro-sub">The UK’s biggest cancer killer — and what science is genuinely doing about it. Including what social media consistently gets wrong.</p>
   </div>
   <div class="intro-stat-grid">
-    <div class="intro-stat-card">
-      <div class="intro-stat-num">~49,300</div>
-      <div class="intro-stat-label">new UK cases per year — around 135 every single day</div>
-    </div>
-    <div class="intro-stat-card accent">
-      <div class="intro-stat-num">79%</div>
-      <div class="intro-stat-label">of cases are preventable — smoking is the single biggest cause</div>
-    </div>
-    <div class="intro-stat-card">
-      <div class="intro-stat-num">~65%</div>
-      <div class="intro-stat-label">five-year survival at stage 1 — earlier diagnosis changes outcomes</div>
-    </div>
+    <div class="intro-stat-card"><div class="intro-stat-num">~50,200</div><div class="intro-stat-label">new cases per year in the UK — nearly 140 every day</div></div>
+    <div class="intro-stat-card accent"><div class="intro-stat-num">79%</div><div class="intro-stat-label">of cases are considered preventable — smoking is by far the biggest factor</div></div>
+    <div class="intro-stat-card"><div class="intro-stat-num">65%</div><div class="intro-stat-label">stage 1 five-year survival — why early detection changes everything</div></div>
   </div>
 </div>
 
-<!-- SLIDE 2 — MYTH VS EVIDENCE -->
 <div class="slide myth-slide" id="s2" data-title="Myth vs Evidence">
   <div class="slide-header">
     <div class="slide-kicker">Myth vs Evidence</div>
     <div class="slide-title">What social media gets wrong about lung cancer</div>
-    <div class="slide-sub">Two persistent claims — and what published evidence actually shows</div>
+    <div class="slide-sub">Two persistent myths — and what the published evidence actually shows</div>
   </div>
   <div class="myth-grid">
     <div class="mvc-card animate-ready">
-      <div class="mvc-claim">
-        <div class="mvc-claim-lbl">📱 The claim</div>
-        <div class="mvc-claim-text">"Lung cancer only happens to smokers. If you've never smoked, there's nothing to worry about."</div>
-      </div>
-      <div class="mvc-evidence">
-        <div class="mvc-ev-lbl">✓ The evidence</div>
-        <div class="mvc-ev-text">Around 15% of UK lung cancer diagnoses are in people who have never smoked. Radon gas, asbestos, air pollution, and inherited genetic risk all play a role — and never-smoker lung cancer would rank 8th in the UK cancer death table if counted separately.</div>
-        <div class="mvc-ev-ref">Khan et al. BJC Reports 2023 · PMID 39516402</div>
-      </div>
+      <div class="mvc-claim"><div class="mvc-claim-lbl">📱 The claim</div><div class="mvc-claim-text">“Lung cancer only happens to smokers. If you’ve never smoked, there’s nothing to worry about.”</div></div>
+      <div class="mvc-evidence"><div class="mvc-ev-lbl">✓ The evidence</div><div class="mvc-ev-text">Around 15% of UK lung cancer diagnoses are in people who have never smoked — making lung cancer in never-smokers the 8th most common cause of cancer death in the UK if counted separately. Radon gas, asbestos, air pollution, and genetics all play a role.</div><div class="mvc-ev-ref">Khan et al. BJC Reports 2023 · PMID 39516402</div></div>
     </div>
     <div class="mvc-card animate-ready">
-      <div class="mvc-claim">
-        <div class="mvc-claim-lbl">📱 The claim</div>
-        <div class="mvc-claim-text">"Stage 4 lung cancer is a death sentence. There's nothing medicine can offer."</div>
-      </div>
-      <div class="mvc-evidence">
-        <div class="mvc-ev-lbl">✓ The evidence</div>
-        <div class="mvc-ev-text">Immunotherapy and targeted therapy have transformed outcomes for specific groups. In EGFR-mutated lung cancer, targeted therapy extended median survival to 38.6 months. In high PD-L1 disease, immunotherapy nearly doubled progression-free survival compared with chemotherapy.</div>
-        <div class="mvc-ev-ref">Ramalingam et al. NEJM 2020 · Reck et al. NEJM 2016</div>
-      </div>
+      <div class="mvc-claim"><div class="mvc-claim-lbl">📱 The claim</div><div class="mvc-claim-text">“Stage 4 lung cancer is a death sentence. There’s nothing medicine can offer — treatment isn’t worth pursuing.”</div></div>
+      <div class="mvc-evidence"><div class="mvc-ev-lbl">✓ The evidence</div><div class="mvc-ev-text">Immunotherapy and targeted therapy have transformed outcomes for specific patient groups. Osimertinib (Tagrisso) extended median overall survival to 38.6 months in EGFR-mutated NSCLC. Pembrolizumab (Keytruda) nearly doubled progression-free survival versus chemotherapy in high PD-L1 disease.</div><div class="mvc-ev-ref">Ramalingam et al. NEJM 2020 · Reck et al. NEJM 2016</div></div>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 3 — WHAT IS IT? (1 of 2) — no source lines, ≤30w -->
 <div class="slide" id="s3" data-title="What is lung cancer? (1 of 2)">
-  <div class="slide-header">
-    <div class="slide-kicker">Section 1 · What is it?  (1 of 2)</div>
-    <div class="slide-title">What is lung cancer?</div>
-    <div class="slide-sub">A disease of the airways — with two very different types</div>
-  </div>
+  <div class="slide-header"><div class="slide-kicker">Section 1 · What is it? (1 of 2)</div><div class="slide-title">What is lung cancer?</div><div class="slide-sub">A disease of the airways — with two very different types</div></div>
   <div class="three-grid">
-    <div class="info-card c-amber animate-ready">
-      <div class="ic-icon">🫁</div>
-      <div class="ic-title">A cancer that starts in the airways or lung tissue</div>
-      <div class="ic-body">Lung cancer begins when cells in the airways or lung tissue divide out of control. The resulting tumour can spread through the bloodstream or lymphatic system to other parts of the body.</div>
-    </div>
-    <div class="info-card c-green animate-ready">
-      <div class="ic-icon">🔬</div>
-      <div class="ic-title">Non-small cell lung cancer (NSCLC) — 80–85% of cases</div>
-      <div class="ic-body">The most common form, with three main subtypes — adenocarcinoma, squamous cell carcinoma, and large cell carcinoma. NSCLC grows more slowly than SCLC and is more amenable to surgery and targeted treatment.</div>
-    </div>
-    <div class="info-card c-red animate-ready">
-      <div class="ic-icon">⚡</div>
-      <div class="ic-title">Small cell lung cancer (SCLC) — 15–20% of cases</div>
-      <div class="ic-body">Almost always linked to smoking, SCLC grows and spreads very rapidly and has usually already spread beyond the lung by the time of diagnosis. Surgery is rarely possible; chemotherapy is the main treatment.</div>
-    </div>
+    <div class="info-card animate-ready"><div class="ic-icon">🫁</div><div class="ic-title">A cancer of the airways and lung tissue</div><div class="ic-body">Lung cancer begins when cells lining the airways or lung tissue start dividing in an uncontrolled way — forming a malignant tumour that can invade nearby tissue and spread through the body via the bloodstream or lymphatic system.</div></div>
+    <div class="info-card animate-ready"><div class="ic-icon">🔬</div><div class="ic-title">Non-small cell lung cancer (NSCLC)</div><div class="ic-body">Around 80–85% of all lung cancers. NSCLC is a group of related subtypes — adenocarcinoma, squamous cell carcinoma, and large cell carcinoma. It tends to grow more slowly than SCLC and is often more amenable to surgery, targeted therapy, and immunotherapy.</div></div>
+    <div class="info-card animate-ready"><div class="ic-icon">⚡</div><div class="ic-title">Small cell lung cancer (SCLC)</div><div class="ic-body">Around 15–20% of cases. Almost always associated with smoking. SCLC grows and spreads faster than NSCLC — it has usually spread beyond the lung by the time it is diagnosed. Treated mainly with chemotherapy; surgery is rarely appropriate.</div></div>
   </div>
 </div>
 
-<!-- SLIDE 4 — WHAT IS IT? (2 of 2) — has source lines, ≤22w each -->
-<div class="slide" id="s4" data-title="Risk factors and molecular testing (2 of 2)">
-  <div class="slide-header">
-    <div class="slide-kicker">Section 1 · What is it?  (2 of 2)</div>
-    <div class="slide-title">Risk factors and molecular testing</div>
-    <div class="slide-sub">Why modern treatment starts with testing the tumour's biology</div>
-  </div>
+<div class="slide" id="s4" data-title="Risk factors and molecular testing">
+  <div class="slide-header"><div class="slide-kicker">Section 1 · What is it? (2 of 2)</div><div class="slide-title">Risk factors and molecular testing</div><div class="slide-sub">Why modern treatment starts with testing the tumour’s biology</div></div>
   <div class="three-grid">
-    <div class="info-card c-red animate-ready">
-      <div class="ic-icon">🚭</div>
-      <div class="ic-title">Smoking — the single biggest risk factor</div>
-      <div class="ic-body">72% of UK cases are caused by smoking. Adding radon gas, asbestos, and air pollution, 79% of all cases are considered preventable.</div>
-      <div class="ic-source">Cancer Research UK · cancerresearchuk.org</div>
-    </div>
-    <div class="info-card c-amber animate-ready">
-      <div class="ic-icon">🌍</div>
-      <div class="ic-title">Not only a smoker's disease</div>
-      <div class="ic-body">Around 15% of diagnoses are in people who have never smoked. Risk factors include radon gas, asbestos, air pollution, and inherited genetic risk.</div>
-      <div class="ic-source">Khan et al. BJC Reports 2023 · PMID 39516402</div>
-    </div>
-    <div class="info-card c-green animate-ready">
-      <div class="ic-icon">🧬</div>
-      <div class="ic-title">Every NSCLC tumour is molecularly tested</div>
-      <div class="ic-body">Every NSCLC tumour is tested for EGFR mutations and PD-L1 expression. Results determine whether targeted therapy, immunotherapy, or chemotherapy is the right approach.</div>
-      <div class="ic-source">NICE NG122 · Reck et al. NEJM 2016</div>
-    </div>
+    <div class="info-card amber-card animate-ready"><div class="ic-icon">🚭</div><div class="ic-title">Smoking — the single biggest risk factor</div><div class="ic-body">72% of UK lung cancer cases are attributed to smoking, including passive smoking. Combined with radon, asbestos, occupational exposures, and air pollution, 79% of all cases are considered preventable.</div><div class="ic-source">Cancer Research UK · cancerresearchuk.org</div></div>
+    <div class="info-card animate-ready"><div class="ic-icon">🌍</div><div class="ic-title">Not just a smoker’s disease</div><div class="ic-body">Around 15% of UK lung cancer diagnoses occur in people who have never smoked — the 8th most common cause of cancer death if counted separately. Risk factors include radon, asbestos, air pollution, and inherited genetic risk.</div><div class="ic-source">Khan et al. BJC Reports 2023 · PMID 39516402</div></div>
+    <div class="info-card animate-ready"><div class="ic-icon">🧬</div><div class="ic-title">Molecular testing guides treatment</div><div class="ic-body">Every NSCLC tumour is tested for EGFR mutations (~10–15% of cases) and PD-L1 expression (~23–28% of advanced cases). The results determine whether targeted therapy, immunotherapy, or chemotherapy is the right first-line approach.</div><div class="ic-source">NICE NG122 · Reck et al. NEJM 2016</div></div>
   </div>
 </div>
 
-<!-- SLIDE 5 — WHY DOES IT MATTER? — has source lines, ≤22w each -->
 <div class="slide" id="s5" data-title="Why does it matter?">
-  <div class="slide-header">
-    <div class="slide-kicker">Section 2 · Why does it matter?</div>
-    <div class="slide-title">The scale — and the opportunity</div>
-    <div class="slide-sub">Why earlier diagnosis changes everything</div>
-  </div>
+  <div class="slide-header"><div class="slide-kicker">Section 2 · Why does it matter?</div><div class="slide-title">The scale — and the opportunity</div><div class="slide-sub">Why lung cancer demands urgent attention — and why earlier diagnosis changes outcomes</div></div>
   <div class="three-grid">
-    <div class="info-card c-amber animate-ready">
-      <div class="ic-icon">📊</div>
-      <div class="ic-title">~49,300 new cases per year — the third most common UK cancer</div>
-      <div class="ic-body">Lung cancer accounts for 12% of all new UK cancer cases. Incidence is falling in men but still rising in women.</div>
-      <div class="ic-source">Cancer Research UK · cancerresearchuk.org</div>
-    </div>
-    <div class="info-card c-red animate-ready">
-      <div class="ic-icon">⚠️</div>
-      <div class="ic-title">The UK's biggest cancer killer — ~32,800 deaths per year</div>
-      <div class="ic-body">The UK's biggest cancer killer — 19% of all cancer deaths. A 10-year survival of 11.1% reflects how often it is caught late.</div>
-      <div class="ic-source">Cancer Research UK · cancerresearchuk.org</div>
-    </div>
-    <div class="info-card c-green animate-ready">
-      <div class="ic-icon">🎯</div>
-      <div class="ic-title">Stage 1 five-year survival: almost 65%</div>
-      <div class="ic-body">Stage 1 five-year survival is almost 65%, versus 11.1% overall. The NHS is rolling out targeted CT scanning for high-risk individuals across England.</div>
-      <div class="ic-source">Cancer Research UK · cancerresearchuk.org</div>
-    </div>
+    <div class="info-card animate-ready"><div class="ic-icon">📊</div><div class="ic-title">~50,200 new cases per year · nearly 140 every day</div><div class="ic-body">The 3rd most common cancer in the UK — 12% of all new cases. Incidence is falling in men as smoking rates decline, but rising in women.</div><div class="ic-source">Cancer Research UK · cancerresearchuk.org</div></div>
+    <div class="info-card amber-card animate-ready"><div class="ic-icon">⚠️</div><div class="ic-title">The UK’s biggest cancer killer — 90 deaths every day</div><div class="ic-body">19% of all UK cancer deaths — more than any other cancer type. Around 32,800 deaths per year. The overall 10-year survival of 11.1% reflects how often it is diagnosed at an advanced stage.</div><div class="ic-source">Cancer Research UK · cancerresearchuk.org</div></div>
+    <div class="info-card animate-ready" style="border-left-color:var(--series-light)"><div class="ic-icon">🎯</div><div class="ic-title">Stage 1: almost 65% survive 5+ years</div><div class="ic-body">Stage 1 five-year survival is almost 65%; overall 10-year survival is 11.1%. This gap is exactly why NHS targeted CT screening for high-risk individuals — now being rolled out — is a clinical priority.</div><div class="ic-source">Cancer Research UK · cancerresearchuk.org</div></div>
   </div>
 </div>
 
-<!-- SLIDE 6 — DOCTOR (1 of 2) — has source lines, ≤22w each -->
 <div class="slide" id="s6" data-title="Getting to a diagnosis (1 of 2)">
-  <div class="slide-header">
-    <div class="slide-kicker">Section 3 · What your doctor might discuss  (1 of 2)</div>
-    <div class="slide-title">Getting to a diagnosis</div>
-    <div class="slide-sub">From first symptoms to confirmed staging</div>
-  </div>
+  <div class="slide-header"><div class="slide-kicker">Section 3 · What your doctor might discuss (1 of 2)</div><div class="slide-title">Getting to a diagnosis</div><div class="slide-sub">From first symptoms to confirmed staging</div></div>
   <div class="three-grid">
-    <div class="info-card c-red animate-ready">
-      <div class="ic-icon">🔍</div>
-      <div class="ic-title">Symptoms that prompt urgent investigation</div>
-      <div class="ic-body">NICE NG122 flags persistent cough, blood in cough, breathlessness, chest pain, weight loss, hoarseness, and recurrent chest infections as reasons for urgent assessment.</div>
-      <div class="ic-source">NICE NG122 · Lung cancer: diagnosis and management, 2019</div>
-    </div>
-    <div class="info-card c-amber animate-ready">
-      <div class="ic-icon">🏥</div>
-      <div class="ic-title">From chest X-ray to CT, PET scan, and biopsy</div>
-      <div class="ic-body">A chest X-ray, then CT scan and PET-CT to check for spread. A tissue biopsy confirms cancer type and enables molecular testing.</div>
-      <div class="ic-source">NICE NG122 · Lung cancer: diagnosis and management, 2019</div>
-    </div>
-    <div class="info-card c-green animate-ready">
-      <div class="ic-icon">📋</div>
-      <div class="ic-title">Staging — the single most important factor</div>
-      <div class="ic-body">Staged 1–4 by tumour size, lymph node involvement, and organ spread. Stage at diagnosis is the most important factor in determining treatment.</div>
-      <div class="ic-source">NICE NG122 · Lung cancer: diagnosis and management, 2019</div>
-    </div>
+    <div class="info-card animate-ready"><div class="ic-icon">🔍</div><div class="ic-title">Red flag symptoms to know</div><div class="ic-body">Persistent cough (3+ weeks), coughing up blood, new breathlessness, chest or shoulder pain, unexplained weight loss, hoarseness, or chest infections that won’t clear — NICE NG122 identifies these as indicators for urgent clinical assessment.</div><div class="ic-source">NICE NG122 · Lung cancer: diagnosis and management, 2019</div></div>
+    <div class="info-card animate-ready"><div class="ic-icon">🏥</div><div class="ic-title">From chest X-ray to CT, PET and biopsy</div><div class="ic-body">A chest X-ray is the starting point. CT of chest, abdomen, and pelvis follows, then PET-CT for spread. A tissue biopsy — via bronchoscopy, CT-guided needle, or EBUS — confirms the diagnosis and enables full molecular testing.</div><div class="ic-source">NICE NG122 · Lung cancer: diagnosis and management, 2019</div></div>
+    <div class="info-card animate-ready"><div class="ic-icon">📋</div><div class="ic-title">Staging determines the treatment plan</div><div class="ic-body">The TNM system stages lung cancer 1–4: T (tumour size), N (lymph node involvement), M (spread to distant organs). Stage is the single most important factor — it determines whether treatment aims to cure or to control.</div><div class="ic-source">NICE NG122 · Lung cancer: diagnosis and management, 2019</div></div>
   </div>
 </div>
 
-<!-- SLIDE 7 — DOCTOR (2 of 2) — has source lines, ≤22w each -->
-<div class="slide" id="s7" data-title="Treatment options (2 of 2)">
-  <div class="slide-header">
-    <div class="slide-kicker">Section 3 · What your doctor might discuss  (2 of 2)</div>
-    <div class="slide-title">Treatment — more options than ever before</div>
-    <div class="slide-sub">Modern lung cancer treatment is matched to the biology of each tumour</div>
-  </div>
+<div class="slide" id="s7" data-title="Treatment — more options than ever (2 of 2)">
+  <div class="slide-header"><div class="slide-kicker">Section 3 · What your doctor might discuss (2 of 2)</div><div class="slide-title">Treatment — more options than ever before</div><div class="slide-sub">Modern lung cancer treatment is matched to the biology of each tumour</div></div>
   <div class="three-grid">
-    <div class="info-card c-green animate-ready">
-      <div class="ic-icon">⚕️</div>
-      <div class="ic-title">Surgery and precision radiotherapy</div>
-      <div class="ic-body">For early-stage NSCLC, lobectomy offers the best chance of cure. Where surgery is unsuitable, SABR — precision radiotherapy — delivers excellent outcomes.</div>
-      <div class="ic-source">NICE NG122 · Lung cancer: diagnosis and management, 2019</div>
-    </div>
-    <div class="info-card c-green animate-ready">
-      <div class="ic-icon">🛡️</div>
-      <div class="ic-title">Immunotherapy for high PD-L1 tumours</div>
-      <div class="ic-body">For 23–28% of advanced NSCLC with high PD-L1, a checkpoint inhibitor is now standard first-line treatment — with better survival than chemotherapy.</div>
-      <div class="ic-source">Reck et al. NEJM 2016 · PMID 27718847</div>
-    </div>
-    <div class="info-card c-green animate-ready">
-      <div class="ic-icon">🎯</div>
-      <div class="ic-title">Targeted therapy for EGFR-mutated tumours</div>
-      <div class="ic-body">For NSCLC with an EGFR mutation — around 10–15% of cases — a targeted oral tablet is standard first-line treatment with improved survival.</div>
-      <div class="ic-source">Ramalingam et al. NEJM 2020 · PMID 31751012</div>
-    </div>
+    <div class="info-card animate-ready"><div class="ic-icon">⚕️</div><div class="ic-title">Surgery and precision radiotherapy</div><div class="ic-body">For early-stage NSCLC, lobectomy (removal of a lung lobe) offers the best chance of cure. Where surgery isn’t suitable, SABR — stereotactic ablative radiotherapy — delivers high-precision treatment with excellent results for stage 1 disease.</div><div class="ic-source">NICE NG122 · Lung cancer: diagnosis and management, 2019</div></div>
+    <div class="info-card amber-card animate-ready"><div class="ic-icon">🛡️</div><div class="ic-title">Immunotherapy for high PD-L1 tumours</div><div class="ic-body">For NSCLC with high PD-L1 expression (~23–28% of advanced cases), pembrolizumab (Keytruda) is standard first-line treatment — with better survival and significantly fewer side effects than chemotherapy alone.</div><div class="ic-source">Reck et al. NEJM 2016 · PMID 27718847</div></div>
+    <div class="info-card animate-ready" style="border-left-color:var(--series-light)"><div class="ic-icon">🎯</div><div class="ic-title">Targeted drugs for EGFR-mutated tumours</div><div class="ic-body">EGFR-mutated NSCLC (~10–15% of cases) is treated with oral EGFR tyrosine kinase inhibitors. Osimertinib (Tagrisso) is the preferred first-line agent, with significantly improved survival versus earlier-generation drugs.</div><div class="ic-source">Ramalingam et al. NEJM 2020 · PMID 31751012</div></div>
   </div>
 </div>
 
-<!-- SLIDE 8 — RESEARCH (1 of 2) -->
 <div class="slide ev-slide" id="s8" data-title="What the research shows (1 of 2)">
-  <div class="slide-header">
-    <div class="slide-kicker">Section 4 · What the research shows  (1 of 2)</div>
-    <div class="slide-title">Screening saves lives — and immunotherapy works</div>
-  </div>
+  <div class="slide-header"><div class="slide-kicker">Section 4 · What the research shows (1 of 2)</div><div class="slide-title">Screening saves lives — and immunotherapy works</div></div>
   <div class="ev-cards">
     <div class="ev-card animate-ready">
-      <div class="ev-stat-box">
-        <div class="ev-kf-label">Key Finding</div>
-        <div class="ev-stat-row">24%</div>
-        <div class="ev-outcome">reduction in lung-cancer mortality / CT screening vs no screening</div>
-        <div class="ev-conditions">high-risk smokers · 10-year follow-up · NELSON trial</div>
-      </div>
-      <div class="ev-body-panel">
-        <div class="ev-body-title">NELSON — the trial behind NHS screening</div>
-        <p>15,789 long-term smokers were randomly assigned to regular low-dose CT scans or no screening and followed for 10 years. The screened group had 24% fewer lung cancer deaths, with very few false alarms. This is the evidence that led the NHS to begin rolling out targeted lung cancer screening for high-risk individuals in England.</p>
-        <div class="ev-source">de Koning HJ et al. N Engl J Med 2020;382(6):503–513 · PMID 31995683</div>
-      </div>
+      <div class="ev-stat-box"><div class="ev-kf-label">Key Finding</div><div class="ev-stat-row">24%</div><div class="ev-outcome">reduction in lung-cancer mortality / CT screening vs no screening</div><div class="ev-conditions">high-risk smokers · 10-year follow-up · NELSON trial</div></div>
+      <div class="ev-body"><p>The NELSON trial randomised 15,789 long-term smokers aged 50–74 to regular low-dose CT screening or no screening. After 10 years, the screened group had 24% lower lung-cancer mortality. This is the evidence behind the NHS targeted lung cancer screening programme now being rolled out in England.</p><div class="ev-source">de Koning HJ et al. N Engl J Med 2020;382(6):503–513 · PMID 31995683</div></div>
     </div>
     <div class="ev-card animate-ready">
-      <div class="ev-stat-box">
-        <div class="ev-kf-label">Key Finding</div>
-        <div class="ev-stat-row">10.3</div>
-        <div class="ev-stat-unit">months</div>
-        <div class="ev-outcome">median PFS / immunotherapy vs 6.0 months on chemotherapy</div>
-        <div class="ev-conditions">high PD-L1 NSCLC (≥50%) · first-line · KEYNOTE-024</div>
-      </div>
-      <div class="ev-body-panel">
-        <div class="ev-body-title">KEYNOTE-024 — immunotherapy replaces chemotherapy</div>
-        <p>Patients with advanced NSCLC and high PD-L1 expression were randomly assigned to immunotherapy or standard chemotherapy. Those on immunotherapy went 10.3 months before their cancer grew — versus 6.0 months on chemotherapy — and were 40% less likely to die. Immunotherapy became the new standard first-line treatment for this group.</p>
-        <div class="ev-source">Reck M et al. N Engl J Med 2016;375(19):1823–1833 · PMID 27718847</div>
-      </div>
+      <div class="ev-stat-box"><div class="ev-kf-label">Key Finding</div><div class="ev-stat-row">10.3</div><div class="ev-stat-unit">months</div><div class="ev-outcome">median PFS / pembrolizumab vs 6.0 months on chemotherapy</div><div class="ev-conditions">high PD-L1 NSCLC (≥50% TPS) · first-line · KEYNOTE-024</div></div>
+      <div class="ev-body"><p>In the KEYNOTE-024 trial, pembrolizumab (Keytruda) was compared with standard chemotherapy in advanced NSCLC with high PD-L1 levels. Progression-free survival was 10.3 months versus 6.0 months. Overall survival was also significantly better, with fewer serious side effects.</p><div class="ev-source">Reck M et al. N Engl J Med 2016;375(19):1823–1833 · PMID 27718847</div></div>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 9 — RESEARCH (2 of 2) -->
 <div class="slide ev-slide" id="s9" data-title="What the research shows (2 of 2)">
-  <div class="slide-header">
-    <div class="slide-kicker">Section 4 · What the research shows  (2 of 2)</div>
-    <div class="slide-title">Targeted therapy — matching treatment to the tumour</div>
-  </div>
+  <div class="slide-header"><div class="slide-kicker">Section 4 · What the research shows (2 of 2)</div><div class="slide-title">Targeted therapy — matching treatment to the tumour</div></div>
   <div class="ev-cards single">
     <div class="ev-card animate-ready">
-      <div class="ev-stat-box">
-        <div class="ev-kf-label">Key Finding</div>
-        <div class="ev-stat-row">38.6</div>
-        <div class="ev-stat-unit">months</div>
-        <div class="ev-outcome">median overall survival / newer EGFR inhibitor vs 31.8 months on older EGFR therapy</div>
-        <div class="ev-conditions">EGFR-mutated advanced NSCLC · FLAURA trial</div>
-      </div>
-      <div class="ev-body-panel">
-        <div class="ev-body-title">FLAURA — a newer targeted tablet outperforms its predecessor</div>
-        <p>Patients with EGFR-mutated advanced lung cancer were randomly assigned to a newer third-generation EGFR inhibitor or the previous standard EGFR tablets, with overall survival as the primary endpoint. The newer drug extended median survival to 38.6 months versus 31.8 months — nearly 7 months longer — also showed better protection against spread to the brain, and is now the preferred first-line treatment for EGFR-mutated advanced NSCLC.</p>
-        <div class="ev-source">Ramalingam SS et al. N Engl J Med 2020;382(1):41–50 · PMID 31751012</div>
-      </div>
+      <div class="ev-stat-box"><div class="ev-kf-label">Key Finding</div><div class="ev-stat-row">38.6</div><div class="ev-stat-unit">months</div><div class="ev-outcome">median overall survival / osimertinib vs 31.8 months on standard EGFR therapy</div><div class="ev-conditions">EGFR-mutated advanced NSCLC · FLAURA trial</div></div>
+      <div class="ev-body"><p>In the FLAURA trial, osimertinib (Tagrisso) — a targeted drug that blocks the faulty EGFR signal driving the tumour — was compared with standard EGFR drugs in advanced NSCLC with EGFR mutations. Median overall survival: 38.6 months versus 31.8 months. Osimertinib is now the preferred first-line treatment for EGFR-mutated NSCLC.</p><div class="ev-source">Ramalingam SS et al. N Engl J Med 2020;382(1):41–50 · PMID 31751012</div></div>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 10 — CTA: RED FLAG SYMPTOMS, SEQUENTIAL -->
-<div class="slide cta-slide" id="s10" data-title="Symptoms to be aware of">
+<div class="slide cta-slide" id="s10" data-title="The one thing">
+  <div class="cta-glow"></div>
   <div class="cta-wrap-v2">
     <div class="cta-top">
-      <div class="cta-badge">NICE NG122 · Symptoms for urgent assessment</div>
-      <div class="cta-headline">Know the warning signs</div>
-      <div class="cta-subline">These are the symptoms NICE identifies as reasons for clinical assessment.</div>
+      <div class="cta-icon">🎯</div>
+      <div class="cta-badge">The evidence is clear on one thing</div>
+      <div class="cta-headline">Earlier detection changes outcomes dramatically</div>
     </div>
-    <div class="sym-rows">
-      <div class="sym-row" id="sym1"><div class="sym-icon">🫁</div><div class="sym-text">A persistent cough lasting three weeks or more</div></div>
-      <div class="sym-row" id="sym2"><div class="sym-icon">🩸</div><div class="sym-text">Coughing up blood — even a small amount</div></div>
-      <div class="sym-row" id="sym3"><div class="sym-icon">😮‍💨</div><div class="sym-text">New or unexplained breathlessness</div></div>
-      <div class="sym-row" id="sym4"><div class="sym-icon">💔</div><div class="sym-text">Chest or shoulder pain that does not go away</div></div>
-      <div class="sym-row" id="sym5"><div class="sym-icon">⚖️</div><div class="sym-text">Unexplained weight loss</div></div>
-      <div class="sym-row" id="sym6"><div class="sym-icon">🗣️</div><div class="sym-text">Hoarseness of voice lasting more than three weeks</div></div>
-      <div class="sym-row" id="sym7"><div class="sym-icon">🔁</div><div class="sym-text">Repeated chest infections that do not clear with treatment</div></div>
+    <div class="cta-rows-v2">
+      <div class="cta-row"><div class="cta-row-icon">🔍</div><div class="cta-row-text"><div class="cta-row-title">Know the symptoms — persistent cough (3+ weeks), coughing up blood, new breathlessness, chest pain, unexplained weight loss, hoarseness</div></div></div>
+      <div class="cta-row"><div class="cta-row-icon">🚭</div><div class="cta-row-text"><div class="cta-row-title">72% of UK lung cancer cases are linked to smoking — and the evidence shows lung cancer risk falls measurably after stopping at any age</div></div></div>
+      <div class="cta-row"><div class="cta-row-icon">📡</div><div class="cta-row-text"><div class="cta-row-title">The NHS Targeted Lung Health Check programme is now rolling out — available in many areas for long-term heavy smokers aged 40+</div></div></div>
+      <div class="cta-row"><div class="cta-row-icon">📚</div><div class="cta-row-text"><div class="cta-row-title">Read the full article at helf.school — all the evidence, all the references, in plain English</div></div></div>
     </div>
     <div class="cta-bottom">
-      <div class="med-disclaimer">
-        <div class="med-disc-icon">ℹ️</div>
-        <div class="med-disc-text">helf.school provides health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
-      </div>
+      <div class="med-disclaimer"><div class="med-disc-icon">ℹ️</div><div class="med-disc-text">helf.school provides health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div></div>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 11 — BRAND CLOSE -->
 <div class="slide close-slide" id="s11" data-title="helf.school">
   <div class="close-wrap">
     <div class="close-logo">helf<span>.</span>school</div>
     <div class="close-tagline">Health Education</div>
     <div class="close-headline">Evidence-based. Written by a doctor. Built for everyone.</div>
     <div class="close-cards">
-      <div class="close-card">
-        <div class="close-card-icon">📚</div>
-        <div class="close-card-title">31 articles across 5 series</div>
-        <div class="close-card-body">Cardiovascular · Practical Health · Digestive · Neurological · Cancer — all in plain English, all evidence-based.</div>
-      </div>
-      <div class="close-card">
-        <div class="close-card-icon">🩺</div>
-        <div class="close-card-title">Written by Dr Paul</div>
-        <div class="close-card-body">Retired NHS GP with over 20 years of experience. Health education done properly — not as advice, but as knowledge.</div>
-      </div>
-      <div class="close-card">
-        <div class="close-card-icon">🔓</div>
-        <div class="close-card-title">Start for free</div>
-        <div class="close-card-body">The Explorer tier is £0 — no credit card required. Upgrade to Member at £6/month or Lifetime access for £150.</div>
-      </div>
+      <div class="close-card"><div class="close-card-icon">📚</div><div class="close-card-title">33 articles across 5 series</div><div class="close-card-body">Cardiovascular · Practical Health · Digestive · Neurological · Cancer — all in plain English, all evidence-based.</div></div>
+      <div class="close-card"><div class="close-card-icon">🩺</div><div class="close-card-title">Written by Dr Paul</div><div class="close-card-body">Retired NHS GP with over 20 years of experience. Health education done properly — not as advice, but as knowledge.</div></div>
+      <div class="close-card"><div class="close-card-icon">🔓</div><div class="close-card-title">Start for free</div><div class="close-card-body">The Explorer tier is £0 — no credit card required. Upgrade to Member at £6/month or Lifetime access for £150.</div></div>
     </div>
-    <div class="med-disclaimer" style="margin-top:auto;">
-      <div class="med-disc-icon">ℹ️</div>
-      <div class="med-disc-text">helf.school provides health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div>
-    </div>
+    <div class="med-disclaimer" style="margin-top:auto;"><div class="med-disc-icon">ℹ️</div><div class="med-disc-text">helf.school provides health education, not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</div></div>
     <div class="close-series">Cancer Series · Article 29 · Lung Cancer</div>
   </div>
 </div>
 
-</div><!-- /stage -->
+</div>
 <div id="dots"></div>
-</div><!-- /wrapper -->
+</div>
 
 <script>
-const slides = document.querySelectorAll('.slide');
-const total  = slides.length;
-let cur = 0;
-
-const dotsEl = document.getElementById('dots');
-slides.forEach((_,i) => {
-  const d = document.createElement('div');
-  d.className = 'dot' + (i===0?' active':'');
-  d.addEventListener('click', () => goTo(i));
-  dotsEl.appendChild(d);
-});
-
-const titleEl = document.getElementById('slide-title');
-const curEl   = document.getElementById('cur');
-const totEl   = document.getElementById('tot');
-totEl.textContent = total;
-
-function updateTopbar(i){
-  titleEl.textContent = slides[i].dataset.title || '';
-  curEl.textContent   = i + 1;
-  document.querySelectorAll('.dot').forEach((d,j) => d.classList.toggle('active', j===i));
-}
-function animateSlide(slideEl){
-  slideEl.querySelectorAll('.animate-ready').forEach(el => el.classList.remove('visible'));
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    slideEl.querySelectorAll('.animate-ready').forEach(el => el.classList.add('visible'));
-  }));
-}
-function animateSymptoms(){
-  const rows = document.querySelectorAll('#s10 .sym-row');
-  rows.forEach(r => r.classList.remove('visible'));
-  rows.forEach((row, i) => {
-    setTimeout(() => row.classList.add('visible'), 350 + i * 620);
-  });
-}
-function goTo(n){
-  if(n < 0 || n >= total) return;
-  slides[cur].classList.remove('active');
-  cur = n;
-  slides[cur].classList.add('active');
-  updateTopbar(cur);
-  if(slides[cur].id === 's10'){ animateSymptoms(); }
-  else { animateSlide(slides[cur]); }
-}
-function next(){ goTo(cur < total-1 ? cur+1 : cur); }
-function prev(){ goTo(cur > 0 ? cur-1 : cur); }
-
-document.addEventListener('keydown', e => {
-  if(e.key==='ArrowRight'||e.key===' '){ e.preventDefault(); next(); }
-  if(e.key==='ArrowLeft'){ e.preventDefault(); prev(); }
-});
+const slides=document.querySelectorAll('.slide');
+const total=slides.length;
+let cur=0;
+const dotsEl=document.getElementById('dots');
+slides.forEach((_,i)=>{const d=document.createElement('div');d.className='dot'+(i===0?' active':'');d.title='Slide '+(i+1);d.addEventListener('click',()=>goTo(i));dotsEl.appendChild(d);});
+const titleEl=document.getElementById('slide-title');
+const curEl=document.getElementById('cur');
+const totEl=document.getElementById('tot');
+totEl.textContent=total;
+function updateTopbar(i){titleEl.textContent=slides[i].dataset.title||'';curEl.textContent=i+1;document.querySelectorAll('.dot').forEach((d,j)=>{d.classList.toggle('active',j===i);});}
+function animateSlide(slideEl){slideEl.querySelectorAll('.animate-ready').forEach(el=>{el.classList.remove('visible');});requestAnimationFrame(()=>{requestAnimationFrame(()=>{slideEl.querySelectorAll('.animate-ready').forEach(el=>{el.classList.add('visible');});});});}
+function goTo(n){if(n<0||n>=total)return;slides[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');updateTopbar(cur);animateSlide(slides[cur]);}
+function next(){goTo(cur<total-1?cur+1:cur);}
+function prev(){goTo(cur>0?cur-1:cur);}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();next();}if(e.key==='ArrowLeft'){e.preventDefault();prev();}});
 let tx=0;
-document.addEventListener('touchstart', e=>{ tx=e.touches[0].clientX; },{passive:true});
-document.addEventListener('touchend',   e=>{
-  const dx = e.changedTouches[0].clientX - tx;
-  if(dx < -40) next();
-  if(dx >  40) prev();
-},{passive:true});
-
+document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(dx<-40)next();if(dx>40)prev();},{passive:true});
 updateTopbar(0);
 animateSlide(slides[0]);
 </script>
