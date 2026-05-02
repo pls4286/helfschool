@@ -56,18 +56,17 @@
     .lipid-strip-text{font-size:1rem;color:#fff;font-weight:500;font-family:'Fraunces',serif}
     .lipid-strip-text strong{color:var(--acc)}
 
-    /* SYS ROWS — ≤3 cards per slide, clamp:4 LOCKED */
+    /* SYS ROWS */
     .sys-grid{display:grid;grid-template-columns:1fr;gap:.65rem;flex:1;min-height:0}
     .sys-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,122,90,.32);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:72px 1fr auto;gap:1.5rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .sys-card.vis{opacity:1;transform:translateY(0)}
     .sys-icon{font-size:2.8rem;line-height:1;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;padding-top:.1rem}
     .sys-content{display:flex;flex-direction:column;gap:.2rem;min-width:0}
     .sys-title{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.2rem;line-height:1.15}
-    /* clamp:4 — NEVER clamp:2 — proven correct at 768px filming viewport */
     .sys-body{font-size:1rem;color:rgba(255,255,255,.90);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
     .sys-stat{font-family:'Fraunces',serif;font-size:clamp(2.0rem,3vw,3.0rem);font-weight:700;color:var(--bad);line-height:1;text-align:right;white-space:nowrap;padding-left:1rem;padding-top:.1rem}
 
-    /* DOC ROWS — ≤3 cards per slide, clamp:4 LOCKED */
+    /* DOC ROWS */
     .doc-grid{display:grid;grid-template-columns:1fr;gap:.55rem;flex:1;min-height:0}
     .doc-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(126,204,153,.35);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .doc-card.vis{opacity:1;transform:translateY(0)}
@@ -77,23 +76,20 @@
     .doc-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
     .doc-action{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.1vw,1.95rem);font-weight:700;color:var(--good);line-height:1;text-align:right;white-space:nowrap;padding-left:.75rem;padding-top:.1rem}
 
-    /* EV-CARDS — 2-card stack: padding:1.1rem, clamp:4 */
+    /* EV-CARDS — canonical .ev-stat-row pattern — 2-card stack, padding:1.1rem, clamp:4 */
     .ev-stage{display:flex;flex-direction:column;gap:.95rem;flex:1;min-height:0}
     .ev-card{background:linear-gradient(180deg,#1f2e47,#162238);border:1px solid rgba(212,184,74,.32);border-radius:16px;padding:1.1rem 1.4rem;display:grid;grid-template-columns:220px 1fr;gap:1.4rem;align-items:center;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .45s ease}
     .ev-card.vis{opacity:1;transform:translateY(0)}
-    .ev-stat{background:rgba(212,184,74,.09);border-radius:14px;padding:1.1rem .9rem;text-align:left}
-    .ev-stat-context{font-size:.68rem;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:rgba(255,255,255,.60);margin-bottom:.2rem}
-    .ev-num{font-family:'Fraunces',serif;font-size:3.0rem;font-weight:700;line-height:1;letter-spacing:-.02em;margin-bottom:.25rem}
-    .ev-num.bad{color:var(--bad)}
-    .ev-num.good{color:var(--good)}
-    .ev-num.warn{color:var(--warn)}
-    .ev-what{font-size:1.0rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:.3rem}
-    .ev-label{font-size:.82rem;color:rgba(255,255,255,.80);line-height:1.4}
+    .ev-stat-box{background:linear-gradient(160deg,#7A1A14 0%,#C8423A 100%);border-radius:12px;padding:.9rem .75rem;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start}
+    .ev-kf-label{font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--amber);margin-bottom:.35rem}
+    .ev-stat-row{font-family:'Fraunces',serif;font-size:3.2rem;font-weight:900;color:#fff;line-height:1.0;margin-bottom:.3rem}
+    .ev-outcome{font-size:.95rem;font-weight:700;color:rgba(255,255,255,.95);line-height:1.3;margin-bottom:.2rem}
+    .ev-conditions{font-size:.78rem;line-height:1.32;color:rgba(255,255,255,.82)}
     .ev-det .ev-trial{font-family:'Fraunces',serif;font-weight:700;color:#fff;font-size:1.5rem;margin-bottom:.25rem;line-height:1.15}
     .ev-det .ev-journal{font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;font-weight:500}
     .ev-det .ev-body{font-size:1.05rem;color:rgba(255,255,255,.92);line-height:1.5;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 
-    /* MECH ROWS — ≤3 cards per slide, clamp:4 LOCKED */
+    /* MECH ROWS */
     .mech-grid{display:grid;grid-template-columns:1fr;gap:.55rem;flex:1;min-height:0}
     .mech-card{background:linear-gradient(90deg,#1f2e47,#1a2640);border:1px solid rgba(232,168,74,.32);border-radius:14px;padding:.85rem 1.3rem;display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:start;min-height:0;overflow:hidden;opacity:0;transform:translateY(14px);transition:all .4s ease}
     .mech-card.vis{opacity:1;transform:translateY(0)}
@@ -103,7 +99,7 @@
     .mech-body{font-size:.92rem;color:rgba(255,255,255,.88);line-height:1.42;font-weight:400;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
     .mech-outcome{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2vw,1.85rem);font-weight:700;color:var(--warn);line-height:1;text-align:right;white-space:nowrap;padding-left:.75rem;padding-top:.1rem}
 
-    /* CTA — sequential animation */
+    /* CTA — sequential animation, 5 items */
     .cta-slide{position:relative}
     .cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(212,184,74,.18),rgba(212,184,74,.04) 45%,transparent 70%);pointer-events:none;z-index:0}
     .cta-wrap-v2{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:.4rem 0;gap:.55rem}
@@ -111,8 +107,7 @@
     .cta-badge-v2{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);background:rgba(212,184,74,.18);border:1.5px solid rgba(212,184,74,.55);padding:.42rem 1.15rem;border-radius:100px;display:inline-block;margin-bottom:.4rem}
     .cta-headline-v2{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:700;color:#fff;line-height:1.05;letter-spacing:-.028em}
     .cta-headline-v2 span{color:var(--acc)}
-    /* Sequential animation items */
-    .cta-items{display:grid;grid-template-rows:repeat(6,1fr);gap:.38rem;min-height:0;overflow:hidden}
+    .cta-items{display:grid;grid-template-rows:repeat(5,1fr);gap:.38rem;min-height:0;overflow:hidden}
     .cta-item{border-radius:9px;padding:.4rem 1rem;display:flex;align-items:center;gap:.85rem;opacity:0;transform:translateX(-24px);transition:opacity .38s ease,transform .38s ease}
     .cta-item.visible{opacity:1;transform:translateX(0)}
     .cta-item.ci-red  {background:rgba(180,45,45,0.25);border:1px solid rgba(220,80,70,0.40)}
@@ -125,7 +120,7 @@
     .med-disc-text{font-size:1rem;color:rgba(255,255,255,.90);line-height:1.5;font-family:'Fraunces',serif;text-align:left;font-weight:400}
     .med-disc-text strong{font-style:normal;color:var(--acc);font-weight:700}
 
-    /* BRAND CLOSE — flex-start, pitch cards */
+    /* BRAND CLOSE */
     .close-wrap{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100%;text-align:center;gap:1.1rem;padding:1rem 1.5rem}
     .close-logo{display:flex;align-items:center;gap:.5rem;font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:-.02em;flex-shrink:0}
     .close-logo .dot{color:var(--coral)}
@@ -197,7 +192,7 @@
     </div>
   </div>
 
-  <!-- SLIDE 3: WHY IT MATTERS 1 of 2 — RED — 3 cards -->
+  <!-- SLIDE 3: WHY IT MATTERS 1 of 2 — 3 cards -->
   <div class="slide">
     <div class="slide-title">Why it matters: <span>where cholesterol causes harm — 1 of 2</span></div>
     <div class="sys-grid" style="grid-template-rows:repeat(3,1fr);">
@@ -228,7 +223,7 @@
     </div>
   </div>
 
-  <!-- SLIDE 4: WHY IT MATTERS 2 of 2 — RED — 2 cards -->
+  <!-- SLIDE 4: WHY IT MATTERS 2 of 2 — 2 cards -->
   <div class="slide">
     <div class="slide-title">Why it matters: <span>where cholesterol causes harm — 2 of 2</span></div>
     <div class="sys-grid" style="grid-template-rows:repeat(2,1fr);">
@@ -236,7 +231,7 @@
         <div class="sys-icon">🩸</div>
         <div class="sys-content">
           <div class="sys-title">Aorta — aneurysm and dissection</div>
-          <div class="sys-body">Atherosclerotic weakening of the aorta (the body's main artery) contributes to abdominal aortic aneurysm and risk of aortic dissection.</div>
+          <div class="sys-body">Atherosclerotic weakening of the aorta (the body’s main artery) contributes to abdominal aortic aneurysm and risk of aortic dissection.</div>
         </div>
         <div class="sys-stat">Aorta</div>
       </div>
@@ -251,7 +246,7 @@
     </div>
   </div>
 
-  <!-- SLIDE 5: DOCTOR 1 of 2 — GREEN — 3 cards -->
+  <!-- SLIDE 5: DOCTOR 1 of 2 — 3 cards -->
   <div class="slide">
     <div class="slide-title">What your <span>doctor might do — 1 of 2</span></div>
     <div class="doc-grid" style="grid-template-rows:repeat(3,1fr);">
@@ -282,7 +277,7 @@
     </div>
   </div>
 
-  <!-- SLIDE 6: DOCTOR 2 of 2 — GREEN — 3 cards -->
+  <!-- SLIDE 6: DOCTOR 2 of 2 — 3 cards -->
   <div class="slide">
     <div class="slide-title">What your <span>doctor might do — 2 of 2</span></div>
     <div class="doc-grid" style="grid-template-rows:repeat(3,1fr);">
@@ -313,16 +308,16 @@
     </div>
   </div>
 
-  <!-- SLIDE 7: RESEARCH UK PICTURE — 2 ev-cards -->
+  <!-- SLIDE 7: RESEARCH UK PICTURE — 2 ev-cards (canonical) -->
   <div class="slide">
     <div class="slide-title">Research · <span>the UK picture</span></div>
     <div class="ev-stage">
       <div class="ev-card" id="e1">
-        <div class="ev-stat">
-          <div class="ev-stat-context">Key finding</div>
-          <div class="ev-num bad">59%</div>
-          <div class="ev-what">of England adults have raised total cholesterol</div>
-          <div class="ev-label">≥5 mmol/L — the most common modifiable cardiovascular risk factor in the UK · NHS Health Survey for England 2021</div>
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">59%</div>
+          <div class="ev-outcome">of England adults have raised total cholesterol</div>
+          <div class="ev-conditions">≥5 mmol/L — the most common modifiable cardiovascular risk factor in the UK · NHS Health Survey for England 2021</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Scale of raised cholesterol in the UK</div>
@@ -331,11 +326,11 @@
         </div>
       </div>
       <div class="ev-card" id="e2">
-        <div class="ev-stat">
-          <div class="ev-stat-context">Key finding</div>
-          <div class="ev-num bad">40–60%</div>
-          <div class="ev-what">of LDL cholesterol variation is inherited</div>
-          <div class="ev-label">twin and family studies — diet plays a role, but genetics sets the baseline</div>
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row" style="font-size:2.6rem">40–60%</div>
+          <div class="ev-outcome">of LDL cholesterol variation is inherited</div>
+          <div class="ev-conditions">twin and family studies — diet plays a role, but genetics sets the baseline</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Cholesterol is largely determined by genetics</div>
@@ -346,73 +341,73 @@
     </div>
   </div>
 
-  <!-- SLIDE 8: RESEARCH LDL LOWERING — 2 ev-cards -->
+  <!-- SLIDE 8: RESEARCH LDL LOWERING — 2 ev-cards (canonical) -->
   <div class="slide">
     <div class="slide-title">Research · <span>LDL lowering works</span></div>
     <div class="ev-stage">
       <div class="ev-card" id="e3">
-        <div class="ev-stat">
-          <div class="ev-stat-context">Key finding</div>
-          <div class="ev-num good">~22%</div>
-          <div class="ev-what">reduction in major vascular events</div>
-          <div class="ev-label">per 1 mmol/L fall in LDL · CTT meta-analysis · 170,000 participants · The Lancet 2010</div>
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">∼22%</div>
+          <div class="ev-outcome">reduction in major vascular events</div>
+          <div class="ev-conditions">per 1 mmol/L fall in LDL · CTT meta-analysis · 170,000 participants · The Lancet 2010</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">CTT meta-analysis — 26 trials · 170,000 participants</div>
           <div class="ev-journal">Baigent et al · The Lancet · 2010</div>
-          <div class="ev-body">Every 1 mmol/L LDL reduction cut major vascular events by ~22%, coronary deaths by ~20%, and all-cause mortality by ~10% — consistent regardless of starting LDL level, age, or sex.</div>
+          <div class="ev-body">Every 1 mmol/L LDL reduction cut major vascular events by ∼22%, coronary deaths by ∼20%, and all-cause mortality by ∼10% — consistent regardless of starting LDL level, age, or sex.</div>
         </div>
       </div>
       <div class="ev-card" id="e4">
-        <div class="ev-stat">
-          <div class="ev-stat-context">Key finding</div>
-          <div class="ev-num good">6.4%</div>
-          <div class="ev-what">additional reduction in cardiovascular events</div>
-          <div class="ev-label">from adding a cholesterol absorption inhibitor to statin therapy · IMPROVE-IT · NEJM 2015 · n=18,144</div>
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">6.4%</div>
+          <div class="ev-outcome">additional reduction in cardiovascular events</div>
+          <div class="ev-conditions">from adding a cholesterol absorption inhibitor to statin therapy · IMPROVE-IT · NEJM 2015 · n=18,144</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">IMPROVE-IT — cholesterol absorption inhibitor added to statin</div>
           <div class="ev-journal">Cannon et al · NEJM · 2015 · n=18,144</div>
-          <div class="ev-body">Adding a cholesterol absorption inhibitor to statins reduced LDL by ~0.4 mmol/L and cardiovascular events by 6.4% over 7 years — lower LDL means fewer events.</div>
+          <div class="ev-body">Adding a cholesterol absorption inhibitor to statins reduced LDL by ∼0.4 mmol/L and cardiovascular events by 6.4% over 7 years — lower LDL means fewer events.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 9: RESEARCH LIFETIME EXPOSURE — 2 ev-cards -->
+  <!-- SLIDE 9: RESEARCH LIFETIME EXPOSURE — 2 ev-cards (canonical) -->
   <div class="slide">
     <div class="slide-title">Research · <span>lifetime LDL exposure matters</span></div>
     <div class="ev-stage">
       <div class="ev-card" id="e5">
-        <div class="ev-stat">
-          <div class="ev-stat-context">Key finding</div>
-          <div class="ev-num good">~55%</div>
-          <div class="ev-what">lower coronary heart disease risk</div>
-          <div class="ev-label">per 1 mmol/L lower lifetime LDL · Mendelian randomisation · n=312,321 · JACC 2012</div>
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">∼55%</div>
+          <div class="ev-outcome">lower coronary heart disease risk</div>
+          <div class="ev-conditions">per 1 mmol/L lower lifetime LDL · Mendelian randomisation · n=312,321 · JACC 2012</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Mendelian randomisation — lifetime LDL and CHD risk</div>
           <div class="ev-journal">Ference et al · JACC · 2012 · n=312,321</div>
-          <div class="ev-body">Each 1 mmol/L lower LDL sustained from birth corresponded to ~55% lower coronary heart disease risk — roughly three times the effect seen in short-term drug trials.</div>
+          <div class="ev-body">Each 1 mmol/L lower LDL sustained from birth corresponded to ∼55% lower coronary heart disease risk — roughly three times the effect seen in short-term drug trials.</div>
         </div>
       </div>
       <div class="ev-card" id="e6">
-        <div class="ev-stat">
-          <div class="ev-stat-context">Key finding</div>
-          <div class="ev-num bad">×20</div>
-          <div class="ev-what">higher risk of early myocardial infarction in untreated FH</div>
-          <div class="ev-label">vs general population · Simon Broome Register · NICE CG71</div>
+        <div class="ev-stat-box">
+          <div class="ev-kf-label">Key Finding</div>
+          <div class="ev-stat-row">×20</div>
+          <div class="ev-outcome">higher risk of early myocardial infarction in untreated FH</div>
+          <div class="ev-conditions">vs general population · Simon Broome Register · NICE CG71</div>
         </div>
         <div class="ev-det">
           <div class="ev-trial">Familial hypercholesterolaemia — untreated risk</div>
           <div class="ev-journal">NICE CG71 · Simon Broome Register</div>
-          <div class="ev-body">Untreated FH carries ~20-fold higher risk of early coronary disease. Early statin treatment brings risk close to population baseline — making cascade screening of first-degree relatives a UK clinical priority.</div>
+          <div class="ev-body">Untreated FH carries ∼20-fold higher risk of early coronary disease. Early statin treatment brings risk close to population baseline — making cascade screening of first-degree relatives a UK clinical priority.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 10: MECHANISMS 1 of 2 — AMBER — 3 cards -->
+  <!-- SLIDE 10: MECHANISMS 1 of 2 — 3 cards -->
   <div class="slide">
     <div class="slide-title">How cholesterol <span>drives heart disease — 1 of 2</span></div>
     <div class="mech-grid" style="grid-template-rows:repeat(3,1fr);">
@@ -436,14 +431,14 @@
         <div class="mech-icon">🧫</div>
         <div class="mech-content">
           <div class="mech-title">Foam cell formation</div>
-          <div class="mech-body">Macrophages (immune cells) engulf oxidised LDL and become bloated "foam cells" — unable to leave the vessel wall.</div>
+          <div class="mech-body">Macrophages (immune cells) engulf oxidised LDL and become bloated “foam cells” — unable to leave the vessel wall.</div>
         </div>
         <div class="mech-outcome">Foam cells</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 11: MECHANISMS 2 of 2 — AMBER — 3 cards -->
+  <!-- SLIDE 11: MECHANISMS 2 of 2 — 3 cards -->
   <div class="slide">
     <div class="slide-title">How cholesterol <span>drives heart disease — 2 of 2</span></div>
     <div class="mech-grid" style="grid-template-rows:repeat(3,1fr);">
@@ -474,7 +469,7 @@
     </div>
   </div>
 
-  <!-- SLIDE 12: CTA — SEQUENTIAL ANIMATION -->
+  <!-- SLIDE 12: CTA — 5 ITEMS (down from 6, hourglass dropped) -->
   <div class="slide cta-slide">
     <div class="cta-glow"></div>
     <div class="cta-wrap-v2">
@@ -486,9 +481,8 @@
         <div class="cta-item ci-red"><div class="cta-item-icon">🩸</div><div class="cta-item-text">59% of England adults have raised total cholesterol — most have no symptoms at all</div></div>
         <div class="cta-item ci-red"><div class="cta-item-icon">🧬</div><div class="cta-item-text">40–60% of LDL variation is inherited — family history of early heart disease matters</div></div>
         <div class="cta-item ci-amber"><div class="cta-item-icon">📈</div><div class="cta-item-text">Each 1 mmol/L LDL rise increases major vascular event risk significantly</div></div>
-        <div class="cta-item ci-amber"><div class="cta-item-icon">⏳</div><div class="cta-item-text">Lifetime LDL exposure is what drives risk — the earlier it is lowered, the greater the protection</div></div>
-        <div class="cta-item ci-green"><div class="cta-item-icon">📉</div><div class="cta-item-text">Each 1 mmol/L LDL reduction cuts major cardiovascular events by ~22% — 170,000 participants</div></div>
-        <div class="cta-item ci-green"><div class="cta-item-icon">🎯</div><div class="cta-item-text">Lower LDL from birth is associated with ~55% lower lifetime coronary heart disease risk</div></div>
+        <div class="cta-item ci-green"><div class="cta-item-icon">📉</div><div class="cta-item-text">Each 1 mmol/L LDL reduction cuts major cardiovascular events by ∼22% — 170,000 participants</div></div>
+        <div class="cta-item ci-green"><div class="cta-item-icon">🎯</div><div class="cta-item-text">Lower LDL from birth is associated with ∼55% lower lifetime coronary heart disease risk</div></div>
       </div>
       <div class="med-disclaimer">
         <div class="med-disc-icon">⚕️</div>
@@ -506,8 +500,8 @@
       <div class="close-cards">
         <div class="close-card">
           <div class="close-card-icon">📚</div>
-          <div class="close-card-text">31 articles across 5 series — cardiovascular, digestive, neurological, cancer, and practical health</div>
-          <div class="close-card-src">helf.school · April 2026</div>
+          <div class="close-card-text">33 articles across 5 series — cardiovascular, digestive, neurological, cancer, and practical health</div>
+          <div class="close-card-src">helf.school · May 2026</div>
         </div>
         <div class="close-card">
           <div class="close-card-icon">🩺</div>
