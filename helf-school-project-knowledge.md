@@ -1123,6 +1123,12 @@ Never include an unverified link. Never cite NICE CG99 for adult constipation. T
   - lifestyle-teleprompter.html: 235-line version correct (matches 13-slide visuals) ✅
   - ev-stage display:flex enforced (Rule 37) ✅
 - **coeliac-disease-visuals.html** — brand close updated 31→33 May 2026 ✅
+- **Digestive Series visuals (Articles 13–21) — structural retrofit COMPLETE May 2026 ✅**
+  - ev-stage display:flex ✅ · cta-wrap-v2 ✅ · close-wrap flex-start ✅ · animate-ready ✅ · series gradient stat box ✅ · 3-card splits ✅
+  - **Brand close count outstanding: still reads "31 articles / 5 series" — needs 33 / 6 series ❖**
+- **Neurological Series visuals (Articles 22–26) — structural retrofit COMPLETE May 2026 ✅**
+  - ev-stage display:flex ✅ · cta-wrap-v2 ✅ · close-wrap flex-start ✅ · animate-ready ✅ · colour narrative ✅
+  - **Brand close count outstanding: still reads "31 articles" — needs 33 ❖**
 
 
 ### Retrofit checklist — when any visuals file is opened
@@ -1171,22 +1177,17 @@ Apply this full checklist in sequence when opening any visuals file for any reas
 After any visuals retrofit, review the matching teleprompter slide-by-slide before upload.
 Any segment whose slide content changed must be rewritten to match.
 ### Outstanding — to confirm and apply
-- **Epilepsy-visuals.html brand close: still shows "31 articles" — needs update to 33 ❖**
+- **Brand close "31 articles / 5 series" → "33 articles / 6 series": outstanding across Digestive (13–21) and Neurological (22–26) visuals — being fixed May 2026 ❖**
+- **Epilepsy-visuals.html brand close: confirmed still shows "31 articles" — included in batch fix above ❖**
 - Research card stat standard (outcomes only, not counts): outstanding across 01–11
 - **Research card complete clinical conclusion standard: outstanding across 01–23**
 - Inline citations (superscripts): outstanding across 01–11
 - **Stat grid citations: outstanding across all articles built before April 2026**
-- CTA sequential animation: outstanding across Digestive and Neurological non-Cancer series visuals
-- **Closing slide brand close standard: outstanding across 19–26**
 - Visuals layout standard (3-card split): outstanding across 01–11
 - Key terms / hero visibility standards: outstanding across 01–11
 - Teleprompter cue box standard: confirm per-file which were built before standard was set
 - **Subtype list formatting: outstanding across all articles**
-- **`display:-webkit-box` + `clamp:4` audit: outstanding across Digestive and Neurological visuals** — ALL CSS rules using `-webkit-line-clamp` must also have `display:-webkit-box`. Without it clamp does nothing. AND: `.sys-body`, `.doc-body`, `.mech-body` must have `line-clamp:4` — NEVER `line-clamp:2`. At 768px filming viewport a 3-card grid gives ~98px for body text = 4.3 lines at 22.7px/line. `clamp:2` cuts sentences mid-thought (45px shown). `clamp:4` shows full sentences (91px). Word limit for these classes: ≤35 words (wider cards than ic-body). Canonical failure: hypertension-visuals.html slides 3–6, 8–9 — all body text cut to 2 lines after webkit-box was added. Caught by Dr Paul April 2026.
-- **5/6-card grid split: outstanding across Digestive and Neurological visuals** — any slide with 5 or 6 cards in a single grid must be split to 3+3 or 3+2. Proven at 600px viewport: 5 cards always clips, 6 cards always clips.
-- **ev-stage display:flex audit: outstanding across Digestive and Neurological visuals** — check all `.ev-stage` CSS before delivery; must show `display:flex`, never `display:grid`.
-- **Series background colour retrofit: outstanding across Digestive and Neurological visuals** — replace near-black backgrounds with correct series dark colours per table in Section 9.
-- **Colour narrative retrofit: outstanding across Cardiovascular (01–07) and Digestive (13–21) and Neurological (22–26) visuals** — replace uniform card colours with red/amber/green by content type per Section 9 LAY IMPACT FIRST standard.
+- **Colour narrative retrofit: outstanding across Cardiovascular (01–07) visuals** — Digestive and Neurological confirmed complete May 2026
 
 ---
 
