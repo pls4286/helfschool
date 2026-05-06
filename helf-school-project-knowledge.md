@@ -88,6 +88,31 @@ This audit must be completed internally before Claude presents any article, visu
 **Upload path:** github.com/pls4286/helfschool/upload/main
 **Browser:** Microsoft Edge (Dr Paul uses incognito tab due to extension conflict with standard window)
 
+### Platform strategy — decided May 2026
+**Recommended platform: Ghost Pro** (~£25/month Creator tier). Handles membership, Stripe payments, article gating, and newsletter natively. No developer required.
+
+**Content model (confirmed May 2026):**
+- One article per week (full production: research → article HTML → visuals → teleprompter → film → edit)
+- Fortnightly newsletter — health headline analysis: current media story + evidence behind it + what the reality actually is
+- No community forum — insufficient hours to moderate safely; dropped in favour of one-way newsletter + comments
+- Videos hosted on YouTube (free), embedded per article
+
+**Paywall model — Option 3: partial preview (confirmed May 2026)**
+- Every article: first section free (What is it? + Key Terms) — indexed by Google, visible to all
+- Full article (Why does it matter / What your doctor might discuss / What the research shows / Putting it all together) — members only
+- Videos: members only
+- Rationale: all articles indexed by Google (maximum SEO surface area), quality evident from free preview, clear incentive to join at the natural paywall break point
+
+**Revenue model:**
+- £0 Explorer · £6/month or £60/year Member · £150 Lifetime
+- Lifetime tier: push hard at launch — 20 early adopters = £3,000 upfront
+- Break-even: ~5 paying members covers Ghost Pro costs
+
+**Video production workflow (confirmed May 2026):**
+- Session 1: Film talking head reading teleprompter straight through. One take. No visuals yet.
+- Session 2: Screen-record visuals file. Advance each slide slowly, hold several seconds. No audio.
+- DaVinci Resolve edit: talking head on track 1 throughout. Visuals on track 2 — cut in wherever the spoken words match each slide. Teleprompter filming guide used as editing reference.
+
 ---
 
 ## 2. DESIGN SYSTEM
@@ -1189,11 +1214,36 @@ Any segment whose slide content changed must be rewritten to match.
 - **Subtype list formatting: outstanding across all articles**
 - **Colour narrative retrofit: outstanding across Cardiovascular (01–07) visuals** — Digestive and Neurological confirmed complete May 2026
 
+### Article byline and author card retrofit — ALL 33 articles — added May 2026
+Google's E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) standard for health content requires author credentials to be visible on every page where a visitor lands from search. The index.html About Dr Paul section covers the homepage only — individual article pages (where Google sends search traffic) currently show no credentials.
+
+**Two additions required on every article HTML file:**
+
+1. **Byline in article hero** — directly under the article title, alongside existing meta items:
+   `Dr Paul · Retired NHS GP · 20+ years NHS experience`
+   Links to `index.html#about-dr-paul`. One line of HTML.
+
+2. **Author card** — small block before the References section, after Putting It All Together:
+   > **About the author** — Dr Paul spent over twenty years as an NHS GP before retiring in 2019. helf.school exists to give every person access to clear, honest, evidence-based health education.
+   Links to `index.html#about-dr-paul`.
+
+**Apply to:** all 33 articles when next opened for any edit. Build into standard article template for all future articles from this point forward.
+
+**Footer credential line** — every page footer should carry:
+`helf.school is written by Dr Paul, a retired NHS GP with over 20 years of clinical experience. All content is health education, not medical advice.`
+
 ---
 
 ## 18. KEY LEARNING POINTS (accumulated)
 
-### NICE CG99 is for children only — never cite for adults
+### Google indexing and SEO — May 2026
+Google indexes pages via crawlers that read publicly visible content. Gated content (behind login) is not indexed. The partial preview model (Option 3) ensures all 33+ articles are indexed — Google reads the free first section of every article. SEO (Search Engine Optimisation) improves ranking through: relevant plain-English content matching search queries, consistent publishing (freshness signal), and backlinks from credible sources. helf.school's consistent article structure and plain-English writing are already well-suited to organic search discovery.
+
+### E-E-A-T standard for health content — May 2026
+Google applies a higher standard to health and medical content — called E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness). Pages without visible author credentials rank lower for health queries. Dr Paul's NHS GP background is a genuine competitive advantage that must be surfaced on every article page, not just the homepage. Required on every article: byline in hero + author card before references + footer credential line. See Section 17 for full retrofit spec.
+
+### Dr Paul's available hours — May 2026
+12 hours per week. Constrains content output to: one article per week (full production ~7–8 hours) + fortnightly newsletter (~2–3 hours). Forum dropped — no hours available for moderation.
 NICE CG99 covers constipation in **children and young people only**. Adult constipation: **NICE CKS** at `cks.nice.org.uk/constipation`.
 
 ### Dr Paul’s experience is 20+ years, not 30+
@@ -1456,6 +1506,9 @@ Camera-ready screen file (223 lines) for the IBD article video. Keep.
 - Fix `epilepsy-visuals.html` brand close: "31 articles" → "33 articles" (str_replace only)
 - Upload to GitHub: `cholesterol-visuals.html` · `coeliac-disease-visuals.html` · `lifestyle-visuals.html` · `index.html` · `helf-school-conditions.html`
 - Apply str_replace patches to `coeliac-disease.html` on GitHub (voice audit fixes — two "Do not..." phrases identified)
+
+### Article byline + author card retrofit — ALL 33 articles ❖
+When any article HTML is next opened for any reason, add: (1) byline in hero under title; (2) author card before references. See Section 17 for full spec. Build into template for all future articles from this point forward.
 
 ### Next priority — Digestive Health Series (Articles 13–21)
 Retrofit in order: acid-reflux → bloating → ibs → ibd → coeliac → gallstones → diverticular-disease → masld → constipation
