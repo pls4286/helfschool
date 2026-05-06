@@ -1370,6 +1370,19 @@ References must display visible numbers via CSS counter.
 ### CTA slide max 5 rows — LOCKED MAY 2026
 At filming viewport, 6 CTA rows clip off screen. Maximum 5 rows confirmed May 2026 during lifestyle-visuals.html retrofit. CSS: `grid-template-rows: repeat(5,1fr)`.
 
+### Rebuilding a file from scratch loses CSS and HTML comments — CONFIRMED MAY 2026
+When Claude rebuilds an article HTML file from scratch (rather than patching the original), it loses two categories of content that do not affect rendering but do affect file size and maintainability: (1) CSS section comments (`/* NAV */`, `/* HERO */`, `/* BREADCRUMB */` etc.) and (2) HTML section comments (`<!-- NAV -->`, `<!-- HERO -->`, `<!-- SECTION 1 -->` etc.). These account for approximately 1.5KB per file. The browser renders identically — the loss is cosmetic formatting only. However, the size difference alarmed Dr Paul when comparing original vs patched files. The correct patch workflow prevents this entirely.
+
+### Article patch workflow — upload original → str_replace only — CONFIRMED MAY 2026
+The correct workflow for patching any existing article HTML file:
+1. Dr Paul uploads the original file (drag into chat — must be an actual file upload, not a paste)
+2. Claude runs `cp /mnt/user-data/uploads/[filename].html /home/claude/[filename].html`
+3. Claude applies `str_replace` for only the specific lines that change
+4. Claude runs `wc -c` to confirm size is equal to or greater than original
+5. Claude copies to `/mnt/user-data/outputs/` and presents
+
+**Pasting as a document ≠ uploading as a file.** When content is pasted into the chat as a document (not dragged in as a file upload), it does not appear in `/mnt/user-data/uploads/` and cannot be `cp`'d. In that case, Claude must write the full content to disk via `create_file` before `str_replace` can work — which reintroduces the comment-loss problem. The only way to get true patch-only behaviour is to upload the file directly.
+
 ### Article research card display standard confirmed — April 2026
 The research card stat box in articles must be visually commanding. ev-stat-row: 3.2rem weight 900. The stat box is the headline — it must lead with the clinically important finding in a size that commands attention. Canonical reference: `breast-cancer.html`. See Section 8 for the full CSS specification.
 
@@ -1859,8 +1872,17 @@ Pages typically go live within 30–60 seconds of a GitHub push.
 - **Project knowledge + session start rules:** Read from project files; update via fetch + str_replace at session end
 - **Site files (index.html, conditions.html):** Always fetch from GitHub to get the current version before editing
 
+### Article HTML audit — targeted patches delivered May 2026
+In the May 2026 audit session, the following article HTML files were reviewed and patched:
+- **alcohol.html** — Zhao research card stat box: `107` (study count, prohibited) → `25g` (outcome: daily intake threshold where mortality risk rises)
+- **bloating.html** — DM Sans font import removed `wght@300` (prohibited); Fraunces font import removed `wght@300`; footer `© 2025` → `© 2026`
+- **cholesterol.html** — DM Sans font import: `wght@400;500;600` → `wght@400;500;600;700` (missing weight 700)
+- **coeliac-disease.html** — callout-red: `Do not stop eating gluten before you have been tested` → `Testing while still eating gluten is essential`; disclaimer: `Do not start a gluten-free diet before being tested — doing so can make the diagnosis much harder to confirm` → `Starting a gluten-free diet before being tested can make the diagnosis much harder to confirm — testing while still eating gluten is the clinically recommended approach`
+
+**exercise.html and gallstones.html** — audited and confirmed clean. No patches required.
+
 ### End of document marker
 This document was last updated: May 2026
 Total articles: 33 (Series A: 7 · Series B: 7 · Series C: 9 · Series D: 5 · Series E: 5)
 Project capacity: ~43% (post-deduplication, May 2026)
-Next session priority: Upload files to GitHub · Fix epilepsy-visuals brand close · Begin Digestive Series retrofit
+Next session priority: Upload patched files to GitHub · Continue article HTML audit · Begin Digestive Series visuals retrofit
