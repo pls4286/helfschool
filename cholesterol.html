@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cholesterol Explained — helf.school</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- PATCH: DM Sans wght@700 added (was missing) -->
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --navy:           #1B2A4A;
@@ -22,7 +23,6 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'DM Sans', sans-serif; font-weight: 400; background: var(--cream); color: var(--text); font-size: 17px; line-height: 1.75; }
 
-    /* NAV */
     nav { background: var(--navy); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 68px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(27,42,74,0.18); }
     .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
     .logo-svg { width: 36px; height: 36px; flex-shrink: 0; }
@@ -33,14 +33,12 @@
     .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
     .nav-links a:hover { color: #fff; }
 
-    /* BREADCRUMB */
     .breadcrumb { background: var(--navy); padding: 0.6rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
     .breadcrumb-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: rgba(255,255,255,0.5); }
     .breadcrumb-inner a { color: rgba(255,255,255,0.5); text-decoration: none; }
     .breadcrumb-inner a:hover { color: rgba(255,255,255,0.85); }
     .breadcrumb-inner span { color: var(--coral); font-weight: 500; }
 
-    /* HERO */
     .article-hero { background: var(--navy); padding: 3.5rem 2rem 3rem; position: relative; overflow: hidden; }
     .article-hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(200,66,58,0.14) 0%, transparent 70%); pointer-events: none; }
     .article-hero::after { content: ''; position: absolute; bottom: -40px; left: 10%; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(122,158,135,0.10) 0%, transparent 70%); pointer-events: none; }
@@ -53,14 +51,12 @@
     .meta-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: rgba(255,255,255,0.80); }
     .meta-item svg { width: 14px; height: 14px; opacity: 0.7; }
 
-    /* DISCLAIMER BAR */
     .disclaimer-bar { background: #FFF8E7; border-top: 3px solid var(--amber); padding: 0.95rem 2rem; }
     .disclaimer-bar-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: flex-start; gap: 0.65rem; }
     .disclaimer-bar-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.05rem; }
     .disclaimer-bar p { font-size: 0.88rem; color: #5C4A1A; line-height: 1.5; }
     .disclaimer-bar p strong { font-weight: 700; color: #3D2E00; }
 
-    /* JUMP NAV */
     .jump-nav { background: #fff; border-bottom: 1px solid var(--border); padding: 0 2rem; position: sticky; top: 68px; z-index: 90; }
     .jump-nav-inner { max-width: 900px; margin: 0 auto; display: flex; overflow-x: auto; scrollbar-width: none; }
     .jump-nav-inner::-webkit-scrollbar { display: none; }
@@ -68,10 +64,7 @@
     .jump-link:hover { color: var(--navy); border-bottom-color: var(--navy); }
     .jump-link .num { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; background: var(--coral-light); color: var(--coral); font-size: 0.65rem; font-weight: 700; flex-shrink: 0; }
 
-    /* LAYOUT */
     .article-layout { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 5rem; }
-
-    /* SECTIONS */
     .article-section { scroll-margin-top: 150px; margin-bottom: 3.5rem; }
     .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
     .section-number { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; flex-shrink: 0; }
@@ -79,7 +72,6 @@
     .article-section p { margin-bottom: 1rem; color: var(--text); font-weight: 400; }
     .article-section p:last-child { margin-bottom: 0; }
 
-    /* CHOLESTEROL TABLE */
     .chol-table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.92rem; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(27,42,74,0.08); }
     .chol-table thead tr { background: var(--navy); color: #fff; }
     .chol-table thead th { padding: 0.85rem 1.1rem; text-align: left; font-weight: 600; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
@@ -90,7 +82,6 @@
     .chol-table tbody td:first-child { font-weight: 600; color: var(--navy); }
     .chol-table tbody td:nth-child(2) { color: var(--coral); font-weight: 500; white-space: nowrap; }
 
-    /* KEY TERMS */
     .key-terms-box { background: var(--navy); border-radius: 12px; padding: 1.5rem 1.75rem; margin-bottom: 3.5rem; }
     .key-terms-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; padding-bottom: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.12); }
     .key-terms-header h3 { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 600; color: #fff; }
@@ -100,7 +91,6 @@
     .key-term-word { font-size: 0.88rem; font-weight: 700; color: #E8634A; }
     .key-term-def { font-size: 0.92rem; color: rgba(255,255,255,0.90); line-height: 1.55; }
 
-    /* SECTION 2 STAT GRID */
     .why-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; margin: 1.6rem 0 2rem; }
     @media (max-width: 520px) { .why-stat-grid { grid-template-columns: 1fr; } }
     .why-stat-card { background: #fff; border-radius: 10px; border: 1px solid var(--border); padding: 1.2rem 1.3rem; border-top: 3px solid var(--cardiovascular); }
@@ -108,7 +98,6 @@
     .why-stat-label { font-size: 1.00rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; line-height: 1.3; }
     .why-stat-body { font-size: 0.93rem; color: var(--text); font-weight: 400; line-height: 1.6; }
 
-    /* DOCTOR CARDS */
     .doctor-subsections { display: flex; flex-direction: column; gap: 1.5rem; }
     .doctor-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
     .doctor-card-header { display: flex; align-items: center; gap: 0.75rem; padding: 0.9rem 1.25rem; background: var(--sage-light); border-bottom: 1px solid var(--border); }
@@ -119,7 +108,6 @@
     .doctor-card-body p { margin-bottom: 0.75rem; }
     .doctor-card-body p:last-child { margin-bottom: 0; }
 
-    /* TARGETS TABLE */
     .targets-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(27,42,74,0.08); }
     .targets-table thead tr { background: var(--sage); }
     .targets-table thead th { padding: 0.75rem 1rem; text-align: left; font-weight: 600; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; }
@@ -130,7 +118,6 @@
     .targets-table tbody td:first-child { font-weight: 500; color: var(--navy); }
     .targets-table tbody td:last-child { color: var(--sage); font-weight: 600; }
 
-    /* RESEARCH CARDS */
     .research-cards { display: flex; flex-direction: column; gap: 1.5rem; margin: 1.8rem 0; }
     .research-card { background: var(--navy); border-radius: 12px; padding: 1.5rem 1.7rem; color: #fff; }
     .research-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.8rem; }
@@ -147,7 +134,6 @@
     .research-card-source { font-size: 0.80rem; color: rgba(255,255,255,0.80); }
     .research-card-source a { color: rgba(255,255,255,0.85); }
 
-    /* SUPPLEMENTS TABLE */
     .supps-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(27,42,74,0.08); }
     .supps-table thead tr { background: var(--navy); }
     .supps-table thead th { padding: 0.75rem 1rem; text-align: left; font-weight: 600; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.90); }
@@ -158,18 +144,15 @@
     .result-positive { color: #7ecc99; font-weight: 700; font-size: 0.9rem; }
     .result-negative { color: rgba(255,255,255,0.65); font-size: 0.9rem; }
 
-    /* INLINE CITATIONS */
     .ref-sup { font-size: 0.70rem; vertical-align: super; line-height: 0; }
     .ref-sup a { background: rgba(122,106,46,0.12); color: var(--amber); text-decoration: none; padding: 0.05rem 0.28rem; border-radius: 3px; font-weight: 700; font-family: 'DM Sans', sans-serif; }
     .ref-sup a:hover { background: rgba(122,106,46,0.25); }
 
-    /* PUTTING IT TOGETHER */
     .putting-together { background: var(--navy); border-radius: 12px; padding: 2rem 2.2rem; margin: 3rem 0 2rem; }
     .putting-together-title { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.15rem; color: var(--coral); margin-bottom: 1rem; }
     .putting-together p { font-size: 1rem; color: rgba(255,255,255,0.90); line-height: 1.75; font-style: italic; margin-bottom: 0.9rem; font-weight: 400; }
     .putting-together p:last-child { margin-bottom: 0; font-style: normal; font-weight: 700; color: #fff; }
 
-    /* REFERENCES */
     .references { margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--border); }
     .references-title { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.3rem; color: var(--navy); margin-bottom: 1.4rem; }
     .ref-block { display: flex; gap: 1rem; margin-bottom: 1.3rem; align-items: flex-start; }
@@ -180,7 +163,6 @@
     .ref-pill-journal { background: rgba(27,42,74,0.07); color: var(--navy); border-color: rgba(27,42,74,0.20); }
     .ref-pill-journal:hover { background: rgba(27,42,74,0.14); }
 
-    /* FOOTER */
     footer { background: var(--navy); color: rgba(255,255,255,0.60); text-align: center; padding: 2rem; font-size: 0.8rem; font-weight: 400; }
     footer a { color: var(--sage); text-decoration: none; }
 
@@ -197,7 +179,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">
     <svg class="logo-svg" viewBox="0 0 40 40" fill="none">
@@ -222,7 +203,6 @@
   </ul>
 </nav>
 
-<!-- BREADCRUMB -->
 <div class="breadcrumb">
   <div class="breadcrumb-inner">
     <a href="index.html">Home</a>
@@ -233,7 +213,6 @@
   </div>
 </div>
 
-<!-- HERO -->
 <header class="article-hero">
   <div class="hero-inner">
     <div class="category-badge">Cardiovascular Health · Article 02</div>
@@ -256,7 +235,6 @@
   </div>
 </header>
 
-<!-- DISCLAIMER BAR -->
 <div class="disclaimer-bar" role="note">
   <div class="disclaimer-bar-inner">
     <span class="disclaimer-bar-icon">⚕️</span>
@@ -264,7 +242,6 @@
   </div>
 </div>
 
-<!-- JUMP NAV -->
 <nav class="jump-nav" aria-label="Jump to section">
   <div class="jump-nav-inner">
     <a href="#what-is-it" class="jump-link"><span class="num">1</span> What is it?</a>
@@ -274,10 +251,8 @@
   </div>
 </nav>
 
-<!-- ARTICLE BODY -->
 <main class="article-layout">
 
-  <!-- SECTION 1 -->
   <section class="article-section" id="what-is-it">
     <div class="section-header">
       <div class="section-number">1</div>
@@ -288,11 +263,7 @@
 
     <table class="chol-table">
       <thead>
-        <tr>
-          <th>Type</th>
-          <th>Common name</th>
-          <th>What it does</th>
-        </tr>
+        <tr><th>Type</th><th>Common name</th><th>What it does</th></tr>
       </thead>
       <tbody>
         <tr>
@@ -316,48 +287,22 @@
     <p>Raised cholesterol causes no symptoms. The only way to establish lipid levels is through a blood test — which is why it is categorised alongside hypertension as a clinically silent cardiovascular risk factor.</p>
   </section>
 
-  <!-- KEY TERMS BOX -->
   <div class="key-terms-box">
     <div class="key-terms-header">
       <h3>📖 Key Terms</h3>
     </div>
     <div class="key-terms-grid">
-      <div class="key-term">
-        <span class="key-term-word">Cardiovascular disease (CVD)</span>
-        <span class="key-term-def">An umbrella term for conditions affecting the heart and blood vessels, including heart attack, stroke, heart failure, and coronary heart disease — the leading cause of death in the UK.</span>
-      </div>
-      <div class="key-term">
-        <span class="key-term-word">Ischaemic heart disease</span>
-        <span class="key-term-def">Narrowing or blockage of the arteries supplying the heart, reducing blood flow. The most common cause of heart attacks. Also called coronary heart disease (CHD).</span>
-      </div>
-      <div class="key-term">
-        <span class="key-term-word">Atherosclerosis</span>
-        <span class="key-term-def">The gradual build-up of fatty plaques (atheroma) inside artery walls, causing them to narrow and harden. The underlying process behind most heart attacks and strokes.</span>
-      </div>
-      <div class="key-term">
-        <span class="key-term-word">Triglycerides</span>
-        <span class="key-term-def">Another type of fat found in the blood. Elevated triglycerides, often seen alongside raised cholesterol, further increase cardiovascular risk.</span>
-      </div>
-      <div class="key-term">
-        <span class="key-term-word">Statin</span>
-        <span class="key-term-def">A class of medication that lowers LDL cholesterol by reducing production in the liver. The most widely prescribed cholesterol-lowering treatment worldwide.</span>
-      </div>
-      <div class="key-term">
-        <span class="key-term-word">Familial hypercholesterolaemia (FH)</span>
-        <span class="key-term-def">An inherited condition causing very high LDL cholesterol from birth. Affects approximately 1 in 250 UK adults — most are undiagnosed. Untreated FH significantly increases the risk of early coronary heart disease.</span>
-      </div>
-      <div class="key-term">
-        <span class="key-term-word">mmol/L</span>
-        <span class="key-term-def">Millimoles per litre — the unit used in the UK to measure cholesterol and other blood lipid levels.</span>
-      </div>
-      <div class="key-term">
-        <span class="key-term-word">Ezetimibe</span>
-        <span class="key-term-def">A non-statin cholesterol-lowering medication that works by reducing cholesterol absorption in the small intestine. Often added to statin therapy when LDL targets are not reached.</span>
-      </div>
+      <div class="key-term"><span class="key-term-word">Cardiovascular disease (CVD)</span><span class="key-term-def">An umbrella term for conditions affecting the heart and blood vessels, including heart attack, stroke, heart failure, and coronary heart disease — the leading cause of death in the UK.</span></div>
+      <div class="key-term"><span class="key-term-word">Ischaemic heart disease</span><span class="key-term-def">Narrowing or blockage of the arteries supplying the heart, reducing blood flow. The most common cause of heart attacks. Also called coronary heart disease (CHD).</span></div>
+      <div class="key-term"><span class="key-term-word">Atherosclerosis</span><span class="key-term-def">The gradual build-up of fatty plaques (atheroma) inside artery walls, causing them to narrow and harden. The underlying process behind most heart attacks and strokes.</span></div>
+      <div class="key-term"><span class="key-term-word">Triglycerides</span><span class="key-term-def">Another type of fat found in the blood. Elevated triglycerides, often seen alongside raised cholesterol, further increase cardiovascular risk.</span></div>
+      <div class="key-term"><span class="key-term-word">Statin</span><span class="key-term-def">A class of medication that lowers LDL cholesterol by reducing production in the liver. The most widely prescribed cholesterol-lowering treatment worldwide.</span></div>
+      <div class="key-term"><span class="key-term-word">Familial hypercholesterolaemia (FH)</span><span class="key-term-def">An inherited condition causing very high LDL cholesterol from birth. Affects approximately 1 in 250 UK adults — most are undiagnosed. Untreated FH significantly increases the risk of early coronary heart disease.</span></div>
+      <div class="key-term"><span class="key-term-word">mmol/L</span><span class="key-term-def">Millimoles per litre — the unit used in the UK to measure cholesterol and other blood lipid levels.</span></div>
+      <div class="key-term"><span class="key-term-word">Ezetimibe</span><span class="key-term-def">A non-statin cholesterol-lowering medication that works by reducing cholesterol absorption in the small intestine. Often added to statin therapy when LDL targets are not reached.</span></div>
     </div>
   </div>
 
-  <!-- SECTION 2 -->
   <section class="article-section" id="why-it-matters">
     <div class="section-header">
       <div class="section-number">2</div>
@@ -391,7 +336,6 @@
     <p>Like hypertension, raised cholesterol produces no symptoms. It is a laboratory finding, not a clinical one — which is why cholesterol testing in the context of routine cardiovascular risk assessment is an established part of UK healthcare practice.</p>
   </section>
 
-  <!-- SECTION 3 -->
   <section class="article-section" id="what-doctor-does">
     <div class="section-header">
       <div class="section-number">3</div>
@@ -422,12 +366,7 @@
         <div class="doctor-card-body">
           <p>Cholesterol numbers are interpreted in the context of overall cardiovascular risk — not in isolation. General targets for most healthy adults in UK practice are:</p>
           <table class="targets-table">
-            <thead>
-              <tr>
-                <th>Measure</th>
-                <th>General target (healthy adults)</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Measure</th><th>General target (healthy adults)</th></tr></thead>
             <tbody>
               <tr><td>Total cholesterol</td><td>Below 5.0 mmol/L</td></tr>
               <tr><td>Non-HDL cholesterol</td><td>Below 4.0 mmol/L</td></tr>
@@ -457,7 +396,6 @@
     </div>
   </section>
 
-  <!-- SECTION 4 -->
   <section class="article-section" id="research">
     <div class="section-header">
       <div class="section-number">4</div>
@@ -561,71 +499,19 @@
     </div>
   </section>
 
-  <!-- REFERENCES -->
   <section class="references" aria-label="References">
     <h2 class="references-title">References</h2>
-
-    <div class="ref-block" id="ref-1">
-      <div class="ref-num">1</div>
-      <div>
-        <div class="ref-full">NHS Digital. <em>Health Survey for England 2021.</em> NHS Digital, 2022. World Health Organization. <em>Global Health Observatory — Raised cholesterol.</em> WHO, 2023.</div>
-        <div class="ref-links"><a class="ref-pill ref-pill-journal" href="https://digital.nhs.uk/data-and-information/publications/statistical/health-survey-for-england" target="_blank" rel="noopener">NHS Digital</a></div>
-      </div>
-    </div>
-
-    <div class="ref-block" id="ref-2">
-      <div class="ref-num">2</div>
-      <div>
-        <div class="ref-full">Cholesterol Treatment Trialists' Collaboration. Efficacy and safety of cholesterol-lowering treatment: prospective meta-analysis of data from 90,056 participants in 14 randomised trials of statins. <em>The Lancet.</em> 2005;366(9493):1267–1278.</div>
-        <div class="ref-links"><a class="ref-pill ref-pill-journal" href="https://pubmed.ncbi.nlm.nih.gov/16214597/" target="_blank" rel="noopener">PubMed: 16214597</a></div>
-      </div>
-    </div>
-
-    <div class="ref-block" id="ref-3">
-      <div class="ref-num">3</div>
-      <div>
-        <div class="ref-full">Cholesterol Treatment Trialists' Collaboration. The effects of lowering LDL cholesterol with statin therapy in people at low risk of vascular disease. <em>The Lancet.</em> 2012;380(9841):581–590.</div>
-        <div class="ref-links"><a class="ref-pill ref-pill-journal" href="https://pubmed.ncbi.nlm.nih.gov/22607822/" target="_blank" rel="noopener">PubMed: 22607822</a></div>
-      </div>
-    </div>
-
-    <div class="ref-block" id="ref-4">
-      <div class="ref-num">4</div>
-      <div>
-        <div class="ref-full">National Institute for Health and Care Excellence. <em>Cardiovascular disease: risk assessment and reduction, including lipid modification.</em> NICE guideline NG238. Updated December 2023.</div>
-        <div class="ref-links"><a class="ref-pill ref-pill-journal" href="https://www.nice.org.uk/guidance/ng238" target="_blank" rel="noopener">NICE NG238</a></div>
-      </div>
-    </div>
-
-    <div class="ref-block" id="ref-5">
-      <div class="ref-num">5</div>
-      <div>
-        <div class="ref-full">National Institute for Health and Care Excellence. <em>Familial hypercholesterolaemia: identification and management.</em> NICE guideline CG71. 2008 (last reviewed 2023).</div>
-        <div class="ref-links"><a class="ref-pill ref-pill-journal" href="https://www.nice.org.uk/guidance/cg71" target="_blank" rel="noopener">NICE CG71</a></div>
-      </div>
-    </div>
-
-    <div class="ref-block" id="ref-6">
-      <div class="ref-num">6</div>
-      <div>
-        <div class="ref-full">NHS England. <em>Improving Lipid Management to Reduce Cardiovascular Disease and Save Lives.</em> NHS England, 2023.</div>
-        <div class="ref-links"><a class="ref-pill ref-pill-journal" href="https://www.england.nhs.uk/long-read/improving-lipid-management-to-reduce-cardiovascular-disease-and-save-lives/" target="_blank" rel="noopener">NHS England</a></div>
-      </div>
-    </div>
-
-    <div class="ref-block" id="ref-7">
-      <div class="ref-num">7</div>
-      <div>
-        <div class="ref-full">Laffin LJ et al. Comparative effects of low-dose rosuvastatin, placebo, and dietary supplements on lipids and inflammatory biomarkers. <em>J Am Coll Cardiol.</em> 2023;81(7):690–702.</div>
-        <div class="ref-links"><a class="ref-pill ref-pill-journal" href="https://www.jacc.org/doi/abs/10.1016/j.jacc.2022.10.013" target="_blank" rel="noopener">DOI: 10.1016/j.jacc.2022.10.013</a></div>
-      </div>
-    </div>
-
+    <div class="ref-block" id="ref-1"><div class="ref-num">1</div><div><div class="ref-full">NHS Digital. <em>Health Survey for England 2021.</em> NHS Digital, 2022. World Health Organization. <em>Global Health Observatory — Raised cholesterol.</em> WHO, 2023.</div><div class="ref-links"><a class="ref-pill ref-pill-journal" href="https://digital.nhs.uk/data-and-information/publications/statistical/health-survey-for-england" target="_blank" rel="noopener">NHS Digital</a></div></div></div>
+    <div class="ref-block" id="ref-2"><div class="ref-num">2</div><div><div class="ref-full">Cholesterol Treatment Trialists' Collaboration. Efficacy and safety of cholesterol-lowering treatment: prospective meta-analysis of data from 90,056 participants in 14 randomised trials of statins. <em>The Lancet.</em> 2005;366(9493):1267–1278.</div><div class="ref-links"><a class="ref-pill ref-pill-journal" href="https://pubmed.ncbi.nlm.nih.gov/16214597/" target="_blank" rel="noopener">PubMed: 16214597</a></div></div></div>
+    <div class="ref-block" id="ref-3"><div class="ref-num">3</div><div><div class="ref-full">Cholesterol Treatment Trialists' Collaboration. The effects of lowering LDL cholesterol with statin therapy in people at low risk of vascular disease. <em>The Lancet.</em> 2012;380(9841):581–590.</div><div class="ref-links"><a class="ref-pill ref-pill-journal" href="https://pubmed.ncbi.nlm.nih.gov/22607822/" target="_blank" rel="noopener">PubMed: 22607822</a></div></div></div>
+    <div class="ref-block" id="ref-4"><div class="ref-num">4</div><div><div class="ref-full">National Institute for Health and Care Excellence. <em>Cardiovascular disease: risk assessment and reduction, including lipid modification.</em> NICE guideline NG238. Updated December 2023.</div><div class="ref-links"><a class="ref-pill ref-pill-journal" href="https://www.nice.org.uk/guidance/ng238" target="_blank" rel="noopener">NICE NG238</a></div></div></div>
+    <div class="ref-block" id="ref-5"><div class="ref-num">5</div><div><div class="ref-full">National Institute for Health and Care Excellence. <em>Familial hypercholesterolaemia: identification and management.</em> NICE guideline CG71. 2008 (last reviewed 2023).</div><div class="ref-links"><a class="ref-pill ref-pill-journal" href="https://www.nice.org.uk/guidance/cg71" target="_blank" rel="noopener">NICE CG71</a></div></div></div>
+    <div class="ref-block" id="ref-6"><div class="ref-num">6</div><div><div class="ref-full">NHS England. <em>Improving Lipid Management to Reduce Cardiovascular Disease and Save Lives.</em> NHS England, 2023.</div><div class="ref-links"><a class="ref-pill ref-pill-journal" href="https://www.england.nhs.uk/long-read/improving-lipid-management-to-reduce-cardiovascular-disease-and-save-lives/" target="_blank" rel="noopener">NHS England</a></div></div></div>
+    <div class="ref-block" id="ref-7"><div class="ref-num">7</div><div><div class="ref-full">Laffin LJ et al. Comparative effects of low-dose rosuvastatin, placebo, and dietary supplements on lipids and inflammatory biomarkers. <em>J Am Coll Cardiol.</em> 2023;81(7):690–702.</div><div class="ref-links"><a class="ref-pill ref-pill-journal" href="https://www.jacc.org/doi/abs/10.1016/j.jacc.2022.10.013" target="_blank" rel="noopener">DOI: 10.1016/j.jacc.2022.10.013</a></div></div></div>
   </section>
 
 </main>
 
-<!-- FOOTER -->
 <footer>
   <p>⚕️ Health education — not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
   <p style="margin-top:0.5rem;">© 2026 helf.school &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <a href="helf-school-conditions.html">Conditions</a> &nbsp;·&nbsp; <a href="helf-school-membership.html">Membership</a></p>
