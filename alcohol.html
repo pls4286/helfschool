@@ -10,8 +10,6 @@
     :root{--navy:#1B2A4A;--coral:#E8634A;--cream:#FAF7F2;--sage:#7A9E87;--amber:#E8A84A;--practical:#7A6A2E;--text:#2C2C2C}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     body{font-family:'DM Sans',sans-serif;font-weight:400;color:var(--text);background:var(--cream);line-height:1.7}
-
-    /* NAV */
     .site-nav{background:var(--navy);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
     .nav-logo{display:flex;align-items:center;gap:.5rem;text-decoration:none}
     .logo-text{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;color:#fff}
@@ -19,8 +17,6 @@
     .logo-tag{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
     .nav-back{font-size:.82rem;color:rgba(255,255,255,.75);text-decoration:none;display:flex;align-items:center;gap:.35rem}
     .nav-back:hover{color:#fff}
-
-    /* HERO */
     .hero{background:linear-gradient(135deg,var(--navy) 0%,#3a2e18 60%,#2a2010 100%);padding:3rem 2rem 3rem;position:relative;overflow:hidden;min-height:calc(100vh - 56px - 8.5rem);display:flex;align-items:center}
     .hero::before{content:'';position:absolute;top:-40%;right:-8%;width:600px;height:600px;background:radial-gradient(circle,rgba(122,106,46,.22) 0%,transparent 70%);pointer-events:none}
     .hero-inner{max-width:860px;margin:0 auto;position:relative;width:100%}
@@ -33,18 +29,13 @@
     .hero-subtitle{font-size:1.05rem;color:rgba(255,255,255,.88);line-height:1.6;max-width:640px;margin-bottom:1.75rem}
     .hero-meta{display:flex;flex-wrap:wrap;gap:1.25rem;font-size:.8rem;color:rgba(255,255,255,.82)}
     .meta-item{display:flex;align-items:center;gap:.35rem}
-
-    /* ARTICLE BODY */
     .article-body{max-width:860px;margin:0 auto;padding:0 2rem 4rem}
-
     .article-section{padding:3rem 0;border-bottom:1px solid rgba(27,42,74,.08);scroll-margin-top:150px}
     .article-section:last-child{border-bottom:none}
     .section-label{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--practical);margin-bottom:.5rem}
     .section-title{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.5vw,1.85rem);font-weight:700;color:var(--navy);margin-bottom:1.25rem;line-height:1.2}
     .article-section p{font-size:1rem;color:var(--text);font-weight:400;line-height:1.78;margin-bottom:1rem}
     .article-section p:last-child{margin-bottom:0}
-
-    /* UNIT EXAMPLES GRID */
     .unit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.9rem;margin:1.5rem 0}
     .unit-card{background:#fff;border:1px solid rgba(27,42,74,.12);border-radius:12px;padding:1rem 1.15rem;text-align:center}
     .unit-icon{font-size:1.8rem;margin-bottom:.25rem}
@@ -52,8 +43,6 @@
     .unit-detail{font-size:.78rem;color:#555;font-weight:500;margin-bottom:.5rem}
     .unit-value{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;color:var(--practical)}
     .unit-value-label{font-size:.7rem;color:#555;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-top:.1rem}
-
-    /* RISK LADDER */
     .risk-ladder{display:flex;flex-direction:column;gap:.85rem;margin:1.75rem 0}
     .risk-tier{border-radius:14px;overflow:hidden;display:grid;grid-template-columns:140px 1fr;min-height:70px}
     .risk-label-col{padding:1rem 1.1rem;display:flex;flex-direction:column;justify-content:center;color:#fff}
@@ -64,31 +53,23 @@
     .risk-1 .risk-label-col{background:#3a6a48}
     .risk-2 .risk-label-col{background:#a06018}
     .risk-3 .risk-label-col{background:#8a2a1e}
-
-    /* KEY TERMS */
     .key-terms-box{background:var(--navy);border-radius:16px;padding:2rem 2.25rem;margin:2.5rem 0}
     .key-terms-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem}
     .key-terms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:.9rem}
     .term-item{padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.07)}
     .term-name{font-size:.88rem;font-weight:700;color:#d4b84a;margin-bottom:.25rem}
     .term-def{font-size:.92rem;color:rgba(255,255,255,.92);line-height:1.52}
-
-    /* WHY IT MATTERS — impact list */
     .impact-list{list-style:none;margin:1.25rem 0;display:flex;flex-direction:column;gap:.85rem}
     .impact-list li{display:flex;align-items:flex-start;gap:.9rem;padding:1rem 1.25rem;background:#fff;border-radius:12px;border-left:4px solid var(--practical);box-shadow:0 1px 4px rgba(0,0,0,.06)}
     .impact-num{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:700;color:var(--practical);flex-shrink:0;line-height:1;margin-top:.05rem;opacity:.45}
     .impact-content{flex:1}
     .impact-title{font-weight:700;color:var(--navy);font-size:.97rem;margin-bottom:.2rem}
     .impact-desc{font-size:.9rem;color:#3a3a3a;line-height:1.58;font-weight:400}
-
-    /* DOCTOR CALLOUTS */
     .doctor-callout{background:#fff;border:1px solid rgba(27,42,74,.1);border-radius:14px;padding:1.3rem 1.5rem;margin:1rem 0;display:flex;gap:1rem;align-items:flex-start}
     .doctor-icon{font-size:1.4rem;flex-shrink:0;margin-top:.1rem}
     .doctor-callout-text{flex:1}
     .doctor-callout-title{font-weight:700;color:var(--navy);font-size:.93rem;margin-bottom:.3rem}
     .doctor-callout-body{font-size:.9rem;color:#3a3a3a;line-height:1.62;font-weight:400}
-
-    /* RESEARCH CARDS */
     .research-grid{display:flex;flex-direction:column;gap:1.5rem;margin:1.5rem 0}
     .research-card{background:var(--navy);border-radius:16px;overflow:hidden}
     .rc-header{padding:1.1rem 1.5rem .9rem;border-bottom:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
@@ -104,24 +85,16 @@
     .rc-detail p:last-child{margin-bottom:0}
     .rc-detail strong{color:#fff;font-weight:600}
     .rc-note{padding:.85rem 1.5rem;background:rgba(0,0,0,.15);border-top:1px solid rgba(255,255,255,.08);font-size:.8rem;color:rgba(255,255,255,.8);font-style:italic}
-
-    /* MECHANISMS CALLOUT */
     .mechanism-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:1.25rem 0}
     .mech-card{background:#fff;border:1px solid rgba(27,42,74,.1);border-radius:12px;padding:1.1rem 1.25rem}
     .mech-icon{font-size:1.4rem;margin-bottom:.5rem}
     .mech-title{font-weight:700;color:var(--navy);font-size:.93rem;margin-bottom:.3rem}
     .mech-body{font-size:.88rem;color:#3a3a3a;line-height:1.58;font-weight:400}
-
-    /* CONCLUSION BOX */
     .conclusion-box{background:var(--navy);border-radius:16px;padding:2rem 2.25rem;margin:1.5rem 0}
     .conclusion-box p{color:rgba(255,255,255,.92);font-size:1rem;line-height:1.78;margin-bottom:1rem;font-weight:400}
     .conclusion-box p:last-child{margin-bottom:0;font-style:italic;color:rgba(255,255,255,.96)}
     .conclusion-box strong{color:#fff;font-weight:700}
-
-    /* DISCLAIMER */
     .disclaimer{background:#fffbec;border:1px solid #e8c84a;border-radius:12px;padding:1rem 1.25rem;margin:1.5rem 0;font-size:.85rem;color:#5c4800;line-height:1.58}
-
-    /* REFERENCES */
     .references-section{margin-top:3rem;padding-top:2rem;border-top:2px solid rgba(27,42,74,.1)}
     .references-title{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:1.25rem}
     .ref-block{margin-bottom:1.25rem;padding:1rem 1.25rem;background:#fff;border-radius:10px;border-left:3px solid var(--practical)}
@@ -130,16 +103,11 @@
     .ref-links{display:flex;flex-wrap:wrap;gap:.5rem}
     .ref-pill{display:inline-block;cursor:pointer;background:var(--navy);color:#fff;text-decoration:none;font-size:.72rem;font-weight:600;padding:.28rem .75rem;border-radius:100px;transition:background .15s}
     .ref-pill:hover{background:var(--practical);color:#fff}
-
-    /* FOOTER */
     .site-footer{background:var(--navy);color:rgba(255,255,255,.62);text-align:center;padding:2rem;font-size:.8rem}
     .site-footer a{color:rgba(255,255,255,.75);text-decoration:none}
-
-    /* INLINE REFERENCE SUPERSCRIPTS */
     .ref-sup{font-size:.72em;vertical-align:super;line-height:0;margin-left:.08em}
     .ref-sup a{color:var(--practical);font-weight:700;text-decoration:none;background:rgba(122,106,46,.1);padding:.05em .3em;border-radius:4px;transition:background .15s}
     .ref-sup a:hover{background:rgba(122,106,46,.25);color:#5a4e1e}
-
     @media(max-width:640px){
       .hero{padding:2.5rem 1.25rem 2rem}
       .article-body{padding:0 1.25rem 3rem}
@@ -152,7 +120,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="site-nav">
   <a class="nav-logo" href="index.html">
     <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
@@ -167,7 +134,6 @@
   <a class="nav-back" href="helf-school-conditions.html">← All conditions</a>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-inner">
     <div class="breadcrumb">
@@ -189,15 +155,12 @@
   </div>
 </div>
 
-<!-- ARTICLE BODY -->
 <div class="article-body">
 
-  <!-- DISCLAIMER -->
   <div class="disclaimer" style="margin-top:1.75rem">
     <strong>Health education — not medical advice.</strong> This article is for general information. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.
   </div>
 
-  <!-- SECTION 1 -->
   <div class="article-section" id="what-is-it">
     <div class="section-label">Section 1</div>
     <h2 class="section-title">What alcohol is — and what it does in the body</h2>
@@ -209,7 +172,6 @@
     <p>In the UK, alcohol is measured in <strong>units</strong>. One unit is defined as 10 millilitres — or 8 grams — of pure ethanol. The number of units in a drink depends on both its volume and its strength (ABV, alcohol by volume). A quick guide:</p>
 
     <div class="unit-grid">
-
       <div class="unit-card">
         <div class="unit-icon">🍷</div>
         <div class="unit-drink">Small glass of wine</div>
@@ -217,7 +179,6 @@
         <div class="unit-value">1.5</div>
         <div class="unit-value-label">UK units</div>
       </div>
-
       <div class="unit-card">
         <div class="unit-icon">🍷</div>
         <div class="unit-drink">Large glass of wine</div>
@@ -225,7 +186,6 @@
         <div class="unit-value">3.0</div>
         <div class="unit-value-label">UK units</div>
       </div>
-
       <div class="unit-card">
         <div class="unit-icon">🍺</div>
         <div class="unit-drink">Pint of standard lager</div>
@@ -233,7 +193,6 @@
         <div class="unit-value">2.3</div>
         <div class="unit-value-label">UK units</div>
       </div>
-
       <div class="unit-card">
         <div class="unit-icon">🍺</div>
         <div class="unit-drink">Pint of strong beer</div>
@@ -241,7 +200,6 @@
         <div class="unit-value">3.0</div>
         <div class="unit-value-label">UK units</div>
       </div>
-
       <div class="unit-card">
         <div class="unit-icon">🥃</div>
         <div class="unit-drink">Single spirit</div>
@@ -249,7 +207,6 @@
         <div class="unit-value">1.0</div>
         <div class="unit-value-label">UK unit</div>
       </div>
-
       <div class="unit-card">
         <div class="unit-icon">🥂</div>
         <div class="unit-drink">Bottle of wine</div>
@@ -257,7 +214,6 @@
         <div class="unit-value">9.0</div>
         <div class="unit-value-label">UK units</div>
       </div>
-
     </div>
 
     <p style="font-size:.86rem;color:#555;margin-top:-.25rem"><em>Quick formula: volume (ml) × ABV (%) ÷ 1000 = units. A 175ml medium glass of 13% wine is 2.3 units.</em></p>
@@ -267,7 +223,6 @@
     <p>Three risk tiers are commonly used in UK clinical practice (NICE CG115) to describe weekly intake:</p>
 
     <div class="risk-ladder">
-
       <div class="risk-tier risk-1">
         <div class="risk-label-col">
           <div class="risk-label-col-tag">Low risk</div>
@@ -277,7 +232,6 @@
           <p>Both sexes. Spread over 3+ days, with several drink-free days. Risk of harm is kept to a low level — not zero, but comparable to the risk accepted in everyday activities such as driving.</p>
         </div>
       </div>
-
       <div class="risk-tier risk-2">
         <div class="risk-label-col">
           <div class="risk-label-col-tag">Increasing risk</div>
@@ -287,7 +241,6 @@
           <p>Women 15–35, men 15–50. Regular drinking in this band steadily raises the risk of cancer, high blood pressure, liver disease, mental health problems, and injury.</p>
         </div>
       </div>
-
       <div class="risk-tier risk-3">
         <div class="risk-label-col">
           <div class="risk-label-col-tag">Higher risk</div>
@@ -297,79 +250,31 @@
           <p>Women above 35 units/week, men above 50. Drinkers in this group are likely to already be experiencing health harm, even if it is not yet visible. Many will meet criteria for alcohol dependence.</p>
         </div>
       </div>
-
     </div>
 
     <p>Two further points matter. First, <strong>pregnancy</strong>: the CMOs describe no safe level of alcohol in pregnancy — the safest approach is not to drink at all. Second, <strong>single-occasion (binge) drinking</strong>: even if weekly intake is within guidelines, drinking a week's worth in one evening substantially raises short-term risks of injury, accidents, alcohol poisoning, and arrhythmia (an abnormal heart rhythm).</p>
-
   </div>
 
-  <!-- KEY TERMS BOX -->
   <div class="key-terms-box">
     <div class="key-terms-title">📖 Key Terms</div>
     <div class="key-terms-grid">
-
-      <div class="term-item">
-        <div class="term-name">Acetaldehyde</div>
-        <div class="term-def">A highly reactive compound produced when the liver breaks down alcohol. It damages DNA and is the main reason alcohol causes cancer.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">ABV (alcohol by volume)</div>
-        <div class="term-def">The percentage of a drink that is pure alcohol. A 12% ABV wine is 12% alcohol by volume.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">AUDIT-C</div>
-        <div class="term-def">A three-question screening tool (frequency, typical amount, binge episodes) used in UK primary care to identify drinking at hazardous or harmful levels.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">Binge drinking</div>
-        <div class="term-def">Drinking enough on one occasion to reach intoxication — in UK guidelines, more than 6 units for women or 8 units for men in one session.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">Carcinogen (Group 1)</div>
-        <div class="term-def">A substance with sufficient evidence of causing cancer in humans, according to the International Agency for Research on Cancer. Alcohol was classified Group 1 in 1988.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">Cirrhosis</div>
-        <div class="term-def">Advanced, permanent scarring of the liver. The final stage of alcohol-related liver disease — not reversible, but further damage can be halted by stopping drinking.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">Dependence</div>
-        <div class="term-def">A cluster of features — strong urges to drink, loss of control, withdrawal symptoms, tolerance, drinking taking priority over other activities — that indicate the body and mind have become reliant on alcohol.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">Hazardous drinking</div>
-        <div class="term-def">A pattern of drinking that is likely to cause harm in the future, even if it has not caused harm yet. Typically corresponds to regular drinking above 14 units/week.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">Harmful drinking</div>
-        <div class="term-def">Drinking that is already causing clear harm — physical, mental, or social. Often described as "high-risk" drinking in NICE guidance.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">Mendelian randomisation</div>
-        <div class="term-def">A research method that uses genetic differences between people — which affect how much alcohol they drink — to test whether alcohol <em>causes</em> disease rather than merely being associated with it.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">PAR (population-attributable risk)</div>
-        <div class="term-def">The share of cases of a disease in a population that is linked to a particular cause — e.g. the proportion of breast cancers linked to alcohol.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">Steatosis (fatty liver)</div>
-        <div class="term-def">The first stage of alcohol-related liver disease, in which fat builds up inside liver cells. Common in regular heavy drinkers, and fully reversible if drinking stops.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">TMREL</div>
-        <div class="term-def">Theoretical Minimum Risk Exposure Level — the level of a behaviour at which overall health risk is lowest. For alcohol in adults under 40, population studies now place this close to zero.</div>
-      </div>
-      <div class="term-item">
-        <div class="term-name">UK unit</div>
-        <div class="term-def">10ml, or 8g, of pure ethanol. A standard UK measure used on drink labels and in health guidance — not the same as a "standard drink" in other countries.</div>
-      </div>
-
+      <div class="term-item"><div class="term-name">Acetaldehyde</div><div class="term-def">A highly reactive compound produced when the liver breaks down alcohol. It damages DNA and is the main reason alcohol causes cancer.</div></div>
+      <div class="term-item"><div class="term-name">ABV (alcohol by volume)</div><div class="term-def">The percentage of a drink that is pure alcohol. A 12% ABV wine is 12% alcohol by volume.</div></div>
+      <div class="term-item"><div class="term-name">AUDIT-C</div><div class="term-def">A three-question screening tool (frequency, typical amount, binge episodes) used in UK primary care to identify drinking at hazardous or harmful levels.</div></div>
+      <div class="term-item"><div class="term-name">Binge drinking</div><div class="term-def">Drinking enough on one occasion to reach intoxication — in UK guidelines, more than 6 units for women or 8 units for men in one session.</div></div>
+      <div class="term-item"><div class="term-name">Carcinogen (Group 1)</div><div class="term-def">A substance with sufficient evidence of causing cancer in humans, according to the International Agency for Research on Cancer. Alcohol was classified Group 1 in 1988.</div></div>
+      <div class="term-item"><div class="term-name">Cirrhosis</div><div class="term-def">Advanced, permanent scarring of the liver. The final stage of alcohol-related liver disease — not reversible, but further damage can be halted by stopping drinking.</div></div>
+      <div class="term-item"><div class="term-name">Dependence</div><div class="term-def">A cluster of features — strong urges to drink, loss of control, withdrawal symptoms, tolerance, drinking taking priority over other activities — that indicate the body and mind have become reliant on alcohol.</div></div>
+      <div class="term-item"><div class="term-name">Hazardous drinking</div><div class="term-def">A pattern of drinking that is likely to cause harm in the future, even if it has not caused harm yet. Typically corresponds to regular drinking above 14 units/week.</div></div>
+      <div class="term-item"><div class="term-name">Harmful drinking</div><div class="term-def">Drinking that is already causing clear harm — physical, mental, or social. Often described as "high-risk" drinking in NICE guidance.</div></div>
+      <div class="term-item"><div class="term-name">Mendelian randomisation</div><div class="term-def">A research method that uses genetic differences between people — which affect how much alcohol they drink — to test whether alcohol <em>causes</em> disease rather than merely being associated with it.</div></div>
+      <div class="term-item"><div class="term-name">PAR (population-attributable risk)</div><div class="term-def">The share of cases of a disease in a population that is linked to a particular cause — e.g. the proportion of breast cancers linked to alcohol.</div></div>
+      <div class="term-item"><div class="term-name">Steatosis (fatty liver)</div><div class="term-def">The first stage of alcohol-related liver disease, in which fat builds up inside liver cells. Common in regular heavy drinkers, and fully reversible if drinking stops.</div></div>
+      <div class="term-item"><div class="term-name">TMREL</div><div class="term-def">Theoretical Minimum Risk Exposure Level — the level of a behaviour at which overall health risk is lowest. For alcohol in adults under 40, population studies now place this close to zero.</div></div>
+      <div class="term-item"><div class="term-name">UK unit</div><div class="term-def">10ml, or 8g, of pure ethanol. A standard UK measure used on drink labels and in health guidance — not the same as a "standard drink" in other countries.</div></div>
     </div>
   </div>
 
-  <!-- SECTION 2 -->
   <div class="article-section" id="why-it-matters">
     <div class="section-label">Section 2</div>
     <h2 class="section-title">Why does alcohol matter for health?</h2>
@@ -415,10 +320,8 @@
         </div>
       </li>
     </ul>
-
   </div>
 
-  <!-- SECTION 3 -->
   <div class="article-section" id="what-doctor-does">
     <div class="section-label">Section 3</div>
     <h2 class="section-title">What your doctor might do</h2>
@@ -474,10 +377,8 @@
     </div>
 
     <p>None of this is a single-visit process. In UK practice, the typical pattern is a conversation, blood tests, a follow-up review of those results, and an agreed plan — whether that plan is "cut down over three months", "I want to stop and need help with withdrawal", or "I want to think about it". For anything that feels personally relevant, this is a conversation for you to have with your GP or healthcare professional.</p>
-
   </div>
 
-  <!-- SECTION 4 — RESEARCH -->
   <div class="article-section" id="research">
     <div class="section-label">Section 4</div>
     <h2 class="section-title">What the research shows</h2>
@@ -486,7 +387,6 @@
 
     <div class="research-grid">
 
-      <!-- CARD 1 GBD 2016 -->
       <div class="research-card">
         <div class="rc-header">
           <div>
@@ -508,7 +408,6 @@
         <div class="rc-note">Systematic analysis — the most comprehensive global estimate of alcohol's health burden published to date.</div>
       </div>
 
-      <!-- CARD 2 GBD 2020 -->
       <div class="research-card">
         <div class="rc-header">
           <div>
@@ -530,7 +429,6 @@
         <div class="rc-note">Key take-home: the "safe amount" depends on age. For younger adults, the modern evidence says abstinence is best.</div>
       </div>
 
-      <!-- CARD 3 Biddinger -->
       <div class="research-card">
         <div class="rc-header">
           <div>
@@ -552,7 +450,7 @@
         <div class="rc-note">Result: the old "J-curve" in observational data disappears once genetic methods correct for confounding.</div>
       </div>
 
-      <!-- CARD 4 Zhao meta-analysis -->
+      <!-- PATCH 1 APPLIED: Zhao card stat changed from study count (107) to outcome stat (25g threshold) -->
       <div class="research-card">
         <div class="rc-header">
           <div>
@@ -563,8 +461,8 @@
         </div>
         <div class="rc-body">
           <div class="rc-stat">
-            <div class="rc-stat-num">107</div>
-            <div class="rc-stat-label">cohort studies · 4.8M participants combined</div>
+            <div class="rc-stat-num">25g</div>
+            <div class="rc-stat-label">daily intake threshold where mortality risk rises — ~3 UK units for women, ~5–6 units for men</div>
           </div>
           <div class="rc-detail">
             <p>This systematic review pooled 107 prospective cohort studies. Once studies were corrected for the "sick-quitter" problem (former heavy drinkers being classed as non-drinkers) and for reverse causation, <strong>low-to-moderate alcohol intake was no longer associated with reduced mortality risk</strong>.</p>
@@ -574,7 +472,6 @@
         <div class="rc-note">This meta-analysis is one of the main reasons public-health guidance has moved away from "a glass a day is good for you".</div>
       </div>
 
-      <!-- CARD 5 Daviet brain -->
       <div class="research-card">
         <div class="rc-header">
           <div>
@@ -596,7 +493,6 @@
         <div class="rc-note">One of the largest brain-imaging studies of alcohol — clarifies that "moderate" drinking is not neurologically neutral.</div>
       </div>
 
-      <!-- CARD 6 Sabia -->
       <div class="research-card">
         <div class="rc-header">
           <div>
@@ -654,10 +550,8 @@
         <div class="mech-body">Alcohol is directly toxic to brain cells at high doses, and impairs thiamine (vitamin B1) absorption — the cause of Wernicke-Korsakoff syndrome (a severe, sometimes irreversible memory disorder in chronic heavy drinkers).</div>
       </div>
     </div>
-
   </div>
 
-  <!-- PUTTING IT ALL TOGETHER -->
   <div class="article-section" id="conclusion">
     <h2 class="section-title">Putting it all together</h2>
     <div class="conclusion-box">
@@ -668,126 +562,26 @@
     </div>
   </div>
 
-  <!-- REFERENCES -->
   <div class="references-section">
     <h3 class="references-title">References</h3>
-
-    <div class="ref-block" id="ref-1">
-      <div class="ref-num">1 — UK CMO Alcohol Guidelines</div>
-      <div class="ref-full">UK Chief Medical Officers. <em>UK Chief Medical Officers' Low Risk Drinking Guidelines.</em> Department of Health, London; 2016. (Published January 2016, reviewed 2019.)</div>
-      <div class="ref-links">
-        <a class="ref-pill" href="https://assets.publishing.service.gov.uk/media/5a7f51b4e5274a2e87db5206/summary.pdf" target="_blank" rel="noopener">Gov.uk Guidelines Summary</a>
-      </div>
-    </div>
-
-    <div class="ref-block" id="ref-2">
-      <div class="ref-num">2 — Global Burden of Disease 2016</div>
-      <div class="ref-full">GBD 2016 Alcohol Collaborators (Griswold MG, Fullman N, Hawley C, et al.) Alcohol use and burden for 195 countries and territories, 1990–2016: a systematic analysis for the Global Burden of Disease Study 2016. <em>The Lancet</em>. 2018;392(10152):1015–1035. DOI: 10.1016/S0140-6736(18)31310-2</div>
-      <div class="ref-links">
-        <a class="ref-pill" href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)31310-2/fulltext" target="_blank" rel="noopener">Lancet Full Text</a>
-        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/30146330/" target="_blank" rel="noopener">PubMed 30146330 ✓</a>
-      </div>
-    </div>
-
-    <div class="ref-block" id="ref-3">
-      <div class="ref-num">3 — Global Burden of Disease 2020 — age-specific</div>
-      <div class="ref-full">GBD 2020 Alcohol Collaborators (Bryazka D, Reitsma MB, Griswold MG, et al.) Population-level risks of alcohol consumption by amount, geography, age, sex, and year: a systematic analysis for the Global Burden of Disease Study 2020. <em>The Lancet</em>. 2022;400(10347):185–235. DOI: 10.1016/S0140-6736(22)00847-9</div>
-      <div class="ref-links">
-        <a class="ref-pill" href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(22)00847-9/fulltext" target="_blank" rel="noopener">Lancet Full Text</a>
-      </div>
-    </div>
-
-    <div class="ref-block" id="ref-4">
-      <div class="ref-num">4 — UK Biobank Mendelian Randomisation</div>
-      <div class="ref-full">Biddinger KJ, Emdin CA, Haas ME, et al. Association of Habitual Alcohol Intake With Risk of Cardiovascular Disease. <em>JAMA Network Open</em>. 2022;5(3):e223849. DOI: 10.1001/jamanetworkopen.2022.3849</div>
-      <div class="ref-links">
-        <a class="ref-pill" href="https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2790520" target="_blank" rel="noopener">JAMA Network Open Full Text</a>
-        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/35333364/" target="_blank" rel="noopener">PubMed 35333364 ✓</a>
-      </div>
-    </div>
-
-    <div class="ref-block" id="ref-5">
-      <div class="ref-num">5 — All-Cause Mortality Meta-Analysis</div>
-      <div class="ref-full">Zhao J, Stockwell T, Naimi T, Churchill S, Clay J, Sherk A. Association Between Daily Alcohol Intake and Risk of All-Cause Mortality: A Systematic Review and Meta-analyses. <em>JAMA Network Open</em>. 2023;6(3):e236185. DOI: 10.1001/jamanetworkopen.2023.6185</div>
-      <div class="ref-links">
-        <a class="ref-pill" href="https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2802963" target="_blank" rel="noopener">JAMA Network Open Full Text</a>
-        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/37000449/" target="_blank" rel="noopener">PubMed 37000449 ✓</a>
-      </div>
-    </div>
-
-    <div class="ref-block" id="ref-6">
-      <div class="ref-num">6 — UK Biobank Brain Imaging</div>
-      <div class="ref-full">Daviet R, Aydogan G, Jagannathan K, et al. Associations between alcohol consumption and gray and white matter volumes in the UK Biobank. <em>Nature Communications</em>. 2022;13(1):1175. DOI: 10.1038/s41467-022-28735-5</div>
-      <div class="ref-links">
-        <a class="ref-pill" href="https://www.nature.com/articles/s41467-022-28735-5" target="_blank" rel="noopener">Nature Communications Full Text</a>
-        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/35246521/" target="_blank" rel="noopener">PubMed 35246521 ✓</a>
-      </div>
-    </div>
-
-    <div class="ref-block" id="ref-7">
-      <div class="ref-num">7 — Whitehall II Dementia Follow-Up</div>
-      <div class="ref-full">Sabia S, Fayosse A, Dumurgier J, et al. Alcohol consumption and risk of dementia: 23 year follow-up of Whitehall II cohort study. <em>BMJ</em>. 2018;362:k2927. DOI: 10.1136/bmj.k2927</div>
-      <div class="ref-links">
-        <a class="ref-pill" href="https://www.bmj.com/content/362/bmj.k2927" target="_blank" rel="noopener">BMJ Full Text</a>
-        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/30068508/" target="_blank" rel="noopener">PubMed 30068508 ✓</a>
-      </div>
-    </div>
-
-    <div class="ref-block" id="ref-8">
-      <div class="ref-num">8 — IARC Perspective on Alcohol and Cancer</div>
-      <div class="ref-full">IARC Handbook Working Group. The IARC Perspective on Alcohol Reduction or Cessation and Cancer Risk. <em>New England Journal of Medicine</em>. 2024;390(26):2486–2494. DOI: 10.1056/NEJMsr2306723</div>
-      <div class="ref-links">
-        <a class="ref-pill" href="https://www.nejm.org/doi/full/10.1056/NEJMsr2306723" target="_blank" rel="noopener">NEJM Full Text</a>
-      </div>
-    </div>
-
-    <div class="ref-block" id="ref-9">
-      <div class="ref-num">9 — NICE Guideline CG115</div>
-      <div class="ref-full">National Institute for Health and Care Excellence. <em>Alcohol-use disorders: diagnosis, assessment and management of harmful drinking (high-risk drinking) and alcohol dependence (CG115).</em> NICE; London; 2011 (most recent review 2019).</div>
-      <div class="ref-links">
-        <a class="ref-pill" href="https://www.nice.org.uk/guidance/cg115" target="_blank" rel="noopener">NICE CG115 Full Guideline</a>
-      </div>
-    </div>
-
-    <div class="ref-block" id="ref-10">
-      <div class="ref-num">10 — UK Alcohol-Specific Deaths 2023</div>
-      <div class="ref-full">Office for National Statistics. <em>Alcohol-specific deaths in the UK: registered in 2023.</em> ONS Statistical Bulletin. Released 5 February 2025.</div>
-      <div class="ref-links">
-        <a class="ref-pill" href="https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/causesofdeath/bulletins/alcoholrelateddeathsintheunitedkingdom/registeredin2023" target="_blank" rel="noopener">ONS Bulletin</a>
-      </div>
-    </div>
-
-    <div class="ref-block" id="ref-11">
-      <div class="ref-num">11 — UK Cancer Attributable Fractions</div>
-      <div class="ref-full">Brown KF, Rumgay H, Dunlop C, et al. The fraction of cancer attributable to modifiable risk factors in England, Wales, Scotland, Northern Ireland, and the United Kingdom in 2015. <em>British Journal of Cancer</em>. 2018;118(8):1130–1141. DOI: 10.1038/s41416-018-0029-6</div>
-      <div class="ref-links">
-        <a class="ref-pill" href="https://www.nature.com/articles/s41416-018-0029-6" target="_blank" rel="noopener">BJC Full Text</a>
-        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/29567982/" target="_blank" rel="noopener">PubMed 29567982 ✓</a>
-      </div>
-    </div>
-
-    <div class="ref-block" id="ref-12">
-      <div class="ref-num">12 — Alcohol-Related Liver Disease (NHS / British Liver Trust)</div>
-      <div class="ref-full">NHS. <em>Alcohol-related liver disease (ARLD): Stages, symptoms, and treatment.</em> NHS England patient information. British Liver Trust clinical overview supplements the NHS resource on staging (fatty liver → alcoholic hepatitis → cirrhosis) and on progression rates in continuing heavy drinkers.</div>
-      <div class="ref-links">
-        <a class="ref-pill" href="https://www.nhs.uk/conditions/alcohol-related-liver-disease-arld/" target="_blank" rel="noopener">NHS ARLD</a>
-        <a class="ref-pill" href="https://britishlivertrust.org.uk/information-and-support/liver-conditions/alcohol-related-liver-disease/" target="_blank" rel="noopener">British Liver Trust ARLD</a>
-      </div>
-    </div>
-
-    <div class="ref-block" id="ref-13">
-      <div class="ref-num">13 — Lancet Commission on Dementia Prevention 2024</div>
-      <div class="ref-full">Livingston G, Huntley J, Liu KY, et al. Dementia prevention, intervention, and care: 2024 report of the Lancet standing Commission. <em>The Lancet</em>. 2024;404(10452):572–628. DOI: 10.1016/S0140-6736(24)01296-0</div>
-      <div class="ref-links">
-        <a class="ref-pill" href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(24)01296-0/fulltext" target="_blank" rel="noopener">Lancet Full Text</a>
-        <a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/39096926/" target="_blank" rel="noopener">PubMed 39096926 ✓</a>
-      </div>
-    </div>
-
+    <div class="ref-block" id="ref-1"><div class="ref-num">1 — UK CMO Alcohol Guidelines</div><div class="ref-full">UK Chief Medical Officers. <em>UK Chief Medical Officers' Low Risk Drinking Guidelines.</em> Department of Health, London; 2016. (Published January 2016, reviewed 2019.)</div><div class="ref-links"><a class="ref-pill" href="https://assets.publishing.service.gov.uk/media/5a7f51b4e5274a2e87db5206/summary.pdf" target="_blank" rel="noopener">Gov.uk Guidelines Summary</a></div></div>
+    <div class="ref-block" id="ref-2"><div class="ref-num">2 — Global Burden of Disease 2016</div><div class="ref-full">GBD 2016 Alcohol Collaborators (Griswold MG, Fullman N, Hawley C, et al.) Alcohol use and burden for 195 countries and territories, 1990–2016: a systematic analysis for the Global Burden of Disease Study 2016. <em>The Lancet</em>. 2018;392(10152):1015–1035. DOI: 10.1016/S0140-6736(18)31310-2</div><div class="ref-links"><a class="ref-pill" href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)31310-2/fulltext" target="_blank" rel="noopener">Lancet Full Text</a><a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/30146330/" target="_blank" rel="noopener">PubMed 30146330 ✓</a></div></div>
+    <div class="ref-block" id="ref-3"><div class="ref-num">3 — Global Burden of Disease 2020 — age-specific</div><div class="ref-full">GBD 2020 Alcohol Collaborators (Bryazka D, Reitsma MB, Griswold MG, et al.) Population-level risks of alcohol consumption by amount, geography, age, sex, and year: a systematic analysis for the Global Burden of Disease Study 2020. <em>The Lancet</em>. 2022;400(10347):185–235. DOI: 10.1016/S0140-6736(22)00847-9</div><div class="ref-links"><a class="ref-pill" href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(22)00847-9/fulltext" target="_blank" rel="noopener">Lancet Full Text</a></div></div>
+    <div class="ref-block" id="ref-4"><div class="ref-num">4 — UK Biobank Mendelian Randomisation</div><div class="ref-full">Biddinger KJ, Emdin CA, Haas ME, et al. Association of Habitual Alcohol Intake With Risk of Cardiovascular Disease. <em>JAMA Network Open</em>. 2022;5(3):e223849. DOI: 10.1001/jamanetworkopen.2022.3849</div><div class="ref-links"><a class="ref-pill" href="https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2790520" target="_blank" rel="noopener">JAMA Network Open Full Text</a><a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/35333364/" target="_blank" rel="noopener">PubMed 35333364 ✓</a></div></div>
+    <div class="ref-block" id="ref-5"><div class="ref-num">5 — All-Cause Mortality Meta-Analysis</div><div class="ref-full">Zhao J, Stockwell T, Naimi T, Churchill S, Clay J, Sherk A. Association Between Daily Alcohol Intake and Risk of All-Cause Mortality: A Systematic Review and Meta-analyses. <em>JAMA Network Open</em>. 2023;6(3):e236185. DOI: 10.1001/jamanetworkopen.2023.6185</div><div class="ref-links"><a class="ref-pill" href="https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2802963" target="_blank" rel="noopener">JAMA Network Open Full Text</a><a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/37000449/" target="_blank" rel="noopener">PubMed 37000449 ✓</a></div></div>
+    <div class="ref-block" id="ref-6"><div class="ref-num">6 — UK Biobank Brain Imaging</div><div class="ref-full">Daviet R, Aydogan G, Jagannathan K, et al. Associations between alcohol consumption and gray and white matter volumes in the UK Biobank. <em>Nature Communications</em>. 2022;13(1):1175. DOI: 10.1038/s41467-022-28735-5</div><div class="ref-links"><a class="ref-pill" href="https://www.nature.com/articles/s41467-022-28735-5" target="_blank" rel="noopener">Nature Communications Full Text</a><a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/35246521/" target="_blank" rel="noopener">PubMed 35246521 ✓</a></div></div>
+    <div class="ref-block" id="ref-7"><div class="ref-num">7 — Whitehall II Dementia Follow-Up</div><div class="ref-full">Sabia S, Fayosse A, Dumurgier J, et al. Alcohol consumption and risk of dementia: 23 year follow-up of Whitehall II cohort study. <em>BMJ</em>. 2018;362:k2927. DOI: 10.1136/bmj.k2927</div><div class="ref-links"><a class="ref-pill" href="https://www.bmj.com/content/362/bmj.k2927" target="_blank" rel="noopener">BMJ Full Text</a><a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/30068508/" target="_blank" rel="noopener">PubMed 30068508 ✓</a></div></div>
+    <div class="ref-block" id="ref-8"><div class="ref-num">8 — IARC Perspective on Alcohol and Cancer</div><div class="ref-full">IARC Handbook Working Group. The IARC Perspective on Alcohol Reduction or Cessation and Cancer Risk. <em>New England Journal of Medicine</em>. 2024;390(26):2486–2494. DOI: 10.1056/NEJMsr2306723</div><div class="ref-links"><a class="ref-pill" href="https://www.nejm.org/doi/full/10.1056/NEJMsr2306723" target="_blank" rel="noopener">NEJM Full Text</a></div></div>
+    <div class="ref-block" id="ref-9"><div class="ref-num">9 — NICE Guideline CG115</div><div class="ref-full">National Institute for Health and Care Excellence. <em>Alcohol-use disorders: diagnosis, assessment and management of harmful drinking (high-risk drinking) and alcohol dependence (CG115).</em> NICE; London; 2011 (most recent review 2019).</div><div class="ref-links"><a class="ref-pill" href="https://www.nice.org.uk/guidance/cg115" target="_blank" rel="noopener">NICE CG115 Full Guideline</a></div></div>
+    <div class="ref-block" id="ref-10"><div class="ref-num">10 — UK Alcohol-Specific Deaths 2023</div><div class="ref-full">Office for National Statistics. <em>Alcohol-specific deaths in the UK: registered in 2023.</em> ONS Statistical Bulletin. Released 5 February 2025.</div><div class="ref-links"><a class="ref-pill" href="https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/causesofdeath/bulletins/alcoholrelateddeathsintheunitedkingdom/registeredin2023" target="_blank" rel="noopener">ONS Bulletin</a></div></div>
+    <div class="ref-block" id="ref-11"><div class="ref-num">11 — UK Cancer Attributable Fractions</div><div class="ref-full">Brown KF, Rumgay H, Dunlop C, et al. The fraction of cancer attributable to modifiable risk factors in England, Wales, Scotland, Northern Ireland, and the United Kingdom in 2015. <em>British Journal of Cancer</em>. 2018;118(8):1130–1141. DOI: 10.1038/s41416-018-0029-6</div><div class="ref-links"><a class="ref-pill" href="https://www.nature.com/articles/s41416-018-0029-6" target="_blank" rel="noopener">BJC Full Text</a><a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/29567982/" target="_blank" rel="noopener">PubMed 29567982 ✓</a></div></div>
+    <div class="ref-block" id="ref-12"><div class="ref-num">12 — Alcohol-Related Liver Disease (NHS / British Liver Trust)</div><div class="ref-full">NHS. <em>Alcohol-related liver disease (ARLD): Stages, symptoms, and treatment.</em> NHS England patient information. British Liver Trust clinical overview supplements the NHS resource on staging (fatty liver → alcoholic hepatitis → cirrhosis) and on progression rates in continuing heavy drinkers.</div><div class="ref-links"><a class="ref-pill" href="https://www.nhs.uk/conditions/alcohol-related-liver-disease-arld/" target="_blank" rel="noopener">NHS ARLD</a><a class="ref-pill" href="https://britishlivertrust.org.uk/information-and-support/liver-conditions/alcohol-related-liver-disease/" target="_blank" rel="noopener">British Liver Trust ARLD</a></div></div>
+    <div class="ref-block" id="ref-13"><div class="ref-num">13 — Lancet Commission on Dementia Prevention 2024</div><div class="ref-full">Livingston G, Huntley J, Liu KY, et al. Dementia prevention, intervention, and care: 2024 report of the Lancet standing Commission. <em>The Lancet</em>. 2024;404(10452):572–628. DOI: 10.1016/S0140-6736(24)01296-0</div><div class="ref-links"><a class="ref-pill" href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(24)01296-0/fulltext" target="_blank" rel="noopener">Lancet Full Text</a><a class="ref-pill" href="https://pubmed.ncbi.nlm.nih.gov/39096926/" target="_blank" rel="noopener">PubMed 39096926 ✓</a></div></div>
   </div>
 
-</div><!-- /article-body -->
+</div>
 
+<!-- PATCH 2 APPLIED: 2025 → 2026 -->
 <footer class="site-footer">
   <p>helf.school · Practical Health Series · Article 12 · Alcohol and Health · alcohol.html</p>
   <p style="margin-top:.4rem">Health education for everyone — not medical advice. Anything personally relevant is a conversation for you to have with your GP or healthcare professional.</p>
