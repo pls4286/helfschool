@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coeliac Disease — helf.school</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:   #1B2A4A;
+      --coral:  #E8634A;
+      --cream:  #FAF7F2;
+      --sage:   #7A9E87;
+      --digest: #D47C3A;
+      --digest-light: #FEF3E7;
+      --border: #E5DDD4;
+      --text:   #2C2C2C;
+      --muted:  #6B7280;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); font-size: 17px; line-height: 1.75; font-weight: 400; }
+    nav { background: var(--navy); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 68px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(27,42,74,.18); }
+    .nav-logo { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
+    .logo-svg { width: 36px; height: 36px; flex-shrink: 0; }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .logo-name { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; color: #fff; letter-spacing: .01em; }
+    .logo-tagline { font-size: .6rem; font-weight: 500; color: var(--sage); letter-spacing: .18em; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,.75); text-decoration: none; font-size: .875rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: #fff; }
+    .breadcrumb { background: var(--navy); padding: .6rem 2rem; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .breadcrumb-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: .5rem; font-size: .8rem; color: rgba(255,255,255,.75); }
+    .breadcrumb-inner a { color: rgba(255,255,255,.75); text-decoration: none; transition: color .2s; }
+    .breadcrumb-inner a:hover { color: #fff; }
+    .breadcrumb-inner span { color: var(--digest); font-weight: 500; }
+    .article-hero { background: var(--navy); padding: 3.5rem 2rem 3rem; position: relative; overflow: hidden; }
+    .article-hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(212,124,58,.12) 0%, transparent 70%); pointer-events: none; }
+    .article-hero::after { content: ''; position: absolute; bottom: -40px; left: 10%; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(122,158,135,.10) 0%, transparent 70%); pointer-events: none; }
+    .hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+    .category-badge { display: inline-flex; align-items: center; gap: .4rem; background: rgba(212,124,58,.15); border: 1px solid rgba(212,124,58,.3); color: var(--digest); font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; padding: .3rem .75rem; border-radius: 100px; margin-bottom: 1.25rem; }
+    .article-hero h1 { font-family: 'Fraunces', serif; font-size: clamp(2rem,5vw,3rem); font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: .5rem; }
+    .article-hero h1 span { color: var(--digest); }
+    .hero-subtitle { font-size: 1rem; color: rgba(255,255,255,.85); font-style: italic; font-family: 'Fraunces', serif; margin-bottom: 1.75rem; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+    .meta-item { display: flex; align-items: center; gap: .4rem; font-size: .8rem; color: rgba(255,255,255,.80); }
+    .jump-nav { background: #fff; border-bottom: 1px solid var(--border); padding: 0 2rem; position: sticky; top: 68px; z-index: 90; }
+    .jump-nav-inner { max-width: 900px; margin: 0 auto; display: flex; overflow-x: auto; scrollbar-width: none; }
+    .jump-nav-inner::-webkit-scrollbar { display: none; }
+    .jump-link { display: flex; align-items: center; gap: .4rem; padding: .9rem 1.1rem; font-size: .8rem; font-weight: 500; color: var(--text); text-decoration: none; border-bottom: 2px solid transparent; white-space: nowrap; transition: color .2s, border-color .2s; }
+    .jump-link:hover { color: var(--navy); border-bottom-color: var(--navy); }
+    .jump-link .num { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; background: var(--digest-light); color: var(--digest); font-size: .65rem; font-weight: 700; flex-shrink: 0; }
+    .article-layout { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+    .article-section { margin-bottom: 3.5rem; scroll-margin-top: 150px; }
+    .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+    .section-number { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; flex-shrink: 0; }
+    .section-title { font-family: 'Fraunces', serif; font-size: 1.45rem; font-weight: 600; color: var(--navy); line-height: 1.2; }
+    .article-section p { margin-bottom: 1rem; color: var(--text); font-weight: 400; }
+    .article-section p:last-child { margin-bottom: 0; }
+    .subsection-title { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 600; color: var(--navy); margin: 1.75rem 0 .75rem; }
+    .key-terms-box { background: var(--navy); border-radius: 12px; padding: 1.5rem 1.75rem; margin-bottom: 3.5rem; }
+    .key-terms-header { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.25rem; padding-bottom: .85rem; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .key-terms-header h3 { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 600; color: #fff; }
+    .key-terms-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; }
+    .key-term { display: flex; flex-direction: column; gap: .2rem; padding: .75rem 1rem; background: rgba(255,255,255,.05); border-radius: 8px; border-left: 3px solid var(--digest); }
+    .key-term-word { font-size: .88rem; font-weight: 700; color: var(--digest); letter-spacing: .02em; }
+    .key-term-def { font-size: .92rem; color: rgba(255,255,255,.90); line-height: 1.55; }
+    .stat-banner { display: flex; align-items: center; gap: 1.25rem; padding: 1rem 1.25rem; border-radius: 12px; margin: 1.25rem 0; }
+    .stat-banner.dig { background: rgba(212,124,58,.08); border: 1px solid rgba(212,124,58,.2); }
+    .stat-banner.sage { background: rgba(122,158,135,.08); border: 1px solid rgba(122,158,135,.2); }
+    .stat-number { font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 700; line-height: 1; flex-shrink: 0; color: var(--digest); }
+    .stat-banner.sage .stat-number { color: var(--sage); }
+    .stat-text { font-size: .92rem; line-height: 1.55; color: var(--text); font-weight: 400; }
+    .stat-text strong { font-weight: 600; color: var(--navy); }
+    .source-note { font-size: .75rem; color: var(--muted); font-style: italic; margin-top: .3rem; display: block; }
+    .matter-list { list-style: none; display: flex; flex-direction: column; gap: .85rem; }
+    .matter-list li { display: flex; gap: .9rem; align-items: flex-start; background: #fff; border: 1px solid var(--border); border-left: 3px solid var(--digest); border-radius: 0 8px 8px 0; padding: .85rem 1.1rem; font-size: .95rem; line-height: 1.6; color: var(--text); font-weight: 400; }
+    .matter-list li::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--digest); flex-shrink: 0; margin-top: .55rem; }
+    .callout { border-radius: 10px; padding: 1rem 1.25rem; margin: 1.25rem 0; font-size: .95rem; line-height: 1.65; font-weight: 400; }
+    .callout-amber { background: rgba(212,124,58,.08); border: 1px solid rgba(212,124,58,.25); color: var(--text); }
+    .callout-amber strong { color: var(--digest); font-weight: 600; }
+    .callout-sage { background: rgba(122,158,135,.08); border: 1px solid rgba(122,158,135,.25); color: var(--text); }
+    .callout-sage strong { color: #2D5E4A; font-weight: 600; }
+    .callout-red { background: rgba(232,99,74,.08); border: 1px solid rgba(232,99,74,.25); color: var(--text); }
+    .callout-red strong { color: #8B2010; font-weight: 600; }
+    .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .92rem; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(27,42,74,.08); }
+    .data-table thead tr { background: var(--digest); }
+    .data-table thead th { padding: .75rem 1rem; text-align: left; font-weight: 600; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: #fff; }
+    .data-table tbody tr { background: #fff; border-bottom: 1px solid var(--border); }
+    .data-table tbody tr:last-child { border-bottom: none; }
+    .data-table tbody tr:nth-child(even) { background: var(--digest-light); }
+    .data-table tbody td { padding: .8rem 1rem; line-height: 1.55; color: var(--text); font-weight: 400; }
+    .data-table tbody td:first-child { font-weight: 600; color: var(--navy); }
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .92rem; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(27,42,74,.08); }
+    .comparison-table thead tr { background: var(--navy); }
+    .comparison-table thead th { padding: .75rem 1rem; text-align: left; font-weight: 600; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: #fff; }
+    .comparison-table tbody tr { background: #fff; border-bottom: 1px solid var(--border); }
+    .comparison-table tbody tr:last-child { border-bottom: none; }
+    .comparison-table tbody tr:nth-child(even) { background: #FAF7F2; }
+    .comparison-table tbody td { padding: .8rem 1rem; line-height: 1.55; color: var(--text); font-weight: 400; vertical-align: top; }
+    .comparison-table tbody td:first-child { font-weight: 600; color: var(--navy); width: 30%; }
+    .recovery-steps { display: flex; gap: 1rem; margin: 1.25rem 0; flex-wrap: wrap; }
+    .recovery-step { flex: 1; min-width: 160px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.2rem; text-align: center; }
+    .recovery-step-num { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 700; color: var(--digest); line-height: 1; }
+    .recovery-step-label { font-size: .88rem; font-weight: 700; color: var(--navy); margin-top: .3rem; }
+    .recovery-step-effect { font-size: .82rem; color: var(--muted); margin-top: .2rem; line-height: 1.4; }
+    .research-items { display: flex; flex-direction: column; gap: 1.25rem; }
+    .research-item { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.4rem; position: relative; }
+    .research-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 4px 0 0 4px; background: var(--navy); }
+    .research-item h4 { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: .6rem; }
+    .research-item p { font-size: .95rem; line-height: 1.7; color: var(--text); font-weight: 400; margin-bottom: .6rem; }
+    .research-item p:last-child { margin-bottom: 0; }
+    .ref-block { margin-bottom: .85rem; padding: .85rem 1rem; background: #fff; border: 1px solid var(--border); border-radius: 8px; }
+    .ref-full { font-size: .85rem; line-height: 1.6; color: var(--text); font-weight: 400; margin-bottom: .5rem; }
+    .ref-links { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .ref-pill { display: inline-flex; align-items: center; font-size: .72rem; font-weight: 600; letter-spacing: .04em; padding: .2rem .6rem; border-radius: 100px; text-decoration: none; transition: background .2s; }
+    .ref-pill-journal { background: #EBF2ED; color: #2D5E4A; border: 1px solid rgba(122,158,135,.35); }
+    .ref-pill-journal:hover { background: rgba(122,158,135,.25); }
+    .ref-pill-pubmed { background: #EEF4FD; color: #1A4A8A; border: 1px solid rgba(46,107,168,.3); }
+    .ref-pill-pubmed:hover { background: rgba(46,107,168,.15); }
+    .ref-pill-nhs { background: #FEF3E7; color: #8B4A1E; border: 1px solid rgba(212,124,58,.35); }
+    .ref-pill-nhs:hover { background: rgba(212,124,58,.15); }
+    .putting-together { background: var(--navy); border-radius: 14px; padding: 1.75rem 2rem; margin-top: 2rem; position: relative; overflow: hidden; }
+    .putting-together::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, rgba(212,124,58,.10) 0%, transparent 70%); pointer-events: none; }
+    .putting-together-header { display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem; padding-bottom: .85rem; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .putting-together-header h5 { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 600; color: #fff; }
+    .putting-together p { font-size: 1rem; color: rgba(255,255,255,.90); line-height: 1.75; margin-bottom: .75rem; position: relative; z-index: 1; font-weight: 400; font-style: italic; }
+    .putting-together p:last-child { margin-bottom: 0; }
+    .putting-together p strong { color: #fff; font-weight: 600; font-style: normal; }
+    .disclaimer { background: rgba(232,99,74,.06); border: 1px solid rgba(232,99,74,.2); border-radius: 12px; padding: 1.1rem 1.4rem; display: flex; gap: .85rem; align-items: flex-start; margin-top: 3rem; }
+    .disclaimer svg { width: 20px; height: 20px; color: var(--coral); flex-shrink: 0; margin-top: .1rem; }
+    .disclaimer p { font-size: .85rem; color: #7A3020; line-height: 1.6; margin: 0; font-weight: 400; }
+    footer { background: var(--navy); color: rgba(255,255,255,.65); text-align: center; padding: 2rem; font-size: .8rem; }
+    footer a { color: var(--sage); text-decoration: none; }
+    @media(max-width:600px) { nav{padding:0 1rem} .nav-links{display:none} .article-hero{padding:2.5rem 1rem 2rem} .article-layout{padding:2rem 1rem 4rem} .breadcrumb{padding:.6rem 1rem} .jump-nav{padding:0 1rem} .key-terms-grid{grid-template-columns:1fr} .recovery-steps{flex-direction:column} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg class="logo-svg" viewBox="0 0 40 40" fill="none">
+      <rect x="2" y="8" width="17" height="24" rx="2" stroke="#FAF7F2" stroke-width="1.5" fill="none"/>
+      <rect x="21" y="8" width="17" height="24" rx="2" stroke="#FAF7F2" stroke-width="1.5" fill="none"/>
+      <line x1="20" y1="8" x2="20" y2="32" stroke="#E8634A" stroke-width="1.5"/>
+      <line x1="6" y1="15" x2="15" y2="15" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="6" y1="19" x2="15" y2="19" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="6" y1="23" x2="12" y2="23" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="15" x2="34" y2="15" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="19" x2="34" y2="19" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="25" y1="23" x2="31" y2="23" stroke="#FAF7F2" stroke-width="1" stroke-opacity="0.5"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-name">helf.school</span>
+      <span class="logo-tagline">Health Education</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="helf-school-conditions.html">Conditions</a></li>
+    <li><a href="helf-school-membership.html">Membership</a></li>
+  </ul>
+</nav>
+
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Home</a> ·
+    <a href="helf-school-conditions.html">Conditions</a> ·
+    <a href="helf-school-conditions.html#digestive">Digestive Health</a> ·
+    <span>Coeliac Disease</span>
+  </div>
+</div>
+
+<section class="article-hero">
+  <div class="hero-inner">
+    <div class="category-badge"><span>●</span> Digestive Health · Article 18</div>
+    <h1>Coeliac Disease — <span>the silent condition</span> hiding in plain sight</h1>
+    <p class="hero-subtitle">A lifelong autoimmune condition in which gluten triggers the body to attack its own gut lining — affecting roughly 1 in 100 people in the UK, and still missing two thirds of them.</p>
+    <div class="hero-meta">
+      <div class="meta-item">📖 About a 14-minute read</div>
+      <div class="meta-item">🗓️ Reviewed April 2026</div>
+      <div class="meta-item">📋 Health education, not medical advice</div>
+    </div>
+  </div>
+</section>
+
+<div class="jump-nav">
+  <div class="jump-nav-inner">
+    <a href="#what-is-it" class="jump-link"><span class="num">1</span> What is it?</a>
+    <a href="#why-matters" class="jump-link"><span class="num">2</span> Why does it matter?</a>
+    <a href="#what-doctor" class="jump-link"><span class="num">3</span> What your doctor might do</a>
+    <a href="#research" class="jump-link"><span class="num">4</span> What the research shows</a>
+  </div>
+</div>
+
+<div class="article-layout">
+
+  <section class="article-section" id="what-is-it">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <h2 class="section-title">What is it?</h2>
+    </div>
+    <p>Coeliac disease is a lifelong autoimmune condition in which eating gluten — a protein found in wheat, rye, and barley — triggers the body's own immune system to attack the lining of the small intestine. It is not a food allergy, and it is not the same as non-coeliac gluten sensitivity. In coeliac disease, gluten sets off a specific, well-characterised immune reaction that damages the tiny finger-like projections (<em>villi</em>) that line the small bowel and are responsible for absorbing nutrients from food.</p>
+    <p>The condition requires two things to develop: the right genetic background and exposure to gluten. Around 30 to 40 percent of the general population carries one of the two main genetic variants associated with coeliac disease — <em>HLA-DQ2</em> or <em>HLA-DQ8</em> — but only about 1 in 100 people actually goes on to develop the disease itself. Something in addition to the genes and the gluten is needed to trigger it, and that extra factor is not fully understood. What is clear is that almost everybody who has coeliac disease carries one of these gene variants. If neither is present, coeliac disease is virtually excluded.</p>
+    <h3 class="subsection-title">How the damage happens</h3>
+    <p>When gluten is eaten, most of it is broken down normally. But fragments of a specific part of gluten, called <em>gliadin</em> (a protein fragment within gluten that triggers the immune response), survive digestion and reach the small bowel lining. In people with coeliac disease, an enzyme called <em>tissue transglutaminase</em> (tTG) modifies these gliadin fragments. The modified fragments bind unusually strongly to HLA-DQ2 or DQ8 molecules on immune cells, and the immune system treats this combination as a threat.</p>
+    <p>The result is a chronic inflammatory response directed at the cells lining the small intestine. Over time, the villi shrink and flatten — a process called <em>villous atrophy</em> (the flattening of the gut lining). The absorbing surface area of the gut can collapse dramatically, from the size of a tennis court down to something closer to a dining table. This is why untreated coeliac disease so often leads to malabsorption (poor absorption of nutrients) — iron, folate, calcium, vitamin D, and others — and to the symptoms that follow.</p>
+    <h3 class="subsection-title">More than a gut condition</h3>
+    <p>The classic picture — diarrhoea, bloating, weight loss — is only one version of coeliac disease. Many people present atypically. Some have iron deficiency anaemia with no bowel symptoms at all. Some have unexplained fatigue, or recurrent mouth ulcers, or joint aches. Some have neurological symptoms — ataxia (problems with balance and coordination), peripheral neuropathy (nerve damage causing tingling or numbness, usually in the hands and feet), or chronic headaches. Some have infertility, repeated miscarriages, or an unexplained itchy blistering rash (<em>dermatitis herpetiformis</em>), which is the skin manifestation of the same underlying immune process. A significant number of people have almost no symptoms at all, and are diagnosed only because they were screened — often because a close relative has the condition.</p>
+    <p>This wide range of presentations is the single biggest reason coeliac disease gets missed for so long. The average delay between symptoms starting and diagnosis being made, in UK studies, is around 11 years. In that time, damage accumulates silently.</p>
+  </section>
+
+  <div class="key-terms-box">
+    <div class="key-terms-header">
+      <svg viewBox="0 0 20 20" fill="none" width="20" height="20"><path d="M4 4h12v12H4z" stroke="#E8A84A" stroke-width="1.5"/><path d="M4 8h12M8 4v12" stroke="#E8A84A" stroke-width="1.5"/></svg>
+      <h3>Key Terms</h3>
+    </div>
+    <div class="key-terms-grid">
+      <div class="key-term"><span class="key-term-word">Coeliac disease</span><span class="key-term-def">A lifelong autoimmune condition in which eating gluten damages the lining of the small intestine.</span></div>
+      <div class="key-term"><span class="key-term-word">Dermatitis herpetiformis</span><span class="key-term-def">An itchy, blistering skin rash caused by the same underlying immune process as coeliac disease.</span></div>
+      <div class="key-term"><span class="key-term-word">Duodenal biopsy</span><span class="key-term-def">Tiny tissue samples taken from the first part of the small bowel during an endoscopy — the gold-standard confirmation test.</span></div>
+      <div class="key-term"><span class="key-term-word">Gluten</span><span class="key-term-def">A protein found in wheat, rye, and barley — and sometimes in oats that have been cross-contaminated.</span></div>
+      <div class="key-term"><span class="key-term-word">HLA-DQ2 / HLA-DQ8</span><span class="key-term-def">Two genetic variants carried by almost everyone with coeliac disease. Their absence effectively rules it out.</span></div>
+      <div class="key-term"><span class="key-term-word">IgA deficiency</span><span class="key-term-def">A low level of an antibody called IgA — more common in coeliacs and can cause false-negative blood tests.</span></div>
+      <div class="key-term"><span class="key-term-word">Refractory coeliac disease</span><span class="key-term-def">A rare form in which gut damage persists despite a strict gluten-free diet — managed in specialist centres.</span></div>
+      <div class="key-term"><span class="key-term-word">Serology</span><span class="key-term-def">Blood testing for the antibodies produced when someone with coeliac disease eats gluten.</span></div>
+      <div class="key-term"><span class="key-term-word">Tissue transglutaminase (tTG)</span><span class="key-term-def">An enzyme at the centre of the coeliac immune reaction. The antibody to it (IgA tTG) is the main blood test.</span></div>
+      <div class="key-term"><span class="key-term-word">Villi / villous atrophy</span><span class="key-term-def">The tiny finger-like projections that line the small bowel. In coeliac disease they shrink and flatten.</span></div>
+    </div>
+  </div>
+
+  <section class="article-section" id="why-matters">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <h2 class="section-title">Why does it matter?</h2>
+    </div>
+    <p>Coeliac disease matters because it is common, because it is still being missed more often than it is found, and because left untreated it carries real long-term risks that are almost entirely preventable once the diagnosis is made.</p>
+    <div class="stat-banner dig">
+      <div class="stat-number">1 in 100</div>
+      <div class="stat-text">people in the UK are estimated to have coeliac disease — roughly 700,000 people. Because it runs in families, the risk rises to about 1 in 10 among first-degree relatives.<span class="source-note">Source: NHS; Coeliac UK; Catassi et al., Lancet 2022.</span></div>
+    </div>
+    <div class="stat-banner sage">
+      <div class="stat-number">~1 in 3</div>
+      <div class="stat-text">is the proportion currently <strong>diagnosed</strong>. Large UK general-practice data show a diagnosed prevalence of around 0.36% in 2020 — compared to a true prevalence around 1%. Roughly <strong>two thirds of people with coeliac disease in the UK do not yet know they have it.</strong><span class="source-note">Source: Shiha et al., Annals of Family Medicine 2023 (CPRD cohort); Coeliac UK.</span></div>
+    </div>
+    <h3 class="subsection-title">The scale of what's missed</h3>
+    <p>Coeliac disease presents so variably that many cases never get picked up. Some people have the textbook picture — diarrhoea, abdominal pain, weight loss, steatorrhoea (fatty, hard-to-flush stools). Many others present with no gut symptoms at all. Both are coeliac disease.</p>
+    <table class="comparison-table">
+      <thead><tr><th>Classic symptoms</th><th>Atypical / extra-intestinal</th></tr></thead>
+      <tbody>
+        <tr><td>Chronic diarrhoea</td><td>Iron deficiency anaemia (often the only clue)</td></tr>
+        <tr><td>Abdominal pain, bloating, wind</td><td>Unexplained fatigue</td></tr>
+        <tr><td>Weight loss, poor appetite</td><td>Recurrent mouth ulcers</td></tr>
+        <tr><td>Steatorrhoea (pale, bulky, floating stools)</td><td>Joint pain, aches, peripheral neuropathy (tingling/numbness)</td></tr>
+        <tr><td>Faltering growth in children</td><td>Osteopenia (mild bone thinning) or early osteoporosis (brittle bones)</td></tr>
+        <tr><td>Delayed puberty</td><td>Infertility, recurrent miscarriage</td></tr>
+        <tr><td>Nausea and vomiting</td><td>Dermatitis herpetiformis (itchy blistering rash)</td></tr>
+        <tr><td>Constipation (less common but recognised)</td><td>Ataxia (balance problems), headaches, low mood, brain fog</td></tr>
+      </tbody>
+    </table>
+    <p>A substantial number of people with coeliac disease are initially misdiagnosed with irritable bowel syndrome. Coeliac UK reports that one in four people later found to have coeliac disease had previously been treated for IBS — a figure supported by a UK General Practice Research Database study which found that people with coeliac disease were three times more likely to have had a prior IBS diagnosis than matched controls. This is why UK and international guidelines recommend testing for coeliac disease in anyone given a new diagnosis of IBS-type symptoms.</p>
+    <h3 class="subsection-title">Why early diagnosis matters</h3>
+    <p>Undiagnosed, untreated coeliac disease is not benign. The risks accumulate quietly over years and include:</p>
+    <ul class="matter-list">
+      <li><strong>Nutrient deficiencies</strong> — iron, folate, vitamin B12, vitamin D, calcium, zinc. These lead to anaemia, fatigue, and bone thinning.</li>
+      <li><strong>Osteopenia (mild bone thinning) and osteoporosis (brittle bones)</strong> — between 38% and 72% of newly diagnosed adults show reduced bone mineral density at the time of diagnosis. Late diagnosis significantly increases the risk of fragility fractures in later life.</li>
+      <li><strong>Infertility and adverse pregnancy outcomes</strong> — unexplained subfertility (difficulty conceiving), recurrent miscarriage, small-for-dates babies, and premature delivery are all more common in undiagnosed coeliac disease and improve on a gluten-free diet.</li>
+      <li><strong>Neurological problems</strong> — peripheral neuropathy (nerve tingling and numbness), ataxia (problems with balance and coordination), and migraine are recognised extra-intestinal presentations.</li>
+      <li><strong>Associated autoimmune conditions</strong> — coeliac disease co-exists with type 1 diabetes (around 3–7% of people with T1DM have it), autoimmune thyroid disease, and less commonly autoimmune liver conditions. There is also a higher prevalence in Down's syndrome and Turner syndrome.</li>
+      <li><strong>A small increased risk of small bowel lymphoma</strong> — specifically enteropathy-associated T-cell lymphoma (EATL). This is rare, but it is a real risk in long-untreated or poorly controlled coeliac disease, and strict adherence to a gluten-free diet is the single most effective way to reduce it.</li>
+    </ul>
+    <p>The reassuring part is that virtually all of these risks are either reversed or substantially reduced once gluten is removed from the diet and the gut has time to heal.</p>
+  </section>
+
+  <section class="article-section" id="what-doctor">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <h2 class="section-title">What your doctor might do</h2>
+    </div>
+    <p>Coeliac disease is diagnosed in a specific sequence: blood tests first, then — in most cases — a small bowel biopsy to confirm. The sequence matters, and so does what you are doing in the days and weeks before the tests are taken.</p>
+
+    <!-- PATCH 1 APPLIED -->
+    <div class="callout callout-red">
+      <strong>Testing while still eating gluten is essential.</strong> Removing gluten before testing quietens the immune reaction and can make the diagnosis much harder to confirm. Both the blood tests and the biopsy rely on finding the immune response and the gut damage <em>while it is active</em>. If you stop gluten first, the tests can come back falsely negative, and the diagnosis gets missed or delayed. The recommendation is to keep eating gluten — in more than one meal every day — for at least six weeks before testing.
+    </div>
+
+    <h3 class="subsection-title">When your doctor will think of it</h3>
+    <p>The NICE guideline (NG20) sets out specific groups who should be offered testing. Your GP should test for coeliac disease in anyone with persistent unexplained gastrointestinal symptoms, faltering growth in children, prolonged fatigue, unexpected weight loss, severe or recurrent mouth ulcers, unexplained iron, folate, or B12 deficiency, a new diagnosis of type 1 diabetes or autoimmune thyroid disease, or a first-degree relative with coeliac disease. Testing should also be considered in irritable bowel syndrome, unexplained neurological symptoms, reduced bone mineral density, unexplained subfertility (difficulty conceiving) or recurrent miscarriage, and persistent raised liver enzymes.</p>
+    <h3 class="subsection-title">The blood tests — first line</h3>
+    <table class="data-table">
+      <thead><tr><th>Test</th><th>What it checks</th><th>What a positive result means</th></tr></thead>
+      <tbody>
+        <tr><td>Total IgA</td><td>Whether your overall level of IgA antibody is normal</td><td>Low total IgA (IgA deficiency) would make the main coeliac antibody test unreliable. It is more common in coeliacs than in the general population.</td></tr>
+        <tr><td>IgA tTG</td><td>The main coeliac disease antibody — antibody against tissue transglutaminase</td><td>A strong positive result in someone with suggestive symptoms is highly predictive of coeliac disease and prompts referral for biopsy.</td></tr>
+        <tr><td>IgA EMA</td><td>Endomysial antibody — a second-line test</td><td>Used when tTG is weakly positive, or as additional confirmation. Very specific for coeliac disease.</td></tr>
+        <tr><td>IgG-based tests</td><td>Used instead of IgA-based tests if total IgA is low</td><td>IgG deamidated gliadin peptide (DGP), IgG EMA, or IgG tTG.</td></tr>
+      </tbody>
+    </table>
+    <p>A positive blood test does not, on its own, confirm coeliac disease. It means the probability is high enough to warrant further investigation. In children, specialist paediatric gastroenterologists may use a no-biopsy pathway in selected cases. In adults, the standard NICE-endorsed route is referral for endoscopy and duodenal biopsy.</p>
+    <h3 class="subsection-title">The biopsy — and the no-biopsy pathway</h3>
+    <p>The traditional gold standard for diagnosis in adults is a gastroscopy (upper endoscopy — a camera procedure to examine the upper gut) with at least four to six small biopsies (tiny tissue samples) taken from the first part of the small bowel (the duodenum). The pathologist looks for characteristic changes: villous atrophy (flattening of the gut lining), an increase in the number of immune cells in the lining (intraepithelial lymphocytes), and crypt hyperplasia (overgrowth of the gut's repair cells). These changes are graded using the Marsh classification (a scoring system for how severely the gut lining has been damaged).</p>
+    <p>Since 2020, the British Society of Gastroenterology has endorsed an interim no-biopsy pathway for carefully selected adults. In people under 55 with classic coeliac symptoms, no red-flag features (such as unexplained weight loss or anaemia of unclear cause), a tTG level at least 10 times the upper limit of normal, and a positive EMA test, the diagnosis can reasonably be made without a biopsy. Real-world UK studies have shown histological (tissue sample examination) confirmation rates of around 95% in patients meeting these criteria. For patients outside these criteria — or for the over-55s, where the risk of other serious pathology is higher — biopsy remains the recommended route.</p>
+    <h3 class="subsection-title">Treatment — the only effective intervention</h3>
+    <p>There is currently no medication that cures coeliac disease. The treatment is a strict, lifelong gluten-free diet. That means excluding all wheat, rye, and barley, and — for many people — being cautious with oats, which can either be cross-contaminated during production or (in a small proportion) cause a similar reaction even when pure.</p>
+    <div class="callout callout-amber">
+      <strong>"Strict" is the word that matters.</strong> A gluten-free diet is not a low-gluten diet. The threshold for food to be legally labelled "gluten-free" in the UK and EU is less than 20 parts per million. Even small, ongoing exposures — from cross-contamination in a shared toaster, a shared chopping board, or a gravy thickener — are enough to keep the immune reaction active in many people, even if no symptoms are felt. Hidden sources include soy sauce, some sausages and processed meats, some soups and sauces, malt vinegar, some stock cubes, communion wafers, certain lip balms and some medications containing wheat starch as an excipient.
+    </div>
+    <p>In practice, this is a major lifestyle adjustment, and nearly everyone with a new diagnosis benefits enormously from a session with a registered dietitian. Coeliac UK also provides excellent, practical resources — including food and drink directories, guides to eating out, and support for family members.</p>
+    <h3 class="subsection-title">What the gut does when gluten is removed</h3>
+    <p>With good adherence, the small bowel heals. In children, complete mucosal recovery (full healing of the gut lining) is seen in up to 95% within two years. In adults, healing is slower and often incomplete at one year, but the trajectory is the same.</p>
+    <div class="recovery-steps">
+      <div class="recovery-step"><div class="recovery-step-num">~34%</div><div class="recovery-step-label">at 2 years</div><div class="recovery-step-effect">Adults with complete villous recovery on a strict gluten-free diet</div></div>
+      <div class="recovery-step"><div class="recovery-step-num">~66%</div><div class="recovery-step-label">at 5 years</div><div class="recovery-step-effect">Adults with complete villous recovery on a strict gluten-free diet</div></div>
+      <div class="recovery-step"><div class="recovery-step-num">~95%</div><div class="recovery-step-label">children at 2 years</div><div class="recovery-step-effect">Children show faster and more complete recovery than adults</div></div>
+    </div>
+    <p>Recovery is slower in older adults — particularly in those over 60, where mucosal healing (healing of the gut lining) may be incomplete even after years of strict adherence. Persistent villous atrophy (flattening of the gut lining) despite apparent adherence is a specific concern and is the main trigger for specialist review.</p>
+    <h3 class="subsection-title">Follow-up and annual review</h3>
+    <p>Coeliac disease is a lifelong condition, and good annual review makes a measurable difference to long-term outcomes. A typical UK annual review includes:</p>
+    <ul class="matter-list">
+      <li><strong>Symptoms review and dietary adherence check</strong> — often with a dietitian input.</li>
+      <li><strong>Repeat tTG antibody level</strong> — which should fall steadily and ideally normalise on a gluten-free diet. A persistently raised tTG is the best marker of ongoing gluten exposure.</li>
+      <li><strong>Nutritional bloods</strong> — full blood count, ferritin, folate, B12, vitamin D, calcium, thyroid function.</li>
+      <li><strong>Bone health assessment</strong> — a DEXA (bone density) scan is usually offered at diagnosis in adults and repeated periodically, particularly in those with additional risk factors.</li>
+      <li><strong>Immunisations</strong> — because coeliac disease can reduce spleen function (hyposplenism), pneumococcal vaccination is recommended, and influenza vaccination is encouraged.</li>
+    </ul>
+    <h3 class="subsection-title">When symptoms don't settle — non-responsive and refractory coeliac disease</h3>
+    <p>A small minority of people continue to have symptoms despite what they believe is a strict gluten-free diet. This is called <em>non-responsive coeliac disease</em>. The most common reason, by a very wide margin, is ongoing low-level gluten exposure — often from cross-contamination or hidden sources. Other causes include co-existing conditions such as microscopic colitis (inflammation of the large bowel only visible under a microscope), lactose intolerance, pancreatic insufficiency (when the pancreas fails to produce enough digestive enzymes), or small bowel bacterial overgrowth.</p>
+    <p><em>Refractory coeliac disease</em> is a much rarer diagnosis — estimated at around 0.3–4% of people with coeliac disease — and is diagnosed only when symptoms and villous atrophy (flattening of the gut lining) persist despite at least twelve months of strict gluten exclusion and all other causes have been excluded. It is divided into type 1 (generally responsive to nutritional and immunosuppressive treatment — drugs that calm the immune system) and type 2 (associated with a significantly higher risk of progression to enteropathy-associated T-cell lymphoma). Both types are managed in national specialist centres — in the UK, the NHS National Centre for Refractory Coeliac Disease is based in Sheffield.</p>
+  </section>
+
+  <section class="article-section" id="research">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <h2 class="section-title">What the research shows</h2>
+    </div>
+    <div class="research-items">
+      <div class="research-item">
+        <h4>IBS misdiagnosis — Coeliac UK data and supporting evidence</h4>
+        <p>Coeliac UK reports on their healthcare professionals pages that one in four people with coeliac disease have previously been treated for IBS before receiving their correct diagnosis — a figure that reflects the substantial overlap in symptoms between the two conditions. This is supported by a UK case-control study by Card and colleagues using the General Practice Research Database (published in Scandinavian Journal of Gastroenterology, 2013), which found that 16% of patients with coeliac disease had a prior IBS diagnosis, compared to 4.9% in matched controls — representing a threefold increased risk of prior IBS misdiagnosis. A further 28% had received IBS-related treatment. Both NICE guideline CG61 (IBS in adults) and NG20 (coeliac disease) recommend that coeliac disease be excluded before a diagnosis of IBS is made.</p>
+        <div class="ref-block">
+          <p class="ref-full"><strong>Coeliac UK.</strong> Irritable bowel syndrome (IBS) and coeliac disease. Healthcare professionals section. Accessed April 2026.</p>
+          <div class="ref-links"><a href="https://www.coeliac.org.uk/healthcare-professionals/diagnosis/irritable-bowel-syndrome-ibs/" target="_blank" class="ref-pill ref-pill-nhs">Coeliac UK</a></div>
+        </div>
+        <div class="ref-block">
+          <p class="ref-full"><strong>Card TR, Siffledeen J, West J, Fleming KM.</strong> An excess of prior irritable bowel syndrome diagnoses or treatments in celiac disease: evidence of diagnostic delay. <em>Scandinavian Journal of Gastroenterology</em> 2013;48(7):801–807. DOI: 10.3109/00365521.2013.786130</p>
+          <div class="ref-links"><a href="https://pubmed.ncbi.nlm.nih.gov/23697749/" target="_blank" class="ref-pill ref-pill-pubmed">PubMed 23697749</a></div>
+        </div>
+      </div>
+      <div class="research-item">
+        <h4>The Lancet 2022 — the modern comprehensive review</h4>
+        <p>Published in The Lancet in June 2022, this seminar-style review by Catassi and colleagues is the most widely cited current summary of coeliac disease in adults and children. It synthesises the pathophysiology, genetics (the essential role of HLA-DQ2 and HLA-DQ8), serological and histological diagnosis, the no-biopsy approach, long-term management, and the recognised complications. The review highlights that coeliac disease is now recognised as a global disease — not a predominantly European one — and that its prevalence continues to rise. It also underlines that long-term outcomes are powerfully determined by how strictly the gluten-free diet is adhered to.</p>
+        <div class="ref-block">
+          <p class="ref-full"><strong>Catassi C, Verdu EF, Bai JC, Lionetti E.</strong> Coeliac disease. <em>The Lancet</em> 2022;399(10344):2413–2426. DOI: 10.1016/S0140-6736(22)00794-2</p>
+          <div class="ref-links"><a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(22)00794-2/fulltext" target="_blank" class="ref-pill ref-pill-journal">Lancet Full Text</a></div>
+        </div>
+      </div>
+      <div class="research-item">
+        <h4>NICE NG20 — the UK recognition, assessment and management guideline</h4>
+        <p>NICE guideline NG20 is the authoritative UK guidance on who should be tested for coeliac disease and how diagnosis is made. It recommends that primary care testing for suspected coeliac disease in adults starts with total IgA and IgA tTG, with IgA EMA used if tTG is weakly positive, and IgG-based tests used when IgA is deficient. People with a positive result are referred to a gastrointestinal specialist for endoscopic biopsy to confirm the diagnosis. NICE specifically notes that HLA-DQ2/DQ8 testing should not be used for initial diagnosis in non-specialist settings. The guideline was published in 2015 and last reviewed in 2024.</p>
+        <div class="ref-block">
+          <p class="ref-full"><strong>National Institute for Health and Care Excellence.</strong> Coeliac disease: recognition, assessment and management. NICE guideline [NG20]. Published September 2015; last reviewed 2024.</p>
+          <div class="ref-links"><a href="https://www.nice.org.uk/guidance/ng20" target="_blank" class="ref-pill ref-pill-nhs">NICE NG20</a></div>
+        </div>
+      </div>
+      <div class="research-item">
+        <h4>UK prevalence, incidence, and the diagnosis gap — CPRD 2023</h4>
+        <p>A population-based cohort study drawing on the Clinical Practice Research Datalink covered more than 38 million people registered with UK GPs between 2000 and 2020. Over that period, 50,416 people were newly diagnosed with coeliac disease. The adjusted incidence almost doubled over the twenty-year window. Diagnosed prevalence in 2020 was 0.36% — roughly 1 in 278 people — which, against a true prevalence estimated at around 1%, confirms that roughly two thirds of UK coeliac disease remains undiagnosed. Diagnosis rates varied significantly by geography and by deprivation, with lower recognition in more deprived areas.</p>
+        <div class="ref-block">
+          <p class="ref-full"><strong>Shiha MG, Chetcuti Zammit S, Elli L, et al.</strong> The incidence and prevalence of coeliac disease in the United Kingdom from 2000 to 2020: a population-based cohort study. <em>Annals of Family Medicine</em> 2023;21(Supplement 3):5051.</p>
+          <div class="ref-links"><a href="https://www.annfammed.org/content/21/Supplement_3/5051" target="_blank" class="ref-pill ref-pill-journal">Ann Fam Med</a></div>
+        </div>
+      </div>
+      <div class="research-item">
+        <h4>The no-biopsy pathway in adults — BSG-endorsed evidence</h4>
+        <p>Penny and colleagues published a study in <em>Gut</em> in 2021 assessing the accuracy of a no-biopsy approach for adult coeliac disease across multiple UK cohorts. In selected adults — those with a tTG at least ten times the upper limit of normal and a positive EMA — histological (tissue sample) confirmation rates of around 95% were achieved across the cohorts studied, effectively matching the criteria previously validated only in paediatric practice. This evidence underpins the British Society of Gastroenterology's interim guidance for a no-biopsy pathway in selected symptomatic adults under 55 without red-flag features, published in 2020 and endorsed in subsequent UK practice.</p>
+        <div class="ref-block">
+          <p class="ref-full"><strong>Penny HA, Raju SA, Lau MS, et al.</strong> Accuracy of a no-biopsy approach for the diagnosis of coeliac disease across different adult cohorts. <em>Gut</em> 2021;70(5):876–883. DOI: 10.1136/gutjnl-2020-320913</p>
+          <div class="ref-links"><a href="https://gut.bmj.com/content/70/5/876" target="_blank" class="ref-pill ref-pill-journal">Gut Full Text</a></div>
+        </div>
+      </div>
+      <div class="research-item">
+        <h4>Global burden and changing epidemiology — Gastroenterology 2024</h4>
+        <p>Gatti and colleagues, writing in Gastroenterology in 2024, reviewed the global burden of coeliac disease. Pooled worldwide prevalence estimates are approximately 1.4% based on serology and 0.7% based on biopsy — meaning coeliac disease is now recognised as common across Europe, North Africa, the Middle East, South Asia, and the Americas, not a disease confined to people of European ancestry. Diagnostic rates vary enormously by country, with Finland (where systematic case-finding is pursued) reporting the highest diagnosed prevalence at around 1.9%. The gap between true prevalence and diagnosed prevalence is a problem in every country studied.</p>
+        <div class="ref-block">
+          <p class="ref-full"><strong>Gatti S, Rubio-Tapia A, Makharia G, Catassi C.</strong> Patient and Community Health Global Burden in a World With More Celiac Disease. <em>Gastroenterology</em> 2024;167(1):23–33. DOI: 10.1053/j.gastro.2024.01.035</p>
+          <div class="ref-links"><a href="https://www.gastrojournal.org/article/S0016-5085(24)00116-4/fulltext" target="_blank" class="ref-pill ref-pill-journal">Gastroenterology Full Text</a></div>
+        </div>
+      </div>
+      <div class="research-item">
+        <h4>Villous recovery on a gluten-free diet — the healing trajectory</h4>
+        <p>Mucosal recovery on a strict gluten-free diet has been studied in both adults and children. In children, complete histological (tissue sample) recovery is seen in up to 95% within two years. In adults, healing is slower: approximately 34% achieve complete mucosal recovery (full healing of the gut lining) at two years and around 66% at five years. Older adults — those over 60 at diagnosis — show incomplete recovery in many studies, even with good adherence, and may require closer follow-up. Persistent villous atrophy (flattening of the gut lining) despite apparent strict adherence is the specific scenario that triggers specialist reassessment for non-responsive or refractory disease.</p>
+        <div class="ref-block">
+          <p class="ref-full"><strong>Rubio-Tapia A, Rahim MW, See JA, Lahr BD, Wu TT, Murray JA.</strong> Mucosal recovery and mortality in adults with celiac disease after treatment with a gluten-free diet. <em>American Journal of Gastroenterology</em> 2010;105(6):1412–1420. DOI: 10.1038/ajg.2010.10</p>
+          <div class="ref-links"><a href="https://journals.lww.com/ajg/abstract/2010/06000/mucosal_recovery_and_mortality_in_adults_with.28.aspx" target="_blank" class="ref-pill ref-pill-journal">AJG Abstract</a></div>
+        </div>
+      </div>
+      <div class="research-item">
+        <h4>Refractory coeliac disease and EATL — putting the risk in context</h4>
+        <p>Refractory coeliac disease affects an estimated 0.3% to 4% of people diagnosed with coeliac disease, and is uncommon before the age of 30. It is divided into type I (normal-looking intraepithelial lymphocytes — immune cells in the gut lining, 5-year survival around 80%) and type II (abnormal clonal lymphocyte population — a group of immune cells showing a uniform abnormal pattern suggesting pre-malignant change, 5-year survival 44–58%). Type II carries a significantly higher risk of progression to enteropathy-associated T-cell lymphoma (EATL), a rare but aggressive small bowel lymphoma. In the general population the incidence of EATL is around 0.5–1 per million; the risk is elevated in poorly controlled or refractory coeliac disease. Strict adherence to a gluten-free diet is the single most effective intervention to reduce this risk, and the absolute risk for well-controlled patients remains low.</p>
+        <div class="ref-block">
+          <p class="ref-full"><strong>Rej A, Elli L, Lebwohl B, et al.</strong> An update on coeliac disease from the NHS England National Centre for Refractory Coeliac Disease. <em>Clinical Medicine</em> (London) 2021;21(2):127–130. DOI: 10.7861/clinmed.2021-0025</p>
+          <div class="ref-links"><a href="https://www.sciencedirect.com/science/article/pii/S1470211824019729" target="_blank" class="ref-pill ref-pill-journal">Clinical Medicine</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="putting-together">
+      <div class="putting-together-header">
+        <svg viewBox="0 0 20 20" fill="none" width="20" height="20"><path d="M10 2l2.5 5 5.5.8-4 3.9.9 5.5L10 14.5l-4.9 2.7.9-5.5L2 7.8l5.5-.8L10 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <h5>Putting it all together</h5>
+      </div>
+      <p>Coeliac disease is one of the most common chronic autoimmune conditions in the UK — and one of the most persistently under-diagnosed. Roughly two thirds of people who have it do not yet know, often because their symptoms have been attributed to irritable bowel syndrome, to tiredness, to anaemia of no obvious cause, or to nothing at all.</p>
+      <p>The pathway to a diagnosis is not complicated. A simple blood test, taken while still eating gluten, picks up the vast majority of cases. A specialist endoscopy confirms them. Once identified, the treatment — a strict, lifelong gluten-free diet — is one of the most effective interventions in gastroenterology. Gut healing follows, nutrient deficiencies correct, bone density improves, and the long-term risk of complications falls substantially.</p>
+      <p><strong>If you have had persistent gut symptoms, unexplained anaemia or fatigue, a first-degree relative with coeliac disease, or an autoimmune condition such as type 1 diabetes or thyroid disease, it is worth raising coeliac disease at your next GP appointment. A blood test can be arranged — and keeping gluten in your diet until the test is done makes all the difference to getting the right answer.</strong></p>
+    </div>
+  </section>
+
+  <!-- PATCH 2 APPLIED -->
+  <div class="disclaimer">
+    <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4M10 14h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <p><strong>This article is health education, not medical advice.</strong> It is intended to help you understand coeliac disease and the evidence around it — not to replace a consultation with your own doctor. If you are concerned about symptoms that could be coeliac disease, or you have a family history of it, that is a conversation for you to have with your GP or healthcare professional. Starting a gluten-free diet before being tested can make the diagnosis much harder to confirm — testing while still eating gluten is the clinically recommended approach.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>helf.school — <a href="index.html">Home</a> · <a href="helf-school-conditions.html">Conditions</a> · Health Education for Everyone</p>
+  <p style="margin-top:.5rem;font-size:.72rem;opacity:.6">© 2026 helf.school. All content is health education only — not medical advice.</p>
+</footer>
+
+</body>
+</html>
